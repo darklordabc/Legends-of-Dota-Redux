@@ -169,88 +169,92 @@ function parseKV(data) {
     return tree[0];
 }
 
-var resDir = '../resource/';
-var realResDir = '../../../resource/';
+/*function isIdentifier(str) {
+    return (~/^[a-zA-Z$_-][a-zA-Z0-9$_-]*$/).match(str);
+}
 
-var langs = [
-    'brazilian',
-    'finnish',
-    'french',
-    'german',
-    'greek',
-    'hungarian',
-    'nyx',
-    'polish',
-    'russian',
-    'schinese',
-    'spanish',
-    'tchinese',
-    'turkish'
-]
+function escapeString(str) {
+    return str;//StringTools.replace(StringTools.replace(StringTools.replace(StringTools.replace(str, '\\', '\\\\'), '"', '\\"'), '\r', '\\r'), '\n', '\\n');
+}*/
 
-fs.readFile(resDir+'Frota_english.txt', 'utf16le', function(err, data) {
+function isKeyword(str) {
+    switch(str) {
+        case 'true': return true;
+        case 'false': return true;
+        case 'null': return true;
+        case 'undefined': return true;
+        default: return false;
+    }
+}
+
+function toKV(obj, root) {
+    if (obj == null) {
+        return '"null"';
+    } else if (typeof obj == 'number') {
+        return '"'+obj.toString()+'"';
+    } else if (typeof obj == 'boolean') {
+        return '"'+obj.toString()+'"';
+    } else if (typeof obj == 'string') {
+        /*if (isKeyword(obj) || !isIdentifier(obj)) {
+            return '"' + escapeString(obj) + '"';
+        }else {
+            return obj;
+        }*/
+        return '"'+obj+'"';
+    } else if (obj instanceof Array) {
+        return '"'+obj.join(' ')+'"';
+    }else {
+        var str = '';
+        if (!root) {
+            str += '{';
+        }
+        var first = true;
+        for(var i in obj) {
+            if(!first) {
+                str += ' ';
+            }
+            first = false;
+            str += toKV(i, false)+' '+toKV(obj[i], false);
+        }
+
+        if (!root) {
+            str += '}';
+        }
+
+        return str;
+    }
+}
+
+var scriptDir = '../scripts/npc/';
+
+var ignore = {
+    "Version": true,
+    "ability_base": true,
+    "default_attack": true,
+    "attribute_bonus": true
+}
+
+fs.readFile(scriptDir+'npc_abilities.txt', function(err, data) {
     if (err) throw err;
 
-    console.log('Parsing english');
-    var kv = parseKV(data);
+    // Parse ability file
+    console.log('Parsing npc data');
+    var rootFile = parseKV(''+data);
+    var abs = rootFile.DOTAAbilities;
 
-    function fixKV(lang) {
-        fs.readFile(resDir+'Frota_'+lang+'.txt', 'utf16le', function(err, data2) {
-            if (err) throw err;
+    for(key in abs) {
+        // Ignore these two
+        if(ignore[key]) continue;
 
-            // Grab data for this language
-            console.log('Parsing: '+lang);
-            var kv2 = parseKV(data2);
-
-            // Grab a new copy of the english data
-            var newData = data;
-
-            // Replace language header
-            var key = 'Language'
-            var realLang = kv.lang[key];
-            var startPos = newData.indexOf(key)+key.length;
-            var keyPos = newData.indexOf(realLang, startPos);
-            newData = newData.substring(0, keyPos) + lang + newData.substring(keyPos+realLang.length);
-
-            for(var key in kv.lang.Tokens) {
-                var value = kv.lang.Tokens[key];
-                value = value.replace(/\n/g, '\\n');
-                value = value.replace(/\"/g, '\\"');
-                value = value.replace(/\\/g, '\\\\');
-                value = value.replace(/r/g, '\\\r');
-
-                var startPos = newData.indexOf(key)+key.length;
-                var keyPos = newData.indexOf(value, startPos);
-
-                if(keyPos != -1) {
-                    // See if this is already translated
-                    var value2 = (kv2 && kv2.lang && kv2.lang.Tokens[key]);
-                    if(!value2) {
-                        // Translation would go here if I coded it
-
-                        // Just grab the english value
-                        value2 = value;
-                    }
-
-                    // Apply translated text
-                    newData = newData.substring(0, keyPos) + value2 + newData.substring(keyPos+value.length);
-                }
-            }
-
-            // Store new data
-            fs.writeFile('Frota_'+lang+'.txt', newData, 'utf16le', function(err) {
-                if(err) {
-                    console.log(err);
-                } else {
-                    console.log(lang+' was updated!');
-                }
-            });
-        });
+        // Make changes
     }
 
-    // Fix every language
-    for(var i=0; i<langs.length; i++) {
-        fixKV(langs[i]);
-    }
+    var newKV = toKV(rootFile, true);
+
+    fs.writeFile(scriptDir+'npc_abilities_override.txt', newKV, function(err) {
+        if (err) throw err;
+
+        console.log('Done saving file!');
+    });
 });
 
