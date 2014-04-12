@@ -607,7 +607,6 @@ function mapAbilitySpecial(ability, field, data) {
         "bounce_radius": 0,
         "bonus_gold_self": 1,
         "bonus_gold_radius": 0,
-        "health_damage": 1,
         "attack_speed_bonus": 1,
         "hp_leech_percent": 1,
         "heal_percent": 1,
@@ -740,6 +739,25 @@ function mapAbilitySpecial(ability, field, data) {
         "bonus_attack_speed_pct": 1,
         "bonus_movement_speed_pct": 1,
         "bonus_mana_regen_pct": 1,
+        "shock_radius": 0,
+        "max_attacks": 1,
+        "attack_speed_bonus_pct": 1,
+        "damage_per_stack": 1,
+        "life_damage_bonus_percent": 1,
+        "rockets_per_second": 1,
+        "min_damage": 1,
+        "pre_flight_time": -1,
+        "hero_damage": 1,
+        "acceleration": 0,
+        "damage_first": 1,
+        "damage_second": 1,
+        "damage_second_scepter": 1,
+        "armor_reduction": 1,
+        "max_damage": 1,
+        "bonus_bonus_gold": 1,
+        "bonus_gold_cap": 1,
+        "base_attack_time": -1,
+        "bonus_health": 1
 
     }
 
