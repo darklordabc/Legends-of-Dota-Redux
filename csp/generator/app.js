@@ -264,7 +264,7 @@ var mult = 3.0;
 
 var mapFunction = function(ability, field, data) {
     if(field == 'AbilityCooldown' || field == 'AbilityManaCost') {
-        return mul(data, mult, 1);
+        return div(data, mult, 1);
     }
 
     if(field == 'AbilityDamage') {
@@ -628,7 +628,119 @@ function mapAbilitySpecial(ability, field, data) {
         "damage_per_unit": 1,
         "attack_speed": 1,
         "hp_regen": 1,
-        "reward_damage": 1
+        "reward_damage": 1,
+        "bonus_regen": 1,
+        "bonus_chance_damage": 1,
+        "bonus_speed": 1,
+        "damage_bonus": 1,
+        "damage_bonus_ranged": 1,
+        "damage_block_melee": 1,
+        "damage_block_ranged": 1,
+        "bonus_strength": 1,
+        "bonus_agility": 1,
+        "bonus_intellect": 1,
+        "bonus_all_stats": 1,
+        "lifesteal_percent": 1,
+        "bonus_mana_regen": 1,
+        "health_restore": 1,
+        "mana_restore": 1,
+        "max_charges": 1,
+        "charge_radius": 0,
+        "restore_per_charge": 1,
+        "total_mana": 1,
+        "total_health": 1,
+        "health": 1,
+        "true_sight_range": 0,
+        "total_heal": 1,
+        "minimun_distance": 0,
+        "maximum_distance": 0,
+        "bonus_stat": 1,
+        "bonus_attack_speed": 1,
+        "bonus_gold": 1,
+        "xp_multiplier": 1,
+        "aura_radius": 0,
+        "aura_health_regen": 0,
+        "heal_amount": 1,
+        "heal_radius": 0,
+        "heal_bonus_armor": 1,
+        "damage_aura": 0,
+        "armor_aura": 1,
+        "mana_regen_aura": 1,
+        "bonus_aoe_radius": 0,
+        "bonus_aoe_armor": 0,
+        "aura_mana_regen": 1,
+        "aura_bonus_armor": 1,
+        "barrier_radius": 0,
+        "barrier_block": 1,
+        "soul_radius": 0,
+        "soul_initial_charge": 1,
+        "soul_additional_charges": 1,
+        "soul_heal_amount": 1,
+        "soul_damage_amount": 1,
+        "silence_damage_percent": 1,
+        "push_length": 0,
+        "warrior_truesight": 0,
+        "warrior_mana_feedback": 1,
+        "archer_attack_speed": 1,
+        "archer_mana_burn": 1,
+        "archer_attack_speed_radius": 0,
+        "aura_attack_speed": 1,
+        "aura_positive_armor": 1,
+        "aura_negative_armor": 1,
+        "health_regen_rate": 1,
+        "cooldown_melee": -1,
+        "model_scale": 1,
+        "blast_radius": 0,
+        "blast_speed": 0,
+        "blast_damage": 1,
+        "charge_range": 0,
+        "heal_on_death_range": 0,
+        "heal_on_death_base": 1,
+        "heal_on_death_per_charge": 1,
+        "vision_on_death_radius": 0,
+        "respawn_time_reduction": 1,
+        "death_gold_reduction": 1,
+        "bash_damage": 1,
+        "crit_multiplier": 0,
+        "cleave_radius": 0,
+        "cleave_damage_percent": 1,
+        "images_count": 1,
+        "unholy_bonus_damage": 1,
+        "unholy_bonus_attack_speed": 1,
+        "unholy_bonus_strength": 1,
+        "unholy_health_drain": -1,
+        "windwalk_bonus_damage": 1,
+        "movement_speed_percent_bonus": 1,
+        "unholy_lifesteal_percent": 1,
+        "static_strikes": 1,
+        "static_damage": 1,
+        "static_primary_radius": 0,
+        "static_seconary_radius": 0,
+        "static_radius": 0,
+        "static_cooldown": -1,
+        "chain_damage": 1,
+        "chain_strikes": 1,
+        "chain_radius": 0,
+        "corruption_armor": 1,
+        "berserk_bonus_attack_speed": 1,
+        "berserk_bonus_movement_speed": 1,
+        "berserk_extra_damage": 1,
+        "initial_charges": 1,
+        "feedback_mana_burn": 1,
+        "blast_agility_multiplier": 1,
+        "blast_damage_base": 1,
+        "ethereal_damage_bonus": 1,
+        "health_sacrifice": -1,
+        "mana_gain": 1,
+        "replenish_radius": 0,
+        "replenish_amount": 1,
+        "poison_damage": 1,
+        "bonus_aura_attack_speed_pct": 1,
+        "bonus_aura_movement_speed_pct": 1,
+        "bonus_attack_speed_pct": 1,
+        "bonus_movement_speed_pct": 1,
+        "bonus_mana_regen_pct": 1,
+
     }
 
     var m = quickMap[field] || quickMap['customval_'+field];
@@ -649,95 +761,104 @@ function mapAbilitySpecial(ability, field, data) {
     return null;
 }
 
-fs.readFile(scriptDir+'npc_abilities.txt', function(err, data) {
-    if (err) throw err;
+fs.readFile(scriptDir+'items.txt', function(err, itemData) {
+    var rootItems = parseKV(''+itemData, true);
+    var items = rootItems.DOTAAbilities;
+    fs.readFile(scriptDir+'npc_abilities.txt', function(err, data) {
+        if (err) throw err;
 
-    // Parse ability file
-    console.log('Parsing npc data');
-    var rootFile = parseKV(''+data);
-    var abs = rootFile.DOTAAbilities;
+        // Parse ability file
+        console.log('Parsing npc data');
+        var rootFile = parseKV(''+data);
+        var abs = rootFile.DOTAAbilities;
 
-    for(var name in abs) {
-        if(name == "Version") continue;
-
-        // Should we ignore this?
-        if(ignore[name]) {
-            // Don't encode it
-            delete abs[name];
-            continue;
+        for(var name in items) {
+            abs[name] = items[name];
         }
 
-        // Grab the ability
-        var ab = abs[name];
+        for(var name in abs) {
+            if(name == "Version") continue;
 
-        // We've removed all fields from this ability
-        var removedAll = true;
+            // Should we ignore this?
+            if(ignore[name]) {
+                // Don't encode it
+                delete abs[name];
+                continue;
+            }
 
-        // Make changes
-        for(var field in ab) {
-            if(field == 'AbilitySpecial') {
-                // We haven't changed any special values
-                var changedSpecial = false;
+            // Grab the ability
+            var ab = abs[name];
 
-                // Loop over all special values
-                for(var num in ab[field]) {
-                    var d = ab[field][num];
-                    for(key in d) {
-                        if(key == 'var_type') continue;
+            // We've removed all fields from this ability
+            var removedAll = true;
 
-                        var ret = mapAbilitySpecial(name, key, d[key]);
-                        if(ret == null) {
-                            // Delete the field
-                            delete ab[field][num];
-                        } else {
-                            // Store the change
-                            d[key] = ret;
+            // Make changes
+            for(var field in ab) {
+                if(field == 'AbilitySpecial') {
+                    // We haven't changed any special values
+                    var changedSpecial = false;
 
-                            // We have changed a special value
-                            changedSpecial = true;
+                    // Loop over all special values
+                    for(var num in ab[field]) {
+                        var d = ab[field][num];
+                        for(key in d) {
+                            if(key == 'var_type') continue;
+
+                            var ret = mapAbilitySpecial(name, key, d[key]);
+                            if(ret == null) {
+                                // Delete the field
+                                delete ab[field][num];
+                            } else {
+                                // Store the change
+                                d[key] = ret;
+
+                                // We have changed a special value
+                                changedSpecial = true;
+                            }
                         }
                     }
-                }
 
-                // Did we change any special values?
-                if(!changedSpecial) {
-                    // Remove the ability special
-                    delete ab[field];
-                }
-            } else {
-                 var ret = mapFunction(name, field, ab[field]);
-                if(ret == null) {
-                    // Delete the field
-                    delete ab[field];
+                    // Did we change any special values?
+                    if(!changedSpecial) {
+                        // Remove the ability special
+                        delete ab[field];
+                    } else {
+                        removedAll = false;
+                    }
                 } else {
-                    // Store the change
-                    ab[field] = ret;
+                     var ret = mapFunction(name, field, ab[field]);
+                    if(ret == null) {
+                        // Delete the field
+                        delete ab[field];
+                    } else {
+                        // Store the change
+                        ab[field] = ret;
 
-                    // We havent removed all
-                    removedAll = false;
+                        // We havent removed all
+                        removedAll = false;
+                    }
                 }
+            }
+
+            // Did we remove all fields?
+            if(removedAll) {
+                // Remove this ability
+                delete abs[name];
             }
         }
 
-        // Did we remove all fields?
-        if(removedAll) {
-            // Remove this ability
-            delete abs[name];
-        }
-    }
+        var newKV = toKV(rootFile, true);
 
-    var newKV = toKV(rootFile, true);
+        fs.writeFile(scriptDir+'npc_abilities_override.txt', newKV, function(err) {
+            if (err) throw err;
 
-    fs.writeFile(scriptDir+'npc_abilities_override.txt', newKV, function(err) {
-        if (err) throw err;
+            console.log('Done saving file!');
+        });
 
-        console.log('Done saving file!');
-    });
+        fs.writeFile('fixthis.txt', JSON.stringify(fixthis), function(err) {
+            if (err) throw err;
 
-    fs.writeFile('fixthis.txt', JSON.stringify(fixthis), function(err) {
-        if (err) throw err;
-
-        console.log('Done saving fixthis.txt');
+            console.log('Done saving fixthis.txt');
+        });
     });
 });
-
