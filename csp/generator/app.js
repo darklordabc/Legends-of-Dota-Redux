@@ -292,6 +292,7 @@ function mapAbilitySpecial(ability, field, data) {
         "health_bonus_pct": 1,
         "health_bonus_creep_pct": 1,
         "bonus_movement_speed": 1,
+        "bonus_movement": 1,
         "bonus_damage": 1,
         "movement_damage_pct": 1,
         "damage_cap_amount": 1,
@@ -757,8 +758,10 @@ function mapAbilitySpecial(ability, field, data) {
         "bonus_bonus_gold": 1,
         "bonus_gold_cap": 1,
         "base_attack_time": -1,
-        "bonus_health": 1
-
+        "bonus_health": 1,
+        "tooltip_clones": 1,
+        "tooltip_share_percentage": 1,
+        "tooltip_share_percentage_scepter": 1
     }
 
     var m = quickMap[field] || quickMap['customval_'+field];
