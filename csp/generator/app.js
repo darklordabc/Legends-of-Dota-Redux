@@ -759,7 +759,6 @@ function mapAbilitySpecial(ability, field, data) {
         "bonus_gold_cap": 1,
         "base_attack_time": -1,
         "bonus_health": 1,
-        "tooltip_clones": 1,
         "tooltip_share_percentage": 1,
         "tooltip_share_percentage_scepter": 1
     }
