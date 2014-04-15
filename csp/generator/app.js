@@ -781,6 +781,7 @@ function mapAbilitySpecial(ability, field, data) {
     return null;
 }
 
+// Item + Skill modifier
 fs.readFile(scriptDir+'items.txt', function(err, itemData) {
     var rootItems = parseKV(''+itemData, true);
     var items = rootItems.DOTAAbilities;
@@ -880,5 +881,40 @@ fs.readFile(scriptDir+'items.txt', function(err, itemData) {
 
             console.log('Done saving fixthis.txt');
         });
+    });
+});
+
+// Hero modifier
+fs.readFile(scriptDir+'npc_heroes.txt', function(err, heroData) {
+    // Parse heroes file
+    var rootHeroes = parseKV(''+heroData, true);
+    var heroes = rootHeroes.DOTAHeroes;
+
+    // Container for our new heroes
+    var rootNewHeroes = {
+        "DOTAHeroes": {}
+    };
+
+    var newHeroes = rootNewHeroes.DOTAHeroes;
+
+    for(hero in heroes) {
+        if(hero == 'Version' || hero == 'npc_dota_hero_base') continue;
+        var hn = hero+'_csp';
+
+        // Store the override
+        newHeroes[hn] = {
+            "override_hero": hero,
+            "Ability1": "antimage_mana_break",
+            "Ability2": "antimage_blink",
+            "Ability3": "antimage_spell_shield",
+            "Ability4": "antimage_mana_void"
+        }
+    }
+
+    var newKV = toKV(rootNewHeroes, true);
+    fs.writeFile(scriptDir+'npc_heroes_custom.txt', newKV, function(err) {
+        if (err) throw err;
+
+        console.log('Done saving file!');
     });
 });
