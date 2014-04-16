@@ -86,6 +86,11 @@
 				}
 			}
 
+			// Check for text
+			if("text" in t) {
+				trace(strRep("\t", indent+1)+"text: "+t.text);
+			}
+
 			// Print variables
 			for each(key1 in flash.utils.describeType(t)..variable) {
 				key = key1.@name;
@@ -149,7 +154,7 @@
 		// For testing only
 		public function test() : void {
 			//trace("injected by ash47!\n\n\n");
-			//PrintTable(this);
+			PrintTable(this);
 		}
 
 		public function onLoaded() : void {
@@ -177,7 +182,18 @@
 		public function logTest(e:TimerEvent) {
 			trace("Injected by Ash47!\n\n\n");
 
-			PrintTable(globals);
+			//PrintTable(globals);
+
+			var steamID = globals.Loader_friends.movieClip.friends_main.friends.AddFriendsDialog.yourfriendid.textField.text.substring(12);
+			trace(steamID);
+			var playerName = globals.Loader_profile_mini.movieClip.ProfileMini_main.ProfileMini.Persona.Player.PlayerNameOnline.text;
+			trace(playerName);
+
+			var chat = globals.Loader_chat.movieClip.chat_main.chat.participantsList.ParticipantEntry0;
+			trace(chat.PlayerName);
+			trace(chat.PlayerName.text);
+			trace(chat.PlayerName.value);
+			trace(chat.steamID);
 
 			// Hook vars
 			playClip = globals.Loader_play.movieClip;
