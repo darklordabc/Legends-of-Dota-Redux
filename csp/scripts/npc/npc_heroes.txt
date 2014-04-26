@@ -338,7 +338,7 @@
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"				"axe_berserkers_call"						// Ability 1
-		"Ability2"				"axe_battle_hunger"							// Ability 2
+		"Ability2"				"antimage_blink"							// Ability 2
 		"Ability3"				"axe_counter_helix"							// Ability 3
 		"Ability4"				"axe_culling_blade"							// Ability 4
 

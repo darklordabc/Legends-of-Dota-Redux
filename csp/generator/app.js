@@ -65,7 +65,7 @@ function parseKV(data) {
                     // We moved onto the next line
                     line++;
                     if(data.charAt(i+1) == '\n') i++;
-                }else if(chr == '\\') {
+                } else if(chr == '\\') {
                     i++;
                     // Gran the mext cjaracter
                     chr = data.charAt(i);
@@ -760,7 +760,14 @@ function mapAbilitySpecial(ability, field, data) {
         "base_attack_time": -1,
         "bonus_health": 1,
         "tooltip_share_percentage": 1,
-        "tooltip_share_percentage_scepter": 1
+        "tooltip_share_percentage_scepter": 1,
+        "mana_pool_damage_pct": 1,
+        "int_steal": 1,
+        "bonus_mana": 1,
+        "cast_range": 0,
+        "int_threshold": 1,
+        "damage_multiplier_scepter": 1,
+
     }
 
     var m = quickMap[field] || quickMap['customval_'+field];
@@ -824,8 +831,8 @@ fs.readFile(scriptDir+'items.txt', function(err, itemData) {
                         var d = ab[field][num];
                         for(key in d) {
                             if(key == 'var_type') continue;
-
                             var ret = mapAbilitySpecial(name, key, d[key]);
+
                             if(ret == null) {
                                 // Delete the field
                                 delete ab[field][num];
