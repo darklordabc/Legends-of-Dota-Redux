@@ -240,20 +240,18 @@ function updateHero(hero)
         ]]
         stats.baseAttackTime = 1.5
 
+        -- Generate a random build
+        stats.build = {
+            [1] = GetRandomAbility(),
+            [2] = GetRandomAbility(),
+            [3] = GetRandomAbility(),
+            [4] = "meepo_divided_we_stand"--GetRandomAbility('Ults')
+        }
+
         --[[
             Store stats
         ]]
         heroStats[playerID] = stats
-
-        -- Apply random skills
-        if not PlayerResource:IsFakeClient(playerID) then
-            ApplyBuild(hero, {
-                [1] = GetRandomAbility(),
-                [2] = GetRandomAbility(),
-                [3] = GetRandomAbility(),
-                [4] = "meepo_divided_we_stand"--GetRandomAbility('Ults')
-            })
-        end
     end
 
     local level = hero:GetLevel()
@@ -306,6 +304,14 @@ ListenToGameEvent('npc_spawned', function(self, keys)
     if spawnedUnit:IsRealHero() then
         -- Update it
         updateHero(spawnedUnit)
+
+        -- Grab playerID
+        local playerID = spawnedUnit:GetPlayerID()
+
+        -- Apply random skills
+        if not PlayerResource:IsFakeClient(playerID) then
+            ApplyBuild(spawnedUnit, heroStats[playerID].build)
+        end
     end
 end, {})
 
