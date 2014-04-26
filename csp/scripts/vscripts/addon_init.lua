@@ -5,6 +5,10 @@ function PrintTable(t, indent, done)
     done[t] = true
     indent = indent or 0
 
+    if getmetatable(t) then
+        PrintTable(getmetatable(t).__index, indent, done)
+    end
+
     local l = {}
     for k, v in pairs(t) do
         table.insert(l, k)
@@ -242,7 +246,7 @@ function updateHero(hero)
 
         -- Generate a random build
         stats.build = {
-            [1] = GetRandomAbility(),
+            [1] = 'queenofpain_sonic_wave',--GetRandomAbility(),
             [2] = GetRandomAbility(),
             [3] = GetRandomAbility(),
             [4] = "meepo_divided_we_stand"--GetRandomAbility('Ults')
@@ -325,4 +329,14 @@ ListenToGameEvent('dota_player_gained_level', function(self, keys)
     -- Update this hero
     updateHero(hero)
 end, {})
+
+--PrecacheResource('particles/units/heroes/hero_queenofpain.pcf')
+
+-- Precache everything -- Having issues with the arguments changing
+print('Precaching stuff...')
+
+
+
+--PrecacheResource('test', 'test')
+print('Done precaching!')
 
