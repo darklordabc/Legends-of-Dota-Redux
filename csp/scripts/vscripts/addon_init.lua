@@ -251,7 +251,7 @@ function updateHero(hero)
                 [1] = GetRandomAbility(),
                 [2] = GetRandomAbility(),
                 [3] = GetRandomAbility(),
-                [4] = GetRandomAbility('Ults')
+                [4] = "meepo_divided_we_stand"--GetRandomAbility('Ults')
             })
         end
     end
