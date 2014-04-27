@@ -14,6 +14,10 @@
     // For chrome browser
     import flash.utils.getDefinitionByName;
 
+    //import scaleform.clik.controls.Button;
+    import fl.controls.Button;
+    import flash.events.MouseEvent;
+
 	public class test extends MovieClip {
 		// Game API related stuff
         public var gameAPI:Object;
@@ -179,12 +183,60 @@
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}
 
+        public function onClickerClicked(obj:Object) {
+            trace("Pressed!");
+
+            /*globals.Loader_lobby_settings.movieClip.setLocalLobby(false, true);
+            globals.Loader_lobby_settings.movieClip.LobbySettings.custom.visible = true;
+
+            globals.Loader_lobby_settings.movieClip.clearCustomMaps();
+            globals.Loader_lobby_settings.movieClip.addCustomMap("nian3");
+            globals.Loader_lobby_settings.movieClip.addCustomGame(0, "Custom Spell Power");
+
+            globals.Loader_lobby_settings.movieClip.AllowCustomGames = true;
+
+            globals.Loader_lobby_settings.movieClip.CustomMapName = "nian3";
+            //globals.Loader_lobby_settings.movieClip.nCustomGameIndex = 0;*/
+
+            //globals.Loader_dashboard_overlay.movieClip.showCustomGameModeFlyout("1", false, false, "4");
+            //globals.Loader_dashboard_overlay.movieClip.onCustomGameCreateLobbyButtonClicked(null);
+
+            //globals.Loader_dashboard_overlay.movieClip.customGameMenu.visible = true;
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.visible = true;
+            //globals.Loader_dashboard_overlay.movieClip.ignoreClick = true;
+
+            //PrintTable(globals);
+
+            //globals.Loader_play.movieClip.PlayWindow.PlayMain.CustomGameQuickJoinStatus.visible = true;
+            //globals.Loader_play.movieClip.setCurrentTab(12);
+
+            //globals.Loader_play.movieClip.setCustomGameModeListRow(0, "Custom Spell Power", "A gamemode by Ash47 where everything is OP.", "28090256", true, "5/25", "15");
+
+            var i = 0;
+            while(i < globals.Loader_play.movieClip.numNavTabs) {
+                trace(i);
+                globals.Loader_play.movieClip.PlayWindow.PlayMain.Nav["tab" + i].enabled = true;
+                globals.Loader_play.movieClip.PlayWindow.PlayMain.Nav["tab" + i].visible = true;
+                i++;
+            }
+
+            globals.Loader_play.movieClip.setCustomLobbyListRow(0, "Custom Spell Power", "An awesome lobby!", "5/10", true, "15", "32", 28090256, "Ash47");
+
+            //globals.Loader_dashboard_overlay.gameAPI.CustomGame_CreateLobby();
+
+            globals.Loader_workshop.movieClip.workshop.workshop_internal.publish_file.selectSubmissionType.customgame.visible = true;
+            //globals.Loader_workshop.movieClip.customGame_addFolder("csp");
+            //globals.Loader_workshop.gameAPI.OnCustomGameFolderComboChanged("csp");
+
+            //publish_file.importCustomGame.importButton
+        }
+
 		public function logTest(e:TimerEvent) {
 			trace("Injected by Ash47!\n\n\n");
 
 			//PrintTable(globals);
 
-			var steamID = globals.Loader_friends.movieClip.friends_main.friends.AddFriendsDialog.yourfriendid.textField.text.substring(12);
+			/*var steamID = globals.Loader_friends.movieClip.friends_main.friends.AddFriendsDialog.yourfriendid.textField.text.substring(12);
 			trace(steamID);
 			var playerName = globals.Loader_profile_mini.movieClip.ProfileMini_main.ProfileMini.Persona.Player.PlayerNameOnline.text;
 			trace(playerName);
@@ -193,7 +245,27 @@
 			trace(chat.PlayerName);
 			trace(chat.PlayerName.text);
 			trace(chat.PlayerName.value);
-			trace(chat.steamID);
+			trace(chat.steamID);*/
+
+            //globals.Loader_dashboard_overlay.movieClip.onCustomLobbyCreateLobbyButtonClicked();
+
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.visible = true;
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.enabled = true;
+
+            //globals.Loader_worldmap.movieClip.CustomGameDialog.visible = true;
+            //globals.Loader_worldmap.movieClip.CustomGameDialog.enabled = true;
+
+            var clicker = new Button();
+            addChild(clicker);
+            clicker.x = 4;
+            clicker.y = 64;
+            clicker.scaleX = 0.5;
+            clicker.scaleY = 0.5;
+            clicker.label = "Inject";
+            clicker.addEventListener(MouseEvent.CLICK, onClickerClicked);
+
+            //globals.Loader_lobby_settings.movieClip.setLocalLobby(false, true);
+            //globals.Loader_lobby_settings.movieClip.LobbySettings.custom.visible = true;
 
 			// Hook vars
 			playClip = globals.Loader_play.movieClip;
@@ -213,7 +285,7 @@
 				}
 			}
 
-			var customLobby = new test_class();
+			/*var customLobby = new test_class();
 			playMain.addChild(customLobby);
 			customLobby.x = xmin+16;
 			customLobby.y = ymax;
@@ -223,7 +295,7 @@
 			// Fix issue with tab not existing
 			playMain.Nav["tab"+customTabNum] = {
 				selected: false
-			};
+			};*/
 
 			// Create chrome window
 			//InitChromeHTMLRenderTarget();
