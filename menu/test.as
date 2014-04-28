@@ -158,7 +158,7 @@
 		// For testing only
 		public function test() : void {
 			//trace("injected by ash47!\n\n\n");
-			PrintTable(this);
+			//PrintTable(this);
 		}
 
 		public function onLoaded() : void {
