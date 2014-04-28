@@ -246,10 +246,10 @@ function updateHero(hero)
 
         -- Generate a random build
         stats.build = {
-            [1] = 'queenofpain_sonic_wave',--GetRandomAbility(),
+            [1] = GetRandomAbility(),
             [2] = GetRandomAbility(),
             [3] = GetRandomAbility(),
-            [4] = "meepo_divided_we_stand"--GetRandomAbility('Ults')
+            [4] = GetRandomAbility('Ults')
         }
 
         --[[
