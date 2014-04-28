@@ -265,6 +265,13 @@ function updateHero(hero)
     local agi = stats.baseAgi + stats.gainAgi * (level-1)
     local int = stats.baseInt + stats.gainInt * (level-1)
 
+    -- Fix weird dota stats
+    if level > 1 then
+        str = str - hero:GetStrengthGain()
+        agi = agi - hero:GetAgilityGain()
+        int = int - hero:GetIntellectGain()
+    end
+
     -- Change stats
     hero:SetBaseStrength(str)
     hero:SetBaseAgility(agi)
