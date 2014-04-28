@@ -220,7 +220,7 @@
                 i++;
             }
 
-            globals.Loader_play.movieClip.setCustomLobbyListRow(0, "Custom Spell Power", "An awesome lobby!", "5/10", true, "15", "32", 28090256, "Ash47");
+            //globals.Loader_play.movieClip.setCustomLobbyListRow(0, "Custom Spell Power", "An awesome lobby!", "5/10", true, "15", "32", 28090256, "Ash47");
 
             //globals.Loader_dashboard_overlay.gameAPI.CustomGame_CreateLobby();
 
