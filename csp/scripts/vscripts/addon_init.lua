@@ -254,14 +254,17 @@ function updateHero(hero)
             [1] = GetRandomAbility(),
             [2] = GetRandomAbility(),
             [3] = GetRandomAbility(),
-            [4] = 'queenofpain_sonic_wave'--GetRandomAbility('Ults')
+            [4] = GetRandomAbility('Ults')
         }
 
-        -- Worst precache EVER
-        hero = shittyPrecache(hero, stats.build[1])
-        hero = shittyPrecache(hero, stats.build[2])
-        hero = shittyPrecache(hero, stats.build[3])
-        hero = shittyPrecache(hero, stats.build[4])
+        -- Bot fix
+        if not PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+            -- Worst precache EVER
+            hero = shittyPrecache(hero, stats.build[1])
+            hero = shittyPrecache(hero, stats.build[2])
+            hero = shittyPrecache(hero, stats.build[3])
+            hero = shittyPrecache(hero, stats.build[4])
+        end
     end
 
     local level = hero:GetLevel()
@@ -301,6 +304,8 @@ function updateHero(hero)
 
     -- Attack time
     hero:SetBaseAttackTime(stats.baseAttackTime)
+
+    return hero
 end
 
 --[[local patchedExp = false
@@ -319,11 +324,11 @@ ListenToGameEvent('npc_spawned', function(self, keys)
     -- Grab the spawned unit
     local spawnedUnit = EntIndexToHScript(keys.entindex)
     if spawnedUnit:IsRealHero() then
-        -- Update it
-        updateHero(spawnedUnit)
-
         -- Grab playerID
         local playerID = spawnedUnit:GetPlayerID()
+
+        -- Update it
+        spawnedUnit = updateHero(spawnedUnit)
 
         -- Apply random skills
         if not PlayerResource:IsFakeClient(playerID) then
