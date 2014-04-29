@@ -47,6 +47,10 @@ local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
 local abs = LoadKeyValues("scripts/kv/abilities.kv")
 local vAbListSort = {}
 
+-- Change random seed
+local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
+math.randomseed(tonumber(timeTxt))
+
 -- Build skill list
 for k,v in pairs(abs) do
     for kk, vv in pairs(v) do
@@ -177,10 +181,6 @@ function updateHero(hero)
         local n = 0
 
         local res = {}
-
-        -- Change random seed
-        local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
-        math.randomseed(tonumber(timeTxt))
 
         n = math.random(8, math.min(pointsLeft, 30))
         pointsLeft = pointsLeft-n
