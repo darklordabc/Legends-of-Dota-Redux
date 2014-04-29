@@ -249,13 +249,26 @@ function updateHero(hero)
         ]]
         heroStats[playerID] = stats
 
-        -- Generate a random build
-        stats.build = {
-            [1] = GetRandomAbility(),
-            [2] = GetRandomAbility(),
-            [3] = GetRandomAbility(),
-            [4] = GetRandomAbility('Ults')
-        }
+        -- Add three skills
+        stats.build = {}
+        while #stats.build < 3 do
+            local skill = GetRandomAbility()
+
+            local hasit = false
+            for k,v in pairs(stats.build) do
+                if v == skill then
+                    hasit = true
+                    break
+                end
+            end
+
+            if not hasit then
+                table.insert(stats.build, skill)
+            end
+        end
+
+        -- Add one ult
+        table.insert(stats.build, GetRandomAbility('Ults'))
 
         -- Bot fix
         if not PlayerResource:IsFakeClient(hero:GetPlayerID()) then
