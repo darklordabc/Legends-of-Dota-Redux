@@ -319,7 +319,7 @@ for i=1, maxLevel do
     table.insert(expValues, (baseExp+increasePerLevel*i))
 end]]
 
-
+local applied = {}
 ListenToGameEvent('npc_spawned', function(self, keys)
     -- Grab the spawned unit
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -332,7 +332,10 @@ ListenToGameEvent('npc_spawned', function(self, keys)
 
         -- Apply random skills
         if not PlayerResource:IsFakeClient(playerID) then
-            ApplyBuild(spawnedUnit, heroStats[playerID].build)
+            if not applied[spawnedUnit] then
+                applied[spawnedUnit] = true
+                ApplyBuild(spawnedUnit, heroStats[playerID].build)
+            end
         end
     end
 end, {})
