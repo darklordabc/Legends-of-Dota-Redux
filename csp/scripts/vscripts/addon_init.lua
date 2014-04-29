@@ -244,18 +244,24 @@ function updateHero(hero)
         ]]
         stats.baseAttackTime = 1.5
 
+        --[[
+            Store stats
+        ]]
+        heroStats[playerID] = stats
+
         -- Generate a random build
         stats.build = {
             [1] = GetRandomAbility(),
             [2] = GetRandomAbility(),
             [3] = GetRandomAbility(),
-            [4] = GetRandomAbility('Ults')
+            [4] = 'queenofpain_sonic_wave'--GetRandomAbility('Ults')
         }
 
-        --[[
-            Store stats
-        ]]
-        heroStats[playerID] = stats
+        -- Worst precache EVER
+        hero = shittyPrecache(hero, stats.build[1])
+        hero = shittyPrecache(hero, stats.build[2])
+        hero = shittyPrecache(hero, stats.build[3])
+        hero = shittyPrecache(hero, stats.build[4])
     end
 
     local level = hero:GetLevel()
@@ -337,12 +343,218 @@ ListenToGameEvent('dota_player_gained_level', function(self, keys)
     updateHero(hero)
 end, {})
 
+function findOwningHero(ability)
+    for heroName, values in pairs(heroKV) do
+        if heroName ~= 'Version' then
+            for i=1,8 do
+                if values["Ability"..i] == ability then
+                    return heroName
+                end
+            end
+        end
+    end
+
+    return nil
+end
+
+function shittyPrecache(hero, ability)
+    -- Grab info on old hero
+    local oldHero = hero:GetClassname()
+    local playerID = hero:GetPlayerID()
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Attempt to cache shit
+    local owner = findOwningHero(ability)
+    if owner then
+        local a = CreateHeroForPlayer(owner, player)
+        if a then
+            a:Remove()
+
+            -- Create old  hero
+            a = CreateHeroForPlayer(oldHero, player)
+            if a then
+                -- Remove old hero
+                 hero:Remove()
+
+                -- Return new hero
+                return a
+            else
+                print("Failed to recreate "..oldHero)
+            end
+        else
+            print("Failed to precache "..ability.." (2)")
+        end
+    else
+        print("Failed to precache "..ability.." (1))")
+    end
+end
+
 --PrecacheResource('particles/units/heroes/hero_queenofpain.pcf')
 
 -- Precache everything -- Having issues with the arguments changing
 print('Precaching stuff...')
 
+local models = {
+    "models/heroes/juggernaut/jugg_healing_ward.mdl",
+    "models/heroes/tiny_01/tiny_01.mdl",
+    "models/heroes/tiny_02/tiny_02.mdl",
+    "models/heroes/tiny_03/tiny_03.mdl",
+    "models/heroes/tiny_04/tiny_04.mdl",
+    "models/heroes/tiny_01/tiny_01_tree.mdl",
+    "models/props_gameplay/frog.mdl",
+    "models/props_gameplay/chicken.mdl",
+    "models/heroes/shadowshaman/shadowshaman_totem.mdl",
+    "models/heroes/witchdoctor/witchdoctor_ward.mdl",
+    "models/heroes/enigma/eidelon.mdl",
+    "models/heroes/enigma/eidelon.mdl",
+    "models/heroes/beastmaster/beastmaster_bird.mdl",
+    "models/heroes/beastmaster/beastmaster_beast.mdl",
+    "models/heroes/venomancer/venomancer_ward.mdl",
+    "models/heroes/death_prophet/death_prophet_ghost.mdl",
+    "models/heroes/pugna/pugna_ward.mdl",
+    "models/heroes/witchdoctor/witchdoctor_ward.mdl",
+    "models/heroes/dragon_knight/dragon_knight_dragon.mdl",
+    "models/heroes/rattletrap/rattletrap_cog.mdl",
+    "models/heroes/furion/treant.mdl",
+    "models/heroes/nightstalker/nightstalker_night.mdl",
+    "models/heroes/nightstalker/nightstalker.mdl",
+    "models/heroes/broodmother/spiderling.mdl",
+    "models/heroes/weaver/weaver_bug.mdl",
+    "models/heroes/gyro/gyro_missile.mdl",
+    "models/heroes/invoker/forge_spirit.mdl",
+    "models/heroes/lycan/lycan_wolf.mdl",
+    "models/heroes/lone_druid/true_form.mdl",
+    "models/heroes/undying/undying_flesh_golem.mdl",
+    "models/development/invisiblebox.mdl"
+}
 
+local particles = {
+    "particles/units/heroes/hero_antimage.pcf",
+    "particles/units/heroes/hero_axe.pcf",
+    "particles/units/heroes/hero_bane.pcf",
+    "particles/units/heroes/hero_bloodseeker.pcf",
+    "particles/units/heroes/hero_crystalmaiden.pcf",
+    "particles/units/heroes/hero_drow.pcf",
+    "particles/units/heroes/hero_earthshaker.pcf",
+    "particles/units/heroes/hero_juggernaut.pcf",
+    "particles/units/heroes/hero_mirana.pcf",
+    "particles/units/heroes/hero_nevermore.pcf",
+    "particles/units/heroes/hero_morphling.pcf",
+    "particles/units/heroes/hero_phantom_lancer.pcf",
+    "particles/units/heroes/hero_puck.pcf",
+    "particles/units/heroes/hero_pudge.pcf",
+    "particles/units/heroes/hero_razor.pcf",
+    "particles/units/heroes/hero_sandking.pcf",
+    "particles/units/heroes/hero_stormspirit.pcf",
+    "particles/units/heroes/hero_sven.pcf",
+    "particles/units/heroes/hero_tiny.pcf",
+    "particles/units/heroes/hero_vengeful.pcf",
+    "particles/units/heroes/hero_zuus.pcf",
+    "particles/units/heroes/hero_kunkka.pcf",
+    "particles/units/heroes/hero_lina.pcf",
+    "particles/units/heroes/hero_lich.pcf",
+    "particles/units/heroes/hero_lion.pcf",
+    "particles/units/heroes/hero_shadowshaman.pcf",
+    "particles/units/heroes/hero_slardar.pcf",
+    "particles/units/heroes/hero_tidehunter.pcf",
+    "particles/units/heroes/hero_witchdoctor.pcf",
+    "particles/units/heroes/hero_riki.pcf",
+    "particles/units/heroes/hero_enigma.pcf",
+    "particles/units/heroes/hero_tinker.pcf",
+    "particles/units/heroes/hero_sniper.pcf",
+    "particles/units/heroes/hero_necrolyte.pcf",
+    "particles/units/heroes/hero_warlock.pcf",
+    "particles/units/heroes/hero_queenofpain.pcf",
+    "particles/units/heroes/hero_venomancer.pcf",
+    "particles/units/heroes/hero_faceless_void.pcf",
+    "particles/units/heroes/hero_skeletonking.pcf",
+    "particles/units/heroes/hero_death_prophet.pcf",
+    "particles/units/heroes/hero_phantom_assassin.pcf",
+    "particles/units/heroes/hero_pugna.pcf",
+    "particles/units/heroes/hero_templar_assassin.pcf",
+    "particles/units/heroes/hero_viper.pcf",
+    "particles/units/heroes/hero_luna.pcf",
+    "particles/units/heroes/hero_dragon_knight.pcf",
+    "particles/units/heroes/hero_dazzle.pcf",
+    "particles/units/heroes/hero_rattletrap.pcf",
+    "particles/units/heroes/hero_leshrac.pcf",
+    "particles/units/heroes/hero_furion.pcf",
+    "particles/units/heroes/hero_life_stealer.pcf",
+    "particles/units/heroes/hero_dark_seer.pcf",
+    "particles/units/heroes/hero_clinkz.pcf",
+    "particles/units/heroes/hero_omniknight.pcf",
+    "particles/units/heroes/hero_enchantress.pcf",
+    "particles/units/heroes/hero_huskar.pcf",
+    "particles/units/heroes/hero_night_stalker.pcf",
+    "particles/units/heroes/hero_broodmother.pcf",
+    "particles/units/heroes/hero_bounty_hunter.pcf",
+    "particles/units/heroes/hero_weaver.pcf",
+    "particles/units/heroes/hero_jakiro.pcf",
+    "particles/units/heroes/hero_batrider.pcf",
+    "particles/units/heroes/hero_chen.pcf",
+    "particles/units/heroes/hero_spectre.pcf",
+    "particles/units/heroes/hero_doom_bringer.pcf",
+    "particles/units/heroes/hero_ancient_apparition.pcf",
+    "particles/units/heroes/hero_ursa.pcf",
+    "particles/units/heroes/hero_spirit_breaker.pcf",
+    "particles/units/heroes/hero_gyrocopter.pcf",
+    "particles/units/heroes/hero_alchemist.pcf",
+    "particles/units/heroes/hero_invoker.pcf",
+    "particles/units/heroes/hero_silencer.pcf",
+    "particles/units/heroes/hero_obsidian_destroyer.pcf",
+    "particles/units/heroes/hero_lycan.pcf",
+    "particles/units/heroes/hero_brewmaster.pcf",
+    "particles/units/heroes/hero_shadow_demon.pcf",
+    "particles/units/heroes/hero_lone_druid.pcf",
+    "particles/units/heroes/hero_chaos_knight.pcf",
+    "particles/units/heroes/hero_meepo.pcf",
+    "particles/units/heroes/hero_treant.pcf",
+    "particles/units/heroes/hero_ogre_magi.pcf",
+    "particles/units/heroes/hero_undying.pcf",
+    "particles/units/heroes/hero_rubick.pcf",
+    "particles/units/heroes/hero_disruptor.pcf",
+    "particles/units/heroes/hero_nyx_assassin.pcf",
+    "particles/units/heroes/hero_siren.pcf",
+    "particles/units/heroes/hero_keeper_of_the_light.pcf",
+    "particles/units/heroes/hero_wisp.pcf",
+    "particles/units/heroes/hero_visage.pcf",
+    "particles/units/heroes/hero_slark.pcf",
+    "particles/units/heroes/hero_medusa.pcf",
+    "particles/units/heroes/hero_troll_warlord.pcf",
+    "particles/units/heroes/hero_centaur.pcf",
+    "particles/units/heroes/hero_magnataur.pcf",
+    "particles/units/heroes/hero_shredder.pcf",
+    "particles/units/heroes/hero_bristleback.pcf",
+    "particles/units/heroes/hero_tusk.pcf",
+    "particles/units/heroes/hero_skywrath_mage.pcf",
+    "particles/units/heroes/hero_abaddon.pcf",
+    "particles/units/heroes/hero_elder_titan.pcf",
+    "particles/units/heroes/hero_legion_commander.pcf",
+    "particles/units/heroes/hero_ember_spirit.pcf",
+    "particles/units/heroes/hero_earth_spirit.pcf",
+    "particles/units/heroes/hero_abyssal_underlord.pcf",
+    "particles/units/heroes/hero_terrorblade.pcf",
+    "particles/units/heroes/hero_phoenix.pcf"
+}
+
+--[[PrecacheEntityFromTable("npc_dota_creep", {
+    particlefile = "particles/units/heroes/hero_queenofpain.pcf"
+}, {
+    particlefile = "particles/units/heroes/hero_queenofpain.pcf"
+})]]
+
+--local a = {}
+--setmetatable(a, CScriptPrecacheContext)
+--print(a.AddResource)
+
+
+--PrecacheResource("particlefile","particles/units/heroes/hero_queenofpain.pcf", a)
+
+
+--local a = CScriptPrecacheContext()
+--print(a)
+
+--PrecacheResource("particlefile", "particles/units/heroes/hero_phoenix.pcf", {})
 
 --PrecacheResource('test', 'test')
 print('Done precaching!')
