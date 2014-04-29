@@ -392,7 +392,7 @@ end
 --PrecacheResource('particles/units/heroes/hero_queenofpain.pcf')
 
 -- Precache everything -- Having issues with the arguments changing
-print('Precaching stuff...')
+--print('Precaching stuff...')
 
 local models = {
     "models/heroes/juggernaut/jugg_healing_ward.mdl",
@@ -557,4 +557,4 @@ local particles = {
 --PrecacheResource("particlefile", "particles/units/heroes/hero_phoenix.pcf", {})
 
 --PrecacheResource('test', 'test')
-print('Done precaching!')
+--print('Done precaching!')
