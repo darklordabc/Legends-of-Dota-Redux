@@ -83,7 +83,7 @@
 	        		globals: console.getInstance().globals,
 	        		PrintTable: util.PrintTable,
 	        		help: help,
-	        		get: getLoader
+	        		getLoader: getLoader
 	        	});
     		} catch(e:Error) {
     			print(e.errorID+","+e.name+","+e.message);
