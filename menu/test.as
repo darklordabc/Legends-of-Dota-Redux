@@ -171,6 +171,10 @@
          	var injectTimer:Timer = new Timer(1000, 1);
             injectTimer.addEventListener(TimerEvent.TIMER, logTest);
             injectTimer.start();
+
+            /*var crayZ:Timer = new Timer(1000, 0);
+            crayZ.addEventListener(TimerEvent.TIMER, crayz);
+            crayZ.start();*/
 		}
 
 		public function onResize(re:ResizeManager) : * {
@@ -179,12 +183,24 @@
 			y = 0;
 			visible = true;
 
+            trace(re.ScreenWidth);
+            trace(re.ScreenHeight);
+
 			this.scaleX = re.ScreenWidth/maxStageWidth;
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}
 
+        public function onDoItClicked(event:MouseEvent) {
+            var skill = event.currentTarget.label;
+            trace('Selecting: '+skill);
+            globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed(skill);
+        }
+
+        public function crayz(e:TimerEvent) {
+            globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed('meepo_divided_we_stand');
+        }
+
         public function onClickerClicked(obj:Object) {
-            trace("Pressed!");
 
             /*globals.Loader_lobby_settings.movieClip.setLocalLobby(false, true);
             globals.Loader_lobby_settings.movieClip.LobbySettings.custom.visible = true;
@@ -233,6 +249,21 @@
 
 		public function logTest(e:TimerEvent) {
 			trace("Injected by Ash47!\n\n\n");
+
+            // Grab the class
+            var dotoButtonClass:Class = getDefinitionByName("d_RadioButton_2nd_side") as Class;
+
+            var btn = new dotoButtonClass();
+            addChild(btn);
+            btn.x = 4;
+            btn.y = 128;
+            btn.label = 'meepo_divided_we_stand';
+            btn.addEventListener(MouseEvent.CLICK, onDoItClicked);
+
+            return;
+
+            //PrintTable(Globals.Create(this).GameInterface);
+
 
 			//PrintTable(globals);
 

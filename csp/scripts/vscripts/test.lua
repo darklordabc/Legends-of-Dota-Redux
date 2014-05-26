@@ -9,3 +9,4 @@
 --a:Remove()
 --print(a)
 
+PrintTable(_G)
