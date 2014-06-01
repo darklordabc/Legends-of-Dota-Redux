@@ -74,6 +74,9 @@ package  {
         // Active list of skills (key = skill name)
         private var activeList:Object;
 
+        // Stores my skills
+        private var mySkills:MovieClip;
+
         // When the hud is loaded
         public function onLoaded():void {
             // Tell everyone we're loading
@@ -203,6 +206,17 @@ package  {
                         }
                     }
                 }
+            }
+
+            // Container for you skills
+            mySkills = new YourSkillList();
+            skillScreen.addChild(mySkills);
+            mySkills.x = (workingWidth-266)/2;
+            mySkills.y = 296;
+
+            // Apply default skills
+            for(i=0; i<4; i++) {
+                mySkills['skill'+i].setSkillName('antimage_mana_break');
             }
 
             // Hide it
