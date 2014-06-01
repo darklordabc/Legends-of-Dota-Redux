@@ -33,8 +33,8 @@ package  {
         private static var myStageHeight = 720;
 
         // The real size of the screen (this will be changed automatically)
-        private static var realScreenWidth = 640;
-        private static var realScreenHeight = 480;
+        private static var realScreenWidth = 1280;
+        private static var realScreenHeight = 720;
 
         // Stores the scaling factor
         private static var scalingFactor = 1;
@@ -47,6 +47,22 @@ package  {
         // Are we currently picking skills?
         private static var pickingSkills = false;
         private static var heroScreenState:Array;
+
+        // Defining how to layout skills
+        private static var X_SECTIONS = 3;      // How many sections in the x direction
+        private static var Y_SECTIONS = 2;      // How many sections in the y direction
+
+        private static var X_PER_SECTION = 7;   // How many skill lists in each x section
+        private static var Y_PER_SECTION = 3;   // How many skill lists in each y section
+
+        // How big a SelectSkillList is
+        private static var SL_WIDTH = 43;
+        private static var SL_HEIGHT = 43;
+
+        // How much padding to put between each list
+        private static var S_PADDING = 2;
+
+        private var skillScreen:MovieClip;
 
         // When the hud is loaded
         public function onLoaded():void {
@@ -77,8 +93,20 @@ package  {
             dpAttackCombo = dock.filterButtons.AttackCombo.menuList.dataProvider;
             dpMyHeroesCombo = dock.filterButtons.MyHeroesCombo.menuList.dataProvider;
 
+            // Build the skill screen
+            buildSkillScreen();
+
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
+
+            var kv = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv', 'scripts/kv/abilities.kv', 'scripts/kv/abilities.kv');
+            trace(kv);
+
+            for(var key in kv) {
+                trace(key);
+            }
+
+            trace('Legends of Dota hud finished loading!\n\n');
         }
 
         // When the resolution changes, fix our hud
@@ -100,6 +128,53 @@ package  {
             // Store the real screen size
             realScreenWidth = re.ScreenWidth;
             realScreenHeight = re.ScreenHeight;
+
+            // How much space we have to use
+            var workingWidth:Number = myStageHeight*4/3;
+
+            // Align the skill screen correctly
+            skillScreen.x = (realScreenWidth/scalingFactor-workingWidth)/2;
+            skillScreen.y = 128;
+        }
+
+        private function buildSkillScreen() {
+            var i:Number, j:Number, k:Number, l:Number, sl:MovieClip;
+
+            // How much space we have to use
+            var workingWidth:Number = myStageHeight*4/3;
+
+            // Build a container
+            skillScreen = new MovieClip();
+            addChild(skillScreen);
+
+            var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
+            var totalWidth:Number = X_SECTIONS * singleWidth - S_PADDING;
+
+            var singleHeight:Number = Y_PER_SECTION*(SL_HEIGHT + S_PADDING);
+            var totalHeight:Number = Y_SECTIONS * singleHeight - S_PADDING;
+
+            var useableHeight:Number = 320;
+
+            var gapSizeX:Number = (workingWidth-totalWidth) / (X_SECTIONS-1);
+            var gapSizeY:Number = (useableHeight-totalHeight) / (Y_SECTIONS-1);
+
+            var gapSize:Number = Math.min(gapSizeX, gapSizeY);
+
+            for(k=0;k<Y_SECTIONS;k++) {
+                for(l=0; l<Y_PER_SECTION; l++) {
+                    for(i=0;i<X_SECTIONS;i++) {
+                        for(j=0; j<X_PER_SECTION; j++) {
+                            sl = new SelectSkillList();
+                            skillScreen.addChild(sl);
+                            sl.x = i*(singleWidth+gapSize) + j*(SL_WIDTH+S_PADDING);
+                            sl.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
+                        }
+                    }
+                }
+            }
+
+            // Hide it
+            skillScreen.visible = false;
         }
 
         // Adds the skill lists to a given mc
@@ -246,6 +321,9 @@ package  {
 
         // Change the visibility of hero selection stuff
         private function setHeroStuffVisibility(vis:Boolean) {
+            // pickingSkills is the opposite of what you think
+            // if true, change to hero picking mode
+
             // Check if we need to change anything
             if(pickingSkills && !vis) return;
             if(!pickingSkills && vis) return;
@@ -277,8 +355,7 @@ package  {
                 dock.viewToggleButton,
                 dock.fullDeckLegacy,
                 dock.backButton,
-                dock.heroLoadout,
-                dock.dashboardButton
+                dock.heroLoadout
             ];
 
             // Remove keyboard event listeners
@@ -294,29 +371,22 @@ package  {
 
                 // Store states
                 for(i=0; i<lst.length; i++) {
-                    trace('Here:');
-                    trace(heroScreenState[i]);
-                    trace(lst[i]);
-
                     // Store visibility state
-                    heroScreenState.push(lst[i].visible);
-
-                    trace('PUSHED!');
+                    heroScreenState.push(lst[i].x);
 
                     // Hide all
-                    lst[i].visible = false;
+                    lst[i].x = 10000000;
                 }
 
                 // Add listeners
                 dock.filterButtons.searchBox.addEventListener(Event.CHANGE, searchTextChangedEvent);
+
+                // Show skill selection
+                skillScreen.visible = true;
             } else {
                 for(i=0; i<lst.length; i++) {
-                    trace('There:');
-                    trace(heroScreenState[i]);
-                    trace(lst[i]);
-
                     // Restore visibility state
-                    lst[i].visible = heroScreenState[i];
+                    lst[i].x = heroScreenState[i];
                 }
 
                 // Restore event listeners
@@ -324,6 +394,9 @@ package  {
                 stage.addEventListener(KeyboardEvent.KEY_UP, sel.onGlobalKeyUp);
                 dock.addEventListener(MouseEvent.MOUSE_WHEEL, sel.onGlobalMouseWheel);
                 dock.filterButtons.searchBox.addEventListener(Event.CHANGE, sel.searchTextChangedEvent);
+
+                // Hide skill selection
+                skillScreen.visible = false;
             }
         }
 
