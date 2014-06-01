@@ -466,17 +466,24 @@ package  {
         }
 
         private function searchTextChangedEvent(field:Object):void {
-            var txt:String = field.target.text;
-            trace('Text was set to '+txt);
+            // Grab the text string
+            var txt:String = field.target.text.toLowerCase();
+
+            // Grab translation function
+            var trans:Function = Globals.instance.GameInterface.Translate;
+            var prefix = '#DOTA_Tooltip_ability_';
 
             // Search abilities for this key word
             for(var key in activeList) {
-                if(key.indexOf(txt) == -1) {
-                    // Not found
-                    activeList[key].filters = greyFilter();
-                } else {
+                if(key.toLowerCase().indexOf(txt) != -1 || trans(prefix+key).toLowerCase().indexOf(txt) != -1) {
                     // Found
                     activeList[key].filters = null;
+                    activeList[key].alpha = 1;
+                } else {
+                    // Not found
+                    activeList[key].filters = greyFilter();
+                    activeList[key].alpha = 0.5;
+
                 }
             }
         }
