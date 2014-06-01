@@ -21,9 +21,6 @@
             imageHolder.scaleX = skillScale;
             imageHolder.scaleY = skillScale;
             this.addChild(imageHolder);
-
-            // Temp
-            setSkillName('ursa_fury_swipes');
 		}
 
 		// Updates the the current skill

@@ -62,7 +62,11 @@ package  {
         // How much padding to put between each list
         private static var S_PADDING = 2;
 
+        // The skill selection screen
         private var skillScreen:MovieClip;
+
+        // The skill list to feed in
+        private var completeList;
 
         // When the hud is loaded
         public function onLoaded():void {
@@ -93,18 +97,18 @@ package  {
             dpAttackCombo = dock.filterButtons.AttackCombo.menuList.dataProvider;
             dpMyHeroesCombo = dock.filterButtons.MyHeroesCombo.menuList.dataProvider;
 
+            // Load KV
+            trace('Loading kv...');
+            var kv = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
+            trace(kv);
+            completeList = kv.abs;
+            trace(completeList);
+
             // Build the skill screen
             buildSkillScreen();
 
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
-
-            var kv = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv', 'scripts/kv/abilities.kv', 'scripts/kv/abilities.kv');
-            trace(kv);
-
-            for(var key in kv) {
-                trace(key);
-            }
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -138,7 +142,7 @@ package  {
         }
 
         private function buildSkillScreen() {
-            var i:Number, j:Number, k:Number, l:Number, sl:MovieClip;
+            var i:Number, j:Number, k:Number, l:Number, a:Number, sl:MovieClip;
 
             // How much space we have to use
             var workingWidth:Number = myStageHeight*4/3;
@@ -160,14 +164,33 @@ package  {
 
             var gapSize:Number = Math.min(gapSizeX, gapSizeY);
 
+            // The skill we are upto in our skill list
+            var skillNumber:Number = 0;
+
             for(k=0;k<Y_SECTIONS;k++) {
                 for(l=0; l<Y_PER_SECTION; l++) {
                     for(i=0;i<X_SECTIONS;i++) {
                         for(j=0; j<X_PER_SECTION; j++) {
+                            // Create new skill list
                             sl = new SelectSkillList();
                             skillScreen.addChild(sl);
                             sl.x = i*(singleWidth+gapSize) + j*(SL_WIDTH+S_PADDING);
                             sl.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
+
+                            for(a=0; a<4; a++) {
+                                // Grab a new skill
+                                var skill = completeList[skillNumber++];
+                                if(skill) {
+                                    // Put the skill into the slot
+                                    sl['skill'+a].setSkillName(skill);
+
+                                    sl['skill'+a].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                    sl['skill'+a].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                } else {
+                                    // Hide this select skill
+                                    sl['skill'+a].visible = false;
+                                }
+                            }
                         }
                     }
                 }

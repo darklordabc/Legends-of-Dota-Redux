@@ -18,7 +18,6 @@
 
 		// Sets the color of this skill list
 		public function setColor(num:Number) {
-			trace('Setting color to '+num);
 			this.color.gotoAndStop(num+1);
 		}
 	}
