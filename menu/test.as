@@ -18,6 +18,10 @@
     import fl.controls.Button;
     import flash.events.MouseEvent;
 
+    // Path finding
+    import flash.display.DisplayObjectContainer;
+    import flash.display.DisplayObject;
+
 	public class test extends MovieClip {
 		// Game API related stuff
         public var gameAPI:Object;
@@ -104,8 +108,11 @@
 				if(isPrintable(v)) {
 					trace(strRep("\t", indent+1)+key+": "+v);
 				} else {
+                    // Grab the class of it
+                    var thisClass = flash.utils.getQualifiedClassName(t);
+
 					// Open bracket
-					trace(strRep("\t", indent+1)+key+": {");
+					trace(strRep("\t", indent+1)+key+" "+thisClass+": {");
 
 					// Recurse!
 					PrintTable(v, indent+1, done)
@@ -123,8 +130,11 @@
 				if(isPrintable(v)) {
 					trace(strRep("\t", indent+1)+key+": "+v);
 				} else {
+                    // Grab the class of it
+                    var thisClass = flash.utils.getQualifiedClassName(t);
+
 					// Open bracket
-					trace(strRep("\t", indent+1)+key+": {");
+					trace(strRep("\t", indent+1)+key+" "+thisClass+": {");
 
 					// Recurse!
 					PrintTable(v, indent+1, done)
@@ -138,8 +148,11 @@
         	if(t is MovieClip) {
         		// Loop over children
 	        	for(i = 0; i < t.numChildren; i++) {
+                    // Grab the class of it
+                    var thisClass = flash.utils.getQualifiedClassName(t);
+
 	        		// Open bracket
-					trace(strRep("\t", indent+1)+t.name+" "+t+": {");
+					trace(strRep("\t", indent+1)+t.name+" "+t+" "+thisClass+": {");
 
 					// Recurse!
 	        		PrintTable(t.getChildAt(i), indent+1, done);
@@ -196,6 +209,10 @@
             globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed(skill);
         }
 
+        public function onDumpClicked(event:MouseEvent) {
+            PrintTable(globals);
+        }
+
         public function crayz(e:TimerEvent) {
             globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed('meepo_divided_we_stand');
         }
@@ -247,8 +264,68 @@
             //publish_file.importCustomGame.importButton
         }
 
+        public function onStageClicked(event:MouseEvent) {
+            // Grab the taget
+            var target = event.target;
+
+            trace(target.itemName);
+
+            // Grab info
+            var thisClass = flash.utils.getQualifiedClassName(target);
+
+            // Print out some debug info
+            trace('\n\nDUMP:');
+            trace(target);
+            trace('Class: '+thisClass);
+
+            var indent = 0;
+
+            trace('Methods:')
+            // Print methods
+            for each(var key1 in flash.utils.describeType(target)..method) {
+                // Check if this is part of our class
+                if(key1.@declaredBy == thisClass) {
+                    // Yes, log it
+                    trace(strRep("\t", indent+1)+key1.@name+"()");
+                }
+            }
+
+            trace('Variables:');
+
+            // Check for text
+            if("text" in target) {
+                trace(strRep("\t", indent+1)+"text: "+target.text);
+            }
+
+            // Print variables
+            for each(var key1 in flash.utils.describeType(target)..variable) {
+                var key = key1.@name;
+                var v = target[key];
+
+                // Check if we can print it in one line
+                if(isPrintable(v)) {
+                    trace(strRep("\t", indent+1)+key+": "+v);
+                } else {
+                    // Grab the class of it
+                    var thisClass = flash.utils.getQualifiedClassName(target);
+
+                    // Open bracket
+                    trace(strRep("\t", indent+1)+key+" "+thisClass+": {");
+
+                    // Recurse!
+                    trace(strRep("\t", indent+2)+'<not dumped>');
+
+                    // Close bracket
+                    trace(strRep("\t", indent+1)+"}");
+                }
+            }
+        }
+
 		public function logTest(e:TimerEvent) {
 			trace("Injected by Ash47!\n\n\n");
+
+            // Hook all clicks
+            globals.Level0.addEventListener(MouseEvent.CLICK, onStageClicked);
 
             // Grab the class
             var dotoButtonClass:Class = getDefinitionByName("d_RadioButton_2nd_side") as Class;
@@ -259,6 +336,22 @@
             btn.y = 128;
             btn.label = 'meepo_divided_we_stand';
             btn.addEventListener(MouseEvent.CLICK, onDoItClicked);
+
+            btn = new dotoButtonClass();
+            addChild(btn);
+            btn.x = 4;
+            btn.y = 160;
+            btn.label = 'Dump globals';
+            btn.addEventListener(MouseEvent.CLICK, onDumpClicked);
+
+            btn = new dotoButtonClass();
+            addChild(btn);
+            btn.x = 4;
+            btn.y = 190;
+            btn.label = 'Buy Test';
+            btn.addEventListener(MouseEvent.CLICK, function(event:MouseEvent) {
+                globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed('item_blink');
+            });
 
             return;
 
