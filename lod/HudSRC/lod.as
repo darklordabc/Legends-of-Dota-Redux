@@ -17,6 +17,9 @@ package  {
     import flash.events.MouseEvent;
     import flash.events.Event;
 
+    // Marking spells different colors
+    import flash.filters.ColorMatrixFilter;
+
     public class lod extends MovieClip {
         // Game API related stuff
         public var gameAPI:Object;
@@ -68,6 +71,9 @@ package  {
         // The skill list to feed in
         private var completeList;
 
+        // Active list of skills (key = skill name)
+        private var activeList:Object;
+
         // When the hud is loaded
         public function onLoaded():void {
             // Tell everyone we're loading
@@ -98,11 +104,8 @@ package  {
             dpMyHeroesCombo = dock.filterButtons.MyHeroesCombo.menuList.dataProvider;
 
             // Load KV
-            trace('Loading kv...');
             var kv = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
-            trace(kv);
             completeList = kv.abs;
-            trace(completeList);
 
             // Build the skill screen
             buildSkillScreen();
@@ -167,6 +170,9 @@ package  {
             // The skill we are upto in our skill list
             var skillNumber:Number = 0;
 
+            // New active list
+            activeList = {};
+
             for(k=0;k<Y_SECTIONS;k++) {
                 for(l=0; l<Y_PER_SECTION; l++) {
                     for(i=0;i<X_SECTIONS;i++) {
@@ -186,6 +192,9 @@ package  {
 
                                     sl['skill'+a].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
                                     sl['skill'+a].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                                    // Store into the active list
+                                    activeList[skill] = sl['skill'+a];
                                 } else {
                                     // Hide this select skill
                                     sl['skill'+a].visible = false;
@@ -459,6 +468,17 @@ package  {
         private function searchTextChangedEvent(field:Object):void {
             var txt:String = field.target.text;
             trace('Text was set to '+txt);
+
+            // Search abilities for this key word
+            for(var key in activeList) {
+                if(key.indexOf(txt) == -1) {
+                    // Not found
+                    activeList[key].filters = greyFilter();
+                } else {
+                    // Found
+                    activeList[key].filters = null;
+                }
+            }
         }
 
         private function onRolesComboChanged(comboBox):void {
@@ -514,6 +534,11 @@ package  {
         // Grabs the hero dock
         private function getDock():MovieClip {
             return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
+        }
+
+        // Makes something grey
+        private function greyFilter():Array {
+            return [new ColorMatrixFilter([0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
         }
     }
 }
