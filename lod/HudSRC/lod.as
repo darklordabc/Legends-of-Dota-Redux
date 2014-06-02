@@ -86,6 +86,9 @@ package  {
         private var filter2:Number = 0;
         private var filter3:Number = 0;
 
+        // List of banned skills nawwwww
+        private var bannedSkills:Object;
+
         // When the hud is loaded
         public function onLoaded():void {
             // Tell everyone we're loading
@@ -93,6 +96,9 @@ package  {
 
             // Grab the dock
             var dock:MovieClip = getDock();
+
+            // Reset list of banned skills
+            bannedSkills = {};
 
             // Spawn player skill lists
             hookSkillList(dock.radiantPlayers, 0);
@@ -131,6 +137,12 @@ package  {
             bringToTheDarkSide(dock.filterButtons.RolesCombo);
             bringToTheDarkSide(dock.filterButtons.AttackCombo);
             bringToTheDarkSide(dock.filterButtons.MyHeroesCombo);
+
+            // Update filters
+            updateFilters();
+
+            // Set it into skills mode
+            setSkillMode();
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -253,6 +265,12 @@ package  {
             mySkills.x = (workingWidth-266)/2;
             mySkills.y = 296;
 
+            // Hook roll overs
+            for(i=0; i<4; i++) {
+                mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+            }
+
             // Apply default skills
             for(i=0; i<4; i++) {
                 mySkills['skill'+i].setSkillName('antimage_mana_break');
@@ -326,7 +344,7 @@ package  {
             // Decide how to show the info
             if(lp.x < realScreenWidth/2) {
                 // Workout how much to move it
-                var offset:Number = 16*scalingFactor;
+                var offset:Number = s.width*scalingFactor;
 
                 // Face to the right
                 globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, s.getSkillName());
@@ -612,9 +630,16 @@ package  {
 
                 // Did this skill pass all the filters?
                 if(doShow >= totalFilters) {
-                    // Found
-                    activeList[key].filters = null;
-                    activeList[key].alpha = 1;
+                    // Found, is it banned?
+                    if(bannedSkills[key]) {
+                        // Banned :(
+                        activeList[key].filters = redFilter();
+                        activeList[key].alpha = 0.5;
+                    } else {
+                        // Yay, not banned!
+                        activeList[key].filters = null;
+                        activeList[key].alpha = 1;
+                    }
                 } else {
                     // Not found
                     activeList[key].filters = greyFilter();
@@ -622,22 +647,6 @@ package  {
                 }
             }
         }
-
-/*
-sel.resetComboBox('AttackCombo', 3);
-sel.setComboBoxString('AttackCombo', 0, '#By_Type');
-sel.setComboBoxString('AttackCombo', 1, '#Ability');
-sel.setComboBoxString('AttackCombo', 2, '#Ultimate');
-
-
-sel.resetComboBox('MyHeroesCombo', 5);
-sel.setComboBoxString('MyHeroesCombo', 0, '#By_Damage_Type');
-sel.setComboBoxString('MyHeroesCombo', 1, '#Magical_Damage');
-sel.setComboBoxString('MyHeroesCombo', 2, '#Pure_Damage');
-sel.setComboBoxString('MyHeroesCombo', 3, '#Physical_Damage');
-sel.setComboBoxString('MyHeroesCombo', 4, '#HP_Removal_Damage');
-*/
-
 
         private function onRolesComboChanged(comboBox):void {
             // Grab what is selected
@@ -703,6 +712,11 @@ sel.setComboBoxString('MyHeroesCombo', 4, '#HP_Removal_Damage');
         // Makes something grey
         private function greyFilter():Array {
             return [new ColorMatrixFilter([0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
+        }
+
+        // Makes something red
+        private function redFilter():Array {
+            return [new ColorMatrixFilter([1,1,1,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
         }
     }
 }

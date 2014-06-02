@@ -13,7 +13,10 @@
 		private var imageHolder:MovieClip;
 
 		// How to scale the skill image
-		private var skillScale = 40/256;
+		private var skillScale:Number = 40/256;
+
+		// Is this skill banned?
+		public var banned:MovieClip;
 
 		public function SelectSkill() {
 			// Create somewhere to place the image
@@ -21,10 +24,16 @@
             imageHolder.scaleX = skillScale;
             imageHolder.scaleY = skillScale;
             this.addChild(imageHolder);
+
+            // Bring banned to the front
+            this.setChildIndex(this.banned, this.numChildren-1);
+
+            // Set this to not banned
+            setBanned(false);
 		}
 
 		// Updates the the current skill
-		public function setSkillName(skillName) {
+		public function setSkillName(skillName):void {
 			// Store the change
 			this.skillName = skillName;
 
@@ -33,8 +42,14 @@
 		}
 
 		// Returns our skill name
-		public function getSkillName() {
+		public function getSkillName():String {
 			return this.skillName;
+		}
+
+		// Sets this skill to show as banned, or not
+		public function setBanned(state:Boolean):void {
+			// Store state
+			this.banned.visible = state;
 		}
 	}
 
