@@ -77,6 +77,15 @@ package  {
         // Stores my skills
         private var mySkills:MovieClip;
 
+        // The skill KV file
+        var skillKV:Object;
+
+        // The searching filters
+        private var filterText:String = "";
+        private var filter1:Number = 0;
+        private var filter2:Number = 0;
+        private var filter3:Number = 0;
+
         // When the hud is loaded
         public function onLoaded():void {
             // Tell everyone we're loading
@@ -106,9 +115,11 @@ package  {
             dpAttackCombo = dock.filterButtons.AttackCombo.menuList.dataProvider;
             dpMyHeroesCombo = dock.filterButtons.MyHeroesCombo.menuList.dataProvider;
 
-            // Load KV
-            var kv = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
-            completeList = kv.abs;
+            // Load our ability list KV
+            completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
+
+            // Load KV with info on abilities
+            skillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
 
             // Build the skill screen
             buildSkillScreen();
@@ -116,7 +127,35 @@ package  {
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
 
+            // Fix layering issues
+            bringToTheDarkSide(dock.filterButtons.RolesCombo);
+            bringToTheDarkSide(dock.filterButtons.AttackCombo);
+            bringToTheDarkSide(dock.filterButtons.MyHeroesCombo);
+
             trace('Legends of Dota hud finished loading!\n\n');
+        }
+
+        // Called when LoD is unloaded
+        public function OnUnload():void {
+            // Fixup the damned hud!
+            trace('\n\nFixing the hud...');
+
+            // Show hero screen stuff
+            setHeroStuffVisibility(true);
+
+            // Fix combo buttons
+
+            // All done, tell the user
+            trace('Done fixing the hud!\n\n');
+        }
+
+        private function bringToTheDarkSide(mc:MovieClip):void {
+            var pos:Point = mc.localToGlobal(new Point(0, 0));
+            addChild(mc);
+            mc.x = pos.x/scalingFactor;
+            mc.y = pos.y/scalingFactor;
+
+            trace(pos.x+', '+pos.y)
         }
 
         // When the resolution changes, fix our hud
@@ -338,20 +377,27 @@ package  {
 
             // Patch in custom filters
             sel.resetComboBox('RolesCombo', 8);
-            sel.setComboBoxString('RolesCombo', 0, '#DOTA_SortBackpack_Type');
+            sel.setComboBoxString('RolesCombo', 0, '#By_Behavior');
             sel.setComboBoxString('RolesCombo', 1, '#DOTA_ToolTip_Ability_NoTarget');
             sel.setComboBoxString('RolesCombo', 2, '#DOTA_ToolTip_Ability_Target');
             sel.setComboBoxString('RolesCombo', 3, '#DOTA_ToolTip_Ability_Point');
             sel.setComboBoxString('RolesCombo', 4, '#DOTA_ToolTip_Ability_Channeled');
             sel.setComboBoxString('RolesCombo', 5, '#DOTA_ToolTip_Ability_Passive');
-            sel.setComboBoxString('RolesCombo', 6, '#DOTA_ToolTip_Ability_Aura');
+            sel.setComboBoxString('RolesCombo', 6, '#DOTA_ToolTip_Ability_Aoe');
             sel.setComboBoxString('RolesCombo', 7, '#DOTA_ToolTip_Ability_Toggle');
 
-            sel.resetComboBox('AttackCombo', 1);
-            sel.setComboBoxString('AttackCombo', 0, 'By asd');
+            sel.resetComboBox('AttackCombo', 3);
+            sel.setComboBoxString('AttackCombo', 0, '#By_Type');
+            sel.setComboBoxString('AttackCombo', 1, '#Ability');
+            sel.setComboBoxString('AttackCombo', 2, '#Ultimate');
 
-            sel.resetComboBox('MyHeroesCombo', 1);
-            sel.setComboBoxString('MyHeroesCombo', 0, 'By dsa');
+
+            sel.resetComboBox('MyHeroesCombo', 5);
+            sel.setComboBoxString('MyHeroesCombo', 0, '#By_Damage_Type');
+            sel.setComboBoxString('MyHeroesCombo', 1, '#Magical_Damage');
+            sel.setComboBoxString('MyHeroesCombo', 2, '#Pure_Damage');
+            sel.setComboBoxString('MyHeroesCombo', 3, '#Physical_Damage');
+            sel.setComboBoxString('MyHeroesCombo', 4, '#HP_Removal_Damage');
 
             // Patch callbacks
             dock.filterButtons.RolesCombo.setIndexCallback = onRolesComboChanged;
@@ -479,17 +525,93 @@ package  {
             pickingSkills = false;
         }
 
+        // Fired when the search box is updated
         private function searchTextChangedEvent(field:Object):void {
             // Grab the text string
-            var txt:String = field.target.text.toLowerCase();
+            filterText = field.target.text.toLowerCase();
 
+            // Update filters
+            updateFilters();
+        }
+
+        // Updates the filtered skills
+        private function updateFilters() {
             // Grab translation function
             var trans:Function = Globals.instance.GameInterface.Translate;
             var prefix = '#DOTA_Tooltip_ability_';
 
+            // Workout how many filters to use
+            var totalFilters:Number = 0;
+            if(filterText != '')    totalFilters++;
+            if(filter1 > 0)         totalFilters++;
+            if(filter2 > 0)         totalFilters++;
+            if(filter3 > 0)         totalFilters++;
+
+            // Declare vars
+            var skill:Object;
+
             // Search abilities for this key word
             for(var key in activeList) {
-                if(key.toLowerCase().indexOf(txt) != -1 || trans(prefix+key).toLowerCase().indexOf(txt) != -1) {
+                var doShow:Number = 0;
+
+                // Behavior filter
+                if (filter1 > 0) {
+                    // Check if we have info on this skill
+                    skill = skillKV[key];
+                    if(skill && skill.AbilityBehavior) {
+                        var b:String = skill.AbilityBehavior;
+
+                        // Check filters
+                        if(filter1 == 1 && b.indexOf('DOTA_ABILITY_BEHAVIOR_NO_TARGET') != -1)      doShow++;
+                        if(filter1 == 2 && b.indexOf('DOTA_ABILITY_BEHAVIOR_UNIT_TARGET') != -1)    doShow++;
+                        if(filter1 == 3 && b.indexOf('DOTA_ABILITY_BEHAVIOR_POINT') != -1)          doShow++;
+                        if(filter1 == 4 && b.indexOf('DOTA_ABILITY_BEHAVIOR_CHANNELLED') != -1)     doShow++;
+                        if(filter1 == 5 && b.indexOf('DOTA_ABILITY_BEHAVIOR_PASSIVE') != -1)        doShow++;
+                        if(filter1 == 6 && b.indexOf('DOTA_ABILITY_BEHAVIOR_AOE') != -1)            doShow++;
+                        if(filter1 == 7 && b.indexOf('DOTA_ABILITY_BEHAVIOR_TOGGLE') != -1)         doShow++;
+                    }
+                }
+
+                // Type filter
+                if(filter2 > 0) {
+                    // Check if we have info on this skill
+                    skill = skillKV[key];
+                    if(skill) {
+                        // Workout if this is an ult
+                        var ultimate:Boolean = false;
+                        if(skill.AbilityType && skill.AbilityType.indexOf('DOTA_ABILITY_TYPE_ULTIMATE') != -1) {
+                            ultimate = true;
+                        }
+
+                        // Apply filter
+                        if(filter2 == 1 && !ultimate) doShow++;
+                        if(filter2 == 2 && ultimate) doShow++;
+                    }
+                }
+
+                // Damge type filter
+                if(filter3 > 0) {
+                    // Check if we have info on this skill
+                    skill = skillKV[key];
+                    if(skill && skill.AbilityUnitDamageType) {
+                        var d:String = skill.AbilityUnitDamageType;
+
+                        // Check filters
+                        if(filter3 == 1 && d.indexOf('DAMAGE_TYPE_MAGICAL') != -1)      doShow++;
+                        if(filter3 == 2 && d.indexOf('DAMAGE_TYPE_PURE') != -1)         doShow++;
+                        if(filter3 == 3 && d.indexOf('DAMAGE_TYPE_PHYSICAL') != -1)     doShow++;
+                        if(filter3 == 4 && d.indexOf('DAMAGE_TYPE_HP_REMOVAL') != -1)   doShow++;
+                    }
+                }
+
+                // Search filter
+                if(filterText != '' && (key.toLowerCase().indexOf(filterText) != -1 || trans(prefix+key).toLowerCase().indexOf(filterText) != -1)) {
+                    // Found
+                    doShow++;
+                }
+
+                // Did this skill pass all the filters?
+                if(doShow >= totalFilters) {
                     // Found
                     activeList[key].filters = null;
                     activeList[key].alpha = 1;
@@ -497,16 +619,33 @@ package  {
                     // Not found
                     activeList[key].filters = greyFilter();
                     activeList[key].alpha = 0.5;
-
                 }
             }
         }
+
+/*
+sel.resetComboBox('AttackCombo', 3);
+sel.setComboBoxString('AttackCombo', 0, '#By_Type');
+sel.setComboBoxString('AttackCombo', 1, '#Ability');
+sel.setComboBoxString('AttackCombo', 2, '#Ultimate');
+
+
+sel.resetComboBox('MyHeroesCombo', 5);
+sel.setComboBoxString('MyHeroesCombo', 0, '#By_Damage_Type');
+sel.setComboBoxString('MyHeroesCombo', 1, '#Magical_Damage');
+sel.setComboBoxString('MyHeroesCombo', 2, '#Pure_Damage');
+sel.setComboBoxString('MyHeroesCombo', 3, '#Physical_Damage');
+sel.setComboBoxString('MyHeroesCombo', 4, '#HP_Removal_Damage');
+*/
+
 
         private function onRolesComboChanged(comboBox):void {
             // Grab what is selected
             var i:Number = comboBox.selectedIndex;
 
-            trace('You selected: '+i);
+            // Update filters
+            filter1 = i;
+            updateFilters();
 
             // Update clear status
             var sel:MovieClip = getSelMC();
@@ -517,7 +656,9 @@ package  {
             // Grab what is selected
             var i:Number = comboBox.selectedIndex;
 
-            trace('You selected: '+i);
+            // Update filters
+            filter2 = i;
+            updateFilters();
 
             // Update clear status
             var sel:MovieClip = getSelMC();
@@ -528,7 +669,9 @@ package  {
             // Grab what is selected
             var i:Number = comboBox.selectedIndex;
 
-            trace('You selected: '+i);
+            // Update filters
+            filter3 = i;
+            updateFilters();
 
             // Update clear status
             var sel:MovieClip = getSelMC();
