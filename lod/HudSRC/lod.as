@@ -9,7 +9,7 @@ package  {
     import ValveLib.Globals;
     import ValveLib.ResizeManager;
 
-    // Used to make nice buttons
+    // Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
 
     // Events
@@ -19,6 +19,10 @@ package  {
 
     // Marking spells different colors
     import flash.filters.ColorMatrixFilter;
+
+    // Scaleform stuff
+    import scaleform.clik.interfaces.IDataProvider;
+    import scaleform.clik.data.DataProvider;
 
     public class lod extends MovieClip {
         // Game API related stuff
@@ -43,13 +47,12 @@ package  {
         private static var scalingFactor = 1;
 
         // Original data providers
-        private static var dpRolesCombo;
-        private static var dpAttackCombo;
-        private static var dpMyHeroesCombo;
+        //private static var dpRolesCombo;
+        //private static var dpAttackCombo;
+        //private static var dpMyHeroesCombo;
 
         // Are we currently picking skills?
         private static var pickingSkills = false;
-        private static var heroScreenState:Array;
 
         // Defining how to layout skills
         private static var X_SECTIONS = 3;      // How many sections in the x direction
@@ -116,10 +119,11 @@ package  {
             btnSkills.x = 104;
             btnSkills.y = 6;
 
-            // Store the data providers
-            dpRolesCombo = dock.filterButtons.RolesCombo.menuList.dataProvider;
-            dpAttackCombo = dock.filterButtons.AttackCombo.menuList.dataProvider;
-            dpMyHeroesCombo = dock.filterButtons.MyHeroesCombo.menuList.dataProvider;
+            // Dump button
+            var btnDump:MovieClip = smallButton('Dump');
+            btnDump.addEventListener(MouseEvent.CLICK, onBtnDumpClicked);
+            btnDump.x = 170;
+            btnDump.y = 6;
 
             // Load our ability list KV
             completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
@@ -133,10 +137,8 @@ package  {
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
 
-            // Fix layering issues
-            bringToTheDarkSide(dock.filterButtons.RolesCombo);
-            bringToTheDarkSide(dock.filterButtons.AttackCombo);
-            bringToTheDarkSide(dock.filterButtons.MyHeroesCombo);
+            // Setup the filters at the top
+            setupFilters();
 
             // Update filters
             updateFilters();
@@ -152,22 +154,10 @@ package  {
             // Fixup the damned hud!
             trace('\n\nFixing the hud...');
 
-            // Show hero screen stuff
-            setHeroStuffVisibility(true);
-
             // Fix combo buttons
 
             // All done, tell the user
             trace('Done fixing the hud!\n\n');
-        }
-
-        private function bringToTheDarkSide(mc:MovieClip):void {
-            var pos:Point = mc.localToGlobal(new Point(0, 0));
-            addChild(mc);
-            mc.x = pos.x/scalingFactor;
-            mc.y = pos.y/scalingFactor;
-
-            trace(pos.x+', '+pos.y)
         }
 
         // When the resolution changes, fix our hud
@@ -280,6 +270,64 @@ package  {
             skillScreen.visible = false;
         }
 
+        private function setupFilters():void {
+            // Grab the dock
+            var dock:MovieClip = getDock();
+
+            // Calculate positions for filters
+            var rcPos = skillScreen.globalToLocal(dock.filterButtons.RolesCombo.localToGlobal(new Point(0,0)));
+            var acPos = skillScreen.globalToLocal(dock.filterButtons.AttackCombo.localToGlobal(new Point(0,0)));
+            var hcPos = skillScreen.globalToLocal(dock.filterButtons.MyHeroesCombo.localToGlobal(new Point(0,0)));
+
+            // Create buttons at the top
+
+            // First Combo
+            var rolesCombo = comboBox(8);
+            skillScreen.addChild(rolesCombo);
+            rolesCombo.x = rcPos.x;
+            rolesCombo.y = rcPos.y;
+
+            // Second Combo
+            var attackCombo = comboBox(3);
+            skillScreen.addChild(attackCombo);
+            attackCombo.x = acPos.x;
+            attackCombo.y = acPos.y;
+
+            // Third Combo
+            var heroCombo = comboBox(5);
+            skillScreen.addChild(heroCombo);
+            heroCombo.x = hcPos.x;
+            heroCombo.y = hcPos.y;
+
+            // Add options for each combo box
+            setComboBoxString(rolesCombo, 0, '#By_Behavior');
+            setComboBoxString(rolesCombo, 1, '#DOTA_ToolTip_Ability_NoTarget');
+            setComboBoxString(rolesCombo, 2, '#DOTA_ToolTip_Ability_Target');
+            setComboBoxString(rolesCombo, 3, '#DOTA_ToolTip_Ability_Point');
+            setComboBoxString(rolesCombo, 4, '#DOTA_ToolTip_Ability_Channeled');
+            setComboBoxString(rolesCombo, 5, '#DOTA_ToolTip_Ability_Passive');
+            setComboBoxString(rolesCombo, 6, '#DOTA_ToolTip_Ability_Aoe');
+            setComboBoxString(rolesCombo, 7, '#DOTA_ToolTip_Ability_Toggle');
+
+            setComboBoxString(attackCombo, 0, '#By_Type');
+            setComboBoxString(attackCombo, 1, '#Ability');
+            setComboBoxString(attackCombo, 2, '#Ultimate');
+
+            setComboBoxString(heroCombo, 0, '#By_Damage_Type');
+            setComboBoxString(heroCombo, 1, '#Magical_Damage');
+            setComboBoxString(heroCombo, 2, '#Pure_Damage');
+            setComboBoxString(heroCombo, 3, '#Physical_Damage');
+            setComboBoxString(heroCombo, 4, '#HP_Removal_Damage');
+
+            // Patch callbacks
+            rolesCombo.setIndexCallback = onRolesComboChanged;
+            attackCombo.setIndexCallback = onAttackComboChanged;
+            heroCombo.setIndexCallback = onMyHeroesComboChanged;
+
+            // Hook into the search box
+            dock.filterButtons.searchBox.addEventListener(Event.CHANGE, searchTextChangedEvent);
+        }
+
         // Adds the skill lists to a given mc
         private function hookSkillList(players:MovieClip, playerIdStart):void {
             // Ensure our reference to players isn't null
@@ -375,7 +423,7 @@ package  {
         }
 
         // Makes a combo box
-        private function comboBox():MovieClip {
+        private function comboBox(slots:Number):MovieClip {
             // Grab the class for a small button
             var dotoComboBoxClass:Class = getDefinitionByName("ComboBoxSkinned") as Class;
 
@@ -383,45 +431,24 @@ package  {
             var comboBox:MovieClip = new dotoComboBoxClass();
             addChild(comboBox);
 
+            // Create the data provider
+            var dp:IDataProvider = new DataProvider();
+            for(var i:Number=0; i<slots; i++) {
+                dp[i] = {
+                  "label":"empty",
+                  "data":i
+               };
+            }
+
+            // Apply the data provider
+            comboBox.setDataProvider(dp);
+
             // Return the button
             return comboBox;
         }
 
         // Sets the selection mode to skills
         private function setSkillMode():void {
-            // Grab the hero dock
-            var dock:MovieClip = getDock();
-            var sel:MovieClip = getSelMC();
-
-            // Patch in custom filters
-            sel.resetComboBox('RolesCombo', 8);
-            sel.setComboBoxString('RolesCombo', 0, '#By_Behavior');
-            sel.setComboBoxString('RolesCombo', 1, '#DOTA_ToolTip_Ability_NoTarget');
-            sel.setComboBoxString('RolesCombo', 2, '#DOTA_ToolTip_Ability_Target');
-            sel.setComboBoxString('RolesCombo', 3, '#DOTA_ToolTip_Ability_Point');
-            sel.setComboBoxString('RolesCombo', 4, '#DOTA_ToolTip_Ability_Channeled');
-            sel.setComboBoxString('RolesCombo', 5, '#DOTA_ToolTip_Ability_Passive');
-            sel.setComboBoxString('RolesCombo', 6, '#DOTA_ToolTip_Ability_Aoe');
-            sel.setComboBoxString('RolesCombo', 7, '#DOTA_ToolTip_Ability_Toggle');
-
-            sel.resetComboBox('AttackCombo', 3);
-            sel.setComboBoxString('AttackCombo', 0, '#By_Type');
-            sel.setComboBoxString('AttackCombo', 1, '#Ability');
-            sel.setComboBoxString('AttackCombo', 2, '#Ultimate');
-
-
-            sel.resetComboBox('MyHeroesCombo', 5);
-            sel.setComboBoxString('MyHeroesCombo', 0, '#By_Damage_Type');
-            sel.setComboBoxString('MyHeroesCombo', 1, '#Magical_Damage');
-            sel.setComboBoxString('MyHeroesCombo', 2, '#Pure_Damage');
-            sel.setComboBoxString('MyHeroesCombo', 3, '#Physical_Damage');
-            sel.setComboBoxString('MyHeroesCombo', 4, '#HP_Removal_Damage');
-
-            // Patch callbacks
-            dock.filterButtons.RolesCombo.setIndexCallback = onRolesComboChanged;
-            dock.filterButtons.AttackCombo.setIndexCallback = onAttackComboChanged;
-            dock.filterButtons.MyHeroesCombo.setIndexCallback = onMyHeroesComboChanged;
-
             // Hide hero selection stuff
             setHeroStuffVisibility(false);
 
@@ -465,46 +492,45 @@ package  {
                 dock.viewToggleButton,
                 dock.fullDeckLegacy,
                 dock.backButton,
-                dock.heroLoadout
+                dock.heroLoadout,
+                dock.goldleft,
+                dock.filterButtons.RolesCombo,
+                dock.filterButtons.AttackCombo,
+                dock.filterButtons.MyHeroesCombo,
+                //dock.filterButtons.searchBox
             ];
 
-            // Remove keyboard event listeners
-            stage.removeEventListener(KeyboardEvent.KEY_DOWN,sel.onGlobalKeyDown);
-            stage.removeEventListener(KeyboardEvent.KEY_UP,sel.onGlobalKeyUp);
-            dock.removeEventListener(MouseEvent.MOUSE_WHEEL,sel.onGlobalMouseWheel);
-            dock.filterButtons.searchBox.removeEventListener(Event.CHANGE, sel.searchTextChangedEvent);
-            dock.filterButtons.searchBox.removeEventListener(Event.CHANGE, searchTextChangedEvent);
+            // Delete any old masks
+            for(i=0; i<lst.length; i++) {
+                // Validate that is exists
+                if(lst[i] != null) {
+                    if(lst[i].mask != null) {
+                        // Check if this is one of our masks
+                        if(contains(lst[i].mask)) {
+                            removeChild(lst[i].mask);
+                        }
+
+                        // Remove the mask
+                        lst[i].mask = null;
+                    }
+                }
+            }
 
             if(pickingSkills == false) {
-                // Reset the heroScreenState
-                heroScreenState = new Array();
-
                 // Store states
                 for(i=0; i<lst.length; i++) {
-                    // Store visibility state
-                    heroScreenState.push(lst[i].x);
-
-                    // Hide all
-                    lst[i].x = 10000000;
+                    // Validate that is exists
+                    if(lst[i] != null) {
+                        // Hide it
+                        var msk = new MovieClip();
+                        addChild(msk);
+                        lst[i].mask = msk;
+                        trace('I just hide something!');
+                    }
                 }
-
-                // Add listeners
-                dock.filterButtons.searchBox.addEventListener(Event.CHANGE, searchTextChangedEvent);
-
                 // Show skill selection
                 skillScreen.visible = true;
             } else {
-                for(i=0; i<lst.length; i++) {
-                    // Restore visibility state
-                    lst[i].x = heroScreenState[i];
-                }
-
-                // Restore event listeners
-                stage.addEventListener(KeyboardEvent.KEY_DOWN, sel.onGlobalKeyDown);
-                stage.addEventListener(KeyboardEvent.KEY_UP, sel.onGlobalKeyUp);
-                dock.addEventListener(MouseEvent.MOUSE_WHEEL, sel.onGlobalMouseWheel);
-                dock.filterButtons.searchBox.addEventListener(Event.CHANGE, sel.searchTextChangedEvent);
-
                 // Hide skill selection
                 skillScreen.visible = false;
             }
@@ -515,26 +541,6 @@ package  {
             // Grab the hero dock
             var dock:MovieClip = getDock();
             var sel:MovieClip = getSelMC();
-
-            // Reset filters
-            sel.resetComboBox('RolesCombo', dpRolesCombo.length);
-            sel.resetComboBox('AttackCombo', dpAttackCombo.length);
-            sel.resetComboBox('MyHeroesCombo', dpMyHeroesCombo.length);
-
-            // Set original data providers
-            dock.filterButtons.RolesCombo.setDataProvider(dpRolesCombo);
-            dock.filterButtons.AttackCombo.setDataProvider(dpAttackCombo);
-            dock.filterButtons.MyHeroesCombo.setDataProvider(dpMyHeroesCombo);
-
-            // Fix first selection problem
-            sel.setComboBoxString('RolesCombo', 0, dpRolesCombo[0].label);
-            sel.setComboBoxString('AttackCombo', 0, dpAttackCombo[0].label);
-            sel.setComboBoxString('MyHeroesCombo', 0, dpMyHeroesCombo[0].label);
-
-            // Fix callbacks
-            dock.filterButtons.RolesCombo.setIndexCallback = sel.onRolesComboChanged;
-            dock.filterButtons.AttackCombo.setIndexCallback = sel.onAttackComboChanged;
-            dock.filterButtons.MyHeroesCombo.setIndexCallback = sel.onMyHeroesComboChanged;
 
             // Show hero selection stuff
             setHeroStuffVisibility(true);
@@ -699,6 +705,11 @@ package  {
             setSkillMode();
         }
 
+        // When the dump button is pressed
+        private function onBtnDumpClicked():void {
+            Util.PrintTable(globals.Loader_shared_heroselectorandloadout.movieClip);
+        }
+
         // Grabs the hero selection
         private function getSelMC():MovieClip {
             return globals.Loader_shared_heroselectorandloadout.movieClip;
@@ -717,6 +728,18 @@ package  {
         // Makes something red
         private function redFilter():Array {
             return [new ColorMatrixFilter([1,1,1,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
+        }
+
+        private static function setComboBoxString(comboBox:MovieClip, slot:Number, txt:String):void {
+            comboBox.menuList.dataProvider[slot] = {
+                "label":txt,
+                "data":slot
+            };
+
+            if(slot == 0) {
+                comboBox.defaultSelection = comboBox.menuList.dataProvider[0];
+                comboBox.setSelectedIndex(0);
+            }
         }
     }
 }
