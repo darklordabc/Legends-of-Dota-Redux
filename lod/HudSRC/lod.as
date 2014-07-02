@@ -84,6 +84,9 @@ package  {
         // Access to the skills at the top
         private var topSkillList:Object = {};
 
+        // Stores the top panels so we can remove them
+        private var topPanels:Array = [];
+
         // Stores my skills
         private var mySkills:MovieClip;
 
@@ -166,6 +169,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);
             this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);
             this.gameAPI.SubscribeToGameEvent("lod_picking_info", onGetPickingInfo);
+            this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", cleanupHud);
 
             // Request picking info
             gameAPI.SendServerCommand("lod_picking_info");
@@ -177,8 +181,6 @@ package  {
         public function OnUnload():void {
             // Fixup the damned hud!
             trace('\n\nFixing the hud...');
-
-            // Fix combo buttons
 
             // All done, tell the user
             trace('Done fixing the hud!\n\n');
@@ -210,6 +212,31 @@ package  {
             // Align the skill screen correctly
             skillScreen.x = (realScreenWidth/scalingFactor-workingWidth)/2;
             skillScreen.y = 128;
+        }
+
+        // Cleans up the hud
+        private function cleanupHud():void {
+            // Remove stage timer
+            if(stageTimer != null) {
+                stageTimer.reset();
+                stageTimer = null;
+            }
+
+            // Reset to hero selection mode
+            setHeroesMode();
+
+            // Cleanup everything on our stage
+            while (this.numChildren > 0) {
+                this.removeChildAt(0);
+            }
+
+            // Cleanup injected stuff
+            for(var i in topPanels) {
+                topPanels[i].parent.removeChild(topPanels[i]);
+            }
+
+            // Fix the positions of the hero icons
+            resetHeroIcons();
         }
 
         private function buildSkillScreen() {
@@ -298,6 +325,9 @@ package  {
 
             // Allow dropping to the banning area
             EasyDrag.dragMakeValidTarget(mySkills.banning, onDropBanningArea);
+
+            // Hide the banning area by default
+            mySkills.banning.visible = false;
 
             // Apply default skills
             for(i=0; i<4; i++) {
@@ -390,6 +420,9 @@ package  {
                 var sl:PlayerSkillList = new PlayerSkillList();
                 sl.setColor(playerId);
 
+                // Store it
+                topPanels.push(sl);
+
                 // Apply the scale
                 sl.scaleX = (sl.width-9)/sl.width;
                 sl.scaleY = (sl.width-9)/sl.width;
@@ -422,6 +455,26 @@ package  {
 
                 // Move onto the next playerID
                 playerId++;
+            }
+        }
+
+        private function resetHeroIcons():void {
+            // Grab the dock
+            var dock:MovieClip = getDock();
+
+            // Reset the positions
+            resetHeroIconY(dock.radiantPlayers);
+            resetHeroIconY(dock.direPlayers);
+        }
+
+        private function resetHeroIconY(players:MovieClip):void {
+            // Loop over all the players
+            for(var i:Number=0; i<MAX_PLAYERS_TEAM; i++) {
+                // Attempt to find the player container
+                var con:MovieClip = players['playerSlot'+i];
+
+                // Reset the position
+                con.heroIcon.y = -5.2;
             }
         }
 
@@ -469,8 +522,6 @@ package  {
         private function onSkillBanned(args:Object) {
             // Grab the skill
             var skillName:String = args.skill;
-
-            trace('Server told us to ban '+skillName);
 
             // Check if we have a reference to this skill
             if(activeList[skillName]) {

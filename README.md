@@ -13,4 +13,4 @@ ModDota Plugins
  - Once you're at the hero selection screen, you can optionally choose to fill the rest of the slots with bots by typing `dota_bot_populate`
 
 ###Legends of Dota###
- - `dota_local_addon_enable 1;dota_local_addon_game lod;dota_force_gamemode 15;update_addon_paths;map riverofsouls;`
+ - `dota_local_addon_enable 1;dota_local_addon_game lod;dota_force_gamemode 15;update_addon_paths;map dota_lod;`
