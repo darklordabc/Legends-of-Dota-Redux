@@ -12,6 +12,10 @@ package  {
     // Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
 
+    // Timer
+    import flash.utils.Timer;
+    import flash.events.TimerEvent;
+
     // Events
     import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
@@ -77,6 +81,9 @@ package  {
         // Active list of skills (key = skill name)
         private var activeList:Object;
 
+        // Access to the skills at the top
+        private var topSkillList:Object = {};
+
         // Stores my skills
         private var mySkills:MovieClip;
 
@@ -92,10 +99,25 @@ package  {
         // List of banned skills nawwwww
         private var bannedSkills:Object;
 
+        // Picking time info
+        private var heroSelectionStart:Number;
+        private var banningTime:Number;
+        private var pickingTime:Number;
+
+        // Stage info
+        private static var STAGE_BANNING:Number = 1;
+        private static var STAGE_PICKING:Number = 2;
+
+        // Stage timer (for changing to picking)
+        private static var stageTimer:Timer;
+
         // When the hud is loaded
         public function onLoaded():void {
             // Tell everyone we're loading
             trace('\n\nLegends of Dota hud is loading...');
+
+            // Load EasyDrag
+            EasyDrag.init(stage);
 
             // Grab the dock
             var dock:MovieClip = getDock();
@@ -145,6 +167,14 @@ package  {
 
             // Set it into skills mode
             setSkillMode();
+
+            // Hook events
+            this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);
+            this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);
+            this.gameAPI.SubscribeToGameEvent("lod_picking_info", onGetPickingInfo);
+
+            // Request picking info
+            gameAPI.SendServerCommand("lod_picking_info");
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -231,14 +261,19 @@ package  {
                                 // Grab a new skill
                                 var skill = completeList[skillNumber++];
                                 if(skill) {
-                                    // Put the skill into the slot
-                                    sl['skill'+a].setSkillName(skill);
+                                    var skillSlot = sl['skill'+a];
 
-                                    sl['skill'+a].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                    sl['skill'+a].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                    // Put the skill into the slot
+                                    skillSlot.setSkillName(skill);
+
+                                    skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                    skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                                    // Hook dragging
+                                    EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
 
                                     // Store into the active list
-                                    activeList[skill] = sl['skill'+a];
+                                    activeList[skill] = skillSlot;
                                 } else {
                                     // Hide this select skill
                                     sl['skill'+a].visible = false;
@@ -259,11 +294,20 @@ package  {
             for(i=0; i<4; i++) {
                 mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
                 mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                // Set it's slot
+                mySkills['skill'+i].setSkillSlot(i);
+
+                // Allow dropping
+                EasyDrag.dragMakeValidTarget(mySkills['skill'+i], onDropMySkills);
             }
+
+            // Allow dropping to the banning area
+            EasyDrag.dragMakeValidTarget(mySkills.banning, onDropBanningArea);
 
             // Apply default skills
             for(i=0; i<4; i++) {
-                mySkills['skill'+i].setSkillName('antimage_mana_break');
+                mySkills['skill'+i].setSkillName('nothing');
             }
 
             // Hide it
@@ -350,7 +394,7 @@ package  {
 
                 // Create the new skill list
                 var sl:PlayerSkillList = new PlayerSkillList();
-                sl.setColor(playerId++);
+                sl.setColor(playerId);
 
                 // Apply the scale
                 sl.scaleX = (sl.width-9)/sl.width;
@@ -362,11 +406,14 @@ package  {
                     var ps:PlayerSkill = sl['skill'+j];
 
                     // Apply the default skill
-                    ps.setSkillName('antimage_mana_break');
+                    ps.setSkillName('nothing');
 
                     // Make it show information when hovered
                     ps.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
                     ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                    // Store a reference to it
+                    topSkillList[playerId*MAX_SKILLS+j] = ps;
                 }
 
                 // Center it perfectly
@@ -378,7 +425,103 @@ package  {
 
                 // Store this skill list into the container
                 con.addChild(sl);
+
+                // Move onto the next playerID
+                playerId++;
             }
+        }
+
+        // Fired when the server gives us our picking info
+        private function onGetPickingInfo(args:Object) {
+            // Store vars
+            heroSelectionStart = args.startTime;
+            banningTime = args.banningTime;
+            pickingTime = args.pickingTime;
+
+            // Update the stage
+            updateStage();
+        }
+
+        // Update the current stage
+        private function updateStage():void {
+            // Stop any timers
+            if(stageTimer != null) {
+                stageTimer.reset();
+                stageTimer = null;
+            }
+
+            // Workout where we are at
+            var now:Number = globals.Game.Time();
+
+            if(now < heroSelectionStart+banningTime) {
+                // It is banning time
+
+                // Show the banning panel
+                mySkills.banning.visible = true;
+
+                // Set a timer to change the stage
+                stageTimer = new Timer(1000 * (heroSelectionStart+banningTime - now));
+                stageTimer.addEventListener(TimerEvent.TIMER, updateStage, false, 0, true);
+                stageTimer.start();
+            } else {
+                // It is skill selection time
+
+                // Hide the banning panel
+                mySkills.banning.visible = false;
+            }
+        }
+
+        // Fired when the server bans a skill
+        private function onSkillBanned(args:Object) {
+            // Grab the skill
+            var skillName:String = args.skill;
+
+            trace('Server told us to ban '+skillName);
+
+            // Check if we have a reference to this skill
+            if(activeList[skillName]) {
+                // Ban this skill
+                activeList[skillName].setBanned(true);
+            }
+
+            // Store this skill as banned
+            bannedSkills[skillName] = true;
+
+            // Update Filters
+            updateFilters();
+        }
+
+        // Fired when a skill is picked by someone
+        private function onSkillPicked(args:Object) {
+            // Attempt to find the skill
+            var topSkill = topSkillList[args.playerID*MAX_SKILLS+args.slotNumber];
+            if(topSkill != null) {
+                topSkill.setSkillName(args.skillName);
+            } else {
+                trace('WARNING: Failed to find playerID '+args.playerID+', slot '+args.slotNumber);
+            }
+
+            // Was this me?
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                // It is me
+                var slot = mySkills['skill'+args.slotNumber];
+                if(slot != null) {
+                    slot.setSkillName(args.skillName);
+                }
+            }
+        }
+
+        // Tell the server to put a skill into a slot
+        private function tellServerWeWant(slotNumber:Number, skillName:String):void {
+            // Send the message to the server
+            gameAPI.SendServerCommand("lod_skill \""+slotNumber+"\" \""+skillName+"\"");
+        }
+
+        // Tell the server to ban a given skill
+        private function tellServerToBan(skill:String):void {
+            // Send the message to the server
+            gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
         }
 
         // When someone hovers over a skill
@@ -740,6 +883,31 @@ package  {
                 comboBox.defaultSelection = comboBox.menuList.dataProvider[0];
                 comboBox.setSelectedIndex(0);
             }
+        }
+
+        private function skillSlotDragBegin(me:MovieClip, dragClip:MovieClip):void {
+            // Grab the name of the skill
+            var skillName = me.getSkillName();
+
+            // Load a skill into the dragClip
+            Globals.instance.LoadAbilityImage(skillName, dragClip);
+
+            // Store the skill
+            dragClip.skillName = skillName;
+        }
+
+        private function onDropMySkills(me:MovieClip, dragClip:MovieClip) {
+            var skillName = dragClip.skillName;
+
+            // Tell the server about this
+            tellServerWeWant(me.getSkillSlot(), skillName);
+        }
+
+        private function onDropBanningArea(me:MovieClip, dragClip:MovieClip) {
+            var skillName = dragClip.skillName;
+
+            // Tell the server to ban this skill
+            tellServerToBan(skillName);
         }
     }
 }

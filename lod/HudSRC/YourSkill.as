@@ -15,12 +15,23 @@
 		// How to scale the skill image
 		private var skillScale = 64/128;
 
+		// Our skill slot
+		private var skillSlot;
+
 		public function YourSkill() {
 			// Create somewhere to place the image
             imageHolder = new MovieClip();
             imageHolder.scaleX = skillScale;
             imageHolder.scaleY = skillScale;
             this.addChild(imageHolder);
+		}
+
+		public function setSkillSlot(skillSlot):void {
+			this.skillSlot = skillSlot;
+		}
+
+		public function getSkillSlot():Number {
+			return this.skillSlot;
 		}
 
 		// Updates the the current skill
