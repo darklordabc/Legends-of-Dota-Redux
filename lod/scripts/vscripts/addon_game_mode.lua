@@ -41,8 +41,27 @@ local totalBans = {}
 -- When the hero selection started
 local heroSelectionStart = nil
 
+-- Ability stuff
+local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+local validSkillList = LoadKeyValues('scripts/kv/abilities.kv').abs
+local validSkill = {}
+for k,v in pairs(validSkillList) do
+    validSkill[v] = true
+end
+
+local function isUlt(skillName)
+    -- Check if it is tagged as an ulty
+    if abs[skillName] and abs[skillName].AbilityType and abs[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
+        return true
+    end
+
+    return false
+end
+
 -- Checks to see if this is a valid skill
 local function isValidSkill(skillName)
+    if not validSkill[skillName] then return false end
+
     -- For now, no validation
     return true
 end
@@ -153,6 +172,27 @@ ListenToGameEvent('player_connect_full', function(keys)
     end
 end, nil)
 
+-- Stick skills into slots
+ListenToGameEvent('npc_spawned', function(keys)
+    -- Grab the unit that spawned
+    local spawnedUnit = EntIndexToHScript(keys.entindex)
+
+    -- Make sure it is a hero
+    if spawnedUnit:IsHero() then
+        -- Grab their playerID
+        local playerID = spawnedUnit:GetPlayerID()
+
+        -- Don't touch bots
+        if PlayerResource:IsFakeClient(playerID) then return end
+
+        -- Grab their build
+        local build = skillList[playerID] or {}
+
+        -- Apply the build
+        SkillManager:ApplyBuild(spawnedUnit, build)
+    end
+end, nil)
+
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Ensure this is a valid skill
@@ -212,9 +252,16 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         skillList[playerID] = skillList[playerID] or {}
 
         -- Ensure it isn't the same skill
-        if skillList[playerID][slotNumber] ~= skillName then
+        if skillList[playerID][slotNumber+1] ~= skillName then
+            -- Make sure ults go into slot 3 only
+            if(isUlt(skillName)) then
+                if slotNumber ~= 3 then return end
+            else
+                if slotNumber == 3 then return end
+            end
+
             -- Store this skill into the given slot
-            skillList[playerID][slotNumber] = skillName
+            skillList[playerID][slotNumber+1] = skillName
 
             -- Tell everyone
             FireGameEvent('lod_skill', {

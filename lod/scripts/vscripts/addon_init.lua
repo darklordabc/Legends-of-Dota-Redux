@@ -9,5 +9,8 @@ Convars:RegisterCommand('fake', function(name, skillName, slotNumber)
     --end
 end, 'Adds fake players', 0)
 
+-- Load modules
+require('skillmanager')
+
 -- Tell the user it has loaded
 print('Legends of Dota has finished loading!\n\n')

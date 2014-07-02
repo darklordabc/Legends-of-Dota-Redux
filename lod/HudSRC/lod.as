@@ -141,12 +141,6 @@ package  {
             btnSkills.x = 104;
             btnSkills.y = 6;
 
-            // Dump button
-            var btnDump:MovieClip = smallButton('Dump');
-            btnDump.addEventListener(MouseEvent.CLICK, onBtnDumpClicked);
-            btnDump.x = 170;
-            btnDump.y = 6;
-
             // Load our ability list KV
             completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
 
@@ -846,11 +840,6 @@ package  {
         private function onBtnSkillsClicked():void {
             // Set it into skills mode
             setSkillMode();
-        }
-
-        // When the dump button is pressed
-        private function onBtnDumpClicked():void {
-            Util.PrintTable(globals.Loader_shared_heroselectorandloadout.movieClip);
         }
 
         // Grabs the hero selection
