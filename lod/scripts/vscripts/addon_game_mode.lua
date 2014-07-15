@@ -180,12 +180,17 @@ ListenToGameEvent('player_connect_full', function(keys)
 end, nil)
 
 -- Stick skills into slots
+local handled = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
 
     -- Make sure it is a hero
     if spawnedUnit:IsHero() then
+        -- Don't touch this hero more than once :O
+        if handled[spawnedUnit] then return end
+        handled[spawnedUnit] = true
+
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
 
