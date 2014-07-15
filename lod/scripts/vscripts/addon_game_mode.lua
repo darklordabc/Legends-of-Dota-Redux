@@ -16,6 +16,13 @@ local pickingTime = 180
 -- Should we auto allocate teams?
 local autoAllocateTeams = true
 
+-- Total number of skills to allow
+local maxSkills = 6
+
+-- Total number of ults to allow (Ults are always on the right)
+-- You can have maxSkills - maxUlts regular abilities!
+local maxUlts = 2
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -68,7 +75,7 @@ end
 
 -- Ensures this is a valid slot
 local function isValidSlot(slotNumber)
-    if slotNumber < 0 or slotNumber > 3 then return false end
+    if slotNumber < 0 or slotNumber >= maxSkills then return false end
     return true
 end
 
@@ -255,9 +262,9 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         if skillList[playerID][slotNumber+1] ~= skillName then
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
-                if slotNumber ~= 3 then return end
+                if slotNumber < maxSkills - maxUlts then return end
             else
-                if slotNumber == 3 then return end
+                if slotNumber >= maxSkills - maxUlts then return end
             end
 
             -- Store this skill into the given slot

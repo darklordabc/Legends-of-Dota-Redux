@@ -38,7 +38,10 @@ package  {
         private static var MAX_PLAYERS_TEAM = 5;
 
         // How many skills each player gets
-        private static var MAX_SKILLS = 4;
+        private static var MAX_SKILLS = 6;
+
+        // How many ults the user can have
+        private static var MAX_ULTS = 2;
 
         // Constant used for scaling (just the height of our movieClip)
         private static var myStageHeight = 720;
@@ -89,6 +92,9 @@ package  {
 
         // Stores my skills
         private var mySkills:MovieClip;
+
+        // The banning area
+        private var banningArea:MovieClip;
 
         // The skill KV file
         var skillKV:Object;
@@ -305,14 +311,22 @@ package  {
                 }
             }
 
+            // Create banning area
+            banningArea = new BanningArea();
+            skillScreen.addChild(banningArea);
+            banningArea.x = workingWidth/2;
+            banningArea.y = 296;
+            banningArea.visible = false;
+
             // Container for you skills
-            mySkills = new YourSkillList();
+            mySkills = new YourSkillList(MAX_SKILLS, MAX_ULTS);
             skillScreen.addChild(mySkills);
-            mySkills.x = (workingWidth-266)/2;
+            mySkills.x = workingWidth/2;
             mySkills.y = 296;
+            mySkills.visible = false;
 
             // Hook roll overs
-            for(i=0; i<4; i++) {
+            for(i=0; i<MAX_SKILLS; i++) {
                 mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
                 mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
@@ -321,18 +335,13 @@ package  {
 
                 // Allow dropping
                 EasyDrag.dragMakeValidTarget(mySkills['skill'+i], onDropMySkills);
+
+                // Apply default skills
+                mySkills['skill'+i].setSkillName('nothing');
             }
 
             // Allow dropping to the banning area
-            EasyDrag.dragMakeValidTarget(mySkills.banning, onDropBanningArea);
-
-            // Hide the banning area by default
-            mySkills.banning.visible = false;
-
-            // Apply default skills
-            for(i=0; i<4; i++) {
-                mySkills['skill'+i].setSkillName('nothing');
-            }
+            EasyDrag.dragMakeValidTarget(banningArea, onDropBanningArea);
 
             // Hide it
             skillScreen.visible = false;
@@ -417,7 +426,7 @@ package  {
                 }
 
                 // Create the new skill list
-                var sl:PlayerSkillList = new PlayerSkillList();
+                var sl:PlayerSkillList = new PlayerSkillList(MAX_SKILLS);
                 sl.setColor(playerId);
 
                 // Store it
@@ -504,7 +513,10 @@ package  {
                 // It is banning time
 
                 // Show the banning panel
-                mySkills.banning.visible = true;
+                banningArea.visible = true;
+
+                // Hide the skills panel
+                mySkills.visible = false;
 
                 // Set a timer to change the stage
                 stageTimer = new Timer(1000 * (heroSelectionStart+banningTime - now));
@@ -514,7 +526,10 @@ package  {
                 // It is skill selection time
 
                 // Hide the banning panel
-                mySkills.banning.visible = false;
+                banningArea.visible = false;
+
+                // Show the skills area
+                mySkills.visible = true;
             }
         }
 

@@ -27,7 +27,7 @@ Convars:RegisterCommand('fake', function(name, skillName, slotNumber)
 
                     -- Make sure we actually found a player instance
                     if ply then
-                        CreateHeroForPlayer('npc_dota_hero_axe', ply)
+                        CreateHeroForPlayer('npc_dota_hero_viper', ply)
                     end
                 end
             end
