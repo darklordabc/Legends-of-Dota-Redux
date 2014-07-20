@@ -345,12 +345,12 @@
             btn.addEventListener(MouseEvent.CLICK, onDumpClicked);
 
             btn = new dotoButtonClass();
-            addChild(btn);
+            globals.Loader_spectate_heroselection.movieClip.addChild(btn);
             btn.x = 4;
             btn.y = 190;
-            btn.label = 'Buy Test';
+            btn.label = 'Techies Hack';
             btn.addEventListener(MouseEvent.CLICK, function(event:MouseEvent) {
-                globals.Loader_rad_mode_panel.gameAPI.OnAbilityPressed('item_blink');
+                globals.Loader_spectate_heroselection.movieClip.finishRDAllStar();
             });
 
             return;
