@@ -40,6 +40,7 @@
 			"model"			"models/heroes/lone_druid/true_form.mdl"
 			"model"			"models/heroes/undying/undying_flesh_golem.mdl"
 			"model"			"models/development/invisiblebox.mdl"
+			"model"			"models/heroes/terrorblade/demon.mdl"
 
 			"particlefile"				"particles/units/heroes/hero_antimage.pcf"
 			"particlefile"				"particles/units/heroes/hero_axe.pcf"
