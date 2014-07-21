@@ -8,7 +8,7 @@ print("gamemode started to load...")
 local maxBans = 5
 
 -- Banning Period
-local banningTime = 0
+local banningTime = 15
 
 -- Picking Time
 local pickingTime = 180
@@ -52,10 +52,10 @@ local heroSelectionStart = nil
 
 -- Ability stuff
 local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
-local validSkillList = LoadKeyValues('scripts/kv/abilities.kv').abs
-local validSkill = {}
-for k,v in pairs(validSkillList) do
-    validSkill[v] = true
+local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
+local skillLookup = {}
+for k,v in pairs(skillLookupList) do
+    skillLookup[v] = tonumber(k)
 end
 
 local function isUlt(skillName)
@@ -69,10 +69,19 @@ end
 
 -- Checks to see if this is a valid skill
 local function isValidSkill(skillName)
-    if not validSkill[skillName] then return false end
+    if skillLookup[skillName] == nil then return false end
 
     -- For now, no validation
     return true
+end
+
+-- Returns the ID for a skill, or -1
+local function getSkillID(skillName)
+    -- If the skill wasn't found, return -1
+    if skillLookup[skillName] == nil then return -1 end
+
+    -- Otherwise, return the correct value
+    return skillLookup[skillName]
 end
 
 -- Ensures this is a valid slot
@@ -99,6 +108,28 @@ local function banSkill(skillName)
     end
 end
 
+local function getPlayerSlot(playerID)
+    -- Grab the cmd player
+    local cmdPlayer = PlayerResource:GetPlayer(playerID)
+    if not cmdPlayer then return -1 end
+
+    -- Find player slot
+    local team = cmdPlayer:GetTeam()
+    local playerSlot = 0
+    for i=0, 9 do
+        if i >= playerID then break end
+
+        if PlayerResource:GetTeam() == team then
+            playerSlot = playerSlot + 1
+        end
+    end
+    if team == DOTA_TEAM_BADGUYS then
+        playerSlot = playerSlot + 5
+    end
+
+    return playerSlot
+end
+
 local canInfo = true
 local function sendPickingInfo()
     -- Stop spam of this command
@@ -120,6 +151,53 @@ local function sendPickingInfo()
             ults = maxUlts
         })
     end, 'DelayedInfoTimer', 1, nil)
+end
+
+local canState = true
+local function sendStateInfo()
+    -- Stop spam of this command
+    if not canState then return end
+    canState = false
+
+    -- Send out info after a short delay
+    thisEntity:SetThink(function()
+        -- They can ask for info again
+        canState = true
+
+        -- Build the state table
+        local s = {}
+
+        -- Loop over all players
+        for i=0,9 do
+            -- Grab their skill list
+            local l = skillList[i] or {}
+
+            -- Loop over this player's skills
+            for j=1,6 do
+                -- Ensure the slot is filled
+                s[tostring(i..j)] = s[tostring(i..j)] or -1
+
+                local slot = getPlayerSlot(i)
+                if slot ~= -1 then
+                    -- Store the ID of this skill
+                    s[tostring(slot..j)] = getSkillID(l[j])
+                end
+            end
+        end
+
+        local banned = {}
+        for k,v in pairs(bannedSkills) do
+            table.insert(banned, k)
+        end
+
+        -- Store bans
+        for i=1,50 do
+            s['b'..i] = getSkillID(banned[i])
+        end
+
+        -- Send picking info to everyone
+        FireGameEvent('lod_state', s)
+    end, 'DelayedStateTimer', 1, nil)
 end
 
 -- Run to handle
@@ -280,19 +358,8 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             -- Store this skill into the given slot
             skillList[playerID][slotNumber+1] = skillName
 
-            -- Find player slot
-            local team = cmdPlayer:GetTeam()
-            local playerSlot = 0
-            for i=0, 9 do
-                if i >= playerID then break end
-
-                if PlayerResource:GetTeam() == team then
-                    playerSlot = playerSlot + 1
-                end
-            end
-            if team == DOTA_TEAM_BADGUYS then
-                playerSlot = playerSlot + 5
-            end
+            -- Grab this player's playerSlot
+            local playerSlot = getPlayerSlot(playerID)
 
             -- Tell everyone
             FireGameEvent('lod_skill', {
@@ -305,13 +372,22 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     end
 end, 'Ban a given skill', 0)
 
--- When a user tries to ban a skill
+-- When a user requests the picking info
 Convars:RegisterCommand('lod_picking_info', function(name)
     -- Ensure the hero selection timer isn't nil
     if heroSelectionStart ~= nil then
         sendPickingInfo()
     end
 end, 'Send picking info out', 0)
+
+-- When a user requests the state info
+Convars:RegisterCommand('lod_state_info', function(name)
+    -- Ensure the hero selection timer isn't nil
+    if heroSelectionStart ~= nil then
+        -- Send the state info
+        sendStateInfo()
+    end
+end, 'Send state info out', 0)
 
 -- Setup the thinker
 thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)

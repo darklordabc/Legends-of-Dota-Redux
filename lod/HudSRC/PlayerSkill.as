@@ -25,11 +25,14 @@
 
 		// Updates the the current skill
 		public function setSkillName(skillName) {
-			// Store the change
-			this.skillName = skillName;
+			// Should we change?
+			if(this.skillName != skillName) {
+				// Store the change
+				this.skillName = skillName;
 
-			// Load the new image
-			Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
+				// Load the new image
+				Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
+			}
 		}
 
 		// Returns our skill name

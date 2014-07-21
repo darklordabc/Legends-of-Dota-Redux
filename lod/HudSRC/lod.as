@@ -153,8 +153,10 @@ package  {
             this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);
             this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);
             this.gameAPI.SubscribeToGameEvent("lod_picking_info", onGetPickingInfo);
+            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);
             this.gameAPI.SubscribeToGameEvent("hero_picker_shown", setupHud);
             this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", cleanupHud);
+            this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -196,6 +198,12 @@ package  {
                 skillScreen.x = (realScreenWidth/scalingFactor-workingWidth)/2;
                 skillScreen.y = 128;
             }
+        }
+
+        // When the gui is "hidden"
+        private function requestStateInfo():void {
+            // Request the state info
+            gameAPI.SendServerCommand("lod_state_info");
         }
 
         // Sets the hud up
@@ -260,6 +268,9 @@ package  {
                 help.x = rcPos.x;
                 help.y = rcPos.y;
             }
+
+            // We've rebuilt the hud, ask for state info
+            requestStateInfo();
         }
 
         // Cleans up the hud
@@ -537,6 +548,10 @@ package  {
             }
         }
 
+        private function getSkillName(skillNumber:Number):String {
+            return completeList[skillNumber] || completeList[String(skillNumber)];
+        }
+
         // Fired when the server gives us our picking info
         private function onGetPickingInfo(args:Object) {
             // Only do this ONCE
@@ -559,6 +574,52 @@ package  {
             updateStage();
         }
 
+        // Fired when the sever gives us info on the current state
+        private function onGetStateInfo(args:Object) {
+            var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName;
+
+            // Update skills
+            for(i=0; i<10; i++) {
+                for(j=0; j<MAX_SLOTS; j++) {
+                    skillNumber = args[String(i)+String(j+1)];
+                    if(skillNumber != -1) {
+                        // Attempt to grab the slot
+                        slot = topSkillList[i*MAX_SLOTS+j];
+                        if(slot != null) {
+                            slot.setSkillName(getSkillName(skillNumber));
+                        }
+                    }
+                }
+            }
+
+            // We currently don't need to update he filters
+            var needUpdate:Boolean = false;
+
+            // Update bans
+            for(i=1; i<=50; i++) {
+                skillNumber = args['b'+i];
+                if(skillNumber != -1) {
+                    // Grab the name of this skill
+                    skillName = getSkillName(skillNumber);
+
+                    // Check if this skill isn't banned
+                    if(!bannedSkills[skillName]) {
+                        // Ban the skill
+                        bannedSkills[skillName] = true;
+
+                        // We need to update filters
+                        needUpdate = true;
+                    }
+                }
+            }
+
+            // Check if a filter update is needed
+            if(needUpdate) {
+                // Update Filters
+                updateFilters();
+            }
+        }
+
         // Update the current stage
         private function updateStage():void {
             // Stop any timers
@@ -579,8 +640,8 @@ package  {
                 // Hide the skills panel
                 mySkills.visible = false;
 
-                // Set a timer to change the stage
-                stageTimer = new Timer(1000 * (heroSelectionStart+banningTime - now));
+                // Wait an entire second, and try again
+                stageTimer = new Timer(1000);
                 stageTimer.addEventListener(TimerEvent.TIMER, updateStage, false, 0, true);
                 stageTimer.start();
             } else {
