@@ -77,6 +77,10 @@ function skillManager:ApplyBuild(hero, build)
         -- Add to build
         hero:AddAbility(v)
         currentSkillList[hero][k] = v
+
+        -- Remove auras
+        hero:RemoveModifierByName('modifier_'..v)
+        hero:RemoveModifierByName('modifier_'..v..'_aura')
     end
 
     -- Add missing abilities
@@ -84,6 +88,10 @@ function skillManager:ApplyBuild(hero, build)
     for k,v in pairs(extraSkills) do
         -- Add the ability
         hero:AddAbility(k)
+
+        -- Remove auras
+        hero:RemoveModifierByName('modifier_'..k)
+        hero:RemoveModifierByName('modifier_'..k..'_aura')
 
         -- Store that we have it
         currentSkillList[hero][i] = k
