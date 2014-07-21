@@ -25,6 +25,9 @@ local maxSkills = 4
 -- Total number of ults to allow (Ults are always on the right)
 local maxUlts = 1
 
+-- Should we ban troll combos?
+local banTrollCombos = true
+
 -- Colors
 local COLOR_BLUE = '#4B69FF'
 local COLOR_RED = '#EB4B4B'
@@ -53,6 +56,9 @@ local totalBans = {}
 
 -- When the hero selection started
 local heroSelectionStart = nil
+
+-- Ban List
+local banList = LoadKeyValues('scripts/kv/bans.kv')
 
 -- Ability stuff
 local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
@@ -400,6 +406,30 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 end
             end
 
+            -- Should we ban troll combos?
+            if banTrollCombos then
+                -- Loop over all the banned combinations
+                for k,v in pairs(banList.BannedCombinations) do
+                    -- Check if this is possibly banned
+                    if(v['1'] == skillName or v['2'] == skillName) then
+                        -- Loop over all our slots
+                        for i=1,maxSlots do
+                            -- Ignore the skill in our current slot
+                            if i ~= slotNumber+1 then
+                                -- Check the banned combo
+                                if v['1'] == skillName and skillList[playerID][i] == v['2'] then
+                                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>')
+                                    return
+                                elseif v['2'] == skillName and skillList[playerID][i] == v['1'] then
+                                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>')
+                                    return
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+
             -- Store this skill into the given slot
             skillList[playerID][slotNumber+1] = skillName
 
@@ -415,7 +445,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             })
 
             -- Tell the player
-            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into slot <font color="'..COLOR_BLUE..'">'..(slotNumber+1)..'</font>')
+            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into <font color="'..COLOR_BLUE..'">slot '..(slotNumber+1)..'</font>')
         end
     end
 end, 'Ban a given skill', 0)
