@@ -5,25 +5,25 @@ print("gamemode started to load...")
 ]]
 
 -- Max number of bans
-local maxBans = 5
+local maxBans = 0
 
 -- Banning Period
-local banningTime = 15
+local banningTime = 0
 
 -- Picking Time
-local pickingTime = 180
+local pickingTime = 300
 
 -- Should we auto allocate teams?
-local autoAllocateTeams = true
+local autoAllocateTeams = false
 
 -- Total number of skill slots to allow
-local maxSlots = 6
+local maxSlots = 5
 
 -- Total number of normal skills to allow
 local maxSkills = 4
 
 -- Total number of ults to allow (Ults are always on the right)
-local maxUlts = 3
+local maxUlts = 1
 
 --[[
     GAMEMODE STUFF
