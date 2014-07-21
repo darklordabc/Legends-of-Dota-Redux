@@ -40,10 +40,17 @@
     // A player stuck a skill into a slot
     "lod_skill"
     {
-        "playerID"      "short"
+        "playerID"      "byte"
         "slotNumber"    "byte"
         "skillName"     "string"
-        "playerSlot"    "short"
+        "playerSlot"    "byte"
+    }
+
+    // An error message
+    "lod_msg"
+    {
+        "playerID"      "byte"
+        "msg"       "string"
     }
 
     // The game state

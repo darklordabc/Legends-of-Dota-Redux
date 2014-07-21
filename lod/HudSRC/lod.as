@@ -157,6 +157,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("hero_picker_shown", setupHud);
             this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", cleanupHud);
             this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
+            this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -200,8 +201,20 @@ package  {
             }
         }
 
+        // Adds chat to the chat window
+        public function addChatMessage(msg:String):void {
+            // Attend to chat
+            globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
+        }
+
         // When the gui is "hidden"
         private function requestStateInfo():void {
+            // Do we also need picking info?
+            if(!gottenPickingInfo) {
+                gameAPI.SendServerCommand("lod_picking_info");
+                return;
+            }
+
             // Request the state info
             gameAPI.SendServerCommand("lod_state_info");
         }
@@ -574,8 +587,21 @@ package  {
             updateStage();
         }
 
+        // Fired when the server sends us an error
+        private function handleMessage(args:Object):void {
+            // Was this me? (or everyone)
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID || args.playerID == -1) {
+                // Log message to console
+                trace(args.msg);
+
+                // Add the text to chat
+                addChatMessage(args.msg);
+            }
+        }
+
         // Fired when the sever gives us info on the current state
-        private function onGetStateInfo(args:Object) {
+        private function onGetStateInfo(args:Object):void {
             var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName;
 
             // Update skills

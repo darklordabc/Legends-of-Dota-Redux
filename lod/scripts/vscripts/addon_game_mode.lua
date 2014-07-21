@@ -11,7 +11,7 @@ local maxBans = 0
 local banningTime = 0
 
 -- Picking Time
-local pickingTime = 300
+local pickingTime = 120
 
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
@@ -24,6 +24,10 @@ local maxSkills = 4
 
 -- Total number of ults to allow (Ults are always on the right)
 local maxUlts = 1
+
+-- Colors
+local COLOR_BLUE = '#4B69FF'
+local COLOR_RED = '#EB4B4B'
 
 --[[
     GAMEMODE STUFF
@@ -130,6 +134,14 @@ local function getPlayerSlot(playerID)
     return playerSlot
 end
 
+local function sendChatMessage(playerID, msg)
+    -- Fire the event
+     FireGameEvent('lod_msg', {
+        playerID = playerID,
+        msg = msg
+    })
+end
+
 local canInfo = true
 local function sendPickingInfo()
     -- Stop spam of this command
@@ -218,6 +230,9 @@ local function think()
             return banningTime
         end
 
+        -- Set the hero selection time
+        GameRules:SetHeroSelectionTime(banningTime+pickingTime)
+
         -- Run again in a moment
         return 0.25
     end
@@ -290,22 +305,28 @@ end, nil)
 
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
-    -- Ensure this is a valid skill
-    if not isValidSkill(skillName) then return end
-
-    -- Ensure we are in banning mode
-    if currentStage ~= STAGE_BANNING then return end
-
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        -- Ensure this is a valid skill
+        if not isValidSkill(skillName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+            return
+        end
+
+        -- Ensure we are in banning mode
+        if currentStage ~= STAGE_BANNING then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only ban skills during the banning phase.</font>')
+            return
+        end
+
         -- Ensure they have bans left
         totalBans[playerID] = totalBans[playerID] or 0
         if totalBans[playerID] >= maxBans then
             -- Send failure message
-
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can not ban any more skills.</font>')
             -- Don't ban the skill
             return
         end
@@ -317,31 +338,49 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
 
             -- Do the actual ban
             banSkill(skillName)
+
+            -- Tell the user it was successful
+            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was banned. <font color="'..COLOR_BLUE..'">('..totalBans[playerID]..'/'..maxBans..')</font>')
+        else
+            -- Already banned
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is already banned.</font>')
         end
     end
 end, 'Ban a given skill', 0)
 
 -- When a user wants to stick a skill into a slot
 Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
-    -- Ensure this is a valid skill
-    if not isValidSkill(skillName) then return end
-
-    -- Is the skill banned?
-    if isSkillBanned(skillName) then return end
-
-    -- Convert slot to a number
-    slotNumber = tonumber(slotNumber)
-
-    -- Ensure this is a valid slot
-    if not isValidSlot(slotNumber) then return end
-
-    -- Ensure we are in banning mode
-    if currentStage ~= STAGE_PICKING then return end
-
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure this is a valid skill
+        if not isValidSkill(skillName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+            return
+        end
+
+        -- Is the skill banned?
+        if isSkillBanned(skillName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is banned.</font>')
+            return
+        end
+
+        -- Convert slot to a number
+        slotNumber = tonumber(slotNumber)
+
+        -- Ensure this is a valid slot
+        if not isValidSlot(slotNumber) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid slot.</font>')
+            return
+        end
+
+        -- Ensure we are in banning mode
+        if currentStage ~= STAGE_PICKING then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
+            return
+        end
 
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
@@ -350,9 +389,15 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         if skillList[playerID][slotNumber+1] ~= skillName then
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
-                if slotNumber < maxSlots - maxUlts then return end
+                if slotNumber < maxSlots - maxUlts then
+                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can not put an ult into this slot.</font>')
+                    return
+                end
             else
-                if slotNumber >= maxSkills then return end
+                if slotNumber >= maxSkills then
+                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can not put a regular skill into this slot.</font>')
+                    return
+                end
             end
 
             -- Store this skill into the given slot
@@ -368,6 +413,9 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 skillName = skillName,
                 playerSlot = playerSlot
             })
+
+            -- Tell the player
+            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into slot <font color="'..COLOR_BLUE..'">'..(slotNumber+1)..'</font>')
         end
     end
 end, 'Ban a given skill', 0)
