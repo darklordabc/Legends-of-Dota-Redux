@@ -129,7 +129,7 @@ local function getPlayerSlot(playerID)
     for i=0, 9 do
         if i >= playerID then break end
 
-        if PlayerResource:GetTeam() == team then
+        if PlayerResource:GetTeam(i) == team then
             playerSlot = playerSlot + 1
         end
     end
