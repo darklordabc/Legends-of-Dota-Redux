@@ -5,10 +5,10 @@ print("gamemode started to load...")
 ]]
 
 -- Max number of bans
-local maxBans = 0
+local maxBans = 5
 
 -- Banning Period
-local banningTime = 0
+local banningTime = 30
 
 -- Picking Time
 local pickingTime = 120
@@ -31,6 +31,7 @@ local banTrollCombos = true
 -- Colors
 local COLOR_BLUE = '#4B69FF'
 local COLOR_RED = '#EB4B4B'
+local COLOR_GREEN = '#ADE55C'
 
 --[[
     GAMEMODE STUFF
@@ -230,7 +231,13 @@ local function think()
             -- Move onto banning mode
             currentStage = STAGE_BANNING
 
+            -- Send the picking info
             sendPickingInfo()
+
+            -- Tell the users it's picking time
+            if banningTime > 0 then
+                sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+            end
 
             -- Sleep until the banning time is up
             return banningTime
@@ -246,6 +253,9 @@ local function think()
     if currentStage == STAGE_BANNING then
         -- Change to picking state
         currentStage = STAGE_PICKING
+
+        -- Tell everyone
+        sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
 
         -- Sleep until picking is over
         return pickingTime
