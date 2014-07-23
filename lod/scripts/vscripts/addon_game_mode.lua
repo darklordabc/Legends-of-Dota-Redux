@@ -245,6 +245,7 @@ local function think()
 
         -- Set the hero selection time
         GameRules:SetHeroSelectionTime(banningTime+pickingTime)
+        GameRules:SetSameHeroSelectionEnabled(true)
 
         -- Run again in a moment
         return 0.25
@@ -482,3 +483,4 @@ thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)
 
 -- Set the hero selection time
 GameRules:SetHeroSelectionTime(banningTime+pickingTime)
+GameRules:SetSameHeroSelectionEnabled(true)
