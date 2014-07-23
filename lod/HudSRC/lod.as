@@ -522,6 +522,9 @@ package  {
                     ps.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
                     ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
+                    // Hook dragging
+                    EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
+
                     // Store a reference to it
                     topSkillList[playerId*MAX_SLOTS+j] = ps;
                 }
@@ -1091,15 +1094,24 @@ package  {
             }
         }
 
-        private function skillSlotDragBegin(me:MovieClip, dragClip:MovieClip):void {
+        private function skillSlotDragBegin(me:MovieClip, dragClip:MovieClip):Boolean {
             // Grab the name of the skill
             var skillName = me.getSkillName();
+
+            // Can we even drag this skill?
+            if(skillName == 'nothing') {
+                // Stop the drag
+                return false;
+            }
 
             // Load a skill into the dragClip
             Globals.instance.LoadAbilityImage(skillName, dragClip);
 
             // Store the skill
             dragClip.skillName = skillName;
+
+            // Enable dragging
+            return true;
         }
 
         private function onDropMySkills(me:MovieClip, dragClip:MovieClip) {

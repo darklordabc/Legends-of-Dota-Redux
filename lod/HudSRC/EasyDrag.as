@@ -114,8 +114,13 @@ package {
 
                 // Check if we have a callback
                 if(callbacksStart[dragClickedClip]) {
-                    // Run the callback
-                    callbacksStart[dragClickedClip](dragClickedClip, dragClip);
+                    // Run the callback, if false is returned, don't drag
+                    if(!callbacksStart[dragClickedClip](dragClickedClip, dragClip)) {
+                        // Remove drag object
+                        stage.removeChild(dragClip);
+                        dragClip = null;
+                        return;
+                    }
                 }
 
                 // Add listeners
