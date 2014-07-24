@@ -8,7 +8,7 @@ print("gamemode started to load...")
 local maxBans = 5
 
 -- Banning Period
-local banningTime = 30
+local banningTime = 90
 
 -- Picking Time
 local pickingTime = 120
@@ -149,6 +149,37 @@ local function sendChatMessage(playerID, msg)
     })
 end
 
+-- This will be fired when the game starts
+local function backdoorFix()
+    local ents = Entities:FindAllByClassname('npc_dota_tower')
+
+    -- List of towers to not protect
+    local blocked = {
+        dota_goodguys_tower1_bot = true,
+        dota_goodguys_tower1_mid = true,
+        dota_goodguys_tower1_top = true,
+        dota_badguys_tower1_bot = true,
+        dota_badguys_tower1_mid = true,
+        dota_badguys_tower1_top = true
+    }
+
+    for k,ent in pairs(ents) do
+        local name = ent:GetName()
+
+        -- Should we protect it?
+        if not blocked[name] then
+            -- Protect it
+            ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+        end
+    end
+
+    -- Protect rax
+    ents = Entities:FindAllByClassname('npc_dota_barracks')
+    for k,ent in pairs(ents) do
+        ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+    end
+end
+
 local canInfo = true
 local function sendPickingInfo()
     -- Stop spam of this command
@@ -256,7 +287,7 @@ local function think()
         currentStage = STAGE_PICKING
 
         -- Tell everyone
-        sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
+        sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..pickingTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
 
         -- Sleep until picking is over
         return pickingTime
@@ -267,7 +298,20 @@ local function think()
         currentStage = STAGE_PLAYING
 
         -- Stop
-        return
+        return 0.1
+    end
+
+    if currentStage == STAGE_PLAYING then
+        if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            -- Fix backdoor
+            backdoorFix()
+
+            -- Finally done!
+            return
+        else
+            -- Sleep again
+            return 1
+        end
     end
 
     -- We should never get here
@@ -394,8 +438,14 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         end
 
         -- Ensure we are in banning mode
-        if currentStage ~= STAGE_PICKING then
+        if currentStage < STAGE_PICKING then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
+            return
+        end
+
+        -- Stop people who have spawned from picking
+        if handled[playerID] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
             return
         end
 

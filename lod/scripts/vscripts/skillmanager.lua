@@ -67,25 +67,32 @@ function skillManager:ApplyBuild(hero, build)
     local extraSkills = {}
 
     -- Give all the abilities in this build
-    for k,v in ipairs(build) do
-        -- Check if this skill has sub abilities
-        if subAbilities[v] then
-            -- Store that we need this skill
-            extraSkills[subAbilities[v]] = true
+    local abNum = 0
+    for i=1,6 do
+        local v = build[i]
+        if v then
+            abNum=abNum+1
+            -- Check if this skill has sub abilities
+            if subAbilities[v] then
+                -- Store that we need this skill
+                extraSkills[subAbilities[v]] = true
+            end
+
+            -- Add to build
+            hero:AddAbility(v)
+            currentSkillList[hero][abNum] = v
+
+            -- Remove auras
+            hero:RemoveModifierByName('modifier_'..v)
+            hero:RemoveModifierByName('modifier_'..v..'_aura')
         end
-
-        -- Add to build
-        hero:AddAbility(v)
-        currentSkillList[hero][k] = v
-
-        -- Remove auras
-        hero:RemoveModifierByName('modifier_'..v)
-        hero:RemoveModifierByName('modifier_'..v..'_aura')
     end
 
     -- Add missing abilities
-    local i = #build+1
     for k,v in pairs(extraSkills) do
+        -- Move onto the next slot
+        abNum = abNum + 1
+
         -- Add the ability
         hero:AddAbility(k)
 
@@ -94,10 +101,7 @@ function skillManager:ApplyBuild(hero, build)
         hero:RemoveModifierByName('modifier_'..k..'_aura')
 
         -- Store that we have it
-        currentSkillList[hero][i] = k
-
-        -- Move onto the next slot
-        i = i + 1
+        currentSkillList[hero][abNum] = k
     end
 end
 
