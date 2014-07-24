@@ -14,6 +14,29 @@ local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
 -- This object will be exported
 local skillManager = {}
 
+local meleeMap = {
+    -- Remap troll ulty
+    troll_warlord_berserkers_rage = 'troll_warlord_berserkers_rage_melee'
+}
+
+local meleeList = {}
+for heroName, values in pairs(heroListKV) do
+    if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' then
+        if values.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK' then
+            meleeList[heroName] = true
+        end
+    end
+end
+
+-- Tells you if a given heroName is melee or not
+local function isMeleeHero(heroName)
+    if meleeList[heroName] then
+        return true
+    end
+
+    return false
+end
+
 local function fixModifiers(hero, skill)
     -- Remove it
     hero:RemoveModifierByName('modifier_'..skill)
@@ -72,6 +95,11 @@ function skillManager:ApplyBuild(hero, build)
     -- Table to store all the extra skills we need to give
     local extraSkills = {}
 
+    -- Check if this hero is a melee hero
+    local melee = isMeleeHero(hero:GetClassname())
+    print('melee:')
+    print(melee)
+
     -- Give all the abilities in this build
     local abNum = 0
     for i=1,6 do
@@ -82,6 +110,11 @@ function skillManager:ApplyBuild(hero, build)
             if subAbilities[v] then
                 -- Store that we need this skill
                 extraSkills[subAbilities[v]] = true
+            end
+
+            -- Do melee heroes need a different skill?
+            if meleeMap[v] then
+                v = meleeMap[v]
             end
 
             -- Add to build
