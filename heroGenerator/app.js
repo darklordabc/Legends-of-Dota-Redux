@@ -238,9 +238,18 @@ fs.readFile(scriptDir+'npc_heroes.txt', function(err, itemData) {
         if(name == 'Version') continue;
         if(name == 'npc_dota_hero_base') continue;
 
+        var data = heroes[name];
+
         newKV[name+'_lod'] = {
             override_hero: name,
             AbilityLayout: '6'
+        }
+
+        // Check if they are melee
+        if(data.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
+            // Give them projectile speed + model
+            newKV[name+'_lod'].ProjectileSpeed = 1000
+            newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
         }
     }
 
