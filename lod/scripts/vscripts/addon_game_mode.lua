@@ -63,6 +63,7 @@ local banList = LoadKeyValues('scripts/kv/bans.kv')
 
 -- Ability stuff
 local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
 local skillLookup = {}
 for k,v in pairs(skillLookupList) do
@@ -74,6 +75,11 @@ for k,v in pairs(skillLookupList) do
         skillLookup[skillSplit[1]] = tonumber(k)
         skillLookup[skillSplit[2]] = -tonumber(k)
     end
+end
+
+-- Merge custom abilities into main abiltiies file
+for k,v in pairs(absCustom) do
+    abs[k] = v
 end
 
 local function isUlt(skillName)

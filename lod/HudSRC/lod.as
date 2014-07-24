@@ -87,6 +87,12 @@ package  {
         // Active list of skills (key = skill name)
         private var activeList:Object = {};
 
+        // Stores the different tabs
+        private var tabList:Object = {};
+
+        // The total number of tabs
+        private var totalTabs:Number = 3;
+
         // Access to the skills at the top
         private var topSkillList:Object = {};
 
@@ -145,6 +151,12 @@ package  {
 
             // Load KV with info on abilities
             skillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
+            var customSkillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
+
+            // Merge in custom kv
+            for(var key in customSkillKV) {
+                skillKV[key] = customSkillKV[key]
+            }
 
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
@@ -263,6 +275,18 @@ package  {
             btnSkills.x = 104;
             btnSkills.y = 6;
 
+            // Wraith Night tab button
+            var btnWN:MovieClip = smallButton('Wraith Night');
+            btnWN.addEventListener(MouseEvent.CLICK, onBtnWNClicked);
+            btnWN.x = 170;
+            btnWN.y = 6;
+
+            // Neutral tab button
+            var btnNeutral:MovieClip = smallButton('Neutral');
+            btnNeutral.addEventListener(MouseEvent.CLICK, onBtnNeutralClicked);
+            btnNeutral.x = 236;
+            btnNeutral.y = 6;
+
             // Build the skill screen
             buildSkillScreen();
 
@@ -273,7 +297,7 @@ package  {
             updateFilters();
 
             // Set it into skills mode
-            setSkillMode();
+            setSkillMode(0);
 
             // Should we show the help?
             if(!shownHelp) {
@@ -355,100 +379,110 @@ package  {
 
             var gapSize:Number = Math.min(gapSizeX, gapSizeY);
 
-            // The skill we are upto in our skill list
-            var skillNumber:Number = 0;
-
             // New active list
             activeList = {};
 
-            for(k=0;k<Y_SECTIONS;k++) {
-                for(l=0; l<Y_PER_SECTION; l++) {
-                    for(i=0;i<X_SECTIONS;i++) {
-                        for(j=0; j<X_PER_SECTION; j++) {
-                            // Create new skill list
-                            sl = new SelectSkillList();
-                            skillScreen.addChild(sl);
-                            sl.x = i*(singleWidth+gapSize) + j*(SL_WIDTH+S_PADDING);
-                            sl.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
+            // Loop over all the possible tabs
+            for(var tabNumber:Number=0;tabNumber<totalTabs;tabNumber++) {
+                // The skill we are upto in our skill list
+                var skillNumber:Number = 0;
 
-                            for(a=0; a<4; a++) {
-                                // Grab a new skill
-                                var skill = completeList[skillNumber++];
-                                if(skill) {
-                                    var skillSplit = skill.split('||');
+                // Create the new tab
+                var tab:MovieClip = new MovieClip();
+                skillScreen.addChild(tab);
 
-                                    if(skillSplit.length == 1) {
-                                        skillSlot = sl['skill'+a];
+                // Store the tab
+                tabList[tabNumber] = tab;
 
-                                        // Put the skill into the slot
-                                        skillSlot.setSkillName(skill);
+                for(k=0;k<Y_SECTIONS;k++) {
+                    for(l=0; l<Y_PER_SECTION; l++) {
+                        for(i=0;i<X_SECTIONS;i++) {
+                            for(j=0; j<X_PER_SECTION; j++) {
+                                // Create new skill list
+                                sl = new SelectSkillList();
+                                tab.addChild(sl);
+                                sl.x = i*(singleWidth+gapSize) + j*(SL_WIDTH+S_PADDING);
+                                sl.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
 
-                                        skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                        skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                for(a=0; a<4; a++) {
+                                    // Grab a new skill
+                                    var skill = completeList[tabNumber*1000+skillNumber++];
+                                    if(skill) {
+                                        var skillSplit = skill.split('||');
 
-                                        // Hook dragging
-                                        EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
+                                        if(skillSplit.length == 1) {
+                                            skillSlot = sl['skill'+a];
 
-                                        // Store into the active list
-                                        activeList[skill] = skillSlot;
-                                    } else if(skillSplit.length == 2) {
-                                        /*
-                                            bottom left
-                                        */
-                                        msk = new SelectSkillsSplit(1, 2);
-                                        sl.addChild(msk);
+                                            // Put the skill into the slot
+                                            skillSlot.setSkillName(skill);
 
-                                        skillSlot = sl['skill'+a];
-                                        skillSlot.mask = msk;
-                                        msk.x = skillSlot.x;
-                                        msk.y = skillSlot.y;
+                                            skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                            skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
-                                        // Put the skill into the slot
-                                        skillSlot.setSkillName(skillSplit[0]);
+                                            // Hook dragging
+                                            EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
 
-                                        skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                        skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                            // Store into the active list
+                                            activeList[skill] = skillSlot;
+                                        } else if(skillSplit.length == 2) {
+                                            /*
+                                                bottom left
+                                            */
+                                            msk = new SelectSkillsSplit(1, 2);
+                                            sl.addChild(msk);
 
-                                        // Hook dragging
-                                        EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
+                                            skillSlot = sl['skill'+a];
+                                            skillSlot.mask = msk;
+                                            msk.x = skillSlot.x;
+                                            msk.y = skillSlot.y;
 
-                                        // Store into the active list
-                                        activeList[skillSplit[0]] = skillSlot;
+                                            // Put the skill into the slot
+                                            skillSlot.setSkillName(skillSplit[0]);
 
-                                        /*
-                                            top right
-                                        */
+                                            skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                            skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
-                                        msk = new SelectSkillsSplit(2, 2);
-                                        sl.addChild(msk);
+                                            // Hook dragging
+                                            EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
 
-                                        skillSlot2 = new SelectSkill();
-                                        skillSlot2.mask = msk;
-                                        sl.addChild(skillSlot2);
-                                        skillSlot2.x = skillSlot.x;
-                                        skillSlot2.y = skillSlot.y;
-                                        msk.x = skillSlot.x;
-                                        msk.y = skillSlot.y;
+                                            // Store into the active list
+                                            activeList[skillSplit[0]] = skillSlot;
 
-                                        // Put the skill into the slot
-                                        skillSlot2.setSkillName(skillSplit[1]);
+                                            /*
+                                                top right
+                                            */
 
-                                        skillSlot2.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                        skillSlot2.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                            msk = new SelectSkillsSplit(2, 2);
+                                            sl.addChild(msk);
 
-                                        // Hook dragging
-                                        EasyDrag.dragMakeValidFrom(skillSlot2, skillSlotDragBegin);
+                                            skillSlot2 = new SelectSkill();
+                                            skillSlot2.mask = msk;
+                                            sl.addChild(skillSlot2);
+                                            skillSlot2.x = skillSlot.x;
+                                            skillSlot2.y = skillSlot.y;
+                                            msk.x = skillSlot.x;
+                                            msk.y = skillSlot.y;
 
-                                        // Store into the active list
-                                        activeList[skillSplit[1]] = skillSlot2;
+                                            // Put the skill into the slot
+                                            skillSlot2.setSkillName(skillSplit[1]);
 
-                                        // Fix the lists
-                                        completeList[skillNumber-1] = skillSplit[0];
-                                        completeList[-(skillNumber-1)] = skillSplit[1];
+                                            skillSlot2.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                            skillSlot2.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                                            // Hook dragging
+                                            EasyDrag.dragMakeValidFrom(skillSlot2, skillSlotDragBegin);
+
+                                            // Store into the active list
+                                            activeList[skillSplit[1]] = skillSlot2;
+
+                                            // Fix the lists
+                                            completeList[skillNumber-1] = skillSplit[0];
+                                            completeList[-(skillNumber-1)] = skillSplit[1];
+                                        }
+                                    } else {
+                                        // Hide this select skill
+                                        sl['skill'+a].visible = false;
                                     }
-                                } else {
-                                    // Hide this select skill
-                                    sl['skill'+a].visible = false;
                                 }
                             }
                         }
@@ -892,7 +926,7 @@ package  {
         }
 
         // Sets the selection mode to skills
-        private function setSkillMode():void {
+        private function setSkillMode(tabNumber:Number):void {
             // Hide hero selection stuff
             setHeroStuffVisibility(false);
 
@@ -901,6 +935,14 @@ package  {
 
             // We are picking skills
             pickingSkills = true;
+
+            // Hide all tabs
+            for(var i:Number=0;i<totalTabs;i++) {
+                tabList[i].visible = false;
+            }
+
+            // Show the correct tab
+            tabList[tabNumber].visible = true;
         }
 
         // Change the visibility of hero selection stuff
@@ -1152,7 +1194,19 @@ package  {
         // When the skills button is clicked
         private function onBtnSkillsClicked():void {
             // Set it into skills mode
-            setSkillMode();
+            setSkillMode(0);
+        }
+
+        // When the wraith night skills button is clicked
+        private function onBtnWNClicked():void {
+            // Set it into skills mode
+            setSkillMode(1);
+        }
+
+        // When the wraith night skills button is clicked
+        private function onBtnNeutralClicked():void {
+            // Set it into skills mode
+            setSkillMode(2);
         }
 
         // Grabs the hero selection

@@ -150,6 +150,13 @@
 			"particlefile"				"particles/units/heroes/hero_phoenix.pcf"
 			"particlefile"				"particles/units/heroes/hero_techies.pcf"
 			"particlefile"				"particles/units/heroes/hero_oracle.pcf"
+
+			"particlefile"				"particles/creature_splitter.pcf"
+			"particlefile"				"particles/frostivus_gameplay.pcf"
+			"particlefile"				"particles/frostivus_herofx.pcf"
+			"particlefile"				"particles/generic_aoe_persistent_circle_1.pcf"
+			"particlefile"				"particles/holdout_lina.pcf"
+			"particlefile"				"particles/test_particle.pcf"
 		}
 	}
 
