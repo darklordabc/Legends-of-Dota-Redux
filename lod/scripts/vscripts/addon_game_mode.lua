@@ -66,7 +66,14 @@ local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
 local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
 local skillLookup = {}
 for k,v in pairs(skillLookupList) do
-    skillLookup[v] = tonumber(k)
+    local skillSplit = vlua.split(v, '||')
+
+    if #skillSplit == 1 then
+        skillLookup[v] = tonumber(k)
+    elseif #skillSplit == 2 then
+        skillLookup[skillSplit[1]] = tonumber(k)
+        skillLookup[skillSplit[2]] = -tonumber(k)
+    end
 end
 
 local function isUlt(skillName)
