@@ -8,7 +8,7 @@ print("gamemode started to load...")
 local maxBans = 5
 
 -- Banning Period
-local banningTime = 0--90
+local banningTime = 90
 
 -- Picking Time
 local pickingTime = 120

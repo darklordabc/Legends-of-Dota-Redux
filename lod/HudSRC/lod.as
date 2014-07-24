@@ -766,6 +766,9 @@ package  {
 
         // When someone hovers over a skill
         private function onSkillRollOver(e:MouseEvent):void {
+            // Don't show stuff if we're dragging
+            if(EasyDrag.isDragging()) return;
+
             // Grab what we rolled over
             var s:Object = e.target;
 

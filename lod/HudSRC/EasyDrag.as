@@ -50,6 +50,12 @@ package {
             callbacks[mc] = callback;
         }
 
+        // Tells you if dragging is currently happening
+        public static function isDragging():Boolean {
+            if(dragClip) return true;
+            return false;
+        }
+
         // Runs when we are dragging something, move the drag item to our cursor
         private static function dragListener(e:MouseEvent):void {
             dragClip.x = e.stageX;
