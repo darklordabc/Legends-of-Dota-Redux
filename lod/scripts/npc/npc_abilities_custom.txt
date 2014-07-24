@@ -412,4 +412,277 @@
             }
         }
     }
+
+    //=================================================================================================================
+    // Holdout: Omnislash
+    //=================================================================================================================
+    "holdout_omnislash"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityTextureName"            "juggernaut_omni_slash"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "3000"
+        "AbilityCastPoint"              "0.3 0.3 0.3"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "40.0 30.0 20.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.25"  // mostly about the blink
+
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "image_travel_speed"    "850"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "image_radius"          "250 300 350"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "jugg_travel_speed"     "1200 1300 1400"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range"                 "1200 1300 1400"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "animation_rate"        "0.2"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "50 85 120"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Holdout: God's Strength
+    //=================================================================================================================
+    "holdout_gods_strength"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityTextureName"            "sven_gods_strength"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.3 0.3 0.3"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60.0"
+        "AbilityDuration"               "25.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "125"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "15 30 45"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "model_scale"           "25"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "cooldown_reduction_per_kill"           "1.0 1.5 2.0"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "gods_strength_damage"          "50 75 100"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Holdout: Multishot
+    //=================================================================================================================
+    "holdout_multishot"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "700 750 800 850"
+        "AbilityCastPoint"              "0"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "12 15 18 22"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "arrow_width"               "35"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "arrow_speed"               "1250.0"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "arrow_range"               "700.0 750.0 800.0 850.0"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "arrow_spread"              "50"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "arrow_count"               "5 6 6 7"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_reduction_pct"      "34 33 32 30"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Holdout: Culling Blade
+    //=================================================================================================================
+    "holdout_culling_blade"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityTextureName"                    "holdout_culling_blade"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "500 600 700"
+        "AbilityCastPoint"              "0.0"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "15.0 12.5 10.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100 75 50"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "leap_distance"         "500 600 700"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "leap_speed"            "1000 1100 1200"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "leap_acceleration"     "7000.0"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "leap_radius"           "175 225 275"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "kill_threshold"            "250 350 450"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "150 250 350"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "speed_bonus"               "40"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "speed_duration"            "6"
+            }
+            "09"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "speed_aoe"                 "900"
+            }
+            "10"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "cooldown_scepter"          "6.0 6.0 6.0"
+            }
+            "11"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "kill_threshold_scepter"    "300 450 625"
+            }
+            "12"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "speed_duration_scepter"    "10"
+            }
+        }
+    }
 }
