@@ -8,7 +8,7 @@ print("gamemode started to load...")
 local maxBans = 5
 
 -- Banning Period
-local banningTime = 90
+local banningTime = 0--90
 
 -- Picking Time
 local pickingTime = 120
@@ -361,6 +361,56 @@ ListenToGameEvent('npc_spawned', function(keys)
 
         -- Apply the build
         SkillManager:ApplyBuild(spawnedUnit, build)
+    end
+end, nil)
+
+-- Abaddon ulty fix
+ListenToGameEvent('entity_hurt', function(keys)
+    -- Grab the entity that was hurt
+    local ent = EntIndexToHScript(keys.entindex_killed)
+
+    -- Ensure it is a valid hero
+    if ent and ent:IsRealHero() then
+        -- The min amount of hp
+        local minHP = 400
+
+        -- Ensure their health has dropped low enough
+        if ent:GetHealth() <= minHP then
+            -- Do they even have the ability in question?
+            if ent:HasAbility('abaddon_borrowed_time') then
+                -- Grab the ability
+                local ab = ent:FindAbilityByName('abaddon_borrowed_time')
+
+                -- Is the ability ready to use?
+                if ab:IsCooldownReady() then
+                    -- Grab the level
+                    local lvl = ab:GetLevel()
+
+                    -- Is the skill even skilled?
+                    if lvl > 0 then
+                        -- Fix their health
+                        ent:SetHealth(2*minHP - ent:GetHealth())
+
+                        -- Add the modifier
+                        ent:AddNewModifier(ent, ab, 'modifier_abaddon_borrowed_time', {
+                            duration = ab:GetSpecialValueFor('duration'),
+                            duration_scepter = ab:GetSpecialValueFor('duration_scepter'),
+                            redirect = ab:GetSpecialValueFor('redirect'),
+                            redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
+                        })
+
+                        -- Apply the cooldown
+                        if lvl == 1 then
+                            ab:StartCooldown(60)
+                        elseif lvl == 2 then
+                            ab:StartCooldown(50)
+                        else
+                            ab:StartCooldown(40)
+                        end
+                    end
+                end
+            end
+        end
     end
 end, nil)
 

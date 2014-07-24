@@ -14,6 +14,12 @@ local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
 -- This object will be exported
 local skillManager = {}
 
+local function fixModifiers(hero, skill)
+    -- Remove it
+    hero:RemoveModifierByName('modifier_'..skill)
+    hero:RemoveModifierByName('modifier_'..skill..'_aura')
+end
+
 function skillManager:GetHeroSkills(heroClass)
     local skills = {}
 
@@ -83,8 +89,7 @@ function skillManager:ApplyBuild(hero, build)
             currentSkillList[hero][abNum] = v
 
             -- Remove auras
-            hero:RemoveModifierByName('modifier_'..v)
-            hero:RemoveModifierByName('modifier_'..v..'_aura')
+            fixModifiers(hero, v)
         end
     end
 
@@ -97,8 +102,7 @@ function skillManager:ApplyBuild(hero, build)
         hero:AddAbility(k)
 
         -- Remove auras
-        hero:RemoveModifierByName('modifier_'..k)
-        hero:RemoveModifierByName('modifier_'..k..'_aura')
+        fixModifiers(hero, k)
 
         -- Store that we have it
         currentSkillList[hero][abNum] = k

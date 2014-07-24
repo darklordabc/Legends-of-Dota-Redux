@@ -192,13 +192,25 @@ package  {
             realScreenHeight = re.ScreenHeight;
 
             // How much space we have to use
-            var workingWidth:Number = myStageHeight*4/3;
+            var workingWidth:Number = myStageHeight*getWorkingRatio();
 
             // Align the skill screen correctly
             if(skillScreen != null) {
+                // Do we need to scale the picker?
+                if(skillScreen.width > workingWidth) {
+                    var newScale:Number = workingWidth / skillScreen.width;
+                    skillScreen.scaleX = newScale;
+                    skillScreen.scaleY = newScale;
+                }
+
                 skillScreen.x = (realScreenWidth/scalingFactor-workingWidth)/2;
                 skillScreen.y = 128;
             }
+        }
+
+        // Returns how much aspect ratio we have to work with
+        public function getWorkingRatio() {
+            return Math.min(4/3, realScreenWidth/realScreenHeight);
         }
 
         // Adds chat to the chat window
@@ -315,13 +327,20 @@ package  {
             var i:Number, j:Number, k:Number, l:Number, a:Number, sl:MovieClip;
 
             // How much space we have to use
-            var workingWidth:Number = myStageHeight*4/3;
+            var workingWidth:Number = myStageHeight*getWorkingRatio();
 
             // Build a container
             skillScreen = new MovieClip();
             addChild(skillScreen);
             skillScreen.x = (realScreenWidth/scalingFactor-workingWidth)/2;
             skillScreen.y = 128;
+
+            // Do we need to scale the picker?
+            if(skillScreen.width > workingWidth) {
+                var newScale:Number = workingWidth / skillScreen.width;
+                skillScreen.scaleX = newScale;
+                skillScreen.scaleY = newScale;
+            }
 
             var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
             var totalWidth:Number = X_SECTIONS * singleWidth - S_PADDING;
@@ -805,6 +824,9 @@ package  {
         private function setSkillMode():void {
             // Hide hero selection stuff
             setHeroStuffVisibility(false);
+
+            // Press the back button
+            getSelMC().onBackButtonClicked(null);
 
             // We are picking skills
             pickingSkills = true;
