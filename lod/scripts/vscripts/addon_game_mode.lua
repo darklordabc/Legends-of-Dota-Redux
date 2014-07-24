@@ -149,6 +149,30 @@ local function sendChatMessage(playerID, msg)
     })
 end
 
+local function CheckBans(skillList, slotNumber, skillName)
+    -- Should we ban troll combos?
+    if banTrollCombos then
+        -- Loop over all the banned combinations
+        for k,v in pairs(banList.BannedCombinations) do
+            -- Check if this is possibly banned
+            if(v['1'] == skillName or v['2'] == skillName) then
+                -- Loop over all our slots
+                for i=1,maxSlots do
+                    -- Ignore the skill in our current slot
+                    if i ~= slotNumber then
+                        -- Check the banned combo
+                        if v['1'] == skillName and skillList[i] == v['2'] then
+                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>'
+                        elseif v['2'] == skillName and skillList[i] == v['1'] then
+                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>'
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
 -- This will be fired when the game starts
 local function backdoorFix()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
@@ -466,15 +490,15 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
-        -- Ensure this is a valid skill
-        if not isValidSkill(skillName) then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+        -- Stop people who have spawned from picking
+        if handled[playerID] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
             return
         end
 
-        -- Is the skill banned?
-        if isSkillBanned(skillName) then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is banned.</font>')
+        -- Ensure we are in banning mode
+        if currentStage < STAGE_PICKING then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
             return
         end
 
@@ -487,20 +511,61 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             return
         end
 
-        -- Ensure we are in banning mode
-        if currentStage < STAGE_PICKING then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
-            return
-        end
-
-        -- Stop people who have spawned from picking
-        if handled[playerID] then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
-            return
-        end
-
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
+
+        -- Ensure this is a valid skill
+        if not isValidSkill(skillName) then
+            -- Perhaps they tried to random?
+            if skillName == 'random' then
+                -- Workout if we can put an ulty here, or a skill
+                local canUlt = true
+                local canSkill = true
+
+                if slotNumber < maxSlots - maxUlts then
+                    canUlt = false
+                end
+                if slotNumber >= maxSkills then
+                    canSkill = false
+                end
+
+                -- There is a chance there is no valid skill
+                if not canUlt and not canSkill then
+                    -- Damn scammers! No valid skills!
+                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">There are no valid skills for this slot!</font>')
+                    return
+                end
+
+                -- Build a list of possible skills
+                local possibleSkills = {}
+
+                for k,v in pairs(skillLookupList) do
+                    if (canUlt and isUlt(v)) or (canSkill and not isUlt(v)) then
+                        if not CheckBans(skillList[playerID], slotNumber+1, v) then
+                            table.insert(possibleSkills, v)
+                        end
+                    end
+                end
+
+                -- Did we find no possible skills?
+                if #possibleSkills == 0 then
+                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">There are no valid skills for this slot.</font>')
+                    return
+                end
+
+                -- Pick a random skill
+                skillName = possibleSkills[math.random(#possibleSkills)]
+            else
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+                return
+            end
+        end
+
+        -- Is the skill banned?
+        if isSkillBanned(skillName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is banned.</font>')
+            return
+        end
 
         -- Ensure it isn't the same skill
         if skillList[playerID][slotNumber+1] ~= skillName then
@@ -517,28 +582,10 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 end
             end
 
-            -- Should we ban troll combos?
-            if banTrollCombos then
-                -- Loop over all the banned combinations
-                for k,v in pairs(banList.BannedCombinations) do
-                    -- Check if this is possibly banned
-                    if(v['1'] == skillName or v['2'] == skillName) then
-                        -- Loop over all our slots
-                        for i=1,maxSlots do
-                            -- Ignore the skill in our current slot
-                            if i ~= slotNumber+1 then
-                                -- Check the banned combo
-                                if v['1'] == skillName and skillList[playerID][i] == v['2'] then
-                                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>')
-                                    return
-                                elseif v['2'] == skillName and skillList[playerID][i] == v['1'] then
-                                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>')
-                                    return
-                                end
-                            end
-                        end
-                    end
-                end
+            local msg = CheckBans(skillList[playerID], slotNumber+1, skillName)
+            if msg then
+                sendChatMessage(playerID, msg)
+                return
             end
 
             -- Store this skill into the given slot

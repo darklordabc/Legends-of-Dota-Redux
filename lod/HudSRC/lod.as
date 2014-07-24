@@ -412,6 +412,16 @@ package  {
             mySkills.y = 296;
             mySkills.visible = false;
 
+            // Add random skill
+            var randomSkill:MovieClip = new SelectSkill();
+            EasyDrag.dragMakeValidFrom(randomSkill, skillSlotDragBegin);
+            randomSkill.setSkillName('random');
+            skillScreen.addChild(randomSkill);
+            randomSkill.x = workingWidth/2 - mySkills.width/2 - 64;
+            randomSkill.y = 296 + 35 - randomSkill.height*3/2;
+            randomSkill.scaleX = 3;
+            randomSkill.scaleY = 3;
+
             // Hook roll overs
             for(i=0; i<MAX_SLOTS; i++) {
                 mySkills['skill'+i].addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
