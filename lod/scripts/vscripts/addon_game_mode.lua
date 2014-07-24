@@ -71,9 +71,11 @@ for k,v in pairs(skillLookupList) do
 
     if #skillSplit == 1 then
         skillLookup[v] = tonumber(k)
-    elseif #skillSplit == 2 then
-        skillLookup[skillSplit[1]] = tonumber(k)
-        skillLookup[skillSplit[2]] = -tonumber(k)
+    else
+        -- Store the keys
+        for i=1,#skillSplit do
+            skillLookup[skillSplit[i]] = -(tonumber(k)+1000*(i-1))
+        end
     end
 end
 

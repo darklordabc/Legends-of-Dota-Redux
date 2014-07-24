@@ -410,8 +410,11 @@ package  {
                                     if(skill) {
                                         var skillSplit = skill.split('||');
 
+                                        // Grab the slot
+                                        skillSlot = sl['skill'+a];
+
                                         if(skillSplit.length == 1) {
-                                            skillSlot = sl['skill'+a];
+
 
                                             // Put the skill into the slot
                                             skillSlot.setSkillName(skill);
@@ -424,60 +427,36 @@ package  {
 
                                             // Store into the active list
                                             activeList[skill] = skillSlot;
-                                        } else if(skillSplit.length == 2) {
-                                            /*
-                                                bottom left
-                                            */
-                                            msk = new SelectSkillsSplit(1, 2);
-                                            sl.addChild(msk);
+                                        } else {
+                                            // Loop over all the spells in this bundle
+                                            for(var splitLength:Number=0;splitLength<skillSplit.length;splitLength++) {
+                                                msk = new SelectSkillsSplit(1+splitLength, skillSplit.length);
+                                                sl.addChild(msk);
 
-                                            skillSlot = sl['skill'+a];
-                                            skillSlot.mask = msk;
-                                            msk.x = skillSlot.x;
-                                            msk.y = skillSlot.y;
+                                                // Create the new skill slot
+                                                skillSlot2 = new SelectSkill();
+                                                skillSlot2.mask = msk;
+                                                sl.addChild(skillSlot2);
+                                                skillSlot2.x = skillSlot.x;
+                                                skillSlot2.y = skillSlot.y;
+                                                msk.x = skillSlot.x;
+                                                msk.y = skillSlot.y;
 
-                                            // Put the skill into the slot
-                                            skillSlot.setSkillName(skillSplit[0]);
+                                                // Put the skill into the slot
+                                                skillSlot2.setSkillName(skillSplit[splitLength]);
 
-                                            skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                            skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                                                skillSlot2.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                                                skillSlot2.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
-                                            // Hook dragging
-                                            EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
+                                                // Hook dragging
+                                                EasyDrag.dragMakeValidFrom(skillSlot2, skillSlotDragBegin);
 
-                                            // Store into the active list
-                                            activeList[skillSplit[0]] = skillSlot;
+                                                // Store into the active list
+                                                activeList[skillSplit[splitLength]] = skillSlot2;
 
-                                            /*
-                                                top right
-                                            */
-
-                                            msk = new SelectSkillsSplit(2, 2);
-                                            sl.addChild(msk);
-
-                                            skillSlot2 = new SelectSkill();
-                                            skillSlot2.mask = msk;
-                                            sl.addChild(skillSlot2);
-                                            skillSlot2.x = skillSlot.x;
-                                            skillSlot2.y = skillSlot.y;
-                                            msk.x = skillSlot.x;
-                                            msk.y = skillSlot.y;
-
-                                            // Put the skill into the slot
-                                            skillSlot2.setSkillName(skillSplit[1]);
-
-                                            skillSlot2.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                            skillSlot2.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
-
-                                            // Hook dragging
-                                            EasyDrag.dragMakeValidFrom(skillSlot2, skillSlotDragBegin);
-
-                                            // Store into the active list
-                                            activeList[skillSplit[1]] = skillSlot2;
-
-                                            // Fix the lists
-                                            completeList[skillNumber-1] = skillSplit[0];
-                                            completeList[-(skillNumber-1)] = skillSplit[1];
+                                                // Fix the lists
+                                                completeList[-(skillNumber-1+splitLength*1000)] = skillSplit[splitLength];
+                                            }
                                         }
                                     } else {
                                         // Hide this select skill
