@@ -465,13 +465,13 @@ package  {
                                 sl.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
 
                                 for(a=0; a<4; a++) {
+                                    // Grab the slot
+                                    skillSlot = sl['skill'+a];
+
                                     // Grab a new skill
                                     var skill = completeList[tabNumber*1000+skillNumber++];
                                     if(skill) {
                                         var skillSplit = skill.split('||');
-
-                                        // Grab the slot
-                                        skillSlot = sl['skill'+a];
 
                                         if(skillSplit.length == 1) {
 
@@ -488,6 +488,9 @@ package  {
                                             // Store into the active list
                                             activeList[skill] = skillSlot;
                                         } else {
+                                            // Remove the slot
+                                            sl.removeChild(skillSlot);
+
                                             // Loop over all the spells in this bundle
                                             for(var splitLength:Number=0;splitLength<skillSplit.length;splitLength++) {
                                                 msk = new SelectSkillsSplit(1+splitLength, skillSplit.length);
@@ -519,8 +522,8 @@ package  {
                                             }
                                         }
                                     } else {
-                                        // Hide this select skill
-                                        sl['skill'+a].visible = false;
+                                        // Remove the slot
+                                        sl.removeChild(skillSlot);
                                     }
                                 }
                             }
