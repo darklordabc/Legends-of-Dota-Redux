@@ -26,6 +26,13 @@
 		"skill"	"string"
 	}
 
+    // Fired when the game starts to tell cleints about the voting options
+    "lod_voting_info"
+    {
+        "startTime"     "float"
+        "votingTime"    "float"
+    }
+
     // Fired when the game starts to tell clients about the gamemode
     "lod_picking_info"
     {

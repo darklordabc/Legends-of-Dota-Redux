@@ -33,6 +33,7 @@ package  {
         public var gameAPI:Object;
         public var globals:Object;
         public var elementName:String;
+        private static var gameAPIShared:Object;
 
         // How many players are on a team
         private static var MAX_PLAYERS_TEAM = 5;
@@ -56,11 +57,6 @@ package  {
         // Stores the scaling factor
         private static var scalingFactor = 1;
 
-        // Original data providers
-        //private static var dpRolesCombo;
-        //private static var dpAttackCombo;
-        //private static var dpMyHeroesCombo;
-
         // Are we currently picking skills?
         private static var pickingSkills = false;
 
@@ -82,7 +78,10 @@ package  {
         private var skillScreen:MovieClip;
 
         // The skill list to feed in
-        private var completeList;
+        private var completeList:Object;
+
+        // Stores voting info
+        public static var votingList:Object;
 
         // Active list of skills (key = skill name)
         private var activeList:Object = {};
@@ -102,11 +101,17 @@ package  {
         // Stores my skills
         private var mySkills:MovieClip;
 
+        // The voting UI
+        private var votingUI:MovieClip;
+
         // The banning area
         private var banningArea:MovieClip;
 
         // Have we shown the help screen yet?
         private var shownHelp:Boolean = false;
+
+        // Have we gotten voting info?
+        private var gottenVotingInfo:Boolean = false;
 
         // Have we gotten picking info?
         private var gottenPickingInfo:Boolean = false;
@@ -125,12 +130,14 @@ package  {
 
         // Picking time info
         private var heroSelectionStart:Number;
+        private var votingTime:Number;
         private var banningTime:Number;
         private var pickingTime:Number;
 
         // Stage info
-        private static var STAGE_BANNING:Number = 1;
-        private static var STAGE_PICKING:Number = 2;
+        private static var STAGE_VOTING:Number = 1;
+        private static var STAGE_BANNING:Number = 2;
+        private static var STAGE_PICKING:Number = 3;
 
         // Stage timer (for changing to picking)
         private static var stageTimer:Timer;
@@ -149,6 +156,9 @@ package  {
             // Load our ability list KV
             completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
 
+            // Load voting stuff
+            votingList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/voting.kv');
+
             // Load KV with info on abilities
             skillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
             var customSkillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
@@ -161,12 +171,16 @@ package  {
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
 
+            // Store reference to game API for static use
+            gameAPIShared = gameAPI;
+
             // Hook events
             this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);
             this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);
+            this.gameAPI.SubscribeToGameEvent("lod_voting_info", onGetVotingInfo);
             this.gameAPI.SubscribeToGameEvent("lod_picking_info", onGetPickingInfo);
             this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);
-            this.gameAPI.SubscribeToGameEvent("hero_picker_shown", setupHud);
+            this.gameAPI.SubscribeToGameEvent("hero_picker_shown", initLod);
             this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", cleanupHud);
             this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
@@ -233,6 +247,12 @@ package  {
 
         // When the gui is "hidden"
         private function requestStateInfo():void {
+            // Voting info is most important
+            if(!gottenVotingInfo) {
+                requestVoteStatus();
+                return;
+            }
+
             // Do we also need picking info?
             if(!gottenPickingInfo) {
                 gameAPI.SendServerCommand("lod_picking_info");
@@ -243,14 +263,35 @@ package  {
             gameAPI.SendServerCommand("lod_state_info");
         }
 
+        // Requests info on the vote status
+        private function requestVoteStatus():void {
+            // Request the voting info
+            gameAPI.SendServerCommand("lod_voting_info");
+        }
+
+        // Init LoD
+        private function initLod():void {
+            // Ask about the vote status
+            requestVoteStatus();
+        }
+
         // Sets the hud up
         private function setupHud():void {
             // Reset the hud
             cleanupHud();
 
+            // Request voting info
+            if(!gottenVotingInfo) {
+                requestVoteStatus();
+                return
+            }
+
+            // Build the voting UI
+            buildVotingUI();
+
             // Request picking info
             if(!gottenPickingInfo) {
-                gameAPI.SendServerCommand("lod_picking_info");
+                requestStateInfo();
                 return;
             }
 
@@ -264,25 +305,25 @@ package  {
             hookSkillList(dock.direPlayers, 5);
 
             // Hero tab button
-            var btnHeroes:MovieClip = smallButton('Heroes');
+            var btnHeroes:MovieClip = smallButton(this, 'Heroes');
             btnHeroes.addEventListener(MouseEvent.CLICK, onBtnHeroesClicked);
             btnHeroes.x = 38;
             btnHeroes.y = 6;
 
             // Skill tab button
-            var btnSkills:MovieClip = smallButton('Skills');
+            var btnSkills:MovieClip = smallButton(this, 'Skills');
             btnSkills.addEventListener(MouseEvent.CLICK, onBtnSkillsClicked);
             btnSkills.x = 104;
             btnSkills.y = 6;
 
             // Wraith Night tab button
-            var btnWN:MovieClip = smallButton('Wraith Night');
+            var btnWN:MovieClip = smallButton(this, 'Wraith Night');
             btnWN.addEventListener(MouseEvent.CLICK, onBtnWNClicked);
             btnWN.x = 170;
             btnWN.y = 6;
 
             // Neutral tab button
-            var btnNeutral:MovieClip = smallButton('Neutral');
+            var btnNeutral:MovieClip = smallButton(this, 'Neutral');
             btnNeutral.addEventListener(MouseEvent.CLICK, onBtnNeutralClicked);
             btnNeutral.x = 236;
             btnNeutral.y = 6;
@@ -347,7 +388,26 @@ package  {
             resetHeroIcons();
         }
 
-        private function buildSkillScreen() {
+        // Builds the voting screen
+        private function buildVotingUI():void {
+            // Spawn the voting UI
+            votingUI = new VotingUI();
+            addChild(votingUI);
+            votingUI.x = (realScreenWidth/scalingFactor)/2;
+            votingUI.y = 10;
+            votingUI.visible = false;
+
+            // Update the stage
+            updateStage();
+        }
+
+        // Updates a user's vote with the server
+        public static function updateVote(optNumber:Number, myChoice:Number):void {
+            gameAPIShared.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
+        }
+
+        // Builds the picking screen
+        private function buildSkillScreen():void {
             var i:Number, j:Number, k:Number, l:Number, a:Number, sl:MovieClip, skillSlot:MovieClip, skillSlot2:MovieClip, msk:MovieClip;
 
             // How much space we have to use
@@ -533,19 +593,19 @@ package  {
             // Create buttons at the top
 
             // First Combo
-            var rolesCombo = comboBox(8);
+            var rolesCombo = comboBox(this, 8);
             skillScreen.addChild(rolesCombo);
             rolesCombo.x = rcPos.x;
             rolesCombo.y = rcPos.y;
 
             // Second Combo
-            var attackCombo = comboBox(3);
+            var attackCombo = comboBox(this, 3);
             skillScreen.addChild(attackCombo);
             attackCombo.x = acPos.x;
             attackCombo.y = acPos.y;
 
             // Third Combo
-            var heroCombo = comboBox(5);
+            var heroCombo = comboBox(this, 5);
             skillScreen.addChild(heroCombo);
             heroCombo.x = hcPos.x;
             heroCombo.y = hcPos.y;
@@ -668,8 +728,22 @@ package  {
             return completeList[skillNumber] || completeList[String(skillNumber)];
         }
 
+        // Fired when the server gives us voting info
+        private function onGetVotingInfo(args:Object):void {
+            // Only do this once
+            if(gottenVotingInfo) return;
+            gottenVotingInfo = true;
+
+            // Store vars
+            heroSelectionStart = args.startTime;
+            votingTime = args.votingTime;
+
+            // Rehook the picking screen
+            setupHud();
+        }
+
         // Fired when the server gives us our picking info
-        private function onGetPickingInfo(args:Object) {
+        private function onGetPickingInfo(args:Object):void {
             // Only do this ONCE
             if(gottenPickingInfo) return;
             gottenPickingInfo = true;
@@ -757,31 +831,55 @@ package  {
                 stageTimer = null;
             }
 
+            // Hide the voting UI
+            if(votingUI != null) votingUI.visible = false;
+
+            // Hide the banning panel
+            if(banningArea != null) banningArea.visible = false;
+
+            // Hide the skills panel
+            if(mySkills != null) mySkills.visible = false;
+
             // Workout where we are at
             var now:Number = globals.Game.Time();
 
-            if(now < heroSelectionStart+banningTime) {
+            // Decide what needs to be shown
+            if(now < heroSelectionStart+votingTime) {
+                // It's voting time
+
+                // Show the voting UI
+                if(votingUI != null) {
+                    // Display voting UI
+                    votingUI.visible = true;
+
+                    // Update timer
+                    votingUI.timer.text = Math.ceil(heroSelectionStart+votingTime-now);
+                }
+            } else if(now < heroSelectionStart+banningTime+votingTime) {
                 // It is banning time
 
                 // Show the banning panel
-                banningArea.visible = true;
+                if(banningArea != null) {
+                    // Make it visible
+                    banningArea.visible = true;
 
-                // Hide the skills panel
-                mySkills.visible = false;
-
-                // Wait an entire second, and try again
-                stageTimer = new Timer(1000);
-                stageTimer.addEventListener(TimerEvent.TIMER, updateStage, false, 0, true);
-                stageTimer.start();
+                    // Update the timer
+                    banningArea.timer.text = Math.ceil(heroSelectionStart+votingTime+banningTime-now);
+                }
             } else {
                 // It is skill selection time
 
-                // Hide the banning panel
-                banningArea.visible = false;
-
                 // Show the skills area
-                mySkills.visible = true;
+                if(mySkills != null) mySkills.visible = true;
+
+                // We don't need a timer <3
+                return;
             }
+
+            // Wait for a moment, and try again
+            stageTimer = new Timer(100);
+            stageTimer.addEventListener(TimerEvent.TIMER, updateStage, false, 0, true);
+            stageTimer.start();
         }
 
         // Fired when the server bans a skill
@@ -866,27 +964,27 @@ package  {
         }
 
         // Make a small button
-        private function smallButton(txt:String):MovieClip {
+        public static function smallButton(container:MovieClip, txt:String):MovieClip {
             // Grab the class for a small button
             var dotoButtonClass:Class = getDefinitionByName("ChannelTab") as Class;
 
             // Create the button
             var btn:MovieClip = new dotoButtonClass();
             btn.label = txt;
-            addChild(btn);
+            container.addChild(btn);
 
             // Return the button
             return btn;
         }
 
         // Makes a combo box
-        private function comboBox(slots:Number):MovieClip {
+        public static function comboBox(container:MovieClip, slots:Number):MovieClip {
             // Grab the class for a small button
             var dotoComboBoxClass:Class = getDefinitionByName("ComboBoxSkinned") as Class;
 
             // Create the button
             var comboBox:MovieClip = new dotoComboBoxClass();
-            addChild(comboBox);
+            container.addChild(comboBox);
 
             // Create the data provider
             var dp:IDataProvider = new DataProvider();
@@ -1208,7 +1306,7 @@ package  {
             return [new ColorMatrixFilter([1,1,1,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
         }
 
-        private static function setComboBoxString(comboBox:MovieClip, slot:Number, txt:String):void {
+        public static function setComboBoxString(comboBox:MovieClip, slot:Number, txt:String):void {
             comboBox.menuList.dataProvider[slot] = {
                 "label":txt,
                 "data":slot

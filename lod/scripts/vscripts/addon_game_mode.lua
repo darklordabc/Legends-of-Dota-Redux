@@ -4,8 +4,8 @@ print("gamemode started to load...")
     SETTINGS
 ]]
 
--- Max number of bans
-local maxBans = 5
+-- Voting period
+local votingTime = 60
 
 -- Banning Period
 local banningTime = 90
@@ -15,6 +15,10 @@ local pickingTime = 120
 
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
+
+--[[
+    VOTEABLE OPTIONS
+]]
 
 -- Total number of skill slots to allow
 local maxSlots = 5
@@ -28,23 +32,30 @@ local maxUlts = 1
 -- Should we ban troll combos?
 local banTrollCombos = true
 
+--[[
+    GAMEMODE STUFF
+]]
+
+-- Max number of bans
+local maxBans = 5
+
 -- Colors
 local COLOR_BLUE = '#4B69FF'
 local COLOR_RED = '#EB4B4B'
 local COLOR_GREEN = '#ADE55C'
 
---[[
-    GAMEMODE STUFF
-]]
-
 -- Stage constants
 local STAGE_WAITING = 0
-local STAGE_BANNING = 1
-local STAGE_PICKING = 2
-local STAGE_PLAYING = 3
+local STAGE_VOTING = 1
+local STAGE_BANNING = 2
+local STAGE_PICKING = 3
+local STAGE_PLAYING = 4
 
 -- The current stage we are in
 local currentStage = STAGE_WAITING
+
+-- Player's vote data, key = playerID
+local voteData = {}
 
 -- Table of banned skills
 local bannedSkills = {}
@@ -57,6 +68,30 @@ local totalBans = {}
 
 -- When the hero selection started
 local heroSelectionStart = nil
+
+-- This will contain the total number of votable options
+local totalVotableOptions = 0
+
+-- Load voting options
+local votingList = LoadKeyValues('scripts/kv/voting.kv');
+
+-- This will store the total number of choices for each option
+local totalChoices = {}
+
+-- Generate choices index
+for k,v in pairs(votingList) do
+    -- Count number of choices
+    local total = 0
+    for kk, vv in pairs(v.options) do
+        total = total+1
+    end
+
+    -- Store it
+    totalChoices[tonumber(k)] = total
+
+    -- We found another option
+    totalVotableOptions = totalVotableOptions+1
+end
 
 -- Ban List
 local banList = LoadKeyValues('scripts/kv/bans.kv')
@@ -188,6 +223,74 @@ local function CheckBans(skillList, slotNumber, skillName)
     end
 end
 
+local function optionToValue(optionNumber, choice)
+    local option = votingList[tostring(optionNumber)]
+    if option then
+        if option.values and option.values[tostring(choice)] then
+            return option.values[tostring(choice)]
+        end
+    end
+
+    return -1
+end
+
+-- This function tallys the votes, and sets the options
+local function finishVote()
+    -- Create container for all the votes
+    local votes = {}
+    for i=0,totalVotableOptions-1 do
+        votes[i] = {}
+    end
+
+    -- Loop over all players
+    for i=0,9 do
+        -- Ensure this player is actually in
+        if PlayerResource:IsValidPlayer(i) then
+            -- Ensure they have vote data
+            voteData[i] = voteData[i] or {}
+
+            -- Loop over all options
+            for j=0,totalVotableOptions-1 do
+                -- Increment the vote count by 1
+                votes[j][voteData[i][j] or 0] = (votes[j][voteData[i][j] or 0] or 0) + 1
+            end
+        end
+    end
+
+    local winners = {}
+
+    -- For now, the winner will be the choice with the most votes (if there is a draw, the one that comes first in Lua will win)
+    for i=0,totalVotableOptions-1 do
+        local high = 0
+        local winner = 0
+
+        for k,v in pairs(votes[i]) do
+            if v > high then
+                winner = k
+                high = v
+            end
+        end
+
+        -- Store the winner
+        winners[i] = winner
+    end
+
+    -- Set options
+    maxSlots = optionToValue(1, winners[1])
+    maxSkills = optionToValue(2, winners[2])
+    maxUlts = optionToValue(3, winners[3])
+
+    if winners[4] == 1 then
+        -- No banning phase
+        banningTime = 0
+    end
+
+    if winners[5] == 1 then
+        -- No troll combos
+        banTrollCombos = false
+    end
+end
+
 -- This will be fired when the game starts
 local function backdoorFix()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
@@ -240,6 +343,25 @@ local function sendPickingInfo()
             ults = maxUlts
         })
     end, 'DelayedInfoTimer', 1, nil)
+end
+
+local canVoteInfo = true
+local function sendVotingInfo()
+    -- Stop spam of this command
+    if not canVoteInfo then return end
+    canVoteInfo = false
+
+    -- Send out info after a short delay
+    thisEntity:SetThink(function()
+        -- They can ask for info again
+        canVoteInfo = true
+
+        -- Send picking info to everyone
+        FireGameEvent('lod_voting_info', {
+            startTime = heroSelectionStart,
+            votingTime = votingTime
+        })
+    end, 'DelayedVoteInfoTimer', 1, nil)
 end
 
 local canState = true
@@ -298,27 +420,41 @@ local function think()
             -- Store when the hero selection started
             heroSelectionStart = GameRules:GetGameTime()
 
-            -- Move onto banning mode
-            currentStage = STAGE_BANNING
+            -- Move onto the voting stage
+            currentStage = STAGE_VOTING
 
-            -- Send the picking info
-            sendPickingInfo()
+            -- Send the voting info
+            sendVotingInfo()
 
-            -- Tell the users it's picking time
-            if banningTime > 0 then
-                sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
-            end
-
-            -- Sleep until the banning time is up
-            return banningTime
+            -- Sleep unti the voting time is over
+            return votingTime
         end
 
         -- Set the hero selection time
-        GameRules:SetHeroSelectionTime(banningTime+pickingTime)
+        GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
         GameRules:SetSameHeroSelectionEnabled(true)
 
         -- Run again in a moment
         return 0.25
+    end
+
+    if currentStage == STAGE_VOTING then
+        -- Workout who won
+        finishVote()
+
+        -- Move onto banning mode
+        currentStage = STAGE_BANNING
+
+        -- Send the picking info
+        sendPickingInfo()
+
+        -- Tell the users it's picking time
+        if banningTime > 0 then
+            sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+        end
+
+        -- Sleep until the banning time is up
+        return banningTime
     end
 
     if currentStage == STAGE_BANNING then
@@ -623,11 +759,28 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     end
 end, 'Ban a given skill', 0)
 
+-- When a user requests the voting info
+Convars:RegisterCommand('lod_voting_info', function(name)
+    -- Ensure the hero selection timer isn't nil
+    if heroSelectionStart ~= nil then
+        -- Should we send voting info, or picking info?
+        if currentStage == STAGE_VOTING then
+            -- Send voting info
+            sendVotingInfo()
+        else
+            -- Send picking info
+            sendPickingInfo()
+        end
+    end
+end, 'Send picking info out', 0)
+
 -- When a user requests the picking info
 Convars:RegisterCommand('lod_picking_info', function(name)
     -- Ensure the hero selection timer isn't nil
     if heroSelectionStart ~= nil then
-        sendPickingInfo()
+        if currentStage >= STAGE_BANNING then
+            sendPickingInfo()
+        end
     end
 end, 'Send picking info out', 0)
 
@@ -635,14 +788,52 @@ end, 'Send picking info out', 0)
 Convars:RegisterCommand('lod_state_info', function(name)
     -- Ensure the hero selection timer isn't nil
     if heroSelectionStart ~= nil then
-        -- Send the state info
-        sendStateInfo()
+        if currentStage >= STAGE_BANNING then
+            -- Send the state info
+            sendStateInfo()
+        end
     end
 end, 'Send state info out', 0)
+
+-- User is trying to update their vote
+Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
+    -- We are only accepting numbers
+    optNumber = tonumber(optNumber)
+    theirChoice = tonumber(theirChoice)
+
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        if currentStage == STAGE_VOTING then
+            if optNumber < 0 or optNumber >= totalVotableOptions then
+                -- Tell the user
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This appears to be an invalid option.</font>')
+                return
+            end
+
+            -- Validate their choice
+            if theirChoice < 0 or theirChoice >= totalChoices[optNumber] then
+                -- Tell the user
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This appears to be an invalid choice.</font>')
+                return
+            end
+
+            -- Grab vote data
+            voteData[playerID] = voteData[playerID] or {}
+
+            -- Store vote
+            voteData[playerID][optNumber] = theirChoice
+        else
+            -- Tell them voting is over
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only vote during the voting period.</font>')
+        end
+    end
+end, 'Update a user\'s vote', 0)
 
 -- Setup the thinker
 thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)
 
 -- Set the hero selection time
-GameRules:SetHeroSelectionTime(banningTime+pickingTime)
+GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
 GameRules:SetSameHeroSelectionEnabled(true)
