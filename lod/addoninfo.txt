@@ -1,5 +1,5 @@
 "AddonInfo"
 {
      addontitle              "Legends of Dota"
-     addonversion            14.7.44
+     addonversion            14.7.50
 }
