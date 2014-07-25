@@ -14,7 +14,7 @@
     "subtitle": "Pick your abilities to build epic combos!",
     "thumbnail": "http://oyster.ignimgs.com/mediawiki/apis.ign.com/dota-2/f/f9/CM_Random_Ablity.png",
     "thumbsmall": "http://oyster.ignimgs.com/mediawiki/apis.ign.com/dota-2/f/f9/CM_Random_Ablity.png",
-    "version": "14.7.44",
+    "version": "14.7.45",
     "website": "http://forum.d2modd.in/topic/42/pick-your-skills",
     "disableGG": true,
     "mapOverride": "dota_lod"
