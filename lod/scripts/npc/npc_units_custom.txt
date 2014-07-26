@@ -42,6 +42,8 @@
 			"model"			"models/development/invisiblebox.mdl"
 			"model"			"models/heroes/terrorblade/demon.mdl"
 
+			"soundfile"			"scripts/game_sounds_heroes/game_sounds_ogre_magi.txt"
+
 			"particlefile"				"particles/units/heroes/hero_antimage.pcf"
 			"particlefile"				"particles/units/heroes/hero_axe.pcf"
 			"particlefile"				"particles/units/heroes/hero_bane.pcf"

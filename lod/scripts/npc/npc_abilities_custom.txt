@@ -3,6 +3,37 @@
 {
     "Version"       "1"
 
+    // Note: This ability is completely handled in Lua!
+    "ogre_magi_multicast_lod"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                      "3"
+        "AbilityTextureName"            "ogre_magi_multicast_lod"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "multicast_2_times"     "0.25 0.4 0.5"
+            }
+
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "multicast_3_times"     "0 0.2 0.25"
+            }
+
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "multicast_4_times"     "0 0 0.125"
+            }
+        }
+    }
+
     "troll_warlord_berserkers_rage_melee"
     {
         "BaseClass"                     "troll_warlord_berserkers_rage"

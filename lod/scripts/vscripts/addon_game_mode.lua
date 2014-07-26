@@ -562,8 +562,91 @@ end, nil)
 
 -- Abaddon ulty fix
 ListenToGameEvent('dota_player_used_ability', function(keys)
-    print('Used an ability')
-    DeepPrintTable(keys)
+    local ply = EntIndexToHScript(keys.player)
+    if ply then
+        local hero = ply:GetAssignedHero()
+        if hero then
+            -- Check if they have multicast
+            if hero:HasAbility('ogre_magi_multicast_lod') then
+                local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
+                if mab then
+                    -- Grab the level of the ability
+                    local lvl = mab:GetLevel()
+
+                    -- If they have no level in it, stop
+                    if lvl == 0 then return end
+
+                    -- How many times we will cast the spell
+                    local mult = 0
+
+                    -- Grab a random number
+                    local r = RandomFloat(0, 1)
+
+                    -- Calculate multiplyer
+                    if lvl == 1 then
+                        if r < 0.25 then
+                            mult = 2
+                        end
+                    elseif lvl == 2 then
+                        if r < 0.2 then
+                            mult = 3
+                        elseif r < 0.4 then
+                            mult = 2
+                        end
+                    elseif lvl == 3 then
+                        if r < 0.125 then
+                            mult = 4
+                        elseif r < 0.25 then
+                            mult = 3
+                        elseif r < 0.5 then
+                            mult = 2
+                        end
+                    end
+
+                    -- Are we doing any multiplying?
+                    if mult > 0 then
+                        local ab = hero:FindAbilityByName(keys.abilityname)
+                        if ab then
+                            -- How long to delay each cast
+                            local delay = 0.1
+
+                            -- Grab the position
+                            local pos = hero:GetCursorPosition()
+
+                            Timers:CreateTimer(function()
+                                -- Position cursor
+                                hero:SetCursorPosition(pos)
+
+                                -- Run the spell again
+                                ab:OnSpellStart()
+
+                                mult = mult-1
+                                if mult > 1 then
+                                    return delay
+                                end
+                            end, DoUniqueString('multicast'), delay)
+
+                            -- Create sexy particles
+                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            -- Play the sound
+                            hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
+                        end
+                    end
+                end
+            end
+        end
+    end
 end, nil)
 
 -- Abaddon ulty fix
