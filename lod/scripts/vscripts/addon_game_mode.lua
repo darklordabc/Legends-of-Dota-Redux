@@ -5,7 +5,7 @@ print("gamemode started to load...")
 ]]
 
 -- Voting period
-local votingTime = 20--60
+local votingTime = 60
 
 -- Banning Period
 local banningTime = 90
