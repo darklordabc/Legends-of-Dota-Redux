@@ -28,6 +28,11 @@ for heroName, values in pairs(heroListKV) do
     end
 end
 
+local manualActivate = {
+    keeper_of_the_light_blinding_light_lod = true,
+    keeper_of_the_light_recall_lod = true
+}
+
 -- Tells you if a given heroName is melee or not
 local function isMeleeHero(heroName)
     if meleeList[heroName] then
@@ -97,8 +102,6 @@ function skillManager:ApplyBuild(hero, build)
 
     -- Check if this hero is a melee hero
     local melee = isMeleeHero(hero:GetClassname())
-    print('melee:')
-    print(melee)
 
     -- Give all the abilities in this build
     local abNum = 0
@@ -108,8 +111,13 @@ function skillManager:ApplyBuild(hero, build)
             abNum=abNum+1
             -- Check if this skill has sub abilities
             if subAbilities[v] then
-                -- Store that we need this skill
-                extraSkills[subAbilities[v]] = true
+                local skillSplit = vlua.split(subAbilities[v], '||')
+
+                for kk,vv in pairs(skillSplit) do
+                    -- Store that we need this skill
+                    extraSkills[vv] = true
+
+                end
             end
 
             -- Do melee heroes need a different skill?
@@ -120,6 +128,11 @@ function skillManager:ApplyBuild(hero, build)
             -- Add to build
             hero:AddAbility(v)
             currentSkillList[hero][abNum] = v
+
+            -- Do we need to manually activate this skill?
+            if manualActivate[v] then
+                hero:FindAbilityByName(v):SetActivated(true)
+            end
 
             -- Remove auras
             fixModifiers(hero, v)
