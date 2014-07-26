@@ -8,7 +8,7 @@ require('easytimers')
 local doneFake = false
 Convars:RegisterCommand('fake', function(name, skillName, slotNumber)
     -- Check if the server ran it
-    --if not Convars:GetCommandClient() then
+    if not Convars:GetCommandClient() then
         -- Stop fake from being run more than once
         if doneFake then return end
         doneFake = true
@@ -32,7 +32,7 @@ Convars:RegisterCommand('fake', function(name, skillName, slotNumber)
                 end
             end
         end, 'assign_fakes', 0.1)
-    --end
+    end
 end, 'Adds fake players', 0)
 
 -- Precache everything -- Having issues with the arguments changing

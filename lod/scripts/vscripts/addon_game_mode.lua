@@ -1,4 +1,4 @@
-print("gamemode started to load...")
+print("Gamemode started to load...")
 
 --[[
     SETTINGS
@@ -31,6 +31,17 @@ local maxUlts = 1
 
 -- Should we ban troll combos?
 local banTrollCombos = true
+
+-- Check if we are in dev mode
+if LoadKeyValues('cfg/dev.kv') ~= 0 then
+    -- Low voting time
+    votingTime = 10
+
+    -- No banning time
+    banningTime = 0
+else
+    print('^ Ignore that message')
+end
 
 --[[
     GAMEMODE STUFF
@@ -550,6 +561,12 @@ ListenToGameEvent('npc_spawned', function(keys)
 end, nil)
 
 -- Abaddon ulty fix
+ListenToGameEvent('dota_player_used_ability', function(keys)
+    print('Used an ability')
+    DeepPrintTable(keys)
+end, nil)
+
+-- Abaddon ulty fix
 ListenToGameEvent('entity_hurt', function(keys)
     -- Grab the entity that was hurt
     local ent = EntIndexToHScript(keys.entindex_killed)
@@ -853,3 +870,5 @@ thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)
 -- Set the hero selection time
 GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
 GameRules:SetSameHeroSelectionEnabled(true)
+
+print('Gamemode has loaded!')
