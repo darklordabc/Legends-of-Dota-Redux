@@ -5,7 +5,7 @@ print("gamemode started to load...")
 ]]
 
 -- Voting period
-local votingTime = 60
+local votingTime = 20--60
 
 -- Banning Period
 local banningTime = 90
@@ -75,6 +75,8 @@ local skillWarnings = {
     phantom_lancer_phantom_edge = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">phantom_lancer_phantom_edge</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">phantom_lancer_juxtapose</font> <font color="'..COLOR_GREEN..'">in order to make illusions.</font>',
     keeper_of_the_light_spirit_form = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">keeper_of_the_light_spirit_form</font> <font color="'..COLOR_GREEN..'">will not give you the two extra spells!</font>',
     ogre_magi_multicast = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">ogre_magi_multicast</font> <font color="'..COLOR_GREEN..'">ONLY works on Ogre Magi\'s spells!</font>',
+    --doom_bringer_devour = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">doom_bringer_devour</font> <font color="'..COLOR_GREEN..'">will replace your slot 4 and 5 with creep skills!</font>',
+    rubick_spell_steal = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">rubick_spell_steal</font> <font color="'..COLOR_GREEN..'">will use up slots 4, 5 and 6!</font>',
 }
 
 -- This will contain the total number of votable options

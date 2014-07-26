@@ -103,9 +103,52 @@ function skillManager:ApplyBuild(hero, build)
     -- Check if this hero is a melee hero
     local melee = isMeleeHero(hero:GetClassname())
 
+    -- Devour fix
+    --[[for i=1,6 do
+        local v = build[i]
+        if v == 'doom_bringer_devour' then
+            -- We need the empty slots in 4 & 5
+            build[4] = 'doom_bringer_empty1'
+            build[5] = 'doom_bringer_empty2'
+            break
+        end
+    end]]
+
+    -- Spell steal fix
+    local spellSteal = false
+    for i=1,6 do
+        local v = build[i]
+        if v == 'rubick_spell_steal' then
+            table.remove(build, i)
+            spellSteal = true
+        end
+    end
+
+    if spellSteal then
+        build[4] = 'rubick_spell_steal'
+        build[5] = nil
+        build[6] = nil
+    end
+
+    -- Devour fix
+    local devFix = false
+    for i=1,6 do
+        local v = build[i]
+        if v == 'doom_bringer_devour' then
+            table.remove(build, i)
+            devFix = true
+        end
+    end
+
+    if devFix then
+        build[4] = 'doom_bringer_devour'
+        build[5] = nil
+        build[6] = nil
+    end
+
     -- Give all the abilities in this build
     local abNum = 0
-    for i=1,6 do
+    for i=1,12 do
         local v = build[i]
         if v then
             abNum=abNum+1
@@ -116,7 +159,6 @@ function skillManager:ApplyBuild(hero, build)
                 for kk,vv in pairs(skillSplit) do
                     -- Store that we need this skill
                     extraSkills[vv] = true
-
                 end
             end
 
