@@ -885,6 +885,7 @@ Convars:RegisterCommand('lod_voting_info', function(name)
             sendVotingInfo()
         else
             -- Send picking info
+            sendVotingInfo()
             sendPickingInfo()
         end
     end
