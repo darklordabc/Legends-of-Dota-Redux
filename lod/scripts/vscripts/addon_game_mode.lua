@@ -35,7 +35,7 @@ local banTrollCombos = true
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
-    votingTime = 10
+    votingTime = 15
 
     -- No banning time
     banningTime = 0
