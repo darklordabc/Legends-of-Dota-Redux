@@ -67,6 +67,12 @@ local GAMEMODE_AP = 1   -- All Pick
 local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MR = 3   -- Mirror Draft
 
+gamemodeNames = {
+    GAMEMODE_AP = 'All Pick',
+    GAMEMODE_SD = 'Single Draft',
+    GAMEMODE_MR = 'Mirror Draft'
+}
+
 -- The gamemode
 local gamemode = GAMEMODE_SD    -- Defaulting to single draft
 
@@ -106,6 +112,7 @@ local skillWarnings = {
     ogre_magi_multicast = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">ogre_magi_multicast</font> <font color="'..COLOR_GREEN..'">ONLY works on Ogre Magi\'s spells!</font>',
     --doom_bringer_devour = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">doom_bringer_devour</font> <font color="'..COLOR_GREEN..'">will replace your slot 4 and 5 with creep skills!</font>',
     rubick_spell_steal = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">rubick_spell_steal</font> <font color="'..COLOR_GREEN..'">will use up slots 4, 5 and 6!</font>',
+    luna_eclipse = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">luna_eclipse</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">luna_lucent_beam</font> <font color="'..COLOR_GREEN..'">if you want it to do anything.</font>',
 }
 
 -- This will contain the total number of votable options
@@ -352,29 +359,73 @@ local function setupGamemodeSettings()
     -- Default to not using the draft array
     useDraftArray = false
 
-    -- Apply the settings
+    -- Single Draft Mode
     if gamemode == GAMEMODE_SD then
         -- We need the draft array for this
         useDraftArray = true
 
         -- No need for a banning phase
         banningTime = 0
+
+        -- We need some skills drafted for us
+        autoDraftHeroNumber = 10
     end
 
-    -- Pick random heroes for each player
-    for i=0,9 do
+    -- Mirror Draft Mode
+    if gamemode == GAMEMODE_MR then
+        -- We need the draft array for this
+        useDraftArray = true
+
+        -- No need for a banning phase
+        banningTime = 0
+
+        -- We need some skills drafted for us
+        autoDraftHeroNumber = 0
+
+        -- Number of heroes to pick from
+        local totalHeroes = 20
+
+        -- Stores an array of heroes we have already added to the draft
+        local taken = {};
+
         local total = 0
-        while total < autoDraftHeroNumber do
+        while total < totalHeroes do
             -- Pick a random heroID
             local heroID = validHeroIDs[math.random(#validHeroIDs)]
 
-            -- Attempt to add this hero
-            if addHeroDraft(i, heroID) then
-                -- Success, this player got another hero to draft from
-                total = total+1
+            -- Have we already allocated this heroID?
+            if not taken[heroID] then
+                -- Store it as allocated
+                taken[heroID] = true
+
+                -- Allocate to all other players
+                for i=0,9 do
+                    addHeroDraft(i, heroID)
+                end
             end
         end
     end
+
+    -- Should we draft heroes for players?
+    if useDraftArray and autoDraftHeroNumber>0 then
+        -- Pick random heroes for each player
+        for i=0,9 do
+            local total = 0
+            while total < autoDraftHeroNumber do
+                -- Pick a random heroID
+                local heroID = validHeroIDs[math.random(#validHeroIDs)]
+
+                -- Attempt to add this hero
+                if addHeroDraft(i, heroID) then
+                    -- Success, this player got another hero to draft from
+                    total = total+1
+                end
+            end
+        end
+    end
+
+    -- Announce which gamemode we're playing
+    sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or '<unknown>')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 end
 
 local function optionToValue(optionNumber, choice)
@@ -586,6 +637,10 @@ local function think()
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
+            -- Change random seed
+            local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
+            math.randomseed(tonumber(timeTxt))
+
             -- Store when the hero selection started
             heroSelectionStart = GameRules:GetGameTime()
 
