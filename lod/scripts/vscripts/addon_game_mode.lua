@@ -318,15 +318,18 @@ local function finishVote()
     maxSkills = optionToValue(2, winners[2])
     maxUlts = optionToValue(3, winners[3])
 
-    if winners[4] == 1 then
+    if winners[4] == 2 then
         -- No banning phase
         banningTime = 0
     end
 
-    if winners[5] == 1 then
+    if winners[5] == 2 then
         -- No troll combos
         banTrollCombos = false
     end
+
+    -- Announce results
+    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">!</font>')
 end
 
 -- This will be fired when the game starts
