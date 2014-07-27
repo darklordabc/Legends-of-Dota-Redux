@@ -65,12 +65,12 @@ local STAGE_PLAYING = 4
 -- Gamemode constants
 local GAMEMODE_AP = 1   -- All Pick
 local GAMEMODE_SD = 2   -- Single Draft
-local GAMEMODE_MR = 3   -- Mirror Draft
+local GAMEMODE_MD = 3   -- Mirror Draft
 
 gamemodeNames = {
     GAMEMODE_AP = 'All Pick',
     GAMEMODE_SD = 'Single Draft',
-    GAMEMODE_MR = 'Mirror Draft'
+    GAMEMODE_MD = 'Mirror Draft'
 }
 
 -- The gamemode
@@ -372,7 +372,7 @@ local function setupGamemodeSettings()
     end
 
     -- Mirror Draft Mode
-    if gamemode == GAMEMODE_MR then
+    if gamemode == GAMEMODE_MD then
         -- We need the draft array for this
         useDraftArray = true
 
@@ -397,6 +397,9 @@ local function setupGamemodeSettings()
             if not taken[heroID] then
                 -- Store it as allocated
                 taken[heroID] = true
+
+                -- Increment total
+                total = total+1
 
                 -- Allocate to all other players
                 for i=0,9 do
@@ -425,14 +428,14 @@ local function setupGamemodeSettings()
     end
 
     -- Announce which gamemode we're playing
-    sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or '<unknown>')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
+    sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 end
 
 local function optionToValue(optionNumber, choice)
     local option = votingList[tostring(optionNumber)]
     if option then
         if option.values and option.values[tostring(choice)] then
-            return option.values[tostring(choice)]
+            return tonumber(option.values[tostring(choice)])
         end
     end
 
@@ -500,6 +503,9 @@ local function finishVote()
         -- No troll combos
         banTrollCombos = false
     end
+
+    -- Grab the gamemode
+    gamemode = optionToValue(0, winners[0])
 
     -- Setup gamemode specific settings
     setupGamemodeSettings()
