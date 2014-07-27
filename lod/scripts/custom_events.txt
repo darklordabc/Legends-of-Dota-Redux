@@ -63,6 +63,8 @@
     // The game state
     "lod_state"
     {
+        // Each player's selected skills, encoded as a number
+        // The number is the index into abilities.kv
         "01"            "short"
         "02"            "short"
         "03"            "short"
@@ -133,6 +135,7 @@
         "95"            "short"
         "96"            "short"
 
+        // Bans
         "b1"            "short"
         "b2"            "short"
         "b3"            "short"
@@ -183,5 +186,17 @@
         "b48"           "short"
         "b49"           "short"
         "b50"           "short"
+
+        // Heroes this player can pick skills from, seperated by |
+        "s0"            "string"
+        "s1"            "string"
+        "s2"            "string"
+        "s3"            "string"
+        "s4"            "string"
+        "s5"            "string"
+        "s6"            "string"
+        "s7"            "string"
+        "s8"            "string"
+        "s9"            "string"
     }
 }

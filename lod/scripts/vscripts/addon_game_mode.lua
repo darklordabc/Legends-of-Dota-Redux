@@ -70,11 +70,18 @@ local GAMEMODE_MR = 3   -- Mirror Draft
 -- The gamemode
 local gamemode = GAMEMODE_SD    -- Defaulting to single draft
 
--- Are we using a hero list? -- This will allow players to only pick skills from white listed heroes
-local useHeroLists = true
+-- Are we using the draft arrays -- This will allow players to only pick skills from white listed heroes
+local useDraftArray = true
+
+-- How many heroes should the game auto allocate if we're using the draft array?
+local autoDraftHeroNumber = 10
 
 -- The current stage we are in
 local currentStage = STAGE_WAITING
+
+-- Stores which heroes a player can use skills from
+-- draftArray[playerID][heroID] = true
+local draftArray = {}
 
 -- Player's vote data, key = playerID
 local voteData = {}
@@ -151,6 +158,34 @@ for k,v in pairs(absCustom) do
     abs[k] = v
 end
 
+-- Load the hero KV file
+local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
+
+-- Build a table of valid hero IDs to pick from, and skill owners
+local validHeroIDs = {}
+local skillOwningHero = {}
+for k,v in pairs(heroKV) do
+    if k ~= 'Version' and k ~= 'npc_dota_hero_base' then
+        -- If this hero has an ID
+        if v.HeroID then
+            -- Store the ID as valid
+            table.insert(validHeroIDs, v.HeroID)
+
+            -- Loop over all possible 16 slots
+            for i=1,16 do
+                -- Grab the ability
+                local ab = v['Ability'..i]
+
+                -- Did we actually find an ability?
+                if ab then
+                    -- Yep, store this hero as the owner
+                    skillOwningHero[ab] = v.HeroID
+                end
+            end
+        end
+    end
+end
+
 local function isUlt(skillName)
     -- Check if it is tagged as an ulty
     if abs[skillName] and abs[skillName].AbilityType and abs[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
@@ -188,6 +223,10 @@ local function isSkillBanned(skillName)
     return bannedSkills[skillName] or false
 end
 
+local function GetSkillOwningHero(skillName)
+    return skillOwningHero[skillName] or -1
+end
+
 local function banSkill(skillName)
     -- Make sure the skill isn't already banned
     if not isSkillBanned(skillName) then
@@ -199,6 +238,44 @@ local function banSkill(skillName)
             skill = skillName
         })
     end
+end
+
+local function buildDraftString(playerID)
+    -- Ensure this player has a draft array
+    draftArray[playerID] = draftArray[playerID] or {}
+
+    -- Rebuild draft string
+    local str
+    for k,v in pairs(draftArray[playerID]) do
+        -- Ensure it is actually enabled
+        if v then
+            -- Add to the combo
+            if str then
+                str = str..'|'..k
+            else
+                str = k
+            end
+        end
+    end
+
+    return str or ''
+end
+
+local function addHeroDraft(playerID, heroID)
+    -- Ensure this player has a draft array
+    draftArray[playerID] = draftArray[playerID] or {}
+
+    -- Check if we are chaning anything
+    local changed = false
+    if not draftArray[playerID][heroID] then
+        changed = true
+    end
+
+    -- Enable this hero in their draft
+    draftArray[playerID][heroID] = true
+
+    -- Return the changed status
+    return changed
 end
 
 local function getPlayerSlot(playerID)
@@ -250,6 +327,50 @@ local function CheckBans(skillList, slotNumber, skillName)
                         end
                     end
                 end
+            end
+        end
+    end
+end
+
+-- Checks if we can even draft this skill
+local function CheckDraft(playerID, skillName)
+    -- Are we using the draft array?
+    if useDraftArray then
+        -- Ensure this player has a drafting array
+        draftArray[playerID] = draftArray[playerID] or {}
+
+        -- Check their drafting array
+        if not draftArray[playerID][GetSkillOwningHero(skillName)] then
+            return '<font color="'..COLOR_RED..'">'..skillName..'</font> is not in your drafting pool.'
+        end
+    end
+end
+
+-- Takes the current gamemode number, and sets the required settings
+local function setupGamemodeSettings()
+    -- Default to not using the draft array
+    useDraftArray = false
+
+    -- Apply the settings
+    if gamemode == GAMEMODE_SD then
+        -- We need the draft array for this
+        useDraftArray = true
+
+        -- No need for a banning phase
+        banningTime = 0
+    end
+
+    -- Pick random heroes for each player
+    for i=0,9 do
+        local total = 0
+        while total < autoDraftHeroNumber do
+            -- Pick a random heroID
+            local heroID = validHeroIDs[math.random(#validHeroIDs)]
+
+            -- Attempt to add this hero
+            if addHeroDraft(i, heroID) then
+                -- Success, this player got another hero to draft from
+                total = total+1
             end
         end
     end
@@ -327,6 +448,9 @@ local function finishVote()
         -- No troll combos
         banTrollCombos = false
     end
+
+    -- Setup gamemode specific settings
+    setupGamemodeSettings()
 
     -- Announce results
     sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">!</font>')
@@ -435,6 +559,9 @@ local function sendStateInfo()
                     s[tostring(slot..j)] = getSkillID(l[j])
                 end
             end
+
+            -- Store draft
+            s['s'..i] = buildDraftString(i)
         end
 
         local banned = {}
@@ -821,9 +948,15 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 local possibleSkills = {}
 
                 for k,v in pairs(skillLookupList) do
+                    -- Check type of skill
                     if (canUlt and isUlt(v)) or (canSkill and not isUlt(v)) then
+                        -- Check for bans
                         if not CheckBans(skillList[playerID], slotNumber+1, v) then
-                            table.insert(possibleSkills, v)
+                            -- Check for drafts
+                            if not CheckDraft(playerID, v) then
+                                -- Valid skill, add to our possible skills
+                                table.insert(possibleSkills, v)
+                            end
                         end
                     end
                 end
@@ -864,6 +997,12 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             end
 
             local msg = CheckBans(skillList[playerID], slotNumber+1, skillName)
+            if msg then
+                sendChatMessage(playerID, msg)
+                return
+            end
+
+            msg = CheckDraft(playerID, skillName)
             if msg then
                 sendChatMessage(playerID, msg)
                 return
