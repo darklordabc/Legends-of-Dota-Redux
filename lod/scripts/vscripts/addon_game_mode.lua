@@ -62,6 +62,17 @@ local STAGE_BANNING = 2
 local STAGE_PICKING = 3
 local STAGE_PLAYING = 4
 
+-- Gamemode constants
+local GAMEMODE_AP = 1   -- All Pick
+local GAMEMODE_SD = 2   -- Single Draft
+local GAMEMODE_MR = 3   -- Mirror Draft
+
+-- The gamemode
+local gamemode = GAMEMODE_SD    -- Defaulting to single draft
+
+-- Are we using a hero list? -- This will allow players to only pick skills from white listed heroes
+local useHeroLists = true
+
 -- The current stage we are in
 local currentStage = STAGE_WAITING
 
@@ -272,8 +283,14 @@ local function finishVote()
 
             -- Loop over all options
             for j=0,totalVotableOptions-1 do
-                -- Increment the vote count by 1
-                votes[j][voteData[i][j] or 0] = (votes[j][voteData[i][j] or 0] or 0) + 1
+                -- Grab their vote
+                local theirVote = voteData[i][j] or 0
+
+                -- Did they even vote?
+                if theirVote > 0 then
+                    -- Increment the vote count by 1
+                    votes[j][theirVote] = (votes[j][theirVote] or 0) + 1
+                end
             end
         end
     end
