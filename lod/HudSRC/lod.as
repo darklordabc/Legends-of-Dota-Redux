@@ -80,6 +80,9 @@ package  {
         // The skill list to feed in
         private var completeList:Object;
 
+        // The hero KV
+        private var heroKV:Object;
+
         // Stores voting info
         public static var votingList:Object;
 
@@ -116,6 +119,12 @@ package  {
         // Have we gotten picking info?
         private var gottenPickingInfo:Boolean = false;
 
+        // Stores the heroes we can draft from
+        private var validDraftSkills;
+
+        // Stores the owning heroID of each skill
+        private var skillOwningHero:Object;
+
         // The skill KV file
         var skillKV:Object;
 
@@ -144,6 +153,8 @@ package  {
 
         // When the hud is loaded
         public function onLoaded():void {
+            var key;
+
             // Tell everyone we're loading
             trace('\n\nLegends of Dota hud is loading...');
 
@@ -152,6 +163,31 @@ package  {
 
             // Reset list of banned skills
             bannedSkills = {};
+
+            // Load hero KV
+            heroKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_heroes.txt');
+
+            // Build list of skill owners
+            skillOwningHero = {};
+            for(key in heroKV) {
+                // Validate key
+                if(key == 'Version' || key == 'npc_dota_hero_base') continue;
+
+                // Grab the entry
+                var entry:Object = heroKV[key];
+
+                // Ensure it has a heroID
+                if(entry.HeroID) {
+                    // Loop over all possible skills
+                    for(var i:Number=1;i<=16;i++) {
+                        var ab:String = entry['Ability'+i];
+                        if(ab) {
+                            // Store it
+                            skillOwningHero[ab] = entry.HeroID;
+                        }
+                    }
+                }
+            }
 
             // Load our ability list KV
             completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
@@ -164,7 +200,7 @@ package  {
             var customSkillKV = Globals.instance.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
 
             // Merge in custom kv
-            for(var key in customSkillKV) {
+            for(key in customSkillKV) {
                 skillKV[key] = customSkillKV[key]
             }
 
@@ -782,7 +818,7 @@ package  {
 
         // Fired when the sever gives us info on the current state
         private function onGetStateInfo(args:Object):void {
-            var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName;
+            var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName, key;
 
             // Update skills
             for(i=0; i<10; i++) {
@@ -817,6 +853,39 @@ package  {
                         needUpdate = true;
                     }
                 }
+            }
+
+            // Grab our playerID
+            var playerID = globals.Players.GetLocalPlayer();
+
+            // Is there a draft for us?
+            if(args['s'+playerID] != '') {
+                // Build a list of valid drafting skills
+                validDraftSkills = {};
+
+                // Build a list of the heroes we are allowed to use
+                var myHeroes:Object = {};
+                var h = args['s'+playerID].split('|');
+                for(key in h) {
+                    myHeroes[h[key]] = true;
+                }
+
+                for(key in completeList) {
+                    // Grab the skill
+                    skillName = completeList[key];
+
+                    // Find the owner of this skill
+                    var owner:Number = GetSkillOwningHero(skillName);
+
+                    // Check if this is one of our heroes
+                    if(myHeroes[owner]) {
+                        // Yep -- Store it
+                        validDraftSkills[skillName] = true;
+                    }
+                }
+
+                // We need an update!
+                needUpdate = true;
             }
 
             // Check if a filter update is needed
@@ -934,6 +1003,18 @@ package  {
         private function tellServerToBan(skill:String):void {
             // Send the message to the server
             gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
+        }
+
+        // Returns the ID (or -1) of the hero that owns this skill
+        private function GetSkillOwningHero(skillName:String) {
+            // Do we know this skill?
+            if(skillOwningHero[skillName]) {
+                // Yes, return the owner
+                return skillOwningHero[skillName];
+            } else {
+                // Nope, go cry :(
+                return -1;
+            }
         }
 
         // When someone hovers over a skill
@@ -1148,6 +1229,14 @@ package  {
 
             // Search abilities for this key word
             for(var key in activeList) {
+                // Check for valid drafting skills
+                if(validDraftSkills) {
+                    if(!validDraftSkills[key]) {
+                        activeList[key].visible = false;
+                        continue;
+                    }
+                }
+
                 var doShow:Number = 0;
 
                 // Behavior filter

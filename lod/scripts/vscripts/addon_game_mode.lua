@@ -223,6 +223,7 @@ local function isSkillBanned(skillName)
     return bannedSkills[skillName] or false
 end
 
+-- Returns the ID (or -1) of the hero that owns this skill
 local function GetSkillOwningHero(skillName)
     return skillOwningHero[skillName] or -1
 end
