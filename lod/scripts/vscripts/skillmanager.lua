@@ -183,17 +183,20 @@ function skillManager:ApplyBuild(hero, build)
 
     -- Add missing abilities
     for k,v in pairs(extraSkills) do
-        -- Move onto the next slot
-        abNum = abNum + 1
+        -- Do they already have this skill?
+        if not hero:HasAbility(k) then
+            -- Move onto the next slot
+            abNum = abNum + 1
 
-        -- Add the ability
-        hero:AddAbility(k)
+            -- Add the ability
+            hero:AddAbility(k)
 
-        -- Remove auras
-        fixModifiers(hero, k)
+            -- Remove auras
+            fixModifiers(hero, k)
 
-        -- Store that we have it
-        currentSkillList[hero][abNum] = k
+            -- Store that we have it
+            currentSkillList[hero][abNum] = k
+        end
     end
 end
 
