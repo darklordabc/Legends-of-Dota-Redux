@@ -16,6 +16,9 @@ local pickingTime = 120
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
 
+-- The starting level
+local startingLevel = 1
+
 --[[
     VOTEABLE OPTIONS
 ]]
@@ -512,11 +515,14 @@ local function finishVote()
     -- Grab the gamemode
     gamemode = optionToValue(0, winners[0])
 
+    -- Grab the starting level
+    startingLevel = optionToValue(6, winners[6])
+
     -- Setup gamemode specific settings
     setupGamemodeSettings()
 
     -- Announce results
-    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">!</font>')
+    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">.</font>')
 end
 
 -- This will be fired when the game starts
@@ -759,6 +765,14 @@ ListenToGameEvent('npc_spawned', function(keys)
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
+
+        -- Do we need to level up?
+        if startingLevel > 1 then
+            -- Level it up
+            for i=1,startingLevel-1 do
+                spawnedUnit:HeroLevelUp(false)
+            end
+        end
 
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
