@@ -125,6 +125,9 @@ package  {
         // Stores the owning heroID of each skill
         private var skillOwningHero:Object;
 
+        // We have not finished picking
+        private var finishedPicking = false;
+
         // The skill KV file
         var skillKV:Object;
 
@@ -210,6 +213,9 @@ package  {
                 skillKV[key] = customSkillKV[key]
             }
 
+            // We have not finished picking
+            finishedPicking = false;
+
             // Hook resizing
             Globals.instance.resizeManager.AddListener(this);
 
@@ -223,7 +229,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("lod_picking_info", onGetPickingInfo);
             this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);
             this.gameAPI.SubscribeToGameEvent("hero_picker_shown", initLod);
-            this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", cleanupHud);
+            this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", finishPicking);
             this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
 
@@ -322,6 +328,9 @@ package  {
             // Reset the hud
             cleanupHud();
 
+            // If done picking, don't put the hud back
+            if(finishedPicking) return;
+
             // Request voting info
             if(!gottenVotingInfo) {
                 requestVoteStatus();
@@ -403,6 +412,15 @@ package  {
 
             // We've rebuilt the hud, ask for state info
             requestStateInfo();
+        }
+
+        // Run when the hero selector is closed
+        private function finishPicking():void {
+            // Lock the game from showing the screen again
+            finishedPicking = true;
+
+            // Clean the hud up
+            cleanupHud();
         }
 
         // Cleans up the hud
