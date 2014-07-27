@@ -68,9 +68,9 @@ local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MD = 3   -- Mirror Draft
 
 gamemodeNames = {
-    GAMEMODE_AP = 'All Pick',
-    GAMEMODE_SD = 'Single Draft',
-    GAMEMODE_MD = 'Mirror Draft'
+    [GAMEMODE_AP] = 'All Pick',
+    [GAMEMODE_SD] = 'Single Draft',
+    [GAMEMODE_MD] = 'Mirror Draft'
 }
 
 -- The gamemode
@@ -191,6 +191,11 @@ for k,v in pairs(heroKV) do
             end
         end
     end
+end
+
+local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
+for k,v in pairs(ownersKV) do
+    skillOwningHero[k] = tonumber(v);
 end
 
 local function isUlt(skillName)

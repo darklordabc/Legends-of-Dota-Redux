@@ -189,6 +189,12 @@ package  {
                 }
             }
 
+            // Add in the override owners
+            var ownersKV = Globals.instance.GameInterface.LoadKVFile('scripts/kv/owners.kv');
+            for(key in ownersKV) {
+                skillOwningHero[key] = parseInt(ownersKV[key]);
+            }
+
             // Load our ability list KV
             completeList = Globals.instance.GameInterface.LoadKVFile('scripts/kv/abilities.kv').abs;
 
