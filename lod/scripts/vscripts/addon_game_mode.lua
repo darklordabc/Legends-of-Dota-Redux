@@ -16,9 +16,6 @@ local pickingTime = 120
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
 
--- The starting level
-local startingLevel = 1
-
 --[[
     VOTEABLE OPTIONS
 ]]
@@ -34,6 +31,12 @@ local maxUlts = 1
 
 -- Should we ban troll combos?
 local banTrollCombos = true
+
+-- The starting level
+local startingLevel = 1
+
+-- Should we turn easy mode on?
+local useEasyMode = false
 
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
@@ -435,6 +438,15 @@ local function setupGamemodeSettings()
         end
     end
 
+    -- Are we using easy mode?
+    if useEasyMode then
+        -- Tell players
+        sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Easy Mode</font> <font color="'..COLOR_GREEN..'">was turned on!</font>')
+
+        -- Enable it
+        Convars:SetInt('dota_easy_mode', 1)
+    end
+
     -- Announce which gamemode we're playing
     sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 end
@@ -517,6 +529,12 @@ local function finishVote()
 
     -- Grab the starting level
     startingLevel = optionToValue(6, winners[6])
+
+    -- Are we using easy mode?
+    if optionToValue(7, winners[7]) == 1 then
+        -- Enable easy mode
+        useEasyMode = true
+    end
 
     -- Setup gamemode specific settings
     setupGamemodeSettings()
