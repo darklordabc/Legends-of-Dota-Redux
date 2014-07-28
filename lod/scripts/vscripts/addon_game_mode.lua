@@ -47,6 +47,9 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
     votingTime = 15
 
+    -- Low picking time
+    pickingTime = 15
+
     -- No banning time
     banningTime = 0
 else
@@ -113,6 +116,13 @@ local totalBans = {}
 
 -- When the hero selection started
 local heroSelectionStart = nil
+
+-- A list of heroes that were picking before the game started
+local brokenHeroes = {}
+
+-- Stick skills into slots
+local handled = {}
+local handledPlayerIDs = {}
 
 -- A list of warning attached to skills
 local skillWarnings = {
@@ -380,6 +390,27 @@ local function CheckDraft(playerID, skillName)
             return '<font color="'..COLOR_RED..'">'..skillName..'</font> is not in your drafting pool.'
         end
     end
+end
+
+-- Fixes broken heroes
+local function fixBuilds()
+    for k,v in pairs(brokenHeroes) do
+        if k then
+            local playerID = k:GetPlayerID()
+
+            -- Grab their build
+            local build = skillList[playerID] or {}
+
+            -- Apply the build
+            SkillManager:ApplyBuild(k, build)
+
+            -- Store playerID has handled
+            handledPlayerIDs[playerID] = true
+        end
+    end
+
+    -- No more broken heroes
+    brokenHeroes = {}
 end
 
 -- Takes the current gamemode number, and sets the required settings
@@ -716,6 +747,9 @@ local function think()
     end
 
     if currentStage == STAGE_VOTING then
+        -- Wait for voting to end
+        if GameRules:GetGameTime() < heroSelectionStart + votingTime then return 1 end
+
         -- Workout who won
         finishVote()
 
@@ -730,24 +764,33 @@ local function think()
             sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
         end
 
-        -- Sleep until the banning time is up
-        return banningTime
+        -- Sleep
+        return 1
     end
 
     if currentStage == STAGE_BANNING then
+        -- Wait for banning to end
+        if GameRules:GetGameTime() < heroSelectionStart + votingTime + banningTime then return 1 end
+
         -- Change to picking state
         currentStage = STAGE_PICKING
 
         -- Tell everyone
         sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..pickingTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
 
-        -- Sleep until picking is over
-        return pickingTime
+        -- Sleep
+        return 1
     end
 
     if currentStage == STAGE_PICKING then
+        -- Wait for voting to end
+        if GameRules:GetGameTime() < heroSelectionStart + votingTime + pickingTime and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 1 end
+
         -- Change to the playing stage
         currentStage = STAGE_PLAYING
+
+        -- Fix any broken heroes
+        fixBuilds()
 
         -- Stop
         return 0.1
@@ -790,8 +833,7 @@ ListenToGameEvent('player_connect_full', function(keys)
     end
 end, nil)
 
--- Stick skills into slots
-local handled = {}
+-- When a hero spawns
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -816,11 +858,23 @@ ListenToGameEvent('npc_spawned', function(keys)
         -- Don't touch bots
         if PlayerResource:IsFakeClient(playerID) then return end
 
-        -- Grab their build
-        local build = skillList[playerID] or {}
+        -- Check if the game has started yet
+        if currentStage > STAGE_PICKING then
+            -- Grab their build
+            local build = skillList[playerID] or {}
 
-        -- Apply the build
-        SkillManager:ApplyBuild(spawnedUnit, build)
+            -- Apply the build
+            SkillManager:ApplyBuild(spawnedUnit, build)
+
+            -- Store playerID has handled
+            handledPlayerIDs[playerID] = true
+        else
+            -- Store that this hero needs fixing
+            brokenHeroes[spawnedUnit] = true
+
+            -- Remove their skills
+            SkillManager:RemoveAllSkills(spawnedUnit)
+        end
     end
 end, nil)
 
@@ -1016,7 +1070,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         local playerID = cmdPlayer:GetPlayerID()
 
         -- Stop people who have spawned from picking
-        if handled[playerID] then
+        if handledPlayerIDs[playerID] then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
             return
         end
