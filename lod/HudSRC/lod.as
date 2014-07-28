@@ -128,6 +128,9 @@ package  {
         // We have not finished picking
         private var finishedPicking = false;
 
+        // The ID of the slave owner
+        private var isSlave:Boolean = false;
+
         // The skill KV file
         var skillKV:Object;
 
@@ -232,6 +235,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("hero_picker_hidden", finishPicking);
             this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
+            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -451,7 +455,7 @@ package  {
         // Builds the voting screen
         private function buildVotingUI():void {
             // Spawn the voting UI
-            votingUI = new VotingUI();
+            votingUI = new VotingUI(isSlave);
             addChild(votingUI);
             votingUI.x = (realScreenWidth/scalingFactor)/2;
             votingUI.y = 10;
@@ -801,6 +805,15 @@ package  {
             heroSelectionStart = args.startTime;
             votingTime = args.votingTime;
 
+            // Workout if we are a slave or not
+            if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {
+                // We can vote
+                isSlave = false;
+            } else {
+                // We can't vote
+                isSlave = true;
+            }
+
             // Rehook the picking screen
             setupHud();
         }
@@ -835,6 +848,11 @@ package  {
                 // Add the text to chat
                 addChatMessage(args.msg);
             }
+        }
+
+        // Fired when the server sends us a slave vote update
+        private function handleSlave(args:Object):void {
+            votingUI.updateSlave(args.opt, args.nv);
         }
 
         // Fired when the sever gives us info on the current state

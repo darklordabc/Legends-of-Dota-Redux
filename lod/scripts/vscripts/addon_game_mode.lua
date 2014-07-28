@@ -16,6 +16,10 @@ local pickingTime = 120
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
 
+-- Should we use slave voting, set ID = -1 for no
+-- Set to the ID of the player who is the master
+local slaveID = 0
+
 --[[
     VOTEABLE OPTIONS
 ]]
@@ -41,7 +45,7 @@ local useEasyMode = false
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
-    votingTime = 15
+    --votingTime = 15
 
     -- No banning time
     banningTime = 0
@@ -624,7 +628,8 @@ local function sendVotingInfo()
         -- Send picking info to everyone
         FireGameEvent('lod_voting_info', {
             startTime = heroSelectionStart,
-            votingTime = votingTime
+            votingTime = votingTime,
+            slaveID = slaveID
         })
     end, 'DelayedVoteInfoTimer', 1, nil)
 end
@@ -1194,6 +1199,12 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
         local playerID = cmdPlayer:GetPlayerID()
 
         if currentStage == STAGE_VOTING then
+            -- Check if we are using slave mode, and we are a slave
+            if slaveID >= 0 and playerID ~= slaveID then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Only the host can change the options.</font>')
+                return
+            end
+
             if optNumber < 0 or optNumber >= totalVotableOptions then
                 -- Tell the user
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This appears to be an invalid option.</font>')
@@ -1212,6 +1223,15 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
 
             -- Store vote
             voteData[playerID][optNumber] = theirChoice
+
+            -- Are we in slave mode?
+            if slaveID >= 0 then
+                -- Update everyone
+                FireGameEvent('lod_slave', {
+                    opt = optNumber,
+                    nv = theirChoice
+                })
+            end
         else
             -- Tell them voting is over
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only vote during the voting period.</font>')
