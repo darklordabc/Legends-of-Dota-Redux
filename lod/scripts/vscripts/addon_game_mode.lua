@@ -51,7 +51,7 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     pickingTime = 15
 
     -- No banning time
-    banningTime = 0
+    banningTime = 15
 else
     print('^ Ignore that message')
 end
@@ -423,9 +423,6 @@ local function setupGamemodeSettings()
         -- We need the draft array for this
         useDraftArray = true
 
-        -- No need for a banning phase
-        banningTime = 0
-
         -- We need some skills drafted for us
         autoDraftHeroNumber = 10
     end
@@ -435,34 +432,33 @@ local function setupGamemodeSettings()
         -- We need the draft array for this
         useDraftArray = true
 
-        -- No need for a banning phase
-        banningTime = 0
-
         -- We need some skills drafted for us
         autoDraftHeroNumber = 0
 
         -- Number of heroes to pick from
-        local totalHeroes = 20
+        local totalHeroes = 10
 
-        -- Stores an array of heroes we have already added to the draft
-        local taken = {};
+        -- Loop over the 4 players on each team
+        for i=0,4 do
+            -- Stores an array of heroes we have already added to the draft
+            local taken = {};
 
-        local total = 0
-        while total < totalHeroes do
-            -- Pick a random heroID
-            local heroID = validHeroIDs[math.random(#validHeroIDs)]
+            local total = 0
+            while total < totalHeroes do
+                -- Pick a random heroID
+                local heroID = validHeroIDs[math.random(#validHeroIDs)]
 
-            -- Have we already allocated this heroID?
-            if not taken[heroID] then
-                -- Store it as allocated
-                taken[heroID] = true
+                -- Have we already allocated this heroID?
+                if not taken[heroID] then
+                    -- Store it as allocated
+                    taken[heroID] = true
 
-                -- Increment total
-                total = total+1
+                    -- Increment total
+                    total = total+1
 
-                -- Allocate to all other players
-                for i=0,9 do
+                    -- Allocate to all other players
                     addHeroDraft(i, heroID)
+                    addHeroDraft(i+5, heroID)
                 end
             end
         end

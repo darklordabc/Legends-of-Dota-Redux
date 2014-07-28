@@ -131,6 +131,9 @@ package  {
         // The ID of the slave owner
         private var isSlave:Boolean = false;
 
+        // Have we finished banning?
+        private var finishedBanning:Boolean = false;
+
         // The skill KV file
         var skillKV:Object;
 
@@ -980,6 +983,12 @@ package  {
             } else {
                 // It is skill selection time
 
+                // Check if this is our first time after banning has ended
+                if(!finishedBanning) {
+                    finishedBanning = true;
+                    updateFilters();
+                }
+
                 // Show the skills area
                 if(mySkills != null) mySkills.visible = true;
 
@@ -1269,7 +1278,7 @@ package  {
             // Search abilities for this key word
             for(var key in activeList) {
                 // Check for valid drafting skills
-                if(validDraftSkills) {
+                if(finishedBanning && validDraftSkills) {
                     if(!validDraftSkills[key]) {
                         activeList[key].visible = false;
                         continue;
