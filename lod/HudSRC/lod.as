@@ -832,9 +832,6 @@ package  {
             // Was this me? (or everyone)
             var playerID = globals.Players.GetLocalPlayer();
             if(playerID == args.playerID || args.playerID == -1) {
-                // Log message to console
-                trace(args.msg);
-
                 // Add the text to chat
                 addChatMessage(args.msg);
             }

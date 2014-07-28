@@ -85,8 +85,6 @@ local function precacheSkill(skillName)
         local heroName = heroIDToName[heroID]
 
         if heroName then
-            print('found hero! '..heroName)
-            print('npc_precache_'..heroName)
             -- Attempt the precache
             if not pcall(function()
                 PrecacheUnitByName('npc_precache_'..heroName)
