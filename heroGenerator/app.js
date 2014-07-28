@@ -231,6 +231,8 @@ var scriptDir = '';
 fs.readFile(scriptDir+'npc_heroes.txt', function(err, itemData) {
     var rootHeroes = parseKV(''+itemData, true);
 
+    var precacher = {};
+
     var newKV = {};
 
     var heroes = rootHeroes.DOTAHeroes;
@@ -251,7 +253,22 @@ fs.readFile(scriptDir+'npc_heroes.txt', function(err, itemData) {
             newKV[name+'_lod'].ProjectileSpeed = 1000
             newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
         }
+
+        // Store precacher data
+        precacher['npc_precache_'+name] = {
+            BaseClass: 'npc_dota_creep',
+            precache: {
+                particlefile: data.ParticleFile,
+                soundfile: data.GameSoundsFile
+            }
+        }
     }
+
+    fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
+        if (err) throw err;
+
+        console.log('Done saving precacher file!');
+    });
 
     fs.writeFile(scriptDir+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
         if (err) throw err;

@@ -33,6 +33,35 @@ local manualActivate = {
     keeper_of_the_light_recall_lod = true
 }
 
+local heroIDToName = {}
+local skillOwningHero = {}
+for k,v in pairs(heroListKV) do
+    if k ~= 'Version' and k ~= 'npc_dota_hero_base' then
+        -- If this hero has an ID
+        if v.HeroID then
+            -- Store the heroID lookup
+            heroIDToName[v.HeroID] = k
+
+            -- Loop over all possible 16 slots
+            for i=1,16 do
+                -- Grab the ability
+                local ab = v['Ability'..i]
+
+                -- Did we actually find an ability?
+                if ab then
+                    -- Yep, store this hero as the owner
+                    skillOwningHero[ab] = v.HeroID
+                end
+            end
+        end
+    end
+end
+
+local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
+for k,v in pairs(ownersKV) do
+    skillOwningHero[k] = tonumber(v)
+end
+
 -- Tells you if a given heroName is melee or not
 local function isMeleeHero(heroName)
     if meleeList[heroName] then
@@ -46,6 +75,30 @@ local function fixModifiers(hero, skill)
     -- Remove it
     hero:RemoveModifierByName('modifier_'..skill)
     hero:RemoveModifierByName('modifier_'..skill..'_aura')
+end
+
+-- Precaches a skill -- DODGY!
+local function precacheSkill(skillName)
+    local heroID = skillOwningHero[skillName]
+
+    if heroID then
+        local heroName = heroIDToName[heroID]
+
+        if heroName then
+            print('found hero! '..heroName)
+            print('npc_precache_'..heroName)
+            -- Attempt the precache
+            if not pcall(function()
+                PrecacheUnitByName('npc_precache_'..heroName)
+            end) then
+                if not pcall(function()
+                    PrecacheUnitByName('npc_precache_'..heroName, {})
+                end) then
+                    print('PRE CACHING HAS FAILED! I AM A SAD PANDA! '..heroName)
+                end
+            end
+        end
+    end
 end
 
 function skillManager:GetHeroSkills(heroClass)
@@ -167,6 +220,9 @@ function skillManager:ApplyBuild(hero, build)
                 v = meleeMap[v]
             end
 
+            -- Precache
+            precacheSkill(v)
+
             -- Add to build
             hero:AddAbility(v)
             currentSkillList[hero][abNum] = v
@@ -187,6 +243,9 @@ function skillManager:ApplyBuild(hero, build)
         if not hero:HasAbility(k) then
             -- Move onto the next slot
             abNum = abNum + 1
+
+            -- Precache
+            precacheSkill(k)
 
             -- Add the ability
             hero:AddAbility(k)

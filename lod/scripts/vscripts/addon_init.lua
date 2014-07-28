@@ -37,6 +37,7 @@ end, 'Adds fake players', 0)
 
 -- Precache everything -- Having issues with the arguments changing
 print('Precaching stuff...')
+
 if not pcall(function()
     PrecacheUnitByName('npc_precache_everything')
 end) then
@@ -46,7 +47,6 @@ end) then
         print('PRE CACHING HAS FAILED! I AM A SAD PANDA!')
     end
 end
---PrecacheResource('test', 'test')
 print('Done precaching!')
 
 -- Tell the user it has loaded
