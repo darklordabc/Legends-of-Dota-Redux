@@ -45,7 +45,7 @@ local useEasyMode = false
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
-    --votingTime = 15
+    votingTime = 15
 
     -- No banning time
     banningTime = 0
