@@ -176,11 +176,15 @@ local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- Build a table of valid hero IDs to pick from, and skill owners
 local validHeroIDs = {}
+local validHeroNames = {}
 local skillOwningHero = {}
 for k,v in pairs(heroKV) do
     if k ~= 'Version' and k ~= 'npc_dota_hero_base' then
         -- If this hero has an ID
         if v.HeroID then
+            -- Store the hero name as valid
+            validHeroNames[k] = true
+
             -- Store the ID as valid
             table.insert(validHeroIDs, v.HeroID)
 
@@ -219,6 +223,15 @@ local function isValidSkill(skillName)
 
     -- For now, no validation
     return true
+end
+
+-- Tells you if a hero name is valid, or not
+local function isValidHeroName(heroName)
+    if validHeroNames[heroName] then
+        return true
+    end
+
+    return false
 end
 
 -- Returns the ID for a skill, or -1
@@ -1205,6 +1218,82 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
         end
     end
 end, 'Update a user\'s vote', 0)
+
+-- User is trying to pick
+local hasHero = {}
+local hasBanned = {}
+local banChance = {}
+local bannedHeroes = {}
+Convars:RegisterCommand('dota_select_hero', function(name, heroName)
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Random hero
+        if heroName == 'random' then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error:</font> <font color="'..COLOR_GREEN..'">You can not random a hero.</font>')
+            return
+        end
+
+        -- Validate hero name
+        if not isValidHeroName(heroName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">is not a valid hero.</font>')
+            return
+        end
+
+        -- Are we in voting?
+        if currentStage <= STAGE_VOTING then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_GREEN..'">You can not pick before the picking stage.</font>')
+            return
+        end
+
+        -- Are we in the banning stage?
+        if currentStage == STAGE_BANNING then
+            -- Already banned?
+            if bannedHeroes[heroName] then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">is already banned!</font>')
+                return
+            end
+
+            -- Have they hit their banning limit?
+            if hasBanned[playerID] then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_GREEN..'">You can not ban anymore heroes.</font>')
+                return
+            end
+
+            -- Warn them about the ban first
+            if banChance[playerID] ~= heroName then
+                -- Store the chance
+                banChance[playerID] = heroName
+
+                -- Tell them about it
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">WARNING: </font> <font color="'..COLOR_GREEN..'">Select</font> <font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">again to ban it.</font>')
+                return
+            end
+
+            -- Ok, ban this hero
+            bannedHeroes[heroName] = true
+            hasBanned[playerID] = true
+
+            -- Tell everyone
+            sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">was banned!</font>')
+            return
+        end
+
+        -- Check bans
+        if bannedHeroes[heroName] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">is banned!</font>')
+            return
+        end
+
+        -- Stop multiple picks
+        if hasHero[playerID] then return end
+        hasHero[playerID] = true
+
+        -- Attempt to create them their hero
+        CreateHeroForPlayer(heroName, cmdPlayer)
+    end
+end, 'hero selection override', 0)
 
 -- Setup the thinker
 thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)

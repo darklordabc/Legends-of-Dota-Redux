@@ -53,7 +53,7 @@
         "playerSlot"    "byte"
     }
 
-    // An error message
+    // A message
     "lod_msg"
     {
         "playerID"      "byte"

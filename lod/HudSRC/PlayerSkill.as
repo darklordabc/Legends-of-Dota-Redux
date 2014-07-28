@@ -31,7 +31,9 @@
 				this.skillName = skillName;
 
 				// Load the new image
-				Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
+				if(this.skillName != '') {
+					Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
+				}
 			}
 		}
 
