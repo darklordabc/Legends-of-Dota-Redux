@@ -51,7 +51,7 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     pickingTime = 15
 
     -- No banning time
-    banningTime = 15
+    banningTime = 0
 else
     print('^ Ignore that message')
 end
@@ -829,6 +829,35 @@ ListenToGameEvent('player_connect_full', function(keys)
     end
 end, nil)
 
+-- EXP Needed for each level
+local XP_PER_LEVEL_TABLE = {
+    0,-- 1
+    200,-- 2
+    500,-- 3
+    900,-- 4
+    1400,-- 5
+    2000,-- 6
+    2600,-- 7
+    3200,-- 8
+    4400,-- 9
+    5400,-- 10
+    6000,-- 11
+    8200,-- 12
+    9000,-- 13
+    10400,-- 14
+    11900,-- 15
+    13500,-- 16
+    15200,-- 17
+    17000,-- 18
+    18900,-- 19
+    20900,-- 20
+    23000,-- 21
+    25200,-- 22
+    27500,-- 23
+    29900,-- 24
+    32400 -- 25
+}
+
 -- When a hero spawns
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
@@ -845,7 +874,11 @@ ListenToGameEvent('npc_spawned', function(keys)
             -- Level it up
             for i=1,startingLevel-1 do
                 spawnedUnit:HeroLevelUp(false)
+
             end
+
+            -- Fix EXP
+            spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
         end
 
         -- Grab their playerID
