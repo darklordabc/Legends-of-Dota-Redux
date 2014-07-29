@@ -907,12 +907,35 @@ ListenToGameEvent('npc_spawned', function(keys)
     end
 end, nil)
 
--- Abaddon ulty fix
+-- Multicast + Riki ulty
 ListenToGameEvent('dota_player_used_ability', function(keys)
     local ply = EntIndexToHScript(keys.player)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
+            -- Check if they have riki ult
+            if hero:HasAbility('riki_permanent_invisibility_lod') then
+                local iab = hero:FindAbilityByName('riki_permanent_invisibility_lod')
+                if iab and iab:GetLevel() > 0 then
+                    -- Remove modifier if they have it
+                    if hero:HasModifier('modifier_riki_permanent_invisibility') then
+                        hero:RemoveModifierByName('modifier_riki_permanent_invisibility')
+                    end
+
+                    -- Workout how long the cooldown will last
+                    local cd = 4-iab:GetLevel()
+
+                    -- Start the cooldown
+                    iab:StartCooldown(cd)
+
+                    -- Apply invis again
+                    hero:AddNewModifier(hero, iab, 'modifier_riki_permanent_invisibility', {
+                        fade_time = cd,
+                        fade_delay = 0
+                    })
+                end
+            end
+
             -- Check if they have multicast
             if hero:HasAbility('ogre_magi_multicast_lod') then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')

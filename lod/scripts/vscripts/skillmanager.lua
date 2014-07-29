@@ -255,6 +255,9 @@ function skillManager:ApplyBuild(hero, build)
             currentSkillList[hero][abNum] = k
         end
     end
+
+    -- Remove perma invis
+    hero:RemoveModifierByName('modifier_riki_permanent_invisibility')
 end
 
 -- Define the export
