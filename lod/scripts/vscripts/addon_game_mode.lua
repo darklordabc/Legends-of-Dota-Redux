@@ -185,6 +185,17 @@ for k,v in pairs(absCustom) do
     abs[k] = v
 end
 
+-- Create list of channeled spells
+local chanelledSpells = {}
+for k,v in pairs(abs) do
+    if k ~= 'Version' and k ~= 'ability_base' then
+        -- Check if this spell is channelled
+        if v.AbilityBehavior and string.match(v.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_CHANNELLED') then
+            chanelledSpells[k] = true
+        end
+    end
+end
+
 -- Load the hero KV file
 local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
@@ -242,6 +253,15 @@ end
 -- Tells you if a hero name is valid, or not
 local function isValidHeroName(heroName)
     if validHeroNames[heroName] then
+        return true
+    end
+
+    return false
+end
+
+-- Tells you if a given spell is channelled or not
+local function isChannelled(skillName)
+    if chanelledSpells[skillName] then
         return true
     end
 
@@ -937,7 +957,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they have multicast
-            if hero:HasAbility('ogre_magi_multicast_lod') then
+            if not isChannelled(keys.abilityname) and hero:HasAbility('ogre_magi_multicast_lod') then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
                 if mab then
                     -- Grab the level of the ability
