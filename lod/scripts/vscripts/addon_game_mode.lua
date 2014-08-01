@@ -42,6 +42,12 @@ local startingLevel = 1
 -- Should we turn easy mode on?
 local useEasyMode = false
 
+-- Are users allowed to pick skills?
+local allowedToPick = true
+
+-- Should we force random heroes?
+local forceRandomHero = false
+
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
@@ -50,11 +56,16 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low picking time
     pickingTime = 15
 
-    -- No banning time
-    banningTime = 60
+    -- Low banning time
+    banningTime = 15
 else
     print('^ Ignore that message')
 end
+
+--[[
+    FUNCTION DEFINITIONS
+]]
+local sendStateInfo
 
 --[[
     GAMEMODE STUFF
@@ -83,11 +94,13 @@ local STAGE_PLAYING = 4
 local GAMEMODE_AP = 1   -- All Pick
 local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MD = 3   -- Mirror Draft
+local GAMEMODE_AR = 4   -- All Random
 
 gamemodeNames = {
     [GAMEMODE_AP] = 'All Pick',
     [GAMEMODE_SD] = 'Single Draft',
-    [GAMEMODE_MD] = 'Mirror Draft'
+    [GAMEMODE_MD] = 'Mirror Draft',
+    [GAMEMODE_AR] = 'All Random'
 }
 
 -- The gamemode
@@ -450,6 +463,55 @@ local function fixBuilds()
     brokenHeroes = {}
 end
 
+local function findRandomSkill(playerID, slotNumber)
+    -- Workout if we can put an ulty here, or a skill
+    local canUlt = true
+    local canSkill = true
+
+    if slotNumber < maxSlots - maxUlts then
+        canUlt = false
+    end
+    if slotNumber >= maxSkills then
+        canSkill = false
+    end
+
+    -- There is a chance there is no valid skill
+    if not canUlt and not canSkill then
+        -- Damn scammers! No valid skills!
+        return '<font color="'..COLOR_RED..'">There are no valid skills for this slot!</font>'
+    end
+
+    -- Build a list of possible skills
+    local possibleSkills = {}
+
+    for k,v in pairs(skillLookupList) do
+        -- Check type of skill
+        if (canUlt and isUlt(v)) or (canSkill and not isUlt(v)) then
+            -- Check for bans
+            if not CheckBans(skillList[playerID], slotNumber+1, v) then
+                -- Check for drafts
+                if not CheckDraft(playerID, v) then
+                    -- Valid skill, add to our possible skills
+                    table.insert(possibleSkills, v)
+                end
+            end
+        end
+    end
+
+    -- Did we find no possible skills?
+    if #possibleSkills == 0 then
+        return '<font color="'..COLOR_RED..'">There are no valid skills for this slot.</font>'
+    end
+
+    -- Pick a random skill
+    return nil, possibleSkills[math.random(#possibleSkills)]
+end
+
+local function fixSelectionTime()
+    GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
+    GameRules:SetSameHeroSelectionEnabled(true)
+end
+
 -- Takes the current gamemode number, and sets the required settings
 local function setupGamemodeSettings()
     -- Default to not using the draft array
@@ -501,6 +563,20 @@ local function setupGamemodeSettings()
         end
     end
 
+    -- All Random
+    if gamemode == GAMEMODE_AR then
+        -- No picking time
+        pickingTime = 0
+
+        -- Users are not allowed to pick skills
+        allowedToPick = false
+
+        -- Force random heroes
+        forceRandomHero = true
+
+        -- Players can still ban things though
+    end
+
     -- Should we draft heroes for players?
     if useDraftArray and autoDraftHeroNumber>0 then
         -- Pick random heroes for each player
@@ -530,6 +606,34 @@ local function setupGamemodeSettings()
 
     -- Announce which gamemode we're playing
     sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
+end
+
+-- Called when picking ends
+local function postGamemodeSettings()
+    -- All Random
+    if gamemode == GAMEMODE_AR then
+        -- Create random builds
+
+        -- Loop over all players
+        for i=0,9 do
+            -- Ensure it exists
+            skillList[i] = skillList[i] or {}
+
+            -- Loop over all slots
+            for j=0,maxSlots-1 do
+                local msg, skillName = findRandomSkill(i, j)
+
+                -- Did we find a valid skill?
+                if skillName then
+                    -- Pick a random skill
+                    skillList[i][j+1] = skillName
+                end
+            end
+        end
+
+        -- Send this new state out
+        sendStateInfo()
+    end
 end
 
 local function optionToValue(optionNumber, choice)
@@ -717,7 +821,7 @@ local function sendVotingInfo()
 end
 
 local canState = true
-local function sendStateInfo()
+sendStateInfo = function()
     -- Stop spam of this command
     if not canState then return end
     canState = false
@@ -745,12 +849,17 @@ local function sendStateInfo()
                 end
             end
 
+            -- Grab this player's slot
+            local slot = getPlayerSlot(i)
+
+            -- Store playerID --> Slot
+            s[i] = slot
+
             -- Loop over this player's skills
             for j=1,6 do
                 -- Ensure the slot is filled
                 s[tostring(i..j)] = s[tostring(i..j)] or -1
 
-                local slot = getPlayerSlot(i)
                 if slot ~= -1 then
                     -- Store the ID of this skill
                     local sid = getSkillID(l[j])
@@ -808,8 +917,7 @@ local function think()
         end
 
         -- Set the hero selection time
-        GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
-        GameRules:SetSameHeroSelectionEnabled(true)
+        fixSelectionTime()
 
         -- Run again in a moment
         return 0.25
@@ -821,6 +929,9 @@ local function think()
 
         -- Workout who won
         finishVote()
+
+        -- Fix the selection time
+        fixSelectionTime()
 
         -- Move onto banning mode
         currentStage = STAGE_BANNING
@@ -844,7 +955,7 @@ local function think()
         end
 
         -- Sleep
-        return 1
+        return 0.1
     end
 
     if currentStage == STAGE_BANNING then
@@ -858,7 +969,7 @@ local function think()
         sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..pickingTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
 
         -- Sleep
-        return 1
+        return 0.1
     end
 
     if currentStage == STAGE_PICKING then
@@ -868,10 +979,13 @@ local function think()
         -- Change to the playing stage
         currentStage = STAGE_PLAYING
 
+        -- Post gamemode stuff
+        postGamemodeSettings()
+
         -- Fix any broken heroes
         fixBuilds()
 
-        -- Stop
+        -- Sleep
         return 0.1
     end
 
@@ -1222,6 +1336,12 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             return
         end
 
+        -- Ensure we are ALLOWED to pick
+        if not allowedToPick then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not allowed to pick skills.</font>')
+            return
+        end
+
         -- Convert slot to a number
         slotNumber = tonumber(slotNumber)
 
@@ -1238,49 +1358,11 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         if not isValidSkill(skillName) then
             -- Perhaps they tried to random?
             if skillName == 'random' then
-                -- Workout if we can put an ulty here, or a skill
-                local canUlt = true
-                local canSkill = true
+                msg, skillName = findRandomSkill(playerID, slotNumber)
 
-                if slotNumber < maxSlots - maxUlts then
-                    canUlt = false
+                if msg then
+                    sendChatMessage(playerID, msg)
                 end
-                if slotNumber >= maxSkills then
-                    canSkill = false
-                end
-
-                -- There is a chance there is no valid skill
-                if not canUlt and not canSkill then
-                    -- Damn scammers! No valid skills!
-                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">There are no valid skills for this slot!</font>')
-                    return
-                end
-
-                -- Build a list of possible skills
-                local possibleSkills = {}
-
-                for k,v in pairs(skillLookupList) do
-                    -- Check type of skill
-                    if (canUlt and isUlt(v)) or (canSkill and not isUlt(v)) then
-                        -- Check for bans
-                        if not CheckBans(skillList[playerID], slotNumber+1, v) then
-                            -- Check for drafts
-                            if not CheckDraft(playerID, v) then
-                                -- Valid skill, add to our possible skills
-                                table.insert(possibleSkills, v)
-                            end
-                        end
-                    end
-                end
-
-                -- Did we find no possible skills?
-                if #possibleSkills == 0 then
-                    sendChatMessage(playerID, '<font color="'..COLOR_RED..'">There are no valid skills for this slot.</font>')
-                    return
-                end
-
-                -- Pick a random skill
-                skillName = possibleSkills[math.random(#possibleSkills)]
             else
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
                 return
@@ -1448,7 +1530,29 @@ end, 'Update a user\'s vote', 0)
 local hasHero = {}
 local hasBanned = {}
 local banChance = {}
-local bannedHeroes = {}
+local bannedHeroes = {
+    npc_dota_hero_silencer = true,
+    npc_dota_hero_lone_druid = true,
+    npc_dota_hero_ogre_magi = true,
+}
+
+-- Attempts to pick a random hero, returns 'random' if it fails
+local function getRandomHeroName()
+    local choices = {}
+
+    for k,v in pairs(validHeroNames) do
+        if not bannedHeroes[k] then
+            table.insert(choices, k)
+        end
+    end
+
+    if #choices > 0 then
+        return choices[math.random(#choices)]
+    else
+        return 'random'
+    end
+end
+
 Convars:RegisterCommand('dota_select_hero', function(name, heroName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
@@ -1456,8 +1560,14 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
 
         -- Random hero
         if heroName == 'random' then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error:</font> <font color="'..COLOR_GREEN..'">You can not random a hero.</font>')
-            return
+            -- Attempt to random
+            heroName = getRandomHeroName()
+
+            -- Did we fail?
+            if heroName == 'random' then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error:</font> <font color="'..COLOR_GREEN..'">You can not random a hero.</font>')
+                return
+            end
         end
 
         -- Validate hero name
@@ -1514,6 +1624,18 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
             return
         end
 
+        -- Should we force a random hero name?
+        if forceRandomHero then
+            -- Grab a random hero name
+            heroName = getRandomHeroName()
+
+            -- Make sure it worked
+            if heroName == 'random' then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error:</font> <font color="'..COLOR_GREEN..'">You can not random a hero.</font>')
+                return
+            end
+        end
+
         -- Check bans
         if bannedHeroes[heroName] then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">is banned!</font>')
@@ -1564,7 +1686,6 @@ end, 'Update a user\'s vote', 0)
 thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)
 
 -- Set the hero selection time
-GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
-GameRules:SetSameHeroSelectionEnabled(true)
+fixSelectionTime()
 
 print('Gamemode has loaded!')

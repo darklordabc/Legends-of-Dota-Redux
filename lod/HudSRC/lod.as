@@ -978,6 +978,11 @@ package  {
         private function onGetStateInfo(args:Object):void {
             var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName, key;
 
+            // Grab our playerID
+            var playerID = globals.Players.GetLocalPlayer();
+
+            var changedLocalSlots:Boolean = false;
+
             // Update skills
             for(i=0; i<10; i++) {
                 for(j=0; j<MAX_SLOTS; j++) {
@@ -988,10 +993,24 @@ package  {
                             skillNumber = skillNumber - decodeWith;
                         }
 
+                        // Grab the skill name
+                        skillName = getSkillName(skillNumber);
+
                         // Attempt to grab the slot
                         slot = topSkillList[i*MAX_SLOTS+j];
                         if(slot != null) {
-                            slot.setSkillName(getSkillName(skillNumber));
+                            slot.setSkillName(skillName);
+                        }
+
+                        // Is this skill for us?
+                        if(i == args[playerID]) {
+                            trace('LOCAL!');
+
+                            // Put the skill into the slot
+                            if(skillIntoSlot(j, skillName)) {
+                                // A slot was changed
+                                changedLocalSlots = true;
+                            }
                         }
                     }
                 }
@@ -999,6 +1018,15 @@ package  {
 
             // We currently don't need to update he filters
             var needUpdate:Boolean = false;
+
+            // Did we change any slots?
+            if(changedLocalSlots) {
+                // Update our local ban list
+                updateLocalBans();
+
+                // We need to update filters
+                needUpdate = true;
+            }
 
             // Update bans
             var b = args.b.split('|');
@@ -1019,9 +1047,6 @@ package  {
                     }
                 }
             }
-
-            // Grab our playerID
-            var playerID = globals.Players.GetLocalPlayer();
 
             // Is there a draft for us?
             if(args['s'+playerID] != '') {
@@ -1145,8 +1170,6 @@ package  {
 
         // Fired when a skill is picked by someone
         private function onSkillPicked(args:Object) {
-            var slot:MovieClip;
-
             // Grab skill number
             var skillNumber:Number = parseInt(args.skillID);
 
@@ -1173,39 +1196,61 @@ package  {
             var playerID = globals.Players.GetLocalPlayer();
             if(playerID == args.playerID) {
                 // It is me
-                slot = mySkills['skill'+args.slotNumber];
+                skillIntoSlot(args.slotNumber, skillName);
+
+                // Update local bans
+                updateLocalBans();
+
+                // Update the filters
+                updateFilters();
+            }
+        }
+
+        // Updates local bans
+        private function updateLocalBans():void {
+            var slot:MovieClip;
+
+            // Reset banned combos
+            bannedCombos = {};
+
+            // Loop over all slots
+            for(var i:Number=0; i<MAX_SLOTS; i++) {
+                // Grab a slot
+                slot = mySkills['skill'+i];
+
+                // Validate slot
                 if(slot != null) {
-                    // Slot the skill in, build ban list
-                    slot.setSkillName(skillName);
+                    // Grab the skill in this slot
+                    var skill = slot.getSkillName();
 
-                    // Reset banned combos
-                    bannedCombos = {};
-
-                    // Loop over all slots
-                    for(var i:Number=0; i<MAX_SLOTS; i++) {
-                        // Grab a slot
-                        slot = mySkills['skill'+i];
-
-                        // Validate slot
-                        if(slot != null) {
-                            // Grab the skill in this slot
-                            var skill = slot.getSkillName();
-
-                            // Are there any banned combos for this skill?
-                            if(banList[skill] != null) {
-                                // Add to bans
-                                for(var key in banList[skill]) {
-                                    // Store the ban
-                                    bannedCombos[banList[skill][key]] = true;
-                                }
-                            }
+                    // Are there any banned combos for this skill?
+                    if(banList[skill] != null) {
+                        // Add to bans
+                        for(var key in banList[skill]) {
+                            // Store the ban
+                            bannedCombos[banList[skill][key]] = true;
                         }
                     }
-
-                    // Update the filters
-                    updateFilters();
                 }
             }
+        }
+
+        // Puts a skill into our local slot, return true if something was changed
+        private function skillIntoSlot(slotNumber:Number, skillName:String):Boolean {
+            var slot:MovieClip;
+
+            slot = mySkills['skill'+slotNumber];
+            if(slot != null) {
+                // Are we changing the skill?
+                if(slot.getSkillName() != skillName) {
+                    // Slot the skill in, build ban list
+                    slot.setSkillName(skillName);
+                    return true;
+                }
+            }
+
+            // No changes
+            return false;
         }
 
         // Tell the server to put a skill into a slot
