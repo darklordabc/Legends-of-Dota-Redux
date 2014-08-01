@@ -656,7 +656,8 @@ local function sendPickingInfo()
             pickingTime = pickingTime,
             slots = maxSlots,
             skills = maxSkills,
-            ults = maxUlts
+            ults = maxUlts,
+            trolls = (banTrollCombos and 1) or 0
         })
     end, 'DelayedInfoTimer', 1, nil)
 end

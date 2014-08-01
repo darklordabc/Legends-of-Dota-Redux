@@ -47,6 +47,9 @@ package  {
         // How many ults the user can have
         private static var MAX_ULTS = 1;
 
+        // Are troll combos banned?
+        private var banTrollCombos:Boolean = true;
+
         // Constant used for scaling (just the height of our movieClip)
         private static var myStageHeight = 720;
 
@@ -82,6 +85,12 @@ package  {
 
         // The hero KV
         private var heroKV:Object;
+
+        // The ban list
+        private var banList:Object;
+
+        // List of banned skills
+        private var bannedCombos = {};
 
         // Stores voting info
         public static var votingList:Object;
@@ -217,6 +226,23 @@ package  {
             // Merge in custom kv
             for(key in customSkillKV) {
                 skillKV[key] = customSkillKV[key]
+            }
+
+            // Prepare bans list
+            var bans:Object = Globals.instance.GameInterface.LoadKVFile('scripts/kv/bans.kv').BannedCombinations;
+
+            // Build ban list
+            banList = {};
+            for(key in bans) {
+                var ban:Object = bans[key];
+
+                // Ensure ban arrays exist
+                if(banList[ban[1]] == null) banList[ban[1]] = [];
+                if(banList[ban[2]] == null) banList[ban[2]] = [];
+
+                // Store this ban
+                banList[ban[1]][banList[ban[1]].length] = ban[2];
+                banList[ban[2]][banList[ban[2]].length] = ban[1];
             }
 
             // We have not finished picking
@@ -836,6 +862,12 @@ package  {
             MAX_SKILLS = args.skills;
             MAX_ULTS = args.ults;
 
+            if(args.trolls == 0) {
+                banTrollCombos = false;
+            } else {
+                banTrollCombos = true;
+            }
+
             // Rehook the picking screen
             setupHud();
 
@@ -1022,6 +1054,8 @@ package  {
 
         // Fired when a skill is picked by someone
         private function onSkillPicked(args:Object) {
+            var slot:MovieClip;
+
             // Attempt to find the skill
             var topSkill = topSkillList[args.playerSlot*MAX_SLOTS+args.slotNumber];
             if(topSkill != null) {
@@ -1034,9 +1068,37 @@ package  {
             var playerID = globals.Players.GetLocalPlayer();
             if(playerID == args.playerID) {
                 // It is me
-                var slot = mySkills['skill'+args.slotNumber];
+                slot = mySkills['skill'+args.slotNumber];
                 if(slot != null) {
+                    // Slot the skill in, build ban list
                     slot.setSkillName(args.skillName);
+
+                    // Reset banned combos
+                    bannedCombos = {};
+
+                    // Loop over all slots
+                    for(var i:Number=0; i<MAX_SLOTS; i++) {
+                        // Grab a slot
+                        slot = mySkills['skill'+i];
+
+                        // Validate slot
+                        if(slot != null) {
+                            // Grab the skill in this slot
+                            var skill = slot.getSkillName();
+
+                            // Are there any banned combos for this skill?
+                            if(banList[skill] != null) {
+                                // Add to bans
+                                for(var key in banList[skill]) {
+                                    // Store the ban
+                                    bannedCombos[banList[skill][key]] = true;
+                                }
+                            }
+                        }
+                    }
+
+                    // Update the filters
+                    updateFilters();
                 }
             }
         }
@@ -1348,6 +1410,11 @@ package  {
                     // Found, is it banned?
                     if(bannedSkills[key]) {
                         // Banned :(
+                        activeList[key].filters = redFilter();
+                        activeList[key].alpha = 0.5;
+                        activeList[key].setBanned(true);
+                    } else if(banTrollCombos && bannedCombos[key]) {
+                        // Banned combo :(
                         activeList[key].filters = redFilter();
                         activeList[key].alpha = 0.5;
                     } else {
