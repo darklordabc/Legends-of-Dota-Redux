@@ -53,6 +53,18 @@ package  {
         // Is only the host allowed to ban stuff?
         private var hostBanning:Boolean = true;
 
+        // Should we try to decode skills?
+        private var decodeSkills:Boolean = true;
+
+        // What is our magic decoder?
+        private var decodeWith:Number = 0;
+
+        // What is the number we used to request our magic number
+        private var encodeWith:Number = Math.floor(Math.random()*50 + 50);
+
+        // Do we need to decode skills?
+        private var hideSkills:Boolean = true;
+
         // Constant used for scaling (just the height of our movieClip)
         private static var myStageHeight = 720;
 
@@ -145,6 +157,9 @@ package  {
 
         // Have we finished banning?
         private var finishedBanning:Boolean = false;
+
+        // The team number we are on
+        private var myTeam:Number = 0;
 
         // The skill KV file
         var skillKV:Object;
@@ -268,6 +283,10 @@ package  {
             this.gameAPI.SubscribeToGameEvent("gameui_hidden", requestStateInfo);
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
             this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);
+            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);
+
+            // Request coding numbers
+            requestDecodingNumber();
 
             trace('Legends of Dota hud finished loading!\n\n');
         }
@@ -331,6 +350,12 @@ package  {
 
         // When the gui is "hidden"
         private function requestStateInfo():void {
+            // Request secret encoder
+            if(decodeWith == 0) {
+                // Request coding numbers
+                requestDecodingNumber();
+            }
+
             // Voting info is most important
             if(!gottenVotingInfo) {
                 requestVoteStatus();
@@ -353,10 +378,19 @@ package  {
             gameAPI.SendServerCommand("lod_voting_info");
         }
 
+        // Requests the decoding number
+        private function requestDecodingNumber():void {
+            // Send the request
+            gameAPI.SendServerCommand("lod_decode \""+encodeWith+"\"");
+        }
+
         // Init LoD
         private function initLod():void {
             // Ask about the vote status
             requestVoteStatus();
+
+            // Request coding numbers
+            requestDecodingNumber();
         }
 
         // Sets the hud up
@@ -388,8 +422,20 @@ package  {
             var dock:MovieClip = getDock();
 
             // Spawn player skill lists
-            hookSkillList(dock.radiantPlayers, 0);
-            hookSkillList(dock.direPlayers, 5);
+            if(hideSkills) {
+                // Readers beware: The skills are encoded, changing this hook is a waste of your time!
+                if(myTeam == 3) {
+                    // We are on dire
+                    hookSkillList(dock.direPlayers, 5);
+                } else if(myTeam == 2) {
+                    // We are on radiant
+                    hookSkillList(dock.radiantPlayers, 0);
+                }
+            } else {
+                // Hook them both
+                hookSkillList(dock.radiantPlayers, 0);
+                hookSkillList(dock.direPlayers, 5);
+            }
 
             // Hero tab button
             var btnHeroes:MovieClip = smallButton(this, 'Heroes');
@@ -872,16 +918,25 @@ package  {
             MAX_SKILLS = args.skills;
             MAX_ULTS = args.ults;
 
+            // Troll combos
             if(args.trolls == 0) {
                 banTrollCombos = false;
             } else {
                 banTrollCombos = true;
             }
 
+            // Host banning mode
             if(args.hostBanning == 0) {
                 hostBanning = false;
             } else {
                 hostBanning = true;
+            }
+
+            // Hide skills
+            if(args.hideSkills == 0) {
+                hideSkills = false;
+            } else {
+                hideSkills = true;
             }
 
             // Rehook the picking screen
@@ -906,6 +961,19 @@ package  {
             votingUI.updateSlave(args.opt, args.nv);
         }
 
+        // Fired when the server sends us a decoding code
+        private function handleDecode(args:Object):void {
+            // Was this me? (or everyone)
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                // Store the new decoder
+                decodeWith = args.code - encodeWith;
+
+                // Store teamID
+                myTeam = parseInt(args.team);
+            }
+        }
+
         // Fired when the sever gives us info on the current state
         private function onGetStateInfo(args:Object):void {
             var i:Number, j:Number, skillNumber:Number, slot:MovieClip, skillName, key;
@@ -915,6 +983,11 @@ package  {
                 for(j=0; j<MAX_SLOTS; j++) {
                     skillNumber = args[String(i)+String(j+1)];
                     if(skillNumber != -1) {
+                        // Attempt to decode
+                        if(hideSkills) {
+                            skillNumber = skillNumber - decodeWith;
+                        }
+
                         // Attempt to grab the slot
                         slot = topSkillList[i*MAX_SLOTS+j];
                         if(slot != null) {
@@ -1074,10 +1147,24 @@ package  {
         private function onSkillPicked(args:Object) {
             var slot:MovieClip;
 
+            // Grab skill number
+            var skillNumber:Number = parseInt(args.skillID);
+
+            // Attempt to decode
+            if(hideSkills) {
+                skillNumber = skillNumber - decodeWith;
+            }
+
+            // Grab the skill name
+            var skillName:String = getSkillName(skillNumber);
+
+            // Did we fail to decode?
+            if(skillName == null) return;
+
             // Attempt to find the skill
             var topSkill = topSkillList[args.playerSlot*MAX_SLOTS+args.slotNumber];
             if(topSkill != null) {
-                topSkill.setSkillName(args.skillName);
+                topSkill.setSkillName(skillName);
             } else {
                 trace('WARNING: Failed to find playerID '+args.playerID+', slot '+args.playerSlot);
             }
@@ -1089,7 +1176,7 @@ package  {
                 slot = mySkills['skill'+args.slotNumber];
                 if(slot != null) {
                     // Slot the skill in, build ban list
-                    slot.setSkillName(args.skillName);
+                    slot.setSkillName(skillName);
 
                     // Reset banned combos
                     bannedCombos = {};

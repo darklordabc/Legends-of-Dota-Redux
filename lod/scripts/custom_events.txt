@@ -45,6 +45,7 @@
         "ults"          "byte"
         "trolls"        "byte"
         "hostBanning"   "byte"
+        "hideSkills"    "byte"
     }
 
     // A player stuck a skill into a slot
@@ -52,7 +53,7 @@
     {
         "playerID"      "byte"
         "slotNumber"    "byte"
-        "skillName"     "string"
+        "skillID"       "short"
         "playerSlot"    "byte"
     }
 
@@ -71,6 +72,19 @@
 
         // The new value for it
         "nv"           "short"
+    }
+
+    // Server is sending info on the decoding number
+    "lod_decode"
+    {
+        // The player it related to
+        "playerID"      "byte"
+
+        // The encoded number that only this player can decode
+        "code"          "short"
+
+        // This player's team
+        "team"          "byte"
     }
 
     // The game state

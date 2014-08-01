@@ -237,6 +237,17 @@ for k,v in pairs(ownersKV) do
     skillOwningHero[k] = tonumber(v);
 end
 
+-- Change random seed
+local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
+math.randomseed(tonumber(timeTxt))
+
+-- These numbers are used to encode radiant / dire skills
+local encodeRadiant = math.random(50,100)
+local encodeDire = math.random(50,100)
+
+-- Should we hide the enemy team's skills
+local hideSkills = true
+
 local function isUlt(skillName)
     -- Check if it is tagged as an ulty
     if abs[skillName] and abs[skillName].AbilityType and abs[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
@@ -601,6 +612,12 @@ local function finishVote()
         banTrollCombos = false
     end
 
+    if winners[8] == 2 then
+        hideSkills = false
+    else
+        hideSkills = true
+    end
+
     -- Grab the gamemode
     gamemode = optionToValue(0, winners[0])
 
@@ -671,7 +688,8 @@ local function sendPickingInfo()
             skills = maxSkills,
             ults = maxUlts,
             trolls = (banTrollCombos and 1) or 0,
-            hostBanning = (hostBanning and 1) or 0
+            hostBanning = (hostBanning and 1) or 0,
+            hideSkills = (hideSkills and 1) or 0
         })
     end, 'DelayedInfoTimer', 1, nil)
 end
@@ -715,6 +733,16 @@ local function sendStateInfo()
             -- Grab their skill list
             local l = skillList[i] or {}
 
+            -- Calculate number to encode with
+            local encode = 0
+            if hideSkills then
+                if PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
             -- Loop over this player's skills
             for j=1,6 do
                 -- Ensure the slot is filled
@@ -723,7 +751,13 @@ local function sendStateInfo()
                 local slot = getPlayerSlot(i)
                 if slot ~= -1 then
                     -- Store the ID of this skill
-                    s[tostring(slot..j)] = getSkillID(l[j])
+                    local sid = getSkillID(l[j])
+
+                    if sid == -1 then
+                        s[tostring(slot..j)] = sid
+                    else
+                        s[tostring(slot..j)] = sid+encode
+                    end
                 end
             end
 
@@ -758,10 +792,6 @@ local function think()
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
-            -- Change random seed
-            local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
-            math.randomseed(tonumber(timeTxt))
-
             -- Store when the hero selection started
             heroSelectionStart = GameRules:GetGameTime()
 
@@ -1284,11 +1314,21 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             -- Grab this player's playerSlot
             local playerSlot = getPlayerSlot(playerID)
 
+            -- Prepare encoding number
+            local encode = 0
+            if hideSkills then
+                if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
             -- Tell everyone
             FireGameEvent('lod_skill', {
                 playerID = playerID,
                 slotNumber = slotNumber,
-                skillName = skillName,
+                skillID = getSkillID(skillName)+encode,
                 playerSlot = playerSlot
             })
 
@@ -1476,6 +1516,37 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
         CreateHeroForPlayer(heroName, cmdPlayer)
     end
 end, 'hero selection override', 0)
+
+-- User is trying to update their vote
+Convars:RegisterCommand('lod_decode', function(name, theirNumber)
+    -- We are only accepting numbers
+    theirNumber = tonumber(theirNumber)
+
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
+            -- Send out the encodings
+            FireGameEvent('lod_decode', {
+                playerID = playerID,
+                code = encodeDire + theirNumber,
+                team = DOTA_TEAM_BADGUYS
+            })
+
+            print(encodeDire..' VS '..theirNumber)
+        elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
+            -- Send out the encodings
+            FireGameEvent('lod_decode', {
+                playerID = playerID,
+                code = encodeRadiant + theirNumber,
+                team = DOTA_TEAM_GOODGUYS
+            })
+
+            print(encodeRadiant..' VS '..theirNumber)
+        end
+    end
+end, 'Update a user\'s vote', 0)
 
 -- Setup the thinker
 thisEntity:SetThink(think, 'PickingTimers', 0.25, nil)
