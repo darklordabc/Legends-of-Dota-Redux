@@ -1,39 +1,9 @@
 -- Tell the user it is loading
-print('\n\nLegends of Dota is loading...')
+print('\n\nLegends of Dota modules are loading...')
 
 -- Load modules
 require('skillmanager')
 require('easytimers')
-
-local doneFake = false
-Convars:RegisterCommand('fake', function(name, skillName, slotNumber)
-    -- Check if we are in dev mode
-    if LoadKeyValues('cfg/dev.kv') ~= 0 then
-        -- Stop fake from being run more than once
-        if doneFake then return end
-        doneFake = true
-
-        -- Create fake Players
-        SendToServerConsole('dota_create_fake_clients')
-
-        -- Spawn heroes for the fake players
-        Timers:CreateTimer(function()
-            -- Loop over all players
-            for i=0, 9 do
-                -- Only affect fake clients
-                if PlayerResource:IsFakeClient(i) then
-                    -- Grab player instance
-                    local ply = PlayerResource:GetPlayer(i)
-
-                    -- Make sure we actually found a player instance
-                    if ply then
-                        CreateHeroForPlayer('npc_dota_hero_viper', ply)
-                    end
-                end
-            end
-        end, 'assign_fakes', 0.1)
-    end
-end, 'Adds fake players', 0)
 
 -- Precache everything -- Having issues with the arguments changing
 print('Precaching stuff...')
@@ -50,4 +20,4 @@ end
 print('Done precaching!')
 
 -- Tell the user it has loaded
-print('Legends of Dota has finished loading!\n\n')
+print('Legends of Dota modules have finished loading!\n\n')
