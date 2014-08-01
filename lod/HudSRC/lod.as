@@ -912,8 +912,10 @@ package  {
             var needUpdate:Boolean = false;
 
             // Update bans
-            for(i=1; i<=50; i++) {
-                skillNumber = args['b'+i];
+            var b = args.b.split('|');
+
+            for(key in b) {
+                skillNumber = parseInt(b[key]);
                 if(skillNumber != -1) {
                     // Grab the name of this skill
                     skillName = getSkillName(skillNumber);

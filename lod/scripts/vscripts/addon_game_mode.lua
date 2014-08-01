@@ -51,7 +51,7 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     pickingTime = 15
 
     -- No banning time
-    banningTime = 0
+    banningTime = 15
 else
     print('^ Ignore that message')
 end
@@ -578,7 +578,9 @@ local function finishVote()
     maxSkills = optionToValue(2, winners[2])
     maxUlts = optionToValue(3, winners[3])
 
-    if winners[4] == 2 then
+    -- Bans
+    maxBans = optionToValue(4, winners[4])
+    if maxBans == 0 then
         -- No banning phase
         banningTime = 0
     end
@@ -723,9 +725,15 @@ local function sendStateInfo()
         end
 
         -- Store bans
-        for i=1,50 do
-            s['b'..i] = getSkillID(banned[i])
+        local b
+        for k,v in pairs(banned) do
+            if not b then
+                b = getSkillID(banned[k])
+            else
+                b = b..'|'..getSkillID(banned[k])
+            end
         end
+        s['b'] = b
 
         -- Send picking info to everyone
         FireGameEvent('lod_state', s)

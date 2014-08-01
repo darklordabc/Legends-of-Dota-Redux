@@ -41,7 +41,7 @@
 
                 // Workout how many options there are in this option
                 var totalOptions:Number = 0;
-                while(option.options[totalOptions]) totalOptions++;
+                while(option.options[totalOptions] != null) totalOptions++;
 
                 // Create the panel
                 var optionPanel:MovieClip = new VotingOptionPanel(slave, option.des, option.hint, totalOptions);
