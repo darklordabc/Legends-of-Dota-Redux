@@ -45,13 +45,13 @@ local useEasyMode = false
 -- Check if we are in dev mode
 if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
-    votingTime = 15
+    votingTime = 20
 
     -- Low picking time
     pickingTime = 15
 
     -- No banning time
-    banningTime = 15
+    banningTime = 60
 else
     print('^ Ignore that message')
 end
@@ -62,6 +62,10 @@ end
 
 -- Max number of bans
 local maxBans = 5
+local maxHeroBans = 2
+
+-- Host banning mode?
+local hostBanning = false
 
 -- Colors
 local COLOR_BLUE = '#4B69FF'
@@ -579,10 +583,17 @@ local function finishVote()
     maxUlts = optionToValue(3, winners[3])
 
     -- Bans
+    hostBanning = false
     maxBans = optionToValue(4, winners[4])
     if maxBans == 0 then
         -- No banning phase
         banningTime = 0
+    end
+    if maxBans == -1 then
+        -- Host banning mode
+        hostBanning = true
+        maxBans = 100
+        maxHeroBans = 10
     end
 
     if winners[5] == 2 then
@@ -659,7 +670,8 @@ local function sendPickingInfo()
             slots = maxSlots,
             skills = maxSkills,
             ults = maxUlts,
-            trolls = (banTrollCombos and 1) or 0
+            trolls = (banTrollCombos and 1) or 0,
+            hostBanning = (hostBanning and 1) or 0
         })
     end, 'DelayedInfoTimer', 1, nil)
 end
@@ -1105,6 +1117,12 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        -- Host banning mode?
+        if hostBanning and playerID ~= 0 then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Please wait while the host bans skills.</font>')
+            return
+        end
+
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
@@ -1404,14 +1422,23 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
 
         -- Are we in the banning stage?
         if currentStage == STAGE_BANNING then
+            -- Host banning mode?
+            if hostBanning and playerID ~= 0 then
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Please wait while the host bans skills.</font>')
+                return
+            end
+
             -- Already banned?
             if bannedHeroes[heroName] then
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">is already banned!</font>')
                 return
             end
 
+            -- Ensure they have a value to compare against
+            hasBanned[playerID] = hasBanned[playerID] or 0
+
             -- Have they hit their banning limit?
-            if hasBanned[playerID] then
+            if hasBanned[playerID] >= maxHeroBans then
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Error: </font> <font color="'..COLOR_GREEN..'">You can not ban anymore heroes.</font>')
                 return
             end
@@ -1428,10 +1455,10 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
 
             -- Ok, ban this hero
             bannedHeroes[heroName] = true
-            hasBanned[playerID] = true
+            hasBanned[playerID] = hasBanned[playerID]+1
 
             -- Tell everyone
-            sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">was banned!</font>')
+            sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..heroName..'</font> <font color="'..COLOR_GREEN..'">was banned!</font> <font color="'..COLOR_BLUE..'">('..hasBanned[playerID]..'/'..maxHeroBans..')</font>')
             return
         end
 

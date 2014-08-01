@@ -50,6 +50,9 @@ package  {
         // Are troll combos banned?
         private var banTrollCombos:Boolean = true;
 
+        // Is only the host allowed to ban stuff?
+        private var hostBanning:Boolean = true;
+
         // Constant used for scaling (just the height of our movieClip)
         private static var myStageHeight = 720;
 
@@ -632,6 +635,13 @@ package  {
             banningArea.y = 296;
             banningArea.visible = false;
 
+            // Update host banning status
+            if(!hostBanning || globals.Players.GetLocalPlayer() == 0) {
+                banningArea.banningHelp.text = '#banning_help';
+            } else {
+                banningArea.banningHelp.text = '#banning_help_host';
+            }
+
             // Container for you skills
             mySkills = new YourSkillList(MAX_SLOTS, MAX_SKILLS, MAX_ULTS);
             skillScreen.addChild(mySkills);
@@ -866,6 +876,12 @@ package  {
                 banTrollCombos = false;
             } else {
                 banTrollCombos = true;
+            }
+
+            if(args.hostBanning == 0) {
+                hostBanning = false;
+            } else {
+                hostBanning = true;
             }
 
             // Rehook the picking screen
