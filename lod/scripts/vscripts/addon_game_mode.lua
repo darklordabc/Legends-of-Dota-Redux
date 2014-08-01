@@ -930,9 +930,6 @@ local function think()
         -- Workout who won
         finishVote()
 
-        -- Fix the selection time
-        fixSelectionTime()
-
         -- Move onto banning mode
         currentStage = STAGE_BANNING
 
