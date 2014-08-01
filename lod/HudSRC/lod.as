@@ -1004,8 +1004,6 @@ package  {
 
                         // Is this skill for us?
                         if(i == args[playerID]) {
-                            trace('LOCAL!');
-
                             // Put the skill into the slot
                             if(skillIntoSlot(j, skillName)) {
                                 // A slot was changed
