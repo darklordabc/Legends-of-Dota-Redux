@@ -137,6 +137,8 @@ local skillWarnings = {
     --doom_bringer_devour = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">doom_bringer_devour</font> <font color="'..COLOR_GREEN..'">will replace your slot 4 and 5 with creep skills!</font>',
     rubick_spell_steal = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">rubick_spell_steal</font> <font color="'..COLOR_GREEN..'">will use up slots 4, 5 and 6!</font>',
     luna_eclipse = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">luna_eclipse</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">luna_lucent_beam</font> <font color="'..COLOR_GREEN..'">if you want it to do anything.</font>',
+    puck_illusory_orb = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">puck_illusory_orb</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">puck_ethereal_jaunt</font> <font color="'..COLOR_GREEN..'">if you want to teleport to your orb.</font>',
+    techies_remote_mines = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">techies_remote_mines</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">techies_focused_detonate</font> <font color="'..COLOR_GREEN..'">if you want to detonate your remote mines.</font>',
 }
 
 -- This will contain the total number of votable options
