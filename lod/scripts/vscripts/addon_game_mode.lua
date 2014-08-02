@@ -442,27 +442,6 @@ local function CheckDraft(playerID, skillName)
     end
 end
 
--- Fixes broken heroes
-local function fixBuilds()
-    for k,v in pairs(brokenHeroes) do
-        if k then
-            local playerID = k:GetPlayerID()
-
-            -- Grab their build
-            local build = skillList[playerID] or {}
-
-            -- Apply the build
-            SkillManager:ApplyBuild(k, build)
-
-            -- Store playerID has handled
-            handledPlayerIDs[playerID] = true
-        end
-    end
-
-    -- No more broken heroes
-    brokenHeroes = {}
-end
-
 local function findRandomSkill(playerID, slotNumber)
     -- Workout if we can put an ulty here, or a skill
     local canUlt = true
@@ -505,6 +484,50 @@ local function findRandomSkill(playerID, slotNumber)
 
     -- Pick a random skill
     return nil, possibleSkills[math.random(#possibleSkills)]
+end
+
+-- Ensures the person has all their slots used
+local function validateBuild(playerID)
+    -- Ensure it exists
+    skillList[playerID] = skillList[playerID] or {}
+
+    -- Loop over all slots
+    for j=0,maxSlots-1 do
+        -- Do they have a skill in this slot?
+        if not skillList[playerID][j+1] then
+            local msg, skillName = findRandomSkill(playerID, j)
+
+            -- Did we find a valid skill?
+            if skillName then
+                -- Pick a random skill
+                skillList[playerID][j+1] = skillName
+            end
+        end
+    end
+end
+
+-- Fixes broken heroes
+local function fixBuilds()
+    for k,v in pairs(brokenHeroes) do
+        if k then
+            local playerID = k:GetPlayerID()
+
+            -- Validate the build
+            validateBuild(playerID)
+
+            -- Grab their build
+            local build = skillList[playerID] or {}
+
+            -- Apply the build
+            SkillManager:ApplyBuild(k, build)
+
+            -- Store playerID has handled
+            handledPlayerIDs[playerID] = true
+        end
+    end
+
+    -- No more broken heroes
+    brokenHeroes = {}
 end
 
 local function fixSelectionTime()
@@ -1083,6 +1106,9 @@ ListenToGameEvent('npc_spawned', function(keys)
 
         -- Check if the game has started yet
         if currentStage > STAGE_PICKING then
+            -- Validate the build
+            validateBuild(playerID)
+
             -- Grab their build
             local build = skillList[playerID] or {}
 
