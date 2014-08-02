@@ -78,6 +78,7 @@ local function fixModifiers(hero, skill)
 end
 
 -- Precaches a skill -- DODGY!
+local alreadyCached = {}
 local function precacheSkill(skillName)
     local heroID = skillOwningHero[skillName]
 
@@ -85,16 +86,12 @@ local function precacheSkill(skillName)
         local heroName = heroIDToName[heroID]
 
         if heroName then
-            -- Attempt the precache
-            if not pcall(function()
-                PrecacheUnitByName('npc_precache_'..heroName)
-            end) then
-                if not pcall(function()
-                    PrecacheUnitByName('npc_precache_'..heroName, {})
-                end) then
-                    print('PRE CACHING HAS FAILED! I AM A SAD PANDA! '..heroName)
-                end
-            end
+            -- Have we already cached this?
+            if alreadyCached[heroName] then return end
+            alreadyCached[heroName] = true
+
+            -- Cache it
+            CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
         end
     end
 end
@@ -259,6 +256,9 @@ function skillManager:ApplyBuild(hero, build)
     -- Remove perma invis
     hero:RemoveModifierByName('modifier_riki_permanent_invisibility')
 end
+
+-- Attempt to store the precacher of everything
+CreateUnitByName('npc_precache_everything', Vector(-10000, -10000, 0), false, nil, nil, 0)
 
 -- Define the export
 SkillManager = skillManager
