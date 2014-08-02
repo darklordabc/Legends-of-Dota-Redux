@@ -782,11 +782,20 @@ local function backdoorFix()
 
     for k,ent in pairs(ents) do
         local name = ent:GetName()
-
+		local ab
+		
+		if ent:HasAbility('backdoor_protection') then
+			ab = ent:FindAbilityByName('backdoor_protection')
+		elseif ent:HasAbility('backdoor_protection_in_base') then
+			ab = ent:FindAbilityByName('backdoor_protection_in_base')
+		end
+		
         -- Should we protect it?
         if not blocked[name] then
             -- Protect it
             ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+			
+			ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
         end
     end
 
@@ -794,6 +803,16 @@ local function backdoorFix()
     ents = Entities:FindAllByClassname('npc_dota_barracks')
     for k,ent in pairs(ents) do
         ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+		
+		ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
+    end
+	
+	-- Protect ancient
+    ents = Entities:FindAllByClassname('npc_dota_fort')
+    for k,ent in pairs(ents) do
+        ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+		
+		ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
     end
 end
 
