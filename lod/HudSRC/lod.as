@@ -1003,7 +1003,7 @@ package  {
                         }
 
                         // Is this skill for us?
-                        if(i == args[playerID]) {
+                        if(i == parseInt(args[playerID])) {
                             // Put the skill into the slot
                             if(skillIntoSlot(j, skillName)) {
                                 // A slot was changed

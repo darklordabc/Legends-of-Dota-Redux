@@ -853,7 +853,7 @@ sendStateInfo = function()
             local slot = getPlayerSlot(i)
 
             -- Store playerID --> Slot
-            s[i] = slot
+            s[tostring(i)] = slot
 
             -- Loop over this player's skills
             for j=1,6 do
