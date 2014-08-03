@@ -771,7 +771,7 @@ local function backdoorFix()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
 
     -- List of towers to not protect
-    local blocked = {
+    local ignore = {
         dota_goodguys_tower1_bot = true,
         dota_goodguys_tower1_mid = true,
         dota_goodguys_tower1_top = true,
@@ -780,39 +780,46 @@ local function backdoorFix()
         dota_badguys_tower1_top = true
     }
 
+    -- Loop over all ents
     for k,ent in pairs(ents) do
         local name = ent:GetName()
-	local ab
-		
-	if ent:HasAbility('backdoor_protection') then
-		ab = ent:FindAbilityByName('backdoor_protection')
-	elseif ent:HasAbility('backdoor_protection_in_base') then
-		ab = ent:FindAbilityByName('backdoor_protection_in_base')
-	end
-		
+        local ab
+
+        -- Check if this unit has backdoor protection
+    	if ent:HasAbility('backdoor_protection') then
+    		ab = ent:FindAbilityByName('backdoor_protection')
+    	elseif ent:HasAbility('backdoor_protection_in_base') then
+    		ab = ent:FindAbilityByName('backdoor_protection_in_base')
+    	end
+
         -- Should we protect it?
-        if not blocked[name] then
-            	-- Protect it
-        	 ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
-			
-		ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
+        if not ignore[name] then
+            -- Stop towers going down in the wrong order
+            ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+
+            -- Prevent anal (backdooring)
+            ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
         end
     end
 
     -- Protect rax
     ents = Entities:FindAllByClassname('npc_dota_barracks')
     for k,ent in pairs(ents) do
+        -- Stop it going down before towers are removed
         ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
-		
-	ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
+
+        -- Prevent Anal (backdooring)
+        ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
     end
-	
+
 	-- Protect ancient
     ents = Entities:FindAllByClassname('npc_dota_fort')
     for k,ent in pairs(ents) do
+        -- Stop the fort going down before the correct towers
         ent:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
-		
-	ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
+
+        -- Prevent backdooring
+        ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
     end
 end
 
