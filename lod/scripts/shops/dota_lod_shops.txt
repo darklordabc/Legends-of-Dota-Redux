@@ -104,8 +104,8 @@
 
     "magics"
     {
-        "item"      "item_force_staff"
         "item"      "item_slippers_of_halcyon"
+        "item"      "item_force_staff"
         "item"      "item_necronomicon"
         "item"      "item_cyclone"
         "item"      "item_dagon"
