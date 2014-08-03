@@ -298,6 +298,39 @@ local function isChannelled(skillName)
     return false
 end
 
+-- Function to work out if we can multicast with a given spell or not
+local function canMulticast(skillName)
+    -- No channel skills
+    if isChannelled(skillName) then
+        return false
+    end
+
+    -- No banned multicast spells
+    if banList.noMulticast[skillName] then
+        return false
+    end
+
+    -- Must be a valid spell
+    return true
+end
+
+-- Custom multicast delays [export to KV if gets too big]
+--[[local multicastDelay = {
+    item_satanic = 3.5
+}
+
+-- Returns how long to wait before casting again
+local function getMulticastDelay(skillName)
+    -- Check if there is a custom delay for this skill
+    if multicastDelay[skillName] ~= nil then
+        -- Yep, ensure it's a number and return it
+        return tonumber(multicastDelay[skillName])
+    end
+
+    -- Default delay
+    return 0.1
+end]]
+
 -- Returns the ID for a skill, or -1
 local function getSkillID(skillName)
     -- If the skill wasn't found, return -1
@@ -1183,7 +1216,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they have multicast
-            if not isChannelled(keys.abilityname) and hero:HasAbility('ogre_magi_multicast_lod') then
+            if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
                 if mab then
                     -- Grab the level of the ability
@@ -1222,23 +1255,43 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     -- Are we doing any multiplying?
                     if mult > 0 then
                         local ab = hero:FindAbilityByName(keys.abilityname)
+
+                        -- If we failed to find it, it might hav e been an item
+                        if not ab and hero:HasModifier('modifier_item_ultimate_scepter') then
+                            for i=0,5 do
+                                -- Grab the slot item
+                                local slotItem = hero:GetItemInSlot(i)
+
+                                -- Was this the spell that was cast?
+                                if slotItem and slotItem:GetClassname() == keys.abilityname then
+                                    -- We found it
+                                    ab = slotItem
+                                    break
+                                end
+                            end
+                        end
+
                         if ab then
                             -- How long to delay each cast
-                            local delay = 0.1
+                            local delay = 0.1--getMulticastDelay(keys.abilityname)
 
                             -- Grab the position
                             local pos = hero:GetCursorPosition()
 
                             Timers:CreateTimer(function()
-                                -- Position cursor
-                                hero:SetCursorPosition(pos)
+                                print('CAST!')
+                                -- Ensure it still exists
+                                if IsValidEntity(ab) then
+                                    -- Position cursor
+                                    hero:SetCursorPosition(pos)
 
-                                -- Run the spell again
-                                ab:OnSpellStart()
+                                    -- Run the spell again
+                                    ab:OnSpellStart()
 
-                                mult = mult-1
-                                if mult > 1 then
-                                    return delay
+                                    mult = mult-1
+                                    if mult > 1 then
+                                        return delay
+                                    end
                                 end
                             end, DoUniqueString('multicast'), delay)
 
