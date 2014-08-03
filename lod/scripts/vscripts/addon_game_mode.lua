@@ -39,6 +39,9 @@ local banTrollCombos = true
 -- The starting level
 local startingLevel = 1
 
+-- The amount of bonus gold to award players
+local bonusGold = 0
+
 -- Should we turn easy mode on?
 local useEasyMode = false
 
@@ -786,6 +789,9 @@ local function finishVote()
     -- Grab the starting level
     startingLevel = optionToValue(6, winners[6])
 
+    -- Grab bonus gold
+    bonusGold = optionToValue(9, winners[9])
+
     -- Are we using easy mode?
     if optionToValue(7, winners[7]) == 1 then
         -- Enable easy mode
@@ -796,7 +802,7 @@ local function finishVote()
     setupGamemodeSettings()
 
     -- Announce results
-    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">.</font>')
+    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">! Bonus gold is </font></font><font color="'..COLOR_BLUE..'">'..bonusGold..'</font><font color="'..COLOR_GREEN..'">.</font>')
 end
 
 -- This will be fired when the game starts
@@ -1145,6 +1151,9 @@ ListenToGameEvent('npc_spawned', function(keys)
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
 
+        -- Grab their playerID
+        local playerID = spawnedUnit:GetPlayerID()
+
         -- Do we need to level up?
         if startingLevel > 1 then
             -- Level it up
@@ -1157,8 +1166,10 @@ ListenToGameEvent('npc_spawned', function(keys)
             spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
         end
 
-        -- Grab their playerID
-        local playerID = spawnedUnit:GetPlayerID()
+        -- Any bonus gold?
+        if bonusGold > 0 then
+            PlayerResource:SetGold(playerID, bonusGold, true)
+        end
 
         -- Don't touch bots
         if PlayerResource:IsFakeClient(playerID) then return end
