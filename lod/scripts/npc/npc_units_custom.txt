@@ -42,12 +42,17 @@
 			"model"			"models/development/invisiblebox.mdl"
 			"model"			"models/heroes/terrorblade/demon.mdl"
 
+			"soundfile" "scripts/game_sounds/nian.txt"
+
 			"particlefile"				"particles/creature_splitter.pcf"
 			"particlefile"				"particles/frostivus_gameplay.pcf"
 			"particlefile"				"particles/frostivus_herofx.pcf"
 			"particlefile"				"particles/generic_aoe_persistent_circle_1.pcf"
 			"particlefile"				"particles/holdout_lina.pcf"
 			"particlefile"				"particles/test_particle.pcf"
+			"particlefile"				"particles/nian_gameplay.pcf"
+			"particlefile"				"particles/nian_gameplay_b.pcf"
+			"particlefile"				"particles/nian_temp.pcf"
 		}
 	}
 
