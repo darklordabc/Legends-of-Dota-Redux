@@ -284,6 +284,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);
             this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);
             this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);
+            this.gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", onUnitSelectionUpdated);
 
             // Request coding numbers
             requestDecodingNumber();
@@ -971,6 +972,34 @@ package  {
 
                 // Store teamID
                 myTeam = parseInt(args.team);
+            }
+        }
+
+        // When the unit selection is updated
+        private function onUnitSelectionUpdated():void {
+            var fixerTimer = new Timer(1);
+            fixerTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
+            fixerTimer.start();
+        }
+
+        // Fixes the hot keys
+        private function fixHotkeys():void {
+            // Build the text array
+            var txt = {
+                0: 'Q',
+                1: 'W',
+                2: 'E',
+                3: 'D',
+                4: 'F',
+                5: 'R'
+            };
+
+            // Patch in R
+            txt[MAX_SLOTS-1] = 'R';
+
+            // Set the text
+            for(var i:Number=0; i<6; i++) {
+                globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = txt[i];
             }
         }
 
