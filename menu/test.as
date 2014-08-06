@@ -210,7 +210,44 @@
         }
 
         public function onDumpClicked(event:MouseEvent) {
+            //PrintTable(globals);
             PrintTable(globals);
+        }
+
+        public function onCustomClicked(event:MouseEvent) {
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.visible = true;
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.createLobbyButton.visible = true;
+
+            var playClip = globals.Loader_play.movieClip;
+            var playMain = playClip.PlayWindow.PlayMain;
+            var nav = playMain.Nav;
+
+            playClip.enableTab(12, true);
+            nav.tab12.visible = true;
+
+            globals.Loader_custom_games.movieClip.setCurrentCustomGameSubTab(0);
+
+
+            //playClip.setCurrentTab(12);
+        }
+
+        public function onCustom2Clicked(event:MouseEvent) {
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.visible = true;
+            //globals.Loader_dashboard_overlay.movieClip.customLobbyMenu.createLobbyButton.visible = true;
+
+            var playClip = globals.Loader_play.movieClip;
+            var playMain = playClip.PlayWindow.PlayMain;
+            var nav = playMain.Nav;
+
+            playClip.enableTab(12, true);
+            nav.tab12.visible = true;
+        }
+
+        public function onCustom3Clicked(event:MouseEvent) {
+            globals.Loader_custom_games.movieClip.DLCPrompt.visible = false;
+            globals.Loader_custom_games.movieClip.DLCPrompt.scaleX = 0;
+            globals.Loader_custom_games.movieClip.DLCPrompt.scaleY = 0;
+            globals.Loader_custom_games.movieClip.removeChild(globals.Loader_custom_games.movieClip.DLCPrompt);
         }
 
         public function crayz(e:TimerEvent) {
@@ -322,7 +359,7 @@
         }
 
 		public function logTest(e:TimerEvent) {
-			trace("Injected by Ash47!\n\n\n");
+			trace("Injected by Ash47! test!\n\n\n");
 
             // Hook all clicks
             globals.Level0.addEventListener(MouseEvent.CLICK, onStageClicked);
@@ -345,13 +382,25 @@
             btn.addEventListener(MouseEvent.CLICK, onDumpClicked);
 
             btn = new dotoButtonClass();
-            globals.Loader_spectate_heroselection.movieClip.addChild(btn);
+            addChild(btn);
             btn.x = 4;
             btn.y = 190;
-            btn.label = 'Techies Hack';
-            btn.addEventListener(MouseEvent.CLICK, function(event:MouseEvent) {
-                globals.Loader_spectate_heroselection.movieClip.finishRDAllStar();
-            });
+            btn.label = 'Custom Games';
+            btn.addEventListener(MouseEvent.CLICK, onCustomClicked);
+
+            btn = new dotoButtonClass();
+            addChild(btn);
+            btn.x = 4;
+            btn.y = 220;
+            btn.label = 'Custom Games 2';
+            btn.addEventListener(MouseEvent.CLICK, onCustom2Clicked);
+
+            btn = new dotoButtonClass();
+            addChild(btn);
+            btn.x = 4;
+            btn.y = 250;
+            btn.label = 'Remove DRM';
+            btn.addEventListener(MouseEvent.CLICK, onCustom3Clicked);
 
             return;
 
