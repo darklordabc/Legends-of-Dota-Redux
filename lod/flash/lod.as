@@ -357,6 +357,15 @@ package  {
                 requestDecodingNumber();
             }
 
+            // Ensure we're on a team
+            if(globals.Players.GetLocalPlayer() == -1) {
+                // Try again in 1 second
+                var requestTimer = new Timer(1000);
+                requestTimer.addEventListener(TimerEvent.TIMER, requestStateInfo, false, 0, true);
+                requestTimer.start();
+                return;
+            }
+
             // Voting info is most important
             if(!gottenVotingInfo) {
                 requestVoteStatus();
@@ -883,6 +892,9 @@ package  {
 
         // Fired when the server gives us voting info
         private function onGetVotingInfo(args:Object):void {
+            // If we have no playerID, simply stop -- we aren't allocated to a team yet!
+            if(globals.Players.GetLocalPlayer() == -1) return;
+
             // Only do this once
             if(gottenVotingInfo) return;
             gottenVotingInfo = true;
@@ -890,6 +902,8 @@ package  {
             // Store vars
             heroSelectionStart = args.startTime;
             votingTime = args.votingTime;
+
+            trace('your playerID = '+globals.Players.GetLocalPlayer());
 
             // Workout if we are a slave or not
             if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {

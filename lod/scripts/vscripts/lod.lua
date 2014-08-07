@@ -1446,6 +1446,8 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        print('playerID = '..playerID)
+
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
