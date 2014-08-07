@@ -1,0 +1,585 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    // Recipe: Slippers of Halcyon
+    //=================================================================================================================
+    "item_recipe_slippers_of_halcyon"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1010"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "BaseClass"                     "item_recipe_tranquil_boots"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_slippers_of_halcyon"
+        "ItemRequirements"
+        {
+            "01"                        "item_tranquil_boots;item_vitality_booster"
+        }
+    }
+
+    //=================================================================================================================
+    // Slippers of Halcyon
+    //=================================================================================================================
+    "item_slippers_of_halcyon"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1011"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_slippers_of_halcyon"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "40.0"
+        "AbilityChannelTime"            "20.0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                           "80"
+        "ItemCost"                      "2075"
+        "ItemShopTags"                  "move_speed;boost_mana;mana_pool"
+        "ItemQuality"                   "rare"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+        "ItemAlertable"                 "1"
+        "ItemAliases"                   "mana;mb"
+
+
+        "precache"
+        {
+            "particlefile" "particles/units/heroes/hero_huskar.pcf"
+        }
+
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_slippers_of_halcyon_caster"
+            }
+        }
+
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_slippers_of_halcyon_caster"
+            }
+        }
+
+        "OnUnequip"
+        {
+            "RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_slippers_of_halcyon_caster"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_slippers_of_halcyon"
+            {
+                "Passive"    "1"
+                "IsHidden"   "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"  "%bonus_movement"
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"             "%bonus_hp"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%bonus_armor"
+                }
+            }
+
+            "modifier_slippers_of_halcyon_caster"
+            {
+                "ThinkInterval"     "%tick_rate"
+                "OnIntervalThink"
+                {
+                    "Heal"
+                    {
+                        "Target"
+                        {
+                            "Center"     "CASTER"
+                            "Radius"     "%radius"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+                        }
+                        "HealAmount"   "%hp_per_tick"
+                    }
+                    "AttachEffect"
+                    {
+                        "Target"
+                        {
+                            "Center" "CASTER"
+                            "Radius" "%radius"
+                            "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                            "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+                        }
+                        "EffectName"        "troll_heal"
+                        "EffectAttachType"  "follow_origin"
+                    }
+                    "FireSound"
+                    {
+                        "Target"
+                        {
+                            "Center" "CASTER"
+                            "Radius" "%radius"
+                            "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                            "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+                        }
+                        "EffectName" "n_creep_ForestTrollHighPriest.Heal"
+                    }
+                    "AttachEffect"
+                    {
+                        "Target" "CASTER"
+                        "EffectName"        "huskar_inner_vitality"
+                        "EffectAttachType"  "follow_origin"
+                        "EffectRadius"      "%radius"
+                    }
+
+                }
+
+            }
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_movement"        "75"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_hp"              "275"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_armor"           "4"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_per_tick"           "20"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "tick_rate"             "0.5"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "700"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "15.0"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Arcane Boots
+    //=================================================================================================================
+    "item_recipe_arcane_boots2"
+    {
+
+        "BaseClass"                     "item_recipe_arcane_boots"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_arcane_boots2"
+        "ItemRequirements"
+        {
+            "01"                        "item_energy_booster;item_arcane_boots"
+        }
+    }
+
+    //=================================================================================================================
+    // Arcane Boots 2
+    //=================================================================================================================
+    "item_arcane_boots2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "BaseClass"                     "item_arcane_boots"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "55.0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "25"
+        "ItemCost"                      "2450"
+        "ItemShopTags"                  "move_speed;boost_mana;mana_pool"
+        "ItemQuality"                   "rare"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemDisassembleRule"           "0"
+        "ItemAlertable"                 "1"
+        "ItemAliases"                   "mana;mb"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_movement"        "75"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana"            "500"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "replenish_radius"      "600"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "replenish_amount"      "250"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Force Boots
+    //=================================================================================================================
+    "item_recipe_force_boots"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1016"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_force_boots"
+        "ItemRequirements"
+        {
+            "01"                        "item_force_staff;item_power_treads"
+        }
+    }
+
+    //=================================================================================================================
+    // Force Boots
+    //=================================================================================================================
+    "item_force_boots"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1018"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "3650"
+        "ItemShopTags"                  "attack_speed;move_speed;int;agi;str;hard_to_tag"
+        "ItemQuality"                   "common"
+        "ItemAliases"                   "force boots"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemPurchasable"               "1"
+        "AbilityCooldown"               "5.0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_movement_speed"  "55"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_str"             "8"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_agi"             "8"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_int"             "8"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_attack_speed"    "30"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "push_length"           "600"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Desolator2
+    //=================================================================================================================
+    "item_recipe_desolator2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1017"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "900"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_desolator2"
+        "ItemRequirements"
+        {
+            "01"                        "item_desolator;item_claymore;item_medallion_of_courage;item_recipe_desolator"
+        }
+    }
+
+    //=================================================================================================================
+    // Desolator
+    //=================================================================================================================
+    "item_desolator2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1019"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                 "item_desolator"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "6725"
+        "ItemShopTags"                  "damage;unique"
+        "ItemQuality"                   "artifact"
+        "ItemAliases"                   "desolator"
+        "ItemDeclarations"              "DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "100"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "corruption_armor"      "-13"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "corruption_duration"   "15.0"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Crimson Guard
+    //=================================================================================================================
+    "item_recipe_crimson_guard"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1023"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_crimson_guard"
+        "ItemRequirements"
+        {
+            "01"                        "item_vanguard;item_platemail;item_ultimate_orb"
+        }
+    }
+
+    //=================================================================================================================
+    // Crimson Guard
+    //=================================================================================================================
+    "item_crimson_guard"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1024"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5725"
+        "ItemShopTags"                  "regen_health;block;health_pool"
+        "ItemQuality"                   "epic"
+        "ItemAliases"                   "crimson"
+        "ItemDeclarations"              "DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health"          "300"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health_regen"    "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_armor"           "10"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_stats"           "10"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "block_damage_melee"    "30"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "block_chance"          "80"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Vermillion Robe
+    //=================================================================================================================
+    "item_recipe_vermillion_robe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1025"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_vermillion_robe"
+        "ItemRequirements"
+        {
+            "01"                        "item_reaver;item_eagle;item_mystic_staff;item_cloak"
+        }
+    }
+
+    //=================================================================================================================
+    // Vermillion Robe
+    //=================================================================================================================
+    "item_vermillion_robe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1026"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "9750"
+        "ItemShopTags"                  "regen_health;block;health_pool"
+        "ItemQuality"                   "epic"
+        "ItemAliases"                   "vermillion"
+        "ItemDeclarations"              "DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "AbilityCooldown"               "5.0"
+        "AOERadius"                     "%radius"
+
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_stats"           "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mana_regen_pct"        "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "move_speed_bonus"      "2"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "300"
+            }
+            "05"
+            {
+                "var_type"                                  "FIELD_FLOAT"
+                "delay"                                     "1.6"
+            }
+            "06"
+            {
+                "var_type"                                  "FIELD_FLOAT"
+                "damage_per_health_missing"                 "1.5"
+            }
+        }
+    }
+}

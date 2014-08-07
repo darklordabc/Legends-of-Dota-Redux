@@ -1,4 +1,0 @@
- "AddonInfo"
-{
-     addonID                 100                                        // Unique ID for this addon
-}
