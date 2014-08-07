@@ -1,3 +1,8 @@
+-- Ensure lod exists
+if _G.lod == nil then
+    _G.lod = class({})
+end
+
 -- Load modules
 require('skillmanager')
 require('easytimers')
@@ -9,6 +14,11 @@ if lod == nil then
 end
 
 function Precache( context )
+
+	print('PRECACHING CALLED!')
+
+	lod:precacheAll(context)
+
 	--[[PrecacheResource('particle', 'particles/creature_splitter.pcf', context)
 	PrecacheResource('particle', 'particles/frostivus_gameplay.pcf', context)
 	PrecacheResource('particle', 'particles/frostivus_herofx.pcf', context)

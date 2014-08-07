@@ -1,10 +1,5 @@
 print("Gamemode started to load...")
 
--- Ensure lod exists
-if lod == nil then
-    lod = class({})
-end
-
 --[[
     SETTINGS
 ]]
