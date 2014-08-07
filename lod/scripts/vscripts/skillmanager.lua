@@ -97,9 +97,9 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
+            --[[PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
                 CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-            end)
+            end)]]
         end
     end
 end
