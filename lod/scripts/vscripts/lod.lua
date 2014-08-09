@@ -52,7 +52,7 @@ local allowedToPick = true
 local forceRandomHero = false
 
 -- Check if we are in dev mode
-if LoadKeyValues('cfg/dev.kv') ~= 0 then
+--[[if LoadKeyValues('cfg/dev.kv') ~= 0 then
     -- Low voting time
     votingTime = 20
 
@@ -63,7 +63,7 @@ if LoadKeyValues('cfg/dev.kv') ~= 0 then
     banningTime = 15
 else
     print('^ Ignore that message')
-end
+end]]
 
 --[[
     FUNCTION DEFINITIONS
