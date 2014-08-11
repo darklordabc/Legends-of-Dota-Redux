@@ -992,7 +992,7 @@ function lod:InitGameMode()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
-    GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
+    --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
 end
 
 -- Run to handle
@@ -1018,7 +1018,7 @@ function lod:OnThink()
         fixSelectionTime()
 
         -- Run again in a moment
-        return 0.25
+        return 2
     end
 
     if currentStage == STAGE_VOTING then
@@ -1677,7 +1677,7 @@ local function getRandomHeroName()
     end
 end
 
-Convars:RegisterCommand('dota_select_hero', function(name, heroName)
+--[[Convars:RegisterCommand('dota_select_hero', function(name, heroName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
@@ -1775,7 +1775,7 @@ Convars:RegisterCommand('dota_select_hero', function(name, heroName)
             CreateHeroForPlayer(heroName, cmdPlayer)
         end)
     end
-end, 'hero selection override', 0)
+end, 'hero selection override', 0)]]
 
 -- User is trying to update their vote
 Convars:RegisterCommand('lod_decode', function(name, theirNumber)

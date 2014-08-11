@@ -13,7 +13,11 @@ if lod == nil then
 	return
 end
 
+local donePrecaching = false
 function Precache( context )
+	-- Ensure we only precache once
+	if donePrecaching then return end
+	donePrecaching = true
 
 	print('PRECACHING CALLED!')
 
