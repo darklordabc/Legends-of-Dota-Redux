@@ -544,6 +544,7 @@ end
 
 -- Fixes broken heroes
 local function fixBuilds()
+    -- Give skills
     for k,v in pairs(brokenHeroes) do
         if k then
             local playerID = k:GetPlayerID()

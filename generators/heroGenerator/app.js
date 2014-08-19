@@ -258,10 +258,19 @@ fs.readFile(scriptDir+'npc_heroes.txt', function(err, itemData) {
         precacher['npc_precache_'+name] = {
             BaseClass: 'npc_dota_creep',
             precache: {
-                particlefile: data.ParticleFile,
+                particle_folder: data.particle_folder,
                 soundfile: data.GameSoundsFile
             }
         }
+
+        // Extra precache stuff
+        if(data.precache) {
+            for(var key in data.precache) {
+                precacher['npc_precache_'+name].precache[key] = data.precache[key];
+            }
+        }
+
+        //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
     }
 
     fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {

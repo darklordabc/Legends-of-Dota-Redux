@@ -58,9 +58,11 @@ for k,v in pairs(heroListKV) do
 end
 
 function lod:precacheAll(context)
-    for k,v in pairs(heroIDToName) do
-        PrecacheUnitByNameSync(v, context)
-    end
+    --[[for k,v in pairs(heroIDToName) do
+        PrecacheUnitByNameSync('npc_precache_'..v, context)
+    end]]
+
+    --PrecacheUnitByNameSync('npc_precache_everything', context)
 end
 
 local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
@@ -97,9 +99,9 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            --[[PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
+            PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
                 CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-            end)]]
+            end)
         end
     end
 end
