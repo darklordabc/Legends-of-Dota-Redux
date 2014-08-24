@@ -82,7 +82,7 @@
         "item"      "item_oblivion_staff"
         "item"      "item_hand_of_midas"
         "item"      "item_travel_boots"
-        "item"      "item_force_boots"
+        //"item"      "item_force_boots"
     }
 
     // Level 2 - Blue Recipes
@@ -104,7 +104,7 @@
 
     "magics"
     {
-        "item"      "item_slippers_of_halcyon"
+        //"item"      "item_slippers_of_halcyon"
         "item"      "item_force_staff"
         "item"      "item_necronomicon"
         "item"      "item_cyclone"
@@ -115,7 +115,7 @@
         "item"      "item_orchid"
         "item"      "item_refresher"
         "item"      "item_sheepstick"
-        "item"      "item_vermillion_robe"
+        //"item"      "item_vermillion_robe"
     }
 
     // Level 3 - Purple Recipes
@@ -132,7 +132,7 @@
         "item"      "item_sphere"
         "item"      "item_assault"
         "item"      "item_heart"
-        "item"      "item_crimson_guard"
+        //"item"      "item_crimson_guard"
     }
 
     "weapons"

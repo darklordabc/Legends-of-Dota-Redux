@@ -57,6 +57,14 @@ for k,v in pairs(heroListKV) do
     end
 end
 
+function lod:precacheAll(context)
+    --[[for k,v in pairs(heroIDToName) do
+        PrecacheUnitByNameSync('npc_precache_'..v, context)
+    end]]
+
+    --PrecacheUnitByNameSync('npc_precache_everything', context)
+end
+
 local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
 for k,v in pairs(ownersKV) do
     skillOwningHero[k] = tonumber(v)
@@ -91,7 +99,9 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
+            PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
+                CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
+            end)
         end
     end
 end
@@ -258,7 +268,9 @@ function skillManager:ApplyBuild(hero, build)
 end
 
 -- Attempt to store the precacher of everything
-CreateUnitByName('npc_precache_everything', Vector(-10000, -10000, 0), false, nil, nil, 0)
+--CreateUnitByName('npc_precache_everything', Vector(-10000, -10000, 0), false, nil, nil, 0)
+
+--PrecacheUnitByNameAsync('npc_precache_everything', function()end)
 
 -- Define the export
 SkillManager = skillManager
