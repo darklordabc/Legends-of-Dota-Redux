@@ -8,6 +8,12 @@ require('skillmanager')
 require('easytimers')
 require('lod')
 
+-- Stat collection
+require('lib.statcollection')
+statcollection.addStats{{
+	modID = '2374504c2c518fafc9731a120e67fdf5'
+}}
+
 if lod == nil then
 	print('LOD FAILED TO INIT!')
 	return

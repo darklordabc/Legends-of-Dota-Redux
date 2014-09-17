@@ -5,13 +5,13 @@ print("Gamemode started to load...")
 ]]
 
 -- Voting period
-local votingTime = 60
+local votingTime = 0
 
 -- Banning Period
-local banningTime = 90
+local banningTime = 0
 
 -- Picking Time
-local pickingTime = 120
+local pickingTime = 0
 
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
@@ -1086,9 +1086,9 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_PLAYING then
-        if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            -- Fix backdoor
-            --backdoorFix()
+        if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+            -- Send stats
+            statcollection.sendStats()
 
             -- Finally done!
             return
@@ -1210,7 +1210,7 @@ end, nil)
 
 -- Multicast + Riki ulty
 ListenToGameEvent('dota_player_used_ability', function(keys)
-    local ply = EntIndexToHScript(keys.player)
+    local ply = EntIndexToHScript(keys.PlayerID)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then

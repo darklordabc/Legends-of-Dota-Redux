@@ -189,4 +189,10 @@
         "s8"            "string"
         "s9"            "string"
     }
+
+    // Stat collection
+    "stat_collection"
+    {
+        "json"          "string"
+    }
 }

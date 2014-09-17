@@ -16337,6 +16337,15 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_brewmaster.vsndevts"
 
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"npc"			"npc_dota_brewmaster_earth_1"
+			"npc"			"npc_dota_brewmaster_storm_1"
+			"npc"			"npc_dota_brewmaster_fire_1"
+		}
+
 		// Items
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemSlots"
