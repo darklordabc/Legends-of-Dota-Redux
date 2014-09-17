@@ -1,6 +1,12 @@
 --[[
 Usage:
 
+You firstly need to include the module like so:
+
+require('lib.statcollection')
+
+You can then begin to collect stats like this:
+
 statcollection.addStats({
     modID = 'YourUniqueModID',
     someStat = 'someOtherValue'
@@ -9,6 +15,8 @@ statcollection.addStats({
 You can call statcollection.addStats() with a table at any stage to add new stats,
 old stats will still remain, if you provide new values, the new values will override
 the old values.
+
+When you're ready to store the stats (only call this once!)
 
 statcollection.sendStats({
     anyExtraStats = 'WhatEver'
@@ -32,6 +40,9 @@ module('statcollection', package.seeall)
 -- The extra fields to copy into the stats
 local extraFields = {}
 
+-- Makes sure we don't call the stat collection multiple times
+local alreadySubmitted = false
+
 -- This function should be called to setup the module
 function addStats(args)
     -- Ensure args were passed
@@ -51,6 +62,12 @@ end
 
 -- Function to send stats
 function sendStats(args)
+    -- Ensure it is only called once
+    if alreadySubmitted then
+        print('ERROR: You have already called statcollection.sendStats()')
+        return
+    end
+
     -- Ensure some stats were passed
     local extrafields = (args and args[1]) or {}
 
@@ -59,6 +76,9 @@ function sendStats(args)
         print('ERROR: Please call statcollection.addStats() with modID!')
         return
     end
+
+    -- Stop this function from being called again
+    alreadySubmitted = true
 
     -- Grab useful info to make a 'unique' hash
     local currentTime = GetSystemTime()
