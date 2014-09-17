@@ -48,12 +48,6 @@ function addStats(args)
     -- Ensure args were passed
     local toSearch = args[1] or {}
 
-    -- Check if the modID has been set
-    if not toSearch.modID then
-        print('ERROR: Please call statcollection.addStats() with modID!')
-        return
-    end
-
     -- Store the fields
     for k,v in pairs(toSearch) do
         extraFields[k] = v
