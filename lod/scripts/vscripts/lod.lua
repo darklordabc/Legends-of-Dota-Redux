@@ -5,13 +5,13 @@ print("Gamemode started to load...")
 ]]
 
 -- Voting period
-local votingTime = 0
+local votingTime = 60
 
 -- Banning Period
-local banningTime = 0
+local banningTime = 90
 
 -- Picking Time
-local pickingTime = 0
+local pickingTime = 120
 
 -- Should we auto allocate teams?
 local autoAllocateTeams = false
