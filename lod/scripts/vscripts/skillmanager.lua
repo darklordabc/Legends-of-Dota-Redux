@@ -273,4 +273,4 @@ end
 --PrecacheUnitByNameAsync('npc_precache_everything', function()end)
 
 -- Define the export
-SkillManager = skillManager
+return skillManager

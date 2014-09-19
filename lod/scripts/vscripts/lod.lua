@@ -21,6 +21,12 @@ local autoAllocateTeams = false
 local slaveID = 0
 
 --[[
+    Load modules
+]]
+local SkillManager = require('skillmanager')
+local Timers = require('easytimers')
+
+--[[
     VOTEABLE OPTIONS
 ]]
 

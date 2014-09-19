@@ -20,16 +20,18 @@ local timers = {}
     in this case, you will also need to pass the object to call 'think' on
 ]]
 function timers:CreateTimer(...)
-    if not dota_base_game_mode then
+    -- Grab the gamemode entity
+    local gm = GameRules:GetGameModeEntity()
+
+    -- Ensure it exists
+    if not gm then
         print('WARNING: Timer created too soon!')
         return
     end
 
-    local ent = dota_base_game_mode.thisEntity
-
     -- Run the timer
-    ent:SetThink(...)
+    gm:SetThink(...)
 end
 
 -- Export functions
-Timers = timers
+return timers

@@ -37,25 +37,25 @@ local md5 = require('lib.md5')
 -- Begin statcollection module
 module('statcollection', package.seeall)
 
--- The extra fields to copy into the stats
-local extraFields = {}
+-- A table of stats we have collected
+local collectedStats = {}
 
 -- Makes sure we don't call the stat collection multiple times
 local alreadySubmitted = false
 
 -- This function should be called to setup the module
-function addStats(args)
+function addStats(toSearch)
     -- Ensure args were passed
-    local toSearch = args[1] or {}
+    toSearch = toSearch or {}
 
     -- Store the fields
     for k,v in pairs(toSearch) do
-        extraFields[k] = v
+        collectedStats[k] = v
     end
 end
 
 -- Function to send stats
-function sendStats(args)
+function sendStats(extraFields)
     -- Ensure it is only called once
     if alreadySubmitted then
         print('ERROR: You have already called statcollection.sendStats()')
@@ -63,13 +63,24 @@ function sendStats(args)
     end
 
     -- Ensure some stats were passed
-    local extrafields = (args and args[1]) or {}
+    extraFields = extraFields or {}
+
+    -- Copy in the extra fields
+    for k,v in pairs(extraFields) do
+        -- Ensure the field doesn't already exist
+        if not collectedStats[k] then
+            collectedStats[k] = v
+        end
+    end
 
     -- Check if the modID has been set
-    if not extraFields.modID then
+    if not collectedStats.modID then
         print('ERROR: Please call statcollection.addStats() with modID!')
         return
     end
+
+    -- Tell the user the stats are being sent
+    print('Sending stats...')
 
     -- Stop this function from being called again
     alreadySubmitted = true
@@ -83,27 +94,16 @@ function sendStats(args)
     -- Setup the string to be hashed
     local toHash = ip..':'..port..' @ '..currentTime..' + '..randomness..' + '
 
-    -- Build the stats array
-    local stats = {}
-
-    -- Copy in the extra fields
-    for k,v in pairs(extraFields) do
-        -- Ensure the field doesn't already exist
-        if not stats[k] then
-            stats[k] = v
-        end
-    end
-
     -- Add all the fields into the toHash
-    for k,v in pairs(stats) do
+    for k,v in pairs(collectedStats) do
         toHash = toHash..tostring(k)..'='..tostring(v)..','
     end
 
     -- Store the unique match ID
-    stats.matchID = md5.sumhexa(toHash)
+    collectedStats.matchID = md5.sumhexa(toHash)
 
     -- Send the message
     FireGameEvent("stat_collection", {
-        json = JSON:encode(stats)
+        json = JSON:encode(collectedStats)
     })
 end
