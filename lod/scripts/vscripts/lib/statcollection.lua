@@ -29,13 +29,15 @@ call this function with no arguments.
 Readers beware: You are REQUIRED to set AT LEAST modID to your mods unique ID
 ]]
 
+-- Begin statcollection module
+module('statcollection', package.seeall)
 
 -- Require libs
 local JSON = require('lib.json')
 local md5 = require('lib.md5')
 
--- Begin statcollection module
-module('statcollection', package.seeall)
+-- Max number of players
+local maxPlayers = 10
 
 -- A table of stats we have collected
 local collectedStats = {}
@@ -43,7 +45,7 @@ local collectedStats = {}
 -- Makes sure we don't call the stat collection multiple times
 local alreadySubmitted = false
 
--- This function should be called to setup the module
+-- This function should be called with a table of stats to add
 function addStats(toSearch)
     -- Ensure args were passed
     toSearch = toSearch or {}
@@ -51,6 +53,15 @@ function addStats(toSearch)
     -- Store the fields
     for k,v in pairs(toSearch) do
         collectedStats[k] = v
+    end
+end
+
+-- This function adds a single stat, but wont override existing stats
+function addStatsSafe(name, value)
+    -- Ensure the stat doesn't exist
+    if collectedStats[name] == nil then
+        -- Store the new value
+        collectedStats[name] = value
     end
 end
 
@@ -78,6 +89,106 @@ function sendStats(extraFields)
         print('ERROR: Please call statcollection.addStats() with modID!')
         return
     end
+
+    -- Build common stats
+    addStatsSafe('duration', GameRules:GetGameTime())
+
+    -- Build player array
+    local playersData = {}
+    for i=0, maxPlayers-1 do
+        -- Ensure we have a valid player in this slot
+        if PlayerResource:IsValidPlayer(i) then
+            -- Grab their teamID
+            local teamID = PlayerResource:GetTeam(i)
+
+            -- Attempt to find hero data
+            local heroData, itemData
+            local hero = PlayerResource:GetSelectedHeroEntity(i)
+            if IsValidEntity(hero) then
+                -- Build ability data
+                local abilityData = {}
+                local abilityCount = 0
+                while abilityCount < 32 do
+                    -- Grab an ability
+                    local ab = hero:GetAbilityByIndex(abilityCount)
+
+                    -- Check if it is valid
+                    if IsValidEntity(ab) then
+                        -- Store ability
+                        table.insert(abilityData, {
+                            --abilityID = ab:GetAbilityIndex(),
+                            abilityName = ab:GetClassname(),
+                            level = ab:GetLevel()
+                        })
+                    end
+
+                    -- Move onto the next ability slot
+                    abilityCount = abilityCount + 1
+                end
+
+                -- Build item data
+                itemData = {}
+                local itemCount = 0
+                while itemCount < 12 do
+                    -- Grab an item
+                    local item = hero:GetItemInSlot(itemCount)
+
+                    -- Check if the item is valid
+                    if IsValidEntity(item) then
+                        -- Store the item
+                        table.insert(itemData, {
+                            --itemID = item:GetAbilityIndex(),
+                            itemName = item:GetClassname(),
+                            itemStartTime = item:GetPurchaseTime()
+                        })
+                    end
+
+                    -- Move onto the next item
+                    itemCount = itemCount + 1
+                end
+
+                -- Store hero info
+                heroData = {
+                    heroID = PlayerResource:GetSelectedHeroID(i),
+                    level = PlayerResource:GetLevel(i),
+                    kills = PlayerResource:GetKills(i),
+                    assists = PlayerResource:GetAssists(i),
+                    deaths = PlayerResource:GetDeaths(i),
+                    abilities = abilityData
+                }
+
+            end
+
+            -- Attempt to find their slotID
+            local slotID
+            for j=0, maxPlayers do
+                if PlayerResource:GetNthPlayerIDOnTeam(teamID, j) then
+                    slotID = j
+                    break
+                end
+            end
+
+            local playerData = {
+                playerName = PlayerResource:GetPlayerName(i),
+                steamID32 = PlayerResource:GetSteamAccountID(i),
+                teamID = teamID,
+                slotID = slotID,
+                hero = heroData,
+                items = itemData
+            }
+
+            -- Store the data
+            table.insert(playersData, playerData)
+        end
+
+        -- Add round data
+        addStatsSafe('rounds', {
+            players = playersData
+        })
+    end
+
+    -- Print out the collected stats
+    DeepPrintTable(collectedStats)
 
     -- Tell the user the stats are being sent
     print('Sending stats...')
