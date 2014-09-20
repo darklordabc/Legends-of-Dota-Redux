@@ -88,7 +88,7 @@ function getPlayerSnapshot(playerID)
                     -- Store ability
                     table.insert(abilityData, {
                         index = ab:GetAbilityIndex(),
-                        abilityName = ab:GetClassname(),
+                        abilityName = ab:GetAbilityName(),
                         level = ab:GetLevel()
                     })
                 end
@@ -109,7 +109,7 @@ function getPlayerSnapshot(playerID)
                     -- Store the item
                     table.insert(itemData, {
                         index = itemCount,
-                        itemName = item:GetClassname(),
+                        itemName = item:GetAbilityName(),
                         itemStartTime = item:GetPurchaseTime()
                     })
                 end
