@@ -805,6 +805,25 @@ local function finishVote()
         useEasyMode = true
     end
 
+    -- Add settings to our stat collector
+    statcollection.addStats({
+        lod_settings = {
+            useEasyMode = useEasyMode,
+            bonusGold = bonusGold,
+            startingLevel = startingLevel,
+            gamemode = gamemode,
+            hideSkills = hideSkills,
+            banTrollCombos = banTrollCombos,
+            hostBanning = hostBanning,
+            maxBans = maxBans,
+            maxHeroBans = maxHeroBans,
+            banningTime = banningTime,
+            maxSlots = maxSlots,
+            maxSkills = maxSkills,
+            maxUlts = maxUlts
+        }
+    })
+
     -- Setup gamemode specific settings
     setupGamemodeSettings()
 

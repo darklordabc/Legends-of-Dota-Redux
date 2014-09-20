@@ -65,6 +65,116 @@ function addStatsSafe(name, value)
     end
 end
 
+-- This function returns a snapshop of a given player
+function getPlayerSnapshot(playerID)
+    -- Ensure we have a valid player in this slot
+    if PlayerResource:IsValidPlayer(playerID) then
+        -- Grab their teamID
+        local teamID = PlayerResource:GetTeam(playerID)
+
+        -- Attempt to find hero data
+        local heroData, itemData
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if IsValidEntity(hero) then
+            -- Build ability data
+            local abilityData = {}
+            local abilityCount = 0
+            while abilityCount < 16 do
+                -- Grab an ability
+                local ab = hero:GetAbilityByIndex(abilityCount)
+
+                -- Check if it is valid
+                if IsValidEntity(ab) then
+                    -- Store ability
+                    table.insert(abilityData, {
+                        index = ab:GetAbilityIndex(),
+                        abilityName = ab:GetClassname(),
+                        level = ab:GetLevel()
+                    })
+                end
+
+                -- Move onto the next ability slot
+                abilityCount = abilityCount + 1
+            end
+
+            -- Build item data
+            itemData = {}
+            local itemCount = 0
+            while itemCount < 12 do
+                -- Grab an item
+                local item = hero:GetItemInSlot(itemCount)
+
+                -- Check if the item is valid
+                if IsValidEntity(item) then
+                    -- Store the item
+                    table.insert(itemData, {
+                        index = itemCount,
+                        itemName = item:GetClassname(),
+                        itemStartTime = item:GetPurchaseTime()
+                    })
+                end
+
+                -- Move onto the next item
+                itemCount = itemCount + 1
+            end
+
+            -- Store hero info
+            heroData = {
+                -- The ID of the hero
+                heroID = PlayerResource:GetSelectedHeroID(playerID),
+
+                -- The current level of the hero
+                level = PlayerResource:GetLevel(playerID),
+
+                -- The amount of kills this player has
+                kills = PlayerResource:GetKills(playerID),
+
+                -- The total assists this player has
+                assists = PlayerResource:GetAssists(playerID),
+
+                -- The total deaths this player has
+                deaths = PlayerResource:GetDeaths(playerID),
+
+                -- The total last hits this player has
+                lastHits = PlayerResource:GetLastHits(playerID),
+
+                -- The total denies this player has
+                denies = PlayerResource:GetDenies(playerID),
+
+                -- The total gold this player has (reliable + unreliable together)
+                gold = PlayerResource:GetGold(playerID),
+
+                -- An array of this player's abilities
+                abilities = abilityData,
+
+                -- An array of this player's items
+                items = itemData
+            }
+        end
+
+        -- Attempt to find their slotID
+        local slotID
+        for i=0, maxPlayers do
+            if PlayerResource:GetNthPlayerIDOnTeam(teamID, i) then
+                slotID = i
+                break
+            end
+        end
+
+        -- Return the data
+        return {
+            playerName = PlayerResource:GetPlayerName(playerID),
+            steamID32 = PlayerResource:GetSteamAccountID(playerID),
+            teamID = teamID,
+            slotID = slotID,
+            hero = heroData
+        }
+    end
+
+    -- Not a valid player
+    return nil
+end
+
 -- Function to send stats
 function sendStats(extraFields)
     -- Ensure it is only called once
@@ -96,99 +206,18 @@ function sendStats(extraFields)
     -- Build player array
     local playersData = {}
     for i=0, maxPlayers-1 do
-        -- Ensure we have a valid player in this slot
-        if PlayerResource:IsValidPlayer(i) then
-            -- Grab their teamID
-            local teamID = PlayerResource:GetTeam(i)
-
-            -- Attempt to find hero data
-            local heroData, itemData
-            local hero = PlayerResource:GetSelectedHeroEntity(i)
-            if IsValidEntity(hero) then
-                -- Build ability data
-                local abilityData = {}
-                local abilityCount = 0
-                while abilityCount < 32 do
-                    -- Grab an ability
-                    local ab = hero:GetAbilityByIndex(abilityCount)
-
-                    -- Check if it is valid
-                    if IsValidEntity(ab) then
-                        -- Store ability
-                        table.insert(abilityData, {
-                            --abilityID = ab:GetAbilityIndex(),
-                            abilityName = ab:GetClassname(),
-                            level = ab:GetLevel()
-                        })
-                    end
-
-                    -- Move onto the next ability slot
-                    abilityCount = abilityCount + 1
-                end
-
-                -- Build item data
-                itemData = {}
-                local itemCount = 0
-                while itemCount < 12 do
-                    -- Grab an item
-                    local item = hero:GetItemInSlot(itemCount)
-
-                    -- Check if the item is valid
-                    if IsValidEntity(item) then
-                        -- Store the item
-                        table.insert(itemData, {
-                            --itemID = item:GetAbilityIndex(),
-                            itemName = item:GetClassname(),
-                            itemStartTime = item:GetPurchaseTime()
-                        })
-                    end
-
-                    -- Move onto the next item
-                    itemCount = itemCount + 1
-                end
-
-                -- Store hero info
-                heroData = {
-                    heroID = PlayerResource:GetSelectedHeroID(i),
-                    level = PlayerResource:GetLevel(i),
-                    kills = PlayerResource:GetKills(i),
-                    assists = PlayerResource:GetAssists(i),
-                    deaths = PlayerResource:GetDeaths(i),
-                    abilities = abilityData
-                }
-
-            end
-
-            -- Attempt to find their slotID
-            local slotID
-            for j=0, maxPlayers do
-                if PlayerResource:GetNthPlayerIDOnTeam(teamID, j) then
-                    slotID = j
-                    break
-                end
-            end
-
-            local playerData = {
-                playerName = PlayerResource:GetPlayerName(i),
-                steamID32 = PlayerResource:GetSteamAccountID(i),
-                teamID = teamID,
-                slotID = slotID,
-                hero = heroData,
-                items = itemData
-            }
-
+        -- Try and grab info on this player
+        local data = getPlayerSnapshot(i)
+        if data then
             -- Store the data
-            table.insert(playersData, playerData)
+            table.insert(playersData, data)
         end
-
-        -- Add round data
-        addStatsSafe('rounds', {
-            players = playersData
-        })
     end
 
-    -- Print out the collected stats
-    DeepPrintTable(collectedStats)
+    -- Add round data
+    addStatsSafe('rounds', {
+        players = playersData
+    })
 
     -- Tell the user the stats are being sent
     print('Sending stats...')
@@ -213,8 +242,23 @@ function sendStats(extraFields)
     -- Store the unique match ID
     collectedStats.matchID = md5.sumhexa(toHash)
 
-    -- Send the message
-    FireGameEvent("stat_collection", {
-        json = JSON:encode(collectedStats)
-    })
+    -- Encode the data
+    local json = JSON:encode(collectedStats)
+
+    -- Log to the server
+    print(json)
+
+    -- We are going to break the string into small chunks
+    local chunkSize = 500
+
+    local totalMessages = math.ceil(json:len()/chunkSize)
+    for i=0, totalMessages-1 do
+        -- Send the message
+        FireGameEvent("stat_collection_part", {
+            data = json:sub(i*chunkSize+1, (i+1)*chunkSize)
+        })
+    end
+
+    -- Tell the client the message is over
+    FireGameEvent("stat_collection_send", {})
 end
