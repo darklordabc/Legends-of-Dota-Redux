@@ -51,7 +51,7 @@ function addStats(toSearch)
     toSearch = toSearch or {}
 
     -- Store the fields
-    for k,v in pairs(toSearch) do
+    for k, v in pairs(toSearch) do
         collectedStats[k] = v
     end
 end
@@ -126,6 +126,12 @@ function getPlayerSnapshot(playerID)
                 -- The current level of the hero
                 level = PlayerResource:GetLevel(playerID),
 
+                -- The amount of structure damage this player has
+                --structureDamage = NO METHOD YET
+
+                -- The amount of hero damage this player has
+                --heroDamage = PlayerResource:GetRawPlayerDamage(playerID),
+
                 -- The amount of kills this player has
                 kills = PlayerResource:GetKills(playerID),
 
@@ -135,26 +141,20 @@ function getPlayerSnapshot(playerID)
                 -- The total deaths this player has
                 deaths = PlayerResource:GetDeaths(playerID),
 
-                -- The total last hits this player has
-                lastHits = PlayerResource:GetLastHits(playerID),
+                -- The total gold this player has (reliable + unreliable together)
+                gold = PlayerResource:GetGold(playerID),
 
                 -- The total denies this player has
                 denies = PlayerResource:GetDenies(playerID),
 
-                -- The total gold this player has (reliable + unreliable together)
-                gold = PlayerResource:GetGold(playerID),
-
-                -- An array of this player's abilities
-                abilities = abilityData,
-
-                -- An array of this player's items
-                items = itemData
+                -- The total last hits this player has
+                lastHits = PlayerResource:GetLastHits(playerID)
             }
         end
 
         -- Attempt to find their slotID
         local slotID
-        for i=0, maxPlayers do
+        for i = 0, maxPlayers do
             if PlayerResource:GetNthPlayerIDOnTeam(teamID, i) then
                 slotID = i
                 break
@@ -163,11 +163,13 @@ function getPlayerSnapshot(playerID)
 
         -- Return the data
         return {
-            playerName = PlayerResource:GetPlayerName(playerID),
-            steamID32 = PlayerResource:GetSteamAccountID(playerID),
             teamID = teamID,
             slotID = slotID,
-            hero = heroData
+            playerName = PlayerResource:GetPlayerName(playerID),
+            steamID32 = PlayerResource:GetSteamAccountID(playerID),
+            hero = heroData,
+            items = itemData,
+            abilities = abilityData
         }
     end
 
@@ -187,7 +189,7 @@ function sendStats(extraFields)
     extraFields = extraFields or {}
 
     -- Copy in the extra fields
-    for k,v in pairs(extraFields) do
+    for k, v in pairs(extraFields) do
         -- Ensure the field doesn't already exist
         if not collectedStats[k] then
             collectedStats[k] = v
@@ -205,7 +207,7 @@ function sendStats(extraFields)
 
     -- Build player array
     local playersData = {}
-    for i=0, maxPlayers-1 do
+    for i = 0, maxPlayers - 1 do
         -- Try and grab info on this player
         local data = getPlayerSnapshot(i)
         if data then
@@ -229,14 +231,14 @@ function sendStats(extraFields)
     local currentTime = GetSystemTime()
     local ip = Convars:GetStr('hostip')
     local port = Convars:GetStr('hostport')
-    local randomness = RandomFloat(0, 1)..'/'..RandomFloat(0, 1)..'/'..RandomFloat(0, 1)..'/'..RandomFloat(0, 1)..'/'..RandomFloat(0, 1)
+    local randomness = RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1)
 
     -- Setup the string to be hashed
-    local toHash = ip..':'..port..' @ '..currentTime..' + '..randomness..' + '
+    local toHash = ip .. ':' .. port .. ' @ ' .. currentTime .. ' + ' .. randomness .. ' + '
 
     -- Add all the fields into the toHash
-    for k,v in pairs(collectedStats) do
-        toHash = toHash..tostring(k)..'='..tostring(v)..','
+    for k, v in pairs(collectedStats) do
+        toHash = toHash .. tostring(k) .. '=' .. tostring(v) .. ','
     end
 
     -- Store the unique match ID
@@ -251,11 +253,11 @@ function sendStats(extraFields)
     -- We are going to break the string into small chunks
     local chunkSize = 500
 
-    local totalMessages = math.ceil(json:len()/chunkSize)
-    for i=0, totalMessages-1 do
+    local totalMessages = math.ceil(json:len() / chunkSize)
+    for i = 0, totalMessages - 1 do
         -- Send the message
         FireGameEvent("stat_collection_part", {
-            data = json:sub(i*chunkSize+1, (i+1)*chunkSize)
+            data = json:sub(i * chunkSize + 1, (i + 1) * chunkSize)
         })
     end
 
