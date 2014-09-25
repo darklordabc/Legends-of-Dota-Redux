@@ -807,7 +807,7 @@ local function finishVote()
 
     -- Add settings to our stat collector
     statcollection.addStats({
-        lod_settings = {
+        modes = {
             useEasyMode = useEasyMode,
             bonusGold = bonusGold,
             startingLevel = startingLevel,
