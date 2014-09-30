@@ -73,11 +73,11 @@ function getPlayerSnapshot(playerID)
         local teamID = PlayerResource:GetTeam(playerID)
 
         -- Attempt to find hero data
-        local heroData, itemData
+        local heroData, itemData, abilityData
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             -- Build ability data
-            local abilityData = {}
+            abilityData = {}
             local abilityCount = 0
             while abilityCount < 16 do
                 -- Grab an ability
