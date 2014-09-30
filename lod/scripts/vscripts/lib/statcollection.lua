@@ -69,9 +69,6 @@ end
 function getPlayerSnapshot(playerID)
     -- Ensure we have a valid player in this slot
     if PlayerResource:IsValidPlayer(playerID) then
-        -- Grab their teamID
-        local teamID = PlayerResource:GetTeam(playerID)
-
         -- Attempt to find hero data
         local heroData, itemData, abilityData
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -152,10 +149,13 @@ function getPlayerSnapshot(playerID)
             }
         end
 
+        -- Grab their teamID
+        local teamID = PlayerResource:GetTeam(playerID)
+
         -- Attempt to find their slotID
         local slotID
         for i = 0, maxPlayers do
-            if PlayerResource:GetNthPlayerIDOnTeam(teamID, i) then
+            if PlayerResource:GetNthPlayerIDOnTeam(teamID, i) == playerID then
                 slotID = i
                 break
             end
