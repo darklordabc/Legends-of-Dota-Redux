@@ -1022,7 +1022,18 @@ function lod:InitGameMode()
 end
 
 -- Run to handle
+local doneStats = false
 function lod:OnThink()
+    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+        if not doneStats then
+            -- Send stats
+            statcollection.sendStats()
+
+            -- Store that stats are done
+            doneStats = true
+        end
+    end
+
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
@@ -1108,19 +1119,6 @@ function lod:OnThink()
 
         -- Sleep
         return 0.1
-    end
-
-    if currentStage == STAGE_PLAYING then
-        if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-            -- Send stats
-            statcollection.sendStats()
-
-            -- Finally done!
-            return
-        else
-            -- Sleep again
-            return 1
-        end
     end
 
     -- We should never get here
