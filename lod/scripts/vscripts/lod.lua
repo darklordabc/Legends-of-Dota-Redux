@@ -1157,7 +1157,7 @@ function lod:OnThink()
     end
 
     -- We should never get here
-    print('WARNING: Unknown stage: '+currentStage)
+    print('WARNING: Unknown stage: '..currentStage)
 end
 
 -- Stick people onto teams
