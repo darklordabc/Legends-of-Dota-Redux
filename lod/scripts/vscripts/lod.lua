@@ -1156,6 +1156,11 @@ function lod:OnThink()
         return 0.1
     end
 
+    -- Don't stop the timer!
+    if currentStage == STAGE_PLAYING then
+        return 0.1
+    end
+
     -- We should never get here
     print('WARNING: Unknown stage: '..currentStage)
 end
