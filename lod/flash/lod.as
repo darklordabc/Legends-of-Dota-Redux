@@ -179,10 +179,15 @@ package  {
         private var banningTime:Number;
         private var pickingTime:Number;
 
+        // The current stage
+        private static var currentStage = -1;
+
         // Stage info
+        private static var STAGE_WAITING:Number = 0;
         private static var STAGE_VOTING:Number = 1;
         private static var STAGE_BANNING:Number = 2;
         private static var STAGE_PICKING:Number = 3;
+        private static var STAGE_PLAYING:Number = 4;
 
         // Stage timer (for changing to picking)
         private static var stageTimer:Timer;
@@ -396,6 +401,9 @@ package  {
 
         // Init LoD
         private function initLod():void {
+            // Register host
+            gameAPI.SendServerCommand("register_host");
+
             // Ask about the vote status
             requestVoteStatus();
 
@@ -556,6 +564,10 @@ package  {
         // Updates a user's vote with the server
         public static function updateVote(optNumber:Number, myChoice:Number):void {
             gameAPIShared.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
+        }
+
+        public static function finishedVoting():void {
+            gameAPIShared.SendServerCommand("finished_voting");
         }
 
         // Builds the picking screen
@@ -899,11 +911,12 @@ package  {
             if(gottenVotingInfo) return;
             gottenVotingInfo = true;
 
+            // Move onto voting stage
+            currentStage = STAGE_VOTING;
+
             // Store vars
             heroSelectionStart = args.startTime;
             votingTime = args.votingTime;
-
-            trace('your playerID = '+globals.Players.GetLocalPlayer());
 
             // Workout if we are a slave or not
             if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {
@@ -924,8 +937,10 @@ package  {
             if(gottenPickingInfo) return;
             gottenPickingInfo = true;
 
+            currentStage = args.stage;
+
             // Store vars
-            heroSelectionStart = args.startTime;
+            heroSelectionStart = globals.Game.Time();//args.startTime;
             banningTime = args.banningTime;
             pickingTime = args.pickingTime;
 
@@ -1147,7 +1162,8 @@ package  {
             var now:Number = globals.Game.Time();
 
             // Decide what needs to be shown
-            if(now < heroSelectionStart+votingTime) {
+            //if(now < heroSelectionStart+votingTime) {
+            if(currentStage == STAGE_VOTING) {
                 // It's voting time
 
                 // Show the voting UI
@@ -1156,7 +1172,8 @@ package  {
                     votingUI.visible = true;
 
                     // Update timer
-                    votingUI.timer.text = Math.ceil(heroSelectionStart+votingTime-now);
+                    //votingUI.timer.text = Math.ceil(heroSelectionStart+votingTime-now);
+                    votingUI.timer.visible = false;
                 }
             } else if(now < heroSelectionStart+banningTime+votingTime) {
                 // It is banning time

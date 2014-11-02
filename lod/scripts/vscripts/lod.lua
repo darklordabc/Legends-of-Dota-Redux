@@ -5,7 +5,7 @@ print("Gamemode started to load...")
 ]]
 
 -- Voting period
-local votingTime = 60
+local votingTime = 1
 
 -- Banning Period
 local banningTime = 90
@@ -18,7 +18,7 @@ local autoAllocateTeams = false
 
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
-local slaveID = 0
+local slaveID = -1
 
 --[[
     Load modules
@@ -171,6 +171,12 @@ local votingList = LoadKeyValues('scripts/kv/voting.kv');
 
 -- This will store the total number of choices for each option
 local totalChoices = {}
+
+-- Is the game still loading?
+local stillLoading = true
+
+-- Are we still voting?
+local stillVoting = true
 
 -- Generate choices index
 for k,v in pairs(votingList) do
@@ -909,7 +915,8 @@ local function sendPickingInfo()
             ults = maxUlts,
             trolls = (banTrollCombos and 1) or 0,
             hostBanning = (hostBanning and 1) or 0,
-            hideSkills = (hideSkills and 1) or 0
+            hideSkills = (hideSkills and 1) or 0,
+            stage = currentStage
         })
     end, 'DelayedInfoTimer', 1, nil)
 end
@@ -922,6 +929,11 @@ local function sendVotingInfo()
 
     -- Send out info after a short delay
     GameRules:GetGameModeEntity():SetThink(function()
+        -- We must have a valid slaveID before we can do anything
+        if slaveID == -1 then
+            return 1
+        end
+
         -- They can ask for info again
         canVoteInfo = true
 
@@ -1047,8 +1059,18 @@ function lod:OnThink()
             -- Send the voting info
             sendVotingInfo()
 
-            -- Sleep unti the voting time is over
+            -- Sleep until the voting time is over
             return votingTime
+        else
+            -- Are we waiting for loaders?
+            if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
+                -- Should we be pausing the game?
+                if stillLoading then
+                    PauseGame(true)
+                else
+                    PauseGame(false)
+                end
+            end
         end
 
         -- Set the hero selection time
@@ -1059,8 +1081,21 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_VOTING then
+        -- Are we still voting?
+        if stillVoting then
+            PauseGame(true)
+            return 1
+        else
+            PauseGame(false)
+        end
+
         -- Wait for voting to end
-        if GameRules:GetGameTime() < heroSelectionStart + votingTime then return 1 end
+        if GameRules:GetGameTime() < heroSelectionStart + votingTime then
+            return 1
+        end
+
+        -- Update this
+        heroSelectionStart = GameRules:GetGameTime()
 
         -- Workout who won
         finishVote()
@@ -1470,8 +1505,6 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
-        print('playerID = '..playerID)
-
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
@@ -1673,6 +1706,72 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
         end
     end
 end, 'Update a user\'s vote', 0)
+
+-- Users tries to unpause the game
+Convars:RegisterCommand('toggle_pause', function(name, skillName)
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure the player is actually the host
+        if playerID == slaveID then
+            -- Is this still a valid command?
+            if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
+                -- Invert the loader
+                stillLoading = not stillLoading
+
+                -- Should we be pausing the game?
+                if stillLoading then
+                    PauseGame(true)
+                else
+                    PauseGame(false)
+                end
+            else
+                -- Check if the game is paused for some reason
+                if stillLoading then
+                    stillLoading = false
+                    PauseGame(false)
+                end
+            end
+        else
+            -- Tell the player they can't use this
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Only the host can use this.</font>')
+        end
+    end
+end, 'Toggles the pause during the waiting phase', 0)
+
+-- Users tries to lock the options in
+Convars:RegisterCommand('finished_voting', function(name, skillName)
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure the player is actually the host
+        if playerID == slaveID then
+            -- We are no longer waiting for the vote
+            stillVoting = false
+        else
+            -- Tell the player they can't use this
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Only the host can use this.</font>')
+        end
+    end
+end, 'Toggles the pause during the waiting phase', 0)
+
+-- User tries to register as the host
+Convars:RegisterCommand('register_host', function()
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Make sure no one has claimed themselves as the host yet
+        if slaveID == -1 then
+            slaveID = playerID
+        end
+    end
+end, 'Registers the first caller of this command as the host', 0)
 
 -- User is trying to pick
 local hasHero = {}

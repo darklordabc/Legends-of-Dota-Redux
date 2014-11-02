@@ -46,6 +46,7 @@
         "trolls"        "byte"
         "hostBanning"   "byte"
         "hideSkills"    "byte"
+        "stage"         "byte"
     }
 
     // A player stuck a skill into a slot

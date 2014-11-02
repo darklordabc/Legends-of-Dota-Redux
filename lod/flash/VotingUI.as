@@ -1,5 +1,6 @@
 ﻿package  {
 	import flash.display.MovieClip;
+    import flash.events.MouseEvent;
 
 	public class VotingUI extends MovieClip {
         // The header
@@ -70,9 +71,12 @@
             }
 
             // Spawn submit button
-            //var submitBtn:MovieClip = lod.smallButton(this, '#submitvote');
-            //submitBtn.x = -submitBtn.width/2;
-            //submitBtn.y = this.height - submitBtn.height - padding;
+            if(!slave) {
+                var submitBtn:MovieClip = lod.smallButton(this, '#submitvote');
+                submitBtn.x = -submitBtn.width/2;
+                submitBtn.y = this.height - submitBtn.height - padding;
+                submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
+            }
 		}
 
         public function updateSlave(optNumber:Number, newValue:Number) {
@@ -101,6 +105,12 @@
                 // Update the vote
                 lod.updateVote(optNumber, comboBox.selectedIndex);
             }
+        }
+
+        // When submit is pressed
+        private function onSubmitPressed(e:MouseEvent) {
+            // Done voting
+            lod.finishedVoting();
         }
 	}
 
