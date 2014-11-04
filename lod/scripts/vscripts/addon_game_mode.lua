@@ -1,3 +1,10 @@
+-- Check if they are trying to load into remote LoD mode
+if GetMapName() == 'remoteserver' then
+    print("Loading remote dota mode...")
+    SendToServerConsole("disconnect")
+    return
+end
+
 -- Ensure lod exists
 if _G.lod == nil then
     _G.lod = class({})

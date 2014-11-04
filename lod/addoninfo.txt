@@ -1,5 +1,5 @@
 "AddonInfo"
 {
-	maps			"dota_pvp"
+	maps			"dota_pvp remoteserver"
 	"IsPlayable"	"1"
 }

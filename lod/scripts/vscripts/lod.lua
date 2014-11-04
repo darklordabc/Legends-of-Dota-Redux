@@ -14,7 +14,7 @@ local banningTime = 90
 local pickingTime = 120
 
 -- Should we auto allocate teams?
-local autoAllocateTeams = false
+local autoAllocateTeams = true
 
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
@@ -1031,6 +1031,9 @@ function lod:InitGameMode()
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
     --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
+
+    -- Pause the game
+    PauseGame(true)
 end
 
 -- Run to handle
