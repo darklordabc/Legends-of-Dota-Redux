@@ -221,6 +221,9 @@ function sendStats(extraFields)
         players = playersData
     })
 
+    -- Store if this is a dedi server or not
+    addStatsSafe('dedicated', IsDedicatedServer())
+
     -- Tell the user the stats are being sent
     print('Sending stats...')
 
