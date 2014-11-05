@@ -554,7 +554,7 @@ package  {
             votingUI = new VotingUI(isSlave);
             addChild(votingUI);
             votingUI.x = (realScreenWidth/scalingFactor)/2;
-            votingUI.y = 60;
+            votingUI.y = 120;
             votingUI.visible = false;
 
             // Update the stage

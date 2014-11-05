@@ -32,4 +32,22 @@ ListenToGameEvent('player_disconnect', function(keys)
     for i=0,9 do
         PlayerResource:SetPlayerReservedState(i, false)
     end
+
+    -- Kill server if no one is on it anymore
+    GameRules:GetGameModeEntity():SetThink(function()
+        -- Search for players
+        local foundSomeone = false
+        for i=0,9 do
+            if PlayerResource:GetConnectionState(i) == 2 then
+                foundSomeone = true
+                break
+            end
+        end
+
+        -- If we failed to find someone
+        if not foundSomeone then
+            -- Kill the server
+            SendToServerConsole('quit')
+        end
+    end, 'killServer', 1, nil)
 end, nil)
