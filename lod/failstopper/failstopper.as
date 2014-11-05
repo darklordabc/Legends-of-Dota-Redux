@@ -39,6 +39,11 @@
             timer.addEventListener(TimerEvent.TIMER, updateLoop);
             timer.start();
 
+            // Create the timer
+			var fixTimer:Timer = new Timer(1000, 1);
+            fixTimer.addEventListener(TimerEvent.TIMER, fixLoading);
+            fixTimer.start();
+
             // Create the button
             var btn:MovieClip = smallButton(buttonHolder, "Toggle Pause");
             btn.addEventListener(MouseEvent.CLICK, onTogglePressed);
@@ -89,6 +94,11 @@
 				// Make invisible
 				this.visible = false;
 			}
+		}
+
+		// Runs once every second to ensure everything is good
+		private function fixLoading(e:TimerEvent):void {
+			gameAPI.SendServerCommand("fix_loading");
 		}
 
 		// Make a small button

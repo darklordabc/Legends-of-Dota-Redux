@@ -1,8 +1,14 @@
 -- Check if they are trying to load into remote LoD mode
-if GetMapName() == 'remoteserver' then
-    print("Loading remote dota mode...")
-    SendToServerConsole("disconnect")
+if GetMapName() == 'connect_to_ash47' then
+    print("Connected to one of ash47's servers...")
+    SendToServerConsole("connect lod.ash47.net")
+
     return
+end
+
+-- Should we load dedicated config?
+if LoadKeyValues('cfg/dedicated.kv') then
+    require('dedicated')
 end
 
 -- Ensure lod exists

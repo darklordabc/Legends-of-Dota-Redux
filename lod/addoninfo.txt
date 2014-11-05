@@ -1,5 +1,5 @@
 "AddonInfo"
 {
-	maps			"dota_pvp remoteserver"
+	maps			"dota_pvp connect_to_ash47"
 	"IsPlayable"	"1"
 }

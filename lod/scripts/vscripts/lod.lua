@@ -13,9 +13,6 @@ local banningTime = 90
 -- Picking Time
 local pickingTime = 120
 
--- Should we auto allocate teams?
-local autoAllocateTeams = true
-
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
 local slaveID = -1
@@ -905,10 +902,18 @@ local function sendPickingInfo()
         -- They can ask for info again
         canInfo = true
 
+        -- Workout how much banning time is left
+        local banningTimeLeft = heroSelectionStart + votingTime + banningTime - GameRules:GetGameTime()
+        if banningTimeLeft < 0 then
+            banningTimeLeft = 0
+        end
+
+        banningTimeLeft = math.floor(banningTimeLeft)
+
         -- Send picking info to everyone
         FireGameEvent('lod_picking_info', {
             startTime = heroSelectionStart,
-            banningTime = banningTime,
+            banningTime = banningTimeLeft,
             pickingTime = pickingTime,
             slots = maxSlots,
             skills = maxSkills,
@@ -1167,26 +1172,6 @@ function lod:OnThink()
     -- We should never get here
     print('WARNING: Unknown stage: '..currentStage)
 end
-
--- Stick people onto teams
-local radiant = false
-ListenToGameEvent('player_connect_full', function(keys)
-    -- Should we auto allocate teams?
-    if autoAllocateTeams then
-        -- Grab the entity index of this player
-        local entIndex = keys.index+1
-        local ply = EntIndexToHScript(entIndex)
-
-        -- Set their team
-        if radiant then
-            radiant = false
-            ply:SetTeam(DOTA_TEAM_GOODGUYS)
-        else
-            radiant = true
-            ply:SetTeam(DOTA_TEAM_BADGUYS)
-        end
-    end
-end, nil)
 
 -- EXP Needed for each level
 local XP_PER_LEVEL_TABLE = {
@@ -1745,6 +1730,30 @@ Convars:RegisterCommand('toggle_pause', function(name, skillName)
         else
             -- Tell the player they can't use this
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Only the host can use this.</font>')
+        end
+    end
+end, 'Toggles the pause during the waiting phase', 0)
+
+-- Fixes the loading players issue when fired
+local fixedLoading = false
+Convars:RegisterCommand('fix_loading', function(name, skillName)
+    if fixedLoading then return end
+
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure the player is actually the host
+        if playerID == slaveID then
+            -- Unpause the game
+            fixedLoading = true
+            PauseGame(false)
+
+            -- Repause the game
+            GameRules:GetGameModeEntity():SetThink(function()
+                PauseGame(true)
+            end, 'Repause', 0.1, nil)
         end
     end
 end, 'Toggles the pause during the waiting phase', 0)
