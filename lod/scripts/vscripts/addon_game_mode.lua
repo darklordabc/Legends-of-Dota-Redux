@@ -7,9 +7,9 @@ if GetMapName() == 'connect_to_ash47' then
 end
 
 -- Should we load dedicated config?
---if LoadKeyValues('cfg/dedicated.kv') then
+if LoadKeyValues('cfg/dedicated.kv') then
     require('dedicated')
---end
+end
 
 -- Ensure lod exists
 if _G.lod == nil then
