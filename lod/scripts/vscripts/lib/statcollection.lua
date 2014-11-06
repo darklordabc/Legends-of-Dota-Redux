@@ -169,7 +169,8 @@ function getPlayerSnapshot(playerID)
             steamID32 = PlayerResource:GetSteamAccountID(playerID),
             hero = heroData,
             items = itemData,
-            abilities = abilityData
+            abilities = abilityData,
+            leaverStatus = PlayerResource:GetConnectionState(playerID)
         }
     end
 
@@ -232,9 +233,12 @@ function sendStats(extraFields)
 
     -- Grab useful info to make a 'unique' hash
     local currentTime = GetSystemTime()
-    local ip = Convars:GetStr('hostip')
+    local ip = intToIP(Convars:GetStr('hostip'))
     local port = Convars:GetStr('hostport')
     local randomness = RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1)
+
+    -- Add server address
+    addStatsSafe('serverAddress', ip..':'..port)
 
     -- Setup the string to be hashed
     local toHash = ip .. ':' .. port .. ' @ ' .. currentTime .. ' + ' .. randomness .. ' + '
@@ -266,4 +270,26 @@ function sendStats(extraFields)
 
     -- Tell the client the message is over
     FireGameEvent("stat_collection_send", {})
+end
+
+-- Sexy function to convert an integer to an IP
+function intToIP(int)
+    local ip
+
+    for j=0,3 do
+        local useful = bit.rshift(int, j*8)
+
+        local ipPart = 0
+        for i=0,7 do
+            ipPart = ipPart + bit.band(useful, bit.lshift(1, i))
+        end
+
+        if not ip then
+            ip = ipPart
+        else
+            ip = ipPart..'.'..ip
+        end
+    end
+
+    return ip
 end

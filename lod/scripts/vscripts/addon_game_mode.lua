@@ -22,6 +22,11 @@ statcollection.addStats({
 	modID = '2374504c2c518fafc9731a120e67fdf5'
 })
 
+print('\n\nshit:')
+print(Convars:GetStr('hostip'))
+print(Convars:GetStr('hostport'))
+print(statcollection.intToIP(Convars:GetStr('hostip')))
+
 -- Load modules
 require('lod')
 
