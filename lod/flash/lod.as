@@ -907,6 +907,19 @@ package  {
             // If we have no playerID, simply stop -- we aren't allocated to a team yet!
             if(globals.Players.GetLocalPlayer() == -1) return;
 
+            // Workout if we are a slave or not
+            if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {
+                if(isSlave) {
+                    setupHud();
+                }
+
+                // We can vote
+                isSlave = false;
+            } else {
+                // We can't vote
+                isSlave = true;
+            }
+
             // Only do this once
             if(gottenVotingInfo) return;
             gottenVotingInfo = true;
@@ -917,15 +930,6 @@ package  {
             // Store vars
             heroSelectionStart = args.startTime;
             votingTime = args.votingTime;
-
-            // Workout if we are a slave or not
-            if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {
-                // We can vote
-                isSlave = false;
-            } else {
-                // We can't vote
-                isSlave = true;
-            }
 
             // Rehook the picking screen
             setupHud();

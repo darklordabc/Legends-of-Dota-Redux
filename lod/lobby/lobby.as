@@ -1,4 +1,4 @@
-﻿package  {
+package  {
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
 
@@ -12,7 +12,7 @@
     // Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
 
-	public class failstopper extends MovieClip
+	public class lobby extends MovieClip
 	{
 		// element details filled out by game engine
 		public var gameAPI:Object;
@@ -29,29 +29,23 @@
 		// Our timer
 		private var timer:Timer;
 
-		public function failstopper() { }
+		public function lobby() { }
 
 		// called by the game engine when this .swf has finished loading
-		public function onLoaded():void
-		{
-			// Create the timer
-			timer = new Timer(1000);
-            timer.addEventListener(TimerEvent.TIMER, updateLoop);
-            timer.start();
-
-            // Create the timer
-			var fixTimer:Timer = new Timer(1000, 1);
-            fixTimer.addEventListener(TimerEvent.TIMER, fixLoading);
-            fixTimer.start();
-
+		public function onLoaded():void {
             // Create the button
-            var btn:MovieClip = smallButton(buttonHolder, "Toggle Pause");
-            btn.addEventListener(MouseEvent.CLICK, onTogglePressed);
+            var btn:MovieClip = smallButton(buttonHolder, "Connect");
+            btn.addEventListener(MouseEvent.CLICK, onConnectPressed);
             btn.x = -btn.width/2;
             btn.y = 0;
 
-            // Send the command out to register ourselves as the hoster
-            gameAPI.SendServerCommand("register_host");
+            // Create the timer
+            timer = new Timer(1000);
+            timer.addEventListener(TimerEvent.TIMER, updateLoop);
+            timer.start();
+
+            // Allow conecting outside
+            globals.GameInterface.SetConvar("dota_workshoptools_limited_ui", "0");
 		}
 
 		// called by the game engine after onLoaded and whenever the screen size is changed
@@ -77,29 +71,24 @@
 			y = 0;
 		}
 
-		// Runs once every second to ensure everything is good
-		private function updateLoop(e:TimerEvent):void {
-			// Send the command out to register ourselves as the hoster
+        // Runs once every second to ensure everything is good
+        private function updateLoop(e:TimerEvent):void {
+            // Send the command out to register ourselves as the hoster
             gameAPI.SendServerCommand("register_host");
 
-			// Check if this should be visible
-			if(globals.Game.GetState() <= 1) {
-				// Make ourselves nice and visible
-				this.visible = true;
-			} else {
-				// Kill the timer
-				timer.removeEventListener(TimerEvent.TIMER, updateLoop);
-				timer.stop();
+            // Check if this should be visible
+            if(globals.Game.GetState() <= 1) {
+                // Make ourselves nice and visible
+                this.visible = true;
+            } else {
+                // Kill the timer
+                timer.removeEventListener(TimerEvent.TIMER, updateLoop);
+                timer.stop();
 
-				// Make invisible
-				this.visible = false;
-			}
-		}
-
-		// Runs once every second to ensure everything is good
-		private function fixLoading(e:TimerEvent):void {
-			gameAPI.SendServerCommand("fix_loading");
-		}
+                // Make invisible
+                this.visible = false;
+            }
+        }
 
 		// Make a small button
         public static function smallButton(container:MovieClip, txt:String):MovieClip {
@@ -116,9 +105,9 @@
         }
 
         // When the toggle button is pressed
-        private function onTogglePressed(e:MouseEvent):void {
+        private function onConnectPressed(e:MouseEvent):void {
         	// Send the command to the server
-        	gameAPI.SendServerCommand("toggle_pause");
+        	globals.GameInterface.SetConvar("dota_auto_connect", "lod.ash47.net");
         }
 	}
 }

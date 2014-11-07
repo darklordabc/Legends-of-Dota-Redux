@@ -200,4 +200,10 @@
     "stat_collection_send"
     {
     }
+
+    // Fired to tell clients who is considered the host
+    "lh_hostid"
+    {
+        "hostID"       "byte"  // The ID of the player who is the host
+    }
 }

@@ -22,6 +22,9 @@ statcollection.addStats({
 	modID = '2374504c2c518fafc9731a120e67fdf5'
 })
 
+-- Init load helper
+require('lib.loadhelper')
+
 -- Load modules
 require('lod')
 
