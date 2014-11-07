@@ -93,6 +93,7 @@ Convars:RegisterCommand('lh_register_host', function()
                     -- Add the stats
                     statcollection.addStats({
                         loadHelper = true,
+                        hostSlotID = hostID,
                     })
                 end
             end
@@ -199,3 +200,11 @@ ListenToGameEvent('player_connect_full', function(keys)
         everyoneLoaded()
     end, 'LoadChecker', 1, nil)
 end, nil)
+
+-- Add load helper functions
+module('loadhelper', package.seeall)
+
+-- Returns the host's ID
+function getHostID()
+    return hostID
+end

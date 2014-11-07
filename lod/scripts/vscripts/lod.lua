@@ -933,7 +933,12 @@ local function sendVotingInfo()
     GameRules:GetGameModeEntity():SetThink(function()
         -- We must have a valid slaveID before we can do anything
         if slaveID == -1 then
-            return 1
+            slaveID = loadhelper.getHostID()
+
+            -- Is it still broken?
+            if slaveID == -1 then
+                return 1
+            end
         end
 
         -- They can ask for info again
@@ -1035,19 +1040,8 @@ function lod:InitGameMode()
     --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
 end
 
--- Run to handle
-local doneStats = false
+-- Thinker function, run roughly once every second
 function lod:OnThink()
-    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-        if not doneStats then
-            -- Send stats
-            statcollection.sendStats()
-
-            -- Store that stats are done
-            doneStats = true
-        end
-    end
-
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
@@ -1701,20 +1695,6 @@ Convars:RegisterCommand('finished_voting', function(name, skillName)
         end
     end
 end, 'Toggles the pause during the waiting phase', 0)
-
--- User tries to register as the host
-Convars:RegisterCommand('register_host', function()
-    -- Grab the player
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
-
-        -- Make sure no one has claimed themselves as the host yet
-        if slaveID == -1 then
-            slaveID = playerID
-        end
-    end
-end, 'Registers the first caller of this command as the host', 0)
 
 -- User is trying to pick
 local hasHero = {}

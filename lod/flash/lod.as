@@ -290,6 +290,7 @@ package  {
             this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);
             this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);
             this.gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", onUnitSelectionUpdated);
+            this.gameAPI.SubscribeToGameEvent("lh_hostid", onGetHostID);
 
             // Request coding numbers
             requestDecodingNumber();
@@ -401,9 +402,6 @@ package  {
 
         // Init LoD
         private function initLod():void {
-            // Register host
-            gameAPI.SendServerCommand("register_host");
-
             // Ask about the vote status
             requestVoteStatus();
 
@@ -1013,6 +1011,33 @@ package  {
             var fixerTimer = new Timer(1);
             fixerTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
             fixerTimer.start();
+        }
+
+        // When the server sends the hostID
+        private function onGetHostID(args:Object):void {
+            if(args.hostID == -1 || args.hostID == globals.Players.GetLocalPlayer()) {
+                if(isSlave) {
+                    // We can vote
+                    isSlave = false;
+
+                    // Update hud
+                    setupHud();
+                }
+
+                // We can vote
+                isSlave = false;
+            } else {
+                if(!isSlave) {
+                    // We can't vote
+                    isSlave = true;
+
+                    // Update hud
+                    setupHud();
+                }
+
+                // We can't vote
+                isSlave = true;
+            }
         }
 
         // Fixes the hot keys
