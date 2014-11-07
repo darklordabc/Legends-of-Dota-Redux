@@ -53,9 +53,6 @@ local function everyoneLoaded()
                 loadHelper = true,
                 loadHelperTime = Time() - pauseStart
             })
-
-            -- Log to console
-            print('')
         end
     end
 end
