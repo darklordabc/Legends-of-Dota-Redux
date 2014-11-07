@@ -62,7 +62,16 @@ Convars:RegisterCommand('lh_register_host', function()
 
         -- Make sure no one has claimed themselves as the host yet
         if hostID == -1 then
+            -- Store the new host
             hostID = playerID
+
+            -- If they have stat collection, store that they are used our plugin
+            if statcollection then
+                -- Add the stat
+                statcollection.addStats({
+                    loadHelper = true
+                })
+            end
 
             -- Check if we are loading, if we are, pause the game
             if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
