@@ -20,6 +20,9 @@ local maxPlayers = 10
 -- Total number of players in this lobby
 local totalPlayers = -1
 
+-- Set the time the pause started
+local pauseStart = Time()
+
 -- Function to check if everyone has loaded successfully
 local function everyoneLoaded()
     -- If we don't know how many players, we cant know if everyone has loaded!
@@ -41,6 +44,18 @@ local function everyoneLoaded()
         if stillLoading then
             stillLoading = false
             PauseGame(false)
+        end
+
+        -- If they have stat collection, store that they are used our plugin
+        if statcollection then
+            -- Add the stat
+            statcollection.addStats({
+                loadHelper = true,
+                loadHelperTime = Time() - pauseStart
+            })
+
+            -- Log to console
+            print('')
         end
     end
 end
@@ -65,14 +80,6 @@ Convars:RegisterCommand('lh_register_host', function()
             -- Store the new host
             hostID = playerID
 
-            -- If they have stat collection, store that they are used our plugin
-            if statcollection then
-                -- Add the stat
-                statcollection.addStats({
-                    loadHelper = true
-                })
-            end
-
             -- Check if we are loading, if we are, pause the game
             if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
                 -- Set paused
@@ -80,6 +87,17 @@ Convars:RegisterCommand('lh_register_host', function()
 
                 -- We are currently loading
                 stillLoading = true
+
+                -- Set the pause timer
+                pauseStart = Time()
+
+                -- If they have stats, record that our system is in use
+                if statcollection then
+                    -- Add the stats
+                    statcollection.addStats({
+                        loadHelper = true,
+                    })
+                end
             end
         end
 
@@ -138,6 +156,7 @@ Convars:RegisterCommand('lh_report_players', function(command, newTotalPlayers)
 end, 'Toggles the pause during the waiting phase', 0)
 
 -- Users tries to close the lobby
+local hasQuit = false
 Convars:RegisterCommand('lh_quit_game', function()
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
@@ -146,8 +165,31 @@ Convars:RegisterCommand('lh_quit_game', function()
 
         -- Ensure the player is actually the host
         if playerID == hostID then
-            -- Quit
-            SendToServerConsole('quit')
+            -- Only do this once
+            if hasQuit then return end
+            hasQuit = true
+
+            -- If they have stats, report back to the master server
+            if statcollection then
+                -- Add the stats
+                statcollection.addStats({
+                    loadHelper = true,
+                    loadHelperTime = Time() - pauseStart,
+                    loadHelperQuit = true,
+                })
+
+                -- Tell the stat collector to collect
+                statcollection.sendStats()
+
+                -- Wait 5 seconds to quit
+                GameRules:GetGameModeEntity():SetThink(function()
+                    -- Quit
+                    SendToServerConsole('quit')
+                end, 'QuitTimer', 5, nil)
+            else
+                -- Quit
+                SendToServerConsole('quit')
+            end
         end
     end
 end, 'Toggles the pause during the waiting phase', 0)
