@@ -6,11 +6,6 @@ if GetMapName() == 'connect_to_ash47' then
     return
 end
 
--- Should we load dedicated config?
-if LoadKeyValues('cfg/dedicated.kv') then
-    require('dedicated')
-end
-
 -- Ensure lod exists
 if _G.lod == nil then
     _G.lod = class({})
@@ -21,6 +16,11 @@ if _G.lod == nil then
 	function GameRules:isSource1()
 	    return isSource1
 	end
+end
+
+-- Should we load dedicated config?
+if LoadKeyValues('cfg/dedicated.kv') then
+    require('dedicated')
 end
 
 -- Stat collection
