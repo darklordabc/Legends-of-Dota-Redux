@@ -154,7 +154,20 @@ function getPlayerSnapshot(playerID)
                 denies = PlayerResource:GetDenies(playerID),
 
                 -- The total last hits this player has
-                lastHits = PlayerResource:GetLastHits(playerID)
+                lastHits = PlayerResource:GetLastHits(playerID),
+				
+				
+
+				stunAmount = PlayerResource:GetStuns(playerID),
+
+				goldSpentBuyBack = PlayerResource:GetGoldSpentOnBuybacks(playerID),
+				goldSpentConsumables = PlayerResource:GetGoldSpentOnConsumables(playerID),
+				goldSpentItems = PlayerResource:GetGoldSpentOnItems(playerID),
+				goldSpentSupport = PlayerResource:GetGoldSpentOnSupport(playerID),
+				numPurchasedConsumables = PlayerResource:GetNumConsumablesPurchased(playerID),
+				numPurchasedItems = PlayerResource:GetNumItemsPurchased(playerID),
+				totalEarnedGold = PlayerResource:GetTotalEarnedGold(playerID),
+				totalEarnedXP = PlayerResource:GetTotalEarnedXP(playerID)
             }
         end
 
@@ -180,17 +193,6 @@ function getPlayerSnapshot(playerID)
             items = itemData,
             abilities = abilityData,
             leaverStatus = PlayerResource:GetConnectionState(playerID),
-
-            stunAmount = PlayerResource:GetStuns(playerID),
-
-            goldSpentBuyBack = PlayerResource:GetGoldSpentOnBuybacks(playerID),
-            goldSpentConsumables = PlayerResource:GetGoldSpentOnConsumables(playerID),
-            goldSpentItems = PlayerResource:GetGoldSpentOnItems(playerID),
-            goldSpentSupport = PlayerResource:GetGoldSpentOnSupport(playerID),
-            numPurchasedConsumables = PlayerResource:GetNumConsumablesPurchased(playerID),
-            numPurchasedItems = PlayerResource:GetNumItemsPurchased(playerID),
-            totalEarnedGold = PlayerResource:GetTotalEarnedGold(playerID),
-            totalEarnedXP = PlayerResource:GetTotalEarnedXP(playerID),
         }
     end
 
