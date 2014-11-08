@@ -197,7 +197,7 @@ local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
 local skillLookup = {}
 for k,v in pairs(skillLookupList) do
     if tonumber(k) ~= nil then
-        if lod:isSource1() then
+        if GameRules:isSource1() then
             local v1 = skillLookupList[k..'_s1']
 
             if v1 ~= nil then
@@ -919,7 +919,7 @@ local function sendPickingInfo()
 
         -- Workout if we are running source1
         local s1 = 0
-        if GameRules.lod:isSource1() then
+        if GameRules:isSource1() then
             s1 = 1
         end
 
@@ -1052,8 +1052,11 @@ function lod:InitGameMode()
     print('Legends of dota started!')
     GameRules:GetGameModeEntity():SetThink('OnThink', self, 'GlobalThink', 0.25)
 
+    -- Override source1 hooks
+    SkillManager:overrideHooks()
+
     -- Setup standard rules
-    if not self:isSource1() then
+    if not GameRules:isSource1() then
         GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
         --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
     else
@@ -1066,7 +1069,7 @@ end
 local fixedBackdoor = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
-    if GameRules.lod:isSource1() and not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if GameRules:isSource1() and not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         -- Only run once
         fixedBackdoor = true
 
@@ -1235,7 +1238,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
 
             -- Fix EXP
-            if GameRules.lod:isSource1() then
+            if GameRules:isSource1() then
                 spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
             else
                 spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)

@@ -99,7 +99,7 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            if GameRules.lod:isSource1() then
+            if GameRules:isSource1() then
                 CreateUnitByName('npc_precache_'..heroName..'_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
             else
                 -- Precache source2 style
@@ -270,6 +270,20 @@ function skillManager:ApplyBuild(hero, build)
 
     -- Remove perma invis
     hero:RemoveModifierByName('modifier_riki_permanent_invisibility')
+end
+
+function skillManager:overrideHooks()
+    -- Implement the get ability by slot index method
+    if GameRules:isSource1() then
+        function CDOTA_BaseNPC:GetAbilityByIndex(index)
+            if currentSkillList[self] then
+                local skillName = currentSkillList[self][index]
+                if skillName then
+                    return self:FindAbilityByName(skillName)
+                end
+            end
+        end
+    end
 end
 
 -- Attempt to store the precacher of everything

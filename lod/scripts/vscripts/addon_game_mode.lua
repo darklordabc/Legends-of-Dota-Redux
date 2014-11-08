@@ -17,7 +17,8 @@ if _G.lod == nil then
 
     -- Checks if we are running in source1, or 2
     local isSource1 = Convars:GetStr('dota_local_addon_game') ~= nil
-	function _G.lod:isSource1()
+
+	function GameRules:isSource1()
 	    return isSource1
 	end
 end
