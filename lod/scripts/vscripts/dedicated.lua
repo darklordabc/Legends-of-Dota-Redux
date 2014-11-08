@@ -51,3 +51,17 @@ ListenToGameEvent('player_disconnect', function(keys)
         end
     end, 'killServer', 1, nil)
 end, nil)
+
+-- Auto add bots on the dedi server
+if GameRules:isSource1() then
+    local addedBots = false
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        local state = GameRules:State_Get()
+
+        if not addedBots and state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            addedBots = true
+            SendToServerConsole('sm_gamemode 1')
+            SendToServerConsole('dota_bot_populate')
+        end
+    end, nil)
+end
