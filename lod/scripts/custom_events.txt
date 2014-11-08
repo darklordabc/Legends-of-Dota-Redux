@@ -47,6 +47,7 @@
         "hostBanning"   "byte"
         "hideSkills"    "byte"
         "stage"         "byte"
+        "s1"            "byte"  // Is this a source1 game? (affects ability pool)
     }
 
     // A player stuck a skill into a slot

@@ -228,60 +228,79 @@ function toKV(obj, root) {
 var scriptDir = '';
 
 // Item + Skill modifier
-fs.readFile(scriptDir+'npc_heroes.txt', function(err, itemData) {
-    var rootHeroes = parseKV(''+itemData, true);
+fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
+    fs.readFile(scriptDir+'npc_heroes_source2.txt', function(err, source2) {
+        var rootHeroes1 = parseKV(''+source1, true);
+        var rootHeroes2 = parseKV(''+source2, true);
 
-    var precacher = {};
+        var precacher = {};
 
-    var newKV = {};
+        var newKV = {};
 
-    var heroes = rootHeroes.DOTAHeroes;
-    for(var name in heroes) {
-        if(name == 'Version') continue;
-        if(name == 'npc_dota_hero_base') continue;
+        var heroes1 = rootHeroes1.DOTAHeroes;
+        var heroes2 = rootHeroes2.DOTAHeroes;
+        for(var name in heroes2) {
+            if(name == 'Version') continue;
+            if(name == 'npc_dota_hero_base') continue;
 
-        var data = heroes[name];
+            var data1 = heroes1[name];
+            var data2 = heroes2[name];
 
-        newKV[name+'_lod'] = {
-            override_hero: name,
-            AbilityLayout: '6'
-        }
-
-        // Check if they are melee
-        if(data.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
-            // Give them projectile speed + model
-            newKV[name+'_lod'].ProjectileSpeed = 1000
-            newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
-        }
-
-        // Store precacher data
-        precacher['npc_precache_'+name] = {
-            BaseClass: 'npc_dota_creep',
-            precache: {
-                particle_folder: data.particle_folder,
-                soundfile: data.GameSoundsFile
+            newKV[name+'_lod'] = {
+                override_hero: name,
+                AbilityLayout: '6'
             }
-        }
 
-        // Extra precache stuff
-        if(data.precache) {
-            for(var key in data.precache) {
-                precacher['npc_precache_'+name].precache[key] = data.precache[key];
+            // Check if they are melee
+            if(data2.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
+                // Give them projectile speed + model
+                newKV[name+'_lod'].ProjectileSpeed = 1000
+                newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
             }
+
+            // Store precacher data
+            precacher['npc_precache_'+name+'_s1'] = {
+                BaseClass: 'npc_dota_creep',
+                precache: {
+                    particlefile: data1.ParticleFile,
+                    soundfile: data1.GameSoundsFile
+                }
+            }
+
+            precacher['npc_precache_'+name+'_s2'] = {
+                BaseClass: 'npc_dota_creep',
+                precache: {
+                    particle_folder: data2.particle_folder,
+                    soundfile: data2.GameSoundsFile
+                }
+            }
+
+            // Extra precache stuff
+            if(data1.precache) {
+                for(var key in data1.precache) {
+                    precacher['npc_precache_'+name+'_s1'].precache[key] = data1.precache[key];
+                }
+            }
+
+            if(data2.precache) {
+                for(var key in data2.precache) {
+                    precacher['npc_precache_'+name+'_s2'].precache[key] = data2.precache[key];
+                }
+            }
+
+            //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
         }
 
-        //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
-    }
+        fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
+            if (err) throw err;
 
-    fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
-        if (err) throw err;
+            console.log('Done saving precacher file!');
+        });
 
-        console.log('Done saving precacher file!');
-    });
+        fs.writeFile(scriptDir+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
+            if (err) throw err;
 
-    fs.writeFile(scriptDir+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
-        if (err) throw err;
-
-        console.log('Done saving file!');
+            console.log('Done saving file!');
+        });
     });
 });

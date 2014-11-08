@@ -196,14 +196,24 @@ local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
 local skillLookup = {}
 for k,v in pairs(skillLookupList) do
-    local skillSplit = vlua.split(v, '||')
+    if tonumber(k) ~= nil then
+        if lod:isSource1() then
+            local v1 = skillLookupList[k..'_s1']
 
-    if #skillSplit == 1 then
-        skillLookup[v] = tonumber(k)
-    else
-        -- Store the keys
-        for i=1,#skillSplit do
-            skillLookup[skillSplit[i]] = -(tonumber(k)+1000*(i-1))
+            if v1 ~= nil then
+                v = v1
+            end
+        end
+
+        local skillSplit = vlua.split(v, '||')
+
+        if #skillSplit == 1 then
+            skillLookup[v] = tonumber(k)
+        else
+            -- Store the keys
+            for i=1,#skillSplit do
+                skillLookup[skillSplit[i]] = -(tonumber(k)+1000*(i-1))
+            end
         end
     end
 end
@@ -831,7 +841,7 @@ local function finishVote()
     sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">! Bonus gold is </font></font><font color="'..COLOR_BLUE..'">'..bonusGold..'</font><font color="'..COLOR_GREEN..'">.</font>')
 end
 
--- This will be fired when the game starts
+-- A fix for source1 backdoor protection
 local function backdoorFix()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
 
@@ -907,6 +917,12 @@ local function sendPickingInfo()
 
         banningTimeLeft = math.floor(banningTimeLeft)
 
+        -- Workout if we are running source1
+        local s1 = 0
+        if GameRules.lod:isSource1() then
+            s1 = 1
+        end
+
         -- Send picking info to everyone
         FireGameEvent('lod_picking_info', {
             startTime = heroSelectionStart,
@@ -918,7 +934,8 @@ local function sendPickingInfo()
             trolls = (banTrollCombos and 1) or 0,
             hostBanning = (hostBanning and 1) or 0,
             hideSkills = (hideSkills and 1) or 0,
-            stage = currentStage
+            stage = currentStage,
+            s1 = s1
         })
     end, 'DelayedInfoTimer', 1, nil)
 end
@@ -1036,12 +1053,27 @@ function lod:InitGameMode()
     GameRules:GetGameModeEntity():SetThink('OnThink', self, 'GlobalThink', 0.25)
 
     -- Setup standard rules
-    GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
-    --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
+    if not self:isSource1() then
+        GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
+        --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
+    else
+        -- Precache wraithnight
+        CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end
 end
 
 -- Thinker function, run roughly once every second
+local fixedBackdoor = false
 function lod:OnThink()
+    -- Source1 fix to the backdoor issues
+    if GameRules.lod:isSource1() and not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        -- Only run once
+        fixedBackdoor = true
+
+        -- Fix backdoor
+        backdoorFix()
+    end
+
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
@@ -1203,7 +1235,11 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
 
             -- Fix EXP
-            spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+            if GameRules.lod:isSource1() then
+                spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
+            else
+                spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+            end
         end
 
         -- Any bonus gold?
@@ -1239,7 +1275,7 @@ end, nil)
 
 -- Multicast + Riki ulty
 ListenToGameEvent('dota_player_used_ability', function(keys)
-    local ply = EntIndexToHScript(keys.PlayerID)
+    local ply = EntIndexToHScript(keys.PlayerID or keys.player)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then

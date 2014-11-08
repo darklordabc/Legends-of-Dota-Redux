@@ -161,6 +161,9 @@ package  {
         // The team number we are on
         private var myTeam:Number = 0;
 
+        // Are we on source1?
+        private var source1:Boolean = false;
+
         // The skill KV file
         var skillKV:Object;
 
@@ -632,7 +635,16 @@ package  {
 
                                     // Grab a new skill
                                     var skill = completeList[tabNumber*1000+skillNumber++];
-                                    if(skill) {
+
+                                    // Source1 skill list
+                                    if(source1) {
+                                        var skill1 = completeList[(tabNumber*1000+skillNumber-1)+'_s1'];
+                                        if(skill1 != null) {
+                                            skill = skill1;
+                                        }
+                                    }
+
+                                    if(skill && skill != '') {
                                         var skillSplit = skill.split('||');
 
                                         if(skillSplit.length == 1) {
@@ -897,6 +909,12 @@ package  {
         }
 
         private function getSkillName(skillNumber:Number):String {
+            // Do something different if we are in source1 mode
+            if(source1) {
+                return completeList[String(skillNumber)+'_s1'] || completeList[skillNumber] || completeList[String(skillNumber)];
+            }
+
+            // Source2 mode, don't worry about fancy stuff
             return completeList[skillNumber] || completeList[String(skillNumber)];
         }
 
@@ -938,6 +956,11 @@ package  {
             // Only do this ONCE
             if(gottenPickingInfo) return;
             gottenPickingInfo = true;
+
+            // Check if we are in source1 mod
+            if(args.s1 == 1) {
+                source1 = true;
+            }
 
             currentStage = args.stage;
 

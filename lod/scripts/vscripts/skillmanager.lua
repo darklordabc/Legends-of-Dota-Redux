@@ -99,9 +99,14 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
-                CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-            end)
+            if GameRules.lod:isSource1() then
+                CreateUnitByName('npc_precache_'..heroName..'_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+            else
+                -- Precache source2 style
+                PrecacheUnitByNameAsync('npc_precache_'..heroName..'_s2', function()
+                    CreateUnitByName('npc_precache_'..heroName..'_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                end)
+            end
         end
     end
 end

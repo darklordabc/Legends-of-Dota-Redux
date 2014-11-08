@@ -14,6 +14,16 @@ end
 -- Ensure lod exists
 if _G.lod == nil then
     _G.lod = class({})
+
+    -- Checks if we are running in source1, or 2
+	function _G.lod:isSource1()
+	    -- Check for a source1 convar
+	    if Convars:GetStr('dota_local_addon_game') then
+	    	return true
+	    end
+
+	    return false
+	end
 end
 
 -- Stat collection
