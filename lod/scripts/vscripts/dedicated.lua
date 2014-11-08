@@ -58,9 +58,9 @@ if GameRules:isSource1() then
     ListenToGameEvent('game_rules_state_change', function(keys)
         local state = GameRules:State_Get()
 
-        if not addedBots and state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
             addedBots = true
-            SendToServerConsole('sm_gamemode 1')
+            SendToServerConsole('sm_gmode 1')
             SendToServerConsole('dota_bot_populate')
         end
     end, nil)
