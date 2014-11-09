@@ -1367,12 +1367,59 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                             -- Grab the position
                             local pos = hero:GetCursorPosition()
+                            local target
+
+                            if not GameRules:isSource1() then
+                                target = hero:GetCursorCastTarget()
+                            end
+
+                            local targets
+                            if target then
+                                targets = FindUnitsInRadius(target:GetTeam(),
+                                    target:GetOrigin(),
+                                    nil,
+                                    256,
+                                    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                                    DOTA_UNIT_TARGET_ALL,
+                                    DOTA_UNIT_TARGET_FLAG_NONE,
+                                    FIND_ANY_ORDER,
+                                    false
+                                )
+                            end
 
                             Timers:CreateTimer(function()
                                 -- Ensure it still exists
                                 if IsValidEntity(ab) then
                                     -- Position cursor
                                     hero:SetCursorPosition(pos)
+
+                                    -- If we have any targets to pick from, pick one
+                                    local doneTarget = false
+                                    if targets then
+                                        -- While there is still possible targets
+                                        while #targets > 0 do
+                                            -- Pick a random target
+                                            local index = math.random(#targets)
+                                            local t = targets[index]
+
+                                            -- Ensure it is valid and still alive
+                                            if IsValidEntity(t) and t:GetHealth() > 0 then
+                                                -- Target is valid and alive, target it
+                                                hero:SetCursorCastTarget(t)
+                                                doneTarget = true
+                                                break
+                                            else
+                                                -- Invalid target, remove it and find another
+                                                table.remove(targets, index)
+                                            end
+
+                                        end
+                                    end
+
+                                    -- If we failed to find a target, target the original
+                                    if not doneTarget and not GameRules:isSource1() then
+                                        hero:SetCursorCastTarget(target)
+                                    end
 
                                     -- Run the spell again
                                     ab:OnSpellStart()
