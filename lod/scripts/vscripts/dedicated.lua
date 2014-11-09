@@ -4,10 +4,6 @@ ListenToGameEvent('player_connect_full', function(keys)
     local entIndex = keys.index+1
     local ply = EntIndexToHScript(entIndex)
 
-    for i=0,9 do
-        PlayerResource:SetPlayerReservedState(i, false)
-    end
-
     -- Wait, then attempt to put them onto a team
     GameRules:GetGameModeEntity():SetThink(function()
         -- Validate player
