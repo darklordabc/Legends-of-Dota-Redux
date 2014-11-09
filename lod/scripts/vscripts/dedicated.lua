@@ -14,6 +14,9 @@ ListenToGameEvent('player_connect_full', function(keys)
         if ply then
             -- Make sure they aren't already on a team
             if ply:GetTeam() == 0 then
+                -- Don't touch bots
+                if PlayerResource:IsFakeClient(ply:GetPlayerID()) then return end
+
                 -- Find number of players on each team
                 local radiant = 0
                 local dire = 0
