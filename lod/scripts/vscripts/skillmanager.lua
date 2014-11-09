@@ -11,6 +11,9 @@ local heroListKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 -- A list of sub abilities needed to give out when we add an ability
 local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
 
+-- List of units that we can precache
+local unitList = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+
 -- This object will be exported
 local skillManager = {}
 
@@ -85,6 +88,13 @@ local function fixModifiers(hero, skill)
     hero:RemoveModifierByName('modifier_'..skill..'_aura')
 end
 
+local function unitExists(unitName)
+    -- Check if the unit exists
+    if unitList[unitName] then return true end
+
+    return false
+end
+
 -- Precaches a skill -- DODGY!
 local alreadyCached = {}
 local function precacheSkill(skillName)
@@ -100,12 +110,22 @@ local function precacheSkill(skillName)
 
             -- Cache it
             if GameRules:isSource1() then
-                CreateUnitByName('npc_precache_'..heroName..'_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                -- Ensure it exists
+                if unitExists('npc_precache_'..heroName..'_s1') then
+                    CreateUnitByName('npc_precache_'..heroName..'_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                else
+                    print('Failed to precache unit: npc_precache_'..heroName..'_s1')
+                end
             else
-                -- Precache source2 style
-                PrecacheUnitByNameAsync('npc_precache_'..heroName..'_s2', function()
-                    CreateUnitByName('npc_precache_'..heroName..'_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
-                end)
+                -- Ensure it exists
+                if unitExists('npc_precache_'..heroName..'_s2') then
+                    -- Precache source2 style
+                    PrecacheUnitByNameAsync('npc_precache_'..heroName..'_s2', function()
+                        CreateUnitByName('npc_precache_'..heroName..'_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                    end)
+                else
+                    print('Failed to precache unit: npc_precache_'..heroName..'_s2')
+                end
             end
         end
     end
