@@ -1,5 +1,4 @@
 -- Stick people onto teams
-local radiant = true
 ListenToGameEvent('player_connect_full', function(keys)
     -- Grab the entity index of this player
     local entIndex = keys.index+1
@@ -15,12 +14,24 @@ ListenToGameEvent('player_connect_full', function(keys)
         if ply then
             -- Make sure they aren't already on a team
             if ply:GetTeam() == 0 then
+                -- Find number of players on each team
+                local radiant = 0
+                local dire = 0
+                for i=0,4 do
+                    if PlayerResource:GetConnectionState(i) == 2 then
+                        radiant = radiant + 1
+                    end
+                end
+                for i=5,9 do
+                    if PlayerResource:GetConnectionState(i) == 2 then
+                        dire = dire + 1
+                    end
+                end
+
                 -- Set their team
-                if radiant then
-                    radiant = false
+                if radiant <= dire then
                     ply:SetTeam(DOTA_TEAM_GOODGUYS)
                 else
-                    radiant = true
                     ply:SetTeam(DOTA_TEAM_BADGUYS)
                 end
             end
