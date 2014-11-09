@@ -17,14 +17,13 @@ ListenToGameEvent('player_connect_full', function(keys)
                 -- Find number of players on each team
                 local radiant = 0
                 local dire = 0
-                for i=0,4 do
+                for i=0,9 do
                     if PlayerResource:GetConnectionState(i) == 2 then
-                        radiant = radiant + 1
-                    end
-                end
-                for i=5,9 do
-                    if PlayerResource:GetConnectionState(i) == 2 then
-                        dire = dire + 1
+                        if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
+                            radiant = radiant + 1
+                        else if PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
+                            dire = dire + 1
+                        end
                     end
                 end
 
