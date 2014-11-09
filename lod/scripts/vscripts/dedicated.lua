@@ -21,7 +21,7 @@ ListenToGameEvent('player_connect_full', function(keys)
                     if PlayerResource:GetConnectionState(i) == 2 then
                         if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
                             radiant = radiant + 1
-                        else if PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
+                        elseif PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
                             dire = dire + 1
                         end
                     end
