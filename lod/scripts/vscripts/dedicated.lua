@@ -17,7 +17,7 @@ ListenToGameEvent('player_connect_full', function(keys)
                 local radiant = 0
                 local dire = 0
                 for i=0,9 do
-                    if PlayerResource:GetConnectionState(i) == 2 then
+                    if PlayerResource:GetConnectionState(i) >= 2 or PlayerResource:IsFakeClient(i) then
                         if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
                             radiant = radiant + 1
                         elseif PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
