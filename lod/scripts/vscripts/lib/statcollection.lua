@@ -55,13 +55,27 @@ local alreadySubmitted = false
 local autoSendStats = true
 
 -- This function should be called with a table of stats to add
-function addStats(toSearch)
+function addStats(stats)
     -- Ensure args were passed
-    toSearch = toSearch or {}
+    local toAdd = stats or {}
 
     -- Store the fields
-    for k, v in pairs(toSearch) do
+    for k, v in pairs(toAdd) do
         collectedStats[k] = v
+    end
+end
+
+-- This function should be called with a table of flags to add
+function addFlags(flags)
+    -- Ensure args were passed
+    local toAdd = flags or {}
+
+    -- Ensure flags exist
+    collectedStats.flags = collectedStats.flags or {}
+
+    -- Store the fields
+    for k, v in pairs(toAdd) do
+        collectedStats.flags[k] = v
     end
 end
 
@@ -71,6 +85,18 @@ function addStatsSafe(name, value)
     if collectedStats[name] == nil then
         -- Store the new value
         collectedStats[name] = value
+    end
+end
+
+-- This function adds a single flag, but wont override existing flags
+function addFlagSafe(name, value)
+    -- Ensure flags exist
+    collectedStats.flags = collectedStats.flags or {}
+
+    -- Ensure the flag doesn't exist
+    if collectedStats.flags[name] == nil then
+        -- Store the new value
+        collectedStats.flags[name] = value
     end
 end
 
@@ -192,7 +218,7 @@ function getPlayerSnapshot(playerID)
             hero = heroData,
             items = itemData,
             abilities = abilityData,
-            leaverStatus = PlayerResource:GetConnectionState(playerID),
+            connectionStatus = PlayerResource:GetConnectionState(playerID),
         }
     end
 
@@ -251,7 +277,7 @@ function sendStats(extraFields)
     })
 
     -- Store if this is a dedi server or not
-    addStatsSafe('dedicated', IsDedicatedServer())
+    addFlagSafe('dedicated', IsDedicatedServer())
 
     -- Tell the user the stats are being sent
     print('Sending stats...')
