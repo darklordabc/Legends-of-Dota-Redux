@@ -38,6 +38,9 @@ Readers beware: You are REQUIRED to set AT LEAST modID to your mods unique ID
 -- Begin statcollection module
 module('statcollection', package.seeall)
 
+-- This is the version of stat collection (it's the build date)
+local STAT_COLLECTION_VERSION = '2014.11.16.23.44'
+
 -- Require libs
 local JSON = require('lib.json')
 local md5 = require('lib.md5')
@@ -54,19 +57,24 @@ local alreadySubmitted = false
 -- Should we auto send stats?
 local autoSendStats = true
 
+-- For the following functions, setting safe to true will STOP the function from override old stats
+-- If you leave safe out, or set it to false, it will override old stats (if any exist)
+
 -- This function should be called with a table of stats to add
-function addStats(stats)
+function addStats(stats, safe)
     -- Ensure args were passed
     local toAdd = stats or {}
 
     -- Store the fields
     for k, v in pairs(toAdd) do
-        collectedStats[k] = v
+        if not safe or collectedStats[k] == nil then
+            collectedStats[k] = v
+        end
     end
 end
 
 -- This function should be called with a table of flags to add
-function addFlags(flags)
+function addFlags(flags, safe)
     -- Ensure args were passed
     local toAdd = flags or {}
 
@@ -75,28 +83,26 @@ function addFlags(flags)
 
     -- Store the fields
     for k, v in pairs(toAdd) do
-        collectedStats.flags[k] = v
+        if not safe or collectedStats.flags[k] == nil then
+            collectedStats.flags[k] = v
+        end
     end
 end
 
--- This function adds a single stat, but wont override existing stats
-function addStatsSafe(name, value)
-    -- Ensure the stat doesn't exist
-    if collectedStats[name] == nil then
-        -- Store the new value
-        collectedStats[name] = value
-    end
-end
+-- This function sets the stats adds the stats for a given module
+function addModuleStats(module, stats, safe)
+    -- Ensure args were passed
+    local toAdd = stats or {}
 
--- This function adds a single flag, but wont override existing flags
-function addFlagSafe(name, value)
     -- Ensure flags exist
-    collectedStats.flags = collectedStats.flags or {}
+    collectedStats.modules = collectedStats.modules or {}
+    collectedStats.modules[module] = collectedStats.modules[module] or {}
 
-    -- Ensure the flag doesn't exist
-    if collectedStats.flags[name] == nil then
-        -- Store the new value
-        collectedStats.flags[name] = value
+    -- Store the fields
+    for k, v in pairs(toAdd) do
+        if not safe or collectedStats.modules[module][k] == nil then
+            collectedStats.modules[module][k] = v
+        end
     end
 end
 
@@ -251,15 +257,6 @@ function sendStats(extraFields)
         return
     end
 
-    -- Build common stats
-    addStatsSafe('duration', GameRules:GetGameTime())
-
-    -- Attempt to add the winner
-    addStatsSafe('winner', findWinnerUsingForts())
-
-    -- Attempt to add the map
-    addStatsSafe('map', GetMapName())
-
     -- Build player array
     local playersData = {}
     for i = 0, maxPlayers - 1 do
@@ -270,14 +267,6 @@ function sendStats(extraFields)
             table.insert(playersData, data)
         end
     end
-
-    -- Add round data
-    addStatsSafe('rounds', {
-        players = playersData
-    })
-
-    -- Store if this is a dedi server or not
-    addFlagSafe('dedicated', IsDedicatedServer())
 
     -- Tell the user the stats are being sent
     print('Sending stats...')
@@ -291,8 +280,34 @@ function sendStats(extraFields)
     local port = Convars:GetStr('hostport')
     local randomness = RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1) .. '/' .. RandomFloat(0, 1)
 
-    -- Add server address
-    addStatsSafe('serverAddress', ip..':'..port)
+    -- Add common stats if they aren't already added
+    addStats({
+        -- The version of the module
+        version = STAT_COLLECTION_VERSION,
+
+        -- The local address of this server
+        serverAddress = ip..':'..port,
+
+        -- The round data
+        rounds = {
+            players = playersData
+        },
+
+        -- The current map
+        map = GetMapName(),
+
+        -- The winner (if they are using forts)
+        winner = findWinnerUsingForts(),
+
+        -- The duration of the match
+        duration = GameRules:GetGameTime()
+    }, true)
+
+    -- Add flags if they aren't already added
+    addFlags({
+        -- Is this a dedi server or not?
+        dedicated = IsDedicatedServer()
+    }, true)
 
     -- Setup the string to be hashed
     local toHash = ip .. ':' .. port .. ' @ ' .. currentTime .. ' + ' .. randomness .. ' + '
@@ -353,6 +368,11 @@ function disableAutoSend()
     autoSendStats = false
 end
 
+-- Returns the current version of stat collection
+function getVersion()
+    return STAT_COLLECTION_VERSION
+end
+
 -- This function attempts to detect the winner based on the status for forts
 -- If no forts are found, 0 is returned, if more than one fort is found, -1 is returned
 function findWinnerUsingForts()
@@ -407,7 +427,9 @@ end, nil)
 local oldSetGameWinner = GameRules.SetGameWinner
 GameRules.SetGameWinner = function(gameRules, team)
     -- Store the stats
-    addStatsSafe('winner', team)
+    addStats({
+        winner = team
+    }, true)
 
     -- Run the rael setGameWinner function
     oldSetGameWinner(gameRules, team)

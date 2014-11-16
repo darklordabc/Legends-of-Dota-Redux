@@ -49,7 +49,7 @@ local function everyoneLoaded()
         -- If they have stat collection, store that they are used our plugin
         if statcollection then
             -- Add the stat
-            statcollection.addFlags({
+            statcollection.addModuleStats('loadHelper', {
                 loadHelper = true,
                 loadHelperTime = Time() - pauseStart
             })
@@ -91,7 +91,7 @@ Convars:RegisterCommand('lh_register_host', function()
                 -- If they have stats, record that our system is in use
                 if statcollection then
                     -- Add the stats
-                    statcollection.addFlags({
+                    statcollection.addModuleStats('loadHelper', {
                         loadHelper = true,
                         hostSlotID = hostID,
                     })
@@ -170,7 +170,7 @@ Convars:RegisterCommand('lh_quit_game', function()
             -- If they have stats, report back to the master server
             if statcollection then
                 -- Add the stats
-                statcollection.addFlags({
+                statcollection.addModuleStats('loadHelper', {
                     loadHelper = true,
                     loadHelperTime = Time() - pauseStart,
                     loadHelperQuit = true,
