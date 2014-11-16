@@ -38,6 +38,7 @@ Legends of Dota
   - addons/metamod.vdf
  - The following goes into a batch file, place this match file into the same folder as srcds
 
+
     @echo off
     cls
     echo Protecting srcds from crashes...
@@ -50,6 +51,7 @@ Legends of Dota
     goto srcds
 
  - Create cfg/custom.cfg
+
 
     dota_local_addon_enable 1
     dota_local_addon_game lod
