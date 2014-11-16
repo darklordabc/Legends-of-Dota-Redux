@@ -40,6 +40,7 @@ Legends of Dota
     goto srcds
 
 Custom.cfg
+
     dota_local_addon_enable 1
     dota_local_addon_game 296590332
     dota_force_gamemode 15
