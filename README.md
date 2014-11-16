@@ -38,25 +38,23 @@ Legends of Dota
   - addons/metamod.vdf
  - The following goes into a batch file, place this match file into the same folder as srcds
 
-
-    @echo off
-    cls
-    echo Protecting srcds from crashes...
-    echo If you want to close srcds and this script, close the srcds window and type Y depending on your language followed by Enter.
-    title Legends of Dota watchdog
-    :srcds
-    echo (%time%) srcds started.
-    start /wait srcds -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +exec custom +map dota_fixed
-    echo (%time%) WARNING: srcds closed or crashed, restarting.
-    goto srcds
+        @echo off
+        cls
+        echo Protecting srcds from crashes...
+        echo If you want to close srcds and this script, close the srcds window and type Y depending on your language followed by Enter.
+        title Legends of Dota watchdog
+        :srcds
+        echo (%time%) srcds started.
+        start /wait srcds -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +exec custom +map dota_fixed
+        echo (%time%) WARNING: srcds closed or crashed, restarting.
+        goto srcds
 
  - Create cfg/custom.cfg
 
-
-    dota_local_addon_enable 1
-    dota_local_addon_game lod
-    dota_force_gamemode 15
-    update_addon_paths
-    dota_wait_for_players_to_load_count 1
-    dota_wait_for_players_to_load 1
-    dota_wait_for_players_to_load_timeout 30
+        dota_local_addon_enable 1
+        dota_local_addon_game lod
+        dota_force_gamemode 15
+        update_addon_paths
+        dota_wait_for_players_to_load_count 1
+        dota_wait_for_players_to_load 1
+        dota_wait_for_players_to_load_timeout 30
