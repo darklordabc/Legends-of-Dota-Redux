@@ -50,8 +50,8 @@ local function everyoneLoaded()
         if statcollection then
             -- Add the stat
             statcollection.addModuleStats('loadHelper', {
-                loadHelper = true,
-                loadHelperTime = Time() - pauseStart
+                enabled = true,
+                duration = Time() - pauseStart
             })
         end
     end
@@ -92,7 +92,7 @@ Convars:RegisterCommand('lh_register_host', function()
                 if statcollection then
                     -- Add the stats
                     statcollection.addModuleStats('loadHelper', {
-                        loadHelper = true,
+                        enabled = true,
                         hostSlotID = hostID,
                     })
                 end
@@ -171,9 +171,9 @@ Convars:RegisterCommand('lh_quit_game', function()
             if statcollection then
                 -- Add the stats
                 statcollection.addModuleStats('loadHelper', {
-                    loadHelper = true,
-                    loadHelperTime = Time() - pauseStart,
-                    loadHelperQuit = true,
+                    enabled = true,
+                    duration = Time() - pauseStart,
+                    quit = true,
                 })
 
                 -- Tell the stat collector to collect
