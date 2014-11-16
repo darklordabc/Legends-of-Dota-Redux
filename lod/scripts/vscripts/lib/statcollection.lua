@@ -155,8 +155,8 @@ function getPlayerSnapshot(playerID)
 
                 -- The total last hits this player has
                 lastHits = PlayerResource:GetLastHits(playerID),
-				
-				
+
+
 
 				stunAmount = PlayerResource:GetStuns(playerID),
 
@@ -230,6 +230,9 @@ function sendStats(extraFields)
 
     -- Attempt to add the winner
     addStatsSafe('winner', findWinnerUsingForts())
+
+    -- Attempt to add the map
+    addStatsSafe('map', GetMapName())
 
     -- Build player array
     local playersData = {}
