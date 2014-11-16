@@ -1201,6 +1201,13 @@ package  {
                 stageTimer = null;
             }
 
+            // Check if we are a spectator
+            var playerID = globals.Players.GetLocalPlayer();
+            if(globals.Players.IsSpectator(playerID)) {
+                finishPicking();
+                return;
+            }
+
             // Hide the voting UI
             if(votingUI != null) votingUI.visible = false;
 

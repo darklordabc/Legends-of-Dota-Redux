@@ -26,6 +26,13 @@ ListenToGameEvent('player_connect_full', function(keys)
                     end
                 end
 
+                -- Should we be spectating this player?
+                if dire + radiant >= 10 then
+                    -- Create a spectator
+                    ply:SetTeam(1)
+                    return
+                end
+
                 -- Set their team
                 if radiant <= dire then
                     ply:SetTeam(DOTA_TEAM_GOODGUYS)
