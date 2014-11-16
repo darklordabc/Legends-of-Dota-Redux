@@ -28,6 +28,16 @@ Legends of Dota
   - All Random, everyone gets a random hero and random spells
 
 ###Starting a source1 server###
+ - You'll need to setup a source1 server, google it!
+ - You need the following installed
+  - addons/d2fixups
+  - addons/lod
+  - addons/sourcemod
+  - addons/sourcemod/plugins/ffa.smx (This can be found in sourcemod/plugins folder of the LegendsOfDota repo)
+  - addons/metamod
+  - addons/metamod.vdf
+ - The following goes into a batch file, place this match file into the same folder as srcds
+
     @echo off
     cls
     echo Protecting srcds from crashes...
@@ -39,10 +49,10 @@ Legends of Dota
     echo (%time%) WARNING: srcds closed or crashed, restarting.
     goto srcds
 
-Custom.cfg
+ - Create cfg/custom.cfg
 
     dota_local_addon_enable 1
-    dota_local_addon_game 296590332
+    dota_local_addon_game lod
     dota_force_gamemode 15
     update_addon_paths
     dota_wait_for_players_to_load_count 1
