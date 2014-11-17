@@ -42,8 +42,9 @@ module('statcollection', package.seeall)
 local STAT_COLLECTION_VERSION = '2014.11.16.23.44'
 
 -- Require libs
-local JSON = require('lib.json')
-local md5 = require('lib.md5')
+local libpath = (...):match('(.-)[^%.]+$')
+local JSON = require(libpath .. 'json')
+local md5 = require(libpath .. 'md5')
 
 -- Max number of players
 local maxPlayers = 10
