@@ -28,7 +28,8 @@ Legends of Dota
   - All Random, everyone gets a random hero and random spells
 
 ###Starting a source1 server###
- - You'll need to setup a source1 server, google it!
+ - Do not contact me for additional help
+ - You'll need to setup a source1 server, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
  - You need the following installed
   - addons/d2fixups
   - addons/lod
@@ -58,3 +59,8 @@ Legends of Dota
         dota_wait_for_players_to_load_count 1
         dota_wait_for_players_to_load 1
         dota_wait_for_players_to_load_timeout 30
+
+ - Create cfg/dedicated.kv
+
+        "dedicated" {
+        }
