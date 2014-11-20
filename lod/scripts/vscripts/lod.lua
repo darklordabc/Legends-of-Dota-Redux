@@ -1506,6 +1506,9 @@ end, nil)
 
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
+    -- Input validation
+    if skillName == nil then return end
+
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
@@ -1557,6 +1560,11 @@ end, 'Ban a given skill', 0)
 
 -- When a user wants to stick a skill into a slot
 Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
+    -- Input validation
+    if slotNumber == nil then return end
+    if skillName == nil then return end
+    slotNumber = tonumber(slotNumber)
+
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
