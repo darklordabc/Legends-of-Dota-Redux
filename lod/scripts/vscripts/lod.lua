@@ -1563,7 +1563,6 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     -- Input validation
     if slotNumber == nil then return end
     if skillName == nil then return end
-    slotNumber = tonumber(slotNumber)
 
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
