@@ -229,6 +229,17 @@ function skillManager:ApplyBuild(hero, build)
         build[6] = nil
     end
 
+    -- Initial cleanup loop
+    for i=1,12 do
+        local v = build[i]
+        if v then
+             -- If they already have it, remove it
+            if hero:HasAbility(v) then
+                hero:RemoveAbility(v)
+            end
+        end
+    end
+
     -- Give all the abilities in this build
     local abNum = 0
     for i=1,12 do
