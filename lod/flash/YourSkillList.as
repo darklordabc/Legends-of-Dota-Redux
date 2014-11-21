@@ -10,6 +10,8 @@
 		public var skill4:MovieClip;
 		public var skill5:MovieClip;
 
+		public var timer;
+
 		public function YourSkillList(totalSlots:Number, totalSkills:Number, totalUlts:Number) {
 			// Ensure valid values
 			if(totalSlots < 4) {
@@ -47,5 +49,4 @@
 			}
 		}
 	}
-
 }

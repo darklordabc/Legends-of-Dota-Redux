@@ -4,9 +4,6 @@ print("Gamemode started to load...")
     SETTINGS
 ]]
 
--- Voting period
-local votingTime = 1
-
 -- Banning Period
 local banningTime = 90
 
@@ -28,13 +25,13 @@ local Timers = require('easytimers')
 ]]
 
 -- Total number of skill slots to allow
-local maxSlots = 5
+local maxSlots = 6
 
 -- Total number of normal skills to allow
-local maxSkills = 4
+local maxSkills = 6
 
 -- Total number of ults to allow (Ults are always on the right)
-local maxUlts = 1
+local maxUlts = 2
 
 -- Should we ban troll combos?
 local banTrollCombos = true
@@ -53,20 +50,6 @@ local allowedToPick = true
 
 -- Should we force random heroes?
 local forceRandomHero = false
-
--- Check if we are in dev mode
---[[if LoadKeyValues('cfg/dev.kv') ~= 0 then
-    -- Low voting time
-    votingTime = 20
-
-    -- Low picking time
-    pickingTime = 15
-
-    -- Low banning time
-    banningTime = 15
-else
-    print('^ Ignore that message')
-end]]
 
 --[[
     FUNCTION DEFINITIONS
@@ -583,11 +566,6 @@ local function fixBuilds()
     brokenHeroes = {}
 end
 
-local function fixSelectionTime()
-    GameRules:SetHeroSelectionTime(banningTime+pickingTime+votingTime)
-    GameRules:SetSameHeroSelectionEnabled(true)
-end
-
 -- Takes the current gamemode number, and sets the required settings
 local function setupGamemodeSettings()
     -- Default to not using the draft array
@@ -909,14 +887,6 @@ local function sendPickingInfo()
         -- They can ask for info again
         canInfo = true
 
-        -- Workout how much banning time is left
-        local banningTimeLeft = heroSelectionStart + votingTime + banningTime - GameRules:GetGameTime()
-        if banningTimeLeft < 0 then
-            banningTimeLeft = 0
-        end
-
-        banningTimeLeft = math.floor(banningTimeLeft)
-
         -- Workout if we are running source1
         local s1 = 0
         if GameRules:isSource1() then
@@ -926,7 +896,7 @@ local function sendPickingInfo()
         -- Send picking info to everyone
         FireGameEvent('lod_picking_info', {
             startTime = heroSelectionStart,
-            banningTime = banningTimeLeft,
+            banningTime = banningTime,
             pickingTime = pickingTime,
             slots = maxSlots,
             skills = maxSkills,
@@ -954,6 +924,7 @@ local function sendVotingInfo()
 
             -- Is it still broken?
             if slaveID == -1 then
+                print('Failed to find hostID!')
                 return 1
             end
         end
@@ -963,8 +934,6 @@ local function sendVotingInfo()
 
         -- Send picking info to everyone
         FireGameEvent('lod_voting_info', {
-            startTime = heroSelectionStart,
-            votingTime = votingTime,
             slaveID = slaveID
         })
     end, 'DelayedVoteInfoTimer', 1, nil)
@@ -1055,6 +1024,10 @@ function lod:InitGameMode()
     -- Override source1 hooks
     SkillManager:overrideHooks()
 
+    -- Set the selection time
+    GameRules:SetHeroSelectionTime(15)
+    GameRules:SetSameHeroSelectionEnabled(true)
+
     -- Setup standard rules
     if not GameRules:isSource1() then
         GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
@@ -1069,21 +1042,23 @@ end
 local fixedBackdoor = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
-    if GameRules:isSource1() and not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        -- Only run once
-        fixedBackdoor = true
+    if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        if GameRules:isSource1() then
+            -- Only run once
+            fixedBackdoor = true
 
-        -- Fix backdoor
-        backdoorFix()
+            -- Fix backdoor
+            backdoorFix()
+        end
+
+        -- Done with this thinker
+        return
     end
 
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
-            -- Store when the hero selection started
-            heroSelectionStart = GameRules:GetGameTime()
-
             -- Move onto the voting stage
             currentStage = STAGE_VOTING
 
@@ -1091,11 +1066,8 @@ function lod:OnThink()
             sendVotingInfo()
 
             -- Sleep until the voting time is over
-            return votingTime
+            return 1
         end
-
-        -- Set the hero selection time
-        fixSelectionTime()
 
         -- Run again in a moment
         return 2
@@ -1106,23 +1078,16 @@ function lod:OnThink()
         if stillVoting then
             PauseGame(true)
             return 1
-        else
-            PauseGame(false)
         end
-
-        -- Wait for voting to end
-        if GameRules:GetGameTime() < heroSelectionStart + votingTime then
-            return 1
-        end
-
-        -- Update this
-        heroSelectionStart = GameRules:GetGameTime()
 
         -- Workout who won
         finishVote()
 
         -- Move onto banning mode
         currentStage = STAGE_BANNING
+
+        -- Store when the hero selection started
+        heroSelectionStart = Time()
 
         -- Send the picking info
         sendPickingInfo()
@@ -1147,8 +1112,11 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_BANNING then
+        -- Pause the game
+        PauseGame(true)
+
         -- Wait for banning to end
-        if GameRules:GetGameTime() < heroSelectionStart + votingTime + banningTime then return 1 end
+        if Time() < heroSelectionStart + banningTime then return 1 end
 
         -- Change to picking state
         currentStage = STAGE_PICKING
@@ -1161,8 +1129,17 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_PICKING then
+        -- Owkrout how long left
+        local timeLeft = heroSelectionStart + pickingTime + banningTime - Time()
+
+        if timeLeft > 60 then
+            PauseGame(true)
+        else
+            PauseGame(false)
+        end
+
         -- Wait for voting to end
-        if GameRules:GetGameTime() < heroSelectionStart + votingTime + pickingTime and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 1 end
+        if timeLeft > 0 and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 1 end
 
         -- Change to the playing stage
         currentStage = STAGE_PLAYING
@@ -1172,6 +1149,9 @@ function lod:OnThink()
 
         -- Fix any broken heroes
         fixBuilds()
+
+        -- Unpause the game
+        PauseGame(false)
 
         -- Sleep
         return 0.1
@@ -1942,8 +1922,5 @@ Convars:RegisterCommand('lod_decode', function(name, theirNumber)
         end
     end
 end, 'Update a user\'s vote', 0)
-
--- Set the hero selection time
-fixSelectionTime()
 
 print('Gamemode has loaded!')

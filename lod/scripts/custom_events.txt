@@ -29,8 +29,6 @@
     // Fired when the game starts to tell cleints about the voting options
     "lod_voting_info"
     {
-        "startTime"     "float" // The time hero selection started
-        "votingTime"    "float" // The amount of time we have to vote
         "slaveID"       "byte"  // The ID of the player who owns the vote, or -1 for free for all
     }
 

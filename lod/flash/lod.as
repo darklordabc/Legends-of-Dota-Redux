@@ -177,8 +177,7 @@ package  {
         private var bannedSkills:Object;
 
         // Picking time info
-        private var heroSelectionStart:Number;
-        private var votingTime:Number;
+        private var heroSelectionStart:Number = -1;
         private var banningTime:Number;
         private var pickingTime:Number;
 
@@ -310,8 +309,19 @@ package  {
             trace('Done fixing the hud!\n\n');
         }
 
+        // called by the game engine after onLoaded and whenever the screen size is changed
+        public function onScreenSizeChanged():void {
+            // Fix the scaling issues
+            fixScaling();
+        }
+
         // When the resolution changes, fix our hud
         public function onResize(re:ResizeManager):void {
+            // Fix the scaling issues
+            fixScaling();
+        }
+
+        private function fixScaling():void {
             // Align to top of screen
             x = 0;
             y = 0;
@@ -320,15 +330,15 @@ package  {
             visible = true;
 
             // Workout the scaling factor
-            scalingFactor = re.ScreenHeight/myStageHeight;
+            scalingFactor = stage.stageHeight/myStageHeight;
 
             // Apply the scale
             this.scaleX = scalingFactor;
             this.scaleY = scalingFactor;
 
             // Store the real screen size
-            realScreenWidth = re.ScreenWidth;
-            realScreenHeight = re.ScreenHeight;
+            realScreenWidth = stage.stageWidth;
+            realScreenHeight = stage.stageHeight;
 
             // How much space we have to use
             var workingWidth:Number = myStageHeight*getWorkingRatio();
@@ -414,6 +424,9 @@ package  {
 
         // Sets the hud up
         private function setupHud():void {
+            // Debug call
+            trace('LoD: Rebuilding hud...');
+
             // Reset the hud
             cleanupHud();
 
@@ -428,6 +441,9 @@ package  {
 
             // Build the voting UI
             buildVotingUI();
+
+            // Make this panel visible
+            this.visible = true;
 
             // Request picking info
             if(!gottenPickingInfo) {
@@ -551,6 +567,9 @@ package  {
 
         // Builds the voting screen
         private function buildVotingUI():void {
+            // Debug
+            trace('LoD: Voting interface created!');
+
             // Spawn the voting UI
             votingUI = new VotingUI(isSlave);
             addChild(votingUI);
@@ -921,7 +940,14 @@ package  {
         // Fired when the server gives us voting info
         private function onGetVotingInfo(args:Object):void {
             // If we have no playerID, simply stop -- we aren't allocated to a team yet!
-            if(globals.Players.GetLocalPlayer() == -1) return;
+            if(globals.Players.GetLocalPlayer() == -1) {
+                trace('LoD: Got voting info, but couldn\'t find out local playerID!');
+                requestVoteStatus();
+                return;
+            }
+
+            // Debug info
+            trace('Lod: Just got voting info!');
 
             // Workout if we are a slave or not
             if(args.slaveID == -1 || args.slaveID == globals.Players.GetLocalPlayer()) {
@@ -943,10 +969,6 @@ package  {
             // Move onto voting stage
             currentStage = STAGE_VOTING;
 
-            // Store vars
-            heroSelectionStart = args.startTime;
-            votingTime = args.votingTime;
-
             // Rehook the picking screen
             setupHud();
         }
@@ -957,6 +979,9 @@ package  {
             if(gottenPickingInfo) return;
             gottenPickingInfo = true;
 
+            // Debug info
+            trace('Lod: Got picking info!');
+
             // Check if we are in source1 mod
             if(args.s1 == 1) {
                 source1 = true;
@@ -965,7 +990,7 @@ package  {
             currentStage = args.stage;
 
             // Store vars
-            heroSelectionStart = globals.Game.Time();//args.startTime;
+            heroSelectionStart = args.startTime;
             banningTime = args.banningTime;
             pickingTime = args.pickingTime;
 
@@ -1204,6 +1229,7 @@ package  {
             // Check if we are a spectator
             var playerID = globals.Players.GetLocalPlayer();
             if(globals.Players.IsSpectator(playerID)) {
+                trace('LoD: Player is a spectator, unloading UI...');
                 finishPicking();
                 return;
             }
@@ -1221,8 +1247,8 @@ package  {
             var now:Number = globals.Game.Time();
 
             // Decide what needs to be shown
-            //if(now < heroSelectionStart+votingTime) {
-            if(currentStage == STAGE_VOTING) {
+            //if(now < heroSelectionStart) {
+            if(currentStage == STAGE_VOTING || heroSelectionStart == -1) {
                 // It's voting time
 
                 // Show the voting UI
@@ -1231,10 +1257,10 @@ package  {
                     votingUI.visible = true;
 
                     // Update timer
-                    //votingUI.timer.text = Math.ceil(heroSelectionStart+votingTime-now);
+                    //votingUI.timer.text = Math.ceil(heroSelectionStart-now);
                     votingUI.timer.visible = false;
                 }
-            } else if(now < heroSelectionStart+banningTime+votingTime) {
+            } else if(now < heroSelectionStart+banningTime) {
                 // It is banning time
 
                 // Show the banning panel
@@ -1243,7 +1269,7 @@ package  {
                     banningArea.visible = true;
 
                     // Update the timer
-                    banningArea.timer.text = Math.ceil(heroSelectionStart+votingTime+banningTime-now);
+                    banningArea.timer.text = sexyTime(Math.ceil(heroSelectionStart+banningTime-now));
                 }
             } else {
                 // It is skill selection time
@@ -1254,11 +1280,25 @@ package  {
                     updateFilters();
                 }
 
-                // Show the skills area
-                if(mySkills != null) mySkills.visible = true;
+                var timeLeft = Math.ceil(heroSelectionStart+banningTime+pickingTime-now);
 
-                // We don't need a timer <3
-                return;
+                // Show the skills area
+                if(mySkills != null) {
+                    mySkills.visible = true;
+
+                    // Update timer
+                    if(timeLeft > 0) {
+                        mySkills.timer.text = sexyTime(timeLeft);
+                        mySkills.timer.visible = true;
+                    } else {
+                        mySkills.timer.visible = false;
+                    }
+                }
+
+                if(timeLeft <= 0) {
+                    // We don't need a timer <3
+                    return;
+                }
             }
 
             // Wait for a moment, and try again
@@ -1824,6 +1864,10 @@ package  {
 
             // Tell the server to ban this skill
             tellServerToBan(skillName);
+        }
+
+        public function sexyTime(time:Number):String {
+            return Math.floor(time/60)+':'+(time%60<10 ? '0' : '')+(time%60);
         }
     }
 }
