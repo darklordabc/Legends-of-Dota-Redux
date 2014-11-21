@@ -1025,7 +1025,7 @@ function lod:InitGameMode()
     SkillManager:overrideHooks()
 
     -- Set the selection time
-    GameRules:SetHeroSelectionTime(15)
+    GameRules:SetHeroSelectionTime(60)
     GameRules:SetSameHeroSelectionEnabled(true)
 
     -- Setup standard rules
