@@ -81,14 +81,10 @@ if GameRules:isSource1() then
 
         if not started then return end
 
-        if not addedBots and state >= DOTA_GAMERULES_STATE_HERO_SELECTION then
+        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
             addedBots = true
-
-            -- Set timer to add bots shortly
-            GameRules:GetGameModeEntity():SetThink(function()
-                SendToServerConsole('sm_gmode 1')
-                SendToServerConsole('dota_bot_populate')
-            end, 'addBots', 30, nil)
+            SendToServerConsole('sm_gmode 1')
+            SendToServerConsole('dota_bot_populate')
         end
     end, nil)
 end
