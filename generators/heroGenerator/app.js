@@ -239,7 +239,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
 
         var heroes1 = rootHeroes1.DOTAHeroes;
         var heroes2 = rootHeroes2.DOTAHeroes;
-        for(var name in heroes2) {
+        for(var name in heroes1) {
             if(name == 'Version') continue;
             if(name == 'npc_dota_hero_base') continue;
 
@@ -252,7 +252,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             }
 
             // Check if they are melee
-            if(data2.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
+            if(data1.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
                 // Give them projectile speed + model
                 newKV[name+'_lod'].ProjectileSpeed = 1000
                 newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
@@ -267,11 +267,13 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
                 }
             }
 
-            precacher['npc_precache_'+name+'_s2'] = {
-                BaseClass: 'npc_dota_creep',
-                precache: {
-                    particle_folder: data2.particle_folder,
-                    soundfile: data2.GameSoundsFile
+            if(data2) {
+                precacher['npc_precache_'+name+'_s2'] = {
+                    BaseClass: 'npc_dota_creep',
+                    precache: {
+                        particle_folder: data2.particle_folder,
+                        soundfile: data2.GameSoundsFile
+                    }
                 }
             }
 
@@ -282,7 +284,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
                 }
             }
 
-            if(data2.precache) {
+            if(data2 && data2.precache) {
                 for(var key in data2.precache) {
                     precacher['npc_precache_'+name+'_s2'].precache[key] = data2.precache[key];
                 }
