@@ -570,6 +570,12 @@ package  {
             // Debug
             trace('LoD: Voting interface created!');
 
+            // Cleanup old voting UI
+            if(votingUI != null) {
+                removeChild(votingUI);
+                votingUI = null;
+            }
+
             // Spawn the voting UI
             votingUI = new VotingUI(isSlave);
             addChild(votingUI);
@@ -596,6 +602,12 @@ package  {
 
             // How much space we have to use
             var workingWidth:Number = myStageHeight*getWorkingRatio();
+
+            // Cleanup old skill screens
+            if(skillScreen != null) {
+                removeChild(skillScreen);
+                skillScreen = null;
+            }
 
             // Build a container
             skillScreen = new MovieClip();
