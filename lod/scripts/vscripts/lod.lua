@@ -545,7 +545,7 @@ end
 local function fixBuilds()
     -- Give skills
     for k,v in pairs(brokenHeroes) do
-        if k then
+        if k and IsValidEntity(k) then
             local playerID = k:GetPlayerID()
 
             -- Validate the build
