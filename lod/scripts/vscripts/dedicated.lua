@@ -45,10 +45,6 @@ ListenToGameEvent('player_connect_full', function(keys)
 end, nil)
 
 ListenToGameEvent('player_disconnect', function(keys)
-    for i=0,9 do
-        PlayerResource:SetPlayerReservedState(i, false)
-    end
-
     -- Kill server if no one is on it anymore
     GameRules:GetGameModeEntity():SetThink(function()
         -- Search for players
