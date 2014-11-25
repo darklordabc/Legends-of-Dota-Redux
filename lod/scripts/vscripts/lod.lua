@@ -8,7 +8,7 @@ print("Gamemode started to load...")
 local banningTime = 90
 
 -- Picking Time
-local pickingTime = 15
+local pickingTime = 120
 
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
