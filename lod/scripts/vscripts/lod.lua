@@ -1279,7 +1279,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                     spawnedUnit:AddExperience(exp, exp, false, false)
 
                     -- Copy items across
-                    for i=0,5 do
+                    --[[for i=0,5 do
                         local item = spawnedUnit:GetItemInSlot(i)
                         if item then
                             spawnedUnit:RemoveItem(item)
@@ -1289,7 +1289,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                         if item then
                             spawnedUnit:AddItem(CreateItem(item:GetClassname(), spawnedUnit, spawnedUnit))
                         end
-                    end
+                    end]]
                 end
             end
         end
@@ -1450,7 +1450,6 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
 
                         -- Create a clone
                         local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
-                        mainHeros[playerID] = newHero
                         FindClearSpaceForUnit(newHero, hero:GetOrigin(), true)
                     end
                 else
@@ -1691,6 +1690,19 @@ ListenToGameEvent('entity_hurt', function(keys)
         end
     end
 end, nil)
+
+Convars:RegisterCommand('lod_test', function()
+    if fullBotGame then
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+
+            local newHero = CreateHeroForPlayer('npc_dota_hero_axe', PlayerResource:GetPlayer(playerID))
+            newHero:AddExperience(XP_PER_LEVEL_TABLE[25], XP_PER_LEVEL_TABLE[25], false, false)
+            FindClearSpaceForUnit(newHero, Vector(0, 0, 0), true)
+        end
+    end
+end, 'test function', 0)
 
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
