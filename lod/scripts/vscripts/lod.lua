@@ -1403,16 +1403,17 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                     if level > heroLevels[playerID] then
                         heroLevels[playerID] = level
 
+                        print('Do the level! '..hero:GetClassname())
+
                         if skill then
                             skill:SetLevel(0)
                         end
                     end
-                    return
-                end
-
-                if skill and skill:GetLevel() < requiredLevel then
-                    -- Level the skill
-                    skill:SetLevel(requiredLevel)
+                else
+                    if skill and skill:GetLevel() < requiredLevel then
+                        -- Level the skill
+                        skill:SetLevel(requiredLevel)
+                    end
                 end
             end
         end
