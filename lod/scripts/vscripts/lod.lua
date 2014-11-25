@@ -1448,16 +1448,9 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                     if level > heroLevels[playerID] then
                         heroLevels[playerID] = level+5
 
-                        --[[hero:AddAbility('meepo_divided_we_stand')
-                        skill = hero:FindAbilityByName(skillName)
-
-                        if skill then
-                            skill:SetLevel(0)
-                            hero:RemoveAbility('meepo_divided_we_stand')
-                        end]]
-
                         -- Create a clone
-                        CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
+                        local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
+                        mainHeros[playerID] = newHero
                     end
                 else
                     if skill and skill:GetLevel() < requiredLevel then
