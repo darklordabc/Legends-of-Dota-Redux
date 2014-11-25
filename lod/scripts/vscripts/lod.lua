@@ -51,6 +51,9 @@ local allowedToPick = true
 -- Should we force random heroes?
 local forceRandomHero = false
 
+-- Bot mode?
+local fullBotGame = Convars:GetStr('hostname') == 'botgame'
+
 --[[
     FUNCTION DEFINITIONS
 ]]
@@ -93,7 +96,7 @@ gamemodeNames = {
 }
 
 -- The gamemode
-local gamemode = GAMEMODE_SD    -- Defaulting to single draft
+local gamemode = GAMEMODE_AP    -- Defaulting to single draft
 
 -- Are we using the draft arrays -- This will allow players to only pick skills from white listed heroes
 local useDraftArray = true
@@ -950,7 +953,6 @@ local function sendVotingInfo()
 
             -- Is it still broken?
             if slaveID == -1 then
-                print('Failed to find hostID!')
                 return 1
             end
         end
@@ -1066,6 +1068,7 @@ end
 
 -- Thinker function, run roughly once every second
 local fixedBackdoor = false
+local doneBotStuff = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1079,6 +1082,17 @@ function lod:OnThink()
 
         -- Done with this thinker
         return
+    end
+
+    -- Bot game patch
+    if fullBotGame and not doneBotStuff then
+        doneBotStuff = true
+
+        -- Goto playing stage
+        currentStage = STAGE_PLAYING
+
+        -- Setup Gamemode Settings
+        setupGamemodeSettings()
     end
 
     -- Decide what to do
@@ -1280,6 +1294,10 @@ ListenToGameEvent('npc_spawned', function(keys)
                         -- We require a random passive
                         return isPassive(sm)
                     end)
+
+                    -- Failed to find a new skill
+                    if skillName == nil then break end
+
                     table.insert(skillList[playerID], skillName)
                 end
 

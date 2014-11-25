@@ -1,3 +1,5 @@
+local fullBotGame = Convars:GetStr('hostname') == 'botgame'
+
 -- Stick people onto teams
 ListenToGameEvent('player_connect_full', function(keys)
     -- Grab the entity index of this player
@@ -24,6 +26,12 @@ ListenToGameEvent('player_connect_full', function(keys)
                             dire = dire + 1
                         end
                     end
+                end
+
+                -- Full bot game, all spectators
+                if fullBotGame then
+                    ply:SetTeam(1)
+                    return
                 end
 
                 -- Should we be spectating this player?
