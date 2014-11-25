@@ -883,6 +883,15 @@ local function backdoorFix()
             -- Prevent anal (backdooring)
             ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
         end
+
+        if fullBotGame then
+            ent:AddAbility('medusa_split_shot')
+            local splitShot = ent:FindAbilityByName('medusa_split_shot')
+            if splitShot then
+                splitShot:SetLevel(4)
+                splitShot:OnToggle()
+            end
+        end
     end
 
     -- Protect rax
@@ -903,6 +912,15 @@ local function backdoorFix()
 
         -- Prevent backdooring
         ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
+    end
+
+    if fullBotGame then
+        ents = Entities:FindAllByClassname('npc_dota_roshan')
+        for k,ent in pairs(ents) do
+            ent:AddAbility('sven_great_cleave')
+            local ab = ent:FindAbilityByName('sven_great_cleave')
+            ab:SetLevel(4)
+        end
     end
 end
 
@@ -1259,6 +1277,19 @@ ListenToGameEvent('npc_spawned', function(keys)
                     -- Level Hero
                     local exp = XP_PER_LEVEL_TABLE[src:GetLevel()]-XP_PER_LEVEL_TABLE[spawnedUnit:GetLevel()]
                     spawnedUnit:AddExperience(exp, exp, false, false)
+
+                    -- Copy items across
+                    for i=0,5 do
+                        local item = spawnedUnit:GetItemInSlot(i)
+                        if item then
+                            spawnedUnit:RemoveItem(item)
+                        end
+
+                        item = src:GetItemInSlot(i)
+                        if item then
+                            spawnedUnit:AddItem(CreateItem(item:GetClassname(), spawnedUnit, spawnedUnit))
+                        end
+                    end
                 end
             end
         end
@@ -1415,15 +1446,18 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                 if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
                     heroLevels[playerID] = heroLevels[playerID] or 2
                     if level > heroLevels[playerID] then
-                        heroLevels[playerID] = level+2
+                        heroLevels[playerID] = level+5
 
-                        hero:AddAbility('meepo_divided_we_stand')
+                        --[[hero:AddAbility('meepo_divided_we_stand')
                         skill = hero:FindAbilityByName(skillName)
 
                         if skill then
                             skill:SetLevel(0)
                             hero:RemoveAbility('meepo_divided_we_stand')
-                        end
+                        end]]
+
+                        -- Create a clone
+                        CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
                     end
                 else
                     if skill and skill:GetLevel() < requiredLevel then
