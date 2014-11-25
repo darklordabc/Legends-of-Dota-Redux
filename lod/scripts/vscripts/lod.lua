@@ -53,6 +53,7 @@ local forceRandomHero = false
 
 -- Bot mode?
 local fullBotGame = Convars:GetStr('hostname') == 'botgame'
+local meepoLevelPatch = true
 
 --[[
     FUNCTION DEFINITIONS
@@ -1273,8 +1274,16 @@ ListenToGameEvent('npc_spawned', function(keys)
 
         -- Don't touch bots
         if PlayerResource:IsFakeClient(playerID) then
-            if doneBots[playerID] then return end
-            doneBots[playerID] = true
+            --if doneBots[playerID] then return end
+            --doneBots[playerID] = true
+
+            -- Add the ulty
+            if fullBotGame then
+                spawnedUnit:AddAbility('meepo_divided_we_stand')
+                specialAddedSkills[playerID] = {}
+                specialAddedSkills[playerID]['meepo_divided_we_stand'] = true
+                return
+            end
 
             -- Generate skill list if not already have one
             if skillList[playerID] == nil then
@@ -1290,10 +1299,10 @@ ListenToGameEvent('npc_spawned', function(keys)
                 local takeaway = 0
 
                 -- Auto pick meepo ulty
-                if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
+                --[[if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
                     takeaway = 1
                     table.insert(skillList[playerID], 'meepo_divided_we_stand')
-                end
+                end]]
 
                 -- Add the skills
                 for i=1,addSkills-takeaway do
@@ -1350,6 +1359,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 end, nil)
 
 -- Auto level bot skills <3
+local heroLevels = {}
 ListenToGameEvent('dota_player_gained_level', function(keys)
     -- Check every player
     for playerID = 0,9 do
@@ -1386,6 +1396,19 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
 
                 -- Grab a reference to teh skill
                 local skill = hero:FindAbilityByName(skillName)
+
+                -- Unlimited meepo patch
+                if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
+                    heroLevels[playerID] = heroLevels[playerID] or 1
+                    if level < heroLevels[playerID] then
+                        heroLevels[playerID] = level
+
+                        if skill then
+                            skill:SetLevel(0)
+                        end
+                    end
+                    return
+                end
 
                 if skill and skill:GetLevel() < requiredLevel then
                     -- Level the skill
