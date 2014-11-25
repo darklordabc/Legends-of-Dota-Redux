@@ -1278,7 +1278,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                 skillList[playerID] = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
 
                 -- Grab how many skills to add
-                local addSkills = maxSlots - #skillList[playerID]
+                local addSkills = maxSlots - 4
 
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
@@ -1289,8 +1289,8 @@ ListenToGameEvent('npc_spawned', function(keys)
                 end
 
                 -- Add the skills
-                while #skillList[playerID] < maxSlots do
-                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, function(sm)
+                for i=1,addSkills do
+                    local msg, skillName = findRandomSkill(playerID, 4+i, function(sm)
                         -- We require a random passive
                         return isPassive(sm)
                     end)
