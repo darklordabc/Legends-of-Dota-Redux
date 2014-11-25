@@ -85,7 +85,7 @@ if GameRules:isSource1() then
 
         if not started then return end
 
-        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
+        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME and not fullBotGame then
             addedBots = true
             SendToServerConsole('sm_gmode 1')
             SendToServerConsole('dota_bot_populate')

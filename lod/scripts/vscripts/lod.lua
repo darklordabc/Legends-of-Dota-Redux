@@ -1283,14 +1283,16 @@ ListenToGameEvent('npc_spawned', function(keys)
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
 
+                local takeaway = 0
+
                 -- Auto pick meepo ulty
                 if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
-                    addSkills = addSkills - 1
+                    takeaway = 1
                     table.insert(skillList[playerID], 'meepo_divided_we_stand')
                 end
 
                 -- Add the skills
-                for i=1,addSkills do
+                for i=1,addSkills-takeaway do
                     local msg, skillName = findRandomSkill(playerID, 4+i, function(sm)
                         -- We require a random passive
                         return isPassive(sm)
