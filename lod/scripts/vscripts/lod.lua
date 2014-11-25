@@ -1285,6 +1285,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Auto pick meepo ulty
                 if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
+                    addSkills = addSkills - 1
                     table.insert(skillList[playerID], 'meepo_divided_we_stand')
                 end
 
