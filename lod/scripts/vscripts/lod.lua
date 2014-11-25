@@ -1348,42 +1348,42 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
     for playerID = 0,9 do
         -- Ensure there is something to check
         local toCheck = specialAddedSkills[playerID]
-        if toCheck == nil then return end
+        if toCheck ~= nil then
+            -- Grab their hero
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        -- Grab their hero
-        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            local level = hero:GetLevel()
 
-        local level = hero:GetLevel()
-
-        for skillName,v in pairs(toCheck) do
-            -- Workout the level of the skill
-            local requiredLevel = 0
-            if isUlt(skillName) then
-                if level >= 16 then
-                    requiredLevel = 3
-                elseif level >= 11 then
-                    requiredLevel = 2
-                elseif level >= 6 then
-                    requiredLevel = 1
+            for skillName,v in pairs(toCheck) do
+                -- Workout the level of the skill
+                local requiredLevel = 0
+                if isUlt(skillName) then
+                    if level >= 16 then
+                        requiredLevel = 3
+                    elseif level >= 11 then
+                        requiredLevel = 2
+                    elseif level >= 6 then
+                        requiredLevel = 1
+                    end
+                else
+                    if level >= 7 then
+                        requiredLevel = 4
+                    elseif level >= 5 then
+                        requiredLevel = 3
+                    elseif level >= 3 then
+                        requiredLevel = 2
+                    elseif level >= 1 then
+                        requiredLevel = 1
+                    end
                 end
-            else
-                if level >= 7 then
-                    requiredLevel = 4
-                elseif level >= 5 then
-                    requiredLevel = 3
-                elseif level >= 3 then
-                    requiredLevel = 2
-                elseif level >= 1 then
-                    requiredLevel = 1
+
+                -- Grab a reference to teh skill
+                local skill = hero:FindAbilityByName(skillName)
+
+                if skill and skill:GetLevel() < requiredLevel then
+                    -- Level the skill
+                    skill:SetLevel(requiredLevel)
                 end
-            end
-
-            -- Grab a reference to teh skill
-            local skill = hero:FindAbilityByName(skillName)
-
-            if skill and skill:GetLevel() < requiredLevel then
-                -- Level the skill
-                skill:SetLevel(requiredLevel)
             end
         end
     end
