@@ -8,7 +8,7 @@ print("Gamemode started to load...")
 local banningTime = 90
 
 -- Picking Time
-local pickingTime = 120
+local pickingTime = 15
 
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
@@ -17,7 +17,7 @@ local slaveID = -1
 --[[
     Load modules
 ]]
-local SkillManager = require('skillmanager')
+local SkillManager = require('SkillManager')
 local Timers = require('easytimers')
 
 --[[
@@ -274,6 +274,15 @@ local function isUlt(skillName)
     return false
 end
 
+-- Returns if a skill is a passive
+local function isPassive(skillName)
+    if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') then
+        return true
+    end
+
+    return false
+end
+
 -- Checks to see if this is a valid skill
 local function isValidSkill(skillName)
     if skillLookup[skillName] == nil then return false end
@@ -439,6 +448,17 @@ local function sendChatMessage(playerID, msg)
     })
 end
 
+-- Checks if the player already has this skill
+local function alreadyHas(skillList, skill)
+    for i=1,maxSlots do
+        if skillList[i] == skill then
+            return true
+        end
+    end
+
+    return false
+end
+
 local function CheckBans(skillList, slotNumber, skillName)
     -- Should we ban troll combos?
     if banTrollCombos then
@@ -477,7 +497,7 @@ local function CheckDraft(playerID, skillName)
     end
 end
 
-local function findRandomSkill(playerID, slotNumber)
+local function findRandomSkill(playerID, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
     local canUlt = true
     local canSkill = true
@@ -498,15 +518,21 @@ local function findRandomSkill(playerID, slotNumber)
     -- Build a list of possible skills
     local possibleSkills = {}
 
-    for k,v in pairs(skillLookupList) do
-        -- Check type of skill
-        if (canUlt and isUlt(v)) or (canSkill and not isUlt(v)) then
-            -- Check for bans
-            if not CheckBans(skillList[playerID], slotNumber+1, v) then
-                -- Check for drafts
-                if not CheckDraft(playerID, v) then
-                    -- Valid skill, add to our possible skills
-                    table.insert(possibleSkills, v)
+    for k,v in pairs(skillLookup) do
+        -- Ensure the player doesn't already have the skill
+        if not alreadyHas(skillList[playerID], k) then
+            -- Check filter
+            if not filter or filter(k) then
+                -- Check type of skill
+                if (canUlt and isUlt(k)) or (canSkill and not isUlt(k)) then
+                    -- Check for bans
+                    if not CheckBans(skillList[playerID], slotNumber+1, k) then
+                        -- Check for drafts
+                        if not CheckDraft(playerID, k) then
+                            -- Valid skill, add to our possible skills
+                            table.insert(possibleSkills, k)
+                        end
+                    end
                 end
             end
         end
@@ -1196,6 +1222,7 @@ local XP_PER_LEVEL_TABLE = {
 }
 
 -- When a hero spawns
+local specialAddedSkills = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1214,7 +1241,6 @@ ListenToGameEvent('npc_spawned', function(keys)
             -- Level it up
             for i=1,startingLevel-1 do
                 spawnedUnit:HeroLevelUp(false)
-
             end
 
             -- Fix EXP
@@ -1231,7 +1257,49 @@ ListenToGameEvent('npc_spawned', function(keys)
         end
 
         -- Don't touch bots
-        if PlayerResource:IsFakeClient(playerID) then return end
+        if PlayerResource:IsFakeClient(playerID) then
+            -- Generate skill list if not already have one
+            if skillList[playerID] == nil then
+                -- Store the bots skills
+                skillList[playerID] = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+
+                -- Grab how many skills to add
+                local addSkills = maxSlots - #skillList[playerID]
+
+                -- Do we need to add any skills?
+                if addSkills <= 0 then return end
+
+                -- Auto pick meepo ulty
+                if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
+                    table.insert(skillList[playerID], 'meepo_divided_we_stand')
+                end
+
+                -- Add the skills
+                while #skillList[playerID] < maxSlots do
+                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, function(sm)
+                        -- We require a random passive
+                        return isPassive(sm)
+                    end)
+                    table.insert(skillList[playerID], skillName)
+                end
+
+                -- Trim the skill list
+                while #skillList[playerID] > addSkills do
+                    table.remove(skillList[playerID], 1)
+                end
+
+                -- Store that we added skills
+                specialAddedSkills[playerID] = {}
+                for k,v in pairs(skillList[playerID]) do
+                    specialAddedSkills[playerID][v] = true
+                end
+            end
+
+            -- Add the extra skills
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID], true)
+
+            return
+        end
 
         -- Check if the game has started yet
         if currentStage > STAGE_PICKING then
@@ -1252,6 +1320,51 @@ ListenToGameEvent('npc_spawned', function(keys)
 
             -- Remove their skills
             SkillManager:RemoveAllSkills(spawnedUnit)
+        end
+    end
+end, nil)
+
+-- Auto level bot skills <3
+ListenToGameEvent('dota_player_gained_level', function(keys)
+    local playerID = keys.player - 1
+    local level = keys.level
+
+    -- Ensure there is something to check
+    local toCheck = specialAddedSkills[playerID]
+    if toCheck == nil then return end
+
+    -- Grab their hero
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+    for skillName,v in pairs(toCheck) do
+        -- Workout the level of the skill
+        local requiredLevel = 0
+        if isUlt(skillName) then
+            if level >= 16 then
+                requiredLevel = 3
+            elseif level >= 11 then
+                requiredLevel = 2
+            elseif level >= 6 then
+                requiredLevel = 1
+            end
+        else
+            if level >= 7 then
+                requiredLevel = 4
+            elseif level >= 5 then
+                requiredLevel = 3
+            elseif level >= 3 then
+                requiredLevel = 2
+            elseif level >= 1 then
+                requiredLevel = 1
+            end
+        end
+
+        -- Grab a reference to teh skill
+        local skill = hero:FindAbilityByName(skillName)
+
+        if skill and skill:GetLevel() < requiredLevel then
+            -- Level the skill
+            skill:SetLevel(requiredLevel)
         end
     end
 end, nil)

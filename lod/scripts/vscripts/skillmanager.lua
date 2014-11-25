@@ -149,10 +149,7 @@ function skillManager:GetHeroSkills(heroClass)
     return skills
 end
 
-function skillManager:RemoveAllSkills(hero)
-    -- Ensure the hero isn't nil
-    if hero == nil then return end
-
+function skillManager:BuildSkillList(hero)
     -- Check if we've touched this hero before
     if not currentSkillList[hero] then
         -- Grab the name of this hero
@@ -164,6 +161,14 @@ function skillManager:RemoveAllSkills(hero)
         -- Store it
         currentSkillList[hero] = skills
     end
+end
+
+function skillManager:RemoveAllSkills(hero)
+    -- Ensure the hero isn't nil
+    if hero == nil then return end
+
+    -- Build the skill list
+    self:BuildSkillList(hero)
 
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
@@ -173,12 +178,18 @@ function skillManager:RemoveAllSkills(hero)
     end
 end
 
-function skillManager:ApplyBuild(hero, build)
+function skillManager:ApplyBuild(hero, build, dontRemove)
     -- Ensure the hero isn't nil
     if hero == nil then return end
 
-    -- Remove all the skills from this hero
-    self:RemoveAllSkills(hero)
+    -- Build the skill list
+    self:BuildSkillList(hero)
+
+    -- Should we remove skills?
+    if not dontRemove then
+        -- Remove all the skills from this hero
+        self:RemoveAllSkills(hero)
+    end
 
     -- Table to store all the extra skills we need to give
     local extraSkills = {}
