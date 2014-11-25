@@ -1400,7 +1400,7 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                 -- Unlimited meepo patch
                 if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
                     heroLevels[playerID] = heroLevels[playerID] or 1
-                    if level < heroLevels[playerID] then
+                    if level > heroLevels[playerID] then
                         heroLevels[playerID] = level
 
                         if skill then
