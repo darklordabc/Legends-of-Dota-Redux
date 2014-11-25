@@ -1239,18 +1239,33 @@ local XP_PER_LEVEL_TABLE = {
 -- When a hero spawns
 local specialAddedSkills = {}
 local doneBots = {}
+local mainHeros = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
 
     -- Make sure it is a hero
     if spawnedUnit:IsHero() then
+        -- Grab their playerID
+        local playerID = spawnedUnit:GetPlayerID()
+
+        -- Level up skillz
+        if fullBotGame then
+            -- don't run code on the main hero
+            mainHeros[playerID] = mainHeros[playerID] or spawnedUnit
+            if mainHeros[playerID] ~= spawnedUnit then
+                local src = mainHeros[playerID]
+                if src then
+                    -- Level Hero
+                    local exp = XP_PER_LEVEL_TABLE[src:GetLevel()]-XP_PER_LEVEL_TABLE[spawnedUnit:GetLevel()]
+                    spawnedUnit:AddExperience(exp, exp, false, false)
+                end
+            end
+        end
+
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
-
-        -- Grab their playerID
-        local playerID = spawnedUnit:GetPlayerID()
 
         -- Do we need to level up?
         if startingLevel > 1 then
@@ -1279,7 +1294,6 @@ ListenToGameEvent('npc_spawned', function(keys)
 
             -- Add the ulty
             if fullBotGame then
-                spawnedUnit:AddAbility('meepo_divided_we_stand')
                 specialAddedSkills[playerID] = {}
                 specialAddedSkills[playerID]['meepo_divided_we_stand'] = true
                 return
@@ -1399,12 +1413,16 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
 
                 -- Unlimited meepo patch
                 if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
-                    heroLevels[playerID] = heroLevels[playerID] or 1
+                    heroLevels[playerID] = heroLevels[playerID] or 2
                     if level > heroLevels[playerID] then
-                        heroLevels[playerID] = level
+                        heroLevels[playerID] = level+2
+
+                        hero:AddAbility('meepo_divided_we_stand')
+                        skill = hero:FindAbilityByName(skillName)
 
                         if skill then
                             skill:SetLevel(0)
+                            hero:RemoveAbility('meepo_divided_we_stand')
                         end
                     end
                 else
