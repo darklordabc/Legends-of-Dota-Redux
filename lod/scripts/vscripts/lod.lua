@@ -1279,7 +1279,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                     spawnedUnit:AddExperience(exp, exp, false, false)
 
                     -- Copy items across
-                    --[[for i=0,5 do
+                    for i=0,5 do
                         local item = spawnedUnit:GetItemInSlot(i)
                         if item then
                             spawnedUnit:RemoveItem(item)
@@ -1289,7 +1289,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                         if item then
                             spawnedUnit:AddItem(CreateItem(item:GetClassname(), spawnedUnit, spawnedUnit))
                         end
-                    end]]
+                    end
                 end
             end
         end
@@ -1451,6 +1451,7 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                         -- Create a clone
                         local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
                         FindClearSpaceForUnit(newHero, hero:GetOrigin(), true)
+                        mainHeros[playerID] = newHero
                     end
                 else
                     if skill and skill:GetLevel() < requiredLevel then
