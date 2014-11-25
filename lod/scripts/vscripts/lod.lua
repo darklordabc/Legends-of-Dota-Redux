@@ -1237,6 +1237,7 @@ local XP_PER_LEVEL_TABLE = {
 
 -- When a hero spawns
 local specialAddedSkills = {}
+local doneBots = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1272,6 +1273,9 @@ ListenToGameEvent('npc_spawned', function(keys)
 
         -- Don't touch bots
         if PlayerResource:IsFakeClient(playerID) then
+            if doneBots[playerID] then return end
+            doneBots[playerID] = true
+
             -- Generate skill list if not already have one
             if skillList[playerID] == nil then
                 -- Store the bots skills
