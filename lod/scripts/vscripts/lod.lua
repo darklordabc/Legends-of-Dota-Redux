@@ -43,7 +43,7 @@ local startingLevel = 1
 local bonusGold = 0
 
 -- Should we turn easy mode on?
-local useEasyMode = false
+local useEasyMode = true
 
 -- Are users allowed to pick skills?
 local allowedToPick = true
