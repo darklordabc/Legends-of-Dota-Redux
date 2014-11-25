@@ -65,7 +65,7 @@ ListenToGameEvent('player_disconnect', function(keys)
         end
 
         -- If we failed to find someone
-        if not foundSomeone then
+        if not foundSomeone and not fullBotGame then
             -- Kill the server
             SendToServerConsole('quit')
         end
@@ -85,7 +85,7 @@ if GameRules:isSource1() then
 
         if not started then return end
 
-        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME and not fullBotGame then
+        if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
             addedBots = true
             SendToServerConsole('sm_gmode 1')
             SendToServerConsole('dota_bot_populate')
