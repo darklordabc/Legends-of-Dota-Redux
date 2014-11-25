@@ -1451,6 +1451,7 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                         -- Create a clone
                         local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
                         mainHeros[playerID] = newHero
+                        FindClearSpaceForUnit(newHero, hero:GetOrigin(), true)
                     end
                 else
                     if skill and skill:GetLevel() < requiredLevel then
