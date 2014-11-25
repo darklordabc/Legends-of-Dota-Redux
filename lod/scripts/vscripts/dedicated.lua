@@ -1,3 +1,6 @@
+-- How long to wait after the match ends before killing the server
+local endGameDelay = 15
+
 local fullBotGame = Convars:GetStr('hostname') == 'botgame'
 
 -- Stick people onto teams
@@ -92,3 +95,25 @@ if GameRules:isSource1() then
         end
     end, nil)
 end
+
+-- Kill the server when the match ends
+local killed = false
+ListenToGameEvent('game_rules_state_change', function(keys)
+    -- Only do this once
+    if killed then return end
+
+    -- Grab the current game state
+    local state = GameRules:State_Get()
+
+    -- Check if the game is over
+    if state >= DOTA_GAMERULES_STATE_POST_GAME then
+        -- Don't kill again
+        killed = true
+
+        -- Kill server after a delay
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Kill the server
+            SendToServerConsole('quit')
+        end, 'killServerDelayed', endGameDelay, nil)
+    end
+end, nil)
