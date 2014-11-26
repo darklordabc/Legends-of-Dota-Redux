@@ -1497,11 +1497,17 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they have multicast
-            if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
+            if (hero:HasAbility('ogre_magi_multicast_lod') or fullBotGame) and canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                if mab then
+                if mab or fullBotGame then
                     -- Grab the level of the ability
-                    local lvl = mab:GetLevel()
+                    local lvl
+
+                    if fullBotGame then
+                        lvl = 3
+                    else
+                        lvl = mab:GetLevel()
+                    end
 
                     -- If they have no level in it, stop
                     if lvl == 0 then return end
