@@ -821,6 +821,9 @@ local function finishVote()
     if optionToValue(7, winners[7]) == 1 then
         -- Enable easy mode
         useEasyMode = true
+    else
+        -- Disable easy mode
+        useEasyMode = false
     end
 
     -- Add settings to our stat collector
