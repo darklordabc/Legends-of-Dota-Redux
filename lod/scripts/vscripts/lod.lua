@@ -1259,8 +1259,8 @@ local XP_PER_LEVEL_TABLE = {
 
 -- When a hero spawns
 local specialAddedSkills = {}
-local doneBots = {}
 local mainHeros = {}
+local givenBonuses = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1301,31 +1301,34 @@ ListenToGameEvent('npc_spawned', function(keys)
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
 
-        -- Do we need to level up?
-        if startingLevel > 1 then
-            -- Level it up
-            for i=1,startingLevel-1 do
-                spawnedUnit:HeroLevelUp(false)
+        -- Only give bonuses once
+        if not givenBonuses[playerID] then
+            -- We have given bonuses
+            givenBonuses[playerID] = true
+
+            -- Do we need to level up?
+            if startingLevel > 1 then
+                -- Level it up
+                for i=1,startingLevel-1 do
+                    spawnedUnit:HeroLevelUp(false)
+                end
+
+                -- Fix EXP
+                if GameRules:isSource1() then
+                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                else
+                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+                end
             end
 
-            -- Fix EXP
-            if GameRules:isSource1() then
-                spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
-            else
-                spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+            -- Any bonus gold?
+            if bonusGold > 0 then
+                PlayerResource:SetGold(playerID, bonusGold, true)
             end
-        end
-
-        -- Any bonus gold?
-        if bonusGold > 0 then
-            PlayerResource:SetGold(playerID, bonusGold, true)
         end
 
         -- Don't touch bots
         if PlayerResource:IsFakeClient(playerID) then
-            --if doneBots[playerID] then return end
-            --doneBots[playerID] = true
-
             -- Add the ulty
             if fullBotGame then
                 specialAddedSkills[playerID] = {}
