@@ -64,5 +64,3 @@ Legends of Dota
 
         "dedicated" {
         }
-
- - You can use launch parameters along the lines of `srcds -console -game dota +maxplayers 24 +hostport 27015 -condebug -dev +exec custom +map dota_fixed`
