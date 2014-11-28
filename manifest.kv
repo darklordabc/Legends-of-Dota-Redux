@@ -1,0 +1,25 @@
+// Compile settings for legends of dota
+"lod" {
+    // The directory the mod lives in, or blank if it's the root (no trailing slashes)
+    "directory" "lod"
+
+    // List of directories to simply copy
+    "copyDirectory" "maps"
+    "copyDirectory" "scripts\\kv"
+    "copyDirectory" "scripts\\game_sounds"
+    "copyDirectory" "resource\\overviews"
+    "copyDirectory" "resource\\flash3\\images"
+
+    // Copy over the hud files
+    "copyFile"  "resource\\flash3\\loadhelper.swf"
+    "copyFile"  "resource\\flash3\\lod_v6.swf"
+    "copyFile"  "resource\\flash3\\StatsCollection.swf"
+
+    // Merge in all the NPC scripts
+    "mergeKVDir"    "scripts\\npc\\"
+
+    // List of KV files that should simply be merged
+    "mergeKV"  "resource\\addon_english.txt"
+    "mergeKV"   "scripts\\custom_events.txt"
+    "mergeKV"   "scripts\\stat_collection.kv"
+}
