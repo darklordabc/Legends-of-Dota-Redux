@@ -1,5 +1,5 @@
 // Compile settings for legends of dota
-"lod" {
+"lod_merge" {
     // The directory the mod lives in, or blank if it's the root (no trailing slashes)
     "directory" "lod"
 
@@ -22,4 +22,13 @@
     "mergeKV"  "resource\\addon_english.txt"
     "mergeKV"   "scripts\\custom_events.txt"
     "mergeKV"   "scripts\\stat_collection.kv"
+}
+
+// Temp compile settings
+"lod" {
+    // The directory the mod lives in, or blank if it's the root (no trailing slashes)
+    "directory" "lod"
+
+    // Just copy everything
+    "copyDirectory" ""
 }
