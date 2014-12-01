@@ -64,3 +64,5 @@ Legends of Dota
 
         "dedicated" {
         }
+
+ - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
