@@ -533,8 +533,11 @@ local function findRandomSkill(playerID, slotNumber, filter)
                     if not CheckBans(skillList[playerID], slotNumber+1, k) then
                         -- Check for drafts
                         if not CheckDraft(playerID, k) then
-                            -- Valid skill, add to our possible skills
-                            table.insert(possibleSkills, k)
+                            -- Can't random meepo ulty
+                            if k ~= 'meepo_divided_we_stand' then
+                                -- Valid skill, add to our possible skills
+                                table.insert(possibleSkills, k)
+                            end
                         end
                     end
                 end
