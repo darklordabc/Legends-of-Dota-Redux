@@ -147,6 +147,31 @@ local skillWarnings = {
     techies_remote_mines = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">techies_remote_mines</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">techies_focused_detonate</font> <font color="'..COLOR_GREEN..'">if you want to detonate your remote mines.</font>',
 }
 
+-- Check for options module
+local patchOptions = false
+if options then
+    -- Woot, load the options :)
+    patchOptions = true
+
+    -- Read in the settings
+    maxBans = tonumber(options.getOption('lod', 'maxBans', maxBans))
+    hostBanning = false
+    gamemode = tonumber(options.getOption('lod', 'gamemode', gamemode))
+    maxSlots = tonumber(options.getOption('lod', 'maxSlots', maxSlots))
+    maxSkills = tonumber(options.getOption('lod', 'maxSkills', maxSkills))
+    maxUlts = tonumber(options.getOption('lod', 'maxUlts', maxUlts))
+
+    -- Remove banning time if no bans are allowed
+    if maxBans <= 0 then
+        banningTime = 0
+    end
+
+    -- These aren't really needed because they exist in other plugins now
+    startingLevel = 1--tonumber(options.getOption('lod', 'startingLevel', startingLevel))
+    bonusGold = 0--tonumber(options.getOption('lod', 'bonusGold', bonusGold))
+    useEasyMode = false
+end
+
 -- This will contain the total number of votable options
 local totalVotableOptions = 0
 
@@ -1094,6 +1119,7 @@ end
 -- Thinker function, run roughly once every second
 local fixedBackdoor = false
 local doneBotStuff = false
+local patchedOptions = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1107,6 +1133,21 @@ function lod:OnThink()
 
         -- Done with this thinker
         return
+    end
+
+    -- Options patch
+    if patchOptions and not patchedOptions then
+        -- Only do it once
+        patchedOptions = true
+
+        -- No longer voting
+        stillVoting = false
+
+        -- Move onto banning
+        currentStage = STAGE_BANNING
+
+        -- Setup all the fancy gamemode stuff
+        setupGamemodeSettings()
     end
 
     -- Bot game patch
