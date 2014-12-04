@@ -149,17 +149,17 @@ local skillWarnings = {
 
 -- Check for options module
 local patchOptions = false
-if options then
+if Options then
     -- Woot, load the options :)
     patchOptions = true
 
     -- Read in the settings
-    maxBans = tonumber(options.getOption('lod', 'maxBans', maxBans))
+    maxBans = tonumber(Options.getOption('lod', 'maxBans', maxBans))
     hostBanning = false
-    gamemode = tonumber(options.getOption('lod', 'gamemode', gamemode))
-    maxSlots = tonumber(options.getOption('lod', 'maxSlots', maxSlots))
-    maxSkills = tonumber(options.getOption('lod', 'maxSkills', maxSkills))
-    maxUlts = tonumber(options.getOption('lod', 'maxUlts', maxUlts))
+    gamemode = tonumber(Options.getOption('lod', 'gamemode', gamemode))
+    maxSlots = tonumber(Options.getOption('lod', 'maxSlots', maxSlots))
+    maxSkills = tonumber(Options.getOption('lod', 'maxSkills', maxSkills))
+    maxUlts = tonumber(Options.getOption('lod', 'maxUlts', maxUlts))
 
     -- Remove banning time if no bans are allowed
     if maxBans <= 0 then
@@ -167,8 +167,8 @@ if options then
     end
 
     -- These aren't really needed because they exist in other plugins now
-    startingLevel = 1--tonumber(options.getOption('lod', 'startingLevel', startingLevel))
-    bonusGold = 0--tonumber(options.getOption('lod', 'bonusGold', bonusGold))
+    startingLevel = 1--tonumber(Options.getOption('lod', 'startingLevel', startingLevel))
+    bonusGold = 0--tonumber(Options.getOption('lod', 'bonusGold', bonusGold))
     useEasyMode = false
 end
 
