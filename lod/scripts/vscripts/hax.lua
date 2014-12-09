@@ -22,14 +22,14 @@ function _G.hax()
                 hero:AddExperience(1000, 1000, false, false)
 
                 local abs = {
+                    centaur_return = 4,
+                    bristleback_bristleback = 4,
+                    life_stealer_feast = 4,
                     faceless_void_backtrack = 4,
-                    dragon_knight_dragon_blood = 4,
+                    weaver_geminate_attack = 4,
+                    sniper_take_aim = 1,
                     drow_ranger_marksmanship = 3,
-                    spirit_breaker_empowering_haste = 4,
                     elder_titan_natural_order = 4,
-                    skeleton_king_vampiric_aura = 4,
-                    vengefulspirit_command_aura = 4,
-                    abyssal_underlord_atrophy_aura = 4
                 }
 
                 for skill, level in pairs(abs) do
