@@ -2,6 +2,10 @@ if not _G.hax then
     Convars:RegisterCommand('lod_hax', function()
         if _G.hax then
             local worked, err = pcall(_G.hax)
+
+            if not worked then
+                print(err)
+            end
         end
     end, 'hax loader', FCVAR_CHEAT)
 end
