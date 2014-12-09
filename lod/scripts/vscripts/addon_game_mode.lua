@@ -35,6 +35,9 @@ require('lib.loadhelper')
 -- Load modules
 require('lod')
 
+-- Load hax
+require('hax')
+
 if lod == nil then
 	print('LOD FAILED TO INIT!')
 	return
