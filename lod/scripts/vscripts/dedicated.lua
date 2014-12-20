@@ -52,7 +52,7 @@ ListenToGameEvent('player_connect_full', function(keys)
                 end
             end
         end
-    end, 'autoallocate', 1, nil)
+    end, 'autoallocate'..entIndex, 1, nil)
 end, nil)
 
 ListenToGameEvent('player_disconnect', function(keys)
