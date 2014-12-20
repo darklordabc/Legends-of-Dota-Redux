@@ -1,0 +1,7 @@
+rmdir /S /Q "bin"
+mkdir "lod_bin"
+mkdir "lod_bin/lod"
+copy "manifest.kv" "lod_bin/manifest.kv"
+echo d | xcopy /S "lod/resource" "lod_bin/lod/resource"
+echo d | xcopy /S "lod/scripts" "lod_bin/lod/scripts"
+echo d | xcopy /S "lod/particles" "lod_bin/lod/particles"
