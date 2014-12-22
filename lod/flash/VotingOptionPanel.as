@@ -28,7 +28,7 @@
 				slaveText.visible = false;
 
 				// Create the drop down box
-				dropDown = lod.comboBox(this, slots);
+				dropDown = lod_old.comboBox(this, slots);
 				dropDown.x = this.width/2-dropDown.width-1;
 				dropDown.y = 0.5;
 

@@ -28,7 +28,7 @@ package  {
     import scaleform.clik.interfaces.IDataProvider;
     import scaleform.clik.data.DataProvider;
 
-    public class lod extends MovieClip {
+    public class lod_old extends MovieClip {
         // Game API related stuff
         public var gameAPI:Object;
         public var globals:Object;

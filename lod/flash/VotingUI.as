@@ -20,7 +20,7 @@
             options = {};
 
             // Grab a local reference to the voting list
-            var lst = lod.votingList;
+            var lst = lod_old.votingList;
 
             // Where to place the movieclips
             var yy:Number = votingHeader.y + votingHeader.height;
@@ -62,7 +62,7 @@
                     // Add the options in
                     for(var i:Number=0; i<totalOptions; i++) {
                         // Apply the text
-                        lod.setComboBoxString(optionPanel.dropDown, i, option.options[i]);
+                        lod_old.setComboBoxString(optionPanel.dropDown, i, option.options[i]);
                     }
 
                     // Hook the button
@@ -72,7 +72,7 @@
 
             // Spawn submit button
             if(!slave) {
-                var submitBtn:MovieClip = lod.smallButton(this, '#submitvote');
+                var submitBtn:MovieClip = lod_old.smallButton(this, '#submitvote');
                 submitBtn.x = -submitBtn.width/2;
                 submitBtn.y = this.height - submitBtn.height - padding;
                 submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
@@ -83,7 +83,7 @@
             // Check if we even have this option number
             if(options[optNumber] != null) {
                 // Grab a local reference to the voting list
-                var lst = lod.votingList;
+                var lst = lod_old.votingList;
 
                 // Validate the voting list
                 if(lst != null) {
@@ -103,14 +103,14 @@
             // Create the hook
             dropdown.setIndexCallback = function(comboBox) {
                 // Update the vote
-                lod.updateVote(optNumber, comboBox.selectedIndex);
+                lod_old.updateVote(optNumber, comboBox.selectedIndex);
             }
         }
 
         // When submit is pressed
         private function onSubmitPressed(e:MouseEvent) {
             // Done voting
-            lod.finishedVoting();
+            lod_old.finishedVoting();
         }
 	}
 
