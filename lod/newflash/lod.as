@@ -145,8 +145,6 @@
                     // Ensure it's a hero
                     if(hero == -1 || !globals.Entities.IsHero(hero)) return;
 
-                    trace(playerID + ' VS ' + globals.Players.GetPlayerColor(playerID))
-
                     // Maps colors to IDs
                     var colorMap = {
                         4294931763: 0,
@@ -168,16 +166,10 @@
                     if(builtHeroes[hero]) return;
                     builtHeroes[hero] = true;
 
-                    trace('Building hero... ' + hero);
-
                     var builder = new Timer(2000, 1);
                     builder.addEventListener(TimerEvent.TIMER, function() {
-                        trace('Building hero2... ' + hero);
-
                         // Workout how many abilities this hero has
                         var abilityCount:Number = globals.Entities.GetAbilityCount(hero);
-
-                        trace('It has ' + abilityCount + ' abilities!');
 
                         // Number of found abilities
                         var foundAbilities = 0;
@@ -195,10 +187,6 @@
 
                             // Ignore attribute bonus
                             if(abilityName == 'attribute_bonus') continue;
-
-                            trace('Ability name = ' + abilityName);
-
-
 
                             var ab:MovieClip = abilityIcon(abilityIcons[playerID], abilityName);
                             ab.scaleX = 64/256;
@@ -220,28 +208,6 @@
             // Update the skill list
 			buildSkillList();
 		}
-
-		// Called when we get the full options set
-		/*private function onGetOptions(args:Object):void {
-			trace("I got a message!");
-			trace(args.o);
-			trace(args.o.length);
-			for(var i:Number=0; i<args.o.length; i++) {
-				trace(decodeChar(args.o, i));
-			}
-		}
-
-		// Decodes a character sent over the network
-		public static function decodeChar(message:String, index:Number) {
-			// Convert the character into a number
-			var n = message.charCodeAt(index);
-
-			// Fix weird number errors
-			if(n > 255) n -= 4294967040;
-
-			// Remove 1 and return
-			return n - 1;
-		}*/
 
 		// Make an ability icon
         public function abilityIcon(container:MovieClip, ability:String):MovieClip {
@@ -267,8 +233,6 @@
 
             // Grab what we rolled over
             var s:Object = e.target;
-
-            trace('Hovering: ' + s.skillName);
 
             // Workout where to put it
             var lp:Point = s.localToGlobal(new Point(s.width*scalingFactor*0.5, 0));
