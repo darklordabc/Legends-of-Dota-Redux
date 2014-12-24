@@ -145,22 +145,19 @@
                     // Ensure it's a hero
                     if(hero == -1 || !globals.Entities.IsHero(hero)) return;
 
-                    // Maps colors to IDs
-                    var colorMap = {
-                        4294931763: 0,
-                        4290772838: 1,
-                        4290707647: 2,
-                        4278972659: 3,
-                        4278217727: 4,
-                        4290938622: 5,
-                        4282889377: 6,
-                        4294433125: 7,
-                        4280386304: 8,
-                        4278217124: 9
-                    };
+                    // Use player names to find the correct slots
+                    var nameCompare = globals.Players.GetPlayerName(playerID);
+                    playerID = -1;
+                    for(var k=0; k<10; ++k) {
+                        var name1:String = globals.Loader_scoreboard.movieClip.scoreboard.scoreboard_anim['Player' + k].PlayerName.textField.text;
 
-                    playerID = colorMap[globals.Players.GetPlayerColor(playerID)];
-                    if(playerID == null) return;
+                        if(name1 == nameCompare) {
+                            playerID = k;
+                            break;
+                        }
+                    }
+
+                    if(playerID == -1) return;
 
                     // Only process each hero once
                     if(builtHeroes[hero]) return;
