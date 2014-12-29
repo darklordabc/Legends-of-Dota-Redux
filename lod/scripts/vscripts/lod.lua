@@ -1361,7 +1361,8 @@ ListenToGameEvent('npc_spawned', function(keys)
                 if GameRules:isSource1() then
                     spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 else
-                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+                    -- This is damned unstable, it always changes arguments FFS
+                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 end
             end
 
