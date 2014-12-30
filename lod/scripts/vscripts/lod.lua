@@ -55,6 +55,9 @@ local forceRandomHero = false
 local fullBotGame = Convars:GetStr('hostname') == 'botgame'
 local meepoLevelPatch = true
 
+-- Force unique skills?
+local forceUniqueSkills = false
+
 --[[
     FUNCTION DEFINITIONS
 ]]
@@ -488,10 +491,21 @@ local function alreadyHas(skillList, skill)
     return false
 end
 
-local function CheckBans(skillList, slotNumber, skillName)
+local function CheckBans(skillList2, slotNumber, skillName)
     -- Old fashion bans
     if isSkillBanned(skillName) then
         return '<font color="'..COLOR_RED..'">This skill is banned.</font>'
+    end
+
+    -- Check for uniqye skills
+    if forceUniqueSkills then
+        for playerID,skills in pairs(skillList) do
+            for slot,skill in pairs(skills) do
+                if skill == skillName then
+                    return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                end
+            end
+        end
     end
 
     -- Should we ban troll combos?
@@ -505,9 +519,9 @@ local function CheckBans(skillList, slotNumber, skillName)
                     -- Ignore the skill in our current slot
                     if i ~= slotNumber then
                         -- Check the banned combo
-                        if v['1'] == skillName and skillList[i] == v['2'] then
+                        if v['1'] == skillName and skillList2[i] == v['2'] then
                             return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>'
-                        elseif v['2'] == skillName and skillList[i] == v['1'] then
+                        elseif v['2'] == skillName and skillList2[i] == v['1'] then
                             return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>'
                         end
                     end
@@ -721,6 +735,11 @@ local function setupGamemodeSettings()
         Convars:SetInt('dota_easy_mode', 1)
     end
 
+    -- Are we using unique skills?
+    if forceUniqueSkills then
+        sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Unique Skills</font> <font color="'..COLOR_GREEN..'">was turned on!</font>')
+    end
+
     -- Announce which gamemode we're playing
     sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 end
@@ -857,6 +876,13 @@ local function finishVote()
     else
         -- Disable easy mode
         useEasyMode = false
+    end
+
+    -- Are we using unique skills?
+    if optionToValue(10, winners[10]) == 1 then
+        forceUniqueSkills = true
+    else
+        forceUniqueSkills = false
     end
 
     -- Add settings to our stat collector

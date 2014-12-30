@@ -299,9 +299,6 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
                 table.insert(abs, v)
             end
 
-            local theAb = hero:FindAbilityByName(v)
-            theAb:SetAbilityIndex(i)
-
             -- We need to actually add it next time
             seenAbilities[v] = true
 
