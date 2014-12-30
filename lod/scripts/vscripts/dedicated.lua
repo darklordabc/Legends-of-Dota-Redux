@@ -3,6 +3,30 @@ local endGameDelay = 15
 
 local fullBotGame = Convars:GetStr('hostname') == 'botgame'
 
+-- Load bans
+local bans
+function loadBans()
+    -- Reload steamID64s
+    bans = LoadKeyValues('scripts/kv/bans.kv');
+end
+loadBans()
+
+-- Console command to reload bans
+Convars:RegisterCommand('reload_bans', function()
+    loadBans()
+end, 'Reloads the bans KV', 0)
+
+-- Ban manager
+ListenToGameEvent('player_connect', function(keys)
+    -- Grab their steamID
+    local steamID64 = tostring(keys.xuid)
+
+    -- Check bans
+    if bans[steamID64] then
+        SendToServerConsole('kickid '..keys.userid..' Jexah doesnt like you very much :(');
+    end
+end, nil)
+
 -- Stick people onto teams
 ListenToGameEvent('player_connect_full', function(keys)
     -- Grab the entity index of this player
