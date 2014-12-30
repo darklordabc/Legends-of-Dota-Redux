@@ -336,7 +336,7 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
                 end
                 abs[i] = build[i]
             end
-        else
+        elseif not dontRemove then
             local inSlot = abs[i]
 
             if inSlot then

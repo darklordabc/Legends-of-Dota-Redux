@@ -489,6 +489,11 @@ local function alreadyHas(skillList, skill)
 end
 
 local function CheckBans(skillList, slotNumber, skillName)
+    -- Old fashion bans
+    if isSkillBanned(skillName) then
+        return '<font color="'..COLOR_RED..'">This skill is banned.</font>'
+    end
+
     -- Should we ban troll combos?
     if banTrollCombos then
         -- Loop over all the banned combinations
