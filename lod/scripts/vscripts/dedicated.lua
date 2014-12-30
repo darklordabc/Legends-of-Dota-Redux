@@ -7,7 +7,7 @@ local fullBotGame = Convars:GetStr('hostname') == 'botgame'
 local bans
 function loadBans()
     -- Reload steamID64s
-    bans = LoadKeyValues('scripts/kv/bans.kv');
+    bans = LoadKeyValues('scripts/kv/banned.kv');
 end
 loadBans()
 
@@ -23,7 +23,7 @@ ListenToGameEvent('player_connect', function(keys)
 
     -- Check bans
     if bans[steamID64] then
-        SendToServerConsole('kickid '..keys.userid..' Jexah doesnt like you very much :(');
+        SendToServerConsole('kickid '..keys.userid);
     end
 end, nil)
 
