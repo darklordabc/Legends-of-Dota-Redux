@@ -279,6 +279,7 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
 
             -- Do melee heroes need a different skill?
             if melee and meleeMap[v] then
+                build[i] = meleeMap[v]
                 v = meleeMap[v]
             end
 
