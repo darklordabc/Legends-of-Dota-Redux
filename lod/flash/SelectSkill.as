@@ -50,6 +50,9 @@
 
 		// Sets this skill to show as banned, or not
 		public function setBanned(state:Boolean):void {
+			// Getting weirdness here, ensure banned exists?
+			if(!this.banned) return;
+
 			// Store state
 			this.banned.visible = state;
 		}
