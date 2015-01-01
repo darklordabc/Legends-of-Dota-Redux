@@ -39,7 +39,7 @@ ListenToGameEvent('player_connect_full', function(keys)
     -- Wait, then attempt to put them onto a team
     GameRules:GetGameModeEntity():SetThink(function()
         -- Validate player
-        if ply then
+        if ply and IsValidEntity(ply) then
             -- Make sure they aren't already on a team
             if ply:GetTeam() == 0 then
                 -- Don't touch bots
