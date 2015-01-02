@@ -178,18 +178,15 @@ function skillManager:RemoveAllSkills(hero)
     end
 end
 
-function skillManager:ApplyBuild(hero, build, dontRemove)
+function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
     if hero == nil then return end
 
     -- Build the skill list
     self:BuildSkillList(hero)
 
-    -- Should we remove skills?
-    if not dontRemove then
-        -- Remove all the skills from this hero
-        self:RemoveAllSkills(hero)
-    end
+    -- Remove all the skills from this hero
+    self:RemoveAllSkills(hero)
 
     -- Table to store all the extra skills we need to give
     local extraSkills = {}
@@ -334,7 +331,7 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
                 end
                 abs[i] = build[i]
             end
-        elseif not dontRemove then
+        else
             local inSlot = abs[i]
 
             if inSlot then

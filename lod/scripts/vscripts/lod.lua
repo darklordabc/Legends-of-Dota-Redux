@@ -308,7 +308,7 @@ end
 
 -- Returns if a skill is a passive
 local function isPassive(skillName)
-    if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') then
+    if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') and not string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE') then
         return true
     end
 
@@ -502,7 +502,9 @@ local function CheckBans(skillList2, slotNumber, skillName)
         for playerID,skills in pairs(skillList) do
             for slot,skill in pairs(skills) do
                 if skill == skillName then
-                    return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                    if not (skillList2 == skills and slot == slotNumber) then
+                        return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                    end
                 end
             end
         end
@@ -770,6 +772,21 @@ local function postGamemodeSettings()
         -- Send this new state out
         sendStateInfo()
     end
+end
+
+-- Shuffles a table
+function shuffle(t)
+  local n = #t
+
+  while n >= 2 do
+    -- n is now the last pertinent index
+    local k = math.random(n) -- 1 <= k <= n
+    -- Quick swap
+    t[n], t[k] = t[k], t[n]
+    n = n - 1
+  end
+
+  return t
 end
 
 local function optionToValue(optionNumber, choice)
@@ -1415,27 +1432,33 @@ ListenToGameEvent('npc_spawned', function(keys)
             -- Generate skill list if not already have one
             if skillList[playerID] == nil then
                 -- Store the bots skills
-                skillList[playerID] = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+                local tmpSkills = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+                skillList[playerID] = {}
+
+                -- Filter the skills
+                for k,v in pairs(tmpSkills) do
+                    if not CheckBans(skillList[playerID], #skillList[playerID]+1, v) and not CheckDraft(playerID, v) then
+                        table.insert(skillList[playerID], v)
+                    end
+                end
 
                 -- Grab how many skills to add
-                local addSkills = maxSlots - 4
+                local addSkills = maxSlots - 4 + (#tmpSkills - #skillList[playerID])
 
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
 
-                local takeaway = 0
-
-                -- Auto pick meepo ulty
-                --[[if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
-                    takeaway = 1
-                    table.insert(skillList[playerID], 'meepo_divided_we_stand')
-                end]]
-
                 -- Add the skills
-                for i=1,addSkills-takeaway do
-                    local msg, skillName = findRandomSkill(playerID, 4+i, function(sm)
+                for i=1,addSkills do
+                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, function(sm)
                         -- We require a random passive
-                        return isPassive(sm)
+                        if isPassive(sm) then
+                            return true
+                        end
+
+                        if sm == 'abaddon_borrowed_time' then
+                            return true
+                        end
                     end)
 
                     -- Failed to find a new skill
@@ -1444,20 +1467,28 @@ ListenToGameEvent('npc_spawned', function(keys)
                     table.insert(skillList[playerID], skillName)
                 end
 
-                -- Trim the skill list
-                while #skillList[playerID] > addSkills do
-                    table.remove(skillList[playerID], 1)
-                end
+                -- Sort it randomly
+                skillList[playerID] = shuffle(skillList[playerID])
 
                 -- Store that we added skills
                 specialAddedSkills[playerID] = {}
                 for k,v in pairs(skillList[playerID]) do
-                    specialAddedSkills[playerID][v] = true
+                    local found = false
+                    for kk,vv in pairs(tmpSkills) do
+                        if vv == v then
+                            found = true
+                            break
+                        end
+                    end
+
+                    if not found then
+                        specialAddedSkills[playerID][v] = true
+                    end
                 end
             end
 
             -- Add the extra skills
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID], true)
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID])
 
             return
         end
@@ -1901,12 +1932,6 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
                 return
             end
-        end
-
-        -- Is the skill banned?
-        if isSkillBanned(skillName) then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is banned.</font>')
-            return
         end
 
         -- Ensure it isn't the same skill
