@@ -82,8 +82,13 @@ local allowedToPick = true
 -- Should we force random heroes?
 local forceRandomHero = false
 
+-- Unique skills constants
+local UNIQUE_SKILLS_NONE = 0
+local UNIQUE_SKILLS_TEAM = 1
+local UNIQUE_SKILLS_GLOBAL = 2
+
 -- Force unique skills?
-local forceUniqueSkills = false
+local forceUniqueSkills = UNIQUE_SKILLS_NONE
 
 --[[
     GAMEMODE STUFF
@@ -542,15 +547,32 @@ local function alreadyHas(skillList, skill)
     return false
 end
 
-local function CheckBans(skillList2, slotNumber, skillName)
+local function CheckBans(skillList2, slotNumber, skillName, playerID)
     -- Old fashion bans
     if isSkillBanned(skillName) then
         return '<font color="'..COLOR_RED..'">This skill is banned.</font>'
     end
 
     -- Check for uniqye skills
-    if forceUniqueSkills then
-        for playerID,skills in pairs(skillList) do
+    if forceUniqueSkills == UNIQUE_SKILLS_TEAM then
+        -- Team based unqiue skills
+        local team = PlayerResource:GetTeam(playerID)
+
+        for playerID2,skills in pairs(skillList) do
+            -- Ensure same team
+            if team == PlayerResource:GetTeam(playerID2) then
+                for slot,skill in pairs(skills) do
+                    if skill == skillName then
+                        if not (skillList2 == skills and slot == slotNumber) then
+                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+                        end
+                    end
+                end
+            end
+        end
+    elseif forceUniqueSkills == UNIQUE_SKILLS_GLOBAL then
+        -- Global unique skills
+        for playerID2,skills in pairs(skillList) do
             for slot,skill in pairs(skills) do
                 if skill == skillName then
                     if not (skillList2 == skills and slot == slotNumber) then
@@ -558,6 +580,17 @@ local function CheckBans(skillList2, slotNumber, skillName)
                     end
                 end
             end
+        end
+    end
+
+    -- Are we using the draft array?
+    if useDraftArray then
+        -- Ensure this player has a drafting array
+        draftArray[playerID] = draftArray[playerID] or {}
+
+        -- Check their drafting array
+        if not draftArray[playerID][GetSkillOwningHero(skillName)] then
+            return '<font color="'..COLOR_RED..'">'..skillName..'</font> is not in your drafting pool.'
         end
     end
 
@@ -580,20 +613,6 @@ local function CheckBans(skillList2, slotNumber, skillName)
                     end
                 end
             end
-        end
-    end
-end
-
--- Checks if we can even draft this skill
-local function CheckDraft(playerID, skillName)
-    -- Are we using the draft array?
-    if useDraftArray then
-        -- Ensure this player has a drafting array
-        draftArray[playerID] = draftArray[playerID] or {}
-
-        -- Check their drafting array
-        if not draftArray[playerID][GetSkillOwningHero(skillName)] then
-            return '<font color="'..COLOR_RED..'">'..skillName..'</font> is not in your drafting pool.'
         end
     end
 end
@@ -627,14 +646,11 @@ local function findRandomSkill(playerID, slotNumber, filter)
                 -- Check type of skill
                 if (canUlt and isUlt(k)) or (canSkill and not isUlt(k)) then
                     -- Check for bans
-                    if not CheckBans(skillList[playerID], slotNumber+1, k) then
-                        -- Check for drafts
-                        if not CheckDraft(playerID, k) then
-                            -- Can't random meepo ulty
-                            if k ~= 'meepo_divided_we_stand' then
-                                -- Valid skill, add to our possible skills
-                                table.insert(possibleSkills, k)
-                            end
+                    if not CheckBans(skillList[playerID], slotNumber+1, k, playerID) then
+                        -- Can't random meepo ulty
+                        if k ~= 'meepo_divided_we_stand' then
+                            -- Valid skill, add to our possible skills
+                            table.insert(possibleSkills, k)
                         end
                     end
                 end
@@ -790,7 +806,7 @@ local function setupGamemodeSettings()
 
     -- Are we using unique skills?
     if forceUniqueSkills then
-        sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Unique Skills</font> <font color="'..COLOR_GREEN..'">was turned on!</font>')
+        sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Unique Skills</font> <font color="'..COLOR_GREEN..'">was turned on! '..((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '(Team Based)') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '(Global)'))..'</font>')
     end
 
     -- Announce which gamemode we're playing
@@ -905,6 +921,9 @@ local function finishVote()
     maxSlots = optionToValue(1, winners[1])
     maxSkills = optionToValue(2, winners[2])
     maxUlts = optionToValue(3, winners[3])
+
+    -- Balance mode
+    balanceMode = optionToValue(11, winners[11])
 
     -- Bans
     hostBanning = false
@@ -1546,7 +1565,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Filter the skills
                 for k,v in pairs(tmpSkills) do
-                    if not CheckBans(skillList[playerID], #skillList[playerID]+1, v) and not CheckDraft(playerID, v) then
+                    if not CheckBans(skillList[playerID], #skillList[playerID]+1, v, playerID) then
                         table.insert(skillList[playerID], v)
                     end
                 end
@@ -2017,13 +2036,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 end
             end
 
-            local msg = CheckBans(skillList[playerID], slotNumber+1, skillName)
-            if msg then
-                sendChatMessage(playerID, msg)
-                return
-            end
-
-            msg = CheckDraft(playerID, skillName)
+            local msg = CheckBans(skillList[playerID], slotNumber+1, skillName, playerID)
             if msg then
                 sendChatMessage(playerID, msg)
                 return
