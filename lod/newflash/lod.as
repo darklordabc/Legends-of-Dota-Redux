@@ -14,22 +14,42 @@
     import flash.utils.getDefinitionByName;
 
 	public class lod extends MovieClip {
-		// element details filled out by game engine
+		/*
+            DOTA BASED STUFF
+        */
 		public var gameAPI:Object;
 		public var globals:Object;
 		public var elementName:String;
 
-		// The mask
+		/*
+            STAGE MOVIECLIPS
+        */
+
+        // The mask that shows screensize
 		public var tempMask:MovieClip;
+
+        // The voting UI
+        public var votingUI:MovieClip;
+
+        /*
+            CONSTANTS
+        */
+
+        // The version we are running
+        private var versionNumber:String;
+
+        // Max players to deal with
+        private var MAX_PLAYERS:Number = 10;
+
+        // The scaling factor
+        private var scalingFactor:Number;
+
+        /*
+            GLOBAL VARIABLES
+        */
 
 		// List of heroes we already built a skill list for
 		public var builtHeroes:Object;
-
-		// Max players to deal with
-		public var MAX_PLAYERS:Number = 10;
-
-		// The scaling factor
-		private var scalingFactor:Number;
 
 		// Containers for ability icons
 		public static var abilityIcons:Array;
@@ -38,7 +58,7 @@
 
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
-			trace('LoD new hud loading...');
+			trace('\n\nLoD new hud loading...');
 
 			// Fix scaling
 			fixScreenScaling();
@@ -46,21 +66,22 @@
 			// Make us visible
 			this.visible = true;
 
-			// Hide the mask
-			tempMask.visible = false;
+            // Prepare UI
+            prepareUI()
 
-			// Reset which heroes have been built
-			builtHeroes = {};
+            // Load the version
+            var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
+            versionNumber = versionFile.version;
 
-			// Builds the skill lists
-			buildSkillList();
+            // Subscribe to the state info
+            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);
 
-			// Patch the scoreboard
-			scoreboardPatch();
+            // Handle the scoreboard stuff
+            //handleScoreboard();
 
-			// Register for events
-			this.gameAPI.SubscribeToGameEvent("npc_spawned", onNPCSpawned);
 			//this.gameAPI.SubscribeToGameEvent("ops", onGetOptions);
+
+            trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
 
 		// Called by the game engine after onLoaded and whenever the screen size is changed
@@ -93,6 +114,44 @@
 			// Store the scaling factor
 			scalingFactor = scale;
 		}
+
+        // Prepares the UI, waiting for state info
+        private function prepareUI():void {
+            // Hide the mask
+            tempMask.visible = false;
+
+            // Hide the voting UI
+            votingUI.visible = false;
+        }
+
+        // Handles the state info
+        private function onGetStateInfo(args:Object):void {
+            // Grab our playerID
+            var playerID = globals.Players.GetLocalPlayer();
+
+            // Compare version info
+
+        }
+
+        // Returns the current version we are running
+        public function getLodVersion() {
+            return versionNumber;
+        }
+
+        // Do scoreboard stuff
+        private function handleScoreboard():void {
+            // Reset which heroes have been built
+            builtHeroes = {};
+
+            // Builds the skill lists
+            buildSkillList();
+
+            // Patch the scoreboard
+            scoreboardPatch();
+
+            // Register for events
+            this.gameAPI.SubscribeToGameEvent("npc_spawned", onNPCSpawned);
+        }
 
 		// Patches the scoreboard
 		private function scoreboardPatch():void {

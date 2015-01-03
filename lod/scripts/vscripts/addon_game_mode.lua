@@ -349,7 +349,7 @@ local versionFile = LoadKeyValues('addoninfo.txt')
 local versionNumber = versionFile.version
 
 -- Returns the current version
-function getVersion()
+function getLodVersion()
     return versionNumber
 end
 
@@ -1242,7 +1242,7 @@ function lod:OnEmitStateInfo()
     -- Build the state table
     local s = {
         -- Add the version
-        ['v'] = getVersion(),
+        ['v'] = getLodVersion(),
 
         -- Add the current stage
         ['s'] = currentStage,
