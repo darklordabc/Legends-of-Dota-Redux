@@ -90,6 +90,18 @@
     // The game state
     "lod_state"
     {
+        // Version Info
+        "v"             "string"
+
+        // Options Info
+        "o"             "string"
+
+        // When the timer should end
+        "t"             "float"
+
+        // Which UI should be shown (Stage)
+        "s"             "byte"
+
         // PlayerID --> Slot
         "0"             "byte"
         "1"             "byte"
@@ -174,10 +186,12 @@
         "95"            "short"
         "96"            "short"
 
-        // Bans
+        // List of Bans
         "b"            "string"
 
         // Heroes this player can pick skills from, seperated by |
+        // Could also be a list of skills this player can pick from
+        // Depends on the mode variables
         "s0"            "string"
         "s1"            "string"
         "s2"            "string"
