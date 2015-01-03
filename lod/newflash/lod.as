@@ -31,6 +31,12 @@
         // The voting UI
         public var votingUI:MovieClip;
 
+        // The waiting screen
+        public var waitingUI:MovieClip;
+
+        // The version notification UI
+        public var versionUI:MovieClip;
+
         /*
             CONSTANTS
         */
@@ -43,6 +49,9 @@
 
         // The scaling factor
         private var scalingFactor:Number;
+
+        // Have we gotten any state info before?
+        private var firstTimeState:Boolean = true;
 
         /*
             GLOBAL VARIABLES
@@ -122,15 +131,66 @@
 
             // Hide the voting UI
             votingUI.visible = false;
+
+            // Hide waiting UI
+            waitingUI.visible = false;
+
+            // Hide version UI
+            versionUI.visible = false;
+
+            // Wait for the game to be ready
+            waitForGame();
+        }
+
+        // Waits for the game to be ready to play
+        private function waitForGame() {
+            // Check the state
+            if(globals.Game.GetState() >= 2) {
+                // Show waiting UI
+                waitingUI.visible = true
+                return;
+            }
+
+            // Start timer to check for an update
+            var timer = new Timer(100, 1);
+            timer.addEventListener(TimerEvent.TIMER, waitForGame, false, 0, true);
+            timer.start();
         }
 
         // Handles the state info
         private function onGetStateInfo(args:Object):void {
+            trace('Got state info :)');
+
             // Grab our playerID
             var playerID = globals.Players.GetLocalPlayer();
 
-            // Compare version info
+            // Check if this is our first time through
+            if(firstTimeState) {
+                // No longer our first time
+                firstTimeState = false;
 
+                // Hide the waiting UI
+                waitingUI.visible = false;
+
+                // Show version info
+                versionUI.visible = true;
+
+                // Compare version info
+                var ourVersion:String = getLodVersion();
+                if(args.v != ourVersion) {
+                    trace('LoD: Version mismatch! Server: ' + args.v + ' VS Us: ' + ourVersion);
+
+                    // Show error page
+                    versionUI.gotoAndStop(2);
+                } else {
+                    trace('LoD: Version checks out!');
+
+                    // Show success page
+                    versionUI.gotoAndStop(1);
+                }
+
+
+            }
         }
 
         // Returns the current version we are running

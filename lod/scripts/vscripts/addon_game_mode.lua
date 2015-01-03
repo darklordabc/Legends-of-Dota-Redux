@@ -1263,6 +1263,11 @@ end
 
 -- Emits state info every 5 seconds
 function lod:OnEmitStateInfo()
+    -- Ensure hero selection has started
+    if GameRules:State_Get() < DOTA_GAMERULES_STATE_HERO_SELECTION then
+        return 1
+    end
+
     -- Build the state table
     local s = {
         -- Add the version
