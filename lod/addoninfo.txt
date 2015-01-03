@@ -2,4 +2,5 @@
 {
 	maps			"dota_pvp"
 	"IsPlayable"	"1"
+    "version"       "2015.01.03 13:54"  // This is a timestamp of when the last change was made to the CLIENT FILES (time is Australian Eastern Standard Time, and should be strictly increasing)
 }

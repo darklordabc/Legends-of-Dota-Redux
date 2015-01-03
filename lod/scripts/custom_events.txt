@@ -96,6 +96,16 @@
         // Options Info
         "o"             "string"
 
+        // Useful Option Info
+        "slots"         "byte"  // The number of slots allowed
+        "skills"        "byte"  // The number of regular skills allowed
+        "ults"          "byte"  // The number of ultimates allowed
+        "trolls"        "byte"  // Are troll combos allowed, or not
+        "hostBanning"   "byte"  // Should we use host banning or per player banning
+        "hideSkills"    "byte"  // Should skills be hidden (Readers beware: There is encryption!)
+        "s1"            "byte"  // Is this a source1 game? (affects ability pool)
+        "balance"       "byte"  // Which balance mode to use (affects ability pool)
+
         // When the timer should end
         "t"             "float"
 
@@ -113,6 +123,18 @@
         "7"             "byte"
         "8"             "byte"
         "9"             "byte"
+
+        // Player Locks (Locked skills, etc)
+        "l0"            "byte"
+        "l1"            "byte"
+        "l2"            "byte"
+        "l3"            "byte"
+        "l4"            "byte"
+        "l5"            "byte"
+        "l6"            "byte"
+        "l7"            "byte"
+        "l8"            "byte"
+        "l9"            "byte"
 
         // Each player's selected skills, encoded as a number
         // The number is the index into abilities.kv
