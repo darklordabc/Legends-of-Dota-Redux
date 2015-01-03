@@ -51,10 +51,6 @@ local allowedToPick = true
 -- Should we force random heroes?
 local forceRandomHero = false
 
--- Bot mode?
-local fullBotGame = Convars:GetStr('hostname') == 'botgame'
-local meepoLevelPatch = true
-
 -- Force unique skills?
 local forceUniqueSkills = false
 
@@ -759,7 +755,7 @@ local function postGamemodeSettings()
 
             -- Loop over all slots
             for j=0,maxSlots-1 do
-                local msg, skillName = findRandomSkill(i, j)
+                local msg, skillName = findRandomSkill(i, j, botFilter)
 
                 -- Did we find a valid skill?
                 if skillName then
@@ -962,15 +958,6 @@ local function backdoorFix()
             -- Prevent anal (backdooring)
             ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
         end
-
-        if fullBotGame then
-            ent:AddAbility('medusa_split_shot')
-            local splitShot = ent:FindAbilityByName('medusa_split_shot')
-            if splitShot then
-                splitShot:SetLevel(4)
-                splitShot:OnToggle()
-            end
-        end
     end
 
     -- Protect rax
@@ -991,15 +978,6 @@ local function backdoorFix()
 
         -- Prevent backdooring
         ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
-    end
-
-    if fullBotGame then
-        ents = Entities:FindAllByClassname('npc_dota_roshan')
-        for k,ent in pairs(ents) do
-            ent:AddAbility('sven_great_cleave')
-            local ab = ent:FindAbilityByName('sven_great_cleave')
-            ab:SetLevel(4)
-        end
     end
 end
 
@@ -1142,6 +1120,21 @@ sendStateInfo = function()
     end, 'DelayedStateTimer', 1, nil)
 end
 
+-- A function that returns true if the given skill is valid for bots
+function botSkillsOnly(skillName)
+    -- We require a random passive
+    if isPassive(skillName) then
+        return true
+    end
+
+    if skillName == 'abaddon_borrowed_time' then
+        return true
+    end
+
+    -- Not a valid skill
+    return false
+end
+
 -- Called when LoD starts
 function lod:InitGameMode()
     print('Legends of dota started!')
@@ -1195,17 +1188,6 @@ function lod:OnThink()
         currentStage = STAGE_BANNING
 
         -- Setup all the fancy gamemode stuff
-        setupGamemodeSettings()
-    end
-
-    -- Bot game patch
-    if fullBotGame and not doneBotStuff then
-        doneBotStuff = true
-
-        -- Goto playing stage
-        currentStage = STAGE_PLAYING
-
-        -- Setup Gamemode Settings
         setupGamemodeSettings()
     end
 
@@ -1353,6 +1335,7 @@ local XP_PER_LEVEL_TABLE = {
 local specialAddedSkills = {}
 local mainHeros = {}
 local givenBonuses = {}
+local doneBots = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1361,33 +1344,6 @@ ListenToGameEvent('npc_spawned', function(keys)
     if spawnedUnit:IsHero() then
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
-
-        -- Level up skillz
-        if fullBotGame then
-            -- don't run code on the main hero
-            mainHeros[playerID] = mainHeros[playerID] or spawnedUnit
-            if mainHeros[playerID] ~= spawnedUnit then
-                local src = mainHeros[playerID]
-                if src then
-                    -- Level Hero
-                    local exp = XP_PER_LEVEL_TABLE[src:GetLevel()]-XP_PER_LEVEL_TABLE[spawnedUnit:GetLevel()]
-                    spawnedUnit:AddExperience(exp, exp, false, false)
-
-                    -- Copy items across
-                    --[[for i=0,5 do
-                        local item = spawnedUnit:GetItemInSlot(i)
-                        if item then
-                            spawnedUnit:RemoveItem(item)
-                        end
-
-                        item = src:GetItemInSlot(i)
-                        if item then
-                            spawnedUnit:AddItem(CreateItem(item:GetClassname(), spawnedUnit, spawnedUnit))
-                        end
-                    end]]
-                end
-            end
-        end
 
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
@@ -1420,13 +1376,11 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
         end
 
-        -- Don't touch bots
+        -- Give bots skills differently
         if PlayerResource:IsFakeClient(playerID) then
-            -- Add the ulty
-            if fullBotGame then
-                specialAddedSkills[playerID] = {}
-                specialAddedSkills[playerID]['meepo_divided_we_stand'] = true
-                return
+            if not doneBots[playerID] then
+                doneBots[playerID] = true
+                skillList[playerID] = nil
             end
 
             -- Generate skill list if not already have one
@@ -1450,16 +1404,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Add the skills
                 for i=1,addSkills do
-                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, function(sm)
-                        -- We require a random passive
-                        if isPassive(sm) then
-                            return true
-                        end
-
-                        if sm == 'abaddon_borrowed_time' then
-                            return true
-                        end
-                    end)
+                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, botSkillsOnly)
 
                     -- Failed to find a new skill
                     if skillName == nil then break end
@@ -1555,22 +1500,9 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                 -- Grab a reference to teh skill
                 local skill = hero:FindAbilityByName(skillName)
 
-                -- Unlimited meepo patch
-                if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
-                    heroLevels[playerID] = heroLevels[playerID] or 2
-                    if level > heroLevels[playerID] then
-                        heroLevels[playerID] = level+5
-
-                        -- Create a clone
-                        local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
-                        FindClearSpaceForUnit(newHero, hero:GetOrigin(), true)
-                        mainHeros[playerID] = newHero
-                    end
-                else
-                    if skill and skill:GetLevel() < requiredLevel then
-                        -- Level the skill
-                        skill:SetLevel(requiredLevel)
-                    end
+                if skill and skill:GetLevel() < requiredLevel then
+                    -- Level the skill
+                    skill:SetLevel(requiredLevel)
                 end
             end
         end
@@ -1607,17 +1539,11 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they have multicast
-            if (hero:HasAbility('ogre_magi_multicast_lod') or fullBotGame) and canMulticast(keys.abilityname) then
+            if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                if mab or fullBotGame then
+                if mab then
                     -- Grab the level of the ability
-                    local lvl
-
-                    if fullBotGame then
-                        lvl = 3
-                    else
-                        lvl = mab:GetLevel()
-                    end
+                    local lvl = mab:GetLevel()
 
                     -- If they have no level in it, stop
                     if lvl == 0 then return end
@@ -1810,19 +1736,6 @@ ListenToGameEvent('entity_hurt', function(keys)
         end
     end
 end, nil)
-
-Convars:RegisterCommand('lod_test', function()
-    if fullBotGame then
-        local cmdPlayer = Convars:GetCommandClient()
-        if cmdPlayer then
-            local playerID = cmdPlayer:GetPlayerID()
-
-            local newHero = CreateHeroForPlayer('npc_dota_hero_axe', PlayerResource:GetPlayer(playerID))
-            newHero:AddExperience(XP_PER_LEVEL_TABLE[25], XP_PER_LEVEL_TABLE[25], false, false)
-            FindClearSpaceForUnit(newHero, Vector(0, 0, 0), true)
-        end
-    end
-end, 'test function', 0)
 
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
