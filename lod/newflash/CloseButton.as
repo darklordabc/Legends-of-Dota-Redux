@@ -12,7 +12,6 @@
 		private function onPressed():void {
 			//this.parent.parent.removeChild(this.parent);
 			this.parent.visible = false;
-
 		}
 	}
 }

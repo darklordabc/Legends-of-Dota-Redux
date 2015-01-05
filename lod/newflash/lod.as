@@ -1,6 +1,8 @@
 ﻿package  {
-
+    // Flash stuff
 	import flash.display.MovieClip;
+
+    // Other events
 	import flash.events.MouseEvent;
 
 	// Timer
@@ -37,6 +39,12 @@
         // The version notification UI
         public var versionUI:MovieClip;
 
+        // The left help screen
+        public var pickingHelp:MovieClip;
+
+        // The right help screen (this will be positioned dynamically)
+        public var pickingHelpFilters:MovieClip;
+
         /*
             CONSTANTS
         */
@@ -53,6 +61,13 @@
         // Have we gotten any state info before?
         private var firstTimeState:Boolean = true;
 
+        // Stage info
+        private static var STAGE_WAITING:Number = 0;
+        private static var STAGE_VOTING:Number = 1;
+        private static var STAGE_BANNING:Number = 2;
+        private static var STAGE_PICKING:Number = 3;
+        private static var STAGE_PLAYING:Number = 4;
+
         /*
             GLOBAL VARIABLES
         */
@@ -63,7 +78,11 @@
 		// Containers for ability icons
 		public static var abilityIcons:Array;
 
-		public function lod() {}
+        // The last state we got
+        private var lastState:Object;
+
+        // The current
+        private var currentStage:Number = -1;
 
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
@@ -122,10 +141,16 @@
 
 			// Store the scaling factor
 			scalingFactor = scale;
+
+            // Move the picking help into position
+            var dock:MovieClip = getDock();
+            var rcPos = this.globalToLocal(dock.filterButtons.RolesCombo.localToGlobal(new Point(0,0)));
+            pickingHelpFilters.x = rcPos.x;
+            pickingHelpFilters.y = rcPos.y;
 		}
 
-        // Prepares the UI, waiting for state info
-        private function prepareUI():void {
+        // Hides all the UI stuff
+        private function hideAllUI():void {
             // Hide the mask
             tempMask.visible = false;
 
@@ -137,6 +162,22 @@
 
             // Hide version UI
             versionUI.visible = false;
+
+            // Hide the left picking help
+            pickingHelp.visible = false;
+
+            // Hide the right picking help
+            pickingHelpFilters.visible = false;
+        }
+
+        // Prepares the UI, waiting for state info
+        private function prepareUI():void {
+            // Hide all the UI stuff
+            hideAllUI();
+
+            // Add accept button to versionUI
+            var btn:MovieClip = Util.smallButton(versionUI.acceptButton, '#versionAccept', true, true);
+            btn.addEventListener(MouseEvent.CLICK, onVersionInfoClosed);
 
             // Wait for the game to be ready
             waitForGame();
@@ -161,6 +202,9 @@
         private function onGetStateInfo(args:Object):void {
             trace('Got state info :)');
 
+            // Store the state info
+            lastState = args;
+
             // Grab our playerID
             var playerID = globals.Players.GetLocalPlayer();
 
@@ -174,6 +218,9 @@
 
                 // Show version info
                 versionUI.visible = true;
+
+                // Ensure there is version info
+                if(!args.v) args.v = '';
 
                 // Compare version info
                 var ourVersion:String = getLodVersion();
@@ -189,8 +236,55 @@
                     versionUI.gotoAndStop(1);
                 }
 
-
+                // Append version info
+                versionUI.helpField.text += 'Server: ' + args.v + '\nYour Client: ' + ourVersion;
             }
+
+            // Update the UI
+            updateUI();
+        }
+
+        // Updates the UI based on the current state
+        private function updateUI():void {
+            // Don't do anything if the versionUI is visible
+            if(versionUI.visible) return;
+
+            // Ensure we have state info
+            if(!lastState) return;
+
+            // Do we need to build from scratch?
+            var fromScatch = currentStage == lastState.s;
+            currentStage = lastState.s;
+
+            switch(lastState.s) {
+                case STAGE_VOTING:
+                    buildVotingUI(fromScatch);
+                    break;
+
+                default:
+                    trace('Unknown stage: ' + lastState.s);
+                    break;
+            }
+        }
+
+        // Builds the voting UI
+        private function buildVotingUI(fromScratch:Boolean) {
+            if(fromScratch) {
+                hideAllUI();
+                votingUI.visible = true;
+            }
+
+            // Update option values
+
+        }
+
+        // Called when the version info pain is closed
+        private function onVersionInfoClosed():void {
+            // Hide the versionUI
+            versionUI.visible = false;
+
+            // Build the UI
+            updateUI();
         }
 
         // Returns the current version we are running
@@ -375,6 +469,11 @@
         private function onSkillRollOut(e:MouseEvent):void {
             // Hide the skill info pain
             globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+        }
+
+        // Grabs the hero dock
+        private function getDock():MovieClip {
+            return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
         }
 	}
 }

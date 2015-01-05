@@ -3,6 +3,12 @@ package {
     import flash.display.MovieClip;
     import flash.utils.getQualifiedClassName;
 
+    // Used to make nice buttons / doto themed stuff
+    import flash.utils.getDefinitionByName;
+
+    // Events
+    import flash.events.MouseEvent;
+
     public class Util {
         // Function to repeat a string many times
         public static function strRep(str, count) {
@@ -129,6 +135,43 @@ package {
             if(indent == 0) {
                 trace("}");
             }
+        }
+
+        // Make a small button
+        public static function smallButton(container:MovieClip, txt:String, emptyMC:Boolean=false, centre:Boolean=false):MovieClip {
+            // Grab the class for a small button
+            var dotoButtonClass:Class = getDefinitionByName("ChannelTab") as Class;
+
+            // Should we empty it first?
+            if(emptyMC) {
+                // Empty it
+                empty(container);
+            }
+
+            // Create the button
+            var btn:MovieClip = new dotoButtonClass();
+            btn.label = txt;
+            container.addChild(btn);
+
+            // Should we center it?
+            if(centre) {
+                btn.x = -btn.width/2;
+            }
+
+            // Return the button
+            return btn;
+        }
+
+        // Empties a movieclip
+        public static function empty(mc:MovieClip) {
+            while(mc.numChildren > 0) {
+                mc.removeChildAt(0);
+            }
+        }
+
+        // Hides the parent when clicked
+        public static function hideParentOnClick(e:MouseEvent) {
+            e.currentTarget.parent.visible = false;
         }
     }
 }
