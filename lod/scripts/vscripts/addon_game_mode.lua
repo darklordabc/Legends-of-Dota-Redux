@@ -872,9 +872,9 @@ end
 local function getOptionsString()
     local str = ''
 
-    for k,v in pairs(voteData[slaveID]) {
+    for k,v in pairs(voteData[slaveID]) do
         str = str .. util.EncodeByte(k) .. util.EncodeByte(v)
-    }
+    end
 
     return str
 end
