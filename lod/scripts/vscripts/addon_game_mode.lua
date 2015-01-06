@@ -1058,7 +1058,7 @@ local function backdoorFix()
     end
 end
 
-local canInfo = true
+--[[local canInfo = true
 local function sendPickingInfo()
     -- Stop spam of this command
     if not canInfo then return end
@@ -1090,9 +1090,9 @@ local function sendPickingInfo()
             s1 = s1
         })
     end, 'DelayedInfoTimer', 1, nil)
-end
+end]]
 
-local canVoteInfo = true
+--[[local canVoteInfo = true
 local function sendVotingInfo()
     -- Stop spam of this command
     if not canVoteInfo then return end
@@ -1118,7 +1118,7 @@ local function sendVotingInfo()
             slaveID = slaveID
         })
     end, 'DelayedVoteInfoTimer', 1, nil)
-end
+end]]
 
 --[[local canState = true
 sendStateInfo = function()
@@ -1379,7 +1379,7 @@ function lod:OnThink()
             currentStage = STAGE_VOTING
 
             -- Send the voting info
-            sendVotingInfo()
+            self:OnEmitStateInfo()
 
             -- Sleep until the voting time is over
             return 0.1
@@ -1406,7 +1406,7 @@ function lod:OnThink()
         heroSelectionStart = Time()
 
         -- Send the picking info
-        sendPickingInfo()
+        self:OnEmitStateInfo()
 
         -- Tell the users it's picking time
         if banningTime > 0 then
@@ -2085,7 +2085,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
 end, 'Ban a given skill', 0)
 
 -- When a user requests the voting info
-Convars:RegisterCommand('lod_voting_info', function(name)
+--[[Convars:RegisterCommand('lod_voting_info', function(name)
     -- Ensure the hero selection timer isn't nil
     if heroSelectionStart ~= nil then
         -- Should we send voting info, or picking info?
@@ -2098,17 +2098,17 @@ Convars:RegisterCommand('lod_voting_info', function(name)
             sendPickingInfo()
         end
     end
-end, 'Send picking info out', 0)
+end, 'Send picking info out', 0)]]
 
 -- When a user requests the picking info
-Convars:RegisterCommand('lod_picking_info', function(name)
+--[[Convars:RegisterCommand('lod_picking_info', function(name)
     -- Ensure the hero selection timer isn't nil
     if heroSelectionStart ~= nil then
         if currentStage >= STAGE_BANNING then
             sendPickingInfo()
         end
     end
-end, 'Send picking info out', 0)
+end, 'Send picking info out', 0)]]
 
 -- When a user requests the state info
 --[[Convars:RegisterCommand('lod_state_info', function(name)
