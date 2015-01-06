@@ -96,6 +96,9 @@
         // Options Info
         "o"             "string"
 
+        // The ID of the player who owns the vote, or -1 for free for all
+        "slaveID"       "byte"
+
         // Useful Option Info
         "slots"         "byte"  // The number of slots allowed
         "skills"        "byte"  // The number of regular skills allowed
