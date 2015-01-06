@@ -28,9 +28,9 @@
 				slaveText.visible = false;
 
 				// Create the drop down box
-				/*dropDown = lod_old.comboBox(this, slots);
+				dropDown = Util.comboBox(this, slots);
 				dropDown.x = this.width/2-dropDown.width-1;
-				dropDown.y = 0.5;*/
+				dropDown.y = 0.5;
 
 				// Bring hint to the front
 				this.setChildIndex(hint, this.numChildren-1);
@@ -50,9 +50,13 @@
 		}
 
 		// Updates the slave text
-		public function updateSlave(txt:String):void {
+		public function updateSlave(txt:String, newIndex:Number):void {
 			// Store the change
 			this.slaveText.text = txt;
+
+			if(dropDown != null) {
+				dropDown.setSelectedIndex(newIndex);
+			}
 		}
 	}
 

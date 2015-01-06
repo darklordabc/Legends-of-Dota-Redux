@@ -9,6 +9,10 @@ package {
     // Events
     import flash.events.MouseEvent;
 
+    // Scaleform stuff
+    import scaleform.clik.interfaces.IDataProvider;
+    import scaleform.clik.data.DataProvider;
+
     public class Util {
         // Function to repeat a string many times
         public static function strRep(str, count) {
@@ -162,6 +166,44 @@ package {
             return btn;
         }
 
+        // Makes a combo box
+        public static function comboBox(container:MovieClip, slots:Number):MovieClip {
+            // Grab the class for a small button
+            var dotoComboBoxClass:Class = getDefinitionByName("ComboBoxSkinned") as Class;
+
+            // Create the button
+            var comboBox:MovieClip = new dotoComboBoxClass();
+            container.addChild(comboBox);
+
+            // Create the data provider
+            var dp:IDataProvider = new DataProvider();
+            for(var i:Number=0; i<slots; i++) {
+                dp[i] = {
+                  "label":"empty",
+                  "data":i
+               };
+            }
+
+            // Apply the data provider
+            comboBox.setDataProvider(dp);
+
+            // Return the button
+            return comboBox;
+        }
+
+        // Sets a string in a combo box
+        public static function setComboBoxString(comboBox:MovieClip, slot:Number, txt:String):void {
+            comboBox.menuList.dataProvider[slot] = {
+                "label":txt,
+                "data":slot
+            };
+
+            if(slot == 0) {
+                comboBox.defaultSelection = comboBox.menuList.dataProvider[0];
+                comboBox.setSelectedIndex(0);
+            }
+        }
+
         // Empties a movieclip
         public static function empty(mc:MovieClip) {
             while(mc.numChildren > 0) {
@@ -172,6 +214,18 @@ package {
         // Hides the parent when clicked
         public static function hideParentOnClick(e:MouseEvent) {
             e.currentTarget.parent.visible = false;
+        }
+
+        // Decodes a character sent over the network
+        public static function decodeChar(message:String, index:Number) {
+            // Convert the character into a number
+            var n = message.charCodeAt(index);
+
+            // Fix weird number errors
+            if(n > 255) n -= 4294967040;
+
+            // Remove 1 and return
+            return n - 1;
         }
     }
 }

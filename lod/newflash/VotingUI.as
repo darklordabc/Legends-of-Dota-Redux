@@ -6,26 +6,42 @@
         // The header
         public var votingHeader;
 
+        // The container to store clips into
+        public var container:MovieClip;
+
         // The timer in the corner
         public var timer;
 
+        // Contains a list of option MovieClips
         private var options:Object;
 
+        // Contains the current option list (ie: names and values)
+        private var optionList:Object;
+
+        // Callback to call to update a vote
+        private var updateCallback:Function;
+
+        // Callback to call to finish the vote
+        private var finishCallback:Function;
+
         public function VotingUI() {
+            // Init containers
+            options = {};
+            optionList = {};
         }
 
-		public function setup(slave:Boolean):void {
+		public function setup(newOptionList:Object, slave:Boolean, updateVoteCallback:Function, finishVoteCallback:Function):void {
+            // Store the new stuff
+            optionList = newOptionList;
+            updateCallback = updateVoteCallback;
+            finishCallback = finishVoteCallback;
+
             // Settings
             var padding:Number = 4;
             var spacing:Number = 24;
 
-            // Options container
+            // Reset container
             options = {};
-
-            return;
-
-            // Grab a local reference to the voting list
-            var lst = lod_old.votingList;
 
             // Where to place the movieclips
             var yy:Number = votingHeader.y + votingHeader.height;
@@ -36,14 +52,13 @@
                 votingHeader.text = '#voteheaderSlave';
             }
 
-            // Create a container to house all the options
-            var con = new MovieClip();
-            addChild(con);
+            // Empty the container
+            Util.empty(container);
 
             // Loop over all options
-            for(var optNumber:Number=0;lst[optNumber];optNumber++) {
+            for(var optNumber:Number=0;optionList[optNumber];optNumber++) {
                 // Grab the option
-                var option = lst[optNumber];
+                var option = optionList[optNumber];
 
                 // Workout how many options there are in this option
                 var totalOptions:Number = 0;
@@ -51,8 +66,8 @@
 
                 // Create the panel
                 var optionPanel:MovieClip = new VotingOptionPanel(slave, option.des, option.hint, totalOptions);
-                con.addChild(optionPanel);
-                con.setChildIndex(optionPanel, 0)
+                container.addChild(optionPanel);
+                container.setChildIndex(optionPanel, 0)
                 optionPanel.x = 0;
                 optionPanel.y = yy;
 
@@ -67,7 +82,7 @@
                     // Add the options in
                     for(var i:Number=0; i<totalOptions; i++) {
                         // Apply the text
-                        lod_old.setComboBoxString(optionPanel.dropDown, i, option.options[i]);
+                        Util.setComboBoxString(optionPanel.dropDown, i, option.options[i]);
                     }
 
                     // Hook the button
@@ -77,29 +92,26 @@
 
             // Spawn submit button
             if(!slave) {
-                /*var submitBtn:MovieClip = lod_old.smallButton(this, '#submitvote');
-                submitBtn.x = -submitBtn.width/2;
+                var submitBtn:MovieClip = Util.smallButton(container, '#submitvote', false, true);
                 submitBtn.y = this.height - submitBtn.height - padding;
-                submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);*/
+                submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
             }
 		}
 
+        // Stores a given vote
         public function updateSlave(optNumber:Number, newValue:Number) {
             // Check if we even have this option number
             if(options[optNumber] != null) {
-                // Grab a local reference to the voting list
-                /*var lst = lod_old.votingList;
-
                 // Validate the voting list
-                if(lst != null) {
+                if(optionList != null) {
                     // Grab the options for it
-                    var option = lst[optNumber];
+                    var option = optionList[optNumber];
 
                     if(option != null && option.options[newValue] != null) {
                         // Pass the update
-                        options[optNumber].updateSlave(option.options[newValue]);
+                        options[optNumber].updateSlave(option.options[newValue], newValue);
                     }
-                }*/
+                }
             }
         }
 
@@ -108,14 +120,14 @@
             // Create the hook
             dropdown.setIndexCallback = function(comboBox) {
                 // Update the vote
-                //lod_old.updateVote(optNumber, comboBox.selectedIndex);
+                updateCallback(optNumber, comboBox.selectedIndex);
             }
         }
 
         // When submit is pressed
         private function onSubmitPressed(e:MouseEvent) {
             // Done voting
-            //lod_old.finishedVoting();
+            finishCallback();
         }
 	}
 

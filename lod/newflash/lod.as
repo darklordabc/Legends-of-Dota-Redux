@@ -81,8 +81,11 @@
         // The last state we got
         private var lastState:Object;
 
-        // The current
+        // The current loaded stage on the client (-1 for no stage)
         private var currentStage:Number = -1;
+
+        // Are we a slave?
+        private var isSlave:Boolean = false;
 
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
@@ -102,7 +105,8 @@
             versionNumber = versionFile.version;
 
             // Subscribe to the state info
-            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);
+            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo); // Contains most of the game state
+            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);    // Someone has updated a voting option
 
             // Handle the scoreboard stuff
             //handleScoreboard();
@@ -270,12 +274,34 @@
         // Builds the voting UI
         private function buildVotingUI(fromScratch:Boolean) {
             if(fromScratch) {
+                // Show correct UI
                 hideAllUI();
                 votingUI.visible = true;
+
+                // Workout if we are the slave, or not
+                isSlave = lastState.slaveID != -1 && lastState.slaveID != globals.Players.GetLocalPlayer();
+
+                // Load the current options list
+                var options:Object = globals.GameInterface.LoadKVFile('scripts/kv/voting.kv');
+
+                // Rebuild the voting UI
+                votingUI.setup(options, isSlave);
             }
 
             // Update option values
+            for(var i=0; i<lastState.o.length; i+=2) {
+                // Grab the data
+                var a = Util.decodeChar(lastState.o, i);
+                var b = Util.decodeChar(lastState.o, i + 1);
 
+                // Update the info
+                votingUI.updateSlave(a, b);
+            }
+        }
+
+        // Fired when the server sends us a slave vote update
+        private function handleSlave(args:Object):void {
+            votingUI.updateSlave(args.opt, args.nv);
         }
 
         // Called when the version info pain is closed
