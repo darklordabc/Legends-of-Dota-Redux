@@ -1262,6 +1262,7 @@ function lod:OnEmitStateInfo()
         ['hideSkills']  = (hideSkills and 1) or 0,
         ['s1']          = (GameRules:isSource1() and 1) or 0,
         ['balance']     = balanceMode,
+        ['slaveID']     = loadhelper.getHostID(),
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
