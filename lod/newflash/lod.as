@@ -205,6 +205,7 @@
         // Handles the state info
         private function onGetStateInfo(args:Object):void {
             trace('Got state info :)');
+            trace('Current stage: ' + args.s);
 
             // Store the state info
             lastState = args;
@@ -250,6 +251,10 @@
 
         // Updates the UI based on the current state
         private function updateUI():void {
+            trace('updateUI called!');
+            trace(versionUI.visible);
+            trace(lastState);
+
             // Don't do anything if the versionUI is visible
             if(versionUI.visible) return;
 
@@ -257,16 +262,17 @@
             if(!lastState) return;
 
             // Do we need to build from scratch?
-            var fromScatch = currentStage == lastState.s;
+            var fromScratch = currentStage != lastState.s;
             currentStage = lastState.s;
 
             switch(lastState.s) {
                 case STAGE_VOTING:
-                    buildVotingUI(fromScatch);
+                    buildVotingUI(fromScratch);
                     break;
 
                 default:
                     trace('Unknown stage: ' + lastState.s);
+                    hideAllUI();
                     break;
             }
         }
@@ -274,6 +280,8 @@
         // Builds the voting UI
         private function buildVotingUI(fromScratch:Boolean) {
             if(fromScratch) {
+                trace('Building the voting UI');
+
                 // Show correct UI
                 hideAllUI();
                 votingUI.visible = true;
@@ -285,17 +293,20 @@
                 var options:Object = globals.GameInterface.LoadKVFile('scripts/kv/voting.kv');
 
                 // Rebuild the voting UI
-                votingUI.setup(options, isSlave);
+                votingUI.setup(options, isSlave, updateVote, finishedVoting);
             }
 
-            // Update option values
-            for(var i=0; i<lastState.o.length; i+=2) {
-                // Grab the data
-                var a = Util.decodeChar(lastState.o, i);
-                var b = Util.decodeChar(lastState.o, i + 1);
+            // Set the values
+            if(fromScratch || isSlave) {
+                // Update option values
+                for(var i=0; i<lastState.o.length; i+=2) {
+                    // Grab the data
+                    var a = Util.decodeChar(lastState.o, i);
+                    var b = Util.decodeChar(lastState.o, i + 1);
 
-                // Update the info
-                votingUI.updateSlave(a, b);
+                    // Update the info
+                    votingUI.updateSlave(a, b);
+                }
             }
         }
 
@@ -304,8 +315,20 @@
             votingUI.updateSlave(args.opt, args.nv);
         }
 
+        // Updates a user's vote with the server
+        private function updateVote(optNumber:Number, myChoice:Number):void {
+            gameAPI.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
+        }
+
+        // Finishes voting
+        private function finishedVoting():void {
+            gameAPI.SendServerCommand("finished_voting");
+        }
+
         // Called when the version info pain is closed
         private function onVersionInfoClosed():void {
+            trace('VERSION UI WAS CLICKED!');
+
             // Hide the versionUI
             versionUI.visible = false;
 

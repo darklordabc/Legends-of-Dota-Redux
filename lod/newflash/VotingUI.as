@@ -36,6 +36,9 @@
             updateCallback = updateVoteCallback;
             finishCallback = finishVoteCallback;
 
+            // Hide the timer
+            timer.visible = false;
+
             // Settings
             var padding:Number = 4;
             var spacing:Number = 24;
@@ -93,7 +96,7 @@
             // Spawn submit button
             if(!slave) {
                 var submitBtn:MovieClip = Util.smallButton(container, '#submitvote', false, true);
-                submitBtn.y = this.height - submitBtn.height - padding;
+                submitBtn.y = this.height - submitBtn.height - padding - 16;
                 submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
             }
 		}
