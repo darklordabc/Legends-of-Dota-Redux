@@ -1460,7 +1460,7 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_PICKING then
-        -- Owkrout how long left
+        -- Workout how long left
         local timeLeft = heroSelectionStart + pickingTime + banningTime - Time()
 
         if timeLeft > 60 then
