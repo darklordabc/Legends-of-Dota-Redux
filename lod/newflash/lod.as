@@ -251,10 +251,6 @@
 
         // Updates the UI based on the current state
         private function updateUI():void {
-            trace('updateUI called!');
-            trace(versionUI.visible);
-            trace(lastState);
-
             // Don't do anything if the versionUI is visible
             if(versionUI.visible) return;
 
@@ -280,8 +276,6 @@
         // Builds the voting UI
         private function buildVotingUI(fromScratch:Boolean) {
             if(fromScratch) {
-                trace('Building the voting UI');
-
                 // Show correct UI
                 hideAllUI();
                 votingUI.visible = true;
@@ -327,8 +321,6 @@
 
         // Called when the version info pain is closed
         private function onVersionInfoClosed():void {
-            trace('VERSION UI WAS CLICKED!');
-
             // Hide the versionUI
             versionUI.visible = false;
 
