@@ -1366,8 +1366,6 @@ local fixedBackdoor = false
 local doneBotStuff = false
 local patchedOptions = false
 function lod:OnThink()
-    print('Current Stage = ' .. currentStage)
-
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if GameRules:isSource1() then
