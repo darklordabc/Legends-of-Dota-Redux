@@ -31,58 +31,59 @@ ListenToGameEvent('player_connect', function(keys)
 end, nil)
 
 -- Stick people onto teams
+local allocated = {}
 ListenToGameEvent('player_connect_full', function(keys)
     -- Grab the entity index of this player
     local entIndex = keys.index+1
     local ply = EntIndexToHScript(entIndex)
 
-    -- Wait, then attempt to put them onto a team
-    GameRules:GetGameModeEntity():SetThink(function()
-        -- Validate player
-        if ply and IsValidEntity(ply) then
-            -- Make sure they aren't already on a team
-            if ply:GetTeam() == 0 then
-                -- Don't touch bots
-                if PlayerResource:IsFakeClient(ply:GetPlayerID()) then return end
+    -- Validate player
+    if ply and IsValidEntity(ply) then
+        -- Make sure they aren't already on a team
+        if not allocated[entIndex] then
+            -- We have now allocated this player
+            allocated[entIndex] = true
 
-                -- Find number of players on each team
-                local radiant = 0
-                local dire = 0
-                for i=0,9 do
-                    if PlayerResource:GetConnectionState(i) >= 2 or PlayerResource:IsFakeClient(i) then
-                        if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
-                            radiant = radiant + 1
-                        elseif PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
-                            dire = dire + 1
-                        end
+            -- Don't touch bots
+            if PlayerResource:IsFakeClient(ply:GetPlayerID()) then return end
+
+            -- Find number of players on each team
+            local radiant = 0
+            local dire = 0
+            for i=0,9 do
+                if PlayerResource:GetConnectionState(i) >= 2 or PlayerResource:IsFakeClient(i) then
+                    if PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
+                        radiant = radiant + 1
+                    elseif PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
+                        dire = dire + 1
                     end
                 end
+            end
 
-                -- Full bot game, all spectators
-                if fullBotGame then
-                    ply:SetTeam(1)
-                    return
-                end
+            -- Full bot game, all spectators
+            if fullBotGame then
+                ply:SetTeam(1)
+                return
+            end
 
-                -- Should we be spectating this player?
-                if dire + radiant >= 10 then
-                    -- Create a spectator
-                    ply:SetTeam(1)
-                    return
-                end
+            -- Should we be spectating this player?
+            if dire + radiant >= 10 then
+                -- Create a spectator
+                ply:SetTeam(1)
+                return
+            end
 
-                -- We have started
-                hasStarted = true
+            -- We have started
+            hasStarted = true
 
-                -- Set their team
-                if radiant <= dire then
-                    ply:SetTeam(DOTA_TEAM_GOODGUYS)
-                else
-                    ply:SetTeam(DOTA_TEAM_BADGUYS)
-                end
+            -- Set their team
+            if radiant <= dire then
+                ply:SetTeam(DOTA_TEAM_GOODGUYS)
+            else
+                ply:SetTeam(DOTA_TEAM_BADGUYS)
             end
         end
-    end, 'autoallocate'..entIndex, 1, nil)
+    end
 end, nil)
 
 ListenToGameEvent('player_disconnect', function(keys)
