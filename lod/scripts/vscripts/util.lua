@@ -32,7 +32,7 @@ end, nil)
 -- Encodes a byte to send over the network
 -- This function expects a number from 0 - 254
 -- This function returns a character, values 1 - 255
-function encodeByte(v)
+local function encodeByte(v)
     -- Check for negative
     if v < 0 then
         print("Warning: Tried to encode a number less than 0! Clamping to 255")

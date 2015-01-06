@@ -974,16 +974,11 @@ local function finishVote()
         maxHeroBans = 10
     end
 
-    if winners[5] == 2 then
-        -- No troll combos
-        banTrollCombos = false
-    end
+    -- Hide skills
+    hideSkills = optionToValue(8, winners[8]) == 1
 
-    if winners[8] == 2 then
-        hideSkills = false
-    else
-        hideSkills = true
-    end
+    -- Block troll combos
+    banTrollCombos = optionToValue(5, winners[5]) == 1
 
     -- Grab the gamemode
     gamemode = optionToValue(0, winners[0])
@@ -995,13 +990,7 @@ local function finishVote()
     bonusGold = optionToValue(9, winners[9])
 
     -- Are we using easy mode?
-    if optionToValue(7, winners[7]) == 1 then
-        -- Enable easy mode
-        useEasyMode = true
-    else
-        -- Disable easy mode
-        useEasyMode = false
-    end
+    useEasyMode = optionToValue(7, winners[7]) == 1
 
     -- Are we using unique skills?
     if optionToValue(10, winners[10]) == 1 then
@@ -1417,18 +1406,18 @@ function lod:OnThink()
             sendVotingInfo()
 
             -- Sleep until the voting time is over
-            return 1
+            return 0.1
         end
 
         -- Run again in a moment
-        return 2
+        return 0.1
     end
 
     if currentStage == STAGE_VOTING then
         -- Are we still voting?
         if stillVoting then
             PauseGame(true)
-            return 1
+            return 0.1
         end
 
         -- Workout who won
