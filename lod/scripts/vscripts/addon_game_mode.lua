@@ -1366,6 +1366,8 @@ local fixedBackdoor = false
 local doneBotStuff = false
 local patchedOptions = false
 function lod:OnThink()
+    print('Current Stage = ' .. currentStage)
+
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if GameRules:isSource1() then
@@ -1381,18 +1383,33 @@ function lod:OnThink()
     end
 
     -- Options patch
-    if patchOptions and not patchedOptions then
-        -- Only do it once
-        patchedOptions = true
+    if patchOptions then
+        if not patchedOptions then
+            -- Only do it once
+            patchedOptions = true
 
-        -- No longer voting
-        stillVoting = false
+            -- No longer voting
+            stillVoting = false
 
-        -- Move onto banning
-        currentStage = STAGE_BANNING
+            -- Move onto banning
+            currentStage = STAGE_BANNING
 
-        -- Setup all the fancy gamemode stuff
-        setupGamemodeSettings()
+            -- Setup all the fancy gamemode stuff
+            setupGamemodeSettings()
+
+            -- Update state
+            self:OnEmitStateInfo()
+        end
+    else
+        -- We must have a valid slaveID before we can do anything
+        if slaveID == -1 then
+            slaveID = loadhelper.getHostID()
+
+            -- Is it still broken?
+            if slaveID == -1 then
+                return 0.1
+            end
+        end
     end
 
     -- Decide what to do
