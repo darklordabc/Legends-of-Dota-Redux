@@ -868,6 +868,17 @@ local function postGamemodeSettings()
     end
 end
 
+-- Returns the current options encoded as a string
+local function getOptionsString()
+    local str = ''
+
+    for k,v in pairs(voteData[slaveID]) {
+        str = str .. util.EncodeByte(k) .. util.EncodeByte(v)
+    }
+
+    return str
+end
+
 -- Shuffles a table
 function shuffle(t)
   local n = #t
@@ -1277,7 +1288,7 @@ function lod:OnEmitStateInfo()
         ['s'] = currentStage,
 
         -- Add options
-        ['o']           = '',
+        ['o']           = getOptionsString(),
         ['slots']       = maxSlots,
         ['skills']      = maxSkills,
         ['ults']        = maxUlts,
@@ -1286,7 +1297,7 @@ function lod:OnEmitStateInfo()
         ['hideSkills']  = (hideSkills and 1) or 0,
         ['s1']          = (GameRules:isSource1() and 1) or 0,
         ['balance']     = balanceMode,
-        ['slaveID']     = loadhelper.getHostID(),
+        ['slaveID']     = slaveID,
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
