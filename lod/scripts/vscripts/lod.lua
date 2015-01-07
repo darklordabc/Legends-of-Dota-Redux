@@ -152,23 +152,47 @@ if Options then
     -- Woot, load the options :)
     patchOptions = true
 
+    -- Constants for option lookup
+    local GAME_MODE = '0'
+    local MAX_SLOTS = '1'
+    local MAX_REGULAR = '2'
+    local MAX_ULTIMATE = '3'
+    local BANS = '4'
+    local EASY_MODE = '5'
+    local TROLL_MODE = '6'
+    local HIDE_PICKS = '7'
+    local STARTING_LEVEL = '8'
+    local BONUS_GOLD = '9'
+    local UNIQUE_SKILLS = '10'
+
     -- Read in the settings
-    maxBans = tonumber(Options.getOption('lod', 'maxBans', maxBans))
-    hostBanning = false
-    gamemode = tonumber(Options.getOption('lod', 'gamemode', gamemode))
-    maxSlots = tonumber(Options.getOption('lod', 'maxSlots', maxSlots))
-    maxSkills = tonumber(Options.getOption('lod', 'maxSkills', maxSkills))
-    maxUlts = tonumber(Options.getOption('lod', 'maxUlts', maxUlts))
+    local banInfo = Options.getOption('lod', BANS, maxBans)
+    if banInfo == 'h' then
+        -- Host banning mode
+        maxBans = 500
+        hostBanning = true
+    else
+        -- Regular banning
+        maxBans = tonumber(banInfo)
+        hostBanning = false
+    end
+
+    gamemode = tonumber(Options.getOption('lod', GAME_MODE, gamemode-1)) + 1
+    maxSlots = tonumber(Options.getOption('lod', MAX_SLOTS, maxSlots))
+    maxSkills = tonumber(Options.getOption('lod', MAX_REGULAR, maxSkills))
+    maxUlts = tonumber(Options.getOption('lod', MAX_ULTIMATE, maxUlts))
 
     -- Remove banning time if no bans are allowed
     if maxBans <= 0 then
         banningTime = 0
     end
 
-    -- These aren't really needed because they exist in other plugins now
-    startingLevel = 1--tonumber(Options.getOption('lod', 'startingLevel', startingLevel))
-    bonusGold = 0--tonumber(Options.getOption('lod', 'bonusGold', bonusGold))
-    useEasyMode = false
+    startingLevel = tonumber(Options.getOption('lod', STARTING_LEVEL, startingLevel))
+    bonusGold = tonumber(Options.getOption('lod', BONUS_GOLD, bonusGold))
+
+    useEasyMode = tonumber(Options.getOption('lod', EASY_MODE, 0)) == 1
+    banTrollCombos = tonumber(Options.getOption('lod', TROLL_MODE, 0)) == 0
+    hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1
 end
 
 -- This will contain the total number of votable options
