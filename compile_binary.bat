@@ -1,4 +1,4 @@
-rmdir /S /Q "bin"
+rmdir /S /Q "lod_bin"
 mkdir "lod_bin"
 mkdir "lod_bin/lod"
 copy "manifest.kv" "lod_bin/manifest.kv"
