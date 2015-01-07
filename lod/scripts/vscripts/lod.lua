@@ -1181,10 +1181,29 @@ function lod:InitGameMode()
     end
 end
 
+local function sayBanningJunk()
+    -- Send the picking info
+    sendPickingInfo()
+
+    -- Tell the users it's picking time
+    if banningTime > 0 then
+        if not hostBanning then
+            sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+        else
+            -- Send banning info to main player
+            sendChatMessage(0, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+
+            -- Tell other players to sit tight
+            for i=1,9 do
+                sendChatMessage(i, '<font color="'..COLOR_GREEN..'">Banning has started. Please wait while your host bans skills and heroes.</font>')
+            end
+        end
+    end
+end
+
 -- Thinker function, run roughly once every second
 local fixedBackdoor = false
 local doneBotStuff = false
-local patchedOptions = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1200,30 +1219,32 @@ function lod:OnThink()
         return
     end
 
-    -- Options patch
-    if patchOptions and not patchedOptions then
-        -- Only do it once
-        patchedOptions = true
-
-        -- No longer voting
-        stillVoting = false
-
-        -- Move onto banning
-        currentStage = STAGE_BANNING
-
-        -- Setup all the fancy gamemode stuff
-        setupGamemodeSettings()
-    end
-
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
-            -- Move onto the voting stage
-            currentStage = STAGE_VOTING
+            -- Options patch
+            if patchOptions then
+                -- No longer voting
+                stillVoting = false
 
-            -- Send the voting info
-            sendVotingInfo()
+                -- Move onto banning
+                currentStage = STAGE_BANNING
+
+                -- Store when the hero selection started
+                heroSelectionStart = Time()
+
+                -- Setup all the fancy gamemode stuff
+                setupGamemodeSettings()
+
+                sayBanningJunk()
+            else
+                -- Move onto the voting stage
+                currentStage = STAGE_VOTING
+
+                -- Send the voting info
+                sendVotingInfo()
+            end
 
             -- Sleep until the voting time is over
             return 1
@@ -1249,23 +1270,7 @@ function lod:OnThink()
         -- Store when the hero selection started
         heroSelectionStart = Time()
 
-        -- Send the picking info
-        sendPickingInfo()
-
-        -- Tell the users it's picking time
-        if banningTime > 0 then
-            if not hostBanning then
-                sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
-            else
-                -- Send banning info to main player
-                sendChatMessage(0, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
-
-                -- Tell other players to sit tight
-                for i=1,9 do
-                    sendChatMessage(i, '<font color="'..COLOR_GREEN..'">Banning has started. Please wait while your host bans skills and heroes.</font>')
-                end
-            end
-        end
+        sayBanningJunk()
 
         -- Sleep
         return 0.1
