@@ -51,9 +51,8 @@ local allowedToPick = true
 -- Should we force random heroes?
 local forceRandomHero = false
 
--- Bot mode?
-local fullBotGame = Convars:GetStr('hostname') == 'botgame'
-local meepoLevelPatch = true
+-- Force unique skills?
+local forceUniqueSkills = false
 
 --[[
     FUNCTION DEFINITIONS
@@ -153,23 +152,47 @@ if Options then
     -- Woot, load the options :)
     patchOptions = true
 
+    -- Constants for option lookup
+    local GAME_MODE = '0'
+    local MAX_SLOTS = '1'
+    local MAX_REGULAR = '2'
+    local MAX_ULTIMATE = '3'
+    local BANS = '4'
+    local EASY_MODE = '5'
+    local TROLL_MODE = '6'
+    local HIDE_PICKS = '7'
+    local STARTING_LEVEL = '8'
+    local BONUS_GOLD = '9'
+    local UNIQUE_SKILLS = '10'
+
     -- Read in the settings
-    maxBans = tonumber(Options.getOption('lod', 'maxBans', maxBans))
-    hostBanning = false
-    gamemode = tonumber(Options.getOption('lod', 'gamemode', gamemode))
-    maxSlots = tonumber(Options.getOption('lod', 'maxSlots', maxSlots))
-    maxSkills = tonumber(Options.getOption('lod', 'maxSkills', maxSkills))
-    maxUlts = tonumber(Options.getOption('lod', 'maxUlts', maxUlts))
+    local banInfo = Options.getOption('lod', BANS, maxBans)
+    if banInfo == 'h' then
+        -- Host banning mode
+        maxBans = 500
+        hostBanning = true
+    else
+        -- Regular banning
+        maxBans = tonumber(banInfo)
+        hostBanning = false
+    end
+
+    gamemode = tonumber(Options.getOption('lod', GAME_MODE, gamemode-1)) + 1
+    maxSlots = tonumber(Options.getOption('lod', MAX_SLOTS, maxSlots))
+    maxSkills = tonumber(Options.getOption('lod', MAX_REGULAR, maxSkills))
+    maxUlts = tonumber(Options.getOption('lod', MAX_ULTIMATE, maxUlts))
 
     -- Remove banning time if no bans are allowed
     if maxBans <= 0 then
         banningTime = 0
     end
 
-    -- These aren't really needed because they exist in other plugins now
-    startingLevel = 1--tonumber(Options.getOption('lod', 'startingLevel', startingLevel))
-    bonusGold = 0--tonumber(Options.getOption('lod', 'bonusGold', bonusGold))
-    useEasyMode = false
+    startingLevel = tonumber(Options.getOption('lod', STARTING_LEVEL, startingLevel))
+    bonusGold = tonumber(Options.getOption('lod', BONUS_GOLD, bonusGold))
+
+    useEasyMode = tonumber(Options.getOption('lod', EASY_MODE, 0)) == 1
+    banTrollCombos = tonumber(Options.getOption('lod', TROLL_MODE, 0)) == 0
+    hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1
 end
 
 -- This will contain the total number of votable options
@@ -305,7 +328,7 @@ end
 
 -- Returns if a skill is a passive
 local function isPassive(skillName)
-    if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') then
+    if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') and not string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE') then
         return true
     end
 
@@ -488,7 +511,25 @@ local function alreadyHas(skillList, skill)
     return false
 end
 
-local function CheckBans(skillList, slotNumber, skillName)
+local function CheckBans(skillList2, slotNumber, skillName)
+    -- Old fashion bans
+    if isSkillBanned(skillName) then
+        return '<font color="'..COLOR_RED..'">This skill is banned.</font>'
+    end
+
+    -- Check for uniqye skills
+    if forceUniqueSkills then
+        for playerID,skills in pairs(skillList) do
+            for slot,skill in pairs(skills) do
+                if skill == skillName then
+                    if not (skillList2 == skills and slot == slotNumber) then
+                        return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                    end
+                end
+            end
+        end
+    end
+
     -- Should we ban troll combos?
     if banTrollCombos then
         -- Loop over all the banned combinations
@@ -500,9 +541,9 @@ local function CheckBans(skillList, slotNumber, skillName)
                     -- Ignore the skill in our current slot
                     if i ~= slotNumber then
                         -- Check the banned combo
-                        if v['1'] == skillName and skillList[i] == v['2'] then
+                        if v['1'] == skillName and skillList2[i] == v['2'] then
                             return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>'
-                        elseif v['2'] == skillName and skillList[i] == v['1'] then
+                        elseif v['2'] == skillName and skillList2[i] == v['1'] then
                             return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>'
                         end
                     end
@@ -716,6 +757,11 @@ local function setupGamemodeSettings()
         Convars:SetInt('dota_easy_mode', 1)
     end
 
+    -- Are we using unique skills?
+    if forceUniqueSkills then
+        sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Unique Skills</font> <font color="'..COLOR_GREEN..'">was turned on!</font>')
+    end
+
     -- Announce which gamemode we're playing
     sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 end
@@ -733,7 +779,7 @@ local function postGamemodeSettings()
 
             -- Loop over all slots
             for j=0,maxSlots-1 do
-                local msg, skillName = findRandomSkill(i, j)
+                local msg, skillName = findRandomSkill(i, j, botFilter)
 
                 -- Did we find a valid skill?
                 if skillName then
@@ -746,6 +792,21 @@ local function postGamemodeSettings()
         -- Send this new state out
         sendStateInfo()
     end
+end
+
+-- Shuffles a table
+function shuffle(t)
+  local n = #t
+
+  while n >= 2 do
+    -- n is now the last pertinent index
+    local k = math.random(n) -- 1 <= k <= n
+    -- Quick swap
+    t[n], t[k] = t[k], t[n]
+    n = n - 1
+  end
+
+  return t
 end
 
 local function optionToValue(optionNumber, choice)
@@ -854,6 +915,13 @@ local function finishVote()
         useEasyMode = false
     end
 
+    -- Are we using unique skills?
+    if optionToValue(10, winners[10]) == 1 then
+        forceUniqueSkills = true
+    else
+        forceUniqueSkills = false
+    end
+
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
@@ -914,15 +982,6 @@ local function backdoorFix()
             -- Prevent anal (backdooring)
             ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
         end
-
-        if fullBotGame then
-            ent:AddAbility('medusa_split_shot')
-            local splitShot = ent:FindAbilityByName('medusa_split_shot')
-            if splitShot then
-                splitShot:SetLevel(4)
-                splitShot:OnToggle()
-            end
-        end
     end
 
     -- Protect rax
@@ -943,15 +1002,6 @@ local function backdoorFix()
 
         -- Prevent backdooring
         ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
-    end
-
-    if fullBotGame then
-        ents = Entities:FindAllByClassname('npc_dota_roshan')
-        for k,ent in pairs(ents) do
-            ent:AddAbility('sven_great_cleave')
-            local ab = ent:FindAbilityByName('sven_great_cleave')
-            ab:SetLevel(4)
-        end
     end
 end
 
@@ -1094,6 +1144,21 @@ sendStateInfo = function()
     end, 'DelayedStateTimer', 1, nil)
 end
 
+-- A function that returns true if the given skill is valid for bots
+function botSkillsOnly(skillName)
+    -- We require a random passive
+    if isPassive(skillName) then
+        return true
+    end
+
+    if skillName == 'abaddon_borrowed_time' then
+        return true
+    end
+
+    -- Not a valid skill
+    return false
+end
+
 -- Called when LoD starts
 function lod:InitGameMode()
     print('Legends of dota started!')
@@ -1147,17 +1212,6 @@ function lod:OnThink()
         currentStage = STAGE_BANNING
 
         -- Setup all the fancy gamemode stuff
-        setupGamemodeSettings()
-    end
-
-    -- Bot game patch
-    if fullBotGame and not doneBotStuff then
-        doneBotStuff = true
-
-        -- Goto playing stage
-        currentStage = STAGE_PLAYING
-
-        -- Setup Gamemode Settings
         setupGamemodeSettings()
     end
 
@@ -1305,6 +1359,7 @@ local XP_PER_LEVEL_TABLE = {
 local specialAddedSkills = {}
 local mainHeros = {}
 local givenBonuses = {}
+local doneBots = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1313,33 +1368,6 @@ ListenToGameEvent('npc_spawned', function(keys)
     if spawnedUnit:IsHero() then
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
-
-        -- Level up skillz
-        if fullBotGame then
-            -- don't run code on the main hero
-            mainHeros[playerID] = mainHeros[playerID] or spawnedUnit
-            if mainHeros[playerID] ~= spawnedUnit then
-                local src = mainHeros[playerID]
-                if src then
-                    -- Level Hero
-                    local exp = XP_PER_LEVEL_TABLE[src:GetLevel()]-XP_PER_LEVEL_TABLE[spawnedUnit:GetLevel()]
-                    spawnedUnit:AddExperience(exp, exp, false, false)
-
-                    -- Copy items across
-                    --[[for i=0,5 do
-                        local item = spawnedUnit:GetItemInSlot(i)
-                        if item then
-                            spawnedUnit:RemoveItem(item)
-                        end
-
-                        item = src:GetItemInSlot(i)
-                        if item then
-                            spawnedUnit:AddItem(CreateItem(item:GetClassname(), spawnedUnit, spawnedUnit))
-                        end
-                    end]]
-                end
-            end
-        end
 
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
@@ -1361,7 +1389,8 @@ ListenToGameEvent('npc_spawned', function(keys)
                 if GameRules:isSource1() then
                     spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 else
-                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false)
+                    -- This is damned unstable, it always changes arguments FFS
+                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 end
             end
 
@@ -1371,40 +1400,35 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
         end
 
-        -- Don't touch bots
+        -- Give bots skills differently
         if PlayerResource:IsFakeClient(playerID) then
-            -- Add the ulty
-            if fullBotGame then
-                specialAddedSkills[playerID] = {}
-                specialAddedSkills[playerID]['meepo_divided_we_stand'] = true
-                return
+            if not doneBots[playerID] then
+                doneBots[playerID] = true
+                skillList[playerID] = nil
             end
 
             -- Generate skill list if not already have one
             if skillList[playerID] == nil then
                 -- Store the bots skills
-                skillList[playerID] = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+                local tmpSkills = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+                skillList[playerID] = {}
+
+                -- Filter the skills
+                for k,v in pairs(tmpSkills) do
+                    if not CheckBans(skillList[playerID], #skillList[playerID]+1, v) and not CheckDraft(playerID, v) then
+                        table.insert(skillList[playerID], v)
+                    end
+                end
 
                 -- Grab how many skills to add
-                local addSkills = maxSlots - 4
+                local addSkills = maxSlots - 4 + (#tmpSkills - #skillList[playerID])
 
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
 
-                local takeaway = 0
-
-                -- Auto pick meepo ulty
-                --[[if not isSkillBanned('meepo_divided_we_stand') and maxUlts > 1 then
-                    takeaway = 1
-                    table.insert(skillList[playerID], 'meepo_divided_we_stand')
-                end]]
-
                 -- Add the skills
-                for i=1,addSkills-takeaway do
-                    local msg, skillName = findRandomSkill(playerID, 4+i, function(sm)
-                        -- We require a random passive
-                        return isPassive(sm)
-                    end)
+                for i=1,addSkills do
+                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, botSkillsOnly)
 
                     -- Failed to find a new skill
                     if skillName == nil then break end
@@ -1412,20 +1436,28 @@ ListenToGameEvent('npc_spawned', function(keys)
                     table.insert(skillList[playerID], skillName)
                 end
 
-                -- Trim the skill list
-                while #skillList[playerID] > addSkills do
-                    table.remove(skillList[playerID], 1)
-                end
+                -- Sort it randomly
+                skillList[playerID] = shuffle(skillList[playerID])
 
                 -- Store that we added skills
                 specialAddedSkills[playerID] = {}
                 for k,v in pairs(skillList[playerID]) do
-                    specialAddedSkills[playerID][v] = true
+                    local found = false
+                    for kk,vv in pairs(tmpSkills) do
+                        if vv == v then
+                            found = true
+                            break
+                        end
+                    end
+
+                    if not found then
+                        specialAddedSkills[playerID][v] = true
+                    end
                 end
             end
 
             -- Add the extra skills
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID], true)
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID])
 
             return
         end
@@ -1492,22 +1524,9 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                 -- Grab a reference to teh skill
                 local skill = hero:FindAbilityByName(skillName)
 
-                -- Unlimited meepo patch
-                if skillName == 'meepo_divided_we_stand' and meepoLevelPatch then
-                    heroLevels[playerID] = heroLevels[playerID] or 2
-                    if level > heroLevels[playerID] then
-                        heroLevels[playerID] = level+5
-
-                        -- Create a clone
-                        local newHero = CreateHeroForPlayer(hero:GetClassname(), PlayerResource:GetPlayer(playerID))
-                        FindClearSpaceForUnit(newHero, hero:GetOrigin(), true)
-                        mainHeros[playerID] = newHero
-                    end
-                else
-                    if skill and skill:GetLevel() < requiredLevel then
-                        -- Level the skill
-                        skill:SetLevel(requiredLevel)
-                    end
+                if skill and skill:GetLevel() < requiredLevel then
+                    -- Level the skill
+                    skill:SetLevel(requiredLevel)
                 end
             end
         end
@@ -1544,17 +1563,11 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they have multicast
-            if (hero:HasAbility('ogre_magi_multicast_lod') or fullBotGame) and canMulticast(keys.abilityname) then
+            if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                if mab or fullBotGame then
+                if mab then
                     -- Grab the level of the ability
-                    local lvl
-
-                    if fullBotGame then
-                        lvl = 3
-                    else
-                        lvl = mab:GetLevel()
-                    end
+                    local lvl = mab:GetLevel()
 
                     -- If they have no level in it, stop
                     if lvl == 0 then return end
@@ -1748,19 +1761,6 @@ ListenToGameEvent('entity_hurt', function(keys)
     end
 end, nil)
 
-Convars:RegisterCommand('lod_test', function()
-    if fullBotGame then
-        local cmdPlayer = Convars:GetCommandClient()
-        if cmdPlayer then
-            local playerID = cmdPlayer:GetPlayerID()
-
-            local newHero = CreateHeroForPlayer('npc_dota_hero_axe', PlayerResource:GetPlayer(playerID))
-            newHero:AddExperience(XP_PER_LEVEL_TABLE[25], XP_PER_LEVEL_TABLE[25], false, false)
-            FindClearSpaceForUnit(newHero, Vector(0, 0, 0), true)
-        end
-    end
-end, 'test function', 0)
-
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Input validation
@@ -1869,12 +1869,6 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
                 return
             end
-        end
-
-        -- Is the skill banned?
-        if isSkillBanned(skillName) then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is banned.</font>')
-            return
         end
 
         -- Ensure it isn't the same skill

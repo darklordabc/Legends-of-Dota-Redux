@@ -3,6 +3,33 @@ local endGameDelay = 15
 
 local fullBotGame = Convars:GetStr('hostname') == 'botgame'
 
+-- If we have started or not
+local hasStarted = false
+
+-- Load bans
+local bans
+function loadBans()
+    -- Reload steamID64s
+    bans = LoadKeyValues('scripts/kv/banned.kv');
+end
+loadBans()
+
+-- Console command to reload bans
+Convars:RegisterCommand('reload_bans', function()
+    loadBans()
+end, 'Reloads the bans KV', 0)
+
+-- Ban manager
+ListenToGameEvent('player_connect', function(keys)
+    -- Grab their steamID
+    local steamID64 = tostring(keys.xuid)
+
+    -- Check bans
+    if bans[steamID64] then
+        SendToServerConsole('kickid '..keys.userid);
+    end
+end, nil)
+
 -- Stick people onto teams
 ListenToGameEvent('player_connect_full', function(keys)
     -- Grab the entity index of this player
@@ -12,7 +39,7 @@ ListenToGameEvent('player_connect_full', function(keys)
     -- Wait, then attempt to put them onto a team
     GameRules:GetGameModeEntity():SetThink(function()
         -- Validate player
-        if ply then
+        if ply and IsValidEntity(ply) then
             -- Make sure they aren't already on a team
             if ply:GetTeam() == 0 then
                 -- Don't touch bots
@@ -44,6 +71,9 @@ ListenToGameEvent('player_connect_full', function(keys)
                     return
                 end
 
+                -- We have started
+                hasStarted = true
+
                 -- Set their team
                 if radiant <= dire then
                     ply:SetTeam(DOTA_TEAM_GOODGUYS)
@@ -56,6 +86,9 @@ ListenToGameEvent('player_connect_full', function(keys)
 end, nil)
 
 ListenToGameEvent('player_disconnect', function(keys)
+    -- Prevent spam
+    if not hasStarted then return end
+
     -- Kill server if no one is on it anymore
     GameRules:GetGameModeEntity():SetThink(function()
         -- Search for players

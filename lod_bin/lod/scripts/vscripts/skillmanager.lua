@@ -178,18 +178,15 @@ function skillManager:RemoveAllSkills(hero)
     end
 end
 
-function skillManager:ApplyBuild(hero, build, dontRemove)
+function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
     if hero == nil then return end
 
     -- Build the skill list
     self:BuildSkillList(hero)
 
-    -- Should we remove skills?
-    if not dontRemove then
-        -- Remove all the skills from this hero
-        self:RemoveAllSkills(hero)
-    end
+    -- Remove all the skills from this hero
+    self:RemoveAllSkills(hero)
 
     -- Table to store all the extra skills we need to give
     local extraSkills = {}
@@ -240,11 +237,32 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
         build[6] = nil
     end
 
+    -- List of abilities we've already seen
+    local seenAbilities = {}
+
+    -- Build slot list for swapping
+    --[[local slotList = {}
+    local slotCount = 0
+    for i=1,16 do
+        local ab = hero:GetAbilityByIndex(i)
+        if ab then
+            slotList[i] = ab:GetClassname()
+            slotCount = slotCount+1
+        end
+    end]]
+
+    -- Copy
+    local abs = {}
+    for k,v in ipairs(currentSkillList[hero]) do
+        table.insert(abs, v)
+    end
+
     -- Give all the abilities in this build
     local abNum = 0
-    for i=1,12 do
+    for i=1,16 do
         local v = build[i]
         if v then
+            --slotCount = slotCount+1
             abNum=abNum+1
             -- Check if this skill has sub abilities
             if subAbilities[v] then
@@ -257,7 +275,8 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
             end
 
             -- Do melee heroes need a different skill?
-            if meleeMap[v] then
+            if melee and meleeMap[v] then
+                build[i] = meleeMap[v]
                 v = meleeMap[v]
             end
 
@@ -265,7 +284,22 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
             precacheSkill(v)
 
             -- Add to build
-            hero:AddAbility(v)
+            if not seenAbilities[v] and hero:HasAbility(v) then
+                -- Hero already has, lets hook and move it
+                local oldAb = hero:FindAbilityByName(v)
+
+                -- Enable it
+                oldAb:SetHidden(false)
+            else
+                hero:AddAbility(v)
+
+                -- Insert
+                table.insert(abs, v)
+            end
+
+            -- We need to actually add it next time
+            seenAbilities[v] = true
+
             currentSkillList[hero][abNum] = v
 
             -- Do we need to manually activate this skill?
@@ -275,6 +309,37 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
 
             -- Remove auras
             fixModifiers(hero, v)
+        end
+    end
+
+    -- Do a nice little sort
+    for i=1,16 do
+        local v = build[i]
+        if v then
+            local inSlot = abs[i]
+
+            if inSlot and inSlot ~= v then
+                -- Swap in dota
+                hero:SwapAbilities(v, inSlot, true, true)
+
+                -- Perform swap internally
+                for j=i+1,16 do
+                    if build[i] == abs[j] then
+                        abs[j] = abs[i]
+                        break
+                    end
+                end
+                abs[i] = build[i]
+            end
+        else
+            local inSlot = abs[i]
+
+            if inSlot then
+                local ab = hero:FindAbilityByName(inSlot)
+                if ab then
+                    ab:SetHidden(true)
+                end
+            end
         end
     end
 
@@ -290,6 +355,7 @@ function skillManager:ApplyBuild(hero, build, dontRemove)
 
             -- Add the ability
             hero:AddAbility(k)
+            print('Added '..k)
 
             -- Remove auras
             fixModifiers(hero, k)

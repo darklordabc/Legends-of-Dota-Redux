@@ -67,7 +67,7 @@
 	"npc_dota_hero_bounty_hunter" "1"
 	"npc_dota_hero_silencer" "0"
 	"npc_dota_hero_spirit_breaker" "1"
-	"npc_dota_hero_invoker" "1"
+	"npc_dota_hero_invoker" "0"
 	"npc_dota_hero_clinkz" "1"
 	"npc_dota_hero_obsidian_destroyer" "1"
 	"npc_dota_hero_shadow_demon" "1"

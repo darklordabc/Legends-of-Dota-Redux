@@ -60,7 +60,7 @@
     // A message
     "lod_msg"
     {
-        "playerID"      "byte"
+        "playerID"      "short"
         "msg"           "string"
     }
 

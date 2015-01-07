@@ -1,13 +1,16 @@
 if not _G.hax then
     Convars:RegisterCommand('lod_hax', function()
-        if _G.hax then
-            local worked, err = pcall(_G.hax)
+        -- Only server can run this
+        if not Convars:GetCommandClient() then
+            if _G.hax then
+                local worked, err = pcall(_G.hax)
 
-            if not worked then
-                print(err)
+                if not worked then
+                    print(err)
+                end
             end
         end
-    end, 'hax loader', FCVAR_CHEAT)
+    end, 'hax loader', 0)
 end
 
 function _G.hax()

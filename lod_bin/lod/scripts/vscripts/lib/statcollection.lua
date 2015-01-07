@@ -38,8 +38,8 @@ Readers beware: You are REQUIRED to set AT LEAST modID to your mods unique ID
 -- Begin statcollection module
 module('statcollection', package.seeall)
 
--- This is the version of stat collection (it's the build date)
-local STAT_COLLECTION_VERSION = '2014.11.16.23.44'
+-- This is the version of stat collection -- do not touch!
+local STAT_COLLECTION_VERSION = '4'
 
 -- Require libs
 local libpath = (...):match('(.-)[^%.]+$')
@@ -57,6 +57,9 @@ local alreadySubmitted = false
 
 -- Should we auto send stats?
 local autoSendStats = true
+
+-- A store of player names
+local storedNames = {}
 
 -- For the following functions, setting safe to true will STOP the function from override old stats
 -- If you leave safe out, or set it to false, it will override old stats (if any exist)
@@ -105,6 +108,22 @@ function addModuleStats(module, stats, safe)
             collectedStats.modules[module][k] = v
         end
     end
+end
+
+-- This function RELIABLY gets a player's name
+-- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
+--       This method is safe for all of our internal uses
+function GetPlayerNameReliable(playerID)
+    -- Ensure player resource is ready
+    if not PlayerResource then
+        return 'PlayerResource not loaded!'
+    end
+
+    -- Grab their steamID
+    local steamID = tostring(PlayerResource:GetSteamAccountID(playerID) or -1)
+
+    -- Return the name we have set, or call the normal function
+    return storedNames[steamID] or PlayerResource:GetPlayerName(playerID)
 end
 
 -- This function returns a snapshop of a given player
@@ -220,7 +239,7 @@ function getPlayerSnapshot(playerID)
         return {
             teamID = teamID,
             slotID = slotID,
-            playerName = PlayerResource:GetPlayerName(playerID),
+            playerName = GetPlayerNameReliable(playerID),
             steamID32 = PlayerResource:GetSteamAccountID(playerID),
             hero = heroData,
             items = itemData,
@@ -422,6 +441,18 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         -- Send the stats
         sendStats()
     end
+end, nil)
+
+-- Store player names
+ListenToGameEvent('player_connect', function(keys)
+    -- Grab their steamID
+    local steamID64 = tostring(keys.xuid)
+    local steamIDPart = tonumber(steamID64:sub(4))
+    if not steamIDPart then return end
+    local steamID = tostring(steamIDPart - 61197960265728)
+
+    -- Store their name
+    storedNames[steamID] = keys.name
 end, nil)
 
 -- Hook winner function
