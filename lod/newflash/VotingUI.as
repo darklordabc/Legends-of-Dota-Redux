@@ -9,8 +9,8 @@
         // The container to store clips into
         public var container:MovieClip;
 
-        // The timer in the corner
-        public var timer;
+        // Container for the button
+        public var buttonContainer:MovieClip;
 
         // Contains a list of option MovieClips
         private var options:Object;
@@ -35,9 +35,6 @@
             optionList = newOptionList;
             updateCallback = updateVoteCallback;
             finishCallback = finishVoteCallback;
-
-            // Hide the timer
-            timer.visible = false;
 
             // Settings
             var padding:Number = 4;
@@ -95,8 +92,7 @@
 
             // Spawn submit button
             if(!slave) {
-                var submitBtn:MovieClip = Util.smallButton(container, '#submitvote', false, true);
-                submitBtn.y = this.height - submitBtn.height - padding - 16;
+                var submitBtn:MovieClip = Util.smallButton(buttonContainer, '#submitvote', true, true);
                 submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
             }
 		}
