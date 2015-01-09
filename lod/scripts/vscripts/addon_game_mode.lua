@@ -291,9 +291,9 @@ local noMulticast = {}
         end
     end
 
-    -- Loop over all spammable bans and ban each combo
-    for skillName,_ in pairs(tempBanList.SpammableSpells) do
-        for skillName2,__ in pairs(tempBanList.NoSpamCombinations) do
+    -- Loop over category bans
+    for skillName,cat in pairs(tempBanList.CategoryBans) do
+        for skillName2,__ in pairs(tempBanList.Categories[cat] or {}) do
             banCombo(skillName, skillName2)
         end
     end
