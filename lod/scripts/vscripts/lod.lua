@@ -2050,8 +2050,8 @@ local hasHero = {}
 local hasBanned = {}
 local banChance = {}
 local bannedHeroes = {
-    npc_dota_hero_silencer = true,
-    npc_dota_hero_lone_druid = true,
+    --npc_dota_hero_silencer = true,
+    --npc_dota_hero_lone_druid = true,
     npc_dota_hero_ogre_magi = true,
 }
 
