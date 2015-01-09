@@ -262,7 +262,51 @@ for k,v in pairs(votingList) do
 end
 
 -- Ban List
-local banList = LoadKeyValues('scripts/kv/bans.kv')
+local banList = {}
+local noMulticast = {}
+
+-- Load and process the bans
+(function()
+    -- Load in the ban list
+    local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+
+    -- Store no multicast
+    noMulticast = tempBanList.noMulticast
+
+    -- Bans a skill combo
+    local function banCombo(a, b)
+        -- Ensure ban lists exist
+        banList[a] = banList[a] or {}
+        banList[b] = banList[b] or {}
+
+        -- Store the ban
+        banList[a][b] = true
+        banList[b][a] = true
+    end
+
+    -- Loop over the banned combinations
+    for skillName, group in pairs(tempBanList.BannedCombinations) do
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Loop over all spammable bans and ban each combo
+    for skillName,_ in pairs(tempBanList.SpammableSpells) do
+        for skillName2,__ in pairs(tempBanList.NoSpamCombinations) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Ban the group bans
+    for _,group in pairs(tempBanList.BannedGroups) do
+        for __,skillName in pairs(group) do
+            for ___,skillName2 in pairs(group) do
+                banCombo(skillName, skillName2)
+            end
+        end
+    end
+end)()
 
 -- Ability stuff
 local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
@@ -429,7 +473,7 @@ local function canMulticast(skillName)
     end
 
     -- No banned multicast spells
-    if banList.noMulticast[skillName] then
+    if noMulticast[skillName] then
         return false
     end
 
@@ -620,20 +664,14 @@ local function CheckBans(skillList2, slotNumber, skillName, playerID)
 
     -- Should we ban troll combos?
     if banTrollCombos then
-        -- Loop over all the banned combinations
-        for k,v in pairs(banList.BannedCombinations) do
-            -- Check if this is possibly banned
-            if(v['1'] == skillName or v['2'] == skillName) then
-                -- Loop over all our slots
-                for i=1,maxSlots do
-                    -- Ignore the skill in our current slot
-                    if i ~= slotNumber then
-                        -- Check the banned combo
-                        if v['1'] == skillName and skillList2[i] == v['2'] then
-                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['2']..'</font>'
-                        elseif v['2'] == skillName and skillList2[i] == v['1'] then
-                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..v['1']..'</font>'
-                        end
+        if banList[skillName] then
+            -- Loop over all our slots
+            for i=1,maxSlots do
+                -- Ignore the skill in our current slot
+                if i ~= slotNumber then
+                    -- Check the banned combo
+                    if banList[skillName][skillList2[i]] then
+                        return '<font color="'..COLOR_RED..'">'..skillName..'</font> can not be used with '..'<font color="'..COLOR_RED..'">'..skillList2[i]..'</font>'
                     end
                 end
             end
