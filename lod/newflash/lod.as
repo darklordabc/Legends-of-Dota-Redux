@@ -103,6 +103,13 @@
         private var topSkillList:Array = [];
 
         /*
+            SKILL LIST STUFF
+        */
+
+        // Have we loaded the skill list yet?
+        private var loadedSkillList:Boolean = false;
+
+        /*
             CLEANUP STUFF
         */
 
@@ -324,6 +331,7 @@
 
             // Patch picking icons
             if(lastState.s > STAGE_VOTING) {
+                // Check if hero icons need to be patched
                 if(!patchedHeroIcons) {
                     // We have now patched hero icons
                     patchedHeroIcons = true;
@@ -346,6 +354,12 @@
                         hookSkillList(dock.radiantPlayers, 0);
                         hookSkillList(dock.direPlayers, 5);
                     }
+                }
+
+                // Check if the skill list needs to be loaded
+                if(!loadedSkillList) {
+                    // Skill list is now loaded
+                    loadedSkillList = true;
                 }
             }
 
