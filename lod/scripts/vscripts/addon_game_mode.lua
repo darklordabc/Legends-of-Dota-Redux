@@ -300,8 +300,8 @@ local noMulticast = {}
 
     -- Ban the group bans
     for _,group in pairs(tempBanList.BannedGroups) do
-        for __,skillName in pairs(group) do
-            for ___,skillName2 in pairs(group) do
+        for skillName,__ in pairs(group) do
+            for skillName2,___ in pairs(group) do
                 banCombo(skillName, skillName2)
             end
         end

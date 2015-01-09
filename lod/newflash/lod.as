@@ -109,6 +109,9 @@
         // Have we loaded the skill list yet?
         private var loadedSkillList:Boolean = false;
 
+        // Stores bans
+        private var banList:Object;
+
         /*
             CLEANUP STUFF
         */
@@ -253,6 +256,60 @@
 
             // Wait for the game to be ready
             waitForGame();
+        }
+
+        // Loads in the bans stuff
+        private function loadBansFile():void {
+            var skillName:String, skillName2:String, group:Object;
+
+            // Reset the ban list
+            banList = {};
+
+            // Load in the bans KV
+            var tempBanList:Object = globals.GameInterface.LoadKVFile('scripts/kv/bans.kv');
+
+            // Bans a combo
+            var banCombo = function(a:String, b:String) {
+                // Ensure the ban lists exist
+                banList[a] = banList[a] || {};
+                banList[b] = banList[b] || {};
+
+                // Store the bans
+                banList[a][b] = true;
+                banList[b][a] = true;
+            };
+
+            // Store banned combinations
+            for(skillName in tempBanList.BannedCombinations) {
+                // Grab the group
+                group = tempBanList.BannedCombinations[skillName];
+
+                for(skillName2 in group) {
+                    banCombo(skillName, skillName2);
+                }
+            }
+
+            // Store category bans
+            for(skillName in tempBanList.CategoryBans) {
+                // Grab the category
+                var cat:String = tempBanList.CategoryBans[skillName];
+
+                for(skillName2 in (tempBanList.Categories[cat] || {})) {
+                    banCombo(skillName, skillName2);
+                }
+            }
+
+            // Ban the group bans
+            for(var groupName:String in tempBanList.BannedGroups) {
+                // Grab the group
+                group = tempBanList.BannedGroups[groupName];
+
+                for(skillName in group) {
+                    for(skillName2 in group) {
+                        banCombo(skillName, skillName2);
+                    }
+                }
+            }
         }
 
         // Waits for the game to be ready to play
