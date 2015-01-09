@@ -2356,7 +2356,7 @@ end
     end
 end, 'hero selection override', 0)]]
 
--- User is trying to update their vote
+-- User asks for decoding info
 Convars:RegisterCommand('lod_decode', function(name, theirNumber)
     -- We are only accepting numbers
     theirNumber = tonumber(theirNumber)
@@ -2381,7 +2381,7 @@ Convars:RegisterCommand('lod_decode', function(name, theirNumber)
             })
         end
     end
-end, 'Update a user\'s vote', 0)
+end, 'User asked for decoding info', 0)
 
 if lod == nil then
 	print('LOD FAILED TO INIT!\n\n')

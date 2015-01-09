@@ -45,6 +45,9 @@
         // The right help screen (this will be positioned dynamically)
         public var pickingHelpFilters:MovieClip;
 
+        // The selection movieclip
+        public var selectionUI:MovieClip;
+
         /*
             CONSTANTS
         */
@@ -54,6 +57,9 @@
 
         // Max players to deal with
         private var MAX_PLAYERS:Number = 10;
+
+        // How many players are on a team
+        private static var MAX_PLAYERS_TEAM = 5;
 
         // The scaling factor
         private var scalingFactor:Number;
@@ -87,6 +93,35 @@
         // Are we a slave?
         private var isSlave:Boolean = false;
 
+        // How many skill slots each player gets
+        private static var MAX_SLOTS = 4;
+
+        // The team number we are on
+        private var myTeam:Number = 0;
+
+        // Access to the skills at the top
+        private var topSkillList:Array = [];
+
+        /*
+            CLEANUP STUFF
+        */
+
+        // Stores the top panels so we can remove them
+        public static var injectedMovieClips:Array;
+
+        // Stores if we have patched hero icons or not
+        private var patchedHeroIcons:Boolean;
+
+        /*
+            ENCRYPTION STUFF
+        */
+
+        // What is our magic decoder?
+        private var decodeWith:Number = -1;
+
+        // What is the number we used to request our magic number
+        private var encodeWith:Number = Math.floor(Math.random()*50 + 50);
+
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
 			trace('\n\nLoD new hud loading...');
@@ -104,9 +139,13 @@
             var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
             versionNumber = versionFile.version;
 
+            // Ask for decoding info
+            requestDecodingNumber();
+
             // Subscribe to the state info
             this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo); // Contains most of the game state
             this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);    // Someone has updated a voting option
+            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);  // Server sent us info on how to decode skill values
 
             // Handle the scoreboard stuff
             //handleScoreboard();
@@ -174,10 +213,29 @@
             pickingHelpFilters.visible = false;
         }
 
+        // Cleans up the hud
+        private function cleanupHud():void {
+            // Hide all UI elements
+            hideAllUI();
+
+            // Cleanup injected stuff
+            if(injectedMovieClips != null) {
+                for(var i in injectedMovieClips) {
+                    injectedMovieClips[i].parent.removeChild(injectedMovieClips[i]);
+                }
+            }
+
+            // Reset the array
+            injectedMovieClips = [];
+
+            // Fix the positions of the hero icons
+            resetHeroIcons();
+        }
+
         // Prepares the UI, waiting for state info
         private function prepareUI():void {
-            // Hide all the UI stuff
-            hideAllUI();
+            // Clean the hud ready for use
+            cleanupHud();
 
             // Add accept button to versionUI
             var btn:MovieClip = Util.smallButton(versionUI.acceptButton, '#versionAccept', true, true);
@@ -251,11 +309,48 @@
 
         // Updates the UI based on the current state
         private function updateUI():void {
-            // Don't do anything if the versionUI is visible
-            if(versionUI.visible) return;
-
             // Ensure we have state info
             if(!lastState) return;
+
+            var playerID:Number = globals.Players.GetLocalPlayer();
+            var isSpectator:Boolean = globals.Players.IsSpectator(playerID);
+
+            // Ensure we have a decoding numbe
+            if(!isSpectator && decodeWith == -1) {
+                // Ask for decoding number again
+                requestDecodingNumber();
+                return;
+            }
+
+            // Patch picking icons
+            if(lastState.s > STAGE_VOTING) {
+                if(!patchedHeroIcons) {
+                    // We have now patched hero icons
+                    patchedHeroIcons = true;
+
+                    // Grab the dock
+                    var dock:MovieClip = getDock();
+
+                    // Spawn player skill lists
+                    if(lastState.hideSkills) {
+                        // Readers beware: The skills are encoded, changing this hook is a waste of your time!
+                        if(myTeam == 3) {
+                            // We are on dire
+                            hookSkillList(dock.direPlayers, 5);
+                        } else if(myTeam == 2) {
+                            // We are on radiant
+                            hookSkillList(dock.radiantPlayers, 0);
+                        }
+                    } else {
+                        // Hook them both
+                        hookSkillList(dock.radiantPlayers, 0);
+                        hookSkillList(dock.direPlayers, 5);
+                    }
+                }
+            }
+
+            // Don't do anything if the versionUI is visible
+            if(versionUI.visible) return;
 
             // Do we need to build from scratch?
             var fromScratch = currentStage != lastState.s;
@@ -317,6 +412,25 @@
         // Finishes voting
         private function finishedVoting():void {
             gameAPI.SendServerCommand("finished_voting");
+        }
+
+        // Requests the decoding number
+        private function requestDecodingNumber():void {
+            // Send the request
+            gameAPI.SendServerCommand("lod_decode \""+encodeWith+"\"");
+        }
+
+        // Fired when the server sends us a decoding code
+        private function handleDecode(args:Object):void {
+            // Was this me? (or everyone)
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                // Store the new decoder
+                decodeWith = args.code - encodeWith;
+
+                // Store teamID
+                myTeam = parseInt(args.team);
+            }
         }
 
         // Called when the version info pain is closed
@@ -459,6 +573,112 @@
             // Update the skill list
 			buildSkillList();
 		}
+
+        // Stores a skill icon
+        private function storeSkillIcon(playerID:Number, slotID:Number, reference:MovieClip):void {
+            // Ensure a slot exists for this player
+            if(!topSkillList[playerID]) topSkillList[playerID] = [];
+
+            // Store the reference
+            topSkillList[playerID][slotID] = reference;
+        }
+
+        // Gets a skill icon for the given player and slot
+        private function getSkillIcon(playerID:Number, slotID:Number) {
+            // Check if a store for this player exists
+            if(!topSkillList[playerID]) return null;
+
+            // Return the skill if it exists
+            return topSkillList[playerID][slotID];
+        }
+
+        // Adds the skill lists to a given mc
+        private function hookSkillList(players:MovieClip, playerIdStart):void {
+            // Ensure our reference to players isn't null
+            if(players == null) {
+                trace('\n\nWARNING: Null reference passed to hookSkillList!\n\n');
+                return;
+            }
+
+            // The playerID we are up to
+            var playerID:Number = playerIdStart;
+
+            // Create a skill list for each player
+            for(var i:Number=0; i<MAX_PLAYERS_TEAM; i++) {
+                // Attempt to find the player container
+                var con:MovieClip = players['playerSlot'+i];
+                if(con == null) {
+                    trace('\n\nWARNING: Failed to create a new skill list for player '+i+'!\n\n');
+                    continue;
+                }
+
+                // Create the new skill list
+                var sl:PlayerSkillList = new PlayerSkillList(MAX_SLOTS);
+                sl.setColor(playerID);
+
+                // Store it
+                injectedMovieClips.push(sl);
+
+                // Apply the scale
+                sl.scaleX = (sl.width-9)/sl.width;
+                sl.scaleY = (sl.width-9)/sl.width;
+
+                // Make the skills show information
+                for(var j:Number=0; j<MAX_SLOTS; j++) {
+                    // Grab a skill
+                    var ps:PlayerSkill = sl['skill'+j];
+
+                    // Apply the default skill
+                    ps.setSkillName('nothing');
+
+                    // Make it show information when hovered
+                    ps.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                    ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+
+                    // Hook dragging
+                    //EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
+
+                    // Store a reference to it
+                    storeSkillIcon(playerID, j, ps);
+                }
+
+                // Center it perfectly
+                sl.x = 0;
+                sl.y = 22;
+
+                // Move the icon up a little
+                con.heroIcon.y = -15;
+
+                // Store this skill list into the container
+                con.addChild(sl);
+
+                // Move onto the next playerID
+                playerID++;
+            }
+        }
+
+        private function resetHeroIcons():void {
+            // Grab the dock
+            var dock:MovieClip = getDock();
+
+            // Reset the positions
+            resetHeroIconY(dock.radiantPlayers);
+            resetHeroIconY(dock.direPlayers);
+
+            // Hero icons are no longer patched
+            patchedHeroIcons = false;
+        }
+
+        private function resetHeroIconY(players:MovieClip):void {
+            // Loop over all the players
+            for(var i:Number=0; i<MAX_PLAYERS_TEAM; i++) {
+                // Attempt to find the player container
+                var con:MovieClip = players['playerSlot'+i];
+
+                // Reset the position
+                con.heroIcon.y = -5.2;
+            }
+        }
 
 		// Make an ability icon
         public function abilityIcon(container:MovieClip, ability:String):MovieClip {
