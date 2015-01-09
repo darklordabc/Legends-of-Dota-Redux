@@ -140,7 +140,10 @@
 			this.visible = true;
 
             // Prepare UI
-            prepareUI()
+            prepareUI();
+
+            // Load bans
+            loadBansFile();
 
             // Load the version
             var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
