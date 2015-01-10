@@ -65,7 +65,10 @@
 	"npc_dota_hero_death_prophet" "1"
 	"npc_dota_hero_ursa" "1"
 	"npc_dota_hero_bounty_hunter" "1"
-	"npc_dota_hero_silencer" "0"
+
+	// Why removed? Int steal? It's not that OP. Temp activated.
+	"npc_dota_hero_silencer" "1"
+
 	"npc_dota_hero_spirit_breaker" "1"
 
 	// Bugged - No skills
@@ -76,11 +79,13 @@
 	"npc_dota_hero_shadow_demon" "1"
 	"npc_dota_hero_lycan" "1"
 
-	// Why is he disabled?
-	"npc_dota_hero_lone_druid" "0"
+	// Slots look weird like treant
+	"npc_dota_hero_lone_druid" "1"
 
 	"npc_dota_hero_brewmaster" "1"
 	"npc_dota_hero_phantom_lancer" "1"
+
+	// Slots look weird like lone druid
 	"npc_dota_hero_treant" "1"
 
 	// Bugged -- Gets extra skill aith aghs, causes problems with slots
