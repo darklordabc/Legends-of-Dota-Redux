@@ -338,7 +338,7 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(skillKV.tabs, lastState.s1);
+            selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1);
         }
 
         // Checks if a given skill is valid, or not
@@ -540,13 +540,11 @@
                     break;
 
                 case STAGE_BANNING:
-                    hideAllUI();
-                    selectionUI.visible = true;
+                    buildBanningUI(fromScratch);
                     break;
 
                 case STAGE_PICKING:
-                    hideAllUI();
-                    selectionUI.visible = true;
+                    buildPickingUI(fromScratch);
                     break;
 
                 default:
@@ -556,8 +554,27 @@
             }
         }
 
+        // Builds the banning UI
+        private function buildBanningUI(fromScratch:Boolean):void {
+            if(fromScratch) {
+                hideAllUI();
+                selectionUI.visible = true;
+                selectionUI.hideUncommonStuff();
+                selectionUI.banningArea.visible = true;
+            }
+        }
+
+        // Builds the picking UI
+        private function buildPickingUI(fromScratch:Boolean):void {
+            if(fromScratch) {
+                hideAllUI();
+                selectionUI.visible = true;
+                selectionUI.hideUncommonStuff();
+            }
+        }
+
         // Builds the voting UI
-        private function buildVotingUI(fromScratch:Boolean) {
+        private function buildVotingUI(fromScratch:Boolean):void {
             if(fromScratch) {
                 // Show correct UI
                 hideAllUI();
