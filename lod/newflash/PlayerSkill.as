@@ -7,21 +7,16 @@
 		private var skillName:String;
 
 		// This holds the image of our current skill
-		private var imageHolder:MovieClip;
+		public var ability:MovieClip;
 
 		// How to scale the skill image
 		private var skillScale = 0.125;
 
 		public function PlayerSkill() {
-			// Create somewhere to place the image
-            imageHolder = new MovieClip();
-            imageHolder.scaleX = skillScale;
-            imageHolder.scaleY = skillScale;
-            this.addChild(imageHolder);
 		}
 
 		// Updates the the current skill
-		public function setSkillName(skillName) {
+		public function setSkillName(skillName:String) {
 			// Should we change?
 			if(this.skillName != skillName) {
 				// Store the change
@@ -29,13 +24,13 @@
 
 				// Load the new image
 				if(this.skillName != '') {
-					//Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
+					ability.setSkillName(skillName);
 				}
 			}
 		}
 
 		// Returns our skill name
-		public function getSkillName() {
+		public function getSkillName():String {
 			return this.skillName;
 		}
 	}
