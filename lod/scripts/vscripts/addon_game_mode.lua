@@ -90,6 +90,13 @@ local UNIQUE_SKILLS_GLOBAL = 2
 -- Force unique skills?
 local forceUniqueSkills = UNIQUE_SKILLS_NONE
 
+-- List of tabs to allow
+local allowedTabs = {
+    main = true,
+    neutral = true,
+    wraith = true
+}
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -315,27 +322,38 @@ local skillLookup = {}
 
 function buildSkillListLookup()
     -- Load the abilities file
-    local skillLookupList = LoadKeyValues('scripts/kv/abilities.kv').abs
+    local tempSkillList = LoadKeyValues('scripts/kv/abilities.kv').skills
 
-    -- Build
-    for k,v in pairs(skillLookupList) do
-        if tonumber(k) ~= nil then
-            if GameRules:isSource1() then
-                local v1 = skillLookupList[k..'_s1']
+    -- Loop over all tabs
+    for tabName,skills in pairs(skillLookupList) do
+        -- Is this tab allowed?
+        if allowedTabs[tabName] then
+            -- Loop over all skills
+            for skillName,skillIndex in pairs(skills) do
+                -- Do patch
+                local doInclude = true
 
-                if v1 ~= nil then
-                    v = v1
+                -- Grab the source1 string
+                local s1Skill = skillIndex:gsub('_s1', '')
+
+                -- Check if this is a source1 only skill
+                if s1Skill ~= skillIndex then
+                    -- Copy it across
+                    skillIndex = s1Skill
+
+                    -- If not source1, we can't include
+                    if not GameRules:isSource1() then
+                        doInclude = false
+                    end
                 end
-            end
 
-            local skillSplit = vlua.split(v, '||')
-
-            if #skillSplit == 1 then
-                skillLookup[v] = tonumber(k)
-            else
-                -- Store the keys
-                for i=1,#skillSplit do
-                    skillLookup[skillSplit[i]] = -(tonumber(k)+1000*(i-1))
+                -- If we should include it, do it
+                if doInclude then
+                    -- Check if it's valid
+                    if tonumber(skillIndex) ~= nil then
+                        -- Store the skill
+                        skillLookup[skillName] = tonumber(skillIndex)
+                    end
                 end
             end
         end

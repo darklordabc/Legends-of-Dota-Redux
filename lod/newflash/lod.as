@@ -112,6 +112,12 @@
         // Stores bans
         private var banList:Object;
 
+        // skillName --> skillID
+        private var skillLookup:Object;
+
+        // Which tabs are allowed
+        private var allowedTabs:Object;
+
         /*
             CLEANUP STUFF
         */
@@ -258,6 +264,64 @@
             waitForGame();
         }
 
+        // Loads in the skills file
+        private function loadSkillsFile():void {
+            // Check if the skill list needs to be loaded
+            if(!loadedSkillList) {
+                // Skill list is now loaded
+                loadedSkillList = true;
+            }
+
+            // Load in the skill list
+            var tempSkillList:Object = globals.GameInterface.LoadKVFile('scripts/kv/abilities.kv').skills;
+
+            // Create the object
+            var skillLookup = {};
+
+            // Tabs to allow (this will be sent from the server eventually)
+            allowedTabs = {
+                main: true,
+                neutral: true,
+                wraith: true
+            };
+
+            // Loop over all tabs
+            for(var tabName:String in tempSkillList) {
+                // Grab all the skills in this tab
+                var skills:Object = tempSkillList[tabName];
+
+                // Loop over all skills
+                for(var skillName:String in skills) {
+                    // Should we include this skill?
+                    var doInclude = true;
+
+                    // Grab the skill's index
+                    var skillIndex = skills[skillName];
+
+                    // Grab the s1 version of the skill
+                    var s1Skill = skillIndex.replace('_s1', '');
+
+                    // Check if this is a source1 only skill
+                    if(s1Skill != skillIndex) {
+                        // Copy it across
+                        skillIndex = s1Skill;
+
+                        // Check if we can include it
+                        if(!lastState.s1) {
+                            doInclude = false;
+                        }
+                    }
+
+                    // If we should include it, do it
+                    if(doInclude) {
+                        if(!isNaN(parseInt(skillIndex))) {
+                            skillLookup[skillName] = parseInt(skillIndex)
+                        }
+                    }
+                }
+            }
+        }
+
         // Loads in the bans stuff
         private function loadBansFile():void {
             var skillName:String, skillName2:String, group:Object;
@@ -359,11 +423,17 @@
 
                     // Show error page
                     versionUI.gotoAndStop(2);
+
+                    // Update header
+                    versionUI.header.text = "#outDated";
                 } else {
                     trace('LoD: Version checks out!');
 
                     // Show success page
                     versionUI.gotoAndStop(1);
+
+                    // Update header
+                    versionUI.header.text = "#uptoDate";
                 }
 
                 // Append version info
@@ -416,11 +486,11 @@
                     }
                 }
 
-                // Check if the skill list needs to be loaded
-                if(!loadedSkillList) {
-                    // Skill list is now loaded
-                    loadedSkillList = true;
-                }
+                // Load up the skills file
+                loadSkillsFile();
+
+                // Store useful stuff
+                MAX_SLOTS = lastState.slots;
             }
 
             // Don't do anything if the versionUI is visible
