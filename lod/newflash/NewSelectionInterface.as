@@ -1,10 +1,16 @@
 ﻿package  {
 	import flash.display.MovieClip;
-
+    import flash.text.TextField;
 
 	public class NewSelectionInterface extends MovieClip {
 		// Container for the skills
 		public var skillCon:MovieClip;
+
+        // The banning area
+        public var banningArea:MovieClip;
+
+        // The timer
+        public var timerField:TextField;
 
 		// Stores tabs
 		private var tabList:Object;
@@ -27,11 +33,14 @@
         private var activeList:Object = {};
 
 		public function NewSelectionInterface() {
-			// constructor code
 		}
 
+        public function hideUncommonStuff():void {
+            banningArea.visible = false;
+        }
+
 		// Rebuilds the interface from scratch
-		public function Rebuild(newSkillList:Object, source1) {
+		public function Rebuild(newSkillList:Object, source1:Boolean) {
 			var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
             var totalWidth:Number = X_SECTIONS * singleWidth - S_PADDING;
 
