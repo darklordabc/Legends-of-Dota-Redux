@@ -2,26 +2,23 @@
 	// Flash stuff
 	import flash.display.MovieClip;
 
-	// Other events
-	import flash.events.MouseEvent;
-
 	// Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
 
-	public class DotaAbility extends MovieClip {
-		// The actual image looking thingo
+	public class HeroImage extends MovieClip {
+		// Container for the hero image
+		public var heroImage:MovieClip;
+
+		// The ability container
 		public var ability:MovieClip;
 
-		// The name of the ability in this slot
-		public var skillName:String;
-
-		public function DotaAbility() {
+		public function HeroImage() {
 			// Grab the class
 			var dotoClass:Class = getDefinitionByName("AbilityButton") as Class;
 
 			// Create the ability
 			ability = new dotoClass();
-			addChild(ability);
+			heroImage.addChild(ability);
 
 			// Reset filters
 			ability.AbilityArt.filters = [];
@@ -37,19 +34,23 @@
 			ability.noManaState.visible = false;
 			ability.cooldownLabel.visible = false;
 
-			// Add the cover command
-            this.addEventListener(MouseEvent.ROLL_OVER, lod.onSkillRollOver, false, 0, true);
-            this.addEventListener(MouseEvent.ROLL_OUT, lod.onSkillRollOut, false, 0, true);
+			ability.scaleX = 71/128;
+			ability.scaleY = 71/128;
+
+			//ability.AbilityArt.scaleX = 128/71;
+			//ability.AbilityArt.scaleY = 128/71;
 		}
 
-		// Updates the ability stored inside
-		public function setSkillName(abilityName:String) {
-			// Store the name
-			skillName = abilityName;
+		// Change the image
+		public function setHeroImage(newImage:String):void {
+			// Load the hero image
+			lod.Globals.LoadImageWithCallback('images/heroes/selection/' + newImage + '.png', ability.AbilityArt, false, function(bitmap) {
+				// Rescale the bitmap
+				var newScale = 128/bitmap.width;
 
-			// Add image
-            lod.Globals.LoadAbilityImage(skillName, ability.AbilityArt);
+				bitmap.scaleX = newScale;
+				bitmap.scaleY = newScale;
+			});
 		}
 	}
-
 }

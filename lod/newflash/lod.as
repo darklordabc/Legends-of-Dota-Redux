@@ -21,6 +21,7 @@
         */
 		public var gameAPI:Object;
 		public var globals:Object;
+        public static var Globals;
 		public var elementName:String;
 
 		/*
@@ -62,7 +63,7 @@
         private static var MAX_PLAYERS_TEAM = 5;
 
         // The scaling factor
-        private var scalingFactor:Number;
+        private static var scalingFactor:Number;
 
         // Have we gotten any state info before?
         private var firstTimeState:Boolean = true;
@@ -73,6 +74,10 @@
         private static var STAGE_BANNING:Number = 2;
         private static var STAGE_PICKING:Number = 3;
         private static var STAGE_PLAYING:Number = 4;
+
+        // Stage sizing
+        private static var stageWidth:Number;
+        private static var stageHeight:Number;
 
         /*
             GLOBAL VARIABLES
@@ -113,10 +118,10 @@
         private var banList:Object;
 
         // skillName --> skillID
-        private var skillLookup:Object;
+        private static var skillLookup:Object;
 
         // Which tabs are allowed
-        private var allowedTabs:Object;
+        private static var allowedTabs:Object;
 
         /*
             CLEANUP STUFF
@@ -147,6 +152,9 @@
 
 			// Make us visible
 			this.visible = true;
+
+            // Store static globals
+            Globals = globals;
 
             // Prepare UI
             prepareUI();
@@ -201,6 +209,10 @@
 			x = (stage.stageWidth - ourWidth) / 2;
 			y = 0;
 
+            // Store size
+            stageWidth = stage.stageWidth;
+            stageHeight = stage.stageHeight;
+
 			// Store the scaling factor
 			scalingFactor = scale;
 
@@ -230,6 +242,9 @@
 
             // Hide the right picking help
             pickingHelpFilters.visible = false;
+
+            // Hide the selection UI
+            selectionUI.visible = false;
         }
 
         // Cleans up the hud
@@ -267,22 +282,23 @@
         // Loads in the skills file
         private function loadSkillsFile():void {
             // Check if the skill list needs to be loaded
-            if(!loadedSkillList) {
-                // Skill list is now loaded
-                loadedSkillList = true;
-            }
+            if(loadedSkillList) return;
+
+            // Skill list is now loaded
+            loadedSkillList = true;
 
             // Load in the skill list
-            var tempSkillList:Object = globals.GameInterface.LoadKVFile('scripts/kv/abilities.kv').skills;
+            var skillKV = globals.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
+            var tempSkillList:Object = skillKV.skills;
 
             // Create the object
-            var skillLookup = {};
+            skillLookup = {};
 
             // Tabs to allow (this will be sent from the server eventually)
             allowedTabs = {
-                main: true,
-                neutral: true,
-                wraith: true
+                main: true//,
+                //neutral: true,
+                //wraith: true
             };
 
             // Loop over all tabs
@@ -299,7 +315,7 @@
                     var skillIndex = skills[skillName];
 
                     // Grab the s1 version of the skill
-                    var s1Skill = skillIndex.replace('_s1', '');
+                    var s1Skill = String(skillIndex).replace('_s1', '');
 
                     // Check if this is a source1 only skill
                     if(s1Skill != skillIndex) {
@@ -315,11 +331,29 @@
                     // If we should include it, do it
                     if(doInclude) {
                         if(!isNaN(parseInt(skillIndex))) {
-                            skillLookup[skillName] = parseInt(skillIndex)
+                            skillLookup[skillName] = parseInt(skillIndex);
                         }
                     }
                 }
             }
+
+            // Rebuild the skill list
+            selectionUI.Rebuild(skillKV.tabs, lastState.s1);
+        }
+
+        // Checks if a given skill is valid, or not
+        public static function isValidSkill(skillName:String):Boolean {
+            // Ensure a skill is passed
+            if(!skillName) return false;
+
+            // Check if there is an index for it
+            return skillLookup[skillName] != null;
+        }
+
+        // Checks if a tab is allowed
+        public static function isTabAllowed(tab:String):Boolean {
+            // Checks if a tab is allowed
+            return allowedTabs[tab] != null && allowedTabs[tab] != false;
         }
 
         // Loads in the bans stuff
@@ -503,6 +537,16 @@
             switch(lastState.s) {
                 case STAGE_VOTING:
                     buildVotingUI(fromScratch);
+                    break;
+
+                case STAGE_BANNING:
+                    hideAllUI();
+                    selectionUI.visible = true;
+                    break;
+
+                case STAGE_PICKING:
+                    hideAllUI();
+                    selectionUI.visible = true;
                     break;
 
                 default:
@@ -825,35 +869,32 @@
         }
 
 		// Make an ability icon
-        public function abilityIcon(container:MovieClip, ability:String):MovieClip {
+        public static function abilityIcon(container:MovieClip, ability:String):MovieClip {
             // Create it
-            var obj:MovieClip = new DotaAbility(ability);//new dotoClass();
+            var obj:MovieClip = new DotaAbility();//new dotoClass();
+            obj.setSkillName(ability);
             container.addChild(obj);
-
-            // Add image
-            globals.LoadAbilityImage(ability, obj.ability.AbilityArt);
-
-            // Add the cover command
-            obj.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-            obj.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
             // Return the button
             return obj;
         }
 
         // When someone hovers over a skill
-        private function onSkillRollOver(e:MouseEvent):void {
+        public static function onSkillRollOver(e:MouseEvent):void {
             // Don't show stuff if we're dragging
             //if(EasyDrag.isDragging()) return;
 
             // Grab what we rolled over
             var s:Object = e.target;
 
+            // Ensure there is a skill to show
+            if(!s.skillName) return;
+
             // Workout where to put it
             var lp:Point = s.localToGlobal(new Point(s.width*scalingFactor*0.5, 0));
 
             var offset = 0;
-            if(lp.x < stage.stageWidth/2) {
+            if(lp.x < stageWidth/2) {
                 offset = s.width*2;
             }
 
@@ -861,19 +902,19 @@
             lp = s.localToGlobal(new Point(offset, 0));
 
             // Decide how to show the info
-            if(lp.x < stage.stageWidth/2) {
+            if(lp.x < stageWidth/2) {
                 // Face to the right
-                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x, lp.y, s.skillName);
+                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x, lp.y, s.skillName);
             } else {
                 // Face to the left
-                globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, s.skillName);
+                Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, s.skillName);
             }
         }
 
         // When someone stops hovering over a skill
-        private function onSkillRollOut(e:MouseEvent):void {
+        public static function onSkillRollOut(e:MouseEvent):void {
             // Hide the skill info pain
-            globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+            Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
         }
 
         // Grabs the hero dock

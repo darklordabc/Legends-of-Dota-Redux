@@ -325,7 +325,7 @@ function buildSkillListLookup()
     local tempSkillList = LoadKeyValues('scripts/kv/abilities.kv').skills
 
     -- Loop over all tabs
-    for tabName,skills in pairs(skillLookupList) do
+    for tabName,skills in pairs(tempSkillList) do
         -- Is this tab allowed?
         if allowedTabs[tabName] then
             -- Loop over all skills
@@ -334,7 +334,7 @@ function buildSkillListLookup()
                 local doInclude = true
 
                 -- Grab the source1 string
-                local s1Skill = skillIndex:gsub('_s1', '')
+                local s1Skill = string.gsub(skillIndex, '_s1', '')
 
                 -- Check if this is a source1 only skill
                 if s1Skill ~= skillIndex then
