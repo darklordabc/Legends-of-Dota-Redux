@@ -7,7 +7,7 @@
 		private var skillName:String;
 
 		// This holds the image of our current skill
-		private var imageHolder:MovieClip;
+		public var abilityClip:MovieClip;
 
 		// How to scale the skill image
 		private var skillScale:Number = 40/256;
@@ -16,15 +16,6 @@
 		public var banned:MovieClip;
 
 		public function SelectSkill() {
-			// Create somewhere to place the image
-            imageHolder = new MovieClip();
-            imageHolder.scaleX = skillScale;
-            imageHolder.scaleY = skillScale;
-            this.addChild(imageHolder);
-
-            // Bring banned to the front
-            this.setChildIndex(this.banned, this.numChildren-1);
-
             // Set this to not banned
             setBanned(false);
 		}
@@ -32,12 +23,7 @@
 		// Updates the the current skill
 		public function setSkillName(skillName):void {
 			// Store the change
-			this.skillName = skillName;
-
-			// Load the new image
-			if(this.skillName != '') {
-				//Globals.instance.LoadAbilityImage(this.skillName, imageHolder);
-			}
+			this.abilityClip.setSkillName(skillName);
 		}
 
 		// Returns our skill name
