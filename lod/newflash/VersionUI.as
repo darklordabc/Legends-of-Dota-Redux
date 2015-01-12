@@ -9,6 +9,9 @@
 		// The text field where version info appears
 		public var helpField:TextField;
 
+		// The header text
+		public var header:TextField;
+
 		public function VersionUI() {
 			// constructor code
 		}

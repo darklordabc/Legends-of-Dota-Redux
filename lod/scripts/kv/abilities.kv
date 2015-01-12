@@ -1,798 +1,1327 @@
 "Abilities" {
-    abs {
+    // These are the skill categories
+    // The numbers are used for sending skills over the network, as well as encryptions
+    "skills" {
+        // The main skills, usually always avaiable
+        "main" {
+            "abaddon_aphotic_shield"    "1"
+            "abaddon_borrowed_time" "2"
+            "abaddon_death_coil"    "3"
+            "abaddon_frostmourne"   "4"
+            "abyssal_underlord_atrophy_aura"    "5"
+            "abyssal_underlord_dark_rift"   "6"
+            "abyssal_underlord_firestorm"   "7"
+            "abyssal_underlord_pit_of_malice"   "8"
+            "alchemist_acid_spray"  "9"
+            "alchemist_chemical_rage"   "10"
+            "alchemist_goblins_greed"   "11"
+            "alchemist_unstable_concoction" "12"
+            "ancient_apparition_chilling_touch" "13"
+            "ancient_apparition_cold_feet"  "14"
+            "ancient_apparition_ice_blast"  "15"
+            "ancient_apparition_ice_vortex" "16"
+            "antimage_blink"    "17"
+            "antimage_mana_break"   "18"
+            "antimage_mana_void"    "19"
+            "antimage_spell_shield" "20"
+            "axe_battle_hunger" "21"
+            "axe_berserkers_call"   "22"
+            "axe_counter_helix" "23"
+            "axe_culling_blade" "24"
+            "bane_brain_sap"    "25"
+            "bane_enfeeble" "26"
+            "bane_fiends_grip"  "27"
+            "bane_nightmare"    "28"
+            "batrider_firefly"  "29"
+            "batrider_flamebreak"   "30"
+            "batrider_flaming_lasso"    "31"
+            "batrider_sticky_napalm"    "32"
+            "beastmaster_call_of_the_wild_boar" "33"
+            "beastmaster_inner_beast"   "34"
+            "beastmaster_primal_roar"   "35"
+            "beastmaster_wild_axes" "36"
+            "bloodseeker_blood_bath"    "37"
+            "bloodseeker_bloodrage" "38"
+            "bloodseeker_rupture"   "39"
+            "bloodseeker_thirst"    "40"
+            "bounty_hunter_jinada"  "41"
+            "bounty_hunter_shuriken_toss"   "42"
+            "bounty_hunter_track"   "43"
+            "bounty_hunter_wind_walk"   "44"
+            "brewmaster_drunken_brawler"    "45"
+            "brewmaster_drunken_haze"   "46"
+            "brewmaster_primal_split"   "47"
+            "brewmaster_thunder_clap"   "48"
+            "bristleback_bristleback"   "49"
+            "bristleback_quill_spray"   "50"
+            "bristleback_viscous_nasal_goo" "51"
+            "bristleback_warpath"   "52"
+            "broodmother_incapacitating_bite"   "53"
+            "broodmother_insatiable_hunger" "54"
+            "broodmother_spawn_spiderlings" "55"
+            "broodmother_spin_web"  "56"
+            "centaur_double_edge"   "57"
+            "centaur_hoof_stomp"    "58"
+            "centaur_return"    "59"
+            "centaur_stampede"  "60"
+            "chaos_knight_chaos_bolt"   "61"
+            "chaos_knight_chaos_strike" "62"
+            "chaos_knight_phantasm" "63"
+            "chaos_knight_reality_rift" "64"
+            "chen_hand_of_god"  "65"
+            "chen_holy_persuasion"  "66"
+            "chen_penitence"    "67"
+            "chen_test_of_faith"    "68"
+            "chen_test_of_faith_teleport"   "69"
+            "clinkz_death_pact" "70"
+            "clinkz_searing_arrows" "71"
+            "clinkz_strafe" "72"
+            "clinkz_wind_walk"  "73"
+            "crystal_maiden_brilliance_aura"    "74"
+            "crystal_maiden_crystal_nova"   "75"
+            "crystal_maiden_freezing_field" "76"
+            "crystal_maiden_frostbite"  "77"
+            "dark_seer_ion_shell"   "78"
+            "dark_seer_surge"   "79"
+            "dark_seer_vacuum"  "80"
+            "dark_seer_wall_of_replica" "81"
+            "dazzle_poison_touch"   "82"
+            "dazzle_shadow_wave"    "83"
+            "dazzle_shallow_grave"  "84"
+            "dazzle_weave"  "85"
+            "death_prophet_carrion_swarm"   "86"
+            "death_prophet_exorcism"    "87"
+            "death_prophet_silence" "88"
+            "death_prophet_witchcraft"  "89"
+            "disruptor_glimpse" "90"
+            "disruptor_kinetic_field"   "91"
+            "disruptor_static_storm"    "92"
+            "disruptor_thunder_strike"  "93"
+            "doom_bringer_doom" "94"
+            "doom_bringer_lvl_death"    "95"
+            "doom_bringer_scorched_earth"   "96"
+            "dragon_knight_breathe_fire"    "97"
+            "dragon_knight_dragon_blood"    "98"
+            "dragon_knight_dragon_tail" "99"
+            "dragon_knight_elder_dragon_form"   "100"
+            "drow_ranger_frost_arrows"  "101"
+            "drow_ranger_marksmanship"  "102"
+            "drow_ranger_trueshot"  "103"
+            "drow_ranger_wave_of_silence"   "104"
+            "earth_spirit_boulder_smash"    "105"
+            "earth_spirit_geomagnetic_grip" "106"
+            "earth_spirit_magnetize"    "107"
+            "earth_spirit_rolling_boulder"  "108"
+            "earthshaker_aftershock"    "109"
+            "earthshaker_echo_slam" "110"
+            "earthshaker_enchant_totem" "111"
+            "earthshaker_fissure"   "112"
+            "elder_titan_ancestral_spirit"  "113"
+            "elder_titan_earth_splitter"    "114"
+            "elder_titan_echo_stomp"    "115"
+            "elder_titan_natural_order" "116"
+            "elder_titan_return_spirit" "117"
+            "ember_spirit_activate_fire_remnant"    "118"
+            "ember_spirit_fire_remnant" "119"
+            "ember_spirit_flame_guard"  "120"
+            "ember_spirit_searing_chains"   "121"
+            "ember_spirit_sleight_of_fist"  "122"
+            "enchantress_enchant"   "123"
+            "enchantress_impetus"   "124"
+            "enchantress_natures_attendants"    "125"
+            "enchantress_untouchable"   "126"
+            "enigma_black_hole" "127"
+            "enigma_demonic_conversion" "128"
+            "enigma_malefice"   "129"
+            "enigma_midnight_pulse" "130"
+            "faceless_void_backtrack"   "131"
+            "faceless_void_chronosphere"    "132"
+            "faceless_void_time_lock"   "133"
+            "faceless_void_time_walk"   "134"
+            "furion_force_of_nature"    "135"
+            "furion_sprout" "136"
+            "furion_teleportation"  "137"
+            "furion_wrath_of_nature"    "138"
+            "gyrocopter_call_down"  "139"
+            "gyrocopter_flak_cannon"    "140"
+            "gyrocopter_homing_missile" "141"
+            "gyrocopter_rocket_barrage" "142"
+            "huskar_berserkers_blood"   "143"
+            "huskar_burning_spear"  "144"
+            "huskar_inner_vitality" "145"
+            "huskar_life_break" "146"
+            "invoker_alacrity_lod"  "147"
+            "invoker_chaos_meteor_lod"  "148"
+            "invoker_cold_snap_lod" "149"
+            "invoker_deafening_blast_lod"   "150"
+            "invoker_emp_lod"   "151"
+            "invoker_forge_spirit_lod"  "152"
+            "invoker_ghost_walk_lod"    "153"
+            "invoker_ice_wall_lod"  "154"
+            "invoker_sun_strike_lod"    "155"
+            "invoker_tornado_lod"   "156"
+            "jakiro_dual_breath"    "157"
+            "jakiro_ice_path"   "158"
+            "jakiro_liquid_fire"    "159"
+            "jakiro_macropyre"  "160"
+            "juggernaut_blade_dance"    "161"
+            "juggernaut_blade_fury" "162"
+            "juggernaut_healing_ward"   "163"
+            "juggernaut_omni_slash" "164"
+            "keeper_of_the_light_blinding_light_lod"    "165"
+            "keeper_of_the_light_chakra_magic"  "166"
+            "keeper_of_the_light_illuminate"    "167"
+            "keeper_of_the_light_mana_leak" "168"
+            "keeper_of_the_light_recall_lod"    "169"
+            "keeper_of_the_light_spirit_form"   "170"
+            "kunkka_ghostship"  "171"
+            "kunkka_tidebringer"    "172"
+            "kunkka_torrent"    "173"
+            "kunkka_x_marks_the_spot"   "174"
+            "legion_commander_duel" "175"
+            "legion_commander_moment_of_courage"    "176"
+            "legion_commander_overwhelming_odds"    "177"
+            "legion_commander_press_the_attack" "178"
+            "leshrac_diabolic_edict"    "179"
+            "leshrac_lightning_storm"   "180"
+            "leshrac_pulse_nova"    "181"
+            "leshrac_split_earth"   "182"
+            "lich_chain_frost"  "183"
+            "lich_dark_ritual"  "184"
+            "lich_frost_armor"  "185"
+            "lich_frost_nova"   "186"
+            "life_stealer_feast"    "187"
+            "life_stealer_infest"   "188"
+            "life_stealer_open_wounds"  "189"
+            "life_stealer_rage" "190"
+            "lina_dragon_slave" "191"
+            "lina_fiery_soul"   "192"
+            "lina_laguna_blade" "193"
+            "lina_light_strike_array"   "194"
+            "lion_finger_of_death"  "195"
+            "lion_impale"   "196"
+            "lion_mana_drain"   "197"
+            "lion_voodoo"   "198"
+            "lone_druid_rabid"  "199"
+            //"lone_druid_spirit_bear"    "200"
+            "lone_druid_synergy"    "201"
+            "lone_druid_true_form"  "202"
+            "luna_eclipse"  "203"
+            "luna_lucent_beam"  "204"
+            "luna_lunar_blessing"   "205"
+            "luna_moon_glaive"  "206"
+            "lycan_feral_impulse"   "207"
+            "lycan_howl"    "208"
+            "lycan_shapeshift"  "209"
+            "lycan_summon_wolves"   "210"
+            "magnataur_empower" "211"
+            "magnataur_reverse_polarity"    "212"
+            "magnataur_shockwave"   "213"
+            "magnataur_skewer"  "214"
+            "medusa_mana_shield"    "215"
+            "medusa_mystic_snake"   "216"
+            "medusa_split_shot" "217"
+            "medusa_stone_gaze" "218"
+            "meepo_earthbind"   "219"
+            "meepo_geostrike"   "220"
+            "meepo_poof"    "221"
+            "mirana_arrow"  "222"
+            "mirana_invis"  "223"
+            "mirana_leap"   "224"
+            "mirana_starfall"   "225"
+            "morphling_adaptive_strike" "226"
+            "morphling_morph_agi"   "227"
+            "morphling_morph_str"   "228"
+            "morphling_replicate"   "229"
+            "morphling_waveform"    "230"
+            "naga_siren_ensnare"    "231"
+            "naga_siren_mirror_image"   "232"
+            "naga_siren_rip_tide"   "233"
+            "naga_siren_song_of_the_siren"  "234"
+            "necrolyte_death_pulse" "235"
+            "necrolyte_heartstopper_aura"   "236"
+            "necrolyte_reapers_scythe"  "237"
+            "necrolyte_sadist"  "238"
+            "nevermore_dark_lord"   "239"
+            "nevermore_necromastery"    "240"
+            "nevermore_requiem" "241"
+            "nevermore_shadowraze1" "242"
+            "nevermore_shadowraze2" "243"
+            "nevermore_shadowraze3" "244"
+            "night_stalker_crippling_fear"  "245"
+            "night_stalker_darkness"    "246"
+            "night_stalker_hunter_in_the_night" "247"
+            "night_stalker_void"    "248"
+            "nyx_assassin_impale"   "249"
+            "nyx_assassin_mana_burn"    "250"
+            "nyx_assassin_spiked_carapace"  "251"
+            "nyx_assassin_vendetta" "252"
+            "obsidian_destroyer_arcane_orb" "253"
+            "obsidian_destroyer_astral_imprisonment"    "254"
+            "obsidian_destroyer_essence_aura"   "255"
+            "obsidian_destroyer_sanity_eclipse" "256"
+            "ogre_magi_bloodlust"   "257"
+            "ogre_magi_fireblast"   "258"
+            "ogre_magi_ignite"  "259"
+            "ogre_magi_multicast_lod"   "260"
+            "omniknight_degen_aura" "261"
+            "omniknight_guardian_angel" "262"
+            "omniknight_purification"   "263"
+            "omniknight_repel"  "264"
+            "oracle_false_promise"  "265"
+            "oracle_fates_edict"    "266"
+            "oracle_fortunes_end"   "267"
+            "oracle_purifying_flames"   "268"
+            "phantom_assassin_blur" "269"
+            "phantom_assassin_coup_de_grace"    "270"
+            "phantom_assassin_phantom_strike"   "271"
+            "phantom_assassin_stifling_dagger"  "272"
+            "phantom_lancer_doppelwalk" "273"
+            "phantom_lancer_juxtapose"  "274"
+            "phantom_lancer_juxtapose"  "275"
+            "phantom_lancer_phantom_edge"   "276"
+            "phantom_lancer_phantom_edge"   "277"
+            "phantom_lancer_spirit_lance"   "278"
+            "phoenix_fire_spirits"  "279"
+            "phoenix_icarus_dive"   "280"
+            "phoenix_sun_ray"   "281"
+            "phoenix_supernova" "282"
+            "puck_dream_coil"   "283"
+            "puck_ethereal_jaunt"   "284"
+            "puck_illusory_orb" "285"
+            "puck_phase_shift"  "286"
+            "puck_waning_rift"  "287"
+            "pudge_dismember"   "288"
+            "pudge_flesh_heap"  "289"
+            "pudge_meat_hook"   "290"
+            "pudge_rot" "291"
+            "pugna_decrepify"   "292"
+            "pugna_life_drain"  "293"
+            "pugna_nether_blast"    "294"
+            "pugna_nether_ward" "295"
+            "queenofpain_blink" "296"
+            "queenofpain_scream_of_pain"    "297"
+            "queenofpain_shadow_strike" "298"
+            "queenofpain_sonic_wave"    "299"
+            "rattletrap_battery_assault"    "300"
+            "rattletrap_hookshot"   "301"
+            "rattletrap_power_cogs" "302"
+            "rattletrap_rocket_flare"   "303"
+            "razor_eye_of_the_storm"    "304"
+            "razor_plasma_field"    "305"
+            "razor_static_link" "306"
+            "razor_unstable_current"    "307"
+            "riki_backstab" "308"
+            "riki_blink_strike" "309"
+            "riki_blink_strike" "310"
+            "riki_permanent_invisibility"   "311"
+            "riki_permanent_invisibility_lod"   "312"
+            "riki_smoke_screen" "313"
+            "rubick_fade_bolt"  "314"
+            "rubick_null_field" "315"
+            "rubick_spell_steal"    "316"
+            "rubick_telekinesis"    "317"
+            "sandking_burrowstrike" "318"
+            "sandking_caustic_finale"   "319"
+            "sandking_epicenter"    "320"
+            "sandking_sand_storm"   "321"
+            "shadow_demon_disruption"   "322"
+            "shadow_demon_shadow_poison"    "323"
+            "shadow_demon_shadow_poison_release"    "324"
+            "shadow_demon_soul_catcher" "325"
+            "shadow_shaman_ether_shock" "326"
+            "shadow_shaman_mass_serpent_ward"   "327"
+            "shadow_shaman_shackles"    "328"
+            "shadow_shaman_voodoo"  "329"
+            "shredder_chakram"  "330"
+            "shredder_reactive_armor"   "331"
+            "shredder_timber_chain" "332"
+            "shredder_whirling_death"   "333"
+            "silencer_curse_of_the_silent"  "334"
+            "silencer_glaives_of_wisdom"    "335"
+            "silencer_global_silence"   "336"
+            "silencer_last_word"    "337"
+            "skeleton_king_hellfire_blast"  "338"
+            "skeleton_king_mortal_strike"   "339"
+            "skeleton_king_reincarnation"   "340"
+            "skeleton_king_vampiric_aura"   "341"
+            "skywrath_mage_ancient_seal"    "342"
+            "skywrath_mage_arcane_bolt" "343"
+            "skywrath_mage_concussive_shot" "344"
+            "skywrath_mage_mystic_flare"    "345"
+            "slardar_amplify_damage"    "346"
+            "slardar_bash"  "347"
+            "slardar_slithereen_crush"  "348"
+            "slardar_sprint"    "349"
+            "slark_dark_pact"   "350"
+            "slark_essence_shift"   "351"
+            "slark_pounce"  "352"
+            "slark_shadow_dance"    "353"
+            "sniper_assassinate"    "354"
+            "sniper_headshot"   "355"
+            "sniper_shrapnel"   "356"
+            "sniper_take_aim"   "357"
+            "spectre_desolate"  "358"
+            "spectre_dispersion"    "359"
+            "spectre_haunt" "360"
+            "spectre_reality"   "361"
+            "spectre_spectral_dagger"   "362"
+            "spirit_breaker_charge_of_darkness" "363"
+            "spirit_breaker_empowering_haste"   "364"
+            "spirit_breaker_greater_bash"   "365"
+            "spirit_breaker_nether_strike"  "366"
+            "storm_spirit_ball_lightning"   "367"
+            "storm_spirit_electric_vortex"  "368"
+            "storm_spirit_overload" "369"
+            "storm_spirit_static_remnant"   "370"
+            "sven_gods_strength"    "371"
+            "sven_great_cleave" "372"
+            "sven_storm_bolt"   "373"
+            "sven_warcry"   "374"
+            "techies_focused_detonate"  "375"
+            "techies_land_mines"    "376"
+            "techies_remote_mines"  "377"
+            "techies_stasis_trap"   "378"
+            "techies_suicide"   "379"
+            "templar_assassin_meld" "380"
+            "templar_assassin_psi_blades"   "381"
+            "templar_assassin_psionic_trap" "382"
+            "templar_assassin_refraction"   "383"
+            "templar_assassin_trap" "384"
+            "terrorblade_conjure_image" "385"
+            "terrorblade_metamorphosis" "386"
+            "terrorblade_reflection"    "387"
+            "terrorblade_sunder"    "388"
+            "tidehunter_anchor_smash"   "389"
+            "tidehunter_gush"   "390"
+            "tidehunter_kraken_shell"   "391"
+            "tidehunter_ravage" "392"
+            "tinker_heat_seeking_missile"   "393"
+            "tinker_laser"  "394"
+            "tinker_march_of_the_machines"  "395"
+            "tinker_rearm"  "396"
+            "tiny_avalanche"    "397"
+            "tiny_craggy_exterior"  "398"
+            "tiny_grow" "399"
+            "tiny_toss" "400"
+            "treant_eyes_in_the_forest" "401"
+            "treant_leech_seed" "402"
+            "treant_living_armor"   "403"
+            "treant_natures_guise"  "404"
+            "treant_overgrowth" "405"
+            "treant_overgrowth" "406"
+            "troll_warlord_battle_trance"   "407"
+            "troll_warlord_berserkers_rage" "408"
+            "troll_warlord_fervor"  "409"
+            "troll_warlord_whirling_axes_ranged"    "410"
+            "tusk_frozen_sigil" "411"
+            "tusk_ice_shards"   "412"
+            "tusk_snowball" "413"
+            "tusk_walrus_punch" "414"
+            "undying_decay" "415"
+            "undying_flesh_golem"   "416"
+            "undying_soul_rip"  "417"
+            "undying_tombstone" "418"
+            "ursa_earthshock"   "419"
+            "ursa_enrage"   "420"
+            "ursa_fury_swipes"  "421"
+            "ursa_overpower"    "422"
+            "vengefulspirit_command_aura"   "423"
+            "vengefulspirit_magic_missile"  "424"
+            "vengefulspirit_nether_swap"    "425"
+            "vengefulspirit_wave_of_terror" "426"
+            "venomancer_plague_ward"    "427"
+            "venomancer_poison_nova"    "428"
+            "venomancer_poison_sting"   "429"
+            "venomancer_venomous_gale"  "430"
+            "viper_corrosive_skin"  "431"
+            "viper_nethertoxin" "432"
+            "viper_poison_attack"   "433"
+            "viper_viper_strike"    "434"
+            "visage_grave_chill"    "435"
+            "visage_gravekeepers_cloak" "436"
+            "visage_summon_familiars"   "437"
+            "warlock_fatal_bonds"   "438"
+            "warlock_rain_of_chaos" "439"
+            "warlock_shadow_word"   "440"
+            "warlock_upheaval"  "441"
+            "weaver_geminate_attack"    "442"
+            "weaver_shukuchi"   "443"
+            "weaver_the_swarm"  "444"
+            "weaver_time_lapse" "445"
+            "windrunner_focusfire"  "446"
+            "windrunner_powershot"  "447"
+            "windrunner_shackleshot"    "448"
+            "windrunner_windrun"    "449"
+            "wisp_overcharge"   "450"
+            "wisp_relocate" "451"
+            "wisp_spirits"  "452"
+            "wisp_tether"   "453"
+            "witch_doctor_death_ward"   "454"
+            "witch_doctor_maledict" "455"
+            "witch_doctor_paralyzing_cask"  "456"
+            "witch_doctor_voodoo_restoration"   "457"
+            "zuus_arc_lightning"    "458"
+            "zuus_lightning_bolt"   "459"
+            "zuus_static_field" "460"
+            "zuus_thundergods_wrath"    "461"
+        }
+
+        // The neutrals skills
+        "neutral" {
+            "alpha_wolf_command_aura"   "600"
+            "alpha_wolf_critical_strike"    "601"
+            "beastmaster_boar_poison"   "602"
+            "beastmaster_greater_boar_poison"   "603"
+            "big_thunder_lizard_frenzy" "604"
+            "big_thunder_lizard_slam"   "605"
+            "black_dragon_splash_attack"    "606"
+            "blue_dragonspawn_overseer_devotion_aura"   "607"
+            "blue_dragonspawn_overseer_evasion" "608"
+            "blue_dragonspawn_sorcerer_evasion" "609"
+            "centaur_khan_endurance_aura"   "610"
+            "centaur_khan_war_stomp"    "611"
+            "dark_troll_warlord_ensnare"    "612"
+            "dark_troll_warlord_raise_dead" "613"
+            "enraged_wildkin_tornado"   "614"
+            "enraged_wildkin_toughness_aura"    "615"
+            "forest_troll_high_priest_heal" "616"
+            "ghost_frost_attack"    "617"
+            "giant_wolf_critical_strike"    "618"
+            "gnoll_assassin_envenomed_weapon"   "619"
+            "granite_golem_hp_aura" "620"
+            "harpy_storm_chain_lightning"   "621"
+            "kobold_taskmaster_speed_aura"  "622"
+            "lone_druid_spirit_bear_demolish"   "623"
+            "lone_druid_spirit_bear_entangle"   "624"
+            "lycan_summon_wolves_critical_strike"   "625"
+            "necronomicon_archer_aoe_lod"   "626"
+            "necronomicon_archer_mana_burn_lod" "627"
+            "necronomicon_warrior_last_will_lod"    "628"
+            "necronomicon_warrior_mana_burn_lod"    "629"
+            "ogre_magi_frost_armor" "630"
+            "polar_furbolg_ursa_warrior_thunder_clap"   "631"
+            "satyr_hellcaller_shockwave"    "632"
+            "satyr_hellcaller_unholy_aura"  "633"
+            "satyr_soulstealer_mana_burn"   "634"
+            "satyr_trickster_purge" "635"
+            "undying_tombstone_zombie_deathstrike"  "636"
+        }
+
+        // The wraithnight skills
+        "wraith" {
+            "holdout_arcane_aura"   "700"
+            "holdout_culling_blade" "701"
+            "holdout_gladiators_unite"  "702"
+            "holdout_gods_strength" "703"
+            "holdout_multishot" "704"
+            "holdout_omnislash" "705"
+            "holdout_scourge_ward"  "706"
+            "zuus_thundergods_vengeance"    "707"
+        }
+    }
+
+    // The tabs to display client side
+    "tabs" {
         ////////////////////
         // Main Skills Tab
         ////////////////////
 
-        // Earth Shaker
-        "0"     "earthshaker_fissure"
-        "1"     "earthshaker_enchant_totem"
-        "2"     "earthshaker_aftershock"
-        "3"     "earthshaker_echo_slam"
-
-        // Sven
-        "4"     "sven_storm_bolt"
-        "5"     "sven_great_cleave"
-        "6"     "sven_warcry"
-        "7"     "sven_gods_strength"
-
-        //Tiny
-        "8"     "tiny_avalanche"
-        "9"     "tiny_toss"
-        "10"    "tiny_craggy_exterior"
-        //"11"    "tiny_grow"
-
-        // Kunkka
-        "12"    "kunkka_torrent"
-        "13"    "kunkka_tidebringer"
-        "14"    "kunkka_x_marks_the_spot"
-        "15"    "kunkka_ghostship"
-
-        // Beast Master
-        "16"    "beastmaster_wild_axes"
-        "17"    "beastmaster_call_of_the_wild_boar"
-        "18"    "beastmaster_inner_beast"
-        "19"    "beastmaster_primal_roar"
-
-        // Dragon Knight
-        "20"    "dragon_knight_breathe_fire"
-        "21"    "dragon_knight_dragon_tail"
-        "22"    "dragon_knight_dragon_blood"
-        "23"    "dragon_knight_elder_dragon_form"
-
-        // Clockwerk
-        "24"    "rattletrap_battery_assault"
-        "25"    "rattletrap_power_cogs"
-        "26"    "rattletrap_rocket_flare"
-        "27"    "rattletrap_hookshot"
-
-        // Antimage
-        "28"    "antimage_mana_break"
-        "29"    "antimage_blink"
-        "30"    "antimage_spell_shield"
-        "31"    "antimage_mana_void"
-
-        // Drow Ranger
-        "32"    "drow_ranger_frost_arrows"
-        "33"    "drow_ranger_wave_of_silence"
-        "34"    "drow_ranger_trueshot"
-        "35"    "drow_ranger_marksmanship"
-
-        // Juggernaut
-        "36"    "juggernaut_blade_fury"
-        "37"    "juggernaut_healing_ward"
-        "38"    "juggernaut_blade_dance"
-        "39"    "juggernaut_omni_slash"
-
-        // Mirana
-        "40"    "mirana_starfall"
-        "41"    "mirana_arrow"
-        "42"    "mirana_leap"
-        "43"    "mirana_invis"
-
-        // Morphling
-        "44"    "morphling_waveform"
-        "45"    "morphling_adaptive_strike"
-        "46"    "morphling_morph_str||morphling_morph_agi"
-        "47"    "morphling_replicate"
-
-        // Phantom Lancer
-        "48"    "phantom_lancer_spirit_lance"
-        "49"    "phantom_lancer_doppelwalk"
-        "50"    "phantom_lancer_juxtapose"
-        "50_s1" "phantom_lancer_phantom_edge"
-        "51"    "phantom_lancer_phantom_edge"
-        "51_s1" "phantom_lancer_juxtapose"
-
-        // Vengeful Spirit
-        "52"    "vengefulspirit_magic_missile"
-        "53"    "vengefulspirit_wave_of_terror"
-        "54"    "vengefulspirit_command_aura"
-        "55"    "vengefulspirit_nether_swap"
-
-        // Crystal Maiden
-        "56"    "crystal_maiden_crystal_nova"
-        "57"    "crystal_maiden_frostbite"
-        "58"    "crystal_maiden_brilliance_aura"
-        "59"    "crystal_maiden_freezing_field"
-
-        // Puck
-        "60"    "puck_illusory_orb||puck_ethereal_jaunt"
-        "61"    "puck_waning_rift"
-        "62"    "puck_phase_shift"
-        "63"    "puck_dream_coil"
-
-        // Storm Spirit
-        "64"    "storm_spirit_static_remnant"
-        "65"    "storm_spirit_electric_vortex"
-        "66"    "storm_spirit_overload"
-        "67"    "storm_spirit_ball_lightning"
-
-        // Windrunner
-        "68"    "windrunner_shackleshot"
-        "69"    "windrunner_powershot"
-        "70"    "windrunner_windrun"
-        "71"    "windrunner_focusfire"
-
-        // Zeus
-        "72"    "zuus_arc_lightning"
-        "73"    "zuus_lightning_bolt"
-        "74"    "zuus_static_field"
-        "75"    "zuus_thundergods_wrath"
-
-        // Lina
-        "76"    "lina_dragon_slave"
-        "77"    "lina_light_strike_array"
-        "78"    "lina_fiery_soul"
-        "79"    "lina_laguna_blade"
-
-        // Shadow Shaman
-        "80"    "shadow_shaman_ether_shock"
-        "81"    "shadow_shaman_voodoo"
-        "82"    "shadow_shaman_shackles"
-        "83"    "shadow_shaman_mass_serpent_ward"
-
-        // Omniknight
-        "84"    "omniknight_purification"
-        "85"    "omniknight_repel"
-        "86"    "omniknight_degen_aura"
-        "87"    "omniknight_guardian_angel"
-
-        // Huskar
-        "88"    "huskar_inner_vitality"
-        "89"    "huskar_burning_spear"
-        "90"    "huskar_berserkers_blood"
-        "91"    "huskar_life_break"
-
-        // Alchemist
-        "92"    "alchemist_acid_spray"
-        "93"    "alchemist_unstable_concoction"
-        "94"    "alchemist_goblins_greed"
-        "95"    "alchemist_chemical_rage"
-
-        // Brewmaster
-        "96"    "brewmaster_thunder_clap"
-        "97"    "brewmaster_drunken_haze"
-        "98"    "brewmaster_drunken_brawler"
-        "99"    "brewmaster_primal_split"
-
-        // Treant Protector
-        "100"   "treant_natures_guise"
-        "101"   "treant_leech_seed"
-        "102"   "treant_living_armor"
-        "103"   "treant_overgrowth"
-        "103_s1"   "treant_overgrowth||treant_eyes_in_the_forest"
-
-        // Wisp
-        "104"   "wisp_tether"
-        "105"   "wisp_spirits"
-        "106"   "wisp_overcharge"
-        "107"   "wisp_relocate"
-
-        // Centaur Warchief
-        "108"   "centaur_hoof_stomp"
-        "109"   "centaur_double_edge"
-        "110"   "centaur_return"
-        "111"   "centaur_stampede"
-
-        // Riki
-        "112"   "riki_smoke_screen"
-        "113"   "riki_blink_strike"
-        "113_s1"    "riki_permanent_invisibility"
-        "114"   "riki_backstab"
-        "115"   "riki_permanent_invisibility_lod"
-        "115_s1"   "riki_blink_strike"
-
-        // Sniper
-        "116"   "sniper_shrapnel"
-        "117"   "sniper_headshot"
-        "118"   "sniper_take_aim"
-        "119"   "sniper_assassinate"
-
-        // Templar Assassin
-        "120"   "templar_assassin_refraction"
-        "121"   "templar_assassin_meld"
-        "122"   "templar_assassin_psi_blades"
-        "123"   "templar_assassin_psionic_trap||templar_assassin_trap"
-
-        // Luna
-        "124"   "luna_lucent_beam"
-        "125"   "luna_moon_glaive"
-        "126"   "luna_lunar_blessing"
-        "127"   "luna_eclipse"
-
-        // Bounty Hunter
-        "128"   "bounty_hunter_shuriken_toss"
-        "129"   "bounty_hunter_jinada"
-        "130"   "bounty_hunter_wind_walk"
-        "131"   "bounty_hunter_track"
-
-        // Ursa
-        "132"   "ursa_earthshock"
-        "133"   "ursa_overpower"
-        "134"   "ursa_fury_swipes"
-        "135"   "ursa_enrage"
-
-        // Gyrocopter
-        "136"   "gyrocopter_rocket_barrage"
-        "137"   "gyrocopter_homing_missile"
-        "138"   "gyrocopter_flak_cannon"
-        "139"   "gyrocopter_call_down"
-
-        // Tinker
-        "140"   "tinker_laser"
-        "141"   "tinker_heat_seeking_missile"
-        "142"   "tinker_march_of_the_machines"
-        "143"   "tinker_rearm"
-
-        // Furion
-        "144"   "furion_sprout"
-        "145"   "furion_teleportation"
-        "146"   "furion_force_of_nature"
-        "147"   "furion_wrath_of_nature"
-
-        // Enchantress
-        "148"   "enchantress_untouchable"
-        "149"   "enchantress_enchant"
-        "150"   "enchantress_natures_attendants"
-        "151"   "enchantress_impetus"
-
-        // Jakiro
-        "152"   "jakiro_dual_breath"
-        "153"   "jakiro_ice_path"
-        "154"   "jakiro_liquid_fire"
-        "155"   "jakiro_macropyre"
-
-        // Chen
-        "156"   "chen_penitence"
-        "157"   "chen_test_of_faith||chen_test_of_faith_teleport"
-        "158"   "chen_holy_persuasion"
-        "159"   "chen_hand_of_god"
-
-        // Silencer
-        "160"   "silencer_curse_of_the_silent"
-        "161"   "silencer_glaives_of_wisdom"
-        "162"   "silencer_last_word"
-        "163"   "silencer_global_silence"
-
-        // Ogre Magi
-        "164"   "ogre_magi_fireblast"
-        "165"   "ogre_magi_ignite"
-        "166"   "ogre_magi_bloodlust"
-        "167"   "ogre_magi_multicast_lod"
-
-        // Shredder Timbersaw
-        "168"   "shredder_whirling_death"
-        "169"   "shredder_timber_chain"
-        "170"   "shredder_reactive_armor"
-        "171"   "shredder_chakram"
-
-        // Bristleback
-        "172"   "bristleback_viscous_nasal_goo"
-        "173"   "bristleback_quill_spray"
-        "174"   "bristleback_bristleback"
-        "175"   "bristleback_warpath"
-
-        // Tusk
-        "176"   "tusk_ice_shards"
-        "177"   "tusk_snowball"
-        "178"   "tusk_frozen_sigil"
-        "179"   "tusk_walrus_punch"
-
-        // Elder Titan
-        "180"   "elder_titan_echo_stomp"
-        "181"   "elder_titan_ancestral_spirit||elder_titan_return_spirit"
-        "182"   "elder_titan_natural_order"
-        "183"   "elder_titan_earth_splitter"
-
-        // Legion Commander
-        "184"   "legion_commander_overwhelming_odds"
-        "185"   "legion_commander_press_the_attack"
-        "186"   "legion_commander_moment_of_courage"
-        "187"   "legion_commander_duel"
-
-        // Earth Spirit
-        "188"   "earth_spirit_boulder_smash"
-        "189"   "earth_spirit_rolling_boulder"
-        "190"   "earth_spirit_geomagnetic_grip"
-        "191"   "earth_spirit_magnetize"
-
-        // Phoenix
-        "192"   "phoenix_icarus_dive"
-        "193"   "phoenix_fire_spirits"
-        "194"   "phoenix_sun_ray"
-        "195"   "phoenix_supernova"
-
-        // Lone Druid
-        //"196"   "lone_druid_spirit_bear"
-        "197"   "lone_druid_rabid"
-        "198"   "lone_druid_synergy"
-        //"199"   "lone_druid_true_form"
-
-        // Naga Siren
-        "200"   "naga_siren_mirror_image"
-        "201"   "naga_siren_ensnare"
-        "202"   "naga_siren_rip_tide"
-        "203"   "naga_siren_song_of_the_siren"
-
-        // Troll Warlord
-        "204"   "troll_warlord_berserkers_rage"
-        "205"   "troll_warlord_whirling_axes_ranged"
-        "206"   "troll_warlord_fervor"
-        "207"   "troll_warlord_battle_trance"
-
-        // Ember Spirit
-        "208"   "ember_spirit_searing_chains"
-        "209"   "ember_spirit_sleight_of_fist"
-        "210"   "ember_spirit_flame_guard"
-        //"211"   "ember_spirit_fire_remnant||ember_spirit_activate_fire_remnant"
-
-        // None
-
-        // None
-
-        // None
-
-        // Rubick
-        "224"   "rubick_telekinesis"
-        "225"   "rubick_fade_bolt"
-        "226"   "rubick_null_field"
-        //"227"   "rubick_spell_steal"
-
-        // Disruptor
-        "228"   "disruptor_thunder_strike"
-        "229"   "disruptor_glimpse"
-        "230"   "disruptor_kinetic_field"
-        "231"   "disruptor_static_storm"
-
-        // Keeper of the Light
-        "232"   "keeper_of_the_light_illuminate"
-        "233"   "keeper_of_the_light_mana_leak"
-        "234"   "keeper_of_the_light_chakra_magic"
-        "235"   "keeper_of_the_light_spirit_form||keeper_of_the_light_recall_lod||keeper_of_the_light_blinding_light_lod"
-
-        // Skywrath Mage
-        "236"   "skywrath_mage_arcane_bolt"
-        "237"   "skywrath_mage_concussive_shot"
-        "238"   "skywrath_mage_ancient_seal"
-        "239"   "skywrath_mage_mystic_flare"
-
-        // Oracle
-        "240"   "oracle_fortunes_end"
-        "241"   "oracle_fates_edict"
-        "242"   "oracle_purifying_flames"
-        "243"   "oracle_false_promise"
-
-        // Axe
-        "252"   "axe_berserkers_call"
-        "253"   "axe_battle_hunger"
-        "254"   "axe_counter_helix"
-        "255"   "axe_culling_blade"
-
-        // Pudge
-        "256"   "pudge_meat_hook"
-        "257"   "pudge_rot"
-        "258"   "pudge_flesh_heap"
-        "259"   "pudge_dismember"
-
-        // Sand King
-        "260"   "sandking_burrowstrike"
-        "261"   "sandking_sand_storm"
-        "262"   "sandking_caustic_finale"
-        "263"   "sandking_epicenter"
-
-        // Slardar
-        "264"   "slardar_sprint"
-        "265"   "slardar_slithereen_crush"
-        "266"   "slardar_bash"
-        "267"   "slardar_amplify_damage"
-
-        // Tidehunter
-        "268"   "tidehunter_gush"
-        "269"   "tidehunter_kraken_shell"
-        "270"   "tidehunter_anchor_smash"
-        "271"   "tidehunter_ravage"
-
-        // Skeleton King or Wraith King
-        "272"   "skeleton_king_hellfire_blast"
-        "273"   "skeleton_king_vampiric_aura"
-        "274"   "skeleton_king_mortal_strike"
-        "275"   "skeleton_king_reincarnation"
-
-        // Lifestealer
-        "276"   "life_stealer_rage"
-        "277"   "life_stealer_feast"
-        "278"   "life_stealer_open_wounds"
-        "279"   "life_stealer_infest"
-
-        // Bloodseeker
-        "280"   "bloodseeker_bloodrage"
-        "281"   "bloodseeker_blood_bath"
-        "282"   "bloodseeker_thirst"
-        "283"   "bloodseeker_rupture"
-
-        // Nevermore
-        "284"   "nevermore_shadowraze1||nevermore_shadowraze2||nevermore_shadowraze3"
-        "285"   "nevermore_necromastery"
-        "286"   "nevermore_dark_lord"
-        "287"   "nevermore_requiem"
-
-        // Razor
-        "288"   "razor_plasma_field"
-        "289"   "razor_static_link"
-        "290"   "razor_unstable_current"
-        "291"   "razor_eye_of_the_storm"
-
-        // Venomancer
-        "292"   "venomancer_venomous_gale"
-        "293"   "venomancer_poison_sting"
-        "294"   "venomancer_plague_ward"
-        "295"   "venomancer_poison_nova"
-
-        // Faceless Void
-        "296"   "faceless_void_time_walk"
-        "297"   "faceless_void_backtrack"
-        "298"   "faceless_void_time_lock"
-        "299"   "faceless_void_chronosphere"
-
-        // Phantom Assassin
-        "300"   "phantom_assassin_stifling_dagger"
-        "301"   "phantom_assassin_phantom_strike"
-        "302"   "phantom_assassin_blur"
-        "303"   "phantom_assassin_coup_de_grace"
-
-        // Viper
-        "304"   "viper_poison_attack"
-        "305"   "viper_nethertoxin"
-        "306"   "viper_corrosive_skin"
-        "307"   "viper_viper_strike"
-
-        // Bane
-        "308"   "bane_enfeeble"
-        "309"   "bane_brain_sap"
-        "310"   "bane_nightmare"
-        "311"   "bane_fiends_grip"
-
-        // Lich
-        "312"   "lich_frost_nova"
-        "313"   "lich_frost_armor"
-        "314"   "lich_dark_ritual"
-        "315"   "lich_chain_frost"
-
-        // Lion
-        "316"   "lion_impale"
-        "317"   "lion_voodoo"
-        "318"   "lion_mana_drain"
-        "319"   "lion_finger_of_death"
-
-        // Witch Doctor
-        "320"   "witch_doctor_paralyzing_cask"
-        "321"   "witch_doctor_voodoo_restoration"
-        "322"   "witch_doctor_maledict"
-        "323"   "witch_doctor_death_ward"
-
-        // Enigma
-        "324"   "enigma_malefice"
-        "325"   "enigma_demonic_conversion"
-        "326"   "enigma_midnight_pulse"
-        "327"   "enigma_black_hole"
-
-        // Necrolyte
-        "328"   "necrolyte_death_pulse"
-        "329"   "necrolyte_heartstopper_aura"
-        "330"   "necrolyte_sadist"
-        "331"   "necrolyte_reapers_scythe"
-
-        // Warlock
-        "332"   "warlock_fatal_bonds"
-        "333"   "warlock_shadow_word"
-        "334"   "warlock_upheaval"
-        "335"   "warlock_rain_of_chaos"
-
-        // Night Stalker
-        "336"   "night_stalker_void"
-        "337"   "night_stalker_crippling_fear"
-        "338"   "night_stalker_hunter_in_the_night"
-        "339"   "night_stalker_darkness"
-
-        // Doom Bringer
-        //"340"   "doom_bringer_devour"
-        "341"   "doom_bringer_scorched_earth"
-        "342"   "doom_bringer_lvl_death"
-        "343"   "doom_bringer_doom"
-
-        // Spirit Breaker
-        "344"   "spirit_breaker_charge_of_darkness"
-        "345"   "spirit_breaker_empowering_haste"
-        "346"   "spirit_breaker_greater_bash"
-        "347"   "spirit_breaker_nether_strike"
-
-        // Lycan
-        "348"   "lycan_summon_wolves"
-        "349"   "lycan_howl"
-        "350"   "lycan_feral_impulse"
-        "351"   "lycan_shapeshift"
-
-        // Chaos Knight
-        "352"   "chaos_knight_chaos_bolt"
-        "353"   "chaos_knight_reality_rift"
-        "354"   "chaos_knight_chaos_strike"
-        "355"   "chaos_knight_phantasm"
-
-        // Undying
-        "356"   "undying_decay"
-        "357"   "undying_soul_rip"
-        "358"   "undying_tombstone"
-        "359"   "undying_flesh_golem"
-
-        // Magnus
-        "360"   "magnataur_shockwave"
-        "361"   "magnataur_empower"
-        "362"   "magnataur_skewer"
-        "363"   "magnataur_reverse_polarity"
-
-        // Clinkz
-        "364"   "clinkz_strafe"
-        "365"   "clinkz_searing_arrows"
-        "366"   "clinkz_wind_walk"
-        "367"   "clinkz_death_pact"
-
-        // Broodmother
-        "368"   "broodmother_spawn_spiderlings"
-        "369"   "broodmother_spin_web"
-        "370"   "broodmother_incapacitating_bite"
-        "371"   "broodmother_insatiable_hunger"
-
-        // Weaver
-        "372"   "weaver_the_swarm"
-        "373"   "weaver_shukuchi"
-        "374"   "weaver_geminate_attack"
-        "375"   "weaver_time_lapse"
-
-        // Spectre
-        "376"   "spectre_spectral_dagger"
-        "377"   "spectre_desolate"
-        "378"   "spectre_dispersion"
-        "379"   "spectre_haunt||spectre_reality"
-
-        // Meepo
-        "380"   "meepo_earthbind"
-        "381"   "meepo_poof"
-        "382"   "meepo_geostrike"
-        //"383"   "meepo_divided_we_stand"
-
-        // Nyx Assassin
-        "384"   "nyx_assassin_impale"
-        "385"   "nyx_assassin_mana_burn"
-        "386"   "nyx_assassin_spiked_carapace"
-        "387"   "nyx_assassin_vendetta"
-
-        // Slark
-        "388"   "slark_dark_pact"
-        "389"   "slark_pounce"
-        "390"   "slark_essence_shift"
-        "391"   "slark_shadow_dance"
-
-        // Queen of Pain
-        "392"   "queenofpain_shadow_strike"
-        "393"   "queenofpain_blink"
-        "394"   "queenofpain_scream_of_pain"
-        "395"   "queenofpain_sonic_wave"
-
-        // Death Prophet
-        "396"   "death_prophet_carrion_swarm"
-        "397"   "death_prophet_silence"
-        "398"   "death_prophet_witchcraft"
-        "399"   "death_prophet_exorcism"
-
-        // Pugna
-        "400"   "pugna_nether_blast"
-        "401"   "pugna_decrepify"
-        "402"   "pugna_nether_ward"
-        "403"   "pugna_life_drain"
-
-        // Dazzle
-        "404"   "dazzle_poison_touch"
-        "405"   "dazzle_shallow_grave"
-        "406"   "dazzle_shadow_wave"
-        "407"   "dazzle_weave"
-
-        // Leshrac
-        "408"   "leshrac_split_earth"
-        "409"   "leshrac_diabolic_edict"
-        "410"   "leshrac_lightning_storm"
-        "411"   "leshrac_pulse_nova"
-
-        // Dark Seer
-        "412"   "dark_seer_vacuum"
-        "413"   "dark_seer_ion_shell"
-        "414"   "dark_seer_surge"
-        "415"   "dark_seer_wall_of_replica"
-
-        // Batrider
-        "416"   "batrider_sticky_napalm"
-        "417"   "batrider_flamebreak"
-        "418"   "batrider_firefly"
-        "419"   "batrider_flaming_lasso"
-
-        // Abaddon
-        "420"   "abaddon_death_coil"
-        "421"   "abaddon_aphotic_shield"
-        "422"   "abaddon_frostmourne"
-        "423"   "abaddon_borrowed_time"
-
-        // Abysal Underlord
-        "424"   "abyssal_underlord_firestorm"
-        "425"   "abyssal_underlord_pit_of_malice"
-        "426"   "abyssal_underlord_atrophy_aura"
-        "427"   "abyssal_underlord_dark_rift"
-
-        // None x 5
-
-        // Medusa
-        "448"   "medusa_split_shot"
-        "449"   "medusa_mystic_snake"
-        "450"   "medusa_mana_shield"
-        "451"   "medusa_stone_gaze"
-
-        // Terrorblade
-        "452"   "terrorblade_reflection"
-        "453"   "terrorblade_conjure_image"
-        "454"   "terrorblade_metamorphosis"
-        "455"   "terrorblade_sunder"
-
-        // None x 5
-
-        // Ancient Apparition
-        "476"   "ancient_apparition_cold_feet"
-        "477"   "ancient_apparition_ice_vortex"
-        "478"   "ancient_apparition_chilling_touch"
-        "479"   "ancient_apparition_ice_blast"
-
-        // Invoker
-        "480"   "invoker_forge_spirit_lod||invoker_sun_strike_lod"
-        "481"   "invoker_deafening_blast_lod||invoker_emp_lod"
-        "482"   "invoker_chaos_meteor_lod||invoker_alacrity_lod||invoker_ice_wall_lod"
-        "483"   "invoker_ghost_walk_lod||invoker_cold_snap_lod||invoker_tornado_lod"
-
-        // Obsidian Destroyer
-        "484"   "obsidian_destroyer_arcane_orb"
-        "485"   "obsidian_destroyer_astral_imprisonment"
-        "486"   "obsidian_destroyer_essence_aura"
-        "487"   "obsidian_destroyer_sanity_eclipse"
-
-        // Shadow Demon
-        "488"   "shadow_demon_disruption"
-        "489"   "shadow_demon_soul_catcher"
-        "490"   "shadow_demon_shadow_poison||shadow_demon_shadow_poison_release"
-        //"491"   "shadow_demon_demonic_purge"
-
-        // Visage
-        "492"   "visage_grave_chill"
-        //"493"   "visage_soul_assumption"
-        "494"   "visage_gravekeepers_cloak"
-        "495"   "visage_summon_familiars"
-
-        // Techies
-        "496"   ""
-        "497"   ""
-        "498"   ""
-        "499"   ""
-
-        "496_s1"   "techies_land_mines"
-        "497_s1"   "techies_stasis_trap"
-        "498_s1"   "techies_suicide"
-        "499_s1"   "techies_remote_mines||techies_focused_detonate"
-
-        ////////////////////
-        // Wrath Night Skills Tab
-        ////////////////////
-
-        // Sven
-        "1007"  ""
-        "1007_s1"  "holdout_gods_strength"
-
-        // Drow
-        "1033"  ""
-        "1033_s1"  "holdout_multishot"
-
-        // Jugernaut
-        "1039"  ""
-        "1039_s1"  "holdout_omnislash"
-
-        // Crystal Maiden
-        "1058"  ""
-        "1058_s1"  "holdout_arcane_aura"
-
-        // Zeus
-        "1075"  ""
-        "1075_s1"  "zuus_thundergods_vengeance"
-
-        // Omni Knight
-        //"1087"  ""
-        //"1087_s1"  "holdout_guardian_angel"
-
-        // Legion Commander
-        "1187"   ""
-        "1187_s1"   "holdout_gladiators_unite"
-
-        // Axe
-        "1255"  ""
-        "1255_s1"  "holdout_culling_blade"
-
-        // Venomancer
-        "1294"  ""
-        "1294_s1"  "holdout_scourge_ward"
+        "main" {
+            // Earth Shaker
+            "0"     "earthshaker_fissure"
+            "1"     "earthshaker_enchant_totem"
+            "2"     "earthshaker_aftershock"
+            "3"     "earthshaker_echo_slam"
+
+            // Sven
+            "4"     "sven_storm_bolt"
+            "5"     "sven_great_cleave"
+            "6"     "sven_warcry"
+            "7"     "sven_gods_strength"
+
+            //Tiny
+            "8"     "tiny_avalanche"
+            "9"     "tiny_toss"
+            "10"    "tiny_craggy_exterior"
+            //"11"    "tiny_grow"
+
+            // Kunkka
+            "12"    "kunkka_torrent"
+            "13"    "kunkka_tidebringer"
+            "14"    "kunkka_x_marks_the_spot"
+            "15"    "kunkka_ghostship"
+
+            // Beast Master
+            "16"    "beastmaster_wild_axes"
+            "17"    "beastmaster_call_of_the_wild_boar"
+            "18"    "beastmaster_inner_beast"
+            "19"    "beastmaster_primal_roar"
+
+            // Dragon Knight
+            "20"    "dragon_knight_breathe_fire"
+            "21"    "dragon_knight_dragon_tail"
+            "22"    "dragon_knight_dragon_blood"
+            "23"    "dragon_knight_elder_dragon_form"
+
+            // Clockwerk
+            "24"    "rattletrap_battery_assault"
+            "25"    "rattletrap_power_cogs"
+            "26"    "rattletrap_rocket_flare"
+            "27"    "rattletrap_hookshot"
+
+            // Antimage
+            "28"    "antimage_mana_break"
+            "29"    "antimage_blink"
+            "30"    "antimage_spell_shield"
+            "31"    "antimage_mana_void"
+
+            // Drow Ranger
+            "32"    "drow_ranger_frost_arrows"
+            "33"    "drow_ranger_wave_of_silence"
+            "34"    "drow_ranger_trueshot"
+            "35"    "drow_ranger_marksmanship"
+
+            // Juggernaut
+            "36"    "juggernaut_blade_fury"
+            "37"    "juggernaut_healing_ward"
+            "38"    "juggernaut_blade_dance"
+            "39"    "juggernaut_omni_slash"
+
+            // Mirana
+            "40"    "mirana_starfall"
+            "41"    "mirana_arrow"
+            "42"    "mirana_leap"
+            "43"    "mirana_invis"
+
+            // Morphling
+            "44"    "morphling_waveform"
+            "45"    "morphling_adaptive_strike"
+            "46"    "morphling_morph_str||morphling_morph_agi"
+            "47"    "morphling_replicate"
+
+            // Phantom Lancer
+            "48"    "phantom_lancer_spirit_lance"
+            "49"    "phantom_lancer_doppelwalk"
+            "50"    "phantom_lancer_juxtapose"
+            "50_s1" "phantom_lancer_phantom_edge"
+            "51"    "phantom_lancer_phantom_edge"
+            "51_s1" "phantom_lancer_juxtapose"
+
+            // Vengeful Spirit
+            "52"    "vengefulspirit_magic_missile"
+            "53"    "vengefulspirit_wave_of_terror"
+            "54"    "vengefulspirit_command_aura"
+            "55"    "vengefulspirit_nether_swap"
+
+            // Crystal Maiden
+            "56"    "crystal_maiden_crystal_nova"
+            "57"    "crystal_maiden_frostbite"
+            "58"    "crystal_maiden_brilliance_aura"
+            "59"    "crystal_maiden_freezing_field"
+
+            // Puck
+            "60"    "puck_illusory_orb||puck_ethereal_jaunt"
+            "61"    "puck_waning_rift"
+            "62"    "puck_phase_shift"
+            "63"    "puck_dream_coil"
+
+            // Storm Spirit
+            "64"    "storm_spirit_static_remnant"
+            "65"    "storm_spirit_electric_vortex"
+            "66"    "storm_spirit_overload"
+            "67"    "storm_spirit_ball_lightning"
+
+            // Windrunner
+            "68"    "windrunner_shackleshot"
+            "69"    "windrunner_powershot"
+            "70"    "windrunner_windrun"
+            "71"    "windrunner_focusfire"
+
+            // Zeus
+            "72"    "zuus_arc_lightning"
+            "73"    "zuus_lightning_bolt"
+            "74"    "zuus_static_field"
+            "75"    "zuus_thundergods_wrath"
+
+            // Lina
+            "76"    "lina_dragon_slave"
+            "77"    "lina_light_strike_array"
+            "78"    "lina_fiery_soul"
+            "79"    "lina_laguna_blade"
+
+            // Shadow Shaman
+            "80"    "shadow_shaman_ether_shock"
+            "81"    "shadow_shaman_voodoo"
+            "82"    "shadow_shaman_shackles"
+            "83"    "shadow_shaman_mass_serpent_ward"
+
+            // Omniknight
+            "84"    "omniknight_purification"
+            "85"    "omniknight_repel"
+            "86"    "omniknight_degen_aura"
+            "87"    "omniknight_guardian_angel"
+
+            // Huskar
+            "88"    "huskar_inner_vitality"
+            "89"    "huskar_burning_spear"
+            "90"    "huskar_berserkers_blood"
+            "91"    "huskar_life_break"
+
+            // Alchemist
+            "92"    "alchemist_acid_spray"
+            "93"    "alchemist_unstable_concoction"
+            "94"    "alchemist_goblins_greed"
+            "95"    "alchemist_chemical_rage"
+
+            // Brewmaster
+            "96"    "brewmaster_thunder_clap"
+            "97"    "brewmaster_drunken_haze"
+            "98"    "brewmaster_drunken_brawler"
+            "99"    "brewmaster_primal_split"
+
+            // Treant Protector
+            "100"   "treant_natures_guise"
+            "101"   "treant_leech_seed"
+            "102"   "treant_living_armor"
+            "103"   "treant_overgrowth"
+            "103_s1"   "treant_overgrowth||treant_eyes_in_the_forest"
+
+            // Wisp
+            "104"   "wisp_tether"
+            "105"   "wisp_spirits"
+            "106"   "wisp_overcharge"
+            "107"   "wisp_relocate"
+
+            // Centaur Warchief
+            "108"   "centaur_hoof_stomp"
+            "109"   "centaur_double_edge"
+            "110"   "centaur_return"
+            "111"   "centaur_stampede"
+
+            // Riki
+            "112"   "riki_smoke_screen"
+            "113"   "riki_blink_strike"
+            "113_s1"    "riki_permanent_invisibility"
+            "114"   "riki_backstab"
+            "115"   "riki_permanent_invisibility_lod"
+            "115_s1"   "riki_blink_strike"
+
+            // Sniper
+            "116"   "sniper_shrapnel"
+            "117"   "sniper_headshot"
+            "118"   "sniper_take_aim"
+            "119"   "sniper_assassinate"
+
+            // Templar Assassin
+            "120"   "templar_assassin_refraction"
+            "121"   "templar_assassin_meld"
+            "122"   "templar_assassin_psi_blades"
+            "123"   "templar_assassin_psionic_trap||templar_assassin_trap"
+
+            // Luna
+            "124"   "luna_lucent_beam"
+            "125"   "luna_moon_glaive"
+            "126"   "luna_lunar_blessing"
+            "127"   "luna_eclipse"
+
+            // Bounty Hunter
+            "128"   "bounty_hunter_shuriken_toss"
+            "129"   "bounty_hunter_jinada"
+            "130"   "bounty_hunter_wind_walk"
+            "131"   "bounty_hunter_track"
+
+            // Ursa
+            "132"   "ursa_earthshock"
+            "133"   "ursa_overpower"
+            "134"   "ursa_fury_swipes"
+            "135"   "ursa_enrage"
+
+            // Gyrocopter
+            "136"   "gyrocopter_rocket_barrage"
+            "137"   "gyrocopter_homing_missile"
+            "138"   "gyrocopter_flak_cannon"
+            "139"   "gyrocopter_call_down"
+
+            // Tinker
+            "140"   "tinker_laser"
+            "141"   "tinker_heat_seeking_missile"
+            "142"   "tinker_march_of_the_machines"
+            "143"   "tinker_rearm"
+
+            // Furion
+            "144"   "furion_sprout"
+            "145"   "furion_teleportation"
+            "146"   "furion_force_of_nature"
+            "147"   "furion_wrath_of_nature"
+
+            // Enchantress
+            "148"   "enchantress_untouchable"
+            "149"   "enchantress_enchant"
+            "150"   "enchantress_natures_attendants"
+            "151"   "enchantress_impetus"
+
+            // Jakiro
+            "152"   "jakiro_dual_breath"
+            "153"   "jakiro_ice_path"
+            "154"   "jakiro_liquid_fire"
+            "155"   "jakiro_macropyre"
+
+            // Chen
+            "156"   "chen_penitence"
+            "157"   "chen_test_of_faith||chen_test_of_faith_teleport"
+            "158"   "chen_holy_persuasion"
+            "159"   "chen_hand_of_god"
+
+            // Silencer
+            "160"   "silencer_curse_of_the_silent"
+            "161"   "silencer_glaives_of_wisdom"
+            "162"   "silencer_last_word"
+            "163"   "silencer_global_silence"
+
+            // Ogre Magi
+            "164"   "ogre_magi_fireblast"
+            "165"   "ogre_magi_ignite"
+            "166"   "ogre_magi_bloodlust"
+            "167"   "ogre_magi_multicast_lod"
+
+            // Shredder Timbersaw
+            "168"   "shredder_whirling_death"
+            "169"   "shredder_timber_chain"
+            "170"   "shredder_reactive_armor"
+            "171"   "shredder_chakram"
+
+            // Bristleback
+            "172"   "bristleback_viscous_nasal_goo"
+            "173"   "bristleback_quill_spray"
+            "174"   "bristleback_bristleback"
+            "175"   "bristleback_warpath"
+
+            // Tusk
+            "176"   "tusk_ice_shards"
+            "177"   "tusk_snowball"
+            "178"   "tusk_frozen_sigil"
+            "179"   "tusk_walrus_punch"
+
+            // Elder Titan
+            "180"   "elder_titan_echo_stomp"
+            "181"   "elder_titan_ancestral_spirit||elder_titan_return_spirit"
+            "182"   "elder_titan_natural_order"
+            "183"   "elder_titan_earth_splitter"
+
+            // Legion Commander
+            "184"   "legion_commander_overwhelming_odds"
+            "185"   "legion_commander_press_the_attack"
+            "186"   "legion_commander_moment_of_courage"
+            "187"   "legion_commander_duel"
+
+            // Earth Spirit
+            "188"   "earth_spirit_boulder_smash"
+            "189"   "earth_spirit_rolling_boulder"
+            "190"   "earth_spirit_geomagnetic_grip"
+            "191"   "earth_spirit_magnetize"
+
+            // Phoenix
+            "192"   "phoenix_icarus_dive"
+            "193"   "phoenix_fire_spirits"
+            "194"   "phoenix_sun_ray"
+            "195"   "phoenix_supernova"
+
+            // Lone Druid
+            "196"   "lone_druid_spirit_bear"
+            "197"   "lone_druid_rabid"
+            "198"   "lone_druid_synergy"
+            //"199"   "lone_druid_true_form"
+
+            // Naga Siren
+            "200"   "naga_siren_mirror_image"
+            "201"   "naga_siren_ensnare"
+            "202"   "naga_siren_rip_tide"
+            "203"   "naga_siren_song_of_the_siren"
+
+            // Troll Warlord
+            "204"   "troll_warlord_berserkers_rage"
+            "205"   "troll_warlord_whirling_axes_ranged"
+            "206"   "troll_warlord_fervor"
+            "207"   "troll_warlord_battle_trance"
+
+            // Ember Spirit
+            "208"   "ember_spirit_searing_chains"
+            "209"   "ember_spirit_sleight_of_fist"
+            "210"   "ember_spirit_flame_guard"
+            //"211"   "ember_spirit_fire_remnant||ember_spirit_activate_fire_remnant"
+
+            // None
+
+            // None
+
+            // None
+
+            // Rubick
+            "224"   "rubick_telekinesis"
+            "225"   "rubick_fade_bolt"
+            "226"   "rubick_null_field"
+            //"227"   "rubick_spell_steal"
+
+            // Disruptor
+            "228"   "disruptor_thunder_strike"
+            "229"   "disruptor_glimpse"
+            "230"   "disruptor_kinetic_field"
+            "231"   "disruptor_static_storm"
+
+            // Keeper of the Light
+            "232"   "keeper_of_the_light_illuminate"
+            "233"   "keeper_of_the_light_mana_leak"
+            "234"   "keeper_of_the_light_chakra_magic"
+            "235"   "keeper_of_the_light_spirit_form||keeper_of_the_light_recall_lod||keeper_of_the_light_blinding_light_lod"
+
+            // Skywrath Mage
+            "236"   "skywrath_mage_arcane_bolt"
+            "237"   "skywrath_mage_concussive_shot"
+            "238"   "skywrath_mage_ancient_seal"
+            "239"   "skywrath_mage_mystic_flare"
+
+            // Oracle
+            "240"   "oracle_fortunes_end"
+            "241"   "oracle_fates_edict"
+            "242"   "oracle_purifying_flames"
+            "243"   "oracle_false_promise"
+
+            // Axe
+            "252"   "axe_berserkers_call"
+            "253"   "axe_battle_hunger"
+            "254"   "axe_counter_helix"
+            "255"   "axe_culling_blade"
+
+            // Pudge
+            "256"   "pudge_meat_hook"
+            "257"   "pudge_rot"
+            "258"   "pudge_flesh_heap"
+            "259"   "pudge_dismember"
+
+            // Sand King
+            "260"   "sandking_burrowstrike"
+            "261"   "sandking_sand_storm"
+            "262"   "sandking_caustic_finale"
+            "263"   "sandking_epicenter"
+
+            // Slardar
+            "264"   "slardar_sprint"
+            "265"   "slardar_slithereen_crush"
+            "266"   "slardar_bash"
+            "267"   "slardar_amplify_damage"
+
+            // Tidehunter
+            "268"   "tidehunter_gush"
+            "269"   "tidehunter_kraken_shell"
+            "270"   "tidehunter_anchor_smash"
+            "271"   "tidehunter_ravage"
+
+            // Skeleton King or Wraith King
+            "272"   "skeleton_king_hellfire_blast"
+            "273"   "skeleton_king_vampiric_aura"
+            "274"   "skeleton_king_mortal_strike"
+            "275"   "skeleton_king_reincarnation"
+
+            // Lifestealer
+            "276"   "life_stealer_rage"
+            "277"   "life_stealer_feast"
+            "278"   "life_stealer_open_wounds"
+            "279"   "life_stealer_infest"
+
+            // Bloodseeker
+            "280"   "bloodseeker_bloodrage"
+            "281"   "bloodseeker_blood_bath"
+            "282"   "bloodseeker_thirst"
+            "283"   "bloodseeker_rupture"
+
+            // Nevermore
+            "284"   "nevermore_shadowraze1||nevermore_shadowraze2||nevermore_shadowraze3"
+            "285"   "nevermore_necromastery"
+            "286"   "nevermore_dark_lord"
+            "287"   "nevermore_requiem"
+
+            // Razor
+            "288"   "razor_plasma_field"
+            "289"   "razor_static_link"
+            "290"   "razor_unstable_current"
+            "291"   "razor_eye_of_the_storm"
+
+            // Venomancer
+            "292"   "venomancer_venomous_gale"
+            "293"   "venomancer_poison_sting"
+            "294"   "venomancer_plague_ward"
+            "295"   "venomancer_poison_nova"
+
+            // Faceless Void
+            "296"   "faceless_void_time_walk"
+            "297"   "faceless_void_backtrack"
+            "298"   "faceless_void_time_lock"
+            "299"   "faceless_void_chronosphere"
+
+            // Phantom Assassin
+            "300"   "phantom_assassin_stifling_dagger"
+            "301"   "phantom_assassin_phantom_strike"
+            "302"   "phantom_assassin_blur"
+            "303"   "phantom_assassin_coup_de_grace"
+
+            // Viper
+            "304"   "viper_poison_attack"
+            "305"   "viper_nethertoxin"
+            "306"   "viper_corrosive_skin"
+            "307"   "viper_viper_strike"
+
+            // Bane
+            "308"   "bane_enfeeble"
+            "309"   "bane_brain_sap"
+            "310"   "bane_nightmare"
+            "311"   "bane_fiends_grip"
+
+            // Lich
+            "312"   "lich_frost_nova"
+            "313"   "lich_frost_armor"
+            "314"   "lich_dark_ritual"
+            "315"   "lich_chain_frost"
+
+            // Lion
+            "316"   "lion_impale"
+            "317"   "lion_voodoo"
+            "318"   "lion_mana_drain"
+            "319"   "lion_finger_of_death"
+
+            // Witch Doctor
+            "320"   "witch_doctor_paralyzing_cask"
+            "321"   "witch_doctor_voodoo_restoration"
+            "322"   "witch_doctor_maledict"
+            "323"   "witch_doctor_death_ward"
+
+            // Enigma
+            "324"   "enigma_malefice"
+            "325"   "enigma_demonic_conversion"
+            "326"   "enigma_midnight_pulse"
+            "327"   "enigma_black_hole"
+
+            // Necrolyte
+            "328"   "necrolyte_death_pulse"
+            "329"   "necrolyte_heartstopper_aura"
+            "330"   "necrolyte_sadist"
+            "331"   "necrolyte_reapers_scythe"
+
+            // Warlock
+            "332"   "warlock_fatal_bonds"
+            "333"   "warlock_shadow_word"
+            "334"   "warlock_upheaval"
+            "335"   "warlock_rain_of_chaos"
+
+            // Night Stalker
+            "336"   "night_stalker_void"
+            "337"   "night_stalker_crippling_fear"
+            "338"   "night_stalker_hunter_in_the_night"
+            "339"   "night_stalker_darkness"
+
+            // Doom Bringer
+            //"340"   "doom_bringer_devour"
+            "341"   "doom_bringer_scorched_earth"
+            "342"   "doom_bringer_lvl_death"
+            "343"   "doom_bringer_doom"
+
+            // Spirit Breaker
+            "344"   "spirit_breaker_charge_of_darkness"
+            "345"   "spirit_breaker_empowering_haste"
+            "346"   "spirit_breaker_greater_bash"
+            "347"   "spirit_breaker_nether_strike"
+
+            // Lycan
+            "348"   "lycan_summon_wolves"
+            "349"   "lycan_howl"
+            "350"   "lycan_feral_impulse"
+            "351"   "lycan_shapeshift"
+
+            // Chaos Knight
+            "352"   "chaos_knight_chaos_bolt"
+            "353"   "chaos_knight_reality_rift"
+            "354"   "chaos_knight_chaos_strike"
+            "355"   "chaos_knight_phantasm"
+
+            // Undying
+            "356"   "undying_decay"
+            "357"   "undying_soul_rip"
+            "358"   "undying_tombstone"
+            "359"   "undying_flesh_golem"
+
+            // Magnus
+            "360"   "magnataur_shockwave"
+            "361"   "magnataur_empower"
+            "362"   "magnataur_skewer"
+            "363"   "magnataur_reverse_polarity"
+
+            // Clinkz
+            "364"   "clinkz_strafe"
+            "365"   "clinkz_searing_arrows"
+            "366"   "clinkz_wind_walk"
+            "367"   "clinkz_death_pact"
+
+            // Broodmother
+            "368"   "broodmother_spawn_spiderlings"
+            "369"   "broodmother_spin_web"
+            "370"   "broodmother_incapacitating_bite"
+            "371"   "broodmother_insatiable_hunger"
+
+            // Weaver
+            "372"   "weaver_the_swarm"
+            "373"   "weaver_shukuchi"
+            "374"   "weaver_geminate_attack"
+            "375"   "weaver_time_lapse"
+
+            // Spectre
+            "376"   "spectre_spectral_dagger"
+            "377"   "spectre_desolate"
+            "378"   "spectre_dispersion"
+            "379"   "spectre_haunt||spectre_reality"
+
+            // Meepo
+            "380"   "meepo_earthbind"
+            "381"   "meepo_poof"
+            "382"   "meepo_geostrike"
+            //"383"   "meepo_divided_we_stand"
+
+            // Nyx Assassin
+            "384"   "nyx_assassin_impale"
+            "385"   "nyx_assassin_mana_burn"
+            "386"   "nyx_assassin_spiked_carapace"
+            "387"   "nyx_assassin_vendetta"
+
+            // Slark
+            "388"   "slark_dark_pact"
+            "389"   "slark_pounce"
+            "390"   "slark_essence_shift"
+            "391"   "slark_shadow_dance"
+
+            // Queen of Pain
+            "392"   "queenofpain_shadow_strike"
+            "393"   "queenofpain_blink"
+            "394"   "queenofpain_scream_of_pain"
+            "395"   "queenofpain_sonic_wave"
+
+            // Death Prophet
+            "396"   "death_prophet_carrion_swarm"
+            "397"   "death_prophet_silence"
+            "398"   "death_prophet_witchcraft"
+            "399"   "death_prophet_exorcism"
+
+            // Pugna
+            "400"   "pugna_nether_blast"
+            "401"   "pugna_decrepify"
+            "402"   "pugna_nether_ward"
+            "403"   "pugna_life_drain"
+
+            // Dazzle
+            "404"   "dazzle_poison_touch"
+            "405"   "dazzle_shallow_grave"
+            "406"   "dazzle_shadow_wave"
+            "407"   "dazzle_weave"
+
+            // Leshrac
+            "408"   "leshrac_split_earth"
+            "409"   "leshrac_diabolic_edict"
+            "410"   "leshrac_lightning_storm"
+            "411"   "leshrac_pulse_nova"
+
+            // Dark Seer
+            "412"   "dark_seer_vacuum"
+            "413"   "dark_seer_ion_shell"
+            "414"   "dark_seer_surge"
+            "415"   "dark_seer_wall_of_replica"
+
+            // Batrider
+            "416"   "batrider_sticky_napalm"
+            "417"   "batrider_flamebreak"
+            "418"   "batrider_firefly"
+            "419"   "batrider_flaming_lasso"
+
+            // Abaddon
+            "420"   "abaddon_death_coil"
+            "421"   "abaddon_aphotic_shield"
+            "422"   "abaddon_frostmourne"
+            "423"   "abaddon_borrowed_time"
+
+            // Abysal Underlord
+            "424"   "abyssal_underlord_firestorm"
+            "425"   "abyssal_underlord_pit_of_malice"
+            "426"   "abyssal_underlord_atrophy_aura"
+            "427"   "abyssal_underlord_dark_rift"
+
+            // None x 5
+
+            // Medusa
+            "448"   "medusa_split_shot"
+            "449"   "medusa_mystic_snake"
+            "450"   "medusa_mana_shield"
+            "451"   "medusa_stone_gaze"
+
+            // Terrorblade
+            "452"   "terrorblade_reflection"
+            "453"   "terrorblade_conjure_image"
+            "454"   "terrorblade_metamorphosis"
+            "455"   "terrorblade_sunder"
+
+            // None x 5
+
+            // Ancient Apparition
+            "476"   "ancient_apparition_cold_feet"
+            "477"   "ancient_apparition_ice_vortex"
+            "478"   "ancient_apparition_chilling_touch"
+            "479"   "ancient_apparition_ice_blast"
+
+            // Invoker
+            "480"   "invoker_forge_spirit_lod||invoker_sun_strike_lod"
+            "481"   "invoker_deafening_blast_lod||invoker_emp_lod"
+            "482"   "invoker_chaos_meteor_lod||invoker_alacrity_lod||invoker_ice_wall_lod"
+            "483"   "invoker_ghost_walk_lod||invoker_cold_snap_lod||invoker_tornado_lod"
+
+            // Obsidian Destroyer
+            "484"   "obsidian_destroyer_arcane_orb"
+            "485"   "obsidian_destroyer_astral_imprisonment"
+            "486"   "obsidian_destroyer_essence_aura"
+            "487"   "obsidian_destroyer_sanity_eclipse"
+
+            // Shadow Demon
+            "488"   "shadow_demon_disruption"
+            "489"   "shadow_demon_soul_catcher"
+            "490"   "shadow_demon_shadow_poison||shadow_demon_shadow_poison_release"
+            //"491"   "shadow_demon_demonic_purge"
+
+            // Visage
+            "492"   "visage_grave_chill"
+            //"493"   "visage_soul_assumption"
+            "494"   "visage_gravekeepers_cloak"
+            "495"   "visage_summon_familiars"
+
+            // Techies
+            "496"   ""
+            "497"   ""
+            "498"   ""
+            "499"   ""
+
+            "496_s1"   "techies_land_mines"
+            "497_s1"   "techies_stasis_trap"
+            "498_s1"   "techies_suicide"
+            "499_s1"   "techies_remote_mines||techies_focused_detonate"
+        }
 
         ////////////////////
         // Neutral Skills Tab
         ////////////////////
 
-        // Cast abiltiies
-        "2028"  "centaur_khan_war_stomp"
-        "2029"  "polar_furbolg_ursa_warrior_thunder_clap"
-        "2032"  "dark_troll_warlord_ensnare"
-        "2033"  "dark_troll_warlord_raise_dead"
-        "2036"  "enraged_wildkin_tornado"
-        "2037"  "big_thunder_lizard_slam"
-        "2040"  "satyr_trickster_purge"
-        "2041"  "satyr_soulstealer_mana_burn"
-        "2044"  "big_thunder_lizard_frenzy"
-        "2045"  "ogre_magi_frost_armor"
-        "2048"  "satyr_hellcaller_shockwave"
-        "2049"  "forest_troll_high_priest_heal"
-        "2052"  "harpy_storm_chain_lightning"
+        "neutral" {
+            // Cast abiltiies
+            "28"  "centaur_khan_war_stomp"
+            "29"  "polar_furbolg_ursa_warrior_thunder_clap"
+            "32"  "dark_troll_warlord_ensnare"
+            "33"  "dark_troll_warlord_raise_dead"
+            "36"  "enraged_wildkin_tornado"
+            "37"  "big_thunder_lizard_slam"
+            "40"  "satyr_trickster_purge"
+            "41"  "satyr_soulstealer_mana_burn"
+            "44"  "big_thunder_lizard_frenzy"
+            "45"  "ogre_magi_frost_armor"
+            "48"  "satyr_hellcaller_shockwave"
+            "49"  "forest_troll_high_priest_heal"
+            "52"  "harpy_storm_chain_lightning"
 
-        // Attack modifiers
-        "2196"  "black_dragon_splash_attack"
-        "2198"  "ghost_frost_attack"
-        "2199"  "lone_druid_spirit_bear_demolish"
-        "2202"  "lone_druid_spirit_bear_entangle"
+            // Attack modifiers
+            "196"  "black_dragon_splash_attack"
+            "198"  "ghost_frost_attack"
+            "199"  "lone_druid_spirit_bear_demolish"
+            "202"  "lone_druid_spirit_bear_entangle"
 
-        // Critical strikes
-        "2203"  "lycan_summon_wolves_critical_strike"
-        "2206"  "giant_wolf_critical_strike"
-        "2207"  "alpha_wolf_critical_strike"
+            // Critical strikes
+            "203"  "lycan_summon_wolves_critical_strike"
+            "206"  "giant_wolf_critical_strike"
+            "207"  "alpha_wolf_critical_strike"
 
-        // Evasion
-        "2210"  "blue_dragonspawn_sorcerer_evasion"
-        "2211"  "blue_dragonspawn_overseer_evasion"
+            // Evasion
+            "210"  "blue_dragonspawn_sorcerer_evasion"
+            "211"  "blue_dragonspawn_overseer_evasion"
 
-        // Auras
-        "2214"  "alpha_wolf_command_aura"
-        "2215"  "centaur_khan_endurance_aura"
-        "2218"  "enraged_wildkin_toughness_aura"
-        "2219"  "satyr_hellcaller_unholy_aura"
-        "2221"  "undying_tombstone_zombie_deathstrike"
-        "2222"  "blue_dragonspawn_overseer_devotion_aura"
-        "2223"  "kobold_taskmaster_speed_aura"
-        "2224"  ""
-        "2224_s1"  "granite_golem_hp_aura"
+            // Auras
+            "214"  "alpha_wolf_command_aura"
+            "215"  "centaur_khan_endurance_aura"
+            "218"  "enraged_wildkin_toughness_aura"
+            "219"  "satyr_hellcaller_unholy_aura"
+            "221"  "undying_tombstone_zombie_deathstrike"
+            "222"  "blue_dragonspawn_overseer_devotion_aura"
+            "223"  "kobold_taskmaster_speed_aura"
+            "224"  ""
+            "224_s1"  "granite_golem_hp_aura"
 
-        // Poison
-        "2280"  "beastmaster_boar_poison"
-        "2281"  "beastmaster_greater_boar_poison"
-        "2282"  "gnoll_assassin_envenomed_weapon"
+            // Poison
+            "280"  "beastmaster_boar_poison"
+            "281"  "beastmaster_greater_boar_poison"
+            "282"  "gnoll_assassin_envenomed_weapon"
 
-        // Necro Stuff
-        //"2301"  "necronomicon_warrior_sight_lod"
-        "2304"  "necronomicon_warrior_mana_burn_lod"
-        "2305"  "necronomicon_archer_mana_burn_lod"
-        "2306"  "necronomicon_archer_aoe_lod"
-        "2307"  "necronomicon_warrior_last_will_lod"
+            // Necro Stuff
+            //"301"  "necronomicon_warrior_sight_lod"
+            "304"  "necronomicon_warrior_mana_burn_lod"
+            "305"  "necronomicon_archer_mana_burn_lod"
+            "306"  "necronomicon_archer_aoe_lod"
+            "307"  "necronomicon_warrior_last_will_lod"
 
-        // Courier stuff
-        //"2292"  "courier_return_to_base"
-        //"2293"  "courier_go_to_secretshop"
-        //"2294"  "courier_transfer_items"
-        //"2295"  "courier_return_stash_items"
-        //"2376"  "courier_take_stash_items"
-        "2377"  "courier_burst"
+            // Courier stuff
+            //"292"  "courier_return_to_base"
+            //"293"  "courier_go_to_secretshop"
+            //"294"  "courier_transfer_items"
+            //"295"  "courier_return_stash_items"
+            //"376"  "courier_take_stash_items"
+            "377"  "courier_burst"
 
-        // Brewmaster
-        //"2096"  "brewmaster_earth_hurl_boulder"
-        //"2097"  "brewmaster_earth_pulverize||brewmaster_storm_wind_walk"
-        //"2098"  "brewmaster_storm_dispel_magic||brewmaster_fire_permanent_immolation"
-        //"2099"  "brewmaster_storm_cyclone"
+            // Brewmaster
+            //"96"  "brewmaster_earth_hurl_boulder"
+            //"97"  "brewmaster_earth_pulverize||brewmaster_storm_wind_walk"
+            //"98"  "brewmaster_storm_dispel_magic||brewmaster_fire_permanent_immolation"
+            //"99"  "brewmaster_storm_cyclone"
+        }
+
+        ////////////////////
+        // Wrath Night Skills Tab
+        ////////////////////
+
+        "wraith" {
+            // Sven
+            "7"  ""
+            "7_s1"  "holdout_gods_strength"
+
+            // Drow
+            "33"  ""
+            "33_s1"  "holdout_multishot"
+
+            // Jugernaut
+            "39"  ""
+            "39_s1"  "holdout_omnislash"
+
+            // Crystal Maiden
+            "58"  ""
+            "58_s1"  "holdout_arcane_aura"
+
+            // Zeus
+            "75"  ""
+            "75_s1"  "zuus_thundergods_vengeance"
+
+            // Omni Knight
+            //"87"  ""
+            //"87_s1"  "holdout_guardian_angel"
+
+            // Legion Commander
+            "187"   ""
+            "187_s1"   "holdout_gladiators_unite"
+
+            // Axe
+            "255"  ""
+            "255_s1"  "holdout_culling_blade"
+
+            // Venomancer
+            "294"  ""
+            "294_s1"  "holdout_scourge_ward"
+        }
     }
 }
