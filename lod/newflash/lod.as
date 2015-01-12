@@ -495,6 +495,9 @@
 
             // Patch picking icons
             if(lastState.s > STAGE_VOTING) {
+                // Store useful stuff
+                MAX_SLOTS = lastState.slots;
+
                 // Check if hero icons need to be patched
                 if(!patchedHeroIcons) {
                     // We have now patched hero icons
@@ -522,9 +525,6 @@
 
                 // Load up the skills file
                 loadSkillsFile();
-
-                // Store useful stuff
-                MAX_SLOTS = lastState.slots;
             }
 
             // Don't do anything if the versionUI is visible
