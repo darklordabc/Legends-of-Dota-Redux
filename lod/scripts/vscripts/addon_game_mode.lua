@@ -1497,45 +1497,48 @@ function lod:OnThink()
         return
     end
 
-    -- Options patch
-    if patchOptions then
-        if not patchedOptions then
-            -- Only do it once
-            patchedOptions = true
-
-            -- No longer voting
-            stillVoting = false
-
-            -- Move onto banning
-            currentStage = STAGE_BANNING
-
-            -- Setup all the fancy gamemode stuff
-            setupGamemodeSettings()
-
-            -- Update state
-            self:OnEmitStateInfo()
-        end
-    else
-        -- We must have a valid slaveID before we can do anything
-        if slaveID == -1 then
-            slaveID = loadhelper.getHostID()
-
-            -- Is it still broken?
-            if slaveID == -1 then
-                return 0.1
-            end
-        end
-    end
-
     -- Decide what to do
     if currentStage == STAGE_WAITING then
         -- Wait for hero selection to start
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_HERO_SELECTION then
-            -- Move onto the voting stage
-            currentStage = STAGE_VOTING
+            -- Options patch
+            if patchOptions then
+                if not patchedOptions then
+                    -- Only do it once
+                    patchedOptions = true
 
-            -- Send the voting info
-            self:OnEmitStateInfo()
+                    -- No longer voting
+                    stillVoting = false
+
+                    -- Move onto banning
+                    currentStage = STAGE_BANNING
+
+                    -- Store when the banning phase ends
+                    endOfTimer = Time() + banningTime
+
+                    -- Setup all the fancy gamemode stuff
+                    setupGamemodeSettings()
+
+                    -- Update state
+                    self:OnEmitStateInfo()
+                end
+            else
+                -- We must have a valid slaveID before we can do anything
+                if slaveID == -1 then
+                    slaveID = loadhelper.getHostID()
+
+                    -- Is it still broken?
+                    if slaveID == -1 then
+                        return 0.1
+                    end
+                end
+
+                -- Move onto the voting stage
+                currentStage = STAGE_VOTING
+
+                -- Send the voting info
+                self:OnEmitStateInfo()
+            end
 
             -- Sleep until the voting time is over
             return 0.1
@@ -1558,8 +1561,8 @@ function lod:OnThink()
         -- Move onto banning mode
         currentStage = STAGE_BANNING
 
-        -- Store when the hero selection started
-        heroSelectionStart = Time()
+        -- Store when the banning phase ends
+        endOfTimer = Time() + banningTime
 
         -- Send the picking info
         self:OnEmitStateInfo()
@@ -1588,10 +1591,16 @@ function lod:OnThink()
         PauseGame(true)
 
         -- Wait for banning to end
-        if Time() < heroSelectionStart + banningTime then return 1 end
+        if Time() < endOfTimer then return 0.1 end
 
         -- Change to picking state
         currentStage = STAGE_PICKING
+
+        -- Store when the picking phase ends
+        endOfTimer = Time() + pickingTime
+
+        -- Update the state
+        self:OnEmitStateInfo()
 
         -- Tell everyone
         sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..pickingTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
@@ -1601,17 +1610,11 @@ function lod:OnThink()
     end
 
     if currentStage == STAGE_PICKING then
-        -- Workout how long left
-        local timeLeft = heroSelectionStart + pickingTime + banningTime - Time()
+        -- Pause the game
+        PauseGame(true)
 
-        if timeLeft > 60 then
-            PauseGame(true)
-        else
-            PauseGame(false)
-        end
-
-        -- Wait for voting to end
-        if timeLeft > 0 and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 1 end
+        -- Wait for picking to end
+        if Time() < endOfTimer and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 0.1 end
 
         -- Change to the playing stage
         currentStage = STAGE_PLAYING
