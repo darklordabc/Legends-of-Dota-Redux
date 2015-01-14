@@ -226,7 +226,7 @@
             stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
 
             // Handle the scoreboard stuff
-            //handleScoreboard();
+            handleScoreboard();
 
 			// Load EasyDrag
             EasyDrag.init(stage);
