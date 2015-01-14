@@ -9,6 +9,9 @@ package {
     // Events
     import flash.events.MouseEvent;
 
+    // Glow Filter
+    import flash.filters.GlowFilter;
+
     public class EasyDrag {
         // Contains the movieclip we are dragging
         private static var dragClip;
@@ -117,6 +120,15 @@ package {
                 dragClip = new MovieClip();
                 dragClip.mouseEnabled = false;
                 stage.addChild(dragClip);
+
+                var effect:GlowFilter = new GlowFilter;
+                effect.blurX = 5;
+                effect.blurY = 5;
+                effect.strength = 255;
+                effect.inner = false;
+                effect.knockout = false;
+                effect.color = 0x0000FF;
+                dragClip.filters = [effect];
 
                 // Check if we have a callback
                 if(callbacksStart[dragClickedClip]) {

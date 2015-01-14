@@ -202,7 +202,10 @@
 
 	                                            // Store into the active list
 	                                            activeList[skill] = skillSlot;
-                                        	}
+                                        	} else {
+                                                // Remove the slot
+                                                sl.removeChild(skillSlot);
+                                            }
                                         } else {
                                             // Remove the slot
                                             sl.removeChild(skillSlot);
