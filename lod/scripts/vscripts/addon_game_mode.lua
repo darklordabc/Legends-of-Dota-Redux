@@ -2208,6 +2208,12 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
             return
         end
 
+        -- Ensure different slots
+        if slot1 == slot2 then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can\'t swap a slot with itself.</font>')
+            return
+        end
+
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
         slotTypes[playerID] = slotTypes[playerID] or {}

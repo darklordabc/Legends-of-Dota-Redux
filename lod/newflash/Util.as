@@ -13,7 +13,16 @@ package {
     import scaleform.clik.interfaces.IDataProvider;
     import scaleform.clik.data.DataProvider;
 
+    // Marking spells different colors
+    import flash.filters.ColorMatrixFilter;
+
     public class Util {
+        // A red filter
+        public static var redFilter:Array = [new ColorMatrixFilter([1,1,1,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
+
+        // A grey filter
+        public static var greyFilter:Array = [new ColorMatrixFilter([0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.33,0.33,0.33,0,0,0.0,0.0,0.0,1,0])];
+
         // Function to repeat a string many times
         public static function strRep(str, count) {
             var output = "";
@@ -215,6 +224,25 @@ package {
                 comboBox.defaultSelection = comboBox.menuList.dataProvider[0];
                 comboBox.setSelectedIndex(0);
             }
+        }
+
+        // Creates a search box
+        public static function searchBox(container:MovieClip):MovieClip {
+            return cloneObject(container, lod.Globals.Loader_shared_heroselectorandloadout.movieClip.heroDock.filterButtons.searchBox);
+        }
+
+        // Clones the given movieclip
+        public static function cloneObject(contianer:MovieClip, source:MovieClip):MovieClip {
+            var objectClass:Class = Object(source).constructor;
+            var instance:MovieClip = new objectClass() as MovieClip;
+            contianer.addChild(instance);
+            /*instance.transform = source.transform;
+            instance.filters = source.filters;
+            instance.cacheAsBitmap = source.cacheAsBitmap;
+            instance.opaqueBackground = source.opaqueBackground;
+            source.parent.addChild(instance);*/
+
+            return instance;
         }
 
         // Empties a movieclip

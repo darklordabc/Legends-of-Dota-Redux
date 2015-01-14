@@ -431,6 +431,16 @@
             return skillLookup[skillName] != null;
         }
 
+        // Returns if a skill is banned
+        public static function isSkillBanned(skillName:String):Boolean {
+            return false;
+        }
+
+        // Returns if this is a troll skill
+        public static function isTrollSkill(skillName:String):Boolean {
+            return false;
+        }
+
         // Checks if a tab is allowed
         public static function isTabAllowed(tab:String):Boolean {
             // Checks if a tab is allowed
