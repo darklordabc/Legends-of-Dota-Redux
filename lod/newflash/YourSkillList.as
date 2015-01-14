@@ -116,5 +116,15 @@
             // Enable dragging
             return true;
         }
+
+        // Returns the skill in the given slot
+        public function getSkillInSlot(slotNumber:Number):String {
+            var s = this['skill'+slotNumber];
+            if(s != null) {
+            	return s.getSkillName();
+            }
+
+            return 'nothing';
+        }
 	}
 }

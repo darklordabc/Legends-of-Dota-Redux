@@ -314,12 +314,10 @@
             // Search abilities for this key word
             for(var key in activeList) {
                 // Check for valid drafting skills
-                /*if(finishedBanning && validDraftSkills) {
-                    if(!validDraftSkills[key]) {
-                        activeList[key].visible = false;
-                        continue;
-                    }
-                }*/
+                if(!lod.isValidDraftSkill(key)) {
+                    activeList[key].visible = false;
+                    continue;
+                }
 
                 var doShow:Number = 0;
 
@@ -400,6 +398,11 @@
                     activeList[key].alpha = 0.5;
                 }
             }
+        }
+
+        // Returns the skill in the given slot
+        public function getSkillInSlot(slotNumber:Number):String {
+            return this.yourSkillList.getSkillInSlot(slotNumber);
         }
 
         // Setups the skill list

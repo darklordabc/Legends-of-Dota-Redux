@@ -128,6 +128,12 @@
         // Is this source1?
         private static var source1:Boolean = false;
 
+        // Should we ban troll combos?
+        private static var banTrollCombos:Boolean = false;
+
+        // List of banned skills nawwwww
+        private static var bannedSkills:Object = {};
+
         /*
             SKILL LIST STUFF
         */
@@ -136,7 +142,7 @@
         private var initPostVoting:Boolean = false;
 
         // Stores bans
-        private var banList:Object;
+        public static var banList:Object;
 
         // skillName --> skillID
         private static var skillLookup:Object;
@@ -146,6 +152,15 @@
 
         // Which tabs are allowed
         private static var allowedTabs:Object;
+
+        // Stores the heroes we can draft from
+        private static var validDraftSkills;
+
+        // Stores the owning heroID of each skill
+        private var skillOwningHero:Object;
+
+        // Skills that are banned with our local combos
+        private static var bannedCombos:Object = {};
 
         /*
             CLEANUP STUFF
@@ -373,6 +388,39 @@
                 }
             }
 
+            // Load hero KV
+            var heroKV:Object = globals.GameInterface.LoadKVFile('scripts/npc/npc_heroes.txt');
+
+            var key:String;
+
+            // Build list of skill owners
+            skillOwningHero = {};
+            for(key in heroKV) {
+                // Validate key
+                if(key == 'Version' || key == 'npc_dota_hero_base') continue;
+
+                // Grab the entry
+                var entry:Object = heroKV[key];
+
+                // Ensure it has a heroID
+                if(entry.HeroID) {
+                    // Loop over all possible skills
+                    for(var i:Number=1;i<=16;i++) {
+                        var ab:String = entry['Ability'+i];
+                        if(ab) {
+                            // Store it
+                            skillOwningHero[ab] = entry.HeroID;
+                        }
+                    }
+                }
+            }
+
+            // Add in the override owners
+            var ownersKV = globals.GameInterface.LoadKVFile('scripts/kv/owners.kv');
+            for(key in ownersKV) {
+                skillOwningHero[key] = parseInt(ownersKV[key]);
+            }
+
             // Rebuild the skill list
             selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea);
         }
@@ -422,6 +470,18 @@
             return skillLookupReverse[skillNumber] || 'nothing';
         }
 
+        // Returns the ID (or -1) of the hero that owns this skill
+        private function GetSkillOwningHero(skillName:String) {
+            // Do we know this skill?
+            if(skillOwningHero[skillName]) {
+                // Yes, return the owner
+                return skillOwningHero[skillName];
+            } else {
+                // Nope, go cry :(
+                return -1;
+            }
+        }
+
         // Checks if a given skill is valid, or not
         public static function isValidSkill(skillName:String):Boolean {
             // Ensure a skill is passed
@@ -433,11 +493,22 @@
 
         // Returns if a skill is banned
         public static function isSkillBanned(skillName:String):Boolean {
+            if(bannedSkills[skillName]) return true;
             return false;
+        }
+
+        // Returns if this is a valid draft skill
+        public static function isValidDraftSkill(skillName:String):Boolean {
+            if(validDraftSkills == null) return true;
+            return validDraftSkills[skillName] != null;
         }
 
         // Returns if this is a troll skill
         public static function isTrollSkill(skillName:String):Boolean {
+            if(!banTrollCombos) return false;
+
+            if(bannedCombos[skillName]) return true;
+
             return false;
         }
 
@@ -535,6 +606,9 @@
 
             // Patch picking icons
             if(lastState.s > STAGE_VOTING) {
+                // Do we need to update the filters?
+                var needUpdate:Boolean = false;
+
                 // Check if we need to do post voting stuff
                 if(!initPostVoting) {
                     // Done
@@ -544,12 +618,46 @@
                     MAX_SLOTS = lastState.slots;
                     hideSkills = lastState.hideSkills == 1;
                     source1 = lastState.source1 == 1;
+                    banTrollCombos = lastState.trolls == 1;
 
                     // Load up the skills file
                     loadSkillsFile();
 
                     // Setup slots
                     selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], onDropMySkills);
+
+                    // Is there a draft for us?
+                    if(lastState['s'+playerID] != '') {
+                        // Build a list of valid drafting skills
+                        validDraftSkills = {};
+
+                        // Build a list of the heroes we are allowed to use
+                        var myHeroes:Object = {};
+                        var h = lastState['s'+playerID].split('|');
+                        for(var key in h) {
+                            myHeroes[h[key]] = true;
+                        }
+
+                        for(var skillID in skillLookupReverse) {
+                            // Grab the skill
+                            skillName = skillLookupReverse[skillID];
+
+                            // Find the owner of this skill
+                            var owner:Number = GetSkillOwningHero(skillName);
+
+                            // Check if this is one of our heroes
+                            if(myHeroes[owner]) {
+                                // Yep -- Store it
+                                validDraftSkills[skillName] = true;
+                            }
+                        }
+
+                        // We need an update!
+                        needUpdate = true;
+                    } else {
+                        // Disable draft skills
+                        validDraftSkills = null;
+                    }
                 }
 
                 // Check if hero icons need to be patched
@@ -610,6 +718,40 @@
                             }
                         }
                     }
+                }
+
+                // Did we change any slots?
+                if(changedLocalSlots) {
+                    // Update our local ban list
+                    updateLocalBans();
+
+                    // We need to update filters
+                    needUpdate = true;
+                }
+
+                // Update bans
+                var b = lastState.b.split('|');
+                for(key in b) {
+                    skillNumber = parseInt(b[key]);
+                    if(skillNumber != -1) {
+                        // Grab the name of this skill
+                        skillName = getSkillName(skillNumber);
+
+                        // Check if this skill isn't banned
+                        if(!bannedSkills[skillName]) {
+                            // Ban the skill
+                            bannedSkills[skillName] = true;
+
+                            // We need to update filters
+                            needUpdate = true;
+                        }
+                    }
+                }
+
+                // Check if a filter update is needed
+                if(needUpdate) {
+                    // Update Filters
+                    selectionUI.updateFilters();
                 }
             }
 
@@ -989,6 +1131,35 @@
             Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
         }
 
+        // Updates local bans
+        private function updateLocalBans():void {
+            // Reset banned combos
+            bannedCombos = {};
+
+            // Loop over all slots
+            for(var i:Number=0; i<MAX_SLOTS; i++) {
+                // Grab a slot
+                var skill:String = selectionUI.getSkillInSlot(i);
+
+                trace('Slot ' + i + ' = ' + skill);
+
+                // Validate the skill
+                if(skill != null) {
+                    // Are there any banned combos for this skill?
+                    if(banList[skill] != null) {
+                        // Add to bans
+                        for(var skill2:String in banList[skill]) {
+                            // Store the ban
+                            bannedCombos[skill2] = true;
+
+                            trace('I just banned ' + skill2);
+                        }
+                    }
+
+                }
+            }
+        }
+
         /*
             HELPER METHODS
         */
@@ -1110,10 +1281,10 @@
                 selectionUI.skillIntoSlot(args.slotNumber, skillName);
 
                 // Update local bans
-                //updateLocalBans();
+                updateLocalBans();
 
                 // Update the filters
-                //updateFilters();
+                selectionUI.updateFilters();
             }
         }
 
