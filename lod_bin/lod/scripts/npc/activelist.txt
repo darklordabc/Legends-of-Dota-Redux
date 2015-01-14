@@ -79,13 +79,11 @@
 	"npc_dota_hero_shadow_demon" "1"
 	"npc_dota_hero_lycan" "1"
 
-	// Slots look weird like treant
+	// Why is he disabled?
 	"npc_dota_hero_lone_druid" "1"
 
 	"npc_dota_hero_brewmaster" "1"
 	"npc_dota_hero_phantom_lancer" "1"
-
-	// Slots look weird like lone druid
 	"npc_dota_hero_treant" "1"
 
 	// Bugged -- Gets extra skill aith aghs, causes problems with slots
