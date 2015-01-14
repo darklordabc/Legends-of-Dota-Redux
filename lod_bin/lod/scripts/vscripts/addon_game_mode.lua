@@ -46,8 +46,8 @@ local Timers = require('easytimers')
     SETTINGS
 ]]
 
--- Banning Period (3 minutes)
-local banningTime = 60 * 3
+-- Banning Period (2 minutes)
+local banningTime = 60 * 2
 
 -- Picking Time (3 minutes)
 local pickingTime = 60 * 3
