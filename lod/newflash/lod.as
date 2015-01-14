@@ -302,15 +302,12 @@
             selectionUI.visible = false;
         }
 
-<<<<<<< HEAD
         // Nukes all the UI
         private function nukeUI():void {
             // Delete everything
             Util.empty(this);
         }
 
-=======
->>>>>>> origin/master
         // Cleans up the hud
         private function cleanupHud():void {
             // Hide all UI elements
@@ -673,13 +670,10 @@
                         // Disable draft skills
                         validDraftSkills = null;
                     }
-<<<<<<< HEAD
 
                     // Nuke the voting ui
                     Util.empty(votingUI);
                     this.removeChild(votingUI);
-=======
->>>>>>> origin/master
                 }
 
                 // Check if hero icons need to be patched
@@ -797,7 +791,6 @@
                     buildPickingUI(fromScratch);
                     break;
 
-<<<<<<< HEAD
                 case STAGE_PLAYING:
                     if(fromScratch) {
                         hideAllUI();
@@ -805,8 +798,6 @@
                     }
                     break;
 
-=======
->>>>>>> origin/master
                 default:
                     trace('Unknown stage: ' + lastState.s);
                     hideAllUI();
@@ -1173,11 +1164,6 @@
                 // Grab a slot
                 var skill:String = selectionUI.getSkillInSlot(i);
 
-<<<<<<< HEAD
-=======
-                trace('Slot ' + i + ' = ' + skill);
-
->>>>>>> origin/master
                 // Validate the skill
                 if(skill != null) {
                     // Are there any banned combos for this skill?
@@ -1186,11 +1172,6 @@
                         for(var skill2:String in banList[skill]) {
                             // Store the ban
                             bannedCombos[skill2] = true;
-<<<<<<< HEAD
-=======
-
-                            trace('I just banned ' + skill2);
->>>>>>> origin/master
                         }
                     }
 
@@ -1272,10 +1253,7 @@
 
         // Fired when the server sends us a slave vote update
         private function handleSlave(args:Object):void {
-<<<<<<< HEAD
             if(initPostVoting) return;
-=======
->>>>>>> origin/master
             votingUI.updateSlave(args.opt, args.nv);
         }
 
