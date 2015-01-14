@@ -1642,6 +1642,9 @@ function lod:OnThink()
         -- Unpause the game
         PauseGame(false)
 
+        -- Update the state
+        self:OnEmitStateInfo()
+
         -- Sleep
         return 0.1
     end
