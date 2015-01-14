@@ -531,6 +531,8 @@ end]]
 
 -- Returns the ID for a skill, or -1
 local function getSkillID(skillName)
+    if skillName == nil then return -1 end
+
     -- If the skill wasn't found, return -1
     if skillLookup[skillName] == nil then return -1 end
 
@@ -540,6 +542,8 @@ end
 
 -- Ensures this is a valid slot
 local function isValidSlot(slotNumber)
+    if slotNumber == nil then return false end
+
     if slotNumber < 0 or slotNumber >= maxSlots then return false end
     return true
 end
@@ -712,13 +716,22 @@ end
 
 local function findRandomSkill(playerID, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
-    local canUlt = true
-    local canSkill = true
+    local canUlt
+    local canSkill
 
-    if slotNumber < maxSlots - maxUlts then
+    local slotType = slotTypes[playerID][slotNumber]
+
+    if slotType == SLOT_TYPE_EITHER then
+        canUlt = true
+        canSkill = true
+    elseif slotType == SLOT_TYPE_ABILITY then
         canUlt = false
-    end
-    if slotNumber >= maxSkills then
+        canSkill = true
+    elseif slotType == SLOT_TYPE_ULT then
+        canUlt = true
+        canSkill = false
+    else
+        canUlt = false
         canSkill = false
     end
 
@@ -2152,6 +2165,102 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
     end
 end, 'Ban a given skill', 0)
 
+-- Swap two slots
+Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
+    -- Input validation
+    if slot1 == nil then return end
+    if slot2 == nil then return end
+
+    slot1 = tonumber(slot1)
+    slot2 = tonumber(slot2)
+
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Stop people who have spawned from picking
+        if handledPlayerIDs[playerID] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already spawned. You can no longer pick!</font>')
+            return
+        end
+
+        -- Ensure we are in banning mode
+        if currentStage < STAGE_PICKING then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
+            return
+        end
+
+        -- Ensure we are ALLOWED to pick
+        if not allowedToPick then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not allowed to pick skills.</font>')
+            return
+        end
+
+        -- Ensure this is a valid slot
+        if not isValidSlot(slot1) or not isValidSlot(slot2) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid slot.</font>')
+            return
+        end
+
+        -- Ensure this player has a skill list
+        skillList[playerID] = skillList[playerID] or {}
+        slotTypes[playerID] = slotTypes[playerID] or {}
+
+        -- Copy skill over
+        local tmpSkill = skillList[playerID][slot1+1]
+        skillList[playerID][slot1+1] = skillList[playerID][slot2+1]
+        skillList[playerID][slot2+1] = tmpSkill
+
+        -- Swap slot types
+        local tmpSlot = slotTypes[playerID][slot1]
+        slotTypes[playerID][slot1] = slotTypes[playerID][slot2]
+        slotTypes[playerID][slot2] = tmpSlot
+
+        -- Grab this player's playerSlot
+        local playerSlot = getPlayerSlot(playerID)
+
+        -- Prepare encoding number
+        local encode = 0
+        if hideSkills then
+            if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
+                encode = encodeDire
+            elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
+                encode = encodeRadiant
+            end
+        end
+
+        -- Tell everyone
+        local sn = getSkillID(skillList[playerID][slot1+1])
+        if sn ~= -1 then sn = sn + encode end
+        FireGameEvent('lod_skill', {
+            playerID = playerID,
+            slotNumber = slot1,
+            skillID = sn,
+            playerSlot = playerSlot
+        })
+
+        sn = getSkillID(skillList[playerID][slot2+1])
+        if sn ~= -1 then sn = sn + encode end
+        FireGameEvent('lod_skill', {
+            playerID = playerID,
+            slotNumber = slot2,
+            skillID = sn,
+            playerSlot = playerSlot
+        })
+
+        FireGameEvent('lod_swap_slot', {
+            playerID = playerID,
+            slot1 = slot1,
+            slot2 = slot2
+        })
+
+        -- Tell the player
+        sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">Slot '..(slot1+1)..'</font> was swapped with <font color="'..COLOR_BLUE..'">Slot '..(slot2+1)..'</font>')
+
+    end
+end, 'Ban a given skill', 0)
+
 -- When a user wants to stick a skill into a slot
 Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     -- Input validation
@@ -2210,14 +2319,16 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
 
         -- Ensure it isn't the same skill
         if skillList[playerID][slotNumber+1] ~= skillName then
+            local slotType = slotTypes[playerID][slotNumber]
+
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
-                if slotNumber < maxSlots - maxUlts then
+                if slotType ~= SLOT_TYPE_ULT and slotType ~= SLOT_TYPE_EITHER then
                     sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can not put an ult into this slot.</font>')
                     return
                 end
             else
-                if slotNumber >= maxSkills then
+                if slotType ~= SLOT_TYPE_ABILITY and slotType ~= SLOT_TYPE_EITHER then
                     sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can not put a regular skill into this slot.</font>')
                     return
                 end

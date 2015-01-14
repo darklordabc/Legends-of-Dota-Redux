@@ -85,6 +85,10 @@
         public static var SLOT_TYPE_EITHER:String = '3';
         public static var SLOT_TYPE_NEITHER:String = '4';
 
+        // Dragging constants
+        public static var DRAG_TYPE_SKILL:Number = 1;
+        public static var DRAG_TYPE_SLOT:Number = 2;
+
         /*
             GLOBAL VARIABLES
         */
@@ -185,25 +189,21 @@
             requestDecodingNumber();
 
             // Subscribe to the state info
-            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo); // Contains most of the game state
-            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);    // Someone has updated a voting option
-            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);  // Server sent us info on how to decode skill values
+            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);     // Contains most of the game state
+            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);        // Someone has updated a voting option
+            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);      // Server sent us info on how to decode skill values
+            this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);      // Someone has picked a new skill
+            this.gameAPI.SubscribeToGameEvent("lod_swap_slot", onSlotSwapped);  // Someone has swapped two slots
+            this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);        // Server sent a message
 
             // Handle the scoreboard stuff
             //handleScoreboard();
 
-			//this.gameAPI.SubscribeToGameEvent("ops", onGetOptions);
+			// Load EasyDrag
+            EasyDrag.init(stage);
 
             // Setup display timer
-            if(displayTimer != null) {
-                displayTimer.stop();
-                displayTimer = null;
-            }
-
-            // This timer will update the display timer every 100ms
-            displayTimer = new Timer(100);
-            displayTimer.addEventListener(TimerEvent.TIMER, updateDisplayTimer, false, 0, true);
-            displayTimer.start()
+            updateDisplayTimer();
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
@@ -360,10 +360,13 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1);
+            selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1, onDropBanningArea);
         }
 
         private function updateDisplayTimer():void {
+            // Ensure this timer is still need
+            if(selectionUI == null) return;
+
             if(lastState != null) {
                 var timerEnd:Number = lastState.t;
                 var timerDisplay:String;
@@ -387,6 +390,17 @@
                 // Update the display
                 selectionUI.timerField.text = timerDisplay;
             }
+
+            // Update in 100ms
+            if(displayTimer != null) {
+                displayTimer.stop();
+                displayTimer = null;
+            }
+
+            // This timer will update the display timer every 100ms
+            displayTimer = new Timer(100, 1);
+            displayTimer.addEventListener(TimerEvent.TIMER, updateDisplayTimer, false, 0, true);
+            displayTimer.start();
         }
 
         // Returns a skill name, based on a skill number
@@ -465,6 +479,8 @@
 
         // Waits for the game to be ready to play
         private function waitForGame() {
+            if(selectionUI == null) return;
+
             // Check the state
             if(globals.Game.GetState() >= 2) {
                 // Show waiting UI
@@ -476,59 +492,6 @@
             var timer = new Timer(100, 1);
             timer.addEventListener(TimerEvent.TIMER, waitForGame, false, 0, true);
             timer.start();
-        }
-
-        // Handles the state info
-        private function onGetStateInfo(args:Object):void {
-            trace('Got state info :)');
-            trace('Current stage: ' + args.s);
-
-            // Store the state info
-            lastState = args;
-
-            // Grab our playerID
-            var playerID = globals.Players.GetLocalPlayer();
-
-            // Check if this is our first time through
-            if(firstTimeState) {
-                // No longer our first time
-                firstTimeState = false;
-
-                // Hide the waiting UI
-                waitingUI.visible = false;
-
-                // Show version info
-                versionUI.visible = true;
-
-                // Ensure there is version info
-                if(!args.v) args.v = '';
-
-                // Compare version info
-                var ourVersion:String = getLodVersion();
-                if(args.v != ourVersion) {
-                    trace('LoD: Version mismatch! Server: ' + args.v + ' VS Us: ' + ourVersion);
-
-                    // Show error page
-                    versionUI.gotoAndStop(2);
-
-                    // Update header
-                    versionUI.header.text = "#outDated";
-                } else {
-                    trace('LoD: Version checks out!');
-
-                    // Show success page
-                    versionUI.gotoAndStop(1);
-
-                    // Update header
-                    versionUI.header.text = "#uptoDate";
-                }
-
-                // Append version info
-                versionUI.helpField.text += 'Server: ' + args.v + '\nYour Client: ' + ourVersion;
-            }
-
-            // Update the UI
-            updateUI();
         }
 
         // Updates the UI based on the current state
@@ -561,7 +524,7 @@
                     loadSkillsFile();
 
                     // Setup slots
-                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID]);
+                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], onDropMySkills);
                 }
 
                 // Check if hero icons need to be patched
@@ -703,40 +666,6 @@
             }
         }
 
-        // Fired when the server sends us a slave vote update
-        private function handleSlave(args:Object):void {
-            votingUI.updateSlave(args.opt, args.nv);
-        }
-
-        // Updates a user's vote with the server
-        private function updateVote(optNumber:Number, myChoice:Number):void {
-            gameAPI.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
-        }
-
-        // Finishes voting
-        private function finishedVoting():void {
-            gameAPI.SendServerCommand("finished_voting");
-        }
-
-        // Requests the decoding number
-        private function requestDecodingNumber():void {
-            // Send the request
-            gameAPI.SendServerCommand("lod_decode \""+encodeWith+"\"");
-        }
-
-        // Fired when the server sends us a decoding code
-        private function handleDecode(args:Object):void {
-            // Was this me? (or everyone)
-            var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID) {
-                // Store the new decoder
-                decodeWith = args.code - encodeWith;
-
-                // Store teamID
-                myTeam = parseInt(args.team);
-            }
-        }
-
         // Called when the version info pain is closed
         private function onVersionInfoClosed():void {
             // Hide the versionUI
@@ -837,6 +766,8 @@
 
                     var builder = new Timer(2000, 1);
                     builder.addEventListener(TimerEvent.TIMER, function() {
+                        if(selectionUI == null) return;
+
                         // Workout how many abilities this hero has
                         var abilityCount:Number = globals.Entities.GetAbilityCount(hero);
 
@@ -940,7 +871,7 @@
                     ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
                     // Hook dragging
-                    //EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
+                    EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
 
                     // Store a reference to it
                     storeSkillIcon(playerID, j, ps);
@@ -998,7 +929,7 @@
         // When someone hovers over a skill
         public static function onSkillRollOver(e:MouseEvent):void {
             // Don't show stuff if we're dragging
-            //if(EasyDrag.isDragging()) return;
+            if(EasyDrag.isDragging()) return;
 
             // Grab what we rolled over
             var s:Object = e.target;
@@ -1033,9 +964,244 @@
             Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
         }
 
+        /*
+            HELPER METHODS
+        */
+
+        // Adds chat to the chat window
+        public static function addChatMessage(msg:String):void {
+            // Attend to chat
+            Globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
+        }
+
         // Grabs the hero dock
         private function getDock():MovieClip {
             return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
+        }
+
+        /*
+            SEVER EVENT CALLBACKS
+        */
+
+        // Handles the state info
+        private function onGetStateInfo(args:Object):void {
+            trace('Got state info :)');
+            trace('Current stage: ' + args.s);
+
+            // Store the state info
+            lastState = args;
+
+            // Grab our playerID
+            var playerID = globals.Players.GetLocalPlayer();
+
+            // Check if this is our first time through
+            if(firstTimeState) {
+                // No longer our first time
+                firstTimeState = false;
+
+                // Hide the waiting UI
+                waitingUI.visible = false;
+
+                // Show version info
+                versionUI.visible = true;
+
+                // Ensure there is version info
+                if(!args.v) args.v = '';
+
+                // Compare version info
+                var ourVersion:String = getLodVersion();
+                if(args.v != ourVersion) {
+                    trace('LoD: Version mismatch! Server: ' + args.v + ' VS Us: ' + ourVersion);
+
+                    // Show error page
+                    versionUI.gotoAndStop(2);
+
+                    // Update header
+                    versionUI.header.text = "#outDated";
+                } else {
+                    trace('LoD: Version checks out!');
+
+                    // Show success page
+                    versionUI.gotoAndStop(1);
+
+                    // Update header
+                    versionUI.header.text = "#uptoDate";
+                }
+
+                // Append version info
+                versionUI.helpField.text += 'Server: ' + args.v + '\nYour Client: ' + ourVersion;
+            }
+
+            // Update the UI
+            updateUI();
+        }
+
+        // Fired when the server sends us a slave vote update
+        private function handleSlave(args:Object):void {
+            votingUI.updateSlave(args.opt, args.nv);
+        }
+
+        // Fired when the server sends us a decoding code
+        private function handleDecode(args:Object):void {
+            // Was this me? (or everyone)
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                // Store the new decoder
+                decodeWith = args.code - encodeWith;
+
+                // Store teamID
+                myTeam = parseInt(args.team);
+            }
+        }
+
+        // Fired when a skill is picked by someone
+        private function onSkillPicked(args:Object) {
+            // Grab skill number
+            var skillNumber:Number = parseInt(args.skillID);
+
+            // Attempt to decode
+            if(hideSkills) {
+                skillNumber = skillNumber - decodeWith;
+            }
+
+            // Grab the skill name
+            var skillName:String = getSkillName(skillNumber);
+
+            // Did we fail to decode?
+            if(skillName == null) return;
+
+            // Attempt to find the skill
+            var topSkill = getSkillIcon(args.playerSlot, args.slotNumber);
+            if(topSkill != null) {
+                topSkill.setSkillName(skillName);
+            } else {
+                trace('WARNING: Failed to find playerID '+args.playerID+', slot '+args.playerSlot);
+            }
+
+            // Was this me?
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                // It is me
+                selectionUI.skillIntoSlot(args.slotNumber, skillName);
+
+                // Update local bans
+                //updateLocalBans();
+
+                // Update the filters
+                //updateFilters();
+            }
+        }
+
+        private function onSlotSwapped(args:Object) {
+            // Was this me?
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID) {
+                selectionUI.onSlotSwapped(args.slot1, args.slot2);
+            }
+        }
+
+        // Fired when the server sends us an error
+        private function handleMessage(args:Object):void {
+            // Was this me? (or everyone)
+            var playerID = globals.Players.GetLocalPlayer();
+            if(playerID == args.playerID || args.playerID == -1) {
+                // Add the text to chat
+                addChatMessage(args.msg);
+            }
+        }
+
+        /*
+            SERVER COMMANDS
+        */
+
+        // Updates a user's vote with the server
+        private function updateVote(optNumber:Number, myChoice:Number):void {
+            gameAPI.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
+        }
+
+        // Finishes voting
+        private function finishedVoting():void {
+            gameAPI.SendServerCommand("finished_voting");
+        }
+
+        // Requests the decoding number
+        private function requestDecodingNumber():void {
+            // Send the request
+            gameAPI.SendServerCommand("lod_decode \""+encodeWith+"\"");
+        }
+
+        // Tell the server to put a skill into a slot
+        private function tellServerWeWant(slotNumber:Number, skillName:String):void {
+            // Send the message to the server
+            gameAPI.SendServerCommand("lod_skill \""+slotNumber+"\" \""+skillName+"\"");
+        }
+
+        // Tell the server to put a skill into a slot
+        private function tellServerToSwapSlots(slot1:Number, slot2:Number):void {
+            // Send the message to the server
+            gameAPI.SendServerCommand("lod_swap_slots \""+slot1+"\" \""+slot2+"\"");
+        }
+
+        // Tell the server to ban a given skill
+        private function tellServerToBan(skill:String):void {
+            // Send the message to the server
+            gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
+        }
+
+        /*
+            DRAGGING EVENTS
+        */
+
+        // We are trying to drag an actual skill
+        public static function skillSlotDragBegin(me:MovieClip, dragClip:MovieClip):Boolean {
+            // Grab the name of the skill
+            var skillName = me.getSkillName();
+
+            // Can we even drag this skill?
+            if(skillName == 'nothing') {
+                // Stop the drag
+                return false;
+            }
+
+            // Load a skill into the dragClip
+            Globals.LoadAbilityImage(skillName, dragClip);
+
+            // Store the skill
+            dragClip.skillName = skillName;
+
+            // Store that it is a skill drag
+            dragClip.dragType = DRAG_TYPE_SKILL;
+
+            // Enable dragging
+            return true;
+        }
+
+        // Something is dragged into a slot
+        private function onDropMySkills(me:MovieClip, dragClip:MovieClip) {
+            if(dragClip.dragType == DRAG_TYPE_SKILL) {
+                // A skill is being dragged into a slot
+                var skillName:String = dragClip.skillName;
+
+                // Tell the server about this
+                tellServerWeWant(me.getSkillSlot(), skillName);
+            } else if(dragClip.dragType == DRAG_TYPE_SLOT) {
+                // A slot is being dragged into a slot
+                var slot1:Number = dragClip.slotNumber;
+                var slot2:Number = me.getSkillSlot();
+
+                // Tell the server to swap slots
+                tellServerToSwapSlots(slot1, slot2);
+            }
+        }
+
+        // Something is being dragged into the banning area
+        private function onDropBanningArea(me:MovieClip, dragClip:MovieClip) {
+            if(dragClip.dragType == DRAG_TYPE_SKILL) {
+                var skillName = dragClip.skillName;
+
+                // Tell the server to ban this skill
+                tellServerToBan(skillName);
+            }
         }
 	}
 }

@@ -9,9 +9,6 @@
 		// This holds the image of our current skill
 		public var abilityClip:MovieClip;
 
-		// How to scale the skill image
-		private var skillScale:Number = 40/256;
-
 		// Is this skill banned?
 		public var banned:MovieClip;
 

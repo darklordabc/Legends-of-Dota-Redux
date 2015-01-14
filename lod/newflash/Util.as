@@ -230,7 +230,7 @@ package {
 
         // Returns minutes:seconds from a number, seconds is always two digits
         public static function sexyTime(time:Number):String {
-            return Math.floor(time/60)+':'+(time%60<10 ? '0' : '')+(Math.ceil(time)%60);
+            return Math.floor(time/60)+':'+(Math.ceil(time)%60<10 ? '0' : '')+(Math.ceil(time)%60);
         }
     }
 }

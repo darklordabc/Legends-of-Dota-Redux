@@ -14,7 +14,7 @@
 			this.gotoAndStop(1);
 		}
 
-		public function setup(totalSlots:Number, slotInfo:String):void {
+		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function):void {
 			// Ensure valid values
 			if(totalSlots < 4) {
 				totalSlots = 4;
@@ -40,6 +40,15 @@
 
 				// Grab the slot
 				var s:MovieClip = this['skill'+i];
+
+				// Set the slot number
+				s.setSkillSlot(i);
+
+				// Allow dropping
+            	EasyDrag.dragMakeValidTarget(s, dropCallback);
+
+            	// Allow dropping
+            	EasyDrag.dragMakeValidFrom(s, skillSlotDragBegin);
 
 				switch(char) {
 					case lod.SLOT_TYPE_ABILITY:
@@ -74,5 +83,38 @@
 
 			return false;
 		}
+
+		// We have swapped two slots
+        public function onSlotSwapped(slot1:Number, slot2:Number):void {
+        	// Grab both slots
+            var s1:MovieClip = this['skill'+slot1];
+            var s2:MovieClip = this['skill'+slot2];
+
+            // Ensure they both exist
+            if(s1 != null && s2 != null) {
+            	// Swap the texts on them
+            	var tmpText:String = s1.skillType.text;
+            	s1.skillType.text = s2.skillType.text;
+            	s2.skillType.text = tmpText;
+            }
+        }
+
+        // Slot swapping
+		private function skillSlotDragBegin(me:MovieClip, dragClip:MovieClip):Boolean {
+            // Grab the name of the skill
+            var skillName = me.getSkillName();
+
+            // Load a skill into the dragClip
+            lod.Globals.LoadAbilityImage(skillName, dragClip);
+
+            // Store the skill
+            dragClip.slotNumber = me.getSkillSlot();
+
+            // Store that it is a skill drag
+            dragClip.dragType = lod.DRAG_TYPE_SLOT;
+
+            // Enable dragging
+            return true;
+        }
 	}
 }

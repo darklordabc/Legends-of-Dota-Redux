@@ -57,6 +57,14 @@
         "playerSlot"    "byte"
     }
 
+    // A player wants to swap two slots
+    "lod_swap_slot"
+    {
+        "playerID"      "byte"
+        "slot1"         "byte"
+        "slot2"         "byte"
+    }
+
     // A message
     "lod_msg"
     {

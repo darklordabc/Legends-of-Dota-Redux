@@ -44,7 +44,11 @@
         }
 
 		// Rebuilds the interface from scratch
-		public function Rebuild(newSkillList:Object, source1:Boolean) {
+		public function Rebuild(newSkillList:Object, source1:Boolean, banningDropCallback:Function) {
+            // Allow dropping to the banning area
+            EasyDrag.dragMakeValidTarget(banningArea, banningDropCallback);
+
+            // Calculate settings
 			var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
             var totalWidth:Number = X_SECTIONS * singleWidth - S_PADDING;
 
@@ -125,11 +129,8 @@
                                         		// Put the skill into the slot
 	                                            skillSlot.setSkillName(skill);
 
-	                                            //skillSlot.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-	                                            //skillSlot.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
-
 	                                            // Hook dragging
-	                                            //EasyDrag.dragMakeValidFrom(skillSlot, skillSlotDragBegin);
+	                                            EasyDrag.dragMakeValidFrom(skillSlot, lod.skillSlotDragBegin);
 
 	                                            // Store into the active list
 	                                            activeList[skill] = skillSlot;
@@ -184,13 +185,18 @@
 		}
 
         // Setups the skill list
-        public function setupSkillList(totalSlots:Number, slotInfo:String):void {
-            this.yourSkillList.setup(totalSlots, slotInfo);
+        public function setupSkillList(totalSlots:Number, slotInfo:String, dropCallback:Function):void {
+            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback);
         }
 
         // Puts a skill into a slot
         public function skillIntoSlot(slotNumber:Number, skillName:String):Boolean {
             return this.yourSkillList.skillIntoSlot(slotNumber, skillName);
+        }
+
+        // We have swapped two slots
+        public function onSlotSwapped(slot1:Number, slot2:Number):void {
+            yourSkillList.onSlotSwapped(slot1, slot2);
         }
 	}
 

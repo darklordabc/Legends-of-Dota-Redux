@@ -9,9 +9,6 @@
 		// This holds the image of our current skill
 		public var abilityClip:MovieClip;
 
-		// How to scale the skill image
-		private var skillScale = 64/128;
-
 		// Our skill slot
 		private var skillSlot;
 

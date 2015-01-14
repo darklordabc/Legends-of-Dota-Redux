@@ -9,9 +9,6 @@
 		// This holds the image of our current skill
 		public var ability:MovieClip;
 
-		// How to scale the skill image
-		private var skillScale = 0.125;
-
 		public function PlayerSkill() {
 		}
 
