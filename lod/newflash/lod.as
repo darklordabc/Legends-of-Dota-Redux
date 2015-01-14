@@ -132,7 +132,7 @@
         private static var banTrollCombos:Boolean = false;
 
         // List of banned skills nawwwww
-        private static var bannedSkills:Object = {};
+        private static var bannedSkills:Object;
 
         /*
             SKILL LIST STUFF
@@ -160,7 +160,7 @@
         private var skillOwningHero:Object;
 
         // Skills that are banned with our local combos
-        private static var bannedCombos:Object = {};
+        private static var bannedCombos:Object;
 
         /*
             CLEANUP STUFF
@@ -208,7 +208,12 @@
             // Ask for decoding info
             requestDecodingNumber();
 
+            // Reset vars
+            bannedSkills = {};
+            bannedCombos = {};
+
             // Subscribe to the state info
+            this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);        // A skill was banned
             this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);     // Contains most of the game state
             this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);        // Someone has updated a voting option
             this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);      // Server sent us info on how to decode skill values
@@ -217,7 +222,8 @@
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);        // Server sent a message
 
             // Handle keyboard input
-            stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
+            stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
+            stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
 
             // Handle the scoreboard stuff
             //handleScoreboard();
@@ -322,7 +328,7 @@
 
             // Add accept button to versionUI
             var btn:MovieClip = Util.smallButton(versionUI.acceptButton, '#versionAccept', true, true);
-            btn.addEventListener(MouseEvent.CLICK, onVersionInfoClosed);
+            btn.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
 
             // Wait for the game to be ready
             waitForGame();
@@ -1344,12 +1350,29 @@
             gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
         }
 
+        // Fired when the server bans a skill
+        private function onSkillBanned(args:Object) {
+            // Grab the skill
+            var skillName:String = args.skill;
+
+            // Store this skill as banned
+            bannedSkills[skillName] = true;
+
+            // Update Filters
+            selectionUI.updateFilters();
+        }
+
         /*
             LISTENER EVENTS
         */
 
         // Listens for keyboard presses
         private function onKeyBoardDown(e:KeyboardEvent):void {
+            // Cleanup
+            if(selectionUI == null) {
+                return;
+            }
+
             if(e.keyCode == Keyboard.CONTROL) {
                 // Toggle the hero icons
                 selectionUI.toggleHeroIcons();

@@ -69,6 +69,7 @@
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
             toggleInterfaceText.addEventListener(MouseEvent.CLICK, toggleHeroIcons);
+            toggleInterfaceText.autoSize = "right";
 		}
 
         public function hideUncommonStuff():void {
@@ -461,7 +462,7 @@
         }
 
         // Called when the search text changes
-        public function onSearchTextChanged(e:Event) {
+        public function onSearchTextChanged(e:Event):void {
             // Grab the text string
             filterText = e.target.text.toLowerCase();
             updateFilters();
