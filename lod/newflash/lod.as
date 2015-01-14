@@ -116,6 +116,9 @@
         // Access to the skills at the top
         private var topSkillList:Array = [];
 
+        // Display timer
+        private static var displayTimer:Timer;
+
         /*
             SKILL LIST STUFF
         */
@@ -190,6 +193,17 @@
             //handleScoreboard();
 
 			//this.gameAPI.SubscribeToGameEvent("ops", onGetOptions);
+
+            // Setup display timer
+            if(displayTimer != null) {
+                displayTimer.stop();
+                displayTimer = null;
+            }
+
+            // This timer will update the display timer every 100ms
+            displayTimer = new Timer(100);
+            displayTimer.addEventListener(TimerEvent.TIMER, updateDisplayTimer, false, 0, true);
+            displayTimer.start()
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
@@ -347,6 +361,32 @@
 
             // Rebuild the skill list
             selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1);
+        }
+
+        private function updateDisplayTimer():void {
+            if(lastState != null) {
+                var timerEnd:Number = lastState.t;
+                var timerDisplay:String;
+
+                // Check when the timer ends
+                if(timerEnd == -1) {
+                    // No timer yet
+                    timerDisplay = '0:00';
+                } else {
+                    // Workout how long left
+                    var now:Number = globals.Game.Time();
+                    var timeLeft = timerEnd - now;
+
+                    if(timeLeft > 0) {
+                        timerDisplay = Util.sexyTime(timeLeft);
+                    } else {
+                        timerDisplay = '0:00';
+                    }
+                }
+
+                // Update the display
+                selectionUI.timerField.text = timerDisplay;
+            }
         }
 
         // Returns a skill name, based on a skill number

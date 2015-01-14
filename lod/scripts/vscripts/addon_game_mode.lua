@@ -1510,11 +1510,19 @@ function lod:OnThink()
                     -- No longer voting
                     stillVoting = false
 
-                    -- Move onto banning
-                    currentStage = STAGE_BANNING
+                    if banningTime > 0 then
+                        -- Move onto banning
+                        currentStage = STAGE_BANNING
 
-                    -- Store when the banning phase ends
-                    endOfTimer = Time() + banningTime
+                        -- Store when the banning phase ends
+                        endOfTimer = Time() + banningTime
+                    else
+                        -- Move onto banning
+                        currentStage = STAGE_PICKING
+
+                        -- Store when the banning phase ends
+                        endOfTimer = Time() + pickingTime
+                    end
 
                     -- Setup all the fancy gamemode stuff
                     setupGamemodeSettings()
@@ -1558,15 +1566,6 @@ function lod:OnThink()
         -- Workout who won
         finishVote()
 
-        -- Move onto banning mode
-        currentStage = STAGE_BANNING
-
-        -- Store when the banning phase ends
-        endOfTimer = Time() + banningTime
-
-        -- Send the picking info
-        self:OnEmitStateInfo()
-
         -- Tell the users it's picking time
         if banningTime > 0 then
             if not hostBanning then
@@ -1580,7 +1579,22 @@ function lod:OnThink()
                     sendChatMessage(i, '<font color="'..COLOR_GREEN..'">Banning has started. Please wait while your host bans skills and heroes.</font>')
                 end
             end
+
+            -- Move onto banning mode
+            currentStage = STAGE_BANNING
+
+            -- Store when the banning phase ends
+            endOfTimer = Time() + banningTime
+        else
+            -- Move onto selection mode
+            currentStage = STAGE_PICKING
+
+            -- Store when the banning phase ends
+            endOfTimer = Time() + pickingTime
         end
+
+        -- Send the picking info
+        self:OnEmitStateInfo()
 
         -- Sleep
         return 0.1
