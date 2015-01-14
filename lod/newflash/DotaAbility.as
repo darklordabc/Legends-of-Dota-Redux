@@ -28,6 +28,7 @@
 			ability.AbilityArt.filters = [];
 
 			// Hide useless stuff
+<<<<<<< HEAD
 			ability.removeChild(ability.levelUp);
 			ability.removeChild(ability.activeDownType);
 			ability.removeChild(ability.activePressedType);
@@ -45,6 +46,17 @@
 			ability.removeChild(ability.autocastable);
 			//ability.removeChild(ability.passiveType);
 			//ability.removeChild(ability.activeType);*/
+=======
+			ability.levelUp.visible = false;
+			ability.activeDownType.visible = false;
+			ability.activePressedType.visible = false;
+			ability.activeCastType.visible = false;
+			ability.unlearnedState.visible = false;
+			ability.enemyState.visible = false;
+			ability.passiveDownType.visible = false;
+			ability.noManaState.visible = false;
+			ability.cooldownLabel.visible = false;
+>>>>>>> origin/master
 
 			// Add the cover command
             this.addEventListener(MouseEvent.ROLL_OVER, lod.onSkillRollOver, false, 0, true);
@@ -56,10 +68,14 @@
 			// Only update if it is new
 			if(skillName != abilityName) {
 				// Add image
+<<<<<<< HEAD
             	//lod.Globals.LoadAbilityImage(abilityName, ability.AbilityArt);
             	lod.Globals.LoadAbilityImage(abilityName, con);
             	con.scaleX = 100/128;
             	con.scaleY = 100/128;
+=======
+            	lod.Globals.LoadAbilityImage(abilityName, ability.AbilityArt);
+>>>>>>> origin/master
 
             	// Store the name
 				skillName = abilityName;

@@ -2,7 +2,7 @@
 {
     "1"
     {
-        "File"      "lod_v6"
+        "File"      "lod"
         "Depth"     "253"
     }
     "2"
@@ -14,11 +14,6 @@
     {
         "File"      "loadhelper"
         "Depth"     "254"
-    }
-    "4"
-    {
-        "File"      "lod"
-        "Depth"     "253"
     }
 }
 
