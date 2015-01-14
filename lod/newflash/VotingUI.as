@@ -24,6 +24,9 @@
         // Callback to call to finish the vote
         private var finishCallback:Function;
 
+        // Ignore updates
+        private var ignoreUpdates:Boolean = false;
+
         public function VotingUI() {
             // Init containers
             options = {};
@@ -89,6 +92,9 @@
 
         // Stores a given vote
         public function updateSlave(optNumber:Number, newValue:Number) {
+            // Start ignoring updates
+            ignoreUpdates = true;
+
             // Check if we even have this option number
             if(options[optNumber] != null) {
                 // Validate the voting list
@@ -102,12 +108,17 @@
                     }
                 }
             }
+
+            // Stop ignoring updates
+            ignoreUpdates = false;
         }
 
         // Hooks a dropdown box
         private function createHook(dropdown:MovieClip, optNumber:Number) {
             // Create the hook
             dropdown.setIndexCallback = function(comboBox) {
+                if(ignoreUpdates) return;
+
                 // Update the vote
                 updateCallback(optNumber, comboBox.selectedIndex);
             }
