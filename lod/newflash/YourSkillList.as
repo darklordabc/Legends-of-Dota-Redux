@@ -10,9 +10,11 @@
 		public var skill4:MovieClip;
 		public var skill5:MovieClip;
 
-		public var timer;
+		public function YourSkillList() {
+			this.gotoAndStop(1);
+		}
 
-		public function YourSkillList(totalSlots:Number, totalSkills:Number, totalUlts:Number) {
+		public function setup(totalSlots:Number, slotInfo:String):void {
 			// Ensure valid values
 			if(totalSlots < 4) {
 				totalSlots = 4;
@@ -31,22 +33,46 @@
 				this.gotoAndStop(3);
 			}
 
-			// Change between skill and ulty
-			for(var i:Number=0; i<totalSlots; i++) {
+			// Set the sorts of slots they are
+			for(var i=0; i<totalSlots; i++) {
+				// Grab the character for this slot
+				var char:String = slotInfo.charAt(i);
+
+				// Grab the slot
 				var s:MovieClip = this['skill'+i];
 
-				if(i < totalSkills) {
-					if(i >= totalSlots - totalUlts) {
-						s.skillType.text = '#either';
-					} else {
+				switch(char) {
+					case lod.SLOT_TYPE_ABILITY:
 						s.skillType.text = '#skill';
-					}
-				} else if(i >= totalSlots - totalUlts) {
-					s.skillType.text = '#ult';
-				} else {
-					s.skillType.text = '#nothing';
+						break;
+
+					case lod.SLOT_TYPE_ULT:
+						s.skillType.text = '#ult';
+						break;
+
+					case lod.SLOT_TYPE_EITHER:
+						s.skillType.text = '#either';
+						break;
+
+					case lod.SLOT_TYPE_NEITHER:
+						s.skillType.text = '#nothing';
+						break;
 				}
 			}
+		}
+
+		// Puts a skill into a slot
+		public function skillIntoSlot(slotNumber:Number, skillName:String):Boolean {
+			// Grab the slot
+			var s:MovieClip = this['skill'+slotNumber];
+
+			// Ensure it exists
+			if(s != null) {
+				// Set the skill in the slot
+				return s.setSkillName(skillName);
+			}
+
+			return false;
 		}
 	}
 }

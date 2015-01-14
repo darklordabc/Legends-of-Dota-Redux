@@ -116,7 +116,7 @@
         "s"             "byte"
 
         // PlayerID --> Slot
-        "0"             "byte"
+        "0"             "byte"  // This is used to access the skills below, since playerID = 0 might not be stored in 01, 02, 03, etc
         "1"             "byte"
         "2"             "byte"
         "3"             "byte"
@@ -126,6 +126,18 @@
         "7"             "byte"
         "8"             "byte"
         "9"             "byte"
+
+        // Stores the type of each slot for each player
+        "t0"            "string"    // Format:
+        "t1"            "string"    //  String will be length 4 - 6, depends on slot count
+        "t2"            "string"    //  Each character will be either 1, 2 or 3, 4 which represents the slot type
+        "t3"            "string"
+        "t4"            "string"
+        "t5"            "string"
+        "t6"            "string"
+        "t7"            "string"
+        "t8"            "string"
+        "t9"            "string"
 
         // Player Locks (Locked skills, etc)
         "l0"            "byte"
@@ -141,7 +153,7 @@
 
         // Each player's selected skills, encoded as a number
         // The number is the index into abilities.kv
-        "01"            "short"
+        "01"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
         "02"            "short"
         "03"            "short"
         "04"            "short"

@@ -9,6 +9,9 @@
         // The banning area
         public var banningArea:MovieClip;
 
+        // Your skill list
+        public var yourSkillList:MovieClip;
+
         // The timer
         public var timerField:TextField;
 
@@ -37,6 +40,7 @@
 
         public function hideUncommonStuff():void {
             banningArea.visible = false;
+            yourSkillList.visible = false;
         }
 
 		// Rebuilds the interface from scratch
@@ -178,6 +182,16 @@
                 return;
             }
 		}
+
+        // Setups the skill list
+        public function setupSkillList(totalSlots:Number, slotInfo:String):void {
+            this.yourSkillList.setup(totalSlots, slotInfo);
+        }
+
+        // Puts a skill into a slot
+        public function skillIntoSlot(slotNumber:Number, skillName:String):Boolean {
+            return this.yourSkillList.skillIntoSlot(slotNumber, skillName);
+        }
 	}
 
 }

@@ -79,6 +79,12 @@
         private static var stageWidth:Number;
         private static var stageHeight:Number;
 
+        // Slot type stuff
+        public static var SLOT_TYPE_ABILITY:String = '1';
+        public static var SLOT_TYPE_ULT:String = '2';
+        public static var SLOT_TYPE_EITHER:String = '3';
+        public static var SLOT_TYPE_NEITHER:String = '4';
+
         /*
             GLOBAL VARIABLES
         */
@@ -99,7 +105,10 @@
         private var isSlave:Boolean = false;
 
         // How many skill slots each player gets
-        private static var MAX_SLOTS = 4;
+        private static var MAX_SLOTS:Number = 4;
+
+        // Should we hide skills?
+        private static var hideSkills:Boolean = false;
 
         // The team number we are on
         private var myTeam:Number = 0;
@@ -111,14 +120,17 @@
             SKILL LIST STUFF
         */
 
-        // Have we loaded the skill list yet?
-        private var loadedSkillList:Boolean = false;
+        // Have we setup the post voting stuff?
+        private var initPostVoting:Boolean = false;
 
         // Stores bans
         private var banList:Object;
 
         // skillName --> skillID
         private static var skillLookup:Object;
+
+        // skillID --> skillName
+        private static var skillLookupReverse:Object;
 
         // Which tabs are allowed
         private static var allowedTabs:Object;
@@ -281,18 +293,13 @@
 
         // Loads in the skills file
         private function loadSkillsFile():void {
-            // Check if the skill list needs to be loaded
-            if(loadedSkillList) return;
-
-            // Skill list is now loaded
-            loadedSkillList = true;
-
             // Load in the skill list
             var skillKV = globals.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
             var tempSkillList:Object = skillKV.skills;
 
             // Create the object
             skillLookup = {};
+            skillLookupReverse = {};
 
             // Tabs to allow (this will be sent from the server eventually)
             allowedTabs = {
@@ -332,6 +339,7 @@
                     if(doInclude) {
                         if(!isNaN(parseInt(skillIndex))) {
                             skillLookup[skillName] = parseInt(skillIndex);
+                            skillLookupReverse[parseInt(skillIndex)] = skillName;
                         }
                     }
                 }
@@ -339,6 +347,11 @@
 
             // Rebuild the skill list
             selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1);
+        }
+
+        // Returns a skill name, based on a skill number
+        private static function getSkillName(skillNumber:Number):String {
+            return skillLookupReverse[skillNumber] || 'nothing';
         }
 
         // Checks if a given skill is valid, or not
@@ -495,8 +508,21 @@
 
             // Patch picking icons
             if(lastState.s > STAGE_VOTING) {
-                // Store useful stuff
-                MAX_SLOTS = lastState.slots;
+                // Check if we need to do post voting stuff
+                if(!initPostVoting) {
+                    // Done
+                    initPostVoting = true;
+
+                    // Store useful stuff
+                    MAX_SLOTS = lastState.slots;
+                    hideSkills = lastState.hideSkills == 1
+
+                    // Load up the skills file
+                    loadSkillsFile();
+
+                    // Setup slots
+                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID]);
+                }
 
                 // Check if hero icons need to be patched
                 if(!patchedHeroIcons) {
@@ -523,8 +549,40 @@
                     }
                 }
 
-                // Load up the skills file
-                loadSkillsFile();
+                // Have we changed local slots? (used for updating filters)
+                var changedLocalSlots:Boolean = false;
+
+                // Update skills
+                for(var i=0; i<10; i++) {
+                    for(var j=0; j<MAX_SLOTS; j++) {
+                        // Grab the skill, and decode if needed
+                        var skillNumber = lastState[String(i)+String(j+1)];
+                        if(skillNumber != -1) {
+                            // Attempt to decode
+                            if(hideSkills) {
+                                skillNumber = skillNumber - decodeWith;
+                            }
+                        }
+
+                        // Grab the skill name
+                        var skillName = getSkillName(skillNumber);
+
+                        // Attempt to grab the slot
+                        var slot = getSkillIcon(i, j);
+                        if(slot != null) {
+                            slot.setSkillName(skillName);
+                        }
+
+                        // Is this skill for us?
+                        if(i == parseInt(lastState[playerID])) {
+                            // Put the skill into the slot
+                            if(selectionUI.skillIntoSlot(j, skillName)) {
+                                // A slot was changed
+                                changedLocalSlots = true;
+                            }
+                        }
+                    }
+                }
             }
 
             // Don't do anything if the versionUI is visible
@@ -570,6 +628,7 @@
                 hideAllUI();
                 selectionUI.visible = true;
                 selectionUI.hideUncommonStuff();
+                selectionUI.yourSkillList.visible = true;
             }
         }
 

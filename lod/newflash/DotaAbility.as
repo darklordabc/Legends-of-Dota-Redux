@@ -43,13 +43,24 @@
 		}
 
 		// Updates the ability stored inside
-		public function setSkillName(abilityName:String) {
-			// Store the name
-			skillName = abilityName;
+		public function setSkillName(abilityName:String):Boolean {
+			// Only update if it is new
+			if(skillName != abilityName) {
+				// Add image
+            	lod.Globals.LoadAbilityImage(abilityName, ability.AbilityArt);
 
-			// Add image
-            lod.Globals.LoadAbilityImage(skillName, ability.AbilityArt);
+            	// Store the name
+				skillName = abilityName;
+
+            	return true;
+			}
+
+			return false;
+		}
+
+		// Returns the ability in this slot
+		public function getSkillName():String {
+			return this.skillName;
 		}
 	}
-
 }

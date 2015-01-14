@@ -268,6 +268,14 @@ for k,v in pairs(votingList) do
     totalVotableOptions = totalVotableOptions+1
 end
 
+-- Slot types
+local slotTypes = {}
+
+local SLOT_TYPE_ABILITY = '1'
+local SLOT_TYPE_ULT = '2'
+local SLOT_TYPE_EITHER = '3'
+local SLOT_TYPE_NEITHER = '4'
+
 -- Ban List
 local banList = {}
 local noMulticast = {}
@@ -792,6 +800,53 @@ local function fixBuilds()
     brokenHeroes = {}
 end
 
+-- Sets up slot types
+local function setupSlotTypes()
+    local maxPlayers = 10
+
+    for i=0,maxPlayers-1 do
+        slotTypes[i] = {}
+
+        for j=0,maxSlots-1 do
+            -- Workout if we can allow an ulty, or a skill in the given slot
+            local skill = false
+            local ult = false
+
+            if j < maxSkills then
+                skill = true
+            end
+
+            if j >= maxSlots-maxUlts then
+                ult = true
+            end
+
+            -- Store the result
+            if skill and not ult then
+                slotTypes[i][j] = SLOT_TYPE_ABILITY;
+            elseif skill and ult then
+                slotTypes[i][j] = SLOT_TYPE_EITHER;
+            elseif not skill and ult then
+                slotTypes[i][j] = SLOT_TYPE_ULT;
+            else
+                slotTypes[i][j] = SLOT_TYPE_NEITHER;
+            end
+        end
+    end
+end
+
+-- Builds a string to represent the type of slots allowed for the given player
+local function slotTypeString(playerID)
+    if not slotTypes[playerID] then return '' end
+
+    local str = ''
+
+    for j=0,maxSlots-1 do
+        str = str..slotTypes[playerID][j]
+    end
+
+    return str
+end
+
 -- Takes the current gamemode number, and sets the required settings
 local function setupGamemodeSettings()
     -- Default to not using the draft array
@@ -894,6 +949,9 @@ local function setupGamemodeSettings()
 
     -- Build the ability list
     buildSkillListLookup()
+
+    -- Setup player slot types
+    setupSlotTypes()
 end
 
 -- Called when picking ends
@@ -1391,6 +1449,9 @@ function lod:OnEmitStateInfo()
 
         -- Store locks
         s['l'..i] = playerLocks[i] or 0
+
+        -- Store slot into
+        s['t'..i] = slotTypeString(i)
     end
 
     local banned = {}

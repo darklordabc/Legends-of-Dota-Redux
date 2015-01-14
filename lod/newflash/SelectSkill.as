@@ -22,6 +22,9 @@
 
 		// Updates the the current skill
 		public function setSkillName(skillName):void {
+			// Store the skill name
+			this.skillName = skillName;
+
 			// Store the change
 			this.abilityClip.setSkillName(skillName);
 		}
@@ -40,5 +43,4 @@
 			this.banned.visible = state;
 		}
 	}
-
 }
