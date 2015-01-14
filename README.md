@@ -65,4 +65,14 @@ Legends of Dota
         "dedicated" {
         }
 
+ - Create `cfg/allocation.kv` if you want to be allocated into a team automatically
+
+        "dedicated" {
+        }
+
+ - Create `cfg/addbots.kv` if you want bots to be added (assuming sourcemod is setup correctly)
+
+        "dedicated" {
+        }
+
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
