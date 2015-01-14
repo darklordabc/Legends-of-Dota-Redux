@@ -252,12 +252,12 @@
                                             sl.removeChild(skillSlot);
 
                                             // Loop over all the spells in this bundle
-                                            /*for(var splitLength:Number=0;splitLength<skillSplit.length;splitLength++) {
-                                                msk = new SelectSkillsSplit(1+splitLength, skillSplit.length);
+                                            for(var splitLength:Number=0;splitLength<skillSplit.length;splitLength++) {
+                                                var msk:MovieClip = new SelectSkillsSplit(1+splitLength, skillSplit.length);
                                                 sl.addChild(msk);
 
                                                 // Create the new skill slot
-                                                skillSlot2 = new SelectSkill();
+                                                var skillSlot2:MovieClip = new SelectSkill();
                                                 skillSlot2.mask = msk;
                                                 sl.addChild(skillSlot2);
                                                 skillSlot2.x = skillSlot.x;
@@ -268,18 +268,12 @@
                                                 // Put the skill into the slot
                                                 skillSlot2.setSkillName(skillSplit[splitLength]);
 
-                                                skillSlot2.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                                                skillSlot2.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
-
                                                 // Hook dragging
-                                                EasyDrag.dragMakeValidFrom(skillSlot2, skillSlotDragBegin);
+                                                EasyDrag.dragMakeValidFrom(skillSlot2, lod.skillSlotDragBegin);
 
                                                 // Store into the active list
                                                 activeList[skillSplit[splitLength]] = skillSlot2;
-
-                                                // Fix the lists
-                                                completeList[-(skillNumber-1+splitLength*1000)] = skillSplit[splitLength];
-                                            }*/
+                                            }
                                         }
                                     } else {
                                         // Remove the slot
