@@ -114,7 +114,7 @@
         "trolls"        "byte"  // Are troll combos allowed, or not
         "hostBanning"   "byte"  // Should we use host banning or per player banning
         "hideSkills"    "byte"  // Should skills be hidden (Readers beware: There is encryption!)
-        "s1"            "byte"  // Is this a source1 game? (affects ability pool)
+        "source1"       "byte"  // Is this a source1 game? (affects ability pool)
         "balance"       "byte"  // Which balance mode to use (affects ability pool)
 
         // When the timer should end

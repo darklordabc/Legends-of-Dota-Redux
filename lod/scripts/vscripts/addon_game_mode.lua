@@ -1416,7 +1416,7 @@ function lod:OnEmitStateInfo()
         ['trolls']      = (banTrollCombos and 1) or 0,
         ['hostBanning'] = (hostBanning and 1) or 0,
         ['hideSkills']  = (hideSkills and 1) or 0,
-        ['s1']          = (GameRules:isSource1() and 1) or 0,
+        ['source1']     = (GameRules:isSource1() and 1) or 0,
         ['balance']     = balanceMode,
         ['slaveID']     = slaveID,
 

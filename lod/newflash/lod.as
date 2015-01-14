@@ -125,6 +125,9 @@
         // Display timer
         private static var displayTimer:Timer;
 
+        // Is this source1?
+        private static var source1:Boolean = false;
+
         /*
             SKILL LIST STUFF
         */
@@ -355,7 +358,7 @@
                         skillIndex = s1Skill;
 
                         // Check if we can include it
-                        if(!lastState.s1) {
+                        if(!source1) {
                             doInclude = false;
                         }
                     }
@@ -371,7 +374,7 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(tabList, skillKV.tabs, lastState.s1 == 1, onDropBanningArea);
+            selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea);
         }
 
         private function updateDisplayTimer():void {
@@ -529,7 +532,8 @@
 
                     // Store useful stuff
                     MAX_SLOTS = lastState.slots;
-                    hideSkills = lastState.hideSkills == 1
+                    hideSkills = lastState.hideSkills == 1;
+                    source1 = lastState.source1 == 1;
 
                     // Load up the skills file
                     loadSkillsFile();
