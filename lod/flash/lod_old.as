@@ -1727,7 +1727,7 @@ package  {
                 // Did this skill pass all the filters?
                 if(doShow >= totalFilters) {
                     // Found, is it banned?
-                    if(bannedSkills[key]) {
+                    if(lod.banList[key]) {
                         // Banned :(
                         activeList[key].filters = redFilter();
                         activeList[key].alpha = 0.5;

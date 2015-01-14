@@ -2,21 +2,12 @@
 	// Flash stuff
 	import flash.display.MovieClip;
 
-	// Dota 2 interface
-	import ValveLib.Globals;
-
 	public class YourSkill extends MovieClip {
 		// The text field
 		public var skillType;
 
-		// The name of our current skill
-		private var skillName:String;
-
 		// This holds the image of our current skill
-		public var ability:MovieClip;
-
-		// How to scale the skill image
-		private var skillScale = 64/128;
+		public var abilityClip:MovieClip;
 
 		// Our skill slot
 		private var skillSlot;
@@ -25,6 +16,7 @@
 		}
 
 		public function setSkillSlot(skillSlot):void {
+			// Store the skill slot
 			this.skillSlot = skillSlot;
 		}
 
@@ -33,17 +25,14 @@
 		}
 
 		// Updates the the current skill
-		public function setSkillName(skillName) {
+		public function setSkillName(skillName):Boolean {
 			// Store the change
-			this.skillName = skillName;
-
-			// Load the new image
-			ability.setSkillName(skillName);
+			return this.abilityClip.setSkillName(skillName);
 		}
 
 		// Returns our skill name
-		public function getSkillName() {
-			return this.skillName;
+		public function getSkillName():String {
+			return this.abilityClip.getSkillName();
 		}
 	}
 

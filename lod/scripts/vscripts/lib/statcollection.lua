@@ -143,11 +143,20 @@ function getPlayerSnapshot(playerID)
 
                 -- Check if it is valid
                 if IsValidEntity(ab) then
+                    -- Check if the ability is hidden
+                    -- We do it this way, so if it is not hidden
+                    -- It wont appear in the schema at all
+                    local hidden
+                    if ab:IsHidden() then
+                        hidden = true
+                    end
+
                     -- Store ability
                     table.insert(abilityData, {
                         index = ab:GetAbilityIndex(),
                         abilityName = ab:GetAbilityName(),
-                        level = ab:GetLevel()
+                        level = ab:GetLevel(),
+                        hidden = hidden
                     })
                 end
 

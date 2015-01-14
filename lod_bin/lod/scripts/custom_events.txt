@@ -57,6 +57,14 @@
         "playerSlot"    "byte"
     }
 
+    // A player wants to swap two slots
+    "lod_swap_slot"
+    {
+        "playerID"      "byte"
+        "slot1"         "byte"
+        "slot2"         "byte"
+    }
+
     // A message
     "lod_msg"
     {
@@ -90,8 +98,33 @@
     // The game state
     "lod_state"
     {
+        // Version Info
+        "v"             "string"
+
+        // Options Info
+        "o"             "string"
+
+        // The ID of the player who owns the vote, or -1 for free for all
+        "slaveID"       "byte"
+
+        // Useful Option Info
+        "slots"         "byte"  // The number of slots allowed
+        "skills"        "byte"  // The number of regular skills allowed
+        "ults"          "byte"  // The number of ultimates allowed
+        "trolls"        "byte"  // Are troll combos allowed, or not
+        "hostBanning"   "byte"  // Should we use host banning or per player banning
+        "hideSkills"    "byte"  // Should skills be hidden (Readers beware: There is encryption!)
+        "source1"       "byte"  // Is this a source1 game? (affects ability pool)
+        "balance"       "byte"  // Which balance mode to use (affects ability pool)
+
+        // When the timer should end
+        "t"             "float"
+
+        // Which UI should be shown (Stage)
+        "s"             "byte"
+
         // PlayerID --> Slot
-        "0"             "byte"
+        "0"             "byte"  // This is used to access the skills below, since playerID = 0 might not be stored in 01, 02, 03, etc
         "1"             "byte"
         "2"             "byte"
         "3"             "byte"
@@ -102,9 +135,33 @@
         "8"             "byte"
         "9"             "byte"
 
+        // Stores the type of each slot for each player
+        "t0"            "string"    // Format:
+        "t1"            "string"    //  String will be length 4 - 6, depends on slot count
+        "t2"            "string"    //  Each character will be either 1, 2 or 3, 4 which represents the slot type
+        "t3"            "string"
+        "t4"            "string"
+        "t5"            "string"
+        "t6"            "string"
+        "t7"            "string"
+        "t8"            "string"
+        "t9"            "string"
+
+        // Player Locks (Locked skills, etc)
+        "l0"            "byte"
+        "l1"            "byte"
+        "l2"            "byte"
+        "l3"            "byte"
+        "l4"            "byte"
+        "l5"            "byte"
+        "l6"            "byte"
+        "l7"            "byte"
+        "l8"            "byte"
+        "l9"            "byte"
+
         // Each player's selected skills, encoded as a number
         // The number is the index into abilities.kv
-        "01"            "short"
+        "01"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
         "02"            "short"
         "03"            "short"
         "04"            "short"
@@ -174,10 +231,12 @@
         "95"            "short"
         "96"            "short"
 
-        // Bans
+        // List of Bans
         "b"            "string"
 
         // Heroes this player can pick skills from, seperated by |
+        // Could also be a list of skills this player can pick from
+        // Depends on the mode variables
         "s0"            "string"
         "s1"            "string"
         "s2"            "string"

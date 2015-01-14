@@ -1,6 +1,9 @@
 ﻿package  {
-
+	// Flash stuff
 	import flash.display.MovieClip;
+
+	// Other events
+	import flash.events.MouseEvent;
 
 	// Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
@@ -12,16 +15,13 @@
 		// The name of the ability in this slot
 		public var skillName:String;
 
-		public function DotaAbility(abilityName) {
+		public function DotaAbility() {
 			// Grab the class
 			var dotoClass:Class = getDefinitionByName("AbilityButton") as Class;
 
 			// Create the ability
 			ability = new dotoClass();
 			addChild(ability);
-
-			// Store the name
-			skillName = abilityName;
 
 			// Reset filters
 			ability.AbilityArt.filters = [];
@@ -36,7 +36,31 @@
 			ability.passiveDownType.visible = false;
 			ability.noManaState.visible = false;
 			ability.cooldownLabel.visible = false;
+
+			// Add the cover command
+            this.addEventListener(MouseEvent.ROLL_OVER, lod.onSkillRollOver, false, 0, true);
+            this.addEventListener(MouseEvent.ROLL_OUT, lod.onSkillRollOut, false, 0, true);
+		}
+
+		// Updates the ability stored inside
+		public function setSkillName(abilityName:String):Boolean {
+			// Only update if it is new
+			if(skillName != abilityName) {
+				// Add image
+            	lod.Globals.LoadAbilityImage(abilityName, ability.AbilityArt);
+
+            	// Store the name
+				skillName = abilityName;
+
+            	return true;
+			}
+
+			return false;
+		}
+
+		// Returns the ability in this slot
+		public function getSkillName():String {
+			return this.skillName;
 		}
 	}
-
 }
