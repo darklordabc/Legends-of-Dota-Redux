@@ -958,7 +958,7 @@ local function setupGamemodeSettings()
     end
 
     -- Are we using unique skills?
-    if forceUniqueSkills then
+    if forceUniqueSkills > 0 then
         sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">Unique Skills</font> <font color="'..COLOR_GREEN..'">was turned on! '..((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '(Team Based)') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '(Global)'))..'</font>')
     end
 
@@ -1125,11 +1125,7 @@ local function finishVote()
     useEasyMode = optionToValue(7, winners[7]) == 1
 
     -- Are we using unique skills?
-    if optionToValue(10, winners[10]) == 1 then
-        forceUniqueSkills = true
-    else
-        forceUniqueSkills = false
-    end
+    --forceUniqueSkills = optionToValue(10, winners[10])
 
     -- Add settings to our stat collector
     statcollection.addStats({
