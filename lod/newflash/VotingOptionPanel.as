@@ -14,7 +14,7 @@
 		// The dropdown box
 		public var dropDown:MovieClip;
 
-		public function VotingOptionPanel(slave:Boolean, desText:String, hintText:String, slots:Number) {
+		public function VotingOptionPanel(slave:Boolean, desText:String, hintText:String, slots:Array) {
 			// Update info
 			updateDes(desText);
 			updateHint(hintText);

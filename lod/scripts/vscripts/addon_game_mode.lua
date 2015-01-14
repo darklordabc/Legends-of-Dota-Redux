@@ -1648,6 +1648,11 @@ function lod:OnThink()
         -- Wait for picking to end
         if Time() < endOfTimer and GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return 0.1 end
 
+        -- Validate all builds
+        for i=0,9 do
+            validateBuild(i)
+        end
+
         -- Change to the playing stage
         currentStage = STAGE_PLAYING
 
@@ -2186,7 +2191,7 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
         end
 
         -- Ensure we are in banning mode
-        if currentStage < STAGE_PICKING then
+        if currentStage ~= STAGE_PICKING then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
             return
         end
@@ -2279,7 +2284,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         end
 
         -- Ensure we are in banning mode
-        if currentStage < STAGE_PICKING then
+        if currentStage ~= STAGE_PICKING then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can only pick skills during the picking phase.</font>')
             return
         end

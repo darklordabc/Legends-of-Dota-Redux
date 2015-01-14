@@ -60,12 +60,8 @@
                 // Grab the option
                 var option = optionList[optNumber];
 
-                // Workout how many options there are in this option
-                var totalOptions:Number = 0;
-                while(option.options[totalOptions] != null) totalOptions++;
-
                 // Create the panel
-                var optionPanel:MovieClip = new VotingOptionPanel(slave, option.des, option.hint, totalOptions);
+                var optionPanel:MovieClip = new VotingOptionPanel(slave, option.des, option.hint, Util.objectToArray(option.options));
                 container.addChild(optionPanel);
                 container.setChildIndex(optionPanel, 0)
                 optionPanel.x = 0;
@@ -79,12 +75,6 @@
 
                 // If we're allowed to vote
                 if(!slave) {
-                    // Add the options in
-                    for(var i:Number=0; i<totalOptions; i++) {
-                        // Apply the text
-                        Util.setComboBoxString(optionPanel.dropDown, i, option.options[i]);
-                    }
-
                     // Hook the button
                     createHook(optionPanel.dropDown, optNumber);
                 }

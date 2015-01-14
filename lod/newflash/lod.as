@@ -2,8 +2,10 @@
     // Flash stuff
 	import flash.display.MovieClip;
 
-    // Other events
-	import flash.events.MouseEvent;
+    // Input detection
+    import flash.events.MouseEvent;
+    import flash.events.KeyboardEvent;
+    import flash.ui.Keyboard;
 
 	// Timer
     import flash.utils.Timer;
@@ -166,7 +168,7 @@
 		public function onLoaded():void {
 			trace('\n\nLoD new hud loading...');
 
-			// Fix scaling
+            // Fix scaling
 			fixScreenScaling();
 
 			// Make us visible
@@ -195,6 +197,9 @@
             this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);      // Someone has picked a new skill
             this.gameAPI.SubscribeToGameEvent("lod_swap_slot", onSlotSwapped);  // Someone has swapped two slots
             this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);        // Server sent a message
+
+            // Handle keyboard input
+            stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
 
             // Handle the scoreboard stuff
             //handleScoreboard();
@@ -317,10 +322,16 @@
 
             // Tabs to allow (this will be sent from the server eventually)
             allowedTabs = {
-                main: true//,
-                //neutral: true,
-                //wraith: true
+                main: true,
+                neutral: true,
+                wraith: true
             };
+
+            var tabList = [
+                'main',
+                'neutral',
+                'wraith'
+            ];
 
             // Loop over all tabs
             for(var tabName:String in tempSkillList) {
@@ -360,7 +371,7 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(skillKV.tabs, lastState.s1 == 1, onDropBanningArea);
+            selectionUI.Rebuild(tabList, skillKV.tabs, lastState.s1 == 1, onDropBanningArea);
         }
 
         private function updateDisplayTimer():void {
@@ -1146,6 +1157,18 @@
         private function tellServerToBan(skill:String):void {
             // Send the message to the server
             gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
+        }
+
+        /*
+            LISTENER EVENTS
+        */
+
+        // Listens for keyboard presses
+        private function onKeyBoardDown(e:KeyboardEvent):void {
+            if(e.keyCode == Keyboard.CONTROL) {
+                // Toggle the hero icons
+                selectionUI.toggleHeroIcons();
+            }
         }
 
         /*

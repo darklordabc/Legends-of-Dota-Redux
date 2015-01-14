@@ -1,4 +1,5 @@
 ﻿package  {
+    import flash.events.MouseEvent;
 	import flash.display.MovieClip;
     import flash.text.TextField;
 
@@ -6,11 +7,23 @@
 		// Container for the skills
 		public var skillCon:MovieClip;
 
+        // Container for hero icons
+        public var heroCon:MovieClip;
+
         // The banning area
         public var banningArea:MovieClip;
 
         // Your skill list
         public var yourSkillList:MovieClip;
+
+        // Combo boxes
+        public var comboBehavior:MovieClip;
+        public var comboType:MovieClip;
+        public var comboDamageType:MovieClip;
+        public var comboTab:MovieClip;
+
+        // The toggle interface text
+        public var toggleInterfaceText:TextField;
 
         // The timer
         public var timerField:TextField;
@@ -35,7 +48,12 @@
         // Active list of skills (key = skill name)
         private var activeList:Object = {};
 
+        // The names of tabs
+        var tabNames:Array;
+
 		public function NewSelectionInterface() {
+            // Make the toggle interface text work
+            toggleInterfaceText.addEventListener(MouseEvent.CLICK, toggleHeroIcons);
 		}
 
         public function hideUncommonStuff():void {
@@ -44,9 +62,44 @@
         }
 
 		// Rebuilds the interface from scratch
-		public function Rebuild(newSkillList:Object, source1:Boolean, banningDropCallback:Function) {
+		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function) {
+            var tabName:String;
+
+            // Disable hero input on the hero icons
+            heroCon.mouseEnabled = false;
+            heroCon.mouseChildren = false;
+
             // Allow dropping to the banning area
             EasyDrag.dragMakeValidTarget(banningArea, banningDropCallback);
+
+            // Setup comboboxes
+            comboBehavior.setComboBoxSlots([
+                '#By_Behavior',
+                '#DOTA_ToolTip_Ability_NoTarget',
+                '#DOTA_ToolTip_Ability_Target',
+                '#DOTA_ToolTip_Ability_Point',
+                '#DOTA_ToolTip_Ability_Channeled',
+                '#DOTA_ToolTip_Ability_Passive',
+                '#DOTA_ToolTip_Ability_Aoe',
+                '#DOTA_ToolTip_Ability_Toggle'
+            ]);
+
+            comboType.setComboBoxSlots([
+                '#By_Type',
+                '#Ability',
+                '#Ultimate'
+            ]);
+
+            comboDamageType.setComboBoxSlots([
+                '#By_Damage_Type',
+                '#Magical_Damage',
+                '#Physical_Damage'
+            ]);
+
+            // Build tabs combo
+            tabNames = newTabNames;
+            comboTab.setComboBoxSlots(tabNames);
+            comboTab.setIndexCallback(onTabChanged);
 
             // Calculate settings
 			var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
@@ -59,6 +112,7 @@
 
             var workingWidth:Number = 1024 - 64;
             skillCon.x = -workingWidth/2;
+            heroCon.x = -workingWidth/2;
 
             var gapSizeX:Number = (workingWidth-totalWidth) / (X_SECTIONS-1);
             var gapSizeY:Number = (useableHeight-totalHeight) / (Y_SECTIONS-1);
@@ -75,7 +129,7 @@
             Util.empty(skillCon);
 
             // Loop over all the possible tabs
-            for(var tabName:String in newSkillList) {
+            for(tabName in newSkillList) {
             	// Check if the tab is allowed
             	if(!lod.isTabAllowed(tabName)) continue;
 
@@ -89,8 +143,14 @@
                 var tab:MovieClip = new MovieClip();
                 skillCon.addChild(tab);
 
+                var heroTab:MovieClip = new MovieClip();
+                heroCon.addChild(heroTab);
+
                 // Store the tab
-                tabList[tabName] = tab;
+                tabList[tabName] = {
+                    tab: tab,
+                    heroTab: heroTab
+                };
 
                 for(var k=0;k<Y_SECTIONS;k++) {
                     for(var l=0; l<Y_PER_SECTION; l++) {
@@ -104,6 +164,14 @@
 
                                 // See if there is a header image for this slot
                                 sl.setHeroImage(currentTab['hero_' + skillNumber]);
+
+                                // Store the hero image
+                                if(sl.heroImage.visible) {
+                                    // Move onto hero icons layer
+                                    heroTab.addChild(sl.heroImage);
+                                    sl.heroImage.x = i*(singleWidth+gapSize) + j*(SL_WIDTH+S_PADDING);
+                                    sl.heroImage.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
+                                }
 
                                 for(var a=0; a<4; a++) {
                                     // Grab the slot
@@ -178,10 +246,10 @@
                         }
                     }
                 }
-
-                // Only going to load the first tab
-                return;
             }
+
+            // Change to the main tab
+            setActiveTab('main');
 		}
 
         // Setups the skill list
@@ -197,6 +265,36 @@
         // We have swapped two slots
         public function onSlotSwapped(slot1:Number, slot2:Number):void {
             yourSkillList.onSlotSwapped(slot1, slot2);
+        }
+
+        // Changes the tab
+        public function setActiveTab(tab:String):void {
+            // Set any tab that has a different name to `tab` to invisible
+            // Makes the given tab visible
+            for(var tabName:String in tabList) {
+                if(tabName == tab) {
+                    tabList[tabName].tab.visible = true;
+                    tabList[tabName].heroTab.visible = true;
+                } else {
+                    tabList[tabName].tab.visible = false;
+                    tabList[tabName].heroTab.visible = false;
+                }
+            }
+        }
+
+        // Called when the tab selector changes
+        public function onTabChanged(comboBox):void {
+            // Grab what is selected
+            var i:Number = comboBox.selectedIndex;
+
+            // Change tabs
+            setActiveTab(tabNames[i]);
+        }
+
+        // Toggles the hero icons on/off
+        public function toggleHeroIcons():void {
+            // Invert container
+            heroCon.visible = !heroCon.visible;
         }
 	}
 

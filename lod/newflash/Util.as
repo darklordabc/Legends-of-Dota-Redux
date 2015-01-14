@@ -167,7 +167,7 @@ package {
         }
 
         // Makes a combo box
-        public static function comboBox(container:MovieClip, slots:Number):MovieClip {
+        public static function comboBox(container:MovieClip, slots:Array):MovieClip {
             // Grab the class for a small button
             var dotoComboBoxClass:Class = getDefinitionByName("ComboBoxSkinned") as Class;
 
@@ -175,20 +175,33 @@ package {
             var comboBox:MovieClip = new dotoComboBoxClass();
             container.addChild(comboBox);
 
+            // Set the slots
+            setComboBoxSlots(comboBox, slots);
+
+            // Return the button
+            return comboBox;
+        }
+
+        // Sets the slots in the given combo box
+        public static function setComboBoxSlots(comboBox:MovieClip, slots:Array):void {
             // Create the data provider
             var dp:IDataProvider = new DataProvider();
-            for(var i:Number=0; i<slots; i++) {
-                dp[i] = {
-                  "label":"empty",
-                  "data":i
-               };
+
+            // Ensure slots is ok
+            if(slots != null) {
+                for(var i:Number=0; i<slots.length; i++) {
+                    dp[i] = {
+                      "label":slots[i],
+                      "data":i
+                   };
+                }
             }
 
             // Apply the data provider
             comboBox.setDataProvider(dp);
 
-            // Return the button
-            return comboBox;
+            comboBox.defaultSelection = comboBox.menuList.dataProvider[0];
+            comboBox.setSelectedIndex(0);
         }
 
         // Sets a string in a combo box
@@ -231,6 +244,18 @@ package {
         // Returns minutes:seconds from a number, seconds is always two digits
         public static function sexyTime(time:Number):String {
             return Math.floor(time/60)+':'+(Math.ceil(time)%60<10 ? '0' : '')+(Math.ceil(time)%60);
+        }
+
+        // Object to array converter
+        public static function objectToArray(obj:Object):Array {
+            if(obj == null) return [];
+
+            var arr = [];
+            for(var i=0; obj[i] != null; ++i) {
+                arr.push(obj[i]);
+            }
+
+            return arr;
         }
     }
 }
