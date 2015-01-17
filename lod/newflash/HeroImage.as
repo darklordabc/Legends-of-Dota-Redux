@@ -18,15 +18,18 @@
 		// Change the image
 		public function setHeroImage(newImage:String):void {
 			// Load the hero image
-			lod.Globals.LoadImageWithCallback('images/heroes/selection/' + newImage + '.png', con, false, function(bitmap) {
+			lod.Globals.LoadImageWithCallback('images/heroes/' + newImage + '.png', con, false, function(bitmap) {
 				// Rescale the bitmap
-				var newScale = 100/bitmap.width;
+				var newScale = 102/bitmap.height;
+
+				//bitmap.scaleX = newScale;
+				bitmap.scaleX = newScale;
+				bitmap.scaleY = newScale;
+
+				bitmap.x = -(bitmap.width-bitmap.height)/2
 
 				con.scaleX = 71/128;
 				con.scaleY = 71/128;
-
-				bitmap.scaleX = newScale;
-				bitmap.scaleY = newScale;
 			});
 		}
 	}

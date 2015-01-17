@@ -28,23 +28,19 @@
 			ability.AbilityArt.filters = [];
 
 			// Hide useless stuff
-			ability.removeChild(ability.levelUp);
-			ability.removeChild(ability.activeDownType);
-			ability.removeChild(ability.activePressedType);
-			ability.removeChild(ability.activeCastType);
-			ability.removeChild(ability.unlearnedState);
-			ability.removeChild(ability.enemyState);
-			ability.removeChild(ability.passiveDownType);
-			ability.removeChild(ability.noManaState);
-			ability.removeChild(ability.cooldownLabel);
-			ability.removeChild(ability.autocast);
-			ability.removeChild(ability.cooldownEnd);
-			ability.removeChild(ability.silencedState);
-			ability.removeChild(ability.cooldownSwipe);
-			ability.removeChild(ability.overState);
-			ability.removeChild(ability.autocastable);
-			//ability.removeChild(ability.passiveType);
-			//ability.removeChild(ability.activeType);*/
+			ability.levelUp.visible = false;
+			ability.activeDownType.visible = false;
+			ability.activePressedType.visible = false;
+			ability.activeCastType.visible = false;
+			ability.unlearnedState.visible = false;
+			ability.enemyState.visible = false;
+			ability.passiveDownType.visible = false;
+			ability.noManaState.visible = false;
+			ability.cooldownLabel.visible = false;
+
+			ability.scaleX = 4;
+			ability.scaleY = 4;
+			ability.y += 40;*/
 
 			// Add the cover command
             this.addEventListener(MouseEvent.ROLL_OVER, lod.onSkillRollOver, false, 0, true);
@@ -57,8 +53,12 @@
 			if(skillName != abilityName) {
 				// Add image
             	lod.Globals.LoadAbilityImage(abilityName, con);
-            	con.scaleX = 100/128;
-            	con.scaleY = 100/128;
+            	//lod.Globals.LoadAbilityImage(abilityName, ability.AbilityArt);
+            	con.scaleX = 102/128;
+            	con.scaleY = 102/128;
+
+            	//ability.abilityArt.scaleX = 100/128;
+            	//ability.abilityArt.scaleY = 100/128;
             	// Store the name
 				skillName = abilityName;
 

@@ -20,6 +20,12 @@
         // Your skill list
         public var yourSkillList:MovieClip;
 
+        // The lock skills button
+        public var helpLockSkills:MovieClip;
+
+        // The more time button
+        public var helpMoreTime:MovieClip;
+
         // Container for the tabs up the top
         public var tabButtonCon:MovieClip;
 
@@ -117,6 +123,12 @@
                 '#Physical_Damage'
             ]);
             comboDamageType.setIndexCallback(onComboDamageTypeChanged);
+
+            // Set helper button texts
+            helpMoreTime.setText('#helpMoreTime');
+            helpMoreTime.addEventListener(MouseEvent.CLICK, lod.requestMoreTime);
+            helpLockSkills.setText('#helpLockSkills');
+            helpLockSkills.addEventListener(MouseEvent.CLICK, lod.lockSkills);
 
             // Do the tabs
             Util.empty(tabButtonCon);

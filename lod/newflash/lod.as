@@ -22,6 +22,7 @@
             DOTA BASED STUFF
         */
 		public var gameAPI:Object;
+        public static var GameAPI:Object;
 		public var globals:Object;
         public static var Globals;
 		public var elementName:String;
@@ -186,14 +187,19 @@
 		public function onLoaded():void {
 			trace('\n\nLoD new hud loading...');
 
+            var a = Util.smallButton(this, 'test');
+            trace('widht = ' + a.width);
+            trace('height = ' + a.height);
+
             // Fix scaling
 			fixScreenScaling();
 
 			// Make us visible
 			this.visible = true;
 
-            // Store static globals
+            // Store static refereces
             Globals = globals;
+            GameAPI = gameAPI;
 
             // Prepare UI
             prepareUI();
@@ -1393,6 +1399,16 @@
         private function tellServerToBan(skill:String):void {
             // Send the message to the server
             gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
+        }
+
+        // Request more time from the server
+        public static function requestMoreTime():void {
+            GameAPI.SendServerCommand("lod_more_time");
+        }
+
+        // Locks our skills
+        public static function lockSkills():void {
+            GameAPI.SendServerCommand("lod_lock_skills");
         }
 
         // Fired when the server bans a skill
