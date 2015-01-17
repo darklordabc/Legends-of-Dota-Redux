@@ -30,7 +30,7 @@ statcollection.addFlags({
 })
 
 -- Options module
--[[require('lib.optionsmodule')
+--[[require('lib.optionsmodule')
 GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
     -- Check for an error
     if err then
