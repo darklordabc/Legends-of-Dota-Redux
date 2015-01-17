@@ -14,7 +14,7 @@ if _G.lod == nil then
 end
 
 -- Should we load dedicated config?
-if LoadKeyValues('cfg/dedicated.kv') then
+if LoadKeyValues('cfg/dedicated.kv') ~= 0 then
     require('dedicated')
 end
 
@@ -30,7 +30,7 @@ statcollection.addFlags({
 })
 
 -- Options module
--[[require('lib.optionsmodule')
+--[[require('lib.optionsmodule')
 GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
     -- Check for an error
     if err then
@@ -1811,7 +1811,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Add the skills
                 for i=1,addSkills do
-                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, botSkillsOnly)
+                    local msg, skillName = findRandomSkill(playerID, i, botSkillsOnly)
 
                     -- Failed to find a new skill
                     if skillName == nil then break end
