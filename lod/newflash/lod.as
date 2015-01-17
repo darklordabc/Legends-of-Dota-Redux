@@ -1164,16 +1164,16 @@
 
             var offset = 0;
             if(lp.x < stageWidth/2) {
-                offset = s.width*2;
+                offset = s.width * scalingFactor;
             }
 
             // Workout where to put it
-            lp = s.localToGlobal(new Point(offset, 0));
+            lp = s.localToGlobal(new Point(0, 0));
 
             // Decide how to show the info
-            if(lp.x < stageWidth/2) {
+            if(lp.x+offset < stageWidth/2) {
                 // Face to the right
-                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x, lp.y, s.skillName);
+                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, s.skillName);
             } else {
                 // Face to the left
                 Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, s.skillName);
