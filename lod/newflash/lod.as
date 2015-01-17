@@ -920,6 +920,71 @@
 			//scoreboard.addChild(inject);
 		}
 
+        // Rebuilds the UI for the given hero
+        private function rebuildForHero(playerID:Number):void {
+            var i:Number;
+
+            if(selectionUI == null) return;
+
+            // Grab a hero
+            var hero:Number = globals.Players.GetPlayerHeroEntityIndex(playerID);
+
+            // Ensure it's a hero
+            if(hero == -1 || !globals.Entities.IsHero(hero)) return;
+
+            // Create an array to store abilities
+            var abilityList:Array = [];
+
+            // Workout how many abilities this hero has
+            var abilityCount:Number = globals.Entities.GetAbilityCount(hero);
+
+            // Number of found abilities
+            var foundAbilities = 0;
+
+            // Loop over all abilities
+            for(i=0; i<abilityCount; ++i) {
+                // Grab an abilityID
+                var abilityID:Number = globals.Entities.GetAbility(hero, i);
+
+                // Ensure a valid ability
+                if(abilityID == -1 || globals.Abilities.IsHidden(abilityID)) continue;
+
+                // Print out the name
+                var abilityName = globals.Abilities.GetAbilityName(abilityID);
+
+                // Ignore attribute bonus
+                if(abilityName == 'attribute_bonus') continue;
+
+                // Store it
+                abilityList.push(abilityName);
+
+                // Increase number of found abilities
+                foundAbilities++;
+            }
+
+            // Did we find any abilities?
+            if(foundAbilities > 0) {
+                // Empty old icons
+                Util.empty(abilityIcons[playerID]);
+
+                // Store new icons
+                for(i=0; i<abilityList.length; ++i) {
+                    var ab:MovieClip = abilityIcon(abilityIcons[playerID], abilityList[i]);
+                    ab.scaleX = 64/256;
+                    ab.scaleY = 64/256;
+                    ab.x = i*ab.width;
+                    ab.y = 0;
+                }
+            } else {
+                // Retry in 10 seconds
+                var builder = new Timer(10000, 1);
+                builder.addEventListener(TimerEvent.TIMER, function() {
+                    rebuildForHero(playerID);
+                });
+                builder.start();
+            }
+        }
+
 		// Builds the skill lists
 		private function buildSkillList():void {
 			// Grab all the heroes
@@ -954,41 +1019,8 @@
                     if(builtHeroes[hero]) return;
                     builtHeroes[hero] = true;
 
-                    var builder = new Timer(2000, 1);
-                    builder.addEventListener(TimerEvent.TIMER, function() {
-                        if(selectionUI == null) return;
-
-                        // Workout how many abilities this hero has
-                        var abilityCount:Number = globals.Entities.GetAbilityCount(hero);
-
-                        // Number of found abilities
-                        var foundAbilities = 0;
-
-                        // Loop over all abilities
-                        for(var j:Number=0; j<abilityCount; ++j) {
-                            // Grab an abilityID
-                            var abilityID:Number = globals.Entities.GetAbility(hero, j);
-
-                            // Ensure a valid ability
-                            if(abilityID == -1 || globals.Abilities.IsHidden(abilityID)) continue;
-
-                            // Print out the name
-                            var abilityName = globals.Abilities.GetAbilityName(abilityID);
-
-                            // Ignore attribute bonus
-                            if(abilityName == 'attribute_bonus') continue;
-
-                            var ab:MovieClip = abilityIcon(abilityIcons[playerID], abilityName);
-                            ab.scaleX = 64/256;
-                            ab.scaleY = 64/256;
-                            ab.x = foundAbilities*ab.width*0.5;
-                            ab.y = 0;
-
-                            // Increase number of found abilities
-                            foundAbilities++;
-                        }
-                    });
-                    builder.start();
+                    // Build the list for this player
+                    rebuildForHero(playerID);
                 })();
 			}
 		}
