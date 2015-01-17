@@ -29,6 +29,29 @@ statcollection.addFlags({
     source1 = GameRules:isSource1()
 })
 
+-- Options module
+-[[require('lib.optionsmodule')
+GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
+    -- Check for an error
+    if err then
+        print('Something went wrong and we got no options: '..err)
+        return
+    end
+
+    -- Success, store options as you please
+    print('THIS IS INSIDE YOUR CALLBACK! YAY!')
+
+    local toTest = {
+        test = true,
+        test2 = true,
+        modID = true,
+        steamID = true
+    }
+    for k,v in pairs(toTest) do
+        print(k..' = '..GDSOptions.getOption(k, 'doesnt exist'))
+    end
+end)]]
+
 -- Init load helper
 require('lib.loadhelper')
 
@@ -714,11 +737,54 @@ local function CheckBans(skillList2, slotNumber, skillName, playerID)
     end
 end
 
+-- Sets up slot types
+local function setupSlotType(playerID)
+    if slotTypes[playerID] then return end
+
+    -- Create store for this player
+    slotTypes[playerID] = {}
+
+    -- Put stuff in
+    for j=0,maxSlots-1 do
+        -- Workout if we can allow an ulty, or a skill in the given slot
+        local skill = false
+        local ult = false
+
+        if j < maxSkills then
+            skill = true
+        end
+
+        if j >= maxSlots-maxUlts then
+            ult = true
+        end
+
+        -- Store the result
+        if skill and not ult then
+            slotTypes[playerID][j] = SLOT_TYPE_ABILITY;
+        elseif skill and ult then
+            slotTypes[playerID][j] = SLOT_TYPE_EITHER;
+        elseif not skill and ult then
+            slotTypes[playerID][j] = SLOT_TYPE_ULT;
+        else
+            slotTypes[playerID][j] = SLOT_TYPE_NEITHER;
+        end
+    end
+end
+
+local function setupSlotTypes()
+    local maxPlayers = 10
+
+    for i=0,maxPlayers-1 do
+        setupSlotType(i)
+    end
+end
+
 local function findRandomSkill(playerID, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
     local canUlt
     local canSkill
 
+    setupSlotType(playerID)
     local slotType = slotTypes[playerID][slotNumber]
 
     if slotType == SLOT_TYPE_EITHER then
@@ -816,40 +882,6 @@ local function fixBuilds()
 
     -- No more broken heroes
     brokenHeroes = {}
-end
-
--- Sets up slot types
-local function setupSlotTypes()
-    local maxPlayers = 10
-
-    for i=0,maxPlayers-1 do
-        slotTypes[i] = {}
-
-        for j=0,maxSlots-1 do
-            -- Workout if we can allow an ulty, or a skill in the given slot
-            local skill = false
-            local ult = false
-
-            if j < maxSkills then
-                skill = true
-            end
-
-            if j >= maxSlots-maxUlts then
-                ult = true
-            end
-
-            -- Store the result
-            if skill and not ult then
-                slotTypes[i][j] = SLOT_TYPE_ABILITY;
-            elseif skill and ult then
-                slotTypes[i][j] = SLOT_TYPE_EITHER;
-            elseif not skill and ult then
-                slotTypes[i][j] = SLOT_TYPE_ULT;
-            else
-                slotTypes[i][j] = SLOT_TYPE_NEITHER;
-            end
-        end
-    end
 end
 
 -- Builds a string to represent the type of slots allowed for the given player
@@ -2212,7 +2244,7 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
 
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
-        slotTypes[playerID] = slotTypes[playerID] or {}
+        setupSlotType(playerID)
 
         -- Copy skill over
         local tmpSkill = skillList[playerID][slot1+1]
@@ -2326,6 +2358,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
 
         -- Ensure it isn't the same skill
         if skillList[playerID][slotNumber+1] ~= skillName then
+            setupSlotType(playerID)
             local slotType = slotTypes[playerID][slotNumber]
 
             -- Make sure ults go into slot 3 only

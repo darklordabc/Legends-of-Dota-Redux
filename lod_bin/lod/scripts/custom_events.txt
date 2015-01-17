@@ -259,6 +259,13 @@
     {
     }
 
+    // Options module stuff
+    "gds_options"
+    {
+        "playerID"          "byte"      // The ID of the player who should get stats
+        "command"           "string"    // The command to send to the website
+    }
+
     // Fired to tell clients who is considered the host
     "lh_hostid"
     {
