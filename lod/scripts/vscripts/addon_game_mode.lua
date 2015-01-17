@@ -2150,6 +2150,50 @@ ListenToGameEvent('entity_hurt', function(keys)
     end
 end, nil)
 
+-- Returns how many more people need to lock their skills
+local function countLocks()
+    local locksLeft = 0
+    for i=0,9 do
+        if PlayerResource:GetConnectionState(i) == 2 then
+            if playerLocks[i] ~= 1 then
+                locksLeft = locksLeft + 1
+            end
+        end
+    end
+
+    return locksLeft
+end
+
+-- Do a lock for the given player
+local function doLock(playerID)
+    -- Store our lock as taken
+    playerLocks[playerID] = 1
+
+    -- Check if every other player in the game has locked their skills
+    local locksLeft = countLocks()
+
+    -- Ensure only one lock / player
+    if playerLocks[playerID] then
+        if locksLeft == 0 then
+            -- All locks are in place, move on!
+            endOfTimer = Time()
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
+        else
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already locked your skills! '..locksLeft..' players still need to lock their skills to continue.</font>')
+        end
+        return
+    end
+
+    if locksLeft == 0 then
+        -- All locks are in place, move on!
+        endOfTimer = Time()
+        sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
+    else
+        -- Tell them how long left
+        sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Waiting on '..locksLeft..' players to lock their skills.</font>')
+    end
+end
+
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Input validation
@@ -2201,6 +2245,10 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
             -- Already banned
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is already banned.</font>')
         end
+
+        if totalBans[playerID] >= maxBans then
+            doLock(playerID)
+        end
     end
 end, 'Ban a given skill', 0)
 
@@ -2232,20 +2280,6 @@ Convars:RegisterCommand('lod_more_time', function(name)
     end
 end, 'Grants extra time for each team', 0)
 
--- Returns how many more people need to lock their skills
-local function countLocks()
-    local locksLeft = 0
-    for i=0,9 do
-        if PlayerResource:GetConnectionState(i) == 2 then
-            if playerLocks[i] ~= 1 then
-                locksLeft = locksLeft + 1
-            end
-        end
-    end
-
-    return locksLeft
-end
-
 -- When a user locks their skills
 Convars:RegisterCommand('lod_lock_skills', function(name)
     -- Grab the player
@@ -2253,32 +2287,8 @@ Convars:RegisterCommand('lod_lock_skills', function(name)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
-        -- Store our lock as taken
-        playerLocks[playerID] = 1
-
-        -- Check if every other player in the game has locked their skills
-        local locksLeft = countLocks()
-
-        -- Ensure only one lock / player
-        if playerLocks[playerID] then
-            if locksLeft == 0 then
-                -- All locks are in place, move on!
-                endOfTimer = Time()
-                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
-            else
-                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already locked your skills! '..locksLeft..' players still need to lock their skills to continue.</font>')
-            end
-            return
-        end
-
-        if locksLeft == 0 then
-            -- All locks are in place, move on!
-            endOfTimer = Time()
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
-        else
-            -- Tell them how long left
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Waiting on '..locksLeft..' players to lock their skills.</font>')
-        end
+        -- Do the lock
+        doLock(playerID)
     end
 end, 'Locks a players skills', 0)
 
