@@ -29,6 +29,29 @@ statcollection.addFlags({
     source1 = GameRules:isSource1()
 })
 
+-- Options module
+-[[require('lib.optionsmodule')
+GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
+    -- Check for an error
+    if err then
+        print('Something went wrong and we got no options: '..err)
+        return
+    end
+
+    -- Success, store options as you please
+    print('THIS IS INSIDE YOUR CALLBACK! YAY!')
+
+    local toTest = {
+        test = true,
+        test2 = true,
+        modID = true,
+        steamID = true
+    }
+    for k,v in pairs(toTest) do
+        print(k..' = '..GDSOptions.getOption(k, 'doesnt exist'))
+    end
+end)]]
+
 -- Init load helper
 require('lib.loadhelper')
 
