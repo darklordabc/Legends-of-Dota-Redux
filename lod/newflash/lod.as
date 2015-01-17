@@ -1232,8 +1232,7 @@
 
         // Handles the state info
         private function onGetStateInfo(args:Object):void {
-            trace('Got state info :)');
-            trace('Current stage: ' + args.s);
+            //trace('Current stage: ' + args.s);
 
             // Store the state info
             lastState = args;

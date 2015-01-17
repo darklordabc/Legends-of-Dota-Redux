@@ -373,13 +373,14 @@ function buildSkillListLookup()
                 local s1Skill = string.gsub(skillIndex, '_s1', '')
 
                 -- Check if this is a source1 only skill
-                if s1Skill ~= skillIndex then
+                if s1Skill ~= tostring(skillIndex) then
                     -- Copy it across
                     skillIndex = s1Skill
 
                     -- If not source1, we can't include
                     if not GameRules:isSource1() then
                         doInclude = false
+                        print(skillName)
                     end
                 end
 
