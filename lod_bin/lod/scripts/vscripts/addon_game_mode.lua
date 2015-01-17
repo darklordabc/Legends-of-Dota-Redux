@@ -14,10 +14,10 @@ if _G.lod == nil then
 end
 
 -- Should we load dedicated config?
-if LoadKeyValues('cfg/dedicated.kv') ~= 0 then
+local tst = LoadKeyValues('cfg/dedicated.kv')
+if tst ~= 0 and tst ~= nil then
     require('dedicated')
 end
-
 -- Stat collection
 require('lib.statcollection')
 statcollection.addStats({
@@ -207,6 +207,9 @@ local brokenHeroes = {}
 local handled = {}
 local handledPlayerIDs = {}
 
+-- Teams which have requested extra time
+local extraTime = {}
+
 -- A list of warning attached to skills
 local skillWarnings = {
     life_stealer_infest = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">life_stealer_infest</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">life_stealer_rage</font> <font color="'..COLOR_GREEN..'">if you want to uninfest.</font>',
@@ -373,7 +376,7 @@ function buildSkillListLookup()
                 local s1Skill = string.gsub(skillIndex, '_s1', '')
 
                 -- Check if this is a source1 only skill
-                if s1Skill ~= skillIndex then
+                if s1Skill ~= tostring(skillIndex) then
                     -- Copy it across
                     skillIndex = s1Skill
 
@@ -1653,6 +1656,9 @@ function lod:OnThink()
         -- Wait for banning to end
         if Time() < endOfTimer then return 0.1 end
 
+        -- Allow each team to get extra time again
+        extraTime = {}
+
         -- Change to picking state
         currentStage = STAGE_PICKING
 
@@ -2144,6 +2150,50 @@ ListenToGameEvent('entity_hurt', function(keys)
     end
 end, nil)
 
+-- Returns how many more people need to lock their skills
+local function countLocks()
+    local locksLeft = 0
+    for i=0,9 do
+        if PlayerResource:GetConnectionState(i) == 2 then
+            if playerLocks[i] ~= 1 then
+                locksLeft = locksLeft + 1
+            end
+        end
+    end
+
+    return locksLeft
+end
+
+-- Do a lock for the given player
+local function doLock(playerID)
+    -- Store our lock as taken
+    playerLocks[playerID] = 1
+
+    -- Check if every other player in the game has locked their skills
+    local locksLeft = countLocks()
+
+    -- Ensure only one lock / player
+    if playerLocks[playerID] then
+        if locksLeft == 0 then
+            -- All locks are in place, move on!
+            endOfTimer = Time()
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
+        else
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already locked your skills! '..locksLeft..' players still need to lock their skills to continue.</font>')
+        end
+        return
+    end
+
+    if locksLeft == 0 then
+        -- All locks are in place, move on!
+        endOfTimer = Time()
+        sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
+    else
+        -- Tell them how long left
+        sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Waiting on '..locksLeft..' players to lock their skills.</font>')
+    end
+end
+
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Input validation
@@ -2195,8 +2245,52 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
             -- Already banned
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is already banned.</font>')
         end
+
+        if totalBans[playerID] >= maxBans then
+            doLock(playerID)
+        end
     end
 end, 'Ban a given skill', 0)
+
+-- When a user requests more time
+Convars:RegisterCommand('lod_more_time', function(name)
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Grab their team
+        local team = PlayerResource:GetTeam(playerID)
+
+        -- Allow extra time ONCE from each team
+        if extraTime[team] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Your team has already requested extra time!</font>')
+            return
+        end
+        extraTime[team] = true
+
+        -- Allocate extra time
+        endOfTimer = endOfTimer + 60
+
+        -- Tell the player
+        sendChatMessage(-1, '<font color="'..COLOR_RED..'">Extra time was allocated!</font>')
+
+        -- Update state
+        GameRules.lod:OnEmitStateInfo()
+    end
+end, 'Grants extra time for each team', 0)
+
+-- When a user locks their skills
+Convars:RegisterCommand('lod_lock_skills', function(name)
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Do the lock
+        doLock(playerID)
+    end
+end, 'Locks a players skills', 0)
 
 -- Swap two slots
 Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
@@ -2310,6 +2404,11 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Check locks
+        if playerLocks[playerID] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Your skills are locked!</font>')
+        end
 
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then

@@ -14,10 +14,10 @@ if _G.lod == nil then
 end
 
 -- Should we load dedicated config?
-if LoadKeyValues('cfg/dedicated.kv') ~= 0 then
+local tst = LoadKeyValues('cfg/dedicated.kv')
+if tst ~= 0 and tst ~= nil then
     require('dedicated')
 end
-
 -- Stat collection
 require('lib.statcollection')
 statcollection.addStats({

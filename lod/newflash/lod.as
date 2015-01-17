@@ -187,10 +187,6 @@
 		public function onLoaded():void {
 			trace('\n\nLoD new hud loading...');
 
-            var a = Util.smallButton(this, 'test');
-            trace('widht = ' + a.width);
-            trace('height = ' + a.height);
-
             // Fix scaling
 			fixScreenScaling();
 

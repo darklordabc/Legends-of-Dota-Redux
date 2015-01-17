@@ -31,7 +31,8 @@ ListenToGameEvent('player_connect', function(keys)
 end, nil)
 
 -- Team allocation stuff
-if LoadKeyValues('cfg/allocation.kv') ~= 0 then
+local tst = LoadKeyValues('cfg/allocation.kv')
+if tst ~= 0 and tst ~= nil then
     print('Loaded LoD allocation code!')
 
     -- Stick people onto teams
@@ -131,7 +132,8 @@ if LoadKeyValues('cfg/allocation.kv') ~= 0 then
 end
 
 -- Bot allocation
-if LoadKeyValues('cfg/addbots.kv') ~= 0 then
+local tst = LoadKeyValues('cfg/addbots.kv')
+if tst ~= 0 and tst ~= nil then
     print('Loaded LoD bot allocation code')
 
     -- Auto add bots on the dedi server
