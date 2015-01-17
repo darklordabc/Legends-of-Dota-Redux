@@ -1811,7 +1811,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Add the skills
                 for i=1,addSkills do
-                    local msg, skillName = findRandomSkill(playerID, #skillList[playerID]+1, botSkillsOnly)
+                    local msg, skillName = findRandomSkill(playerID, i, botSkillsOnly)
 
                     -- Failed to find a new skill
                     if skillName == nil then break end

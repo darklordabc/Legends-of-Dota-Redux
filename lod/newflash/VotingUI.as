@@ -80,6 +80,9 @@
                 if(!slave) {
                     // Hook the button
                     createHook(optionPanel.dropDown, optNumber);
+                } else {
+                    // Set default value
+                    updateSlave(optNumber, 0);
                 }
             }
 
