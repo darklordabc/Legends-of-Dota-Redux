@@ -1,3 +1,5 @@
+print('Loaded LoD dedicated file!')
+
 -- How long to wait after the match ends before killing the server
 local endGameDelay = 15
 

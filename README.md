@@ -75,4 +75,8 @@ Legends of Dota
         "dedicated" {
         }
 
+ - You should see the following messages, depending on what you selected:
+ - `Loaded LoD dedicated file!`
+ - `Loaded LoD allocation code!`
+ - `Loaded LoD bot allocation code`
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
