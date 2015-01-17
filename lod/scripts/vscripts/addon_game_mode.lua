@@ -14,7 +14,7 @@ if _G.lod == nil then
 end
 
 -- Should we load dedicated config?
-if LoadKeyValues('cfg/dedicated.kv') then
+if LoadKeyValues('cfg/dedicated.kv') ~= 0 then
     require('dedicated')
 end
 
