@@ -934,15 +934,12 @@
 		}
 
         // Rebuilds the UI for the given hero
-        private function rebuildForHero(playerID:Number):void {
+        private function rebuildForHero(hero:Number, playerID:Number):void {
             var i:Number;
 
             if(selectionUI == null) return;
 
-            // Grab a hero
-            var hero:Number = globals.Players.GetPlayerHeroEntityIndex(playerID);
-
-            // Ensure it's a hero
+            // Ensure hero still exists
             if(hero == -1 || !globals.Entities.IsHero(hero)) return;
 
             // Create an array to store abilities
@@ -992,7 +989,7 @@
                 // Retry in 10 seconds
                 var builder = new Timer(10000, 1);
                 builder.addEventListener(TimerEvent.TIMER, function() {
-                    rebuildForHero(playerID);
+                    rebuildForHero(hero, playerID);
                 });
                 builder.start();
             }
@@ -1033,7 +1030,7 @@
                     builtHeroes[hero] = true;
 
                     // Build the list for this player
-                    rebuildForHero(playerID);
+                    rebuildForHero(hero, playerID);
                 })();
 			}
 		}
