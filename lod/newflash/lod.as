@@ -138,6 +138,9 @@
         // Key bindings
         private var keyBindings:Array;
 
+        // Hud fixing timer
+        private var hudFixingTimer:Timer;
+
         /*
             SKILL LIST STUFF
         */
@@ -1227,9 +1230,14 @@
 
         // When the unit selection is updated
         private function onUnitSelectionUpdated():void {
-            var fixerTimer = new Timer(1);
-            fixerTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
-            fixerTimer.start();
+            if(hudFixingTimer != null) {
+                hudFixingTimer.stop();
+                hudFixingTimer = null;
+            }
+
+            hudFixingTimer = new Timer(100);
+            hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
+            hudFixingTimer.start();
         }
 
         // Fixes the hot keys
