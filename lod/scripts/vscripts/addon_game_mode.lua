@@ -1659,6 +1659,9 @@ function lod:OnThink()
         -- Allow each team to get extra time again
         extraTime = {}
 
+        -- Fix locks
+        playerLocks = {}
+
         -- Change to picking state
         currentStage = STAGE_PICKING
 
@@ -2166,6 +2169,11 @@ end
 
 -- Do a lock for the given player
 local function doLock(playerID)
+    local first = true
+    if playerLocks[playerID] == 1 then
+        first = false
+    end
+
     -- Store our lock as taken
     playerLocks[playerID] = 1
 
@@ -2173,7 +2181,7 @@ local function doLock(playerID)
     local locksLeft = countLocks()
 
     -- Ensure only one lock / player
-    if playerLocks[playerID] then
+    if not first then
         if locksLeft == 0 then
             -- All locks are in place, move on!
             endOfTimer = Time()
@@ -2408,6 +2416,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
         -- Check locks
         if playerLocks[playerID] then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Your skills are locked!</font>')
+            return
         end
 
         -- Stop people who have spawned from picking
