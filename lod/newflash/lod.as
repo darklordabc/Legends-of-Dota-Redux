@@ -135,6 +135,9 @@
         // List of banned skills nawwwww
         private static var bannedSkills:Object;
 
+        // Key bindings
+        private var keyBindings:Array;
+
         /*
             SKILL LIST STUFF
         */
@@ -213,15 +216,17 @@
             // Reset vars
             bannedSkills = {};
             bannedCombos = {};
+            keyBindings = [];
 
             // Subscribe to the state info
-            this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);        // A skill was banned
-            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);     // Contains most of the game state
-            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);        // Someone has updated a voting option
-            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);      // Server sent us info on how to decode skill values
-            this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);      // Someone has picked a new skill
-            this.gameAPI.SubscribeToGameEvent("lod_swap_slot", onSlotSwapped);  // Someone has swapped two slots
-            this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);        // Server sent a message
+            this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);                                    // A skill was banned
+            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);                                 // Contains most of the game state
+            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);                                    // Someone has updated a voting option
+            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);                                  // Server sent us info on how to decode skill values
+            this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);                                  // Someone has picked a new skill
+            this.gameAPI.SubscribeToGameEvent("lod_swap_slot", onSlotSwapped);                              // Someone has swapped two slots
+            this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);                                    // Server sent a message
+            this.gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", onUnitSelectionUpdated);  // The player changed the unit they had selected
 
             // Handle keyboard input
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
@@ -605,6 +610,8 @@
 
         // Updates the UI based on the current state
         private function updateUI():void {
+            var i:Number;
+
             // Ensure we have state info
             if(!lastState) return;
 
@@ -633,6 +640,10 @@
                     hideSkills = lastState.hideSkills == 1;
                     source1 = lastState.source1 == 1;
                     banTrollCombos = lastState.trolls == 1;
+
+                    // Patch key bindings
+                    keyBindings = ['Q', 'W', 'E', 'D', 'F', 'R'];
+                    keyBindings[MAX_SLOTS-1] = 'R';
 
                     // Load up the skills file
                     loadSkillsFile();
@@ -707,7 +718,7 @@
                 var changedLocalSlots:Boolean = false;
 
                 // Update skills
-                for(var i=0; i<10; i++) {
+                for(i=0; i<10; i++) {
                     for(var j=0; j<MAX_SLOTS; j++) {
                         // Grab the skill, and decode if needed
                         var skillNumber = lastState[String(i)+String(j+1)];
@@ -1210,6 +1221,25 @@
                     }
 
                 }
+            }
+        }
+
+        /*
+            FIXES
+        */
+
+        // When the unit selection is updated
+        private function onUnitSelectionUpdated():void {
+            var fixerTimer = new Timer(1);
+            fixerTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
+            fixerTimer.start();
+        }
+
+        // Fixes the hot keys
+        private function fixHotkeys():void {
+            // Set the text
+            for(var i:Number=0; i<6; i++) {
+                globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
             }
         }
 
