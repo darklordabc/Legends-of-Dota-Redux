@@ -496,6 +496,13 @@ local function isPassive(skillName)
     return false
 end
 
+-- Returns true if the player is on a valid team
+local function isPlayerOnValidTeam(playerID)
+    local team = PlayerResource:GetTeam(playerID)
+
+    return team == DOTA_TEAM_BADGUYS or team == DOTA_TEAM_GOODGUYS
+end
+
 -- Checks to see if this is a valid skill
 local function isValidSkill(skillName)
     if skillLookup[skillName] == nil then return false end
@@ -1036,9 +1043,6 @@ local function postGamemodeSettings()
                 end
             end
         end
-
-        -- Send this new state out
-        --sendStateInfo()
     end
 end
 
@@ -1251,145 +1255,6 @@ local function backdoorFix()
         ent:AddNewModifier(ent, ent:FindAbilityByName('backdoor_protection_in_base'), 'modifier_backdoor_protection_in_base', {})
     end
 end
-
---[[local canInfo = true
-local function sendPickingInfo()
-    -- Stop spam of this command
-    if not canInfo then return end
-    canInfo = false
-
-    -- Send out info after a short delay
-    GameRules:GetGameModeEntity():SetThink(function()
-        -- They can ask for info again
-        canInfo = true
-
-        -- Workout if we are running source1
-        local s1 = 0
-        if GameRules:isSource1() then
-            s1 = 1
-        end
-
-        -- Send picking info to everyone
-        FireGameEvent('lod_picking_info', {
-            startTime = heroSelectionStart,
-            banningTime = banningTime,
-            pickingTime = pickingTime,
-            slots = maxSlots,
-            skills = maxSkills,
-            ults = maxUlts,
-            trolls = (banTrollCombos and 1) or 0,
-            hostBanning = (hostBanning and 1) or 0,
-            hideSkills = (hideSkills and 1) or 0,
-            stage = currentStage,
-            s1 = s1
-        })
-    end, 'DelayedInfoTimer', 1, nil)
-end]]
-
---[[local canVoteInfo = true
-local function sendVotingInfo()
-    -- Stop spam of this command
-    if not canVoteInfo then return end
-    canVoteInfo = false
-
-    -- Send out info after a short delay
-    GameRules:GetGameModeEntity():SetThink(function()
-        -- We must have a valid slaveID before we can do anything
-        if slaveID == -1 then
-            slaveID = loadhelper.getHostID()
-
-            -- Is it still broken?
-            if slaveID == -1 then
-                return 1
-            end
-        end
-
-        -- They can ask for info again
-        canVoteInfo = true
-
-        -- Send picking info to everyone
-        FireGameEvent('lod_voting_info', {
-            slaveID = slaveID
-        })
-    end, 'DelayedVoteInfoTimer', 1, nil)
-end]]
-
---[[local canState = true
-sendStateInfo = function()
-    -- Stop spam of this command
-    if not canState then return end
-    canState = false
-
-    -- Send out info after a short delay
-    GameRules:GetGameModeEntity():SetThink(function()
-        -- They can ask for info again
-        canState = true
-
-        -- Build the state table
-        local s = {}
-
-        -- Loop over all players
-        for i=0,9 do
-            -- Grab their skill list
-            local l = skillList[i] or {}
-
-            -- Calculate number to encode with
-            local encode = 0
-            if hideSkills then
-                if PlayerResource:GetTeam(i) == DOTA_TEAM_BADGUYS then
-                    encode = encodeDire
-                elseif PlayerResource:GetTeam(i) == DOTA_TEAM_GOODGUYS then
-                    encode = encodeRadiant
-                end
-            end
-
-            -- Grab this player's slot
-            local slot = getPlayerSlot(i)
-
-            -- Store playerID --> Slot
-            s[tostring(i)] = slot
-
-            -- Loop over this player's skills
-            for j=1,6 do
-                -- Ensure the slot is filled
-                s[tostring(i..j)] = s[tostring(i..j)] or -1
-
-                if slot ~= -1 then
-                    -- Store the ID of this skill
-                    local sid = getSkillID(l[j])
-
-                    if sid == -1 then
-                        s[tostring(slot..j)] = sid
-                    else
-                        s[tostring(slot..j)] = sid+encode
-                    end
-                end
-            end
-
-            -- Store draft
-            s['s'..i] = buildDraftString(i)
-        end
-
-        local banned = {}
-        for k,v in pairs(bannedSkills) do
-            table.insert(banned, k)
-        end
-
-        -- Store bans
-        local b
-        for k,v in pairs(banned) do
-            if not b then
-                b = getSkillID(banned[k])
-            else
-                b = b..'|'..getSkillID(banned[k])
-            end
-        end
-        s['b'] = b
-
-        -- Send picking info to everyone
-        FireGameEvent('lod_state', s)
-    end, 'DelayedStateTimer', 1, nil)
-end]]
 
 -- A function that returns true if the given skill is valid for bots
 function botSkillsOnly(skillName)
@@ -2219,6 +2084,12 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
+
         -- Host banning mode?
         if hostBanning and playerID ~= 0 then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Please wait while the host bans skills.</font>')
@@ -2274,6 +2145,12 @@ Convars:RegisterCommand('lod_more_time', function(name)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
+
         -- Grab their team
         local team = PlayerResource:GetTeam(playerID)
 
@@ -2302,6 +2179,12 @@ Convars:RegisterCommand('lod_lock_skills', function(name)
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
 
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
+
         -- Do the lock
         doLock(playerID)
     end
@@ -2320,6 +2203,12 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
 
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then
@@ -2419,6 +2308,12 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
 
         -- Check locks
         if playerLocks[playerID] then
@@ -2531,43 +2426,6 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
     end
 end, 'Ban a given skill', 0)
 
--- When a user requests the voting info
---[[Convars:RegisterCommand('lod_voting_info', function(name)
-    -- Ensure the hero selection timer isn't nil
-    if heroSelectionStart ~= nil then
-        -- Should we send voting info, or picking info?
-        if currentStage == STAGE_VOTING then
-            -- Send voting info
-            sendVotingInfo()
-        else
-            -- Send picking info
-            sendVotingInfo()
-            sendPickingInfo()
-        end
-    end
-end, 'Send picking info out', 0)]]
-
--- When a user requests the picking info
---[[Convars:RegisterCommand('lod_picking_info', function(name)
-    -- Ensure the hero selection timer isn't nil
-    if heroSelectionStart ~= nil then
-        if currentStage >= STAGE_BANNING then
-            sendPickingInfo()
-        end
-    end
-end, 'Send picking info out', 0)]]
-
--- When a user requests the state info
---[[Convars:RegisterCommand('lod_state_info', function(name)
-    -- Ensure the hero selection timer isn't nil
-    if heroSelectionStart ~= nil then
-        if currentStage >= STAGE_BANNING then
-            -- Send the state info
-            sendStateInfo()
-        end
-    end
-end, 'Send state info out', 0)]]
-
 -- User is trying to update their vote
 Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
     -- We are only accepting numbers
@@ -2577,6 +2435,12 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
 
         if currentStage == STAGE_VOTING then
             -- Check if we are using slave mode, and we are a slave
@@ -2625,6 +2489,12 @@ Convars:RegisterCommand('finished_voting', function(name, skillName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
 
         -- Ensure the player is actually the host
         if playerID == slaveID then
