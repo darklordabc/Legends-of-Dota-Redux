@@ -725,6 +725,13 @@ local function CheckBans(skillList2, slotNumber, skillName, playerID)
 
     -- Should we ban troll combos?
     if banTrollCombos then
+        -- Check if they actually already have this skill
+        for i=1,maxSlots do
+            if skillList2[i] == skillName then
+                return '<font color="'..COLOR_RED..'">'..skillName..'</font> is already in your draft, you can move it around by dragging the slots.'
+            end
+        end
+
         if banList[skillName] then
             -- Loop over all our slots
             for i=1,maxSlots do
