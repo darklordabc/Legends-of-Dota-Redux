@@ -247,8 +247,8 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             var data2 = heroes2[name];
 
             newKV[name+'_lod'] = {
-                override_hero: name,
-                AbilityLayout: '6'
+                override_hero: name//,
+                //AbilityLayout: '6'
             }
 
             // Check if they are melee

@@ -1238,6 +1238,9 @@
             for(var i:Number=0; i<6; i++) {
                 globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
             }
+
+            // Make it 6 slots, ALWAYS
+            globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(MAX_SLOTS-3);
         }
 
         /*
