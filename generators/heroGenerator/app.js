@@ -246,13 +246,13 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             var data1 = heroes1[name];
             var data2 = heroes2[name];
 
-            newKV[name+'_lod'] = {
-                override_hero: name//,
-                //AbilityLayout: '6'
-            }
-
             // Check if they are melee
             if(data1.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
+                newKV[name+'_lod'] = {
+                    override_hero: name//,
+                    //AbilityLayout: '6'
+                }
+
                 // Give them projectile speed + model
                 newKV[name+'_lod'].ProjectileSpeed = 1000
                 newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
