@@ -267,34 +267,42 @@ else
                     return
                 end
 
+                -- Check if voting is already over
+                if currentStage > STAGE_VOTING then return end
+
+                -- Set settings go go go
+                gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
+
+                maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
+                maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
+                maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
+
+                maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
+                if maxBans == -1 then
+                    -- Host banning mode
+                    maxBans = 500
+                    hostBanning = true
+                end
+
+                forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
+
+                banTrollCombos = GDSOptions.getOption('blocktrollcombos', 'true') == 'true'
+                useEasyMode = GDSOptions.getOption('useeasymode', 'false') == 'true'
+                hideSkills = GDSOptions.getOption('hideenemypicks', 'true') == 'true'
+
+                startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
+                bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+
                 -- Only allow it in the waiting stage
                 if currentStage == STAGE_WAITING then
                     -- Skip the voting screen
                     patchOptions = true
+                elseif currentStage == STAGE_VOTING then
+                    -- No longer voting
+                    stillVoting = false
 
-                    -- Set settings go go go
-
-                    gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
-
-                    maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
-                    maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
-                    maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
-
-                    maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
-                    if maxBans == -1 then
-                        -- Host banning mode
-                        maxBans = 500
-                        hostBanning = true
-                    end
-
-                    forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
-
-                    banTrollCombos = GDSOptions.getOption('blocktrollcombos', 'true') == 'true'
-                    useEasyMode = GDSOptions.getOption('useeasymode', 'false') == 'true'
-                    hideSkills = GDSOptions.getOption('hideenemypicks', 'true') == 'true'
-
-                    startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
-                    bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+                    -- Setup all the fancy gamemode stuff
+                    setupGamemodeSettings()
                 end
             end)
         else
@@ -1496,20 +1504,6 @@ function lod:OnThink()
 
                     -- No longer voting
                     stillVoting = false
-
-                    if banningTime > 0 then
-                        -- Move onto banning
-                        currentStage = STAGE_BANNING
-
-                        -- Store when the banning phase ends
-                        endOfTimer = Time() + banningTime
-                    else
-                        -- Move onto banning
-                        currentStage = STAGE_PICKING
-
-                        -- Store when the banning phase ends
-                        endOfTimer = Time() + pickingTime
-                    end
 
                     -- Setup all the fancy gamemode stuff
                     setupGamemodeSettings()
