@@ -83,32 +83,18 @@ local function setupFunction(newModID, theirCallback)
     return true
 end
 
-local function notSetup()
-    -- Not needed / setup
-    FireGameEvent('gds_options', {
-        command = '',
-        playerID = -1
-    })
-end
-
 -- Called when a player loads, will reply to them if they are the first person to ask for options
 local foundHost = false
 local reportPlayer = -1
 function checkForHost(cmdName)
     -- Ensure it is setup
-    if not modID then
-        notSetup()
-        return
-    end
+    if not modID then return end
 
     -- Ensure it was a valid player who called this
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         -- Ensure we only request options once
-        if foundHost then
-            notSetup()
-            return
-        end
+        if foundHost then return end
 
         local playerID = cmdPlayer:GetPlayerID()
         if playerID == -1 then return end
@@ -136,10 +122,7 @@ end
 -- Options have failed to load
 function failedOptions(cmdName, message)
     -- Ensure it is setup
-    if not modID then
-        notSetup()
-        return
-    end
+    if not modID then return end
 
     -- Only allow failure to happen once
     if failed then return end
@@ -167,10 +150,7 @@ end
 local optionsPart = ''
 function recieveOptionsPart(cmdName, part)
     -- Ensure it is setup
-    if not modID then
-        notSetup()
-        return
-    end
+    if not modID then return end
 
     if gottenOptions or failed then return end
 
@@ -190,10 +170,7 @@ end
 -- Called when the client sends us options
 function recieveOptions(cmdName)
     -- Ensure it is setup
-    if not modID then
-        notSetup()
-        return
-    end
+    if not modID then return end
 
     if gottenOptions or failed then return end
 
