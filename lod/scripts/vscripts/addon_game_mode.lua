@@ -286,9 +286,9 @@ else
 
                 forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
 
-                banTrollCombos = GDSOptions.getOption('blocktrollcombos', 'true') == 'true'
-                useEasyMode = GDSOptions.getOption('useeasymode', 'false') == 'true'
-                hideSkills = GDSOptions.getOption('hideenemypicks', 'true') == 'true'
+                banTrollCombos = GDSOptions.getOption('blocktrollcombos', true)
+                useEasyMode = GDSOptions.getOption('useeasymode', false)
+                hideSkills = GDSOptions.getOption('hideenemypicks', true)
 
                 startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
                 bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
@@ -1095,7 +1095,7 @@ local function setupGamemodeSettings()
     setupSlotTypes()
 
     -- Update state
-    self:OnEmitStateInfo()
+    GameRules.lod:OnEmitStateInfo()
 end
 
 -- Called when picking ends

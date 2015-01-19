@@ -267,34 +267,42 @@ else
                     return
                 end
 
+                -- Check if voting is already over
+                if currentStage > STAGE_VOTING then return end
+
+                -- Set settings go go go
+                gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
+
+                maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
+                maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
+                maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
+
+                maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
+                if maxBans == -1 then
+                    -- Host banning mode
+                    maxBans = 500
+                    hostBanning = true
+                end
+
+                forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
+
+                banTrollCombos = GDSOptions.getOption('blocktrollcombos', true)
+                useEasyMode = GDSOptions.getOption('useeasymode', false)
+                hideSkills = GDSOptions.getOption('hideenemypicks', true)
+
+                startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
+                bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+
                 -- Only allow it in the waiting stage
                 if currentStage == STAGE_WAITING then
                     -- Skip the voting screen
                     patchOptions = true
+                elseif currentStage == STAGE_VOTING then
+                    -- No longer voting
+                    stillVoting = false
 
-                    -- Set settings go go go
-
-                    gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
-
-                    maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
-                    maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
-                    maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
-
-                    maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
-                    if maxBans == -1 then
-                        -- Host banning mode
-                        maxBans = 500
-                        hostBanning = true
-                    end
-
-                    forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
-
-                    banTrollCombos = GDSOptions.getOption('blocktrollcombos', 'true') == 'true'
-                    useEasyMode = GDSOptions.getOption('useeasymode', 'false') == 'true'
-                    hideSkills = GDSOptions.getOption('hideenemypicks', 'true') == 'true'
-
-                    startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
-                    bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+                    -- Setup all the fancy gamemode stuff
+                    setupGamemodeSettings()
                 end
             end)
         else
@@ -1046,11 +1054,48 @@ local function setupGamemodeSettings()
     -- Announce which gamemode we're playing
     sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="'..COLOR_GREEN..'">game variant was selected!</font>')
 
+    -- Announce results
+    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">! Bonus gold is </font></font><font color="'..COLOR_BLUE..'">'..bonusGold..'</font><font color="'..COLOR_GREEN..'">.</font>')
+
+    if banningTime > 0 then
+        if not hostBanning then
+            sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+        else
+            -- Tell other players to sit tight
+            for i=0,9 do
+                if slaveID ~= i then
+                    sendChatMessage(i, '<font color="'..COLOR_GREEN..'">Banning has started. Please wait while your host bans skills and heroes.</font>')
+                else
+                    -- Send banning info to main player
+                    sendChatMessage(0, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
+                end
+            end
+        end
+
+        -- Move onto banning mode
+        currentStage = STAGE_BANNING
+
+        -- Store when the banning phase ends
+        endOfTimer = Time() + banningTime
+    else
+        -- Tell everyone
+        sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Picking has started. You have</font> <font color="'..COLOR_RED..'">'..pickingTime..' seconds</font> <font color="'..COLOR_GREEN..'">to pick your skills. Drag and drop skills into the slots to select them.</font>')
+
+        -- Move onto selection mode
+        currentStage = STAGE_PICKING
+
+        -- Store when the banning phase ends
+        endOfTimer = Time() + pickingTime
+    end
+
     -- Build the ability list
     buildSkillListLookup()
 
     -- Setup player slot types
     setupSlotTypes()
+
+    -- Update state
+    GameRules.lod:OnEmitStateInfo()
 end
 
 -- Called when picking ends
@@ -1226,9 +1271,6 @@ local function finishVote()
 
     -- Setup gamemode specific settings
     setupGamemodeSettings()
-
-    -- Announce results
-    sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">! Bonus gold is </font></font><font color="'..COLOR_BLUE..'">'..bonusGold..'</font><font color="'..COLOR_GREEN..'">.</font>')
 end
 
 -- A fix for source1 backdoor protection
@@ -1463,25 +1505,8 @@ function lod:OnThink()
                     -- No longer voting
                     stillVoting = false
 
-                    if banningTime > 0 then
-                        -- Move onto banning
-                        currentStage = STAGE_BANNING
-
-                        -- Store when the banning phase ends
-                        endOfTimer = Time() + banningTime
-                    else
-                        -- Move onto banning
-                        currentStage = STAGE_PICKING
-
-                        -- Store when the banning phase ends
-                        endOfTimer = Time() + pickingTime
-                    end
-
                     -- Setup all the fancy gamemode stuff
                     setupGamemodeSettings()
-
-                    -- Update state
-                    self:OnEmitStateInfo()
                 end
             else
                 -- We must have a valid slaveID before we can do anything
@@ -1518,36 +1543,6 @@ function lod:OnThink()
 
         -- Workout who won
         finishVote()
-
-        -- Tell the users it's picking time
-        if banningTime > 0 then
-            if not hostBanning then
-                sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
-            else
-                -- Send banning info to main player
-                sendChatMessage(0, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
-
-                -- Tell other players to sit tight
-                for i=1,9 do
-                    sendChatMessage(i, '<font color="'..COLOR_GREEN..'">Banning has started. Please wait while your host bans skills and heroes.</font>')
-                end
-            end
-
-            -- Move onto banning mode
-            currentStage = STAGE_BANNING
-
-            -- Store when the banning phase ends
-            endOfTimer = Time() + banningTime
-        else
-            -- Move onto selection mode
-            currentStage = STAGE_PICKING
-
-            -- Store when the banning phase ends
-            endOfTimer = Time() + pickingTime
-        end
-
-        -- Send the picking info
-        self:OnEmitStateInfo()
 
         -- Sleep
         return 0.1
