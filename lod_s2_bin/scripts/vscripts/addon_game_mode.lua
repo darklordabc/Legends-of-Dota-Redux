@@ -13,11 +13,6 @@ if _G.lod == nil then
 	end
 end
 
--- Should we load dedicated config?
-local tst = LoadKeyValues('cfg/dedicated.kv')
-if tst ~= 0 and tst ~= nil then
-    require('dedicated')
-end
 -- Stat collection
 require('lib.statcollection')
 statcollection.addStats({
@@ -29,28 +24,18 @@ statcollection.addFlags({
     source1 = GameRules:isSource1()
 })
 
--- Options module
---[[require('lib.optionsmodule')
-GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
-    -- Check for an error
-    if err then
-        print('Something went wrong and we got no options: '..err)
-        return
-    end
+-- Load GDS options module
+require('lib.optionsmodule')
 
-    -- Success, store options as you please
-    print('THIS IS INSIDE YOUR CALLBACK! YAY!')
+-- Should we load dedicated config?
+local loadGDSOptions = true
+local tst = LoadKeyValues('cfg/dedicated.kv')
+if tst ~= 0 and tst ~= nil then
+    -- Load dedicated stuff
+    require('dedicated')
 
-    local toTest = {
-        test = true,
-        test2 = true,
-        modID = true,
-        steamID = true
-    }
-    for k,v in pairs(toTest) do
-        print(k..' = '..GDSOptions.getOption(k, 'doesnt exist'))
-    end
-end)]]
+    loadGDSOptions = false
+end
 
 -- Init load helper
 require('lib.loadhelper')
@@ -270,6 +255,53 @@ if Options then
     useEasyMode = tonumber(Options.getOption('lod', EASY_MODE, 0)) == 1
     banTrollCombos = tonumber(Options.getOption('lod', TROLL_MODE, 0)) == 0
     hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1
+else
+    -- Are we using GDS option?
+    if GDSOptions then
+        if loadGDSOptions then
+            -- Set it up
+            GDSOptions.setup('2374504c2c518fafc9731a120e67fdf5', function(err, options)
+                -- Check for an error
+                if err then
+                    print('Something went wrong and we got no options: '..err)
+                    return
+                end
+
+                -- Only allow it in the waiting stage
+                if currentStage == STAGE_WAITING then
+                    -- Skip the voting screen
+                    patchOptions = true
+
+                    -- Set settings go go go
+
+                    gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
+
+                    maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
+                    maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
+                    maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
+
+                    maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
+                    if maxBans == -1 then
+                        -- Host banning mode
+                        maxBans = 500
+                        hostBanning = true
+                    end
+
+                    forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
+
+                    banTrollCombos = GDSOptions.getOption('blocktrollcombos', 'true') == 'true'
+                    useEasyMode = GDSOptions.getOption('useeasymode', 'false') == 'true'
+                    hideSkills = GDSOptions.getOption('hideenemypicks', 'true') == 'true'
+
+                    startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
+                    bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+                end
+            end)
+        else
+            -- Disable it
+            GDSOptions.setup()
+        end
+    end
 end
 
 -- This will contain the total number of votable options
@@ -1171,7 +1203,7 @@ local function finishVote()
     useEasyMode = optionToValue(7, winners[7]) == 1
 
     -- Are we using unique skills?
-    --forceUniqueSkills = optionToValue(10, winners[10])
+    forceUniqueSkills = optionToValue(10, winners[10])
 
     -- Add settings to our stat collector
     statcollection.addStats({

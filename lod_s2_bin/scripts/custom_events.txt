@@ -240,7 +240,7 @@
     // Options module stuff
     "gds_options"
     {
-        "playerID"          "byte"      // The ID of the player who should get stats
+        "playerID"          "short"      // The ID of the player who should get stats
         "command"           "string"    // The command to send to the website
     }
 
