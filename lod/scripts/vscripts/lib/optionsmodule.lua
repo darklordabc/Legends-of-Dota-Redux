@@ -23,6 +23,10 @@ local someOption = GDSOptions.getOption('optionName', 'defaultValue')
 to get the values for options
 
 note: Options should all be strings, so you might need to use tonumber() accordingly.
+
+note:
+    If you want to disable the annoying "command not found" if you sometimes want to disable this module
+    simply call GDSOptions.setup() with no arguments
 ]]
 
 -- Require libs
@@ -60,6 +64,13 @@ local function setupFunction(newModID, theirCallback)
         return false
     end
 
+    -- Allow them to disable this module
+    if not newModID then
+        -- Just register the request command
+        Convars:RegisterCommand('gds_request_options', checkForHost, 'Client is asking if we need to send options', 0)
+        return
+    end
+
     -- Hook callbacks
     Convars:RegisterCommand('gds_send_part', recieveOptionsPart, 'Client is sending us part of the options', 0)
     Convars:RegisterCommand('gds_send_options', recieveOptions, 'Client is done sending us the options', 0)
@@ -72,17 +83,37 @@ local function setupFunction(newModID, theirCallback)
     return true
 end
 
+local function notSetup()
+    -- Not needed / setup
+    FireGameEvent('gds_options', {
+        command = '',
+        playerID = -1
+    })
+end
+
 -- Called when a player loads, will reply to them if they are the first person to ask for options
 local foundHost = false
 local reportPlayer = -1
 function checkForHost(cmdName)
+    -- Ensure it is setup
+    if not modID then
+        notSetup()
+        return
+    end
+
     -- Ensure it was a valid player who called this
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
-
         -- Ensure we only request options once
-        if foundHost then return end
+        if foundHost then
+            notSetup()
+            return
+        end
+
+        local playerID = cmdPlayer:GetPlayerID()
+        if playerID == -1 then return end
+
+        -- We have now found a host
         foundHost = true
 
         -- Store this player as the reporter
@@ -93,16 +124,23 @@ function checkForHost(cmdName)
 
         -- Fire the event to tell them to forward options to us
         FireGameEvent('gds_options', {
-            command = '?mid='..tostring(modID)..'&uid='..steamID
+            command = '?mid='..tostring(modID)..'&uid='..steamID,
+            playerID = playerID
         })
 
         -- Report that we got something
-        print(debugPrefix..'Player '..steamID..' is pulling options for us...')
+        print(debugPrefix..'Player '..playerID..' ('..steamID..') is pulling options for us...')
     end
 end
 
 -- Options have failed to load
 function failedOptions(cmdName, message)
+    -- Ensure it is setup
+    if not modID then
+        notSetup()
+        return
+    end
+
     -- Only allow failure to happen once
     if failed then return end
     failed = true
@@ -119,13 +157,21 @@ function failedOptions(cmdName, message)
         print(debugPrefix..'Failed to get options: '..message)
 
         -- Failure
-        optionsCallback(message)
+        if optionsCallback then
+            optionsCallback(message)
+        end
     end
 end
 
 -- Called when we get PART of the options
 local optionsPart = ''
 function recieveOptionsPart(cmdName, part)
+    -- Ensure it is setup
+    if not modID then
+        notSetup()
+        return
+    end
+
     if gottenOptions or failed then return end
 
     -- Ensure it was a valid player who called this
@@ -143,6 +189,12 @@ end
 
 -- Called when the client sends us options
 function recieveOptions(cmdName)
+    -- Ensure it is setup
+    if not modID then
+        notSetup()
+        return
+    end
+
     if gottenOptions or failed then return end
 
     -- Ensure it was a valid player who called this
@@ -169,7 +221,11 @@ function recieveOptions(cmdName)
         if success then
             -- Success: Fire callback
             if optionsCallback then
-                optionsCallback(nil, storedOptions)
+                if storedData.error then
+                    optionsCallback(storedData.error)
+                else
+                    optionsCallback(nil, storedOptions)
+                end
             end
         else
             -- Failure, tell the mod
