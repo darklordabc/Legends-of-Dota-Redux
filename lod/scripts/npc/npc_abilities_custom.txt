@@ -270,7 +270,9 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 
-        "MaxLevel"                      "3"
+        "LevelsBetweenUpgrades"         "3"
+        "RequiredLevel"                 "7"
+        "MaxLevel"                      "7"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -279,7 +281,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "explosion"             "600 1200 1800"
+                "explosion"             "300 500 700 900 1100 1300 1500"
             }
         }
     }
