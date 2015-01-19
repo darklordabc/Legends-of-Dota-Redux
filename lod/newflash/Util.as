@@ -5,6 +5,7 @@ package {
 
     // Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
+    import flash.utils.getQualifiedClassName;
 
     // Events
     import flash.events.MouseEvent;
@@ -250,6 +251,19 @@ package {
             while(mc.numChildren > 0) {
                 mc.removeChildAt(0);
             }
+        }
+
+        // Moves all the clips from one movieclip, to another
+        public static function moveClips(mc1:MovieClip, mc2:MovieClip) {
+            while(mc1.numChildren > 0) {
+                var child = mc1.getChildAt(0);
+                mc1.removeChildAt(0);
+                mc2.addChild(child);
+            }
+        }
+
+        public static function getClass(obj:Object):Class {
+            return Class(getDefinitionByName(getQualifiedClassName(obj)));
         }
 
         // Hides the parent when clicked
