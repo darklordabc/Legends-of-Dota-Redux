@@ -51,6 +51,43 @@ local SkillManager = require('SkillManager')
 local Timers = require('easytimers')
 
 --[[
+    FUNCTION DEFINITIONS
+]]
+local setupGamemodeSettings
+local slotTypeString
+local isUlt
+local isPassive
+local isPlayerOnValidTeam
+local isValidSkill
+local isValidHeroName
+local isChannelled
+local getMulticastDelay
+local getSkillID
+local isValidSlot
+local isSkillBanned
+local GetSkillOwningHero
+local banSkill
+local buildDraftString
+local addHeroDraft
+local getPlayerSlot
+local sendChatMessage
+local alreadyHas
+local CheckBans
+local setupSlotType
+local setupSlotTypes
+local validateBuild
+local fixBuilds
+local postGamemodeSettings
+local getOptionsString
+local shuffle
+local optionToValue
+local finishVote
+local backdoorFix
+local botSkillsOnly
+local doLock
+local getRandomHeroName
+
+--[[
     SETTINGS
 ]]
 
@@ -518,7 +555,7 @@ function getLodVersion()
     return versionNumber
 end
 
-local function isUlt(skillName)
+isUlt = function(skillName)
     -- Check if it is tagged as an ulty
     if abs[skillName] and abs[skillName].AbilityType and abs[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
         return true
@@ -528,7 +565,7 @@ local function isUlt(skillName)
 end
 
 -- Returns if a skill is a passive
-local function isPassive(skillName)
+isPassive = function(skillName)
     if abs[skillName] and abs[skillName].AbilityBehavior and string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') and not string.match(abs[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE') then
         return true
     end
@@ -537,14 +574,14 @@ local function isPassive(skillName)
 end
 
 -- Returns true if the player is on a valid team
-local function isPlayerOnValidTeam(playerID)
+isPlayerOnValidTeam = function(playerID)
     local team = PlayerResource:GetTeam(playerID)
 
     return team == DOTA_TEAM_BADGUYS or team == DOTA_TEAM_GOODGUYS
 end
 
 -- Checks to see if this is a valid skill
-local function isValidSkill(skillName)
+isValidSkill = function(skillName)
     if skillLookup[skillName] == nil then return false end
 
     -- For now, no validation
@@ -552,7 +589,7 @@ local function isValidSkill(skillName)
 end
 
 -- Tells you if a hero name is valid, or not
-local function isValidHeroName(heroName)
+isValidHeroName = function(heroName)
     if validHeroNames[heroName] then
         return true
     end
@@ -561,7 +598,7 @@ local function isValidHeroName(heroName)
 end
 
 -- Tells you if a given spell is channelled or not
-local function isChannelled(skillName)
+isChannelled = function(skillName)
     if chanelledSpells[skillName] then
         return true
     end
@@ -570,7 +607,7 @@ local function isChannelled(skillName)
 end
 
 -- Function to work out if we can multicast with a given spell or not
-local function canMulticast(skillName)
+canMulticast = function(skillName)
     -- No channel skills
     if isChannelled(skillName) then
         return false
@@ -591,7 +628,7 @@ end
 }
 
 -- Returns how long to wait before casting again
-local function getMulticastDelay(skillName)
+getMulticastDelay = function(skillName)
     -- Check if there is a custom delay for this skill
     if multicastDelay[skillName] ~= nil then
         -- Yep, ensure it's a number and return it
@@ -603,7 +640,7 @@ local function getMulticastDelay(skillName)
 end]]
 
 -- Returns the ID for a skill, or -1
-local function getSkillID(skillName)
+getSkillID = function(skillName)
     if skillName == nil then return -1 end
 
     -- If the skill wasn't found, return -1
@@ -614,7 +651,7 @@ local function getSkillID(skillName)
 end
 
 -- Ensures this is a valid slot
-local function isValidSlot(slotNumber)
+isValidSlot = function(slotNumber)
     if slotNumber == nil then return false end
 
     if slotNumber < 0 or slotNumber >= maxSlots then return false end
@@ -622,16 +659,16 @@ local function isValidSlot(slotNumber)
 end
 
 -- Checks to see if a skill is already banned
-local function isSkillBanned(skillName)
+isSkillBanned = function(skillName)
     return bannedSkills[skillName] or false
 end
 
 -- Returns the ID (or -1) of the hero that owns this skill
-local function GetSkillOwningHero(skillName)
+GetSkillOwningHero = function(skillName)
     return skillOwningHero[skillName] or -1
 end
 
-local function banSkill(skillName)
+banSkill = function(skillName)
     -- Make sure the skill isn't already banned
     if not isSkillBanned(skillName) then
         -- Store the ban
@@ -644,7 +681,7 @@ local function banSkill(skillName)
     end
 end
 
-local function buildDraftString(playerID)
+buildDraftString = function(playerID)
     -- Ensure this player has a draft array
     draftArray[playerID] = draftArray[playerID] or {}
 
@@ -665,7 +702,7 @@ local function buildDraftString(playerID)
     return str or ''
 end
 
-local function addHeroDraft(playerID, heroID)
+addHeroDraft = function(playerID, heroID)
     -- Ensure this player has a draft array
     draftArray[playerID] = draftArray[playerID] or {}
 
@@ -682,7 +719,7 @@ local function addHeroDraft(playerID, heroID)
     return changed
 end
 
-local function getPlayerSlot(playerID)
+getPlayerSlot = function(playerID)
     -- Grab the cmd player
     local cmdPlayer = PlayerResource:GetPlayer(playerID)
     if not cmdPlayer then return -1 end
@@ -704,7 +741,7 @@ local function getPlayerSlot(playerID)
     return playerSlot
 end
 
-local function sendChatMessage(playerID, msg)
+sendChatMessage = function(playerID, msg)
     -- Fire the event
      FireGameEvent('lod_msg', {
         playerID = playerID,
@@ -713,7 +750,7 @@ local function sendChatMessage(playerID, msg)
 end
 
 -- Checks if the player already has this skill
-local function alreadyHas(skillList, skill)
+alreadyHas = function(skillList, skill)
     for i=1,maxSlots do
         if skillList[i] == skill then
             return true
@@ -723,7 +760,7 @@ local function alreadyHas(skillList, skill)
     return false
 end
 
-local function CheckBans(skillList2, slotNumber, skillName, playerID)
+CheckBans = function(skillList2, slotNumber, skillName, playerID)
     -- Old fashion bans
     if isSkillBanned(skillName) then
         return '<font color="'..COLOR_RED..'">This skill is banned.</font>'
@@ -795,7 +832,7 @@ local function CheckBans(skillList2, slotNumber, skillName, playerID)
 end
 
 -- Sets up slot types
-local function setupSlotType(playerID)
+setupSlotType = function(playerID)
     if slotTypes[playerID] then return end
 
     -- Create store for this player
@@ -828,7 +865,7 @@ local function setupSlotType(playerID)
     end
 end
 
-local function setupSlotTypes()
+setupSlotTypes = function()
     local maxPlayers = 10
 
     for i=0,maxPlayers-1 do
@@ -836,7 +873,7 @@ local function setupSlotTypes()
     end
 end
 
-local function findRandomSkill(playerID, slotNumber, filter)
+findRandomSkill = function(playerID, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
     local canUlt
     local canSkill
@@ -897,7 +934,7 @@ local function findRandomSkill(playerID, slotNumber, filter)
 end
 
 -- Ensures the person has all their slots used
-local function validateBuild(playerID)
+validateBuild = function(playerID)
     -- Ensure it exists
     skillList[playerID] = skillList[playerID] or {}
 
@@ -917,7 +954,7 @@ local function validateBuild(playerID)
 end
 
 -- Fixes broken heroes
-local function fixBuilds()
+fixBuilds = function()
     -- Give skills
     for k,v in pairs(brokenHeroes) do
         if k and IsValidEntity(k) then
@@ -942,7 +979,7 @@ local function fixBuilds()
 end
 
 -- Builds a string to represent the type of slots allowed for the given player
-local function slotTypeString(playerID)
+slotTypeString = function (playerID)
     if not slotTypes[playerID] then return '' end
 
     local str = ''
@@ -955,7 +992,7 @@ local function slotTypeString(playerID)
 end
 
 -- Takes the current gamemode number, and sets the required settings
-local function setupGamemodeSettings()
+setupGamemodeSettings = function()
     -- Default to not using the draft array
     useDraftArray = false
 
@@ -1099,7 +1136,7 @@ local function setupGamemodeSettings()
 end
 
 -- Called when picking ends
-local function postGamemodeSettings()
+postGamemodeSettings = function()
     -- All Random
     if gamemode == GAMEMODE_AR then
         -- Create random builds
@@ -1124,7 +1161,7 @@ local function postGamemodeSettings()
 end
 
 -- Returns the current options encoded as a string
-local function getOptionsString()
+getOptionsString = function()
     local str = ''
 
     for k,v in pairs(voteData[slaveID] or {}) do
@@ -1135,7 +1172,7 @@ local function getOptionsString()
 end
 
 -- Shuffles a table
-function shuffle(t)
+shuffle = function(t)
   local n = #t
 
   while n >= 2 do
@@ -1149,7 +1186,7 @@ function shuffle(t)
   return t
 end
 
-local function optionToValue(optionNumber, choice)
+optionToValue = function(optionNumber, choice)
     local option = votingList[tostring(optionNumber)]
     if option then
         if option.values and option.values[tostring(choice)] then
@@ -1161,7 +1198,7 @@ local function optionToValue(optionNumber, choice)
 end
 
 -- This function tallys the votes, and sets the options
-local function finishVote()
+finishVote = function()
     -- Create container for all the votes
     local votes = {}
     for i=0,totalVotableOptions-1 do
@@ -1274,7 +1311,7 @@ local function finishVote()
 end
 
 -- A fix for source1 backdoor protection
-local function backdoorFix()
+backdoorFix = function()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
 
     -- List of towers to not protect
@@ -1331,7 +1368,7 @@ local function backdoorFix()
 end
 
 -- A function that returns true if the given skill is valid for bots
-function botSkillsOnly(skillName)
+botSkillsOnly = function(skillName)
     -- We require a random passive
     if isPassive(skillName) then
         return true
@@ -2067,7 +2104,7 @@ local function countLocks()
 end
 
 -- Do a lock for the given player
-local function doLock(playerID)
+doLock = function(playerID)
     local first = true
     if playerLocks[playerID] == 1 then
         first = false
@@ -2545,7 +2582,7 @@ local bannedHeroes = {
 }
 
 -- Attempts to pick a random hero, returns 'random' if it fails
-local function getRandomHeroName()
+getRandomHeroName = function()
     local choices = {}
 
     for k,v in pairs(validHeroNames) do
