@@ -2138,6 +2138,15 @@ doLock = function(playerID)
     end
 end
 
+--[[Convars:RegisterCommand('testing_this', function(name, abNumber)
+    local build = skillList[tonumber(abNumber)] or {}
+
+    local newHero = PlayerResource:ReplaceHeroWith(0, PlayerResource:GetSelectedHeroEntity(tonumber(abNumber)):GetClassname(), 0, 0)
+
+    -- Apply the build
+    SkillManager:ApplyBuild(newHero, build)
+end, '', 0)]]
+
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Input validation

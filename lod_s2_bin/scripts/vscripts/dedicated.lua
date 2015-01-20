@@ -20,6 +20,7 @@ Convars:RegisterCommand('reload_bans', function()
 end, 'Reloads the bans KV', 0)
 
 -- Ban manager
+local autoAllocate = {}
 ListenToGameEvent('player_connect', function(keys)
     -- Grab their steamID
     local steamID64 = tostring(keys.xuid)
@@ -27,6 +28,14 @@ ListenToGameEvent('player_connect', function(keys)
     -- Check bans
     if bans[steamID64] then
         SendToServerConsole('kickid '..keys.userid);
+    end
+
+    -- Check their name
+    local chr = keys.name:sub(1,1)
+    if chr == 'R' then
+        autoAllocate[keys.userid] = DOTA_TEAM_GOODGUYS
+    elseif chr == 'D' then
+        autoAllocate[keys.userid] = DOTA_TEAM_BADGUYS
     end
 end, nil)
 
@@ -74,6 +83,17 @@ if tst ~= 0 and tst ~= nil then
 
                 -- We have started
                 hasStarted = true
+
+                -- Check for allocaton code
+                if autoAllocate[keys.userid] then
+                    if autoAllocate[keys.userid] == DOTA_TEAM_GOODGUYS and radiant < 5 then
+                        ply:SetTeam(DOTA_TEAM_GOODGUYS)
+                        return
+                    elseif autoAllocate[keys.userid] == DOTA_TEAM_BADGUYS and dire < 5 then
+                        ply:SetTeam(DOTA_TEAM_BADGUYS)
+                        return
+                    end
+                end
 
                 -- Set their team
                 if radiant <= dire then
