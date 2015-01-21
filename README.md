@@ -55,6 +55,7 @@ Legends of Dota
  - Mounting Legends of Dota
   - You will need to add "Game  |gameinfo_path|addons/lod" without quotes to the end of your gameinfo.txt file, the end result is something like this
 
+
     "GameInfo"
     {
         game    "DOTA 2"
