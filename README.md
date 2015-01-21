@@ -46,9 +46,10 @@ Legends of Dota
         title Legends of Dota watchdog
         :srcds
         echo (%time%) srcds started.
-        start /wait srcds -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +exec custom +map dota_fixed
+        start /wait srcds -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +dota_local_addon_enable 1 +dota_local_addon_game lod +dota_force_gamemode 15 +map dota_fixed
         echo (%time%) WARNING: srcds closed or crashed, restarting.
         goto srcds
+
 
  - Getting metamod to load
   - You will need to do the gameinfo.txt step that is mentioned [here](https://wiki.alliedmods.net/Installing_metamod:source)
@@ -90,30 +91,24 @@ Legends of Dota
                     SearchPaths
                     {
                         GameBin             |gameinfo_path|addons/metamod/bin
-                        Game                            |gameinfo_path|.
-                        Game                            platform
+                        Game                |gameinfo_path|.
+                        Game                platform
                         Game                |gameinfo_path|addons/lod
                     }
                 }
             }
 
 
- - Create cfg/custom.cfg
-
-        dota_local_addon_enable 1
-        dota_local_addon_game lod
-        dota_force_gamemode 15
-        update_addon_paths
-        dota_wait_for_players_to_load_count 1
-        dota_wait_for_players_to_load 1
-        dota_wait_for_players_to_load_timeout 30
-
+ - If you want to be put onto a team automatically, you will need the follow files created, depending on what you eant your server to do
+ - dedicated.kv is required for all dedicated server functions, it will load the bans file and stop noobs from playing
  - Create cfg/dedicated.kv
 
         "dedicated" {
         }
 
  - Create `cfg/allocation.kv` if you want to be allocated into a team automatically
+ - You will be put onto the team with the least players, or radiant if they have the same number of players
+ - You can force your team by adding `R`, `D` or `S` to your name, for Radiant, Dire and Spectator
 
         "dedicated" {
         }
@@ -128,3 +123,22 @@ Legends of Dota
  - `Loaded LoD allocation code!`
  - `Loaded LoD bot allocation code`
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
+
+###More SRCDS Setup Help###
+ - To debug, try adding **-condebug** to the SRCDS launch parameters, this will log all the server output to server/dota/console.log, you can check for errors in there
+ - Verify you have installed metamod and d2fixups correctly, you can do this by adding **+meta list** to your launch parameters, starting the server, then checking your dota/console.log. You should see these two lines:
+  - Listing 1 plugin:
+  - [01] Dota 2 Fixups (1.9.2) by Nicholas Hastings
+ - If you don't see these two, then you have installed either metamod, or d2fixups incorrectly
+ - Note: If you installed sourcemod, you might also see sourcemod in that list
+ - If you see >> Unknown command "meta" << it means metamod is installed incorrectly, verify you added it to [gameinfo.txt](http://wiki.alliedmods.net/Installing_Metamod:Source#GameInfo)
+ - You can verify sourcemod is installed correctly by typing the following into the console
+  - sm plugins list
+ - If you get >> Unknwon command "sm" << it means sourcemod is not installed correctly
+ - You should see the FFA plugin listed if all is good
+ - You can test FFA with the following command
+  - sm_gmod
+ - Again, it should say the command exists
+ - To manually add bots
+  - sm_gmode 1
+  - dota_bot_populate
