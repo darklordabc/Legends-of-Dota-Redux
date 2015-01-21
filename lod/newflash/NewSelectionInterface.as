@@ -72,6 +72,10 @@
         // Active list of skills (key = skill name)
         private var activeList:Object = {};
 
+        // Callbacks
+        private var banAreaCallback:Function;
+        private var slotAreaCallback:Function;
+
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
             toggleInterfaceText.addEventListener(MouseEvent.CLICK, toggleHeroIcons);
@@ -86,6 +90,9 @@
 		// Rebuilds the interface from scratch
 		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function) {
             var tabName:String, i:Number;
+
+            // Store callback
+            banAreaCallback = banningDropCallback;
 
             // Reload the skillKV
             skillKV = lod.Globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
@@ -153,6 +160,7 @@
             // Hook the random skill
             EasyDrag.dragMakeValidFrom(randomSkill, lod.skillSlotDragBegin);
             randomSkill.setSkillName('random');
+            randomSkill.addEventListener(MouseEvent.MOUSE_DOWN, onAbilityPressed);
 
             // Calculate settings
 			var singleWidth:Number = X_PER_SECTION*(SL_WIDTH + S_PADDING);
@@ -250,6 +258,9 @@
                                         		// Put the skill into the slot
 	                                            skillSlot.setSkillName(skill);
 
+                                                // Add hook for right click menu
+                                                skillSlot.addEventListener(MouseEvent.MOUSE_DOWN, onAbilityPressed);
+
 	                                            // Hook dragging
 	                                            EasyDrag.dragMakeValidFrom(skillSlot, lod.skillSlotDragBegin);
 
@@ -277,6 +288,9 @@
                                                 msk.x = skillSlot.x;
                                                 msk.y = skillSlot.y;
 
+                                                // Add hook for right click menu
+                                                skillSlot2.addEventListener(MouseEvent.MOUSE_DOWN, onAbilityPressed);
+
                                                 // Put the skill into the slot
                                                 skillSlot2.setSkillName(skillSplit[splitLength]);
 
@@ -301,6 +315,142 @@
             // Change to the main tab
             setActiveTab('main');
 		}
+
+        private var rightClickedAbility:MovieClip;
+        private function onAbilityPressed(e):void {
+            // Check for a right click
+            if(e.buttonIdx == 1) {
+                // Store ability we right clicked
+                rightClickedAbility = e.currentTarget;
+
+                // Build options
+                var data:Array = [];
+
+                // Allow banning
+                if(banningArea.visible) {
+                    data.push({
+                        label: '#lodBanSkill',
+                        option: 10
+                    });
+                }
+
+                // Allow sloting
+                if(yourSkillList.visible) {
+                    for(var i=0;i<lod.MAX_SLOTS; ++i) {
+                        // Build Label
+                        var label:String = '#lodPutSlot' + i;
+                        if(i == lod.MAX_SLOTS-1) {
+                            label = '#lodPutSlot5'
+                        }
+
+                        data.push({
+                            label: label,
+                            option: i
+                        });
+                    }
+                }
+
+                // Cancel
+                data.push({
+                    label: '#lodCancel',
+                    option: -1
+                });
+
+                // Show context menu
+                lod.rightClickMenu.show(data, onAbilityOptionSelected);
+            }
+        }
+
+        private function onSlotPressed(e):void {
+            // Check for a right click
+            if(e.buttonIdx == 1) {
+                // Store ability we right clicked
+                rightClickedAbility = e.currentTarget;
+
+                var mySlot = rightClickedAbility.getSkillSlot();
+
+                // Build options
+                var data:Array = [];
+
+                // Random Ability
+                data.push({
+                    label: '#lodRandomAbility',
+                    option: -2
+                });
+
+                // Allow sloting
+                if(yourSkillList.visible) {
+                    for(var i=0;i<lod.MAX_SLOTS; ++i) {
+                        if(mySlot != i) {
+                            // Build Label
+                            var label:String = '#lodSwapSlot' + i;
+                            if(i == lod.MAX_SLOTS-1) {
+                                label = '#lodSwapSlot5'
+                            }
+
+                            data.push({
+                                label: '#lodSwapSlot' + i,
+                                option: i
+                            });
+                        }
+                    }
+                }
+
+                // Cancel
+                data.push({
+                    label: '#lodCancel',
+                    option: -1
+                });
+
+                // Show context menu
+                lod.rightClickMenu.show(data, onSlotOptionSelected);
+            }
+        }
+
+        private function onAbilityOptionSelected(option:Number):void {
+            var data:MovieClip;
+            trace('Selection: ' + option + ' - ' + rightClickedAbility.getSkillName());
+
+            // Check what to do
+            if(option == 10) {
+                // Create the drag data
+                data = new MovieClip();
+                data.dragType = lod.DRAG_TYPE_SKILL;
+                data.skillName = rightClickedAbility.getSkillName();
+
+                // Fire event
+                banAreaCallback(banningArea, data);
+            } else if(option >= 0 && option < lod.MAX_SLOTS) {
+                // Create the drag data
+                data = new MovieClip();
+                data.dragType = lod.DRAG_TYPE_SKILL;
+                data.skillName = rightClickedAbility.getSkillName();
+
+                slotAreaCallback(yourSkillList['skill' + option], data);
+            }
+        }
+
+        private function onSlotOptionSelected(option:Number):void {
+            var data:MovieClip;
+            trace('Selection: ' + option + ' - ' + rightClickedAbility.getSkillSlot());
+
+            // Check what to do
+            if(option >= 0 && option < lod.MAX_SLOTS) {
+                // Create the drag data
+                data = new MovieClip();
+                data.dragType = lod.DRAG_TYPE_SLOT;
+                data.slotNumber = rightClickedAbility.getSkillSlot();
+
+                slotAreaCallback(yourSkillList['skill' + option], data);
+            } else if(option == -2) {
+                // Create the drag data
+                data = new MovieClip();
+                data.dragType = lod.DRAG_TYPE_SKILL;
+                data.skillName = randomSkill.getSkillName();
+
+                slotAreaCallback(rightClickedAbility, data);
+            }
+        }
 
         // Updates the filtered skills
         public function updateFilters() {
@@ -414,7 +564,16 @@
 
         // Setups the skill list
         public function setupSkillList(totalSlots:Number, slotInfo:String, dropCallback:Function):void {
+            // Store callback
+            slotAreaCallback = dropCallback;
+
+            // Do it
             this.yourSkillList.setup(totalSlots, slotInfo, dropCallback);
+
+            // Hook slot right clicking
+            for(var i=0; i<lod.MAX_SLOTS; ++i) {
+                yourSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+            }
         }
 
         // Puts a skill into a slot

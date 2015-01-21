@@ -13,6 +13,7 @@ package {
     // Scaleform stuff
     import scaleform.clik.interfaces.IDataProvider;
     import scaleform.clik.data.DataProvider;
+    import scaleform.clik.events.ListEvent;
 
     // Marking spells different colors
     import flash.filters.ColorMatrixFilter;

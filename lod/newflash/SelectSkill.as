@@ -3,9 +3,6 @@
 	import flash.display.MovieClip;
 
 	public class SelectSkill extends MovieClip {
-		// The name of our current skill
-		private var skillName:String;
-
 		// This holds the image of our current skill
 		public var abilityClip:MovieClip;
 
@@ -19,16 +16,13 @@
 
 		// Updates the the current skill
 		public function setSkillName(skillName):Boolean {
-			// Store the skill name
-			this.skillName = skillName;
-
 			// Store the change
 			return abilityClip.setSkillName(skillName);
 		}
 
 		// Returns our skill name
 		public function getSkillName():String {
-			return this.skillName;
+			return this.abilityClip.getSkillName();
 		}
 
 		// Sets this skill to show as banned, or not

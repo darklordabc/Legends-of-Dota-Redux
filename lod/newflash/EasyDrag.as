@@ -95,9 +95,13 @@ package {
         }
 
         // Run when something that is draggable is pressed
-        private static function dragMousePressed(e:MouseEvent):void {
-            dragClickedClip = e.currentTarget;
-            dragTarget = null;
+        private static function dragMousePressed(e):void {
+            // Ensure it was a left click
+            if(e.buttonIdx == 0) {
+                // Store this as a possible drag
+                dragClickedClip = e.currentTarget;
+                dragTarget = null;
+            }
         }
 
         // Run when something that is draggable is released

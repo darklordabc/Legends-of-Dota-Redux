@@ -112,7 +112,7 @@
         private var isSlave:Boolean = false;
 
         // How many skill slots each player gets
-        private static var MAX_SLOTS:Number = 4;
+        public static var MAX_SLOTS:Number = 4;
 
         // Should we hide skills?
         private static var hideSkills:Boolean = false;
@@ -189,6 +189,12 @@
         // What is the number we used to request our magic number
         private var encodeWith:Number = Math.floor(Math.random()*50 + 50);
 
+        /*
+            RIGHT CLICK MENU
+        */
+
+        public static var rightClickMenu:Object;
+
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
 			trace('\n\nLoD new hud loading...');
@@ -222,18 +228,21 @@
             keyBindings = [];
 
             // Subscribe to the state info
-            this.gameAPI.SubscribeToGameEvent("lod_ban", onSkillBanned);                                    // A skill was banned
-            this.gameAPI.SubscribeToGameEvent("lod_state", onGetStateInfo);                                 // Contains most of the game state
-            this.gameAPI.SubscribeToGameEvent("lod_slave", handleSlave);                                    // Someone has updated a voting option
-            this.gameAPI.SubscribeToGameEvent("lod_decode", handleDecode);                                  // Server sent us info on how to decode skill values
-            this.gameAPI.SubscribeToGameEvent("lod_skill", onSkillPicked);                                  // Someone has picked a new skill
-            this.gameAPI.SubscribeToGameEvent("lod_swap_slot", onSlotSwapped);                              // Someone has swapped two slots
-            this.gameAPI.SubscribeToGameEvent("lod_msg", handleMessage);                                    // Server sent a message
-            this.gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", onUnitSelectionUpdated);  // The player changed the unit they had selected
+            this.gameAPI.SubscribeToGameEvent('lod_ban', onSkillBanned);                                    // A skill was banned
+            this.gameAPI.SubscribeToGameEvent('lod_state', onGetStateInfo);                                 // Contains most of the game state
+            this.gameAPI.SubscribeToGameEvent('lod_slave', handleSlave);                                    // Someone has updated a voting option
+            this.gameAPI.SubscribeToGameEvent('lod_decode', handleDecode);                                  // Server sent us info on how to decode skill values
+            this.gameAPI.SubscribeToGameEvent('lod_skill', onSkillPicked);                                  // Someone has picked a new skill
+            this.gameAPI.SubscribeToGameEvent('lod_swap_slot', onSlotSwapped);                              // Someone has swapped two slots
+            this.gameAPI.SubscribeToGameEvent('lod_msg', handleMessage);                                    // Server sent a message
+            this.gameAPI.SubscribeToGameEvent('dota_player_update_selected_unit', onUnitSelectionUpdated);  // The player changed the unit they had selected
 
             // Handle keyboard input
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
             stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
+
+            // We can consume mouse input
+            globals.GameInterface.AddMouseInputConsumer();
 
             // Handle the scoreboard stuff
             handleScoreboard();
@@ -243,6 +252,9 @@
 
             // Setup display timer
             updateDisplayTimer();
+
+            // Setup right click menu
+            rightClickMenu = new RightClickMenu(stage, this);
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
