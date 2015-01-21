@@ -139,7 +139,7 @@
         private var keyBindings:Array;
 
         // Hud fixing timer
-        private var hudFixingTimer:Timer;
+        private static var hudFixingTimer:Timer;
 
         /*
             SKILL LIST STUFF
@@ -1230,12 +1230,14 @@
 
         // When the unit selection is updated
         private function onUnitSelectionUpdated():void {
+            if(selectionUI == null) return;
+
             if(hudFixingTimer != null) {
                 hudFixingTimer.stop();
                 hudFixingTimer = null;
             }
 
-            hudFixingTimer = new Timer(100);
+            hudFixingTimer = new Timer(100, 1);
             hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
             hudFixingTimer.start();
         }
