@@ -664,7 +664,7 @@
                     loadSkillsFile();
 
                     // Setup slots
-                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], onDropMySkills);
+                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], onDropMySkills, keyBindings);
 
                     // Is there a draft for us?
                     if(lastState['s'+playerID] != '') {

@@ -1,6 +1,7 @@
 ﻿package  {
 	// Flash stuff
 	import flash.display.MovieClip;
+	import flash.text.TextField;
 
 	public class YourSkill extends MovieClip {
 		// The text field
@@ -8,6 +9,9 @@
 
 		// This holds the image of our current skill
 		public var abilityClip:MovieClip;
+
+		// The hot key
+		public var hotKey:TextField;
 
 		// Our skill slot
 		private var skillSlot;

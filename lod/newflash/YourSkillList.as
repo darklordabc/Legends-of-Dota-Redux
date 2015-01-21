@@ -14,7 +14,7 @@
 			this.gotoAndStop(1);
 		}
 
-		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function):void {
+		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array):void {
 			// Ensure valid values
 			if(totalSlots < 4) {
 				totalSlots = 4;
@@ -40,6 +40,8 @@
 
 				// Grab the slot
 				var s:MovieClip = this['skill'+i];
+
+                s.hotKey.text = keyBindings[i];
 
 				// Set the slot number
 				s.setSkillSlot(i);

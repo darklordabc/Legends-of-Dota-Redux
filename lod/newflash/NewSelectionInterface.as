@@ -563,12 +563,12 @@
         }
 
         // Setups the skill list
-        public function setupSkillList(totalSlots:Number, slotInfo:String, dropCallback:Function):void {
+        public function setupSkillList(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array):void {
             // Store callback
             slotAreaCallback = dropCallback;
 
             // Do it
-            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback);
+            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings);
 
             // Hook slot right clicking
             for(var i=0; i<lod.MAX_SLOTS; ++i) {
