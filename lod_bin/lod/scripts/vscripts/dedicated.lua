@@ -36,6 +36,8 @@ ListenToGameEvent('player_connect', function(keys)
         autoAllocate[keys.userid] = DOTA_TEAM_GOODGUYS
     elseif chr == 'D' then
         autoAllocate[keys.userid] = DOTA_TEAM_BADGUYS
+    elseif chr == 'S' then
+        autoAllocate[keys.userid] = 1
     end
 end, nil)
 
@@ -91,6 +93,9 @@ if tst ~= 0 and tst ~= nil then
                         return
                     elseif autoAllocate[keys.userid] == DOTA_TEAM_BADGUYS and dire < 5 then
                         ply:SetTeam(DOTA_TEAM_BADGUYS)
+                        return
+                    elseif autoAllocate[keys.userid] == 1 then
+                        ply:SetTeam(1)
                         return
                     end
                 end
