@@ -234,7 +234,8 @@ local extraTime = {}
 
 -- A list of warning attached to skills
 local skillWarnings = {
-    life_stealer_infest = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">life_stealer_infest</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">life_stealer_rage</font> <font color="'..COLOR_GREEN..'">if you want to uninfest.</font>',
+    life_stealer_infest = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">life_stealer_infest</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">life_stealer_consume</font> <font color="'..COLOR_GREEN..'">if you want to uninfest.</font>',
+    shadow_demon_demonic_purge = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">shadow_demon_demonic_purge</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">Shadow Demon</font> <font color="'..COLOR_GREEN..'">if you want to get any charges.</font>',
     phantom_lancer_phantom_edge = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">phantom_lancer_phantom_edge</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">phantom_lancer_juxtapose</font> <font color="'..COLOR_GREEN..'">in order to make illusions.</font>',
     keeper_of_the_light_spirit_form = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">keeper_of_the_light_spirit_form</font> <font color="'..COLOR_GREEN..'">will not give you the two extra spells!</font>',
     ogre_magi_multicast = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">ogre_magi_multicast</font> <font color="'..COLOR_GREEN..'">ONLY works on Ogre Magi\'s spells!</font>',
@@ -915,8 +916,10 @@ findRandomSkill = function(playerID, slotNumber, filter)
                     if not CheckBans(skillList[playerID], slotNumber+1, k, playerID) then
                         -- Can't random meepo ulty
                         if k ~= 'meepo_divided_we_stand' then
-                            -- Valid skill, add to our possible skills
-                            table.insert(possibleSkills, k)
+                            if not skillWarnings[k] then
+                                -- Valid skill, add to our possible skills
+                                table.insert(possibleSkills, k)
+                            end
                         end
                     end
                 end
