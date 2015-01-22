@@ -42,13 +42,16 @@ ListenToGameEvent('player_connect', function(keys)
     if chr == 'R' and actualRadiant < 5 then
         autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
         actualRadiant = actualRadiant + 1
+        print(keys.name..' was allocated to RADIANT')
         return
     elseif chr == 'D' and actualDire < 5 then
         autoAllocate[steamID64] = DOTA_TEAM_BADGUYS
         actualDire = actualDire + 1
+        print(keys.name..' was allocated to DIRE')
         return
     elseif chr == 'S' then
         autoAllocate[steamID64] = 1
+        print(keys.name..' was allocated to SPECTATOR')
         return
     end
 
@@ -56,15 +59,20 @@ ListenToGameEvent('player_connect', function(keys)
     if actualRadiant <= actualDire then
         if actualRadiant < 5 then
             autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
+            actualRadiant = actualRadiant + 1
+            print(keys.name..' was allocated to RADIANT')
         end
     else
         if actualDire < 5 then
             autoAllocate[steamID64] = DOTA_TEAM_BADGUYS
+            actualDire = actualDire + 1
+            print(keys.name..' was allocated to DIRE')
         end
     end
 
     -- Allocate to spectator
     autoAllocate[steamID64] = 1
+    print(keys.name..' was allocated to SPECTATOR')
 end, nil)
 
 -- Team allocation stuff
