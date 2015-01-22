@@ -245,6 +245,7 @@ local skillWarnings = {
     puck_illusory_orb = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">puck_illusory_orb</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">puck_ethereal_jaunt</font> <font color="'..COLOR_GREEN..'">if you want to teleport to your orb.</font>',
     techies_remote_mines = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">techies_remote_mines</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">techies_focused_detonate</font> <font color="'..COLOR_GREEN..'">if you want to detonate your remote mines.</font>',
     lone_druid_true_form = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">lone_druid_true_form</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">a ranged hero</font> <font color="'..COLOR_GREEN..'">or you will be stuck not being able to attack, due to lack of range!</font>',
+    phoenix_supernova = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">phoenix_supernova</font> <font color="'..COLOR_GREEN..'">will only refresh </font><font color="'..COLOR_BLUE..'">regular abilities</font>!</font>',
 }
 
 -- Check for options module
