@@ -1263,6 +1263,15 @@
 
             // Make it 6 slots, ALWAYS
             globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(MAX_SLOTS-3);
+
+            if(hudFixingTimer != null) {
+                hudFixingTimer.stop();
+                hudFixingTimer = null;
+            }
+
+            hudFixingTimer = new Timer(500);
+            hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
+            hudFixingTimer.start();
         }
 
         /*
