@@ -61,12 +61,14 @@ ListenToGameEvent('player_connect', function(keys)
             autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
             actualRadiant = actualRadiant + 1
             print(keys.name..' was allocated to RADIANT')
+            return
         end
     else
         if actualDire < 5 then
             autoAllocate[steamID64] = DOTA_TEAM_BADGUYS
             actualDire = actualDire + 1
             print(keys.name..' was allocated to DIRE')
+            return
         end
     end
 
