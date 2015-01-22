@@ -22,6 +22,8 @@ end, 'Reloads the bans KV', 0)
 -- Ban manager
 local autoAllocate = {}
 local steamIDs = {}
+local actualDire = 0
+local actualRadiant = 0
 ListenToGameEvent('player_connect', function(keys)
     -- Grab their steamID
     local steamID64 = tostring(keys.xuid)
@@ -33,15 +35,36 @@ ListenToGameEvent('player_connect', function(keys)
         SendToServerConsole('kickid '..keys.userid);
     end
 
+    if autoAllocate[steamID64] then return end
+
     -- Check their name
     local chr = keys.name:sub(1,1)
-    if chr == 'R' then
-        autoAllocate[keys.userid] = DOTA_TEAM_GOODGUYS
-    elseif chr == 'D' then
-        autoAllocate[keys.userid] = DOTA_TEAM_BADGUYS
+    if chr == 'R' and actualRadiant < 5 then
+        autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
+        actualRadiant = actualRadiant + 1
+        return
+    elseif chr == 'D' and actualDire < 5 then
+        autoAllocate[steamID64] = DOTA_TEAM_BADGUYS
+        actualDire = actualDire + 1
+        return
     elseif chr == 'S' then
-        autoAllocate[keys.userid] = 1
+        autoAllocate[steamID64] = 1
+        return
     end
+
+    -- Allocate to a team
+    if actualRadiant <= actualDire then
+        if actualRadiant < 5 then
+            autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
+        end
+    else
+        if actualDire < 5 then
+            autoAllocate[steamID64] = DOTA_TEAM_BADGUYS
+        end
+    end
+
+    -- Allocate to spectator
+    autoAllocate[steamID64] = 1
 end, nil)
 
 -- Team allocation stuff
@@ -79,6 +102,12 @@ if tst ~= 0 and tst ~= nil then
                     end
                 end
 
+                -- Check for allocaton code
+                if autoAllocate[steamIDs[keys.userid]] then
+                    ply:SetTeam(autoAllocate[steamIDs[keys.userid]])
+                    return
+                end
+
                 -- Should we be spectating this player?
                 if dire + radiant >= 10 then
                     -- Create a spectator
@@ -88,20 +117,6 @@ if tst ~= 0 and tst ~= nil then
 
                 -- We have started
                 hasStarted = true
-
-                -- Check for allocaton code
-                if autoAllocate[keys.userid] then
-                    if autoAllocate[keys.userid] == DOTA_TEAM_GOODGUYS and radiant < 5 then
-                        ply:SetTeam(DOTA_TEAM_GOODGUYS)
-                        return
-                    elseif autoAllocate[keys.userid] == DOTA_TEAM_BADGUYS and dire < 5 then
-                        ply:SetTeam(DOTA_TEAM_BADGUYS)
-                        return
-                    elseif autoAllocate[keys.userid] == 1 then
-                        ply:SetTeam(1)
-                        return
-                    end
-                end
 
                 -- Set their team
                 if radiant <= dire then
