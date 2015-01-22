@@ -5,7 +5,7 @@
 
 	public class YourSkill extends MovieClip {
 		// The text field
-		public var skillType;
+		public var skillType:TextField;
 
 		// This holds the image of our current skill
 		public var abilityClip:MovieClip;
@@ -14,7 +14,10 @@
 		public var hotKey:TextField;
 
 		// Our skill slot
-		private var skillSlot;
+		private var skillSlot:Number;
+
+		// The slot type
+		private var slotType:String
 
 		public function YourSkill() {
 		}
@@ -38,6 +41,33 @@
 		public function getSkillName():String {
 			return this.abilityClip.getSkillName();
 		}
-	}
 
+		// Gets the type of slot
+		public function getSlotType():String {
+			return this.slotType;
+		}
+
+		// Updates the slot type
+		public function setSlotType(newSlotType:String):void {
+			this.slotType = newSlotType;
+
+			switch(newSlotType) {
+				case lod.SLOT_TYPE_ABILITY:
+					skillType.text = '#skill';
+					break;
+
+				case lod.SLOT_TYPE_ULT:
+					skillType.text = '#ult';
+					break;
+
+				case lod.SLOT_TYPE_EITHER:
+					skillType.text = '#either';
+					break;
+
+				case lod.SLOT_TYPE_NEITHER:
+					skillType.text = '#nothing';
+					break;
+			}
+		}
+	}
 }

@@ -52,23 +52,8 @@
             	// Allow dropping
             	EasyDrag.dragMakeValidFrom(s, skillSlotDragBegin);
 
-				switch(char) {
-					case lod.SLOT_TYPE_ABILITY:
-						s.skillType.text = '#skill';
-						break;
-
-					case lod.SLOT_TYPE_ULT:
-						s.skillType.text = '#ult';
-						break;
-
-					case lod.SLOT_TYPE_EITHER:
-						s.skillType.text = '#either';
-						break;
-
-					case lod.SLOT_TYPE_NEITHER:
-						s.skillType.text = '#nothing';
-						break;
-				}
+                // Set the slot type
+                s.setSlotType(char);
 			}
 		}
 
@@ -95,9 +80,9 @@
             // Ensure they both exist
             if(s1 != null && s2 != null) {
             	// Swap the texts on them
-            	var tmpText:String = s1.skillType.text;
-            	s1.skillType.text = s2.skillType.text;
-            	s2.skillType.text = tmpText;
+            	var tmpText:String = s1.getSlotType();
+            	s1.setSlotType(s2.getSlotType());
+            	s2.setSlotType(tmpText);
             }
         }
 

@@ -337,16 +337,18 @@
                 // Allow sloting
                 if(yourSkillList.visible) {
                     for(var i=0;i<lod.MAX_SLOTS; ++i) {
-                        // Build Label
-                        var label:String = '#lodPutSlot' + i;
-                        if(i == lod.MAX_SLOTS-1) {
-                            label = '#lodPutSlot5'
-                        }
+                        if(canSlotAbility(rightClickedAbility.getSkillName(), i)) {
+                            // Build Label
+                            var label:String = '#lodPutSlot' + i;
+                            if(i == lod.MAX_SLOTS-1) {
+                                label = '#lodPutSlot5'
+                            }
 
-                        data.push({
-                            label: label,
-                            option: i
-                        });
+                            data.push({
+                                label: label,
+                                option: i
+                            });
+                        }
                     }
                 }
 
@@ -501,11 +503,7 @@
                     // Check if we have info on this skill
                     skill = skillKV[key];
                     if(skill) {
-                        // Workout if this is an ult
-                        var ultimate:Boolean = false;
-                        if(skill.AbilityType && skill.AbilityType.indexOf('DOTA_ABILITY_TYPE_ULTIMATE') != -1) {
-                            ultimate = true;
-                        }
+                        var ultimate:Boolean = isUlt(key);
 
                         // Apply filter
                         if(filter2 == 1 && !ultimate) doShow++;
@@ -632,6 +630,60 @@
             filterText = e.target.text.toLowerCase();
             updateFilters();
         }
-	}
 
+        /*
+            Helper function
+        */
+
+        // Works out if a skill is an ulty or not
+        private function isUlt(skillName:String):Boolean {
+            var ultimate:Boolean = false;
+            var skill = skillKV[skillName];
+
+            // Did we find it?
+            if(skill) {
+                // Is it an ult?
+                if(skill.AbilityType && skill.AbilityType.indexOf('DOTA_ABILITY_TYPE_ULTIMATE') != -1) {
+                    ultimate = true;
+                }
+            }
+
+            return ultimate;
+        }
+
+        // Returns true if the given skill will fit in the given slot
+        private function canSlotAbility(skillName:String, slotNumber:Number):Boolean {
+            // If it's banned, it wont fit in any slot
+            if(lod.isSkillBanned(skillName)) return false;
+
+            // Does the slot even exist?
+            var slot:MovieClip = yourSkillList['skill' + slotNumber];
+            if(!slot) return false;
+
+            // Grab the slot type
+            var slotType:String = slot.getSlotType();
+
+            // Return if it fits, or not
+            switch(slotType) {
+                case lod.SLOT_TYPE_ABILITY:
+                    return !isUlt(skillName)
+                    break;
+
+                case lod.SLOT_TYPE_ULT:
+                    return isUlt(skillName);
+                    break;
+
+                case lod.SLOT_TYPE_EITHER:
+                    return true;
+                    break;
+
+                case lod.SLOT_TYPE_NEITHER:
+                    return false;
+                    break;
+            }
+
+            // Something went wrong, default to false
+            return false;
+        }
+	}
 }

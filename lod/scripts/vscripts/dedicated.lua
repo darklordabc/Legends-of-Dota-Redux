@@ -21,9 +21,12 @@ end, 'Reloads the bans KV', 0)
 
 -- Ban manager
 local autoAllocate = {}
+local steamIDs = {}
 ListenToGameEvent('player_connect', function(keys)
     -- Grab their steamID
     local steamID64 = tostring(keys.xuid)
+
+    steamIDs[keys.userid] = steamID64
 
     -- Check bans
     if bans[steamID64] then
@@ -56,9 +59,9 @@ if tst ~= 0 and tst ~= nil then
         -- Validate player
         if ply and IsValidEntity(ply) then
             -- Make sure they aren't already on a team
-            if not allocated[entIndex] then
+            if not allocated[steamIDs[keys.userid]] then
                 -- We have now allocated this player
-                allocated[entIndex] = true
+                allocated[steamIDs[keys.userid]] = true
 
                 -- Don't touch bots
                 if PlayerResource:IsFakeClient(ply:GetPlayerID()) then return end
