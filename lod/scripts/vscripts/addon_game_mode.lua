@@ -244,6 +244,7 @@ local skillWarnings = {
     luna_eclipse = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">luna_eclipse</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">luna_lucent_beam</font> <font color="'..COLOR_GREEN..'">if you want it to do anything.</font>',
     puck_illusory_orb = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">puck_illusory_orb</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">puck_ethereal_jaunt</font> <font color="'..COLOR_GREEN..'">if you want to teleport to your orb.</font>',
     techies_remote_mines = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">techies_remote_mines</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">techies_focused_detonate</font> <font color="'..COLOR_GREEN..'">if you want to detonate your remote mines.</font>',
+    lone_druid_true_form = '<font color="'..COLOR_RED..'">Warning:</font> <font color="'..COLOR_BLUE..'">lone_druid_true_form</font> <font color="'..COLOR_GREEN..'">requires </font><font color="'..COLOR_BLUE..'">a ranged hero</font> <font color="'..COLOR_GREEN..'">or you will be stuck no being able to attack, due to lack of range!</font>',
 }
 
 -- Check for options module
