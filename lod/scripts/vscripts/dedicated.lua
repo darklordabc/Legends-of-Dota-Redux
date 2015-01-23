@@ -131,9 +131,14 @@ if tst ~= 0 and tst ~= nil then
                 -- Set their team
                 if radiant <= dire then
                     ply:SetTeam(DOTA_TEAM_GOODGUYS)
+                    return
                 else
                     ply:SetTeam(DOTA_TEAM_BADGUYS)
+                    return
                 end
+
+                -- Spectator
+                ply:SetTeam(1)
             --end
         end
     end, nil)
