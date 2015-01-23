@@ -51,7 +51,7 @@ local skins = {
         unit = 'npc_dota_dark_troll_warlord_skeleton_warrior',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, factor, sfactor)
+            applyDefaultStats(unit, 2*factor, sfactor)
 
             -- Give magic resist
             unit:__KeyValueFromInt('MagicalResistance', 90)
@@ -63,7 +63,7 @@ local skins = {
         unit = 'npc_dota_visage_familiar1',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, factor, sfactor)
+            applyDefaultStats(unit, 3*factor, sfactor)
 
             -- Apply new stuff
             unit:__KeyValueFromFloat('AttackRate', 1.2)
@@ -77,7 +77,7 @@ local skins = {
         unit = 'npc_dota_neutral_granite_golem',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, factor, sfactor)
+            applyDefaultStats(unit, 4*factor, sfactor)
 
             -- Apply new stuff
             unit:__KeyValueFromInt('AttackRange', 600)
@@ -154,6 +154,7 @@ local function initSurvival()
     SendToServerConsole('lod_nobots')
 
     local hasStarted = false
+    local gameOver = false
     GameRules:GetGameModeEntity():SetThink(function()
         if not hasStarted then
             if not (GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then return 0.1 end
@@ -251,43 +252,48 @@ local function initSurvival()
         end
 
         -- Game ends differently, depending on wether it is team based or not
-        if oneGlobalTeam then
-            -- Output records
-            if allDeadDire and not doneDireRecord then
-                Say(nil, "Dire Record: "..math.floor(Time()-startTime).." seconds!", false)
-                doneDireRecord = true
-            end
-            if allDeadRadiant and not doneRadiantRecord then
-                Say(nil, "Radiant Record: "..math.floor(Time()-startTime).." seconds!", false)
-                doneRadiantRecord = true
-            end
+        if not gameOver then
+            if oneGlobalTeam then
+                -- Output records
+                if allDeadDire and not doneDireRecord then
+                    Say(nil, "Dire Record: "..math.floor(Time()-startTime).." seconds!", false)
+                    doneDireRecord = true
+                end
+                if allDeadRadiant and not doneRadiantRecord then
+                    Say(nil, "Radiant Record: "..math.floor(Time()-startTime).." seconds!", false)
+                    doneRadiantRecord = true
+                end
 
-            -- Team based, everyone needs to die
-            if allDeadDire and allDeadRadiant then
-                -- Print total survival time
-                Say(nil, "Total Survival Time: "..math.floor(Time()-startTime).." seconds!", false)
+                -- Team based, everyone needs to die
+                if allDeadDire and allDeadRadiant then
+                    -- Print total survival time
+                    Say(nil, "Total Survival Time: "..math.floor(Time()-startTime).." seconds!", false)
 
-                -- End the gamemode
-                GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-                GameRules:Defeated()
-            end
-        else
-            if allDeadDire then
-                Say(nil, "Dire Loses!", false)
-                GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-                GameRules:Defeated()
-            end
+                    -- End the gamemode
+                    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+                    GameRules:Defeated()
+                    gameOver = true
+                end
+            else
+                if allDeadDire then
+                    Say(nil, "Dire Loses!", false)
+                    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+                    GameRules:Defeated()
+                    gameOver = true
+                end
 
-            if allDeadRadiant then
-                Say(nil, "Radiant Loses!", false)
-                GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-                GameRules:Defeated()
-            end
+                if allDeadRadiant then
+                    Say(nil, "Radiant Loses!", false)
+                    GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+                    GameRules:Defeated()
+                    gameOver = true
+                end
 
-            -- If either team has everyone dead
-            if allDeadRadiant or allDeadDire then
-                -- Print total survival time
-                Say(nil, "Total Survival Time: "..math.floor(Time()-startTime).." seconds!", false)
+                -- If either team has everyone dead
+                if allDeadRadiant or allDeadDire then
+                    -- Print total survival time
+                    Say(nil, "Total Survival Time: "..math.floor(Time()-startTime).." seconds!", false)
+                end
             end
         end
 
