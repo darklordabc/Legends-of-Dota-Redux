@@ -189,6 +189,15 @@ if tst ~= 0 and tst ~= nil then
     end, nil)
 end
 
+local noBots = false
+Convars:RegisterCommand('lod_nobots', function()
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        if noBots then return end
+        noBots = true
+    end
+end, 'hax loader', 0)
+
 -- Bot allocation
 local tst = LoadKeyValues('cfg/addbots.kv')
 if tst ~= 0 and tst ~= nil then
@@ -209,8 +218,10 @@ if tst ~= 0 and tst ~= nil then
 
             if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
                 addedBots = true
-                SendToServerConsole('sm_gmode 1')
-                SendToServerConsole('dota_bot_populate')
+                if not noBots then
+                    SendToServerConsole('sm_gmode 1')
+                    SendToServerConsole('dota_bot_populate')
+                end
             end
         end, nil)
     end

@@ -133,6 +133,9 @@ local function initSurvival()
     local doneDireRecord = false
     local doneRadiantRecord = false
 
+    -- Can use any shop at any shop
+    GameRules:SetUseUniversalShopMode(true)
+
     GameRules:GetGameModeEntity():SetThink(function()
         local timePassed = (Time() - startTime)
         local factor = 1 + timePassed/60
