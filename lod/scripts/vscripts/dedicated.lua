@@ -83,7 +83,7 @@ if tst ~= 0 and tst ~= nil then
     print('Loaded LoD allocation code!')
 
     -- Stick people onto teams
-    local allocated = {}
+    --local allocated = {}
     ListenToGameEvent('player_connect_full', function(keys)
         -- Grab the entity index of this player
         local entIndex = keys.index+1
@@ -92,9 +92,9 @@ if tst ~= 0 and tst ~= nil then
         -- Validate player
         if ply and IsValidEntity(ply) then
             -- Make sure they aren't already on a team
-            if not allocated[steamIDs[keys.userid]] then
+            --if not allocated[steamIDs[keys.userid]] then
                 -- We have now allocated this player
-                allocated[steamIDs[keys.userid]] = true
+                --allocated[steamIDs[keys.userid]] = true
 
                 -- Don't touch bots
                 if PlayerResource:IsFakeClient(ply:GetPlayerID()) then return end
@@ -134,7 +134,7 @@ if tst ~= 0 and tst ~= nil then
                 else
                     ply:SetTeam(DOTA_TEAM_BADGUYS)
                 end
-            end
+            --end
         end
     end, nil)
 
