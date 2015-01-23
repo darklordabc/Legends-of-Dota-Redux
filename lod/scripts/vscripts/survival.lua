@@ -127,16 +127,27 @@ local function initSurvival()
     -- Reset zombie info
     zombieInfo = {}
 
-    -- Store when we started
-    startTime = Time()
-
     local doneDireRecord = false
     local doneRadiantRecord = false
 
     -- Can use any shop at any shop
     GameRules:SetUseUniversalShopMode(true)
 
+    -- Disable normal creeps
+    Convars:SetBool('dota_creeps_no_spawning', true)
+
+    -- Disable bots
+    SendToServerConsole('lod_nobots')
+
+    local hasStarted = false
     GameRules:GetGameModeEntity():SetThink(function()
+        if not hasStarted then
+            if not (GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then return 0.1 end
+            hasStarted = true
+            startTime = Time()
+            Say(nil, "Survival was loaded, try to stay alive for as long as possible!", false)
+        end
+
         local timePassed = (Time() - startTime)
         local factor = 1 + timePassed/60
         local sfactor = math.sqrt(factor)
@@ -190,9 +201,9 @@ local function initSurvival()
                     local skin = {}
                     repeat
                         skin = skins[math.random(1, #skins)]
-                    until timePassed > skin.minTime
+                    until timePassed >= skin.minTime
 
-                    -- There is one mroe zombie
+                    -- There is one more zombie
                     totalZombies = totalZombies + 1
 
                     -- Workout where to spawn it (ensure it is within the map bounds)
@@ -299,9 +310,6 @@ local function initSurvival()
     for k,ent in pairs(ents) do
         ent:Remove()
     end
-
-    -- Tell the player
-    Say(nil, "Survival was loaded, try to stay alive for as long as possible!", false)
 end
 
 local doneInit = false
