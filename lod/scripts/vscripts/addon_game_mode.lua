@@ -46,6 +46,9 @@ require('util')
 -- Load hax
 require('hax')
 
+-- Load survival
+require('survival')
+
 -- Load specific modules
 local SkillManager = require('SkillManager')
 local Timers = require('easytimers')
