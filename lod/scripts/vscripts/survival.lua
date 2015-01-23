@@ -15,7 +15,8 @@ local startTime = 0.0
 local oneGlobalTeam = true
 
 local function applyDefaultStats(unit, factor, sfactor)
-    unit:SetMaxHealth(30 * factor)
+    unit:__KeyValueFromInt('StatusHealth', math.ceil(30 * factor))
+    unit:SetMaxHealth(math.ceil(30 * factor))
     unit:SetHealth(unit:GetMaxHealth())
     unit:__KeyValueFromFloat('StatusHealthRegen', sfactor/2)
     unit:__KeyValueFromInt('BountyGoldMin', 30 * sfactor)
@@ -67,6 +68,19 @@ local skins = {
             -- Apply new stuff
             unit:__KeyValueFromFloat('AttackRate', 1.2)
             unit:__KeyValueFromInt('AttackRange', 200)
+            unit:__KeyValueFromInt('MovementSpeed', 500)
+        end
+    },
+
+    [4] = {
+        minTime = 240,
+        unit = 'npc_dota_neutral_granite_golem',
+        stats = function(unit, factor, sfactor)
+            -- Apply default stuff
+            applyDefaultStats(unit, factor, sfactor)
+
+            -- Apply new stuff
+            unit:__KeyValueFromInt('AttackRange', 600)
             unit:__KeyValueFromInt('MovementSpeed', 500)
         end
     }
