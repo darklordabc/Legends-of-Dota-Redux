@@ -1242,12 +1242,12 @@
 
         // When the unit selection is updated
         private function onUnitSelectionUpdated():void {
-            if(selectionUI == null) return;
-
             if(hudFixingTimer != null) {
                 hudFixingTimer.stop();
                 hudFixingTimer = null;
             }
+
+            if(selectionUI == null) return;
 
             hudFixingTimer = new Timer(100, 1);
             hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
@@ -1256,6 +1256,13 @@
 
         // Fixes the hot keys
         private function fixHotkeys():void {
+            if(hudFixingTimer != null) {
+                hudFixingTimer.stop();
+                hudFixingTimer = null;
+            }
+
+            if(selectionUI == null) return;
+
             // Set the text
             for(var i:Number=0; i<6; i++) {
                 globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
@@ -1264,12 +1271,7 @@
             // Make it 6 slots, ALWAYS
             globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(MAX_SLOTS-3);
 
-            if(hudFixingTimer != null) {
-                hudFixingTimer.stop();
-                hudFixingTimer = null;
-            }
-
-            hudFixingTimer = new Timer(500);
+            hudFixingTimer = new Timer(500, 1);
             hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
             hudFixingTimer.start();
         }
