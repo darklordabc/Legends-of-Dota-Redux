@@ -29,15 +29,18 @@ Legends of Dota
 
 ###Starting a source1 server###
  - Do not contact me for additional help
- - You'll need to setup a source1 server, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
- - You will need SRCDS from [here](https://forums.alliedmods.net/showthread.php?p=2110203)
- - You need the following installed
-  - addons/d2fixups ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
-  - addons/lod (You can get this by downloading the ZIP on the right side of this repo)
-  - addons/sourcemod ([Download the latest snapshot in the 1.7 dev branch](http://www.sourcemod.net/snapshots.php))
-  - addons/sourcemod/plugins/ffa.smx (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed)
-  - addons/metamod ([The latest snapshot in the 1.11 dev branch](https://www.sourcemm.net/snapshots))
- - The following goes into a batch file, place this match file into the same folder as srcds
+ - If you get stuck, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
+ - Here is the file structure for your own server! Start by making a blank folder somewhere, possibly called `mySexyServer`
+  - **server.bat** (You will create this yourself, the contents are specified below)
+  - **srcds.exe** ([Download the SRCDS for our OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
+  - **bin/** (Simply copy your `Steam/steamapps/common/dota 2 beta/bin` folder in)
+  - **dota/** (Simply copy your `Steam/steamapps/common/dota 2 beta/dota` folder in)
+  - **dota/addons/d2fixups** ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
+  - **dota/addons/lod** (You can get this by downloading the ZIP on the right side of this repo)
+  - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.7 dev branch](http://www.sourcemod.net/snapshots.php))
+  - **dota/addons/sourcemod/plugins/ffa.smx** (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed)
+  - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch](https://www.sourcemm.net/snapshots))
+ - The following goes into a batch file, place this match file into the same folder as srcds, call it `server.bat`
 
         @echo off
         cls
@@ -52,9 +55,9 @@ Legends of Dota
 
 
  - Getting metamod to load
-  - You will need to do the gameinfo.txt step that is mentioned [here](https://wiki.alliedmods.net/Installing_metamod:source)
+  - You will need to do the `dota/gameinfo.txt` step that is mentioned [here](https://wiki.alliedmods.net/Installing_metamod:source)
  - Mounting Legends of Dota
-  - You will need to add "Game  |gameinfo_path|addons/lod" without quotes to the end of your gameinfo.txt file, the end result is something like this
+  - You will need to add "Game  |gameinfo_path|addons/lod" without quotes to the end of your `dota/gameinfo.txt` file, the end result is something like this
 
 
             "GameInfo"
@@ -142,3 +145,12 @@ Legends of Dota
  - To manually add bots
   - sm_gmode 1
   - dota_bot_populate
+
+###Starting a server - FAQ###
+ - **I need help**
+  - Do NOT contact me
+  - Drop your questions [here](http://steamcommunity.com/workshop/filedetails/discussion/296590332/620703493310739146/)
+ - **The server doesn't work**
+  - Check the d2fixups topic, there is a small chance that when you have tried to setup the server, everything is broken, because of a recent update, be patent, and don't spam the devs, they will fix things when they have time
+ - **Bots don't spawn**
+  - There is plenty of help above
