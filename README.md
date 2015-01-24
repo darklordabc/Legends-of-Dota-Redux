@@ -45,7 +45,7 @@ Legends of Dota
  - Launch NORMAL dota 2 (no workshop tools!)
  - Open your console and type the following:
  - `connect lod.ash47.net:27016`
- - Alternatively, simply click [here](steam://connect/lod.ash47.net:27016) to connect
+ - Alternatively, simply visit `steam://connect/lod.ash47.net:27016` in your browser
 
 ###Starting a source1 server###
  - Do not contact me for additional help
