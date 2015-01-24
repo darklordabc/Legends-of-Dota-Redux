@@ -221,6 +221,10 @@ if tst ~= 0 and tst ~= nil then
                 if not noBots then
                     SendToServerConsole('sm_gmode 1')
                     SendToServerConsole('dota_bot_populate')
+
+                    -- We now have full teams
+                    actualDire = 5
+                    actualRadiant = 5
                 end
             end
         end, nil)
