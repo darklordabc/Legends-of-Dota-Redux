@@ -32,7 +32,7 @@ Legends of Dota
  - If you get stuck, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
  - Here is the file structure for your own server! Start by making a blank folder somewhere, possibly called `mySexyServer`
   - **server.bat** (You will create this yourself, the contents are specified below)
-  - **srcds.exe** ([Download the SRCDS for our OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
+  - **srcds.exe** ([Download the SRCDS for your OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
   - **bin/** (Simply copy your `Steam/steamapps/common/dota 2 beta/bin` folder in)
   - **dota/** (Simply copy your `Steam/steamapps/common/dota 2 beta/dota` folder in)
   - **dota/addons/d2fixups** ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
