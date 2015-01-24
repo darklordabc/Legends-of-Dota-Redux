@@ -27,6 +27,22 @@ Legends of Dota
   - Mirror Draft, both teams get the same hero pool
   - All Random, everyone gets a random hero and random spells
 
+###Setting up your local client###
+ - **DO THIS ONCE, REPEAT WHEN YOU NEED TO UPDATE**
+  - Download [THIS ZIP](https://github.com/ash47/LegendsOfDota/archive/master.zip)
+  - Extract ONLY the `lod` folder into your `dota 2 beta/dota/addons` folder (creating addons if it doesn't exist)
+  - If there are any other folders inside your `addons` folder, please either delete them, or move them into another folder (such as `addons_disabled`)
+ - **DO THIS ONCE**
+  - Open `dota 2 beta/dota/gameinfo.txt`
+  - Add `Game       |gameinfo_path|addons/lod` without quotes on a new line BELOW the final "Game" entry (inside of SearchPaths) [Click here if you don't know how to follow instructions](http://pastebin.com/MbSEpeLG)
+
+###Connecting to a source1 server###
+ - We will use my personal server as an example
+ - Launch NORMAL dota 2 (no workshop tools!)
+ - Open your console and type the following:
+ - `connect lod.ash47.net:27016`
+ - Alternatively, simply click [here](steam://connect/lod.ash47.net:27016) to connect
+
 ###Starting a source1 server###
  - Do not contact me for additional help
  - If you get stuck, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
