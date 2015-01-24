@@ -27,7 +27,11 @@ Legends of Dota
   - Mirror Draft, both teams get the same hero pool
   - All Random, everyone gets a random hero and random spells
 
-###Setting up your local client###
+###Workshop Version###
+ - There is a less good workshop version available [here](http://steamcommunity.com/sharedfiles/filedetails/?id=296590332)
+ - It is running the older version of dota 2, which means old spells, old map, no bounty rune, etc
+
+###Setting up your local client to connect to a source1 server###
  - **DO THIS ONCE, REPEAT WHEN YOU NEED TO UPDATE**
   - Download [THIS ZIP](https://github.com/ash47/LegendsOfDota/archive/master.zip)
   - Extract ONLY the `lod` folder into your `dota 2 beta/dota/addons` folder (creating addons if it doesn't exist)
