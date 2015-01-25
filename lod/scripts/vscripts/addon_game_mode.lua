@@ -2158,7 +2158,8 @@ doLock = function(playerID)
             endOfTimer = Time()
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
         else
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have already locked your skills! '..locksLeft..' players still need to lock their skills to continue.</font>')
+            playerLocks[playerID] = 0
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have unlocked your skills! '..locksLeft..' other players still need to lock their skills to continue.</font>')
         end
         return
     end
