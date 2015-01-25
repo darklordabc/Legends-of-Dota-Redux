@@ -2158,7 +2158,7 @@ doLock = function(playerID)
             endOfTimer = Time()
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">All players have locked their skills, moving on...</font>')
         else
-            playerLocks[playerID] = 0
+            playerLocks[playerID] = nil
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have unlocked your skills! '..locksLeft..' other players still need to lock their skills to continue.</font>')
         end
         return
