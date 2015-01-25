@@ -178,9 +178,106 @@ function skillManager:RemoveAllSkills(hero)
     end
 end
 
+local inSwap = false
 function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
     if hero == nil then return end
+
+    -- If we are currently swapping a hero, ignore
+    if inSwap then return end
+
+    -- Check if there is a new hero
+    if build.hero then
+        -- Reset current skills
+        currentSkillList[hero] = nil
+
+        local playerID = hero:GetPlayerID()
+
+        -- Store gold
+        local ug = PlayerResource:GetUnreliableGold(playerID)
+        local rg = PlayerResource:GetReliableGold(playerID)
+
+        -- Grab HP and mana percent
+        local hp = hero:GetHealthPercent()
+        local mana = hero:GetManaPercent()
+
+        -- Get their position
+        local pos = hero:GetOrigin()
+
+        -- Store items
+        local items = {}
+        for i=0,11 do
+            local item = hero:GetItemInSlot(i)
+            if item then
+                items[i] = {
+                    class = item:GetClassname(),
+                    charges = item:GetCurrentCharges(),
+                    purchaser = item:GetPurchaser(),
+                    purchaseTime = item:GetPurchaseTime(),
+                }
+
+                -- Check if we need to replace the purchaser
+                if item:GetPurchaser() == hero then
+                    items[i].replacePurchaser = true
+                end
+
+                item:Remove()
+            end
+        end
+
+        -- Replace the hero
+        inSwap = true
+        hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
+        inSwap = false
+
+        -- Replace gold
+        PlayerResource:SetGold(playerID, ug, false)
+        PlayerResource:SetGold(playerID, rg, true)
+
+        -- Replace HP and mana percent
+        hero:SetHealth(math.ceil(hp/100 * hero:GetMaxHealth()))
+        hero:SetMana(mana/100 * hero:GetMaxMana())
+
+        -- Reset their position
+        hero:SetOrigin(pos)
+
+        -- Replace items
+        local removeMe = {}
+        for i=0,11 do
+            local item = items[i]
+
+            if item then
+                local purchaser = item.purchaser
+                if item.replacePurchaser then
+                    purchaser = hero
+                end
+
+                local newItem = CreateItem(item.class, purchaser, purchaser)
+                newItem:SetCurrentCharges(item.charges)
+                newItem:SetPurchaser(purchaser)
+                newItem:SetPurchaseTime(item.purchaseTime)
+
+                hero:AddItem(newItem)
+            else
+                local tmpItem = CreateItem('item_branches', hero, hero)
+                hero:AddItem(tmpItem)
+                table.insert(removeMe, tmpItem)
+            end
+        end
+
+        for k,v in pairs(removeMe) do
+            v:Remove()
+        end
+
+        -- Reset current skills
+        currentSkillList[hero] = nil
+    end
+
+    -- Reset ability points
+    hero:SetAbilityPoints(hero:GetLevel())
+
+    -- Store the hero of this build
+    build.hero = hero:GetClassname()
 
     -- Build the skill list
     self:BuildSkillList(hero)

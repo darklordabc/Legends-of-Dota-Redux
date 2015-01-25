@@ -2146,14 +2146,36 @@ doLock = function(playerID)
     end
 end
 
---[[Convars:RegisterCommand('testing_this', function(name, abNumber)
-    local build = skillList[tonumber(abNumber)] or {}
+Convars:RegisterCommand('lod_applybuild', function(name, target, source)
+    -- Server only command!
+    if not Convars:GetCommandClient() then
+        local target = tonumber(target)
+        local source = tonumber(source)
+        if target == nil or source == nil then
+            print('Command usage: '..name..' targetID sourceID')
+            return
+        end
 
-    local newHero = PlayerResource:ReplaceHeroWith(0, PlayerResource:GetSelectedHeroEntity(tonumber(abNumber)):GetClassname(), 0, 0)
+        if target < 0 or target > 9 then
+            print('Valid targetIDs are [0,9]')
+            return
+        end
 
-    -- Apply the build
-    SkillManager:ApplyBuild(newHero, build)
-end, '', 0)]]
+        if source < 0 or source > 9 then
+            print('Valid sourceIDs are [0,9]')
+            return
+        end
+
+        local sourceBuild = skillList[source]
+        if not sourceBuild then
+            print('Failed to find a build with ID '..source)
+            return
+        end
+
+        -- Apply the build
+        SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild)
+    end
+end, '', 0)
 
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
