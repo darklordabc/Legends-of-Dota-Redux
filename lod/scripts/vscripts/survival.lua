@@ -138,6 +138,9 @@ local function unreveal(hero)
 end
 
 local function initSurvival()
+    -- Tell the server
+    print('Survival was loaded!')
+
     -- Reset zombie info
     zombieInfo = {}
 

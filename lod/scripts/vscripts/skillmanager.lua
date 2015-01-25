@@ -428,6 +428,13 @@ function skillManager:ApplyBuild(hero, build)
                 end
                 abs[i] = build[i]
             end
+
+            if i > 6 then
+                local ab = hero:FindAbilityByName(v)
+                if ab then
+                    ab:SetHidden(true)
+                end
+            end
         else
             local inSlot = abs[i]
 
@@ -452,7 +459,6 @@ function skillManager:ApplyBuild(hero, build)
 
             -- Add the ability
             hero:AddAbility(k)
-            print('Added '..k)
 
             -- Remove auras
             fixModifiers(hero, k)

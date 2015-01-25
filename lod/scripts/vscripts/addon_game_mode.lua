@@ -89,6 +89,7 @@ local backdoorFix
 local botSkillsOnly
 local doLock
 local getRandomHeroName
+local loadSpecialGamemode
 
 --[[
     SETTINGS
@@ -197,6 +198,9 @@ gamemodeNames = {
 -- The gamemode
 local gamemode = GAMEMODE_AP    -- Set default gamemode
 
+-- Enable cycling builds
+local cyclingBuilds = false
+
 -- Are we using the draft arrays -- This will allow players to only pick skills from white listed heroes
 local useDraftArray = true
 
@@ -205,6 +209,9 @@ local autoDraftHeroNumber = 10
 
 -- The current stage we are in
 local currentStage = STAGE_WAITING
+
+-- Has LoD started?
+local lodHasStarted = false
 
 -- Stores which heroes a player can use skills from
 -- draftArray[playerID][heroID] = true
@@ -1655,6 +1662,26 @@ function lod:OnThink()
 
     -- Don't stop the timer!
     if currentStage == STAGE_PLAYING then
+        if not lodHasStarted then
+            -- Wait until hero selection ends
+            if GameRules:State_Get() <= DOTA_GAMERULES_STATE_HERO_SELECTION then return 0.1 end
+            lodHasStarted = true
+
+            -- Ensure all player's have a hero
+            for i=0,9 do
+                local ply = PlayerResource:GetPlayer(i)
+
+                if ply then
+                    if PlayerResource:GetSelectedHeroID(i) == -1 then
+                        ply:MakeRandomHeroSelection()
+                    end
+                end
+            end
+
+            -- Load up the special gamemode stuff
+            loadSpecialGamemode()
+        end
+
         return 0.1
     end
 
@@ -2637,6 +2664,55 @@ getRandomHeroName = function()
     end
 end
 
+--[[
+    Special Gamemodes
+]]
+loadSpecialGamemode = function()
+    if cyclingBuilds then
+        -- Settings for cycling skills
+        local minTime = 1
+        local maxTime = 60 * 3
+
+        -- Create a timer for each player
+        for i=0,9 do
+            -- We need new scope here
+            (function(playerID)
+                -- Kill server if no one is on it anymore
+                GameRules:GetGameModeEntity():SetThink(function()
+                    -- Just stop if it is a bot
+                    if PlayerResource:IsFakeClient(playerID) then
+                        print('playerID '..playerID..' is a bot')
+                        return
+                    end
+
+                    -- Grab the hero
+                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                    if hero then
+                        -- Build list of valid builds
+                        local possibleBuilds = {}
+                        for i=0,9 do
+                            if skillList[i] and skillList[i].hero then
+                                table.insert(possibleBuilds, skillList[i])
+                            end
+                        end
+
+                        -- If there are any valid ones
+                        if #possibleBuilds > 0 then
+                            -- Apply a random one
+                            SkillManager:ApplyBuild(hero, possibleBuilds[math.random(#possibleBuilds)])
+                        end
+                    end
+
+                    -- Wait a random period
+                    return math.random(minTime,maxTime)
+                end, 'cyclingTimer'..playerID, math.random(minTime,maxTime), nil)
+            end)(i)
+        end
+
+        Say(nil, 'Cycling builds was enabled. You will get a new build randomly every so often.', false)
+    end
+end
+
 --[[Convars:RegisterCommand('dota_select_hero', function(name, heroName)
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
@@ -2801,6 +2877,21 @@ Convars:RegisterCommand('lod_ids', function(name, newHostID)
         end
     end
 end, 'Host stealer', 0)
+
+-- Turn cycling skills on
+Convars:RegisterCommand('lod_cycle', function(name, newHostID)
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        if lodHasStarted then
+            print('It is too late to use this.')
+            return
+        end
+
+        -- Turn it on
+        cyclingBuilds = true
+        print('Cycling builds was enabled.')
+    end
+end, 'Turn cycling skills on', 0)
 
 
 if lod == nil then
