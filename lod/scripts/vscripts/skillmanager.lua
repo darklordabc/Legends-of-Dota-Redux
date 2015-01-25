@@ -230,6 +230,9 @@ function skillManager:ApplyBuild(hero, build)
         hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
         inSwap = false
 
+        -- Ensure swap is successful
+        if not hero then return end
+
         -- Replace gold
         PlayerResource:SetGold(playerID, ug, false)
         PlayerResource:SetGold(playerID, rg, true)
