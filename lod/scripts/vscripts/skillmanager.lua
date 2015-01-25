@@ -187,7 +187,7 @@ function skillManager:ApplyBuild(hero, build)
     if inSwap then return end
 
     -- Check if there is a new hero
-    if build.hero then
+    if not hero:IsIllusion() and build.hero then
         -- Reset current skills
         currentSkillList[hero] = nil
 
