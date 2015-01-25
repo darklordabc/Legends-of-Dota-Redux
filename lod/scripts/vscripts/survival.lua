@@ -51,7 +51,7 @@ local skins = {
         unit = 'npc_dota_dark_troll_warlord_skeleton_warrior',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, 2*factor, sfactor)
+            applyDefaultStats(unit, factor, sfactor)
 
             -- Give magic resist
             unit:__KeyValueFromInt('MagicalResistance', 90)
@@ -63,7 +63,7 @@ local skins = {
         unit = 'npc_dota_visage_familiar1',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, 3*factor, sfactor)
+            applyDefaultStats(unit, factor, sfactor)
 
             -- Apply new stuff
             unit:__KeyValueFromFloat('AttackRate', 1.2)
@@ -77,7 +77,7 @@ local skins = {
         unit = 'npc_dota_neutral_granite_golem',
         stats = function(unit, factor, sfactor)
             -- Apply default stuff
-            applyDefaultStats(unit, 4*factor, sfactor)
+            applyDefaultStats(unit, factor, sfactor)
 
             -- Apply new stuff
             unit:__KeyValueFromInt('AttackRange', 600)
