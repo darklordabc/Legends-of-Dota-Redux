@@ -12,7 +12,7 @@ local zombieInfo = {}   -- Stores info on each user's zombies
 -- The time the match started (for scaling)
 local startTime = 0.0
 
-local oneGlobalTeam = true
+local oneGlobalTeam = false
 
 local function applyDefaultStats(unit, factor, sfactor)
     unit:__KeyValueFromInt('StatusHealth', math.ceil(30 * factor))
