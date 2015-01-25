@@ -2742,6 +2742,45 @@ Convars:RegisterCommand('lod_decode', function(name, theirNumber)
     end
 end, 'User asked for decoding info', 0)
 
+-- Allows you to set the host
+Convars:RegisterCommand('lod_sethost', function(name, newHostID)
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        -- Input validation
+        if newHostID == nil then
+            print('Command usage: '..name..' newHostID')
+            return
+        end
+
+        newHostID = tonumber(newHostID)
+        if newHostID == nil then
+            print('Command usage: '..name..' newHostID')
+            return
+        end
+
+        -- Ensure we are at the correct stage
+        if currentStage ~= STAGE_WAITING then
+            print('You can only change the host during the waiting period.')
+            return
+        end
+
+        -- Store and report
+        slaveID = newHostID
+        print('Host was set to playerID '..slaveID)
+    end
+end, 'Host stealer', 0)
+
+-- Prints out playerIDS
+Convars:RegisterCommand('lod_ids', function(name, newHostID)
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        for i=0,9 do
+            print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..statcollection.GetPlayerNameReliable(i))
+        end
+    end
+end, 'Host stealer', 0)
+
+
 if lod == nil then
 	print('LOD FAILED TO INIT!\n\n')
 	return

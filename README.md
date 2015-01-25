@@ -174,3 +174,10 @@ Legends of Dota
   - Check the d2fixups topic, there is a small chance that when you have tried to setup the server, everything is broken, because of a recent update, be patent, and don't spam the devs, they will fix things when they have time
  - **Bots don't spawn**
   - There is plenty of help above
+
+###Server Commands###
+ - `lod_sethost` While in the waiting / loading period, this can be used to set the ID of the hoster.
+ - `lod_ids` Lists playerIDs matches with steamIDs and player names.
+ - `lod_survival` Loads the survival gamemode (It will autostart when the match begins, it will also disable bots).
+ - `lod_nobots` Stops bots from spawning (it wont remove bots, if they have already spawned).
+ - `lod_wtf` Enable WTF mode (To disable, turn cheats on then off, this is done on purpose, to prevent admin abuse).
