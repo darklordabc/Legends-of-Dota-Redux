@@ -7,8 +7,12 @@ function onTinyGrowUpgrade(keys)
     if keys.ability:GetLevel() <= 0 then return end
 
     -- Remove old modifiers
-    hero:RemoveModifierByName('tiny_grow_lod')
-    hero:RemoveModifierByName('tiny_grow_lod_scepter')
+    if hero:HasModifier('tiny_grow_lod') then
+        hero:RemoveModifierByName('tiny_grow_lod')
+    end
+    if hero:HasModifier('tiny_grow_lod_scepter') then
+        hero:RemoveModifierByName('tiny_grow_lod_scepter')
+    end
 
     -- Add the correct modifier
     if hero:HasScepter() then
