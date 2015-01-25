@@ -2684,7 +2684,7 @@ loadSpecialGamemode = function()
 
                     -- Grab the hero
                     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-                    if hero then
+                    if hero and hero:IsAlive() then
                         -- Build list of valid builds
                         local possibleBuilds = {}
                         for i=0,9 do
