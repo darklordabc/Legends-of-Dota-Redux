@@ -2205,6 +2205,68 @@ Convars:RegisterCommand('lod_applybuild', function(name, target, source)
     end
 end, '', 0)
 
+-- Prints all builds
+Convars:RegisterCommand('lod_printbuilds', function(name)
+    -- Server only command!
+    if not Convars:GetCommandClient() then
+        for i=0,9 do
+            local b = skillList[i]
+            if b then
+                local txt
+                for j=1,16 do
+                    local s = b[j]
+                    if s then
+                        if txt then
+                            txt = txt..','..s
+                        else
+                            txt = s
+                        end
+                    end
+                end
+
+                txt = txt or ''
+
+                if b.hero then
+                    txt = b.hero..' '..txt
+                end
+
+                print(i..': '..txt)
+            end
+        end
+    end
+end, '', 0)
+
+-- Edits a skill in a build
+Convars:RegisterCommand('lod_editskill', function(name, playerID, skillSlot, skillName)
+    -- Server only command!
+    if not Convars:GetCommandClient() then
+        local playerID = tonumber(playerID)
+        local skillSlot = tonumber(skillSlot)
+        if playerID == nil or skillSlot == nil or skillName == nil then
+            print('Command usage: '..name..' playerID skillSlot skillName')
+            return
+        end
+
+        if playerID < 0 or playerID > 9 then
+            print('Valid playerIDs are [0,9]')
+            return
+        end
+
+        if skillSlot < 1 or skillSlot > maxSlots then
+            print('Valids slots are 1 - '..maxSlots)
+            return
+        end
+
+        if not isValidSkill(skillName) then
+            print(skillName..' is not a valid skill.')
+            return
+        end
+
+        skillList[playerID] = skillList[playerID] or {}
+        skillList[playerID][skillSlot] = skillName
+    end
+end, '', 0)
+
 -- When a user tries to ban a skill
 Convars:RegisterCommand('lod_ban', function(name, skillName)
     -- Input validation
