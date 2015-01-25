@@ -2680,10 +2680,7 @@ loadSpecialGamemode = function()
                 -- Kill server if no one is on it anymore
                 GameRules:GetGameModeEntity():SetThink(function()
                     -- Just stop if it is a bot
-                    if PlayerResource:IsFakeClient(playerID) then
-                        print('playerID '..playerID..' is a bot')
-                        return
-                    end
+                    if PlayerResource:IsFakeClient(playerID) then return end
 
                     -- Grab the hero
                     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
