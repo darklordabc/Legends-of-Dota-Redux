@@ -98,6 +98,9 @@
         // When the timer should end
         "t"             "float"
 
+        // The tabs that are allowed, || seperated
+        "tabs"          "string"
+
         // Which UI should be shown (Stage)
         "s"             "byte"
 

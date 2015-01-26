@@ -93,6 +93,7 @@ local botSkillsOnly
 local doLock
 local getRandomHeroName
 local loadSpecialGamemode
+local buildAllowedTabsString
 
 --[[
     SETTINGS
@@ -147,12 +148,20 @@ local UNIQUE_SKILLS_GLOBAL = 2
 -- Force unique skills?
 local forceUniqueSkills = UNIQUE_SKILLS_NONE
 
+-- Allow the passives on skills to be used
+local allowItemModifers = true
+
 -- List of tabs to allow
 local allowedTabs = {
     main = true,
     neutral = true,
-    wraith = true
+    wraith = true,
+    itemsActive = true,
+    itemsPassive = true
 }
+
+-- String version of allowed tabs
+local allowedTabsString = ''
 
 --[[
     GAMEMODE STUFF
@@ -1172,6 +1181,12 @@ setupGamemodeSettings = function()
         endOfTimer = Time() + pickingTime
     end
 
+    -- Setup allowed tabs
+    GameRules.allowItemModifers = allowItemModifers
+
+    -- Build ability string
+    buildAllowedTabsString()
+
     -- Build the ability list
     buildSkillListLookup()
 
@@ -1334,6 +1349,17 @@ finishVote = function()
     -- Are we using unique skills?
     forceUniqueSkills = optionToValue(10, winners[10])
 
+    -- Allowed tabs
+    allowedTabs.main = optionToValue(11, winners[11]) == 1
+    allowedTabs.neutral = optionToValue(12, winners[12]) == 1
+    allowedTabs.wraith = optionToValue(13, winners[13]) == 1
+    allowedTabs.itemsActive = optionToValue(14, winners[14]) >= 1
+    allowedTabs.itemsPassive = optionToValue(14, winners[14]) >= 2
+    allowedTabs.OP = optionToValue(15, winners[15]) == 1
+
+    -- Should we allocate item modifiers?
+    allowItemModifers = allowedTabs.itemsPassive
+
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
@@ -1480,6 +1506,7 @@ function lod:OnEmitStateInfo()
         ['source1']     = (GameRules:isSource1() and 1) or 0,
         ['balance']     = balanceMode,
         ['slaveID']     = slaveID,
+        ['tabs']        = allowedTabsString,
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
@@ -2799,6 +2826,21 @@ getRandomHeroName = function()
     end
 end
 
+buildAllowedTabsString = function()
+    local str
+    for k,v in pairs(allowedTabs) do
+        if v then
+            if not str then
+                str = k
+            else
+                str = str..'||'..k
+            end
+        end
+    end
+
+    allowedTabsString = str or ''
+end
+
 --[[
     Special Gamemodes
 ]]
@@ -2956,6 +2998,18 @@ end
         end)
     end
 end, 'hero selection override', 0)]]
+
+--[[Convars:RegisterCommand('lod_test', function(name, theirNumber)
+    local itemName = 'item_satanic'
+
+    local hero = PlayerResource:GetSelectedHeroEntity(0)
+    local item = CreateItem(itemName, hero, hero)
+
+    item:CastAbility()
+
+    hero:AddNewModifier(hero, item, 'modifier_'..itemName, {})
+end, 'User asked for decoding info', 0)]]
+
 
 -- User asks for decoding info
 Convars:RegisterCommand('lod_decode', function(name, theirNumber)

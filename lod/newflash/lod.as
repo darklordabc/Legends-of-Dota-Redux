@@ -377,6 +377,8 @@
 
         // Loads in the skills file
         private function loadSkillsFile():void {
+            var i:Number, tabName:String;
+
             // Load in the skill list
             var skillKV = globals.GameInterface.LoadKVFile('scripts/kv/abilities.kv');
             var tempSkillList:Object = skillKV.skills;
@@ -386,20 +388,30 @@
             skillLookupReverse = {};
 
             // Tabs to allow (this will be sent from the server eventually)
-            allowedTabs = {
-                main: true,
-                neutral: true,
-                wraith: true
-            };
+            allowedTabs = {};
 
-            var tabList = [
-                'main',
-                'neutral',
-                'wraith'
-            ];
+            trace('\n\n\nHERE WE ARE:');
+            trace(lastState.tabs);
+
+            var serverAllowedTabs = lastState.tabs.split('||');
+            for(i=0; i<serverAllowedTabs.length; ++i) {
+                trace(serverAllowedTabs[i]);
+                allowedTabs[serverAllowedTabs[i]] = true;
+            }
+
+            // List of tabs to display at the top
+            var tabList = [];
+
+            i = 0;
+            while(skillKV.tabOrder[++i]) {
+                trace(i);
+                tabList.push(skillKV.tabOrder[i]);
+            }
 
             // Loop over all tabs
-            for(var tabName:String in tempSkillList) {
+            for(tabName in tempSkillList) {
+                if(!allowedTabs[tabName]) continue;
+
                 // Grab all the skills in this tab
                 var skills:Object = tempSkillList[tabName];
 
@@ -452,7 +464,7 @@
                 // Ensure it has a heroID
                 if(entry.HeroID) {
                     // Loop over all possible skills
-                    for(var i:Number=1;i<=16;i++) {
+                    for(i=1;i<=16;i++) {
                         var ab:String = entry['Ability'+i];
                         if(ab) {
                             // Store it
@@ -713,7 +725,6 @@
                     }
 
                     // Nuke the voting ui
-                    Util.empty(votingUI);
                     this.removeChild(votingUI);
                 }
 
@@ -1534,7 +1545,7 @@
         // When a link in the chat is clicked
         private function onChatLinkPressed(e:TextEvent):void {
             // Cleanup
-            if(selectionUI == null || globals == null) return;
+            if(selectionUI == null || Globals == null) return;
 
             var txt:String = e.text;
             if(txt.indexOf('menu_') == 0) {
@@ -1542,7 +1553,7 @@
                 selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true);
             } else if(txt.indexOf('info_') == 0) {
                 // Show info screen
-                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
+                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
             }
         }
 

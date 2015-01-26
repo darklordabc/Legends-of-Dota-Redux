@@ -306,3 +306,158 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
         });
     });
 });
+
+fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
+    // Convert into something useable
+    var items = parseKV(''+itemsRaw, true).DOTAAbilities;
+
+    var currentID = 2000;
+    var currentIDPassive = 3000;
+    var newKV = {};
+    var newKVPassive = {};
+    var outputSkillIDs = '';
+    var outputSkillIDsPassive = '';
+
+    for(var itemName in items) {
+        if(itemName == 'Version') continue;
+        if(itemName.indexOf('recipe') != -1) continue;
+        if(itemName.indexOf('winter') != -1) continue;
+        if(itemName.indexOf('present') != -1) continue;
+        if(itemName.indexOf('greevil') != -1) continue;
+        if(itemName.indexOf('halloween') != -1) continue;
+        if(itemName.indexOf('mystery') != -1) continue;
+        if(itemName.indexOf('courier') != -1) continue;
+        if(itemName.indexOf('tango') != -1) continue;
+        if(itemName.indexOf('tpscroll') != -1) continue;
+        if(itemName.indexOf('ward') != -1) continue;
+        if(itemName.indexOf('clarity') != -1) continue;
+        if(itemName.indexOf('flask') != -1) continue;
+        if(itemName.indexOf('dust') != -1) continue;
+        if(itemName.indexOf('bottle') != -1) continue;
+        if(itemName.indexOf('smoke') != -1) continue;
+        var item = items[itemName];
+
+        var store = {
+            BaseClass: 'ability_datadriven',
+            AbilityBehavior: item.AbilityBehavior,
+            AbilityTextureName: 'lod_' + itemName,
+            RequiredLevel: 1,
+            MaxLevel: 1,
+            OnUpgrade: {
+                RunScript: {
+                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
+                    Function: 'init'
+                }
+            },
+            OnSpellStart: {
+                RunScript: {
+                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
+                    Function: 'onUse'
+                }
+            },
+            AbilitySpecial: item.AbilitySpecial
+        };
+
+        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_UNIT_TARGET') != -1) {
+            store.OnSpellStart.RunScript.Function = 'onUnitTarget';
+        }
+
+        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_POINT') != -1) {
+            store.OnSpellStart.RunScript.Function = 'onPointTarget';
+        }
+
+        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_TOGGLE') != -1) {
+            store.OnToggleOn = {
+                RunScript: {
+                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
+                    Function: 'onToggle'
+                }
+            };
+
+            store.OnToggleOff = {
+                RunScript: {
+                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
+                    Function: 'onToggle'
+                }
+            };
+
+            store.OnUpgrade.RunScript.Function = 'initToggle';
+        }
+
+        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_CHANNELLED') != -1) {
+            store.OnSpellStart.RunScript.Function = 'onChannel';
+        }
+
+        if(item.AbilityUnitTargetType) {
+            store.AbilityUnitTargetType = item.AbilityUnitTargetType;
+        }
+
+        if(item.AbilityUnitTargetTeam) {
+            store.AbilityUnitTargetTeam = item.AbilityUnitTargetTeam;
+        }
+
+        if(item.AbilityManaCost) {
+            store.AbilityManaCost = item.AbilityManaCost;
+        }
+
+        if(item.AbilityCastRange) {
+            store.AbilityCastRange = item.AbilityCastRange
+        }
+
+        if(item.AbilityCastPoint) {
+            store.AbilityCastPoint = item.AbilityCastPoint;
+        }
+
+        if(item.AbilityCooldown) {
+            store.AbilityCooldown = item.AbilityCooldown;
+        }
+
+        if(item.AbilityUnitTargetFlags) {
+            store.AbilityUnitTargetFlags = item.AbilityUnitTargetFlags;
+        }
+
+        if(item.AbilitySharedCooldown) {
+            store.AbilitySharedCooldown = item.AbilitySharedCooldown;
+        }
+
+        if(item.AbilityChannelTime) {
+            store.AbilityChannelTime = item.AbilityChannelTime;
+        }
+
+        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_PASSIVE') != -1) {
+            // Passive Item
+            newKVPassive['lod_' + itemName] = store;
+            delete store.OnSpellStart;
+
+            // Store number
+            outputSkillIDsPassive += '"lod_' + itemName+'"    "' + (currentIDPassive++) + '"\n';
+        } else {
+            // Active item
+            newKV['lod_' + itemName] = store;
+
+            // Store number
+            outputSkillIDs += '"lod_' + itemName+'"    "' + (currentID++) + '"\n';
+        }
+
+
+
+    }
+
+    fs.writeFile(scriptDir+'ability_items.txt', toKV(newKV, true), function(err) {
+        if (err) throw err;
+
+        console.log('Done saving file!');
+    });
+
+    fs.writeFile(scriptDir+'ability_items_passive.txt', toKV(newKVPassive, true), function(err) {
+        if (err) throw err;
+
+        console.log('Done saving file!');
+    });
+
+    fs.writeFile(scriptDir+'outputSkillIDs.txt', outputSkillIDs+'\n\n'+outputSkillIDsPassive, function(err) {
+        if (err) throw err;
+
+        console.log('Done saving file!');
+    });
+});

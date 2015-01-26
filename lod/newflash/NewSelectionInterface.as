@@ -192,9 +192,9 @@
             Util.empty(skillCon);
 
             // Loop over all the possible tabs
-            for(tabName in newSkillList) {
-            	// Check if the tab is allowed
-            	if(!lod.isTabAllowed(tabName)) continue;
+            for(var ii=0; ii<newTabNames.length; ++ii) {
+                // Grab the tab name
+                tabName = newTabNames[ii];
 
             	// Grab the tab
             	var currentTab:Object = newSkillList[tabName];
@@ -278,29 +278,31 @@
 
                                             // Loop over all the spells in this bundle
                                             for(var splitLength:Number=0;splitLength<skillSplit.length;splitLength++) {
-                                                var msk:MovieClip = new SelectSkillsSplit(1+splitLength, skillSplit.length);
-                                                sl.addChild(msk);
+                                                if(lod.isValidSkill(skillSplit[splitLength])) {
+                                                    var msk:MovieClip = new SelectSkillsSplit(1+splitLength, skillSplit.length);
+                                                    sl.addChild(msk);
 
-                                                // Create the new skill slot
-                                                var skillSlot2:MovieClip = new SelectSkill();
-                                                skillSlot2.mask = msk;
-                                                sl.addChild(skillSlot2);
-                                                skillSlot2.x = skillSlot.x;
-                                                skillSlot2.y = skillSlot.y;
-                                                msk.x = skillSlot.x;
-                                                msk.y = skillSlot.y;
+                                                    // Create the new skill slot
+                                                    var skillSlot2:MovieClip = new SelectSkill();
+                                                    skillSlot2.mask = msk;
+                                                    sl.addChild(skillSlot2);
+                                                    skillSlot2.x = skillSlot.x;
+                                                    skillSlot2.y = skillSlot.y;
+                                                    msk.x = skillSlot.x;
+                                                    msk.y = skillSlot.y;
 
-                                                // Add hook for right click menu
-                                                skillSlot2.addEventListener(MouseEvent.MOUSE_DOWN, onAbilityPressed);
+                                                    // Add hook for right click menu
+                                                    skillSlot2.addEventListener(MouseEvent.MOUSE_DOWN, onAbilityPressed);
 
-                                                // Put the skill into the slot
-                                                skillSlot2.setSkillName(skillSplit[splitLength]);
+                                                    // Put the skill into the slot
+                                                    skillSlot2.setSkillName(skillSplit[splitLength]);
 
-                                                // Hook dragging
-                                                EasyDrag.dragMakeValidFrom(skillSlot2, lod.skillSlotDragBegin);
+                                                    // Hook dragging
+                                                    EasyDrag.dragMakeValidFrom(skillSlot2, lod.skillSlotDragBegin);
 
-                                                // Store into the active list
-                                                activeList[skillSplit[splitLength]] = skillSlot2;
+                                                    // Store into the active list
+                                                    activeList[skillSplit[splitLength]] = skillSlot2;
+                                                }
                                             }
                                         }
                                     } else {
