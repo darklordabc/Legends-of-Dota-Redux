@@ -337,11 +337,6 @@
 
             // Allow banning
             if(banningArea.visible && !lod.isSkillBanned(skillName)) {
-                data.push({
-                    label: '#lodBanSkill',
-                    option: 10
-                });
-
                 if(!noRecommend) {
                     // Allow ban suggestions
                     data.push({
@@ -349,6 +344,11 @@
                         option: 12
                     });
                 }
+
+                data.push({
+                    label: '#lodBanSkill',
+                    option: 10
+                });
             }
 
             // Allow sloting

@@ -1534,17 +1534,15 @@
         // When a link in the chat is clicked
         private function onChatLinkPressed(e:TextEvent):void {
             // Cleanup
-            if(selectionUI == null) {
-                return;
-            }
+            if(selectionUI == null || globals == null) return;
 
             var txt:String = e.text;
             if(txt.indexOf('menu_') == 0) {
                 // Pass the event to our selectionUI
                 selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true);
-            } else {
+            } else if(txt.indexOf('info_') == 0) {
                 // Show info screen
-                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
+                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
             }
         }
 
