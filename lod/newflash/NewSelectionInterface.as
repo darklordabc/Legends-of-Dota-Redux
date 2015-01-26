@@ -75,6 +75,7 @@
         // Callbacks
         private var banAreaCallback:Function;
         private var slotAreaCallback:Function;
+        private var recommendCallback:Function;
 
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
@@ -88,11 +89,12 @@
         }
 
 		// Rebuilds the interface from scratch
-		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function) {
+		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function, newRecommendCallback:Function) {
             var tabName:String, i:Number;
 
             // Store callback
             banAreaCallback = banningDropCallback;
+            recommendCallback = newRecommendCallback;
 
             // Reload the skillKV
             skillKV = lod.Globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
@@ -317,50 +319,72 @@
 		}
 
         private var rightClickedAbility:MovieClip;
+        private var rightClickedAbilityName:String;
         private function onAbilityPressed(e):void {
             // Check for a right click
             if(e.buttonIdx == 1) {
-                // Store ability we right clicked
-                rightClickedAbility = e.currentTarget;
+                // Process the right click
+                onSkillRightClicked(e.currentTarget.getSkillName(), false);
+            }
+        }
 
-                // Build options
-                var data:Array = [];
+        public function onSkillRightClicked(skillName:String, noRecommend:Boolean=false):void {
+            // Store it
+            rightClickedAbilityName = skillName;
 
-                // Allow banning
-                if(banningArea.visible) {
+            // Build options
+            var data:Array = [];
+
+            // Allow banning
+            if(banningArea.visible && !lod.isSkillBanned(skillName)) {
+                data.push({
+                    label: '#lodBanSkill',
+                    option: 10
+                });
+
+                if(!noRecommend) {
+                    // Allow ban suggestions
                     data.push({
-                        label: '#lodBanSkill',
-                        option: 10
+                        label: '#lodRecommendBan',
+                        option: 12
+                    });
+                }
+            }
+
+            // Allow sloting
+            if(yourSkillList.visible) {
+                if(!noRecommend) {
+                    // Allow recommending
+                    data.push({
+                        label: '#lodRecommend',
+                        option: 11
                     });
                 }
 
-                // Allow sloting
-                if(yourSkillList.visible) {
-                    for(var i=0;i<lod.MAX_SLOTS; ++i) {
-                        if(canSlotAbility(rightClickedAbility.getSkillName(), i)) {
-                            // Build Label
-                            var label:String = '#lodPutSlot' + i;
-                            if(i == lod.MAX_SLOTS-1) {
-                                label = '#lodPutSlot5'
-                            }
-
-                            data.push({
-                                label: label,
-                                option: i
-                            });
+                for(var i=0;i<lod.MAX_SLOTS; ++i) {
+                    if(canSlotAbility(skillName, i)) {
+                        // Build Label
+                        var label:String = '#lodPutSlot' + i;
+                        if(i == lod.MAX_SLOTS-1) {
+                            label = '#lodPutSlot5'
                         }
+
+                        data.push({
+                            label: label,
+                            option: i
+                        });
                     }
                 }
-
-                // Cancel
-                data.push({
-                    label: '#lodCancel',
-                    option: -1
-                });
-
-                // Show context menu
-                lod.rightClickMenu.show(data, onAbilityOptionSelected);
             }
+
+            // Cancel
+            data.push({
+                label: '#lodCancel',
+                option: -1
+            });
+
+            // Show context menu
+            lod.rightClickMenu.show(data, onAbilityOptionSelected);
         }
 
         private function onSlotPressed(e):void {
@@ -411,14 +435,13 @@
 
         private function onAbilityOptionSelected(option:Number):void {
             var data:MovieClip;
-            trace('Selection: ' + option + ' - ' + rightClickedAbility.getSkillName());
 
             // Check what to do
             if(option == 10) {
                 // Create the drag data
                 data = new MovieClip();
                 data.dragType = lod.DRAG_TYPE_SKILL;
-                data.skillName = rightClickedAbility.getSkillName();
+                data.skillName = rightClickedAbilityName;
 
                 // Fire event
                 banAreaCallback(banningArea, data);
@@ -426,15 +449,20 @@
                 // Create the drag data
                 data = new MovieClip();
                 data.dragType = lod.DRAG_TYPE_SKILL;
-                data.skillName = rightClickedAbility.getSkillName();
+                data.skillName = rightClickedAbilityName;
 
                 slotAreaCallback(yourSkillList['skill' + option], data);
+            } else if(option == 11) {
+                // Recommend a skill
+                recommendCallback(rightClickedAbilityName, 'recommends');
+            } else if(option == 12) {
+                // Recommend a ban
+                recommendCallback(rightClickedAbilityName, 'wants you to ban');
             }
         }
 
         private function onSlotOptionSelected(option:Number):void {
             var data:MovieClip;
-            trace('Selection: ' + option + ' - ' + rightClickedAbility.getSkillSlot());
 
             // Check what to do
             if(option >= 0 && option < lod.MAX_SLOTS) {

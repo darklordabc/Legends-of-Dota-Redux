@@ -1,11 +1,14 @@
 ﻿package  {
     // Flash stuff
-	import flash.display.MovieClip;
+    import flash.display.MovieClip;
+	import flash.display.DisplayObject;
+    import flash.text.TextField;
 
     // Input detection
     import flash.events.MouseEvent;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
+    import flash.events.TextEvent;
 
 	// Timer
     import flash.utils.Timer;
@@ -241,6 +244,16 @@
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
             stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
 
+            // Handle stage clicks
+            stage.removeEventListener(MouseEvent.CLICK, onStageClicked);
+            stage.addEventListener(MouseEvent.CLICK, onStageClicked, false, 0, true);
+
+            // Handle hyperlinks
+            var chatHistory:TextField = getDock().chat_panel.chat_history;
+            chatHistory.removeEventListener(TextEvent.LINK,globals.Loader_shared_heroselectorandloadout.movieClip.chatLinkClicked);
+            chatHistory.removeEventListener(TextEvent.LINK, onChatLinkPressed);
+            chatHistory.addEventListener(TextEvent.LINK, onChatLinkPressed);
+
             // We can consume mouse input
             globals.GameInterface.AddMouseInputConsumer();
 
@@ -456,7 +469,7 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea);
+            selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea, onRecommendSkill);
         }
 
         private function updateDisplayTimer():void {
@@ -1208,7 +1221,7 @@
         // When someone stops hovering over a skill
         public static function onSkillRollOut(e:MouseEvent):void {
             // Hide the skill info pain
-            Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+            hideSkillInfo();
         }
 
         // Updates local bans
@@ -1284,11 +1297,19 @@
         public static function addChatMessage(msg:String):void {
             // Attend to chat
             Globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
+
+            trace('\n\n' + Globals.Loader_shared_heroselectorandloadout.movieClip.heroDock.chat_panel.chat_history.htmlText + '\n\n')
         }
 
         // Grabs the hero dock
         private function getDock():MovieClip {
             return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
+        }
+
+        // Hides skill info
+        public static function hideSkillInfo():void {
+            // Hides skill info
+            Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
         }
 
         /*
@@ -1416,7 +1437,7 @@
         private function handleMessage(args:Object):void {
             // Was this me? (or everyone)
             var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID || args.playerID == -1) {
+            if(playerID == args.playerID || args.playerID == -1 || args.playerID == -myTeam) {
                 // Add the text to chat
                 addChatMessage(args.msg);
             }
@@ -1460,6 +1481,13 @@
             gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
         }
 
+        // Tell the server to recommend a skill
+        private function tellServerToRecommend(skillName:String, recommend:String):void {
+            // Send the message to the server
+            if(recommend == null) recommend = 'recommends';
+            gameAPI.SendServerCommand("lod_recommend \""+skillName+"\" \""+recommend+"\"");
+        }
+
         // Request more time from the server
         public static function requestMoreTime():void {
             GameAPI.SendServerCommand("lod_more_time");
@@ -1499,6 +1527,29 @@
             }
         }
 
+        // When the stage is clicked
+        private static function onStageClicked():void {
+            // Hide info popups
+            hideSkillInfo();
+        }
+
+        // When a link in the chat is clicked
+        private function onChatLinkPressed(e:TextEvent):void {
+            // Cleanup
+            if(selectionUI == null) {
+                return;
+            }
+
+            var txt:String = e.text;
+            if(txt.indexOf('menu_') == 0) {
+                // Pass the event to our selectionUI
+                selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true);
+            } else {
+                // Show info screen
+                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
+            }
+        }
+
         /*
             DRAGGING EVENTS
         */
@@ -1528,7 +1579,7 @@
         }
 
         // Something is dragged into a slot
-        private function onDropMySkills(me:MovieClip, dragClip:MovieClip) {
+        private function onDropMySkills(me:MovieClip, dragClip:MovieClip):void {
             if(dragClip.dragType == DRAG_TYPE_SKILL) {
                 // A skill is being dragged into a slot
                 var skillName:String = dragClip.skillName;
@@ -1546,13 +1597,18 @@
         }
 
         // Something is being dragged into the banning area
-        private function onDropBanningArea(me:MovieClip, dragClip:MovieClip) {
+        private function onDropBanningArea(me:MovieClip, dragClip:MovieClip):void {
             if(dragClip.dragType == DRAG_TYPE_SKILL) {
                 var skillName = dragClip.skillName;
 
                 // Tell the server to ban this skill
                 tellServerToBan(skillName);
             }
+        }
+
+        // Player wants to recommend a skill
+        private function onRecommendSkill(skillName:String, recommend:String):void {
+            tellServerToRecommend(skillName, recommend);
         }
 	}
 }

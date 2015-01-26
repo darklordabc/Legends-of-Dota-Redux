@@ -74,6 +74,9 @@ local buildDraftString
 local addHeroDraft
 local getPlayerSlot
 local sendChatMessage
+local sendDireMessage
+local sendRadiantMessage
+local sendTeamMessage
 local alreadyHas
 local CheckBans
 local setupSlotType
@@ -174,6 +177,7 @@ balanceMode = BALANCE_BASIC
 local COLOR_BLUE = '#4B69FF'
 local COLOR_RED = '#EB4B4B'
 local COLOR_GREEN = '#ADE55C'
+local COLOR_WHITE = '#FFFFFF'
 
 -- Stage constants
 local STAGE_WAITING = 0
@@ -754,10 +758,38 @@ getPlayerSlot = function(playerID)
     return playerSlot
 end
 
+--[[
+    Message Senders
+]]
+
 sendChatMessage = function(playerID, msg)
     -- Fire the event
      FireGameEvent('lod_msg', {
         playerID = playerID,
+        msg = msg
+    })
+end
+
+sendRadiantMessage = function(msg)
+    -- Fire the event
+     FireGameEvent('lod_msg', {
+        playerID = -DOTA_TEAM_GOODGUYS,
+        msg = msg
+    })
+end
+
+sendDireMessage = function(msg)
+    -- Fire the event
+     FireGameEvent('lod_msg', {
+        playerID = -DOTA_TEAM_BADGUYS,
+        msg = msg
+    })
+end
+
+sendTeamMessage = function(teamID, msg)
+    -- Fire the event
+     FireGameEvent('lod_msg', {
+        playerID = -teamID,
         msg = msg
     })
 end
@@ -1723,6 +1755,7 @@ local specialAddedSkills = {}
 local mainHeros = {}
 local givenBonuses = {}
 local doneBots = {}
+local resetGold = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -1735,6 +1768,12 @@ ListenToGameEvent('npc_spawned', function(keys)
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
+
+        -- Fix gold bug
+        if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
+            resetGold[playerID] = true
+            PlayerResource:SetGold(playerID, 525, false)
+        end
 
         -- Only give bonuses once
         if not givenBonuses[playerID] then
@@ -2291,7 +2330,7 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
 
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..' doesn\'t appear to be a valid skill.</font>')
             return
         end
 
@@ -2331,6 +2370,39 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
     end
 end, 'Ban a given skill', 0)
 
+-- When a user tries to recommend a skill
+Convars:RegisterCommand('lod_recommend', function(name, skillName, text)
+    -- Input validation
+    if skillName == nil then return end
+
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You are not on a valid team.</font>')
+            return
+        end
+
+        -- Ensure this is a valid skill
+        if not isValidSkill(skillName) then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..' doesn\'t appear to be a valid skill.</font>')
+            return
+        end
+
+        -- Grab their team
+        local team = PlayerResource:GetTeam(playerID)
+
+        -- Convert text
+        text = text or 'recommends'
+
+        -- Send the message to their team
+        sendTeamMessage(team, '<font color="'..COLOR_BLUE..'">'..util.GetPlayerNameReliable(playerID)..'</font> '..text..' <IMG SRC="img://resource/flash3/images/spellicons/'..skillName..'.png" WIDTH="18" HEIGHT="18"/> <a href="event:menu_'..skillName..'"><font color="'..COLOR_GREEN..'">'..skillName..'</font> <font color="'..COLOR_RED..'">[menu]</font></a> <a href="event:info_'..skillName..'"><font color="'..COLOR_RED..'">[info]</font></a>')
+    end
+end, 'Recommends a given skill', 0)
+
 -- When a user requests more time
 Convars:RegisterCommand('lod_more_time', function(name)
     -- Grab the player
@@ -2358,7 +2430,7 @@ Convars:RegisterCommand('lod_more_time', function(name)
         endOfTimer = endOfTimer + 60
 
         -- Tell the player
-        sendChatMessage(-1, '<font color="'..COLOR_RED..'">Extra time was allocated!</font>')
+        sendChatMessage(-1, '<font color="'..COLOR_RED..'">Extra time was allocated by '..(team == DOTA_TEAM_GOODGUYS and 'RADIANT' or team == DOTA_TEAM_BADGUYS and 'DIRE' or 'an unknown team :O')..'!</font>')
 
         -- Update state
         GameRules.lod:OnEmitStateInfo()
@@ -2554,7 +2626,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                     sendChatMessage(playerID, msg)
                 end
             else
-                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This doesn\'t appear to be a valid skill.</font>')
+                sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..' doesn\'t appear to be a valid skill.</font>')
                 return
             end
         end
@@ -2733,40 +2805,52 @@ end
 loadSpecialGamemode = function()
     if cyclingBuilds then
         -- Settings for cycling skills
-        local minTime = 1
-        local maxTime = 60 * 3
+        local minTime = 1           -- Min wait time before trying again
+        local maxTime = 30          -- Max wait time before trying again
+        local startChance = 1/10    -- The starting chance of changing builds
+        local chanceGain = 1/100    -- The increase in chance each time we don't change builds
+        local onDeadChance = 1.0    -- Value our chance will increase by if we are DEAD when we are meant to change builds
 
         -- Create a timer for each player
         for i=0,9 do
             -- We need new scope here
-            (function(playerID)
+            (function(playerID, ourChance)
                 -- Kill server if no one is on it anymore
                 GameRules:GetGameModeEntity():SetThink(function()
                     -- Just stop if it is a bot
                     if PlayerResource:IsFakeClient(playerID) then return end
 
-                    -- Grab the hero
-                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-                    if hero and hero:IsAlive() then
-                        -- Build list of valid builds
-                        local possibleBuilds = {}
-                        for i=0,9 do
-                            if skillList[i] and skillList[i].hero then
-                                table.insert(possibleBuilds, skillList[i])
+                    if math.random() <= ourChance then
+                        -- Grab the hero
+                        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                        if hero and hero:IsAlive() then
+                            -- Build list of valid builds
+                            local possibleBuilds = {}
+                            for i=0,9 do
+                                if skillList[i] and skillList[i].hero then
+                                    table.insert(possibleBuilds, skillList[i])
+                                end
                             end
-                        end
 
-                        -- If there are any valid ones
-                        if #possibleBuilds > 0 then
-                            -- Apply a random one
-                            SkillManager:ApplyBuild(hero, possibleBuilds[math.random(#possibleBuilds)])
+                            -- If there are any valid ones
+                            if #possibleBuilds > 0 then
+                                -- Apply a random one
+                                SkillManager:ApplyBuild(hero, possibleBuilds[math.random(#possibleBuilds)])
+                            end
+
+                            ourChance = startChance
+                        else
+                            -- They WILL change on their next roll
+                            ourChance = ourChance + onDeadChance
                         end
+                    else
+                        ourChance = ourChance + chanceGain
                     end
 
                     -- Wait a random period
                     return math.random(minTime,maxTime)
                 end, 'cyclingTimer'..playerID, math.random(minTime,maxTime), nil)
-            end)(i)
+            end)(i, chanceGain)
         end
 
         Say(nil, 'Cycling builds was enabled. You will get a new build randomly every so often.', false)
@@ -2933,7 +3017,7 @@ Convars:RegisterCommand('lod_ids', function(name, newHostID)
     -- Only server can run this
     if not Convars:GetCommandClient() then
         for i=0,9 do
-            print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..statcollection.GetPlayerNameReliable(i))
+            print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..util.GetPlayerNameReliable(i))
         end
     end
 end, 'Host stealer', 0)

@@ -115,6 +115,9 @@ if tst ~= 0 and tst ~= nil then
                 -- Check for allocaton code
                 if autoAllocate[steamIDs[keys.userid]] then
                     ply:SetTeam(autoAllocate[steamIDs[keys.userid]])
+                    if autoAllocate[steamIDs[keys.userid]] ~= 1 then
+                        hasStarted = true
+                    end
                     return
                 end
 
@@ -125,15 +128,14 @@ if tst ~= 0 and tst ~= nil then
                     return
                 end
 
-                -- We have started
-                hasStarted = true
-
                 -- Set their team
                 if radiant <= dire then
                     ply:SetTeam(DOTA_TEAM_GOODGUYS)
+                    hasStarted = true
                     return
                 else
                     ply:SetTeam(DOTA_TEAM_BADGUYS)
+                    hasStarted = true
                     return
                 end
 

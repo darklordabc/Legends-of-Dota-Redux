@@ -24,7 +24,7 @@ package {
         private var actualStage;
 
         // Should we ignore the click?
-        private var ignoreClick:Boolean = true;
+        private var ignoreClick:Boolean = false;
 
         public function RightClickMenu(stage, container:MovieClip) {
             // Store the container
@@ -59,11 +59,22 @@ package {
             rightClickMenu.userMenu.dataProvider = data;
             rightClickMenu.userMenu.rowCount = items.length;
 
+            // Stop the menu going off the edge of the screen
+            if(rightClickMenu.x + rightClickMenu.width > 1024) {
+                rightClickMenu.x = 1024 - rightClickMenu.width;
+            }
+            if(rightClickMenu.y + rightClickMenu.userMenu.y + rightClickMenu.userMenu.height > 768) {
+                rightClickMenu.y = 768 - rightClickMenu.userMenu.height;
+            }
+
             ignoreClick = true;
             rightClickMenu.visible = true;
 
             // Make it go away when clicked elsewhere
             actualStage.addEventListener(MouseEvent.CLICK, containerClickHandle);
+
+            // Hide skill stuff
+            lod.hideSkillInfo();
         }
 
         // Hides the right click menu
@@ -76,6 +87,9 @@ package {
 
         // Callback for when rightclick menu is clicked
         private function onMenuRightClicked(e):void {
+            // No longer ignore the click
+            ignoreClick = false;
+
             // Hide the menu
             hide();
 

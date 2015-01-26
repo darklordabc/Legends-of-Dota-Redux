@@ -181,17 +181,18 @@ end
 local inSwap = false
 function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
-    if hero == nil then return end
+    if hero == nil or not hero:IsAlive() then return end
 
     -- If we are currently swapping a hero, ignore
     if inSwap then return end
 
+    local playerID = hero:GetPlayerID()
+    local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
     -- Check if there is a new hero
-    if not hero:IsIllusion() and build.hero then
+    if hero:IsRealHero() and build.hero and (not realHero or realHero == hero) then
         -- Reset current skills
         currentSkillList[hero] = nil
-
-        local playerID = hero:GetPlayerID()
 
         -- Store gold
         local ug = PlayerResource:GetUnreliableGold(playerID)
