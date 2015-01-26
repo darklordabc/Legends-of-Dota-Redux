@@ -1297,8 +1297,6 @@
         public static function addChatMessage(msg:String):void {
             // Attend to chat
             Globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
-
-            trace('\n\n' + Globals.Loader_shared_heroselectorandloadout.movieClip.heroDock.chat_panel.chat_history.htmlText + '\n\n')
         }
 
         // Grabs the hero dock
