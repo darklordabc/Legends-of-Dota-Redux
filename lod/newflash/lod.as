@@ -1489,7 +1489,7 @@
 
             // Was this me?
             var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID || args.playerID == -1) {
+            if(playerID == args.playerID || args.playerID == -myTeam) {
                 // It is me
                 selectionUI.skillIntoSlot(args['interface'], args.slotNumber, skillName);
 
@@ -1504,7 +1504,7 @@
         private function onSlotSwapped(args:Object) {
             // Was this me?
             var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID || args.playerID == -1) {
+            if(playerID == args.playerID || args.playerID == -myTeam) {
                 selectionUI.onSlotSwapped(args['interface'], args.slot1, args.slot2);
             }
         }

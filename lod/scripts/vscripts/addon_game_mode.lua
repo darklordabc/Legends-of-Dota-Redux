@@ -252,6 +252,9 @@ local bannedSkills = {}
 -- Skill list for a given player
 local skillList = {}
 
+-- List of skills for towers (per team)
+local towerSkills = {}
+
 -- The total amount banned by each player
 local totalBans = {}
 
@@ -911,8 +914,10 @@ setupSlotType = function(playerID)
     -- Create store for this player
     slotTypes[playerID] = {}
 
-    for interface,_ in pairs(validInterfaces) do
-        slotTypes[playerID][interface] = {}
+    if playerID >= 0 then
+        for interface,_ in pairs(validInterfaces) do
+            slotTypes[playerID][interface] = {}
+        end
     end
 
     -- Put stuff in
@@ -941,9 +946,13 @@ setupSlotType = function(playerID)
             res = SLOT_TYPE_NEITHER;
         end
 
-        -- Store the result
-        for interface,_ in pairs(validInterfaces) do
-            slotTypes[playerID][interface][j] = res
+        if playerID >= 0 then
+            -- Store the result
+            for interface,_ in pairs(validInterfaces) do
+                slotTypes[playerID][interface][j] = res
+            end
+        else
+            slotTypes[playerID][j] = res
         end
     end
 end
@@ -2555,6 +2564,7 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+        local team = PlayerResource:GetTeam(playerID)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
@@ -2592,20 +2602,42 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
             return
         end
 
+        -- Check interfaces
+        if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid selection interface.</font>')
+            return
+        end
+
         -- Ensure this player has a skill list
-        skillList[playerID] = skillList[playerID] or {}
-        skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
-        setupSlotType(playerID)
+        if theirInterface ~= SKILL_LIST_TOWER then
+            skillList[playerID] = skillList[playerID] or {}
+            skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
+            setupSlotType(playerID)
 
-        -- Copy skill over
-        local tmpSkill = skillList[playerID][theirInterface][slot1+1]
-        skillList[playerID][theirInterface][slot1+1] = skillList[playerID][slot2+1]
-        skillList[playerID][theirInterface][slot2+1] = tmpSkill
+            -- Copy skill over
+            local tmpSkill = skillList[playerID][theirInterface][slot1+1]
+            skillList[playerID][theirInterface][slot1+1] = skillList[playerID][theirInterface][slot2+1]
+            skillList[playerID][theirInterface][slot2+1] = tmpSkill
 
-        -- Swap slot types
-        local tmpSlot = slotTypes[playerID][theirInterface][slot1]
-        slotTypes[playerID][theirInterface][slot1] = slotTypes[playerID][slot2]
-        slotTypes[playerID][theirInterface][slot2] = tmpSlot
+            -- Swap slot types
+            local tmpSlot = slotTypes[playerID][theirInterface][slot1]
+            slotTypes[playerID][theirInterface][slot1] = slotTypes[playerID][theirInterface][slot2]
+            slotTypes[playerID][theirInterface][slot2] = tmpSlot
+        else
+            towerSkills = towerSkills or {}
+            towerSkills[team] = towerSkills[team] or {}
+            setupSlotType(-team)
+
+            -- Copy skill over
+            local tmpSkill = towerSkills[team][slot1+1]
+            towerSkills[team][slot1+1] = towerSkills[team][slot2+1]
+            towerSkills[team][slot2+1] = tmpSkill
+
+            -- Swap slot types
+            local tmpSlot = slotTypes[-team][slot1]
+            slotTypes[-team][slot1] = slotTypes[-team][slot2]
+            slotTypes[-team][slot2] = tmpSlot
+        end
 
         -- Grab this player's playerSlot
         local playerSlot = getPlayerSlot(playerID)
@@ -2620,21 +2652,37 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
             end
         end
 
+        local tid = playerID
+        local sn
+        if theirInterface == SKILL_LIST_TOWER then
+            tid = -team
+        end
+
         -- Tell everyone
-        local sn = getSkillID(skillList[playerID][theirInterface][slot1+1])
+
+
+        if theirInterface == SKILL_LIST_TOWER then
+            sn = getSkillID(towerSkills[team][slot1+1])
+        else
+            sn = getSkillID(skillList[playerID][theirInterface][slot1+1])
+        end
         if sn ~= -1 then sn = sn + encode end
         FireGameEvent('lod_skill', {
-            playerID = playerID,
+            playerID = tid,
             slotNumber = slot1,
             skillID = sn,
             playerSlot = playerSlot,
             interface = theirInterface
         })
 
-        sn = getSkillID(skillList[playerID][theirInterface][slot2+1])
+        if theirInterface == SKILL_LIST_TOWER then
+            sn = getSkillID(towerSkills[team][slot2+1])
+        else
+            sn = getSkillID(skillList[playerID][theirInterface][slot2+1])
+        end
         if sn ~= -1 then sn = sn + encode end
         FireGameEvent('lod_skill', {
-            playerID = playerID,
+            playerID = tid,
             slotNumber = slot2,
             skillID = sn,
             playerSlot = playerSlot,
@@ -2642,7 +2690,7 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
         })
 
         FireGameEvent('lod_swap_slot', {
-            playerID = playerID,
+            playerID = tid,
             slot1 = slot1,
             slot2 = slot2,
             interface = theirInterface
@@ -2666,6 +2714,7 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
     local cmdPlayer = Convars:GetCommandClient()
     if cmdPlayer then
         local playerID = cmdPlayer:GetPlayerID()
+        local team = PlayerResource:GetTeam(playerID)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
@@ -2707,19 +2756,27 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
         end
 
         -- Check interfaces
-        if not validInterfaces[theirInterface] then
+        if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid selection interface.</font>')
             return
         end
 
-        -- Ensure this player has a skill list
-        skillList[playerID] = skillList[playerID] or {}
-        skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
+        local activeList
+
+        if theirInterface ~= SKILL_LIST_TOWER then
+            -- Ensure this player has a skill list
+            skillList[playerID] = skillList[playerID] or {}
+            skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
+            activeList = skillList[playerID][theirInterface]
+        else
+            towerSkills[team] = towerSkills[team] or {}
+            activeList = towerSkills[team]
+        end
 
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
             -- Perhaps they tried to random?
-            if skillName == 'random' then
+            if skillName == 'random' and theirInterface ~= SKILL_LIST_TOWER then
                 msg, skillName = findRandomSkill(playerID, theirInterface, slotNumber)
 
                 if msg then
@@ -2731,12 +2788,16 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
             end
         end
 
-        local activeList = skillList[playerID][theirInterface]
-
         -- Ensure it isn't the same skill
         if activeList[slotNumber+1] ~= skillName then
-            setupSlotType(playerID)
-            local slotType = slotTypes[playerID][theirInterface][slotNumber]
+            local slotType
+            if theirInterface == SKILL_LIST_TOWER then
+                setupSlotType(-team)
+                slotType = slotTypes[-team][slotNumber]
+            else
+                setupSlotType(playerID)
+                slotType = slotTypes[playerID][theirInterface][slotNumber]
+            end
 
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
@@ -2774,13 +2835,23 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
             end
 
             -- Tell everyone
-            FireGameEvent('lod_skill', {
-                playerID = playerID,
-                slotNumber = slotNumber,
-                skillID = getSkillID(skillName)+encode,
-                playerSlot = playerSlot,
-                interface = theirInterface
-            })
+            if theirInterface ~= SKILL_LIST_TOWER then
+                FireGameEvent('lod_skill', {
+                    playerID = playerID,
+                    slotNumber = slotNumber,
+                    skillID = getSkillID(skillName)+encode,
+                    playerSlot = playerSlot,
+                    interface = theirInterface
+                })
+            else
+                FireGameEvent('lod_skill', {
+                    playerID = -team,
+                    slotNumber = slotNumber,
+                    skillID = getSkillID(skillName)+encode,
+                    playerSlot = playerSlot,
+                    interface = theirInterface
+                })
+            end
 
             -- Tell the player
             sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into <font color="'..COLOR_BLUE..'">slot '..(slotNumber+1)..'</font>')
