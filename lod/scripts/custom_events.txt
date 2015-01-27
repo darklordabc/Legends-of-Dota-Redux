@@ -73,6 +73,16 @@
         "team"          "byte"
     }
 
+    // Someone changed their lock state
+    "lod_lock"
+    {
+        // The slot it refers to
+        "slot"      "byte"
+
+        // Their new lock state
+        "lock"          "byte"
+    }
+
     // The game state
     "lod_state"
     {

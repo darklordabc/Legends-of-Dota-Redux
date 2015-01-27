@@ -272,6 +272,7 @@
             this.gameAPI.SubscribeToGameEvent('lod_swap_slot', onSlotSwapped);                              // Someone has swapped two slots
             this.gameAPI.SubscribeToGameEvent('lod_msg', handleMessage);                                    // Server sent a message
             this.gameAPI.SubscribeToGameEvent('dota_player_update_selected_unit', onUnitSelectionUpdated);  // The player changed the unit they had selected
+            this.gameAPI.SubscribeToGameEvent('lod_lock', onLockChanged);                                   // Someone changed their lock state
 
             // Handle keyboard input
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
@@ -703,9 +704,6 @@
                 // Do we need to update the filters?
                 var needUpdate:Boolean = false;
 
-                // Grab the dock
-                var dock:MovieClip = getDock();
-
                 // Check if we need to do post voting stuff
                 if(!initPostVoting) {
                     // Done
@@ -772,6 +770,7 @@
                     patchedHeroIcons = true;
 
                     // Spawn player skill lists
+                    var dock:MovieClip = getDock();
                     hookSkillList(dock.radiantPlayers, 0);
                     hookSkillList(dock.direPlayers, 5);
                 }
@@ -811,22 +810,8 @@
                         }
                     }
 
-                    // Update locks
-                    var toGlow:MovieClip;
-                    if(i < 5) {
-                        toGlow = dock.radiantPlayers['playerSlot'+i].heroIcon;
-                    } else {
-                        toGlow = dock.direPlayers['playerSlot'+(i-5)].heroIcon;
-                    }
-
-                    // Check it
-                    if(toGlow) {
-                        if(lastState['l'+i] == 1) {
-                            toGlow.filters = glowLocked;
-                        } else {
-                            toGlow.filters = glowUnlocked;
-                        }
-                    }
+                    // Updates a lock for the given player
+                    updateLock(i);
                 }
 
                 // Did we change any slots?
@@ -1376,6 +1361,29 @@
             Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
         }
 
+        // Updates a lock for a given SLOT
+        private function updateLock(slotID:Number):void {
+            // Grab the dock
+            var dock:MovieClip = getDock();
+
+            // Update locks
+            var toGlow:MovieClip;
+            if(slotID < 5) {
+                toGlow = dock.radiantPlayers['playerSlot'+slotID].heroIcon;
+            } else {
+                toGlow = dock.direPlayers['playerSlot'+(slotID-5)].heroIcon;
+            }
+
+            // Check it
+            if(toGlow) {
+                if(lastState['l'+slotID] == 1) {
+                    toGlow.filters = glowLocked;
+                } else {
+                    toGlow.filters = glowUnlocked;
+                }
+            }
+        }
+
         /*
             SEVER EVENT CALLBACKS
         */
@@ -1503,6 +1511,16 @@
                 // Add the text to chat
                 addChatMessage(args.msg);
             }
+        }
+
+        // Fired when a slot's lock is changed
+        private function onLockChanged(args:Object):void {
+            // Store it
+            var slotID:Number = args.slot;
+            lastState['l'+slotID] = args.lock;
+
+            // Update it
+            updateLock(slotID);
         }
 
         /*

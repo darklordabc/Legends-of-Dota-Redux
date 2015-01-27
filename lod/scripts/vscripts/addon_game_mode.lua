@@ -95,6 +95,7 @@ local getRandomHeroName
 local getSpellIcon
 local loadSpecialGamemode
 local buildAllowedTabsString
+local fireLockChange
 
 --[[
     SETTINGS
@@ -2206,8 +2207,19 @@ local function countLocks()
     return locksLeft
 end
 
+-- Tells players about a given player's current lock status
+fireLockChange = function(playerID)
+    FireGameEvent('lod_lock', {
+        slot = getPlayerSlot(playerID),
+        lock = playerLocks[playerID] or 0
+    })
+end
+
 -- Do a lock for the given player
 doLock = function(playerID)
+    -- Is it valid to use this?
+    if currentStage ~= STAGE_BANNING and currentStage ~= STAGE_PICKING then return end
+
     local first = true
     if playerLocks[playerID] == 1 then
         first = false
@@ -2229,6 +2241,7 @@ doLock = function(playerID)
             playerLocks[playerID] = nil
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You have unlocked your skills! '..locksLeft..' other players still need to lock their skills to continue.</font>')
         end
+        fireLockChange(playerID)
         return
     end
 
@@ -2240,6 +2253,7 @@ doLock = function(playerID)
         -- Tell them how long left
         sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Waiting on '..locksLeft..' players to lock their skills.</font>')
     end
+    fireLockChange(playerID)
 end
 
 Convars:RegisterCommand('lod_applybuild', function(name, target, source)
