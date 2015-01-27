@@ -33,7 +33,7 @@ package {
         }
 
         // Shows the right click menu
-        public function show(items:Array, newCallback:Function):void {
+        public function show(items:Array, newCallback:Function, overrideIgnoreClick:Boolean=true):void {
             if(rightClickMenu != null) {
                 rightClickContainer.removeChild(rightClickMenu);
                 rightClickMenu = null;
@@ -67,7 +67,7 @@ package {
                 rightClickMenu.y = 768 - rightClickMenu.userMenu.height;
             }
 
-            ignoreClick = true;
+            ignoreClick = overrideIgnoreClick;
             rightClickMenu.visible = true;
 
             // Make it go away when clicked elsewhere

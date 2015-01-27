@@ -14,7 +14,7 @@
 			this.gotoAndStop(1);
 		}
 
-		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array):void {
+		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array, checkTarget:Function):void {
 			// Ensure valid values
 			if(totalSlots < 4) {
 				totalSlots = 4;
@@ -47,7 +47,7 @@
 				s.setSkillSlot(i);
 
 				// Allow dropping
-            	EasyDrag.dragMakeValidTarget(s, dropCallback);
+            	EasyDrag.dragMakeValidTarget(s, dropCallback, checkTarget);
 
             	// Allow dropping
             	EasyDrag.dragMakeValidFrom(s, skillSlotDragBegin);

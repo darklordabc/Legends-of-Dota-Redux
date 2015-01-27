@@ -92,6 +92,7 @@ local backdoorFix
 local botSkillsOnly
 local doLock
 local getRandomHeroName
+local getSpellIcon
 local loadSpecialGamemode
 local buildAllowedTabsString
 
@@ -1507,6 +1508,7 @@ function lod:OnEmitStateInfo()
         ['balance']     = balanceMode,
         ['slaveID']     = slaveID,
         ['tabs']        = allowedTabsString,
+        ['bans']        = maxBans,
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
@@ -2385,7 +2387,7 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
             banSkill(skillName)
 
             -- Tell the user it was successful
-            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was banned. <font color="'..COLOR_BLUE..'">('..totalBans[playerID]..'/'..maxBans..')</font>')
+            sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> was banned. <font color="'..COLOR_BLUE..'">('..totalBans[playerID]..'/'..maxBans..')</font>')
         else
             -- Already banned
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This skill is already banned.</font>')
@@ -2426,7 +2428,7 @@ Convars:RegisterCommand('lod_recommend', function(name, skillName, text)
         text = text or 'recommends'
 
         -- Send the message to their team
-        sendTeamMessage(team, '<font color="'..COLOR_BLUE..'">'..util.GetPlayerNameReliable(playerID)..'</font> '..text..' <IMG SRC="img://resource/flash3/images/spellicons/'..skillName..'.png" WIDTH="18" HEIGHT="18"/> <a href="event:menu_'..skillName..'"><font color="'..COLOR_GREEN..'">'..skillName..'</font> <font color="'..COLOR_RED..'">[menu]</font></a> <a href="event:info_'..skillName..'"><font color="'..COLOR_RED..'">[info]</font></a>')
+        sendTeamMessage(team, '<font color="'..COLOR_BLUE..'">'..util.GetPlayerNameReliable(playerID)..'</font> '..text..' '..getSpellIcon(skillName)..' <a href="event:menu_'..skillName..'"><font color="'..COLOR_GREEN..'">'..skillName..'</font> <font color="'..COLOR_RED..'">[menu]</font></a> <a href="event:info_'..skillName..'"><font color="'..COLOR_RED..'">[info]</font></a>')
     end
 end, 'Recommends a given skill', 0)
 
@@ -2707,7 +2709,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             })
 
             -- Tell the player
-            sendChatMessage(playerID, '<font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into <font color="'..COLOR_BLUE..'">slot '..(slotNumber+1)..'</font>')
+            sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> was put into <font color="'..COLOR_BLUE..'">slot '..(slotNumber+1)..'</font>')
 
             -- Check for warnings
             if skillWarnings[skillName] then
@@ -2826,6 +2828,12 @@ getRandomHeroName = function()
     end
 end
 
+-- Returns a html image tag for use with chat messages
+getSpellIcon = function(skillName)
+    return '<IMG SRC="img://resource/flash3/images/spellicons/'..skillName..'.png" WIDTH="18" HEIGHT="18"/>'
+end
+
+-- Builds the allowed tabs strings
 buildAllowedTabsString = function()
     local str
     for k,v in pairs(allowedTabs) do

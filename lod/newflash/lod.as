@@ -681,6 +681,9 @@
                     source1 = lastState.source1 == 1;
                     banTrollCombos = lastState.trolls == 1;
 
+                    // Store max bans
+                    selectionUI.banningArea.banningHelp.text = selectionUI.banningArea.banningHelp.text.replace('%s', lastState.bans);
+
                     // Patch key bindings
                     keyBindings = ['Q', 'W', 'E', 'D', 'F', 'R'];
                     keyBindings[MAX_SLOTS-1] = 'R';
@@ -1146,6 +1149,9 @@
 
                     // Store a reference to it
                     storeSkillIcon(playerID, j, ps);
+
+                    // Hook right clicking
+                    ps.addEventListener(MouseEvent.MOUSE_DOWN, selectionUI.onAbilityPressed);
                 }
 
                 // Center it perfectly
@@ -1545,15 +1551,15 @@
         // When a link in the chat is clicked
         private function onChatLinkPressed(e:TextEvent):void {
             // Cleanup
-            if(selectionUI == null || Globals == null) return;
+            if(selectionUI == null || globals == null || stage == null) return;
 
             var txt:String = e.text;
             if(txt.indexOf('menu_') == 0) {
                 // Pass the event to our selectionUI
-                selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true);
+                selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true, false);
             } else if(txt.indexOf('info_') == 0) {
                 // Show info screen
-                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
+                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
             }
         }
 

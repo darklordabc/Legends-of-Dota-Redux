@@ -22,7 +22,7 @@
 		public function YourSkill() {
 		}
 
-		public function setSkillSlot(skillSlot):void {
+		public function setSkillSlot(skillSlot:Number):void {
 			// Store the skill slot
 			this.skillSlot = skillSlot;
 		}

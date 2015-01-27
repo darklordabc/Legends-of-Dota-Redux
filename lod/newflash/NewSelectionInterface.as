@@ -3,6 +3,8 @@
 	import flash.display.MovieClip;
     import flash.text.TextField;
     import flash.events.Event;
+    import flash.filters.GlowFilter;
+    import flash.filters.BitmapFilterQuality;
 
 	public class NewSelectionInterface extends MovieClip {
 		// Container for the skills
@@ -77,10 +79,24 @@
         private var slotAreaCallback:Function;
         private var recommendCallback:Function;
 
+        // The effect when a target is a valid drop
+        private var dropEffect:GlowFilter;
+
+
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
             toggleInterfaceText.addEventListener(MouseEvent.CLICK, toggleHeroIcons);
             toggleInterfaceText.autoSize = "right";
+
+            // Init drop effect
+            dropEffect = new GlowFilter();
+            dropEffect.blurX = 15;
+            dropEffect.blurY = 15;
+            dropEffect.strength = 2;
+            dropEffect.inner = false;
+            dropEffect.knockout = false;
+            dropEffect.color = 0x00FF00;
+            dropEffect.quality = BitmapFilterQuality.HIGH;
 		}
 
         public function hideUncommonStuff():void {
@@ -104,7 +120,7 @@
             heroCon.mouseChildren = false;
 
             // Allow dropping to the banning area
-            EasyDrag.dragMakeValidTarget(banningArea, banningDropCallback);
+            EasyDrag.dragMakeValidTarget(banningArea, banningDropCallback, checkBanningArea);
 
             // Setup comboboxes
             comboBehavior.setComboBoxSlots([
@@ -330,7 +346,7 @@
             }
         }
 
-        public function onSkillRightClicked(skillName:String, noRecommend:Boolean=false):void {
+        public function onSkillRightClicked(skillName:String, noRecommend:Boolean=false, overrideIgnoreClick:Boolean=true):void {
             // Store it
             rightClickedAbilityName = skillName;
 
@@ -386,7 +402,7 @@
             });
 
             // Show context menu
-            lod.rightClickMenu.show(data, onAbilityOptionSelected);
+            lod.rightClickMenu.show(data, onAbilityOptionSelected, overrideIgnoreClick);
         }
 
         private function onSlotPressed(e):void {
@@ -404,6 +420,12 @@
                 data.push({
                     label: '#lodRandomAbility',
                     option: -2
+                });
+
+                // Allow recommendations
+                data.push({
+                    label: '#lodRecommend',
+                    option: 11
                 });
 
                 // Allow sloting
@@ -481,6 +503,9 @@
                 data.skillName = randomSkill.getSkillName();
 
                 slotAreaCallback(rightClickedAbility, data);
+            } else if(option == 11) {
+                // Recommend a skill
+                recommendCallback(rightClickedAbility.getSkillName(), 'recommends');
             }
         }
 
@@ -596,7 +621,7 @@
             slotAreaCallback = dropCallback;
 
             // Do it
-            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings);
+            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget);
 
             // Hook slot right clicking
             for(var i=0; i<lod.MAX_SLOTS; ++i) {
@@ -633,6 +658,46 @@
         public function toggleHeroIcons():void {
             // Invert container
             heroCon.visible = !heroCon.visible;
+        }
+
+        /*
+            Drop target function
+        */
+
+        private function checkTarget(slot:MovieClip, dragClip:MovieClip, active:Boolean):void {
+            var doHighlight:Boolean = false;
+
+            // Check if we are currently dragging
+            if(active && dragClip) {
+                // Check which type of dragging
+                if(dragClip.dragType == lod.DRAG_TYPE_SKILL) {
+                    // Check if this is a valid slot / skill combo
+                    if(canSlotAbility(dragClip.skillName, slot.getSkillSlot())) {
+                        doHighlight = true;
+                    }
+                } else if(dragClip.dragType == lod.DRAG_TYPE_SLOT) {
+                    // Ensure we aren't dragging / dropping from the same slot
+                    if(dragClip.slotNumber != slot.getSkillSlot()) {
+                        doHighlight = true;
+                    }
+                }
+            }
+
+            // enable / disable the highlight
+            if(doHighlight) {
+                slot.abilityClip.filters = [dropEffect];
+            } else {
+                slot.abilityClip.filters = [];
+            }
+        }
+
+        private function checkBanningArea(target:MovieClip, dragClip:MovieClip, active:Boolean):void {
+            // Check if we are currently dragging
+            if(active && dragClip) {
+                target.filters = [dropEffect];
+            } else {
+                target.filters = [];
+            }
         }
 
         /*

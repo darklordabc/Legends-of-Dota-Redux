@@ -11,6 +11,7 @@ package {
 
     // Glow Filter
     import flash.filters.GlowFilter;
+    import flash.filters.BitmapFilterQuality;
 
     public class EasyDrag {
         // Contains the movieclip we are dragging
@@ -20,6 +21,7 @@ package {
 
         // Stores all the callbacks
         private static var callbacks:Object = {};
+        private static var callbackList:Array = [];
 
         // Callbacks for when dragging starts
         private static var callbacksStart:Object = {};
@@ -27,11 +29,29 @@ package {
         // The stage
         private static var stage;
 
+        // The drag effect
+        private static var dragEffect:GlowFilter;
+
+        // Called to setup everything
         public static function init(_stage) {
-            // Only allow us to init once
-            if(stage == null) {
-                stage = _stage;
-            }
+            // Reset all objects
+            stage = _stage;
+            callbacks = {};
+            callbackList = [];
+            callbacksStart = {};
+            dragClip = null;
+            dragClickedClip = null;
+            dragTarget = null;
+
+            // Setup the dragging effect
+            dragEffect = new GlowFilter();
+            dragEffect.blurX = 15;
+            dragEffect.blurY = 15;
+            dragEffect.strength = 2;
+            dragEffect.inner = false;
+            dragEffect.knockout = false;
+            dragEffect.color = 0x0000FF;
+            dragEffect.quality = BitmapFilterQuality.HIGH;
         }
 
         // Makes this movieclip draggable
@@ -45,12 +65,19 @@ package {
         }
 
         // Makes this movieclip into a valid target
-        public static function dragMakeValidTarget(mc:MovieClip, callback:Function):void {
+        public static function dragMakeValidTarget(mc:MovieClip, callback:Function, checkCallback:Function):void {
             mc.addEventListener(MouseEvent.ROLL_OVER, dragTargetRollOver, false, 0, true);
             mc.addEventListener(MouseEvent.ROLL_OUT, dragTargetRollOut, false, 0, true);
 
             // Store the callback
-            callbacks[mc] = callback;
+            callbacks[mc] = {
+                'callback': callback,
+                'checkCallback': checkCallback,
+                'mc': mc
+            }
+
+            // Store this mc
+            callbackList.push(callbacks[mc]);
         }
 
         // Tells you if dragging is currently happening
@@ -79,7 +106,7 @@ package {
                     // Check if we have a callback for this MC
                     if(callbacks[dragTarget]) {
                         // Run the callback
-                        callbacks[dragTarget](dragTarget, dragClip);
+                        callbacks[dragTarget].callback(dragTarget, dragClip);
                     }
                 }
 
@@ -91,7 +118,18 @@ package {
                 stage.removeEventListener(MouseEvent.MOUSE_MOVE, dragListener);
             }
 
-            stage.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUp)
+            stage.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUp);
+
+            // Tell our drop targets about it
+            for(var i=0; i<callbackList.length; ++i) {
+                // Grab the callback object
+                var callback:Object = callbackList[i];
+
+                if(callback) {
+                    // Run the callback
+                    callback.checkCallback(callback.mc, null, false);
+                }
+            }
         }
 
         // Run when something that is draggable is pressed
@@ -125,14 +163,7 @@ package {
                 dragClip.mouseEnabled = false;
                 stage.addChild(dragClip);
 
-                var effect:GlowFilter = new GlowFilter;
-                effect.blurX = 5;
-                effect.blurY = 5;
-                effect.strength = 255;
-                effect.inner = false;
-                effect.knockout = false;
-                effect.color = 0x0000FF;
-                dragClip.filters = [effect];
+                dragClip.filters = [dragEffect];
 
                 // Check if we have a callback
                 if(callbacksStart[dragClickedClip]) {
@@ -142,6 +173,17 @@ package {
                         stage.removeChild(dragClip);
                         dragClip = null;
                         return;
+                    }
+                }
+
+                /// Tell our drop targets about it
+                for(var i=0; i<callbackList.length; ++i) {
+                    // Grab the callback object
+                    var callback:Object = callbackList[i];
+
+                    if(callback) {
+                        // Run the callback
+                        callback.checkCallback(callback.mc, dragClip, true);
                     }
                 }
 
