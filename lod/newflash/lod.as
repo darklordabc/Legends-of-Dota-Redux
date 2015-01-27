@@ -1611,7 +1611,7 @@
         // Requests the decoding number
         private function requestDecodingNumber():void {
             // Send the request
-            gameAPI.SendServerCommand('lod_decode "'+encodeWith+'"');
+            gameAPI.SendServerCommand('lod_decode "' + encodeWith + '" "' + getLodVersion() + '"');
         }
 
         // Tell the server to put a skill into a slot

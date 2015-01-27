@@ -73,6 +73,9 @@
 
         // This player's team
         "team"          "byte"
+
+        // The version the server is running
+        "version"       "string"
     }
 
     // Someone changed their lock state

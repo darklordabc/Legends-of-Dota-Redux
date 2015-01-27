@@ -395,7 +395,7 @@
             }
 
             // Allow sloting
-            if(yourSkillList.visible) {
+            if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible) {
                 if(!noRecommend) {
                     // Allow recommending
                     data.push({
@@ -454,7 +454,7 @@
                 });
 
                 // Allow sloting
-                if(yourSkillList.visible) {
+                if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible) {
                     for(var i=0;i<lod.MAX_SLOTS; ++i) {
                         if(mySlot != i) {
                             // Build Label
@@ -500,7 +500,19 @@
                 data.dragType = lod.DRAG_TYPE_SKILL;
                 data.skillName = rightClickedAbilityName;
 
-                slotAreaCallback(yourSkillList['skill' + option], data);
+                switch(activeSkillList) {
+                    case lod.SKILL_LIST_YOUR:
+                        slotAreaCallback(yourSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_BEAR:
+                        slotAreaCallback(bearSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_TOWER:
+                        slotAreaCallback(towerSkillList['skill' + option], data);
+                        break;
+                }
             } else if(option == 11) {
                 // Recommend a skill
                 recommendCallback(rightClickedAbilityName, 'recommends');
@@ -520,7 +532,19 @@
                 data.dragType = lod.DRAG_TYPE_SLOT;
                 data.slotNumber = rightClickedAbility.getSkillSlot();
 
-                slotAreaCallback(yourSkillList['skill' + option], data);
+                switch(activeSkillList) {
+                    case lod.SKILL_LIST_YOUR:
+                        slotAreaCallback(yourSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_BEAR:
+                        slotAreaCallback(bearSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_TOWER:
+                        slotAreaCallback(towerSkillList['skill' + option], data);
+                        break;
+                }
             } else if(option == -2) {
                 // Create the drag data
                 data = new MovieClip();
@@ -668,6 +692,8 @@
             // Hook slot right clicking
             for(var i=0; i<lod.MAX_SLOTS; ++i) {
                 yourSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+                bearSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+                towerSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
             }
         }
 
@@ -875,7 +901,23 @@
             if(lod.isSkillBanned(skillName)) return false;
 
             // Does the slot even exist?
-            var slot:MovieClip = yourSkillList['skill' + slotNumber];
+            var slot:MovieClip;
+
+            switch(activeSkillList) {
+                case lod.SKILL_LIST_YOUR:
+                    slot = yourSkillList['skill' + slotNumber];
+                    break;
+
+                case lod.SKILL_LIST_BEAR:
+                    slot = bearSkillList['skill' + slotNumber];
+                    break;
+
+                case lod.SKILL_LIST_TOWER:
+                    slot = towerSkillList['skill' + slotNumber];
+                    break;
+            }
+
+
             if(!slot) return false;
 
             // Grab the slot type

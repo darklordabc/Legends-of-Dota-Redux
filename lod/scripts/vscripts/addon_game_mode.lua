@@ -1664,7 +1664,7 @@ function lod:OnEmitStateInfo()
     -- Store bans
     local bns
     for k,v in pairs(banned) do
-        if not b then
+        if not bns then
             bns = getSkillID(banned[k])
         else
             bns = bns..'|'..getSkillID(banned[k])
@@ -3386,7 +3386,7 @@ end, 'User asked for decoding info', 0)]]
 
 
 -- User asks for decoding info
-Convars:RegisterCommand('lod_decode', function(name, theirNumber)
+Convars:RegisterCommand('lod_decode', function(name, theirNumber, theirVersion)
     -- We are only accepting numbers
     theirNumber = tonumber(theirNumber)
 
@@ -3399,14 +3399,16 @@ Convars:RegisterCommand('lod_decode', function(name, theirNumber)
             FireGameEvent('lod_decode', {
                 playerID = playerID,
                 code = encodeDire + theirNumber,
-                team = DOTA_TEAM_BADGUYS
+                team = DOTA_TEAM_BADGUYS,
+                version = getLodVersion()
             })
         elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
             -- Send out the encodings
             FireGameEvent('lod_decode', {
                 playerID = playerID,
                 code = encodeRadiant + theirNumber,
-                team = DOTA_TEAM_GOODGUYS
+                team = DOTA_TEAM_GOODGUYS,
+                version = getLodVersion()
             })
         end
     end
