@@ -1556,7 +1556,7 @@ function lod:OnEmitStateInfo()
         s['s'..i] = buildDraftString(i)
 
         -- Store locks
-        s['l'..i] = playerLocks[i] or 0
+        s['l'..slot] = playerLocks[i] or 0
 
         -- Store slot into
         s['t'..i] = slotTypeString(i)

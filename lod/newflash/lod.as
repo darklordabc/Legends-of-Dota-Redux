@@ -20,6 +20,10 @@
     // Used to make nice buttons / doto themed stuff
     import flash.utils.getDefinitionByName;
 
+    // Fancy effects
+    import flash.filters.GlowFilter;
+    import flash.filters.BitmapFilterQuality;
+
 	public class lod extends MovieClip {
 		/*
             DOTA BASED STUFF
@@ -173,6 +177,14 @@
         private static var bannedCombos:Object;
 
         /*
+            PRETTY EFFECTS
+        */
+
+        // Filters for locked/unlocked states
+        private static var glowLocked:Array;
+        private static var glowUnlocked:Array;
+
+        /*
             CLEANUP STUFF
         */
 
@@ -217,6 +229,27 @@
 
             // Load bans
             loadBansFile();
+
+            // Setup glow effects
+            var gf:GlowFilter = new GlowFilter();
+            gf.blurX = 5;
+            gf.blurY = 5;
+            gf.strength = 2;
+            gf.inner = false;
+            gf.knockout = false;
+            gf.color = 0xFF0000;
+            gf.quality = BitmapFilterQuality.HIGH;
+            glowUnlocked = [gf];
+
+            gf = new GlowFilter();
+            gf.blurX = 5;
+            gf.blurY = 5;
+            gf.strength = 2;
+            gf.inner = false;
+            gf.knockout = false;
+            gf.color = 0x00FF00;
+            gf.quality = BitmapFilterQuality.HIGH;
+            glowLocked = [gf];
 
             // Load the version
             var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
@@ -670,6 +703,9 @@
                 // Do we need to update the filters?
                 var needUpdate:Boolean = false;
 
+                // Grab the dock
+                var dock:MovieClip = getDock();
+
                 // Check if we need to do post voting stuff
                 if(!initPostVoting) {
                     // Done
@@ -677,7 +713,6 @@
 
                     // Store useful stuff
                     MAX_SLOTS = lastState.slots;
-                    hideSkills = lastState.hideSkills == 1;
                     source1 = lastState.source1 == 1;
                     banTrollCombos = lastState.trolls == 1;
 
@@ -736,30 +771,16 @@
                     // We have now patched hero icons
                     patchedHeroIcons = true;
 
-                    // Grab the dock
-                    var dock:MovieClip = getDock();
-
                     // Spawn player skill lists
-                    if(lastState.hideSkills) {
-                        // Readers beware: The skills are encoded, changing this hook is a waste of your time!
-                        if(myTeam == 3) {
-                            // We are on dire
-                            hookSkillList(dock.direPlayers, 5);
-                        } else if(myTeam == 2) {
-                            // We are on radiant
-                            hookSkillList(dock.radiantPlayers, 0);
-                        }
-                    } else {
-                        // Hook them both
-                        hookSkillList(dock.radiantPlayers, 0);
-                        hookSkillList(dock.direPlayers, 5);
-                    }
+                    hookSkillList(dock.radiantPlayers, 0);
+                    hookSkillList(dock.direPlayers, 5);
                 }
 
                 // Have we changed local slots? (used for updating filters)
                 var changedLocalSlots:Boolean = false;
 
                 // Update skills
+                hideSkills = lastState.hideSkills == 1; // Allow skills to be networked AFTER
                 for(i=0; i<10; i++) {
                     for(var j=0; j<MAX_SLOTS; j++) {
                         // Grab the skill, and decode if needed
@@ -787,6 +808,23 @@
                                 // A slot was changed
                                 changedLocalSlots = true;
                             }
+                        }
+                    }
+
+                    // Update locks
+                    var toGlow:MovieClip;
+                    if(i < 5) {
+                        toGlow = dock.radiantPlayers['playerSlot'+i].heroIcon;
+                    } else {
+                        toGlow = dock.direPlayers['playerSlot'+(i-5)].heroIcon;
+                    }
+
+                    // Check it
+                    if(toGlow) {
+                        if(lastState['l'+i] == 1) {
+                            toGlow.filters = glowLocked;
+                        } else {
+                            toGlow.filters = glowUnlocked;
                         }
                     }
                 }
@@ -1096,6 +1134,17 @@
         private function getSkillIcon(playerID:Number, slotID:Number) {
             // Check if a store for this player exists
             if(!topSkillList[playerID]) return null;
+
+            // If we are hidding skills, only allow our own team's slots
+            // HACKERS BEWARE: Removing this check is pointless!
+            // Skills are encoded!
+            if(hideSkills) {
+                if(myTeam == 3) {
+                    if(playerID < 5 || playerID > 9) return null;
+                } else if(myTeam == 2) {
+                    if(playerID < 0 || playerID > 4) return null;
+                }
+            }
 
             // Return the skill if it exists
             return topSkillList[playerID][slotID];
@@ -1422,8 +1471,6 @@
             var topSkill = getSkillIcon(args.playerSlot, args.slotNumber);
             if(topSkill != null) {
                 topSkill.setSkillName(skillName);
-            } else {
-                trace('WARNING: Failed to find playerID '+args.playerID+', slot '+args.playerSlot);
             }
 
             // Was this me?
