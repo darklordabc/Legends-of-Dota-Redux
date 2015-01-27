@@ -96,6 +96,8 @@ local getSpellIcon
 local loadSpecialGamemode
 local buildAllowedTabsString
 local fireLockChange
+local applyTowerSkills
+local levelSpiritSkills
 
 --[[
     SETTINGS
@@ -1847,6 +1849,9 @@ function lod:OnThink()
         -- Update the state
         self:OnEmitStateInfo()
 
+        -- Apply the tower skills
+        applyTowerSkills()
+
         -- Sleep
         return 0.1
     end
@@ -1909,12 +1914,38 @@ local XP_PER_LEVEL_TABLE = {
     32400 -- 25
 }
 
+-- Applies tower skills if they are allowed
+applyTowerSkills = function()
+    -- Ensure tower skills are allowed
+    if not allowTowerSkills then return end
+
+    local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+    -- Loop over all ents
+    for k,tower in pairs(towers) do
+        local team = tower:GetTeam()
+
+        local skillz = towerSkills[team]
+        if skillz then
+            SkillManager:ApplyBuild(tower, skillz)
+
+            -- Make it controllable by a player
+            for i=0,9 do
+                if PlayerResource:GetTeam(i) == team then
+                    tower:SetControllableByPlayer(i, true)
+                end
+            end
+        end
+    end
+end
+
 -- When a hero spawns
 local specialAddedSkills = {}
 local mainHeros = {}
 local givenBonuses = {}
 local doneBots = {}
 local resetGold = {}
+local spiritBears = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -2050,50 +2081,147 @@ ListenToGameEvent('npc_spawned', function(keys)
             SkillManager:RemoveAllSkills(spawnedUnit)
         end
     end
+
+    -- Check if we should apply custom bear skills
+    if allowBearSkills and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
+        -- Kill server if no one is on it anymore
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Ensure the unit is valid still
+            if IsValidEntity(spawnedUnit) then
+                -- Grab playerID
+                local playerID = spawnedUnit:GetPlayerOwnerID()
+
+                -- Store the bear
+                spiritBears[playerID] = spawnedUnit
+
+                -- Grab the skill list
+                local skillz = (skillList[playerID] or {})[SKILL_LIST_BEAR]
+                if skillz then
+                    -- Change levels if already allocated skillz
+                    if not handled[spawnedUnit] then
+                        -- We are now handled
+                        handled[spawnedUnit] = true
+
+                        -- Apply the build
+                        SkillManager:ApplyBuild(spawnedUnit, skillz)
+                    end
+
+                    -- Grab their hero
+                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                    if hero then
+                        -- Level skills based on hero
+                        levelSpiritSkills(spawnedUnit, skillz, hero:GetLevel())
+                    end
+                end
+            end
+        end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
+    end
 end, nil)
+
+-- Levels up a player's bear skills
+levelSpiritSkills = function(spiritBear, skillz, playerLevel)
+    for i=1,maxSlots do
+        local skillName = skillz[i]
+
+        -- Ensure the bear has it
+        if skillName and spiritBear:HasAbility(skillName) then
+            local skill = spiritBear:FindAbilityByName(skillName)
+            if skill then
+                -- Workout the level of the skill
+                local requiredLevel = 0
+                if isUlt(skillName) then
+                    if playerLevel >= 16 then
+                        requiredLevel = 3
+                    elseif playerLevel >= 11 then
+                        requiredLevel = 2
+                    elseif playerLevel >= 6 then
+                        requiredLevel = 1
+                    end
+                else
+                    if playerLevel >= 16 then
+                        requiredLevel = 4
+                    elseif playerLevel >= 12 then
+                        requiredLevel = 3
+                    elseif playerLevel >= 8 then
+                        requiredLevel = 2
+                    elseif playerLevel >= 4 then
+                        requiredLevel = 1
+                    end
+                end
+
+                if requiredLevel > skill:GetMaxLevel() then
+                    requiredLevel = skill:GetMaxLevel()
+                end
+
+                if skill:GetLevel() < requiredLevel then
+                    -- Level the skill
+                    skill:SetLevel(requiredLevel)
+                end
+            end
+        end
+    end
+end
 
 -- Auto level bot skills <3
 local heroLevels = {}
 ListenToGameEvent('dota_player_gained_level', function(keys)
     -- Check every player
     for playerID = 0,9 do
-        -- Ensure there is something to check
-        local toCheck = specialAddedSkills[playerID]
-        if toCheck ~= nil then
-            -- Grab their hero
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        -- Grab their hero
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
+        if hero then
+            -- Grab our level
             local level = hero:GetLevel()
 
-            for skillName,v in pairs(toCheck) do
-                -- Workout the level of the skill
-                local requiredLevel = 0
-                if isUlt(skillName) then
-                    if level >= 16 then
-                        requiredLevel = 3
-                    elseif level >= 11 then
-                        requiredLevel = 2
-                    elseif level >= 6 then
-                        requiredLevel = 1
-                    end
-                else
-                    if level >= 7 then
-                        requiredLevel = 4
-                    elseif level >= 5 then
-                        requiredLevel = 3
-                    elseif level >= 3 then
-                        requiredLevel = 2
-                    elseif level >= 1 then
-                        requiredLevel = 1
-                    end
+            -- Check for spirit bears
+            local sb = spiritBears[playerID]
+            if sb and IsValidEntity(sb) then
+                -- Grab the skill list
+                local skillz = (skillList[playerID] or {})[SKILL_LIST_BEAR]
+                if skillz then
+                    levelSpiritSkills(sb, skillz, level)
                 end
+            end
 
-                -- Grab a reference to teh skill
-                local skill = hero:FindAbilityByName(skillName)
+            -- Ensure there is something to check
+            local toCheck = specialAddedSkills[playerID]
+            if toCheck ~= nil then
+                for skillName,v in pairs(toCheck) do
+                    -- Workout the level of the skill
+                    local requiredLevel = 0
+                    if isUlt(skillName) then
+                        if level >= 16 then
+                            requiredLevel = 3
+                        elseif level >= 11 then
+                            requiredLevel = 2
+                        elseif level >= 6 then
+                            requiredLevel = 1
+                        end
+                    else
+                        if level >= 7 then
+                            requiredLevel = 4
+                        elseif level >= 5 then
+                            requiredLevel = 3
+                        elseif level >= 3 then
+                            requiredLevel = 2
+                        elseif level >= 1 then
+                            requiredLevel = 1
+                        end
+                    end
 
-                if skill and skill:GetLevel() < requiredLevel then
-                    -- Level the skill
-                    skill:SetLevel(requiredLevel)
+                    -- Grab a reference to teh skill
+                    local skill = hero:FindAbilityByName(skillName)
+
+                    if requiredLevel > skill:GetMaxLevel() then
+                        requiredLevel = skill:GetMaxLevel()
+                    end
+
+                    if skill and skill:GetLevel() < requiredLevel then
+                        -- Level the skill
+                        skill:SetLevel(requiredLevel)
+                    end
                 end
             end
         end

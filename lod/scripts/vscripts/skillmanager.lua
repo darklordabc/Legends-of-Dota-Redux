@@ -146,6 +146,17 @@ function skillManager:GetHeroSkills(heroClass)
         end
     end
 
+    if heroClass == 'npc_dota_lone_druid_bear2' then
+        table.insert(skills, 'lone_druid_spirit_bear_return')
+    elseif heroClass == 'npc_dota_lone_druid_bear3' then
+        table.insert(skills, 'lone_druid_spirit_bear_return')
+        table.insert(skills, 'lone_druid_spirit_bear_entangle')
+    elseif heroClass == 'npc_dota_lone_druid_bear4' then
+        table.insert(skills, 'lone_druid_spirit_bear_return')
+        table.insert(skills, 'lone_druid_spirit_bear_entangle')
+        table.insert(skills, 'lone_druid_spirit_bear_demolish')
+    end
+
     return skills
 end
 
@@ -186,99 +197,101 @@ function skillManager:ApplyBuild(hero, build)
     -- If we are currently swapping a hero, ignore
     if inSwap then return end
 
-    local playerID = hero:GetPlayerID()
-    local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
-
     -- Check if there is a new hero
-    if hero:IsRealHero() and build.hero and (not realHero or realHero == hero) then
-        -- Reset current skills
-        currentSkillList[hero] = nil
+    if hero:IsHero() then
+        local playerID = hero:GetPlayerID()
+        local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        -- Store gold
-        local ug = PlayerResource:GetUnreliableGold(playerID)
-        local rg = PlayerResource:GetReliableGold(playerID)
+        if hero:IsRealHero() and build.hero and (not realHero or realHero == hero) then
+            -- Reset current skills
+            currentSkillList[hero] = nil
 
-        -- Grab HP and mana percent
-        local hp = hero:GetHealthPercent()
-        local mana = hero:GetManaPercent()
+            -- Store gold
+            local ug = PlayerResource:GetUnreliableGold(playerID)
+            local rg = PlayerResource:GetReliableGold(playerID)
 
-        -- Get their position
-        local pos = hero:GetOrigin()
+            -- Grab HP and mana percent
+            local hp = hero:GetHealthPercent()
+            local mana = hero:GetManaPercent()
 
-        -- Store items
-        local items = {}
-        for i=0,11 do
-            local item = hero:GetItemInSlot(i)
-            if item then
-                items[i] = {
-                    class = item:GetClassname(),
-                    charges = item:GetCurrentCharges(),
-                    purchaser = item:GetPurchaser(),
-                    purchaseTime = item:GetPurchaseTime(),
-                }
+            -- Get their position
+            local pos = hero:GetOrigin()
 
-                -- Check if we need to replace the purchaser
-                if item:GetPurchaser() == hero then
-                    items[i].replacePurchaser = true
+            -- Store items
+            local items = {}
+            for i=0,11 do
+                local item = hero:GetItemInSlot(i)
+                if item then
+                    items[i] = {
+                        class = item:GetClassname(),
+                        charges = item:GetCurrentCharges(),
+                        purchaser = item:GetPurchaser(),
+                        purchaseTime = item:GetPurchaseTime(),
+                    }
+
+                    -- Check if we need to replace the purchaser
+                    if item:GetPurchaser() == hero then
+                        items[i].replacePurchaser = true
+                    end
+
+                    item:Remove()
                 end
-
-                item:Remove()
             end
-        end
 
-        -- Replace the hero
-        inSwap = true
-        hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
-        inSwap = false
+            -- Replace the hero
+            inSwap = true
+            hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
+            inSwap = false
 
-        -- Ensure swap is successful
-        if not hero then return end
+            -- Ensure swap is successful
+            if not hero then return end
 
-        -- Replace gold
-        PlayerResource:SetGold(playerID, ug, false)
-        PlayerResource:SetGold(playerID, rg, true)
+            -- Replace gold
+            PlayerResource:SetGold(playerID, ug, false)
+            PlayerResource:SetGold(playerID, rg, true)
 
-        -- Replace HP and mana percent
-        hero:SetHealth(math.ceil(hp/100 * hero:GetMaxHealth()))
-        hero:SetMana(mana/100 * hero:GetMaxMana())
+            -- Replace HP and mana percent
+            hero:SetHealth(math.ceil(hp/100 * hero:GetMaxHealth()))
+            hero:SetMana(mana/100 * hero:GetMaxMana())
 
-        -- Reset their position
-        hero:SetOrigin(pos)
+            -- Reset their position
+            hero:SetOrigin(pos)
 
-        -- Replace items
-        local removeMe = {}
-        for i=0,11 do
-            local item = items[i]
+            -- Replace items
+            local removeMe = {}
+            for i=0,11 do
+                local item = items[i]
 
-            if item then
-                local purchaser = item.purchaser
-                if item.replacePurchaser then
-                    purchaser = hero
+                if item then
+                    local purchaser = item.purchaser
+                    if item.replacePurchaser then
+                        purchaser = hero
+                    end
+
+                    local newItem = CreateItem(item.class, purchaser, purchaser)
+                    newItem:SetCurrentCharges(item.charges)
+                    newItem:SetPurchaser(purchaser)
+                    newItem:SetPurchaseTime(item.purchaseTime)
+
+                    hero:AddItem(newItem)
+                else
+                    local tmpItem = CreateItem('item_branches', hero, hero)
+                    hero:AddItem(tmpItem)
+                    table.insert(removeMe, tmpItem)
                 end
-
-                local newItem = CreateItem(item.class, purchaser, purchaser)
-                newItem:SetCurrentCharges(item.charges)
-                newItem:SetPurchaser(purchaser)
-                newItem:SetPurchaseTime(item.purchaseTime)
-
-                hero:AddItem(newItem)
-            else
-                local tmpItem = CreateItem('item_branches', hero, hero)
-                hero:AddItem(tmpItem)
-                table.insert(removeMe, tmpItem)
             end
-        end
 
-        for k,v in pairs(removeMe) do
-            v:Remove()
-        end
+            for k,v in pairs(removeMe) do
+                v:Remove()
+            end
 
-        -- Reset current skills
-        currentSkillList[hero] = nil
+            -- Reset current skills
+            currentSkillList[hero] = nil
+
+            -- Reset ability points
+            hero:SetAbilityPoints(hero:GetLevel())
+        end
     end
-
-    -- Reset ability points
-    hero:SetAbilityPoints(hero:GetLevel())
 
     -- Store the hero of this build
     build.hero = hero:GetClassname()
@@ -358,6 +371,8 @@ function skillManager:ApplyBuild(hero, build)
         table.insert(abs, v)
     end
 
+    local isTower = hero:GetClassname() == 'npc_dota_tower'
+
     -- Give all the abilities in this build
     local abNum = 0
     for i=1,16 do
@@ -398,6 +413,17 @@ function skillManager:ApplyBuild(hero, build)
                 table.insert(abs, v)
             end
 
+            -- If it's a tower, level it
+            if isTower then
+                local ab = hero:FindAbilityByName(v)
+                if ab then
+                    local requiredLevel = ab:GetMaxLevel()
+                    for r=1,requiredLevel do
+                        ab:UpgradeAbility(true)
+                    end
+                end
+            end
+
             -- We need to actually add it next time
             seenAbilities[v] = true
 
@@ -410,6 +436,19 @@ function skillManager:ApplyBuild(hero, build)
 
             -- Remove auras
             fixModifiers(hero, v)
+        end
+    end
+
+    -- Tower patcher
+    if isTower then
+        if hero:HasAbility('backdoor_protection') then
+            build[7] = 'backdoor_protection'
+            table.insert(abs, 'backdoor_protection')
+        end
+
+        if hero:HasAbility('backdoor_protection_in_base') then
+            build[7] = 'backdoor_protection_in_base'
+            table.insert(abs, 'backdoor_protection_in_base')
         end
     end
 
