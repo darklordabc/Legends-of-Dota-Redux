@@ -14,7 +14,7 @@
 			this.gotoAndStop(1);
 		}
 
-		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array, checkTarget:Function):void {
+		public function setup(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array, checkTarget:Function, newInterface:Number):void {
 			// Ensure valid values
 			if(totalSlots < 4) {
 				totalSlots = 4;
@@ -38,13 +38,18 @@
 				// Grab the character for this slot
 				var char:String = slotInfo.charAt(i);
 
+                // Bear skills
+                if(newInterface == lod.SKILL_LIST_BEAR) {
+                    char = slotInfo.charAt(i + totalSlots);
+                }
+
 				// Grab the slot
 				var s:MovieClip = this['skill'+i];
 
                 s.hotKey.text = keyBindings[i];
 
 				// Set the slot number
-				s.setSkillSlot(i);
+				s.setSkillSlot(newInterface, i);
 
 				// Allow dropping
             	EasyDrag.dragMakeValidTarget(s, dropCallback, checkTarget);

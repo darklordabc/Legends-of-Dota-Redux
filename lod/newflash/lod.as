@@ -99,6 +99,11 @@
         public static var DRAG_TYPE_SKILL:Number = 1;
         public static var DRAG_TYPE_SLOT:Number = 2;
 
+        // skill list type
+        public static var SKILL_LIST_YOUR:Number = 1;
+        public static var SKILL_LIST_BEAR:Number = 2;
+        public static var SKILL_LIST_TOWER:Number = 3;
+
         /*
             GLOBAL VARIABLES
         */
@@ -401,9 +406,9 @@
             // Clean the hud ready for use
             cleanupHud();
 
-            // Add accept button to versionUI
-            var btn:MovieClip = Util.smallButton(versionUI.acceptButton, '#versionAccept', true, true);
-            btn.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
+            // Setup accept button
+            versionUI.acceptButton.setText('#versionAccept')
+            versionUI.acceptButton.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
 
             // Wait for the game to be ready
             waitForGame();
@@ -803,7 +808,7 @@
                         // Is this skill for us?
                         if(i == parseInt(lastState[playerID])) {
                             // Put the skill into the slot
-                            if(selectionUI.skillIntoSlot(j, skillName)) {
+                            if(selectionUI.skillIntoSlot(SKILL_LIST_YOUR, j, skillName)) {
                                 // A slot was changed
                                 changedLocalSlots = true;
                             }
@@ -899,7 +904,8 @@
                 hideAllUI();
                 selectionUI.visible = true;
                 selectionUI.hideUncommonStuff();
-                selectionUI.yourSkillList.visible = true;
+                selectionUI.showYourSkills();
+                selectionUI.setPageButtonVisible(true);
             }
         }
 
@@ -1477,15 +1483,15 @@
 
             // Attempt to find the skill
             var topSkill = getSkillIcon(args.playerSlot, args.slotNumber);
-            if(topSkill != null) {
+            if(topSkill != null && args['interface'] == SKILL_LIST_YOUR) {
                 topSkill.setSkillName(skillName);
             }
 
             // Was this me?
             var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID) {
+            if(playerID == args.playerID || args.playerID == -1) {
                 // It is me
-                selectionUI.skillIntoSlot(args.slotNumber, skillName);
+                selectionUI.skillIntoSlot(args['interface'], args.slotNumber, skillName);
 
                 // Update local bans
                 updateLocalBans();
@@ -1498,8 +1504,8 @@
         private function onSlotSwapped(args:Object) {
             // Was this me?
             var playerID = globals.Players.GetLocalPlayer();
-            if(playerID == args.playerID) {
-                selectionUI.onSlotSwapped(args.slot1, args.slot2);
+            if(playerID == args.playerID || args.playerID == -1) {
+                selectionUI.onSlotSwapped(args['interface'], args.slot1, args.slot2);
             }
         }
 
@@ -1529,53 +1535,53 @@
 
         // Updates a user's vote with the server
         private function updateVote(optNumber:Number, myChoice:Number):void {
-            gameAPI.SendServerCommand("lod_vote \""+optNumber+"\" \""+myChoice+"\"");
+            gameAPI.SendServerCommand('lod_vote "'+optNumber+'" "'+myChoice+'"');
         }
 
         // Finishes voting
         private function finishedVoting():void {
-            gameAPI.SendServerCommand("finished_voting");
+            gameAPI.SendServerCommand('finished_voting');
         }
 
         // Requests the decoding number
         private function requestDecodingNumber():void {
             // Send the request
-            gameAPI.SendServerCommand("lod_decode \""+encodeWith+"\"");
+            gameAPI.SendServerCommand('lod_decode "'+encodeWith+'"');
         }
 
         // Tell the server to put a skill into a slot
-        private function tellServerWeWant(slotNumber:Number, skillName:String):void {
+        private function tellServerWeWant(selectedInterface:Number, slotNumber:Number, skillName:String):void {
             // Send the message to the server
-            gameAPI.SendServerCommand("lod_skill \""+slotNumber+"\" \""+skillName+"\"");
+            gameAPI.SendServerCommand('lod_skill "' + selectedInterface + '" "' + slotNumber + '" "' + skillName + '""');
         }
 
         // Tell the server to put a skill into a slot
-        private function tellServerToSwapSlots(slot1:Number, slot2:Number):void {
+        private function tellServerToSwapSlots(selectedInterface:Number, slot1:Number, slot2:Number):void {
             // Send the message to the server
-            gameAPI.SendServerCommand("lod_swap_slots \""+slot1+"\" \""+slot2+"\"");
+            gameAPI.SendServerCommand('lod_swap_slots "' + selectedInterface + '" "'+slot1+'" "'+slot2+'"');
         }
 
         // Tell the server to ban a given skill
         private function tellServerToBan(skill:String):void {
             // Send the message to the server
-            gameAPI.SendServerCommand("lod_ban \""+skill+"\"");
+            gameAPI.SendServerCommand('lod_ban "'+skill+'"');
         }
 
         // Tell the server to recommend a skill
         private function tellServerToRecommend(skillName:String, recommend:String):void {
             // Send the message to the server
             if(recommend == null) recommend = 'recommends';
-            gameAPI.SendServerCommand("lod_recommend \""+skillName+"\" \""+recommend+"\"");
+            gameAPI.SendServerCommand('lod_recommend "'+skillName+'" "'+recommend+'"');
         }
 
         // Request more time from the server
         public static function requestMoreTime():void {
-            GameAPI.SendServerCommand("lod_more_time");
+            GameAPI.SendServerCommand('lod_more_time');
         }
 
         // Locks our skills
         public static function lockSkills():void {
-            GameAPI.SendServerCommand("lod_lock_skills");
+            GameAPI.SendServerCommand('lod_lock_skills');
         }
 
         // Fired when the server bans a skill
@@ -1663,14 +1669,14 @@
                 var skillName:String = dragClip.skillName;
 
                 // Tell the server about this
-                tellServerWeWant(me.getSkillSlot(), skillName);
+                tellServerWeWant(me.getInterface(), me.getSkillSlot(), skillName);
             } else if(dragClip.dragType == DRAG_TYPE_SLOT) {
                 // A slot is being dragged into a slot
                 var slot1:Number = dragClip.slotNumber;
                 var slot2:Number = me.getSkillSlot();
 
                 // Tell the server to swap slots
-                tellServerToSwapSlots(slot1, slot2);
+                tellServerToSwapSlots(me.getInterface(), slot1, slot2);
             }
         }
 

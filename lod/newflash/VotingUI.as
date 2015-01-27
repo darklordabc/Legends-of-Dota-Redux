@@ -10,7 +10,7 @@
         public var container:MovieClip;
 
         // Container for the button
-        public var buttonContainer:MovieClip;
+        public var lockButton:MovieClip;
 
         // Contains a list of option MovieClips
         private var options:Object;
@@ -87,9 +87,12 @@
             }
 
             // Spawn submit button
-            if(!slave) {
-                var submitBtn:MovieClip = Util.smallButton(buttonContainer, '#submitvote', true, true);
-                submitBtn.addEventListener(MouseEvent.CLICK, onSubmitPressed);
+            if(slave) {
+                lockButton.visible = false;
+            } else {
+                lockButton.visible = true;
+                lockButton.setText('#submitvote');
+                lockButton.addEventListener(MouseEvent.CLICK, onSubmitPressed);
             }
 		}
 

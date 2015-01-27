@@ -19,14 +19,25 @@
 		// The slot type
 		private var slotType:String
 
+		// The interace we are on (your, bear, tower)
+		private var ourInterface:Number;
+
 		public function YourSkill() {
 		}
 
-		public function setSkillSlot(skillSlot:Number):void {
+		// Sets our interface and slot number
+		public function setSkillSlot(newInterface:Number, skillSlot:Number):void {
 			// Store the skill slot
+			this.ourInterface = newInterface;
 			this.skillSlot = skillSlot;
 		}
 
+		// Returns our interface
+		public function getInterface():Number {
+			return this.ourInterface;
+		}
+
+		// Returns our skill slot
 		public function getSkillSlot():Number {
 			return this.skillSlot;
 		}

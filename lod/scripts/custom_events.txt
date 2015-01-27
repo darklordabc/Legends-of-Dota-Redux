@@ -29,18 +29,20 @@
     // A player stuck a skill into a slot
     "lod_skill"
     {
-        "playerID"      "byte"
+        "playerID"      "short"
         "slotNumber"    "byte"
         "skillID"       "short"
         "playerSlot"    "byte"
+        "interface"     "byte"
     }
 
     // A player wants to swap two slots
     "lod_swap_slot"
     {
-        "playerID"      "byte"
+        "playerID"      "short"
         "slot1"         "byte"
         "slot2"         "byte"
+        "interface"     "byte"
     }
 
     // A message

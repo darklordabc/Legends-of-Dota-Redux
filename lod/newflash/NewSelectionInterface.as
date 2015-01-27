@@ -19,8 +19,10 @@
         // The random skill Icon
         public var randomSkill:MovieClip;
 
-        // Your skill list
+        // Skill lists
         public var yourSkillList:MovieClip;
+        public var bearSkillList:MovieClip;
+        public var towerSkillList:MovieClip;
 
         // The lock skills button
         public var helpLockSkills:MovieClip;
@@ -30,6 +32,11 @@
 
         // Container for the tabs up the top
         public var tabButtonCon:MovieClip;
+
+        // Your skill browsers
+        public var browseYourSkills:MovieClip;
+        public var browseBearSkills:MovieClip;
+        public var browseTowerSkills:MovieClip;
 
         // Combo boxes
         public var comboBehavior:MovieClip;
@@ -102,6 +109,8 @@
         public function hideUncommonStuff():void {
             banningArea.visible = false;
             yourSkillList.visible = false;
+            hideAllSkillLists();
+            setPageButtonVisible(false);
         }
 
 		// Rebuilds the interface from scratch
@@ -154,6 +163,14 @@
             helpMoreTime.addEventListener(MouseEvent.CLICK, lod.requestMoreTime);
             helpLockSkills.setText('#helpLockSkills');
             helpLockSkills.addEventListener(MouseEvent.CLICK, lod.lockSkills);
+
+            // Set the skill list selector text
+            browseYourSkills.setText('#browseYourSkills');
+            browseYourSkills.addEventListener(MouseEvent.CLICK, showYourSkills);
+            browseBearSkills.setText('#browseYourBear');
+            browseBearSkills.addEventListener(MouseEvent.CLICK, showBearSkills);
+            browseTowerSkills.setText('#browseYourTower');
+            browseTowerSkills.addEventListener(MouseEvent.CLICK, showTowerSkills);
 
             // Do the tabs
             Util.empty(tabButtonCon);
@@ -334,6 +351,9 @@
 
             // Change to the main tab
             setActiveTab('main');
+
+            // Default to your skills
+            showYourSkills();
 		}
 
         private var rightClickedAbility:MovieClip;
@@ -621,7 +641,9 @@
             slotAreaCallback = dropCallback;
 
             // Do it
-            this.yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget);
+            yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_YOUR);
+            bearSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
+            towerSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
 
             // Hook slot right clicking
             for(var i=0; i<lod.MAX_SLOTS; ++i) {
@@ -630,13 +652,40 @@
         }
 
         // Puts a skill into a slot
-        public function skillIntoSlot(slotNumber:Number, skillName:String):Boolean {
-            return this.yourSkillList.skillIntoSlot(slotNumber, skillName);
+        public function skillIntoSlot(selectedInterface:Number, slotNumber:Number, skillName:String):Boolean {
+            switch(selectedInterface) {
+                case lod.SKILL_LIST_YOUR:
+                    return yourSkillList.skillIntoSlot(slotNumber, skillName);
+                    break;
+
+                case lod.SKILL_LIST_BEAR:
+                    return bearSkillList.skillIntoSlot(slotNumber, skillName);
+                    break;
+
+                case lod.SKILL_LIST_TOWER:
+                    return towerSkillList.skillIntoSlot(slotNumber, skillName);
+                    break;
+            }
+
+            return false;
         }
 
         // We have swapped two slots
-        public function onSlotSwapped(slot1:Number, slot2:Number):void {
-            yourSkillList.onSlotSwapped(slot1, slot2);
+        public function onSlotSwapped(selectedInterface:Number, slot1:Number, slot2:Number):void {
+            switch(selectedInterface) {
+                case lod.SKILL_LIST_YOUR:
+                    yourSkillList.onSlotSwapped(slot1, slot2);
+                    break;
+
+                case lod.SKILL_LIST_BEAR:
+                    bearSkillList.onSlotSwapped(slot1, slot2);
+                    break;
+
+                case lod.SKILL_LIST_TOWER:
+                    towerSkillList.onSlotSwapped(slot1, slot2);
+                    break;
+            }
+
         }
 
         // Changes the tab
@@ -698,6 +747,42 @@
             } else {
                 target.filters = [];
             }
+        }
+
+        /*
+            Skill page managers
+        */
+
+        // Hide skill page views
+        public function setPageButtonVisible(vis:Boolean):void {
+            browseYourSkills.visible = vis;
+            browseBearSkills.visible = vis;
+            browseTowerSkills.visible = vis;
+        }
+
+        // Hides all skill lists
+        private function hideAllSkillLists():void {
+            yourSkillList.visible = false;
+            bearSkillList.visible = false;
+            towerSkillList.visible = false;
+        }
+
+        // Shows only your skills
+        public function showYourSkills():void {
+            hideAllSkillLists();
+            yourSkillList.visible = true;
+        }
+
+        // Shows only bear skills
+        public function showBearSkills():void {
+            hideAllSkillLists();
+            bearSkillList.visible = true;
+        }
+
+        // Shows only tower skills
+        public function showTowerSkills():void {
+            hideAllSkillLists();
+            towerSkillList.visible = true;
         }
 
         /*

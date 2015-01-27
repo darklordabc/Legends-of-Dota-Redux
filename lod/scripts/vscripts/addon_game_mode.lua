@@ -203,7 +203,7 @@ local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MD = 3   -- Mirror Draft
 local GAMEMODE_AR = 4   -- All Random
 
-gamemodeNames = {
+local gamemodeNames = {
     [GAMEMODE_AP] = 'All Pick',
     [GAMEMODE_SD] = 'Single Draft',
     [GAMEMODE_MD] = 'Mirror Draft',
@@ -212,6 +212,17 @@ gamemodeNames = {
 
 -- The gamemode
 local gamemode = GAMEMODE_AP    -- Set default gamemode
+
+-- Skill list constants
+local SKILL_LIST_YOUR = 1
+local SKILL_LIST_BEAR = 2
+local SKILL_LIST_TOWER = 3
+
+-- Valid interfaces
+local validInterfaces = {
+    [SKILL_LIST_YOUR] = true,
+    [SKILL_LIST_BEAR] = true,
+}
 
 -- Enable cycling builds
 local cyclingBuilds = false
@@ -827,13 +838,16 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
         -- Team based unqiue skills
         local team = PlayerResource:GetTeam(playerID)
 
-        for playerID2,skills in pairs(skillList) do
+        for playerID2,skillLists3 in pairs(skillList) do
             -- Ensure same team
             if team == PlayerResource:GetTeam(playerID2) then
-                for slot,skill in pairs(skills) do
-                    if skill == skillName then
-                        if not (skillList2 == skills and slot == slotNumber) then
-                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+                for interface,_ in pairs(skillLists3) do
+                    local skills = skillLists3[interface]
+                    for slot,skill in pairs(skills) do
+                        if skill == skillName then
+                            if not (skillList2 == skills and slot == slotNumber) then
+                                return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+                            end
                         end
                     end
                 end
@@ -841,11 +855,14 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
         end
     elseif forceUniqueSkills == UNIQUE_SKILLS_GLOBAL then
         -- Global unique skills
-        for playerID2,skills in pairs(skillList) do
-            for slot,skill in pairs(skills) do
-                if skill == skillName then
-                    if not (skillList2 == skills and slot == slotNumber) then
-                        return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+        for playerID2,skillLists3 in pairs(skillList) do
+            for interface,_ in pairs(skillLists3) do
+                local skills = skillLists3[interface]
+                for slot,skill in pairs(skills) do
+                    if skill == skillName then
+                        if not (skillList2 == skills and slot == slotNumber) then
+                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                        end
                     end
                 end
             end
@@ -894,6 +911,10 @@ setupSlotType = function(playerID)
     -- Create store for this player
     slotTypes[playerID] = {}
 
+    for interface,_ in pairs(validInterfaces) do
+        slotTypes[playerID][interface] = {}
+    end
+
     -- Put stuff in
     for j=0,maxSlots-1 do
         -- Workout if we can allow an ulty, or a skill in the given slot
@@ -908,15 +929,21 @@ setupSlotType = function(playerID)
             ult = true
         end
 
-        -- Store the result
+        -- Grab the result
+        local res
         if skill and not ult then
-            slotTypes[playerID][j] = SLOT_TYPE_ABILITY;
+            res = SLOT_TYPE_ABILITY;
         elseif skill and ult then
-            slotTypes[playerID][j] = SLOT_TYPE_EITHER;
+            res = SLOT_TYPE_EITHER;
         elseif not skill and ult then
-            slotTypes[playerID][j] = SLOT_TYPE_ULT;
+            res = SLOT_TYPE_ULT;
         else
-            slotTypes[playerID][j] = SLOT_TYPE_NEITHER;
+            res = SLOT_TYPE_NEITHER;
+        end
+
+        -- Store the result
+        for interface,_ in pairs(validInterfaces) do
+            slotTypes[playerID][interface][j] = res
         end
     end
 end
@@ -929,13 +956,13 @@ setupSlotTypes = function()
     end
 end
 
-findRandomSkill = function(playerID, slotNumber, filter)
+findRandomSkill = function(playerID, interface, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
     local canUlt
     local canSkill
 
     setupSlotType(playerID)
-    local slotType = slotTypes[playerID][slotNumber]
+    local slotType = slotTypes[playerID][interface][slotNumber]
 
     if slotType == SLOT_TYPE_EITHER then
         canUlt = true
@@ -962,13 +989,13 @@ findRandomSkill = function(playerID, slotNumber, filter)
 
     for k,v in pairs(skillLookup) do
         -- Ensure the player doesn't already have the skill
-        if not alreadyHas(skillList[playerID], k) then
+        if not alreadyHas(skillList[playerID][interface], k) then
             -- Check filter
             if not filter or filter(k) then
                 -- Check type of skill
                 if (canUlt and isUlt(k)) or (canSkill and not isUlt(k)) then
                     -- Check for bans
-                    if not CheckBans(skillList[playerID], slotNumber+1, k, playerID) then
+                    if not CheckBans(skillList[playerID][interface], slotNumber+1, k, playerID) then
                         -- Can't random meepo ulty
                         if k ~= 'meepo_divided_we_stand' then
                             if not skillWarnings[k] then
@@ -997,15 +1024,18 @@ validateBuild = function(playerID)
     skillList[playerID] = skillList[playerID] or {}
 
     -- Loop over all slots
-    for j=0,maxSlots-1 do
-        -- Do they have a skill in this slot?
-        if not skillList[playerID][j+1] then
-            local msg, skillName = findRandomSkill(playerID, j)
+    for interface,_ in pairs(validInterfaces) do
+        skillList[playerID][interface] = skillList[playerID][interface] or {}
+        for j=0,maxSlots-1 do
+            -- Do they have a skill in this slot?
+            if not skillList[playerID][interface][j+1] then
+                local msg, skillName = findRandomSkill(playerID, interface, j)
 
-            -- Did we find a valid skill?
-            if skillName then
-                -- Pick a random skill
-                skillList[playerID][j+1] = skillName
+                -- Did we find a valid skill?
+                if skillName then
+                    -- Pick a random skill
+                    skillList[playerID][interface][j+1] = skillName
+                end
             end
         end
     end
@@ -1022,7 +1052,7 @@ fixBuilds = function()
             validateBuild(playerID)
 
             -- Grab their build
-            local build = skillList[playerID] or {}
+            local build = skillList[playerID][SKILL_LIST_YOUR]
 
             -- Apply the build
             SkillManager:ApplyBuild(k, build)
@@ -1039,11 +1069,15 @@ end
 -- Builds a string to represent the type of slots allowed for the given player
 slotTypeString = function (playerID)
     if not slotTypes[playerID] then return '' end
+    if not slotTypes[playerID][SKILL_LIST_YOUR] then return '' end
+    if not slotTypes[playerID][SKILL_LIST_BEAR] then return '' end
 
     local str = ''
-
     for j=0,maxSlots-1 do
-        str = str..slotTypes[playerID][j]
+        str = str..slotTypes[playerID][SKILL_LIST_YOUR][j]
+    end
+    for j=0,maxSlots-1 do
+        str = str..slotTypes[playerID][SKILL_LIST_BEAR][j]
     end
 
     return str
@@ -1211,13 +1245,15 @@ postGamemodeSettings = function()
             skillList[i] = skillList[i] or {}
 
             -- Loop over all slots
-            for j=0,maxSlots-1 do
-                local msg, skillName = findRandomSkill(i, j, botFilter)
+            for interface,_ in pairs(validInterfaces) do
+                for j=0,maxSlots-1 do
+                    local msg, skillName = findRandomSkill(i, interface, j)
 
-                -- Did we find a valid skill?
-                if skillName then
-                    -- Pick a random skill
-                    skillList[i][j+1] = skillName
+                    -- Did we find a valid skill?
+                    if skillName then
+                        -- Pick a random skill
+                        skillList[i][interface][j+1] = skillName
+                    end
                 end
             end
         end
@@ -1518,7 +1554,7 @@ function lod:OnEmitStateInfo()
     -- Loop over all players
     for i=0,9 do
         -- Grab their skill list
-        local l = skillList[i] or {}
+        local l = (skillList[i] or {})[SKILL_LIST_YOUR] or {}
 
         -- Calculate number to encode with
         local encode = 0
@@ -1845,35 +1881,41 @@ ListenToGameEvent('npc_spawned', function(keys)
                 local tmpSkills = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
                 skillList[playerID] = {}
 
+                for interface,_ in pairs(validInterfaces) do
+                    skillList[playerID][interface] = {}
+                end
+
                 -- Filter the skills
                 for k,v in pairs(tmpSkills) do
-                    if not CheckBans(skillList[playerID], #skillList[playerID]+1, v, playerID) then
-                        table.insert(skillList[playerID], v)
+                    if not CheckBans(skillList[playerID][SKILL_LIST_YOUR], #skillList[playerID][SKILL_LIST_YOUR]+1, v, playerID) then
+                        table.insert(skillList[playerID][SKILL_LIST_YOUR], v)
                     end
                 end
 
                 -- Grab how many skills to add
-                local addSkills = maxSlots - 4 + (#tmpSkills - #skillList[playerID])
+                local addSkills = maxSlots - 4 + (#tmpSkills - #skillList[playerID][SKILL_LIST_YOUR])
 
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
 
                 -- Add the skills
-                for i=1,addSkills do
-                    local msg, skillName = findRandomSkill(playerID, i, botSkillsOnly)
+                for interface,_ in pairs(validInterfaces) do
+                    for i=1,addSkills do
+                        local msg, skillName = findRandomSkill(playerID, interface, i, botSkillsOnly)
 
-                    -- Failed to find a new skill
-                    if skillName == nil then break end
+                        -- Failed to find a new skill
+                        if skillName == nil then break end
 
-                    table.insert(skillList[playerID], skillName)
+                        table.insert(skillList[playerID][SKILL_LIST_YOUR], skillName)
+                    end
                 end
 
                 -- Sort it randomly
-                skillList[playerID] = shuffle(skillList[playerID])
+                skillList[playerID][SKILL_LIST_YOUR] = shuffle(skillList[playerID][SKILL_LIST_YOUR])
 
                 -- Store that we added skills
                 specialAddedSkills[playerID] = {}
-                for k,v in pairs(skillList[playerID]) do
+                for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR]) do
                     local found = false
                     for kk,vv in pairs(tmpSkills) do
                         if vv == v then
@@ -1889,7 +1931,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
 
             -- Add the extra skills
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID])
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
 
             return
         end
@@ -1900,7 +1942,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             validateBuild(playerID)
 
             -- Grab their build
-            local build = skillList[playerID] or {}
+            local build = (skillList[playerID] or {})[SKILL_LIST_YOUR] or {}
 
             -- Apply the build
             SkillManager:ApplyBuild(spawnedUnit, build)
@@ -2276,7 +2318,7 @@ Convars:RegisterCommand('lod_applybuild', function(name, target, source)
             return
         end
 
-        local sourceBuild = skillList[source]
+        local sourceBuild = (skillList[source] or {})[SKILL_LIST_YOUR]
         if not sourceBuild then
             print('Failed to find a build with ID '..source)
             return
@@ -2292,7 +2334,7 @@ Convars:RegisterCommand('lod_printbuilds', function(name)
     -- Server only command!
     if not Convars:GetCommandClient() then
         for i=0,9 do
-            local b = skillList[i]
+            local b = (skillList[i] or {})[SKILL_LIST_YOUR]
             if b then
                 local txt
                 for j=1,16 do
@@ -2345,7 +2387,8 @@ Convars:RegisterCommand('lod_editskill', function(name, playerID, skillSlot, ski
         end
 
         skillList[playerID] = skillList[playerID] or {}
-        skillList[playerID][skillSlot] = skillName
+        skillList[playerID][SKILL_LIST_YOUR] = skillList[playerID][SKILL_LIST_YOUR] or {}
+        skillList[playerID][SKILL_LIST_YOUR][skillSlot] = skillName
     end
 end, '', 0)
 
@@ -2499,13 +2542,14 @@ Convars:RegisterCommand('lod_lock_skills', function(name)
 end, 'Locks a players skills', 0)
 
 -- Swap two slots
-Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
+Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, slot2)
     -- Input validation
-    if slot1 == nil then return end
-    if slot2 == nil then return end
-
+    theirInterface = tonumber(theirInterface)
     slot1 = tonumber(slot1)
     slot2 = tonumber(slot2)
+    if theirInterface == nil then return end
+    if slot1 == nil then return end
+    if slot2 == nil then return end
 
     -- Grab the player
     local cmdPlayer = Convars:GetCommandClient()
@@ -2550,17 +2594,18 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
 
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
+        skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
         setupSlotType(playerID)
 
         -- Copy skill over
-        local tmpSkill = skillList[playerID][slot1+1]
-        skillList[playerID][slot1+1] = skillList[playerID][slot2+1]
-        skillList[playerID][slot2+1] = tmpSkill
+        local tmpSkill = skillList[playerID][theirInterface][slot1+1]
+        skillList[playerID][theirInterface][slot1+1] = skillList[playerID][slot2+1]
+        skillList[playerID][theirInterface][slot2+1] = tmpSkill
 
         -- Swap slot types
-        local tmpSlot = slotTypes[playerID][slot1]
-        slotTypes[playerID][slot1] = slotTypes[playerID][slot2]
-        slotTypes[playerID][slot2] = tmpSlot
+        local tmpSlot = slotTypes[playerID][theirInterface][slot1]
+        slotTypes[playerID][theirInterface][slot1] = slotTypes[playerID][slot2]
+        slotTypes[playerID][theirInterface][slot2] = tmpSlot
 
         -- Grab this player's playerSlot
         local playerSlot = getPlayerSlot(playerID)
@@ -2576,28 +2621,31 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
         end
 
         -- Tell everyone
-        local sn = getSkillID(skillList[playerID][slot1+1])
+        local sn = getSkillID(skillList[playerID][theirInterface][slot1+1])
         if sn ~= -1 then sn = sn + encode end
         FireGameEvent('lod_skill', {
             playerID = playerID,
             slotNumber = slot1,
             skillID = sn,
-            playerSlot = playerSlot
+            playerSlot = playerSlot,
+            interface = theirInterface
         })
 
-        sn = getSkillID(skillList[playerID][slot2+1])
+        sn = getSkillID(skillList[playerID][theirInterface][slot2+1])
         if sn ~= -1 then sn = sn + encode end
         FireGameEvent('lod_skill', {
             playerID = playerID,
             slotNumber = slot2,
             skillID = sn,
-            playerSlot = playerSlot
+            playerSlot = playerSlot,
+            interface = theirInterface
         })
 
         FireGameEvent('lod_swap_slot', {
             playerID = playerID,
             slot1 = slot1,
-            slot2 = slot2
+            slot2 = slot2,
+            interface = theirInterface
         })
 
         -- Tell the player
@@ -2607,8 +2655,10 @@ Convars:RegisterCommand('lod_swap_slots', function(name, slot1, slot2)
 end, 'Ban a given skill', 0)
 
 -- When a user wants to stick a skill into a slot
-Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
+Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, skillName)
     -- Input validation
+    theirInterface = tonumber(theirInterface)
+    if theirInterface == nil then return end
     if slotNumber == nil then return end
     if skillName == nil then return end
 
@@ -2625,7 +2675,7 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
 
         -- Check locks
         if playerLocks[playerID] then
-            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Your skills are locked!</font>')
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">Your skills are locked! Please unlock your skills first!</font>')
             return
         end
 
@@ -2656,14 +2706,21 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             return
         end
 
+        -- Check interfaces
+        if not validInterfaces[theirInterface] then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid selection interface.</font>')
+            return
+        end
+
         -- Ensure this player has a skill list
         skillList[playerID] = skillList[playerID] or {}
+        skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
 
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
             -- Perhaps they tried to random?
             if skillName == 'random' then
-                msg, skillName = findRandomSkill(playerID, slotNumber)
+                msg, skillName = findRandomSkill(playerID, theirInterface, slotNumber)
 
                 if msg then
                     sendChatMessage(playerID, msg)
@@ -2674,10 +2731,12 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
             end
         end
 
+        local activeList = skillList[playerID][theirInterface]
+
         -- Ensure it isn't the same skill
-        if skillList[playerID][slotNumber+1] ~= skillName then
+        if activeList[slotNumber+1] ~= skillName then
             setupSlotType(playerID)
-            local slotType = slotTypes[playerID][slotNumber]
+            local slotType = slotTypes[playerID][theirInterface][slotNumber]
 
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
@@ -2692,14 +2751,14 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 end
             end
 
-            local msg = CheckBans(skillList[playerID], slotNumber+1, skillName, playerID)
+            local msg = CheckBans(activeList, slotNumber+1, skillName, playerID)
             if msg then
                 sendChatMessage(playerID, msg)
                 return
             end
 
             -- Store this skill into the given slot
-            skillList[playerID][slotNumber+1] = skillName
+            activeList[slotNumber+1] = skillName
 
             -- Grab this player's playerSlot
             local playerSlot = getPlayerSlot(playerID)
@@ -2719,7 +2778,8 @@ Convars:RegisterCommand('lod_skill', function(name, slotNumber, skillName)
                 playerID = playerID,
                 slotNumber = slotNumber,
                 skillID = getSkillID(skillName)+encode,
-                playerSlot = playerSlot
+                playerSlot = playerSlot,
+                interface = theirInterface
             })
 
             -- Tell the player
@@ -2891,8 +2951,8 @@ loadSpecialGamemode = function()
                             -- Build list of valid builds
                             local possibleBuilds = {}
                             for i=0,9 do
-                                if skillList[i] and skillList[i].hero then
-                                    table.insert(possibleBuilds, skillList[i])
+                                if skillList[i] and skillList[i][SKILL_LIST_YOUR] and skillList[i][SKILL_LIST_YOUR].hero then
+                                    table.insert(possibleBuilds, skillList[i][SKILL_LIST_YOUR])
                                 end
                             end
 
