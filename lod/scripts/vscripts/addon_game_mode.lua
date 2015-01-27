@@ -1017,9 +1017,12 @@ findRandomSkill = function(playerID, interface, slotNumber, filter)
                     if not CheckBans(skillList[playerID][interface], slotNumber+1, k, playerID) then
                         -- Can't random meepo ulty
                         if k ~= 'meepo_divided_we_stand' then
-                            if not skillWarnings[k] then
-                                -- Valid skill, add to our possible skills
-                                table.insert(possibleSkills, k)
+                            -- Stop bearception
+                            if k ~= 'lone_druid_spirit_bear' or interface == SKILL_LIST_YOUR then
+                                if not skillWarnings[k] then
+                                    -- Valid skill, add to our possible skills
+                                    table.insert(possibleSkills, k)
+                                end
                             end
                         end
                     end
@@ -2998,6 +3001,12 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
                 sendChatMessage(playerID, '<font color="'..COLOR_RED..'">'..skillName..' doesn\'t appear to be a valid skill.</font>')
                 return
             end
+        end
+
+        -- Ensure this is a valid slot
+        if skillName == 'lone_druid_spirit_bear' and theirInterface ~= SKILL_LIST_YOUR then
+            sendChatMessage(playerID, '<font color="'..COLOR_RED..'">You can\'t do bearception.</font>')
+            return
         end
 
         -- Ensure it isn't the same skill
