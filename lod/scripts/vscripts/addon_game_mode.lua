@@ -1242,6 +1242,10 @@ setupGamemodeSettings = function()
     -- Build the ability list
     buildSkillListLookup()
 
+    if not allowBearSkills then
+        validInterfaces[SKILL_LIST_BEAR] = nil
+    end
+
     -- Setup player slot types
     setupSlotTypes()
 
@@ -1414,6 +1418,10 @@ finishVote = function()
     -- Should we allocate item modifiers?
     allowItemModifers = allowedTabs.itemsPassive
 
+    -- Custom bears / towers
+    allowBearSkills = optionToValue(16, winners[16]) == 1
+    allowTowerSkills = optionToValue(17, winners[17]) == 1
+
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
@@ -1429,7 +1437,19 @@ finishVote = function()
             banningTime = banningTime,
             maxSlots = maxSlots,
             maxSkills = maxSkills,
-            maxUlts = maxUlts
+            maxUlts = maxUlts,
+
+            forceUniqueSkills = forceUniqueSkills,
+
+            allowBearSkills = allowBearSkills,
+            allowTowerSkills = allowTowerSkills,
+
+            mainTab = allowedTabs.main,
+            neutralTab = allowedTabs.neutral,
+            wraithTab = allowedTabs.wraith,
+            itemsActiveTab = allowedTabs.itemsActive,
+            itemsPassiveTab = allowedTabs.itemsPassive,
+            OPTab = allowedTabs.OP,
         }
     })
 
