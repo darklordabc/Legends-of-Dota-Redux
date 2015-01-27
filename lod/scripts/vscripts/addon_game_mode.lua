@@ -165,6 +165,10 @@ local allowedTabs = {
 -- String version of allowed tabs
 local allowedTabsString = ''
 
+-- Allow bear and tower skills?
+local allowBearSkills = true
+local allowTowerSkills = false
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -963,6 +967,10 @@ setupSlotTypes = function()
     for i=0,maxPlayers-1 do
         setupSlotType(i)
     end
+
+    for i=2,3 do
+        setupSlotType(-i)
+    end
 end
 
 findRandomSkill = function(playerID, interface, slotNumber, filter)
@@ -1076,17 +1084,16 @@ fixBuilds = function()
 end
 
 -- Builds a string to represent the type of slots allowed for the given player
-slotTypeString = function (playerID)
-    if not slotTypes[playerID] then return '' end
-    if not slotTypes[playerID][SKILL_LIST_YOUR] then return '' end
-    if not slotTypes[playerID][SKILL_LIST_BEAR] then return '' end
+slotTypeString = function (playerID, interface)
+    if not slotTypes[playerID] or (interface and not slotTypes[playerID][interface]) then return '' end
 
     local str = ''
     for j=0,maxSlots-1 do
-        str = str..slotTypes[playerID][SKILL_LIST_YOUR][j]
-    end
-    for j=0,maxSlots-1 do
-        str = str..slotTypes[playerID][SKILL_LIST_BEAR][j]
+        if interface then
+            str = str..slotTypes[playerID][interface][j]
+        else
+            str = str..slotTypes[playerID][j]
+        end
     end
 
     return str
@@ -1555,15 +1562,20 @@ function lod:OnEmitStateInfo()
         ['slaveID']     = slaveID,
         ['tabs']        = allowedTabsString,
         ['bans']        = maxBans,
+        ['bear']        = (allowBearSkills and 1 or 0) + (allowTowerSkills and 2 or 0),
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
     }
 
+    -- Bear state
+    local b = {}
+
     -- Loop over all players
     for i=0,9 do
         -- Grab their skill list
         local l = (skillList[i] or {})[SKILL_LIST_YOUR] or {}
+        local lb = (skillList[i] or {})[SKILL_LIST_BEAR] or {}
 
         -- Calculate number to encode with
         local encode = 0
@@ -1585,6 +1597,7 @@ function lod:OnEmitStateInfo()
         for j=1,6 do
             -- Ensure the slot is filled
             s[tostring(i..j)] = s[tostring(i..j)] or -1
+            b[tostring(i..j)] = b[tostring(i..j)] or -1
 
             if slot ~= -1 then
                 -- Store the ID of this skill
@@ -1594,6 +1607,15 @@ function lod:OnEmitStateInfo()
                     s[tostring(slot..j)] = sid
                 else
                     s[tostring(slot..j)] = sid+encode
+                end
+
+                -- Store for bear
+                local sid = getSkillID(lb[j])
+
+                if sid == -1 then
+                    b[tostring(i..j)] = sid
+                else
+                    b[tostring(i..j)] = sid+encode
                 end
             end
         end
@@ -1605,7 +1627,8 @@ function lod:OnEmitStateInfo()
         s['l'..slot] = playerLocks[i] or 0
 
         -- Store slot into
-        s['t'..i] = slotTypeString(i)
+        s['t'..i] = slotTypeString(i, SKILL_LIST_YOUR)
+        b['t'..i] = slotTypeString(i, SKILL_LIST_BEAR)
     end
 
     local banned = {}
@@ -1614,15 +1637,56 @@ function lod:OnEmitStateInfo()
     end
 
     -- Store bans
-    local b
+    local bns
     for k,v in pairs(banned) do
         if not b then
-            b = getSkillID(banned[k])
+            bns = getSkillID(banned[k])
         else
-            b = b..'|'..getSkillID(banned[k])
+            bns = bns..'|'..getSkillID(banned[k])
         end
     end
-    s['b'] = b
+    s['b'] = bns
+
+    -- Send bear info
+    if allowBearSkills then
+        FireGameEvent('lod_state_bear', b)
+    end
+
+    -- Send tower info
+    if allowTowerSkills then
+        local t = {}
+
+        for i=2,3 do
+            t['t'..i] = slotTypeString(-i)
+
+            -- Calculate number to encode with
+            local encode = 0
+            if hideSkills then
+                if i == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif i == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
+            -- Grab tower skills
+            local skillz = towerSkills[i] or {}
+
+            for j=1,6 do
+                -- Store the ID of this skill
+                local sid = getSkillID(skillz[j])
+
+                if sid == -1 then
+                    t[tostring(i..j)] = sid
+                else
+                    t[tostring(i..j)] = sid+encode
+                end
+            end
+        end
+
+        -- Emit it
+        FireGameEvent('lod_state_tower', t)
+    end
 
     -- Send picking info to everyone
     FireGameEvent('lod_state', s)

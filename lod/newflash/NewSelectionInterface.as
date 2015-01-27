@@ -38,6 +38,9 @@
         public var browseBearSkills:MovieClip;
         public var browseTowerSkills:MovieClip;
 
+        // The active list
+        private var activeSkillList:Number = lod.SKILL_LIST_YOUR;
+
         // Combo boxes
         public var comboBehavior:MovieClip;
         public var comboType:MovieClip;
@@ -85,6 +88,7 @@
         private var banAreaCallback:Function;
         private var slotAreaCallback:Function;
         private var recommendCallback:Function;
+        private var changeListCallback:Function;
 
         // The effect when a target is a valid drop
         private var dropEffect:GlowFilter;
@@ -114,12 +118,13 @@
         }
 
 		// Rebuilds the interface from scratch
-		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function, newRecommendCallback:Function) {
+		public function Rebuild(newTabNames:Array, newSkillList:Object, source1:Boolean, banningDropCallback:Function, newRecommendCallback:Function, newChangeListCallback:Function) {
             var tabName:String, i:Number;
 
-            // Store callback
+            // Store callbacks
             banAreaCallback = banningDropCallback;
             recommendCallback = newRecommendCallback;
+            changeListCallback = newChangeListCallback;
 
             // Reload the skillKV
             skillKV = lod.Globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
@@ -632,18 +637,33 @@
 
         // Returns the skill in the given slot
         public function getSkillInSlot(slotNumber:Number):String {
-            return this.yourSkillList.getSkillInSlot(slotNumber);
+            switch(activeSkillList) {
+                case lod.SKILL_LIST_YOUR:
+                    return yourSkillList.getSkillInSlot(slotNumber);
+                    break;
+
+                case lod.SKILL_LIST_BEAR:
+                    return bearSkillList.getSkillInSlot(slotNumber);
+                    break;
+
+                case lod.SKILL_LIST_TOWER:
+                    return towerSkillList.getSkillInSlot(slotNumber);
+                    break;
+            }
+
+            // Default to your skills list
+            return yourSkillList.getSkillInSlot(slotNumber);
         }
 
         // Setups the skill list
-        public function setupSkillList(totalSlots:Number, slotInfo:String, dropCallback:Function, keyBindings:Array):void {
+        public function setupSkillList(totalSlots:Number, slotInfo:String, bearSlotInfo:String, towerSlotInfo:String, dropCallback:Function, keyBindings:Array):void {
             // Store callback
             slotAreaCallback = dropCallback;
 
             // Do it
             yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_YOUR);
-            bearSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
-            towerSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
+            bearSkillList.setup(totalSlots, bearSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
+            towerSkillList.setup(totalSlots, towerSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
 
             // Hook slot right clicking
             for(var i=0; i<lod.MAX_SLOTS; ++i) {
@@ -756,8 +776,8 @@
         // Hide skill page views
         public function setPageButtonVisible(vis:Boolean):void {
             browseYourSkills.visible = vis;
-            browseBearSkills.visible = vis;
-            browseTowerSkills.visible = vis;
+            browseBearSkills.visible = lod.allowBearSkills && vis;
+            browseTowerSkills.visible = lod.allowTowerSkills && vis;
         }
 
         // Hides all skill lists
@@ -769,20 +789,38 @@
 
         // Shows only your skills
         public function showYourSkills():void {
+            var doChange:Boolean = false;
+            if(activeSkillList != lod.SKILL_LIST_YOUR) doChange = true;
+
             hideAllSkillLists();
             yourSkillList.visible = true;
+            activeSkillList = lod.SKILL_LIST_YOUR;
+
+            if(doChange) changeListCallback();
         }
 
         // Shows only bear skills
         public function showBearSkills():void {
+            var doChange:Boolean = false;
+            if(activeSkillList != lod.SKILL_LIST_BEAR) doChange = true;
+
             hideAllSkillLists();
-            bearSkillList.visible = true;
+            bearSkillList.visible = lod.allowBearSkills;
+            activeSkillList = lod.SKILL_LIST_BEAR;
+
+            if(doChange) changeListCallback();
         }
 
         // Shows only tower skills
         public function showTowerSkills():void {
+            var doChange:Boolean = false;
+            if(activeSkillList != lod.SKILL_LIST_TOWER) doChange = true;
+
             hideAllSkillLists();
-            towerSkillList.visible = true;
+            towerSkillList.visible = lod.allowTowerSkills;
+            activeSkillList = lod.SKILL_LIST_TOWER;
+
+            if(doChange) changeListCallback();
         }
 
         /*

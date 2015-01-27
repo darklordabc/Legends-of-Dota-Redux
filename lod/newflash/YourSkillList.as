@@ -33,15 +33,13 @@
 				this.gotoAndStop(3);
 			}
 
+            // Validate slot info
+            if(slotInfo == null) slotInfo = '';
+
 			// Set the sorts of slots they are
 			for(var i=0; i<totalSlots; i++) {
 				// Grab the character for this slot
 				var char:String = slotInfo.charAt(i);
-
-                // Bear skills
-                if(newInterface == lod.SKILL_LIST_BEAR) {
-                    char = slotInfo.charAt(i + totalSlots);
-                }
 
 				// Grab the slot
 				var s:MovieClip = this['skill'+i];

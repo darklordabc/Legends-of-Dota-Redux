@@ -117,6 +117,12 @@
         // The last state we got
         private var lastState:Object;
 
+        // State for bear types
+        private var bearState:Object = {};
+
+        // Store for tower type
+        private var towerState:Object = {};
+
         // The current loaded stage on the client (-1 for no stage)
         private var currentStage:Number = -1;
 
@@ -180,6 +186,12 @@
 
         // Skills that are banned with our local combos
         private static var bannedCombos:Object;
+
+        // Are bear skills allowed?
+        public static var allowBearSkills:Boolean = false;
+
+        // Are tower skills allowed?
+        public static var allowTowerSkills:Boolean = false;
 
         /*
             PRETTY EFFECTS
@@ -271,6 +283,8 @@
             // Subscribe to the state info
             this.gameAPI.SubscribeToGameEvent('lod_ban', onSkillBanned);                                    // A skill was banned
             this.gameAPI.SubscribeToGameEvent('lod_state', onGetStateInfo);                                 // Contains most of the game state
+            this.gameAPI.SubscribeToGameEvent('lod_state_bear', onGetBearState);                            // Contains bear info
+            this.gameAPI.SubscribeToGameEvent('lod_state_tower', onGetTowerState);                          // Contains tower info
             this.gameAPI.SubscribeToGameEvent('lod_slave', handleSlave);                                    // Someone has updated a voting option
             this.gameAPI.SubscribeToGameEvent('lod_decode', handleDecode);                                  // Server sent us info on how to decode skill values
             this.gameAPI.SubscribeToGameEvent('lod_skill', onSkillPicked);                                  // Someone has picked a new skill
@@ -429,12 +443,8 @@
             // Tabs to allow (this will be sent from the server eventually)
             allowedTabs = {};
 
-            trace('\n\n\nHERE WE ARE:');
-            trace(lastState.tabs);
-
             var serverAllowedTabs = lastState.tabs.split('||');
             for(i=0; i<serverAllowedTabs.length; ++i) {
-                trace(serverAllowedTabs[i]);
                 allowedTabs[serverAllowedTabs[i]] = true;
             }
 
@@ -443,7 +453,6 @@
 
             i = 0;
             while(skillKV.tabOrder[++i]) {
-                trace(i);
                 tabList.push(skillKV.tabOrder[i]);
             }
 
@@ -520,7 +529,7 @@
             }
 
             // Rebuild the skill list
-            selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea, onRecommendSkill);
+            selectionUI.Rebuild(tabList, skillKV.tabs, source1, onDropBanningArea, onRecommendSkill, updateLocalBans);
         }
 
         private function updateDisplayTimer():void {
@@ -719,6 +728,10 @@
                     source1 = lastState.source1 == 1;
                     banTrollCombos = lastState.trolls == 1;
 
+                    // Store bear / tower skills
+                    allowBearSkills = lastState.bear == 1 || lastState.bear == 3;
+                    allowTowerSkills = lastState.bear == 2 || lastState.bear == 3;
+
                     // Store max bans
                     selectionUI.banningArea.banningHelp.text = selectionUI.banningArea.banningHelp.text.replace('%s', lastState.bans);
 
@@ -730,7 +743,7 @@
                     loadSkillsFile();
 
                     // Setup slots
-                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], onDropMySkills, keyBindings);
+                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], bearState['t' + playerID], towerState['t' + myTeam], onDropMySkills, keyBindings);
 
                     // Is there a draft for us?
                     if(lastState['s'+playerID] != '') {
@@ -783,12 +796,14 @@
                 // Have we changed local slots? (used for updating filters)
                 var changedLocalSlots:Boolean = false;
 
+                var skillName:String, skillNumber:Number;
+
                 // Update skills
                 hideSkills = lastState.hideSkills == 1; // Allow skills to be networked AFTER
-                for(i=0; i<10; i++) {
-                    for(var j=0; j<MAX_SLOTS; j++) {
+                for(i=0; i<10; ++i) {
+                    for(var j=0; j<MAX_SLOTS; ++j) {
                         // Grab the skill, and decode if needed
-                        var skillNumber = lastState[String(i)+String(j+1)];
+                        skillNumber = lastState[String(i)+String(j+1)];
                         if(skillNumber != -1) {
                             // Attempt to decode
                             if(hideSkills) {
@@ -797,7 +812,7 @@
                         }
 
                         // Grab the skill name
-                        var skillName = getSkillName(skillNumber);
+                        skillName = getSkillName(skillNumber);
 
                         // Attempt to grab the slot
                         var slot = getSkillIcon(i, j);
@@ -817,6 +832,48 @@
 
                     // Updates a lock for the given player
                     updateLock(i);
+                }
+                if(allowBearSkills) {
+                    for(i=0; i<MAX_SLOTS; ++i) {
+                        // Grab the skill, and decode if needed
+                        skillNumber = bearState[String(playerID)+String(i+1)];
+                        if(skillNumber != -1) {
+                            // Attempt to decode
+                            if(hideSkills) {
+                                skillNumber = skillNumber - decodeWith;
+                            }
+                        }
+
+                        // Grab the skill name
+                        skillName = getSkillName(skillNumber);
+
+                        // Put the skill into the slot
+                        if(selectionUI.skillIntoSlot(SKILL_LIST_BEAR, i, skillName)) {
+                            // A slot was changed
+                            changedLocalSlots = true;
+                        }
+                    }
+                }
+                if(allowTowerSkills) {
+                    for(i=0; i<MAX_SLOTS; ++i) {
+                        // Grab the skill, and decode if needed
+                        skillNumber = towerState[String(myTeam)+String(i+1)];
+                        if(skillNumber != -1) {
+                            // Attempt to decode
+                            if(hideSkills) {
+                                skillNumber = skillNumber - decodeWith;
+                            }
+                        }
+
+                        // Grab the skill name
+                        skillName = getSkillName(skillNumber);
+
+                        // Put the skill into the slot
+                        if(selectionUI.skillIntoSlot(SKILL_LIST_TOWER, i, skillName)) {
+                            // A slot was changed
+                            changedLocalSlots = true;
+                        }
+                    }
                 }
 
                 // Did we change any slots?
@@ -1394,10 +1451,18 @@
             SEVER EVENT CALLBACKS
         */
 
+        // Handles getting the bear state
+        private function onGetBearState(args:Object):void {
+            bearState = args;
+        }
+
+        // Handles getting the tower state
+        private function onGetTowerState(args:Object):void {
+            towerState = args;
+        }
+
         // Handles the state info
         private function onGetStateInfo(args:Object):void {
-            //trace('Current stage: ' + args.s);
-
             // Store the state info
             lastState = args;
 

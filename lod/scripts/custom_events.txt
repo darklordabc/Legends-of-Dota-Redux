@@ -85,6 +85,118 @@
         "lock"          "byte"
     }
 
+    // The bear skills state
+    "lod_state_bear"
+    {
+        // Stores the type of each slot for each player
+        "t0"            "string"    // Format:
+        "t1"            "string"    //  String will be length 4 - 6, depends on slot count
+        "t2"            "string"    //  Each character will be either 1, 2 or 3, 4 which represents the slot type
+        "t3"            "string"
+        "t4"            "string"
+        "t5"            "string"
+        "t6"            "string"
+        "t7"            "string"
+        "t8"            "string"
+        "t9"            "string"
+
+        // Each player's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "01"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "02"            "short"
+        "03"            "short"
+        "04"            "short"
+        "05"            "short"
+        "06"            "short"
+
+        "11"            "short"
+        "12"            "short"
+        "13"            "short"
+        "14"            "short"
+        "15"            "short"
+        "16"            "short"
+
+        "21"            "short"
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+
+        "41"            "short"
+        "42"            "short"
+        "43"            "short"
+        "44"            "short"
+        "45"            "short"
+        "46"            "short"
+
+        "51"            "short"
+        "52"            "short"
+        "53"            "short"
+        "54"            "short"
+        "55"            "short"
+        "56"            "short"
+
+        "61"            "short"
+        "62"            "short"
+        "63"            "short"
+        "64"            "short"
+        "65"            "short"
+        "66"            "short"
+
+        "71"            "short"
+        "72"            "short"
+        "73"            "short"
+        "74"            "short"
+        "75"            "short"
+        "76"            "short"
+
+        "81"            "short"
+        "82"            "short"
+        "83"            "short"
+        "84"            "short"
+        "85"            "short"
+        "86"            "short"
+
+        "91"            "short"
+        "92"            "short"
+        "93"            "short"
+        "94"            "short"
+        "95"            "short"
+        "96"            "short"
+    }
+
+    // The bear skills state
+    "lod_state_tower"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each player's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+    }
+
     // The game state
     "lod_state"
     {
@@ -107,6 +219,7 @@
         "source1"       "byte"  // Is this a source1 game? (affects ability pool)
         "balance"       "byte"  // Which balance mode to use (affects ability pool)
         "bans"          "byte"  // Number of bans allowed
+        "bear"          "byte"  // Bear / Tower skills allowed?
 
         // When the timer should end
         "t"             "float"
