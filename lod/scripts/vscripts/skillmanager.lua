@@ -418,9 +418,7 @@ function skillManager:ApplyBuild(hero, build)
                 local ab = hero:FindAbilityByName(v)
                 if ab then
                     local requiredLevel = ab:GetMaxLevel()
-                    for r=1,requiredLevel do
-                        ab:UpgradeAbility(true)
-                    end
+                    ab:SetLevel(requiredLevel)
                 end
             end
 
@@ -435,7 +433,9 @@ function skillManager:ApplyBuild(hero, build)
             end
 
             -- Remove auras
-            fixModifiers(hero, v)
+            if not isTower then
+                fixModifiers(hero, v)
+            end
         end
     end
 
@@ -510,9 +510,6 @@ function skillManager:ApplyBuild(hero, build)
             currentSkillList[hero][abNum] = k
         end
     end
-
-    -- Remove perma invis
-    hero:RemoveModifierByName('modifier_riki_permanent_invisibility')
 end
 
 function skillManager:overrideHooks()

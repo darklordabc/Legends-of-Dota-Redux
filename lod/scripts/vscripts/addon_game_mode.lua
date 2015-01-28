@@ -435,6 +435,7 @@ local SLOT_TYPE_NEITHER = '4'
 -- Ban List
 local banList = {}
 local noMulticast = {}
+local noTower = {}
 
 -- Load and process the bans
 (function()
@@ -443,6 +444,7 @@ local noMulticast = {}
 
     -- Store no multicast
     noMulticast = tempBanList.noMulticast
+    noTower = tempBanList.noTower
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -2980,6 +2982,14 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
         if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
             sendChatMessage(playerID, '<font color="'..COLOR_RED..'">This is not a valid selection interface.</font>')
             return
+        end
+
+        -- Check tower bans
+        if theirInterface == SKILL_LIST_TOWER then
+            if noTower[skillName] then
+                sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> crashes when used with towers.')
+                return
+            end
         end
 
         local activeList
