@@ -2659,6 +2659,12 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
             return
         end
 
+        -- Check if they are a hater
+        if allowBearSkills and skillName == 'lone_druid_spirit_bear' then
+            sendChatMessage(-1, '<font color="'..COLOR_BLUE..'">'..util.GetPlayerNameReliable(playerID)..'</font> is being a hater and trying to ban Spirit Bear.')
+            return
+        end
+
         -- Is this skill banned?
         if not isSkillBanned(skillName) then
             -- Increase the total number of bans of this person
