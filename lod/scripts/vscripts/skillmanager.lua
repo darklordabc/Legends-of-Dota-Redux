@@ -440,17 +440,17 @@ function skillManager:ApplyBuild(hero, build)
     end
 
     -- Tower patcher
-    if isTower and hero:GetLevel() > 1 then
+    --[[if isTower then
         if hero:HasAbility('backdoor_protection') then
-            build[7] = 'backdoor_protection'
+            --build[7] = 'backdoor_protection'
             table.insert(abs, 'backdoor_protection')
-        end
-
-        if hero:HasAbility('backdoor_protection_in_base') then
-            build[7] = 'backdoor_protection_in_base'
+        elseif hero:HasAbility('backdoor_protection_in_base') then
+            --build[7] = 'backdoor_protection_in_base'
             table.insert(abs, 'backdoor_protection_in_base')
+        else
+            --hero:AddAbility('backdoor_protection')
         end
-    end
+    end]]
 
     -- Do a nice little sort
     for i=1,16 do
@@ -472,7 +472,7 @@ function skillManager:ApplyBuild(hero, build)
                 abs[i] = build[i]
             end
 
-            if i > 6 then
+            if i > 6 and not isTower then
                 local ab = hero:FindAbilityByName(v)
                 if ab then
                     ab:SetHidden(true)
@@ -483,7 +483,7 @@ function skillManager:ApplyBuild(hero, build)
 
             if inSlot then
                 local ab = hero:FindAbilityByName(inSlot)
-                if ab then
+                if ab and not isTower then
                     ab:SetHidden(true)
                 end
             end

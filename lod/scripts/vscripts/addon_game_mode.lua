@@ -1497,6 +1497,9 @@ backdoorFix = function()
 
             -- Prevent anal (backdooring)
             ent:AddNewModifier(ent, ab, 'modifier_'..ab:GetAbilityName(), {})
+        else
+            ent:RemoveModifierByName('modifier_backdoor_protection')
+            ent:RemoveModifierByName('modifier_backdoor_protection_in_base')
         end
     end
 
