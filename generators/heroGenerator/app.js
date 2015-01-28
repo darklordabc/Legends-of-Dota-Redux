@@ -337,11 +337,16 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
         if(itemName.indexOf('smoke') != -1) continue;
         var item = items[itemName];
 
+        var cost = item.ItemCost;
+        if(!cost) continue;
+
+        var requiredLevel = Math.floor(cost / 500)+1;
+
         var store = {
             BaseClass: 'ability_datadriven',
             AbilityBehavior: item.AbilityBehavior,
             AbilityTextureName: 'lod_' + itemName,
-            RequiredLevel: 1,
+            RequiredLevel: requiredLevel,
             MaxLevel: 1,
             OnUpgrade: {
                 RunScript: {
