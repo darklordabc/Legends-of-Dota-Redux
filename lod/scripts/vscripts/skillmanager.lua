@@ -440,7 +440,7 @@ function skillManager:ApplyBuild(hero, build)
     end
 
     -- Tower patcher
-    if isTower then
+    if isTower and hero:GetLevel() > 1 then
         if hero:HasAbility('backdoor_protection') then
             build[7] = 'backdoor_protection'
             table.insert(abs, 'backdoor_protection')
