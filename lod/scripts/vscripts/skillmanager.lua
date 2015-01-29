@@ -11,24 +11,6 @@ local currentSkillList = {}
 -- Contains info on heroes
 local heroListKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
--- Apply patches to heroListKV
-local function loadStuff()
-    local patchFile = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-    local ourPatch = {}
-
-    for k,v in pairs(patchFile) do
-        if k ~= 'Version' then
-            if v.override_hero then
-                ourPatch[v.override_hero] = v
-            end
-        end
-    end
-
-    util.MergeTables(heroListKV, ourPatch)
-end
-loadStuff()
-loadStuff = nil
-
 -- A list of sub abilities needed to give out when we add an ability
 local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
 
@@ -80,6 +62,24 @@ for k,v in pairs(heroListKV) do
         end
     end
 end
+
+-- Apply patches to heroListKV
+local function loadStuff()
+    local patchFile = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+    local ourPatch = {}
+
+    for k,v in pairs(patchFile) do
+        if k ~= 'Version' then
+            if v.override_hero then
+                ourPatch[v.override_hero] = v
+            end
+        end
+    end
+
+    util.MergeTables(heroListKV, ourPatch)
+end
+loadStuff()
+loadStuff = nil
 
 function lod:precacheAll(context)
     --[[for k,v in pairs(heroIDToName) do
