@@ -244,6 +244,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             npc_dota_hero_bloodseeker: true,
             npc_dota_hero_bristleback: true,
             npc_dota_hero_chaos_knight: true,
+            npc_dota_hero_clinkz: true,
             npc_dota_hero_crystal_maiden: true,
             npc_dota_hero_dazzle: true,
             npc_dota_hero_death_prophet: true,
