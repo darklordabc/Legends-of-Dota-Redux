@@ -293,6 +293,40 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
         }
 
+        newKV['npc_dota_hero_treant_lod'].Ability4 = 'treant_overgrowth';
+        newKV['npc_dota_hero_treant_lod'].Ability5 = 'attribute_bonus';
+        newKV['npc_dota_hero_treant_lod'].Ability6 = '';
+        newKV['npc_dota_hero_ogre_magi_lod'].Ability4 = 'ogre_magi_multicast';
+        newKV['npc_dota_hero_ogre_magi_lod'].Ability5 = 'attribute_bonus';
+        newKV['npc_dota_hero_ogre_magi_lod'].Ability6 = '';
+        newKV['npc_dota_hero_shredder_lod'].Ability4 = 'attribute_bonus';
+        newKV['npc_dota_hero_shredder_lod'].Ability5 = '';
+        newKV['npc_dota_hero_shredder_lod'].Ability6 = '';
+        newKV['npc_dota_hero_shredder_lod'].Ability7 = '';
+        newKV['npc_dota_hero_earth_spirit_lod'].Ability5 = 'earth_spirit_magnetize';
+        newKV['npc_dota_hero_earth_spirit_lod'].Ability6 = 'attribute_bonus';
+        newKV['npc_dota_hero_earth_spirit_lod'].Ability7 = '';
+
+        newKV['npc_dota_hero_invoker_lod'] = {
+            override_hero: 'npc_dota_hero_invoker',
+            Ability1: 'attribute_bonus',
+            Ability2: '',
+            Ability3: '',
+            Ability4: '',
+            Ability5: '',
+            Ability6: '',
+            Ability7: '',
+            Ability8: '',
+            Ability9: '',
+            Ability10: '',
+            Ability11: '',
+            Ability12: '',
+            Ability13: '',
+            Ability14: '',
+            Ability15: '',
+            Ability16: '',
+        }
+
         fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
             if (err) throw err;
 

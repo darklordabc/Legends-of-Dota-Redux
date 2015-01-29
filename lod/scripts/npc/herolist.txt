@@ -71,8 +71,7 @@
 
 	"npc_dota_hero_spirit_breaker" "1"
 
-	// Bugged - No skills
-	"npc_dota_hero_invoker" "0"
+	"npc_dota_hero_invoker" "1"
 
 	"npc_dota_hero_clinkz" "1"
 	"npc_dota_hero_obsidian_destroyer" "1"
@@ -86,8 +85,7 @@
 	"npc_dota_hero_phantom_lancer" "1"
 	"npc_dota_hero_treant" "1"
 
-	// Bugged -- Gets extra skill aith aghs, causes problems with slots
-	"npc_dota_hero_ogre_magi" "0"
+	"npc_dota_hero_ogre_magi" "1"
 
 	"npc_dota_hero_chaos_knight" "1"
 	"npc_dota_hero_phantom_assassin" "1"
