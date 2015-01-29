@@ -96,6 +96,7 @@ local getSpellIcon
 local loadSpecialGamemode
 local buildAllowedTabsString
 local fireLockChange
+local setTowerOwnership
 local applyTowerSkills
 local levelSpiritSkills
 
@@ -1743,6 +1744,9 @@ function lod:OnThink()
             backdoorFix()
         end
 
+        -- Fix tower skills
+        setTowerOwnership()
+
         -- Done with this thinker
         return
     end
@@ -1924,6 +1928,30 @@ local XP_PER_LEVEL_TABLE = {
     32400 -- 25
 }
 
+-- Sets ownership of tower
+-- Doesn't appear to work :O
+setTowerOwnership = function()
+    -- Ensure tower skills are allowed
+    if not allowTowerSkills then return end
+    if 1 ==1 then return end -- disabled
+
+    local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+    -- Loop over all ents
+    for k,tower in pairs(towers) do
+        local team = tower:GetTeam()
+
+        -- Make it controllable by a player
+        for i=0,9 do
+            if PlayerResource:GetTeam(i) == team then
+                tower:SetControllableByPlayer(i, true)
+            else
+                tower:SetControllableByPlayer(i, false)
+            end
+        end
+    end
+end
+
 -- Applies tower skills if they are allowed
 applyTowerSkills = function()
     -- Ensure tower skills are allowed
@@ -1938,15 +1966,11 @@ applyTowerSkills = function()
         local skillz = towerSkills[team]
         if skillz then
             SkillManager:ApplyBuild(tower, skillz)
-
-            -- Make it controllable by a player
-            for i=0,9 do
-                if PlayerResource:GetTeam(i) == team then
-                    tower:SetControllableByPlayer(i, true)
-                end
-            end
         end
     end
+
+    -- Set the ownership
+    setTowerOwnership()
 end
 
 -- When a hero spawns
