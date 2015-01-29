@@ -3016,7 +3016,7 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
         -- Check tower bans
         if theirInterface == SKILL_LIST_TOWER then
             if noTower[skillName] then
-                sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> crashes when used with towers.')
+                sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="'..COLOR_BLUE..'">'..skillName..'</font> '..noTower[skillName])
                 return
             end
         end
