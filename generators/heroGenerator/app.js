@@ -237,6 +237,49 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
 
         var newKV = {};
 
+        var ignoreHeroes = {
+            npc_dota_hero_axe: true,
+            npc_dota_hero_bane: true,
+            npc_dota_hero_bounty_hunter: true,
+            npc_dota_hero_bloodseeker: true,
+            npc_dota_hero_bristleback: true,
+            npc_dota_hero_chaos_knight: true,
+            npc_dota_hero_crystal_maiden: true,
+            npc_dota_hero_dazzle: true,
+            npc_dota_hero_death_prophet: true,
+            npc_dota_hero_dragon_knight: true,
+            npc_dota_hero_drow_ranger: true,
+            npc_dota_hero_earthshaker: true,
+            npc_dota_hero_jakiro: true,
+            npc_dota_hero_juggernaut: true,
+            npc_dota_hero_kunkka: true,
+            npc_dota_hero_lich: true,
+            npc_dota_hero_lina: true,
+            npc_dota_hero_lion: true,
+            npc_dota_hero_luna: true,
+            npc_dota_hero_necrolyte: true,
+            npc_dota_hero_omniknight: true,
+            npc_dota_hero_oracle: true,
+            npc_dota_hero_phantom_assassin: true,
+            npc_dota_hero_pudge: true,
+            npc_dota_hero_razor: true,
+            npc_dota_hero_riki: true,
+            npc_dota_hero_sand_king: true,
+            npc_dota_hero_nevermore: true,
+            npc_dota_hero_skywrath_mage: true,
+            npc_dota_hero_sniper: true,
+            npc_dota_hero_sven: true,
+            npc_dota_hero_tidehunter: true,
+            npc_dota_hero_tiny: true,
+            npc_dota_hero_vengefulspirit: true,
+            npc_dota_hero_viper: true,
+            npc_dota_hero_warlock: true,
+            npc_dota_hero_windrunner: true,
+            npc_dota_hero_witch_doctor: true,
+            npc_dota_hero_skeleton_king: true,
+            npc_dota_hero_zuus: true
+        }
+
         var heroes1 = rootHeroes1.DOTAHeroes;
         var heroes2 = rootHeroes2.DOTAHeroes;
         for(var name in heroes1) {
@@ -246,11 +289,25 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             var data1 = heroes1[name];
             var data2 = heroes2[name];
 
+            if(!ignoreHeroes[name]) {
+                newKV[name+'_lod'] = {
+                    override_hero: name,
+                    Ability1: 'attribute_bonus'
+                }
+
+                for(var i=2;i<=16;++i) {
+                    if(heroes1[name]['Ability' + i]) {
+                        newKV[name+'_lod']['Ability' + i] = '';
+                    }
+                }
+            }
+
             // Check if they are melee
             if(data1.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
-                newKV[name+'_lod'] = {
-                    override_hero: name//,
-                    //AbilityLayout: '6'
+                if(!newKV[name+'_lod']) {
+                    newKV[name+'_lod'] = {
+                        override_hero: name
+                    }
                 }
 
                 // Give them projectile speed + model
@@ -293,7 +350,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
         }
 
-        newKV['npc_dota_hero_treant_lod'].Ability4 = 'treant_overgrowth';
+        /*newKV['npc_dota_hero_treant_lod'].Ability4 = 'treant_overgrowth';
         newKV['npc_dota_hero_treant_lod'].Ability5 = 'attribute_bonus';
         newKV['npc_dota_hero_treant_lod'].Ability6 = '';
         newKV['npc_dota_hero_ogre_magi_lod'].Ability4 = 'ogre_magi_multicast';
@@ -326,6 +383,51 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             Ability15: '',
             Ability16: '',
         }
+
+        newKV['npc_dota_hero_rubick_lod'] = {
+            override_hero: 'npc_dota_hero_rubick',
+            Ability1: 'attribute_bonus',
+            Ability2: '',
+            Ability3: '',
+            Ability4: '',
+            Ability5: '',
+            Ability6: '',
+            Ability7: '',
+            Ability8: '',
+            Ability9: '',
+            Ability10: '',
+            Ability11: ''
+        }
+
+        newKV['npc_dota_hero_keeper_of_the_light_lod'] = {
+            override_hero: 'npc_dota_hero_keeper_of_the_light',
+            Ability1: 'attribute_bonus',
+            Ability2: '',
+            Ability3: '',
+            Ability4: '',
+            Ability5: '',
+            Ability6: '',
+            Ability7: '',
+            Ability8: '',
+            Ability9: '',
+            Ability10: '',
+            Ability11: ''
+        }
+
+        newKV['npc_dota_hero_wisp_lod'] = {
+            override_hero: 'npc_dota_hero_wisp',
+            Ability1: 'attribute_bonus',
+            Ability2: '',
+            Ability3: '',
+            Ability4: '',
+            Ability5: '',
+            Ability6: '',
+            Ability7: '',
+            Ability8: '',
+            Ability9: '',
+            Ability10: '',
+            Ability11: ''
+        }*/
 
         fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
             if (err) throw err;
