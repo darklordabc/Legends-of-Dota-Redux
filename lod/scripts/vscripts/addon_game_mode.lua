@@ -845,34 +845,36 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
     end
 
     -- Check for uniqye skills
-    if forceUniqueSkills == UNIQUE_SKILLS_TEAM then
-        -- Team based unqiue skills
-        local team = PlayerResource:GetTeam(playerID)
+    if not allowBearSkills or not skillName == 'lone_druid_spirit_bear' then
+        if forceUniqueSkills == UNIQUE_SKILLS_TEAM then
+            -- Team based unqiue skills
+            local team = PlayerResource:GetTeam(playerID)
 
-        for playerID2,skillLists3 in pairs(skillList) do
-            -- Ensure same team
-            if team == PlayerResource:GetTeam(playerID2) then
-                for interface,_ in pairs(skillLists3) do
-                    local skills = skillLists3[interface]
-                    for slot,skill in pairs(skills) do
-                        if skill == skillName then
-                            if not (skillList2 == skills and slot == slotNumber) then
-                                return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+            for playerID2,skillLists3 in pairs(skillList) do
+                -- Ensure same team
+                if team == PlayerResource:GetTeam(playerID2) then
+                    for interface,_ in pairs(skillLists3) do
+                        local skills = skillLists3[interface]
+                        for slot,skill in pairs(skills) do
+                            if skill == skillName then
+                                if not (skillList2 == skills and slot == slotNumber) then
+                                    return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+                                end
                             end
                         end
                     end
                 end
             end
-        end
-    elseif forceUniqueSkills == UNIQUE_SKILLS_GLOBAL then
-        -- Global unique skills
-        for playerID2,skillLists3 in pairs(skillList) do
-            for interface,_ in pairs(skillLists3) do
-                local skills = skillLists3[interface]
-                for slot,skill in pairs(skills) do
-                    if skill == skillName then
-                        if not (skillList2 == skills and slot == slotNumber) then
-                            return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+        elseif forceUniqueSkills == UNIQUE_SKILLS_GLOBAL then
+            -- Global unique skills
+            for playerID2,skillLists3 in pairs(skillList) do
+                for interface,_ in pairs(skillLists3) do
+                    local skills = skillLists3[interface]
+                    for slot,skill in pairs(skills) do
+                        if skill == skillName then
+                            if not (skillList2 == skills and slot == slotNumber) then
+                                return '<font color="'..COLOR_RED..'">'..skillName..'</font> has already been taken, it might become free again later!'
+                            end
                         end
                     end
                 end
