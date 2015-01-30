@@ -1978,6 +1978,18 @@ applyTowerSkills = function()
     -- Ensure tower skills are allowed
     if not allowTowerSkills then return end
 
+    -- Dump dire tower skills
+    print('Dire Towers:')
+    for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS] or {}) do
+        print(k)
+    end
+
+    -- Dump radiant tower skills
+    print('Radiant Towers:')
+    for k,v in pairs(towerSkills[DOTA_TEAM_GOODGUYS] or {}) do
+        print(k)
+    end
+
     local towers = Entities:FindAllByClassname('npc_dota_tower')
 
     -- Loop over all ents
