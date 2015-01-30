@@ -1395,9 +1395,15 @@
                 globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
             }
 
-            // Make it 6 slots, ALWAYS
-            globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(MAX_SLOTS-3);
+            // Grab the frame number
+            var frameNumber:Number = MAX_SLOTS - 3;
 
+            // Ability layout changer
+            if(globals.Loader_actionpanel.movieClip.middle.abilities.currentFrame != frameNumber) {
+                globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(frameNumber);
+            }
+
+            // Fire again
             hudFixingTimer = new Timer(500, 1);
             hudFixingTimer.addEventListener(TimerEvent.TIMER, fixHotkeys, false, 0, true);
             hudFixingTimer.start();

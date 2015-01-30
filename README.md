@@ -33,6 +33,7 @@ Legends of Dota
 
 ###Setting up your local client to connect to a source1 server###
  - **DO THIS ONCE, REPEAT WHEN YOU NEED TO UPDATE**
+  - Close dota 2 (it won't load most updates / mods that are installed with this method unless you restart dota 2)
   - Download [THIS ZIP](https://github.com/ash47/LegendsOfDota/archive/master.zip)
   - Extract ONLY the `lod` folder into your `dota 2 beta/dota/addons` folder (creating addons if it doesn't exist)
   - If there are any other folders inside your `addons` folder, please either delete them, or move them into another folder (such as `addons_disabled`)
