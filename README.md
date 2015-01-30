@@ -181,7 +181,6 @@ Legends of Dota
  - `lod_ids` Lists playerIDs matches with steamIDs and player names.
  - `lod_survival` Loads the survival gamemode (It will autostart when the match begins, it will also disable bots).
  - `lod_nobots` Stops bots from spawning (it wont remove bots, if they have already spawned).
- - `lod_wtf` Enable WTF mode (To disable, turn cheats on then off, this is done on purpose, to prevent admin abuse).
  - `lod_cycle` Enable cycling builds.
  - `lod_applybuild(targetID, sourceID)` Makes the person with the targetID get the build from the person with sourceID.
  - `lod_printbuilds` Prints all builds.

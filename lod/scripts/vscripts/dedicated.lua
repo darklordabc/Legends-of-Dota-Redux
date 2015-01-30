@@ -232,12 +232,3 @@ if tst ~= 0 and tst ~= nil then
         end, nil)
     end
 end
-
--- WTF Mode
---[[Convars:RegisterCommand('lod_wtf', function()
-    -- Only server can run this
-    if not Convars:GetCommandClient() then
-        Convars:SetBool('dota_ability_debug', true)
-        print('WTF Mode was enabled!')
-    end
-end, 'WTF Mode Enabler', 0)]]
