@@ -185,3 +185,12 @@ Legends of Dota
  - `lod_applybuild(targetID, sourceID)` Makes the person with the targetID get the build from the person with sourceID.
  - `lod_printbuilds` Prints all builds.
  - `lod_editskill(playerID, skillSlot, skillName)` Edits the given skill for the given player
+ - `lod_allocate(steamID64, teamID)` Sets the allocation to be used with the given player
+ - `lod_show_allocate` Shows all current allocations
+
+###Other Commands###
+ - These require sourcemod plugins, and are some what experimental!
+ - `sm_gmode(gamemodeID)` Sets the gamemode ID. (this is used to load all pick after the game starts, to allow bots)
+ - `clear_playerid(playerID)` Clears a player from the given slot
+ - `read_playerid(playerID)` Prints out the 8 bits in the slot for the given playerID (usully SteamID followed by 1)
+ - `set_playerid(playerID, steamID32)` Puts the player with the given steamID into the given slot

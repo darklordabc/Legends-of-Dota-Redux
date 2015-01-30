@@ -200,6 +200,34 @@ Convars:RegisterCommand('lod_nobots', function()
     end
 end, 'hax loader', 0)
 
+-- Overrides a team allocation
+Convars:RegisterCommand('lod_allocate', function(name, steamID, teamID)
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        if not steamID or not teamID then
+            print(name..' [steamID64] [teamID]')
+            return
+        end
+
+        -- Parse values
+        steamID = tostring(steamID)
+        teamID = tonumber(steamID)
+
+        -- Set the auto allocation
+        autoAllocate[steamID] = teamID
+    end
+end, 'Sets a team allocation', 0)
+
+-- Shows team allocations
+Convars:RegisterCommand('lod_show_allocate', function()
+    -- Only server can run this
+    if not Convars:GetCommandClient() then
+        for k,v in pairs(autoAllocate) do
+            print(k..' - '..v)
+        end
+    end
+end, 'Sets a team allocation', 0)
+
 -- Bot allocation
 local tst = LoadKeyValues('cfg/addbots.kv')
 if tst ~= 0 and tst ~= nil then
