@@ -145,6 +145,9 @@ local allowedToPick = true
 -- Should we force random heroes?
 local forceRandomHero = false
 
+-- Enable WTF Mode?
+local wtfMode = false
+
 -- Unique skills constants
 local UNIQUE_SKILLS_NONE = 0
 local UNIQUE_SKILLS_TEAM = 1
@@ -436,6 +439,7 @@ local SLOT_TYPE_NEITHER = '4'
 -- Ban List
 local banList = {}
 local noMulticast = {}
+local wtfAutoBan = {}
 local noTower = {}
 
 -- Load and process the bans
@@ -446,6 +450,7 @@ local noTower = {}
     -- Store no multicast
     noMulticast = tempBanList.noMulticast
     noTower = tempBanList.noTower
+    wtfAutoBan = tempBanList.wtfAutoBan
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -1212,6 +1217,19 @@ setupGamemodeSettings = function()
     -- Announce results
     sendChatMessage(-1, '<font color="'..COLOR_RED..'">Results:</font> <font color="'..COLOR_GREEN..'">There will be </font><font color="'..COLOR_BLUE..'">'..maxSlots..' slots</font><font color="'..COLOR_GREEN..'">, </font><font color="'..COLOR_BLUE..'">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> and </font><font color="'..COLOR_BLUE..'">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="'..COLOR_GREEN..'"> allowed. Troll combos are </font><font color="'..COLOR_BLUE..'">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="'..COLOR_GREEN..'">! Starting level is </font></font><font color="'..COLOR_BLUE..'">'..startingLevel..'</font><font color="'..COLOR_GREEN..'">! Bonus gold is </font></font><font color="'..COLOR_BLUE..'">'..bonusGold..'</font><font color="'..COLOR_GREEN..'">.</font>')
 
+    -- WTF Mode stuff
+    if wtfMode then
+        sendChatMessage(-1, '<font color="'..COLOR_RED..'">WTF MODE IS ON!</font> <font color="'..COLOR_GREEN..'">Skills will have NO COOLDOWNS OR MANA COST! Globals are auto banned!</font>')
+
+        -- Ban skills
+        for k,v in pairs(wtfAutoBan) do
+            bannedSkills[k] = true
+        end
+
+        -- Enable WTF
+        Convars:SetBool('dota_ability_debug', true)
+    end
+
     if banningTime > 0 then
         if not hostBanning then
             sendChatMessage(-1, '<font color="'..COLOR_GREEN..'">Banning has started. You have</font> <font color="'..COLOR_RED..'">'..banningTime..' seconds</font> <font color="'..COLOR_GREEN..'">to ban upto <font color="'..COLOR_RED..'">'..maxBans..' skills</font><font color="'..COLOR_GREEN..'">. Drag and drop skills into the banning area to ban them.</font>')
@@ -1431,6 +1449,9 @@ finishVote = function()
     -- Custom bears / towers
     allowBearSkills = optionToValue(16, winners[16]) == 1
     allowTowerSkills = optionToValue(17, winners[17]) == 1
+
+    -- WTF Mode
+    wtfMode = optionToValue(18, winners[18]) == 1
 
     -- Add settings to our stat collector
     statcollection.addStats({
