@@ -2295,7 +2295,7 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
     end
 end, nil)
 
--- Multicast + Riki ulty
+-- Multicast
 ListenToGameEvent('dota_player_used_ability', function(keys)
     local ply = EntIndexToHScript(keys.PlayerID or keys.player)
     if ply then
@@ -2363,10 +2363,13 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                             -- Grab the position
                             local pos = hero:GetCursorPosition()
-                            local target
+                            local target = hero:GetCursorCastTarget()
+                            local isTargetSpell = false
 
-                            if not GameRules:isSource1() then
-                                target = hero:GetCursorCastTarget()
+                            local playerID = hero:GetPlayerID()
+
+                            if target then
+                                isTargetSpell = true
                             end
 
                             local targets
@@ -2389,6 +2392,8 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     -- Position cursor
                                     hero:SetCursorPosition(pos)
 
+                                    local ourTarget = target
+
                                     -- If we have any targets to pick from, pick one
                                     local doneTarget = false
                                     if targets then
@@ -2399,25 +2404,34 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                             local t = targets[index]
 
                                             -- Ensure it is valid and still alive
-                                            if IsValidEntity(t) and t:GetHealth() > 0 then
+                                            if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget then
                                                 -- Target is valid and alive, target it
-                                                hero:SetCursorCastTarget(t)
+                                                --hero:SetCursorCastTarget(t)
+                                                ourTarget = t
+                                                hero:CastAbilityOnTarget(ourTarget, ab, playerID)
                                                 doneTarget = true
                                                 break
                                             else
                                                 -- Invalid target, remove it and find another
                                                 table.remove(targets, index)
                                             end
-
                                         end
                                     end
 
                                     -- If we failed to find a target, target the original
-                                    if not doneTarget and not GameRules:isSource1() then
-                                        hero:SetCursorCastTarget(target)
+                                    if not doneTarget then
+                                        if isTargetSpell then
+                                            if not IsValidEntity(ourTarget) or ourTarget:GetHealth() <= 0 then
+                                                return
+                                            end
+                                        end
+
+                                        -- Cast onto original target
+                                        hero:CastAbilityOnTarget(ourTarget, ab, playerID)
                                     end
 
                                     -- Run the spell again
+                                    print('Multicast '..ab:GetClassname())
                                     ab:OnSpellStart()
 
                                     mult = mult-1
