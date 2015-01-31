@@ -104,6 +104,9 @@
         public static var SKILL_LIST_BEAR:Number = 2;
         public static var SKILL_LIST_TOWER:Number = 3;
 
+        // The split char
+        private static var SPLIT_CHAR = String.fromCharCode(7);
+
         /*
             GLOBAL VARIABLES
         */
@@ -1585,8 +1588,23 @@
             // Was this me? (or everyone)
             var playerID = globals.Players.GetLocalPlayer();
             if(playerID == args.playerID || args.playerID == -1 || args.playerID == -myTeam) {
+                // Translate it
+                var trans:Function = globals.GameInterface.Translate;
+
+                // Grab translated string
+                var res:String = trans(args.msg);
+
+                // Put arguments in
+                var ourArgs:Array = (args.args || '').split(SPLIT_CHAR);
+                for(var i:Number=0; i<ourArgs.length; ++i) {
+                    res = res.split('{' + i + '}').join(trans(ourArgs[i]));
+                }
+
+                // If our translation breaks, just revert to the actual message
+                if(res == '') res = args.msg;
+
                 // Add the text to chat
-                addChatMessage(args.msg);
+                addChatMessage(res);
             }
         }
 

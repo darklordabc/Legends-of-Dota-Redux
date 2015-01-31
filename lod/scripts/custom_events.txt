@@ -50,6 +50,7 @@
     {
         "playerID"      "short"
         "msg"           "string"
+        "args"          "string"
     }
 
     // A slave vote is being passed
