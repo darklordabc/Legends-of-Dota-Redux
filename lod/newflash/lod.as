@@ -82,8 +82,9 @@
         private static var STAGE_WAITING:Number = 0;
         private static var STAGE_VOTING:Number = 1;
         private static var STAGE_BANNING:Number = 2;
-        private static var STAGE_PICKING:Number = 3;
-        private static var STAGE_PLAYING:Number = 4;
+        private static var STAGE_HERO_BANNING:Number = 3;
+        private static var STAGE_PICKING:Number = 4;
+        private static var STAGE_PLAYING:Number = 10;
 
         // Stage sizing
         private static var stageWidth:Number;
@@ -930,6 +931,10 @@
                     buildBanningUI(fromScratch);
                     break;
 
+                case STAGE_HERO_BANNING:
+                    handleHeroBanning(fromScratch);
+                    break;
+
                 case STAGE_PICKING:
                     buildPickingUI(fromScratch);
                     break;
@@ -955,6 +960,13 @@
                 selectionUI.visible = true;
                 selectionUI.hideUncommonStuff();
                 selectionUI.banningArea.visible = true;
+            }
+        }
+
+        // Handles the hero banning stage
+        private function handleHeroBanning(fromScratch:Boolean):void {
+            if(fromScratch) {
+                hideAllUI();
             }
         }
 

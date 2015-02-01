@@ -109,6 +109,9 @@ local transHero
 -- Banning Period (2 minutes)
 local banningTime = 60 * 2
 
+-- Hero picking time
+local heroBanningTime = 60
+
 -- Picking Time (3 minutes)
 local pickingTime = 60 * 3
 
@@ -200,8 +203,9 @@ balanceMode = BALANCE_BASIC
 local STAGE_WAITING = 0
 local STAGE_VOTING = 1
 local STAGE_BANNING = 2
-local STAGE_PICKING = 3
-local STAGE_PLAYING = 4
+local STAGE_HERO_BANNING = 3
+local STAGE_PICKING = 4
+local STAGE_PLAYING = 10
 
 -- Gamemode constants
 local GAMEMODE_AP = 1   -- All Pick
@@ -1868,6 +1872,50 @@ function lod:OnThink()
         -- Fix locks
         playerLocks = {}
 
+        if GameRules:isSource1() then
+            -- Tell everyone
+            sendChatMessage(-1, '#lod_hero_banning', {
+                heroBanningTime
+            })
+
+            -- Change to picking state
+            currentStage = STAGE_HERO_BANNING
+
+            -- Store when the picking phase ends
+            endOfTimer = Time() + heroBanningTime
+        else
+            -- Tell everyone
+            sendChatMessage(-1, '#lod_picking', {
+                pickingTime
+            })
+
+             -- Change to picking state
+            currentStage = STAGE_PICKING
+
+            -- Store when the picking phase ends
+            endOfTimer = Time() + pickingTime
+        end
+
+        -- Update the state
+        self:OnEmitStateInfo()
+
+        -- Sleep
+        return 0.1
+    end
+
+    if currentStage == STAGE_HERO_BANNING then
+        -- Pause the game
+        PauseGame(true)
+
+        -- Wait for banning to end
+        if Time() < endOfTimer then return 0.1 end
+
+        -- Allow each team to get extra time again
+        extraTime = {}
+
+        -- Fix locks
+        playerLocks = {}
+
         -- Change to picking state
         currentStage = STAGE_PICKING
 
@@ -1876,11 +1924,6 @@ function lod:OnThink()
 
         -- Update the state
         self:OnEmitStateInfo()
-
-        -- Tell everyone
-        sendChatMessage(-1, '#lod_picking', {
-            pickingTime
-        })
 
         -- Sleep
         return 0.1
@@ -2568,7 +2611,7 @@ end
 -- Do a lock for the given player
 doLock = function(playerID)
     -- Is it valid to use this?
-    if currentStage ~= STAGE_BANNING and currentStage ~= STAGE_PICKING then return end
+    if currentStage ~= STAGE_BANNING and currentStage ~= STAGE_PICKING and currentStage ~= STAGE_HERO_BANNING then return end
 
     local first = true
     if playerLocks[playerID] == 1 then
@@ -3308,11 +3351,7 @@ end, 'Toggles the pause during the waiting phase', 0)
 local hasHero = {}
 local hasBanned = {}
 local banChance = {}
-local bannedHeroes = {
-    npc_dota_hero_silencer = true,
-    npc_dota_hero_lone_druid = true,
-    npc_dota_hero_ogre_magi = true,
-}
+local bannedHeroes = {}
 
 -- Attempts to pick a random hero, returns 'random' if it fails
 getRandomHeroName = function()
@@ -3420,105 +3459,129 @@ loadSpecialGamemode = function()
     end
 end
 
---[[Convars:RegisterCommand('dota_select_hero', function(name, heroName)
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
+-- Source1 hero banning
+if GameRules:isSource1() then
+    Convars:RegisterCommand('dota_select_hero', function(name, heroName)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
 
-        -- Random hero
-        if heroName == 'random' then
-            -- Attempt to random
-            heroName = getRandomHeroName()
-
-            -- Did we fail?
+            -- Random hero
             if heroName == 'random' then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Error:</font> <font color="#ADE55C">You can not random a hero.</font>')
-                return
+                -- Attempt to random
+                heroName = getRandomHeroName()
+
+                -- Did we fail?
+                if heroName == 'random' then
+                    sendChatMessage(playerID, '#lod_cant_random_hero')
+                    return
+                end
             end
-        end
 
-        -- Validate hero name
-        if not isValidHeroName(heroName) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">'..heroName..'</font> <font color="#ADE55C">is not a valid hero.</font>')
-            return
-        end
-
-        -- Are we in voting?
-        if currentStage <= STAGE_VOTING then
-            sendChatMessage(playerID, '<font color="#EB4B4B">Error: </font> <font color="#ADE55C">You can not pick before the picking stage.</font>')
-            return
-        end
-
-        -- Are we in the banning stage?
-        if currentStage == STAGE_BANNING then
-            -- Host banning mode?
-            if hostBanning and playerID ~= 0 then
-                sendChatMessage(playerID, '#lod_wait_host_ban')
+            -- Validate hero name
+            if not isValidHeroName(heroName) then
+                sendChatMessage(playerID, '#lod_invalid_hero', {
+                    heroName
+                })
                 return
             end
 
-            -- Already banned?
+            -- Are we in voting?
+            if currentStage ~= STAGE_HERO_BANNING and currentStage < STAGE_PLAYING then
+                sendChatMessage(playerID, '#lod_hero_bannning_invalid')
+                return
+            end
+
+            -- Are we in the banning stage?
+            if currentStage == STAGE_HERO_BANNING then
+                -- Host banning mode?
+                if hostBanning and playerID ~= 0 then
+                    sendChatMessage(playerID, '#lod_wait_host_ban')
+                    return
+                end
+
+                -- Already banned?
+                if bannedHeroes[heroName] then
+                    sendChatMessage(playerID, '#lod_hero_already_banned', {
+                        '#'..heroName
+                    })
+                    return
+                end
+
+                -- Ensure they have a value to compare against
+                hasBanned[playerID] = hasBanned[playerID] or 0
+
+                -- Have they hit their banning limit?
+                if hasBanned[playerID] >= maxHeroBans then
+                    sendChatMessage(playerID, '#lod_hero_ban_limit')
+                    return
+                end
+
+                -- Warn them about the ban first
+                if banChance[playerID] ~= heroName then
+                    -- Store the chance
+                    banChance[playerID] = heroName
+
+                    -- Tell them about it
+                    sendChatMessage(playerID, '#lod_confirm_hero_ban', {
+                        '#'..heroName
+                    })
+                    return
+                end
+
+                -- Ok, ban this hero
+                bannedHeroes[heroName] = true
+                hasBanned[playerID] = hasBanned[playerID]+1
+
+                -- Do locks
+                if hasBanned[playerID] >= maxHeroBans then
+                    doLock(playerID)
+                end
+
+                -- Tell everyone
+                sendChatMessage(-1, '#lod_hero_banned', {
+                    '#'..heroName,
+                    hasBanned[playerID],
+                    maxHeroBans
+                })
+                return
+            end
+
+            -- Should we force a random hero name?
+            if forceRandomHero then
+                -- Grab a random hero name
+                heroName = getRandomHeroName()
+
+                -- Make sure it worked
+                if heroName == 'random' then
+                    sendChatMessage(playerID, '#lod_cant_random_hero')
+                    return
+                end
+            end
+
+            -- Check bans
             if bannedHeroes[heroName] then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Error: </font> <font color="#4B69FF">'..heroName..'</font> <font color="#ADE55C">is already banned!</font>')
+                sendChatMessage(playerID, '#lod_hero_is_banned', {
+                    '#'..heroName
+                })
                 return
             end
 
-            -- Ensure they have a value to compare against
-            hasBanned[playerID] = hasBanned[playerID] or 0
+            -- Stop multiple picks
+            if hasHero[playerID] then return end
+            hasHero[playerID] = true
 
-            -- Have they hit their banning limit?
-            if hasBanned[playerID] >= maxHeroBans then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Error: </font> <font color="#ADE55C">You can not ban anymore heroes.</font>')
-                return
-            end
-
-            -- Warn them about the ban first
-            if banChance[playerID] ~= heroName then
-                -- Store the chance
-                banChance[playerID] = heroName
-
-                -- Tell them about it
-                sendChatMessage(playerID, '<font color="#EB4B4B">WARNING: </font> <font color="#ADE55C">Select</font> <font color="#4B69FF">'..heroName..'</font> <font color="#ADE55C">again to ban it.</font>')
-                return
-            end
-
-            -- Ok, ban this hero
-            bannedHeroes[heroName] = true
-            hasBanned[playerID] = hasBanned[playerID]+1
-
-            -- Tell everyone
-            sendChatMessage(-1, '<font color="#4B69FF">'..heroName..'</font> <font color="#ADE55C">was banned!</font> <font color="#4B69FF">('..hasBanned[playerID]..'/'..maxHeroBans..')</font>')
-            return
-        end
-
-        -- Should we force a random hero name?
-        if forceRandomHero then
-            -- Grab a random hero name
-            heroName = getRandomHeroName()
-
-            -- Make sure it worked
-            if heroName == 'random' then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Error:</font> <font color="#ADE55C">You can not random a hero.</font>')
-                return
+            -- Attempt to create them their hero
+            if GameRules:isSource1() then
+                CreateHeroForPlayer(heroName, cmdPlayer)
+            else
+                PrecacheUnitByNameAsync(heroName, function()
+                    CreateHeroForPlayer(heroName, cmdPlayer)
+                end)
             end
         end
-
-        -- Check bans
-        if bannedHeroes[heroName] then
-            sendChatMessage(playerID, '<font color="#EB4B4B">Error: </font> <font color="#4B69FF">'..heroName..'</font> <font color="#ADE55C">is banned!</font>')
-            return
-        end
-
-        -- Stop multiple picks
-        if hasHero[playerID] then return end
-        hasHero[playerID] = true
-
-        -- Attempt to create them their hero
-        PrecacheUnitByNameAsync(heroName, function()
-            CreateHeroForPlayer(heroName, cmdPlayer)
-        end)
-    end
-end, 'hero selection override', 0)]]
+    end, 'hero selection override', 0)
+end
 
 --[[Convars:RegisterCommand('lod_test', function(name, theirNumber)
     local itemName = 'item_satanic'
