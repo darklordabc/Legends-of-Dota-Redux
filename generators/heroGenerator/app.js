@@ -353,6 +353,9 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
         }
 
+        // Techies override prcaching
+        precacher.npc_precache_npc_dota_hero_techies_s2.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
+
         /*newKV['npc_dota_hero_treant_lod'].Ability4 = 'treant_overgrowth';
         newKV['npc_dota_hero_treant_lod'].Ability5 = 'attribute_bonus';
         newKV['npc_dota_hero_treant_lod'].Ability6 = '';
