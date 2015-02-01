@@ -3581,18 +3581,6 @@ if GameRules:isSource1() then
     end, 'hero selection override', 0)
 end
 
---[[Convars:RegisterCommand('lod_test', function(name, theirNumber)
-    local itemName = 'item_satanic'
-
-    local hero = PlayerResource:GetSelectedHeroEntity(0)
-    local item = CreateItem(itemName, hero, hero)
-
-    item:CastAbility()
-
-    hero:AddNewModifier(hero, item, 'modifier_'..itemName, {})
-end, 'User asked for decoding info', 0)]]
-
-
 -- User asks for decoding info
 Convars:RegisterCommand('lod_decode', function(name, theirNumber, theirVersion)
     -- We are only accepting numbers
