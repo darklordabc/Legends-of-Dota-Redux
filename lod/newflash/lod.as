@@ -428,8 +428,8 @@
             versionUI.acceptButton.setText('#versionAccept')
             versionUI.acceptButton.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
 
-            // Wait for the game to be ready
-            waitForGame();
+            // Show the waiting UI
+            waitingUI.visible = true;
         }
 
         // Loads in the skills file
@@ -683,23 +683,6 @@
             }
         }
 
-        // Waits for the game to be ready to play
-        private function waitForGame() {
-            if(selectionUI == null) return;
-
-            // Check the state
-            if(globals.Game.GetState() >= 2) {
-                // Show waiting UI
-                waitingUI.visible = true
-                return;
-            }
-
-            // Start timer to check for an update
-            var timer = new Timer(100, 1);
-            timer.addEventListener(TimerEvent.TIMER, waitForGame, false, 0, true);
-            timer.start();
-        }
-
         // Updates the UI based on the current state
         private function updateUI():void {
             var i:Number;
@@ -923,6 +906,10 @@
             currentStage = lastState.s;
 
             switch(lastState.s) {
+                case STAGE_WAITING:
+                    // Waiting, do nothing
+                    break;
+
                 case STAGE_VOTING:
                     buildVotingUI(fromScratch);
                     break;
