@@ -230,7 +230,9 @@ var scriptDir = '';
 // Item + Skill modifier
 fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
     fs.readFile(scriptDir+'npc_heroes_source2.txt', function(err, source2) {
+        console.log('Loading source1 heroes...');
         var rootHeroes1 = parseKV(''+source1, true);
+        console.log('Loading source2 heroes...');
         var rootHeroes2 = parseKV(''+source2, true);
 
         var precacher = {};
