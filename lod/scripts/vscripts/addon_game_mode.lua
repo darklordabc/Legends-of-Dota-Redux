@@ -119,6 +119,9 @@ local pickingTime = 60 * 3
 -- Set to the ID of the player who is the master
 local slaveID = -1
 
+-- Enable hero banning?
+local enableHeroBanning = true
+
 --[[
     VOTEABLE OPTIONS
 ]]
@@ -1872,7 +1875,7 @@ function lod:OnThink()
         -- Fix locks
         playerLocks = {}
 
-        if GameRules:isSource1() then
+        if GameRules:isSource1() and enableHeroBanning then
             -- Tell everyone
             sendChatMessage(-1, '#lod_hero_banning', {
                 heroBanningTime
