@@ -2841,11 +2841,12 @@ Convars:RegisterCommand('lod_more_time', function(name)
         local team = PlayerResource:GetTeam(playerID)
 
         -- Allow extra time ONCE from each team
-        if extraTime[team] then
+        extraTime[team] = extraTime[team] or 0
+        if extraTime[team] >= 2 then
             sendChatMessage(playerID, '#lod_already_time')
             return
         end
-        extraTime[team] = true
+        extraTime[team] = extraTime[team] + 1
 
         -- Allocate extra time
         endOfTimer = endOfTimer + 60
