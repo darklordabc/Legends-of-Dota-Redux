@@ -209,13 +209,6 @@ local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MD = 3   -- Mirror Draft
 local GAMEMODE_AR = 4   -- All Random
 
-local gamemodeNames = {
-    [GAMEMODE_AP] = 'All Pick',
-    [GAMEMODE_SD] = 'Single Draft',
-    [GAMEMODE_MD] = 'Mirror Draft',
-    [GAMEMODE_AR] = 'All Random'
-}
-
 -- The gamemode
 local gamemode = GAMEMODE_AP    -- Set default gamemode
 
@@ -843,7 +836,7 @@ end
 CheckBans = function(skillList2, slotNumber, skillName, playerID)
     -- Old fashion bans
     if isSkillBanned(skillName) then
-        return '<font color="#EB4B4B">This skill is banned.</font>'
+        return '#lod_skill_banned'
     end
 
     -- Check for uniqye skills
@@ -860,7 +853,10 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
                         for slot,skill in pairs(skills) do
                             if skill == skillName then
                                 if not (skillList2 == skills and slot == slotNumber) then
-                                    return '<font color="#EB4B4B">'..skillName..'</font> has already been taken by someone on your team, ask them if you can use it instead.'
+                                    return '#lod_taken_team', {
+                                        getSpellIcon(skillName),
+                                        tranAbility(skillName)
+                                    }
                                 end
                             end
                         end
@@ -875,7 +871,10 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
                     for slot,skill in pairs(skills) do
                         if skill == skillName then
                             if not (skillList2 == skills and slot == slotNumber) then
-                                return '<font color="#EB4B4B">'..skillName..'</font> has already been taken, it might become free again later!'
+                                return '#lod_taken_global', {
+                                    getSpellIcon(skillName),
+                                    tranAbility(skillName)
+                                }
                             end
                         end
                     end
@@ -891,7 +890,10 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
 
         -- Check their drafting array
         if not draftArray[playerID][GetSkillOwningHero(skillName)] then
-            return '<font color="#EB4B4B">'..skillName..'</font> is not in your drafting pool.'
+            return '#lod_not_in_pool', {
+                getSpellIcon(skillName),
+                tranAbility(skillName)
+            }
         end
     end
 
@@ -900,7 +902,10 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
         -- Check if they actually already have this skill
         for i=1,maxSlots do
             if skillList2[i] == skillName then
-                return '<font color="#EB4B4B">'..skillName..'</font> is already in your draft, you can move it around by dragging the slots.'
+                return '#lod_already_in_draft', {
+                    getSpellIcon(skillName),
+                    tranAbility(skillName)
+                }
             end
         end
 
@@ -911,7 +916,12 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
                 if i ~= slotNumber then
                     -- Check the banned combo
                     if banList[skillName][skillList2[i]] then
-                        return '<font color="#EB4B4B">'..skillName..'</font> can not be used with '..'<font color="#EB4B4B">'..skillList2[i]..'</font>'
+                        return '{0} <font color=\"#EB4B4B\">{1}</font> can not be used with {2}<font color=\"#EB4B4B\">{3}</font>', {
+                            getSpellIcon(skillName),
+                            tranAbility(skillName),
+                            getSpellIcon(skillList2[i]),
+                            tranAbility(skillList2[i])
+                        }
                     end
                 end
             end
@@ -1006,7 +1016,7 @@ findRandomSkill = function(playerID, interface, slotNumber, filter)
     -- There is a chance there is no valid skill
     if not canUlt and not canSkill then
         -- Damn scammers! No valid skills!
-        return '<font color="#EB4B4B">There are no valid skills for this slot!</font>'
+        return '#lod_no_valid_skills'
     end
 
     -- Build a list of possible skills
@@ -1039,7 +1049,7 @@ findRandomSkill = function(playerID, interface, slotNumber, filter)
 
     -- Did we find no possible skills?
     if #possibleSkills == 0 then
-        return '<font color="#EB4B4B">There are no valid skills for this slot.</font>'
+        return '#lod_no_valid_skills'
     end
 
     -- Pick a random skill
@@ -1196,7 +1206,7 @@ setupGamemodeSettings = function()
     -- Are we using easy mode?
     if useEasyMode then
         -- Tell players
-        sendChatMessage(-1, '<font color="#4B69FF">Easy Mode</font> <font color="#ADE55C">was turned on!</font>')
+        sendChatMessage(-1, '#lod_easy_mode')
 
         -- Enable it
         Convars:SetInt('dota_easy_mode', 1)
@@ -1204,18 +1214,31 @@ setupGamemodeSettings = function()
 
     -- Are we using unique skills?
     if forceUniqueSkills > 0 then
-        sendChatMessage(-1, '<font color="#4B69FF">Unique Skills</font> <font color="#ADE55C">was turned on! '..((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '(Team Based)') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '(Global)'))..'</font>')
+        sendChatMessage(-1, '#lod_unique_skills', {
+            ((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '#lod_us_team_based') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '#lod_us_global'))
+        })
     end
 
     -- Announce which gamemode we're playing
-    sendChatMessage(-1, '<font color="#4B69FF">'..(gamemodeNames[gamemode] or 'unknown')..'</font> <font color="#ADE55C">game variant was selected!</font>')
+    sendChatMessage(-1, '#lod_gamemode', {
+        '#lod_gamemode'..gamemode
+    })
 
     -- Announce results
-    sendChatMessage(-1, '<font color="#EB4B4B">Results:</font> <font color="#ADE55C">There will be </font><font color="#4B69FF">'..maxSlots..' slots</font><font color="#ADE55C">, </font><font color="#4B69FF">'..maxSkills..' regular '..((maxSkills == 1 and 'ability') or 'abilities')..'</font><font color="#ADE55C"> and </font><font color="#4B69FF">'..maxUlts..' ultimate '..((maxUlts == 1 and 'ability') or 'abilities')..'</font><font color="#ADE55C"> allowed. Troll combos are </font><font color="#4B69FF">'..((banTrollCombos and 'BANNED') or 'ALLOWED')..'</font><font color="#ADE55C">! Starting level is </font></font><font color="#4B69FF">'..startingLevel..'</font><font color="#ADE55C">! Bonus gold is </font></font><font color="#4B69FF">'..bonusGold..'</font><font color="#ADE55C">.</font>')
+    sendChatMessage(-1, '#lod_results', {
+        maxSlots,
+        maxSkills,
+        ((maxSkills == 1 and '#lod_ability') or '#lod_abilities'),
+        maxUlts,
+        ((maxUlts == 1 and '#lod_ ability') or '#lod_abilities'),
+        ((banTrollCombos and '#lod_BANNED') or '#lod_ALLOWED'),
+        startingLevel,
+        bonusGold
+    })
 
     -- WTF Mode stuff
     if wtfMode then
-        sendChatMessage(-1, '<font color="#EB4B4B">WTF MODE IS ON!</font> <font color="#ADE55C">Skills will have NO COOLDOWNS OR MANA COST! Globals are auto banned!</font>')
+        sendChatMessage(-1, '#lod_wtf')
 
         -- Ban skills
         for k,v in pairs(wtfAutoBan) do
@@ -1228,15 +1251,21 @@ setupGamemodeSettings = function()
 
     if banningTime > 0 then
         if not hostBanning then
-            sendChatMessage(-1, '<font color="#ADE55C">Banning has started. You have</font> <font color="#EB4B4B">'..banningTime..' seconds</font> <font color="#ADE55C">to ban upto <font color="#EB4B4B">'..maxBans..' skills</font><font color="#ADE55C">. Drag and drop skills into the banning area to ban them.</font>')
+            sendChatMessage(-1, '#lod_banning', {
+                banningTime,
+                maxBans
+            })
         else
             -- Tell other players to sit tight
             for i=0,9 do
                 if slaveID ~= i then
-                    sendChatMessage(i, '<font color="#ADE55C">Banning has started. Please wait while your host bans skills and heroes.</font>')
+                    sendChatMessage(i, '#lod_host_banning')
                 else
                     -- Send banning info to main player
-                    sendChatMessage(0, '<font color="#ADE55C">Banning has started. You have</font> <font color="#EB4B4B">'..banningTime..' seconds</font> <font color="#ADE55C">to ban upto <font color="#EB4B4B">'..maxBans..' skills</font><font color="#ADE55C">. Drag and drop skills into the banning area to ban them.</font>')
+                    sendChatMessage(-1, '#lod_banning', {
+                        banningTime,
+                        maxBans
+                    })
                 end
             end
         end
@@ -1248,7 +1277,9 @@ setupGamemodeSettings = function()
         endOfTimer = Time() + banningTime
     else
         -- Tell everyone
-        sendChatMessage(-1, '<font color="#ADE55C">Picking has started. You have</font> <font color="#EB4B4B">'..pickingTime..' seconds</font> <font color="#ADE55C">to pick your skills. Drag and drop skills into the slots to select them.</font>')
+        sendChatMessage(-1, '#lod_picking', {
+            pickingTime
+        })
 
         -- Move onto selection mode
         currentStage = STAGE_PICKING
@@ -1847,7 +1878,9 @@ function lod:OnThink()
         self:OnEmitStateInfo()
 
         -- Tell everyone
-        sendChatMessage(-1, '<font color="#ADE55C">Picking has started. You have</font> <font color="#EB4B4B">'..pickingTime..' seconds</font> <font color="#ADE55C">to pick your skills. Drag and drop skills into the slots to select them.</font>')
+        sendChatMessage(-1, '#lod_picking', {
+            pickingTime
+        })
 
         -- Sleep
         return 0.1
@@ -2553,10 +2586,12 @@ doLock = function(playerID)
         if locksLeft == 0 then
             -- All locks are in place, move on!
             endOfTimer = Time()
-            sendChatMessage(playerID, '<font color="#EB4B4B">All players have locked their skills, moving on...</font>')
+            sendChatMessage(playerID, '#lod_all_locked')
         else
             playerLocks[playerID] = nil
-            sendChatMessage(playerID, '<font color="#EB4B4B">You have unlocked your skills! '..locksLeft..' other players still need to lock their skills to continue.</font>')
+            sendChatMessage(playerID, '#lod_skilled_unlocked', {
+                locksLeft
+            })
         end
         fireLockChange(playerID)
         return
@@ -2565,10 +2600,12 @@ doLock = function(playerID)
     if locksLeft == 0 then
         -- All locks are in place, move on!
         endOfTimer = Time()
-        sendChatMessage(playerID, '<font color="#EB4B4B">All players have locked their skills, moving on...</font>')
+        sendChatMessage(playerID, '#lod_all_locked')
     else
         -- Tell them how long left
-        sendChatMessage(playerID, '<font color="#EB4B4B">Waiting on '..locksLeft..' players to lock their skills.</font>')
+        sendChatMessage(playerID, '#lod_locks_left', {
+            locksLeft
+        })
     end
     fireLockChange(playerID)
 end
@@ -2679,25 +2716,27 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
         -- Host banning mode?
         if hostBanning and playerID ~= 0 then
-            sendChatMessage(playerID, '<font color="#EB4B4B">Please wait while the host bans skills.</font>')
+            sendChatMessage(playerID, '#lod_wait_host_ban')
             return
         end
 
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">'..skillName..' doesn\'t appear to be a valid skill.</font>')
+            sendChatMessage(playerID, '#lod_invalid_skill', {
+                skillName
+            })
             return
         end
 
         -- Ensure we are in banning mode
         if currentStage ~= STAGE_BANNING then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can only ban skills during the banning phase.</font>')
+            sendChatMessage(playerID, '#lod_only_during_ban')
             return
         end
 
@@ -2705,14 +2744,16 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
         totalBans[playerID] = totalBans[playerID] or 0
         if totalBans[playerID] >= maxBans then
             -- Send failure message
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can not ban any more skills.</font>')
+            sendChatMessage(playerID, '#lod_no_more_bans')
             -- Don't ban the skill
             return
         end
 
         -- Check if they are a hater
         if allowBearSkills and skillName == 'lone_druid_spirit_bear' then
-            sendChatMessage(-1, '<font color="#4B69FF">'..util.GetPlayerNameReliable(playerID)..'</font> is being a hater and trying to ban Spirit Bear.')
+            sendChatMessage(-1, '#lod_sb_hater', {
+                util.GetPlayerNameReliable(playerID)
+            })
             return
         end
 
@@ -2725,10 +2766,15 @@ Convars:RegisterCommand('lod_ban', function(name, skillName)
             banSkill(skillName)
 
             -- Tell the user it was successful
-            sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="#4B69FF">'..skillName..'</font> was banned. <font color="#4B69FF">('..totalBans[playerID]..'/'..maxBans..')</font>')
+            sendChatMessage(playerID, '#lod_ban_successful', {
+                getSpellIcon(skillName),
+                tranAbility(skillName),
+                totalBans[playerID],
+                maxBans
+            })
         else
             -- Already banned
-            sendChatMessage(playerID, '<font color="#EB4B4B">This skill is already banned.</font>')
+            sendChatMessage(playerID, '#lod_already_banned')
         end
 
         if totalBans[playerID] >= maxBans then
@@ -2749,13 +2795,15 @@ Convars:RegisterCommand('lod_recommend', function(name, skillName, text)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
         -- Ensure this is a valid skill
         if not isValidSkill(skillName) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">'..skillName..' doesn\'t appear to be a valid skill.</font>')
+            sendChatMessage(playerID, '#lod_invalid_skill', {
+                skillName
+            })
             return
         end
 
@@ -2763,10 +2811,16 @@ Convars:RegisterCommand('lod_recommend', function(name, skillName, text)
         local team = PlayerResource:GetTeam(playerID)
 
         -- Convert text
-        text = text or 'recommends'
+        text = text or '#lod_recommends'
 
         -- Send the message to their team
-        sendTeamMessage(team, '<font color="#4B69FF">'..util.GetPlayerNameReliable(playerID)..'</font> '..text..' '..getSpellIcon(skillName)..' <a href="event:menu_'..skillName..'"><font color="#ADE55C">'..skillName..'</font> <font color="#EB4B4B">[menu]</font></a> <a href="event:info_'..skillName..'"><font color="#EB4B4B">[info]</font></a>')
+        sendTeamMessage(team, '<font color=\"#4B69FF\">{0}</font> {1} {2} <a href=\"event:menu_{3}\"><font color=\"#ADE55C\">{4}</font> <font color=\"#EB4B4B\">[menu]</font></a> <a href=\"event:info_{3}\"><font color=\"#EB4B4B\">[info]</font></a>', {
+            util.GetPlayerNameReliable(playerID),
+            text,
+            getSpellIcon(skillName),
+            skillName,
+            tranAbility(skillName)
+        })
     end
 end, 'Recommends a given skill', 0)
 
@@ -2779,7 +2833,7 @@ Convars:RegisterCommand('lod_more_time', function(name)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
@@ -2788,7 +2842,7 @@ Convars:RegisterCommand('lod_more_time', function(name)
 
         -- Allow extra time ONCE from each team
         if extraTime[team] then
-            sendChatMessage(playerID, '<font color="#EB4B4B">Your team has already requested extra time!</font>')
+            sendChatMessage(playerID, '#lod_already_time')
             return
         end
         extraTime[team] = true
@@ -2797,7 +2851,9 @@ Convars:RegisterCommand('lod_more_time', function(name)
         endOfTimer = endOfTimer + 60
 
         -- Tell the player
-        sendChatMessage(-1, '<font color="#EB4B4B">Extra time was allocated by '..(team == DOTA_TEAM_GOODGUYS and 'RADIANT' or team == DOTA_TEAM_BADGUYS and 'DIRE' or 'an unknown team :O')..'!</font>')
+        sendChatMessage(-1, '#lod_time_allocated', {
+            (team == DOTA_TEAM_GOODGUYS and 'RADIANT' or team == DOTA_TEAM_BADGUYS and 'DIRE' or 'an unknown team :O')
+        })
 
         -- Update state
         GameRules.lod:OnEmitStateInfo()
@@ -2813,7 +2869,7 @@ Convars:RegisterCommand('lod_lock_skills', function(name)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
@@ -2840,43 +2896,43 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You have already spawned. You can no longer pick!</font>')
+            sendChatMessage(playerID, '#lod_already_spawned')
             return
         end
 
         -- Ensure we are in banning mode
         if currentStage ~= STAGE_PICKING then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can only pick skills during the picking phase.</font>')
+            sendChatMessage(playerID, '#lod_only_during_pick')
             return
         end
 
         -- Ensure we are ALLOWED to pick
         if not allowedToPick then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not allowed to pick skills.</font>')
+            sendChatMessage(playerID, '#lod_not_allowed_pick')
             return
         end
 
         -- Ensure this is a valid slot
         if not isValidSlot(slot1) or not isValidSlot(slot2) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">This is not a valid slot.</font>')
+            sendChatMessage(playerID, '#lod_invalid_slot')
             return
         end
 
         -- Ensure different slots
         if slot1 == slot2 then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can\'t swap a slot with itself.</font>')
+            sendChatMessage(playerID, '#lod_swap_slot_self')
             return
         end
 
         -- Check interfaces
         if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
-            sendChatMessage(playerID, '<font color="#EB4B4B">This is not a valid selection interface.</font>')
+            sendChatMessage(playerID, '#lod_invalid_interface')
             return
         end
 
@@ -2969,7 +3025,10 @@ Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, 
         })
 
         -- Tell the player
-        sendChatMessage(playerID, '<font color="#4B69FF">Slot '..(slot1+1)..'</font> was swapped with <font color="#4B69FF">Slot '..(slot2+1)..'</font>')
+        sendChatMessage(playerID, '#lod_swap_success', {
+            (slot1+1),
+            (slot2+1)
+        })
 
     end
 end, 'Ban a given skill', 0)
@@ -2990,31 +3049,31 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
         -- Check locks
         if playerLocks[playerID] then
-            sendChatMessage(playerID, '<font color="#EB4B4B">Your skills are locked! Please unlock your skills first!</font>')
+            sendChatMessage(playerID, '#lod_please_unlock')
             return
         end
 
         -- Stop people who have spawned from picking
         if handledPlayerIDs[playerID] then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You have already spawned. You can no longer pick!</font>')
+            sendChatMessage(playerID, '#lod_already_spawned')
             return
         end
 
         -- Ensure we are in banning mode
         if currentStage ~= STAGE_PICKING then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can only pick skills during the picking phase.</font>')
+            sendChatMessage(playerID, '#lod_only_during_pick')
             return
         end
 
         -- Ensure we are ALLOWED to pick
         if not allowedToPick then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not allowed to pick skills.</font>')
+            sendChatMessage(playerID, '#lod_not_allowed_pick')
             return
         end
 
@@ -3023,20 +3082,24 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
 
         -- Ensure this is a valid slot
         if not isValidSlot(slotNumber) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">This is not a valid slot.</font>')
+            sendChatMessage(playerID, '#lod_invalid_slot')
             return
         end
 
         -- Check interfaces
         if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
-            sendChatMessage(playerID, '<font color="#EB4B4B">This is not a valid selection interface.</font>')
+            sendChatMessage(playerID, '#lod_invalid_interface')
             return
         end
 
         -- Check tower bans
         if theirInterface == SKILL_LIST_TOWER then
             if noTower[skillName] then
-                sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="#4B69FF">'..skillName..'</font> '..noTower[skillName])
+                sendChatMessage(playerID, '#noTower', {
+                    getSpellIcon(skillName),
+                    tranAbility(skillName),
+                    '#noTower_'..skillName
+                })
                 return
             end
         end
@@ -3057,20 +3120,24 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
         if not isValidSkill(skillName) then
             -- Perhaps they tried to random?
             if skillName == 'random' and theirInterface ~= SKILL_LIST_TOWER then
-                msg, skillName = findRandomSkill(playerID, theirInterface, slotNumber)
+                local msg
+                msg,skillName = findRandomSkill(playerID, theirInterface, slotNumber)
 
                 if msg then
                     sendChatMessage(playerID, msg)
+                    return
                 end
             else
-                sendChatMessage(playerID, '<font color="#EB4B4B">'..skillName..' doesn\'t appear to be a valid skill.</font>')
+                sendChatMessage(playerID, '#lod_invalid_skill', {
+                    skillName
+                })
                 return
             end
         end
 
         -- Ensure this is a valid slot
         if skillName == 'lone_druid_spirit_bear' and theirInterface ~= SKILL_LIST_YOUR then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can\'t do bearception.</font>')
+            sendChatMessage(playerID, '#lod_bearception')
             return
         end
 
@@ -3088,19 +3155,19 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
             -- Make sure ults go into slot 3 only
             if(isUlt(skillName)) then
                 if slotType ~= SLOT_TYPE_ULT and slotType ~= SLOT_TYPE_EITHER then
-                    sendChatMessage(playerID, '<font color="#EB4B4B">You can not put an ult into this slot.</font>')
+                    sendChatMessage(playerID, '#lod_no_ult')
                     return
                 end
             else
                 if slotType ~= SLOT_TYPE_ABILITY and slotType ~= SLOT_TYPE_EITHER then
-                    sendChatMessage(playerID, '<font color="#EB4B4B">You can not put a regular skill into this slot.</font>')
+                    sendChatMessage(playerID, '#lod_no_regular')
                     return
                 end
             end
 
-            local msg = CheckBans(activeList, slotNumber+1, skillName, playerID)
+            local msg,args = CheckBans(activeList, slotNumber+1, skillName, playerID)
             if msg then
-                sendChatMessage(playerID, msg)
+                sendChatMessage(playerID, msg, args)
                 return
             end
 
@@ -3140,7 +3207,11 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
             end
 
             -- Tell the player
-            sendChatMessage(playerID, getSpellIcon(skillName)..' <font color="#4B69FF">'..skillName..'</font> was put into <font color="#4B69FF">slot '..(slotNumber+1)..'</font>')
+            sendChatMessage(playerID, '#lod_slot_success', {
+                getSpellIcon(skillName),
+                tranAbility(skillName),
+                (slotNumber+1)
+            })
 
             -- Check for warnings
             if skillWarnings[skillName] then
@@ -3163,27 +3234,27 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
         if currentStage == STAGE_VOTING then
             -- Check if we are using slave mode, and we are a slave
             if slaveID >= 0 and playerID ~= slaveID then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Only the host can change the options.</font>')
+                sendChatMessage(playerID, '#lod_only_host')
                 return
             end
 
             if optNumber < 0 or optNumber >= totalVotableOptions then
                 -- Tell the user
-                sendChatMessage(playerID, '<font color="#EB4B4B">This appears to be an invalid option.</font>')
+                sendChatMessage(playerID, '#lod_invalid_option')
                 return
             end
 
             -- Validate their choice
             if theirChoice < 0 or theirChoice >= totalChoices[optNumber] then
                 -- Tell the user
-                sendChatMessage(playerID, '<font color="#EB4B4B">This appears to be an invalid choice.</font>')
+                sendChatMessage(playerID, '#lod_invalid_choice')
                 return
             end
 
@@ -3203,7 +3274,7 @@ Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
             end
         else
             -- Tell them voting is over
-            sendChatMessage(playerID, '<font color="#EB4B4B">You can only vote during the voting period.</font>')
+            sendChatMessage(playerID, '#lod_during_voting')
         end
     end
 end, 'Update a user\'s vote', 0)
@@ -3217,7 +3288,7 @@ Convars:RegisterCommand('finished_voting', function(name, skillName)
 
         -- Ensure a valid team
         if not isPlayerOnValidTeam(playerID) then
-            sendChatMessage(playerID, '<font color="#EB4B4B">You are not on a valid team.</font>')
+            sendChatMessage(playerID, '#lod_invalid_team')
             return
         end
 
@@ -3227,7 +3298,7 @@ Convars:RegisterCommand('finished_voting', function(name, skillName)
             stillVoting = false
         else
             -- Tell the player they can't use this
-            sendChatMessage(playerID, '<font color="#EB4B4B">Only the host can use this.</font>')
+            sendChatMessage(playerID, '#lod_only_host_use')
         end
     end
 end, 'Toggles the pause during the waiting phase', 0)
@@ -3381,7 +3452,7 @@ end
         if currentStage == STAGE_BANNING then
             -- Host banning mode?
             if hostBanning and playerID ~= 0 then
-                sendChatMessage(playerID, '<font color="#EB4B4B">Please wait while the host bans skills.</font>')
+                sendChatMessage(playerID, '#lod_wait_host_ban')
                 return
             end
 

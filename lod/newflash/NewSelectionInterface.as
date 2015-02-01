@@ -515,10 +515,10 @@
                 }
             } else if(option == 11) {
                 // Recommend a skill
-                recommendCallback(rightClickedAbilityName, 'recommends');
+                recommendCallback(rightClickedAbilityName, '#lod_recommends');
             } else if(option == 12) {
                 // Recommend a ban
-                recommendCallback(rightClickedAbilityName, 'wants you to ban');
+                recommendCallback(rightClickedAbilityName, '#lod_recommend_ban');
             }
         }
 
@@ -554,7 +554,7 @@
                 slotAreaCallback(rightClickedAbility, data);
             } else if(option == 11) {
                 // Recommend a skill
-                recommendCallback(rightClickedAbility.getSkillName(), 'recommends');
+                recommendCallback(rightClickedAbility.getSkillName(), '#lod_recommends');
             }
         }
 
