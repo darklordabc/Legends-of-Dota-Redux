@@ -120,7 +120,7 @@ local pickingTime = 60 * 3
 local slaveID = -1
 
 -- Enable hero banning?
-local enableHeroBanning = true
+local enableHeroBanning = false
 
 --[[
     VOTEABLE OPTIONS
