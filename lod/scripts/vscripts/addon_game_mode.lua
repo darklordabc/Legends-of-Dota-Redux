@@ -2351,13 +2351,15 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                     -- Grab a reference to teh skill
                     local skill = hero:FindAbilityByName(skillName)
 
-                    if requiredLevel > skill:GetMaxLevel() then
-                        requiredLevel = skill:GetMaxLevel()
-                    end
+                    if skill then
+                        if requiredLevel > skill:GetMaxLevel() then
+                            requiredLevel = skill:GetMaxLevel()
+                        end
 
-                    if skill and skill:GetLevel() < requiredLevel then
-                        -- Level the skill
-                        skill:SetLevel(requiredLevel)
+                        if skill and skill:GetLevel() < requiredLevel then
+                            -- Level the skill
+                            skill:SetLevel(requiredLevel)
+                        end
                     end
                 end
             end
