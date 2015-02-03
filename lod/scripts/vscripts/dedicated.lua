@@ -211,7 +211,7 @@ Convars:RegisterCommand('lod_allocate', function(name, steamID, teamID)
 
         -- Parse values
         steamID = tostring(steamID)
-        teamID = tonumber(steamID)
+        teamID = tonumber(teamID)
 
         -- Set the auto allocation
         autoAllocate[steamID] = teamID
