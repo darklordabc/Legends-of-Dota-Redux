@@ -2051,13 +2051,13 @@ applyTowerSkills = function()
     -- Dump dire tower skills
     print('Dire Towers:')
     for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS] or {}) do
-        print(k)
+        print(v)
     end
 
     -- Dump radiant tower skills
     print('Radiant Towers:')
     for k,v in pairs(towerSkills[DOTA_TEAM_GOODGUYS] or {}) do
-        print(k)
+        print(v)
     end
 
     local towers = Entities:FindAllByClassname('npc_dota_tower')
