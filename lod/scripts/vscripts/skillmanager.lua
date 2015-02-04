@@ -430,6 +430,11 @@ function skillManager:ApplyBuild(hero, build)
             else
                 hero:AddAbility(v)
 
+                local newAb = hero:FindAbilityByName(v)
+                if newAb then
+                    newAb:SetHidden(false)
+                end
+
                 -- Insert
                 table.insert(abs, v)
             end
