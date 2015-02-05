@@ -16,7 +16,7 @@ function parseKV(data) {
     var treeType = [TYPE_BLOCK];
     var keys = [null];
 
-    var i = 1;
+    var i = 0;
     var line = 1;
 
     while(i < data.length) {
@@ -39,14 +39,18 @@ function parseKV(data) {
                     chr = data.charAt(i);
 
                     // Check for new line
-                    if(chr == '\n' || chr == '\r') break;
+                    if(chr == '\n') {
+                        if(data.charAt(i+1) == '\r') ++i;
+                        break;
+                    }
+                    if(chr == '\r') {
+                        if(data.charAt(i+1) == '\n') ++i;
+                        break;
+                    }
                 }
 
                 // We are on a new line
                 line++;
-
-                // Move onto the next char
-                i++;
             }
         } else if(chr == '"') {
             var resultString = '';
@@ -217,7 +221,11 @@ function toKV(obj, key) {
             myStr += toKV(obj[entry], entry)
         }
 
-        return '"' + key + '" {' + myStr + '}';
+        if(key != null) {
+            return '"' + key + '" {' + myStr + '}';
+        } else {
+            return myStr;
+        }
     }
 }
 
@@ -445,7 +453,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             console.log('Done saving precacher file!');
         });
 
-        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}), function(err) {
+        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV(newKV, 'DOTAHeroes'), function(err) {
             if (err) throw err;
 
             console.log('Done saving file!');
