@@ -216,6 +216,7 @@ pip-log.txt
 
 lod_bin/
 lod_s2_bin/
+lod/resource/addon_*
 
 #Script generator (your settings file)
 script_generator/settings.json
