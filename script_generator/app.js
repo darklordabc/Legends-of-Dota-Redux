@@ -229,7 +229,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
 
         var newKV = {};
 
-        var ignoreHeroes = {
+        var ignoreHeroes = {    // These are heroes bots can play as, can't edit those, DOH!
             npc_dota_hero_axe: true,
             npc_dota_hero_bane: true,
             npc_dota_hero_bounty_hunter: true,
@@ -345,85 +345,6 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
 
         // Techies override prcaching
         precacher.npc_precache_npc_dota_hero_techies_s2.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
-
-        /*newKV['npc_dota_hero_treant_lod'].Ability4 = 'treant_overgrowth';
-        newKV['npc_dota_hero_treant_lod'].Ability5 = 'attribute_bonus';
-        newKV['npc_dota_hero_treant_lod'].Ability6 = '';
-        newKV['npc_dota_hero_ogre_magi_lod'].Ability4 = 'ogre_magi_multicast';
-        newKV['npc_dota_hero_ogre_magi_lod'].Ability5 = 'attribute_bonus';
-        newKV['npc_dota_hero_ogre_magi_lod'].Ability6 = '';
-        newKV['npc_dota_hero_shredder_lod'].Ability4 = 'attribute_bonus';
-        newKV['npc_dota_hero_shredder_lod'].Ability5 = '';
-        newKV['npc_dota_hero_shredder_lod'].Ability6 = '';
-        newKV['npc_dota_hero_shredder_lod'].Ability7 = '';
-        newKV['npc_dota_hero_earth_spirit_lod'].Ability5 = 'earth_spirit_magnetize';
-        newKV['npc_dota_hero_earth_spirit_lod'].Ability6 = 'attribute_bonus';
-        newKV['npc_dota_hero_earth_spirit_lod'].Ability7 = '';
-
-        newKV['npc_dota_hero_invoker_lod'] = {
-            override_hero: 'npc_dota_hero_invoker',
-            Ability1: 'attribute_bonus',
-            Ability2: '',
-            Ability3: '',
-            Ability4: '',
-            Ability5: '',
-            Ability6: '',
-            Ability7: '',
-            Ability8: '',
-            Ability9: '',
-            Ability10: '',
-            Ability11: '',
-            Ability12: '',
-            Ability13: '',
-            Ability14: '',
-            Ability15: '',
-            Ability16: '',
-        }
-
-        newKV['npc_dota_hero_rubick_lod'] = {
-            override_hero: 'npc_dota_hero_rubick',
-            Ability1: 'attribute_bonus',
-            Ability2: '',
-            Ability3: '',
-            Ability4: '',
-            Ability5: '',
-            Ability6: '',
-            Ability7: '',
-            Ability8: '',
-            Ability9: '',
-            Ability10: '',
-            Ability11: ''
-        }
-
-        newKV['npc_dota_hero_keeper_of_the_light_lod'] = {
-            override_hero: 'npc_dota_hero_keeper_of_the_light',
-            Ability1: 'attribute_bonus',
-            Ability2: '',
-            Ability3: '',
-            Ability4: '',
-            Ability5: '',
-            Ability6: '',
-            Ability7: '',
-            Ability8: '',
-            Ability9: '',
-            Ability10: '',
-            Ability11: ''
-        }
-
-        newKV['npc_dota_hero_wisp_lod'] = {
-            override_hero: 'npc_dota_hero_wisp',
-            Ability1: 'attribute_bonus',
-            Ability2: '',
-            Ability3: '',
-            Ability4: '',
-            Ability5: '',
-            Ability6: '',
-            Ability7: '',
-            Ability8: '',
-            Ability9: '',
-            Ability10: '',
-            Ability11: ''
-        }*/
 
         fs.writeFile(scriptDirOut+'precache_data.txt', toKV(precacher), function(err) {
             if (err) throw err;
