@@ -61,7 +61,7 @@ Legends of Dota
   - **bin/** (Simply copy your `Steam/steamapps/common/dota 2 beta/bin` folder in)
   - **dota/** (Simply copy your `Steam/steamapps/common/dota 2 beta/dota` folder in)
   - **dota/addons/d2fixups** ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
-  - **dota/addons/lod** (You can get this by downloading the ZIP on the right side of this repo)
+  - **dota/addons/lod** (Download the latest release from the releases section above)
   - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.7 dev branch](http://www.sourcemod.net/snapshots.php))
   - **dota/addons/sourcemod/plugins/ffa.smx** (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed)
   - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch](https://www.sourcemm.net/snapshots))
