@@ -217,6 +217,8 @@ pip-log.txt
 lod_bin/
 lod_s2_bin/
 lod/resource/addon_*
+lod/scripts/npc/npc_heroes_custom.txt
+lod/scripts/npc/npc_abilities_custom.txt
 
 #Script generator (your settings file)
 script_generator/settings.json
