@@ -3460,7 +3460,7 @@ loadSpecialGamemode = function()
 end
 
 -- Source1 hero banning
-if GameRules:isSource1() then
+if GameRules:isSource1() and enableHeroBanning then
     Convars:RegisterCommand('dota_select_hero', function(name, heroName)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then
