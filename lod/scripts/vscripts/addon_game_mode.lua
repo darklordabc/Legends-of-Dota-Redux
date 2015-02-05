@@ -433,6 +433,7 @@ local banList = {}
 local noMulticast = {}
 local wtfAutoBan = {}
 local noTower = {}
+local noBear = {}
 
 -- Load and process the bans
 (function()
@@ -442,6 +443,7 @@ local noTower = {}
     -- Store no multicast
     noMulticast = tempBanList.noMulticast
     noTower = tempBanList.noTower
+    noBear = tempBanList.noBear
     wtfAutoBan = tempBanList.wtfAutoBan
 
     -- Bans a skill combo
@@ -3143,6 +3145,14 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
                     getSpellIcon(skillName),
                     tranAbility(skillName),
                     '#noTower_'..skillName
+                })
+                return
+            end
+        elseif theirInterface == SKILL_LIST_BEAR then
+            if noBear[skillName] then
+                sendChatMessage(playerID, '#noBear', {
+                    getSpellIcon(skillName),
+                    tranAbility(skillName)
                 })
                 return
             end

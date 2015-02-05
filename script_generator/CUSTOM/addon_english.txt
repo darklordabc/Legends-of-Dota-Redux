@@ -282,6 +282,8 @@
 		// Tower Ban Messages
 		////////////////
 
+		"noBear"								"{0} <font color=\"#4B69FF\">{1}</font> can not be used on a bear."
+
 		"noTower"								"{0} <font color=\"#4B69FF\">{1}</font> {2}"
 		"noTower_pudge_flesh_heap"              "crashes when used with towers."
         "noTower_troll_warlord_berserkers_rage" "crashes when used with towers."
