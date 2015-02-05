@@ -1,7 +1,6 @@
 var fs = require('fs')
 
 var TYPE_BLOCK = 0;
-var TYPE_ARRAY = 1;
 
 /*
 Parses most of a KV file
@@ -94,11 +93,12 @@ function parseKV(data) {
                 if (keys[keys.length - 1] == null) {
                     keys[keys.length - 1] = resultString;
                 }else {
-                    tree[tree.length - 1][keys[keys.length - 1]] = resultString;
+                    if(tree[tree.length - 1][keys[keys.length - 1]] == null) {
+                        tree[tree.length - 1][keys[keys.length - 1]] = [];
+                    }
+                    tree[tree.length - 1][keys[keys.length - 1]].push(resultString);
                     keys[keys.length - 1] = null;
                 }
-            }else if (treeType[treeType.length - 1] == TYPE_ARRAY) {
-                tree[tree.length - 1].push(resultString);
             }
 
             // Check if we need to reparse the character that ended this string
@@ -187,52 +187,49 @@ function isKeyword(str) {
     }
 }
 
-function toKV(obj, root) {
-    if (obj == null) {
-        return '"null"';
+function toKV(obj, key) {
+    var myStr = '';
+
+    if(obj == null) {
+        // Nothing to return
+        return '';
     } else if (typeof obj == 'number') {
-        return '"'+obj.toString()+'"';
+        return '"' + key + '" "' + obj + '"';
+        console.log('WTF? c');
     } else if (typeof obj == 'boolean') {
-        return '"'+obj.toString()+'"';
+        return '"' + key + '" "' + obj + '"';
+        console.log('WTF? b');
     } else if (typeof obj == 'string') {
-        /*if (isKeyword(obj) || !isIdentifier(obj)) {
-            return '"' + escapeString(obj) + '"';
-        }else {
-            return obj;
-        }*/
-        return '"'+obj+'"';
-    } else if (obj instanceof Array) {
-        return '"'+obj.join(' ')+'"';
-    }else {
-        var str = '';
-        if (!root) {
-            str += '{';
-        }
-        var first = true;
-        for(var i in obj) {
-            if(!first) {
-                str += ' ';
-            }
-            first = false;
-            str += toKV(i, false)+' '+toKV(obj[i], false);
+        return '"' + key + '" "' + obj + '"';
+        console.log('WTF? a');
+    } else if(obj instanceof Array) {
+        // An array of strings
+        for(var i=0; i<obj.length; i++) {
+            if(myStr != '') myStr += ' ';
+            myStr = myStr + '"' + key + '" "' + obj[i] + '"';
         }
 
-        if (!root) {
-            str += '}';
+        return myStr;
+    } else {
+        // An object
+        for(var entry in obj) {
+            if(myStr != '') myStr += ' ';
+            myStr += toKV(obj[entry], entry)
         }
 
-        return str;
+        return '"' + key + '" {' + myStr + '}';
     }
 }
 
 // Script directories
-var settings = require('./settings.json');
-var scriptDir = settings.scriptDir;
-var scriptDirOut = settings.scriptDirOut
-var resourcePath = settings.dotaDir + 'dota/resource/';
+var settings = require('./settings.json');                  // The settings file
+var scriptDir = settings.scriptDir;                         // The directory where dota scripts are placed
+var scriptDirOut = settings.scriptDirOut                    // The directory where our files are outputted
+var resourcePath = settings.dotaDir + 'dota/resource/';     // The directory to read resource files from
+var customDir = settings.customDir;                         // The directory where our mods are read from, to be merged in
 
 // Create the output folder
-fs.mkdirSync(scriptDirOut);
+if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
 // Precache generator
 fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
@@ -442,13 +439,13 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             Ability11: ''
         }*/
 
-        fs.writeFile(scriptDirOut+'precache_data.txt', toKV(precacher, true), function(err) {
+        fs.writeFile(scriptDirOut+'precache_data.txt', toKV(precacher), function(err) {
             if (err) throw err;
 
             console.log('Done saving precacher file!');
         });
 
-        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
+        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}), function(err) {
             if (err) throw err;
 
             console.log('Done saving file!');
@@ -594,13 +591,13 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
         }
     }
 
-    fs.writeFile(scriptDirOut+'ability_items.txt', toKV(newKV, true), function(err) {
+    fs.writeFile(scriptDirOut+'ability_items.txt', toKV(newKV), function(err) {
         if (err) throw err;
 
         console.log('Done saving file!');
     });
 
-    fs.writeFile(scriptDirOut+'ability_items_passive.txt', toKV(newKVPassive, true), function(err) {
+    fs.writeFile(scriptDirOut+'ability_items_passive.txt', toKV(newKVPassive), function(err) {
         if (err) throw err;
 
         console.log('Done saving file!');
@@ -612,3 +609,5 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
         console.log('Done saving file!');
     });
 });
+
+// CSP Generator
