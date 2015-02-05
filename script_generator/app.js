@@ -1,212 +1,5 @@
 var fs = require('fs')
 
-var TYPE_BLOCK = 0;
-
-/*
-Parses most of a KV file
-
-Mostly copied from here:
-https://github.com/Matheus28/KeyValue/blob/master/m28/keyvalue/KeyValue.hx
-*/
-function parseKV(data) {
-    // Make sure we have some data to work with
-    if(!data) return null;
-
-    var tree = [{}];
-    var treeType = [TYPE_BLOCK];
-    var keys = [null];
-
-    var i = 0;
-    var line = 1;
-
-    while(i < data.length) {
-        var chr = data.charAt(i);
-
-        if(chr == ' ' || chr == '\t') {
-            // Ignore white space
-        } else if(chr == '\n') {
-            // We moved onto the next line
-            line++;
-            if(data.charAt(i+1) == '\r') i++;
-        } else if(chr == '\r') {
-            // We moved onto the next line
-            line++;
-            if(data.charAt(i+1) == '\n') i++;
-        } else if(chr == '/') {
-            if(data.charAt(i+1) == '/') {
-                // We found a comment, ignore rest of the line
-                while(++i < data.length) {
-                    chr = data.charAt(i);
-
-                    // Check for new line
-                    if(chr == '\n') {
-                        if(data.charAt(i+1) == '\r') ++i;
-                        break;
-                    }
-                    if(chr == '\r') {
-                        if(data.charAt(i+1) == '\n') ++i;
-                        break;
-                    }
-                }
-
-                // We are on a new line
-                line++;
-            }
-        } else if(chr == '"') {
-            var resultString = '';
-            i++;
-
-            while(i < data.length) {
-                chr = data.charAt(i);
-                if(chr == '"') break;
-
-                if(chr == '\n') {
-                    // We moved onto the next line
-                    line++;
-                    if(data.charAt(i+1) == '\r') i++;
-                } else if(chr == '\r') {
-                    // We moved onto the next line
-                    line++;
-                    if(data.charAt(i+1) == '\n') i++;
-                } else if(chr == '\\') {
-                    i++;
-                    // Gran the mext cjaracter
-                    chr = data.charAt(i);
-
-                    // Check for escaped characters
-                    switch(chr) {
-                        case '\\':chr = '\\'; break;
-                        case '"': chr = '"'; break;
-                        case '\'': chr = '\''; break;
-                        case 'n': chr = '\n'; break;
-                        case 'r': chr = '\r'; break;
-                        default:
-                            chr = '\\';
-                            i--;
-                        break;
-                    }
-                }
-
-                resultString += chr;
-                i++;
-            }
-
-            if (i == data.length || chr == '\n' || chr == '\r') throw new Error("Unterminated string at line " + line);
-
-            if(treeType[treeType.length - 1] == TYPE_BLOCK){
-                if (keys[keys.length - 1] == null) {
-                    keys[keys.length - 1] = resultString;
-                }else {
-                    if(tree[tree.length - 1][keys[keys.length - 1]] == null) {
-                        tree[tree.length - 1][keys[keys.length - 1]] = [];
-                    }
-                    tree[tree.length - 1][keys[keys.length - 1]].push(resultString);
-                    keys[keys.length - 1] = null;
-                }
-            }
-
-            // Check if we need to reparse the character that ended this string
-            if(chr != '"') --i;
-        } else if(chr == '{') {
-            if(treeType[treeType.length - 1] == TYPE_BLOCK){
-                if (keys[keys.length - 1] == null) {
-                    throw new Error("A block needs a key at line " + line + " (offset " + i + ")");
-                }
-            }
-
-            tree.push({});
-            treeType.push(TYPE_BLOCK);
-            keys.push(null);
-        } else if (chr == '}') {
-            if (tree.length == 1) {
-                throw new Error("Mismatching bracket at line " + line + " (offset " + i + ")");
-            }
-            if (treeType.pop() != TYPE_BLOCK) {
-                throw new Error("Mismatching brackets at line " + line + " (offset " + i + ")");
-            }
-            keys.pop();
-            var obj = tree.pop();
-
-            if(treeType[treeType.length - 1] == TYPE_BLOCK){
-                tree[tree.length - 1][keys[keys.length - 1]] = obj;
-                keys[keys.length - 1] = null;
-            }else {
-                tree[tree.length - 1].push(obj);
-            }
-        } else {
-            console.log("Unexpected character \"" + chr + "\" at line " + line + " (offset " + i + ")");
-
-            // Skip to next line
-            while(++i < data.length) {
-                chr = data.charAt(i);
-
-                // Check for new line
-                if(chr == '\n') {
-                    if(data.charAt(i+1) == '\r') ++i;
-                    break;
-                }
-                if(chr == '\r') {
-                    if(data.charAt(i+1) == '\n') ++i;
-                    break;
-                }
-            }
-
-            // We are on a new line
-            line++;
-
-            // Move onto the next char
-            i++;
-        }
-
-        i++;
-    }
-
-    if (tree.length != 1) {
-        throw new Error("Missing brackets");
-    }
-
-    return tree[0];
-}
-
-function escapeString(str) {
-    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"');
-}
-
-function toKV(obj, key) {
-    var myStr = '';
-
-    if(obj == null) {
-        // Nothing to return
-        return '';
-    } else if (typeof obj == 'number') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
-    } else if (typeof obj == 'boolean') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
-    } else if (typeof obj == 'string') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
-    } else if(obj instanceof Array) {
-        // An array of strings
-        for(var i=0; i<obj.length; i++) {
-            if(myStr != '') myStr += ' ';
-            myStr = myStr + '"' + escapeString(key) + '" "' + escapeString(obj[i]) + '"';
-        }
-
-        return myStr;
-    } else {
-        // An object
-        for(var entry in obj) {
-            if(myStr != '') myStr += ' ';
-            myStr += toKV(obj[entry], entry)
-        }
-
-        if(key != null) {
-            return '"' + escapeString(key) + '" {' + myStr + '}';
-        } else {
-            return myStr;
-        }
-    }
-}
-
 // Script directories
 var settings = require('./settings.json');                  // The settings file
 var scriptDir = settings.scriptDir;                         // The directory where dota scripts are placed
@@ -518,3 +311,211 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
 });
 
 // CSP Generator
+
+
+
+/*
+Parses most of a KV file
+
+Mostly copied from here:
+https://github.com/Matheus28/KeyValue/blob/master/m28/keyvalue/KeyValue.hx
+*/
+var TYPE_BLOCK = 0;
+function parseKV(data) {
+    // Make sure we have some data to work with
+    if(!data) return null;
+
+    var tree = [{}];
+    var treeType = [TYPE_BLOCK];
+    var keys = [null];
+
+    var i = 0;
+    var line = 1;
+
+    while(i < data.length) {
+        var chr = data.charAt(i);
+
+        if(chr == ' ' || chr == '\t') {
+            // Ignore white space
+        } else if(chr == '\n') {
+            // We moved onto the next line
+            line++;
+            if(data.charAt(i+1) == '\r') i++;
+        } else if(chr == '\r') {
+            // We moved onto the next line
+            line++;
+            if(data.charAt(i+1) == '\n') i++;
+        } else if(chr == '/') {
+            if(data.charAt(i+1) == '/') {
+                // We found a comment, ignore rest of the line
+                while(++i < data.length) {
+                    chr = data.charAt(i);
+
+                    // Check for new line
+                    if(chr == '\n') {
+                        if(data.charAt(i+1) == '\r') ++i;
+                        break;
+                    }
+                    if(chr == '\r') {
+                        if(data.charAt(i+1) == '\n') ++i;
+                        break;
+                    }
+                }
+
+                // We are on a new line
+                line++;
+            }
+        } else if(chr == '"') {
+            var resultString = '';
+            i++;
+
+            while(i < data.length) {
+                chr = data.charAt(i);
+                if(chr == '"') break;
+
+                if(chr == '\n') {
+                    // We moved onto the next line
+                    line++;
+                    if(data.charAt(i+1) == '\r') i++;
+                } else if(chr == '\r') {
+                    // We moved onto the next line
+                    line++;
+                    if(data.charAt(i+1) == '\n') i++;
+                } else if(chr == '\\') {
+                    i++;
+                    // Gran the mext cjaracter
+                    chr = data.charAt(i);
+
+                    // Check for escaped characters
+                    switch(chr) {
+                        case '\\':chr = '\\'; break;
+                        case '"': chr = '"'; break;
+                        case '\'': chr = '\''; break;
+                        case 'n': chr = '\n'; break;
+                        case 'r': chr = '\r'; break;
+                        default:
+                            chr = '\\';
+                            i--;
+                        break;
+                    }
+                }
+
+                resultString += chr;
+                i++;
+            }
+
+            if (i == data.length || chr == '\n' || chr == '\r') throw new Error("Unterminated string at line " + line);
+
+            if(treeType[treeType.length - 1] == TYPE_BLOCK){
+                if (keys[keys.length - 1] == null) {
+                    keys[keys.length - 1] = resultString;
+                }else {
+                    if(tree[tree.length - 1][keys[keys.length - 1]] == null) {
+                        tree[tree.length - 1][keys[keys.length - 1]] = [];
+                    }
+                    tree[tree.length - 1][keys[keys.length - 1]].push(resultString);
+                    keys[keys.length - 1] = null;
+                }
+            }
+
+            // Check if we need to reparse the character that ended this string
+            if(chr != '"') --i;
+        } else if(chr == '{') {
+            if(treeType[treeType.length - 1] == TYPE_BLOCK){
+                if (keys[keys.length - 1] == null) {
+                    throw new Error("A block needs a key at line " + line + " (offset " + i + ")");
+                }
+            }
+
+            tree.push({});
+            treeType.push(TYPE_BLOCK);
+            keys.push(null);
+        } else if (chr == '}') {
+            if (tree.length == 1) {
+                throw new Error("Mismatching bracket at line " + line + " (offset " + i + ")");
+            }
+            if (treeType.pop() != TYPE_BLOCK) {
+                throw new Error("Mismatching brackets at line " + line + " (offset " + i + ")");
+            }
+            keys.pop();
+            var obj = tree.pop();
+
+            if(treeType[treeType.length - 1] == TYPE_BLOCK){
+                tree[tree.length - 1][keys[keys.length - 1]] = obj;
+                keys[keys.length - 1] = null;
+            }else {
+                tree[tree.length - 1].push(obj);
+            }
+        } else {
+            console.log("Unexpected character \"" + chr + "\" at line " + line + " (offset " + i + ")");
+
+            // Skip to next line
+            while(++i < data.length) {
+                chr = data.charAt(i);
+
+                // Check for new line
+                if(chr == '\n') {
+                    if(data.charAt(i+1) == '\r') ++i;
+                    break;
+                }
+                if(chr == '\r') {
+                    if(data.charAt(i+1) == '\n') ++i;
+                    break;
+                }
+            }
+
+            // We are on a new line
+            line++;
+
+            // Move onto the next char
+            i++;
+        }
+
+        i++;
+    }
+
+    if (tree.length != 1) {
+        throw new Error("Missing brackets");
+    }
+
+    return tree[0];
+}
+
+function escapeString(str) {
+    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"');
+}
+
+function toKV(obj, key) {
+    var myStr = '';
+
+    if(obj == null) {
+        // Nothing to return
+        return '';
+    } else if (typeof obj == 'number') {
+        return '"' + escapeString(key) + '" "' + obj + '"';
+    } else if (typeof obj == 'boolean') {
+        return '"' + escapeString(key) + '" "' + obj + '"';
+    } else if (typeof obj == 'string') {
+        return '"' + escapeString(key) + '" "' + obj + '"';
+    } else if(obj instanceof Array) {
+        // An array of strings
+        for(var i=0; i<obj.length; i++) {
+            if(myStr != '') myStr += ' ';
+            myStr = myStr + '"' + escapeString(key) + '" "' + escapeString(obj[i]) + '"';
+        }
+
+        return myStr;
+    } else {
+        // An object
+        for(var entry in obj) {
+            if(myStr != '') myStr += ' ';
+            myStr += toKV(obj[entry], entry)
+        }
+
+        if(key != null) {
+            return '"' + escapeString(key) + '" {' + myStr + '}';
+        } else {
+            return myStr;
+        }
+    }
+}
