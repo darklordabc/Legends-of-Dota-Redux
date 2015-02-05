@@ -107,18 +107,6 @@ function parseKV(data) {
 
             // Check if we need to reparse the character that ended this string
             if(chr != '"') --i;
-        /*} else if(chr >= '0' && chr <= '9') {
-            var startIndex = i++;
-            while (i < data.length) {
-                chr = data.charAt(i);
-                if ((chr < '0' || chr > '9') && chr != '.' && chr != 'x') break;
-                i++;
-            }
-
-            var resultNumber = parseInt(data.substr(startIndex, i - startIndex));
-            if (resultNumber == null) throw new Error("Invalid number at line " + line + " (offset " + i + ")");
-
-        */
         } else if(chr == '{') {
             if(treeType[treeType.length - 1] == TYPE_BLOCK){
                 if (keys[keys.length - 1] == null) {
@@ -153,7 +141,14 @@ function parseKV(data) {
                 chr = data.charAt(i);
 
                 // Check for new line
-                if(chr == '\n' || chr == '\r') break;
+                if(chr == '\n') {
+                    if(data.charAt(i+1) == '\r') ++i;
+                    break;
+                }
+                if(chr == '\r') {
+                    if(data.charAt(i+1) == '\n') ++i;
+                    break;
+                }
             }
 
             // We are on a new line
@@ -173,22 +168,8 @@ function parseKV(data) {
     return tree[0];
 }
 
-/*function isIdentifier(str) {
-    return (~/^[a-zA-Z$_-][a-zA-Z0-9$_-]*$/).match(str);
-}
-
 function escapeString(str) {
-    return str;//StringTools.replace(StringTools.replace(StringTools.replace(StringTools.replace(str, '\\', '\\\\'), '"', '\\"'), '\r', '\\r'), '\n', '\\n');
-}*/
-
-function isKeyword(str) {
-    switch(str) {
-        case 'true': return true;
-        case 'false': return true;
-        case 'null': return true;
-        case 'undefined': return true;
-        default: return false;
-    }
+    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"');
 }
 
 function toKV(obj, key) {
@@ -198,19 +179,16 @@ function toKV(obj, key) {
         // Nothing to return
         return '';
     } else if (typeof obj == 'number') {
-        return '"' + key + '" "' + obj + '"';
-        console.log('WTF? c');
+        return '"' + escapeString(key) + '" "' + obj + '"';
     } else if (typeof obj == 'boolean') {
-        return '"' + key + '" "' + obj + '"';
-        console.log('WTF? b');
+        return '"' + escapeString(key) + '" "' + obj + '"';
     } else if (typeof obj == 'string') {
-        return '"' + key + '" "' + obj + '"';
-        console.log('WTF? a');
+        return '"' + escapeString(key) + '" "' + obj + '"';
     } else if(obj instanceof Array) {
         // An array of strings
         for(var i=0; i<obj.length; i++) {
             if(myStr != '') myStr += ' ';
-            myStr = myStr + '"' + key + '" "' + obj[i] + '"';
+            myStr = myStr + '"' + escapeString(key) + '" "' + escapeString(obj[i]) + '"';
         }
 
         return myStr;
@@ -222,7 +200,7 @@ function toKV(obj, key) {
         }
 
         if(key != null) {
-            return '"' + key + '" {' + myStr + '}';
+            return '"' + escapeString(key) + '" {' + myStr + '}';
         } else {
             return myStr;
         }
