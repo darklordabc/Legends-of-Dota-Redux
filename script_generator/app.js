@@ -315,6 +315,7 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
 var langs = ['english', 'russian'];
 var langIn = {};
 var langOut = {};
+var specialChar;    // Special character needed for doto encoding
 
 var permutations = {
     // This edits the cooldown of skills
@@ -526,8 +527,6 @@ function doCSP() {
 
                     var newSpell = {};
 
-                    console.log(spellName);
-
                     // Store all permutions of the spell
                     permute(spellName, abs[spellName], newAbs);
                 }
@@ -542,7 +541,7 @@ function doCSP() {
                 // Output language files
                 for(var i=0; i<langs.length; ++i) {
                     (function(lang) {
-                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
                             if (err) throw err;
 
                             console.log('Finished saving ' + lang + '!');
@@ -741,7 +740,7 @@ function parseKV(data) {
 }
 
 function escapeString(str) {
-    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"');
+    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"').replace(/\n/g, '\\n');
 }
 
 function toKV(obj, key) {
@@ -751,15 +750,14 @@ function toKV(obj, key) {
         // Nothing to return
         return '';
     } else if (typeof obj == 'number') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
+        return '"' + escapeString(key) + '""' + obj + '"';
     } else if (typeof obj == 'boolean') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
+        return '"' + escapeString(key) + '""' + obj + '"';
     } else if (typeof obj == 'string') {
-        return '"' + escapeString(key) + '" "' + obj + '"';
+        return '"' + escapeString(key) + '""' + obj + '"';
     } else if(obj instanceof Array) {
         // An array of strings
         for(var i=0; i<obj.length; i++) {
-            if(myStr != '') myStr += '\n';
             myStr = myStr + '"' + escapeString(key) + '" "' + escapeString(obj[i]) + '"';
         }
 
@@ -767,12 +765,11 @@ function toKV(obj, key) {
     } else {
         // An object
         for(var entry in obj) {
-            if(myStr != '') myStr += '\n';
             myStr += toKV(obj[entry], entry)
         }
 
         if(key != null) {
-            return '"' + escapeString(key) + '"\n{' + myStr + '}';
+            return '"' + escapeString(key) + '"{\n' + myStr + '}';
         } else {
             return myStr;
         }
@@ -783,6 +780,8 @@ function toKV(obj, key) {
 (function() {
     var ourData = ''+fs.readFileSync(customDir + 'addon_english.txt');
     var english = parseKV(ourData).lang.Tokens;
+
+    specialChar = fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
 
     for(var i=0; i<langs.length; ++i) {
         // Grab a language
