@@ -1,6 +1,10 @@
 Legends of Dota
 =====
 
+###ATTENSION###
+ - The SRC no longer has binaries inside it
+ - Please download the latest release from the releases section instead!
+
 ###About###
  - Please stand by while this repo is fixed ;)
  - Pick your skills to build an overpowered masterpiece!
@@ -34,7 +38,7 @@ Legends of Dota
 ###Setting up your local client to connect to a source1 server###
  - **DO THIS ONCE, REPEAT WHEN YOU NEED TO UPDATE**
   - Close dota 2 (it won't load most updates / mods that are installed with this method unless you restart dota 2)
-  - Download [THIS ZIP](https://github.com/ash47/LegendsOfDota/archive/master.zip)
+  - Download [The latest release from here](https://github.com/ash47/LegendsOfDota/releases)
   - Extract ONLY the `lod` folder into your `dota 2 beta/dota/addons` folder (creating addons if it doesn't exist)
   - If there are any other folders inside your `addons` folder, please either delete them, or move them into another folder (such as `addons_disabled`)
  - **DO THIS ONCE**

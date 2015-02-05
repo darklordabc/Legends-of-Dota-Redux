@@ -34,7 +34,7 @@ cd "script_generator/BIN"
 copy "npc_abilities_custom.txt" "../../lod_bin/lod/scripts/npc/npc_abilities_custom.txt"
 copy "npc_abilities_custom.txt" "../../lod_s2_bin/scripts/npc/npc_abilities_custom.txt"
 
-copy "npc_abilities_custom.txt" "../../lod_bin/lod/scripts/npc/npc_heroes_custom.txt"
-copy "npc_abilities_custom.txt" "../../lod_s2_bin/scripts/npc/npc_heroes_custom.txt"
+copy "npc_heroes_custom.txt" "../../lod_bin/lod/scripts/npc/npc_heroes_custom.txt"
+copy "npc_heroes_custom.txt" "../../lod_s2_bin/scripts/npc/npc_heroes_custom.txt"
 
 pause

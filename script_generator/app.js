@@ -553,32 +553,34 @@ function doCSP() {
                 }
 
                 // Loop over all spells
-                for(var spellName in abs) {
-                    // Spells to simply ignore
-                    if(spellName == 'Version') continue;
-                    if(spellName == 'ability_base') continue;
-                    if(spellName == 'attribute_bonus') continue;
-                    if(spellName == 'default_attack') continue;
-                    if(spellName.indexOf('recipe') != -1) continue;
-                    if(spellName.indexOf('winter') != -1) continue;
-                    if(spellName.indexOf('present') != -1) continue;
-                    if(spellName.indexOf('greevil') != -1) continue;
-                    if(spellName.indexOf('halloween') != -1) continue;
-                    if(spellName.indexOf('mystery') != -1) continue;
-                    if(spellName.indexOf('courier') != -1) continue;
-                    if(spellName.indexOf('tango') != -1) continue;
-                    if(spellName.indexOf('tpscroll') != -1) continue;
-                    if(spellName.indexOf('ward') != -1) continue;
-                    if(spellName.indexOf('clarity') != -1) continue;
-                    if(spellName.indexOf('flask') != -1) continue;
-                    if(spellName.indexOf('dust') != -1) continue;
-                    if(spellName.indexOf('bottle') != -1) continue;
-                    if(spellName.indexOf('smoke') != -1) continue;
+                if(!settings.noPermute) {
+                    for(var spellName in abs) {
+                        // Spells to simply ignore
+                        if(spellName == 'Version') continue;
+                        if(spellName == 'ability_base') continue;
+                        if(spellName == 'attribute_bonus') continue;
+                        if(spellName == 'default_attack') continue;
+                        if(spellName.indexOf('recipe') != -1) continue;
+                        if(spellName.indexOf('winter') != -1) continue;
+                        if(spellName.indexOf('present') != -1) continue;
+                        if(spellName.indexOf('greevil') != -1) continue;
+                        if(spellName.indexOf('halloween') != -1) continue;
+                        if(spellName.indexOf('mystery') != -1) continue;
+                        if(spellName.indexOf('courier') != -1) continue;
+                        if(spellName.indexOf('tango') != -1) continue;
+                        if(spellName.indexOf('tpscroll') != -1) continue;
+                        if(spellName.indexOf('ward') != -1) continue;
+                        if(spellName.indexOf('clarity') != -1) continue;
+                        if(spellName.indexOf('flask') != -1) continue;
+                        if(spellName.indexOf('dust') != -1) continue;
+                        if(spellName.indexOf('bottle') != -1) continue;
+                        if(spellName.indexOf('smoke') != -1) continue;
 
-                    var newSpell = {};
+                        var newSpell = {};
 
-                    // Store all permutions of the spell
-                    permute(spellName, abs[spellName], newAbs);
+                        // Store all permutions of the spell
+                        permute(spellName, abs[spellName], newAbs);
+                    }
                 }
 
                 // Output new abs file
