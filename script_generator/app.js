@@ -352,7 +352,7 @@ var permutations = {
 
             for(var i=0; i<manacosts.length; ++i) {
                 if(mult != 0) {
-                    manacosts[i] = Math.round(parseFloat(manacosts[i])/mult);
+                    manacosts[i] = Math.round(parseInt(manacosts[i])/mult);
                 } else {
                     manacosts[i] = 0.0;
                 }
@@ -363,11 +363,56 @@ var permutations = {
             // Return the modified spell
             return newAb;
         }
+    },
+
+    damage: {
+        vals: [1, 2, 5],
+        func: function(ability, newAb, mult) {
+            if(!ability.AbilitySpecial) return null;
+            if(mult == 1) return null;
+
+            var abSpec = ability.AbilitySpecial;
+
+            var doMult = {
+                damage: true,
+                damage_scepter: true,
+                bonus_damage: true,
+                ward_damage_tooltip: true,
+                strike_damage: true,
+                tick_damage: true
+            };
+
+            var changed = false;
+            for(var specNum in abSpec) {
+                var spec = abSpec[specNum];
+
+                for(var keyName in spec) {
+                    if(keyName == 'var_type') continue;
+
+                    if(doMult[keyName]) {
+                        var vals = spec[keyName][0].split(' ');
+
+                        for(var i=0; i<vals.length; ++i) {
+                            vals[i] = Math.round(parseInt(vals[i])*mult);
+                        }
+
+                        newAb.AbilitySpecial[specNum][keyName] = vals.join(' ');
+                        changed = true;
+                    }
+                }
+            }
+
+            // Did we even change anything?
+            if(!changed) return null;
+
+            // Return the modified spell
+            return newAb;
+        }
     }
 };
 
 // Order to apply permutions
-var permList = ['cooldown', 'manaCost'];
+var permList = ['cooldown', 'manaCost', 'damage'];
 
 // Permutate a spell
 function permute(spellName, ability, storage) {
@@ -386,8 +431,13 @@ function permute(spellName, ability, storage) {
     // Loop over all the things we need to apply
     while(slots[slots.length-1] < permutations[permList[permList.length-1]].vals.length) {
         var newSpell = {
-            BaseClass: spellName
+            BaseClass: spellName,
+            //AbilityType: ability.AbilityType,
+            AbilityBehavior: ability.AbilityBehavior,
+            AbilitySpecial: clone(ability.AbilitySpecial)
         };
+        if(ability.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = ability.AbilityUnitDamageType;
+
         var suffix = '';
 
         var changed = false;
@@ -570,6 +620,21 @@ function r(value, places) {
     }
 
     return value;
+}
+
+function clone(x) {
+   if (x === null || x === undefined)
+        return x;
+    if (x.clone)
+        return x.clone();
+    if (x.constructor == Array)
+    {
+        var r = [];
+        for (var i=0,n=x.length; i<n; i++)
+            r.push(clone(x[i]));
+        return r;
+    }
+    return x;
 }
 
 /*
