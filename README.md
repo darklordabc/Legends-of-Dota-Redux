@@ -205,3 +205,10 @@ Legends of Dota
  - You will need node.js installed
  - Copy `script_generator/settings_example.json` to `script_generator/settings.json` and fill in the `dotaDir` location, this is the path to your `dota 2 beta`, ending in a slash (/)
  - Run `compile_full.bat`
+
+###Can I translate this into my language?###
+ - Yes!
+ - Open `script_generator/CUSTOM/addon_<your langage>.txt`
+ - You can reference `addon_english.txt`
+ - You might need to save it as unicode, if non standard characters are used
+ - Any strings you don't fill in, will be auto copied in from the english file anyways when the gamemode is compiled
