@@ -37,4 +37,7 @@ copy "npc_abilities_custom.txt" "../../lod_s2_bin/scripts/npc/npc_abilities_cust
 copy "npc_heroes_custom.txt" "../../lod_bin/lod/scripts/npc/npc_heroes_custom.txt"
 copy "npc_heroes_custom.txt" "../../lod_s2_bin/scripts/npc/npc_heroes_custom.txt"
 
+copy "addon_*" "../../lod_bin/lod/resource/"
+copy "addon_*" "../../lod_s2_bin/resource/"
+
 pause
