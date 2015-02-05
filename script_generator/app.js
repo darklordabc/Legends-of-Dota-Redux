@@ -225,9 +225,16 @@ function toKV(obj, root) {
     }
 }
 
-var scriptDir = '';
+// Script directories
+var settings = require('./settings.json');
+var scriptDir = settings.scriptDir;
+var scriptDirOut = settings.scriptDirOut
+var resourcePath = settings.dotaDir + 'dota/resource/';
 
-// Item + Skill modifier
+// Create the output folder
+fs.mkdirSync(scriptDirOut);
+
+// Precache generator
 fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
     fs.readFile(scriptDir+'npc_heroes_source2.txt', function(err, source2) {
         console.log('Loading source1 heroes...');
@@ -435,13 +442,13 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             Ability11: ''
         }*/
 
-        fs.writeFile(scriptDir+'precache_data.txt', toKV(precacher, true), function(err) {
+        fs.writeFile(scriptDirOut+'precache_data.txt', toKV(precacher, true), function(err) {
             if (err) throw err;
 
             console.log('Done saving precacher file!');
         });
 
-        fs.writeFile(scriptDir+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
+        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV({DOTAHeroes: newKV}, true), function(err) {
             if (err) throw err;
 
             console.log('Done saving file!');
@@ -585,24 +592,21 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
             // Store number
             outputSkillIDs += '"lod_' + itemName+'"    "' + (currentID++) + '"\n';
         }
-
-
-
     }
 
-    fs.writeFile(scriptDir+'ability_items.txt', toKV(newKV, true), function(err) {
+    fs.writeFile(scriptDirOut+'ability_items.txt', toKV(newKV, true), function(err) {
         if (err) throw err;
 
         console.log('Done saving file!');
     });
 
-    fs.writeFile(scriptDir+'ability_items_passive.txt', toKV(newKVPassive, true), function(err) {
+    fs.writeFile(scriptDirOut+'ability_items_passive.txt', toKV(newKVPassive, true), function(err) {
         if (err) throw err;
 
         console.log('Done saving file!');
     });
 
-    fs.writeFile(scriptDir+'outputSkillIDs.txt', outputSkillIDs+'\n\n'+outputSkillIDsPassive, function(err) {
+    fs.writeFile(scriptDirOut+'outputSkillIDs.txt', outputSkillIDs+'\n\n'+outputSkillIDsPassive, function(err) {
         if (err) throw err;
 
         console.log('Done saving file!');
