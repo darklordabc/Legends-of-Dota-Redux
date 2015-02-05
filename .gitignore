@@ -219,3 +219,4 @@ lod_s2_bin/
 
 #Script generator (your settings file)
 script_generator/settings.json
+script_generator/BIN/
