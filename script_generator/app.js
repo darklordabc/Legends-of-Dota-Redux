@@ -14,9 +14,9 @@ if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
     fs.readFile(scriptDir+'npc_heroes_source2.txt', function(err, source2) {
         console.log('Loading source1 heroes...');
-        var rootHeroes1 = parseKV(''+source1, true);
+        var rootHeroes1 = parseKV(''+source1);
         console.log('Loading source2 heroes...');
-        var rootHeroes2 = parseKV(''+source2, true);
+        var rootHeroes2 = parseKV(''+source2);
 
         var precacher = {};
 
@@ -155,7 +155,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
 
 fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
     // Convert into something useable
-    var items = parseKV(''+itemsRaw, true).DOTAAbilities;
+    var items = parseKV(''+itemsRaw).DOTAAbilities;
 
     var currentID = 2000;
     var currentIDPassive = 3000;
@@ -312,7 +312,266 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
 
 // CSP Generator
 
+var langs = ['english', 'russian'];
+var langIn = {};
+var langOut = {};
 
+var permutations = {
+    // This edits the cooldown of skills
+    cooldown: {
+        vals: [0, 1, 2, 5],
+        func: function(ability, newAb, mult) {
+            if(!ability.AbilityCooldown) return null;
+            if(mult == 1) return null;
+
+            var cooldowns = ability.AbilityCooldown[0].split(' ');
+
+            for(var i=0; i<cooldowns.length; ++i) {
+                if(mult != 0) {
+                    cooldowns[i] = r(parseFloat(cooldowns[i])/mult, 1);
+                } else {
+                    cooldowns[i] = 0.0;
+                }
+            }
+
+            newAb.AbilityCooldown = cooldowns.join(' ');
+
+            // Return the modified spell
+            return newAb;
+        }
+    },
+
+    manaCost: {
+        vals: [0, 1, 2, 5],
+        func: function(ability, newAb, mult) {
+            if(!ability.AbilityManaCost) return null;
+            if(mult == 1) return null;
+
+            var manacosts = ability.AbilityManaCost[0].split(' ');
+
+            for(var i=0; i<manacosts.length; ++i) {
+                if(mult != 0) {
+                    manacosts[i] = Math.round(parseFloat(manacosts[i])/mult);
+                } else {
+                    manacosts[i] = 0.0;
+                }
+            }
+
+            newAb.AbilityManaCost = manacosts.join(' ');
+
+            // Return the modified spell
+            return newAb;
+        }
+    }
+};
+
+// Order to apply permutions
+var permList = ['cooldown', 'manaCost'];
+
+// Permutate a spell
+function permute(spellName, ability, storage) {
+    // Build slots list
+    var slots = [];
+    for(var i=0; i<permList.length; ++i) {
+        slots[i] = 0;
+    }
+
+    // Grab english
+    var english = langIn.english;
+
+    // List of suffixes we found
+    var suffixes = [];
+
+    // Loop over all the things we need to apply
+    while(slots[slots.length-1] < permutations[permList[permList.length-1]].vals.length) {
+        var newSpell = {
+            BaseClass: spellName
+        };
+        var suffix = '';
+
+        var changed = false;
+        for(var i=0; i<permList.length; ++i) {
+            // Grab a modifier
+            var perm = permutations[permList[i]];
+            var spellValue = perm.vals[slots[i]];
+
+            // Add to the suffix
+            suffix += '_' + spellValue;
+
+            var tempChange = perm.func(ability, newSpell, spellValue);
+
+            if(tempChange != null) {
+                newSpell = tempChange;
+                changed = true;
+            }
+        }
+
+        // Store the spell
+        if(changed) {
+            // Store the spell
+            storage[spellName + suffix] = newSpell;
+
+            // Store suffix
+            suffixes.push(suffix);
+        }
+
+        // Push permution along
+        var sel = 0;
+        slots[sel]++;
+        while(slots[sel] >= permutations[permList[sel]].vals.length) {
+            if(slots[sel+1] == null) break;
+
+            slots[sel] = 0;
+            slots[++sel]++;
+        }
+    }
+
+    // Generate language for this spell
+    for(var key in english) {
+        if(key.indexOf(spellName) != -1) {
+            for(var i=0; i<suffixes.length; ++i) {
+                var suffix = suffixes[i];
+                var newStr = key.replace(spellName, spellName + suffix);
+                generateLanguage(newStr, key);
+            }
+        }
+    }
+}
+
+// theString is the string we search for and use as a key to store in
+// if theString can't be find, search using altString
+// search in actual language, if that fails, search in english, if that fails, commit suicide
+function generateLanguage(theString, altString) {
+    // Grab a reference to english
+    var english = langIn.english;
+
+    for(var i=0; i<langs.length; ++i) {
+        // Grab a language
+        var lang = langs[i];
+        var langFile = langIn[lang];
+        var storeTo = langOut[lang];
+
+        if(langFile[theString]) {
+            storeTo[theString] = langFile[theString];
+        } else if(langFile[altString]) {
+            storeTo[theString] = langFile[altString];
+        } else if(english[theString]) {
+            storeTo[theString] = english[theString];
+        } else if(english[altString]) {
+            storeTo[theString] = english[altString];
+        } else {
+            console.log('Failed to find ' + theString);
+        }
+    }
+}
+
+//function allPerms
+function doCSP() {
+    fs.readFile(scriptDir+'npc_abilities.txt', function(err, abilitesRaw) {
+        // Convert into something useable
+        var abs = parseKV(''+abilitesRaw).DOTAAbilities;
+
+        fs.readFile(customDir+'npc_abilities_custom.txt', function(err, abilitesCustomRaw) {
+            // Convert into something useable
+            var absCustom = parseKV(''+abilitesCustomRaw).DOTAAbilities;
+
+            fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
+                // Begin to permute
+                console.log('Beginning permutations!');
+
+                // Convert into something useable
+                var items = parseKV(''+itemsRaw).DOTAAbilities;
+
+                // New abilities KV
+                var newAbs = {};
+
+                // Merge in custom abilities
+                for(var key in absCustom) {
+                    if(key == 'Version') continue;
+
+                    // Store into our CSP file
+                    abs[key] = absCustom[key];
+
+                    // Store into our actual custom file
+                    newAbs[key] = absCustom[key];
+                }
+
+                // Merge in items
+                for(var key in items) {
+                    abs[key] = items[key];
+                }
+
+                // Loop over all spells
+                for(var spellName in abs) {
+                    // Spells to simply ignore
+                    if(spellName == 'Version') continue;
+                    if(spellName == 'ability_base') continue;
+                    if(spellName == 'attribute_bonus') continue;
+                    if(spellName == 'default_attack') continue;
+                    if(spellName.indexOf('recipe') != -1) continue;
+                    if(spellName.indexOf('winter') != -1) continue;
+                    if(spellName.indexOf('present') != -1) continue;
+                    if(spellName.indexOf('greevil') != -1) continue;
+                    if(spellName.indexOf('halloween') != -1) continue;
+                    if(spellName.indexOf('mystery') != -1) continue;
+                    if(spellName.indexOf('courier') != -1) continue;
+                    if(spellName.indexOf('tango') != -1) continue;
+                    if(spellName.indexOf('tpscroll') != -1) continue;
+                    if(spellName.indexOf('ward') != -1) continue;
+                    if(spellName.indexOf('clarity') != -1) continue;
+                    if(spellName.indexOf('flask') != -1) continue;
+                    if(spellName.indexOf('dust') != -1) continue;
+                    if(spellName.indexOf('bottle') != -1) continue;
+                    if(spellName.indexOf('smoke') != -1) continue;
+
+                    var newSpell = {};
+
+                    console.log(spellName);
+
+                    // Store all permutions of the spell
+                    permute(spellName, abs[spellName], newAbs);
+                }
+
+                // Output new abs file
+                fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(newAbs, 'DOTAAbilities'), function(err) {
+                    if (err) throw err;
+
+                    console.log('Done saving file compiled abilities file.');
+                });
+
+                // Output language files
+                for(var i=0; i<langs.length; ++i) {
+                    (function(lang) {
+                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                            if (err) throw err;
+
+                            console.log('Finished saving ' + lang + '!');
+                        });
+                    })(langs[i]);
+                }
+            });
+        });
+    });
+}
+
+/*
+    Helper functions
+*/
+
+// Round to places decimal places
+function r(value, places) {
+    for(var i=0; i<places; i++) {
+        value *= 10;
+    }
+
+    value = Math.round(value);
+
+    for(var i=0; i<places; i++) {
+        value /= 10;
+    }
+
+    return value;
+}
 
 /*
 Parses most of a KV file
@@ -500,7 +759,7 @@ function toKV(obj, key) {
     } else if(obj instanceof Array) {
         // An array of strings
         for(var i=0; i<obj.length; i++) {
-            if(myStr != '') myStr += ' ';
+            if(myStr != '') myStr += '\n';
             myStr = myStr + '"' + escapeString(key) + '" "' + escapeString(obj[i]) + '"';
         }
 
@@ -508,14 +767,52 @@ function toKV(obj, key) {
     } else {
         // An object
         for(var entry in obj) {
-            if(myStr != '') myStr += ' ';
+            if(myStr != '') myStr += '\n';
             myStr += toKV(obj[entry], entry)
         }
 
         if(key != null) {
-            return '"' + escapeString(key) + '" {' + myStr + '}';
+            return '"' + escapeString(key) + '"\n{' + myStr + '}';
         } else {
             return myStr;
         }
     }
 }
+
+// Read in our language files
+(function() {
+    var ourData = ''+fs.readFileSync(customDir + 'addon_english.txt');
+    var english = parseKV(ourData).lang.Tokens;
+
+    for(var i=0; i<langs.length; ++i) {
+        // Grab a language
+        var lang = langs[i];
+
+        var data = fs.readFileSync(resourcePath + 'dota_' + lang + '.txt', 'utf16le').substring(1);
+
+        // Load her up
+        langIn[lang] = parseKV(data).lang.Tokens;
+        langOut[lang] = {};
+
+        var toUse;
+        if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
+            var ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            toUse = parseKV(ourData).lang.Tokens;
+        } else {
+            toUse = english;
+        }
+
+        for(var key in english) {
+            if(toUse[key]) {
+                langOut[lang][key] = toUse[key];
+            } else {
+                langOut[lang][key] = english[key];
+            }
+        }
+    }
+
+    console.log('Done loading languages!');
+})();
+
+// Do CSP stuff
+doCSP();
