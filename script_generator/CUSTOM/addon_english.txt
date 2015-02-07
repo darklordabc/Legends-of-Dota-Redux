@@ -288,6 +288,7 @@
 		"noTower_pudge_flesh_heap"              "crashes when used with towers."
         "noTower_troll_warlord_berserkers_rage" "crashes when used with towers."
         "noTower_life_stealer_feast"            "is too OP on towers."
+        "noTower_ursa_fury_swipes"            	"is too OP on towers."
         "noTower_medusa_split_shot"             "can not be actived on towers."
         "noTower_dragon_knight_dragon_blood"    "extends the game far too long."
         "noTower_shredder_reactive_armor"       "extends the game far too long."
