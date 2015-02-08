@@ -65,7 +65,7 @@ Legends of Dota
   - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.7 dev branch](http://www.sourcemod.net/snapshots.php))
   - **dota/addons/sourcemod/plugins/ffa.smx** (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed)
   - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch](https://www.sourcemm.net/snapshots))
-  - **dota/maps/dota.bsp** (You need to grab the dota_fixed.bsp in the maps directory from this repo, rename it to dota.bsp and replace the existing one. The map is the same, only patched to work with custom games on source1)
+  - **dota/maps/dota.bsp** (You need to grab the dota_fixed.bsp in the maps directory from this repo, rename it to dota.bsp and replace the existing one. The map is the same, only patched to work with custom games on source1. Note: You only need to do this on servers, NOT clients.)
  - The following goes into a batch file, place this match file into the same folder as srcds, call it `server.bat`
 
         @echo off
@@ -180,6 +180,8 @@ Legends of Dota
   - Check the d2fixups topic, there is a small chance that when you have tried to setup the server, everything is broken, because of a recent update, be patent, and don't spam the devs, they will fix things when they have time
  - **Bots don't spawn**
   - There is plenty of help above
+ - **My game crashes when I connect**
+  - Ensure you installed the patched dota.bsp into your server, it is REQUIRED now
 
 ###Server Commands###
  - `lod_sethost` While in the waiting / loading period, this can be used to set the ID of the hoster.
