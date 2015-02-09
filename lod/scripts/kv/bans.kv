@@ -265,17 +265,29 @@
         "sven_storm_bolt"               "1"
     }
 
-    // Stop tower from getting these abilities
-    "noTower" {
+    // Skills that are never allowed on a tower
+    "noTowerAlways" {
         "pudge_flesh_heap"              "1"
         "troll_warlord_berserkers_rage" "1"
-        "life_stealer_feast"            "1"
-        "medusa_split_shot"             "1"
-        "dragon_knight_dragon_blood"    "1"
-        "shredder_reactive_armor"       "1"
         "vengefulspirit_command_aura"   "1"
-        "ursa_fury_swipes"              "1"
-        "riki_permanent_invisibility"   "1"
+    }
+
+    // Stop tower from getting these abilities
+    "noTower" {
+        "pudge_flesh_heap"              "#noTowerCrash"
+        "troll_warlord_berserkers_rage" "#noTowerCrash"
+        "life_stealer_feast"            "#noTowerOP"
+        "medusa_split_shot"             "#noTowerActivate"
+        "dragon_knight_dragon_blood"    "#noTowerLongGame"
+        "shredder_reactive_armor"       "#noTowerLongGame"
+        "vengefulspirit_command_aura"   "#noTowerCrash"
+        "ursa_fury_swipes"              "#noTowerOP"
+        "riki_permanent_invisibility"   "#noTowerNoAttack"
+        "lod_item_helm_of_the_dominator""#noTowerLongGame"
+        "lod_item_mask_of_madness"      "#noTowerLongGame"
+        "lod_item_lifesteal"            "#noTowerLongGame"
+        "lod_item_satanic"              "#noTowerLongGame"
+        "lod_item_heart"                "#noTowerLongGame"
     }
 
     // Skills that can not be used on bears

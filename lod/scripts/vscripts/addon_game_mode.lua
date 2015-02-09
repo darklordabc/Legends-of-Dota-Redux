@@ -433,6 +433,7 @@ local banList = {}
 local noMulticast = {}
 local wtfAutoBan = {}
 local noTower = {}
+local noTowerAlways = {}
 local noBear = {}
 
 -- Load and process the bans
@@ -443,6 +444,7 @@ local noBear = {}
     -- Store no multicast
     noMulticast = tempBanList.noMulticast
     noTower = tempBanList.noTower
+    noTowerAlways = tempBanList.noTowerAlways
     noBear = tempBanList.noBear
     wtfAutoBan = tempBanList.wtfAutoBan
 
@@ -3140,11 +3142,11 @@ Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, 
 
         -- Check tower bans
         if theirInterface == SKILL_LIST_TOWER then
-            if noTower[skillName] then
+            if (banTrollCombos and noTower[skillName]) or noTowerAlways[skillName] then
                 sendChatMessage(playerID, '#noTower', {
                     getSpellIcon(skillName),
                     tranAbility(skillName),
-                    '#noTower_'..skillName
+                    noTower[skillName]
                 })
                 return
             end
