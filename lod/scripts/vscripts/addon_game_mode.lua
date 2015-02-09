@@ -1,6 +1,13 @@
 -- Debug info for noobs
 print('\n\nBeginning to run legends of dota script....')
 
+-- Ensure LoD is compiled
+local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
+if tst == 0 or tst == nil then
+    print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')
+    return
+end
+
 -- Ensure lod exists
 if _G.lod == nil then
     _G.lod = class({})
