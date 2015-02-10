@@ -55,6 +55,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
             npc_dota_hero_skywrath_mage: true,
             npc_dota_hero_sniper: true,
             npc_dota_hero_sven: true,
+            npc_dota_hero_techies: true,
             npc_dota_hero_tidehunter: true,
             npc_dota_hero_tiny: true,
             npc_dota_hero_vengefulspirit: true,
