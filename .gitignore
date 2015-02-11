@@ -214,7 +214,7 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-lod_bin/
+lod_s1_bin/
 lod_s2_bin/
 lod/resource/addon_*
 lod/scripts/npc/npc_heroes_custom.txt
