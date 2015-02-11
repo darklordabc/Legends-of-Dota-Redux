@@ -64,7 +64,7 @@ for k,v in pairs(heroListKV) do
 end
 
 -- Apply patches to heroListKV
-local function loadStuff()
+(function()
     local patchFile = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local ourPatch = {}
 
@@ -77,9 +77,7 @@ local function loadStuff()
     end
 
     util.MergeTables(heroListKV, ourPatch)
-end
-loadStuff()
-loadStuff = nil
+end)();
 
 function lod:precacheAll(context)
     --[[for k,v in pairs(heroIDToName) do

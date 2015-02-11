@@ -477,6 +477,7 @@
 
                     // Grab the s1 version of the skill
                     var s1Skill = String(skillIndex).replace('_s1', '');
+                    var s2Skill = String(skillIndex).replace('_s2', '');
 
                     // Check if this is a source1 only skill
                     if(s1Skill != skillIndex) {
@@ -485,6 +486,14 @@
 
                         // Check if we can include it
                         if(!source1) {
+                            doInclude = false;
+                        }
+                    } else if(s2Skill != skillIndex) {
+                        // Copy it across
+                        skillIndex = s2Skill;
+
+                        // Check if we can include it
+                        if(source1) {
                             doInclude = false;
                         }
                     }

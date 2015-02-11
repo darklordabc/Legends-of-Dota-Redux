@@ -207,7 +207,8 @@ Legends of Dota
  - This gamemode has files that are relevant to different versions of the mod, and hence, should not be distrubuted with every version
  - You will need node.js installed
  - Copy `script_generator/settings_example.json` to `script_generator/settings.json` and fill in the `dotaDir` location, this is the path to your `dota 2 beta`, ending in a slash (/)
- - Run `compile_full.bat`
+ - You will need to stage the directories, this creates virtual links to all the files, one for each build we offer, to do this, simply run `stage.bat` (this might need admin permissions)
+ - `compile.bat` is used to compile script changes in the script_generator folder, you do not need to restage the changes
 
 ###Can I translate this into my language?###
  - Yes!
@@ -215,3 +216,4 @@ Legends of Dota
  - You can reference `addon_english.txt`
  - You might need to save it as unicode, if non standard characters are used
  - Any strings you don't fill in, will be auto copied in from the english file anyways when the gamemode is compiled
+ - Note to Ash47: You need to add new languages to the `stage.bat` file!
