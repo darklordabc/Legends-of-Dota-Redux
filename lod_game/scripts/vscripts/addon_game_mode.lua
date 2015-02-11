@@ -2388,167 +2388,170 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
 end, nil)
 
 -- Multicast [source2 ONLY]
-if not GameRules:isSource1() then
-    ListenToGameEvent('dota_player_used_ability', function(keys)
-        local ply = EntIndexToHScript(keys.PlayerID or keys.player)
-        if ply then
-            local hero = ply:GetAssignedHero()
-            if hero then
-                -- Check if they have multicast
-                if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
-                    local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                    if mab then
-                        -- Grab the level of the ability
-                        local lvl = mab:GetLevel()
+ListenToGameEvent('dota_player_used_ability', function(keys)
+    local ply = EntIndexToHScript(keys.PlayerID or keys.player)
+    if ply then
+        local hero = ply:GetAssignedHero()
+        if hero then
+            -- Check if they have multicast
+            if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
+                local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
+                if mab then
+                    -- Grab the level of the ability
+                    local lvl = mab:GetLevel()
 
-                        -- If they have no level in it, stop
-                        if lvl == 0 then return end
+                    -- If they have no level in it, stop
+                    if lvl == 0 then return end
 
-                        -- How many times we will cast the spell
-                        local mult = 0
+                    -- How many times we will cast the spell
+                    local mult = 0
 
-                        -- Grab a random number
-                        local r = RandomFloat(0, 1)
+                    -- Grab a random number
+                    local r = RandomFloat(0, 1)
 
-                        -- Calculate multiplyer
-                        if lvl == 1 then
-                            if r < 0.25 then
-                                mult = 2
-                            end
-                        elseif lvl == 2 then
-                            if r < 0.2 then
-                                mult = 3
-                            elseif r < 0.4 then
-                                mult = 2
-                            end
-                        elseif lvl == 3 then
-                            if r < 0.125 then
-                                mult = 4
-                            elseif r < 0.25 then
-                                mult = 3
-                            elseif r < 0.5 then
-                                mult = 2
+                    -- Calculate multiplyer
+                    if lvl == 1 then
+                        if r < 0.25 then
+                            mult = 2
+                        end
+                    elseif lvl == 2 then
+                        if r < 0.2 then
+                            mult = 3
+                        elseif r < 0.4 then
+                            mult = 2
+                        end
+                    elseif lvl == 3 then
+                        if r < 0.125 then
+                            mult = 4
+                        elseif r < 0.25 then
+                            mult = 3
+                        elseif r < 0.5 then
+                            mult = 2
+                        end
+                    end
+
+                    -- Are we doing any multiplying?
+                    if mult > 0 then
+                        local ab = hero:FindAbilityByName(keys.abilityname)
+
+                        -- If we failed to find it, it might hav e been an item
+                        if not ab and hero:HasModifier('modifier_item_ultimate_scepter') then
+                            for i=0,5 do
+                                -- Grab the slot item
+                                local slotItem = hero:GetItemInSlot(i)
+
+                                -- Was this the spell that was cast?
+                                if slotItem and slotItem:GetClassname() == keys.abilityname then
+                                    -- We found it
+                                    ab = slotItem
+                                    break
+                                end
                             end
                         end
 
-                        -- Are we doing any multiplying?
-                        if mult > 0 then
-                            local ab = hero:FindAbilityByName(keys.abilityname)
+                        if ab then
+                            -- How long to delay each cast
+                            local delay = 0.1--getMulticastDelay(keys.abilityname)
 
-                            -- If we failed to find it, it might hav e been an item
-                            if not ab and hero:HasModifier('modifier_item_ultimate_scepter') then
-                                for i=0,5 do
-                                    -- Grab the slot item
-                                    local slotItem = hero:GetItemInSlot(i)
+                            -- Grab the position
+                            local pos = hero:GetCursorPosition()
+                            local target = hero:GetCursorCastTarget()
+                            local isTargetSpell = false
 
-                                    -- Was this the spell that was cast?
-                                    if slotItem and slotItem:GetClassname() == keys.abilityname then
-                                        -- We found it
-                                        ab = slotItem
-                                        break
-                                    end
+                            local playerID = hero:GetPlayerID()
+
+                            local targets
+                            if target then
+                                -- Target based spells dont work in source1, sue me
+                                if GameRules:isSource1() then
+                                    return
                                 end
+
+                                isTargetSpell = true
+
+                                targets = FindUnitsInRadius(target:GetTeam(),
+                                    target:GetOrigin(),
+                                    nil,
+                                    256,
+                                    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                                    DOTA_UNIT_TARGET_ALL,
+                                    DOTA_UNIT_TARGET_FLAG_NONE,
+                                    FIND_ANY_ORDER,
+                                    false
+                                )
                             end
 
-                            if ab then
-                                -- How long to delay each cast
-                                local delay = 0.1--getMulticastDelay(keys.abilityname)
+                            Timers:CreateTimer(function()
+                                -- Ensure it still exists
+                                if IsValidEntity(ab) then
+                                    -- Position cursor
+                                    hero:SetCursorPosition(pos)
 
-                                -- Grab the position
-                                local pos = hero:GetCursorPosition()
-                                local target = hero:GetCursorCastTarget()
-                                local isTargetSpell = false
+                                    local ourTarget = target
 
-                                local playerID = hero:GetPlayerID()
+                                    -- If we have any targets to pick from, pick one
+                                    local doneTarget = false
+                                    if targets then
+                                        -- While there is still possible targets
+                                        while #targets > 0 do
+                                            -- Pick a random target
+                                            local index = math.random(#targets)
+                                            local t = targets[index]
 
-                                local targets
-                                if target then
-                                    isTargetSpell = true
-
-                                    targets = FindUnitsInRadius(target:GetTeam(),
-                                        target:GetOrigin(),
-                                        nil,
-                                        256,
-                                        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-                                        DOTA_UNIT_TARGET_ALL,
-                                        DOTA_UNIT_TARGET_FLAG_NONE,
-                                        FIND_ANY_ORDER,
-                                        false
-                                    )
-                                end
-
-                                Timers:CreateTimer(function()
-                                    -- Ensure it still exists
-                                    if IsValidEntity(ab) then
-                                        -- Position cursor
-                                        hero:SetCursorPosition(pos)
-
-                                        local ourTarget = target
-
-                                        -- If we have any targets to pick from, pick one
-                                        local doneTarget = false
-                                        if targets then
-                                            -- While there is still possible targets
-                                            while #targets > 0 do
-                                                -- Pick a random target
-                                                local index = math.random(#targets)
-                                                local t = targets[index]
-
-                                                -- Ensure it is valid and still alive
-                                                if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget then
-                                                    -- Target is valid and alive, target it
-                                                    ourTarget = t
-                                                    doneTarget = true
-                                                    break
-                                                else
-                                                    -- Invalid target, remove it and find another
-                                                    table.remove(targets, index)
-                                                end
-                                            end
-                                        end
-
-                                        if isTargetSpell then
-                                            if IsValidEntity(ourTarget) and ourTarget:GetHealth() > 0 then
-                                                hero:SetCursorCastTarget(ourTarget)
+                                            -- Ensure it is valid and still alive
+                                            if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget then
+                                                -- Target is valid and alive, target it
+                                                ourTarget = t
+                                                doneTarget = true
+                                                break
                                             else
-                                                return
+                                                -- Invalid target, remove it and find another
+                                                table.remove(targets, index)
                                             end
                                         end
+                                    end
 
-                                        -- Run the spell again
-                                        print('Multicast '..ab:GetClassname())
-                                        ab:OnSpellStart()
-
-                                        mult = mult-1
-                                        if mult > 1 then
-                                            return delay
+                                    if isTargetSpell then
+                                        if IsValidEntity(ourTarget) and ourTarget:GetHealth() > 0 then
+                                            hero:SetCursorCastTarget(ourTarget)
+                                        else
+                                            return
                                         end
                                     end
-                                end, DoUniqueString('multicast'), delay)
 
-                                -- Create sexy particles
-                                local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
-                                ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                                ParticleManager:ReleaseParticleIndex(prt)
+                                    -- Run the spell again
+                                    print('Multicast '..ab:GetClassname())
+                                    ab:OnSpellStart()
 
-                                prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                                prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
-                                ParticleManager:ReleaseParticleIndex(prt)
+                                    mult = mult-1
+                                    if mult > 1 then
+                                        return delay
+                                    end
+                                end
+                            end, DoUniqueString('multicast'), delay)
 
-                                prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                                ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                                ParticleManager:ReleaseParticleIndex(prt)
+                            -- Create sexy particles
+                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
 
-                                -- Play the sound
-                                hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
-                            end
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            -- Play the sound
+                            hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
                         end
                     end
                 end
             end
         end
-    end, nil)
-end
+    end
+end, nil)
 
 -- Abaddon ulty fix
 ListenToGameEvent('entity_hurt', function(keys)
@@ -3699,6 +3702,10 @@ skillWarnings = {
     lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('lone_druid_true_form')},
     phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
 }
+
+if GameRules:isSource1() then
+    skillWarnings.ogre_magi_multicast_lod = {getSpellIcon('ogre_magi_multicast'), tranAbility('ogre_magi_multicast')}
+end
 
 if lod == nil then
 	print('LOD FAILED TO INIT!\n\n')
