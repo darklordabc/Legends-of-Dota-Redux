@@ -23,8 +23,8 @@ mklink /H "lod_s1_bin\lod\scripts\custom_events.txt" "lod_game\scripts\custom_ev
 mklink /H "lod_s1_bin\lod\scripts\stat_collection.kv" "lod_game\scripts\stat_collection.kv"
 
 :: Hard link NPC scripts
-mklink /H "lod_s1_bin\lod\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist.txt"
-mklink /H "lod_s1_bin\lod\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist.txt"
+mklink /H "lod_s1_bin\lod\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist_s1.txt"
+mklink /H "lod_s1_bin\lod\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist_s1.txt"
 mklink /H "lod_s1_bin\lod\scripts\npc\npc_units_custom.txt" "lod_game\scripts\npc\npc_units_custom.txt"
 
 :: Link script folders
@@ -68,8 +68,8 @@ mklink /H "lod_s2_bin\scripts\custom_events.txt" "lod_game\scripts\custom_events
 mklink /H "lod_s2_bin\scripts\stat_collection.kv" "lod_game\scripts\stat_collection.kv"
 
 :: Hard link NPC scripts
-mklink /H "lod_s2_bin\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist.txt"
-mklink /H "lod_s2_bin\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist.txt"
+mklink /H "lod_s2_bin\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist_s2.txt"
+mklink /H "lod_s2_bin\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist_s2.txt"
 mklink /H "lod_s2_bin\scripts\npc\npc_units_custom.txt" "lod_game\scripts\npc\npc_units_custom.txt"
 
 :: Link script folders
