@@ -1,15 +1,13 @@
 Legends of Dota
 =====
 
-###ATTENSION###
- - The SRC no longer has binaries inside it
- - Please download the latest release from the releases section instead!
-
 ###About###
- - Please stand by while this repo is fixed ;)
  - Pick your skills to build an overpowered masterpiece!
  - Test out different combinations!
  - Create unique and creative heros to dominate your opponent.
+
+###Want to show your support?###
+ - [![Donate](https://www.paypalobjects.com/en_AU/i/scr/pixel.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2S6LTGPBK4YEA)
 
 ###Current Features###
  - Picking Interface
