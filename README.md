@@ -7,7 +7,7 @@ Legends of Dota
  - Create unique and creative heros to dominate your opponent.
 
 ###Want to show your support?###
- - [![Donate](https://www.paypalobjects.com/en_AU/i/scr/pixel.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2S6LTGPBK4YEA)
+ - [![Donate](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2S6LTGPBK4YEA)
 
 ###Current Features###
  - Picking Interface
