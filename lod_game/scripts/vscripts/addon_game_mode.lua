@@ -167,6 +167,12 @@ local wtfMode = false
 -- Enable Universal shop mode
 local universalShop = false
 
+-- Enable fast jungle mode
+local fastJungleCreeps = false
+
+-- All vision
+local allVision = false
+
 -- Unique skills constants
 local UNIQUE_SKILLS_NONE = 0
 local UNIQUE_SKILLS_TEAM = 1
@@ -1195,6 +1201,16 @@ printOptionsToPlayer = function(playerID)
         sendChatMessage(playerID, '#lod_universal_shop')
     end
 
+    -- Fast Jungle
+    if fastJungleCreeps then
+        sendChatMessage(playerID, '#lod_fast_jungle_creeps')
+    end
+
+    -- All Vision
+    if allVision then
+        sendChatMessage(playerID, '#lod_all_vision')
+    end
+
     -- Tell the user which mode it is
     if currentStage == STAGE_BANNING then
         -- Banning mode
@@ -1341,6 +1357,17 @@ setupGamemodeSettings = function()
     -- Universal Shop
     if universalShop then
         GameRules:SetUseUniversalShopMode(true)
+    end
+
+    -- Fast creep spawning
+    if fastJungleCreeps then
+        Convars:SetFloat('dota_neutral_spawn_interval', 0)
+        Convars:SetFloat('dota_neutral_initial_spawn_delay', 1)
+    end
+
+    -- All Vision
+    if allVision then
+        Convars:SetBool('dota_all_vision', true)
     end
 
     if banningTime > 0 then
@@ -1554,6 +1581,12 @@ finishVote = function()
 
     -- Universal shop mode
     universalShop = optionToValue(19, winners[19]) == 1
+
+    -- Fast jungle
+    fastJungleCreeps = optionToValue(20, winners[20]) == 1
+
+    -- All Vision
+    allVision = optionToValue(21, winners[21]) == 1
 
     -- Add settings to our stat collector
     statcollection.addStats({

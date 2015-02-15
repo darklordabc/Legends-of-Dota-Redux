@@ -97,6 +97,12 @@
 		"desUniversalShop"					"Universal Shop"
 		"hintUniversalShop"					"All items can be purchased from all shops."
 
+		"desFastJungle"						"Fast Jungle Spawning"
+		"hintFastJungle"					"Makes creeps in the jungle respawn super fast. Jungle creeps will also spawn at 0:01 instead of 0:30."
+
+		"desAllVision"						"All Vision"
+		"hintAllVision"						"Makes everyone share the same vision. Teams get enemy vision."
+
 		"g_ap"								"All Pick"
 		"g_sd"								"Single Draft"
 		"g_md"								"Mirror Draft"
@@ -224,6 +230,8 @@
 		"lod_results"			"<font color=\"#EB4B4B\">Results:</font> <font color=\"#ADE55C\">There will be </font><font color=\"#4B69FF\">{0} slots</font><font color=\"#ADE55C\">, </font><font color=\"#4B69FF\">{1} regular {2}</font><font color=\"#ADE55C\"> and </font><font color=\"#4B69FF\">{3} ultimate {4}</font><font color=\"#ADE55C\"> allowed. Troll combos are </font><font color=\"#4B69FF\">{5}</font><font color=\"#ADE55C\">! Starting level is </font><font color=\"#4B69FF\">{6}</font><font color=\"#ADE55C\">! Bonus gold is </font></font><font color=\"#4B69FF\">{7}</font><font color=\"#ADE55C\">.</font>"
 		"lod_wtf"				"<font color=\"#EB4B4B\">WTF MODE IS ON!</font> <font color=\"#ADE55C\">Skills will have NO COOLDOWNS OR MANA COST! Globals are auto banned!</font>"
 		"lod_universal_shop"	"<font color=\"#EB4B4B\">UNIVERSAL SHOP IS ACTIVATED!</font> <font color=\"#ADE55C\">You can purchase any item from any shop!</font>"
+		"lod_fast_jungle_creeps""<font color=\"#EB4B4B\">FAST JUNGLE CREEPS IS ACTIVATED!</font> <font color=\"#ADE55C\">Creeps in the jungle will spawn super fast, and will spawn at 0:01 instead of 0:30.</font>"
+		"lod_all_vision"		"<font color=\"#EB4B4B\">ALL VISION IS ACTIVATED!</font> <font color=\"#ADE55C\">Everyone will share the same vision.</font>"
 		"lod_banning"			"<font color=\"#ADE55C\">Banning has started. You have</font> <font color=\"#EB4B4B\">{0} seconds</font> <font color=\"#ADE55C\">to ban upto <font color=\"#EB4B4B\">{1} skills</font><font color=\"#ADE55C\">. Drag and drop skills into the banning area or right click them to ban them.</font>"
 		"lod_host_banning"		"<font color=\"#ADE55C\">Banning has started. Please wait while your host bans skills and heroes.</font>"
 		"lod_picking"			"<font color=\"#ADE55C\">Picking has started. You have</font> <font color=\"#EB4B4B\">{0} seconds</font> <font color=\"#ADE55C\">to pick your skills. Drag and drop skills into the slots or right click abilities to select them.</font>"

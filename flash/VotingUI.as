@@ -46,9 +46,6 @@
             // Reset container
             options = {};
 
-            // Where to place the movieclips
-            var yy:Number = votingHeader.y + votingHeader.height;
-
             // Are we a slave?
             if(slave) {
                 // Update the header
@@ -56,7 +53,8 @@
             }
 
             // Empty the container
-            Util.empty(container);
+            Util.empty(container1);
+            Util.empty(container2);
 
             // Loop over all options
             for(var optNumber:Number=0;optionList[optNumber];optNumber++) {
@@ -65,16 +63,18 @@
 
                 // Create the panel
                 var optionPanel:MovieClip = new VotingOptionPanel(slave, option.des, option.hint, Util.objectToArray(option.options));
-                container.addChild(optionPanel);
-                container.setChildIndex(optionPanel, 0)
+
+                // Fix depth issues
+                optionPanel.addEventListener(MouseEvent.ROLL_OVER, fixDepthIssues, false, 0, true);
+
+                // Put it into a container and position it nicely
+                var con:MovieClip = this['container' + option.conID];
+                con.addChild(optionPanel);
                 optionPanel.x = 0;
-                optionPanel.y = yy;
+                optionPanel.y = option.conPos * spacing;
 
                 // Store it
                 options[optNumber] = optionPanel;
-
-                // Move the position up
-                yy += spacing;
 
                 // If we're allowed to vote
                 if(!slave) {
@@ -95,6 +95,12 @@
                 lockButton.addEventListener(MouseEvent.CLICK, onSubmitPressed);
             }
 		}
+
+        // Fixes depth issues
+        private function fixDepthIssues(e:MouseEvent):void {
+            // Do it
+            e.currentTarget.parent.setChildIndex(e.currentTarget, e.currentTarget.parent.numChildren-1);
+        }
 
         // Stores a given vote
         public function updateSlave(optNumber:Number, newValue:Number) {
