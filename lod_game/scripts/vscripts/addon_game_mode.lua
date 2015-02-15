@@ -2410,10 +2410,8 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         if ab then
                             local newCooldown = ab:GetCooldownTimeRemaining() + reduction
 
-                            if newCooldown <= 0 then
-                                ab:EndCooldown()
-                            else
-                                ab:EndCooldown()
+                            ab:EndCooldown()
+                            if newCooldown > 0 then
                                 ab:StartCooldown(newCooldown)
                             end
                         end
