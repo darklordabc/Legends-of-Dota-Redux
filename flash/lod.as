@@ -1681,6 +1681,11 @@
             GameAPI.SendServerCommand('lod_lock_skills');
         }
 
+        // Displays the options information into the chat
+        public static function showOptions():void {
+            GameAPI.SendServerCommand('lod_show_options');
+        }
+
         // Fired when the server bans a skill
         private function onSkillBanned(args:Object) {
             // Grab the skill

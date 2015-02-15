@@ -94,6 +94,9 @@
 		"desWTF"							"WTF Mode"
 		"hintWTF"							"Enables WTF Mode, this will also ban out certain global / troll skills."
 
+		"desUniversalShop"					"Universal Shop"
+		"hintUniversalShop"					"All items can be purchased from all shops."
+
 		"g_ap"								"All Pick"
 		"g_sd"								"Single Draft"
 		"g_md"								"Mirror Draft"
@@ -179,6 +182,7 @@
 		"clickthese"						"Switch between ability and hero selection."
 		"findskills"						"Filter abilities to quickly find what you need."
 		"pleaseWait"						"Please wait while we waste your time.\n\nIf this screen doesn't disappear after 5 seconds, it indicates the server has Legends of Dota setup incorrect, or that it is outdated.\n\nWe are currently syncing your local client with the server."
+		"helpShowOptions"					"Show Options"
 		"helpMoreTime"						"More Time"
 		"helpLockSkills"					"Lock Skills"
 
@@ -219,6 +223,7 @@
 		"lod_gamemode"			"<font color=\"#4B69FF\">{0}</font> <font color=\"#ADE55C\">game variant was selected!</font>"
 		"lod_results"			"<font color=\"#EB4B4B\">Results:</font> <font color=\"#ADE55C\">There will be </font><font color=\"#4B69FF\">{0} slots</font><font color=\"#ADE55C\">, </font><font color=\"#4B69FF\">{1} regular {2}</font><font color=\"#ADE55C\"> and </font><font color=\"#4B69FF\">{3} ultimate {4}</font><font color=\"#ADE55C\"> allowed. Troll combos are </font><font color=\"#4B69FF\">{5}</font><font color=\"#ADE55C\">! Starting level is </font><font color=\"#4B69FF\">{6}</font><font color=\"#ADE55C\">! Bonus gold is </font></font><font color=\"#4B69FF\">{7}</font><font color=\"#ADE55C\">.</font>"
 		"lod_wtf"				"<font color=\"#EB4B4B\">WTF MODE IS ON!</font> <font color=\"#ADE55C\">Skills will have NO COOLDOWNS OR MANA COST! Globals are auto banned!</font>"
+		"lod_universal_shop"	"<font color=\"#EB4B4B\">UNIVERSAL SHOP IS ACTIVATED!</font> <font color=\"#ADE55C\">You can purchase any item from any shop!</font>"
 		"lod_banning"			"<font color=\"#ADE55C\">Banning has started. You have</font> <font color=\"#EB4B4B\">{0} seconds</font> <font color=\"#ADE55C\">to ban upto <font color=\"#EB4B4B\">{1} skills</font><font color=\"#ADE55C\">. Drag and drop skills into the banning area or right click them to ban them.</font>"
 		"lod_host_banning"		"<font color=\"#ADE55C\">Banning has started. Please wait while your host bans skills and heroes.</font>"
 		"lod_picking"			"<font color=\"#ADE55C\">Picking has started. You have</font> <font color=\"#EB4B4B\">{0} seconds</font> <font color=\"#ADE55C\">to pick your skills. Drag and drop skills into the slots or right click abilities to select them.</font>"

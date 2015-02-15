@@ -24,6 +24,9 @@
         public var bearSkillList:MovieClip;
         public var towerSkillList:MovieClip;
 
+        // The show options button
+        public var helpShowOptions:MovieClip;
+
         // The lock skills button
         public var helpLockSkills:MovieClip;
 
@@ -168,6 +171,8 @@
             helpMoreTime.addEventListener(MouseEvent.CLICK, lod.requestMoreTime);
             helpLockSkills.setText('#helpLockSkills');
             helpLockSkills.addEventListener(MouseEvent.CLICK, lod.lockSkills);
+            helpShowOptions.setText('#helpShowOptions');
+            helpShowOptions.addEventListener(MouseEvent.CLICK, lod.showOptions);
 
             // Set the skill list selector text
             browseYourSkills.setText('#browseYourSkills');

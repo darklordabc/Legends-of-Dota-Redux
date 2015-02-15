@@ -108,6 +108,7 @@ local applyTowerSkills
 local levelSpiritSkills
 local tranAbility
 local transHero
+local printOptionsToPlayer
 
 --[[
     SETTINGS
@@ -162,6 +163,9 @@ local forceRandomHero = false
 
 -- Enable WTF Mode?
 local wtfMode = false
+
+-- Enable Universal shop mode
+local universalShop = false
 
 -- Unique skills constants
 local UNIQUE_SKILLS_NONE = 0
@@ -1149,6 +1153,91 @@ slotTypeString = function (playerID, interface)
     return str
 end
 
+-- Prints options to the given player
+printOptionsToPlayer = function(playerID)
+    -- Announce results
+    sendChatMessage(playerID, '#lod_results', {
+        maxSlots,
+        maxSkills,
+        ((maxSkills == 1 and '#lod_ability') or '#lod_abilities'),
+        maxUlts,
+        ((maxUlts == 1 and '#lod_ ability') or '#lod_abilities'),
+        ((banTrollCombos and '#lod_BANNED') or '#lod_ALLOWED'),
+        startingLevel,
+        bonusGold
+    })
+
+    -- Announce which gamemode we're playing
+    sendChatMessage(playerID, '#lod_gamemode', {
+        '#lod_gamemode'..gamemode
+    })
+
+    -- Are we using easy mode?
+    if useEasyMode then
+        -- Tell players
+        sendChatMessage(playerID, '#lod_easy_mode')
+    end
+
+    -- Are we using unique skills?
+    if forceUniqueSkills > 0 then
+        sendChatMessage(playerID, '#lod_unique_skills', {
+            ((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '#lod_us_team_based') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '#lod_us_global'))
+        })
+    end
+
+    -- WTF Mode stuff
+    if wtfMode then
+        sendChatMessage(playerID, '#lod_wtf')
+    end
+
+    -- Universal Shop
+    if universalShop then
+        sendChatMessage(playerID, '#lod_universal_shop')
+    end
+
+    -- Tell the user which mode it is
+    if currentStage == STAGE_BANNING then
+        -- Banning mode
+        if not hostBanning then
+            sendChatMessage(playerID, '#lod_banning', {
+                math.ceil(endOfTimer-Time()),
+                maxBans
+            })
+        else
+            if playerID ~= -1 then
+                -- Tell other players to sit tight
+                if slaveID ~= playerID then
+                    sendChatMessage(playerID, '#lod_host_banning')
+                else
+                    -- Send banning info to main player
+                    sendChatMessage(playerID, '#lod_banning', {
+                        math.ceil(endOfTimer-Time()),
+                        maxBans
+                    })
+                end
+            else
+                -- Tell other players to sit tight
+                for i=0,9 do
+                    if slaveID ~= i then
+                        sendChatMessage(i, '#lod_host_banning')
+                    else
+                        -- Send banning info to main player
+                        sendChatMessage(-1, '#lod_banning', {
+                            math.ceil(endOfTimer-Time()),
+                            maxBans
+                        })
+                    end
+                end
+            end
+        end
+    elseif currentStage == STAGE_PICKING then
+        -- Picking mode
+        sendChatMessage(playerID, '#lod_picking', {
+            math.ceil(endOfTimer-Time())
+        })
+    end
+end
+
 -- Takes the current gamemode number, and sets the required settings
 setupGamemodeSettings = function()
     -- Default to not using the draft array
@@ -1234,41 +1323,12 @@ setupGamemodeSettings = function()
 
     -- Are we using easy mode?
     if useEasyMode then
-        -- Tell players
-        sendChatMessage(-1, '#lod_easy_mode')
-
         -- Enable it
         Convars:SetInt('dota_easy_mode', 1)
     end
 
-    -- Are we using unique skills?
-    if forceUniqueSkills > 0 then
-        sendChatMessage(-1, '#lod_unique_skills', {
-            ((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '#lod_us_team_based') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '#lod_us_global'))
-        })
-    end
-
-    -- Announce which gamemode we're playing
-    sendChatMessage(-1, '#lod_gamemode', {
-        '#lod_gamemode'..gamemode
-    })
-
-    -- Announce results
-    sendChatMessage(-1, '#lod_results', {
-        maxSlots,
-        maxSkills,
-        ((maxSkills == 1 and '#lod_ability') or '#lod_abilities'),
-        maxUlts,
-        ((maxUlts == 1 and '#lod_ ability') or '#lod_abilities'),
-        ((banTrollCombos and '#lod_BANNED') or '#lod_ALLOWED'),
-        startingLevel,
-        bonusGold
-    })
-
     -- WTF Mode stuff
     if wtfMode then
-        sendChatMessage(-1, '#lod_wtf')
-
         -- Ban skills
         for k,v in pairs(wtfAutoBan) do
             bannedSkills[k] = true
@@ -1278,38 +1338,18 @@ setupGamemodeSettings = function()
         Convars:SetBool('dota_ability_debug', true)
     end
 
-    if banningTime > 0 then
-        if not hostBanning then
-            sendChatMessage(-1, '#lod_banning', {
-                banningTime,
-                maxBans
-            })
-        else
-            -- Tell other players to sit tight
-            for i=0,9 do
-                if slaveID ~= i then
-                    sendChatMessage(i, '#lod_host_banning')
-                else
-                    -- Send banning info to main player
-                    sendChatMessage(-1, '#lod_banning', {
-                        banningTime,
-                        maxBans
-                    })
-                end
-            end
-        end
+    -- Universal Shop
+    if universalShop then
+        GameRules:SetUseUniversalShopMode(true)
+    end
 
+    if banningTime > 0 then
         -- Move onto banning mode
         currentStage = STAGE_BANNING
 
         -- Store when the banning phase ends
         endOfTimer = Time() + banningTime
     else
-        -- Tell everyone
-        sendChatMessage(-1, '#lod_picking', {
-            pickingTime
-        })
-
         -- Move onto selection mode
         currentStage = STAGE_PICKING
 
@@ -1335,6 +1375,9 @@ setupGamemodeSettings = function()
 
     -- Update state
     GameRules.lod:OnEmitStateInfo()
+
+    -- Print the options
+    printOptionsToPlayer(-1)
 end
 
 -- Called when picking ends
@@ -1508,6 +1551,9 @@ finishVote = function()
 
     -- WTF Mode
     wtfMode = optionToValue(18, winners[18]) == 1
+
+    -- Universal shop mode
+    universalShop = optionToValue(19, winners[19]) == 1
 
     -- Add settings to our stat collector
     statcollection.addStats({
@@ -2946,6 +2992,24 @@ Convars:RegisterCommand('lod_more_time', function(name)
         GameRules.lod:OnEmitStateInfo()
     end
 end, 'Grants extra time for each team', 0)
+
+-- When a user wants to view the options
+Convars:RegisterCommand('lod_show_options', function(name)
+    -- Grab the player
+    local cmdPlayer = Convars:GetCommandClient()
+    if cmdPlayer then
+        local playerID = cmdPlayer:GetPlayerID()
+
+        -- Ensure a valid team
+        if not isPlayerOnValidTeam(playerID) then
+            sendChatMessage(playerID, '#lod_invalid_team')
+            return
+        end
+
+        -- Send the options
+        printOptionsToPlayer(playerID)
+    end
+end, 'Shows options to a player', 0)
 
 -- When a user locks their skills
 Convars:RegisterCommand('lod_lock_skills', function(name)
