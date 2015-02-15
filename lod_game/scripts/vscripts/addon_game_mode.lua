@@ -438,6 +438,7 @@ local SLOT_TYPE_NEITHER = '4'
 -- Ban List
 local banList = {}
 local noMulticast = {}
+local noWitchcraft = {}
 local wtfAutoBan = {}
 local noTower = {}
 local noTowerAlways = {}
@@ -450,6 +451,7 @@ local noBear = {}
 
     -- Store no multicast
     noMulticast = tempBanList.noMulticast
+    noWitchcraft = tempBanList.noWitchcraft
     noTower = tempBanList.noTower
     noTowerAlways = tempBanList.noTowerAlways
     noBear = tempBanList.noBear
@@ -2393,6 +2395,32 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
+            -- Check for witchcraft
+            if hero:HasAbility('death_prophet_witchcraft') and not noWitchcraft[keys.abilityname] then
+                local mab = hero:FindAbilityByName('death_prophet_witchcraft')
+                if mab then
+                    -- Grab the level of the ability
+                    local lvl = mab:GetLevel()
+
+                    if lvl > 0 then
+                        local reduction = lvl * -1
+
+                        local ab = hero:FindAbilityByName(keys.abilityname)
+
+                        if ab then
+                            local newCooldown = ab:GetCooldownTimeRemaining() + reduction
+
+                            if newCooldown <= 0 then
+                                ab:EndCooldown()
+                            else
+                                ab:EndCooldown()
+                                ab:StartCooldown(newCooldown)
+                            end
+                        end
+                    end
+                end
+            end
+
             -- Check if they have multicast
             if hero:HasAbility('ogre_magi_multicast_lod') and canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
