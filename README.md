@@ -11,8 +11,8 @@ Legends of Dota
 
 ###Current Features###
  - Picking Interface
- - Basic Voting Interface
- - Basic Banning Interface (You can ban skills and a hero)
+ - Basic Option Selection Interface
+ - Basic Banning Interface (You can ban skills)
  - Unlimited skill selection time
  - Option to have between 4 and 6 slots
  - Option to have between 0 and 6 regular abilities
