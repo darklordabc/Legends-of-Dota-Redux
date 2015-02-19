@@ -1713,7 +1713,7 @@ end
 
 -- Called when LoD starts
 function lod:InitGameMode()
-    print('\n\nLegends of dota started!')
+    print('\n\nLegends of dota started! (v'..getLodVersion()..')')
     GameRules:GetGameModeEntity():SetThink('OnThink', self, 'GlobalThink', 0.25)
     GameRules:GetGameModeEntity():SetThink('OnEmitStateInfo', self, 'EmitStateInfo', 5)
 
