@@ -485,11 +485,24 @@ local noBear = {}
         end
     end
 
+    -- Function to do a category ban
+    local doCatBan
+    doCatBan = function(skillName, cat)
+        for skillName2,sort in pairs(tempBanList.Categories[cat] or {}) do
+            if sort == 1 then
+                banCombo(skillName, skillName2)
+            elseif sort == 2 then
+                doCatBan(skillName, skillName2)
+            else
+                print('Unknown category banning sort: '..sort)
+            end
+        end
+    end
+
+
     -- Loop over category bans
     for skillName,cat in pairs(tempBanList.CategoryBans) do
-        for skillName2,__ in pairs(tempBanList.Categories[cat] or {}) do
-            banCombo(skillName, skillName2)
-        end
+        doCatBan(skillName, cat)
     end
 
     -- Ban the group bans

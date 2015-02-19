@@ -669,14 +669,27 @@
                 }
             }
 
+            var doCatBan:Function;
+            doCatBan = function(skillName, cat) {
+                for(skillName2 in (tempBanList.Categories[cat] || {})) {
+                    var sort:Number = tempBanList.Categories[cat][skillName2];
+
+                    if(sort == 1) {
+                        banCombo(skillName, skillName2);
+                    } else if(sort == 2) {
+                        doCatBan(skillName, skillName2);
+                    } else {
+                        trace('Unknown category banning sort: ' + sort)
+                    }
+                }
+            }
+
             // Store category bans
             for(skillName in tempBanList.CategoryBans) {
                 // Grab the category
                 var cat:String = tempBanList.CategoryBans[skillName];
 
-                for(skillName2 in (tempBanList.Categories[cat] || {})) {
-                    banCombo(skillName, skillName2);
-                }
+                doCatBan(skillName, cat);
             }
 
             // Ban the group bans
