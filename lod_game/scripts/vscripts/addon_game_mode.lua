@@ -2188,6 +2188,9 @@ applyTowerSkills = function()
 
     -- Set the ownership
     setTowerOwnership()
+
+    -- Log that this was successful
+    print('Done allocating tower skills!')
 end
 
 -- When a hero spawns
@@ -2306,7 +2309,12 @@ ListenToGameEvent('npc_spawned', function(keys)
             end
 
             -- Add the extra skills
+            print('Allocating skills to '..spawnedUnit:GetClassname())
+            for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
+                print(k..' - '..v)
+            end
             SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
+            print('Success!')
 
             return
         end
@@ -2320,7 +2328,12 @@ ListenToGameEvent('npc_spawned', function(keys)
             local build = (skillList[playerID] or {})[SKILL_LIST_YOUR] or {}
 
             -- Apply the build
+            print('Allocating skills to '..spawnedUnit:GetClassname())
+            for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
+                print(k..' - '..v)
+            end
             SkillManager:ApplyBuild(spawnedUnit, build)
+            print('Success!')
 
             -- Store playerID has handled
             handledPlayerIDs[playerID] = true
@@ -2354,7 +2367,12 @@ ListenToGameEvent('npc_spawned', function(keys)
                         handled[spawnedUnit] = true
 
                         -- Apply the build
+                        print('Allocating skills to bear, playerID '..playerID)
+                        for k,v in pairs(skillz or {}) do
+                            print(k..' - '..v)
+                        end
                         SkillManager:ApplyBuild(spawnedUnit, skillz)
+                        print('Success!')
                     end
 
                     -- Grab their hero
@@ -3598,7 +3616,14 @@ loadSpecialGamemode = function()
                             -- If there are any valid ones
                             if #possibleBuilds > 0 then
                                 -- Apply a random one
-                                SkillManager:ApplyBuild(hero, possibleBuilds[math.random(#possibleBuilds)])
+                                local chosenBuild = possibleBuilds[math.random(#possibleBuilds)]
+
+                                print('Allocating skills to '..hero:GetClassname())
+                                for k,v in pairs(chosenBuild or {}) do
+                                    print(k..' - '..v)
+                                end
+                                SkillManager:ApplyBuild(hero, chosenBuild)
+                                print('success!')
                             end
 
                             ourChance = startChance
