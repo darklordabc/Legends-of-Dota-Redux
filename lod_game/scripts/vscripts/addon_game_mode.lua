@@ -2540,11 +2540,17 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         local ab = hero:FindAbilityByName(keys.abilityname)
 
                         if ab then
-                            local newCooldown = ab:GetCooldownTimeRemaining() + reduction
+                            local timeRemaining = ab:GetCooldownTimeRemaining()
+                            local newCooldown = timeRemaining + reduction
+                            if newCooldown < 1 then
+                                newCooldown = 1
+                            end
 
-                            ab:EndCooldown()
-                            if newCooldown > 0 then
-                                ab:StartCooldown(newCooldown)
+                            if newCooldown < timeRemaining then
+                                ab:EndCooldown()
+                                if newCooldown > 0 then
+                                    ab:StartCooldown(newCooldown)
+                                end
                             end
                         end
                     end
