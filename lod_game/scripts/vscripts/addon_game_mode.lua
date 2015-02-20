@@ -94,6 +94,7 @@ local postGamemodeSettings
 local getOptionsString
 local shuffle
 local optionToValue
+local valueToOption
 local finishVote
 local backdoorFix
 local botSkillsOnly
@@ -368,6 +369,16 @@ else
                 -- Check if voting is already over
                 if currentStage > STAGE_VOTING then return end
 
+                -- Attempt to pull the slaveID
+                if slaveID == -1 then
+                    slaveID = loadhelper.getHostID()
+                end
+
+                if slaveID == -1 then
+                    print('Option loading failed, slaveID == -1')
+                    return
+                end
+
                 -- Set settings go go go
                 gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
 
@@ -376,11 +387,6 @@ else
                 maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
 
                 maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
-                if maxBans == -1 then
-                    -- Host banning mode
-                    maxBans = 500
-                    hostBanning = true
-                end
 
                 forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
 
@@ -391,17 +397,18 @@ else
                 startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
                 bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
 
-                -- Only allow it in the waiting stage
-                if currentStage == STAGE_WAITING then
-                    -- Skip the voting screen
-                    patchOptions = true
-                elseif currentStage == STAGE_VOTING then
-                    -- No longer voting
-                    stillVoting = false
-
-                    -- Setup all the fancy gamemode stuff
-                    setupGamemodeSettings()
-                end
+                voteData[slaveID] = voteData[slaveID] or {}
+                voteData[slaveID][0] = valueToOption(0, gamemode)
+                voteData[slaveID][1] = valueToOption(1, maxSlots)
+                voteData[slaveID][2] = valueToOption(2, maxSkills)
+                voteData[slaveID][3] = valueToOption(3, maxUlts)
+                voteData[slaveID][4] = valueToOption(4, maxBans)
+                voteData[slaveID][5] = valueToOption(5, (banTrollCombos and 1) or 0)
+                voteData[slaveID][6] = valueToOption(6, startingLevel)
+                voteData[slaveID][7] = valueToOption(7, (useEasyMode and 1) or 0)
+                voteData[slaveID][8] = valueToOption(8, (hideSkills and 1) or 0)
+                voteData[slaveID][9] = valueToOption(9, bonusGold)
+                voteData[slaveID][10] = valueToOption(10, forceUniqueSkills)
             end)
         else
             -- Disable it
@@ -1482,6 +1489,21 @@ optionToValue = function(optionNumber, choice)
     end
 
     return -1
+end
+
+valueToOption = function(optionNumber, value)
+    local option = votingList[tostring(optionNumber)]
+    if option then
+        if option.values then
+            for k,v in pairs(option.values) do
+                if tonumber(value) == tonumber(v) then
+                    return tonumber(k)
+                end
+            end
+        end
+    end
+
+    return 0
 end
 
 -- This function tallys the votes, and sets the options
