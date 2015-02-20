@@ -103,6 +103,23 @@
 		"desAllVision"						"All Vision"
 		"hintAllVision"						"Makes everyone share the same vision. Teams get enemy vision."
 
+		"desSpawnTime"						"Respawn Time"
+		"hintSpawnTime"						"Allows you to change the respawn time of heroes.\n\nYou can set either a factor based respawn time, or an absolute respawn time."
+		"spawnTimeNormal"					"Normal Spawn Time"
+		"lod_respawn_modifier_constant"		"<font color=\"#EB4B4B\">Respawn time will always be {0}.</font>"
+		"lod_respawn_modifier_variable"		"<font color=\"#EB4B4B\">Respawn time will be {0} of the normal respawn time.</font>"
+		"lod_respawn_0_5"					"1/2"
+		"lod_respawn_0_1"					"1/10"
+		"lod_respawn_1"						"1 second"
+		"lod_respawn_10"					"10 seconds"
+		"lod_respawn_20"					"20 seconds"
+		"lod_respawn_30"					"30 seconds"
+		"lod_respawn_60"					"60 seconds"
+
+		"desFreeScepter"					"Start With Upgraded Ultimates"
+		"hintFreeScepter"					"No scepter is required to use the scepter part of people's skills."
+		"lod_fast_scepter"					"<font color=\"#EB4B4B\">All ultimates will have their scepter upgrades activated without buying a scepter!</font>"
+
 		"g_ap"								"All Pick"
 		"g_sd"								"Single Draft"
 		"g_md"								"Mirror Draft"

@@ -201,6 +201,12 @@ local allowedTabsString = ''
 local allowBearSkills = true
 local allowTowerSkills = false
 
+-- Respawn modifier
+local respawnModifier = 0
+
+-- Give a free scepter?
+local freeScepter = false
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -1231,6 +1237,27 @@ printOptionsToPlayer = function(playerID)
         sendChatMessage(playerID, '#lod_all_vision')
     end
 
+    -- Fast Scepter
+    if freeScepter then
+        sendChatMessage(playerID, '#lod_fast_scepter')
+    end
+
+    -- Respawn Timer
+    if respawnModifier ~= 0 then
+        if respawnModifier < 0 then
+            sendChatMessage(playerID, '#lod_respawn_modifier_constant', {
+                '#lod_respawn_'..(-respawnModifier)
+            })
+        else
+            -- Round two one decimal place
+            local rounded = math.floor(respawnModifier*10)/10
+
+            sendChatMessage(playerID, '#lod_respawn_modifier_variable', {
+                '#lod_respawn_'..tostring(rounded):gsub('%.', '_')
+            })
+        end
+    end
+
     -- Tell the user which mode it is
     if currentStage == STAGE_BANNING then
         -- Banning mode
@@ -1622,6 +1649,12 @@ finishVote = function()
 
     -- All Vision
     allVision = optionToValue(21, winners[21]) == 1
+
+    -- Spawn modifier option
+    respawnModifier = optionToValue(22, winners[22])
+
+    -- Scepter upgrade
+    freeScepter = optionToValue(23, winners[23]) == 1
 
     -- Add settings to our stat collector
     statcollection.addStats({
@@ -2235,6 +2268,14 @@ ListenToGameEvent('npc_spawned', function(keys)
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
 
+        if freeScepter then
+            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter', {
+                bonus_all_stats = 0,
+                bonus_health = 0,
+                bonus_mana = 0
+            })
+        end
+
         -- Fix gold bug
         if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
             resetGold[playerID] = true
@@ -2407,6 +2448,33 @@ ListenToGameEvent('npc_spawned', function(keys)
                 end
             end
         end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
+    end
+end, nil)
+
+ListenToGameEvent('entity_killed', function(keys)
+    -- Ensure our respawn modifier is in effect
+    if respawnModifier == 0 then return end
+
+    -- Grab the killed entitiy (it isn't nessessarily a hero!)
+    local hero = EntIndexToHScript(keys.entindex_killed)
+
+    -- Ensure it is a hero
+    if IsValidEntity(hero) and hero:IsHero() then
+        if hero:WillReincarnate() then return end
+
+        local timeLeft = hero:GetRespawnTime()
+
+        if respawnModifier < 0 then
+            timeLeft = -respawnModifier
+        else
+            timeLeft = timeLeft * respawnModifier
+        end
+
+        Timers:CreateTimer(function()
+            if IsValidEntity(hero) and not hero:IsAlive() then
+                hero:SetTimeUntilRespawn(timeLeft)
+            end
+        end, DoUniqueString('respawn'), 0.1)
     end
 end, nil)
 
