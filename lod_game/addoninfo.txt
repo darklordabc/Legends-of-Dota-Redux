@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"dota_pvp"
+	maps			"dota_pvp_tiled dota_pvp"
 	"IsPlayable"	"1"
     "version"       "1.4.9"
 }

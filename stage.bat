@@ -88,7 +88,11 @@ mklink /H "lod_s2_bin\resource\addon_russian.txt" "script_generator\BIN\addon_ru
 mklink /H "lod_s2_bin\scripts\npc\npc_abilities_custom.txt" "script_generator\BIN\npc_abilities_custom.txt"
 mklink /H "lod_s2_bin\scripts\npc\npc_heroes_custom.txt" "script_generator\BIN\npc_heroes_custom.txt"
 
+:: Hard link materials folder
+mklink /D /J "lod_s2_bin\materials" "lod_game\materials"
+
 :: Hard link maps
 mklink /H "lod_s2_bin\maps\dota_pvp.vpk" "maps\dota_pvp.vpk"
+mklink /H "lod_s2_bin\maps\dota_pvp_tiled.vpk" "maps\dota_pvp_tiled.vpk"
 
 pause
