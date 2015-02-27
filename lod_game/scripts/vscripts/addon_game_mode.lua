@@ -1958,6 +1958,7 @@ end
 local fixedBackdoor = false
 local doneBotStuff = false
 local patchedOptions = false
+local shownHosterIssue = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1999,6 +2000,11 @@ function lod:OnThink()
 
                     -- Is it still broken?
                     if slaveID == -1 then
+                        if not shownHosterIssue then
+                            shownHosterIssue = true
+                            print('\n\nERROR: No host was found, either no players are on a team, no players have LoD installed, or something very bad.\nNo options screen will be shown until a valid host player is found!\n')
+                        end
+
                         return 0.1
                     end
                 end
