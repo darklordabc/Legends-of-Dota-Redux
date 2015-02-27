@@ -65,141 +65,144 @@ local function sendHostID()
     })
 end
 
--- User tries to register as the host
-Convars:RegisterCommand('lh_register_host', function()
-    -- Grab the player
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
+-- Starts up load helper
+function Init()
+    -- User tries to register as the host
+    Convars:RegisterCommand('lh_register_host', function()
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
 
-        -- Make sure no one has claimed themselves as the host yet
-        if hostID == -1 then
-            -- Store the new host
-            hostID = playerID
+            -- Make sure no one has claimed themselves as the host yet
+            if hostID == -1 then
+                -- Store the new host
+                hostID = playerID
 
-            -- Check if we are loading, if we are, pause the game
-            if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
-                -- Set paused
-                PauseGame(true)
+                -- Check if we are loading, if we are, pause the game
+                if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
+                    -- Set paused
+                    PauseGame(true)
 
-                -- We are currently loading
-                stillLoading = true
+                    -- We are currently loading
+                    stillLoading = true
 
-                -- Set the pause timer
-                pauseStart = Time()
+                    -- Set the pause timer
+                    pauseStart = Time()
 
-                -- If they have stats, record that our system is in use
+                    -- If they have stats, record that our system is in use
+                    if statcollection then
+                        -- Add the stats
+                        statcollection.addModuleStats('loadHelper', {
+                            enabled = true,
+                            hostSlotID = hostID,
+                        })
+                    end
+                end
+            end
+
+            -- Send out the ID of the host
+            sendHostID()
+        end
+    end, 'Registers the first caller of this command as the host', 0)
+
+    -- Users tries to unpause the game
+    Convars:RegisterCommand('lh_resume_game', function()
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+
+            -- Ensure the player is actually the host
+            if playerID == hostID then
+                -- Is this still a valid command?
+                if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
+                    -- Invert the loader
+                    stillLoading = not stillLoading
+
+                    -- Should we be pausing the game?
+                    if stillLoading then
+                        PauseGame(true)
+                    else
+                        PauseGame(false)
+                    end
+                else
+                    -- Check if the game is paused for some reason
+                    if stillLoading then
+                        stillLoading = false
+                        PauseGame(false)
+                    end
+                end
+            end
+        end
+    end, 'Toggles the pause during the waiting phase', 0)
+
+    -- Users tries to report the total number of players
+    Convars:RegisterCommand('lh_report_players', function(command, newTotalPlayers)
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+
+            -- Ensure the player is actually the host
+            if playerID == hostID then
+                -- Store new total players
+                totalPlayers = tonumber(newTotalPlayers)
+
+                -- Check if everyone is in
+                everyoneLoaded()
+            end
+        end
+    end, 'Toggles the pause during the waiting phase', 0)
+
+    -- Users tries to close the lobby
+    local hasQuit = false
+    Convars:RegisterCommand('lh_quit_game', function()
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+
+            -- Ensure the player is actually the host
+            if playerID == hostID then
+                -- Only do this once
+                if hasQuit then return end
+                hasQuit = true
+
+                -- If they have stats, report back to the master server
                 if statcollection then
                     -- Add the stats
                     statcollection.addModuleStats('loadHelper', {
                         enabled = true,
-                        hostSlotID = hostID,
+                        duration = Time() - pauseStart,
+                        quit = true,
                     })
-                end
-            end
-        end
 
-        -- Send out the ID of the host
-        sendHostID()
-    end
-end, 'Registers the first caller of this command as the host', 0)
+                    -- Tell the stat collector to collect
+                    statcollection.sendStats()
 
--- Users tries to unpause the game
-Convars:RegisterCommand('lh_resume_game', function()
-    -- Grab the player
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
-
-        -- Ensure the player is actually the host
-        if playerID == hostID then
-            -- Is this still a valid command?
-            if GameRules:State_Get() == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
-                -- Invert the loader
-                stillLoading = not stillLoading
-
-                -- Should we be pausing the game?
-                if stillLoading then
-                    PauseGame(true)
+                    -- Wait 5 seconds to quit
+                    GameRules:GetGameModeEntity():SetThink(function()
+                        -- Quit
+                        SendToServerConsole('quit')
+                    end, 'QuitTimer', 5, nil)
                 else
-                    PauseGame(false)
-                end
-            else
-                -- Check if the game is paused for some reason
-                if stillLoading then
-                    stillLoading = false
-                    PauseGame(false)
-                end
-            end
-        end
-    end
-end, 'Toggles the pause during the waiting phase', 0)
-
--- Users tries to report the total number of players
-Convars:RegisterCommand('lh_report_players', function(command, newTotalPlayers)
-    -- Grab the player
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
-
-        -- Ensure the player is actually the host
-        if playerID == hostID then
-            -- Store new total players
-            totalPlayers = tonumber(newTotalPlayers)
-
-            -- Check if everyone is in
-            everyoneLoaded()
-        end
-    end
-end, 'Toggles the pause during the waiting phase', 0)
-
--- Users tries to close the lobby
-local hasQuit = false
-Convars:RegisterCommand('lh_quit_game', function()
-    -- Grab the player
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-        local playerID = cmdPlayer:GetPlayerID()
-
-        -- Ensure the player is actually the host
-        if playerID == hostID then
-            -- Only do this once
-            if hasQuit then return end
-            hasQuit = true
-
-            -- If they have stats, report back to the master server
-            if statcollection then
-                -- Add the stats
-                statcollection.addModuleStats('loadHelper', {
-                    enabled = true,
-                    duration = Time() - pauseStart,
-                    quit = true,
-                })
-
-                -- Tell the stat collector to collect
-                statcollection.sendStats()
-
-                -- Wait 5 seconds to quit
-                GameRules:GetGameModeEntity():SetThink(function()
                     -- Quit
                     SendToServerConsole('quit')
-                end, 'QuitTimer', 5, nil)
-            else
-                -- Quit
-                SendToServerConsole('quit')
+                end
             end
         end
-    end
-end, 'Toggles the pause during the waiting phase', 0)
+    end, 'Toggles the pause during the waiting phase', 0)
 
--- Check if everyone has connected
-ListenToGameEvent('player_connect_full', function(keys)
-    -- Wait a moment, then check if everyone has loaded
-    GameRules:GetGameModeEntity():SetThink(function()
-        -- Check if everyone has loaded
-        everyoneLoaded()
-    end, 'LoadChecker', 1, nil)
-end, nil)
+    -- Check if everyone has connected
+    ListenToGameEvent('player_connect_full', function(keys)
+        -- Wait a moment, then check if everyone has loaded
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Check if everyone has loaded
+            everyoneLoaded()
+        end, 'LoadChecker', 1, nil)
+    end, nil)
+end
 
 -- Add load helper functions
 module('loadhelper', package.seeall)
@@ -208,3 +211,5 @@ module('loadhelper', package.seeall)
 function getHostID()
     return hostID
 end
+
+init = Init
