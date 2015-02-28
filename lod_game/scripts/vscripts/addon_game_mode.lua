@@ -326,6 +326,9 @@ local bannedHeroes = {}
 ]]
 local SPLIT_CHAR = string.char(7)
 
+local SERVER_COMMAND = 0x10000000
+local CLIENT_COMMAND = 0x80000000
+
 --[[
     LOAD EXTERNAL OPTIONS
 ]]
@@ -2945,7 +2948,7 @@ registerServerCommands = function()
             -- Apply the build
             SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild)
         end
-    end, '', 0)
+    end, '', SERVER_COMMAND)
 
     -- Prints all builds
     Convars:RegisterCommand('lod_printbuilds', function(name)
@@ -2976,7 +2979,7 @@ registerServerCommands = function()
                 end
             end
         end
-    end, '', 0)
+    end, '', SERVER_COMMAND)
 
     -- Edits a skill in a build
     Convars:RegisterCommand('lod_editskill', function(name, playerID, skillSlot, skillName)
@@ -3008,7 +3011,7 @@ registerServerCommands = function()
             skillList[playerID][SKILL_LIST_YOUR] = skillList[playerID][SKILL_LIST_YOUR] or {}
             skillList[playerID][SKILL_LIST_YOUR][skillSlot] = skillName
         end
-    end, '', 0)
+    end, '', SERVER_COMMAND)
 
     -- Allows you to set the host
     Convars:RegisterCommand('lod_sethost', function(name, newHostID)
@@ -3036,7 +3039,7 @@ registerServerCommands = function()
             slaveID = newHostID
             print('Host was set to playerID '..slaveID)
         end
-    end, 'Host stealer', 0)
+    end, 'Host stealer', SERVER_COMMAND)
 
     -- Prints out playerIDS
     Convars:RegisterCommand('lod_ids', function(name, newHostID)
@@ -3046,7 +3049,7 @@ registerServerCommands = function()
                 print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..util.GetPlayerNameReliable(i))
             end
         end
-    end, 'Host stealer', 0)
+    end, 'Host stealer', SERVER_COMMAND)
 
     -- Turn cycling skills on
     Convars:RegisterCommand('lod_cycle', function(name, newHostID)
@@ -3061,7 +3064,7 @@ registerServerCommands = function()
             cyclingBuilds = true
             print('Cycling builds was enabled.')
         end
-    end, 'Turn cycling skills on', 0)
+    end, 'Turn cycling skills on', SERVER_COMMAND)
 
     print('LoD server commands loaded!')
 end
@@ -3189,7 +3192,7 @@ registerHeroBanning = function()
                     end)
                 end
             end
-        end, 'hero selection override', 0)
+        end, 'hero selection override', CLIENT_COMMAND)
     end
 end
 
@@ -3276,7 +3279,7 @@ registerConsoleCommands = function()
                 doLock(playerID)
             end
         end
-    end, 'Ban a given skill', 0)
+    end, 'Ban a given skill', CLIENT_COMMAND)
 
     -- When a user tries to recommend a skill
     Convars:RegisterCommand('lod_recommend', function(name, skillName, text)
@@ -3317,7 +3320,7 @@ registerConsoleCommands = function()
                 tranAbility(skillName)
             })
         end
-    end, 'Recommends a given skill', 0)
+    end, 'Recommends a given skill', CLIENT_COMMAND)
 
     -- When a user requests more time
     Convars:RegisterCommand('lod_more_time', function(name)
@@ -3354,7 +3357,7 @@ registerConsoleCommands = function()
             -- Update state
             GameRules.lod:OnEmitStateInfo()
         end
-    end, 'Grants extra time for each team', 0)
+    end, 'Grants extra time for each team', CLIENT_COMMAND)
 
     -- When a user wants to view the options
     Convars:RegisterCommand('lod_show_options', function(name)
@@ -3372,7 +3375,7 @@ registerConsoleCommands = function()
             -- Send the options
             printOptionsToPlayer(playerID)
         end
-    end, 'Shows options to a player', 0)
+    end, 'Shows options to a player', CLIENT_COMMAND)
 
     -- When a user locks their skills
     Convars:RegisterCommand('lod_lock_skills', function(name)
@@ -3390,7 +3393,7 @@ registerConsoleCommands = function()
             -- Do the lock
             doLock(playerID)
         end
-    end, 'Locks a players skills', 0)
+    end, 'Locks a players skills', CLIENT_COMMAND)
 
     -- Swap two slots
     Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, slot2)
@@ -3545,7 +3548,7 @@ registerConsoleCommands = function()
             })
 
         end
-    end, 'Ban a given skill', 0)
+    end, 'Ban a given skill', CLIENT_COMMAND)
 
     -- When a user wants to stick a skill into a slot
     Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, skillName)
@@ -3742,7 +3745,7 @@ registerConsoleCommands = function()
                 end
             end
         end
-    end, 'Ban a given skill', 0)
+    end, 'Ban a given skill', CLIENT_COMMAND)
 
     -- User is trying to update their vote
     Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)
@@ -3799,7 +3802,7 @@ registerConsoleCommands = function()
                 sendChatMessage(playerID, '#lod_during_voting')
             end
         end
-    end, 'Update a user\'s vote', 0)
+    end, 'Update a user\'s vote', CLIENT_COMMAND)
 
     -- Users tries to lock the options in
     Convars:RegisterCommand('finished_voting', function(name, skillName)
@@ -3823,7 +3826,7 @@ registerConsoleCommands = function()
                 sendChatMessage(playerID, '#lod_only_host_use')
             end
         end
-    end, 'Toggles the pause during the waiting phase', 0)
+    end, 'Toggles the pause during the waiting phase', CLIENT_COMMAND)
 
     -- User asks for decoding info
     Convars:RegisterCommand('lod_decode', function(name, theirNumber, theirVersion)
@@ -3852,7 +3855,7 @@ registerConsoleCommands = function()
                 })
             end
         end
-    end, 'User asked for decoding info', 0)
+    end, 'User asked for decoding info', CLIENT_COMMAND)
 
     print('LoD client commands loaded!')
 end

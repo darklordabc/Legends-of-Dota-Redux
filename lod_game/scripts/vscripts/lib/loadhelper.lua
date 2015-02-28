@@ -23,6 +23,9 @@ local totalPlayers = -1
 -- Set the time the pause started
 local pauseStart = Time()
 
+-- Variable used for client side commands
+local CLIENT_COMMAND = bit.lshift(1, 30)
+
 -- Function to check if everyone has loaded successfully
 local function everyoneLoaded()
     -- If we don't know how many players, we cant know if everyone has loaded!
@@ -104,7 +107,7 @@ function Init()
             -- Send out the ID of the host
             sendHostID()
         end
-    end, 'Registers the first caller of this command as the host', 0)
+    end, 'Registers the first caller of this command as the host', CLIENT_COMMAND)
 
     -- Users tries to unpause the game
     Convars:RegisterCommand('lh_resume_game', function()
@@ -135,7 +138,7 @@ function Init()
                 end
             end
         end
-    end, 'Toggles the pause during the waiting phase', 0)
+    end, 'Toggles the pause during the waiting phase', CLIENT_COMMAND)
 
     -- Users tries to report the total number of players
     Convars:RegisterCommand('lh_report_players', function(command, newTotalPlayers)
@@ -153,7 +156,7 @@ function Init()
                 everyoneLoaded()
             end
         end
-    end, 'Toggles the pause during the waiting phase', 0)
+    end, 'Toggles the pause during the waiting phase', CLIENT_COMMAND)
 
     -- Users tries to close the lobby
     local hasQuit = false
@@ -192,7 +195,7 @@ function Init()
                 end
             end
         end
-    end, 'Toggles the pause during the waiting phase', 0)
+    end, 'Toggles the pause during the waiting phase', CLIENT_COMMAND)
 
     -- Check if everyone has connected
     ListenToGameEvent('player_connect_full', function(keys)

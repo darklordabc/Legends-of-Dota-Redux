@@ -207,7 +207,7 @@
 		"pleaseWait"						"Please wait while we waste your time.\n\nIf this screen doesn't disappear after 5 seconds, it indicates the server has Legends of Dota setup incorrect, or that it is outdated.\n\nWe are currently syncing your local client with the server."
 		"helpShowOptions"					"Show Options"
 		"helpMoreTime"						"More Time"
-		"helpLockSkills"					"Lock Skills"
+		"helpLockSkills"					"Toggle Ready"
 
 		// Browsing
 		"browseYourSkills"					"Your Skills"
