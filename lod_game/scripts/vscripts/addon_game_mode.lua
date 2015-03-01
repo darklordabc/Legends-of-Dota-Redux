@@ -214,6 +214,9 @@ local respawnModifier = 0
 -- Give a free scepter?
 local freeScepter = false
 
+-- Should we load survival gamemode?
+local loadSurvival = false
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -1245,6 +1248,11 @@ printOptionsToPlayer = function(playerID)
         sendChatMessage(playerID, '#lod_fast_scepter')
     end
 
+    -- Survival
+    if loadSurvival then
+        sendChatMessage(playerID, '#lod_survival')
+    end
+
     -- Respawn Timer
     if respawnModifier ~= 0 then
         if respawnModifier < 0 then
@@ -1432,6 +1440,12 @@ setupGamemodeSettings = function()
 
         -- Store when the banning phase ends
         endOfTimer = Time() + pickingTime
+    end
+
+    -- Load events?
+    if loadSurvival then
+        -- Load her up
+        survival.InitSurvival()
     end
 
     -- Setup allowed tabs
@@ -1659,6 +1673,9 @@ finishVote = function()
     -- Scepter upgrade
     freeScepter = optionToValue(23, winners[23]) == 1
 
+    -- Events
+    loadSurvival = optionToValue(24, winners[24]) == 1
+
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
@@ -1786,9 +1803,14 @@ function lod:InitGameMode()
     if not GameRules:isSource1() then
         GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
         --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
+
+        -- Precache survival resources
+        PrecacheUnitByNameAsync('npc_precache_survival_s2', function()
+            CreateUnitByName('npc_precache_survival_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        end)
     else
         -- Precache wraithnight
-        CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        CreateUnitByName('npc_precache_wraithnight_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end
 
     -- Setup console commands
@@ -1796,6 +1818,9 @@ function lod:InitGameMode()
 
     -- Setup load helper
     loadhelper.init()
+
+    -- Load survival commands
+    survival.LoadCommands()
 
     print('Everything seems good!\n\n')
 end

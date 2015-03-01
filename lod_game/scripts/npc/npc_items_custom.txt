@@ -1,0 +1,26 @@
+"DOTAAbilities"
+{
+    "item_survival_modifier"
+    {
+        "BaseClass"                     "item_datadriven"
+        "Modifiers"
+        {
+            "modifier_survival_modifier"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_hp"
+                }
+            }
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_hp"                  "100"
+            }
+        }
+    }
+}

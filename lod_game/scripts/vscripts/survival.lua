@@ -14,23 +14,30 @@ local startTime = 0.0
 
 local oneGlobalTeam = false
 
+-- This will store the item used to apply modifiers to the spawned units
+local modifierItem
+
 local function applyDefaultStats(unit, factor, sfactor)
-    unit:__KeyValueFromInt('StatusHealth', math.ceil(30 * factor))
-    unit:SetMaxHealth(math.ceil(30 * factor))
-    unit:SetHealth(unit:GetMaxHealth())
-    unit:__KeyValueFromFloat('StatusHealthRegen', math.ceil(sfactor/2))
-    unit:__KeyValueFromInt('BountyGoldMin', math.ceil(30 * sfactor))
-    unit:__KeyValueFromInt('BountyGoldMax', math.ceil(30 * sfactor))
-    unit:__KeyValueFromInt('BountyXP', math.ceil(75 * sfactor))
-    unit:__KeyValueFromInt('MovementSpeed', 375)
-    unit:__KeyValueFromInt('AttackDamageMin', math.ceil(37 * factor))
-    unit:__KeyValueFromInt('AttackDamageMax', math.ceil(45 * factor))
-    unit:__KeyValueFromInt('AttackRange', 128)
-    unit:__KeyValueFromFloat('AttackRate', 1.6)
-    unit:__KeyValueFromInt('VisionDaytimeRange', 400)
-    unit:__KeyValueFromInt('VisionNighttimeRange', 400)
-    unit:__KeyValueFromInt('ArmorPhysical', math.ceil(factor-1))
-    unit:__KeyValueFromInt('MagicalResistance', 33)
+    modifierItem:ApplyDataDrivenModifier(modifierItem, unit, 'modifier_survival_modifier', {
+        bonus_hp = 1000
+    })
+
+    --unit:__KeyValueFromInt('StatusHealth', math.ceil(30 * factor))
+    --unit:SetMaxHealth(math.ceil(30 * factor))
+    --unit:SetHealth(unit:GetMaxHealth())
+    --unit:__KeyValueFromFloat('StatusHealthRegen', math.ceil(sfactor/2))
+    --unit:__KeyValueFromInt('BountyGoldMin', math.ceil(30 * sfactor))
+    --unit:__KeyValueFromInt('BountyGoldMax', math.ceil(30 * sfactor))
+    --unit:__KeyValueFromInt('BountyXP', math.ceil(75 * sfactor))
+    --unit:__KeyValueFromInt('MovementSpeed', 375)
+    --unit:__KeyValueFromInt('AttackDamageMin', math.ceil(37 * factor))
+    --unit:__KeyValueFromInt('AttackDamageMax', math.ceil(45 * factor))
+    --unit:__KeyValueFromInt('AttackRange', 128)
+    --unit:__KeyValueFromFloat('AttackRate', 1.6)
+    --unit:__KeyValueFromInt('VisionDaytimeRange', 400)
+    --unit:__KeyValueFromInt('VisionNighttimeRange', 400)
+    --unit:__KeyValueFromInt('ArmorPhysical', math.ceil(factor-1))
+    --unit:__KeyValueFromInt('MagicalResistance', 33)
 end
 
 -- List of zombies that can spawn
@@ -54,7 +61,7 @@ local skins = {
             applyDefaultStats(unit, factor, sfactor)
 
             -- Give magic resist
-            unit:__KeyValueFromInt('MagicalResistance', 90)
+            --unit:__KeyValueFromInt('MagicalResistance', 90)
         end
     },
 
@@ -66,9 +73,9 @@ local skins = {
             applyDefaultStats(unit, factor, sfactor)
 
             -- Apply new stuff
-            unit:__KeyValueFromFloat('AttackRate', 1.2)
-            unit:__KeyValueFromInt('AttackRange', 200)
-            unit:__KeyValueFromInt('MovementSpeed', 500)
+            --unit:__KeyValueFromFloat('AttackRate', 1.2)
+            --unit:__KeyValueFromInt('AttackRange', 200)
+            --unit:__KeyValueFromInt('MovementSpeed', 500)
         end
     },
 
@@ -80,8 +87,8 @@ local skins = {
             applyDefaultStats(unit, factor, sfactor)
 
             -- Apply new stuff
-            unit:__KeyValueFromInt('AttackRange', 600)
-            unit:__KeyValueFromInt('MovementSpeed', 500)
+            --unit:__KeyValueFromInt('AttackRange', 600)
+            --unit:__KeyValueFromInt('MovementSpeed', 500)
         end
     }
 }
@@ -141,6 +148,9 @@ local function initSurvival()
     -- Tell the server
     print('Survival was loaded!')
 
+    -- Create modifier item
+    modifierItem = CreateItem('item_survival_modifier', nil, nil)
+
     -- Reset zombie info
     zombieInfo = {}
 
@@ -175,21 +185,33 @@ local function initSurvival()
         local allDeadDire = true
         local allDeadRadiant = true
 
+        local radiantPlayers = false
+        local direPlayers = false
+
         -- Loop over all the players
         for playerID=0,9 do
-            -- Ensure this player has some info
-            local info = zombieInfo[playerID] or resetPlayerID(playerID)
+            local team = PlayerResource:GetTeam(playerID)
+            if PlayerResource:GetConnectionState(playerID) >= 2 then
+                if team == DOTA_TEAM_GOODGUYS then
+                    radiantPlayers = true
+                elseif team == DOTA_TEAM_BADGUYS then
+                    direPlayers = true
+                end
+            end
 
             -- Grab their hero, make sure it exists, and is alive
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
             if hero and hero:IsAlive() then
+                -- Ensure this player has some info
+                local info = zombieInfo[playerID] or resetPlayerID(playerID)
+
                 -- Ensure they are revealed
                 reveal(hero)
 
                 -- Check if they were on either major team
-                if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+                if team == DOTA_TEAM_GOODGUYS then
                     allDeadRadiant = false
-                elseif hero:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+                elseif team == DOTA_TEAM_BADGUYS then
                     allDeadDire = false
                 end
 
@@ -203,7 +225,7 @@ local function initSurvival()
                         -- Remove it
                         table.remove(info.zombieList, k)
                         v:ForceKill(false)
-                        v:Remove()
+                        UTIL_RemoveImmediate(v)
                     else
                         -- Increase total zombies
                         totalZombies = totalZombies+1
@@ -278,14 +300,14 @@ local function initSurvival()
                     gameOver = true
                 end
             else
-                if allDeadDire then
+                if direPlayers and allDeadDire then
                     Say(nil, "Dire Loses!", false)
                     GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
                     GameRules:Defeated()
                     gameOver = true
                 end
 
-                if allDeadRadiant then
+                if radiantPlayers and allDeadRadiant then
                     Say(nil, "Radiant Loses!", false)
                     GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
                     GameRules:Defeated()
@@ -293,7 +315,7 @@ local function initSurvival()
                 end
 
                 -- If either team has everyone dead
-                if allDeadRadiant or allDeadDire then
+                if (radiantPlayers and allDeadRadiant) or (direPlayers and allDeadDire) then
                     -- Print total survival time
                     Say(nil, "Total Survival Time: "..math.floor(Time()-startTime).." seconds!", false)
                 end
@@ -323,26 +345,33 @@ local function initSurvival()
 
     -- Loop over all ents
     for k,ent in pairs(ents) do
-        ent:Remove()
+        UTIL_RemoveImmediate(ent)
     end
     ents = Entities:FindAllByClassname('npc_dota_barracks')
     for k,ent in pairs(ents) do
-        ent:Remove()
+        UTIL_RemoveImmediate(ent)
     end
     ents = Entities:FindAllByClassname('ent_dota_fountain')
     for k,ent in pairs(ents) do
-        ent:Remove()
+        UTIL_RemoveImmediate(ent)
     end
 end
 
 local doneInit = false
-Convars:RegisterCommand('lod_survival', function()
-    -- Only server can run this
-    if not Convars:GetCommandClient() then
-        if doneInit then return end
-        doneInit = true
+local loadCommands = function()
+    Convars:RegisterCommand('lod_survival', function()
+        -- Only server can run this
+        if not Convars:GetCommandClient() then
+            if doneInit then return end
+            doneInit = true
 
-        -- Load up survival XD
-        initSurvival()
-    end
-end, 'hax loader', 0)
+            -- Load up survival XD
+            initSurvival()
+        end
+    end, 'Loader for survival', 0)
+end
+
+-- Define exports
+module('survival')
+LoadCommands = loadCommands
+InitSurvival = initSurvival

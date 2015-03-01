@@ -314,7 +314,7 @@
 		"HasInventory"				"0"
 	}
 
-	"npc_precache_wraithnight"
+	"npc_precache_wraithnight_s1"
 	{
 		"BaseClass"					"npc_dota_creep"
 
@@ -332,6 +332,17 @@
 			"particlefile"				"particles/nian_gameplay.pcf"
 			"particlefile"				"particles/nian_gameplay_b.pcf"
 			"particlefile"				"particles/nian_temp.pcf"
+		}
+	}
+
+	"npc_precache_survival_s2"
+	{
+		"BaseClass"					"npc_dota_creep"
+
+		"precache"
+		{
+			"model"					"models/heroes/undying/undying_minion.vmdl"
+			"model"					"models/heroes/visage/visage_familiar.vmdl"
 		}
 	}
 

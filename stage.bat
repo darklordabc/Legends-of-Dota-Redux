@@ -26,6 +26,7 @@ mklink /H "lod_s1_bin\lod\scripts\stat_collection.kv" "lod_game\scripts\stat_col
 mklink /H "lod_s1_bin\lod\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist_s1.txt"
 mklink /H "lod_s1_bin\lod\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist_s1.txt"
 mklink /H "lod_s1_bin\lod\scripts\npc\npc_units_custom.txt" "lod_game\scripts\npc\npc_units_custom.txt"
+mklink /H "lod_s1_bin\lod\scripts\npc\npc_items_custom.txt" "lod_game\scripts\npc\npc_items_custom.txt"
 
 :: Link script folders
 mklink /D /J "lod_s1_bin\lod\scripts\vscripts" "lod_game\scripts\vscripts\"
@@ -71,6 +72,7 @@ mklink /H "lod_s2_bin\scripts\stat_collection.kv" "lod_game\scripts\stat_collect
 mklink /H "lod_s2_bin\scripts\npc\activelist.txt" "lod_game\scripts\npc\activelist_s2.txt"
 mklink /H "lod_s2_bin\scripts\npc\herolist.txt" "lod_game\scripts\npc\herolist_s2.txt"
 mklink /H "lod_s2_bin\scripts\npc\npc_units_custom.txt" "lod_game\scripts\npc\npc_units_custom.txt"
+mklink /H "lod_s2_bin\scripts\npc\npc_items_custom.txt" "lod_game\scripts\npc\npc_items_custom.txt"
 
 :: Link script folders
 mklink /D /J "lod_s2_bin\scripts\vscripts" "lod_game\scripts\vscripts\"

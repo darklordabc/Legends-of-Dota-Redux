@@ -120,6 +120,13 @@
 		"hintFreeScepter"					"No scepter is required to use the scepter part of people's skills."
 		"lod_fast_scepter"					"<font color=\"#EB4B4B\">All ultimates will have their scepter upgrades activated without buying a scepter!</font>"
 
+		"desEventMatch"						"Event Match"
+		"hintEventMatch"					"Survival:\nZombies will spawn and try to kill you, the goal is to survive for as long as possible. The match ends when everyone on a given team is dead at the same time."
+		"lod_survival"						"<font color=\"#EB4B4B\">Survival game mode was loaded! The aim is to survive for as long as possible. Zombies will spawn and try to kill you, pick lots of AoE, life steal, and regen!</font>"
+
+		"lod_event_none"					"None"
+		"lod_event_survival"				"PvP Survival"
+
 		"g_ap"								"All Pick"
 		"g_sd"								"Single Draft"
 		"g_md"								"Mirror Draft"
