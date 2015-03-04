@@ -24,7 +24,7 @@ local totalPlayers = -1
 local pauseStart = Time()
 
 -- Variable used for client side commands
-local CLIENT_COMMAND = bit.lshift(1, 30)
+local CLIENT_COMMAND = 268435456
 
 -- Function to check if everyone has loaded successfully
 local function everyoneLoaded()

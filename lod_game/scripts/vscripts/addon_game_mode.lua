@@ -330,7 +330,7 @@ local bannedHeroes = {}
 local SPLIT_CHAR = string.char(7)
 
 local SERVER_COMMAND = 0x10000000
-local CLIENT_COMMAND = 0x80000000
+local CLIENT_COMMAND = 268435456--0x80000000
 
 --[[
     LOAD EXTERNAL OPTIONS
@@ -3855,6 +3855,8 @@ registerConsoleCommands = function()
 
     -- User asks for decoding info
     Convars:RegisterCommand('lod_decode', function(name, theirNumber, theirVersion)
+        if theirNumber == nil or theirVersion == nil then return end
+
         -- We are only accepting numbers
         theirNumber = tonumber(theirNumber)
 

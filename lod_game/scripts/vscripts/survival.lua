@@ -18,10 +18,6 @@ local oneGlobalTeam = false
 local modifierItem
 
 local function applyDefaultStats(unit, factor, sfactor)
-    modifierItem:ApplyDataDrivenModifier(modifierItem, unit, 'modifier_survival_modifier', {
-        bonus_hp = 1000
-    })
-
     --unit:__KeyValueFromInt('StatusHealth', math.ceil(30 * factor))
     --unit:SetMaxHealth(math.ceil(30 * factor))
     --unit:SetHealth(unit:GetMaxHealth())
