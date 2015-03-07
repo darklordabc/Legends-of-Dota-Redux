@@ -489,6 +489,7 @@ local wtfAutoBan = {}
 local noTower = {}
 local noTowerAlways = {}
 local noBear = {}
+local noHero = {}
 
 -- Load and process the bans
 (function()
@@ -502,6 +503,7 @@ local noBear = {}
     noTowerAlways = tempBanList.noTowerAlways
     noBear = tempBanList.noBear
     wtfAutoBan = tempBanList.wtfAutoBan
+    noHero = tempBanList.noHero
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -3647,6 +3649,14 @@ registerConsoleCommands = function()
             elseif theirInterface == SKILL_LIST_BEAR then
                 if noBear[skillName] then
                     sendChatMessage(playerID, '#noBear', {
+                        getSpellIcon(skillName),
+                        tranAbility(skillName)
+                    })
+                    return
+                end
+            elseif theirInterface == SKILL_LIST_YOUR then
+                if banTrollCombos and noHero[skillName] then
+                    sendChatMessage(playerID, '#noHero', {
                         getSpellIcon(skillName),
                         tranAbility(skillName)
                     })

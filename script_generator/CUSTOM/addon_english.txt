@@ -321,6 +321,7 @@
 		////////////////
 
 		"noBear"								"{0} <font color=\"#4B69FF\">{1}</font> can not be used on a bear."
+		"noHero"								"{0} <font color=\"#4B69FF\">{1}</font> can not be used on a hero unless troll combos are enabled."
 
 		"noTower"								"{0} <font color=\"#4B69FF\">{1}</font> {2}"
 		"noTowerCrash"							"crashes when used with towers."
