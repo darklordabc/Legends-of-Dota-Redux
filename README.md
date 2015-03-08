@@ -151,6 +151,7 @@ Legends of Dota
  - `Loaded LoD allocation code!`
  - `Loaded LoD bot allocation code`
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
+ - You may be interested in [Legends of Dota Watch Dog](https://github.com/ash47/LoDWatchDog) -- This is a lightweight app that restarts SRCDS each time it crashes
 
 ###More SRCDS Setup Help###
  - To debug, try adding **-condebug** to the SRCDS launch parameters, this will log all the server output to server/dota/console.log, you can check for errors in there
