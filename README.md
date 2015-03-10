@@ -54,6 +54,7 @@ Legends of Dota
 ###List of public source1 servers###
  - Ash47 Primary Server **lod.ash47.net:27016**
  - Ash47 Secondary Server **lod.ash47.net:27017**
+ - Ash47 Backup Server **lod.ash47.net:27018**
 
 ###Starting a source1 server###
  - Do not contact me for additional help
