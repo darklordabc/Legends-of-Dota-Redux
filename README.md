@@ -51,6 +51,10 @@ Legends of Dota
  - Alternatively, simply visit `steam://connect/lod.ash47.net:27016` in your browser
  - If you do not see the standard `Please wait while we waste your time` screen, you have installed Legends of Dota incorrectly, ensure `dota 2 beta/dota/addons/lod/addoninfo.txt` exists. Ensure you did the gameinfo step. Ensure you restarted dota 2.
 
+###List of public source1 servers###
+ - Ash47 Primary Server: lod.ash47.net:27016
+ - Ash47 Secondary Server: lod.ash47.net:27017
+
 ###Starting a source1 server###
  - Do not contact me for additional help
  - If you get stuck, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
