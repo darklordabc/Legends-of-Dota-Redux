@@ -2590,39 +2590,21 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
             local toCheck = specialAddedSkills[playerID]
             if toCheck ~= nil then
                 for skillName,v in pairs(toCheck) do
-                    -- Workout the level of the skill
-                    local requiredLevel = 0
-                    if isUlt(skillName) then
-                        if level >= 16 then
-                            requiredLevel = 3
-                        elseif level >= 11 then
-                            requiredLevel = 2
-                        elseif level >= 6 then
-                            requiredLevel = 1
-                        end
-                    else
-                        if level >= 7 then
-                            requiredLevel = 4
-                        elseif level >= 5 then
-                            requiredLevel = 3
-                        elseif level >= 3 then
-                            requiredLevel = 2
-                        elseif level >= 1 then
-                            requiredLevel = 1
-                        end
-                    end
-
                     -- Grab a reference to teh skill
                     local skill = hero:FindAbilityByName(skillName)
 
                     if skill then
-                        if requiredLevel > skill:GetMaxLevel() then
-                            requiredLevel = skill:GetMaxLevel()
-                        end
+                        local retries = 20
+                        while retries > 0 and skill:GetHeroLevelRequiredToUpgrade() <= level do
+                            retries = retries - 1
 
-                        if skill and skill:GetLevel() < requiredLevel then
-                            -- Level the skill
-                            skill:SetLevel(requiredLevel)
+                            local newLevel = skill:GetLevel() + 1
+                            if newLevel <= skill:GetMaxLevel() then
+                                -- Level the skill
+                                skill:SetLevel(newLevel)
+                            else
+                                break
+                            end
                         end
                     end
                 end
