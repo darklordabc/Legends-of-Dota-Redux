@@ -33,6 +33,7 @@ ListenToGameEvent('player_connect', function(keys)
     -- Check bans
     if bans[steamID64] then
         SendToServerConsole('kickid '..keys.userid);
+        return
     end
 
     if autoAllocate[steamID64] then return end
