@@ -2565,7 +2565,7 @@ levelSpiritSkills = function(spiritBear, skillz, playerLevel)
 end
 
 -- Auto level bot skills <3
-local heroLevels = {}
+local botUsedPoints = {}
 ListenToGameEvent('dota_player_gained_level', function(keys)
     -- Check every player
     for playerID = 0,9 do
@@ -2589,19 +2589,25 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
             -- Ensure there is something to check
             local toCheck = specialAddedSkills[playerID]
             if toCheck ~= nil then
+                -- Point checker
+                botUsedPoints[playerID] = botUsedPoints[playerID] or 0
+
                 for skillName,v in pairs(toCheck) do
                     -- Grab a reference to teh skill
                     local skill = hero:FindAbilityByName(skillName)
 
                     if skill then
                         local retries = 20
-                        while retries > 0 and skill:GetHeroLevelRequiredToUpgrade() <= level do
+                        while retries > 0 and skill:GetHeroLevelRequiredToUpgrade() <= level and level-botUsedPoints[playerID] > 0 do
                             retries = retries - 1
 
                             local newLevel = skill:GetLevel() + 1
                             if newLevel <= skill:GetMaxLevel() then
                                 -- Level the skill
                                 skill:SetLevel(newLevel)
+
+                                -- Bot has used a point
+                                botUsedPoints[playerID] = botUsedPoints[playerID] + 1
                             else
                                 break
                             end
