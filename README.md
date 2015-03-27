@@ -140,12 +140,13 @@ Legends of Dota
         }
 
  - Create `cfg/allocation.kv` if you want to be allocated into a team automatically
- - You will be put onto the team with the least players, or radiant if they have the same number of players
- - You can force your team by adding `R`, `D` or `S` to your name, for Radiant, Dire and Spectator
 
         "dedicated" {
         }
 
+ - You will be put onto the team with the least players, or radiant if they have the same number of players
+ - You can force your team by adding `R`, `D` or `S` to the start of your steam name, for Radiant, Dire and Spectator
+ - Once allocated to a team, it can not be changed until the server is restarted
  - Create `cfg/addbots.kv` if you want bots to be added (assuming sourcemod is setup correctly)
 
         "dedicated" {
