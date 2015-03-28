@@ -52,9 +52,10 @@ Legends of Dota
  - If you do not see the standard `Please wait while we waste your time` screen, you have installed Legends of Dota incorrectly, ensure `dota 2 beta/dota/addons/lod/addoninfo.txt` exists. Ensure you did the gameinfo step. Ensure you restarted dota 2.
 
 ###List of public source1 servers###
- - Ash47 Primary Server **lod.ash47.net:27016**
- - Ash47 Secondary Server **lod.ash47.net:27017**
- - Ash47 Backup Server **lod.ash47.net:27018**
+ - Ash47 1st **lod.ash47.net:27015**
+ - Ash47 2nd **lod.ash47.net:27016**
+ - Ash47 3rd **lod.ash47.net:27017**
+ - Ash47 4th **lod.ash47.net:27018**
 
 ###Starting a source1 server###
  - Do not contact me for additional help
