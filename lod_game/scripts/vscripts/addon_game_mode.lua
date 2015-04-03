@@ -739,11 +739,6 @@ end
 
 -- Function to work out if we can multicast with a given spell or not
 canMulticast = function(skillName)
-    -- No channel skills
-    if isChannelled(skillName) then
-        return false
-    end
-
     -- No banned multicast spells
     if noMulticast[skillName] then
         return false
@@ -2619,7 +2614,50 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
     end
 end, nil)
 
--- Multicast [source2 ONLY]
+-- Multicast
+
+local multicastChannel = {}
+
+ListenToGameEvent('dota_ability_channel_finished', function(keys)
+    for i=0,9 do
+        -- Is this player channelling?
+        local channel = multicastChannel[i]
+        if channel and not channel.handled then
+            -- Grab the ability
+            local ab = channel.ab
+
+            -- Is this the ability we were looking for?
+            if ab and ab:GetAbilityName() == keys.abilityname then
+                GameRules:GetGameModeEntity():SetThink(function()
+                    -- Is it the right ability, and has the ability stopped channelling?
+                    if ab and not ab:IsChanneling() then
+                        -- This channel is handled
+                        channel.handled = true
+
+                        -- Cleanup multicast units
+                        if #channel.units > 0 then
+                            local unit = table.remove(channel.units, 1)
+
+                            local ab2 = unit:FindAbilityByName(keys.abilityname)
+                            if ab2 then
+                                ab2:EndChannel(keys.interrupted == 1)
+                            end
+
+                            GameRules:GetGameModeEntity():SetThink(function()
+                                UTIL_RemoveImmediate(unit)
+                            end, 'channel'..DoUniqueString('channel'), 10, nil)
+
+                            return 0.1
+                        else
+                            multicastChannel[i] = nil
+                        end
+                    end
+                end, 'channel'..DoUniqueString('channel'), 0.1, nil)
+            end
+        end
+    end
+end, nil)
+
 ListenToGameEvent('dota_player_used_ability', function(keys)
     local ply = EntIndexToHScript(keys.PlayerID or keys.player)
     if ply then
@@ -2712,15 +2750,123 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         end
 
                         if ab then
+                            -- Create sexy particles
+                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
+                            ParticleManager:ReleaseParticleIndex(prt)
+
+                            -- Play the sound
+                            hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
+
                             -- How long to delay each cast
                             local delay = 0.1--getMulticastDelay(keys.abilityname)
+
+                            -- Grab playerID
+                            local playerID = hero:GetPlayerID()
+
+                            -- Handle channelled spells
+                            if isChannelled(keys.abilityname) then
+                                -- Cleanup
+                                if multicastChannel[playerID] ~= nil then
+                                    while #multicastChannel[playerID].units > 0 do
+                                        local unit = table.remove(multicastChannel[playerID].units, 1)
+                                        UTIL_RemoveImmediate(unit)
+                                    end
+                                end
+
+                                -- Create new table
+                                multicastChannel[playerID] = {
+                                    ab = ab,
+                                    units = {}
+                                }
+
+                                for multNum=1,mult do
+                                    -- Create and store the unit
+                                    local multUnit = CreateUnitByName('npc_multicast', hero:GetOrigin(), false, hero, hero, hero:GetTeamNumber())
+                                    table.insert(multicastChannel[playerID].units, multUnit)
+
+                                    if multUnit then
+                                        multUnit:AddAbility(keys.abilityname)
+                                        local multAb = multUnit:FindAbilityByName(keys.abilityname)
+                                        if multAb then
+                                            -- Ensure it can't be killed
+                                            local dummySpell = multUnit:FindAbilityByName('lod_dummy_unit')
+                                            if dummySpell then
+                                                dummySpell:SetLevel(1)
+                                            end
+                                            multUnit:AddNewModifier(multUnit, nil, 'modifier_invulnerable', {})
+
+                                            -- Give it a scepter, if we have one
+                                            if hero:HasModifier('modifier_item_ultimate_scepter') then
+                                                multUnit:AddNewModifier(multUnit, nil, 'modifier_item_ultimate_scepter', {
+                                                    bonus_all_stats = 0,
+                                                    bonus_health = 0,
+                                                    bonus_mana = 0
+                                                })
+                                            end
+
+                                            local target = hero:GetCursorCastTarget()
+                                            local targets
+                                            local pos = hero:GetCursorPosition()
+
+                                            if target then
+                                                targets = FindUnitsInRadius(target:GetTeam(),
+                                                    target:GetOrigin(),
+                                                    nil,
+                                                    256,
+                                                    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                                                    DOTA_UNIT_TARGET_ALL,
+                                                    DOTA_UNIT_TARGET_FLAG_NONE,
+                                                    FIND_ANY_ORDER,
+                                                    false
+                                                )
+                                            end
+
+                                            -- Level the spell
+                                            multAb:SetLevel(ab:GetLevel())
+
+                                            GameRules:GetGameModeEntity():SetThink(function()
+                                                if ab and ab:IsChanneling() then
+                                                    if target then
+                                                        local newTarget = target
+                                                        while #targets > 0 do
+                                                            newTarget = table.remove(targets, 1)
+                                                            if newTarget ~= target then
+                                                                break
+                                                            end
+                                                        end
+
+                                                        multUnit:CastAbilityOnTarget(newTarget, multAb, -1)
+                                                    elseif pos then
+                                                        multUnit:CastAbilityOnPosition(pos, multAb, -1)
+                                                    else
+                                                        UTIL_RemoveImmediate(multUnit)
+                                                    end
+                                                else
+                                                    UTIL_RemoveImmediate(multUnit)
+                                                end
+                                            end, 'channel'..DoUniqueString('channel'), 0.1 * multNum, nil)
+                                        else
+                                            UTIL_RemoveImmediate(multUnit)
+                                        end
+                                    end
+                                end
+
+                                return
+                            end
 
                             -- Grab the position
                             local pos = hero:GetCursorPosition()
                             local target = hero:GetCursorCastTarget()
                             local isTargetSpell = false
-
-                            local playerID = hero:GetPlayerID()
 
                             local targets
                             if target then
@@ -2791,22 +2937,6 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     end
                                 end
                             end, DoUniqueString('multicast'), delay)
-
-                            -- Create sexy particles
-                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
-                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            -- Play the sound
-                            hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
                         end
                     end
                 end
