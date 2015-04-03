@@ -11,11 +11,7 @@ Legends of Dota
 
 ###Current Features###
  - Picking Interface
- - Basic Option Selection Interface
- - Basic Banning Interface (You can ban skills)
- - Unlimited skill selection time
- - Option to have between 4 and 6 slots
- - Option to have between 0 and 6 regular abilities
+ - Basic Option Selection Interfacemet
  - Option to have between 0 and 6 ultimate abilities
  - Option to change starting level
  - Option to enable easy mode
@@ -67,9 +63,9 @@ Legends of Dota
   - **dota/** (Simply copy your `Steam/steamapps/common/dota 2 beta/dota` folder in)
   - **dota/addons/d2fixups** ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
   - **dota/addons/lod** (Download the latest release from the releases section above)
-  - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.7 dev branch](http://www.sourcemod.net/snapshots.php))
+  - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.8 dev branch, or the newest dev branch that exists](http://www.sourcemod.net/snapshots.php))
   - **dota/addons/sourcemod/plugins/ffa.smx** (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed)
-  - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch](https://www.sourcemm.net/snapshots))
+  - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch, or the newest dev branch that exists](https://www.sourcemm.net/snapshots))
   - **dota/maps/dota.bsp** (You need to grab the dota_fixed.bsp in the maps directory from this repo, rename it to dota.bsp and replace the existing one. The map is the same, only patched to work with custom games on source1. Note: You only need to do this on servers, NOT clients.)
  - The following goes into a batch file, place this match file into the same folder as srcds, call it `server.bat`
 
