@@ -2788,7 +2788,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     units = {}
                                 }
 
-                                for multNum=1,mult do
+                                for multNum=1,mult-1 do
                                     -- Create and store the unit
                                     local multUnit = CreateUnitByName('npc_multicast', hero:GetOrigin(), false, hero, hero, hero:GetTeamNumber())
                                     table.insert(multicastChannel[playerID].units, multUnit)
