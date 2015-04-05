@@ -721,14 +721,35 @@
             // Store callback
             slotAreaCallback = dropCallback;
 
+            // Limit max slots on towers / bear
+            var changedSlots:Number = totalSlots;
+            if(changedSlots > 6) changedSlots = 6;
+
             // Do it
             yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_YOUR);
-            bearSkillList.setup(totalSlots, bearSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
-            towerSkillList.setup(totalSlots, towerSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
+            bearSkillList.setup(changedSlots, bearSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
+            towerSkillList.setup(changedSlots, towerSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
+
+            // Reposition buttons
+            var localPaddingLeft:Number = 8;
+            var localPaddingRight:Number = 4;
+            var leftX:Number = yourSkillList.x - yourSkillList.width/2 - browseYourSkills.width - localPaddingLeft;
+            var rightX:Number = yourSkillList.x + yourSkillList.width/2 + localPaddingRight;
+            browseYourSkills.x = leftX;
+            browseBearSkills.x = leftX;
+            browseTowerSkills.x = leftX;
+
+            helpShowOptions.x = rightX;
+            helpMoreTime.x = rightX;
+            helpLockSkills.x = rightX;
+
+            randomSkill.x = rightX + helpShowOptions.width + localPaddingRight;
 
             // Hook slot right clicking
-            for(var i=0; i<lod.MAX_SLOTS; ++i) {
+            for(var i:Number=0; i<lod.MAX_SLOTS; ++i) {
                 yourSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+            }
+            for(i=0; i<changedSlots; ++i) {
                 bearSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
                 towerSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
             }

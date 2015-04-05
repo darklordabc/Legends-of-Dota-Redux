@@ -26,6 +26,13 @@ Legends of Dota
  - There is a less good workshop version available [here](http://steamcommunity.com/sharedfiles/filedetails/?id=296590332)
  - It is running the older version of dota 2, which means old spells, old map, no bounty rune, etc
 
+###How do I toggle between skill sets?###
+ - This can be done only when the slot count is more than 6
+ - The following console commands exist
+  - `lod_toggle_set` Which simply toggles between the sets
+  - `lod_show_set` Which takes either 0 or 1 as an argument, and will show that set
+ - There is also a button located on the GUI to toggle the slots
+
 ###Setting up your local client to connect to a source1 server###
  - **DO THIS ONCE, REPEAT WHEN YOU NEED TO UPDATE**
   - Close dota 2 (it won't load most updates / mods that are installed with this method unless you restart dota 2)

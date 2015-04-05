@@ -8,7 +8,14 @@
 		public var skill2:MovieClip;
 		public var skill3:MovieClip;
 		public var skill4:MovieClip;
-		public var skill5:MovieClip;
+        public var skill5:MovieClip;
+        public var skill6:MovieClip;
+        public var skill7:MovieClip;
+        public var skill8:MovieClip;
+        public var skill9:MovieClip;
+        public var skill10:MovieClip;
+        public var skill11:MovieClip;
+		public var skill12:MovieClip;
 
 		public function YourSkillList() {
 			this.gotoAndStop(1);
@@ -19,19 +26,16 @@
 			if(totalSlots < 4) {
 				totalSlots = 4;
 				trace('WARNING: Total slots was < 4');
-			} else if(totalSlots > 6) {
-				totalSlots = 6;
-				trace('WARNING: total slots was > 6');
+			} else if(totalSlots > 12) {
+				totalSlots = 12;
+				trace('WARNING: total slots was > 12');
 			}
 
+            // TEMP, remap 7-11 --> 12
+            if(totalSlots >= 7 && totalSlots <= 11) totalSlots = 12;
+
 			// Change the number of skills
-			if(totalSlots <= 4) {
-				this.gotoAndStop(1);
-			} else if(totalSlots == 5) {
-				this.gotoAndStop(2);
-			} else {
-				this.gotoAndStop(3);
-			}
+			this.gotoAndStop(totalSlots - 3);
 
             // Validate slot info
             if(slotInfo == null) slotInfo = '';

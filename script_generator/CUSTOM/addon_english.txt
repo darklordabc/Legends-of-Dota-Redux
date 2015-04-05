@@ -106,6 +106,9 @@
 		"desMulticastMadness"				"Multicast Madness"
 		"hintMulticastMadness"				"Everyone gets multicast, spells and items are guaranteed to have at least 2x multicast."
 
+		"desMaxHeroLevel"					"Max Hero Level"
+		"hintMaxHeroLevel"					"The max level a hero can get to."
+
 		"desSpawnTime"						"Respawn Time"
 		"hintSpawnTime"						"Allows you to change the respawn time of heroes.\n\nYou can set either a factor based respawn time, or an absolute respawn time."
 		"spawnTimeNormal"					"Normal Spawn Time"
@@ -118,6 +121,9 @@
 		"lod_respawn_20"					"20 seconds"
 		"lod_respawn_30"					"30 seconds"
 		"lod_respawn_60"					"60 seconds"
+
+		"lod_invalid_set_nums"				"<font color=\"#EB4B4B\">Valid set nums are {0} - {1}.</font>"
+		"lod_toggle_sets"					"Toggle Skills"
 
 		"desFreeScepter"					"Start With Upgraded Ultimates"
 		"hintFreeScepter"					"No scepter is required to use the scepter part of people's skills."
@@ -141,6 +147,7 @@
 		"4slots"							"4 Slots"
 		"5slots"							"5 Slots"
 		"6slots"							"6 Slots"
+		"12slots"							"12 Slots"
 
 		"0skills"							"No Regular Abilities"
 		"1skills"							"1 Regular Ability"
@@ -149,6 +156,12 @@
 		"4skills"							"4 Regular Abilities"
 		"5skills"							"5 Regular Abilities"
 		"6skills"							"6 Regular Abilities"
+		"7skills"							"7 Regular Abilities"
+		"8skills"							"8 Regular Abilities"
+		"9skills"							"9 Regular Abilities"
+		"10skills"							"10 Regular Abilities"
+		"11skills"							"11 Regular Abilities"
+		"12skills"							"12 Regular Abilities"
 
 		"0ults"								"No Ultimate Abilities"
 		"1ults"								"1 Ultimate Ability"
@@ -157,6 +170,12 @@
 		"4ults"								"4 Ultimate Abilities"
 		"5ults"								"5 Ultimate Abilities"
 		"6ults"								"6 Ultimate Abilities"
+		"7ults"								"7 Ultimate Abilities"
+		"8ults"								"8 Ultimate Abilities"
+		"9ults"								"9 Ultimate Abilities"
+		"10ults"							"10 Ultimate Abilities"
+		"11ults"							"11 Ultimate Abilities"
+		"12ults"							"12 Ultimate Abilities"
 
 		"yes"								"Yes"
 		"no"								"No"
@@ -166,6 +185,11 @@
 		"lvl11"								"Level 11"
 		"lvl16"								"Level 16"
 		"lvl25"								"Level 25"
+		"lvl30"								"Level 30"
+		"lvl35"								"Level 35"
+		"lvl40"								"Level 40"
+		"lvl45"								"Level 45"
+		"lvl50"								"Level 50"
 
 		"crazyHost"							"Host Banning"
 
@@ -204,7 +228,7 @@
 		"tab_items"							"Items"
 
 		// Banning
-		//"banning_help"						"Drag and drop skills here to ban them.\nYou can ban a certain number of skills and heroes.\nSelecting heroes will ban them!"
+		//"banning_help"					"Drag and drop skills here to ban them.\nYou can ban a certain number of skills and heroes.\nSelecting heroes will ban them!"
 		"banning_help"						"Drag and drop skills here to ban them.\nRight click skills to ban / request bans.\nYou can ban upto %s skills."
 		"banning_help_host"					"Please wait while the host bans skills."
 
@@ -257,7 +281,7 @@
 		"lod_us_team_based"		"(Team Based)"
 		"lod_us_global"			"(Global)"
 		"lod_gamemode"			"<font color=\"#4B69FF\">{0}</font> <font color=\"#ADE55C\">game variant was selected!</font>"
-		"lod_results"			"<font color=\"#EB4B4B\">Results:</font> <font color=\"#ADE55C\">There will be </font><font color=\"#4B69FF\">{0} slots</font><font color=\"#ADE55C\">, </font><font color=\"#4B69FF\">{1} regular {2}</font><font color=\"#ADE55C\"> and </font><font color=\"#4B69FF\">{3} ultimate {4}</font><font color=\"#ADE55C\"> allowed. Troll combos are </font><font color=\"#4B69FF\">{5}</font><font color=\"#ADE55C\">! Starting level is </font><font color=\"#4B69FF\">{6}</font><font color=\"#ADE55C\">! Bonus gold is </font></font><font color=\"#4B69FF\">{7}</font><font color=\"#ADE55C\">.</font>"
+		"lod_results"			"<font color=\"#EB4B4B\">Results:</font> <font color=\"#ADE55C\">There will be </font><font color=\"#4B69FF\">{0} slots</font><font color=\"#ADE55C\">, </font><font color=\"#4B69FF\">{1} regular {2}</font><font color=\"#ADE55C\"> and </font><font color=\"#4B69FF\">{3} ultimate {4}</font><font color=\"#ADE55C\"> allowed. Troll combos are </font><font color=\"#4B69FF\">{5}</font><font color=\"#ADE55C\">! Starting level is </font><font color=\"#4B69FF\">{6}</font><font color=\"#ADE55C\">! Bonus gold is </font></font><font color=\"#4B69FF\">{7}</font><font color=\"#ADE55C\">.</font> <font color=\"#ADE55C\">! Max level is </font></font><font color=\"#4B69FF\">{8}</font><font color=\"#ADE55C\">.</font>"
 		"lod_wtf"				"<font color=\"#EB4B4B\">WTF MODE IS ON!</font> <font color=\"#ADE55C\">Skills will have NO COOLDOWNS OR MANA COST! Globals are auto banned!</font>"
 		"lod_universal_shop"	"<font color=\"#EB4B4B\">UNIVERSAL SHOP IS ACTIVATED!</font> <font color=\"#ADE55C\">You can purchase any item from any shop!</font>"
 		"lod_fast_jungle_creeps""<font color=\"#EB4B4B\">FAST JUNGLE CREEPS IS ACTIVATED!</font> <font color=\"#ADE55C\">Creeps in the jungle will spawn super fast, and will spawn at 0:01 instead of 0:30.</font>"

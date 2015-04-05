@@ -185,6 +185,9 @@ local allVision = false
 -- Multicast Madness
 local multicastMadness = false
 
+-- Max level
+local maxHeroLevel = 25
+
 -- Unique skills constants
 local UNIQUE_SKILLS_NONE = 0
 local UNIQUE_SKILLS_TEAM = 1
@@ -335,6 +338,60 @@ local SPLIT_CHAR = string.char(7)
 
 local SERVER_COMMAND = 0x10000000
 local CLIENT_COMMAND = 268435456--0x80000000
+
+-- EXP Needed for each level
+local XP_PER_LEVEL_TABLE = {
+    0,-- 1
+    200,-- 2
+    500,-- 3
+    900,-- 4
+    1400,-- 5
+    2000,-- 6
+    2600,-- 7
+    3200,-- 8
+    4400,-- 9
+    5400,-- 10
+    6000,-- 11
+    8200,-- 12
+    9000,-- 13
+    10400,-- 14
+    11900,-- 15
+    13500,-- 16
+    15200,-- 17
+    17000,-- 18
+    18900,-- 19
+    20900,-- 20
+    23000,-- 21
+    25200,-- 22
+    27500,-- 23
+    29900,-- 24
+    32400, -- 25
+    35000,-- 26
+    37700,-- 27
+    40500,-- 28
+    43400,-- 29
+    46400,-- 30
+    49500,-- 31
+    52700,-- 32
+    56000,-- 33
+    59400,-- 34
+    62900,-- 35
+    66500,-- 36
+    70200,-- 37
+    74000,-- 38
+    77900,-- 39
+    81900,-- 40
+    86000,-- 41
+    90200,-- 42
+    94500,-- 43
+    98900,-- 44
+    103400,-- 45
+    108000,-- 46
+    112700,-- 47
+    117500,-- 48
+    122400,-- 49
+    127400,-- 50
+}
 
 --[[
     LOAD EXTERNAL OPTIONS
@@ -1225,7 +1282,8 @@ printOptionsToPlayer = function(playerID)
         ((maxUlts == 1 and '#lod_ ability') or '#lod_abilities'),
         ((banTrollCombos and '#lod_BANNED') or '#lod_ALLOWED'),
         startingLevel,
-        bonusGold
+        bonusGold,
+        maxHeroLevel
     })
 
     -- Announce which gamemode we're playing
@@ -1540,6 +1598,7 @@ end
 -- Shuffles a table
 shuffle = function(t)
   local n = #t
+  if n > 6 then n = 6 end
 
   while n >= 2 do
     -- n is now the last pertinent index
@@ -1704,6 +1763,18 @@ finishVote = function()
     -- Multicast madness
     multicastMadness = optionToValue(24, winners[24]) == 1
 
+    -- Grab max level
+    maxHeroLevel = optionToValue(25, winners[25])
+
+    -- Enforce the max level
+    if startingLevel > maxHeroLevel then
+        startingLevel = maxHeroLevel
+    end
+
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_PER_LEVEL_TABLE)
+    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(maxHeroLevel)
+    GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+
     -- Events
     --loadSurvival = optionToValue(25, winners[25]) == 1
 
@@ -1713,6 +1784,7 @@ finishVote = function()
             useEasyMode = useEasyMode,
             bonusGold = bonusGold,
             startingLevel = startingLevel,
+            maxHeroLevel = maxHeroLevel,
             gamemode = gamemode,
             hideSkills = hideSkills,
             banTrollCombos = banTrollCombos,
@@ -1924,7 +1996,7 @@ function lod:OnEmitStateInfo()
         s[tostring(i)] = slot
 
         -- Loop over this player's skills
-        for j=1,6 do
+        for j=1,12 do
             -- Ensure the slot is filled
             s[tostring(i..j)] = s[tostring(i..j)] or -1
             b[tostring(i..j)] = b[tostring(i..j)] or -1
@@ -2002,7 +2074,7 @@ function lod:OnEmitStateInfo()
             -- Grab tower skills
             local skillz = towerSkills[i] or {}
 
-            for j=1,6 do
+            for j=1,12 do
                 -- Store the ID of this skill
                 local sid = getSkillID(skillz[j])
 
@@ -2243,35 +2315,6 @@ function lod:OnThink()
     print('WARNING: Unknown stage: '..currentStage)
 end
 
--- EXP Needed for each level
-local XP_PER_LEVEL_TABLE = {
-    0,-- 1
-    200,-- 2
-    500,-- 3
-    900,-- 4
-    1400,-- 5
-    2000,-- 6
-    2600,-- 7
-    3200,-- 8
-    4400,-- 9
-    5400,-- 10
-    6000,-- 11
-    8200,-- 12
-    9000,-- 13
-    10400,-- 14
-    11900,-- 15
-    13500,-- 16
-    15200,-- 17
-    17000,-- 18
-    18900,-- 19
-    20900,-- 20
-    23000,-- 21
-    25200,-- 22
-    27500,-- 23
-    29900,-- 24
-    32400 -- 25
-}
-
 -- Sets ownership of tower
 -- Doesn't appear to work :O
 setTowerOwnership = function()
@@ -2371,12 +2414,14 @@ ListenToGameEvent('npc_spawned', function(keys)
             -- We have given bonuses
             givenBonuses[playerID] = true
 
+            print('Start level = '..startingLevel)
+
             -- Do we need to level up?
             if startingLevel > 1 then
                 -- Level it up
-                for i=1,startingLevel-1 do
-                    spawnedUnit:HeroLevelUp(false)
-                end
+                --for i=1,startingLevel-1 do
+                --    spawnedUnit:HeroLevelUp(false)
+                --end
 
                 -- Fix EXP
                 if GameRules:isSource1() then
@@ -3832,6 +3877,55 @@ registerConsoleCommands = function()
 
         end
     end, 'Ban a given skill', CLIENT_COMMAND)
+
+    -- Shows the given set
+    Convars:RegisterCommand('lod_show_set', function(name, setNum)
+        -- Server only command!
+        local ply = Convars:GetCommandClient()
+        if ply then
+            -- This command doesnt work if we have 6 or less slots
+            if maxSlots <= 6 then return end
+
+            setNum = tonumber(setNum)
+            if setNum < 0 or setNum > 1 then
+                sendChatMessage(playerID, '#lod_invalid_set_nums', {
+                    0, 1
+                })
+                return
+            end
+
+            local playerID = ply:GetPlayerID()
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if hero then
+                SkillManager:ShowSet(hero, setNum)
+            end
+        end
+    end, '', CLIENT_COMMAND)
+
+    -- Toggles the given set
+    local currentToggles = {}
+    Convars:RegisterCommand('lod_toggle_set', function(name)
+        -- Server only command!
+        local ply = Convars:GetCommandClient()
+        if ply then
+            -- This command doesnt work if we have 6 or less slots
+            if maxSlots <= 6 then return end
+
+            local playerID = ply:GetPlayerID()
+
+            -- Decide which set to show
+            local setNum = 1
+            if currentToggles[playerID] == 1 then
+                setNum = 0
+            end
+            currentToggles[playerID] = setNum
+
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if hero then
+                SkillManager:ShowSet(hero, setNum)
+            end
+        end
+    end, '', CLIENT_COMMAND)
 
     -- When a user wants to stick a skill into a slot
     Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, skillName)

@@ -15,13 +15,7 @@
 
 		// When our skill list is created
 		public function PlayerSkillList(totalSkills:Number) {
-			if(totalSkills <= 4) {
-				this.gotoAndStop(1);
-			} else if(totalSkills == 5) {
-				this.gotoAndStop(2);
-			} else {
-				this.gotoAndStop(3);
-			}
+			this.gotoAndStop(totalSkills-3);
 		}
 
 		// Sets the color of this skill list

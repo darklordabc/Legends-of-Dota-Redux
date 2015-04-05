@@ -20,6 +20,9 @@ local unitList = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 -- This object will be exported
 local skillManager = {}
 
+-- Table of player's active skills to make swapping super fast
+local activeSkills = {}
+
 local meleeMap = {
     -- Remap troll ulty
     troll_warlord_berserkers_rage = 'troll_warlord_berserkers_rage_melee'
@@ -208,6 +211,35 @@ function skillManager:RemoveAllSkills(hero)
     end
 end
 
+-- Shows the given set number
+function skillManager:ShowSet(hero, number)
+    local playerID = hero:GetPlayerID()
+
+    if activeSkills[playerID] then
+        for k,v in pairs(activeSkills[playerID]) do
+            local ab = hero:FindAbilityByName(v)
+            if IsValidEntity(ab) then
+                ab:SetHidden(true)
+            end
+        end
+
+        local startNum = 1
+        local endNum = 6
+
+        if number == 1 then
+            startNum = 7
+            endNum = 12
+        end
+
+        for i=startNum,endNum do
+            local ab = hero:FindAbilityByName(activeSkills[playerID][i])
+            if IsValidEntity(ab) then
+                ab:SetHidden(false)
+            end
+        end
+    end
+end
+
 local inSwap = false
 function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
@@ -217,9 +249,16 @@ function skillManager:ApplyBuild(hero, build)
     if inSwap then return end
 
     -- Check if there is a new hero
+    local playerID
+    local isRealHero = false
     if hero:IsHero() then
-        local playerID = hero:GetPlayerID()
+        playerID = hero:GetPlayerID()
         local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+        -- Hero check
+        if hero:IsRealHero() then
+            isRealHero = true
+        end
 
         if hero:IsRealHero() and build.hero and (not realHero or realHero == hero) then
             -- Reset current skills
@@ -392,6 +431,11 @@ function skillManager:ApplyBuild(hero, build)
 
     local isTower = hero:GetClassname() == 'npc_dota_tower'
 
+    if isRealHero then
+        -- Ensure this player has an active skill list
+        activeSkills[playerID] = {}
+    end
+
     -- Give all the abilities in this build
     local abNum = 0
     for i=1,16 do
@@ -501,6 +545,11 @@ function skillManager:ApplyBuild(hero, build)
                 if ab then
                     ab:SetHidden(true)
                 end
+            end
+
+            -- Store the index
+            if isRealHero then
+                activeSkills[playerID][i] = v
             end
         else
             local inSlot = abs[i]

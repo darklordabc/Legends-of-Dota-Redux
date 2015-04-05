@@ -745,7 +745,7 @@
                     selectionUI.banningArea.banningHelp.text = selectionUI.banningArea.banningHelp.text.replace('%s', lastState.bans);
 
                     // Patch key bindings
-                    keyBindings = ['Q', 'W', 'E', 'D', 'F', 'R'];
+                    keyBindings = ['Q', 'W', 'E', 'D', 'F', 'R', 'Q', 'W', 'E', 'D', 'F', 'R'];
                     keyBindings[MAX_SLOTS-1] = 'R';
 
                     // Load up the skills file
@@ -949,10 +949,7 @@
                     break;
 
                 case STAGE_PLAYING:
-                    if(fromScratch) {
-                        hideAllUI();
-                        nukeUI();
-                    }
+                    buildToggleInterface(fromScratch);
                     break;
 
                 default:
@@ -988,6 +985,32 @@
                 selectionUI.showYourSkills();
                 selectionUI.setPageButtonVisible(true);
             }
+        }
+
+        // Builds the toggle interface
+        private function buildToggleInterface(fromScratch:Boolean):void {
+            if(fromScratch) {
+                hideAllUI();
+                nukeUI();
+
+                // Do we need a toggle button?
+                if(MAX_SLOTS > 6) {
+                    // Create the button
+                    var toggleSetsBtn:MovieClip = Util.smallButton(this, '#lod_toggle_sets');
+                    toggleSetsBtn.addEventListener(MouseEvent.MOUSE_DOWN, onToggleSets);
+
+
+                    // TODO: Make this none absolute
+                    toggleSetsBtn.x = 1024/2;
+                    toggleSetsBtn.y = 768 - 19.5;
+                }
+            }
+        }
+
+        // Callback for when the toggle sets button is clicked
+        private function onToggleSets(e):void {
+            // Tell the server to toggle the sets
+            tellServerToToggleSets();
         }
 
         // Builds the voting UI
@@ -1109,7 +1132,7 @@
                 var abilityID:Number = globals.Entities.GetAbility(hero, i);
 
                 // Ensure a valid ability
-                if(abilityID == -1 || globals.Abilities.IsHidden(abilityID)) continue;
+                if(abilityID == -1) continue;
 
                 // Print out the name
                 var abilityName = globals.Abilities.GetAbilityName(abilityID);
@@ -1277,10 +1300,15 @@
 
                 // Center it perfectly
                 sl.x = 0;
-                sl.y = 22;
 
                 // Move the icon up a little
-                con.heroIcon.y = -15;
+                if(MAX_SLOTS > 6) {
+                    con.heroIcon.y = -15 - 14;
+                    sl.y = 22 - 14;
+                } else {
+                    con.heroIcon.y = -15;
+                    sl.y = 22;
+                }
 
                 // Store this skill list into the container
                 con.addChild(sl);
@@ -1663,6 +1691,12 @@
         private function tellServerWeWant(selectedInterface:Number, slotNumber:Number, skillName:String):void {
             // Send the message to the server
             gameAPI.SendServerCommand('lod_skill "' + selectedInterface + '" "' + slotNumber + '" "' + skillName + '""');
+        }
+
+        // Tell the server to toggle our sets
+        private function tellServerToToggleSets():void {
+            // Send the message to the server
+            gameAPI.SendServerCommand('lod_toggle_set');
         }
 
         // Tell the server to put a skill into a slot
