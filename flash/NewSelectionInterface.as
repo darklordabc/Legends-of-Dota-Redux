@@ -64,6 +64,9 @@
         // Stores the skillKV
         private var skillKV:Object;
 
+        // List of SelectSkillList
+        private var selectSkillList:Array;
+
         // The search filters
         private var filterText:String = '';
         private var filter1:Number = 0;
@@ -101,6 +104,9 @@
             // Make the toggle interface text work
             toggleInterfaceText.addEventListener(MouseEvent.CLICK, toggleHeroIcons);
             toggleInterfaceText.autoSize = "right";
+
+            // Create the array
+            selectSkillList = [];
 
             // Init drop effect
             dropEffect = new GlowFilter();
@@ -279,6 +285,9 @@
                                     sl.heroImage.y = k*(singleHeight+gapSize) + l*(SL_HEIGHT+S_PADDING);
                                 }
 
+                                // Do we have any active spells?
+                                var activeSpells:Boolean = false;
+
                                 for(var a:Number=0; a<4; a++) {
                                     // Grab the slot
                                     var skillSlot:MovieClip = sl['skill'+a];
@@ -311,6 +320,9 @@
 
 	                                            // Store into the active list
 	                                            activeList[skill] = skillSlot;
+
+                                                // We have active spells
+                                                activeSpells = true;
                                         	} else {
                                                 // Remove the slot
                                                 sl.removeChild(skillSlot);
@@ -345,6 +357,9 @@
 
                                                     // Store into the active list
                                                     activeList[skillSplit[splitLength]] = skillSlot2;
+
+                                                    // We have active spells
+                                                    activeSpells = true;
                                                 }
                                             }
                                         }
@@ -352,6 +367,12 @@
                                         // Remove the slot
                                         sl.removeChild(skillSlot);
                                     }
+                                }
+
+                                // Do we have any active spells?
+                                if(activeSpells) {
+                                    // Store it
+                                    selectSkillList.push(sl);
                                 }
                             }
                         }
@@ -579,6 +600,11 @@
             // Declare vars
             var skill:Object;
 
+            // Hide all hero images
+            for(var i:Number=0; i<selectSkillList.length; ++i) {
+                selectSkillList[i].resetActiveChildren();
+            }
+
             // Search abilities for this key word
             for(var key in activeList) {
                 // Check for valid drafting skills
@@ -639,6 +665,9 @@
                     doShow++;
                 }
 
+                // Show the parent
+                activeList[key].parent.addActiveChild(false);
+
                 // Did this skill pass all the filters?
                 if(doShow >= totalFilters) {
                     // Found, is it banned?
@@ -655,6 +684,9 @@
                         // Yay, not banned!
                         activeList[key].filters = null;
                         activeList[key].alpha = 1;
+
+                        // Show the parent
+                        activeList[key].parent.addActiveChild(true);
                     }
                 } else {
                     // Not found

@@ -103,6 +103,9 @@
 		"desAllVision"						"All Vision"
 		"hintAllVision"						"Makes everyone share the same vision. Teams get enemy vision."
 
+		"desMulticastMadness"				"Multicast Madness"
+		"hintMulticastMadness"				"Everyone gets multicast, spells and items are guaranteed to have at least 2x multicast."
+
 		"desSpawnTime"						"Respawn Time"
 		"hintSpawnTime"						"Allows you to change the respawn time of heroes.\n\nYou can set either a factor based respawn time, or an absolute respawn time."
 		"spawnTimeNormal"					"Normal Spawn Time"
@@ -119,6 +122,9 @@
 		"desFreeScepter"					"Start With Upgraded Ultimates"
 		"hintFreeScepter"					"No scepter is required to use the scepter part of people's skills."
 		"lod_fast_scepter"					"<font color=\"#EB4B4B\">All ultimates will have their scepter upgrades activated without buying a scepter!</font>"
+
+		"lod_multicast_madness"				"<font color=\"#EB4B4B\">Everyone gets multicast! Spells and items will always multicast at least 2x!</font>"
+		"lod_multicast_no_multicast"		"<font color=\"#EB4B4B\">Multicast madness is on, you automatically get multicast!</font>"
 
 		"desEventMatch"						"Event Match"
 		"hintEventMatch"					"Survival:\nZombies will spawn and try to kill you, the goal is to survive for as long as possible. The match ends when everyone on a given team is dead at the same time."

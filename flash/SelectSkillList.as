@@ -15,6 +15,9 @@
 		// The hero image
 		public var heroImage:MovieClip;
 
+		// Is this fully active?
+		private var fullyActive:Boolean;
+
 		// Is this active?
 		private var active:Boolean;
 
@@ -23,7 +26,26 @@
             heroImage.visible = false;
 
             // This isn't active
+            fullyActive = false;
             active = false;
+		}
+
+		// Resets the number of active children we have
+		public function resetActiveChildren():void {
+			active = false;
+			heroImage.visible = false;
+
+			heroImage.filters = Util.greyFilter;
+		}
+
+		// Adds an active child
+		public function addActiveChild(fully:Boolean):void {
+			active = true;
+			heroImage.visible = fullyActive;
+
+			if(fully) {
+				heroImage.filters = null;
+			}
 		}
 
 		// Updates the hero image
@@ -48,6 +70,7 @@
 
 			// Set it to be active
 			active = true;
+			fullyActive = true;
 		}
 
 		private function onSkillRollOver():void {
@@ -55,7 +78,7 @@
 		}
 
 		private function onSkillRollOut():void {
-			this.heroImage.visible = active;
+			this.heroImage.visible = active && fullyActive;
 		}
 	}
 }
