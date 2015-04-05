@@ -191,6 +191,8 @@
 		"lvl45"								"Level 45"
 		"lvl50"								"Level 50"
 
+		"lod_slotWarning"					"<font color=\"#EB4B4B\">WARNING: Pick a hero that has NO SKILLS in the selectionUI, or risk not getting some of your skills!</font>"
+
 		"crazyHost"							"Host Banning"
 
 		"opOff"								"Off"

@@ -1396,6 +1396,10 @@ printOptionsToPlayer = function(playerID)
             math.ceil(endOfTimer-Time())
         })
     end
+
+    if maxSlots > 6 then
+        sendChatMessage(playerID, '#lod_slotWarning')
+    end
 end
 
 -- Takes the current gamemode number, and sets the required settings
@@ -2281,6 +2285,11 @@ function lod:OnThink()
 
         -- Apply the tower skills
         applyTowerSkills()
+
+        -- Warn the players again
+        if maxSlots > 6 then
+            sendChatMessage(-1, '#lod_slotWarning')
+        end
 
         -- Sleep
         return 0.1
