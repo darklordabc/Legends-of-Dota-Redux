@@ -52,6 +52,7 @@ Legends of Dota
   - [Texas, USA] Ash47 4th **lod.ash47.net:27018**
  - Unofficial
   - [Brazil] Pupin's Server **lodpupin.no-ip.org:27016**
+
 ###Starting a source1 server###
  - There is debugging help below in the `More SRCDS Setup Help` section, there is also a FAQ below
  - NOTE: Sourcemod stuff is ONLY needed if you want to play with bots, if bots aren't needed, there is no need to intall sourcemod
