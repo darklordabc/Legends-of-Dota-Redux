@@ -1805,6 +1805,11 @@ function lod:InitGameMode()
         PrecacheUnitByNameAsync('npc_precache_survival_s2', function()
             CreateUnitByName('npc_precache_survival_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
         end)
+
+        -- Precache wraithnight stuff
+        PrecacheUnitByNameAsync('npc_precache_wraithnight_s2', function()
+            CreateUnitByName('npc_precache_wraithnight_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        end)
     else
         -- Precache wraithnight
         CreateUnitByName('npc_precache_wraithnight_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)

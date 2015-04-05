@@ -39,8 +39,8 @@ mklink /D /J "lod_s1_bin\lod\scripts\kv" "lod_game\scripts\kv"
 mklink /D /J "lod_s1_bin\lod\scripts\abilities" "lod_game\scripts\abilities"
 mklink /D /J "lod_s1_bin\lod\scripts\game_sounds" "lod_game\scripts\game_sounds"
 
-:: Link particle folder 
-mklink /D /J "lod_s1_bin\lod\particles" "lod_game\particles"
+:: Link particle folder
+mklink /D /J "lod_s1_bin\lod\particles" "lod_game\particles_s1"
 
 :: Link resource folders
 mklink /D /J "lod_s1_bin\lod\resource\flash3" "lod_game\resource\flash3"
@@ -84,6 +84,9 @@ mklink /D /J "lod_s2_bin\scripts\vscripts" "lod_game\scripts\vscripts\"
 mklink /D /J "lod_s2_bin\scripts\kv" "lod_game\scripts\kv"
 mklink /D /J "lod_s2_bin\scripts\abilities" "lod_game\scripts\abilities"
 mklink /D /J "lod_s2_bin\scripts\game_sounds" "lod_game\scripts\game_sounds"
+
+:: Link particle folder
+mklink /D /J "lod_s2_bin\particles" "lod_game\particles_s2"
 
 :: Link resource folders
 mklink /D /J "lod_s2_bin\resource\flash3" "lod_game\resource\flash3"

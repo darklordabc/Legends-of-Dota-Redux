@@ -379,6 +379,27 @@
 		}
 	}
 
+	"npc_precache_wraithnight_s2"
+	{
+		"BaseClass"					"npc_dota_creep"
+
+		"precache"
+		{
+			//"soundfile" "scripts/game_sounds/nian.txt"
+			"soundfile" "scripts/game_sounds/frostivus.txt"
+
+			"particle_folder"				"particles/creature_splitter"
+			"particle_folder"				"particles/frostivus_gameplay"
+			"particle_folder"				"particles/frostivus_herofx"
+			"particle_folder"				"particles/generic_aoe_persistent_circle_1"
+			"particle_folder"				"particles/holdout_lina"
+			"particle_folder"				"particles/test_particle"
+			//"particle_folder"				"particles/nian_gameplay"
+			//"particle_folder"				"particles/nian_gameplay_b"
+			"particle_folder"				"particles/nian_temp"
+		}
+	}
+
 	"npc_precache_survival_s2"
 	{
 		"BaseClass"					"npc_dota_creep"
