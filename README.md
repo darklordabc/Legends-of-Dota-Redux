@@ -54,8 +54,8 @@ Legends of Dota
  - Ash47 4th **lod.ash47.net:27018**
 
 ###Starting a source1 server###
- - Do not contact me for additional help
- - If you get stuck, google it! Here is how: [Click this link](http://tinyurl.com/opvfh46)
+ - There is debugging help below in the `More SRCDS Setup Help` section, there is also a FAQ below
+ - NOTE: Sourcemod stuff is ONLY needed if you want to play with bots, if bots aren't needed, there is no need to intall sourcemod
  - Here is the file structure for your own server! Start by making a blank folder somewhere, possibly called `mySexyServer`
   - **server.bat** (You will create this yourself, the contents are specified below)
   - **srcds.exe** ([Download the SRCDS for your OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
