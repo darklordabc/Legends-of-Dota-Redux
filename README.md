@@ -45,11 +45,13 @@ Legends of Dota
  - If you do not see the standard `Please wait while we waste your time` screen, you have installed Legends of Dota incorrectly, ensure `dota 2 beta/dota/addons/lod/addoninfo.txt` exists. Ensure you did the gameinfo step. Ensure you restarted dota 2.
 
 ###List of public source1 servers###
- - Ash47 1st **lod.ash47.net:27015**
- - Ash47 2nd **lod.ash47.net:27016**
- - Ash47 3rd **lod.ash47.net:27017**
- - Ash47 4th **lod.ash47.net:27018**
-
+ - Official
+  - [Texas, USA] Ash47 1st **lod.ash47.net:27015**
+  - [Texas, USA] Ash47 2nd **lod.ash47.net:27016**
+  - [Texas, USA] Ash47 3rd **lod.ash47.net:27017**
+  - [Texas, USA] Ash47 4th **lod.ash47.net:27018**
+ - Unofficial
+  - [Brazil] Pupin's Server **lodpupin.no-ip.org:27016**
 ###Starting a source1 server###
  - There is debugging help below in the `More SRCDS Setup Help` section, there is also a FAQ below
  - NOTE: Sourcemod stuff is ONLY needed if you want to play with bots, if bots aren't needed, there is no need to intall sourcemod
