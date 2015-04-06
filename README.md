@@ -75,7 +75,7 @@ Legends of Dota
   - **dota/addons/sourcemod/plugins/clear_playerid.smx** (This is needed only if you want the extra dev commands below, no harm in adding it though)
   - **dota/addons/lod** (Download the latest release from the releases section above, if you clone the repo, you need to run `stage.bat` which will compile the binaries, and place them into lod_s1_bin)
   - **dota/maps/dota.bsp** (You need to grab the dota_fixed.bsp in the maps directory from this repo [here](https://github.com/ash47/LegendsOfDota/tree/master/maps), rename it to dota.bsp and replace the existing one. The map is the same, only patched to work with custom games on source1. Note: You only need to do this on servers, NOT clients.)
- - The following goes into a batch file, place this match file into the same folder as srcds, call it `server.bat`
+ - The following goes into a batch file, place this batch file into the same folder as srcds, call it `server.bat`
 
         @echo off
         cls
