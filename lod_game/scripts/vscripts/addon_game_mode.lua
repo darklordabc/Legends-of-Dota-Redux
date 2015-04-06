@@ -2353,6 +2353,23 @@ applyTowerSkills = function()
     -- Ensure tower skills are allowed
     if not allowTowerSkills then return end
 
+    -- Ensure there isn't one sided tower skills
+    if not towerSkills[DOTA_TEAM_BADGUYS] then
+        if towerSkills[DOTA_TEAM_GOODGUYS] then
+            for k,v in pairs(towerSkills[DOTA_TEAM_GOODGUYS]) do
+                towerSkills[DOTA_TEAM_BADGUYS][k] = v
+            end
+        end
+    end
+
+    if not towerSkills[DOTA_TEAM_GOODGUYS] then
+        if towerSkills[DOTA_TEAM_BADGUYS] then
+            for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS]) do
+                towerSkills[DOTA_TEAM_GOODGUYS][k] = v
+            end
+        end
+    end
+
     -- Dump dire tower skills
     print('Dire Towers:')
     for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS] or {}) do
