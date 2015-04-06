@@ -2599,6 +2599,7 @@ ListenToGameEvent('entity_killed', function(keys)
     -- Ensure it is a hero
     if IsValidEntity(hero) and hero:IsHero() then
         if hero:WillReincarnate() then return end
+        if hero:IsReincarnating() then return end
 
         local timeLeft = hero:GetRespawnTime()
 
