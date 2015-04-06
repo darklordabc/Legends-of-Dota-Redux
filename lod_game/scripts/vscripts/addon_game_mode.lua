@@ -2356,6 +2356,7 @@ applyTowerSkills = function()
     -- Ensure there isn't one sided tower skills
     if not towerSkills[DOTA_TEAM_BADGUYS] then
         if towerSkills[DOTA_TEAM_GOODGUYS] then
+            towerSkills[DOTA_TEAM_BADGUYS] = {}
             for k,v in pairs(towerSkills[DOTA_TEAM_GOODGUYS]) do
                 towerSkills[DOTA_TEAM_BADGUYS][k] = v
             end
@@ -2364,6 +2365,7 @@ applyTowerSkills = function()
 
     if not towerSkills[DOTA_TEAM_GOODGUYS] then
         if towerSkills[DOTA_TEAM_BADGUYS] then
+            towerSkills[DOTA_TEAM_GOODGUYS] = {}
             for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS]) do
                 towerSkills[DOTA_TEAM_GOODGUYS][k] = v
             end
