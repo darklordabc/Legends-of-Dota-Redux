@@ -2490,7 +2490,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                 end
 
                 -- Sort it randomly
-                skillList[playerID][SKILL_LIST_YOUR] = shuffle(skillList[playerID][SKILL_LIST_YOUR])
+                --skillList[playerID][SKILL_LIST_YOUR] = shuffle(skillList[playerID][SKILL_LIST_YOUR])
 
                 -- Store that we added skills
                 specialAddedSkills[playerID] = {}
