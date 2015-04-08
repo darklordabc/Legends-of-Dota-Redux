@@ -59,10 +59,12 @@ Legends of Dota
   - [Texas, USA] Ash47 4th **lod.ash47.net:27018**
  - Unofficial
   - [Brazil] Pupin's Server **lodpupin.no-ip.org:27016**
+  - [EU] Veroalla **lod.noip.me:1337**
 
 ###Starting a source1 server###
  - There is debugging help below in the `More SRCDS Setup Help` section, there is also a FAQ below
  - NOTE: Sourcemod stuff is ONLY needed if you want to play with bots, if bots aren't needed, there is no need to intall sourcemod
+ - NOTE: Some of the zips/releases below, such as d2fixups and sourcemod have files that need to be copied into other directories, please ensure you fully and correctly install all the files in the release (The releases usually have the folder structure, for example `addons/metamod` which indicates where each file needs to go)
  - Here is the file structure for your own server! Start by making a blank folder somewhere, possibly called `mySexyServer`
   - **server.bat** (You will create this yourself, the contents are specified below)
   - **srcds.exe** ([Download the SRCDS for your OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
