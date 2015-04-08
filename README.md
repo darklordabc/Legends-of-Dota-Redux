@@ -68,12 +68,12 @@ Legends of Dota
   - **srcds.exe** ([Download the SRCDS for your OS here](https://forums.alliedmods.net/showthread.php?p=2110203))
   - **bin/** (Simply copy your `Steam/steamapps/common/dota 2 beta/bin` folder in)
   - **dota/** (Simply copy your `Steam/steamapps/common/dota 2 beta/dota` folder in)
+  - **dota/addons/lod** (Download the latest release from the [releases section](https://github.com/ash47/LegendsOfDota/releases) above, if you clone or fork the repo, you need to run `stage.bat` which will compile the binaries, and place them into lod_s1_bin, the newer releases also contain the sourcemod plugins)
   - **dota/addons/metamod** ([The latest snapshot in the 1.11 dev branch, or the newest dev branch that exists](https://www.sourcemm.net/snapshots))
   - **dota/addons/d2fixups** ([Download from the first post here](https://forums.alliedmods.net/showthread.php?t=209965))
   - **dota/addons/sourcemod** ([Download the latest snapshot in the 1.8 dev branch, or the newest dev branch that exists](http://www.sourcemod.net/snapshots.php))
   - **dota/addons/sourcemod/plugins/ffa.smx** (This can be found in sourcemod/plugins folder of the LegendsOfDota repo, you might want to delete / disable all the other plugins that ship with sourcemod, since they aren't needed, this can be done by simply moving them into the `disabled` folder)
   - **dota/addons/sourcemod/plugins/clear_playerid.smx** (This is needed only if you want the extra dev commands below, no harm in adding it though)
-  - **dota/addons/lod** (Download the latest release from the releases section above, if you clone the repo, you need to run `stage.bat` which will compile the binaries, and place them into lod_s1_bin)
   - **dota/maps/dota.bsp** (You need to grab the dota_fixed.bsp in the maps directory from this repo [here](https://github.com/ash47/LegendsOfDota/tree/master/maps), rename it to dota.bsp and replace the existing one. The map is the same, only patched to work with custom games on source1. Note: You only need to do this on servers, NOT clients.)
  - The following goes into a batch file, place this batch file into the same folder as srcds, call it `server.bat`
 
@@ -84,7 +84,7 @@ Legends of Dota
         title Legends of Dota watchdog
         :srcds
         echo (%time%) srcds started.
-        start /wait srcds -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +dota_local_addon_enable 1 +dota_local_addon_game lod +dota_force_gamemode 15 +map dota
+        start /wait srcds.exe -console -game dota +maxplayers 24 +hostport 27016 -condebug -dev +dota_local_addon_enable 1 +dota_local_addon_game lod +dota_force_gamemode 15 +map dota
         echo (%time%) WARNING: srcds closed or crashed, restarting.
         goto srcds
 
@@ -128,10 +128,10 @@ Legends of Dota
                     //
                     SearchPaths
                     {
-                        GameBin             |gameinfo_path|addons/metamod/bin
+                        GameBin             |gameinfo_path|addons/metamod/bin // This tells it to load metamod
                         Game                |gameinfo_path|.
                         Game                platform
-                        Game                |gameinfo_path|addons/lod
+                        Game                |gameinfo_path|addons/lod         // This tells it to load the LoD files
                     }
                 }
             }
@@ -139,12 +139,12 @@ Legends of Dota
 
  - If you want to be put onto a team automatically, you will need the follow files created, depending on what you eant your server to do
  - dedicated.kv is required for all dedicated server functions, it will load the bans file and stop noobs from playing
- - Create cfg/dedicated.kv
+ - Create `dota 2 beta/dota/cfg/dedicated.kv`
 
         "dedicated" {
         }
 
- - Create `cfg/allocation.kv` if you want to be allocated into a team automatically
+ - Create `dota 2 beta/dota/cfg/allocation.kv` if you want to be allocated into a team automatically
 
         "dedicated" {
         }
@@ -152,7 +152,7 @@ Legends of Dota
  - You will be put onto the team with the least players, or radiant if they have the same number of players
  - You can force your team by adding `R`, `D` or `S` to the start of your steam name, for Radiant, Dire and Spectator
  - Once allocated to a team, it can not be changed until the server is restarted
- - Create `cfg/addbots.kv` if you want bots to be added (assuming sourcemod is setup correctly)
+ - Create `dota 2 beta/dota/cfg/addbots.kv` if you want bots to be added (assuming sourcemod is setup correctly)
 
         "dedicated" {
         }
