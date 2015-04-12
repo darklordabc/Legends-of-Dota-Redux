@@ -23,6 +23,7 @@ fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
         var newKV = {};
 
         var ignoreHeroes = {    // These are heroes bots can play as, can't edit those, DOH!
+            npc_dota_hero_alchemist: true,
             npc_dota_hero_axe: true,
             npc_dota_hero_antimage: true,
             npc_dota_hero_bane: true,
