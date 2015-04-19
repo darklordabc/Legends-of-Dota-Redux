@@ -1,6 +1,8 @@
 Legends of Dota
 =====
 
+##Support the innovators not the imitators.##
+
 ###About###
  - Pick your skills to build an overpowered masterpiece!
  - Test out different combinations!
