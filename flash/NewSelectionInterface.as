@@ -102,6 +102,7 @@
         // Recommend a skill
         private static var RECOMMEND_SKILL = 1000;
         private static var RECOMMEND_BAN = 1001;
+        private static var RECOMMEND_BAN2 = 1002;
 
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
@@ -419,7 +420,7 @@
 
                 data.push({
                     label: '#lodBanSkill',
-                    option: 10
+                    option: RECOMMEND_BAN2
                 });
             }
 
@@ -515,7 +516,7 @@
             var data:MovieClip;
 
             // Check what to do
-            if(option == 10) {
+            if(option == RECOMMEND_BAN2) {
                 // Create the drag data
                 data = new MovieClip();
                 data.dragType = lod.DRAG_TYPE_SKILL;
