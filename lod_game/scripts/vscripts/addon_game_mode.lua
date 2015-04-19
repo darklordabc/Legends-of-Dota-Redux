@@ -143,6 +143,10 @@ local enableHeroBanning = false
     VOTEABLE OPTIONS
 ]]
 
+-- Custom Spell Power (Multiplies the power of things)
+local customSpellPower = 1
+local customItemPower = 1
+
 -- Total number of skill slots to allow
 local maxSlots = 6
 
@@ -1688,6 +1692,10 @@ finishVote = function()
         winners[i] = winner
     end
 
+    -- Multipliers
+    customSpellPower = optionToValue(26, winners[26])
+    customItemPower = optionToValue(27, winners[27])
+
     -- Set options
     maxSlots = optionToValue(1, winners[1])
     maxSkills = optionToValue(2, winners[2])
@@ -1957,6 +1965,8 @@ function lod:OnEmitStateInfo()
 
         -- Add options
         ['o']           = getOptionsString(),
+        ['spellMult']   = customSpellPower,
+        ['itemMult']    = customItemPower,
         ['slots']       = maxSlots,
         ['skills']      = maxSkills,
         ['ults']        = maxUlts,

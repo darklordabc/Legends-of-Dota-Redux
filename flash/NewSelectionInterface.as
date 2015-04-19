@@ -99,6 +99,9 @@
         // The effect when a target is a valid drop
         private var dropEffect:GlowFilter;
 
+        // Recommend a skill
+        private static var RECOMMEND_SKILL = 1000;
+        private static var RECOMMEND_BAN = 1001;
 
 		public function NewSelectionInterface() {
             // Make the toggle interface text work
@@ -410,7 +413,7 @@
                     // Allow ban suggestions
                     data.push({
                         label: '#lodRecommendBan',
-                        option: 12
+                        option: RECOMMEND_BAN
                     });
                 }
 
@@ -426,7 +429,7 @@
                     // Allow recommending
                     data.push({
                         label: '#lodRecommend',
-                        option: 11
+                        option: RECOMMEND_SKILL
                     });
                 }
 
@@ -476,7 +479,7 @@
                 // Allow recommendations
                 data.push({
                     label: '#lodRecommend',
-                    option: 11
+                    option: RECOMMEND_SKILL
                 });
 
                 // Allow sloting
@@ -539,10 +542,10 @@
                         slotAreaCallback(towerSkillList['skill' + option], data);
                         break;
                 }
-            } else if(option == 11) {
+            } else if(option == RECOMMEND_SKILL) {
                 // Recommend a skill
                 recommendCallback(rightClickedAbilityName, '#lod_recommends');
-            } else if(option == 12) {
+            } else if(option == RECOMMEND_BAN) {
                 // Recommend a ban
                 recommendCallback(rightClickedAbilityName, '#lod_recommend_ban');
             }
@@ -578,7 +581,7 @@
                 data.skillName = randomSkill.getSkillName();
 
                 slotAreaCallback(rightClickedAbility, data);
-            } else if(option == 11) {
+            } else if(option == RECOMMEND_SKILL) {
                 // Recommend a skill
                 recommendCallback(rightClickedAbility.getSkillName(), '#lod_recommends');
             }

@@ -34,6 +34,17 @@
 		"desGamemode"						"Game Variant"
 		"hintGamemode"						"All Pick:\nPick from the entire skill pool\n\nSingle Draft:\nPick skills from a pool of 10 random heroes\n\nMirror Draft:\nBoth teams get the same hero pool\n\nAll Random:\nAll players get random skills and heroes. Players can NOT pick!"
 
+		"desSpellMultiplier"				"Spell Multiplier"
+		"hintSpellMultiplier"				"Multiplies spell values by the selected amount.\n\nIf random is selected, when a spell is allocated to you, you will get a random spell multiplier value for that spell. 1x values will be shown on the selection UI."
+		"mult1x"							"1x"
+		"mult5x"							"5x"
+		"mult10x"							"10x"
+		"mult20x"							"20x"
+		"multRandom"						"Random"
+
+		"desItemMultiplier"					"Item Multiplier"
+		"hintItemMultiplier"				"Multiplies item values by the selected amount.\n\nIf random is selected, when an item is purchased, you will get a random item multiplier value for that item. 1x values will be shown on the selection UI."
+
 		"desMaxSlots"						"Max Slots"
 		"hintMaxSlots"						"The amount of slots each hero will have."
 

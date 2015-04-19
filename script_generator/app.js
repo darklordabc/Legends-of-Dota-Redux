@@ -7,6 +7,9 @@ var scriptDirOut = settings.scriptDirOut                    // The directory whe
 var resourcePath = settings.dotaDir + 'dota/resource/';     // The directory to read resource files from
 var customDir = settings.customDir;                         // The directory where our mods are read from, to be merged in
 
+// Code needed to do multipliers
+var spellMult = require('./spellMult.json');
+
 // Create the output folder
 if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
@@ -322,10 +325,109 @@ var langOut = {};
 var specialChar;    // Special character needed for doto encoding
 
 var permutations = {
+    // Global multiplier
+    multiplier: {
+        vals: [5, 10, 20],
+        func: function(spellName, ability, newAb, mult) {
+            function divide(specialName, vals) {
+                for(var i=0; i<vals.length; ++i) {
+                    vals[i] /= mult;
+                }
+
+                return vals.join(' ');
+            }
+
+            function multiply(specialName, vals) {
+                // Check if there is a max
+                var max = null;
+                if(spellMult.specific_max_value[specialName]) {
+                    max = parseFloat(spellMult.specific_max_value[specialName]);
+                }
+                if(spellMult.more_specific_max_value[spellName] && spellMult.more_specific_max_value[spellName][specialName]) {
+                    max = parseFloat(spellMult.more_specific_max_value[spellName][specialName]);
+                }
+
+                // Do the mult
+                for(var i=0; i<vals.length; ++i) {
+                    vals[i] *= mult;
+
+                    // Enfore the max
+                    if(max != null && vals[i] > max) {
+                        vals[i] = max;
+                    }
+                }
+
+                return vals.join(' ');
+            }
+
+            function divide_or_multiply(specialName, valString) {
+                var vals = valString.split(' ');
+
+                // Convert all to floats
+                for(var i=0; i<vals.length; ++i) {
+                    vals[i] = parseFloat(vals[i]);
+                }
+
+                // Check for specific values
+                if(spellMult.fixed_value[spellName] && spellMult.fixed_value[spellName][specialName]) {
+                    var fixedValue = parseFloat(spellMult.fixed_value[spellName][specialName]);
+                    for(var i=0; i<vals.length; ++i) {
+                        vals[i] = fixedValue;
+                    }
+                }
+
+                // Should we always divide this attribute?
+                if(spellMult.force_divide[specialName]) {
+                    return divide(specialName, vals);
+                }
+
+                // Check if we need to multiply or divide
+                if(vals.length > 1) {
+                    // Check if we are increasing, or decreasing
+                    if(vals[0] > vals[1]) {
+                        // Decreasing, divide
+                        return divide(specialName, vals);
+                    } else {
+                        // Increasing, multiply
+                        return multiply(specialName, vals);
+                    }
+                } else {
+                    // Only one value, assume multiply
+                    return multiply(specialName, vals);
+                }
+            }
+
+            if(ability.AbilitySpecial) {
+                for(var slotNum in ability.AbilitySpecial) {
+                    var slot = ability.AbilitySpecial[slotNum];
+                    for(var specialName in slot) {
+                        if(specialName == 'var_type') continue;
+
+                        // Check for ignores
+                        if(spellMult.ignore_all_special[specialName]) continue;
+                        if(spellMult.ignore_special[spellName] && spellMult.ignore_special[spellName][specialName]) continue;
+
+                        var oldVal = slot[specialName][0];
+                        var newVal = divide_or_multiply(specialName, oldVal);
+
+                        // Did we actually change anything?
+                        if(newVal != oldVal) {
+                            // Store the change
+                            newAb.AbilitySpecial[slotNum][specialName] = [newVal];
+                        }
+                    }
+                }
+            }
+
+            // Return the changes
+            return newAb;
+        }
+    }
+
     // This edits the cooldown of skills
-    cooldown: {
+    /*cooldown: {
         vals: [0, 1, 2, 5],
-        func: function(ability, newAb, mult) {
+        func: function(spellName, ability, newAb, mult) {
             if(!ability.AbilityCooldown) return null;
             if(mult == 1) return null;
 
@@ -348,7 +450,7 @@ var permutations = {
 
     manaCost: {
         vals: [0, 1, 2, 5],
-        func: function(ability, newAb, mult) {
+        func: function(spellName, ability, newAb, mult) {
             if(!ability.AbilityManaCost) return null;
             if(mult == 1) return null;
 
@@ -371,7 +473,7 @@ var permutations = {
 
     damage: {
         vals: [1, 2, 5],
-        func: function(ability, newAb, mult) {
+        func: function(spellName, ability, newAb, mult) {
             if(!ability.AbilitySpecial) return null;
             if(mult == 1) return null;
 
@@ -412,11 +514,11 @@ var permutations = {
             // Return the modified spell
             return newAb;
         }
-    }
+    }*/
 };
 
 // Order to apply permutions
-var permList = ['cooldown', 'manaCost', 'damage'];
+var permList = ['multiplier'];
 
 // Permutate a spell
 function permute(spellName, ability, storage) {
@@ -453,7 +555,7 @@ function permute(spellName, ability, storage) {
             // Add to the suffix
             suffix += '_' + spellValue;
 
-            var tempChange = perm.func(ability, newSpell, spellValue);
+            var tempChange = perm.func(spellName, ability, newSpell, spellValue);
 
             if(tempChange != null) {
                 newSpell = tempChange;
@@ -579,6 +681,7 @@ function doCSP() {
                         if(spellName.indexOf('dust') != -1) continue;
                         if(spellName.indexOf('bottle') != -1) continue;
                         if(spellName.indexOf('smoke') != -1) continue;
+                        if(spellMult.dont_parse[spellName]) continue;
 
                         var newSpell = {};
 
@@ -639,6 +742,13 @@ function clone(x) {
         for (var i=0,n=x.length; i<n; i++)
             r.push(clone(x[i]));
         return r;
+    }
+    if(typeof(x) == 'object') {
+        var y = {};
+        for(var key in x) {
+            y[key] = clone(x[key]);
+        }
+        return y;
     }
     return x;
 }

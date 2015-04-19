@@ -133,6 +133,12 @@
         // Are we a slave?
         private var isSlave:Boolean = false;
 
+        // Spell multiplier
+        private static var SPELL_MULTIPLIER:Number = 1;
+
+        // Item multiplier
+        private static var ITEM_MULTIPLIER:Number = 1;
+
         // How many skill slots each player gets
         public static var MAX_SLOTS:Number = 4;
 
@@ -734,6 +740,8 @@
 
                     // Store useful stuff
                     MAX_SLOTS = lastState.slots;
+                    SPELL_MULTIPLIER = lastState.spellMult;
+                    ITEM_MULTIPLIER = lastState.itemMult;
                     source1 = lastState.source1 == 1;
                     banTrollCombos = lastState.trolls == 1;
 
@@ -1377,10 +1385,10 @@
             // Decide how to show the info
             if(lp.x+offset < stageWidth/2) {
                 // Face to the right
-                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, s.skillName);
+                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, getSpellNameWithMult(s.skillName));
             } else {
                 // Face to the left
-                Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, s.skillName);
+                Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, getSpellNameWithMult(s.skillName));
             }
         }
 
@@ -1502,6 +1510,14 @@
                 } else {
                     toGlow.filters = glowUnlocked;
                 }
+            }
+        }
+
+        private static function getSpellNameWithMult(spell:String):String {
+            if(SPELL_MULTIPLIER <= 1) {
+                return spell;
+            } else {
+                return spell + '_' + SPELL_MULTIPLIER;
             }
         }
 
@@ -1779,7 +1795,7 @@
                 selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true, false);
             } else if(txt.indexOf('info_') == 0) {
                 // Show info screen
-                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, txt.replace('info_', ''));
+                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, getSpellNameWithMult(txt.replace('info_', '')));
             }
         }
 
