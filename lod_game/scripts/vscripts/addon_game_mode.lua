@@ -2175,7 +2175,7 @@ function lod:OnEmitStateInfo()
     end
 
     -- Send creep info
-    if allowBuildingSkills then
+    if allowCreepSkills then
         local t = {}
 
         for i=2,3 do
@@ -2212,7 +2212,6 @@ function lod:OnEmitStateInfo()
 
     -- Send picking info to everyone
     FireGameEvent('lod_state', s)
-
 
     -- Run again after a delay
     return 5

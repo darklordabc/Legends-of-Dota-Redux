@@ -766,14 +766,14 @@
             bearSkillList.setup(changedSlots, bearSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
             towerSkillList.setup(changedSlots, towerSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
             buildingSkillList.setup(changedSlots, buildingSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BUILDING);
-            creepSkillList.setup(changedSlots, creepSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_CREEP);
+            creepSkillList.setup(4, creepSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_CREEP);
 
             // Reposition buttons
             var localPaddingLeft:Number = 8;
             var localPaddingFarLeft:Number = 4;
             var localPaddingRight:Number = 4;
             var leftX:Number = yourSkillList.x - yourSkillList.width/2 - browseYourSkills.width - localPaddingLeft;
-            var farLeftX:Number = leftX - yourSkillList.width - localPaddingFarLeft;
+            var farLeftX:Number = leftX - browseYourSkills.width - localPaddingFarLeft;
             var rightX:Number = yourSkillList.x + yourSkillList.width/2 + localPaddingRight;
             browseYourSkills.x = leftX;
             browseBearSkills.x = leftX;
