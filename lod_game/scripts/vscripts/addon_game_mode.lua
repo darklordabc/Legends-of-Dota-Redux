@@ -228,6 +228,12 @@ local freeScepter = false
 -- Should we load survival gamemode?
 local loadSurvival = false
 
+-- Free courier
+local FREE_COURIER_NONE = 0
+local FREE_COURIER_WALKING = 1
+local FREE_COURIER_FLYING = 2
+local freeCourier = FREE_COURIER_FLYING
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -1739,6 +1745,9 @@ finishVote = function()
     -- Are we using unique skills?
     forceUniqueSkills = optionToValue(10, winners[10])
 
+    -- Free courier
+    freeCourier = optionToValue(28, winners[28])
+
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
     allowedTabs.neutral = optionToValue(12, winners[12]) == 1
@@ -2420,12 +2429,48 @@ local givenBonuses = {}
 local doneBots = {}
 local resetGold = {}
 local spiritBears = {}
+local givenFreeCouriers = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
 
     -- Make sure it is a hero
     if spawnedUnit:IsHero() then
+        -- Free courier option
+        if freeCourier ~= FREE_COURIER_NONE then
+            local team = spawnedUnit:GetTeam()
+            if not givenFreeCouriers[team] then
+                givenFreeCouriers[team] = true
+
+                -- Give the item to the player
+                local item = CreateItem('item_courier', spawnedUnit, spawnedUnit)
+                if item then
+                    spawnedUnit:AddItem(item)
+
+                    -- Make the player use the item
+                    GameRules:GetGameModeEntity():SetThink(function()
+                        -- Ensure the unit is valid still
+                        if IsValidEntity(spawnedUnit) then
+                            if IsValidEntity(item) then
+                                -- Grab playerID
+                                local playerID = spawnedUnit:GetPlayerOwnerID()
+
+                                -- Use the item
+                                spawnedUnit:CastAbilityImmediately(item, playerID)
+                            end
+                        end
+                    end, 'freeCourier'..DoUniqueString('freeCourier'), 0.1, nil)
+                end
+
+                if freeCourier == FREE_COURIER_FLYING then
+                    local flyingItem = CreateItem('item_flying_courier', spawnedUnit, spawnedUnit)
+                    if flyingItem then
+                        spawnedUnit:AddItem(flyingItem)
+                    end
+                end
+            end
+        end
+
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
 
