@@ -2578,7 +2578,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                     end
 
                     if not found then
-                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v)] = true
+                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v, customSpellPower)] = true
                     end
                 end
             end

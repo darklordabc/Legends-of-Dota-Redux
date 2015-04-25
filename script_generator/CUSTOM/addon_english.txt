@@ -135,8 +135,8 @@
 
 		"desFreeCourier"					"Free Courier"
 		"hintFreeCourier"					"Allows each team to start with a courier of their choice."
-		"FreeFlyingCourier"					"Flying Courier"
-		"FreeWalkingCourier"				"Walking Courier"
+		"FreeFlyingCourier"					"Free Flying Courier"
+		"FreeWalkingCourier"				"Free Walking Courier"
 		"NoFreeCourier"						"No Free Courier"
 
 		"lod_invalid_set_nums"				"<font color=\"#EB4B4B\">Valid set nums are {0} - {1}.</font>"

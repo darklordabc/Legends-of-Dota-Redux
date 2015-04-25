@@ -480,6 +480,14 @@ function skillManager:ApplyBuild(hero, build, mult)
             precacheSkill(v)
 
             local multV = self:GetMultiplierSkillName(v, mult)
+            if isRealHero then
+                -- Check for a bot
+                if PlayerResource:IsFakeClient(playerID) then
+                    if hero:HasAbility(v) then
+                        multV = v
+                    end
+                end
+            end
 
             -- Add to build
             if not seenAbilities[multV] and hero:HasAbility(multV) then
@@ -550,6 +558,14 @@ function skillManager:ApplyBuild(hero, build, mult)
 
             -- Grab the multiplied skill
             local seekAbility = self:GetMultiplierSkillName(v, mult)
+            if isRealHero then
+                -- Check for a bot
+                if PlayerResource:IsFakeClient(playerID) then
+                    if hero:HasAbility(v) then
+                        multV = v
+                    end
+                end
+            end
 
             if inSlot and inSlot ~= seekAbility then
                 -- Swap in dota
