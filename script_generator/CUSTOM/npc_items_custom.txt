@@ -4,6 +4,7 @@
     {
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "tiny_grow"
+        "ItemPurchaseable"              "0"
         "Modifiers"
         {
             "modifier_survival_modifier"

@@ -331,7 +331,7 @@ var permutations = {
         func: function(spellName, ability, newAb, mult) {
             function divide(specialName, vals) {
                 for(var i=0; i<vals.length; ++i) {
-                    vals[i] /= mult;
+                    vals[i] = parseFunction(vals[i] / mult);
                 }
 
                 return vals.join(' ');
@@ -341,15 +341,15 @@ var permutations = {
                 // Check if there is a max
                 var max = null;
                 if(spellMult.specific_max_value[specialName]) {
-                    max = parseFloat(spellMult.specific_max_value[specialName]);
+                    max = parseFunction(spellMult.specific_max_value[specialName]);
                 }
                 if(spellMult.more_specific_max_value[spellName] && spellMult.more_specific_max_value[spellName][specialName]) {
-                    max = parseFloat(spellMult.more_specific_max_value[spellName][specialName]);
+                    max = parseFunction(spellMult.more_specific_max_value[spellName][specialName]);
                 }
 
                 // Do the mult
                 for(var i=0; i<vals.length; ++i) {
-                    vals[i] *= mult;
+                    vals[i] = parseFunction(vals[i] * mult);
 
                     // Enfore the max
                     if(max != null && vals[i] > max) {
@@ -360,12 +360,12 @@ var permutations = {
                 return vals.join(' ');
             }
 
-            function divide_or_multiply(specialName, valString) {
+            function divide_or_multiply(specialName, valString, parseFunction) {
                 var vals = valString.split(' ');
 
                 // Convert all to floats
                 for(var i=0; i<vals.length; ++i) {
-                    vals[i] = parseFloat(vals[i]);
+                    vals[i] = parseFunction(vals[i]);
                 }
 
                 // Check for specific values
@@ -383,20 +383,36 @@ var permutations = {
                     // Check if we are increasing, or decreasing
                     if(vals[0] > vals[1]) {
                         // Decreasing, divide
-                        return divide(specialName, vals);
+                        return divide(specialName, vals, parseFunction);
                     } else {
                         // Increasing, multiply
-                        return multiply(specialName, vals);
+                        return multiply(specialName, vals, parseFunction);
                     }
                 } else {
                     // Only one value, assume multiply
-                    return multiply(specialName, vals);
+                    return multiply(specialName, vals, parseFunction);
                 }
             }
 
             if(ability.AbilitySpecial) {
                 for(var slotNum in ability.AbilitySpecial) {
                     var slot = ability.AbilitySpecial[slotNum];
+                    var parseFunction = parseInt;
+                    if(slot.var_type) {
+                        if(slot.var_type == 'FIELD_FLOAT') {
+                            parseFunction = function(str) {
+                                var retNum = parseFloat(str);
+
+                                retNum *= 100;
+                                retNum = Math.floor(retNum);
+                                retNum = retNum / 100;
+
+                                return retNum;
+                            };
+                        } else if(slot.var_type != 'FIELD_INTEGER') {
+                            console.log('Unknown field type: ' + slot.var_type);
+                        }
+                    }
                     for(var specialName in slot) {
                         if(specialName == 'var_type') continue;
 
@@ -405,7 +421,7 @@ var permutations = {
                         if(spellMult.ignore_special[spellName] && spellMult.ignore_special[spellName][specialName]) continue;
 
                         var oldVal = slot[specialName][0];
-                        var newVal = divide_or_multiply(specialName, oldVal);
+                        var newVal = divide_or_multiply(specialName, oldVal, parseFunction);
 
                         // Did we actually change anything?
                         if(newVal != oldVal) {
@@ -562,7 +578,7 @@ function permute(spellName, ability, storage) {
 
             // Add to the suffix
             suffix += '_' + spellValue;
-            appendOnEnd += ' X' + spellValue;
+            appendOnEnd += ' x' + spellValue;
 
             var tempChange = perm.func(spellName, ability, newSpell, spellValue);
 
@@ -598,7 +614,7 @@ function permute(spellName, ability, storage) {
         if(key.indexOf(spellName) != -1) {
             for(var i=0; i<suffixes.length; ++i) {
                 var appendOnEnd = '';
-                if(key == 'DOTA_Tooltip_ability_' + spellName) {
+                if(key.toLowerCase() == 'dota_tooltip_ability_' + spellName) {
                     appendOnEnd = appendsOnEnd[i];
                 }
 
@@ -664,6 +680,7 @@ function doCSP() {
 
                 // New abilities KV
                 var newAbs = {};
+                var newItems = {};
 
                 // Merge in custom abilities
                 for(var key in absCustom) {
@@ -708,8 +725,14 @@ function doCSP() {
 
                         var newSpell = {};
 
+                        // Where to store the spell/item into
+                        var storeLocation = newAbs;
+                        if(items[spellName]) {
+                            storeLocation = newItems;
+                        }
+
                         // Store all permutions of the spell
-                        permute(spellName, abs[spellName], newAbs);
+                        permute(spellName, abs[spellName], storeLocation);
                     }
                 }
 
@@ -718,6 +741,29 @@ function doCSP() {
                     if (err) throw err;
 
                     console.log('Done saving file compiled abilities file.');
+                });
+
+                // Merge in the custom items
+                fs.readFile(customDir+'npc_items_custom.txt', function(err, abilitesCustomRaw) {
+                    // Convert into something useable
+                    var customItems = parseKV(''+abilitesCustomRaw).DOTAAbilities;
+
+                    // Ensure none of our generated items are buyable
+                    for(var key in newItems) {
+                        newItems[key].ItemPurchaseable = 0;
+                    }
+
+                    // Copy across the custom items
+                    for(var key in customItems) {
+                        newItems[key] = customItems[key];
+                    }
+
+                    // Output updated items file
+                    fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(newItems, 'DOTAAbilities'), function(err) {
+                        if (err) throw err;
+
+                        console.log('Done saving file compiled abilities file.');
+                    });
                 });
 
                 // Output language files

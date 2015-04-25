@@ -36,6 +36,7 @@
    "ignore_all_special":{
       "crit_chance":true,
       "duration":true,
+      "block_chance":true,
       "bonus_evasion":true,
       "dodge_chance_pct":true,
       "miss_chance":true,
@@ -757,6 +758,10 @@
       },
       "clinkz_strafe":{
          "duration":true
+      },
+      "phantom_lancer_juxtapose":{
+         "proc_chance_pct":true,
+         "illusion_proc_chance_pct":true
       },
       "troll_warlord_whirling_axes_melee":{
          "max_range":true,

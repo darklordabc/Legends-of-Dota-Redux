@@ -2533,7 +2533,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                     end
 
                     if not found then
-                        specialAddedSkills[playerID][v] = true
+                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v)] = true
                     end
                 end
             end

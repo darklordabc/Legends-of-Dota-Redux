@@ -132,6 +132,7 @@ function init(keys)
     local ability = keys.ability
 
     local itemName = ability:GetAbilityName():gsub('lod_', '')
+    local itemModifierName = itemName:gsub('_5', ''):gsub('_10', ''):gsub('_20', '')
 
     -- Create the item
     local item = CreateItem(itemName, hero, hero)
@@ -139,7 +140,7 @@ function init(keys)
 
     -- Add the modifier (the passive part)
     if GameRules.allowItemModifers then
-        hero:AddNewModifier(hero, item, modifierMap[itemName] or ('modifier_'..itemName), {})
+        hero:AddNewModifier(hero, item, modifierMap[itemModifierName] or ('modifier_'..itemName), {})
     end
 
     -- Store info on this ability
