@@ -712,6 +712,9 @@
          "range":true,
          "projectile_speed":true
       },
+      "holdout_multishot":{
+          "arrow_width":true
+        },
       "medusa_mystic_snake":{
          "radius":true,
          "initial_speed":true,
@@ -769,6 +772,10 @@
          "axe_slow_duration":true
       },
       "troll_warlord_berserkers_rage":{
+         "bash_duration":true,
+         "base_attack_time":true
+      },
+      "troll_warlord_berserkers_rage_melee":{
          "bash_duration":true,
          "base_attack_time":true
       },
@@ -1269,6 +1276,13 @@
          "bonus_range_scepter":true,
          "bonus_building_damage_scepter":true
       },
+      "tiny_grow_lod":{
+         "bonus_movement_speed":true,
+         "bonus_attack_speed":true,
+         "bonus_cleave_radius_scepter":true,
+         "bonus_range_scepter":true,
+         "bonus_building_damage_scepter":true
+      },
       "visage_soul_assumption":{
          "stack_limit":true,
          "stack_duration":true
@@ -1686,10 +1700,12 @@
       "phoenix_sun_ray_toggle_move":true,
       "phoenix_sun_ray_stop":true,
       "riki_permanent_invisibility":true,
+      "riki_permanent_invisibility_lod":true,
       "silencer_global_silence":true,
       "elder_titan_return_spirit":true,
       "shadow_demon_shadow_poison_release":true,
-      "tusk_launch_snowball":true
+      "tusk_launch_snowball":true,
+      "ogre_magi_multicast_lod":true
    },
    "ignore_partial_names":[
       "cooldown"

@@ -542,6 +542,15 @@ function permute(spellName, ability, storage) {
         };
         if(ability.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = ability.AbilityUnitDamageType;
 
+        // Copy over useful things
+        if(ability.BaseClass) newSpell.BaseClass = ability.BaseClass;
+        for(var key in ability) {
+            if(!newSpell[key]) newSpell[key] = ability[key];
+        }
+
+        // Don't store the spellID
+        delete newSpell.ID;
+
         var suffix = '';
         var appendOnEnd = '';
 
@@ -610,6 +619,10 @@ function generateLanguage(theString, altString, appendOnEnd) {
 
     if(appendOnEnd == null) appendOnEnd = '';
 
+    if(altString == 'lod_item_quelling_blade') {
+        console.log(theString);
+    }
+
     for(var i=0; i<langs.length; ++i) {
         // Grab a language
         var lang = langs[i];
@@ -624,6 +637,8 @@ function generateLanguage(theString, altString, appendOnEnd) {
             storeTo[theString] = english[theString] + appendOnEnd;
         } else if(english[altString]) {
             storeTo[theString] = english[altString] + appendOnEnd;
+        } else if(storeTo[altString]) {
+            storeTo[theString] = storeTo[altString] + appendOnEnd;
         } else {
             console.log('Failed to find ' + theString);
         }
@@ -995,6 +1010,12 @@ function toKV(obj, key) {
                 langOut[lang][key] = toUse[key];
             } else {
                 langOut[lang][key] = english[key];
+            }
+        }
+
+        for(var key in toUse) {
+            if(!langIn[lang][key]) {
+                langIn[lang][key] = toUse[key];
             }
         }
     }
