@@ -6,8 +6,10 @@
         // The header
         public var votingHeader;
 
-        // The container to store clips into
-        public var container:MovieClip;
+        // The containers to store clips into
+        public var container1:MovieClip;
+        public var container2:MovieClip;
+        public var container3:MovieClip;
 
         // Container for the button
         public var lockButton:MovieClip;
@@ -55,6 +57,7 @@
             // Empty the container
             Util.empty(container1);
             Util.empty(container2);
+            Util.empty(container3);
 
             // Loop over all options
             for(var optNumber:Number=0;optionList[optNumber];optNumber++) {

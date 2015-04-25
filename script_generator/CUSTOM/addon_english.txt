@@ -93,8 +93,31 @@
 		"desCustomTower"					"Allow Custom Tower Skills"
 		"hintCustomTower"					"Allows players to select the skills their towers will get. This is on a per team basis!"
 
+		"desCustomBuilding"					"Allow Custom Building Skills"
+		"hintCustomBuilding"				"Allows players to select the skills their buildings will get. This is on a per team basis!"
+
+		"desCustomCreep"					"Allow Custom Creep Skills"
+		"hintCustomCreep"					"Allows players to select the skills their creeps will get. This is on a per team basis!"
+
 		"desCustomBear"						"Allow Custom Bear Skills"
 		"hintCustomBear"					"Allows players to select custom skills for their bears."
+
+		"desBuffHeroes"						"Buff Heroes"
+		"hintBuffHeroes"					"Adds a buff which works best with the selected multiplier."
+
+		"desBuffTowers"						"Buff Towers"
+		"hintBuffTowers"					"Adds a buff which works best with the selected multiplier."
+
+		"desBuffBuildings"					"Buff Buildings"
+		"hintBuffBuildings"					"Adds a buff which works best with the selected multiplier."
+
+		"desBuffCreeps"						"Buff Creeps"
+		"hintBuffCreeps"					"Adds a buff which works best with the selected multiplier."
+
+		"noBuff"							"No Buff"
+		"buff5x"							"5x Buff"
+		"buff10x"							"10x Buff"
+		"buff20x"							"20x Buff"
 
 		"allowItemActiveOnly"				"Active Effects Only"
 		"allowItemAll"						"All Items"
@@ -120,6 +143,18 @@
 		"desMaxHeroLevel"					"Max Hero Level"
 		"hintMaxHeroLevel"					"The max level a hero can get to."
 
+		"desTowersPerLane"					"Towers Per Lane"
+		"hintTowersPerLane"					"Changes the number of towers in each lane."
+		"TowersLane3"						"3 Towers"
+		"TowersLane4"						"4 Towers"
+		"TowersLane5"						"5 Towers"
+		"TowersLane6"						"6 Towers"
+		"TowersLane7"						"7 Towers"
+		"TowersLane8"						"8 Towers"
+		"TowersLane9"						"9 Towers"
+		"TowersLane10"						"10 Towers"
+
+
 		"desSpawnTime"						"Respawn Time"
 		"hintSpawnTime"						"Allows you to change the respawn time of heroes.\n\nYou can set either a factor based respawn time, or an absolute respawn time."
 		"spawnTimeNormal"					"Normal Spawn Time"
@@ -142,7 +177,7 @@
 		"lod_invalid_set_nums"				"<font color=\"#EB4B4B\">Valid set nums are {0} - {1}.</font>"
 		"lod_toggle_sets"					"Toggle Skills"
 
-		"desFreeScepter"					"Start With Upgraded Ultimates"
+		"desFreeScepter"					"Upgraded Ultimates"
 		"hintFreeScepter"					"No scepter is required to use the scepter part of people's skills."
 		"lod_fast_scepter"					"<font color=\"#EB4B4B\">All ultimates will have their scepter upgrades activated without buying a scepter!</font>"
 
@@ -269,6 +304,8 @@
 		"browseYourSkills"					"Your Skills"
 		"browseYourBear"					"Bear Skills"
 		"browseYourTower"					"Tower Skills"
+		"browseYourBuilding"				"Building Skills"
+		"browseYourCreep"					"Creep Skills"
 
 		// Version info
 		"outDated"							"The server has a different version of LoD than you."

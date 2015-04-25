@@ -104,6 +104,8 @@
         public static var SKILL_LIST_YOUR:Number = 1;
         public static var SKILL_LIST_BEAR:Number = 2;
         public static var SKILL_LIST_TOWER:Number = 3;
+        public static var SKILL_LIST_BUILDING:Number = 4;
+        public static var SKILL_LIST_CREEP:Number = 4;
 
         // The split char
         private static var SPLIT_CHAR = String.fromCharCode(7);
@@ -126,6 +128,12 @@
 
         // Store for tower type
         private var towerState:Object = {};
+
+        // Store for building type
+        private var buildingState:Object = {};
+
+        // Store for creep type
+        private var creepState:Object = {};
 
         // The current loaded stage on the client (-1 for no stage)
         private var currentStage:Number = -1;
@@ -205,6 +213,12 @@
 
         // Are tower skills allowed?
         public static var allowTowerSkills:Boolean = false;
+
+        // Are building skills allowed?
+        public static var allowBuildingSkills:Boolean = false;
+
+        // Are creep skills allowed?
+        public static var allowCreepSkills:Boolean = false;
 
         /*
             PRETTY EFFECTS
@@ -301,6 +315,8 @@
             this.gameAPI.SubscribeToGameEvent('lod_state', onGetStateInfo);                                 // Contains most of the game state
             this.gameAPI.SubscribeToGameEvent('lod_state_bear', onGetBearState);                            // Contains bear info
             this.gameAPI.SubscribeToGameEvent('lod_state_tower', onGetTowerState);                          // Contains tower info
+            this.gameAPI.SubscribeToGameEvent('lod_state_building', onGetBuildingState);                    // Contains building info
+            this.gameAPI.SubscribeToGameEvent('lod_state_creep', onGetCreepState);                          // Contains creep info
             this.gameAPI.SubscribeToGameEvent('lod_slave', handleSlave);                                    // Someone has updated a voting option
             this.gameAPI.SubscribeToGameEvent('lod_decode', handleDecode);                                  // Server sent us info on how to decode skill values
             this.gameAPI.SubscribeToGameEvent('lod_skill', onSkillPicked);                                  // Someone has picked a new skill
@@ -752,8 +768,10 @@
                     banTrollCombos = lastState.trolls == 1;
 
                     // Store bear / tower skills
-                    allowBearSkills = lastState.bear == 1 || lastState.bear == 3;
-                    allowTowerSkills = lastState.bear == 2 || lastState.bear == 3;
+                    allowBearSkills = (lastState.bear & 1) > 0;
+                    allowTowerSkills = (lastState.bear & 2) > 0;
+                    allowBuildingSkills = (lastState.bear & 4) > 0;
+                    allowCreepSkills = (lastState.bear & 8) > 0;
 
                     // Store max bans
                     selectionUI.banningArea.banningHelp.text = selectionUI.banningArea.banningHelp.text.replace('%s', lastState.bans);
@@ -766,7 +784,7 @@
                     loadSkillsFile();
 
                     // Setup slots
-                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], bearState['t' + playerID], towerState['t' + myTeam], onDropMySkills, keyBindings);
+                    selectionUI.setupSkillList(lastState.slots, lastState['t' + playerID], bearState['t' + playerID], towerState['t' + myTeam], buildingState['t' + myTeam], creepState['t' + myTeam], onDropMySkills, keyBindings);
 
                     // Is there a draft for us?
                     if(lastState['s'+playerID] != '') {
@@ -893,6 +911,48 @@
 
                         // Put the skill into the slot
                         if(selectionUI.skillIntoSlot(SKILL_LIST_TOWER, i, skillName)) {
+                            // A slot was changed
+                            changedLocalSlots = true;
+                        }
+                    }
+                }
+                if(allowBuildingSkills) {
+                    for(i=0; i<MAX_SLOTS; ++i) {
+                        // Grab the skill, and decode if needed
+                        skillNumber = buildingState[String(myTeam)+String(i+1)];
+                        if(skillNumber != -1) {
+                            // Attempt to decode
+                            if(hideSkills) {
+                                skillNumber = skillNumber - decodeWith;
+                            }
+                        }
+
+                        // Grab the skill name
+                        skillName = getSkillName(skillNumber);
+
+                        // Put the skill into the slot
+                        if(selectionUI.skillIntoSlot(SKILL_LIST_BUILDING, i, skillName)) {
+                            // A slot was changed
+                            changedLocalSlots = true;
+                        }
+                    }
+                }
+                if(allowCreepSkills) {
+                    for(i=0; i<4; ++i) {
+                        // Grab the skill, and decode if needed
+                        skillNumber = creepState[String(myTeam)+String(i+1)];
+                        if(skillNumber != -1) {
+                            // Attempt to decode
+                            if(hideSkills) {
+                                skillNumber = skillNumber - decodeWith;
+                            }
+                        }
+
+                        // Grab the skill name
+                        skillName = getSkillName(skillNumber);
+
+                        // Put the skill into the slot
+                        if(selectionUI.skillIntoSlot(SKILL_LIST_CREEP, i, skillName)) {
                             // A slot was changed
                             changedLocalSlots = true;
                         }
@@ -1545,6 +1605,16 @@
         // Handles getting the tower state
         private function onGetTowerState(args:Object):void {
             towerState = args;
+        }
+
+        // Handles getting the building state
+        private function onGetBuildingState(args:Object):void {
+            buildingState = args;
+        }
+
+        // Handles getting the creep state
+        private function onGetCreepState(args:Object):void {
+            creepState = args;
         }
 
         // Handles the state info

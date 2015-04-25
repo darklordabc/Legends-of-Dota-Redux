@@ -237,8 +237,80 @@
         "912"           "short"
     }
 
-    // The bear skills state
+    // The tower skills state
     "lod_state_tower"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each team's tower's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"            "short"
+        "311"            "short"
+        "312"            "short"
+    }
+
+    // The building skills state
+    "lod_state_building"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each team's tower's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"            "short"
+        "311"            "short"
+        "312"            "short"
+    }
+
+    // The creep skills state
+    "lod_state_creep"
     {
         // Stores the type of each slot for each team
         "t2"            "string"

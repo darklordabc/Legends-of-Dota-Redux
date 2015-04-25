@@ -110,6 +110,7 @@ local loadSpecialGamemode
 local buildAllowedTabsString
 local fireLockChange
 local setTowerOwnership
+local addExtraTowers
 local applyTowerSkills
 local levelSpiritSkills
 local tranAbility
@@ -118,6 +119,7 @@ local printOptionsToPlayer
 local registerConsoleCommands
 local registerServerCommands
 local registerHeroBanning
+local registerFancyConsoleCommands
 
 --[[
     SETTINGS
@@ -216,8 +218,10 @@ local allowedTabs = {
 local allowedTabsString = ''
 
 -- Allow bear and tower skills?
-local allowBearSkills = true
+local allowBearSkills = false
 local allowTowerSkills = false
+local allowBuildingSkills = false
+local allowCreepSkills = false
 
 -- Respawn modifier
 local respawnModifier = 0
@@ -233,6 +237,9 @@ local FREE_COURIER_NONE = 0
 local FREE_COURIER_WALKING = 1
 local FREE_COURIER_FLYING = 2
 local freeCourier = FREE_COURIER_FLYING
+
+-- Number of towers in the middle of a lane
+local middleTowers = 1
 
 --[[
     GAMEMODE STUFF
@@ -274,6 +281,8 @@ local gamemode = GAMEMODE_AP    -- Set default gamemode
 local SKILL_LIST_YOUR = 1
 local SKILL_LIST_BEAR = 2
 local SKILL_LIST_TOWER = 3
+local SKILL_LIST_BUILDING = 4
+local SKILL_LIST_CREEP = 5
 
 -- Valid interfaces
 local validInterfaces = {
@@ -312,6 +321,12 @@ local skillList = {}
 -- List of skills for towers (per team)
 local towerSkills = {}
 
+-- List of skills for buildings (per team)
+local buildingSkills = {}
+
+-- List of skills for creeps (per team)
+local creepSkills = {}
+
 -- The total amount banned by each player
 local totalBans = {}
 
@@ -330,6 +345,9 @@ local extraTime = {}
 
 -- A list of warning attached to skills
 local skillWarnings
+
+-- List of tower connectors
+local towerConnectors = {}
 
 --[[
     STATUS VARIABLES
@@ -1748,6 +1766,9 @@ finishVote = function()
     -- Free courier
     freeCourier = optionToValue(28, winners[28])
 
+    -- Number of towers in each lane
+    middleTowers = optionToValue(29, winners[29])
+
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
     allowedTabs.neutral = optionToValue(12, winners[12]) == 1
@@ -1762,6 +1783,8 @@ finishVote = function()
     -- Custom bears / towers
     allowBearSkills = optionToValue(16, winners[16]) == 1
     allowTowerSkills = optionToValue(17, winners[17]) == 1
+    allowBuildingSkills = optionToValue(30, winners[30]) == 1
+    allowCreepSkills = optionToValue(31, winners[31]) == 1
 
     -- WTF Mode
     wtfMode = optionToValue(18, winners[18]) == 1
@@ -1821,6 +1844,8 @@ finishVote = function()
 
             allowBearSkills = allowBearSkills,
             allowTowerSkills = allowTowerSkills,
+            allowBuildingSkills = allowBuildingSkills,
+            allowCreepSkills = allowCreepSkills,
 
             mainTab = allowedTabs.main,
             neutralTab = allowedTabs.neutral,
@@ -1987,7 +2012,7 @@ function lod:OnEmitStateInfo()
         ['slaveID']     = slaveID,
         ['tabs']        = allowedTabsString,
         ['bans']        = maxBans,
-        ['bear']        = (allowBearSkills and 1 or 0) + (allowTowerSkills and 2 or 0),
+        ['bear']        = (allowBearSkills and 1 or 0) + (allowTowerSkills and 2 or 0) + (allowBuildingSkills and 4 or 0) + (allowCreepSkills and 8 or 0),
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
@@ -2111,6 +2136,78 @@ function lod:OnEmitStateInfo()
 
         -- Emit it
         FireGameEvent('lod_state_tower', t)
+    end
+
+    -- Send building info
+    if allowBuildingSkills then
+        local t = {}
+
+        for i=2,3 do
+            t['t'..i] = slotTypeString(-i)
+
+            -- Calculate number to encode with
+            local encode = 0
+            if hideSkills then
+                if i == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif i == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
+            -- Grab tower skills
+            local skillz = buildingSkills[i] or {}
+
+            for j=1,12 do
+                -- Store the ID of this skill
+                local sid = getSkillID(skillz[j])
+
+                if sid == -1 then
+                    t[tostring(i..j)] = sid
+                else
+                    t[tostring(i..j)] = sid+encode
+                end
+            end
+        end
+
+        -- Emit it
+        FireGameEvent('lod_state_building', t)
+    end
+
+    -- Send creep info
+    if allowBuildingSkills then
+        local t = {}
+
+        for i=2,3 do
+            t['t'..i] = slotTypeString(-i)
+
+            -- Calculate number to encode with
+            local encode = 0
+            if hideSkills then
+                if i == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif i == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
+            -- Grab tower skills
+            local skillz = creepSkills[i] or {}
+
+            for j=1,12 do
+                -- Store the ID of this skill
+                local sid = getSkillID(skillz[j])
+
+                if sid == -1 then
+                    t[tostring(i..j)] = sid
+                else
+                    t[tostring(i..j)] = sid+encode
+                end
+            end
+        end
+
+        -- Emit it
+        FireGameEvent('lod_state_creep', t)
     end
 
     -- Send picking info to everyone
@@ -2302,6 +2399,9 @@ function lod:OnThink()
         -- Update the state
         self:OnEmitStateInfo()
 
+        -- Add extra towers
+        addExtraTowers()
+
         -- Apply the tower skills
         applyTowerSkills()
 
@@ -2362,6 +2462,78 @@ setTowerOwnership = function()
                 tower:SetControllableByPlayer(i, true)
             else
                 tower:SetControllableByPlayer(i, false)
+            end
+        end
+    end
+end
+
+-- Adds extra towers
+addExtraTowers= function()
+    -- Is there any work to do?
+    if middleTowers > 1 then
+        local lanes = {
+            top = true,
+            mid = true,
+            bot = true
+        }
+
+        local teams = {
+            good = DOTA_TEAM_GOODGUYS,
+            bad = DOTA_TEAM_BADGUYS
+        }
+
+        for team,teamNumber in pairs(teams) do
+            for lane,__ in pairs(lanes) do
+                local threeRaw = 'dota_'..team..'guys_tower3_'..lane
+                local three = Entities:FindByName(nil, threeRaw)
+
+                local twoRaw = 'dota_'..team..'guys_tower2_'..lane
+                local two = Entities:FindByName(nil, twoRaw)
+
+                local oneRaw = 'dota_'..team..'guys_tower1_'..lane
+                local one = Entities:FindByName(nil, oneRaw)
+
+                -- Unit name
+                local unitName = 'npc_dota_'..team..'guys_tower_lod_'..lane
+
+                if one and two and three then
+                    -- Proceed to patch the towers
+                    local onePos = one:GetOrigin()
+                    local threePos = three:GetOrigin()
+
+                    -- Workout the difference in the positions
+                    local dif = threePos - onePos
+                    local sep = dif / (middleTowers + 1)
+
+                    -- Remove the middle tower
+                    UTIL_RemoveImmediate(two)
+
+                    -- Used to connect towers
+                    local prevTower = three
+
+                    for i=1,middleTowers do
+                        local newPos = threePos - (sep * i)
+
+                        local newTower = CreateUnitByName(unitName, newPos, false, nil, nil, teamNumber)
+
+                        if newTower then
+                            -- Make it unkillable
+                            newTower:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+
+                            -- Store connection
+                            towerConnectors[newTower] = prevTower
+                            prevTower = newTower
+                        else
+                            print('Failed to create tower #'..i..' in lane '..lane)
+                        end
+                    end
+
+                    -- Store initial connection
+                    towerConnectors[one] = prevTower
+                else
+                    -- Failure
+                    print('Failed to patch towers!')
+                end
             end
         end
     end
@@ -2671,23 +2843,38 @@ ListenToGameEvent('entity_killed', function(keys)
     local hero = EntIndexToHScript(keys.entindex_killed)
 
     -- Ensure it is a hero
-    if IsValidEntity(hero) and hero:IsHero() then
-        if hero:WillReincarnate() then return end
-        if hero:IsReincarnating() then return end
+    if IsValidEntity(hero) then
+        -- Check for tower connections
+        if towerConnectors[hero] then
+            print('Found tower connection!')
 
-        local timeLeft = hero:GetRespawnTime()
-
-        if respawnModifier < 0 then
-            timeLeft = -respawnModifier
-        else
-            timeLeft = timeLeft * respawnModifier
+            -- Try to grab the tower
+            local tower = towerConnectors[hero]
+            if IsValidEntity(tower) then
+                print('Clipping it!')
+                -- Make it killable!
+                tower:RemoveModifierByName('modifier_invulnerable')
+            end
         end
 
-        Timers:CreateTimer(function()
-            if IsValidEntity(hero) and not hero:IsAlive() then
-                hero:SetTimeUntilRespawn(timeLeft)
+        if hero:IsHero() then
+            if hero:WillReincarnate() then return end
+            if hero:IsReincarnating() then return end
+
+            local timeLeft = hero:GetRespawnTime()
+
+            if respawnModifier < 0 then
+                timeLeft = -respawnModifier
+            else
+                timeLeft = timeLeft * respawnModifier
             end
-        end, DoUniqueString('respawn'), 0.1)
+
+            Timers:CreateTimer(function()
+                if IsValidEntity(hero) and not hero:IsAlive() then
+                    hero:SetTimeUntilRespawn(timeLeft)
+                end
+            end, DoUniqueString('respawn'), 0.1)
+        end
     end
 end, nil)
 
@@ -3608,11 +3795,415 @@ registerHeroBanning = function()
     end
 end
 
+-- Register fancy functions
+registerFancyConsoleCommands = function()
+    -- Swap two slots
+    Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, slot2)
+        -- Input validation
+        theirInterface = tonumber(theirInterface)
+        slot1 = tonumber(slot1)
+        slot2 = tonumber(slot2)
+        if theirInterface == nil then return end
+        if slot1 == nil then return end
+        if slot2 == nil then return end
+
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            local team = PlayerResource:GetTeam(playerID)
+
+            -- Ensure a valid team
+            if not isPlayerOnValidTeam(playerID) then
+                sendChatMessage(playerID, '#lod_invalid_team')
+                return
+            end
+
+            -- Stop people who have spawned from picking
+            if handledPlayerIDs[playerID] then
+                sendChatMessage(playerID, '#lod_already_spawned')
+                return
+            end
+
+            -- Ensure we are in banning mode
+            if currentStage ~= STAGE_PICKING then
+                sendChatMessage(playerID, '#lod_only_during_pick')
+                return
+            end
+
+            -- Ensure we are ALLOWED to pick
+            if not allowedToPick then
+                sendChatMessage(playerID, '#lod_not_allowed_pick')
+                return
+            end
+
+            -- Ensure this is a valid slot
+            if not isValidSlot(slot1) or not isValidSlot(slot2) then
+                sendChatMessage(playerID, '#lod_invalid_slot')
+                return
+            end
+
+            -- Ensure different slots
+            if slot1 == slot2 then
+                sendChatMessage(playerID, '#lod_swap_slot_self')
+                return
+            end
+
+            -- Check interfaces
+            if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER and theirInterface ~= SKILL_LIST_BUILDING and theirInterface ~= SKILL_LIST_CREEP then
+                sendChatMessage(playerID, '#lod_invalid_interface')
+                return
+            end
+
+            -- Ensure this player has a skill list
+            if theirInterface < SKILL_LIST_TOWER then
+                skillList[playerID] = skillList[playerID] or {}
+                skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
+                setupSlotType(playerID)
+
+                -- Copy skill over
+                local tmpSkill = skillList[playerID][theirInterface][slot1+1]
+                skillList[playerID][theirInterface][slot1+1] = skillList[playerID][theirInterface][slot2+1]
+                skillList[playerID][theirInterface][slot2+1] = tmpSkill
+
+                -- Swap slot types
+                local tmpSlot = slotTypes[playerID][theirInterface][slot1]
+                slotTypes[playerID][theirInterface][slot1] = slotTypes[playerID][theirInterface][slot2]
+                slotTypes[playerID][theirInterface][slot2] = tmpSlot
+            else
+                local list
+                if theirInterface == SKILL_LIST_TOWER then
+                    list = towerSkills
+                elseif theirInterface == SKILL_LIST_BUILDING then
+                    list = buildingSkills
+                elseif theirInterface == SKILL_LIST_CREEP then
+                    list = creepSkills
+                end
+
+                list = list or {}
+                list[team] = list[team] or {}
+                setupSlotType(-team)
+
+                -- Copy skill over
+                local tmpSkill = list[team][slot1+1]
+                list[team][slot1+1] = list[team][slot2+1]
+                list[team][slot2+1] = tmpSkill
+
+                -- Swap slot types
+                local tmpSlot = slotTypes[-team][slot1]
+                slotTypes[-team][slot1] = slotTypes[-team][slot2]
+                slotTypes[-team][slot2] = tmpSlot
+            end
+
+            -- Grab this player's playerSlot
+            local playerSlot = getPlayerSlot(playerID)
+
+            -- Prepare encoding number
+            local encode = 0
+            if hideSkills then
+                if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
+                    encode = encodeDire
+                elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    encode = encodeRadiant
+                end
+            end
+
+            local tid = playerID
+            local sn
+            if theirInterface == SKILL_LIST_TOWER then
+                tid = -team
+            end
+
+            -- Tell everyone
+
+
+            if theirInterface >= SKILL_LIST_TOWER then
+                if theirInterface == SKILL_LIST_TOWER then
+                    sn = getSkillID(towerSkills[team][slot1+1])
+                elseif theirInterface == SKILL_LIST_BUILDING then
+                    sn = getSkillID(buildingSkills[team][slot1+1])
+                elseif theirInterface == SKILL_LIST_CREEP then
+                    sn = getSkillID(creepSkills[team][slot1+1])
+                end
+            else
+                sn = getSkillID(skillList[playerID][theirInterface][slot1+1])
+            end
+            if sn ~= -1 then sn = sn + encode end
+            FireGameEvent('lod_skill', {
+                playerID = tid,
+                slotNumber = slot1,
+                skillID = sn,
+                playerSlot = playerSlot,
+                interface = theirInterface
+            })
+
+            if theirInterface >= SKILL_LIST_TOWER then
+                if theirInterface == SKILL_LIST_TOWER then
+                    sn = getSkillID(towerSkills[team][slot2+1])
+                elseif theirInterface == SKILL_LIST_BUILDING then
+                    sn = getSkillID(buildingSkills[team][slot2+1])
+                elseif theirInterface == SKILL_LIST_CREEP then
+                    sn = getSkillID(creepSkills[team][slot2+1])
+                end
+            else
+                sn = getSkillID(skillList[playerID][theirInterface][slot2+1])
+            end
+            if sn ~= -1 then sn = sn + encode end
+            FireGameEvent('lod_skill', {
+                playerID = tid,
+                slotNumber = slot2,
+                skillID = sn,
+                playerSlot = playerSlot,
+                interface = theirInterface
+            })
+
+            FireGameEvent('lod_swap_slot', {
+                playerID = tid,
+                slot1 = slot1,
+                slot2 = slot2,
+                interface = theirInterface
+            })
+
+            -- Tell the player
+            sendChatMessage(playerID, '#lod_swap_success', {
+                (slot1+1),
+                (slot2+1)
+            })
+
+        end
+    end, 'Swap two slots.', CLIENT_COMMAND)
+
+    -- When a user wants to stick a skill into a slot
+    Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, skillName)
+        -- Input validation
+        theirInterface = tonumber(theirInterface)
+        if theirInterface == nil then return end
+        if slotNumber == nil then return end
+        if skillName == nil then return end
+
+        -- Grab the player
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            local team = PlayerResource:GetTeam(playerID)
+
+            -- Ensure a valid team
+            if not isPlayerOnValidTeam(playerID) then
+                sendChatMessage(playerID, '#lod_invalid_team')
+                return
+            end
+
+            -- Check locks
+            if playerLocks[playerID] then
+                sendChatMessage(playerID, '#lod_please_unlock')
+                return
+            end
+
+            -- Stop people who have spawned from picking
+            if handledPlayerIDs[playerID] then
+                sendChatMessage(playerID, '#lod_already_spawned')
+                return
+            end
+
+            -- Ensure we are in banning mode
+            if currentStage ~= STAGE_PICKING then
+                sendChatMessage(playerID, '#lod_only_during_pick')
+                return
+            end
+
+            -- Ensure we are ALLOWED to pick
+            if not allowedToPick then
+                sendChatMessage(playerID, '#lod_not_allowed_pick')
+                return
+            end
+
+            -- Convert slot to a number
+            slotNumber = tonumber(slotNumber)
+
+            -- Ensure this is a valid slot
+            if not isValidSlot(slotNumber) then
+                sendChatMessage(playerID, '#lod_invalid_slot')
+                return
+            end
+
+            -- Check interfaces
+            if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER and theirInterface ~= SKILL_LIST_BUILDING and theirInterface ~= SKILL_LIST_CREEP then
+                sendChatMessage(playerID, '#lod_invalid_interface')
+                return
+            end
+
+            -- Check tower bans
+            if theirInterface == SKILL_LIST_CREEP or theirInterface == SKILL_LIST_BUILDING then
+                if noTowerAlways[skillName] then
+                    sendChatMessage(playerID, '#noTower', {
+                        getSpellIcon(skillName),
+                        tranAbility(skillName),
+                        noTower[skillName]
+                    })
+                    return
+                end
+            elseif theirInterface == SKILL_LIST_TOWER then
+                if (banTrollCombos and noTower[skillName]) or noTowerAlways[skillName] then
+                    sendChatMessage(playerID, '#noTower', {
+                        getSpellIcon(skillName),
+                        tranAbility(skillName),
+                        noTower[skillName]
+                    })
+                    return
+                end
+            elseif theirInterface == SKILL_LIST_BEAR then
+                if noBear[skillName] then
+                    sendChatMessage(playerID, '#noBear', {
+                        getSpellIcon(skillName),
+                        tranAbility(skillName)
+                    })
+                    return
+                end
+            elseif theirInterface == SKILL_LIST_YOUR then
+                if banTrollCombos and noHero[skillName] then
+                    sendChatMessage(playerID, '#noHero', {
+                        getSpellIcon(skillName),
+                        tranAbility(skillName)
+                    })
+                    return
+                end
+            end
+
+            local activeList
+
+            if theirInterface < SKILL_LIST_TOWER then
+                -- Ensure this player has a skill list
+                skillList[playerID] = skillList[playerID] or {}
+                skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
+                activeList = skillList[playerID][theirInterface]
+            else
+                if theirInterface == SKILL_LIST_TOWER then
+                    towerSkills[team] = towerSkills[team] or {}
+                    activeList = towerSkills[team]
+                elseif theirInterface == SKILL_LIST_BUILDING then
+                    buildingSkills[team] = buildingSkills[team] or {}
+                    activeList = buildingSkills[team]
+                elseif theirInterface == SKILL_LIST_CREEP then
+                    creepSkills[team] = creepSkills[team] or {}
+                    activeList = creepSkills[team]
+                end
+            end
+
+            -- Ensure this is a valid skill
+            if not isValidSkill(skillName) then
+                -- Perhaps they tried to random?
+                if skillName == 'random' and theirInterface < SKILL_LIST_TOWER then
+                    local msg
+                    msg,skillName = findRandomSkill(playerID, theirInterface, slotNumber)
+
+                    if msg then
+                        sendChatMessage(playerID, msg)
+                        return
+                    end
+                else
+                    sendChatMessage(playerID, '#lod_invalid_skill', {
+                        skillName
+                    })
+                    return
+                end
+            end
+
+            -- Ensure this is a valid slot
+            if skillName == 'lone_druid_spirit_bear' and theirInterface ~= SKILL_LIST_YOUR then
+                sendChatMessage(playerID, '#lod_bearception')
+                return
+            end
+
+            -- Ensure it isn't the same skill
+            if activeList[slotNumber+1] ~= skillName then
+                local slotType
+                if theirInterface >= SKILL_LIST_TOWER then
+                    setupSlotType(-team)
+                    slotType = slotTypes[-team][slotNumber]
+                else
+                    setupSlotType(playerID)
+                    slotType = slotTypes[playerID][theirInterface][slotNumber]
+                end
+
+                -- Make sure ults go into slot 3 only
+                if(isUlt(skillName)) then
+                    if slotType ~= SLOT_TYPE_ULT and slotType ~= SLOT_TYPE_EITHER then
+                        sendChatMessage(playerID, '#lod_no_ult')
+                        return
+                    end
+                else
+                    if slotType ~= SLOT_TYPE_ABILITY and slotType ~= SLOT_TYPE_EITHER then
+                        sendChatMessage(playerID, '#lod_no_regular')
+                        return
+                    end
+                end
+
+                local msg,args = CheckBans(activeList, slotNumber+1, skillName, playerID)
+                if msg then
+                    sendChatMessage(playerID, msg, args)
+                    return
+                end
+
+                -- Store this skill into the given slot
+                activeList[slotNumber+1] = skillName
+
+                -- Grab this player's playerSlot
+                local playerSlot = getPlayerSlot(playerID)
+
+                -- Prepare encoding number
+                local encode = 0
+                if hideSkills then
+                    if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
+                        encode = encodeDire
+                    elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
+                        encode = encodeRadiant
+                    end
+                end
+
+                -- Tell everyone
+                if theirInterface < SKILL_LIST_TOWER then
+                    FireGameEvent('lod_skill', {
+                        playerID = playerID,
+                        slotNumber = slotNumber,
+                        skillID = getSkillID(skillName)+encode,
+                        playerSlot = playerSlot,
+                        interface = theirInterface
+                    })
+                else
+                    FireGameEvent('lod_skill', {
+                        playerID = -team,
+                        slotNumber = slotNumber,
+                        skillID = getSkillID(skillName)+encode,
+                        playerSlot = playerSlot,
+                        interface = theirInterface
+                    })
+                end
+
+                -- Tell the player
+                sendChatMessage(playerID, '#lod_slot_success', {
+                    getSpellIcon(skillName),
+                    tranAbility(skillName),
+                    (slotNumber+1)
+                })
+
+                -- Check for warnings
+                if skillWarnings[skillName] then
+                    -- Send the warning
+                    sendChatMessage(playerID, '#warning_'..skillName, skillWarnings[skillName])
+                end
+            end
+        end
+    end, 'Select the given skill.', CLIENT_COMMAND)
+end
+
 -- Init console commands
 registerConsoleCommands = function()
     if IsDedicatedServer() then
         registerServerCommands()
     end
+
+    -- Register the fancy commands (we do this to avoid hitting Lua limits on varaible numbers)
+    registerFancyConsoleCommands()
 
     -- When a user tries to ban a skill
     Convars:RegisterCommand('lod_ban', function(name, skillName)
@@ -3807,161 +4398,6 @@ registerConsoleCommands = function()
         end
     end, 'Locks a players skills', CLIENT_COMMAND)
 
-    -- Swap two slots
-    Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, slot2)
-        -- Input validation
-        theirInterface = tonumber(theirInterface)
-        slot1 = tonumber(slot1)
-        slot2 = tonumber(slot2)
-        if theirInterface == nil then return end
-        if slot1 == nil then return end
-        if slot2 == nil then return end
-
-        -- Grab the player
-        local cmdPlayer = Convars:GetCommandClient()
-        if cmdPlayer then
-            local playerID = cmdPlayer:GetPlayerID()
-            local team = PlayerResource:GetTeam(playerID)
-
-            -- Ensure a valid team
-            if not isPlayerOnValidTeam(playerID) then
-                sendChatMessage(playerID, '#lod_invalid_team')
-                return
-            end
-
-            -- Stop people who have spawned from picking
-            if handledPlayerIDs[playerID] then
-                sendChatMessage(playerID, '#lod_already_spawned')
-                return
-            end
-
-            -- Ensure we are in banning mode
-            if currentStage ~= STAGE_PICKING then
-                sendChatMessage(playerID, '#lod_only_during_pick')
-                return
-            end
-
-            -- Ensure we are ALLOWED to pick
-            if not allowedToPick then
-                sendChatMessage(playerID, '#lod_not_allowed_pick')
-                return
-            end
-
-            -- Ensure this is a valid slot
-            if not isValidSlot(slot1) or not isValidSlot(slot2) then
-                sendChatMessage(playerID, '#lod_invalid_slot')
-                return
-            end
-
-            -- Ensure different slots
-            if slot1 == slot2 then
-                sendChatMessage(playerID, '#lod_swap_slot_self')
-                return
-            end
-
-            -- Check interfaces
-            if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
-                sendChatMessage(playerID, '#lod_invalid_interface')
-                return
-            end
-
-            -- Ensure this player has a skill list
-            if theirInterface ~= SKILL_LIST_TOWER then
-                skillList[playerID] = skillList[playerID] or {}
-                skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
-                setupSlotType(playerID)
-
-                -- Copy skill over
-                local tmpSkill = skillList[playerID][theirInterface][slot1+1]
-                skillList[playerID][theirInterface][slot1+1] = skillList[playerID][theirInterface][slot2+1]
-                skillList[playerID][theirInterface][slot2+1] = tmpSkill
-
-                -- Swap slot types
-                local tmpSlot = slotTypes[playerID][theirInterface][slot1]
-                slotTypes[playerID][theirInterface][slot1] = slotTypes[playerID][theirInterface][slot2]
-                slotTypes[playerID][theirInterface][slot2] = tmpSlot
-            else
-                towerSkills = towerSkills or {}
-                towerSkills[team] = towerSkills[team] or {}
-                setupSlotType(-team)
-
-                -- Copy skill over
-                local tmpSkill = towerSkills[team][slot1+1]
-                towerSkills[team][slot1+1] = towerSkills[team][slot2+1]
-                towerSkills[team][slot2+1] = tmpSkill
-
-                -- Swap slot types
-                local tmpSlot = slotTypes[-team][slot1]
-                slotTypes[-team][slot1] = slotTypes[-team][slot2]
-                slotTypes[-team][slot2] = tmpSlot
-            end
-
-            -- Grab this player's playerSlot
-            local playerSlot = getPlayerSlot(playerID)
-
-            -- Prepare encoding number
-            local encode = 0
-            if hideSkills then
-                if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
-                    encode = encodeDire
-                elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    encode = encodeRadiant
-                end
-            end
-
-            local tid = playerID
-            local sn
-            if theirInterface == SKILL_LIST_TOWER then
-                tid = -team
-            end
-
-            -- Tell everyone
-
-
-            if theirInterface == SKILL_LIST_TOWER then
-                sn = getSkillID(towerSkills[team][slot1+1])
-            else
-                sn = getSkillID(skillList[playerID][theirInterface][slot1+1])
-            end
-            if sn ~= -1 then sn = sn + encode end
-            FireGameEvent('lod_skill', {
-                playerID = tid,
-                slotNumber = slot1,
-                skillID = sn,
-                playerSlot = playerSlot,
-                interface = theirInterface
-            })
-
-            if theirInterface == SKILL_LIST_TOWER then
-                sn = getSkillID(towerSkills[team][slot2+1])
-            else
-                sn = getSkillID(skillList[playerID][theirInterface][slot2+1])
-            end
-            if sn ~= -1 then sn = sn + encode end
-            FireGameEvent('lod_skill', {
-                playerID = tid,
-                slotNumber = slot2,
-                skillID = sn,
-                playerSlot = playerSlot,
-                interface = theirInterface
-            })
-
-            FireGameEvent('lod_swap_slot', {
-                playerID = tid,
-                slot1 = slot1,
-                slot2 = slot2,
-                interface = theirInterface
-            })
-
-            -- Tell the player
-            sendChatMessage(playerID, '#lod_swap_success', {
-                (slot1+1),
-                (slot2+1)
-            })
-
-        end
-    end, 'Ban a given skill', CLIENT_COMMAND)
-
     -- Shows the given set
     Convars:RegisterCommand('lod_show_set', function(name, setNum)
         -- Server only command!
@@ -4010,211 +4446,6 @@ registerConsoleCommands = function()
             end
         end
     end, '', CLIENT_COMMAND)
-
-    -- When a user wants to stick a skill into a slot
-    Convars:RegisterCommand('lod_skill', function(name, theirInterface, slotNumber, skillName)
-        -- Input validation
-        theirInterface = tonumber(theirInterface)
-        if theirInterface == nil then return end
-        if slotNumber == nil then return end
-        if skillName == nil then return end
-
-        -- Grab the player
-        local cmdPlayer = Convars:GetCommandClient()
-        if cmdPlayer then
-            local playerID = cmdPlayer:GetPlayerID()
-            local team = PlayerResource:GetTeam(playerID)
-
-            -- Ensure a valid team
-            if not isPlayerOnValidTeam(playerID) then
-                sendChatMessage(playerID, '#lod_invalid_team')
-                return
-            end
-
-            -- Check locks
-            if playerLocks[playerID] then
-                sendChatMessage(playerID, '#lod_please_unlock')
-                return
-            end
-
-            -- Stop people who have spawned from picking
-            if handledPlayerIDs[playerID] then
-                sendChatMessage(playerID, '#lod_already_spawned')
-                return
-            end
-
-            -- Ensure we are in banning mode
-            if currentStage ~= STAGE_PICKING then
-                sendChatMessage(playerID, '#lod_only_during_pick')
-                return
-            end
-
-            -- Ensure we are ALLOWED to pick
-            if not allowedToPick then
-                sendChatMessage(playerID, '#lod_not_allowed_pick')
-                return
-            end
-
-            -- Convert slot to a number
-            slotNumber = tonumber(slotNumber)
-
-            -- Ensure this is a valid slot
-            if not isValidSlot(slotNumber) then
-                sendChatMessage(playerID, '#lod_invalid_slot')
-                return
-            end
-
-            -- Check interfaces
-            if not validInterfaces[theirInterface] and theirInterface ~= SKILL_LIST_TOWER then
-                sendChatMessage(playerID, '#lod_invalid_interface')
-                return
-            end
-
-            -- Check tower bans
-            if theirInterface == SKILL_LIST_TOWER then
-                if (banTrollCombos and noTower[skillName]) or noTowerAlways[skillName] then
-                    sendChatMessage(playerID, '#noTower', {
-                        getSpellIcon(skillName),
-                        tranAbility(skillName),
-                        noTower[skillName]
-                    })
-                    return
-                end
-            elseif theirInterface == SKILL_LIST_BEAR then
-                if noBear[skillName] then
-                    sendChatMessage(playerID, '#noBear', {
-                        getSpellIcon(skillName),
-                        tranAbility(skillName)
-                    })
-                    return
-                end
-            elseif theirInterface == SKILL_LIST_YOUR then
-                if banTrollCombos and noHero[skillName] then
-                    sendChatMessage(playerID, '#noHero', {
-                        getSpellIcon(skillName),
-                        tranAbility(skillName)
-                    })
-                    return
-                end
-            end
-
-            local activeList
-
-            if theirInterface ~= SKILL_LIST_TOWER then
-                -- Ensure this player has a skill list
-                skillList[playerID] = skillList[playerID] or {}
-                skillList[playerID][theirInterface] = skillList[playerID][theirInterface] or {}
-                activeList = skillList[playerID][theirInterface]
-            else
-                towerSkills[team] = towerSkills[team] or {}
-                activeList = towerSkills[team]
-            end
-
-            -- Ensure this is a valid skill
-            if not isValidSkill(skillName) then
-                -- Perhaps they tried to random?
-                if skillName == 'random' and theirInterface ~= SKILL_LIST_TOWER then
-                    local msg
-                    msg,skillName = findRandomSkill(playerID, theirInterface, slotNumber)
-
-                    if msg then
-                        sendChatMessage(playerID, msg)
-                        return
-                    end
-                else
-                    sendChatMessage(playerID, '#lod_invalid_skill', {
-                        skillName
-                    })
-                    return
-                end
-            end
-
-            -- Ensure this is a valid slot
-            if skillName == 'lone_druid_spirit_bear' and theirInterface ~= SKILL_LIST_YOUR then
-                sendChatMessage(playerID, '#lod_bearception')
-                return
-            end
-
-            -- Ensure it isn't the same skill
-            if activeList[slotNumber+1] ~= skillName then
-                local slotType
-                if theirInterface == SKILL_LIST_TOWER then
-                    setupSlotType(-team)
-                    slotType = slotTypes[-team][slotNumber]
-                else
-                    setupSlotType(playerID)
-                    slotType = slotTypes[playerID][theirInterface][slotNumber]
-                end
-
-                -- Make sure ults go into slot 3 only
-                if(isUlt(skillName)) then
-                    if slotType ~= SLOT_TYPE_ULT and slotType ~= SLOT_TYPE_EITHER then
-                        sendChatMessage(playerID, '#lod_no_ult')
-                        return
-                    end
-                else
-                    if slotType ~= SLOT_TYPE_ABILITY and slotType ~= SLOT_TYPE_EITHER then
-                        sendChatMessage(playerID, '#lod_no_regular')
-                        return
-                    end
-                end
-
-                local msg,args = CheckBans(activeList, slotNumber+1, skillName, playerID)
-                if msg then
-                    sendChatMessage(playerID, msg, args)
-                    return
-                end
-
-                -- Store this skill into the given slot
-                activeList[slotNumber+1] = skillName
-
-                -- Grab this player's playerSlot
-                local playerSlot = getPlayerSlot(playerID)
-
-                -- Prepare encoding number
-                local encode = 0
-                if hideSkills then
-                    if cmdPlayer:GetTeam() == DOTA_TEAM_BADGUYS then
-                        encode = encodeDire
-                    elseif cmdPlayer:GetTeam() == DOTA_TEAM_GOODGUYS then
-                        encode = encodeRadiant
-                    end
-                end
-
-                -- Tell everyone
-                if theirInterface ~= SKILL_LIST_TOWER then
-                    FireGameEvent('lod_skill', {
-                        playerID = playerID,
-                        slotNumber = slotNumber,
-                        skillID = getSkillID(skillName)+encode,
-                        playerSlot = playerSlot,
-                        interface = theirInterface
-                    })
-                else
-                    FireGameEvent('lod_skill', {
-                        playerID = -team,
-                        slotNumber = slotNumber,
-                        skillID = getSkillID(skillName)+encode,
-                        playerSlot = playerSlot,
-                        interface = theirInterface
-                    })
-                end
-
-                -- Tell the player
-                sendChatMessage(playerID, '#lod_slot_success', {
-                    getSpellIcon(skillName),
-                    tranAbility(skillName),
-                    (slotNumber+1)
-                })
-
-                -- Check for warnings
-                if skillWarnings[skillName] then
-                    -- Send the warning
-                    sendChatMessage(playerID, '#warning_'..skillName, skillWarnings[skillName])
-                end
-            end
-        end
-    end, 'Ban a given skill', CLIENT_COMMAND)
 
     -- User is trying to update their vote
     Convars:RegisterCommand('lod_vote', function(name, optNumber, theirChoice)

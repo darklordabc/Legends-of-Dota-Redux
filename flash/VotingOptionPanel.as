@@ -28,8 +28,10 @@
 				slaveText.visible = false;
 
 				// Create the drop down box
+				var realWidth:Number = 335;
+				var dropDownBoxWidth:Number = 140;
 				dropDown = Util.comboBox(this, slots);
-				dropDown.x = this.width/2-dropDown.width-1;
+				dropDown.x = realWidth/2-dropDownBoxWidth-2;
 				dropDown.y = 0.5;
 
 				// Bring hint to the front

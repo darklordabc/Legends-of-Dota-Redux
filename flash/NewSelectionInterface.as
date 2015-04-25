@@ -23,6 +23,8 @@
         public var yourSkillList:MovieClip;
         public var bearSkillList:MovieClip;
         public var towerSkillList:MovieClip;
+        public var buildingSkillList:MovieClip;
+        public var creepSkillList:MovieClip;
 
         // The show options button
         public var helpShowOptions:MovieClip;
@@ -40,6 +42,8 @@
         public var browseYourSkills:MovieClip;
         public var browseBearSkills:MovieClip;
         public var browseTowerSkills:MovieClip;
+        public var browseBuildingSkills:MovieClip;
+        public var browseCreepSkills:MovieClip;
 
         // The active list
         private var activeSkillList:Number = lod.SKILL_LIST_YOUR;
@@ -191,6 +195,10 @@
             browseBearSkills.addEventListener(MouseEvent.CLICK, showBearSkills);
             browseTowerSkills.setText('#browseYourTower');
             browseTowerSkills.addEventListener(MouseEvent.CLICK, showTowerSkills);
+            browseBuildingSkills.setText('#browseYourBuilding');
+            browseBuildingSkills.addEventListener(MouseEvent.CLICK, showBuildingSkills);
+            browseCreepSkills.setText('#browseYourCreep');
+            browseCreepSkills.addEventListener(MouseEvent.CLICK, showCreepSkills);
 
             // Do the tabs
             Util.empty(tabButtonCon);
@@ -425,7 +433,7 @@
             }
 
             // Allow sloting
-            if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible) {
+            if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible || buildingSkillList.visible || creepSkillList.visible) {
                 if(!noRecommend) {
                     // Allow recommending
                     data.push({
@@ -484,7 +492,7 @@
                 });
 
                 // Allow sloting
-                if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible) {
+                if(yourSkillList.visible || bearSkillList.visible || towerSkillList.visible || buildingSkillList.visible || creepSkillList.visible) {
                     for(var i=0;i<lod.MAX_SLOTS; ++i) {
                         if(mySlot != i) {
                             // Build Label
@@ -542,6 +550,14 @@
                     case lod.SKILL_LIST_TOWER:
                         slotAreaCallback(towerSkillList['skill' + option], data);
                         break;
+
+                    case lod.SKILL_LIST_BUILDING:
+                        slotAreaCallback(buildingSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_CREEP:
+                        slotAreaCallback(creepSkillList['skill' + option], data);
+                        break;
                 }
             } else if(option == RECOMMEND_SKILL) {
                 // Recommend a skill
@@ -573,6 +589,14 @@
 
                     case lod.SKILL_LIST_TOWER:
                         slotAreaCallback(towerSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_BUILDING:
+                        slotAreaCallback(buildingSkillList['skill' + option], data);
+                        break;
+
+                    case lod.SKILL_LIST_CREEP:
+                        slotAreaCallback(creepSkillList['skill' + option], data);
                         break;
                 }
             } else if(option == -2) {
@@ -714,6 +738,14 @@
                 case lod.SKILL_LIST_TOWER:
                     return towerSkillList.getSkillInSlot(slotNumber);
                     break;
+
+                case lod.SKILL_LIST_BUILDING:
+                    return buildingSkillList.getSkillInSlot(slotNumber);
+                    break;
+
+                case lod.SKILL_LIST_CREEP:
+                    return creepSkillList.getSkillInSlot(slotNumber);
+                    break;
             }
 
             // Default to your skills list
@@ -721,7 +753,7 @@
         }
 
         // Setups the skill list
-        public function setupSkillList(totalSlots:Number, slotInfo:String, bearSlotInfo:String, towerSlotInfo:String, dropCallback:Function, keyBindings:Array):void {
+        public function setupSkillList(totalSlots:Number, slotInfo:String, bearSlotInfo:String, towerSlotInfo:String, buildingSlotInfo:String, creepSlotInfo:String, dropCallback:Function, keyBindings:Array):void {
             // Store callback
             slotAreaCallback = dropCallback;
 
@@ -733,15 +765,22 @@
             yourSkillList.setup(totalSlots, slotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_YOUR);
             bearSkillList.setup(changedSlots, bearSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BEAR);
             towerSkillList.setup(changedSlots, towerSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_TOWER);
+            buildingSkillList.setup(changedSlots, buildingSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_BUILDING);
+            creepSkillList.setup(changedSlots, creepSlotInfo, dropCallback, keyBindings, checkTarget, lod.SKILL_LIST_CREEP);
 
             // Reposition buttons
             var localPaddingLeft:Number = 8;
+            var localPaddingFarLeft:Number = 4;
             var localPaddingRight:Number = 4;
             var leftX:Number = yourSkillList.x - yourSkillList.width/2 - browseYourSkills.width - localPaddingLeft;
+            var farLeftX:Number = leftX - yourSkillList.width - localPaddingFarLeft;
             var rightX:Number = yourSkillList.x + yourSkillList.width/2 + localPaddingRight;
             browseYourSkills.x = leftX;
             browseBearSkills.x = leftX;
-            browseTowerSkills.x = leftX;
+
+            browseTowerSkills.x = farLeftX;
+            browseBuildingSkills.x = farLeftX;
+            browseCreepSkills.x = farLeftX;
 
             helpShowOptions.x = rightX;
             helpMoreTime.x = rightX;
@@ -756,6 +795,10 @@
             for(i=0; i<changedSlots; ++i) {
                 bearSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
                 towerSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+                buildingSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
+            }
+            for(i=0; i<4; ++i) {
+                creepSkillList['skill' + i].addEventListener(MouseEvent.MOUSE_DOWN, onSlotPressed);
             }
         }
 
@@ -772,6 +815,14 @@
 
                 case lod.SKILL_LIST_TOWER:
                     return towerSkillList.skillIntoSlot(slotNumber, skillName);
+                    break;
+
+                case lod.SKILL_LIST_BUILDING:
+                    return buildingSkillList.skillIntoSlot(slotNumber, skillName);
+                    break;
+
+                case lod.SKILL_LIST_CREEP:
+                    return creepSkillList.skillIntoSlot(slotNumber, skillName);
                     break;
             }
 
@@ -791,6 +842,14 @@
 
                 case lod.SKILL_LIST_TOWER:
                     towerSkillList.onSlotSwapped(slot1, slot2);
+                    break;
+
+                case lod.SKILL_LIST_BUILDING:
+                    buildingSkillList.onSlotSwapped(slot1, slot2);
+                    break;
+
+                case lod.SKILL_LIST_CREEP:
+                    creepSkillList.onSlotSwapped(slot1, slot2);
                     break;
             }
 
@@ -866,6 +925,8 @@
             browseYourSkills.visible = vis;
             browseBearSkills.visible = lod.allowBearSkills && vis;
             browseTowerSkills.visible = lod.allowTowerSkills && vis;
+            browseBuildingSkills.visible = lod.allowBuildingSkills && vis;
+            browseCreepSkills.visible = lod.allowCreepSkills && vis;
         }
 
         // Hides all skill lists
@@ -873,6 +934,8 @@
             yourSkillList.visible = false;
             bearSkillList.visible = false;
             towerSkillList.visible = false;
+            buildingSkillList.visible = false;
+            creepSkillList.visible = false;
         }
 
         // Shows only your skills
@@ -907,6 +970,30 @@
             hideAllSkillLists();
             towerSkillList.visible = lod.allowTowerSkills;
             activeSkillList = lod.SKILL_LIST_TOWER;
+
+            if(doChange) changeListCallback();
+        }
+
+        // Shows only building skills
+        public function showBuildingSkills():void {
+            var doChange:Boolean = false;
+            if(activeSkillList != lod.SKILL_LIST_BUILDING) doChange = true;
+
+            hideAllSkillLists();
+            buildingSkillList.visible = lod.allowBuildingSkills;
+            activeSkillList = lod.SKILL_LIST_BUILDING;
+
+            if(doChange) changeListCallback();
+        }
+
+        // Shows only creep skills
+        public function showCreepSkills():void {
+            var doChange:Boolean = false;
+            if(activeSkillList != lod.SKILL_LIST_CREEP) doChange = true;
+
+            hideAllSkillLists();
+            creepSkillList.visible = lod.allowCreepSkills;
+            activeSkillList = lod.SKILL_LIST_CREEP;
 
             if(doChange) changeListCallback();
         }
@@ -976,6 +1063,14 @@
 
                 case lod.SKILL_LIST_TOWER:
                     slot = towerSkillList['skill' + slotNumber];
+                    break;
+
+                case lod.SKILL_LIST_BUILDING:
+                    slot = buildingSkillList['skill' + slotNumber];
+                    break;
+
+                case lod.SKILL_LIST_CREEP:
+                    slot = creepSkillList['skill' + slotNumber];
                     break;
             }
 
