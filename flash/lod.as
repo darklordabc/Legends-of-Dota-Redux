@@ -173,6 +173,9 @@
             SKILL LIST STUFF
         */
 
+        // Multiplier KV
+        private static var multiplierSkills:Object;
+
         // Have we setup the post voting stuff?
         private var initPostVoting:Boolean = false;
 
@@ -281,6 +284,9 @@
             // Load the version
             var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
             versionNumber = versionFile.version;
+
+            // Load up the multiplier KV
+            multiplierSkills = globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
 
             // Ask for decoding info
             requestDecodingNumber();
@@ -1513,11 +1519,17 @@
             }
         }
 
+        // Function to return the multilpied version of spells, where nessessary
         private static function getSpellNameWithMult(spell:String):String {
             if(SPELL_MULTIPLIER <= 1) {
                 return spell;
             } else {
-                return spell + '_' + SPELL_MULTIPLIER;
+                if(multiplierSkills[spell + '_' + SPELL_MULTIPLIER]) {
+                    return spell + '_' + SPELL_MULTIPLIER;
+                } else {
+                    return spell;
+                }
+
             }
         }
 

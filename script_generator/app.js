@@ -370,10 +370,7 @@ var permutations = {
 
                 // Check for specific values
                 if(spellMult.fixed_value[spellName] && spellMult.fixed_value[spellName][specialName]) {
-                    var fixedValue = parseFloat(spellMult.fixed_value[spellName][specialName]);
-                    for(var i=0; i<vals.length; ++i) {
-                        vals[i] = fixedValue;
-                    }
+                    return spellMult.fixed_value[spellName][specialName];
                 }
 
                 // Should we always divide this attribute?
@@ -533,6 +530,7 @@ function permute(spellName, ability, storage) {
 
     // List of suffixes we found
     var suffixes = [];
+    var appendsOnEnd = [];
 
     // Loop over all the things we need to apply
     while(slots[slots.length-1] < permutations[permList[permList.length-1]].vals.length) {
@@ -545,8 +543,9 @@ function permute(spellName, ability, storage) {
         if(ability.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = ability.AbilityUnitDamageType;
 
         var suffix = '';
+        var appendOnEnd = '';
 
-        var changed = false;
+        //var changed = false;
         for(var i=0; i<permList.length; ++i) {
             // Grab a modifier
             var perm = permutations[permList[i]];
@@ -554,23 +553,25 @@ function permute(spellName, ability, storage) {
 
             // Add to the suffix
             suffix += '_' + spellValue;
+            appendOnEnd += ' X' + spellValue;
 
             var tempChange = perm.func(spellName, ability, newSpell, spellValue);
 
             if(tempChange != null) {
                 newSpell = tempChange;
-                changed = true;
+                //changed = true;
             }
         }
 
         // Store the spell
-        if(changed) {
+        //if(changed) {
             // Store the spell
             storage[spellName + suffix] = newSpell;
 
             // Store suffix
             suffixes.push(suffix);
-        }
+            appendsOnEnd.push(appendOnEnd);
+        //}
 
         // Push permution along
         var sel = 0;
@@ -587,9 +588,14 @@ function permute(spellName, ability, storage) {
     for(var key in english) {
         if(key.indexOf(spellName) != -1) {
             for(var i=0; i<suffixes.length; ++i) {
+                var appendOnEnd = '';
+                if(key == 'DOTA_Tooltip_ability_' + spellName) {
+                    appendOnEnd = appendsOnEnd[i];
+                }
+
                 var suffix = suffixes[i];
                 var newStr = key.replace(spellName, spellName + suffix);
-                generateLanguage(newStr, key);
+                generateLanguage(newStr, key, appendOnEnd);
             }
         }
     }
@@ -598,9 +604,11 @@ function permute(spellName, ability, storage) {
 // theString is the string we search for and use as a key to store in
 // if theString can't be find, search using altString
 // search in actual language, if that fails, search in english, if that fails, commit suicide
-function generateLanguage(theString, altString) {
+function generateLanguage(theString, altString, appendOnEnd) {
     // Grab a reference to english
     var english = langIn.english;
+
+    if(appendOnEnd == null) appendOnEnd = '';
 
     for(var i=0; i<langs.length; ++i) {
         // Grab a language
@@ -609,13 +617,13 @@ function generateLanguage(theString, altString) {
         var storeTo = langOut[lang];
 
         if(langFile[theString]) {
-            storeTo[theString] = langFile[theString];
+            storeTo[theString] = langFile[theString] + appendOnEnd;
         } else if(langFile[altString]) {
-            storeTo[theString] = langFile[altString];
+            storeTo[theString] = langFile[altString] + appendOnEnd;
         } else if(english[theString]) {
-            storeTo[theString] = english[theString];
+            storeTo[theString] = english[theString] + appendOnEnd;
         } else if(english[altString]) {
-            storeTo[theString] = english[altString];
+            storeTo[theString] = english[altString] + appendOnEnd;
         } else {
             console.log('Failed to find ' + theString);
         }
@@ -921,7 +929,7 @@ function parseKV(data) {
 }
 
 function escapeString(str) {
-    return str.replace(/\\/g, '\\\\').replace(/\"/g, '\\"').replace(/\n/g, '\\n');
+    return str.replace(/\\/gm, '\\\\').replace(/\"/gm, '\\"').replace(/(\r\n|\n|\r|\n\r)/gm, '\\n');
 }
 
 function toKV(obj, key) {
@@ -935,7 +943,7 @@ function toKV(obj, key) {
     } else if (typeof obj == 'boolean') {
         return '"' + escapeString(key) + '""' + obj + '"';
     } else if (typeof obj == 'string') {
-        return '"' + escapeString(key) + '""' + obj + '"';
+        return '"' + escapeString(key) + '""' + escapeString(obj) + '"';
     } else if(obj instanceof Array) {
         // An array of strings
         for(var i=0; i<obj.length; i++) {

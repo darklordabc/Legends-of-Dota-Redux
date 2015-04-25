@@ -1248,7 +1248,7 @@ fixBuilds = function()
             local build = skillList[playerID][SKILL_LIST_YOUR]
 
             -- Apply the build
-            SkillManager:ApplyBuild(k, build)
+            SkillManager:ApplyBuild(k, build, customSpellPower)
 
             -- Store playerID has handled
             handledPlayerIDs[playerID] = true
@@ -2402,7 +2402,7 @@ applyTowerSkills = function()
 
         local skillz = towerSkills[team]
         if skillz then
-            SkillManager:ApplyBuild(tower, skillz)
+            SkillManager:ApplyBuild(tower, skillz, customSpellPower)
         end
     end
 
@@ -2543,7 +2543,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
                 print(k..' - '..v)
             end
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR], customSpellPower)
             print('Success!')
 
             return
@@ -2562,7 +2562,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
                 print(k..' - '..v)
             end
-            SkillManager:ApplyBuild(spawnedUnit, build)
+            SkillManager:ApplyBuild(spawnedUnit, build, customSpellPower)
             print('Success!')
 
             -- Store playerID has handled
@@ -2601,7 +2601,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                         for k,v in pairs(skillz or {}) do
                             print(k..' - '..v)
                         end
-                        SkillManager:ApplyBuild(spawnedUnit, skillz)
+                        SkillManager:ApplyBuild(spawnedUnit, skillz, customSpellPower)
                         print('Success!')
                     end
 
@@ -3313,7 +3313,7 @@ registerServerCommands = function()
             end
 
             -- Apply the build
-            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild)
+            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild, customSpellPower)
         end
     end, '', SERVER_COMMAND)
 
@@ -4376,7 +4376,7 @@ loadSpecialGamemode = function()
                                 for k,v in pairs(chosenBuild or {}) do
                                     print(k..' - '..v)
                                 end
-                                SkillManager:ApplyBuild(hero, chosenBuild)
+                                SkillManager:ApplyBuild(hero, chosenBuild, customSpellPower)
                                 print('success!')
                             end
 

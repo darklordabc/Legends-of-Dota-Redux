@@ -9,13 +9,16 @@ require('util')
 local currentSkillList = {}
 
 -- Contains info on heroes
-local heroListKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
+local heroListKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- A list of sub abilities needed to give out when we add an ability
-local subAbilities = LoadKeyValues("scripts/kv/abilityDeps.kv")
+local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
 
 -- List of units that we can precache
-local unitList = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+local unitList = LoadKeyValues('scripts/npc/npc_units_custom.txt')
+
+-- Ability list used for multiplier
+local multiplierSkills = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 
 -- This object will be exported
 local skillManager = {}
@@ -240,8 +243,22 @@ function skillManager:ShowSet(hero, number)
     end
 end
 
+-- Returns a multiplier skill name, if it exists
+function skillManager:GetMultiplierSkillName(skillName, mult)
+    -- Check that we are actually doing a multiplier
+    if mult and mult ~= 1 then
+        -- Check if the multiplier skill exists
+        if multiplierSkills[skillName..'_'..mult] then
+            return skillName..'_'..mult
+        end
+    end
+
+    -- Doesn't exist, use the normal skill
+    return skillName
+end
+
 local inSwap = false
-function skillManager:ApplyBuild(hero, build)
+function skillManager:ApplyBuild(hero, build, mult)
     -- Ensure the hero isn't nil
     if hero == nil or not hero:IsAlive() then return end
 
@@ -462,17 +479,19 @@ function skillManager:ApplyBuild(hero, build)
             -- Precache
             precacheSkill(v)
 
+            local multV = self:GetMultiplierSkillName(v, mult)
+
             -- Add to build
-            if not seenAbilities[v] and hero:HasAbility(v) then
+            if not seenAbilities[multV] and hero:HasAbility(multV) then
                 -- Hero already has, lets hook and move it
-                local oldAb = hero:FindAbilityByName(v)
+                local oldAb = hero:FindAbilityByName(multV)
 
                 -- Enable it
                 oldAb:SetHidden(false)
             else
-                hero:AddAbility(v)
+                hero:AddAbility(multV)
 
-                local newAb = hero:FindAbilityByName(v)
+                local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)
                 end
@@ -483,7 +502,7 @@ function skillManager:ApplyBuild(hero, build)
 
             -- If it's a tower, level it
             if isTower then
-                local ab = hero:FindAbilityByName(v)
+                local ab = hero:FindAbilityByName(multV)
                 if ab then
                     local requiredLevel = ab:GetMaxLevel()
                     ab:SetLevel(requiredLevel)
@@ -491,13 +510,16 @@ function skillManager:ApplyBuild(hero, build)
             end
 
             -- We need to actually add it next time
-            seenAbilities[v] = true
+            seenAbilities[multV] = true
 
-            currentSkillList[hero][abNum] = v
+            currentSkillList[hero][abNum] = multV
 
             -- Do we need to manually activate this skill?
             if manualActivate[v] then
-                hero:FindAbilityByName(v):SetActivated(true)
+                local ab = hero:FindAbilityByName(multV)
+                if ab then
+                    ab:SetActivated(true)
+                end
             end
 
             -- Remove auras
@@ -526,9 +548,12 @@ function skillManager:ApplyBuild(hero, build)
         if v then
             local inSlot = abs[i]
 
-            if inSlot and inSlot ~= v then
+            -- Grab the multiplied skill
+            local seekAbility = self:GetMultiplierSkillName(v, mult)
+
+            if inSlot and inSlot ~= seekAbility then
                 -- Swap in dota
-                hero:SwapAbilities(v, inSlot, true, true)
+                hero:SwapAbilities(seekAbility, inSlot, true, true)
 
                 -- Perform swap internally
                 for j=i+1,16 do
@@ -541,7 +566,7 @@ function skillManager:ApplyBuild(hero, build)
             end
 
             if i > 6 and not isTower then
-                local ab = hero:FindAbilityByName(v)
+                local ab = hero:FindAbilityByName(seekAbility)
                 if ab then
                     ab:SetHidden(true)
                 end
@@ -549,7 +574,7 @@ function skillManager:ApplyBuild(hero, build)
 
             -- Store the index
             if isRealHero then
-                activeSkills[playerID][i] = v
+                activeSkills[playerID][i] = seekAbility
             end
         else
             local inSlot = abs[i]
@@ -573,14 +598,17 @@ function skillManager:ApplyBuild(hero, build)
             -- Precache
             precacheSkill(k)
 
+            -- Grab the real name
+            local realAbility = self:GetMultiplierSkillName(k, mult)
+
             -- Add the ability
-            hero:AddAbility(k)
+            hero:AddAbility(realAbility)
 
             -- Remove auras
             fixModifiers(hero, k)
 
             -- Store that we have it
-            currentSkillList[hero][abNum] = k
+            currentSkillList[hero][abNum] = realAbility
         end
     end
 end
