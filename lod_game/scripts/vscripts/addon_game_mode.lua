@@ -3187,8 +3187,18 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
         local hero = ply:GetAssignedHero()
         if hero then
             -- Check for witchcraft
-            if hero:HasAbility('death_prophet_witchcraft') and not noWitchcraft[keys.abilityname] then
-                local mab = hero:FindAbilityByName('death_prophet_witchcraft')
+            if not noWitchcraft[keys.abilityname] then
+                local mab
+                if hero:HasAbility('death_prophet_witchcraft') then
+                    mab = hero:FindAbilityByName('death_prophet_witchcraft')
+                elseif hero:HasAbility('death_prophet_witchcraft_5') then
+                    mab = hero:FindAbilityByName('death_prophet_witchcraft_5')
+                elseif hero:HasAbility('death_prophet_witchcraft_10') then
+                    mab = hero:FindAbilityByName('death_prophet_witchcraft_10')
+                elseif hero:HasAbility('death_prophet_witchcraft_20') then
+                    mab = hero:FindAbilityByName('death_prophet_witchcraft_20')
+                end
+
                 if mab then
                     -- Grab the level of the ability
                     local lvl = mab:GetLevel()
