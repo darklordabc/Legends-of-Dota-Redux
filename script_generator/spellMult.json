@@ -1710,7 +1710,8 @@
       "elder_titan_return_spirit":true,
       "shadow_demon_shadow_poison_release":true,
       "tusk_launch_snowball":true,
-      "ogre_magi_multicast_lod":true
+      "ogre_magi_multicast_lod":true,
+      "life_stealer_feast":true
    },
    "ignore_partial_names":[
       "cooldown"
