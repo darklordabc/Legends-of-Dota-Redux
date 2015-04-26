@@ -3580,11 +3580,19 @@ ListenToGameEvent('entity_hurt', function(keys)
 
         -- Ensure their health has dropped low enough
         if ent:GetHealth() <= minHP then
-            -- Do they even have the ability in question?
+            local ab
             if ent:HasAbility('abaddon_borrowed_time') then
-                -- Grab the ability
-                local ab = ent:FindAbilityByName('abaddon_borrowed_time')
+                ab = ent:FindAbilityByName('abaddon_borrowed_time')
+            elseif ent:HasAbility('abaddon_borrowed_time_5') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_5')
+            elseif ent:HasAbility('abaddon_borrowed_time_10') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_10')
+            elseif ent:HasAbility('abaddon_borrowed_time_20') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_20')
+            end
 
+            -- Do they even have the ability in question?
+            if ab then
                 -- Is the ability ready to use?
                 if ab:IsCooldownReady() then
                     -- Grab the level
