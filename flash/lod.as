@@ -177,6 +177,9 @@
         // Hud fixing timer
         private static var hudFixingTimer:Timer;
 
+        // Used to add more info on the version info screen
+        private var versionUIPage:Number;
+
         /*
             SKILL LIST STUFF
         */
@@ -298,6 +301,9 @@
             // Load the version
             var versionFile:Object = globals.GameInterface.LoadKVFile('addoninfo.txt');
             versionNumber = versionFile.version;
+
+            // We are on the first page of the versionUI
+            versionUIPage = 0;
 
             // Load up the multiplier KV
             multiplierSkills = globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
@@ -1120,6 +1126,20 @@
 
         // Called when the version info pain is closed
         private function onVersionInfoClosed():void {
+            // Load the info
+            var whatsUp:Object = globals.GameInterface.LoadKVFile('scripts/kv/whatsUp.kv');
+
+            // Ensure the correct fields are showing
+            versionUI.helpField.visible = false;
+            versionUI.updateField.visible = true;
+
+            // Check if there is a page for us
+            if(whatsUp[versionUIPage]) {
+                versionUI.updateField.htmlText = whatsUp[versionUIPage];
+                versionUIPage++;
+                return;
+            }
+
             // Hide the versionUI
             versionUI.visible = false;
 
@@ -1635,6 +1655,8 @@
 
                 // Show version info
                 versionUI.visible = true;
+                versionUI.helpField.visible = true;
+                versionUI.updateField.visible = false;
 
                 // Ensure there is version info
                 if(!args.v) args.v = '';
