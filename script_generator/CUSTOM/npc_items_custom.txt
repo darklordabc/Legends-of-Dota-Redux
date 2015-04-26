@@ -25,4 +25,48 @@
             }
         }
     }
+
+    "item_health_modifier"
+    {
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "BaseClass"                     "item_datadriven"
+        "IsSellable"                    "0"
+
+        "Modifiers"
+        {
+            "modifier_health_mod_5"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"    "1000"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "50"
+                }
+            }
+            "modifier_health_mod_10"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"    "2000"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "50"
+                }
+            }
+            "modifier_health_mod_20"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_BONUS"    "3600"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "50"
+                }
+            }
+        }
+    }
 }

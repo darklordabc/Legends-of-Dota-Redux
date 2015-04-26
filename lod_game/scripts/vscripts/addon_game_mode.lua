@@ -67,59 +67,65 @@ local Timers = require('easytimers')
 --[[
     FUNCTION DEFINITIONS
 ]]
-local setupGamemodeSettings
-local slotTypeString
-local isUlt
-local isPassive
-local isPlayerOnValidTeam
-local isValidSkill
-local isValidHeroName
-local isChannelled
-local isTargetSpell
-local getMulticastDelay
-local getSkillID
-local isValidSlot
-local isSkillBanned
-local GetSkillOwningHero
-local banSkill
-local buildDraftString
-local addHeroDraft
-local getPlayerSlot
-local sendChatMessage
-local sendDireMessage
-local sendRadiantMessage
-local sendTeamMessage
-local alreadyHas
-local CheckBans
-local setupSlotType
-local setupSlotTypes
-local validateBuild
-local fixBuilds
-local postGamemodeSettings
-local getOptionsString
-local shuffle
-local optionToValue
-local valueToOption
-local finishVote
-local backdoorFix
-local botSkillsOnly
-local doLock
-local getRandomHeroName
-local getSpellIcon
-local loadSpecialGamemode
-local buildAllowedTabsString
-local fireLockChange
-local setTowerOwnership
-local addExtraTowers
-local applyTowerSkills
-local levelSpiritSkills
-local tranAbility
-local transHero
-local printOptionsToPlayer
-local registerConsoleCommands
-local registerServerCommands
-local registerHeroBanning
-local registerFancyConsoleCommands
+local stub = function()end
+
+setupGamemodeSettings = stub
+slotTypeString = stub
+isUlt = stub
+isPassive = stub
+isPlayerOnValidTeam = stub
+isValidSkill = stub
+isValidHeroName = stub
+isChannelled = stub
+isTargetSpell = stub
+getMulticastDelay = stub
+getSkillID = stub
+isValidSlot = stub
+isSkillBanned = stub
+GetSkillOwningHero = stub
+banSkill = stub
+buildDraftString = stub
+addHeroDraft = stub
+getPlayerSlot = stub
+sendChatMessage = stub
+sendDireMessage = stub
+sendRadiantMessage = stub
+sendTeamMessage = stub
+alreadyHas = stub
+CheckBans = stub
+setupSlotType = stub
+setupSlotTypes = stub
+validateBuild = stub
+fixBuilds = stub
+postGamemodeSettings = stub
+getOptionsString = stub
+shuffle = stub
+optionToValue = stub
+valueToOption = stub
+finishVote = stub
+backdoorFix = stub
+upgradeTowers = stub
+botSkillsOnly = stub
+doLock = stub
+getRandomHeroName = stub
+getSpellIcon = stub
+loadSpecialGamemode = stub
+buildAllowedTabsString = stub
+fireLockChange = stub
+setTowerOwnership = stub
+addExtraTowers = stub
+applyTowerSkills = stub
+levelSpiritSkills = stub
+tranAbility = stub
+transHero = stub
+printOptionsToPlayer = stub
+registerConsoleCommands = stub
+registerServerCommands = stub
+registerHeroBanning = stub
+registerFancyConsoleCommands = stub
+handleFreeCourier = stub
+handleFreeScepter = stub
+handleHeroBuffing = stub
 
 --[[
     SETTINGS
@@ -148,6 +154,13 @@ local enableHeroBanning = false
 -- Custom Spell Power (Multiplies the power of things)
 local customSpellPower = 1
 local customItemPower = 1
+
+-- Buffing
+local buffHeroes = 0
+local buffTowers = 0
+local buffBuildings = 0
+local buffCreeps = 0
+local buffNeutralCreeps = 0
 
 -- Total number of skill slots to allow
 local maxSlots = 6
@@ -1720,6 +1733,13 @@ finishVote = function()
     customSpellPower = optionToValue(26, winners[26])
     customItemPower = optionToValue(27, winners[27])
 
+    -- Buffs
+    buffHeroes = optionToValue(32, winners[32])
+    buffTowers = optionToValue(33, winners[33])
+    buffBuildings = optionToValue(34, winners[34])
+    buffCreeps = optionToValue(35, winners[35])
+    buffNeutralCreeps = optionToValue(36, winners[36])
+
     -- Set options
     maxSlots = optionToValue(1, winners[1])
     maxSkills = optionToValue(2, winners[2])
@@ -1933,6 +1953,67 @@ botSkillsOnly = function(skillName)
 
     -- Not a valid skill
     return false
+end
+
+-- Gives a free courier
+local givenFreeCouriers = {}
+handleFreeCourier = function(hero)
+    -- Free courier option
+    if freeCourier ~= FREE_COURIER_NONE then
+        local team = hero:GetTeam()
+        if not givenFreeCouriers[team] then
+            givenFreeCouriers[team] = true
+
+            -- Give the item to the player
+            local item = CreateItem('item_courier', hero, hero)
+            if item then
+                hero:AddItem(item)
+
+                -- Make the player use the item
+                GameRules:GetGameModeEntity():SetThink(function()
+                    -- Ensure the unit is valid still
+                    if IsValidEntity(hero) then
+                        if IsValidEntity(item) then
+                            -- Grab playerID
+                            local playerID = hero:GetPlayerOwnerID()
+
+                            -- Use the item
+                            hero:CastAbilityImmediately(item, playerID)
+                        end
+                    end
+                end, 'freeCourier'..DoUniqueString('freeCourier'), 0.1, nil)
+            end
+
+            if freeCourier == FREE_COURIER_FLYING then
+                local flyingItem = CreateItem('item_flying_courier', hero, hero)
+                if flyingItem then
+                    hero:AddItem(flyingItem)
+                end
+            end
+        end
+    end
+end
+
+-- Gives a free scepter
+handleFreeScepter = function(unit)
+    -- Give free scepter
+    if freeScepter then
+        unit:AddNewModifier(unit, nil, 'modifier_item_ultimate_scepter', {
+            bonus_all_stats = 0,
+            bonus_health = 0,
+            bonus_mana = 0
+        })
+    end
+end
+
+-- Buffs a hero
+handleHeroBuffing = function(hero)
+    -- Hero buffing
+    if buffHeroes > 0 then
+        local healthItem = CreateItem("item_health_modifier", nil, nil)
+        healthItem:ApplyDataDrivenModifier(hero, hero, "modifier_health_mod_"..buffHeroes, {})
+        UTIL_RemoveImmediate(healthItem)
+    end
 end
 
 -- Called when LoD starts
@@ -2236,6 +2317,9 @@ function lod:OnThink()
         -- Fix tower skills
         setTowerOwnership()
 
+        -- Upgrade towers
+        upgradeTowers()
+
         -- Done with this thinker
         return
     end
@@ -2466,6 +2550,56 @@ setTowerOwnership = function()
     end
 end
 
+-- Upgrades towers
+upgradeTowers = function()
+    -- Should we buff towers?
+    if buffTowers > 1 then
+        local towers = Entities:FindAllByClassname('npc_dota_tower')
+        -- Loop over all ents
+        for k,tower in pairs(towers) do
+            tower:SetBaseDamageMax((tower:GetBaseDamageMax() * buffTowers))
+            tower:SetBaseDamageMin((tower:GetBaseDamageMin() * buffTowers))
+            tower:SetMaxHealth((tower:GetMaxHealth() * buffTowers))
+            tower:SetHealth((tower:GetHealth() * buffTowers))
+            tower:SetPhysicalArmorBaseValue((tower:GetPhysicalArmorBaseValue() * buffTowers))
+        end
+
+        local fountains = Entities:FindAllByClassname('ent_dota_fountain')
+        -- Loop over all ents
+        for k,fountain in pairs(fountains) do
+            fountain:SetBaseDamageMax((fountain:GetBaseDamageMax() * buffTowers))
+            fountain:SetBaseDamageMin((fountain:GetBaseDamageMin() * buffTowers))
+        end
+    end
+
+    -- Should we buff buildings?
+    if buffBuildings > 1 then
+        local buildings = Entities:FindAllByClassname('npc_dota_building')
+        -- Loop over all ents
+        for k,building in pairs(buildings) do
+            building:SetMaxHealth((building:GetMaxHealth() * buffBuildings))
+            building:SetHealth((building:GetHealth() * buffBuildings))
+            building:SetPhysicalArmorBaseValue((building:GetPhysicalArmorBaseValue() * buffBuildings))
+        end
+
+        local racks = Entities:FindAllByClassname('npc_dota_barracks')
+        -- Loop over all ents
+        for k,rack in pairs(racks) do
+            rack:SetMaxHealth((rack:GetMaxHealth() * buffBuildings))
+            rack:SetHealth((rack:GetHealth() * buffBuildings))
+            rack:SetPhysicalArmorBaseValue((rack:GetPhysicalArmorBaseValue() * buffBuildings))
+        end
+
+        local forts = Entities:FindAllByClassname('npc_dota_fort')
+        -- Loop over all ents
+        for k,fort in pairs(forts) do
+            fort:SetMaxHealth((fort:GetMaxHealth() * buffBuildings))
+            fort:SetHealth((fort:GetHealth() * buffBuildings))
+            fort:SetPhysicalArmorBaseValue((fort:GetPhysicalArmorBaseValue() * buffBuildings))
+        end
+    end
+end
+
 -- Adds extra towers
 addExtraTowers= function()
     -- Is there any work to do?
@@ -2589,6 +2723,9 @@ applyTowerSkills = function()
     -- Set the ownership
     setTowerOwnership()
 
+    -- Upgrade towers
+
+
     -- Log that this was successful
     print('Done allocating tower skills!')
 end
@@ -2600,62 +2737,27 @@ local givenBonuses = {}
 local doneBots = {}
 local resetGold = {}
 local spiritBears = {}
-local givenFreeCouriers = {}
 ListenToGameEvent('npc_spawned', function(keys)
     -- Grab the unit that spawned
     local spawnedUnit = EntIndexToHScript(keys.entindex)
 
     -- Make sure it is a hero
     if spawnedUnit:IsHero() then
-        -- Free courier option
-        if freeCourier ~= FREE_COURIER_NONE then
-            local team = spawnedUnit:GetTeam()
-            if not givenFreeCouriers[team] then
-                givenFreeCouriers[team] = true
-
-                -- Give the item to the player
-                local item = CreateItem('item_courier', spawnedUnit, spawnedUnit)
-                if item then
-                    spawnedUnit:AddItem(item)
-
-                    -- Make the player use the item
-                    GameRules:GetGameModeEntity():SetThink(function()
-                        -- Ensure the unit is valid still
-                        if IsValidEntity(spawnedUnit) then
-                            if IsValidEntity(item) then
-                                -- Grab playerID
-                                local playerID = spawnedUnit:GetPlayerOwnerID()
-
-                                -- Use the item
-                                spawnedUnit:CastAbilityImmediately(item, playerID)
-                            end
-                        end
-                    end, 'freeCourier'..DoUniqueString('freeCourier'), 0.1, nil)
-                end
-
-                if freeCourier == FREE_COURIER_FLYING then
-                    local flyingItem = CreateItem('item_flying_courier', spawnedUnit, spawnedUnit)
-                    if flyingItem then
-                        spawnedUnit:AddItem(flyingItem)
-                    end
-                end
-            end
-        end
-
         -- Grab their playerID
         local playerID = spawnedUnit:GetPlayerID()
+
+        -- Handle hero buffing
+        handleHeroBuffing(spawnedUnit)
 
         -- Don't touch this hero more than once :O
         if handled[spawnedUnit] then return end
         handled[spawnedUnit] = true
 
-        if freeScepter then
-            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter', {
-                bonus_all_stats = 0,
-                bonus_health = 0,
-                bonus_mana = 0
-            })
-        end
+        -- Handle the free courier stuff
+        handleFreeCourier(spawnedUnit)
+
+        -- Handle free scepter stuff
+        handleFreeScepter(spawnedUnit)
 
         -- Fix gold bug
         if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
@@ -2831,6 +2933,30 @@ ListenToGameEvent('npc_spawned', function(keys)
                 end
             end
         end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
+    end
+
+    -- Creep buffing
+    local unitName = spawnedUnit:GetUnitName()
+    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'roshan') then
+        if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+            -- Neutral Creep
+            if buffNeutralCreeps > 1 then
+                spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffNeutralCreeps)
+                spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffNeutralCreeps)
+                spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth() * buffNeutralCreeps)
+                spawnedUnit:SetHealth(spawnedUnit:GetHealth() * buffNeutralCreeps)
+                spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() * buffNeutralCreeps)
+            end
+        else
+            -- Lane Creep
+            if buffCreeps > 1 then
+                spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffCreeps)
+                spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffCreeps)
+                spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth() * buffCreeps)
+                spawnedUnit:SetHealth(spawnedUnit:GetHealth() * buffCreeps)
+                spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() * buffCreeps)
+            end
+        end
     end
 end, nil)
 

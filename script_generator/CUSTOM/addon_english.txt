@@ -114,6 +114,9 @@
 		"desBuffCreeps"						"Buff Creeps"
 		"hintBuffCreeps"					"Adds a buff which works best with the selected multiplier."
 
+		"desBuffNeutralCreeps"				"Buff Neutral Creeps"
+		"hintBuffNeutralCreeps"				"Adds a buff which works best with the selected multiplier."
+
 		"noBuff"							"No Buff"
 		"buff5x"							"5x Buff"
 		"buff10x"							"10x Buff"
