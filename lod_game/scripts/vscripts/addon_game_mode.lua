@@ -2937,7 +2937,7 @@ ListenToGameEvent('npc_spawned', function(keys)
 
     -- Creep buffing
     local unitName = spawnedUnit:GetUnitName()
-    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'roshan') then
+    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'roshan') or string.find(unitName, 'siege') then
         if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
             -- Neutral Creep
             if buffNeutralCreeps > 1 then
