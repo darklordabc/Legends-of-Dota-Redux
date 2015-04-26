@@ -122,6 +122,9 @@
 		"buff10x"							"10x Buff"
 		"buff20x"							"20x Buff"
 
+		"desNoFountainCamping"				"Prevent Fountain Camping"
+		"hintNoFountainCamping"				"Adds fury swipes, truestrike and psi blades to the fountain."
+
 		"allowItemActiveOnly"				"Active Effects Only"
 		"allowItemAll"						"All Items"
 

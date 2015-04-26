@@ -67,6 +67,37 @@
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "50"
                 }
             }
+
+            "modifier_other_health_mod_5"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"    "-80"
+                }
+            }
+            "modifier_other_health_mod_10"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"    "-90"
+                }
+            }
+            "modifier_other_health_mod_20"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"    "-95"
+                }
+            }
         }
     }
 }

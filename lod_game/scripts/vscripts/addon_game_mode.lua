@@ -126,6 +126,7 @@ registerFancyConsoleCommands = stub
 handleFreeCourier = stub
 handleFreeScepter = stub
 handleHeroBuffing = stub
+getHealthBuffer = stub
 
 --[[
     SETTINGS
@@ -253,6 +254,9 @@ local freeCourier = FREE_COURIER_FLYING
 
 -- Number of towers in the middle of a lane
 local middleTowers = 1
+
+-- Should we prevent fountain camping?
+local preventFountainCamping = false
 
 --[[
     GAMEMODE STUFF
@@ -1789,6 +1793,9 @@ finishVote = function()
     -- Number of towers in each lane
     middleTowers = optionToValue(29, winners[29])
 
+    -- Prevent fountain camping?
+    preventFountainCamping = optionToValue(37, winners[37]) == 1
+
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
     allowedTabs.neutral = optionToValue(12, winners[12]) == 1
@@ -2010,10 +2017,19 @@ end
 handleHeroBuffing = function(hero)
     -- Hero buffing
     if buffHeroes > 0 then
-        local healthItem = CreateItem("item_health_modifier", nil, nil)
+        local healthItem = getHealthBuffer()
         healthItem:ApplyDataDrivenModifier(hero, hero, "modifier_health_mod_"..buffHeroes, {})
-        UTIL_RemoveImmediate(healthItem)
     end
+end
+
+-- Gets the health buffing item
+local healthBuffer
+getHealthBuffer = function()
+    if not IsValidEntity(healthBuffer) then
+        healthBuffer = CreateItem("item_health_modifier", nil, nil)
+    end
+
+    return healthBuffer
 end
 
 -- Called when LoD starts
@@ -2317,9 +2333,6 @@ function lod:OnThink()
         -- Fix tower skills
         setTowerOwnership()
 
-        -- Upgrade towers
-        upgradeTowers()
-
         -- Done with this thinker
         return
     end
@@ -2488,6 +2501,9 @@ function lod:OnThink()
         -- Apply the tower skills
         applyTowerSkills()
 
+        -- Upgrade towers
+        upgradeTowers()
+
         -- Warn the players again
         if maxSlots > 6 then
             sendChatMessage(-1, '#lod_slotWarning')
@@ -2552,23 +2568,24 @@ end
 
 -- Upgrades towers
 upgradeTowers = function()
+    -- Grab the health buffer
+    local buffer = getHealthBuffer()
+
     -- Should we buff towers?
     if buffTowers > 1 then
         local towers = Entities:FindAllByClassname('npc_dota_tower')
         -- Loop over all ents
         for k,tower in pairs(towers) do
-            tower:SetBaseDamageMax((tower:GetBaseDamageMax() * buffTowers))
-            tower:SetBaseDamageMin((tower:GetBaseDamageMin() * buffTowers))
-            tower:SetMaxHealth((tower:GetMaxHealth() * buffTowers))
-            tower:SetHealth((tower:GetHealth() * buffTowers))
-            tower:SetPhysicalArmorBaseValue((tower:GetPhysicalArmorBaseValue() * buffTowers))
+            tower:SetBaseDamageMax(tower:GetBaseDamageMax() * buffTowers)
+            tower:SetBaseDamageMin(tower:GetBaseDamageMin() * buffTowers)
+            buffer:ApplyDataDrivenModifier(tower, tower, "modifier_other_health_mod_"..buffTowers, {})
         end
 
         local fountains = Entities:FindAllByClassname('ent_dota_fountain')
         -- Loop over all ents
         for k,fountain in pairs(fountains) do
-            fountain:SetBaseDamageMax((fountain:GetBaseDamageMax() * buffTowers))
-            fountain:SetBaseDamageMin((fountain:GetBaseDamageMin() * buffTowers))
+            fountain:SetBaseDamageMax(fountain:GetBaseDamageMax() * buffTowers)
+            fountain:SetBaseDamageMin(fountain:GetBaseDamageMin() * buffTowers)
         end
     end
 
@@ -2577,25 +2594,44 @@ upgradeTowers = function()
         local buildings = Entities:FindAllByClassname('npc_dota_building')
         -- Loop over all ents
         for k,building in pairs(buildings) do
-            building:SetMaxHealth((building:GetMaxHealth() * buffBuildings))
-            building:SetHealth((building:GetHealth() * buffBuildings))
-            building:SetPhysicalArmorBaseValue((building:GetPhysicalArmorBaseValue() * buffBuildings))
+            buffer:ApplyDataDrivenModifier(building, building, "modifier_other_health_mod_"..buffBuildings, {})
         end
 
         local racks = Entities:FindAllByClassname('npc_dota_barracks')
         -- Loop over all ents
         for k,rack in pairs(racks) do
-            rack:SetMaxHealth((rack:GetMaxHealth() * buffBuildings))
-            rack:SetHealth((rack:GetHealth() * buffBuildings))
-            rack:SetPhysicalArmorBaseValue((rack:GetPhysicalArmorBaseValue() * buffBuildings))
+            buffer:ApplyDataDrivenModifier(rack, rack, "modifier_other_health_mod_"..buffBuildings, {})
         end
 
         local forts = Entities:FindAllByClassname('npc_dota_fort')
         -- Loop over all ents
         for k,fort in pairs(forts) do
-            fort:SetMaxHealth((fort:GetMaxHealth() * buffBuildings))
-            fort:SetHealth((fort:GetHealth() * buffBuildings))
-            fort:SetPhysicalArmorBaseValue((fort:GetPhysicalArmorBaseValue() * buffBuildings))
+            buffer:ApplyDataDrivenModifier(fort, fort, "modifier_other_health_mod_"..buffBuildings, {})
+        end
+    end
+
+    -- Should we prevent fountain camping?
+    if preventFountainCamping then
+        local toAdd = {
+            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes', customSpellPower)] = 4,
+            templar_assassin_psi_blades = 1
+        }
+
+        local fountains = Entities:FindAllByClassname('ent_dota_fountain')
+        -- Loop over all ents
+        for k,fountain in pairs(fountains) do
+            for skillName,skillLevel in pairs(toAdd) do
+                fountain:AddAbility(skillName)
+                local ab = fountain:FindAbilityByName(skillName)
+                if ab then
+                    ab:SetLevel(skillLevel)
+                end
+            end
+
+            local item = CreateItem('item_monkey_king_bar', fountain, fountain)
+            if item then
+                fountain:AddItem(item)
+            end
         end
     end
 end
@@ -2937,24 +2973,22 @@ ListenToGameEvent('npc_spawned', function(keys)
 
     -- Creep buffing
     local unitName = spawnedUnit:GetUnitName()
-    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'roshan') or string.find(unitName, 'siege') then
+    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'siege') or string.find(unitName, 'roshan') then
         if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
             -- Neutral Creep
             if buffNeutralCreeps > 1 then
+                local buffer = getHealthBuffer()
                 spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffNeutralCreeps)
                 spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffNeutralCreeps)
-                spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth() * buffNeutralCreeps)
-                spawnedUnit:SetHealth(spawnedUnit:GetHealth() * buffNeutralCreeps)
-                spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() * buffNeutralCreeps)
+                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
             end
         else
             -- Lane Creep
             if buffCreeps > 1 then
+                local buffer = getHealthBuffer()
                 spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffCreeps)
                 spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffCreeps)
-                spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth() * buffCreeps)
-                spawnedUnit:SetHealth(spawnedUnit:GetHealth() * buffCreeps)
-                spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() * buffCreeps)
+                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
             end
         end
     end
