@@ -1667,6 +1667,7 @@
    },
    "dont_parse":{
       "Version":true,
+      "BaseClass":true,
       "ability_base":true,
       "default_attack":true,
       "invoker_invoke":true,

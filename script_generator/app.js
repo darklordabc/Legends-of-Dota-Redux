@@ -395,6 +395,59 @@ var permutations = {
                 }
             }
 
+            for(var key in newAb) {
+                (function(key) {
+                    if(newAb[key] != null && !spellMult.ignore_all_normal[key] && !isNaN(parseInt(newAb[key][0]))) {
+                        function divide2(vals, parseFunction) {
+                            for(var i=0; i<vals.length; ++i) {
+                                vals[i] = parseFunction(vals[i] / mult);
+                            }
+
+                            return vals.join(' ');
+                        }
+
+                        function multiply2(vals, parseFunction) {
+                            // Do the mult
+                            for(var i=0; i<vals.length; ++i) {
+                                vals[i] = parseFunction(vals[i] * mult);
+                            }
+
+                            return vals.join(' ');
+                        }
+
+                        function divide_or_multiply2(valString, parseFunction) {
+                            var vals = valString.split(' ');
+
+                            // Convert all to floats
+                            for(var i=0; i<vals.length; ++i) {
+                                vals[i] = parseFunction(vals[i]);
+                            }
+
+                            // Check if we need to multiply or divide
+                            if(vals.length > 1) {
+                                // Check if we are increasing, or decreasing
+                                if(vals[0] > vals[1]) {
+                                    // Decreasing, divide
+                                    return divide2(vals, parseFunction);
+                                } else {
+                                    // Increasing, multiply
+                                    return multiply2(vals, parseFunction);
+                                }
+                            } else {
+                                // Only one value, assume multiply
+                                return multiply2(vals, parseFunction);
+                            }
+                        }
+
+                        // Do it
+                        newAb[key] = [divide_or_multiply2(newAb[key][0], function(str) {
+                            // Decide if it's a float or int
+                            return parseInt(str);
+                        })];
+                    }
+                })(key);
+            }
+
             if(ability.AbilitySpecial) {
                 for(var slotNum in ability.AbilitySpecial) {
                     var slot = ability.AbilitySpecial[slotNum];
