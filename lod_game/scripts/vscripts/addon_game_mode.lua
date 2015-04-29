@@ -3003,19 +3003,6 @@ ListenToGameEvent('entity_killed', function(keys)
 
     -- Ensure it is a hero
     if IsValidEntity(hero) then
-        -- Check for tower connections
-        if towerConnectors[hero] then
-            print('Found tower connection!')
-
-            -- Try to grab the tower
-            local tower = towerConnectors[hero]
-            if IsValidEntity(tower) then
-                print('Clipping it!')
-                -- Make it killable!
-                tower:RemoveModifierByName('modifier_invulnerable')
-            end
-        end
-
         if hero:IsHero() then
             if hero:WillReincarnate() then return end
             if hero:IsReincarnating() then return end
@@ -3572,6 +3559,17 @@ end, nil)
 ListenToGameEvent('entity_hurt', function(keys)
     -- Grab the entity that was hurt
     local ent = EntIndexToHScript(keys.entindex_killed)
+
+    -- Check for tower connections
+    if ent:GetHealth() <= 0 and towerConnectors[ent] then
+        local tower = towerConnectors[ent]
+        towerConnectors[ent] = nil
+
+        if IsValidEntity(tower) then
+            -- Make it killable!
+            tower:RemoveModifierByName('modifier_invulnerable')
+        end
+    end
 
     -- Ensure it is a valid hero
     if ent and ent:IsRealHero() then

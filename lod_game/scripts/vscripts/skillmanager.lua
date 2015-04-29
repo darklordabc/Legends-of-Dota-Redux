@@ -614,8 +614,8 @@ function skillManager:ApplyBuild(hero, build, mult)
             -- Precache
             precacheSkill(k)
 
-            -- Grab the real name
-            local realAbility = self:GetMultiplierSkillName(k, mult)
+            -- Grab the real name (this was different for mult, disabled for now)
+            local realAbility = k
 
             -- Add the ability
             hero:AddAbility(realAbility)
