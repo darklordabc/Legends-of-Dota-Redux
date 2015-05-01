@@ -168,6 +168,13 @@ Legends of Dota
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
  - You may be interested in [Legends of Dota Watch Dog](https://github.com/ash47/LoDWatchDog) -- This is a lightweight app that restarts SRCDS each time it crashes
 
+###Updating your source1 server###
+ - When dota 2 receives an update, think twice about updating your server
+ - Please verify that d2fixups and metamod actually work with the new version of dota 2, this could take upto several weeks, as they are built on a volunteer basis!
+ - Either use steamCMD to update your files, or just reinstall from scratch, chances are you will need a new metamod, sourcemod and d2fixups version
+ - It is recommended you keep a copy of your old server until you verify the new server is 100% working
+ - It is also recommended you don't update your server unless something drastically new has been added, as there is a good chance things will break
+
 ###More SRCDS Setup Help###
  - To debug, try adding **-condebug** to the SRCDS launch parameters, this will log all the server output to server/dota/console.log, you can check for errors in there
  - Verify you have installed metamod and d2fixups correctly, you can do this by adding **+meta list** to your launch parameters, starting the server, then checking your dota/console.log. You should see these two lines:
