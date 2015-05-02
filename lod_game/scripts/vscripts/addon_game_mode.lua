@@ -2665,16 +2665,42 @@ addExtraTowers= function()
             bad = DOTA_TEAM_BADGUYS
         }
 
+        local patchMap = {
+            dota_goodguys_tower3_top = '1021_tower_radiant',
+            dota_goodguys_tower3_mid = '1020_tower_radiant',
+            dota_goodguys_tower3_bot = '1019_tower_radiant',
+
+            dota_goodguys_tower2_top = '1026_tower_radiant',
+            dota_goodguys_tower2_mid = '1024_tower_radiant',
+            dota_goodguys_tower2_bot = '1022_tower_radiant',
+
+            dota_goodguys_tower1_top = '1027_tower_radiant',
+            dota_goodguys_tower1_mid = '1025_tower_radiant',
+            dota_goodguys_tower1_bot = '1023_tower_radiant',
+
+            dota_badguys_tower3_top = '1036_tower_dire',
+            dota_badguys_tower3_mid = '1031_tower_dire',
+            dota_badguys_tower3_bot = '1030_tower_dire',
+
+            dota_badguys_tower2_top = '1035_tower_dire',
+            dota_badguys_tower2_mid = '1032_tower_dire',
+            dota_badguys_tower2_bot = '1029_tower_dire',
+
+            dota_badguys_tower1_top = '1034_tower_dire',
+            dota_badguys_tower1_mid = '1033_tower_dire',
+            dota_badguys_tower1_bot = '1028_tower_dire',
+        }
+
         for team,teamNumber in pairs(teams) do
             for lane,__ in pairs(lanes) do
                 local threeRaw = 'dota_'..team..'guys_tower3_'..lane
-                local three = Entities:FindByName(nil, threeRaw)
+                local three = Entities:FindByName(nil, threeRaw) or Entities:FindByName(nil, patchMap[threeRaw] or '_unknown_')
 
                 local twoRaw = 'dota_'..team..'guys_tower2_'..lane
-                local two = Entities:FindByName(nil, twoRaw)
+                local two = Entities:FindByName(nil, twoRaw) or Entities:FindByName(nil, patchMap[twoRaw] or '_unknown_')
 
                 local oneRaw = 'dota_'..team..'guys_tower1_'..lane
-                local one = Entities:FindByName(nil, oneRaw)
+                local one = Entities:FindByName(nil, oneRaw) or Entities:FindByName(nil, patchMap[oneRaw] or '_unknown_')
 
                 -- Unit name
                 local unitName = 'npc_dota_'..team..'guys_tower_lod_'..lane

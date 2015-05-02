@@ -47,6 +47,6 @@ mklink /H "lod_s2_bin\scripts\npc\npc_heroes_custom.txt" "script_generator\BIN\s
 mklink /D /J "lod_s2_bin\materials" "lod_game\materials"
 
 :: Hard link maps
-mklink /H "lod_s2_bin\maps\dota_pvp.vpk" "maps\dota_pvp.vpk"
+::mklink /H "lod_s2_bin\maps\dota_pvp.vpk" "maps\dota_pvp.vpk"
 mklink /H "lod_s2_bin\maps\dota_pvp_tiled.vpk" "maps\dota_pvp_tiled.vpk"
 
