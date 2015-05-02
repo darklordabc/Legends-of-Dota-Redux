@@ -3008,6 +3008,19 @@ ListenToGameEvent('npc_spawned', function(keys)
     end
 end, nil)
 
+ListenToGameEvent('modifier_event', function(keys)
+    for k,v in pairs(keys) do
+        print(k)
+        print(v)
+    end
+end, nil)
+ListenToGameEvent('dota_ability_changed', function(keys)
+    print('hmmm')
+end, nil)
+ListenToGameEvent('dota_non_player_used_ability', function(keys)
+    print('hmmm 2')
+end, nil)
+
 ListenToGameEvent('entity_killed', function(keys)
     -- Ensure our respawn modifier is in effect
     if respawnModifier == 0 then return end
