@@ -1,11 +1,14 @@
 var fs = require('fs')
 
+// Read in which version we are compiling
+var compileVersion = process.argv[2] || 's1';
+
 // Script directories
-var settings = require('./settings.json');                  // The settings file
-var scriptDir = settings.scriptDir;                         // The directory where dota scripts are placed
-var scriptDirOut = settings.scriptDirOut                    // The directory where our files are outputted
-var resourcePath = settings.dotaDir + 'dota/resource/';     // The directory to read resource files from
-var customDir = settings.customDir;                         // The directory where our mods are read from, to be merged in
+var settings = require('./settings.json');                          // The settings file
+var scriptDir = settings.scriptDir + '/' + compileVersion + '/';    // The directory where dota scripts are placed
+var scriptDirOut = settings.scriptDirOut;                           // The directory where our files are outputted
+var resourcePath = settings.dotaDir + 'dota/resource/';             // The directory to read resource files from
+var customDir = settings.customDir;                                 // The directory where our mods are read from, to be merged in
 
 // Code needed to do multipliers
 var spellMult = require('./spellMult.json');
@@ -13,162 +16,117 @@ var spellMult = require('./spellMult.json');
 // Create the output folder
 if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
-// Precache generator
-fs.readFile(scriptDir+'npc_heroes_source1.txt', function(err, source1) {
-    fs.readFile(scriptDir+'npc_heroes_source2.txt', function(err, source2) {
-        console.log('Loading source1 heroes...');
-        var rootHeroes1 = parseKV(''+source1);
-        console.log('Loading source2 heroes...');
-        var rootHeroes2 = parseKV(''+source2);
+// Correct the output directory
+scriptDirOut +=  '/' + compileVersion + '/';
 
-        var precacher = {};
+// Create the output folder
+if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
-        var newKV = {};
+// Store for our custom stuff
+var customAbilities = {};
+var customUnits = {};
+var customItems = {};
+var items = {};
 
-        var ignoreHeroes = {    // These are heroes bots can play as, can't edit those, DOH!
-            npc_dota_hero_alchemist: true,
-            npc_dota_hero_axe: true,
-            npc_dota_hero_antimage: true,
-            npc_dota_hero_bane: true,
-            npc_dota_hero_batrider: true,
-            npc_dota_hero_beastmaster: true,
-            npc_dota_hero_bounty_hunter: true,
-            npc_dota_hero_bloodseeker: true,
-            npc_dota_hero_bristleback: true,
-            npc_dota_hero_chaos_knight: true,
-            npc_dota_hero_clinkz: true,
-            npc_dota_hero_crystal_maiden: true,
-            npc_dota_hero_dazzle: true,
-            npc_dota_hero_death_prophet: true,
-            npc_dota_hero_dragon_knight: true,
-            npc_dota_hero_drow_ranger: true,
-            npc_dota_hero_earthshaker: true,
-            npc_dota_hero_jakiro: true,
-            npc_dota_hero_juggernaut: true,
-            npc_dota_hero_kunkka: true,
-            npc_dota_hero_lich: true,
-            npc_dota_hero_lina: true,
-            npc_dota_hero_lion: true,
-            npc_dota_hero_luna: true,
-            npc_dota_hero_necrolyte: true,
-            npc_dota_hero_omniknight: true,
-            npc_dota_hero_oracle: true,
-            npc_dota_hero_phantom_assassin: true,
-            npc_dota_hero_pudge: true,
-            npc_dota_hero_razor: true,
-            npc_dota_hero_riki: true,
-            npc_dota_hero_sand_king: true,
-            npc_dota_hero_nevermore: true,
-            npc_dota_hero_skywrath_mage: true,
-            npc_dota_hero_sniper: true,
-            npc_dota_hero_sven: true,
-            npc_dota_hero_techies: true,
-            npc_dota_hero_tidehunter: true,
-            npc_dota_hero_tiny: true,
-            npc_dota_hero_vengefulspirit: true,
-            npc_dota_hero_viper: true,
-            npc_dota_hero_warlock: true,
-            npc_dota_hero_windrunner: true,
-            npc_dota_hero_witch_doctor: true,
-            npc_dota_hero_skeleton_king: true,
-            npc_dota_hero_zuus: true
+/*
+    Prepare language files
+*/
+
+var langs = ['english', 'russian'];
+var langIn = {};
+var langOut = {};
+var specialChar;    // Special character needed for doto encoding
+
+// theString is the string we search for and use as a key to store in
+// if theString can't be find, search using altString
+// search in actual language, if that fails, search in english, if that fails, commit suicide
+function generateLanguage(theString, altString, appendOnEnd) {
+    // Grab a reference to english
+    var english = langIn.english;
+
+    if(appendOnEnd == null) appendOnEnd = '';
+
+    if(altString == 'lod_item_quelling_blade') {
+        console.log(theString);
+    }
+
+    for(var i=0; i<langs.length; ++i) {
+        // Grab a language
+        var lang = langs[i];
+        var langFile = langIn[lang];
+        var storeTo = langOut[lang];
+
+        if(langFile[theString]) {
+            storeTo[theString] = langFile[theString] + appendOnEnd;
+        } else if(langFile[altString]) {
+            storeTo[theString] = langFile[altString] + appendOnEnd;
+        } else if(english[theString]) {
+            storeTo[theString] = english[theString] + appendOnEnd;
+        } else if(english[altString]) {
+            storeTo[theString] = english[altString] + appendOnEnd;
+        } else if(storeTo[altString]) {
+            storeTo[theString] = storeTo[altString] + appendOnEnd;
+        } else {
+            console.log('Failed to find ' + theString);
+        }
+    }
+}
+
+// Read in our language files
+function prepareLanguageFiles(next) {
+    var ourData = ''+fs.readFileSync(customDir + 'addon_english.txt');
+    var english = parseKV(ourData).lang.Tokens;
+
+    specialChar = fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
+
+    for(var i=0; i<langs.length; ++i) {
+        // Grab a language
+        var lang = langs[i];
+
+        var data = fs.readFileSync(resourcePath + 'dota_' + lang + '.txt', 'utf16le').substring(1);
+
+        // Load her up
+        langIn[lang] = parseKV(data).lang.Tokens;
+        langOut[lang] = {};
+
+        var toUse;
+        if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
+            var ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            toUse = parseKV(ourData).lang.Tokens;
+        } else {
+            toUse = english;
         }
 
-        var heroes1 = rootHeroes1.DOTAHeroes;
-        var heroes2 = rootHeroes2.DOTAHeroes;
-        for(var name in heroes1) {
-            if(name == 'Version') continue;
-            if(name == 'npc_dota_hero_base') continue;
-
-            var data1 = heroes1[name];
-            var data2 = heroes2[name];
-
-            if(!ignoreHeroes[name]) {
-                newKV[name+'_lod'] = {
-                    override_hero: name,
-                    Ability1: 'attribute_bonus'
-                }
-
-                for(var i=2;i<=16;++i) {
-                    if(heroes1[name]['Ability' + i]) {
-                        newKV[name+'_lod']['Ability' + i] = '';
-                    }
-                }
+        for(var key in english) {
+            if(toUse[key]) {
+                langOut[lang][key] = toUse[key];
+            } else {
+                langOut[lang][key] = english[key];
             }
-
-            // Check if they are melee
-            if(data1.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
-                if(!newKV[name+'_lod']) {
-                    newKV[name+'_lod'] = {
-                        override_hero: name
-                    }
-                }
-
-                // Give them projectile speed + model
-                newKV[name+'_lod'].ProjectileSpeed = 1000
-                newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
-            }
-
-            // Store precacher data
-            precacher['npc_precache_'+name+'_s1'] = {
-                BaseClass: 'npc_dota_creep',
-                precache: {
-                    particlefile: data1.ParticleFile,
-                    soundfile: data1.GameSoundsFile
-                }
-            }
-
-            if(data2) {
-                precacher['npc_precache_'+name+'_s2'] = {
-                    BaseClass: 'npc_dota_creep',
-                    precache: {
-                        particle_folder: data2.particle_folder,
-                        soundfile: data2.GameSoundsFile
-                    }
-                }
-            }
-
-            // Extra precache stuff
-            if(data1.precache) {
-                for(var key in data1.precache) {
-                    precacher['npc_precache_'+name+'_s1'].precache[key] = data1.precache[key];
-                }
-            }
-
-            if(data2 && data2.precache) {
-                for(var key in data2.precache) {
-                    precacher['npc_precache_'+name+'_s2'].precache[key] = data2.precache[key];
-                }
-            }
-
-            //precacher.precache = precacher.precache+'"soundfile" "'+data.GameSoundsFile+'"\n'
         }
 
-        // Techies override prcaching
-        precacher.npc_precache_npc_dota_hero_techies_s2.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
+        for(var key in toUse) {
+            if(!langIn[lang][key]) {
+                langIn[lang][key] = toUse[key];
+            }
+        }
+    }
 
-        fs.writeFile(scriptDirOut+'precache_data.txt', toKV(precacher), function(err) {
-            if (err) throw err;
+    console.log('Done loading languages!');
 
-            console.log('Done saving precacher file!');
-        });
+    // Run the next step if there is one
+    if(next) next();
+}
 
-        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV(newKV, 'DOTAHeroes'), function(err) {
-            if (err) throw err;
+/*
+    Generate our custom items
+*/
 
-            console.log('Done saving file!');
-        });
-    });
-});
-
-fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
-    // Convert into something useable
-    var items = parseKV(''+itemsRaw).DOTAAbilities;
-
+function generateAbilityItems(next) {
     var currentID = 2000;
     var currentIDPassive = 3000;
-    var newKV = {};
-    var newKVPassive = {};
+    //var newKV = {};
+    //var newKVPassive = {};
     var outputSkillIDs = '';
     var outputSkillIDsPassive = '';
 
@@ -182,6 +140,7 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
         if(itemName.indexOf('mystery') != -1) continue;
         if(itemName.indexOf('courier') != -1) continue;
         if(itemName.indexOf('tango') != -1) continue;
+        if(itemName.indexOf('mango') != -1) continue;
         if(itemName.indexOf('tpscroll') != -1) continue;
         if(itemName.indexOf('ward') != -1) continue;
         if(itemName.indexOf('clarity') != -1) continue;
@@ -285,45 +244,226 @@ fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
 
         if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_PASSIVE') != -1) {
             // Passive Item
-            newKVPassive['lod_' + itemName] = store;
+            customAbilities['lod_' + itemName] = store;
             delete store.OnSpellStart;
 
             // Store number
             outputSkillIDsPassive += '"lod_' + itemName+'"    "' + (currentIDPassive++) + '"\n';
         } else {
             // Active item
-            newKV['lod_' + itemName] = store;
+            customAbilities['lod_' + itemName] = store;
 
             // Store number
             outputSkillIDs += '"lod_' + itemName+'"    "' + (currentID++) + '"\n';
         }
     }
 
-    fs.writeFile(scriptDirOut+'ability_items.txt', toKV(newKV), function(err) {
-        if (err) throw err;
-
-        console.log('Done saving file!');
-    });
-
-    fs.writeFile(scriptDirOut+'ability_items_passive.txt', toKV(newKVPassive), function(err) {
-        if (err) throw err;
-
-        console.log('Done saving file!');
-    });
-
     fs.writeFile(scriptDirOut+'outputSkillIDs.txt', outputSkillIDs+'\n\n'+outputSkillIDsPassive, function(err) {
         if (err) throw err;
 
-        console.log('Done saving file!');
+        console.log('Done skill IDs');
+
+        // Check if there is another function to run
+        if(next) next();
     });
-});
+}
 
-// CSP Generator
+/*
+    Precache generator
+*/
 
-var langs = ['english', 'russian'];
-var langIn = {};
-var langOut = {};
-var specialChar;    // Special character needed for doto encoding
+function generatePrecacheData(next) {
+    // Precache generator
+    fs.readFile(scriptDir+'npc_heroes.txt', function(err, rawHeroes) {
+        console.log('Loading heroes...');
+        var rootHeroes = parseKV(''+rawHeroes);
+
+        var newKV = {};
+
+        // List of heroes to ignore differs based on s1 and s2
+        // In s2, no bots are supported, so we can just strip every hero
+        var ignoreHeroes = {};
+        if(compileVersion == 's1') {
+            ignoreHeroes = {    // These are heroes bots can play as, can't edit those, DOH!
+                npc_dota_hero_alchemist: true,
+                npc_dota_hero_axe: true,
+                npc_dota_hero_antimage: true,
+                npc_dota_hero_bane: true,
+                npc_dota_hero_batrider: true,
+                npc_dota_hero_beastmaster: true,
+                npc_dota_hero_bounty_hunter: true,
+                npc_dota_hero_bloodseeker: true,
+                npc_dota_hero_bristleback: true,
+                npc_dota_hero_chaos_knight: true,
+                npc_dota_hero_clinkz: true,
+                npc_dota_hero_crystal_maiden: true,
+                npc_dota_hero_dazzle: true,
+                npc_dota_hero_death_prophet: true,
+                npc_dota_hero_dragon_knight: true,
+                npc_dota_hero_drow_ranger: true,
+                npc_dota_hero_earthshaker: true,
+                npc_dota_hero_jakiro: true,
+                npc_dota_hero_juggernaut: true,
+                npc_dota_hero_kunkka: true,
+                npc_dota_hero_lich: true,
+                npc_dota_hero_lina: true,
+                npc_dota_hero_lion: true,
+                npc_dota_hero_luna: true,
+                npc_dota_hero_necrolyte: true,
+                npc_dota_hero_omniknight: true,
+                npc_dota_hero_oracle: true,
+                npc_dota_hero_phantom_assassin: true,
+                npc_dota_hero_pudge: true,
+                npc_dota_hero_razor: true,
+                npc_dota_hero_riki: true,
+                npc_dota_hero_sand_king: true,
+                npc_dota_hero_nevermore: true,
+                npc_dota_hero_skywrath_mage: true,
+                npc_dota_hero_sniper: true,
+                npc_dota_hero_sven: true,
+                npc_dota_hero_techies: true,
+                npc_dota_hero_tidehunter: true,
+                npc_dota_hero_tiny: true,
+                npc_dota_hero_vengefulspirit: true,
+                npc_dota_hero_viper: true,
+                npc_dota_hero_warlock: true,
+                npc_dota_hero_windrunner: true,
+                npc_dota_hero_witch_doctor: true,
+                npc_dota_hero_skeleton_king: true,
+                npc_dota_hero_zuus: true
+            }
+        }
+
+        var heroes = rootHeroes.DOTAHeroes;
+        for(var name in heroes) {
+            if(name == 'Version') continue;
+            if(name == 'npc_dota_hero_base') continue;
+
+            var data = heroes[name];
+
+            if(!ignoreHeroes[name]) {
+                newKV[name+'_lod'] = {
+                    override_hero: name,
+                    Ability1: 'attribute_bonus'
+                }
+
+                for(var i=2;i<=16;++i) {
+                    if(heroes[name]['Ability' + i]) {
+                        newKV[name+'_lod']['Ability' + i] = '';
+                    }
+                }
+            }
+
+            // Check if they are melee
+            if(data.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK') {
+                if(!newKV[name+'_lod']) {
+                    newKV[name+'_lod'] = {
+                        override_hero: name
+                    }
+                }
+
+                // Give them projectile speed + model
+                newKV[name+'_lod'].ProjectileSpeed = 1000
+                newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
+            }
+
+            // Store precacher data
+            if(compileVersion == 's1') {
+                // Old source1 stuff
+                customUnits['npc_precache_'+name] = {
+                    BaseClass: 'npc_dota_creep',
+                    precache: {
+                        particlefile: data.ParticleFile,
+                        soundfile: data.GameSoundsFile
+                    }
+                }
+            } else {
+                // Source2 precache
+                customUnits['npc_precache_'+name] = {
+                    BaseClass: 'npc_dota_creep',
+                    precache: {
+                        particle_folder: data.particle_folder,
+                        soundfile: data.GameSoundsFile
+                    }
+                }
+            }
+
+            // Extra precache stuff
+            if(data.precache) {
+                for(var key in data.precache) {
+                    customUnits['npc_precache_'+name].precache[key] = data.precache[key];
+                }
+            }
+        }
+
+        if(compileVersion == 's2') {
+            // Techies override prcaching
+            customUnits.npc_precache_npc_dota_hero_techies.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
+        }
+
+        // Store the hero data
+        fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV(newKV, 'DOTAHeroes'), function(err) {
+            if (err) throw err;
+
+            console.log('Done saving custom heroes!');
+
+            // Continue, if there is something else to run
+            if(next) next();
+        });
+    });
+}
+
+/*
+    Custom file mergers
+*/
+
+function loadItems(next) {
+    // Simply read in the file, and store into our varible
+    fs.readFile(scriptDir+'items.txt', function(err, rawItems) {
+        console.log('Loading items...');
+        items = parseKV(''+rawItems).DOTAAbilities;
+
+        // Continue, if there is something else to run
+        if(next) next();
+    });
+}
+
+function loadCustomUnits(next) {
+    // Simply read in the file, and store into our varible
+    fs.readFile(customDir+'npc_units_custom_' + compileVersion + '.txt', function(err, rawCustomUnits) {
+        console.log('Loading custom units...');
+        customUnits = parseKV(''+rawCustomUnits);
+
+        // Continue, if there is something else to run
+        if(next) next();
+    });
+}
+
+function loadCustomAbilities(next) {
+    // Simply read in the file, and store into our varible
+    fs.readFile(customDir+'npc_abilities_custom.txt', function(err, rawCustomAbilities) {
+        console.log('Loading custom abilities...');
+        customAbilities = parseKV(''+rawCustomAbilities);
+
+        // Continue, if there is something else to run
+        if(next) next();
+    });
+}
+
+function loadCustomItems(next) {
+    // Simply read in the file, and store into our varible
+    fs.readFile(customDir+'npc_items_custom.txt', function(err, rawCustomAbilities) {
+        console.log('Loading custom item...');
+        customItems = parseKV(''+rawCustomAbilities);
+
+        // Continue, if there is something else to run
+        if(next) next();
+    });
+}
+
+/*
+    CSP Stuff
+*/
 
 var permutations = {
     // Global multiplier
@@ -490,98 +630,6 @@ var permutations = {
             return newAb;
         }
     }
-
-    // This edits the cooldown of skills
-    /*cooldown: {
-        vals: [0, 1, 2, 5],
-        func: function(spellName, ability, newAb, mult) {
-            if(!ability.AbilityCooldown) return null;
-            if(mult == 1) return null;
-
-            var cooldowns = ability.AbilityCooldown[0].split(' ');
-
-            for(var i=0; i<cooldowns.length; ++i) {
-                if(mult != 0) {
-                    cooldowns[i] = r(parseFloat(cooldowns[i])/mult, 1);
-                } else {
-                    cooldowns[i] = 0.0;
-                }
-            }
-
-            newAb.AbilityCooldown = cooldowns.join(' ');
-
-            // Return the modified spell
-            return newAb;
-        }
-    },
-
-    manaCost: {
-        vals: [0, 1, 2, 5],
-        func: function(spellName, ability, newAb, mult) {
-            if(!ability.AbilityManaCost) return null;
-            if(mult == 1) return null;
-
-            var manacosts = ability.AbilityManaCost[0].split(' ');
-
-            for(var i=0; i<manacosts.length; ++i) {
-                if(mult != 0) {
-                    manacosts[i] = Math.round(parseInt(manacosts[i])/mult);
-                } else {
-                    manacosts[i] = 0.0;
-                }
-            }
-
-            newAb.AbilityManaCost = manacosts.join(' ');
-
-            // Return the modified spell
-            return newAb;
-        }
-    },
-
-    damage: {
-        vals: [1, 2, 5],
-        func: function(spellName, ability, newAb, mult) {
-            if(!ability.AbilitySpecial) return null;
-            if(mult == 1) return null;
-
-            var abSpec = ability.AbilitySpecial;
-
-            var doMult = {
-                damage: true,
-                damage_scepter: true,
-                bonus_damage: true,
-                ward_damage_tooltip: true,
-                strike_damage: true,
-                tick_damage: true
-            };
-
-            var changed = false;
-            for(var specNum in abSpec) {
-                var spec = abSpec[specNum];
-
-                for(var keyName in spec) {
-                    if(keyName == 'var_type') continue;
-
-                    if(doMult[keyName]) {
-                        var vals = spec[keyName][0].split(' ');
-
-                        for(var i=0; i<vals.length; ++i) {
-                            vals[i] = Math.round(parseInt(vals[i])*mult);
-                        }
-
-                        newAb.AbilitySpecial[specNum][keyName] = vals.join(' ');
-                        changed = true;
-                    }
-                }
-            }
-
-            // Did we even change anything?
-            if(!changed) return null;
-
-            // Return the modified spell
-            return newAb;
-        }
-    }*/
 };
 
 // Order to apply permutions
@@ -680,158 +728,74 @@ function permute(spellName, ability, storage) {
     }
 }
 
-// theString is the string we search for and use as a key to store in
-// if theString can't be find, search using altString
-// search in actual language, if that fails, search in english, if that fails, commit suicide
-function generateLanguage(theString, altString, appendOnEnd) {
-    // Grab a reference to english
-    var english = langIn.english;
-
-    if(appendOnEnd == null) appendOnEnd = '';
-
-    if(altString == 'lod_item_quelling_blade') {
-        console.log(theString);
-    }
-
-    for(var i=0; i<langs.length; ++i) {
-        // Grab a language
-        var lang = langs[i];
-        var langFile = langIn[lang];
-        var storeTo = langOut[lang];
-
-        if(langFile[theString]) {
-            storeTo[theString] = langFile[theString] + appendOnEnd;
-        } else if(langFile[altString]) {
-            storeTo[theString] = langFile[altString] + appendOnEnd;
-        } else if(english[theString]) {
-            storeTo[theString] = english[theString] + appendOnEnd;
-        } else if(english[altString]) {
-            storeTo[theString] = english[altString] + appendOnEnd;
-        } else if(storeTo[altString]) {
-            storeTo[theString] = storeTo[altString] + appendOnEnd;
-        } else {
-            console.log('Failed to find ' + theString);
-        }
-    }
-}
-
-//function allPerms
-function doCSP() {
+function doCSP(next) {
     fs.readFile(scriptDir+'npc_abilities.txt', function(err, abilitesRaw) {
         // Convert into something useable
         var abs = parseKV(''+abilitesRaw).DOTAAbilities;
 
-        fs.readFile(customDir+'npc_abilities_custom.txt', function(err, abilitesCustomRaw) {
-            // Convert into something useable
-            var absCustom = parseKV(''+abilitesCustomRaw).DOTAAbilities;
+        // Merge in custom abilities
+        for(var key in customAbilities) {
+            if(key == 'Version') continue;
 
-            fs.readFile(scriptDir+'items.txt', function(err, itemsRaw) {
-                // Begin to permute
-                console.log('Beginning permutations!');
+            // Store into our CSP file
+            abs[key] = customAbilities[key];
+        }
 
-                // Convert into something useable
-                var items = parseKV(''+itemsRaw).DOTAAbilities;
+        // Merge in items
+        for(var key in items) {
+            abs[key] = items[key];
+        }
 
-                // New abilities KV
-                var newAbs = {};
-                var newItems = {};
+        // Loop over all spells
+        if(!settings.noPermute) {
+            console.log('Beginning permutations...');
 
-                // Merge in custom abilities
-                for(var key in absCustom) {
-                    if(key == 'Version') continue;
+            for(var spellName in abs) {
+                // Spells to simply ignore
+                if(spellName == 'Version') continue;
+                if(spellName == 'ability_base') continue;
+                if(spellName == 'attribute_bonus') continue;
+                if(spellName == 'default_attack') continue;
+                if(spellName.indexOf('recipe') != -1) continue;
+                if(spellName.indexOf('winter') != -1) continue;
+                if(spellName.indexOf('present') != -1) continue;
+                if(spellName.indexOf('greevil') != -1) continue;
+                if(spellName.indexOf('halloween') != -1) continue;
+                if(spellName.indexOf('mystery') != -1) continue;
+                if(spellName.indexOf('courier') != -1) continue;
+                if(spellName.indexOf('tango') != -1) continue;
+                if(spellName.indexOf('tpscroll') != -1) continue;
+                if(spellName.indexOf('ward') != -1) continue;
+                if(spellName.indexOf('clarity') != -1) continue;
+                if(spellName.indexOf('flask') != -1) continue;
+                if(spellName.indexOf('dust') != -1) continue;
+                if(spellName.indexOf('bottle') != -1) continue;
+                if(spellName.indexOf('smoke') != -1) continue;
+                if(spellMult.dont_parse[spellName]) continue;
 
-                    // Store into our CSP file
-                    abs[key] = absCustom[key];
+                var newSpell = {};
 
-                    // Store into our actual custom file
-                    newAbs[key] = absCustom[key];
+                // Where to store the spell/item into
+                var storeLocation = customAbilities;
+                if(items[spellName]) {
+                    storeLocation = customItems;
                 }
 
-                // Merge in items
-                for(var key in items) {
-                    abs[key] = items[key];
-                }
+                // Store all permutions of the spell
+                permute(spellName, abs[spellName], storeLocation);
+            }
+        }
 
-                // Loop over all spells
-                if(!settings.noPermute) {
-                    for(var spellName in abs) {
-                        // Spells to simply ignore
-                        if(spellName == 'Version') continue;
-                        if(spellName == 'ability_base') continue;
-                        if(spellName == 'attribute_bonus') continue;
-                        if(spellName == 'default_attack') continue;
-                        if(spellName.indexOf('recipe') != -1) continue;
-                        if(spellName.indexOf('winter') != -1) continue;
-                        if(spellName.indexOf('present') != -1) continue;
-                        if(spellName.indexOf('greevil') != -1) continue;
-                        if(spellName.indexOf('halloween') != -1) continue;
-                        if(spellName.indexOf('mystery') != -1) continue;
-                        if(spellName.indexOf('courier') != -1) continue;
-                        if(spellName.indexOf('tango') != -1) continue;
-                        if(spellName.indexOf('tpscroll') != -1) continue;
-                        if(spellName.indexOf('ward') != -1) continue;
-                        if(spellName.indexOf('clarity') != -1) continue;
-                        if(spellName.indexOf('flask') != -1) continue;
-                        if(spellName.indexOf('dust') != -1) continue;
-                        if(spellName.indexOf('bottle') != -1) continue;
-                        if(spellName.indexOf('smoke') != -1) continue;
-                        if(spellMult.dont_parse[spellName]) continue;
+        // Ensure none of our generated items are buyable
+        for(var key in customItems) {
+            customItems[key].ItemPurchaseable = 0;
+        }
 
-                        var newSpell = {};
+        // Done with permutions
+        console.log('Done!');
 
-                        // Where to store the spell/item into
-                        var storeLocation = newAbs;
-                        if(items[spellName]) {
-                            storeLocation = newItems;
-                        }
-
-                        // Store all permutions of the spell
-                        permute(spellName, abs[spellName], storeLocation);
-                    }
-                }
-
-                // Output new abs file
-                fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(newAbs, 'DOTAAbilities'), function(err) {
-                    if (err) throw err;
-
-                    console.log('Done saving file compiled abilities file.');
-                });
-
-                // Merge in the custom items
-                fs.readFile(customDir+'npc_items_custom.txt', function(err, abilitesCustomRaw) {
-                    // Convert into something useable
-                    var customItems = parseKV(''+abilitesCustomRaw).DOTAAbilities;
-
-                    // Ensure none of our generated items are buyable
-                    for(var key in newItems) {
-                        newItems[key].ItemPurchaseable = 0;
-                    }
-
-                    // Copy across the custom items
-                    for(var key in customItems) {
-                        newItems[key] = customItems[key];
-                    }
-
-                    // Output updated items file
-                    fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(newItems, 'DOTAAbilities'), function(err) {
-                        if (err) throw err;
-
-                        console.log('Done saving file compiled abilities file.');
-                    });
-                });
-
-                // Output language files
-                for(var i=0; i<langs.length; ++i) {
-                    (function(lang) {
-                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
-                            if (err) throw err;
-
-                            console.log('Finished saving ' + lang + '!');
-                        });
-                    })(langs[i]);
-                }
-            });
-        });
+        // Run the next function, if it exists
+        if(next) next();
     });
 }
 
@@ -1080,48 +1044,60 @@ function toKV(obj, key) {
     }
 }
 
-// Read in our language files
-(function() {
-    var ourData = ''+fs.readFileSync(customDir + 'addon_english.txt');
-    var english = parseKV(ourData).lang.Tokens;
+/*
+    Run everything
+*/
 
-    specialChar = fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
+// Prepare hte languge files
+prepareLanguageFiles(function() {
+    // Load our custom units
+    loadCustomUnits(function() {
+        // Load items
+        loadItems(function() {
+            // Load our custom items
+            loadCustomItems(function() {
+                // Load our custom abilities
+                loadCustomAbilities(function() {
+                    // Generate the custom item abilities
+                    generateAbilityItems(function() {
+                        // Generate our precache data
+                        generatePrecacheData(function() {
+                            doCSP(function() {
+                                // Output language files
+                                for(var i=0; i<langs.length; ++i) {
+                                    (function(lang) {
+                                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                                            if (err) throw err;
 
-    for(var i=0; i<langs.length; ++i) {
-        // Grab a language
-        var lang = langs[i];
+                                            console.log('Finished saving ' + lang + '!');
+                                        });
+                                    })(langs[i]);
+                                }
 
-        var data = fs.readFileSync(resourcePath + 'dota_' + lang + '.txt', 'utf16le').substring(1);
+                                // Output custom files
 
-        // Load her up
-        langIn[lang] = parseKV(data).lang.Tokens;
-        langOut[lang] = {};
+                                fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
+                                    if (err) throw err;
 
-        var toUse;
-        if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
-            var ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
-            toUse = parseKV(ourData).lang.Tokens;
-        } else {
-            toUse = english;
-        }
+                                    console.log('Done saving custom abilities file!');
+                                });
 
-        for(var key in english) {
-            if(toUse[key]) {
-                langOut[lang][key] = toUse[key];
-            } else {
-                langOut[lang][key] = english[key];
-            }
-        }
+                                fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
+                                    if (err) throw err;
 
-        for(var key in toUse) {
-            if(!langIn[lang][key]) {
-                langIn[lang][key] = toUse[key];
-            }
-        }
-    }
+                                    console.log('Done saving custom items file!');
+                                });
 
-    console.log('Done loading languages!');
-})();
+                                fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
+                                    if (err) throw err;
 
-// Do CSP stuff
-doCSP();
+                                    console.log('Done saving custom units file!');
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+});

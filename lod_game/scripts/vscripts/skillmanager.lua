@@ -136,20 +136,20 @@ local function precacheSkill(skillName)
             -- Cache it
             if GameRules:isSource1() then
                 -- Ensure it exists
-                if unitExists('npc_precache_'..heroName..'_s1') then
-                    CreateUnitByName('npc_precache_'..heroName..'_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                if unitExists('npc_precache_'..heroName) then
+                    CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
                 else
-                    print('Failed to precache unit: npc_precache_'..heroName..'_s1')
+                    print('Failed to precache unit: npc_precache_'..heroName)
                 end
             else
                 -- Ensure it exists
-                if unitExists('npc_precache_'..heroName..'_s2') then
+                if unitExists('npc_precache_'..heroName) then
                     -- Precache source2 style
-                    PrecacheUnitByNameAsync('npc_precache_'..heroName..'_s2', function()
-                        CreateUnitByName('npc_precache_'..heroName..'_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+                    PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
+                        CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
                     end)
                 else
-                    print('Failed to precache unit: npc_precache_'..heroName..'_s2')
+                    print('Failed to precache unit: npc_precache_'..heroName)
                 end
             end
         end

@@ -2051,25 +2051,25 @@ function lod:InitGameMode()
         --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
 
         -- Precache orgre magi stuff
-        PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi_s2', function()
-            CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
+            CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
         end)
 
         -- Precache survival resources
-        PrecacheUnitByNameAsync('npc_precache_survival_s2', function()
-            CreateUnitByName('npc_precache_survival_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        PrecacheUnitByNameAsync('npc_precache_survival', function()
+            CreateUnitByName('npc_precache_survival', Vector(-10000, -10000, 0), false, nil, nil, 0)
         end)
 
         -- Precache wraithnight stuff
-        PrecacheUnitByNameAsync('npc_precache_wraithnight_s2', function()
-            CreateUnitByName('npc_precache_wraithnight_s2', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
+            CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
         end)
     else
         -- Precache ogre magi
-        CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
 
         -- Precache wraithnight
-        CreateUnitByName('npc_precache_wraithnight_s1', Vector(-10000, -10000, 0), false, nil, nil, 0)
+        CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end
 
     -- Setup console commands
