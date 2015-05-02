@@ -46,10 +46,6 @@ function generateLanguage(theString, altString, appendOnEnd) {
 
     if(appendOnEnd == null) appendOnEnd = '';
 
-    if(altString == 'lod_item_quelling_blade') {
-        console.log(theString);
-    }
-
     for(var i=0; i<langs.length; ++i) {
         // Grab a language
         var lang = langs[i];
@@ -69,7 +65,14 @@ function generateLanguage(theString, altString, appendOnEnd) {
         } else {
             console.log('Failed to find ' + theString);
         }
+
+        if(!langFile[theString]) langFile[theString] = storeTo[theString];
     }
+}
+
+var generateAfter = [];
+function generateLanguageAfter(theString, altString, appendOnEnd) {
+    generateAfter.push([theString, altString, appendOnEnd]);
 }
 
 // Read in our language files
@@ -255,6 +258,23 @@ function generateAbilityItems(next) {
 
             // Store number
             outputSkillIDs += '"lod_' + itemName+'"    "' + (currentID++) + '"\n';
+        }
+
+        // Grab english
+        var english = langIn.english;
+
+        // Generate language for this spell
+        var toAdd = [];
+        for(var key in english) {
+            if(key.indexOf(itemName) != -1) {
+                toAdd.push(key);
+            }
+        }
+
+        for(var i=0; i<toAdd.length; ++i) {
+            var key = toAdd[i];
+            var newStr = key.replace(itemName, 'lod_' + itemName);
+            generateLanguage(newStr, key, '');
         }
     }
 
@@ -466,192 +486,177 @@ function loadCustomItems(next) {
 */
 
 var permutations = {
-    // Global multiplier
-    multiplier: {
-        vals: [5, 10, 20],
-        func: function(spellName, ability, newAb, mult) {
-            function divide(specialName, vals) {
-                for(var i=0; i<vals.length; ++i) {
-                    vals[i] = parseFunction(vals[i] / mult);
-                }
-
-                return vals.join(' ');
+    vals: [5, 10, 20],
+    func: function(spellName, ability, newAb, mult) {
+        function divide(specialName, vals) {
+            for(var i=0; i<vals.length; ++i) {
+                vals[i] = parseFunction(vals[i] / mult);
             }
 
-            function multiply(specialName, vals) {
-                // Check if there is a max
-                var max = null;
-                if(spellMult.specific_max_value[specialName]) {
-                    max = parseFunction(spellMult.specific_max_value[specialName]);
-                }
-                if(spellMult.more_specific_max_value[spellName] && spellMult.more_specific_max_value[spellName][specialName]) {
-                    max = parseFunction(spellMult.more_specific_max_value[spellName][specialName]);
-                }
+            return vals.join(' ');
+        }
 
-                // Do the mult
-                for(var i=0; i<vals.length; ++i) {
-                    vals[i] = parseFunction(vals[i] * mult);
-
-                    // Enfore the max
-                    if(max != null && vals[i] > max) {
-                        vals[i] = max;
-                    }
-                }
-
-                return vals.join(' ');
+        function multiply(specialName, vals) {
+            // Check if there is a max
+            var max = null;
+            if(spellMult.specific_max_value[specialName]) {
+                max = parseFunction(spellMult.specific_max_value[specialName]);
+            }
+            if(spellMult.more_specific_max_value[spellName] && spellMult.more_specific_max_value[spellName][specialName]) {
+                max = parseFunction(spellMult.more_specific_max_value[spellName][specialName]);
             }
 
-            function divide_or_multiply(specialName, valString, parseFunction) {
-                var vals = valString.split(' ');
+            // Do the mult
+            for(var i=0; i<vals.length; ++i) {
+                vals[i] = parseFunction(vals[i] * mult);
 
-                // Convert all to floats
-                for(var i=0; i<vals.length; ++i) {
-                    vals[i] = parseFunction(vals[i]);
+                // Enfore the max
+                if(max != null && vals[i] > max) {
+                    vals[i] = max;
                 }
+            }
 
-                // Check for specific values
-                if(spellMult.fixed_value[spellName] && spellMult.fixed_value[spellName][specialName]) {
-                    return spellMult.fixed_value[spellName][specialName];
-                }
+            return vals.join(' ');
+        }
 
-                // Should we always divide this attribute?
-                if(spellMult.force_divide[specialName]) {
-                    return divide(specialName, vals);
-                }
+        function divide_or_multiply(specialName, valString, parseFunction) {
+            var vals = valString.split(' ');
 
-                // Check if we need to multiply or divide
-                if(vals.length > 1) {
-                    // Check if we are increasing, or decreasing
-                    if(vals[0] > vals[1]) {
-                        // Decreasing, divide
-                        return divide(specialName, vals, parseFunction);
-                    } else {
-                        // Increasing, multiply
-                        return multiply(specialName, vals, parseFunction);
-                    }
+            // Convert all to floats
+            for(var i=0; i<vals.length; ++i) {
+                vals[i] = parseFunction(vals[i]);
+            }
+
+            // Check for specific values
+            if(spellMult.fixed_value[spellName] && spellMult.fixed_value[spellName][specialName]) {
+                return spellMult.fixed_value[spellName][specialName];
+            }
+
+            // Should we always divide this attribute?
+            if(spellMult.force_divide[specialName]) {
+                return divide(specialName, vals);
+            }
+
+            // Check if we need to multiply or divide
+            if(vals.length > 1) {
+                // Check if we are increasing, or decreasing
+                if(vals[0] > vals[1]) {
+                    // Decreasing, divide
+                    return divide(specialName, vals, parseFunction);
                 } else {
-                    // Only one value, assume multiply
+                    // Increasing, multiply
                     return multiply(specialName, vals, parseFunction);
                 }
+            } else {
+                // Only one value, assume multiply
+                return multiply(specialName, vals, parseFunction);
             }
+        }
 
-            for(var key in newAb) {
-                (function(key) {
-                    if(newAb[key] != null && !spellMult.ignore_all_normal[key] && !isNaN(parseInt(newAb[key][0]))) {
-                        function divide2(vals, parseFunction) {
-                            for(var i=0; i<vals.length; ++i) {
-                                vals[i] = parseFunction(vals[i] / mult);
-                            }
-
-                            return vals.join(' ');
+        for(var key in newAb) {
+            (function(key) {
+                if(newAb[key] != null && !spellMult.ignore_all_normal[key] && !isNaN(parseInt(newAb[key][0]))) {
+                    function divide2(vals, parseFunction) {
+                        for(var i=0; i<vals.length; ++i) {
+                            vals[i] = parseFunction(vals[i] / mult);
                         }
 
-                        function multiply2(vals, parseFunction) {
-                            // Do the mult
-                            for(var i=0; i<vals.length; ++i) {
-                                vals[i] = parseFunction(vals[i] * mult);
-                            }
+                        return vals.join(' ');
+                    }
 
-                            return vals.join(' ');
+                    function multiply2(vals, parseFunction) {
+                        // Do the mult
+                        for(var i=0; i<vals.length; ++i) {
+                            vals[i] = parseFunction(vals[i] * mult);
                         }
 
-                        function divide_or_multiply2(valString, parseFunction) {
-                            var vals = valString.split(' ');
+                        return vals.join(' ');
+                    }
 
-                            // Convert all to floats
-                            for(var i=0; i<vals.length; ++i) {
-                                vals[i] = parseFunction(vals[i]);
-                            }
+                    function divide_or_multiply2(valString, parseFunction) {
+                        var vals = valString.split(' ');
 
-                            // Check if we need to multiply or divide
-                            if(vals.length > 1) {
-                                // Check if we are increasing, or decreasing
-                                if(vals[0] > vals[1]) {
-                                    // Decreasing, divide
-                                    return divide2(vals, parseFunction);
-                                } else {
-                                    // Increasing, multiply
-                                    return multiply2(vals, parseFunction);
-                                }
+                        // Convert all to floats
+                        for(var i=0; i<vals.length; ++i) {
+                            vals[i] = parseFunction(vals[i]);
+                        }
+
+                        // Check if we need to multiply or divide
+                        if(vals.length > 1) {
+                            // Check if we are increasing, or decreasing
+                            if(vals[0] > vals[1]) {
+                                // Decreasing, divide
+                                return divide2(vals, parseFunction);
                             } else {
-                                // Only one value, assume multiply
+                                // Increasing, multiply
                                 return multiply2(vals, parseFunction);
                             }
-                        }
-
-                        // Do it
-                        newAb[key] = [divide_or_multiply2(newAb[key][0], function(str) {
-                            // Decide if it's a float or int
-                            return parseInt(str);
-                        })];
-                    }
-                })(key);
-            }
-
-            if(ability.AbilitySpecial) {
-                for(var slotNum in ability.AbilitySpecial) {
-                    var slot = ability.AbilitySpecial[slotNum];
-                    var parseFunction = parseInt;
-                    if(slot.var_type) {
-                        if(slot.var_type == 'FIELD_FLOAT') {
-                            parseFunction = function(str) {
-                                var retNum = parseFloat(str);
-
-                                retNum *= 100;
-                                retNum = Math.floor(retNum);
-                                retNum = retNum / 100;
-
-                                return retNum;
-                            };
-                        } else if(slot.var_type != 'FIELD_INTEGER') {
-                            console.log('Unknown field type: ' + slot.var_type);
+                        } else {
+                            // Only one value, assume multiply
+                            return multiply2(vals, parseFunction);
                         }
                     }
-                    for(var specialName in slot) {
-                        if(specialName == 'var_type') continue;
 
-                        // Check for ignores
-                        if(spellMult.ignore_all_special[specialName]) continue;
-                        if(spellMult.ignore_special[spellName] && spellMult.ignore_special[spellName][specialName]) continue;
+                    // Do it
+                    newAb[key] = [divide_or_multiply2(newAb[key][0], function(str) {
+                        // Decide if it's a float or int
+                        return parseInt(str);
+                    })];
+                }
+            })(key);
+        }
 
-                        var oldVal = slot[specialName][0];
-                        var newVal = divide_or_multiply(specialName, oldVal, parseFunction);
+        if(ability.AbilitySpecial) {
+            for(var slotNum in ability.AbilitySpecial) {
+                var slot = ability.AbilitySpecial[slotNum];
+                var parseFunction = parseInt;
+                if(slot.var_type) {
+                    if(slot.var_type == 'FIELD_FLOAT') {
+                        parseFunction = function(str) {
+                            var retNum = parseFloat(str);
 
-                        // Did we actually change anything?
-                        if(newVal != oldVal) {
-                            // Store the change
-                            newAb.AbilitySpecial[slotNum][specialName] = [newVal];
-                        }
+                            retNum *= 100;
+                            retNum = Math.floor(retNum);
+                            retNum = retNum / 100;
+
+                            return retNum;
+                        };
+                    } else if(slot.var_type != 'FIELD_INTEGER') {
+                        console.log('Unknown field type: ' + slot.var_type);
+                    }
+                }
+                for(var specialName in slot) {
+                    if(specialName == 'var_type') continue;
+
+                    // Check for ignores
+                    if(spellMult.ignore_all_special[specialName]) continue;
+                    if(spellMult.ignore_special[spellName] && spellMult.ignore_special[spellName][specialName]) continue;
+
+                    var oldVal = slot[specialName][0];
+                    var newVal = divide_or_multiply(specialName, oldVal, parseFunction);
+
+                    // Did we actually change anything?
+                    if(newVal != oldVal) {
+                        // Store the change
+                        newAb.AbilitySpecial[slotNum][specialName] = [newVal];
                     }
                 }
             }
-
-            // Return the changes
-            return newAb;
         }
+
+        // Return the changes
+        return newAb;
     }
 };
 
-// Order to apply permutions
-var permList = ['multiplier'];
-
 // Permutate a spell
 function permute(spellName, ability, storage) {
-    // Build slots list
-    var slots = [];
-    for(var i=0; i<permList.length; ++i) {
-        slots[i] = 0;
-    }
-
-    // Grab english
-    var english = langIn.english;
-
     // List of suffixes we found
     var suffixes = [];
     var appendsOnEnd = [];
 
     // Loop over all the things we need to apply
-    while(slots[slots.length-1] < permutations[permList[permList.length-1]].vals.length) {
+    for(var permNumber=0; permNumber<permutations.vals.length; permNumber++) {
         var newSpell = {
             BaseClass: spellName,
             //AbilityType: ability.AbilityType,
@@ -669,61 +674,47 @@ function permute(spellName, ability, storage) {
         // Don't store the spellID
         delete newSpell.ID;
 
-        var suffix = '';
-        var appendOnEnd = '';
+        var spellValue = permutations.vals[permNumber];
+        var tempChange = permutations.func(spellName, ability, newSpell, spellValue);
 
-        //var changed = false;
-        for(var i=0; i<permList.length; ++i) {
-            // Grab a modifier
-            var perm = permutations[permList[i]];
-            var spellValue = perm.vals[slots[i]];
-
-            // Add to the suffix
-            suffix += '_' + spellValue;
-            appendOnEnd += ' x' + spellValue;
-
-            var tempChange = perm.func(spellName, ability, newSpell, spellValue);
-
-            if(tempChange != null) {
-                newSpell = tempChange;
-                //changed = true;
-            }
+        if(tempChange != null) {
+            newSpell = tempChange;
         }
 
+        // Grab the suffix
+        var suffix = '_' + spellValue;
+
         // Store the spell
-        //if(changed) {
-            // Store the spell
-            storage[spellName + suffix] = newSpell;
+        storage[spellName + suffix] = newSpell;
 
-            // Store suffix
-            suffixes.push(suffix);
-            appendsOnEnd.push(appendOnEnd);
-        //}
+        // Store suffix
+        suffixes.push(suffix);
+        appendsOnEnd.push(' x' + spellValue);
+    }
 
-        // Push permution along
-        var sel = 0;
-        slots[sel]++;
-        while(slots[sel] >= permutations[permList[sel]].vals.length) {
-            if(slots[sel+1] == null) break;
+    // Grab english
+    var english = langIn.english;
 
-            slots[sel] = 0;
-            slots[++sel]++;
+    // Generate language for this spell
+    var toAdd = [];
+    for(var key in english) {
+        if(key.indexOf(spellName) != -1) {
+            toAdd.push(key);
         }
     }
 
-    // Generate language for this spell
-    for(var key in english) {
-        if(key.indexOf(spellName) != -1) {
-            for(var i=0; i<suffixes.length; ++i) {
-                var appendOnEnd = '';
-                if(key.toLowerCase() == 'dota_tooltip_ability_' + spellName) {
-                    appendOnEnd = appendsOnEnd[i];
-                }
+    for(var i=0; i<toAdd.length; ++i) {
+        for(var j=0; j<suffixes.length; ++j) {
+            var key = toAdd[i];
 
-                var suffix = suffixes[i];
-                var newStr = key.replace(spellName, spellName + suffix);
-                generateLanguage(newStr, key, appendOnEnd);
+            var appendOnEnd = '';
+            if(key.toLowerCase() == 'dota_tooltip_ability_' + spellName) {
+                appendOnEnd = appendsOnEnd[j];
             }
+
+            var suffix = suffixes[j];
+            var newStr = key.replace(spellName, spellName + suffix);
+            generateLanguageAfter(newStr, key, appendOnEnd);
         }
     }
 }
@@ -792,7 +783,12 @@ function doCSP(next) {
         }
 
         // Done with permutions
-        console.log('Done!');
+        console.log('Generating language...');
+
+        for(var i=0; i<generateAfter.length; ++i) {
+            var g = generateAfter[i];
+            generateLanguage(g[0], g[1], g[2]);
+        }
 
         // Run the next function, if it exists
         if(next) next();
