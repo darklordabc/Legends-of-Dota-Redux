@@ -432,7 +432,7 @@ function loadCustomUnits(next) {
     // Simply read in the file, and store into our varible
     fs.readFile(customDir+'npc_units_custom_' + compileVersion + '.txt', function(err, rawCustomUnits) {
         console.log('Loading custom units...');
-        customUnits = parseKV(''+rawCustomUnits);
+        customUnits = parseKV(''+rawCustomUnits).DOTAUnits;
 
         // Continue, if there is something else to run
         if(next) next();
@@ -443,7 +443,7 @@ function loadCustomAbilities(next) {
     // Simply read in the file, and store into our varible
     fs.readFile(customDir+'npc_abilities_custom.txt', function(err, rawCustomAbilities) {
         console.log('Loading custom abilities...');
-        customAbilities = parseKV(''+rawCustomAbilities);
+        customAbilities = parseKV(''+rawCustomAbilities).DOTAAbilities;
 
         // Continue, if there is something else to run
         if(next) next();
@@ -454,7 +454,7 @@ function loadCustomItems(next) {
     // Simply read in the file, and store into our varible
     fs.readFile(customDir+'npc_items_custom.txt', function(err, rawCustomAbilities) {
         console.log('Loading custom item...');
-        customItems = parseKV(''+rawCustomAbilities);
+        customItems = parseKV(''+rawCustomAbilities).DOTAAbilities;
 
         // Continue, if there is something else to run
         if(next) next();

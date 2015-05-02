@@ -187,6 +187,9 @@
         // Multiplier KV
         private static var multiplierSkills:Object;
 
+        // Skill Icon lookup
+        private static var skillIconLookup:Object;
+
         // Have we setup the post voting stuff?
         private var initPostVoting:Boolean = false;
 
@@ -307,6 +310,9 @@
 
             // Load up the multiplier KV
             multiplierSkills = globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities_custom.txt');
+
+            // Builds the skill icon lookup
+            buildSkillIconLookup();
 
             // Ask for decoding info
             requestDecodingNumber();
@@ -1613,6 +1619,38 @@
             }
         }
 
+        // Builds the skill icon lookup
+        private static function buildSkillIconLookup():void {
+            // Reset the lookup
+            skillIconLookup = {};
+
+            // Load up our skill list
+            var normalSkillList:Object = Globals.GameInterface.LoadKVFile('scripts/npc/npc_abilities.txt');
+            for(var key in multiplierSkills) {
+                normalSkillList[key] = multiplierSkills[key];
+            }
+
+            // Build the skill lookuup
+            for(var skillName in normalSkillList) {
+                if(skillName == 'Version') continue;
+
+                var data:Object = normalSkillList[skillName];
+
+                if(data.AbilityTextureName) {
+                    skillIconLookup[skillName] = data.AbilityTextureName;
+                } else if(data.BaseClass && data.BaseClass != 'item_datadriven') {
+                    skillIconLookup[skillName] = data.BaseClass;
+                } else {
+                    skillIconLookup[skillName] = skillName;
+                }
+            }
+        }
+
+        // Gets the icon for the given skill
+        public static function getSkillIcon(skillName:String) {
+            return skillIconLookup[skillName] || 'nothing';
+        }
+
         /*
             SEVER EVENT CALLBACKS
         */
@@ -1919,7 +1957,7 @@
             }
 
             // Load a skill into the dragClip
-            Globals.LoadAbilityImage(skillName, dragClip);
+            Globals.LoadAbilityImage(lod.getSkillIcon(skillName), dragClip);
 
             // Store the skill
             dragClip.skillName = skillName;

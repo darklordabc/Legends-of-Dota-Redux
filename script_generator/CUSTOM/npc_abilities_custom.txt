@@ -148,7 +148,7 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "3"
-        "AbilityTextureName"            "ogre_magi_multicast_lod"
+        "AbilityTextureName"            "ogre_magi_multicast"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
         "AbilitySpecial"

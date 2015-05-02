@@ -99,7 +99,7 @@
             var skillName = me.getSkillName();
 
             // Load a skill into the dragClip
-            lod.Globals.LoadAbilityImage(skillName, dragClip);
+            lod.Globals.LoadAbilityImage(lod.getSkillIcon(skillName), dragClip);
 
             // Store the skill
             dragClip.slotNumber = me.getSkillSlot();

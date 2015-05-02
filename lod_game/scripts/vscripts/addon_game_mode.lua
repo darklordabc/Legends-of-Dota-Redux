@@ -662,6 +662,7 @@ end)()
 -- Ability stuff
 local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
 local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+local iconLookup = {}
 local skillLookup = {}
 
 function buildSkillListLookup()
@@ -716,6 +717,19 @@ end
 -- Merge custom abilities into main abiltiies file
 for k,v in pairs(absCustom) do
     abs[k] = v
+end
+
+-- Build icon lookup
+for k,v in pairs(abs) do
+    if k ~= 'Version' then
+        if v.AbilityTextureName then
+            iconLookup[k] = v.AbilityTextureName
+        elseif v.BaseClass and v.BaseClass ~= 'item_datadriven' then
+            iconLookup[k] = v.BaseClass
+        else
+            iconLookup[k] = k
+        end
+    end
 end
 
 -- Create list of spells with certain attributes
@@ -4756,7 +4770,7 @@ end
 
 -- Returns a html image tag for use with chat messages
 getSpellIcon = function(skillName)
-    return '<IMG SRC="img://resource/flash3/images/spellicons/'..skillName..'.png" WIDTH="18" HEIGHT="18"/>'
+    return '<IMG SRC="img://resource/flash3/images/spellicons/'..(iconLookup[skillName] or 'nothing')..'.png" WIDTH="18" HEIGHT="18"/>'
 end
 
 -- Returns a translatable version of the spell name
