@@ -10,6 +10,11 @@ var scriptDirOut = settings.scriptDirOut;                           // The direc
 var resourcePath = settings.dotaDir + 'dota/resource/';             // The directory to read resource files from
 var customDir = settings.customDir;                                 // The directory where our mods are read from, to be merged in
 
+// Change s2 resource folder
+if(compileVersion == 's2') {
+    resourcePath = settings.dotaDir + 'dota_ugc/game/dota_imported/resource/';
+}
+
 // Code needed to do multipliers
 var spellMult = require('./spellMult.json');
 
