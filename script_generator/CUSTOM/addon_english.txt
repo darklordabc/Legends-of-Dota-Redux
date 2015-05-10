@@ -125,6 +125,9 @@
 		"desNoFountainCamping"				"Prevent Fountain Camping"
 		"hintNoFountainCamping"				"Adds fury swipes, truestrike and psi blades to the fountain."
 
+		"desLvl1ults"						"Level 1 Ults"
+		"hintLvl1ults"						"Allows all abilities to be used from level 1, with 2 levels inbetween upgrades. Normal ultimates can be maxed out at level 5!"
+
 		"allowItemActiveOnly"				"Active Effects Only"
 		"allowItemAll"						"All Items"
 
@@ -248,6 +251,8 @@
 		"lvl40"								"Level 40"
 		"lvl45"								"Level 45"
 		"lvl50"								"Level 50"
+		"lvl75"								"Level 75"
+		"lvl100"							"Level 100"
 
 		"lod_slotWarning"					"<font color=\"#EB4B4B\">WARNING: Pick a hero that has NO SKILLS in the selectionUI, or risk not getting some of your skills!</font>"
 

@@ -35,6 +35,7 @@
    },
    "ignore_all_special":{
       "crit_chance":true,
+      "crit_damage":true,
       "duration":true,
       "block_chance":true,
       "bonus_evasion":true,
@@ -329,6 +330,12 @@
       "pudge_meat_hook":{
          "hook_width":true
       },
+      "lycan_shapeshift": {
+         "speed":true
+      },
+      "broodmother_incapacitating_bite":{
+         "bonus_movespeed":true
+      },
       "faceless_void_time_lock":{
          "chance_pct":true,
          "duration":true
@@ -396,7 +403,8 @@
          "duration":true
       },
       "necrolyte_heartstopper_aura":{
-         "aura_radius":true
+         "aura_radius":true,
+         "aura_damage":true
       },
       "axe_battle_hunger":{
          "duration":true
@@ -478,7 +486,9 @@
       },
       "spirit_breaker_greater_bash":{
          "chance_pct":true,
-         "duration":true
+         "duration":true,
+         "knockback_distance":true,
+         "knockback_height":true
       },
       "alchemist_goblins_greed":{
          "bonus_gold":true,
@@ -1097,7 +1107,11 @@
       },
       "elder_titan_earth_splitter":{
          "crack_time":true,
-         "crack_distance":true
+         "crack_distance":true,
+         "crack_width":true,
+         "damage_pct":true,
+         "slow_duration_scepter":true,
+         "slow_duration":true
       },
       "meepo_poof":{
          "radius":true
@@ -1180,6 +1194,10 @@
          "area_of_effect":true,
          "vision_distance":true
       },
+      "techies_suicide":{
+         "respawn_time_percentage":true,
+         "respawn_time_percentage_tooltip":true
+      },
       "invoker_emp":{
          "area_of_effect":true,
          "delay":true
@@ -1220,7 +1238,9 @@
          "spawn_radius":true
       },
       "batrider_flamebreak":{
-         "knockback_max_distance":true
+         "knockback_max_distance":true,
+         "knockback_height":true,
+         "knockback_duration":true
       },
       "ancient_apparition_chilling_touch":{
          "attack_speed_pct":true
@@ -1230,7 +1250,9 @@
          "frostbite_duration_scepter":true,
          "radius_min":true,
          "radius_max":true,
-         "path_radius":true
+         "path_radius":true,
+         "kill_pct":true,
+         "dot_damage":true
       },
       "item_boots":{
          "bonus_movement_speed":true
@@ -1484,7 +1506,8 @@
       },
       "abyssal_underlord_atrophy_aura":{
          "radius":true,
-         "bonus_damage_duration":true
+         "bonus_damage_duration":true,
+         "damage_reduction_pct":true
       },
       "abyssal_underlord_dark_rift":{
          "radius":true,
@@ -1571,6 +1594,10 @@
       },
       "pudge_dismember":{
          "strength_damage_scepter":true
+      },
+      "warlock_golem_flaming_fists":{
+         "chance":true,
+         "radius":true
       }
    },
    "ignore_normal":{
@@ -1660,7 +1687,6 @@
       "DisplayAdditionalHeroes":true,
       "AbilityDuration":true,
       "AbilityChannelTime":true,
-      "AbilityCastRange":true,
       "FightRecapLevel":true,
       "AbilityModifierSupportBonus":true,
       "AbilityCastRangeBuffer":true
@@ -1741,15 +1767,16 @@
          "crit_chance":"45"
       },
       "juggernaut_blade_dance":{
-         "blade_dance_crit_chance":"30 40 50 60",
-         "skeleton_king_mortal_strike":{
-            "crit_chance":"30"
-         },
-         "bounty_hunter_jinada":"8.0 7.0 5.0 3.0",
-         "phantom_assassin_coup_de_grace":{
-            "crit_chance":"25"
-         },
-         "lycan_shapeshift":"30 40 50"
+         "blade_dance_crit_chance":"30 40 50 60"
+      },
+      "skeleton_king_mortal_strike":{
+         "crit_chance":"30"
+      },
+      "phantom_assassin_coup_de_grace":{
+         "crit_chance":"25"
+      },
+      "lycan_shapeshift":{
+         "crit_chance":"30 40 50"
       },
       "lycan_summon_wolves_critical_strike":{
          "crit_chance":"45"

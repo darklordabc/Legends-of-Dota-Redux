@@ -258,6 +258,9 @@ local middleTowers = 1
 -- Should we prevent fountain camping?
 local preventFountainCamping = false
 
+-- Lvl1 ults
+local useLevel1ults = false
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -436,6 +439,56 @@ local XP_PER_LEVEL_TABLE = {
     117500,-- 48
     122400,-- 49
     127400,-- 50
+    132500,-- 51
+    137700,-- 52
+    143000,-- 53
+    148400,-- 54
+    153900,-- 55
+    159500,-- 56
+    165200,-- 57
+    171000,-- 58
+    176900,-- 59
+    182900,-- 60
+    189000,-- 61
+    195200,-- 62
+    201500,-- 63
+    207900,-- 64
+    214400,-- 65
+    221000,-- 66
+    227700,-- 67
+    234500,-- 68
+    241400,-- 69
+    248400,-- 70
+    255500,-- 71
+    262700,-- 72
+    270000,-- 73
+    277400,-- 74
+    284900,-- 75
+    292500,-- 76
+    300200,-- 77
+    308000,-- 78
+    315900,-- 79
+    323900,-- 80
+    332000,-- 81
+    340200,-- 82
+    348500,-- 83
+    356900,-- 84
+    365400,-- 85
+    374000,-- 86
+    382700,-- 87
+    391500,-- 88
+    400400,-- 89
+    409400,-- 90
+    418500,-- 91
+    427700,-- 92
+    437000,-- 93
+    446400,-- 94
+    455900,-- 95
+    465500,-- 96
+    475200,-- 97
+    485000,-- 98
+    494900,-- 99
+    504900,-- 100
 }
 
 --[[
@@ -1303,7 +1356,7 @@ fixBuilds = function()
             local build = skillList[playerID][SKILL_LIST_YOUR]
 
             -- Apply the build
-            SkillManager:ApplyBuild(k, build, customSpellPower)
+            SkillManager:ApplyBuild(k, build, customSpellPower, useLevel1ults)
 
             -- Store playerID has handled
             handledPlayerIDs[playerID] = true
@@ -1809,6 +1862,9 @@ finishVote = function()
 
     -- Prevent fountain camping?
     preventFountainCamping = optionToValue(37, winners[37]) == 1
+
+    -- Use level 1 ults?
+    useLevel1ults = optionToValue(38, winners[38]) == 1
 
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
@@ -2792,7 +2848,7 @@ applyTowerSkills = function()
 
         local skillz = towerSkills[team]
         if skillz then
-            SkillManager:ApplyBuild(tower, skillz, customSpellPower)
+            SkillManager:ApplyBuild(tower, skillz, customSpellPower, useLevel1ults)
         end
     end
 
@@ -2937,7 +2993,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
                 print(k..' - '..v)
             end
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR], customSpellPower)
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR], customSpellPower, useLevel1ults)
             print('Success!')
 
             return
@@ -2956,7 +3012,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
                 print(k..' - '..v)
             end
-            SkillManager:ApplyBuild(spawnedUnit, build, customSpellPower)
+            SkillManager:ApplyBuild(spawnedUnit, build, customSpellPower, useLevel1ults)
             print('Success!')
 
             -- Store playerID has handled
@@ -2995,7 +3051,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                         for k,v in pairs(skillz or {}) do
                             print(k..' - '..v)
                         end
-                        SkillManager:ApplyBuild(spawnedUnit, skillz, customSpellPower)
+                        SkillManager:ApplyBuild(spawnedUnit, skillz, customSpellPower, useLevel1ults)
                         print('Success!')
                     end
 
@@ -3773,7 +3829,7 @@ registerServerCommands = function()
             end
 
             -- Apply the build
-            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild, customSpellPower)
+            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild, customSpellPower, useLevel1ults)
         end
     end, '', SERVER_COMMAND)
 
@@ -4880,7 +4936,7 @@ loadSpecialGamemode = function()
                                 for k,v in pairs(chosenBuild or {}) do
                                     print(k..' - '..v)
                                 end
-                                SkillManager:ApplyBuild(hero, chosenBuild, customSpellPower)
+                                SkillManager:ApplyBuild(hero, chosenBuild, customSpellPower, useLevel1ults)
                                 print('success!')
                             end
 

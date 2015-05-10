@@ -32,6 +32,7 @@ var customAbilities = {};
 var customUnits = {};
 var customItems = {};
 var items = {};
+var abilities = {};
 
 /*
     Prepare language files
@@ -78,6 +79,10 @@ function generateLanguage(theString, altString, appendOnEnd) {
 var generateAfter = [];
 function generateLanguageAfter(theString, altString, appendOnEnd) {
     generateAfter.push([theString, altString, appendOnEnd]);
+}
+
+function clearGenerateAfter() {
+    generateAfter = [];
 }
 
 // Read in our language files
@@ -319,6 +324,7 @@ function generatePrecacheData(next) {
                 npc_dota_hero_bounty_hunter: true,
                 npc_dota_hero_bloodseeker: true,
                 npc_dota_hero_bristleback: true,
+                npc_dota_hero_broodmother: true,
                 npc_dota_hero_chaos_knight: true,
                 npc_dota_hero_clinkz: true,
                 npc_dota_hero_crystal_maiden: true,
@@ -453,6 +459,17 @@ function loadItems(next) {
     });
 }
 
+function loadAbilities(next) {
+    // Simply read in the file, and store into our varible
+    fs.readFile(scriptDir+'npc_abilities.txt', function(err, rawAbs) {
+        console.log('Loading abilities...');
+        abilities = parseKV(''+rawAbs).DOTAAbilities;
+
+        // Continue, if there is something else to run
+        if(next) next();
+    });
+}
+
 function loadCustomUnits(next) {
     // Simply read in the file, and store into our varible
     fs.readFile(customDir+'npc_units_custom_' + compileVersion + '.txt', function(err, rawCustomUnits) {
@@ -545,7 +562,7 @@ var permutations = {
             // Check if we need to multiply or divide
             if(vals.length > 1) {
                 // Check if we are increasing, or decreasing
-                if(vals[0] > vals[1]) {
+                if(Math.abs(vals[0]) > Math.abs(vals[1])) {
                     // Decreasing, divide
                     return divide(specialName, vals, parseFunction);
                 } else {
@@ -589,7 +606,7 @@ var permutations = {
                         // Check if we need to multiply or divide
                         if(vals.length > 1) {
                             // Check if we are increasing, or decreasing
-                            if(vals[0] > vals[1]) {
+                            if(Math.abs(vals[0]) > Math.abs(vals[1])) {
                                 // Decreasing, divide
                                 return divide2(vals, parseFunction);
                             } else {
@@ -664,7 +681,7 @@ function permute(spellName, ability, storage) {
     for(var permNumber=0; permNumber<permutations.vals.length; permNumber++) {
         var newSpell = {
             BaseClass: spellName,
-            //AbilityType: ability.AbilityType,
+            AbilityType: ability.AbilityType,
             AbilityBehavior: ability.AbilityBehavior,
             AbilitySpecial: clone(ability.AbilitySpecial)
         };
@@ -784,7 +801,7 @@ function doCSP(next) {
 
         // Ensure none of our generated items are buyable
         for(var key in customItems) {
-            customItems[key].ItemPurchaseable = 0;
+            customItems[key].ItemPurchacustomAbilitiesseable = 0;
         }
 
         // Done with permutions
@@ -794,10 +811,91 @@ function doCSP(next) {
             var g = generateAfter[i];
             generateLanguage(g[0], g[1], g[2]);
         }
+        clearGenerateAfter();
 
         // Run the next function, if it exists
         if(next) next();
     });
+}
+
+/*
+    Level 1 ult stuff
+*/
+
+function doLvl1Ults(next) {
+    console.log('Generating level 1 abilities...');
+
+    var toStore = {};
+
+    // Language stuff
+    var english = langIn.english;
+
+    var suffix = '_lvl1';
+
+    var allSpells = [];
+
+    for(var spellName in customAbilities) {
+        allSpells[spellName] = true;
+    }
+
+    for(var spellName in abilities) {
+        allSpells[spellName] = true;
+    }
+
+    for(var spellName in allSpells) {
+        var spell = customAbilities[spellName] || abilities[spellName];
+        if(!spell) continue;
+
+        if((spell.AbilityType && spell.AbilityType[0] == 'DOTA_ABILITY_TYPE_ULTIMATE') || (spell.RequiredLevel && parseInt(spell.RequiredLevel[0]) > 1)) {
+            var newSpell = {
+                BaseClass: spellName,
+                AbilityType: spell.AbilityType,
+                AbilityBehavior: spell.AbilityBehavior,
+                AbilitySpecial: clone(spell.AbilitySpecial)
+            };
+            if(spell.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = spell.AbilityUnitDamageType;
+
+            // Copy over useful things
+            if(spell.BaseClass) newSpell.BaseClass = spell.BaseClass;
+            for(var key in spell) {
+                if(!newSpell[key]) newSpell[key] = spell[key];
+            }
+
+            // Don't store the spellID
+            delete newSpell.ID;
+
+            // Fixup levels
+            newSpell.RequiredLevel = 1;
+            newSpell.LevelsBetweenUpgrades = 2;
+
+            // Store it
+            toStore[spellName + '_lvl1'] = newSpell;
+
+            // Generate language for this spell
+            for(var key in english) {
+                if(key.indexOf(spellName) != -1) {
+                    var newStr = key.replace(spellName, spellName + suffix);
+                    generateLanguageAfter(newStr, key, '');
+                }
+            }
+        }
+    }
+
+    // Store them
+    for(var key in toStore) {
+        customAbilities[key] = toStore[key];
+    }
+
+    for(var i=0; i<generateAfter.length; ++i) {
+        var g = generateAfter[i];
+        generateLanguage(g[0], g[1], g[2]);
+    }
+    clearGenerateAfter();
+
+    console.log('Done!');
+
+    // Continue
+    if(next) next();
 }
 
 /*
@@ -1053,46 +1151,51 @@ function toKV(obj, key) {
 prepareLanguageFiles(function() {
     // Load our custom units
     loadCustomUnits(function() {
-        // Load items
-        loadItems(function() {
-            // Load our custom items
-            loadCustomItems(function() {
-                // Load our custom abilities
-                loadCustomAbilities(function() {
-                    // Generate the custom item abilities
-                    generateAbilityItems(function() {
-                        // Generate our precache data
-                        generatePrecacheData(function() {
-                            doCSP(function() {
-                                // Output language files
-                                for(var i=0; i<langs.length; ++i) {
-                                    (function(lang) {
-                                        fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+        // Load abilities
+        loadAbilities(function() {
+            // Load items
+            loadItems(function() {
+                // Load our custom items
+                loadCustomItems(function() {
+                    // Load our custom abilities
+                    loadCustomAbilities(function() {
+                        // Generate the custom item abilities
+                        generateAbilityItems(function() {
+                            // Generate our precache data
+                            generatePrecacheData(function() {
+                                doCSP(function() {
+                                    doLvl1Ults(function() {
+                                        // Output language files
+                                        for(var i=0; i<langs.length; ++i) {
+                                            (function(lang) {
+                                                fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                                                    if (err) throw err;
+
+                                                    console.log('Finished saving ' + lang + '!');
+                                                });
+                                            })(langs[i]);
+                                        }
+
+                                        // Output custom files
+
+                                        fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
                                             if (err) throw err;
 
-                                            console.log('Finished saving ' + lang + '!');
+                                            console.log('Done saving custom abilities file!');
                                         });
-                                    })(langs[i]);
-                                }
 
-                                // Output custom files
+                                        fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
+                                            if (err) throw err;
 
-                                fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
-                                    if (err) throw err;
+                                            console.log('Done saving custom items file!');
+                                        });
 
-                                    console.log('Done saving custom abilities file!');
-                                });
+                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
+                                            if (err) throw err;
 
-                                fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
-                                    if (err) throw err;
-
-                                    console.log('Done saving custom items file!');
-                                });
-
-                                fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
-                                    if (err) throw err;
-
-                                    console.log('Done saving custom units file!');
+                                            console.log('Done saving custom units file!');
+                                        });
+                                    });
                                 });
                             });
                         });

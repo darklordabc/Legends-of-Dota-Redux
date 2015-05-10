@@ -244,12 +244,27 @@ function skillManager:ShowSet(hero, number)
 end
 
 -- Returns a multiplier skill name, if it exists
-function skillManager:GetMultiplierSkillName(skillName, mult)
+function skillManager:GetMultiplierSkillName(skillName, mult, useLevel1ults)
     -- Check that we are actually doing a multiplier
     if mult and mult ~= 1 then
+        if useLevel1ults then
+            -- Check if the multiplier skill exists with lvl1 ult
+            if multiplierSkills[skillName..'_'..mult..'_lvl1'] then
+                return skillName..'_'..mult..'_lvl1'
+            end
+        end
+
         -- Check if the multiplier skill exists
         if multiplierSkills[skillName..'_'..mult] then
             return skillName..'_'..mult
+        end
+    end
+
+    -- Check if the lvl1  ult skill exists
+    if useLevel1ults then
+        -- Check if the multiplier skill exists
+        if multiplierSkills[skillName..'_lvl1'] then
+            return skillName..'_lvl1'
         end
     end
 
@@ -258,7 +273,7 @@ function skillManager:GetMultiplierSkillName(skillName, mult)
 end
 
 local inSwap = false
-function skillManager:ApplyBuild(hero, build, mult)
+function skillManager:ApplyBuild(hero, build, mult, useLevel1ults)
     -- Ensure the hero isn't nil
     if hero == nil or not hero:IsAlive() then return end
 
@@ -479,7 +494,7 @@ function skillManager:ApplyBuild(hero, build, mult)
             -- Precache
             precacheSkill(v)
 
-            local multV = self:GetMultiplierSkillName(v, mult)
+            local multV = self:GetMultiplierSkillName(v, mult, useLevel1ults)
             if isRealHero then
                 -- Check for a bot
                 if PlayerResource:IsFakeClient(playerID) then
@@ -557,7 +572,7 @@ function skillManager:ApplyBuild(hero, build, mult)
             local inSlot = abs[i]
 
             -- Grab the multiplied skill
-            local seekAbility = self:GetMultiplierSkillName(v, mult)
+            local seekAbility = self:GetMultiplierSkillName(v, mult, useLevel1ults)
             if isRealHero then
                 -- Check for a bot
                 if PlayerResource:IsFakeClient(playerID) then
