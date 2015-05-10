@@ -330,6 +330,10 @@
       "pudge_meat_hook":{
          "hook_width":true
       },
+      "nyx_assassin_burrow":{
+         "damage_reduction":true,
+         "burrow_delay":true
+      },
       "lycan_shapeshift": {
          "speed":true
       },
