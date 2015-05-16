@@ -284,7 +284,7 @@ function skillManager:GetMultiplierSkillName(skillName)
 end
 
 local inSwap = false
-function skillManager:ApplyBuild(hero, build)
+function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- Ensure the hero isn't nil
     if hero == nil or not hero:IsAlive() then return end
 
@@ -472,7 +472,7 @@ function skillManager:ApplyBuild(hero, build)
         table.insert(abs, v)
     end
 
-    local isTower = towerClasses[hero:GetClassname()]
+    local isTower = towerClasses[hero:GetClassname()] or autoLevelSkills
 
     if isRealHero then
         -- Ensure this player has an active skill list

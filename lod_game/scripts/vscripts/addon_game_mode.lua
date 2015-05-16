@@ -117,6 +117,8 @@ setTowerOwnership = stub
 addExtraTowers = stub
 applyTowerSkills = stub
 applyBuildingSkills = stub
+prepareCreepSkills = stub
+applyCreepSkills = stub
 levelSpiritSkills = stub
 tranAbility = stub
 transHero = stub
@@ -2301,6 +2303,9 @@ function lod:OnThink()
         -- Apply the building skills
         applyBuildingSkills()
 
+        -- Prepare creep skills
+        prepareCreepSkills()
+
         -- Upgrade towers
         upgradeTowers()
 
@@ -2632,6 +2637,40 @@ applyBuildingSkills = function()
     print('Done allocating building skills!')
 end
 
+-- Prepares creep skills
+prepareCreepSkills = function()
+    -- Ensure there isn't one sided building skills
+    if not creepSkills[DOTA_TEAM_BADGUYS] then
+        if creepSkills[DOTA_TEAM_GOODGUYS] then
+            creepSkills[DOTA_TEAM_BADGUYS] = {}
+            for k,v in pairs(creepSkills[DOTA_TEAM_GOODGUYS]) do
+                creepSkills[DOTA_TEAM_BADGUYS][k] = v
+            end
+        end
+    end
+
+    if not creepSkills[DOTA_TEAM_GOODGUYS] then
+        if creepSkills[DOTA_TEAM_BADGUYS] then
+            creepSkills[DOTA_TEAM_GOODGUYS] = {}
+            for k,v in pairs(creepSkills[DOTA_TEAM_BADGUYS]) do
+                creepSkills[DOTA_TEAM_GOODGUYS][k] = v
+            end
+        end
+    end
+end
+
+-- Applies skills onto the given creep
+applyCreepSkills = function(creep)
+    -- Ensure building skills are allowed
+    if not OptionManager:GetOption('allowCreepSkills') then return end
+
+    local team = creep:GetTeam()
+    local skillz = creepSkills[team]
+    if skillz then
+        SkillManager:ApplyBuild(creep, skillz, true)
+    end
+end
+
 -- When a hero spawns
 local specialAddedSkills = {}
 local mainHeros = {}
@@ -2842,6 +2881,9 @@ ListenToGameEvent('npc_spawned', function(keys)
                 buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
             end
         end
+
+        -- Apply creep skills
+        applyCreepSkills(spawnedUnit)
     end
 end, nil)
 
