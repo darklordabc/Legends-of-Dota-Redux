@@ -446,8 +446,8 @@
       "batrider_sticky_napalm":{
          "radius":true,
          "duration":true,
-         "max_stacks":true,
-         "turn_rate_pct":true
+         "turn_rate_pct":true,
+         "damage":true
       },
       "batrider_flamebreak":{
          "explosion_radius":true,
