@@ -52,7 +52,7 @@ end
 require('lib.loadhelper')
 
 -- Init utilities
-require('util')
+local util = require('util')
 
 -- Load hax
 require('hax')
@@ -61,7 +61,10 @@ require('hax')
 require('survival')
 
 -- Load specific modules
-local SkillManager = require('SkillManager')
+local Constants = require('constants')
+local SkillManager = require('skillmanager')
+local OptionManager = require('optionmanager')
+local SpellFixes = require('spellfixes')
 local Timers = require('easytimers')
 
 --[[
@@ -76,8 +79,6 @@ isPassive = stub
 isPlayerOnValidTeam = stub
 isValidSkill = stub
 isValidHeroName = stub
-isChannelled = stub
-isTargetSpell = stub
 getMulticastDelay = stub
 getSkillID = stub
 isValidSlot = stub
@@ -115,6 +116,7 @@ fireLockChange = stub
 setTowerOwnership = stub
 addExtraTowers = stub
 applyTowerSkills = stub
+applyBuildingSkills = stub
 levelSpiritSkills = stub
 tranAbility = stub
 transHero = stub
@@ -129,95 +131,13 @@ handleHeroBuffing = stub
 getHealthBuffer = stub
 
 --[[
-    SETTINGS
+    Constants mostly
 ]]
-
--- Banning Period (2 minutes)
-local banningTime = 60 * 2
-
--- Hero picking time
-local heroBanningTime = 60
-
--- Picking Time (3 minutes)
-local pickingTime = 60 * 3
-
--- Should we use slave voting, set ID = -1 for no
--- Set to the ID of the player who is the master
-local slaveID = -1
-
--- Enable hero banning?
-local enableHeroBanning = false
-
---[[
-    VOTEABLE OPTIONS
-]]
-
--- Custom Spell Power (Multiplies the power of things)
-local customSpellPower = 1
-local customItemPower = 1
-
--- Buffing
-local buffHeroes = 0
-local buffTowers = 0
-local buffBuildings = 0
-local buffCreeps = 0
-local buffNeutralCreeps = 0
-
--- Total number of skill slots to allow
-local maxSlots = 6
-
--- Total number of normal skills to allow
-local maxSkills = 6
-
--- Total number of ults to allow (Ults are always on the right)
-local maxUlts = 2
-
--- Should we ban troll combos?
-local banTrollCombos = true
-
--- The starting level
-local startingLevel = 1
-
--- The amount of bonus gold to award players
-local bonusGold = 0
-
--- Should we turn easy mode on?
-local useEasyMode = true
-
--- Are users allowed to pick skills?
-local allowedToPick = true
-
--- Should we force random heroes?
-local forceRandomHero = false
-
--- Enable WTF Mode?
-local wtfMode = false
-
--- Enable Universal shop mode
-local universalShop = false
-
--- Enable fast jungle mode
-local fastJungleCreeps = false
-
--- All vision
-local allVision = false
-
--- Multicast Madness
-local multicastMadness = false
-
--- Max level
-local maxHeroLevel = 25
 
 -- Unique skills constants
 local UNIQUE_SKILLS_NONE = 0
 local UNIQUE_SKILLS_TEAM = 1
 local UNIQUE_SKILLS_GLOBAL = 2
-
--- Force unique skills?
-local forceUniqueSkills = UNIQUE_SKILLS_NONE
-
--- Allow the passives on skills to be used
-local allowItemModifers = true
 
 -- List of tabs to allow
 local allowedTabs = {
@@ -231,54 +151,19 @@ local allowedTabs = {
 -- String version of allowed tabs
 local allowedTabsString = ''
 
--- Allow bear and tower skills?
-local allowBearSkills = false
-local allowTowerSkills = false
-local allowBuildingSkills = false
-local allowCreepSkills = false
-
--- Respawn modifier
-local respawnModifier = 0
-
--- Give a free scepter?
-local freeScepter = false
-
--- Should we load survival gamemode?
-local loadSurvival = false
-
 -- Free courier
 local FREE_COURIER_NONE = 0
 local FREE_COURIER_WALKING = 1
 local FREE_COURIER_FLYING = 2
-local freeCourier = FREE_COURIER_FLYING
-
--- Number of towers in the middle of a lane
-local middleTowers = 1
-
--- Should we prevent fountain camping?
-local preventFountainCamping = false
-
--- Lvl1 ults
-local useLevel1ults = false
 
 --[[
     GAMEMODE STUFF
 ]]
 
--- Max number of bans
-local maxBans = 5
-local maxHeroBans = 2
-
--- Host banning mode?
-local hostBanning = false
-
 -- Balance constants
 local BALANCE_NONE = 0
 local BALANCE_BASIC = 1
 local BALANCE_EXTENDED = 2
-
--- Which balance mode to use
-balanceMode = BALANCE_BASIC
 
 -- Stage constants
 local STAGE_WAITING = 0
@@ -294,9 +179,6 @@ local GAMEMODE_SD = 2   -- Single Draft
 local GAMEMODE_MD = 3   -- Mirror Draft
 local GAMEMODE_AR = 4   -- All Random
 
--- The gamemode
-local gamemode = GAMEMODE_AP    -- Set default gamemode
-
 -- Skill list constants
 local SKILL_LIST_YOUR = 1
 local SKILL_LIST_BEAR = 2
@@ -309,15 +191,6 @@ local validInterfaces = {
     [SKILL_LIST_YOUR] = true,
     [SKILL_LIST_BEAR] = true,
 }
-
--- Enable cycling builds
-local cyclingBuilds = false
-
--- Are we using the draft arrays -- This will allow players to only pick skills from white listed heroes
-local useDraftArray = true
-
--- How many heroes should the game auto allocate if we're using the draft array?
-local autoDraftHeroNumber = 10
 
 -- The current stage we are in
 local currentStage = STAGE_WAITING
@@ -387,110 +260,6 @@ local SPLIT_CHAR = string.char(7)
 local SERVER_COMMAND = 0x10000000
 local CLIENT_COMMAND = 268435456--0x80000000
 
--- EXP Needed for each level
-local XP_PER_LEVEL_TABLE = {
-    0,-- 1
-    200,-- 2
-    500,-- 3
-    900,-- 4
-    1400,-- 5
-    2000,-- 6
-    2600,-- 7
-    3200,-- 8
-    4400,-- 9
-    5400,-- 10
-    6000,-- 11
-    8200,-- 12
-    9000,-- 13
-    10400,-- 14
-    11900,-- 15
-    13500,-- 16
-    15200,-- 17
-    17000,-- 18
-    18900,-- 19
-    20900,-- 20
-    23000,-- 21
-    25200,-- 22
-    27500,-- 23
-    29900,-- 24
-    32400, -- 25
-    35000,-- 26
-    37700,-- 27
-    40500,-- 28
-    43400,-- 29
-    46400,-- 30
-    49500,-- 31
-    52700,-- 32
-    56000,-- 33
-    59400,-- 34
-    62900,-- 35
-    66500,-- 36
-    70200,-- 37
-    74000,-- 38
-    77900,-- 39
-    81900,-- 40
-    86000,-- 41
-    90200,-- 42
-    94500,-- 43
-    98900,-- 44
-    103400,-- 45
-    108000,-- 46
-    112700,-- 47
-    117500,-- 48
-    122400,-- 49
-    127400,-- 50
-    132500,-- 51
-    137700,-- 52
-    143000,-- 53
-    148400,-- 54
-    153900,-- 55
-    159500,-- 56
-    165200,-- 57
-    171000,-- 58
-    176900,-- 59
-    182900,-- 60
-    189000,-- 61
-    195200,-- 62
-    201500,-- 63
-    207900,-- 64
-    214400,-- 65
-    221000,-- 66
-    227700,-- 67
-    234500,-- 68
-    241400,-- 69
-    248400,-- 70
-    255500,-- 71
-    262700,-- 72
-    270000,-- 73
-    277400,-- 74
-    284900,-- 75
-    292500,-- 76
-    300200,-- 77
-    308000,-- 78
-    315900,-- 79
-    323900,-- 80
-    332000,-- 81
-    340200,-- 82
-    348500,-- 83
-    356900,-- 84
-    365400,-- 85
-    374000,-- 86
-    382700,-- 87
-    391500,-- 88
-    400400,-- 89
-    409400,-- 90
-    418500,-- 91
-    427700,-- 92
-    437000,-- 93
-    446400,-- 94
-    455900,-- 95
-    465500,-- 96
-    475200,-- 97
-    485000,-- 98
-    494900,-- 99
-    504900,-- 100
-}
-
 --[[
     LOAD EXTERNAL OPTIONS
 ]]
@@ -498,6 +267,7 @@ local XP_PER_LEVEL_TABLE = {
 -- Check for options module
 local patchOptions = false
 if Options then
+    --[[ CURRENTLY NOT NEEDED, RECODE THIS IF NEEDED
     -- Woot, load the options :)
     patchOptions = true
 
@@ -533,7 +303,7 @@ if Options then
 
     -- Remove banning time if no bans are allowed
     if maxBans <= 0 then
-        banningTime = 0
+        OptionManager:SetOption('banningTime', 0)
     end
 
     startingLevel = tonumber(Options.getOption('lod', STARTING_LEVEL, startingLevel))
@@ -541,7 +311,7 @@ if Options then
 
     useEasyMode = tonumber(Options.getOption('lod', EASY_MODE, 0)) == 1
     banTrollCombos = tonumber(Options.getOption('lod', TROLL_MODE, 0)) == 0
-    hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1
+    hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1]]
 else
     -- Are we using GDS option?
     if GDSOptions then
@@ -558,45 +328,48 @@ else
                 if currentStage > STAGE_VOTING then return end
 
                 -- Attempt to pull the slaveID
-                if slaveID == -1 then
-                    slaveID = loadhelper.getHostID()
+                if OptionManager:GetOption('slaveID') == -1 then
+                    OptionManager:SetOption('slaveID', loadhelper.getHostID())
                 end
 
-                if slaveID == -1 then
+                if OptionManager:GetOption('slaveID') == -1 then
                     print('Option loading failed, slaveID == -1')
                     return
                 end
 
                 -- Set settings go go go
-                gamemode = tonumber(GDSOptions.getOption('gamemode', 2))
+                OptionManager:setOption('gamemode', tonumber(GDSOptions.getOption('gamemode', 2)))
 
-                maxSlots = tonumber(GDSOptions.getOption('maxslots', 2))
-                maxSkills = tonumber(GDSOptions.getOption('maxskills', 2))
-                maxUlts = tonumber(GDSOptions.getOption('maxults', 2))
+                OptionManager:setOption('maxSlots', tonumber(GDSOptions.getOption('maxslots', 2)))
+                OptionManager:setOption('maxSkills', tonumber(GDSOptions.getOption('maxskills', 2)))
+                OptionManager:setOption('maxUlts', tonumber(GDSOptions.getOption('maxults', 2)))
 
-                maxBans = tonumber(GDSOptions.getOption('maxbans', 5))
+                OptionManager:setOption('maxBans', tonumber(GDSOptions.getOption('maxbans', 5)))
 
-                forceUniqueSkills = tonumber(GDSOptions.getOption('uniqueskills', 2))
+                OptionManager:setOption('forceUniqueSkills', tonumber(GDSOptions.getOption('uniqueskills', 2)))
 
-                banTrollCombos = GDSOptions.getOption('blocktrollcombos', true)
-                useEasyMode = GDSOptions.getOption('useeasymode', false)
-                hideSkills = GDSOptions.getOption('hideenemypicks', true)
+                OptionManager:setOption('banTrollCombos', GDSOptions.getOption('blocktrollcombos', true))
+                OptionManager:setOption('useEasyMode', GDSOptions.getOption('useeasymode', false))
+                OptionManager:setOption('hideSkills', GDSOptions.getOption('hideenemypicks', true))
 
-                startingLevel = tonumber(GDSOptions.getOption('startinglevel', 0))
-                bonusGold = tonumber(GDSOptions.getOption('bonusstartinggold', 0))
+                OptionManager:setOption('startingLevel', tonumber(GDSOptions.getOption('startinglevel', 0)))
+                OptionManager:setOption('bonusGold', tonumber(GDSOptions.getOption('bonusstartinggold', 0)))
+
+                -- Grab the slaveID
+                local slaveID = OptionManager:GetOption('slaveID')
 
                 voteData[slaveID] = voteData[slaveID] or {}
-                voteData[slaveID][0] = valueToOption(0, gamemode)
-                voteData[slaveID][1] = valueToOption(1, maxSlots)
-                voteData[slaveID][2] = valueToOption(2, maxSkills)
-                voteData[slaveID][3] = valueToOption(3, maxUlts)
-                voteData[slaveID][4] = valueToOption(4, maxBans)
-                voteData[slaveID][5] = valueToOption(5, (banTrollCombos and 1) or 0)
-                voteData[slaveID][6] = valueToOption(6, startingLevel)
-                voteData[slaveID][7] = valueToOption(7, (useEasyMode and 1) or 0)
-                voteData[slaveID][8] = valueToOption(8, (hideSkills and 1) or 0)
-                voteData[slaveID][9] = valueToOption(9, bonusGold)
-                voteData[slaveID][10] = valueToOption(10, forceUniqueSkills)
+                voteData[slaveID][0] = valueToOption(0, OptionManager:GetOption('gamemode'))
+                voteData[slaveID][1] = valueToOption(1, OptionManager:GetOption('maxSlots'))
+                voteData[slaveID][2] = valueToOption(2, OptionManager:GetOption('maxSkills'))
+                voteData[slaveID][3] = valueToOption(3, OptionManager:GetOption('maxUlts'))
+                voteData[slaveID][4] = valueToOption(4, OptionManager:GetOption('maxBans'))
+                voteData[slaveID][5] = valueToOption(5, (OptionManager:GetOption('banTrollCombos') and 1) or 0)
+                voteData[slaveID][6] = valueToOption(6, OptionManager:GetOption('startingLevel'))
+                voteData[slaveID][7] = valueToOption(7, (OptionManager:GetOption('useEasyMode') and 1) or 0)
+                voteData[slaveID][8] = valueToOption(8, (OptionManager:GetOption('hideSkills') and 1) or 0)
+                voteData[slaveID][9] = valueToOption(9, OptionManager:GetOption('bonusGold'))
+                voteData[slaveID][10] = valueToOption(10, OptionManager:GetOption('forceUniqueSkills'))
             end)
         else
             -- Disable it
@@ -642,8 +415,6 @@ local SLOT_TYPE_NEITHER = '4'
 
 -- Ban List
 local banList = {}
-local noMulticast = {}
-local noWitchcraft = {}
 local wtfAutoBan = {}
 local noTower = {}
 local noTowerAlways = {}
@@ -656,8 +427,7 @@ local noHero = {}
     local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
 
     -- Store no multicast
-    noMulticast = tempBanList.noMulticast
-    noWitchcraft = tempBanList.noWitchcraft
+    SpellFixes:SetNoCasting(tempBanList.noMulticast, tempBanList.noWitchcraft)
     noTower = tempBanList.noTower
     noTowerAlways = tempBanList.noTowerAlways
     noBear = tempBanList.noBear
@@ -786,23 +556,7 @@ for k,v in pairs(abs) do
 end
 
 -- Create list of spells with certain attributes
-local chanelledSpells = {}
-local targetSpells = {}
-for k,v in pairs(abs) do
-    if k ~= 'Version' and k ~= 'ability_base' then
-        if v.AbilityBehavior then
-            -- Check if this spell is channelled
-            if string.match(v.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_CHANNELLED') then
-                chanelledSpells[k] = true
-            end
-
-            -- Check if this spell is target based
-            if string.match(v.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_UNIT_TARGET') then
-                targetSpells[k] = true
-            end
-        end
-    end
-end
+util:SetupSpellProperties(abs)
 
 -- Load the hero KV file
 local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
@@ -909,35 +663,6 @@ isValidHeroName = function(heroName)
     return false
 end
 
--- Tells you if a given spell is channelled or not
-isChannelled = function(skillName)
-    if chanelledSpells[skillName] then
-        return true
-    end
-
-    return false
-end
-
--- Tells you if a given spell is target based one or not
-isTargetSpell = function(skillName)
-    if targetSpells[skillName] then
-        return true
-    end
-
-    return false
-end
-
--- Function to work out if we can multicast with a given spell or not
-canMulticast = function(skillName)
-    -- No banned multicast spells
-    if noMulticast[skillName] then
-        return false
-    end
-
-    -- Must be a valid spell
-    return true
-end
-
 -- Returns the ID for a skill, or -1
 getSkillID = function(skillName)
     if skillName == nil then return -1 end
@@ -953,7 +678,7 @@ end
 isValidSlot = function(slotNumber)
     if slotNumber == nil then return false end
 
-    if slotNumber < 0 or slotNumber >= maxSlots then return false end
+    if slotNumber < 0 or slotNumber >= OptionManager:GetOption('maxSlots') then return false end
     return true
 end
 
@@ -1082,7 +807,7 @@ end
 
 -- Checks if the player already has this skill
 alreadyHas = function(skillList, skill)
-    for i=1,maxSlots do
+    for i=1,OptionManager:GetOption('maxSlots') do
         if skillList[i] == skill then
             return true
         end
@@ -1098,8 +823,8 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
     end
 
     -- Check for uniqye skills
-    if not allowBearSkills or not skillName == 'lone_druid_spirit_bear' then
-        if forceUniqueSkills == UNIQUE_SKILLS_TEAM then
+    if not OptionManager:GetOption('allowBearSkills') or not skillName == 'lone_druid_spirit_bear' then
+        if OptionManager:GetOption('forceUniqueSkills') == UNIQUE_SKILLS_TEAM then
             -- Team based unqiue skills
             local team = PlayerResource:GetTeam(playerID)
 
@@ -1121,7 +846,7 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
                     end
                 end
             end
-        elseif forceUniqueSkills == UNIQUE_SKILLS_GLOBAL then
+        elseif OptionManager:GetOption('forceUniqueSkills') == UNIQUE_SKILLS_GLOBAL then
             -- Global unique skills
             for playerID2,skillLists3 in pairs(skillList) do
                 for interface,_ in pairs(skillLists3) do
@@ -1142,7 +867,7 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
     end
 
     -- Are we using the draft array?
-    if useDraftArray then
+    if OptionManager:GetOption('useDraftArray') then
         -- Ensure this player has a drafting array
         draftArray[playerID] = draftArray[playerID] or {}
 
@@ -1156,9 +881,9 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
     end
 
     -- Should we ban troll combos?
-    if banTrollCombos then
+    if OptionManager:GetOption('banTrollCombos') then
         -- Check if they actually already have this skill
-        for i=1,maxSlots do
+        for i=1,OptionManager:GetOption('maxSlots') do
             if skillList2[i] == skillName then
                 return '#lod_already_in_draft', {
                     getSpellIcon(skillName),
@@ -1169,7 +894,7 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
 
         if banList[skillName] then
             -- Loop over all our slots
-            for i=1,maxSlots do
+            for i=1,OptionManager:GetOption('maxSlots') do
                 -- Ignore the skill in our current slot
                 if i ~= slotNumber then
                     -- Check the banned combo
@@ -1187,7 +912,7 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
     end
 
     -- Dont allow multicast when madness is on
-    if multicastMadness and skillName == 'ogre_magi_multicast_lod' then
+    if OptionManager:GetOption('multicastMadness') and skillName == 'ogre_magi_multicast_lod' then
         return '#lod_multicast_no_multicast'
     end
 end
@@ -1206,16 +931,16 @@ setupSlotType = function(playerID)
     end
 
     -- Put stuff in
-    for j=0,maxSlots-1 do
+    for j=0,OptionManager:GetOption('maxSlots')-1 do
         -- Workout if we can allow an ulty, or a skill in the given slot
         local skill = false
         local ult = false
 
-        if j < maxSkills then
+        if j < OptionManager:GetOption('maxSkills') then
             skill = true
         end
 
-        if j >= maxSlots-maxUlts then
+        if j >= OptionManager:GetOption('maxSlots')-OptionManager:GetOption('maxUlts') then
             ult = true
         end
 
@@ -1327,7 +1052,7 @@ validateBuild = function(playerID)
     -- Loop over all slots
     for interface,_ in pairs(validInterfaces) do
         skillList[playerID][interface] = skillList[playerID][interface] or {}
-        for j=0,maxSlots-1 do
+        for j=0,OptionManager:GetOption('maxSlots')-1 do
             -- Do they have a skill in this slot?
             if not skillList[playerID][interface][j+1] then
                 local msg, skillName = findRandomSkill(playerID, interface, j)
@@ -1356,7 +1081,7 @@ fixBuilds = function()
             local build = skillList[playerID][SKILL_LIST_YOUR]
 
             -- Apply the build
-            SkillManager:ApplyBuild(k, build, customSpellPower, useLevel1ults)
+            SkillManager:ApplyBuild(k, build)
 
             -- Store playerID has handled
             handledPlayerIDs[playerID] = true
@@ -1372,7 +1097,7 @@ slotTypeString = function (playerID, interface)
     if not slotTypes[playerID] or (interface and not slotTypes[playerID][interface]) then return '' end
 
     local str = ''
-    for j=0,maxSlots-1 do
+    for j=0,OptionManager:GetOption('maxSlots')-1 do
         if interface then
             str = str..slotTypes[playerID][interface][j]
         else
@@ -1387,71 +1112,72 @@ end
 printOptionsToPlayer = function(playerID)
     -- Announce results
     sendChatMessage(playerID, '#lod_results', {
-        maxSlots,
-        maxSkills,
-        ((maxSkills == 1 and '#lod_ability') or '#lod_abilities'),
-        maxUlts,
+        OptionManager:GetOption('maxSlots'),
+        OptionManager:GetOption('maxSkills'),
+        ((OptionManager:GetOption('maxSkills') == 1 and '#lod_ability') or '#lod_abilities'),
+        OptionManager:GetOption('maxUlts'),
         ((maxUlts == 1 and '#lod_ ability') or '#lod_abilities'),
-        ((banTrollCombos and '#lod_BANNED') or '#lod_ALLOWED'),
-        startingLevel,
-        bonusGold,
-        maxHeroLevel
+        ((OptionManager:GetOption('banTrollCombos') and '#lod_BANNED') or '#lod_ALLOWED'),
+        OptionManager:GetOption('startingLevel'),
+        OptionManager:GetOption('bonusGold'),
+        OptionManager:GetOption('maxHeroLevel')
     })
 
     -- Announce which gamemode we're playing
     sendChatMessage(playerID, '#lod_gamemode', {
-        '#lod_gamemode'..gamemode
+        '#lod_gamemode'..OptionManager:GetOption('gamemode')
     })
 
     -- Are we using easy mode?
-    if useEasyMode then
+    if OptionManager:GetOption('useEasyMode') then
         -- Tell players
         sendChatMessage(playerID, '#lod_easy_mode')
     end
 
     -- Are we using unique skills?
-    if forceUniqueSkills > 0 then
+    if OptionManager:GetOption('forceUniqueSkills') > 0 then
         sendChatMessage(playerID, '#lod_unique_skills', {
-            ((forceUniqueSkills == UNIQUE_SKILLS_TEAM and '#lod_us_team_based') or (forceUniqueSkills == UNIQUE_SKILLS_GLOBAL and '#lod_us_global'))
+            ((OptionManager:GetOption('forceUniqueSkills') == UNIQUE_SKILLS_TEAM and '#lod_us_team_based') or (OptionManager:GetOption('forceUniqueSkills') == UNIQUE_SKILLS_GLOBAL and '#lod_us_global'))
         })
     end
 
     -- WTF Mode stuff
-    if wtfMode then
+    if OptionManager:GetOption('wtfMode') then
         sendChatMessage(playerID, '#lod_wtf')
     end
 
     -- Universal Shop
-    if universalShop then
+    if OptionManager:GetOption('universalShop') then
         sendChatMessage(playerID, '#lod_universal_shop')
     end
 
     -- Fast Jungle
-    if fastJungleCreeps then
+    if OptionManager:GetOption('fastJungleCreeps') then
         sendChatMessage(playerID, '#lod_fast_jungle_creeps')
     end
 
     -- All Vision
-    if allVision then
+    if OptionManager:GetOption('allVision') then
         sendChatMessage(playerID, '#lod_all_vision')
     end
 
     -- Multicast madness
-    if multicastMadness then
+    if OptionManager:GetOption('multicastMadness') then
         sendChatMessage(playerID, '#lod_multicast_madness')
     end
 
     -- Fast Scepter
-    if freeScepter then
+    if OptionManager:GetOption('freeScepter') then
         sendChatMessage(playerID, '#lod_fast_scepter')
     end
 
     -- Survival
-    if loadSurvival then
+    if OptionManager:GetOption('loadSurvival') then
         sendChatMessage(playerID, '#lod_survival')
     end
 
     -- Respawn Timer
+    local respawnModifier = OptionManager:GetOption('respawnModifier')
     if respawnModifier ~= 0 then
         if respawnModifier < 0 then
             sendChatMessage(playerID, '#lod_respawn_modifier_constant', {
@@ -1470,33 +1196,33 @@ printOptionsToPlayer = function(playerID)
     -- Tell the user which mode it is
     if currentStage == STAGE_BANNING then
         -- Banning mode
-        if not hostBanning then
+        if not OptionManager:GetOption('hostBanning') then
             sendChatMessage(playerID, '#lod_banning', {
                 math.ceil(endOfTimer-Time()),
-                maxBans
+                OptionManager:GetOption('maxBans')
             })
         else
             if playerID ~= -1 then
                 -- Tell other players to sit tight
-                if slaveID ~= playerID then
+                if OptionManager:GetOption('slaveID') ~= playerID then
                     sendChatMessage(playerID, '#lod_host_banning')
                 else
                     -- Send banning info to main player
                     sendChatMessage(playerID, '#lod_banning', {
                         math.ceil(endOfTimer-Time()),
-                        maxBans
+                        OptionManager:GetOption('maxBans')
                     })
                 end
             else
                 -- Tell other players to sit tight
                 for i=0,9 do
-                    if slaveID ~= i then
+                    if OptionManager:GetOption('slaveID') ~= i then
                         sendChatMessage(i, '#lod_host_banning')
                     else
                         -- Send banning info to main player
                         sendChatMessage(-1, '#lod_banning', {
                             math.ceil(endOfTimer-Time()),
-                            maxBans
+                            OptionManager:GetOption('maxBans')
                         })
                     end
                 end
@@ -1509,7 +1235,7 @@ printOptionsToPlayer = function(playerID)
         })
     end
 
-    if maxSlots > 6 then
+    if OptionManager:GetOption('maxSlots') > 6 then
         sendChatMessage(playerID, '#lod_slotWarning')
     end
 end
@@ -1517,24 +1243,24 @@ end
 -- Takes the current gamemode number, and sets the required settings
 setupGamemodeSettings = function()
     -- Default to not using the draft array
-    useDraftArray = false
+    OptionManager:SetOption('useDraftArray', false)
 
     -- Single Draft Mode
-    if gamemode == GAMEMODE_SD then
+    if OptionManager:GetOption('gamemode') == GAMEMODE_SD then
         -- We need the draft array for this
-        useDraftArray = true
+        OptionManager:SetOption('useDraftArray', true)
 
         -- We need some skills drafted for us
-        autoDraftHeroNumber = 10
+        OptionManager:SetOption('autoDraftHeroNumber', 10)
     end
 
     -- Mirror Draft Mode
-    if gamemode == GAMEMODE_MD then
+    if OptionManager:GetOption('gamemode') == GAMEMODE_MD then
         -- We need the draft array for this
-        useDraftArray = true
+        OptionManager:SetOption('useDraftArray', true)
 
         -- We need some skills drafted for us
-        autoDraftHeroNumber = 0
+        OptionManager:SetOption('autoDraftHeroNumber', 0)
 
         -- Number of heroes to pick from
         local totalHeroes = 10
@@ -1566,25 +1292,25 @@ setupGamemodeSettings = function()
     end
 
     -- All Random
-    if gamemode == GAMEMODE_AR then
+    if OptionManager:GetOption('gamemode') == GAMEMODE_AR then
         -- No picking time
-        pickingTime = 0
+        OptionManager:SetOption('pickingTime', 0)
 
         -- Users are not allowed to pick skills
-        allowedToPick = false
+        OptionManager:SetOption('allowedToPick', false)
 
         -- Force random heroes
-        forceRandomHero = true
+        OptionManager:SetOption('forceRandomHero', true)
 
         -- Players can still ban things though
     end
 
     -- Should we draft heroes for players?
-    if useDraftArray and autoDraftHeroNumber>0 then
+    if OptionManager:GetOption('useDraftArray') and OptionManager:GetOption('autoDraftHeroNumber')>0 then
         -- Pick random heroes for each player
         for i=0,9 do
             local total = 0
-            while total < autoDraftHeroNumber do
+            while total < OptionManager:GetOption('autoDraftHeroNumber') do
                 -- Pick a random heroID
                 local heroID = validHeroIDs[math.random(#validHeroIDs)]
 
@@ -1598,13 +1324,13 @@ setupGamemodeSettings = function()
     end
 
     -- Are we using easy mode?
-    if useEasyMode then
+    if OptionManager:GetOption('useEasyMode') then
         -- Enable it
         Convars:SetInt('dota_easy_mode', 1)
     end
 
     -- WTF Mode stuff
-    if wtfMode then
+    if OptionManager:GetOption('wtfMode') then
         -- Ban skills
         for k,v in pairs(wtfAutoBan) do
             bannedSkills[k] = true
@@ -1615,43 +1341,43 @@ setupGamemodeSettings = function()
     end
 
     -- Universal Shop
-    if universalShop then
+    if OptionManager:GetOption('universalShop') then
         GameRules:SetUseUniversalShopMode(true)
     end
 
     -- Fast creep spawning
-    if fastJungleCreeps then
+    if OptionManager:GetOption('fastJungleCreeps') then
         Convars:SetFloat('dota_neutral_spawn_interval', 0)
         Convars:SetFloat('dota_neutral_initial_spawn_delay', 1)
     end
 
     -- All Vision
-    if allVision then
+    if OptionManager:GetOption('allVision') then
         Convars:SetBool('dota_all_vision', true)
     end
 
-    if banningTime > 0 then
+    if OptionManager:GetOption('banningTime') > 0 then
         -- Move onto banning mode
         currentStage = STAGE_BANNING
 
         -- Store when the banning phase ends
-        endOfTimer = Time() + banningTime
+        endOfTimer = Time() + OptionManager:GetOption('banningTime')
     else
         -- Move onto selection mode
         currentStage = STAGE_PICKING
 
         -- Store when the banning phase ends
-        endOfTimer = Time() + pickingTime
+        endOfTimer = Time() + OptionManager:GetOption('pickingTime')
     end
 
     -- Load events?
-    if loadSurvival then
+    if OptionManager:GetOption('loadSurvival') then
         -- Load her up
         survival.InitSurvival()
     end
 
     -- Setup allowed tabs
-    GameRules.allowItemModifers = allowItemModifers
+    GameRules.allowItemModifers = OptionManager:GetOption('allowItemModifers')
 
     -- Build ability string
     buildAllowedTabsString()
@@ -1659,7 +1385,7 @@ setupGamemodeSettings = function()
     -- Build the ability list
     buildSkillListLookup()
 
-    if not allowBearSkills then
+    if not OptionManager:GetOption('allowBearSkills') then
         validInterfaces[SKILL_LIST_BEAR] = nil
     end
 
@@ -1676,7 +1402,7 @@ end
 -- Called when picking ends
 postGamemodeSettings = function()
     -- All Random
-    if gamemode == GAMEMODE_AR then
+    if OptionManager:GetOption('gamemode') == GAMEMODE_AR then
         -- Create random builds
 
         -- Loop over all players
@@ -1686,7 +1412,7 @@ postGamemodeSettings = function()
 
             -- Loop over all slots
             for interface,_ in pairs(validInterfaces) do
-                for j=0,maxSlots-1 do
+                for j=0,OptionManager:GetOption('maxSlots')-1 do
                     local msg, skillName = findRandomSkill(i, interface, j)
 
                     -- Did we find a valid skill?
@@ -1704,8 +1430,8 @@ end
 getOptionsString = function()
     local str = ''
 
-    for k,v in pairs(voteData[slaveID] or {}) do
-        str = str .. util.EncodeByte(k) .. util.EncodeByte(v)
+    for k,v in pairs(voteData[OptionManager:GetOption('slaveID')] or {}) do
+        str = str .. util:EncodeByte(k) .. util:EncodeByte(v)
     end
 
     return str
@@ -1801,70 +1527,70 @@ finishVote = function()
     end
 
     -- Multipliers
-    customSpellPower = optionToValue(26, winners[26])
-    customItemPower = optionToValue(27, winners[27])
+    OptionManager:SetOption('customSpellPower', optionToValue(26, winners[26]))
+    OptionManager:SetOption('customItemPower', optionToValue(27, winners[27]))
 
     -- Buffs
-    buffHeroes = optionToValue(32, winners[32])
-    buffTowers = optionToValue(33, winners[33])
-    buffBuildings = optionToValue(34, winners[34])
-    buffCreeps = optionToValue(35, winners[35])
-    buffNeutralCreeps = optionToValue(36, winners[36])
+    OptionManager:SetOption('buffHeroes', optionToValue(32, winners[32]))
+    OptionManager:SetOption('buffTowers', optionToValue(33, winners[33]))
+    OptionManager:SetOption('buffBuildings', optionToValue(34, winners[34]))
+    OptionManager:SetOption('buffCreeps', optionToValue(35, winners[35]))
+    OptionManager:SetOption('buffNeutralCreeps', optionToValue(36, winners[36]))
 
     -- Set options
-    maxSlots = optionToValue(1, winners[1])
-    maxSkills = optionToValue(2, winners[2])
-    maxUlts = optionToValue(3, winners[3])
+    OptionManager:SetOption('maxSlots', optionToValue(1, winners[1]))
+    OptionManager:SetOption('maxSkills', optionToValue(2, winners[2]))
+    OptionManager:SetOption('maxUlts', optionToValue(3, winners[3]))
 
     -- Balance mode
-    balanceMode = optionToValue(11, winners[11])
+    OptionManager:SetOption('balanceMode', optionToValue(11, winners[11]))
 
     -- Bans
-    hostBanning = false
-    maxBans = optionToValue(4, winners[4])
-    if maxBans == 0 then
+    OptionManager:SetOption('hostBanning', false)
+    OptionManager:SetOption('maxBans', optionToValue(4, winners[4]))
+    if OptionManager:GetOption('maxBans') == 0 then
         -- No banning phase
-        banningTime = 0
+        OptionManager:SetOption('banningTime', 0)
     end
-    if maxBans == -1 then
+    if OptionManager:GetOption('maxBans') == -1 then
         -- Host banning mode
-        hostBanning = true
-        maxBans = 100
-        maxHeroBans = 10
+        OptionManager:SetOption('hostBanning', true)
+        OptionManager:SetOption('maxBans', 100)
+        OptionManager:SetOption('maxHeroBans', 10)
     end
 
     -- Hide skills
-    hideSkills = optionToValue(8, winners[8]) == 1
+    OptionManager:SetOption('hideSkills', optionToValue(8, winners[8]) == 1)
 
     -- Block troll combos
-    banTrollCombos = optionToValue(5, winners[5]) == 1
+    OptionManager:SetOption('banTrollCombos', optionToValue(5, winners[5]) == 1)
 
     -- Grab the gamemode
-    gamemode = optionToValue(0, winners[0])
+    OptionManager:SetOption('gamemode', optionToValue(0, winners[0]))
 
     -- Grab the starting level
-    startingLevel = optionToValue(6, winners[6])
+    OptionManager:SetOption('startingLevel', optionToValue(6, winners[6]))
 
     -- Grab bonus gold
-    bonusGold = optionToValue(9, winners[9])
+    OptionManager:SetOption('bonusGold', optionToValue(9, winners[9]))
 
     -- Are we using easy mode?
-    useEasyMode = optionToValue(7, winners[7]) == 1
+    OptionManager:SetOption('useEasyMode', optionToValue(7, winners[7]) == 1)
 
     -- Are we using unique skills?
-    forceUniqueSkills = optionToValue(10, winners[10])
+    OptionManager:SetOption('forceUniqueSkills', optionToValue(10, winners[10]))
 
     -- Free courier
-    freeCourier = optionToValue(28, winners[28])
+    OptionManager:SetOption('freeCourier', optionToValue(28, winners[28]))
 
     -- Number of towers in each lane
-    middleTowers = optionToValue(29, winners[29])
+    OptionManager:SetOption('middleTowers', optionToValue(29, winners[29]))
 
     -- Prevent fountain camping?
-    preventFountainCamping = optionToValue(37, winners[37]) == 1
+    OptionManager:SetOption('preventFountainCamping', optionToValue(37, winners[37]) == 1)
 
     -- Use level 1 ults?
-    useLevel1ults = optionToValue(38, winners[38]) == 1
+    OptionManager:SetOption('useLevel1ults', optionToValue(38, winners[38]) == 1)
 
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
@@ -1875,74 +1601,74 @@ finishVote = function()
     allowedTabs.OP = optionToValue(15, winners[15]) == 1
 
     -- Should we allocate item modifiers?
-    allowItemModifers = allowedTabs.itemsPassive
+    OptionManager:SetOption('allowItemModifers', allowedTabs.itemsPassive)
 
     -- Custom bears / towers
-    allowBearSkills = optionToValue(16, winners[16]) == 1
-    allowTowerSkills = optionToValue(17, winners[17]) == 1
-    allowBuildingSkills = optionToValue(30, winners[30]) == 1
-    allowCreepSkills = optionToValue(31, winners[31]) == 1
+    OptionManager:SetOption('allowBearSkills', optionToValue(16, winners[16]) == 1)
+    OptionManager:SetOption('allowTowerSkills', optionToValue(17, winners[17]) == 1)
+    OptionManager:SetOption('allowBuildingSkills', optionToValue(30, winners[30]) == 1)
+    OptionManager:SetOption('allowCreepSkills', optionToValue(31, winners[31]) == 1)
 
     -- WTF Mode
-    wtfMode = optionToValue(18, winners[18]) == 1
+    OptionManager:SetOption('wtfMode', optionToValue(18, winners[18]) == 1)
 
     -- Universal shop mode
-    universalShop = optionToValue(19, winners[19]) == 1
+    OptionManager:SetOption('universalShop', optionToValue(19, winners[19]) == 1)
 
     -- Fast jungle
-    fastJungleCreeps = optionToValue(20, winners[20]) == 1
+    OptionManager:SetOption('fastJungleCreeps', optionToValue(20, winners[20]) == 1)
 
     -- All Vision
-    allVision = optionToValue(21, winners[21]) == 1
+    OptionManager:SetOption('allVision', optionToValue(21, winners[21]) == 1)
 
     -- Spawn modifier option
-    respawnModifier = optionToValue(22, winners[22])
+    OptionManager:SetOption('respawnModifier', optionToValue(22, winners[22]))
 
     -- Scepter upgrade
-    freeScepter = optionToValue(23, winners[23]) == 1
+    OptionManager:SetOption('freeScepter', optionToValue(23, winners[23]) == 1)
 
     -- Multicast madness
-    multicastMadness = optionToValue(24, winners[24]) == 1
+    OptionManager:SetOption('multicastMadness', optionToValue(24, winners[24]) == 1)
 
     -- Grab max level
-    maxHeroLevel = optionToValue(25, winners[25])
+    OptionManager:SetOption('maxHeroLevel', optionToValue(25, winners[25]))
 
     -- Enforce the max level
-    if startingLevel > maxHeroLevel then
-        startingLevel = maxHeroLevel
+    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
+        OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
     end
 
-    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_PER_LEVEL_TABLE)
-    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(maxHeroLevel)
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(Constants.XP_PER_LEVEL_TABLE)
+    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
     GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 
     -- Events
-    --loadSurvival = optionToValue(25, winners[25]) == 1
+    OptionManager:SetOption('loadSurvival', optionToValue(25, winners[25]) == 1)
 
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
-            useEasyMode = useEasyMode,
-            bonusGold = bonusGold,
-            startingLevel = startingLevel,
-            maxHeroLevel = maxHeroLevel,
-            gamemode = gamemode,
-            hideSkills = hideSkills,
-            banTrollCombos = banTrollCombos,
-            hostBanning = hostBanning,
-            maxBans = maxBans,
-            maxHeroBans = maxHeroBans,
-            banningTime = banningTime,
-            maxSlots = maxSlots,
-            maxSkills = maxSkills,
-            maxUlts = maxUlts,
+            useEasyMode = OptionManager:GetOption('useEasyMode'),
+            bonusGold = OptionManager:GetOption('bonusGold'),
+            startingLevel = OptionManager:GetOption('startingLevel'),
+            maxHeroLevel = OptionManager:GetOption('maxHeroLevel'),
+            gamemode = OptionManager:GetOption('gamemode'),
+            hideSkills = OptionManager:GetOption('hideSkills'),
+            banTrollCombos = OptionManager:GetOption('banTrollCombos'),
+            hostBanning = OptionManager:GetOption('hostBanning'),
+            maxBans = OptionManager:GetOption('maxBans'),
+            maxHeroBans = OptionManager:GetOption('maxHeroBans'),
+            banningTime = OptionManager:GetOption('banningTime'),
+            maxSlots = OptionManager:GetOption('maxSlots'),
+            maxSkills = OptionManager:GetOption('maxSkills'),
+            maxUlts = OptionManager:GetOption('maxUlts'),
 
-            forceUniqueSkills = forceUniqueSkills,
+            forceUniqueSkills = OptionManager:GetOption('forceUniqueSkills'),
 
-            allowBearSkills = allowBearSkills,
-            allowTowerSkills = allowTowerSkills,
-            allowBuildingSkills = allowBuildingSkills,
-            allowCreepSkills = allowCreepSkills,
+            allowBearSkills = OptionManager:GetOption('allowBearSkills'),
+            allowTowerSkills = OptionManager:GetOption('allowTowerSkills'),
+            allowBuildingSkills = OptionManager:GetOption('allowBuildingSkills'),
+            allowCreepSkills = OptionManager:GetOption('allowCreepSkills'),
 
             mainTab = allowedTabs.main,
             neutralTab = allowedTabs.neutral,
@@ -2036,6 +1762,7 @@ end
 local givenFreeCouriers = {}
 handleFreeCourier = function(hero)
     -- Free courier option
+    local freeCourier = OptionManager:GetOption('freeCourier')
     if freeCourier ~= FREE_COURIER_NONE then
         local team = hero:GetTeam()
         if not givenFreeCouriers[team] then
@@ -2074,7 +1801,7 @@ end
 -- Gives a free scepter
 handleFreeScepter = function(unit)
     -- Give free scepter
-    if freeScepter then
+    if OptionManager:GetOption('freeScepter') then
         unit:AddNewModifier(unit, nil, 'modifier_item_ultimate_scepter', {
             bonus_all_stats = 0,
             bonus_health = 0,
@@ -2086,9 +1813,9 @@ end
 -- Buffs a hero
 handleHeroBuffing = function(hero)
     -- Hero buffing
-    if buffHeroes > 0 then
+    if OptionManager:GetOption('buffHeroes') > 0 then
         local healthItem = getHealthBuffer()
-        healthItem:ApplyDataDrivenModifier(hero, hero, "modifier_health_mod_"..buffHeroes, {})
+        healthItem:ApplyDataDrivenModifier(hero, hero, "modifier_health_mod_"..OptionManager:GetOption('buffHeroes'), {})
     end
 end
 
@@ -2166,20 +1893,20 @@ function lod:OnEmitStateInfo()
 
         -- Add options
         ['o']           = getOptionsString(),
-        ['spellMult']   = customSpellPower,
+        ['spellMult']   = OptionManager:GetOption('customSpellPower'),
         ['itemMult']    = customItemPower,
-        ['slots']       = maxSlots,
-        ['skills']      = maxSkills,
-        ['ults']        = maxUlts,
-        ['trolls']      = (banTrollCombos and 1) or 0,
-        ['hostBanning'] = (hostBanning and 1) or 0,
+        ['slots']       = OptionManager:GetOption('maxSlots'),
+        ['skills']      = OptionManager:GetOption('maxSkills'),
+        ['ults']        = OptionManager:GetOption('maxUlts'),
+        ['trolls']      = (OptionManager:GetOption('banTrollCombos') and 1) or 0,
+        ['hostBanning'] = (OptionManager:GetOption('hostBanning') and 1) or 0,
         ['hideSkills']  = (hideSkills and 1) or 0,
         ['source1']     = (GameRules:isSource1() and 1) or 0,
-        ['balance']     = balanceMode,
-        ['slaveID']     = slaveID,
+        ['balance']     = OptionManager:GetOption('balanceMode'),
+        ['slaveID']     = OptionManager:GetOption('slaveID'),
         ['tabs']        = allowedTabsString,
-        ['bans']        = maxBans,
-        ['bear']        = (allowBearSkills and 1 or 0) + (allowTowerSkills and 2 or 0) + (allowBuildingSkills and 4 or 0) + (allowCreepSkills and 8 or 0),
+        ['bans']        = OptionManager:GetOption('maxBans'),
+        ['bear']        = (OptionManager:GetOption('allowBearSkills') and 1 or 0) + (OptionManager:GetOption('allowTowerSkills') and 2 or 0) + (OptionManager:GetOption('allowBuildingSkills') and 4 or 0) + (OptionManager:GetOption('allowCreepSkills') and 8 or 0),
 
         -- Store the end of the next timer
         ['t'] = endOfTimer,
@@ -2265,12 +1992,12 @@ function lod:OnEmitStateInfo()
     s['b'] = bns
 
     -- Send bear info
-    if allowBearSkills then
+    if OptionManager:GetOption('allowBearSkills') then
         FireGameEvent('lod_state_bear', b)
     end
 
     -- Send tower info
-    if allowTowerSkills then
+    if OptionManager:GetOption('allowTowerSkills') then
         local t = {}
 
         for i=2,3 do
@@ -2306,7 +2033,7 @@ function lod:OnEmitStateInfo()
     end
 
     -- Send building info
-    if allowBuildingSkills then
+    if OptionManager:GetOption('allowBuildingSkills') then
         local t = {}
 
         for i=2,3 do
@@ -2342,7 +2069,7 @@ function lod:OnEmitStateInfo()
     end
 
     -- Send creep info
-    if allowCreepSkills then
+    if OptionManager:GetOption('allowCreepSkills') then
         local t = {}
 
         for i=2,3 do
@@ -2425,11 +2152,11 @@ function lod:OnThink()
                 end
             else
                 -- We must have a valid slaveID before we can do anything
-                if slaveID == -1 then
-                    slaveID = loadhelper.getHostID()
+                if OptionManager:GetOption('slaveID') == -1 then
+                    OptionManager:SetOption('slaveID', loadhelper.getHostID())
 
                     -- Is it still broken?
-                    if slaveID == -1 then
+                    if OptionManager:GetOption('slaveID') == -1 then
                         if not shownHosterIssue then
                             shownHosterIssue = true
                             print('\n\nERROR: No host was found, either no players are on a team, no players have LoD installed, or something very bad.\nNo options screen will be shown until a valid host player is found!\n')
@@ -2481,28 +2208,28 @@ function lod:OnThink()
         -- Fix locks
         playerLocks = {}
 
-        if GameRules:isSource1() and enableHeroBanning then
+        if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
             -- Tell everyone
             sendChatMessage(-1, '#lod_hero_banning', {
-                heroBanningTime
+                OptionManager:GetOption('heroBanningTime')
             })
 
             -- Change to picking state
             currentStage = STAGE_HERO_BANNING
 
             -- Store when the picking phase ends
-            endOfTimer = Time() + heroBanningTime
+            endOfTimer = Time() + OptionManager:GetOption('heroBanningTime')
         else
             -- Tell everyone
             sendChatMessage(-1, '#lod_picking', {
-                pickingTime
+                OptionManager:GetOption('pickingTime')
             })
 
              -- Change to picking state
             currentStage = STAGE_PICKING
 
             -- Store when the picking phase ends
-            endOfTimer = Time() + pickingTime
+            endOfTimer = Time() + OptionManager:GetOption('pickingTime')
         end
 
         -- Update the state
@@ -2529,7 +2256,7 @@ function lod:OnThink()
         currentStage = STAGE_PICKING
 
         -- Store when the picking phase ends
-        endOfTimer = Time() + pickingTime
+        endOfTimer = Time() + OptionManager:GetOption('pickingTime')
 
         -- Update the state
         self:OnEmitStateInfo()
@@ -2571,11 +2298,14 @@ function lod:OnThink()
         -- Apply the tower skills
         applyTowerSkills()
 
+        -- Apply the building skills
+        applyBuildingSkills()
+
         -- Upgrade towers
         upgradeTowers()
 
         -- Warn the players again
-        if maxSlots > 6 then
+        if OptionManager:GetOption('maxSlots') > 6 then
             sendChatMessage(-1, '#lod_slotWarning')
         end
 
@@ -2616,7 +2346,7 @@ end
 -- Doesn't appear to work :O
 setTowerOwnership = function()
     -- Ensure tower skills are allowed
-    if not allowTowerSkills then return end
+    if not OptionManager:GetOption('allowTowerSkills') then return end
     if 1 ==1 then return end -- disabled
 
     local towers = Entities:FindAllByClassname('npc_dota_tower')
@@ -2642,6 +2372,7 @@ upgradeTowers = function()
     local buffer = getHealthBuffer()
 
     -- Should we buff towers?
+    local buffTowers = OptionManager:GetOption('buffTowers')
     if buffTowers > 1 then
         local towers = Entities:FindAllByClassname('npc_dota_tower')
         -- Loop over all ents
@@ -2660,6 +2391,7 @@ upgradeTowers = function()
     end
 
     -- Should we buff buildings?
+    local buffBuildings = OptionManager:GetOption('buffBuildings')
     if buffBuildings > 1 then
         local buildings = Entities:FindAllByClassname('npc_dota_building')
         -- Loop over all ents
@@ -2681,9 +2413,9 @@ upgradeTowers = function()
     end
 
     -- Should we prevent fountain camping?
-    if preventFountainCamping then
+    if OptionManager:GetOption('preventFountainCamping') then
         local toAdd = {
-            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes', customSpellPower)] = 4,
+            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes')] = 4,
             templar_assassin_psi_blades = 1
         }
 
@@ -2709,7 +2441,7 @@ end
 -- Adds extra towers
 addExtraTowers= function()
     -- Is there any work to do?
-    if middleTowers > 1 then
+    if OptionManager:GetOption('middleTowers') > 1 then
         local lanes = {
             top = true,
             mid = true,
@@ -2768,7 +2500,7 @@ addExtraTowers= function()
 
                     -- Workout the difference in the positions
                     local dif = threePos - onePos
-                    local sep = dif / (middleTowers + 1)
+                    local sep = dif / (OptionManager:GetOption('middleTowers') + 1)
 
                     -- Remove the middle tower
                     UTIL_RemoveImmediate(two)
@@ -2776,7 +2508,7 @@ addExtraTowers= function()
                     -- Used to connect towers
                     local prevTower = three
 
-                    for i=1,middleTowers do
+                    for i=1,OptionManager:GetOption('middleTowers') do
                         local newPos = threePos - (sep * i)
 
                         local newTower = CreateUnitByName(unitName, newPos, false, nil, nil, teamNumber)
@@ -2807,7 +2539,7 @@ end
 -- Applies tower skills if they are allowed
 applyTowerSkills = function()
     -- Ensure tower skills are allowed
-    if not allowTowerSkills then return end
+    if not OptionManager:GetOption('allowTowerSkills') then return end
 
     -- Ensure there isn't one sided tower skills
     if not towerSkills[DOTA_TEAM_BADGUYS] then
@@ -2828,18 +2560,6 @@ applyTowerSkills = function()
         end
     end
 
-    -- Dump dire tower skills
-    print('Dire Towers:')
-    for k,v in pairs(towerSkills[DOTA_TEAM_BADGUYS] or {}) do
-        print(v)
-    end
-
-    -- Dump radiant tower skills
-    print('Radiant Towers:')
-    for k,v in pairs(towerSkills[DOTA_TEAM_GOODGUYS] or {}) do
-        print(v)
-    end
-
     local towers = Entities:FindAllByClassname('npc_dota_tower')
 
     -- Loop over all ents
@@ -2848,7 +2568,7 @@ applyTowerSkills = function()
 
         local skillz = towerSkills[team]
         if skillz then
-            SkillManager:ApplyBuild(tower, skillz, customSpellPower, useLevel1ults)
+            SkillManager:ApplyBuild(tower, skillz)
         end
     end
 
@@ -2860,6 +2580,56 @@ applyTowerSkills = function()
 
     -- Log that this was successful
     print('Done allocating tower skills!')
+end
+
+-- Applies building skills if they are allowed
+applyBuildingSkills = function()
+    -- Ensure building skills are allowed
+    if not OptionManager:GetOption('allowBuildingSkills') then return end
+
+    -- Ensure there isn't one sided building skills
+    if not buildingSkills[DOTA_TEAM_BADGUYS] then
+        if buildingSkills[DOTA_TEAM_GOODGUYS] then
+            buildingSkills[DOTA_TEAM_BADGUYS] = {}
+            for k,v in pairs(buildingSkills[DOTA_TEAM_GOODGUYS]) do
+                buildingSkills[DOTA_TEAM_BADGUYS][k] = v
+            end
+        end
+    end
+
+    if not buildingSkills[DOTA_TEAM_GOODGUYS] then
+        if buildingSkills[DOTA_TEAM_BADGUYS] then
+            buildingSkills[DOTA_TEAM_GOODGUYS] = {}
+            for k,v in pairs(buildingSkills[DOTA_TEAM_BADGUYS]) do
+                buildingSkills[DOTA_TEAM_GOODGUYS][k] = v
+            end
+        end
+    end
+
+    -- List of ents to apply building skills to
+    local toApplyTo = {
+        'npc_dota_barracks',
+        'npc_dota_building',
+        'npc_dota_fort'
+    }
+
+    -- Apply building skills to the buildings in question
+    for _,buildingType in pairs(toApplyTo) do
+        local buildings = Entities:FindAllByClassname(buildingType)
+
+        -- Loop over all ents
+        for k,building in pairs(buildings) do
+            local team = building:GetTeam()
+
+            local skillz = buildingSkills[team]
+            if skillz then
+                SkillManager:ApplyBuild(building, skillz)
+            end
+        end
+    end
+
+    -- Log that this was successful
+    print('Done allocating building skills!')
 end
 
 -- When a hero spawns
@@ -2902,8 +2672,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             -- We have given bonuses
             givenBonuses[playerID] = true
 
-            print('Start level = '..startingLevel)
-
+            local startingLevel = OptionManager:GetOption('startingLevel')
             -- Do we need to level up?
             if startingLevel > 1 then
                 -- Level it up
@@ -2913,16 +2682,16 @@ ListenToGameEvent('npc_spawned', function(keys)
 
                 -- Fix EXP
                 if GameRules:isSource1() then
-                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                    spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 else
                     -- This is damned unstable, it always changes arguments FFS
-                    spawnedUnit:AddExperience(XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                    spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
                 end
             end
 
             -- Any bonus gold?
-            if bonusGold > 0 then
-                PlayerResource:SetGold(playerID, bonusGold, true)
+            if OptionManager:GetOption('bonusGold') > 0 then
+                PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
             end
         end
 
@@ -2951,7 +2720,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                 end
 
                 -- Grab how many skills to add
-                local addSkills = maxSlots - 4 + (#tmpSkills - #skillList[playerID][SKILL_LIST_YOUR])
+                local addSkills = OptionManager:GetOption('maxSlots') - 4 + (#tmpSkills - #skillList[playerID][SKILL_LIST_YOUR])
 
                 -- Do we need to add any skills?
                 if addSkills <= 0 then return end
@@ -2983,18 +2752,12 @@ ListenToGameEvent('npc_spawned', function(keys)
                     end
 
                     if not found then
-                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v, customSpellPower)] = true
+                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v)] = true
                     end
                 end
             end
 
-            -- Add the extra skills
-            print('Allocating skills to '..spawnedUnit:GetClassname())
-            for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
-                print(k..' - '..v)
-            end
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR], customSpellPower, useLevel1ults)
-            print('Success!')
+            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
 
             return
         end
@@ -3008,12 +2771,7 @@ ListenToGameEvent('npc_spawned', function(keys)
             local build = (skillList[playerID] or {})[SKILL_LIST_YOUR] or {}
 
             -- Apply the build
-            print('Allocating skills to '..spawnedUnit:GetClassname())
-            for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR] or {}) do
-                print(k..' - '..v)
-            end
-            SkillManager:ApplyBuild(spawnedUnit, build, customSpellPower, useLevel1ults)
-            print('Success!')
+            SkillManager:ApplyBuild(spawnedUnit, build)
 
             -- Store playerID has handled
             handledPlayerIDs[playerID] = true
@@ -3027,7 +2785,7 @@ ListenToGameEvent('npc_spawned', function(keys)
     end
 
     -- Check if we should apply custom bear skills
-    if allowBearSkills and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
+    if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
         -- Kill server if no one is on it anymore
         GameRules:GetGameModeEntity():SetThink(function()
             -- Ensure the unit is valid still
@@ -3047,12 +2805,7 @@ ListenToGameEvent('npc_spawned', function(keys)
                         handled[spawnedUnit] = true
 
                         -- Apply the build
-                        print('Allocating skills to bear, playerID '..playerID)
-                        for k,v in pairs(skillz or {}) do
-                            print(k..' - '..v)
-                        end
-                        SkillManager:ApplyBuild(spawnedUnit, skillz, customSpellPower, useLevel1ults)
-                        print('Success!')
+                        SkillManager:ApplyBuild(spawnedUnit, skillz)
                     end
 
                     -- Grab their hero
@@ -3072,14 +2825,16 @@ ListenToGameEvent('npc_spawned', function(keys)
     if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'siege') or string.find(unitName, 'roshan') then
         if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
             -- Neutral Creep
+            local buffNeutralCreeps = OptionManager:GetOption('buffNeutralCreeps')
             if buffNeutralCreeps > 1 then
                 local buffer = getHealthBuffer()
                 spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffNeutralCreeps)
                 spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffNeutralCreeps)
-                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
+                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffNeutralCreeps, {})
             end
         else
             -- Lane Creep
+            local buffCreeps = OptionManager:GetOption('buffCreeps')
             if buffCreeps > 1 then
                 local buffer = getHealthBuffer()
                 spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffCreeps)
@@ -3103,8 +2858,25 @@ ListenToGameEvent('dota_non_player_used_ability', function(keys)
     print('hmmm 2')
 end, nil)]]
 
+ListenToGameEvent('entity_hurt', function(keys)
+    -- Grab the entity that was hurt
+    local ent = EntIndexToHScript(keys.entindex_killed)
+
+    -- Check for tower connections
+    if ent:GetHealth() <= 0 and towerConnectors[ent] then
+        local tower = towerConnectors[ent]
+        towerConnectors[ent] = nil
+
+        if IsValidEntity(tower) then
+            -- Make it killable!
+            tower:RemoveModifierByName('modifier_invulnerable')
+        end
+    end
+end, nil)
+
 ListenToGameEvent('entity_killed', function(keys)
     -- Ensure our respawn modifier is in effect
+    local respawnModifier = OptionManager:GetOption('respawnModifier')
     if respawnModifier == 0 then return end
 
     -- Grab the killed entitiy (it isn't nessessarily a hero!)
@@ -3135,7 +2907,7 @@ end, nil)
 
 -- Levels up a player's bear skills
 levelSpiritSkills = function(spiritBear, skillz, playerLevel)
-    for i=1,maxSlots do
+    for i=1,OptionManager:GetOption('maxSlots') do
         local skillName = skillz[i]
 
         -- Ensure the bear has it
@@ -3224,507 +2996,6 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
                             else
                                 break
                             end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end, nil)
-
--- Multicast
-
-local multicastChannel = {}
-ListenToGameEvent('dota_ability_channel_finished', function(keys)
-    for i=0,9 do
-        -- Is this player channelling?
-        local channel = multicastChannel[i]
-        if channel and not channel.handled then
-            -- Grab the ability
-            local ab = channel.ab
-
-            -- Is this the ability we were looking for?
-            if IsValidEntity(ab) and ab:GetAbilityName() == keys.abilityname then
-                GameRules:GetGameModeEntity():SetThink(function()
-                    -- Is it the right ability, and has the ability stopped channelling?
-                    if IsValidEntity(ab) and not ab:IsChanneling() then
-                        -- This channel is handled
-                        channel.handled = true
-
-                        -- Cleanup multicast units
-                        if #channel.units > 0 then
-                            local unit = table.remove(channel.units, 1)
-
-                            if IsValidEntity(unit) then
-                                local ab2 = unit:FindAbilityByName(keys.abilityname)
-                                if ab2 then
-                                    ab2:EndChannel(keys.interrupted == 1)
-                                end
-
-                                GameRules:GetGameModeEntity():SetThink(function()
-                                    UTIL_RemoveImmediate(unit)
-                                end, 'channel'..DoUniqueString('channel'), 10, nil)
-                            end
-
-                            return 0.1
-                        else
-                            multicastChannel[i] = nil
-                        end
-                    end
-                end, 'channel'..DoUniqueString('channel'), 0.1, nil)
-            end
-        end
-    end
-end, nil)
-
-ListenToGameEvent('dota_player_used_ability', function(keys)
-    local ply = EntIndexToHScript(keys.PlayerID or keys.player)
-    if ply then
-        local hero = ply:GetAssignedHero()
-        if hero then
-            -- Check for witchcraft
-            if not noWitchcraft[keys.abilityname] then
-                local mab
-                if hero:HasAbility('death_prophet_witchcraft') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft')
-                elseif hero:HasAbility('death_prophet_witchcraft_5') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_5')
-                elseif hero:HasAbility('death_prophet_witchcraft_10') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_10')
-                elseif hero:HasAbility('death_prophet_witchcraft_20') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_20')
-                end
-
-                if mab then
-                    -- Grab the level of the ability
-                    local lvl = mab:GetLevel()
-
-                    if lvl > 0 then
-                        local reduction = lvl * -1
-
-                        local ab = hero:FindAbilityByName(keys.abilityname)
-
-                        if ab then
-                            local timeRemaining = ab:GetCooldownTimeRemaining()
-                            local newCooldown = timeRemaining + reduction
-                            if newCooldown < 1 then
-                                newCooldown = 1
-                            end
-
-                            if newCooldown < timeRemaining then
-                                ab:EndCooldown()
-                                if newCooldown > 0 then
-                                    ab:StartCooldown(newCooldown)
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-
-            -- Check if they have multicast
-            if (multicastMadness or hero:HasAbility('ogre_magi_multicast_lod')) and canMulticast(keys.abilityname) then
-                local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                if multicastMadness or mab then
-                    -- Grab the level of the ability
-                    local lvl
-
-                    -- Change level based on madness mode
-                    if multicastMadness then
-                        lvl = 3
-                    else
-                        lvl = mab:GetLevel()
-                    end
-
-                    -- If they have no level in it, stop
-                    if lvl == 0 then return end
-
-                    -- How many times we will cast the spell
-                    local mult = 0
-
-                    -- Grab a random number
-                    local r = RandomFloat(0, 1)
-
-                    -- Calculate multiplyer
-                    if lvl == 1 then
-                        if r < 0.25 then
-                            mult = 2
-                        end
-                    elseif lvl == 2 then
-                        if r < 0.2 then
-                            mult = 3
-                        elseif r < 0.4 then
-                            mult = 2
-                        end
-                    elseif lvl == 3 then
-                        if r < 0.125 then
-                            mult = 4
-                        elseif r < 0.25 then
-                            mult = 3
-                        elseif r < 0.5 then
-                            mult = 2
-                        end
-                    end
-
-                    -- Guarantee the multicast
-                    if multicastMadness and mult < 2 then
-                        mult = 2
-                    end
-
-                    -- Are we doing any multiplying?
-                    if mult > 0 then
-                        local ab = hero:FindAbilityByName(keys.abilityname)
-
-                        -- Is this an item based ability?
-                        local isItemAb = false
-
-                        -- If we failed to find it, it might hav e been an item
-                        if not ab and (hero:HasModifier('modifier_item_ultimate_scepter') or multicastMadness) then
-                            for i=0,5 do
-                                -- Grab the slot item
-                                local slotItem = hero:GetItemInSlot(i)
-
-                                -- Was this the spell that was cast?
-                                if slotItem and slotItem:GetClassname() == keys.abilityname then
-                                    -- We found it
-                                    ab = slotItem
-                                    isItemAb = true
-                                    break
-                                end
-                            end
-                        end
-
-                        if ab then
-                            -- How long to delay each cast
-                            local delay = 0.1--getMulticastDelay(keys.abilityname)
-
-                            -- Grab playerID
-                            local playerID = hero:GetPlayerID()
-
-                            -- Handle channelled spells
-                            if isChannelled(keys.abilityname) then
-                                -- Cleanup
-                                if multicastChannel[playerID] ~= nil then
-                                    while #multicastChannel[playerID].units > 0 do
-                                        local unit = table.remove(multicastChannel[playerID].units, 1)
-                                        UTIL_RemoveImmediate(unit)
-                                    end
-                                end
-
-                                -- Create new table
-                                multicastChannel[playerID] = {
-                                    ab = ab,
-                                    units = {}
-                                }
-
-                                for multNum=1,mult-1 do
-                                    -- Create and store the unit
-                                    local multUnit = CreateUnitByName('npc_multicast', hero:GetOrigin(), false, hero, hero, hero:GetTeamNumber())
-                                    table.insert(multicastChannel[playerID].units, multUnit)
-
-                                    if multUnit then
-                                        multUnit:AddAbility(keys.abilityname)
-                                        local multAb = multUnit:FindAbilityByName(keys.abilityname)
-                                        if multAb then
-                                            -- Level the spell
-                                            multAb:SetLevel(ab:GetLevel())
-
-                                            -- Ensure it can't be killed
-                                            local dummySpell = multUnit:FindAbilityByName('lod_dummy_unit')
-                                            if dummySpell then
-                                                dummySpell:SetLevel(1)
-                                            end
-                                            multUnit:AddNewModifier(multUnit, nil, 'modifier_invulnerable', {})
-
-                                            -- Give it a scepter, if we have one
-                                            if hero:HasModifier('modifier_item_ultimate_scepter') then
-                                                multUnit:AddNewModifier(multUnit, nil, 'modifier_item_ultimate_scepter', {
-                                                    bonus_all_stats = 0,
-                                                    bonus_health = 0,
-                                                    bonus_mana = 0
-                                                })
-                                            end
-
-                                            local target = hero:GetCursorCastTarget()
-                                            local targets
-                                            local pos = hero:GetCursorPosition()
-
-                                            if target then
-                                                targets = FindUnitsInRadius(target:GetTeam(),
-                                                    target:GetOrigin(),
-                                                    nil,
-                                                    256,
-                                                    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-                                                    DOTA_UNIT_TARGET_ALL,
-                                                    DOTA_UNIT_TARGET_FLAG_NONE,
-                                                    FIND_ANY_ORDER,
-                                                    false
-                                                )
-                                            end
-
-                                            GameRules:GetGameModeEntity():SetThink(function()
-                                                if IsValidEntity(ab) and ab:IsChanneling() and IsValidEntity(multUnit) then
-                                                    if target then
-                                                        local newTarget = target
-                                                        while #targets > 0 do
-                                                            newTarget = table.remove(targets, 1)
-                                                            if newTarget ~= target then
-                                                                break
-                                                            end
-                                                        end
-
-                                                        multUnit:CastAbilityOnTarget(newTarget, multAb, -1)
-                                                    elseif pos then
-                                                        multUnit:CastAbilityOnPosition(pos, multAb, -1)
-                                                    else
-                                                        UTIL_RemoveImmediate(multUnit)
-                                                    end
-                                                else
-                                                    UTIL_RemoveImmediate(multUnit)
-                                                end
-                                            end, 'channel'..DoUniqueString('channel'), 0.1 * multNum, nil)
-                                        else
-                                            UTIL_RemoveImmediate(multUnit)
-                                        end
-                                    end
-                                end
-
-                            else
-                                -- Grab the position
-                                local pos = hero:GetCursorPosition()
-                                local target = hero:GetCursorCastTarget()
-                                local isaTargetSpell = false
-
-                                -- Table to store multi units
-                                local multUnits
-
-                                local targets
-                                if target and isTargetSpell(keys.abilityname) then
-                                    -- Target based spells dont work in source1, sue me
-                                    if GameRules:isSource1() then
-                                        -- Disable this experiment
-                                        if 1==1 then return end
-
-                                        -- Forget multicasting target based items for now
-                                        if isItemAb then return end
-
-                                        multUnits = {}
-
-                                        -- Create dummy units to cast target spells
-                                        for multNum=1,mult-1 do
-                                            local multUnit = CreateUnitByName('npc_multicast', hero:GetOrigin(), false, hero, hero, hero:GetTeamNumber())
-
-                                            if multUnit then
-                                                multUnit:AddAbility(keys.abilityname)
-                                                local multAb = multUnit:FindAbilityByName(keys.abilityname)
-                                                if multAb then
-                                                    -- Level the spell
-                                                    multAb:SetLevel(ab:GetLevel())
-
-                                                    -- Store unit
-                                                    table.insert(multUnits, multUnit)
-
-                                                    -- Add cleanup timer
-                                                    Timers:CreateTimer(function()
-                                                        -- Ensure it is still valid
-                                                        if IsValidEntity(multUnit) then
-                                                            -- Run the cleanup
-                                                            UTIL_RemoveImmediate(multUnit)
-                                                        end
-                                                    end, DoUniqueString('cleanup'), 2)
-
-                                                    -- Ensure it can't be killed
-                                                    local dummySpell = multUnit:FindAbilityByName('lod_dummy_unit')
-                                                    if dummySpell then
-                                                        dummySpell:SetLevel(1)
-                                                    end
-                                                    multUnit:AddNewModifier(multUnit, nil, 'modifier_invulnerable', {})
-
-                                                    -- Give it a scepter, if we have one
-                                                    if hero:HasModifier('modifier_item_ultimate_scepter') then
-                                                        multUnit:AddNewModifier(multUnit, nil, 'modifier_item_ultimate_scepter', {
-                                                            bonus_all_stats = 0,
-                                                            bonus_health = 0,
-                                                            bonus_mana = 0
-                                                        })
-                                                    end
-                                                else
-                                                    -- Remove straight away
-                                                    UTIL_RemoveImmediate(multUnit)
-                                                end
-                                            end
-                                        end
-                                    end
-
-                                    isaTargetSpell = true
-
-                                    targets = FindUnitsInRadius(target:GetTeam(),
-                                        target:GetOrigin(),
-                                        nil,
-                                        256,
-                                        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-                                        DOTA_UNIT_TARGET_ALL,
-                                        DOTA_UNIT_TARGET_FLAG_NONE,
-                                        FIND_ANY_ORDER,
-                                        false
-                                    )
-                                end
-
-                                Timers:CreateTimer(function()
-                                    -- Ensure it still exists
-                                    if IsValidEntity(ab) then
-                                        -- Position cursor
-                                        hero:SetCursorPosition(pos)
-
-                                        local ourTarget = target
-
-                                        -- If we have any targets to pick from, pick one
-                                        local doneTarget = false
-                                        if targets then
-                                            -- While there is still possible targets
-                                            while #targets > 0 do
-                                                -- Pick a random target
-                                                local index = math.random(#targets)
-                                                local t = targets[index]
-
-                                                -- Ensure it is valid and still alive
-                                                if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget then
-                                                    -- Target is valid and alive, target it
-                                                    ourTarget = t
-                                                    doneTarget = true
-                                                    break
-                                                else
-                                                    -- Invalid target, remove it and find another
-                                                    table.remove(targets, index)
-                                                end
-                                            end
-                                        end
-
-                                        if isaTargetSpell then
-                                            if IsValidEntity(ourTarget) and ourTarget:GetHealth() > 0 then
-                                                if GameRules:isSource1() then
-                                                    if #multUnits > 0 then
-                                                        -- Do source1 casting, doh!
-                                                        local multUnit = table.remove(multUnits)
-
-                                                        if IsValidEntity(multUnit) then
-                                                            local multAb = multUnit:FindAbilityByName(keys.abilityname)
-
-                                                            if multAb then
-                                                                print(keys.abilityname)
-                                                                multUnit:CastAbilityOnTarget(ourTarget, multAb, -1)
-                                                            else
-                                                                -- Remove straight away
-                                                                UTIL_RemoveImmediate(multUnit)
-                                                            end
-                                                        end
-                                                    end
-                                                else
-                                                    hero:SetCursorCastTarget(ourTarget)
-                                                end
-                                            else
-                                                return
-                                            end
-                                        end
-
-                                        -- Run the spell again
-                                        print('Multicast '..ab:GetClassname())
-                                        if not GameRules:isSource1() or not isaTargetSpell then
-                                            ab:OnSpellStart()
-                                        end
-
-                                        mult = mult-1
-                                        if mult > 1 then
-                                            return delay
-                                        end
-                                    end
-                                end, DoUniqueString('multicast'), delay)
-                            end
-
-                            -- Create sexy particles
-                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
-                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                            ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
-                            ParticleManager:ReleaseParticleIndex(prt)
-
-                            -- Play the sound
-                            hero:EmitSound('Hero_OgreMagi.Fireblast.x'..(mult-1))
-                        end
-                    end
-                end
-            end
-        end
-    end
-end, nil)
-
--- Abaddon ulty fix
-ListenToGameEvent('entity_hurt', function(keys)
-    -- Grab the entity that was hurt
-    local ent = EntIndexToHScript(keys.entindex_killed)
-
-    -- Check for tower connections
-    if ent:GetHealth() <= 0 and towerConnectors[ent] then
-        local tower = towerConnectors[ent]
-        towerConnectors[ent] = nil
-
-        if IsValidEntity(tower) then
-            -- Make it killable!
-            tower:RemoveModifierByName('modifier_invulnerable')
-        end
-    end
-
-    -- Ensure it is a valid hero
-    if ent and ent:IsRealHero() then
-        -- The min amount of hp
-        local minHP = 400
-
-        -- Ensure their health has dropped low enough
-        if ent:GetHealth() <= minHP then
-            local ab
-            if ent:HasAbility('abaddon_borrowed_time') then
-                ab = ent:FindAbilityByName('abaddon_borrowed_time')
-            elseif ent:HasAbility('abaddon_borrowed_time_5') then
-                ab = ent:FindAbilityByName('abaddon_borrowed_time_5')
-            elseif ent:HasAbility('abaddon_borrowed_time_10') then
-                ab = ent:FindAbilityByName('abaddon_borrowed_time_10')
-            elseif ent:HasAbility('abaddon_borrowed_time_20') then
-                ab = ent:FindAbilityByName('abaddon_borrowed_time_20')
-            end
-
-            -- Do they even have the ability in question?
-            if ab then
-                -- Is the ability ready to use?
-                if ab:IsCooldownReady() then
-                    -- Grab the level
-                    local lvl = ab:GetLevel()
-
-                    -- Is the skill even skilled?
-                    if lvl > 0 then
-                        -- Fix their health
-                        ent:SetHealth(2*minHP - ent:GetHealth())
-
-                        -- Add the modifier
-                        ent:AddNewModifier(ent, ab, 'modifier_abaddon_borrowed_time', {
-                            duration = ab:GetSpecialValueFor('duration'),
-                            duration_scepter = ab:GetSpecialValueFor('duration_scepter'),
-                            redirect = ab:GetSpecialValueFor('redirect'),
-                            redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
-                        })
-
-                        -- Apply the cooldown
-                        if lvl == 1 then
-                            ab:StartCooldown(60)
-                        elseif lvl == 2 then
-                            ab:StartCooldown(50)
-                        else
-                            ab:StartCooldown(40)
                         end
                     end
                 end
@@ -3829,7 +3100,7 @@ registerServerCommands = function()
             end
 
             -- Apply the build
-            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild, customSpellPower, useLevel1ults)
+            SkillManager:ApplyBuild(PlayerResource:GetSelectedHeroEntity(target), sourceBuild)
         end
     end, '', SERVER_COMMAND)
 
@@ -3880,8 +3151,8 @@ registerServerCommands = function()
                 return
             end
 
-            if skillSlot < 1 or skillSlot > maxSlots then
-                print('Valids slots are 1 - '..maxSlots)
+            if skillSlot < 1 or skillSlot > OptionManager:GetOption('maxSlots') then
+                print('Valids slots are 1 - '..OptionManager:GetOption('maxSlots'))
                 return
             end
 
@@ -3919,8 +3190,8 @@ registerServerCommands = function()
             end
 
             -- Store and report
-            slaveID = newHostID
-            print('Host was set to playerID '..slaveID)
+            OptionManager:SetOption('slaveID', newHostID)
+            print('Host was set to playerID '..newHostID)
         end
     end, 'Host stealer', SERVER_COMMAND)
 
@@ -3929,7 +3200,7 @@ registerServerCommands = function()
         -- Only server can run this
         if not Convars:GetCommandClient() then
             for i=0,9 do
-                print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..util.GetPlayerNameReliable(i))
+                print(i..': '..PlayerResource:GetSteamAccountID(i)..' - '..util:GetPlayerNameReliable(i))
             end
         end
     end, 'Host stealer', SERVER_COMMAND)
@@ -3944,7 +3215,7 @@ registerServerCommands = function()
             end
 
             -- Turn it on
-            cyclingBuilds = true
+            OptionManager:SetOption('cyclingBuilds', true)
             print('Cycling builds was enabled.')
         end
     end, 'Turn cycling skills on', SERVER_COMMAND)
@@ -3955,7 +3226,7 @@ end
 -- Registers hero banning
 registerHeroBanning = function()
     -- Source1 hero banning
-    if GameRules:isSource1() and enableHeroBanning then
+    if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
         Convars:RegisterCommand('dota_select_hero', function(name, heroName)
             local cmdPlayer = Convars:GetCommandClient()
             if cmdPlayer then
@@ -3990,7 +3261,7 @@ registerHeroBanning = function()
                 -- Are we in the banning stage?
                 if currentStage == STAGE_HERO_BANNING then
                     -- Host banning mode?
-                    if hostBanning and playerID ~= 0 then
+                    if OptionManager:GetOption('hostBanning') and playerID ~= 0 then
                         sendChatMessage(playerID, '#lod_wait_host_ban')
                         return
                     end
@@ -4007,7 +3278,7 @@ registerHeroBanning = function()
                     hasBanned[playerID] = hasBanned[playerID] or 0
 
                     -- Have they hit their banning limit?
-                    if hasBanned[playerID] >= maxHeroBans then
+                    if hasBanned[playerID] >= OptionManager:GetOption('maxHeroBans') then
                         sendChatMessage(playerID, '#lod_hero_ban_limit')
                         return
                     end
@@ -4029,7 +3300,7 @@ registerHeroBanning = function()
                     hasBanned[playerID] = hasBanned[playerID]+1
 
                     -- Do locks
-                    if hasBanned[playerID] >= maxHeroBans then
+                    if hasBanned[playerID] >= OptionManager:GetOption('maxHeroBans') then
                         doLock(playerID)
                     end
 
@@ -4037,13 +3308,13 @@ registerHeroBanning = function()
                     sendChatMessage(-1, '#lod_hero_banned', {
                         '#'..heroName,
                         hasBanned[playerID],
-                        maxHeroBans
+                        OptionManager:GetOption('maxHeroBans')
                     })
                     return
                 end
 
                 -- Should we force a random hero name?
-                if forceRandomHero then
+                if OptionManager:GetOption('forceRandomHero') then
                     -- Grab a random hero name
                     heroName = getRandomHeroName()
 
@@ -4116,7 +3387,7 @@ registerFancyConsoleCommands = function()
             end
 
             -- Ensure we are ALLOWED to pick
-            if not allowedToPick then
+            if not OptionManager:GetOption('allowedToPick') then
                 sendChatMessage(playerID, '#lod_not_allowed_pick')
                 return
             end
@@ -4296,7 +3567,7 @@ registerFancyConsoleCommands = function()
             end
 
             -- Ensure we are ALLOWED to pick
-            if not allowedToPick then
+            if not OptionManager:GetOption('allowedToPick') then
                 sendChatMessage(playerID, '#lod_not_allowed_pick')
                 return
             end
@@ -4327,7 +3598,7 @@ registerFancyConsoleCommands = function()
                     return
                 end
             elseif theirInterface == SKILL_LIST_TOWER then
-                if (banTrollCombos and noTower[skillName]) or noTowerAlways[skillName] then
+                if (OptionManager:GetOption('banTrollCombos') and noTower[skillName]) or noTowerAlways[skillName] then
                     sendChatMessage(playerID, '#noTower', {
                         getSpellIcon(skillName),
                         tranAbility(skillName),
@@ -4344,7 +3615,7 @@ registerFancyConsoleCommands = function()
                     return
                 end
             elseif theirInterface == SKILL_LIST_YOUR then
-                if banTrollCombos and noHero[skillName] then
+                if OptionManager:GetOption('banTrollCombos') and noHero[skillName] then
                     sendChatMessage(playerID, '#noHero', {
                         getSpellIcon(skillName),
                         tranAbility(skillName)
@@ -4506,7 +3777,7 @@ registerConsoleCommands = function()
             end
 
             -- Host banning mode?
-            if hostBanning and playerID ~= 0 then
+            if OptionManager:GetOption('hostBanning') and playerID ~= 0 then
                 sendChatMessage(playerID, '#lod_wait_host_ban')
                 return
             end
@@ -4527,7 +3798,7 @@ registerConsoleCommands = function()
 
             -- Ensure they have bans left
             totalBans[playerID] = totalBans[playerID] or 0
-            if totalBans[playerID] >= maxBans then
+            if totalBans[playerID] >= OptionManager:GetOption('maxBans') then
                 -- Send failure message
                 sendChatMessage(playerID, '#lod_no_more_bans')
                 -- Don't ban the skill
@@ -4535,9 +3806,9 @@ registerConsoleCommands = function()
             end
 
             -- Check if they are a hater
-            if allowBearSkills and skillName == 'lone_druid_spirit_bear' then
+            if OptionManager:GetOption('allowBearSkills') and skillName == 'lone_druid_spirit_bear' then
                 sendChatMessage(-1, '#lod_sb_hater', {
-                    util.GetPlayerNameReliable(playerID)
+                    util:GetPlayerNameReliable(playerID)
                 })
                 return
             end
@@ -4555,14 +3826,14 @@ registerConsoleCommands = function()
                     getSpellIcon(skillName),
                     tranAbility(skillName),
                     totalBans[playerID],
-                    maxBans
+                    OptionManager:GetOption('maxBans')
                 })
             else
                 -- Already banned
                 sendChatMessage(playerID, '#lod_already_banned')
             end
 
-            if totalBans[playerID] >= maxBans then
+            if totalBans[playerID] >= OptionManager:GetOption('maxBans') then
                 doLock(playerID)
             end
         end
@@ -4600,7 +3871,7 @@ registerConsoleCommands = function()
 
             -- Send the message to their team
             sendTeamMessage(team, '<font color=\"#4B69FF\">{0}</font> {1} {2} <a href=\"event:menu_{3}\"><font color=\"#ADE55C\">{4}</font> <font color=\"#EB4B4B\">[menu]</font></a> <a href=\"event:info_{3}\"><font color=\"#EB4B4B\">[info]</font></a>', {
-                util.GetPlayerNameReliable(playerID),
+                util:GetPlayerNameReliable(playerID),
                 text,
                 getSpellIcon(skillName),
                 skillName,
@@ -4688,7 +3959,7 @@ registerConsoleCommands = function()
         local ply = Convars:GetCommandClient()
         if ply then
             -- This command doesnt work if we have 6 or less slots
-            if maxSlots <= 6 then return end
+            if OptionManager:GetOption('maxSlots') <= 6 then return end
 
             setNum = tonumber(setNum)
             if setNum < 0 or setNum > 1 then
@@ -4713,7 +3984,7 @@ registerConsoleCommands = function()
         local ply = Convars:GetCommandClient()
         if ply then
             -- This command doesnt work if we have 6 or less slots
-            if maxSlots <= 6 then return end
+            if OptionManager:GetOption('maxSlots') <= 6 then return end
 
             local playerID = ply:GetPlayerID()
 
@@ -4749,7 +4020,7 @@ registerConsoleCommands = function()
 
             if currentStage == STAGE_VOTING then
                 -- Check if we are using slave mode, and we are a slave
-                if slaveID >= 0 and playerID ~= slaveID then
+                if OptionManager:GetOption('slaveID') >= 0 and playerID ~= OptionManager:GetOption('slaveID') then
                     sendChatMessage(playerID, '#lod_only_host')
                     return
                 end
@@ -4774,7 +4045,7 @@ registerConsoleCommands = function()
                 voteData[playerID][optNumber] = theirChoice
 
                 -- Are we in slave mode?
-                if slaveID >= 0 then
+                if OptionManager:GetOption('slaveID') >= 0 then
                     -- Update everyone
                     FireGameEvent('lod_slave', {
                         opt = optNumber,
@@ -4802,7 +4073,7 @@ registerConsoleCommands = function()
             end
 
             -- Ensure the player is actually the host
-            if playerID == slaveID then
+            if playerID == OptionManager:GetOption('slaveID') then
                 -- We are no longer waiting for the vote
                 stillVoting = false
             else
@@ -4898,7 +4169,7 @@ end
     Special Gamemodes
 ]]
 loadSpecialGamemode = function()
-    if cyclingBuilds then
+    if OptionManager:GetOption('cyclingBuilds') then
         -- Settings for cycling skills
         local minTime = 1           -- Min wait time before trying again
         local maxTime = 30          -- Max wait time before trying again
@@ -4932,12 +4203,7 @@ loadSpecialGamemode = function()
                                 -- Apply a random one
                                 local chosenBuild = possibleBuilds[math.random(#possibleBuilds)]
 
-                                print('Allocating skills to '..hero:GetClassname())
-                                for k,v in pairs(chosenBuild or {}) do
-                                    print(k..' - '..v)
-                                end
-                                SkillManager:ApplyBuild(hero, chosenBuild, customSpellPower, useLevel1ults)
-                                print('success!')
+                                SkillManager:ApplyBuild(hero, chosenBuild)
                             end
 
                             ourChance = startChance

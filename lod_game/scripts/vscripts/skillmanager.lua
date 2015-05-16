@@ -2,8 +2,9 @@
     Skill Managing Library for swapping skills during runtime
 ]]
 
--- Init utilities
-require('util')
+-- Load requires
+local OptionManager = require('optionmanager')
+local util = require('util')
 
 -- Keeps track of what skills a given hero has
 local currentSkillList = {}
@@ -45,6 +46,13 @@ local manualActivate = {
     keeper_of_the_light_recall_lod = true
 }
 
+local towerClasses = {
+    npc_dota_barracks = true,
+    npc_dota_building = true,
+    npc_dota_fort = true,
+    npc_dota_tower = true
+}
+
 local heroIDToName = {}
 local skillOwningHero = {}
 for k,v in pairs(heroListKV) do
@@ -82,7 +90,7 @@ end
         end
     end
 
-    util.MergeTables(heroListKV, ourPatch)
+    util:MergeTables(heroListKV, ourPatch)
 end)();
 
 function lod:precacheAll(context)
@@ -244,7 +252,10 @@ function skillManager:ShowSet(hero, number)
 end
 
 -- Returns a multiplier skill name, if it exists
-function skillManager:GetMultiplierSkillName(skillName, mult, useLevel1ults)
+function skillManager:GetMultiplierSkillName(skillName)
+    local mult = OptionManager:GetOption('customSpellPower')
+    local useLevel1ults = OptionManager:GetOption('useLevel1ults')
+
     -- Check that we are actually doing a multiplier
     if mult and mult ~= 1 then
         if useLevel1ults then
@@ -273,7 +284,7 @@ function skillManager:GetMultiplierSkillName(skillName, mult, useLevel1ults)
 end
 
 local inSwap = false
-function skillManager:ApplyBuild(hero, build, mult, useLevel1ults)
+function skillManager:ApplyBuild(hero, build)
     -- Ensure the hero isn't nil
     if hero == nil or not hero:IsAlive() then return end
 
@@ -461,7 +472,7 @@ function skillManager:ApplyBuild(hero, build, mult, useLevel1ults)
         table.insert(abs, v)
     end
 
-    local isTower = hero:GetClassname() == 'npc_dota_tower'
+    local isTower = towerClasses[hero:GetClassname()]
 
     if isRealHero then
         -- Ensure this player has an active skill list
@@ -494,7 +505,7 @@ function skillManager:ApplyBuild(hero, build, mult, useLevel1ults)
             -- Precache
             precacheSkill(v)
 
-            local multV = self:GetMultiplierSkillName(v, mult, useLevel1ults)
+            local multV = self:GetMultiplierSkillName(v)
             if isRealHero then
                 -- Check for a bot
                 if PlayerResource:IsFakeClient(playerID) then
@@ -572,7 +583,7 @@ function skillManager:ApplyBuild(hero, build, mult, useLevel1ults)
             local inSlot = abs[i]
 
             -- Grab the multiplied skill
-            local seekAbility = self:GetMultiplierSkillName(v, mult, useLevel1ults)
+            local seekAbility = self:GetMultiplierSkillName(v)
             if isRealHero then
                 -- Check for a bot
                 if PlayerResource:IsFakeClient(playerID) then

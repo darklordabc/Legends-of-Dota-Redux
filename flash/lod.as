@@ -105,7 +105,7 @@
         public static var SKILL_LIST_BEAR:Number = 2;
         public static var SKILL_LIST_TOWER:Number = 3;
         public static var SKILL_LIST_BUILDING:Number = 4;
-        public static var SKILL_LIST_CREEP:Number = 4;
+        public static var SKILL_LIST_CREEP:Number = 5;
 
         // The split char
         private static var SPLIT_CHAR = String.fromCharCode(7);

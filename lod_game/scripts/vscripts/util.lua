@@ -1,10 +1,16 @@
+local Util = {}
+
 -- A store of player names
 local storedNames = {}
+
+-- Create list of spells with certain attributes
+local chanelledSpells = {}
+local targetSpells = {}
 
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
 --       This method is safe for all of our internal uses
-local function getPlayerNameReliable(playerID)
+function Util:GetPlayerNameReliable(playerID)
     -- Ensure player resource is ready
     if not PlayerResource then
         return 'PlayerResource not loaded!'
@@ -32,7 +38,7 @@ end, nil)
 -- Encodes a byte to send over the network
 -- This function expects a number from 0 - 254
 -- This function returns a character, values 1 - 255
-local function encodeByte(v)
+function Util:EncodeByte(v)
     -- Check for negative
     if v < 0 then
         print("Warning: Tried to encode a number less than 0! Clamping to 255")
@@ -53,11 +59,11 @@ local function encodeByte(v)
 end
 
 -- Merges the contents of t2 into t1
-local function mergeTables(t1, t2)
+function Util:MergeTables(t1, t2)
     for k,v in pairs(t2) do
         if type(v) == "table" then
             if type(t1[k] or false) == "table" then
-                mergeTables(t1[k] or {}, t2[k] or {})
+                Util:MergeTables(t1[k] or {}, t2[k] or {})
             else
                 t1[k] = v
             end
@@ -68,9 +74,42 @@ local function mergeTables(t1, t2)
     return t1
 end
 
--- Define exports
-module('util')
+-- Sets up spell properties
+function Util:SetupSpellProperties(abs)
+    for k,v in pairs(abs) do
+        if k ~= 'Version' and k ~= 'ability_base' then
+            if v.AbilityBehavior then
+                -- Check if this spell is channelled
+                if string.match(v.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_CHANNELLED') then
+                    chanelledSpells[k] = true
+                end
 
-GetPlayerNameReliable   = getPlayerNameReliable
-EncodeByte              = encodeByte
-MergeTables             = mergeTables
+                -- Check if this spell is target based
+                if string.match(v.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_UNIT_TARGET') then
+                    targetSpells[k] = true
+                end
+            end
+        end
+    end
+end
+
+-- Tells you if a given spell is channelled or not
+function Util:isChannelled(skillName)
+    if chanelledSpells[skillName] then
+        return true
+    end
+
+    return false
+end
+
+-- Tells you if a given spell is target based one or not
+function Util:isTargetSpell(skillName)
+    if targetSpells[skillName] then
+        return true
+    end
+
+    return false
+end
+
+-- Define the export
+return Util
