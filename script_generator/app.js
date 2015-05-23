@@ -835,6 +835,7 @@ function permute(spellName, ability, storage) {
 
         // Items don't need a doubled version
         if(spellValue == 'd' && (items[spellName] || items[spellName.replace('lod_', '')])) continue;
+        if(spellName == 'ogre_magi_multicast_lod' && spellValue != 'd') continue;
 
         var newSpell = {
             BaseClass: spellName,

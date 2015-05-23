@@ -77,6 +77,8 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     mab = hero:FindAbilityByName('death_prophet_witchcraft_10')
                 elseif hero:HasAbility('death_prophet_witchcraft_20') then
                     mab = hero:FindAbilityByName('death_prophet_witchcraft_20')
+                elseif hero:HasAbility('death_prophet_witchcraft_d') then
+                    mab = hero:FindAbilityByName('death_prophet_witchcraft_d')
                 end
 
                 if mab then
@@ -115,8 +117,24 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
             -- Check if they have multicast
             local multicastMadness = OptionManager:GetOption('multicastMadness')
-            if (multicastMadness or hero:HasAbility('ogre_magi_multicast_lod')) and canMulticast(keys.abilityname) then
-                local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
+            if canMulticast(keys.abilityname) then
+                local mab
+
+                local doubleMode = false
+
+                -- Grab the ability (PLEAE DEAR LORD, SOMEONE MAKE THIS NICER!)
+                if hero:HasAbility('ogre_magi_multicast_lod') then
+                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
+                elseif hero:HasAbility('ogre_magi_multicast_lod_d') then
+                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_d')
+                    doubleMode = true
+                elseif hero:HasAbility('ogre_magi_multicast_lod_lvl1') then
+                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_lvl1')
+                elseif hero:HasAbility('ogre_magi_multicast_lod_d_lvl1') then
+                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_d_lvl1')
+                    doubleMode = true
+                end
+
                 if multicastMadness or mab then
                     -- Grab the level of the ability
                     local lvl
@@ -138,23 +156,71 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     local r = RandomFloat(0, 1)
 
                     -- Calculate multiplyer
-                    if lvl == 1 then
-                        if r < 0.25 then
-                            mult = 2
+                    if doubleMode then
+                        if lvl == 1 then
+                            if r < 0.25 then
+                                mult = 2
+                            end
+                        elseif lvl == 2 then
+                            if r < 0.063 then
+                                mult = 4
+                            elseif r < 0.13 then
+                                mult = 3
+                            elseif r < 0.38 then
+                                mult = 2
+                            end
+                        elseif lvl == 3 then
+                            if r < 0.125 then
+                                mult = 4
+                            elseif r < 0.25 then
+                                mult = 3
+                            elseif r < 0.5 then
+                                mult = 2
+                            end
+                        elseif lvl == 4 then
+                            if r < 0.188 then
+                                mult = 4
+                            elseif r < 0.38 then
+                                mult = 3
+                            elseif r < 0.63 then
+                                mult = 2
+                            end
+                        elseif lvl == 5 then
+                            if r < 0.25 then
+                                mult = 4
+                            elseif r < 0.50 then
+                                mult = 3
+                            elseif r < 0.75 then
+                                mult = 2
+                            end
+                        elseif lvl == 6 then
+                            if r < 0.88 then
+                                mult = 4
+                            elseif r < 0.63 then
+                                mult = 3
+                            elseif r < 0.313 then
+                                mult = 2
+                            end
                         end
-                    elseif lvl == 2 then
-                        if r < 0.2 then
-                            mult = 3
-                        elseif r < 0.4 then
-                            mult = 2
-                        end
-                    elseif lvl == 3 then
-                        if r < 0.125 then
-                            mult = 4
-                        elseif r < 0.25 then
-                            mult = 3
-                        elseif r < 0.5 then
-                            mult = 2
+                    else
+                        if lvl == 1 then
+                            if r < 0.25 then
+                                mult = 2
+                            end
+                        elseif lvl == 2 then
+                            if r < 0.2 then
+                                mult = 3
+                            elseif r < 0.4 then
+                                mult = 2
+                            end
+                        elseif lvl == 3 then
+                            if r < 0.125 then
+                                mult = 4
+                            elseif r < 0.25 then
+                                mult = 3
+                            elseif r < 0.5 then
+                                mult = 2
+                            end
                         end
                     end
 
@@ -475,6 +541,18 @@ ListenToGameEvent('entity_hurt', function(keys)
                 ab = ent:FindAbilityByName('abaddon_borrowed_time_10')
             elseif ent:HasAbility('abaddon_borrowed_time_20') then
                 ab = ent:FindAbilityByName('abaddon_borrowed_time_20')
+            elseif ent:HasAbility('abaddon_borrowed_time_d') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_d')
+            elseif ent:HasAbility('abaddon_borrowed_time_lvl1') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_lvl1')
+            elseif ent:HasAbility('abaddon_borrowed_time_5_lvl1') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_5_lvl1')
+            elseif ent:HasAbility('abaddon_borrowed_time_10_lvl1') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_10_lvl1')
+            elseif ent:HasAbility('abaddon_borrowed_time_20_lvl1') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_20_lvl1')
+            elseif ent:HasAbility('abaddon_borrowed_time_d_lvl1') then
+                ab = ent:FindAbilityByName('abaddon_borrowed_time_d_lvl1')
             end
 
             -- Do they even have the ability in question?
