@@ -507,9 +507,160 @@ function loadCustomItems(next) {
     CSP Stuff
 */
 
+// Doubles the max levels really nicely
+function doubleMaxLevels(newAb, fieldName) {
+    // Grab vals
+    var vals;
+
+    try {
+        vals = newAb[fieldName][0].split(' ');
+    } catch(e) {
+        return 1;
+    }
+
+    // Check if we have any data to work with
+    if(vals.length > 1) {
+        var newMaxVals = vals.length * 2;
+
+        // Workout if this is a float value, or int value
+        var isFloat = false;
+        for(var i=0; i<vals.length; ++i) {
+            var intVal = parseInt(vals[i]);
+            var floatVal = parseFloat(vals[i]);
+
+            // We ONLY work with numbers
+            if(isNaN(intVal)) return 1;
+
+            if(floatVal > intVal) {
+                isFloat = true;
+                vals[i] = floatVal;
+            } else {
+                vals[i] = intVal;
+            }
+        }
+
+        // Grab the first and last values
+        var first = vals[0];
+        var last = vals[vals.length - 1];
+
+        // Workout the different between the two
+        var dif = last - first;
+        var avgDif = dif / (vals.length-1);
+
+        // Calculate the new last value
+        var newLast = first + avgDif * (newMaxVals-1);
+
+        // Check the sign (cant change signs!)
+        if(last > 0 && newLast < 0) {
+            newLast = 0;
+        }
+        if(last < 0 && newLast > 0) {
+            newLast = 0;
+        }
+        if(last == 0) {
+            newLast = 0;
+        }
+
+        // Enforce any caps
+        if(spellMult.double_caps[fieldName]) {
+            if(Math.abs(first) > Math.abs(last)) {
+                if(Math.abs(newLast) < spellMult.double_caps[fieldName]) {
+                    newLast = spellMult.double_caps[fieldName];
+
+                    // If the old value breaks our caps, assign it
+                    if(newLast > last) {
+                        newLast = last;
+                    }
+                }
+            } else {
+                if(Math.abs(newLast) > spellMult.double_caps[fieldName]) {
+                    newLast = spellMult.double_caps[fieldName];
+
+                    // If the old value breaks our caps, assign it
+                    if(newLast < last) {
+                        newLast = last;
+                    }
+                }
+            }
+        }
+
+        // Calculate the new average different
+        var newDif = newLast - first;
+        var newAvgDif = newDif / (newMaxVals-1);
+
+        // Put the new values in
+        for(var i=0; i<(newMaxVals); ++i) {
+            var newVal = first + newAvgDif * i;
+
+            // Decide how to store it
+            if(isFloat) {
+                vals[i] = Math.round(newVal * 10) / 10;
+            } else {
+                vals[i] = Math.round(newVal);
+            }
+        }
+
+        // Store the new vals
+        newAb[fieldName] = vals.join(' ');
+
+        return newMaxVals;
+    }
+
+    return 1;
+}
+
 var permutations = {
-    vals: [5, 10, 20],
+    vals: ['d', 5, 10, 20],
     func: function(spellName, ability, newAb, mult) {
+        // Double Max Levels Mode
+        if(mult == 'd') {
+            var maxLevel = 1;
+
+            for(var key in newAb) {
+                if(newAb[key] != null) {
+                    if(key == 'ID') continue;
+                    if(key == 'AbilityType') continue;
+                    if(key == 'AbilityBehavior') continue;
+                    if(key == 'OnCastbar') continue;
+                    if(key == 'OnLearnbar') continue;
+                    if(key == 'FightRecapLevel') continue;
+                    if(key == 'AbilitySharedCooldown') continue;
+                    if(key == 'AbilityModifierSupportValue') continue;
+                    if(key == 'AbilityModifierSupportBonus') continue;
+                    if(key == 'AbilitySpecial') continue;
+                    if(key == 'AbilityTextureName') continue;
+                    if(key == 'BaseClass') continue;
+
+                    // Double the max levels
+                    var testMax = doubleMaxLevels(newAb, key);
+                    if(testMax > maxLevel) {
+                        maxLevel = testMax;
+                    }
+                }
+            }
+
+            if(newAb.AbilitySpecial) {
+                for(var slotNum in newAb.AbilitySpecial) {
+                    var slot = newAb.AbilitySpecial[slotNum];
+
+                    for(var specialName in slot) {
+                        if(specialName == 'var_type') continue;
+
+                        // Double the max levels
+                        var testMax = doubleMaxLevels(slot, specialName);
+                        if(testMax > maxLevel) {
+                            maxLevel = testMax;
+                        }
+                    }
+                }
+            }
+
+            // Store the new max level
+            newAb.MaxLevel = maxLevel;
+
+            return newAb;
+        }
+
         function divide(specialName, vals) {
             for(var i=0; i<vals.length; ++i) {
                 vals[i] = parseFunction(vals[i] / mult);
@@ -679,6 +830,12 @@ function permute(spellName, ability, storage) {
 
     // Loop over all the things we need to apply
     for(var permNumber=0; permNumber<permutations.vals.length; permNumber++) {
+        // Grab our spell value
+        var spellValue = permutations.vals[permNumber];
+
+        // Items don't need a doubled version
+        if(spellValue == 'd' && (items[spellName] || items[spellName.replace('lod_', '')])) continue;
+
         var newSpell = {
             BaseClass: spellName,
             AbilityType: ability.AbilityType,
@@ -696,7 +853,6 @@ function permute(spellName, ability, storage) {
         // Don't store the spellID
         delete newSpell.ID;
 
-        var spellValue = permutations.vals[permNumber];
         var tempChange = permutations.func(spellName, ability, newSpell, spellValue);
 
         if(tempChange != null) {
@@ -711,7 +867,12 @@ function permute(spellName, ability, storage) {
 
         // Store suffix
         suffixes.push(suffix);
-        appendsOnEnd.push(' x' + spellValue);
+
+        if(spellValue != 'd') {
+            appendsOnEnd.push(' x' + spellValue);
+        } else {
+            appendsOnEnd.push(' Doubled');
+        }
     }
 
     // Grab english

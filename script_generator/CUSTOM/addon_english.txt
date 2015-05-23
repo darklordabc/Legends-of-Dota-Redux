@@ -41,6 +41,7 @@
 		"mult10x"							"10x"
 		"mult20x"							"20x"
 		"multRandom"						"Random"
+		"multDoubleMaxLevels"				"Double Max Ability Levels"
 
 		"desItemMultiplier"					"Item Multiplier"
 		"hintItemMultiplier"				"Multiplies item values by the selected amount.\n\nIf random is selected, when an item is purchased, you will get a random item multiplier value for that item. 1x values will be shown on the selection UI."

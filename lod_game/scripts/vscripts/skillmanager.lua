@@ -260,6 +260,11 @@ function skillManager:GetMultiplierSkillName(skillName)
 
     -- Check that we are actually doing a multiplier
     if mult and mult ~= 1 then
+        -- Double mult fixer
+        if mult == 100 then
+            mult = 'd'
+        end
+
         if useLevel1ults then
             -- Check if the multiplier skill exists with lvl1 ult
             if multiplierSkills[skillName..'_'..mult..'_lvl1'] then

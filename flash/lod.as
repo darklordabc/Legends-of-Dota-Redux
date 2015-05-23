@@ -1610,12 +1610,19 @@
             if(SPELL_MULTIPLIER <= 1) {
                 return spell;
             } else {
-                if(multiplierSkills[spell + '_' + SPELL_MULTIPLIER]) {
-                    return spell + '_' + SPELL_MULTIPLIER;
+                // Double mult fixer
+                if(SPELL_MULTIPLIER == 100) {
+                    if(multiplierSkills[spell + '_d']) {
+                        return spell + '_d';
+                    }
                 } else {
-                    return spell;
+                    if(multiplierSkills[spell + '_' + SPELL_MULTIPLIER]) {
+                        return spell + '_' + SPELL_MULTIPLIER;
+                    }
                 }
 
+                // Not found, doh
+                return spell;
             }
         }
 

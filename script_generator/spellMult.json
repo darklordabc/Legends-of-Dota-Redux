@@ -1,4 +1,17 @@
 {
+   "double_caps": {
+      "base_attack_time":0.5,
+      "bonus_evasion":50,
+      "AbilityCooldown":5,
+      "dodge_chance_pct":25,
+      "dodge_chance":25,
+      "magic_resistance_pct":33,
+      "bonus_magic_resistance":25,
+      "spell_shield_resistance":50,
+      "resistance_per_stack":7,
+      "armor_reduction_pct":100,
+      "damage_reflection_pct":22
+   },
    "force_divide":{
       "min_blink_range":true,
       "base_attack_time":true,
@@ -675,6 +688,16 @@
          "default_radius":true,
          "spirit_duration":true
       },
+      "pugna_decrepify":{
+         "bonus_spell_damage_pct_allies":true,
+         "bonus_movement_speed_allies":true,
+         "bonus_spell_damage_pct":true,
+         "bonus_movement_speed":true,
+         "tooltip_duration":true
+      },
+      "weaver_geminate_attack": {
+         "delay":true
+      },
       "lion_impale":{
          "duration":true,
          "width":true
@@ -682,6 +705,10 @@
       "lion_voodoo":{
          "duration":true,
          "movespeed":true
+      },
+      "shadow_shaman_voodoo":{
+         "movespeed":true,
+         "duration":true
       },
       "lion_mana_drain":{
          "duration":true,
@@ -1602,6 +1629,24 @@
       "warlock_golem_flaming_fists":{
          "chance":true,
          "radius":true
+      },
+      "life_stealer_feast":{
+         "hp_leech_percent":true
+      },
+      "wisp_relocate":{
+         "cast_delay":true,
+         "return_time":true
+      },
+      "terrorblade_sunder":{
+         "hit_point_minimum_pct":true
+      },
+      "riki_permanent_invisibility":{
+         "fade_time":true,
+         "fade_delay":true
+      },
+      "silencer_global_silence":{
+         "tooltip_duration":true,
+         "duration_scepter":true
       }
    },
    "ignore_normal":{
@@ -1705,11 +1750,8 @@
       "invoker_empty2":true,
       "ancient_apparition_ice_blast_release":true,
       "meepo_divided_we_stand":true,
-      "weaver_geminate_attack":true,
       "lone_druid_true_form_druid":true,
       "lone_druid_spirit_bear_return":true,
-      "pugna_decrepify":true,
-      "shadow_shaman_voodoo":true,
       "rubick_telekinesis_land":true,
       "tinker_rearm":true,
       "bane_nightmare_end":true,
@@ -1718,9 +1760,7 @@
       "wisp_spirits_out":true,
       "wisp_empty1":true,
       "wisp_empty2":true,
-      "wisp_relocate":true,
       "morphling_morph_replicate":true,
-      "terrorblade_sunder":true,
       "naga_siren_song_of_the_siren_cancel":true,
       "keeper_of_the_light_empty1":true,
       "keeper_of_the_light_empty2":true,
@@ -1735,14 +1775,30 @@
       "phoenix_sun_ray_toggle_move_empty":true,
       "phoenix_sun_ray_toggle_move":true,
       "phoenix_sun_ray_stop":true,
-      "riki_permanent_invisibility":true,
-      "riki_permanent_invisibility_lod":true,
-      "silencer_global_silence":true,
       "elder_titan_return_spirit":true,
       "shadow_demon_shadow_poison_release":true,
       "tusk_launch_snowball":true,
-      "ogre_magi_multicast_lod":true,
-      "life_stealer_feast":true
+
+      "kunkka_x_marks_the_spot":true,
+      "alchemist_unstable_concoction":true,
+      "shredder_chakram":true,
+      "shredder_chakram_2":true,
+      "life_stealer_infest":true,
+      "morphling_morph_agi":true,
+      "morphling_morph_str":true,
+      "morphling_replicate":true,
+      "naga_siren_song_of_the_siren":true,
+      "rubick_telekinesis":true,
+      "bane_nightmare":true,
+      "ancient_apparition_ice_blast":true,
+      "elder_titan_ancestral_spirit":true,
+      "abyssal_underlord_dark_rift":true,
+      "phoenix_fire_spirits":true,
+      "keeper_of_the_light_illuminate":true,
+      "tusk_snowball":true,
+      "phoenix_icarus_dive":true,
+      "phoenix_sun_ray":true,
+      "lone_druid_true_form":true
    },
    "ignore_partial_names":[
       "cooldown"
