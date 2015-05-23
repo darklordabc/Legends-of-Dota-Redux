@@ -882,18 +882,19 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
         end
     end
 
+    -- Check if they actually already have this skill
+    -- This is to prevent crashes
+    for i=1,OptionManager:GetOption('maxSlots') do
+        if skillList2[i] == skillName then
+            return '#lod_already_in_draft', {
+                getSpellIcon(skillName),
+                tranAbility(skillName)
+            }
+        end
+    end
+
     -- Should we ban troll combos?
     if OptionManager:GetOption('banTrollCombos') then
-        -- Check if they actually already have this skill
-        for i=1,OptionManager:GetOption('maxSlots') do
-            if skillList2[i] == skillName then
-                return '#lod_already_in_draft', {
-                    getSpellIcon(skillName),
-                    tranAbility(skillName)
-                }
-            end
-        end
-
         if banList[skillName] then
             -- Loop over all our slots
             for i=1,OptionManager:GetOption('maxSlots') do

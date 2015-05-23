@@ -243,9 +243,11 @@ function skillManager:ShowSet(hero, number)
         end
 
         for i=startNum,endNum do
-            local ab = hero:FindAbilityByName(activeSkills[playerID][i])
-            if IsValidEntity(ab) then
-                ab:SetHidden(false)
+            if activeSkills[playerID][i] ~= nil then
+                local ab = hero:FindAbilityByName(activeSkills[playerID][i])
+                if IsValidEntity(ab) then
+                    ab:SetHidden(false)
+                end
             end
         end
     end
