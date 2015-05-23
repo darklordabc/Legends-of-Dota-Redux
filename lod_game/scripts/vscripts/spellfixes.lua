@@ -84,11 +84,18 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     local lvl = mab:GetLevel()
 
                     if lvl > 0 then
-                        local reduction = lvl * -1
-
                         local ab = hero:FindAbilityByName(keys.abilityname)
 
                         if ab then
+                            local reduction = lvl * -1
+
+                            -- Octarine Core fix
+                            if GameRules:isSource1() then
+                                if hero:HasModifier('modifier_item_octarine_core') then
+                                    reduction = reduction * 0.75
+                                end
+                            end
+
                             local timeRemaining = ab:GetCooldownTimeRemaining()
                             local newCooldown = timeRemaining + reduction
                             if newCooldown < 1 then
