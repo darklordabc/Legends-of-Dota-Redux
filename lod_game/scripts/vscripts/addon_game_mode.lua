@@ -2163,6 +2163,9 @@ function lod:OnThink()
                         if not shownHosterIssue then
                             shownHosterIssue = true
                             print('\n\nERROR: No host was found, either no players are on a team, no players have LoD installed, or something very bad.\nNo options screen will be shown until a valid host player is found!\n')
+
+                            -- Sick of my servers getting screwed because of this, kill the server
+                            SendToServerConsole('quit')
                         end
 
                         return 0.1
