@@ -115,13 +115,13 @@
         */
 
 		// List of heroes we already built a skill list for
-		public var builtHeroes:Object;
+		public var builtHeroes:Object = {};
 
 		// Containers for ability icons
 		public static var abilityIcons:Array;
 
         // The last state we got
-        private var lastState:Object;
+        private var lastState:Object = {};
 
         // State for bear types
         private var bearState:Object = {};
@@ -169,7 +169,7 @@
         private static var banTrollCombos:Boolean = false;
 
         // List of banned skills nawwwww
-        private static var bannedSkills:Object;
+        private static var bannedSkills:Object = {};
 
         // Key bindings
         private var keyBindings:Array;
@@ -185,34 +185,34 @@
         */
 
         // Multiplier KV
-        private static var multiplierSkills:Object;
+        private static var multiplierSkills:Object = {};
 
         // Skill Icon lookup
-        private static var skillIconLookup:Object;
+        private static var skillIconLookup:Object = {};
 
         // Have we setup the post voting stuff?
         private var initPostVoting:Boolean = false;
 
         // Stores bans
-        public static var banList:Object;
+        public static var banList:Object = {};
 
         // skillName --> skillID
-        private static var skillLookup:Object;
+        private static var skillLookup:Object = {};
 
         // skillID --> skillName
-        private static var skillLookupReverse:Object;
+        private static var skillLookupReverse:Object = {};
 
         // Which tabs are allowed
-        private static var allowedTabs:Object;
+        private static var allowedTabs:Object = {};
 
         // Stores the heroes we can draft from
         private static var validDraftSkills;
 
         // Stores the owning heroID of each skill
-        private var skillOwningHero:Object;
+        private var skillOwningHero:Object = {};
 
         // Skills that are banned with our local combos
-        private static var bannedCombos:Object;
+        private static var bannedCombos:Object = {};
 
         // Are bear skills allowed?
         public static var allowBearSkills:Boolean = false;
@@ -258,7 +258,7 @@
             RIGHT CLICK MENU
         */
 
-        public static var rightClickMenu:Object;
+        public static var rightClickMenu:Object = {};
 
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
