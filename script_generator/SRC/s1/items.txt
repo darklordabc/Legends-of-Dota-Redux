@@ -1474,11 +1474,12 @@
 		"ItemCost"						"150"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
-		"ItemAliases"					"mango"
+		"ItemAliases"					"enchanted mango"
 		"ItemStackable"					"0"
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
 		"SideShop"						"0"
+		"ItemHideCharges"				"1"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -2178,6 +2179,10 @@
 		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"1"
 		
+		"UpgradesItems"					"item_travel_boots"
+		"UpgradeRecipe"					"item_recipe_travel_boots"
+
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -3252,7 +3257,7 @@
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45.0"
+		"AbilityCooldown"				"65.0"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3357,42 +3362,42 @@
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
-		{			
+		{
 			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"3"
-			}
-			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_all_stats"		"2"
 			}	
-			"03"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura"			"15"
+				"hp_regen"				"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen_aura"		"0.8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura_ranged"			"10"
-			}	
+				"armor_aura"			"5"
+			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_aura"			"15"
-			}
+			}			
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_aura"			"5"
+				"vampiric_aura"			"15"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen_aura"		"0.8"
-			}				
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura_ranged"			"10"
+			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -4813,8 +4818,8 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"summon_duration"		"40.0"
+				"var_type"				"FIELD_INTEGER"
+				"summon_duration"		"40"
 			}			
 			"04"
 			{
@@ -4923,8 +4928,8 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"summon_duration"		"40.0"
+				"var_type"				"FIELD_INTEGER"
+				"summon_duration"		"40"
 			}			
 			"04"
 			{
@@ -5030,8 +5035,8 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"summon_duration"		"40.0"
+				"var_type"				"FIELD_INTEGER"
+				"summon_duration"		"40"
 			}			
 			"04"
 			{
@@ -5881,7 +5886,7 @@
 		"ItemCost"						"4050"
 		"ItemShopTags"					"regen_health;regen_mana;str;agi;int;hard_to_tag"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"ls;lotus"
+		"ItemAliases"					"ls;lotus orb"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -7235,7 +7240,7 @@
 		"ItemCost"						"2800"
 		"ItemShopTags"					"damage;attack_speed;movespeed;hard_to_tag"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"sb;invis;shadow blade"
+		"ItemAliases"					"sb;invis;shadow blade;silver edge"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
@@ -7286,7 +7291,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"350"	
+		"ItemCost"						"600"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -7319,7 +7324,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"75"
-		"ItemCost"						"5200"
+		"ItemCost"						"5450"
 		"ItemShopTags"					"damage;attack_speed;movespeed;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"sb;invis;shadow blade"
@@ -8831,7 +8836,7 @@
 		"ItemCost"						"5900"
 		"ItemShopTags"					"move_speed;boost_mana;mana_pool"
 		"ItemQuality"					"rare"
-		"ItemAliases"					"mana;mb;core"
+		"ItemAliases"					"mana;mb;octarine core"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -9429,7 +9434,7 @@
 		"ItemCost"						"5300"
 		"ItemShopTags"					"int;armor;regen_health;hard_to_tag"
 		"ItemQuality"					"rare"
-		"ItemAliases"					"guardian"
+		"ItemAliases"					"guardian greaves"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemAlertable"					"1"
 
@@ -10053,7 +10058,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"30"
+				"bonus_attack_speed"	"20"
 			}
 			"02"
 			{
@@ -10104,7 +10109,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 		"AbilityCooldown"				"16.0"
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"130"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -10121,7 +10126,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"30"
+				"bonus_attack_speed"	"20"
 			}
 			"02"
 			{
@@ -10136,7 +10141,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_magical_armor"	"66"
+				"active_magical_armor"	"55"
 			}
 			"05"
 			{

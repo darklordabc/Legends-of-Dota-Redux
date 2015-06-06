@@ -5219,6 +5219,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemSlots"
 		{
+				"0"
+				{
+					"SlotIndex"	"0"
+					"SlotName"	"weapon"
+					"SlotText"	"#LoadoutSlot_Weapon"
+					"TextureWidth"		"256"
+					"TextureHeight"		"128"
+					"MaxPolygonsLOD0"	"450"
+					"MaxPolygonsLOD1"	"350"
+				}
 				"1"
 				{
 					"SlotIndex"	"1"
@@ -9084,7 +9094,7 @@
 
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
-		"MovementSpeed"				"300"									// Speed.
+		"MovementSpeed"				"295"									// Speed.
 		"MovementTurnRate"			"0.5"									// Turning rate.
 		
 		"HealthBarOffset"			"145"
@@ -12085,8 +12095,18 @@
 				"MaxPolygonsLOD1"	"200"
 			}							
 			"4"
-			{
+		    {
 				"SlotIndex"	"4"
+				"SlotName"	"weapon"
+				"SlotText"	"#LoadoutSlot_Weapon"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"	"1150"
+				"MaxPolygonsLOD1"	"550"
+		    }
+			"5"
+			{
+				"SlotIndex"	"5"
 				"SlotName"	"ambient_effects"
 				"SlotText"	"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"	"0"
@@ -16242,7 +16262,7 @@
 		"AttributeStrengthGain"			"1.8"									// Strength bonus per level.
 		"AttributeBaseAgility"			"24"									// Base agility
 		"AttributeAgilityGain"			"2.8"									// Agility bonus per level.
-		"AttributeBaseIntelligence"		"23"									// Base intelligence
+		"AttributeBaseIntelligence"		"19"									// Base intelligence
 		"AttributeIntelligenceGain"		"2.1"									// Intelligence bonus per level.
 
 		// Movement
@@ -21439,7 +21459,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"26"									// Damage range min.
 		"AttackDamageMax"			"36"									// Damage range max.
-		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackRate"				"1.8"									// Speed of attack.
 		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
 		"AttackRange"				"128"									// Range within a target can be attacked.
