@@ -1,0 +1,24 @@
+"dedicated" {
+    // Should we fill any left over slots with bots, once the match begins?
+    "addBots"   "1"
+
+    // Auto allocation mode
+    // 0 = Manual -- players need to jointeam automatically
+    // 1 = Auto allocate anyone who joins
+    // 2 = Use preAllocate table, auto allocate anyone else who joins
+    // 3 = Use preAllocate table for teams, make everyone else a spectator
+    // 4 = Use preAllocate table for teams, kick anyone not in there
+    "autoAllocate"  "1"
+
+    // Predefined allocations for specific users
+    // Use R for radiant, D for dire and S for Spectator (CAPITALS ONLY)
+    // Note: if all 5 slots are taken on a team, the player will be put onto the opposite team!
+    "preAllocate" {
+        //"exampleSteamID64"  "D"
+    }
+
+    // Ban players from your server
+    "banPlayers" {
+        //"exampleSteamID64"    "1"
+    }
+}

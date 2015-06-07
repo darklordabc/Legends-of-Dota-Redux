@@ -142,28 +142,49 @@ Legends of Dota
 
  - If you want to be put onto a team automatically, you will need the follow files created, depending on what you eant your server to do
  - dedicated.kv is required for all dedicated server functions, it will load the bans file and stop noobs from playing
+ - An example dedicated.kv file ships with new releases of Legends of Dota, an example of it can be seen below
  - Create `dota 2 beta/dota/cfg/dedicated.kv`
 
         "dedicated" {
+          // Should we fill any left over slots with bots, once the match begins?
+          "addBots"   "1"
+
+          // Auto allocation mode
+          // 0 = Manual -- players need to jointeam automatically
+          // 1 = Auto allocate anyone who joins
+          // 2 = Use preAllocate table, auto allocate anyone else who joins
+          // 3 = Use preAllocate table for teams, make everyone else a spectator
+          // 4 = Use preAllocate table for teams, kick anyone not in there
+          "autoAllocate"  "1"
+
+          // Predefined allocations for specific users
+          // Use R for radiant, D for dire and S for Spectator (CAPITALS ONLY)
+          // Note: if all 5 slots are taken on a team, the player will be put onto the opposite team!
+          "preAllocate" {
+              //"exampleSteamID64"  "D"
+          }
+
+          // Ban players from your server
+          "banPlayers" {
+              //"exampleSteamID64"    "1"
+          }
         }
 
- - Create `dota 2 beta/dota/cfg/allocation.kv` if you want to be allocated into a team automatically
-
-        "dedicated" {
-        }
-
- - You will be put onto the team with the least players, or radiant if they have the same number of players
- - You can force your team by adding `R`, `D` or `S` to the start of your steam name, for Radiant, Dire and Spectator
+ - Change the `autoAllocate` setting as per the settings listed above to decide how you want to allocate people onto teams
+ - You can have predefined teams, simply use people's steamID64s
+ - Auto allocate means that players will be put onto the team with the least players, or radiant if they have the same number of players
+ - You can force your team by adding `R`, `D` or `S` to the start of your steam name, for Radiant, Dire and Spectator (preAllocate overrides these prefixes)
  - Once allocated to a team, it can not be changed until the server is restarted
- - Create `dota 2 beta/dota/cfg/addbots.kv` if you want bots to be added (assuming sourcemod is setup correctly)
-
-        "dedicated" {
-        }
+ - Bots can be enabled or disabled using the `addBots` setting in the KV (assuming sourcemod is setup correctly)
+ - Players can be banned from your server using the `banPlayers` table, see the example provided
 
  - You should see the following messages, depending on what you selected:
  - `Loaded LoD dedicated file!`
+ - `Bot allocation code was loaded!`
+ - `Allocation mode was set to: 1`
  - `Loaded LoD allocation code!`
- - `Loaded LoD bot allocation code`
+ - `Auto allocation table loaded!`
+ - `Extra bans table loaded!`
  - If you're still having troubles, you can look [here](https://github.com/ash47/Frota#more-srcds-setup-help) for more tips.
  - You may be interested in [Legends of Dota Watch Dog](https://github.com/ash47/LoDWatchDog) -- This is a lightweight app that restarts SRCDS each time it crashes
 

@@ -39,7 +39,7 @@ local loadGDSOptions = true
 local tst = LoadKeyValues('cfg/dedicated.kv')
 if tst ~= 0 and tst ~= nil then
     -- Load dedicated stuff
-    require('dedicated')
+    require('dedicated')(tst)
 
     loadGDSOptions = false
 else
@@ -4302,6 +4302,11 @@ end
 function Activate()
 	GameRules.lod = lod()
 	GameRules.lod:InitGameMode()
+end
+
+-- Attempt to allow players to not load
+if not GameRules:isSource1() then
+    Convars:SetInt('dota_wait_for_players_to_load', 0)
 end
 
 -- Debug info for noobs

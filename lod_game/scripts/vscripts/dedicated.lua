@@ -19,6 +19,11 @@ Convars:RegisterCommand('reload_bans', function()
     loadBans()
 end, 'Reloads the bans KV', 0)
 
+-- Allocation stuff
+local autoAllocateMode = 1
+local preAllocate = {}
+local extraBans = {}
+
 -- Ban manager
 local autoAllocate = {}
 local steamIDs = {}
@@ -31,7 +36,7 @@ ListenToGameEvent('player_connect', function(keys)
     steamIDs[keys.userid] = steamID64
 
     -- Check bans
-    if bans[steamID64] then
+    if bans[steamID64] or extraBans[steamID64] then
         SendToServerConsole('kickid '..keys.userid);
         return
     end
@@ -40,6 +45,27 @@ ListenToGameEvent('player_connect', function(keys)
 
     -- Check their name
     local chr = keys.name:sub(1,1)
+
+    -- Check if we should use auto allocation table
+    if autoAllocateMode >= 2 then
+        -- Check for prealloc
+        if preAllocate[steamID64] then
+            chr = preAllocate[steamID64]
+            print('Found a preallocate for '..keys.name)
+        else
+            -- Check if we need to spectate non-allocated players
+            if autoAllocateMode == 3 then
+                print('No allocation found for '..keys.name..', setting to SPECTATOR')
+                chr = 'S'
+            elseif autoAllocateMode == 4 then
+                -- Sorry baby, you're not invited
+                print('No allocation found for '..keys.name..', KICKING!')
+                SendToServerConsole('kickid '..keys.userid);
+                return
+            end
+        end
+    end
+
     if chr == 'R' and actualRadiant < 5 then
         autoAllocate[steamID64] = DOTA_TEAM_GOODGUYS
         actualRadiant = actualRadiant + 1
@@ -78,9 +104,8 @@ ListenToGameEvent('player_connect', function(keys)
     print(keys.name..' was allocated to SPECTATOR')
 end, nil)
 
--- Team allocation stuff
-local tst = LoadKeyValues('cfg/allocation.kv')
-if tst ~= 0 and tst ~= nil then
+-- Loads the allocation code
+function loadAllocationCode()
     print('Loaded LoD allocation code!')
 
     -- Stick people onto teams
@@ -192,6 +217,36 @@ if tst ~= 0 and tst ~= nil then
     end, nil)
 end
 
+-- Adds bots once the game starts
+function addBots()
+    -- Auto add bots on the dedi server
+    if GameRules:isSource1() then
+        local addedBots = false
+        local started = false
+        ListenToGameEvent('game_rules_state_change', function(keys)
+            local state = GameRules:State_Get()
+
+            if state == DOTA_GAMERULES_STATE_INIT then
+                started = true
+            end
+
+            if not started then return end
+
+            if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
+                addedBots = true
+                if not noBots then
+                    SendToServerConsole('sm_gmode 1')
+                    SendToServerConsole('dota_bot_populate')
+
+                    -- We now have full teams
+                    actualDire = 5
+                    actualRadiant = 5
+                end
+            end
+        end, nil)
+    end
+end
+
 local noBots = false
 Convars:RegisterCommand('lod_nobots', function()
     -- Only server can run this
@@ -229,35 +284,43 @@ Convars:RegisterCommand('lod_show_allocate', function()
     end
 end, 'Sets a team allocation', 0)
 
--- Bot allocation
-local tst = LoadKeyValues('cfg/addbots.kv')
-if tst ~= 0 and tst ~= nil then
-    print('Loaded LoD bot allocation code')
+-- Return the function to deal with settings
+return function(data)
+    -- Should we do the fastload stuff?
+    if data.fastLoad == 1 then
+        -- Skip the loading time
+        print('Fastload was enabled!')
+        Convars:SetInt('dota_wait_for_players_to_load', 0)
+    end
 
-    -- Auto add bots on the dedi server
-    if GameRules:isSource1() then
-        local addedBots = false
-        local started = false
-        ListenToGameEvent('game_rules_state_change', function(keys)
-            local state = GameRules:State_Get()
+    -- Should we add bots?
+    if data.addBots == 1 then
+        -- Add them
+        print('Bot allocation code was loaded!')
+        addBots()
+    end
 
-            if state == DOTA_GAMERULES_STATE_INIT then
-                started = true
-            end
+    -- Change allocation settings
+    if data.autoAllocate ~= nil then
+        -- Store the auto allocate mode
+        autoAllocateMode = tonumber(data.autoAllocate)
+        print('Allocation mode was set to: '..autoAllocateMode)
 
-            if not started then return end
+        -- Load auto allocation code
+        if autoAllocateMode > 0 then
+            loadAllocationCode()
+        end
+    end
 
-            if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
-                addedBots = true
-                if not noBots then
-                    SendToServerConsole('sm_gmode 1')
-                    SendToServerConsole('dota_bot_populate')
+    -- Check the pre allocate table
+    if data.preAllocate ~= nil then
+        preAllocate = data.preAllocate
+        print('Auto allocation table loaded!')
+    end
 
-                    -- We now have full teams
-                    actualDire = 5
-                    actualRadiant = 5
-                end
-            end
-        end, nil)
+    -- Check if there are extra bans
+    if data.banPlayers ~= nil then
+        extraBans = data.banPlayers
+        print('Extra bans table loaded!')
     end
 end
