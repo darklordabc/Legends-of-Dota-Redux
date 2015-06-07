@@ -123,11 +123,17 @@
 		"buff10x"							"10x Buff"
 		"buff20x"							"20x Buff"
 
+		"lod_prevent_fountain_camping"		"<font color=\"#EB4B4B\">Fountain camping will be prevented! Fountains have fury swipes, truestrike and psi blades!</font>"
 		"desNoFountainCamping"				"Prevent Fountain Camping"
 		"hintNoFountainCamping"				"Adds fury swipes, truestrike and psi blades to the fountain."
 
+		"lod_level1_ults"					"<font color=\"#EB4B4B\">Level 1 ults are enabled! All ultimate abilities can be skilled from level 1, with 2 levels inbetween upgrades!</font>"
 		"desLvl1ults"						"Level 1 Ults"
 		"hintLvl1ults"						"Allows all abilities to be used from level 1, with 2 levels inbetween upgrades. Normal ultimates can be maxed out at level 5!"
+
+		"lod_full_price_sellback"			"<font color=\"#EB4B4B\">All items that are sold will receive a full refund!</font>"
+		"desFullPriceSellback"				"Full price sellback"
+		"hintFullPriceSellback"				"All items that are sold will receive a full refund, no matter how long you wait to sell them, instead of only receiving a 50% refund after 10 seconds."
 
 		"allowItemActiveOnly"				"Active Effects Only"
 		"allowItemAll"						"All Items"

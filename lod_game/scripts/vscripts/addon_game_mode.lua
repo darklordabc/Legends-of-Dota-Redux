@@ -345,17 +345,38 @@ else
                 OptionManager:setOption('maxSlots', tonumber(GDSOptions.getOption('maxslots', 2)))
                 OptionManager:setOption('maxSkills', tonumber(GDSOptions.getOption('maxskills', 2)))
                 OptionManager:setOption('maxUlts', tonumber(GDSOptions.getOption('maxults', 2)))
-
                 OptionManager:setOption('maxBans', tonumber(GDSOptions.getOption('maxbans', 5)))
-
-                OptionManager:setOption('forceUniqueSkills', tonumber(GDSOptions.getOption('uniqueskills', 2)))
-
                 OptionManager:setOption('banTrollCombos', GDSOptions.getOption('blocktrollcombos', true))
+                OptionManager:setOption('startingLevel', tonumber(GDSOptions.getOption('startinglevel', 0)))
                 OptionManager:setOption('useEasyMode', GDSOptions.getOption('useeasymode', false))
                 OptionManager:setOption('hideSkills', GDSOptions.getOption('hideenemypicks', true))
-
-                OptionManager:setOption('startingLevel', tonumber(GDSOptions.getOption('startinglevel', 0)))
                 OptionManager:setOption('bonusGold', tonumber(GDSOptions.getOption('bonusstartinggold', 0)))
+                OptionManager:setOption('forceUniqueSkills', tonumber(GDSOptions.getOption('uniqueskills', 2)))
+
+                OptionManager:setOption('allowBearSkills', GDSOptions.getOption('allowBearSkills', false))
+                OptionManager:setOption('allowTowerSkills', GDSOptions.getOption('allowTowerSkills', false))
+                OptionManager:setOption('wtfMode', GDSOptions.getOption('wtfMode', false))
+                OptionManager:setOption('universalShop', GDSOptions.getOption('universalShop', false))
+                OptionManager:setOption('fastJungleCreeps', GDSOptions.getOption('fastJungleCreeps', false))
+                OptionManager:setOption('allVision', GDSOptions.getOption('allVision', false))
+                OptionManager:setOption('respawnModifier', tonumber(GDSOptions.getOption('respawnModifier', 0)))
+                OptionManager:setOption('freeScepter', GDSOptions.getOption('freeScepter', false))
+                OptionManager:setOption('multicastMadness', GDSOptions.getOption('multicastMadness', false))
+                OptionManager:setOption('maxHeroLevel', tonumber(GDSOptions.getOption('maxHeroLevel', 25)))
+                OptionManager:setOption('customSpellPower', tonumber(GDSOptions.getOption('customSpellPower', 1)))
+                OptionManager:setOption('customItemPower', tonumber(GDSOptions.getOption('customItemPower', 1)))
+                OptionManager:setOption('freeCourier', GDSOptions.getOption('freeCourier', false))
+                OptionManager:setOption('middleTowers', tonumber(GDSOptions.getOption('middleTowers', 1)))
+                OptionManager:setOption('allowBuildingSkills', GDSOptions.getOption('allowBuildingSkills', false))
+                OptionManager:setOption('allowCreepSkills', GDSOptions.getOption('allowCreepSkills', false))
+                OptionManager:setOption('buffHeroes', GDSOptions.getOption('buffHeroes', false))
+                OptionManager:setOption('buffTowers', GDSOptions.getOption('buffTowers', false))
+                OptionManager:setOption('buffBuildings', GDSOptions.getOption('buffBuildings', false))
+                OptionManager:setOption('buffCreeps', GDSOptions.getOption('buffCreeps', false))
+                OptionManager:setOption('buffNeutralCreeps', GDSOptions.getOption('buffNeutralCreeps', false))
+                OptionManager:setOption('preventFountainCamping', GDSOptions.getOption('preventFountainCamping', false))
+                OptionManager:setOption('useLevel1ults', GDSOptions.getOption('useLevel1ults', false))
+                OptionManager:setOption('fullPriceSellback', GDSOptions.getOption('fullPriceSellback', false))
 
                 -- Grab the slaveID
                 local slaveID = OptionManager:GetOption('slaveID')
@@ -372,6 +393,35 @@ else
                 voteData[slaveID][8] = valueToOption(8, (OptionManager:GetOption('hideSkills') and 1) or 0)
                 voteData[slaveID][9] = valueToOption(9, OptionManager:GetOption('bonusGold'))
                 voteData[slaveID][10] = valueToOption(10, OptionManager:GetOption('forceUniqueSkills'))
+                --voteData[slaveID][11] = valueToOption(11, OptionManager:GetOption('forceUniqueSkills'))
+                --voteData[slaveID][12] = valueToOption(12, OptionManager:GetOption('forceUniqueSkills'))
+                --voteData[slaveID][13] = valueToOption(13, OptionManager:GetOption('forceUniqueSkills'))
+                --voteData[slaveID][14] = valueToOption(14, OptionManager:GetOption('forceUniqueSkills'))
+                --voteData[slaveID][15] = valueToOption(15, OptionManager:GetOption('forceUniqueSkills'))
+                voteData[slaveID][16] = valueToOption(16, OptionManager:GetOption('allowBearSkills'))
+                voteData[slaveID][17] = valueToOption(17, OptionManager:GetOption('allowTowerSkills'))
+                voteData[slaveID][18] = valueToOption(18, OptionManager:GetOption('wtfMode'))
+                voteData[slaveID][19] = valueToOption(19, OptionManager:GetOption('universalShop'))
+                voteData[slaveID][20] = valueToOption(20, OptionManager:GetOption('fastJungleCreeps'))
+                voteData[slaveID][21] = valueToOption(21, OptionManager:GetOption('allVision'))
+                voteData[slaveID][22] = valueToOption(22, OptionManager:GetOption('respawnModifier'))
+                voteData[slaveID][23] = valueToOption(23, OptionManager:GetOption('freeScepter'))
+                voteData[slaveID][24] = valueToOption(24, OptionManager:GetOption('multicastMadness'))
+                voteData[slaveID][25] = valueToOption(25, OptionManager:GetOption('maxHeroLevel'))
+                voteData[slaveID][26] = valueToOption(26, OptionManager:GetOption('customSpellPower'))
+                voteData[slaveID][27] = valueToOption(27, OptionManager:GetOption('customItemPower'))
+                voteData[slaveID][28] = valueToOption(28, OptionManager:GetOption('freeCourier'))
+                voteData[slaveID][29] = valueToOption(29, OptionManager:GetOption('middleTowers'))
+                voteData[slaveID][30] = valueToOption(30, OptionManager:GetOption('allowBuildingSkills'))
+                voteData[slaveID][31] = valueToOption(31, OptionManager:GetOption('allowCreepSkills'))
+                voteData[slaveID][32] = valueToOption(32, OptionManager:GetOption('buffHeroes'))
+                voteData[slaveID][33] = valueToOption(33, OptionManager:GetOption('buffTowers'))
+                voteData[slaveID][34] = valueToOption(34, OptionManager:GetOption('buffBuildings'))
+                voteData[slaveID][35] = valueToOption(35, OptionManager:GetOption('buffCreeps'))
+                voteData[slaveID][36] = valueToOption(36, OptionManager:GetOption('buffNeutralCreeps'))
+                voteData[slaveID][37] = valueToOption(37, OptionManager:GetOption('preventFountainCamping'))
+                voteData[slaveID][38] = valueToOption(38, OptionManager:GetOption('useLevel1ults'))
+                voteData[slaveID][39] = valueToOption(39, OptionManager:GetOption('fullPriceSellback'))
             end)
         else
             -- Disable it
@@ -1137,6 +1187,21 @@ printOptionsToPlayer = function(playerID)
         sendChatMessage(playerID, '#lod_easy_mode')
     end
 
+    if OptionManager:GetOption('fullPriceSellback') then
+        -- Tell players
+        sendChatMessage(playerID, '#lod_full_price_sellback')
+    end
+
+    if OptionManager:GetOption('useLevel1ults') then
+        -- Tell players
+        sendChatMessage(playerID, '#lod_level1_ults')
+    end
+
+    if OptionManager:GetOption('preventFountainCamping') then
+        -- Tell players
+        sendChatMessage(playerID, '#lod_prevent_fountain_camping')
+    end
+
     -- Are we using unique skills?
     if OptionManager:GetOption('forceUniqueSkills') > 0 then
         sendChatMessage(playerID, '#lod_unique_skills', {
@@ -1330,6 +1395,11 @@ setupGamemodeSettings = function()
     if OptionManager:GetOption('useEasyMode') then
         -- Enable it
         Convars:SetInt('dota_easy_mode', 1)
+    end
+
+    if OptionManager:GetOption('fullPriceSellback') then
+        -- Enable it
+        Convars:SetFloat('dota_item_fullprice_buyback_interval', 100000000)
     end
 
     -- WTF Mode stuff
@@ -1546,7 +1616,7 @@ finishVote = function()
     OptionManager:SetOption('maxUlts', optionToValue(3, winners[3]))
 
     -- Balance mode
-    OptionManager:SetOption('balanceMode', optionToValue(11, winners[11]))
+    --OptionManager:SetOption('balanceMode', optionToValue(11, winners[11]))
 
     -- Bans
     OptionManager:SetOption('hostBanning', false)
@@ -1594,6 +1664,9 @@ finishVote = function()
 
     -- Use level 1 ults?
     OptionManager:SetOption('useLevel1ults', optionToValue(38, winners[38]) == 1)
+
+    -- Full price sellbacks?
+    OptionManager:SetOption('fullPriceSellback', optionToValue(39, winners[39]) == 1)
 
     -- Allowed tabs
     allowedTabs.main = optionToValue(11, winners[11]) == 1
@@ -1651,6 +1724,10 @@ finishVote = function()
     -- Add settings to our stat collector
     statcollection.addStats({
         modes = {
+            useLevel1ults = OptionManager:GetOption('useLevel1ults'),
+            fullPriceSellback = OptionManager:GetOption('fullPriceSellback'),
+            wtfMode = OptionManager:GetOption('wtfMode'),
+            allVision = OptionManager:GetOption('allVision'),
             useEasyMode = OptionManager:GetOption('useEasyMode'),
             bonusGold = OptionManager:GetOption('bonusGold'),
             startingLevel = OptionManager:GetOption('startingLevel'),
@@ -1905,7 +1982,7 @@ function lod:OnEmitStateInfo()
         ['hostBanning'] = (OptionManager:GetOption('hostBanning') and 1) or 0,
         ['hideSkills']  = (hideSkills and 1) or 0,
         ['source1']     = (GameRules:isSource1() and 1) or 0,
-        ['balance']     = OptionManager:GetOption('balanceMode'),
+        --['balance']     = OptionManager:GetOption('balanceMode'),
         ['slaveID']     = OptionManager:GetOption('slaveID'),
         ['tabs']        = allowedTabsString,
         ['bans']        = OptionManager:GetOption('maxBans'),

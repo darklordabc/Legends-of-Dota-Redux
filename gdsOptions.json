@@ -1,1 +1,562 @@
-[{"type":"dropdown","label":"Game Mode","name":"gamemode","default":"All Pick","options":[{"label":"All Pick","data":"1"},{"label":"Single Draft","data":"2"}, {"label":"Mirror Draft","data":"3"}, {"label":"All Random","data":"4"}]},{"type":"dropdown","label":"Max Slots","name":"maxslots","default":"6 Slots","options":[{"label":"4 Slots","data":"4"},{"label":"5 Slots","data":"5"}, {"label":"6 Slots","data":"6"}]},{"type":"dropdown","label":"Max Skills","name":"maxskills","default":"6 Regular Abilities","options":[{"label":"No Regular Abilities","data":"0"},{"label":"1 Regular Ability","data":"1"}, {"label":"2 Regular Abilities","data":"2"}, {"label":"3 Regular Abilities","data":"3"}, {"label":"4 Regular Abilities","data":"4"}, {"label":"5 Regular Abilities","data":"5"}, {"label":"6 Regular Abilities","data":"6"}]},{"type":"dropdown","label":"Max Ults","name":"maxults","default":"2 Ultimate Abilities","options":[{"label":"No Ultimate Abilities","data":"0"},{"label":"1 Ultimate Ability","data":"1"}, {"label":"2 Ultimate Abilities","data":"2"}, {"label":"3 Ultimate Abilities","data":"3"}, {"label":"4 Ultimate Abilities","data":"4"}, {"label":"5 Ultimate Abilities","data":"5"}, {"label":"6 Ultimate Abilities","data":"6"}]},{"type":"dropdown","label":"Max Bans","name":"maxbans","default":"5 Bans Each","options":[{"label":"No Bans","data":"0"},{"label":"1 Ban Each","data":"1"}, {"label":"2 Bans Each","data":"2"}, {"label":"3 Bans Each","data":"3"}, {"label":"5 Bans Each","data":"5"}, {"label":"10 Bans Each","data":"10"}, {"label":"15 Bans Each","data":"15"}, {"label":"20 Bans Each","data":"20"}, {"label":"Host Banning","data":"-1"}]},{"type":"checkbox","label":"Block Troll Combos","name":"blocktrollcombos","default":true},{"type":"dropdown","label":"Starting Level","name":"startinglevel","default":"Level 1","options":[{"label":"Level 1","data":"1"},{"label":"Level 6","data":"6"}, {"label":"Level 11","data":"11"}, {"label":"Level 16","data":"16"}, {"label":"Level 25","data":"25"}]},{"type":"checkbox","label":"Enable Easy Mode","name":"useeasymode","default":false},{"type":"checkbox","label":"Hide Enemy Picks","name":"hideenemypicks","default":true},{"type":"dropdown","label":"Bonus Starting Gold","name":"bonusstartinggold","default":"None","options":[{"label":"0g","data":"0"},{"label":"250g","data":"250"}, {"label":"500g","data":"500"}, {"label":"1000g","data":"1000"}, {"label":"2500g","data":"2500"}, {"label":"5000g","data":"5000"}, {"label":"10000g","data":"10000"}, {"label":"25000g","data":"25000"}, {"label":"50000g","data":"50000"}, {"label":"100000","data":"100000"}]},{"type":"dropdown","label":"Unique Skills","name":"uniqueskills","default":"Off","options":[{"label":"Off","data":"0"},{"label":"Unique Team Skills","data":"1"}, {"label":"Unique Global Skills","data":"2"}]}]
+[
+    {
+        "type": "dropdown",
+        "label": "Game Mode",
+        "name": "gamemode",
+        "default": "All Pick",
+        "options": [
+            {
+                "label": "All Pick",
+                "data": "1"
+            },
+            {
+                "label": "Single Draft",
+                "data": "2"
+            },
+            {
+                "label": "Mirror Draft",
+                "data": "3"
+            },
+            {
+                "label": "All Random",
+                "data": "4"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Max Slots",
+        "name": "maxslots",
+        "default": "6 Slots",
+        "options": [
+            {
+                "label": "4 Slots",
+                "data": "4"
+            },
+            {
+                "label": "5 Slots",
+                "data": "5"
+            },
+            {
+                "label": "6 Slots",
+                "data": "6"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Max Skills",
+        "name": "maxskills",
+        "default": "6 Regular Abilities",
+        "options": [
+            {
+                "label": "No Regular Abilities",
+                "data": "0"
+            },
+            {
+                "label": "1 Regular Ability",
+                "data": "1"
+            },
+            {
+                "label": "2 Regular Abilities",
+                "data": "2"
+            },
+            {
+                "label": "3 Regular Abilities",
+                "data": "3"
+            },
+            {
+                "label": "4 Regular Abilities",
+                "data": "4"
+            },
+            {
+                "label": "5 Regular Abilities",
+                "data": "5"
+            },
+            {
+                "label": "6 Regular Abilities",
+                "data": "6"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Max Ults",
+        "name": "maxults",
+        "default": "2 Ultimate Abilities",
+        "options": [
+            {
+                "label": "No Ultimate Abilities",
+                "data": "0"
+            },
+            {
+                "label": "1 Ultimate Ability",
+                "data": "1"
+            },
+            {
+                "label": "2 Ultimate Abilities",
+                "data": "2"
+            },
+            {
+                "label": "3 Ultimate Abilities",
+                "data": "3"
+            },
+            {
+                "label": "4 Ultimate Abilities",
+                "data": "4"
+            },
+            {
+                "label": "5 Ultimate Abilities",
+                "data": "5"
+            },
+            {
+                "label": "6 Ultimate Abilities",
+                "data": "6"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Max Bans",
+        "name": "maxbans",
+        "default": "5 Bans Each",
+        "options": [
+            {
+                "label": "No Bans",
+                "data": "0"
+            },
+            {
+                "label": "1 Ban Each",
+                "data": "1"
+            },
+            {
+                "label": "2 Bans Each",
+                "data": "2"
+            },
+            {
+                "label": "3 Bans Each",
+                "data": "3"
+            },
+            {
+                "label": "5 Bans Each",
+                "data": "5"
+            },
+            {
+                "label": "10 Bans Each",
+                "data": "10"
+            },
+            {
+                "label": "15 Bans Each",
+                "data": "15"
+            },
+            {
+                "label": "20 Bans Each",
+                "data": "20"
+            },
+            {
+                "label": "Host Banning",
+                "data": "-1"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Block Troll Combos",
+        "name": "blocktrollcombos",
+        "default": true
+    },
+    {
+        "type": "dropdown",
+        "label": "Starting Level",
+        "name": "startinglevel",
+        "default": "Level 1",
+        "options": [
+            {
+                "label": "Level 1",
+                "data": "1"
+            },
+            {
+                "label": "Level 6",
+                "data": "6"
+            },
+            {
+                "label": "Level 11",
+                "data": "11"
+            },
+            {
+                "label": "Level 16",
+                "data": "16"
+            },
+            {
+                "label": "Level 25",
+                "data": "25"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Enable Easy Mode",
+        "name": "useeasymode",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Hide Enemy Picks",
+        "name": "hideenemypicks",
+        "default": true
+    },
+    {
+        "type": "dropdown",
+        "label": "Bonus Starting Gold",
+        "name": "bonusstartinggold",
+        "default": "None",
+        "options": [
+            {
+                "label": "0g",
+                "data": "0"
+            },
+            {
+                "label": "250g",
+                "data": "250"
+            },
+            {
+                "label": "500g",
+                "data": "500"
+            },
+            {
+                "label": "1000g",
+                "data": "1000"
+            },
+            {
+                "label": "2500g",
+                "data": "2500"
+            },
+            {
+                "label": "5000g",
+                "data": "5000"
+            },
+            {
+                "label": "10000g",
+                "data": "10000"
+            },
+            {
+                "label": "25000g",
+                "data": "25000"
+            },
+            {
+                "label": "50000g",
+                "data": "50000"
+            },
+            {
+                "label": "100000",
+                "data": "100000"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Unique Skills",
+        "name": "uniqueskills",
+        "default": "Off",
+        "options": [
+            {
+                "label": "Off",
+                "data": "0"
+            },
+            {
+                "label": "Unique Team Skills",
+                "data": "1"
+            },
+            {
+                "label": "Unique Global Skills",
+                "data": "2"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Allow Bear Skills",
+        "name": "allowBearSkills",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Allow Tower Skills",
+        "name": "allowTowerSkills",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "WTF Mode",
+        "name": "wtfMode",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Universal Shop",
+        "name": "universalShop",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Fast Jungle Creeps",
+        "name": "fastJungleCreeps",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "All Vision",
+        "name": "allVision",
+        "default": false
+    },
+    {
+        "type": "dropdown",
+        "label": "Respawn Modifier",
+        "name": "respawnModifier",
+        "default": "Normal Respawn Time",
+        "options": [
+            {
+                "label": "Normal Respawn Time",
+                "data": "0"
+            },
+            {
+                "label": "1/2 Respawn Time",
+                "data": "0.5"
+            },
+            {
+                "label": "1/10 Respawn Time",
+                "data": "0.1"
+            },
+            {
+                "label": "1 Second Respawn Time",
+                "data": "-1"
+            },
+            {
+                "label": "10 Second Respawn Time",
+                "data": "-10"
+            },
+            {
+                "label": "20 Second Respawn Time",
+                "data": "-20"
+            },
+            {
+                "label": "30 Second Respawn Time",
+                "data": "-30"
+            },
+            {
+                "label": "60 Second Respawn Time",
+                "data": "-60"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Free Scepter",
+        "name": "freeScepter",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Multicast Madness",
+        "name": "multicastMadness",
+        "default": false
+    },
+    {
+        "type": "dropdown",
+        "label": "Max Hero Level",
+        "name": "maxHeroLevel",
+        "default": "Level 25",
+        "options": [
+            {
+                "label": "Level 25",
+                "data": "25"
+            },
+            {
+                "label": "Level 6",
+                "data": "6"
+            },
+            {
+                "label": "Level 11",
+                "data": "11"
+            },
+            {
+                "label": "Level 16",
+                "data": "16"
+            },
+            {
+                "label": "Level 30",
+                "data": "30"
+            },
+            {
+                "label": "Level 35",
+                "data": "35"
+            },
+            {
+                "label": "Level 40",
+                "data": "40"
+            },
+            {
+                "label": "Level 45",
+                "data": "45"
+            },
+            {
+                "label": "Level 50",
+                "data": "50"
+            },
+            {
+                "label": "Level 75",
+                "data": "75"
+            },
+            {
+                "label": "Level 100",
+                "data": "100"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Custom Spell Power",
+        "name": "customSpellPower",
+        "default": "Disabled",
+        "options": [
+            {
+                "label": "Disabled",
+                "data": "1"
+            },
+            {
+                "label": "5x Spell Power",
+                "data": "5"
+            },
+            {
+                "label": "10x Spell Power",
+                "data": "10"
+            },
+            {
+                "label": "20x Spell Power",
+                "data": "20"
+            },
+            {
+                "label": "Doubled Max Level",
+                "data": "100"
+            }
+        ]
+    },
+    {
+        "type": "dropdown",
+        "label": "Custom Item Power",
+        "name": "customItemPower",
+        "default": "Disabled",
+        "options": [
+            {
+                "label": "Disabled",
+                "data": "1"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Free Courier",
+        "name": "freeCourier",
+        "default": false
+    },
+    {
+        "type": "dropdown",
+        "label": "Towers Per Lane",
+        "name": "middleTowers",
+        "default": "3 Tower Per Lane",
+        "options": [
+            {
+                "label": "3 Tower Per Lane",
+                "data": "1"
+            },
+            {
+                "label": "4 Tower Per Lane",
+                "data": "2"
+            },
+            {
+                "label": "5 Tower Per Lane",
+                "data": "3"
+            },
+            {
+                "label": "6 Tower Per Lane",
+                "data": "4"
+            },
+            {
+                "label": "7 Tower Per Lane",
+                "data": "5"
+            },
+            {
+                "label": "8 Tower Per Lane",
+                "data": "6"
+            },
+            {
+                "label": "9 Tower Per Lane",
+                "data": "7"
+            },
+            {
+                "label": "10 Tower Per Lane",
+                "data": "8"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "label": "Building Skills",
+        "name": "allowBuildingSkills",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Creep Skills",
+        "name": "allowCreepSkills",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Buff Heroes",
+        "name": "buffHeroes",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Buff Towers",
+        "name": "buffTowers",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Buff Buildings",
+        "name": "buffBuildings",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Buff Creeps",
+        "name": "buffCreeps",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Buff Neutral Creeps",
+        "name": "buffNeutralCreeps",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Prevent Fountain Camping",
+        "name": "preventFountainCamping",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Level 1 Ults",
+        "name": "useLevel1ults",
+        "default": false
+    },
+    {
+        "type": "checkbox",
+        "label": "Full Price Sellback",
+        "name": "fullPriceSellback",
+        "default": false
+    }
+]

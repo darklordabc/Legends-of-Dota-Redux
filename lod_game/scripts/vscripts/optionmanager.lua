@@ -130,6 +130,9 @@ OptionManager:SetOption('preventFountainCamping', false)
 -- Lvl1 ults
 OptionManager:SetOption('useLevel1ults', false)
 
+-- Full price sellback
+OptionManager:SetOption('fullPriceSellback', false)
+
 --[[
     GAMEMODE STUFF
 ]]

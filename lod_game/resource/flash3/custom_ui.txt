@@ -13,7 +13,7 @@
     "3"
     {
         "File"      "loadhelper"
-        "Depth"     "254"
+        "Depth"     "252"
     }
     "4"
     {

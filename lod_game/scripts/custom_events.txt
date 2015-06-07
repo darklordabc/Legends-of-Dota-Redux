@@ -367,7 +367,7 @@
         "hostBanning"   "byte"  // Should we use host banning or per player banning
         "hideSkills"    "byte"  // Should skills be hidden (Readers beware: There is encryption!)
         "source1"       "byte"  // Is this a source1 game? (affects ability pool)
-        "balance"       "byte"  // Which balance mode to use (affects ability pool)
+        //"balance"       "byte"  // Which balance mode to use (affects ability pool)
         "bans"          "byte"  // Number of bans allowed
         "bear"          "byte"  // Bear / Tower / Creep / Building skills allowed?
 
