@@ -522,6 +522,11 @@ function doubleMaxLevels(newAb, fieldName) {
     if(vals.length > 1) {
         var newMaxVals = vals.length * 2;
 
+        // If our levels are too high, just revert to the old level values
+        if(newMaxVals > 16) {
+            newMaxVals = vals.length;
+        }
+
         // Workout if this is a float value, or int value
         var isFloat = false;
         for(var i=0; i<vals.length; ++i) {
