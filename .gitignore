@@ -223,3 +223,5 @@ lod/scripts/npc/npc_abilities_custom.txt
 #Script generator (your settings file)
 script_generator/settings.json
 script_generator/BIN/
+
+lod_game/resource/flash3/images/workshop/
