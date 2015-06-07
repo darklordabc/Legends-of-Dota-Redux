@@ -927,6 +927,7 @@
 		{
 			"model"					"models/heroes/undying/undying_minion.vmdl"
 			"model"					"models/heroes/visage/visage_familiar.vmdl"
+			"model"					"models/heroes/undying/undying_tower.vmdl"
 		}
 	}
 }
