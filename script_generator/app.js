@@ -523,7 +523,7 @@ function doubleMaxLevels(newAb, fieldName) {
         var newMaxVals = vals.length * 2;
 
         // If our levels are too high, just revert to the old level values
-        if(newMaxVals > 16) {
+        if(newMaxVals > 8) {
             newMaxVals = vals.length;
         }
 
