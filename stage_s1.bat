@@ -12,8 +12,7 @@ mkdir "lod_s1_bin\lod\scripts\npc"
 mkdir "lod_s1_bin\sourcemod\plugins"
 
 :: Hardl link sourcemod plugins
-mklink /H "lod_s1_bin\sourcemod\plugins\clear_playerid.smx" "sourcemod\plugins\clear_playerid.smx"
-mklink /H "lod_s1_bin\sourcemod\plugins\ffa.smx" "sourcemod\plugins\ffa.smx"
+mklink /H "lod_s1_bin\sourcemod\plugins\lod_toolkit.smx" "sourcemod\plugins\lod_toolkit.smx"
 
 :: Hard link info files
 mklink /H "lod_s1_bin\manifest.kv" "manifest.kv"
