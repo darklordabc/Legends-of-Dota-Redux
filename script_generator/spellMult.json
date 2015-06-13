@@ -1798,7 +1798,11 @@
       "tusk_snowball":true,
       "phoenix_icarus_dive":true,
       "phoenix_sun_ray":true,
-      "lone_druid_true_form":true
+      "lone_druid_true_form":true,
+
+      "batrider_sticky_napalm":true,
+      "legion_commander_duel":true,
+      "legion_commander_overwhelming_odds":true
    },
    "ignore_partial_names":[
       "cooldown"
