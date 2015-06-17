@@ -8,6 +8,7 @@ Legends of Dota
  - Over the coming weeks, this repo will be refactored, and LoD will be built from the ground up using the new modding API
  - Ash47's source1 servers have been closed and will not reopen
  - The workshop version of LoD will be disabled until it is stable using the new modding API
+ - Do not create any more issues until the refactor is complete, as, they are useless issues
 
 ###About###
  - Pick your skills to build an overpowered masterpiece!
