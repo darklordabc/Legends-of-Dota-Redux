@@ -3,6 +3,12 @@ Legends of Dota
 
 **Support the innovators not the imitators.**
 
+##IMPORTANT##
+ - This repo is currently DEAD
+ - Over the coming weeks, this repo will be refactored, and LoD will be built from the ground up using the new modding API
+ - Ash47's source1 servers have been closed and will not reopen
+ - The workshop version of LoD will be disabled until it is stable using the new modding API
+
 ###About###
  - Pick your skills to build an overpowered masterpiece!
  - Test out different combinations!
@@ -52,16 +58,6 @@ Legends of Dota
  - `connect lod.ash47.net:27016`
  - Alternatively, simply visit `steam://connect/lod.ash47.net:27016` in your browser
  - If you do not see the standard `Please wait while we waste your time` screen, you have installed Legends of Dota incorrectly, ensure `dota 2 beta/dota/addons/lod/addoninfo.txt` exists. Ensure you did the gameinfo step. Ensure you restarted dota 2.
-
-###List of public source1 servers###
- - Official
-  - [Texas, USA] Ash47 1st **lod.ash47.net:27015**
-  - [Texas, USA] Ash47 2nd **lod.ash47.net:27016**
-  - [Texas, USA] Ash47 3rd **lod.ash47.net:27017**
-  - [Texas, USA] Ash47 4th **lod.ash47.net:27018**
- - Unofficial
-  - [Brazil] Pupin's Server **lodpupin.no-ip.org:27016**
-  - [EU] Veroalla **lod.noip.me:1337**
 
 ###Starting a source1 server###
  - There is debugging help below in the `More SRCDS Setup Help` section, there is also a FAQ below
