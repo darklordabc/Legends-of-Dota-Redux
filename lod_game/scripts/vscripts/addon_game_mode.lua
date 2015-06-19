@@ -21,7 +21,7 @@ if _G.lod == nil then
 end
 
 -- Stat collection
-require('lib.statcollection')
+--[[require('lib.statcollection')
 statcollection.addStats({
 	modID = '2374504c2c518fafc9731a120e67fdf5'
 })
@@ -51,14 +51,16 @@ end
 -- Init load helper
 require('lib.loadhelper')
 
+]]
+
 -- Init utilities
 local util = require('util')
 
 -- Load hax
-require('hax')
+--require('hax')
 
 -- Load survival
-require('survival')
+--require('survival')
 
 -- Load specific modules
 local Constants = require('constants')
@@ -268,7 +270,7 @@ local CLIENT_COMMAND = 268435456--0x80000000
 
 -- Check for options module
 local patchOptions = false
-if Options then
+--if Options then
     --[[ CURRENTLY NOT NEEDED, RECODE THIS IF NEEDED
     -- Woot, load the options :)
     patchOptions = true
@@ -314,7 +316,7 @@ if Options then
     useEasyMode = tonumber(Options.getOption('lod', EASY_MODE, 0)) == 1
     banTrollCombos = tonumber(Options.getOption('lod', TROLL_MODE, 0)) == 0
     hideSkills = tonumber(Options.getOption('lod', HIDE_PICKS, 1)) == 1]]
-else
+--[[else
     -- Are we using GDS option?
     if GDSOptions then
         if loadGDSOptions then
@@ -429,6 +431,7 @@ else
         end
     end
 end
+]]
 
 -- This will contain the total number of votable options
 local totalVotableOptions = 0
@@ -1240,9 +1243,9 @@ printOptionsToPlayer = function(playerID)
     end
 
     -- Survival
-    if OptionManager:GetOption('loadSurvival') then
+    --[[if OptionManager:GetOption('loadSurvival') then
         sendChatMessage(playerID, '#lod_survival')
-    end
+    end]]
 
     -- Respawn Timer
     local respawnModifier = OptionManager:GetOption('respawnModifier')
@@ -1444,10 +1447,10 @@ setupGamemodeSettings = function()
     end
 
     -- Load events?
-    if OptionManager:GetOption('loadSurvival') then
+    --[[if OptionManager:GetOption('loadSurvival') then
         -- Load her up
         survival.InitSurvival()
-    end
+    end]]
 
     -- Setup allowed tabs
     GameRules.allowItemModifers = OptionManager:GetOption('allowItemModifers')
@@ -1719,10 +1722,10 @@ finishVote = function()
     GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 
     -- Events
-    OptionManager:SetOption('loadSurvival', optionToValue(25, winners[25]) == 1)
+    --OptionManager:SetOption('loadSurvival', optionToValue(25, winners[25]) == 1)
 
     -- Add settings to our stat collector
-    statcollection.addStats({
+    --[[statcollection.addStats({
         modes = {
             useLevel1ults = OptionManager:GetOption('useLevel1ults'),
             fullPriceSellback = OptionManager:GetOption('fullPriceSellback'),
@@ -1757,7 +1760,7 @@ finishVote = function()
             itemsPassiveTab = allowedTabs.itemsPassive,
             OPTab = allowedTabs.OP,
         }
-    })
+    })]]
 
     -- Setup gamemode specific settings
     setupGamemodeSettings()
@@ -1865,7 +1868,7 @@ handleFreeCourier = function(hero)
                             hero:CastAbilityImmediately(item, playerID)
                         end
                     end
-                end, 'freeCourier'..DoUniqueString('freeCourier'), 0.1, nil)
+                end, 'freeCourier'..DoUniqueString('freeCourier'), 1, nil)
             end
 
             if freeCourier == FREE_COURIER_FLYING then
@@ -1933,9 +1936,9 @@ function lod:InitGameMode()
         end)
 
         -- Precache survival resources
-        PrecacheUnitByNameAsync('npc_precache_survival', function()
+        --[[PrecacheUnitByNameAsync('npc_precache_survival', function()
             CreateUnitByName('npc_precache_survival', Vector(-10000, -10000, 0), false, nil, nil, 0)
-        end)
+        end)]]
 
         -- Precache wraithnight stuff
         PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
@@ -1953,10 +1956,10 @@ function lod:InitGameMode()
     registerConsoleCommands()
 
     -- Setup load helper
-    loadhelper.init()
+    --loadhelper.init()
 
     -- Load survival commands
-    survival.LoadCommands()
+    --survival.LoadCommands()
 
     print('Everything seems good!\n\n')
 end
@@ -2233,7 +2236,9 @@ function lod:OnThink()
             else
                 -- We must have a valid slaveID before we can do anything
                 if OptionManager:GetOption('slaveID') == -1 then
-                    OptionManager:SetOption('slaveID', loadhelper.getHostID())
+                    OptionManager:SetOption('slaveID', 0)
+
+                    --[[OptionManager:SetOption('slaveID', loadhelper.getHostID())
 
                     -- Is it still broken?
                     if OptionManager:GetOption('slaveID') == -1 then
@@ -2246,7 +2251,7 @@ function lod:OnThink()
                         end
 
                         return 0.1
-                    end
+                    end]]
                 end
 
                 -- Move onto the voting stage
@@ -4382,9 +4387,9 @@ function Activate()
 end
 
 -- Attempt to allow players to not load
-if not GameRules:isSource1() then
+--[[if not GameRules:isSource1() then
     Convars:SetInt('dota_wait_for_players_to_load', 0)
-end
+end]]
 
 -- Debug info for noobs
 print('Legends of Dota script has run successfully!\n\n')

@@ -337,34 +337,48 @@
             this.gameAPI.SubscribeToGameEvent('dota_player_update_selected_unit', onUnitSelectionUpdated);  // The player changed the unit they had selected
             this.gameAPI.SubscribeToGameEvent('lod_lock', onLockChanged);                                   // Someone changed their lock state
 
-            // Handle keyboard input
-            stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
-            stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
+            try {
+                // Handle keyboard input
+                stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown);
+                stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyBoardDown, false, 0, true);
+            } catch(e) {}
 
-            // Handle stage clicks
-            stage.removeEventListener(MouseEvent.CLICK, onStageClicked);
-            stage.addEventListener(MouseEvent.CLICK, onStageClicked, false, 0, true);
+            try {
+                // Handle stage clicks
+                stage.removeEventListener(MouseEvent.CLICK, onStageClicked);
+                stage.addEventListener(MouseEvent.CLICK, onStageClicked, false, 0, true);
+            } catch(e) {}
+
 
             // Handle hyperlinks
-            var chatHistory:TextField = getDock().chat_panel.chat_history;
+            /*var chatHistory:TextField = getDock().chat_panel.chat_history;
             chatHistory.removeEventListener(TextEvent.LINK,globals.Loader_shared_heroselectorandloadout.movieClip.chatLinkClicked);
             chatHistory.removeEventListener(TextEvent.LINK, onChatLinkPressed);
-            chatHistory.addEventListener(TextEvent.LINK, onChatLinkPressed);
+            chatHistory.addEventListener(TextEvent.LINK, onChatLinkPressed);*/
 
             // We can consume mouse input
-            globals.GameInterface.AddMouseInputConsumer();
+            try {
+                globals.GameInterface.AddMouseInputConsumer();
+            } catch(e)
+            {}
+
 
             // Handle the scoreboard stuff
             handleScoreboard();
 
 			// Load EasyDrag
-            EasyDrag.init(stage);
+            try {
+                EasyDrag.init(stage);
+            } catch(e) {}
+
 
             // Setup display timer
             updateDisplayTimer();
 
             // Setup right click menu
-            rightClickMenu = new RightClickMenu(stage, this);
+            try {
+                rightClickMenu = new RightClickMenu(stage, this);
+            } catch(e) {}
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
@@ -382,56 +396,61 @@
 
 		// Fixes the scaling on the screen
 		private function fixScreenScaling():void {
-			// Work out the scale
-			var scale:Number = stage.stageHeight / 768;
+            try {
+                // Work out the scale
+                var scale:Number = stage.stageHeight / 768;
 
-			// Apply the new scale
-			this.scaleX = scale;
-			this.scaleY = scale;
+                // Apply the new scale
+                this.scaleX = scale;
+                this.scaleY = scale;
 
-			// Workout how much of the screensize we can actually use
-			var ourWidth = stage.stageHeight*4/3;
+                // Workout how much of the screensize we can actually use
+                var ourWidth = stage.stageHeight*4/3;
 
-			// Update the position of this hud (we want the 4:3 section centered)
-			x = (stage.stageWidth - ourWidth) / 2;
-			y = 0;
+                // Update the position of this hud (we want the 4:3 section centered)
+                x = (stage.stageWidth - ourWidth) / 2;
+                y = 0;
 
-            // Store size
-            stageWidth = stage.stageWidth;
-            stageHeight = stage.stageHeight;
+                // Store size
+                stageWidth = stage.stageWidth;
+                stageHeight = stage.stageHeight;
 
-			// Store the scaling factor
-			scalingFactor = scale;
+                // Store the scaling factor
+                scalingFactor = scale;
+            } catch(e) {}
 
-            // Move the picking help into position
-            var dock:MovieClip = getDock();
-            var rcPos = this.globalToLocal(dock.filterButtons.RolesCombo.localToGlobal(new Point(0,0)));
-            pickingHelpFilters.x = rcPos.x;
-            pickingHelpFilters.y = rcPos.y;
+            try {
+                // Move the picking help into position
+                var dock:MovieClip = getDock();
+                var rcPos = this.globalToLocal(dock.filterButtons.RolesCombo.localToGlobal(new Point(0,0)));
+                pickingHelpFilters.x = rcPos.x;
+                pickingHelpFilters.y = rcPos.y;
+            } catch(e) {}
+
 		}
 
         // Hides all the UI stuff
         private function hideAllUI():void {
             // Hide the mask
-            tempMask.visible = false;
+            if(tempMask != null) tempMask.visible = false;
 
             // Hide the voting UI
-            votingUI.visible = false;
+            if(votingUI != null) votingUI.visible = false;
 
             // Hide waiting UI
-            waitingUI.visible = false;
+            if(waitingUI != null) waitingUI.visible = false;
 
             // Hide version UI
-            versionUI.visible = false;
+            if(versionUI != null) versionUI.visible = false;
 
             // Hide the left picking help
-            pickingHelp.visible = false;
+            if(pickingHelp != null) pickingHelp.visible = false;
 
             // Hide the right picking help
-            pickingHelpFilters.visible = false;
+            if(pickingHelpFilters != null) pickingHelpFilters.visible = false;
 
             // Hide the selection UI
-            selectionUI.visible = false;
+            if(selectionUI != null) selectionUI.visible = false;
         }
 
         // Nukes all the UI
@@ -448,7 +467,11 @@
             // Cleanup injected stuff
             if(injectedMovieClips != null) {
                 for(var i in injectedMovieClips) {
-                    injectedMovieClips[i].parent.removeChild(injectedMovieClips[i]);
+                    if(injectedMovieClips[i] != null) {
+                        try {
+                            injectedMovieClips[i].parent.removeChild(injectedMovieClips[i]);
+                        } catch(e) {}
+                    }
                 }
             }
 
@@ -465,11 +488,13 @@
             cleanupHud();
 
             // Setup accept button
-            versionUI.acceptButton.setText('#versionAccept')
-            versionUI.acceptButton.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
+            if(versionUI != null) {
+                versionUI.acceptButton.setText('#versionAccept')
+                versionUI.acceptButton.addEventListener(MouseEvent.CLICK, onVersionInfoClosed, false, 0, true);
+            }
 
             // Show the waiting UI
-            waitingUI.visible = true;
+            if(waitingUI != null) waitingUI.visible = true;
         }
 
         // Loads in the skills file
@@ -589,7 +614,7 @@
             // Ensure this timer is still need
             if(selectionUI == null) return;
 
-            if(lastState != null) {
+            if(lastState != null && lastState.hasOwnProperty('v')) {
                 var timerEnd:Number = lastState.t;
                 var timerDisplay:String;
 
@@ -750,10 +775,11 @@
             var i:Number;
 
             // Ensure we have state info
-            if(!lastState) return;
+            if(lastState == null || !lastState.hasOwnProperty('v')) return;
 
             var playerID:Number = globals.Players.GetLocalPlayer();
             var isSpectator:Boolean = globals.Players.IsSpectator(playerID);
+            //var isSpectator:Boolean = false;
 
             // Ensure we have a decoding numbe
             if(!isSpectator && decodeWith == -1) {
@@ -842,8 +868,10 @@
 
                     // Spawn player skill lists
                     var dock:MovieClip = getDock();
-                    hookSkillList(dock.radiantPlayers, 0);
-                    hookSkillList(dock.direPlayers, 5);
+                    if(dock != null) {
+                        hookSkillList(dock.radiantPlayers, 0);
+                        hookSkillList(dock.direPlayers, 5);
+                    }
                 }
 
                 // Have we changed local slots? (used for updating filters)
@@ -1182,7 +1210,10 @@
 					var ab:MovieClip = abilityIcons[i];
 
 					if(ab != null) {
-						ab.parent.removeChild(ab);
+                        try {
+                            ab.parent.removeChild(ab);
+                        } catch(e) {}
+
 					}
 				}
 			}
@@ -1190,18 +1221,20 @@
 			// Create store for ability icons
 			abilityIcons = [];
 
-			// Grab the scoreboard
-			var scoreboard:MovieClip = globals.Loader_scoreboard.movieClip.scoreboard.scoreboard_anim;
+            try {
+                // Grab the scoreboard
+                var scoreboard:MovieClip = globals.Loader_scoreboard.movieClip.scoreboard.scoreboard_anim;
 
-			for(i=0; i<MAX_PLAYERS; ++i) {
-				var newCon:MovieClip = new MovieClip();
-				abilityIcons[i] = newCon;
+                for(i=0; i<MAX_PLAYERS; ++i) {
+                    var newCon:MovieClip = new MovieClip();
+                    abilityIcons[i] = newCon;
 
-				var con:MovieClip = scoreboard['Player' + i];
-				con.addChild(newCon);
+                    var con:MovieClip = scoreboard['Player' + i];
+                    con.addChild(newCon);
 
-				newCon.x = 768/2 - 80;//scoreboard.width;
-			}
+                    newCon.x = 768/2 - 80;//scoreboard.width;
+                }
+            } catch(e) {}
 
 			//var inject:MovieClip = new backgroundMask();
 
@@ -1358,60 +1391,62 @@
 
             // Create a skill list for each player
             for(var i:Number=0; i<MAX_PLAYERS_TEAM; i++) {
-                // Attempt to find the player container
-                var con:MovieClip = players['playerSlot'+i];
-                if(con == null) {
-                    trace('\n\nWARNING: Failed to create a new skill list for player '+i+'!\n\n');
-                    continue;
-                }
+                try {
+                    // Attempt to find the player container
+                    var con:MovieClip = players['playerSlot'+i];
+                    if(con == null) {
+                        trace('\n\nWARNING: Failed to create a new skill list for player '+i+'!\n\n');
+                        continue;
+                    }
 
-                // Create the new skill list
-                var sl:PlayerSkillList = new PlayerSkillList(MAX_SLOTS);
-                sl.setColor(playerID);
+                    // Create the new skill list
+                    var sl:PlayerSkillList = new PlayerSkillList(MAX_SLOTS);
+                    sl.setColor(playerID);
 
-                // Store it
-                injectedMovieClips.push(sl);
+                    // Store it
+                    injectedMovieClips.push(sl);
 
-                // Apply the scale
-                sl.scaleX = (sl.width-9)/sl.width;
-                sl.scaleY = (sl.width-9)/sl.width;
+                    // Apply the scale
+                    sl.scaleX = (sl.width-9)/sl.width;
+                    sl.scaleY = (sl.width-9)/sl.width;
 
-                // Make the skills show information
-                for(var j:Number=0; j<MAX_SLOTS; j++) {
-                    // Grab a skill
-                    var ps:PlayerSkill = sl['skill'+j];
+                    // Make the skills show information
+                    for(var j:Number=0; j<MAX_SLOTS; j++) {
+                        // Grab a skill
+                        var ps:PlayerSkill = sl['skill'+j];
 
-                    // Apply the default skill
-                    ps.setSkillName('nothing');
+                        // Apply the default skill
+                        ps.setSkillName('nothing');
 
-                    // Make it show information when hovered
-                    ps.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
-                    ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
+                        // Make it show information when hovered
+                        ps.addEventListener(MouseEvent.ROLL_OVER, onSkillRollOver, false, 0, true);
+                        ps.addEventListener(MouseEvent.ROLL_OUT, onSkillRollOut, false, 0, true);
 
-                    // Hook dragging
-                    EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
+                        // Hook dragging
+                        EasyDrag.dragMakeValidFrom(ps, skillSlotDragBegin);
 
-                    // Store a reference to it
-                    storeSkillIcon(playerID, j, ps);
+                        // Store a reference to it
+                        storeSkillIcon(playerID, j, ps);
 
-                    // Hook right clicking
-                    ps.addEventListener(MouseEvent.MOUSE_DOWN, selectionUI.onAbilityPressed);
-                }
+                        // Hook right clicking
+                        ps.addEventListener(MouseEvent.MOUSE_DOWN, selectionUI.onAbilityPressed);
+                    }
 
-                // Center it perfectly
-                sl.x = 0;
+                    // Center it perfectly
+                    sl.x = 0;
 
-                // Move the icon up a little
-                if(MAX_SLOTS > 6) {
-                    con.heroIcon.y = -15 - 14;
-                    sl.y = 22 - 14;
-                } else {
-                    con.heroIcon.y = -15;
-                    sl.y = 22;
-                }
+                    // Move the icon up a little
+                    if(MAX_SLOTS > 6) {
+                        con.heroIcon.y = -15 - 14;
+                        sl.y = 22 - 14;
+                    } else {
+                        con.heroIcon.y = -15;
+                        sl.y = 22;
+                    }
 
-                // Store this skill list into the container
-                con.addChild(sl);
+                    // Store this skill list into the container
+                    con.addChild(sl);
+                } catch(e) {}
 
                 // Move onto the next playerID
                 playerID++;
@@ -1421,6 +1456,7 @@
         private function resetHeroIcons():void {
             // Grab the dock
             var dock:MovieClip = getDock();
+            if(dock == null) return;
 
             // Reset the positions
             resetHeroIconY(dock.radiantPlayers);
@@ -1433,11 +1469,13 @@
         private function resetHeroIconY(players:MovieClip):void {
             // Loop over all the players
             for(var i:Number=0; i<MAX_PLAYERS_TEAM; i++) {
-                // Attempt to find the player container
-                var con:MovieClip = players['playerSlot'+i];
+                try {
+                    // Attempt to find the player container
+                    var con:MovieClip = players['playerSlot'+i];
 
-                // Reset the position
-                con.heroIcon.y = -5.2;
+                    // Reset the position
+                    con.heroIcon.y = -5.2;
+                } catch(e) {}
             }
         }
 
@@ -1476,11 +1514,15 @@
 
             // Decide how to show the info
             if(lp.x+offset < stageWidth/2) {
-                // Face to the right
-                Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, getSpellNameWithMult(s.skillName));
+                try {
+                    // Face to the right
+                    Globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, getSpellNameWithMult(s.skillName));
+                } catch(e) {}
             } else {
-                // Face to the left
-                Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, getSpellNameWithMult(s.skillName));
+                try {
+                    // Face to the left
+                    Globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, getSpellNameWithMult(s.skillName));
+                } catch(e) {}
             }
         }
 
@@ -1543,17 +1585,22 @@
             if(selectionUI == null) return;
 
             // Set the text
-            for(var i:Number=0; i<6; i++) {
-                globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
-            }
+            try {
+                for(var i:Number=0; i<6; i++) {
+                    globals.Loader_actionpanel.movieClip.middle.abilities['abilityBind'+i].label.text = keyBindings[i];
+                }
+            } catch(e) {}
+
 
             // Grab the frame number
             var frameNumber:Number = MAX_SLOTS - 3;
 
-            // Ability layout changer
-            if(globals.Loader_actionpanel.movieClip.middle.abilities.currentFrame != frameNumber) {
-                globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(frameNumber);
-            }
+            try {
+                // Ability layout changer
+                if(globals.Loader_actionpanel.movieClip.middle.abilities.currentFrame != frameNumber) {
+                    globals.Loader_actionpanel.movieClip.middle.abilities.gotoAndStop(frameNumber);
+                }
+            } catch(e) {}
 
             // Fire again
             hudFixingTimer = new Timer(500, 1);
@@ -1567,25 +1614,33 @@
 
         // Adds chat to the chat window
         public static function addChatMessage(msg:String):void {
-            // Attend to chat
-            Globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
+            try {
+                // Attend to chat
+                Globals.Loader_shared_heroselectorandloadout.movieClip.appendChatText(msg);
+            } catch(e) {}
         }
 
         // Grabs the hero dock
         private function getDock():MovieClip {
-            return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
+            try {
+                return globals.Loader_shared_heroselectorandloadout.movieClip.heroDock;
+            } catch(e) {}
+            return null;
         }
 
         // Hides skill info
         public static function hideSkillInfo():void {
-            // Hides skill info
-            Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+            try {
+                // Hides skill info
+                Globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+            } catch(e) {}
         }
 
         // Updates a lock for a given SLOT
         private function updateLock(slotID:Number):void {
             // Grab the dock
             var dock:MovieClip = getDock();
+            if(dock == null) return;
 
             // Update locks
             var toGlow:MovieClip;
@@ -1696,12 +1751,14 @@
                 firstTimeState = false;
 
                 // Hide the waiting UI
-                waitingUI.visible = false;
+                if(waitingUI != null) waitingUI.visible = false;
 
                 // Show version info
-                versionUI.visible = true;
-                versionUI.helpField.visible = true;
-                versionUI.updateField.visible = false;
+                if(versionUI != null) {
+                    versionUI.visible = true;
+                    versionUI.helpField.visible = true;
+                    versionUI.updateField.visible = false;
+                }
 
                 // Ensure there is version info
                 if(!args.v) args.v = '';
@@ -1711,23 +1768,27 @@
                 if(args.v != ourVersion) {
                     trace('LoD: Version mismatch! Server: ' + args.v + ' VS Us: ' + ourVersion);
 
-                    // Show error page
-                    versionUI.gotoAndStop(2);
+                    if(versionUI != null) {
+                        // Show error page
+                        versionUI.gotoAndStop(2);
 
-                    // Update header
-                    versionUI.header.text = "#outDated";
+                        // Update header
+                        versionUI.header.text = "#outDated";
+                    }
                 } else {
-                    trace('LoD: Version checks out!');
+                    if(versionUI != null) {
+                        trace('LoD: Version checks out!');
 
-                    // Show success page
-                    versionUI.gotoAndStop(1);
+                        // Show success page
+                        versionUI.gotoAndStop(1);
 
-                    // Update header
-                    versionUI.header.text = "#uptoDate";
+                        // Update header
+                        versionUI.header.text = "#uptoDate";
+                    }
                 }
 
                 // Append version info
-                versionUI.helpField.text += 'Server: ' + args.v + '\nYour Client: ' + ourVersion;
+                if(versionUI != null) versionUI.helpField.text += 'Server: ' + args.v + '\nYour Client: ' + ourVersion;
             }
 
             // Update the UI
@@ -1737,7 +1798,7 @@
         // Fired when the server sends us a slave vote update
         private function handleSlave(args:Object):void {
             if(initPostVoting) return;
-            votingUI.updateSlave(args.opt, args.nv);
+            if(votingUI != null) votingUI.updateSlave(args.opt, args.nv);
         }
 
         // Fired when the server sends us a decoding code
@@ -1938,14 +1999,17 @@
             // Cleanup
             if(selectionUI == null || globals == null || stage == null) return;
 
-            var txt:String = e.text;
-            if(txt.indexOf('menu_') == 0) {
-                // Pass the event to our selectionUI
-                selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true, false);
-            } else if(txt.indexOf('info_') == 0) {
-                // Show info screen
-                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, getSpellNameWithMult(txt.replace('info_', '')));
-            }
+            try {
+                var txt:String = e.text;
+                if(txt.indexOf('menu_') == 0) {
+                    // Pass the event to our selectionUI
+                    selectionUI.onSkillRightClicked(txt.replace('menu_', ''), true, false);
+                } else if(txt.indexOf('info_') == 0) {
+                    // Show info screen
+                    globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, getSpellNameWithMult(txt.replace('info_', '')));
+                }
+            } catch(e) {}
+
         }
 
         /*

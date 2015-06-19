@@ -62,7 +62,7 @@ ListenToGameEvent('dota_ability_channel_finished', function(keys)
 end, nil)
 
 ListenToGameEvent('dota_player_used_ability', function(keys)
-    local ply = EntIndexToHScript(keys.PlayerID or keys.player)
+    local ply = PlayerResource:GetPlayer(keys.PlayerID or keys.player)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
