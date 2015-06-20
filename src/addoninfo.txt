@@ -1,0 +1,6 @@
+"AddonInfo"
+{
+	maps			"dota"
+	"IsPlayable"	"1"
+    "version"       "2.3.6"
+}
