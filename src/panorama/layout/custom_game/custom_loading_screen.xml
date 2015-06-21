@@ -1,0 +1,8 @@
+<root>
+	<styles>
+        <include src="file://{resources}/styles/custom_game/loading_screen.css" />
+    </styles>
+	<Panel class="LoDLoadingRoot">
+        <Label text="#ADDON_GAME_NAME" />
+	</Panel>
+</root>
