@@ -4088,7 +4088,7 @@ registerConsoleCommands = function()
         end
     end, 'Shows options to a player', CLIENT_COMMAND)
 
-    -- When a user wants to view the options
+    -- When a user wants to be host
     Convars:RegisterCommand('lod_host', function(name)
         -- Grab the player
         local cmdPlayer = Convars:GetCommandClient()
@@ -4097,7 +4097,6 @@ registerConsoleCommands = function()
 
             if OptionManager:GetOption('slaveID') == -1 then
                 OptionManager:SetOption(playerID)
-                print('Got a new host!')
             end
         end
     end, 'Allows a player to register as the host', CLIENT_COMMAND)

@@ -381,7 +381,13 @@
             } catch(e) {}
 
             // We are the host
-            gameAPI.SendServerCommand('lod_host');
+            var hostTimer:Timer = new Timer(2000, 3);
+            hostTimer.addEventListener(TimerEvent.TIMER, function() {
+                try {
+                    gameAPI.SendServerCommand('lod_host');
+                } catch(e) {}
+            });
+            hostTimer.start();
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
