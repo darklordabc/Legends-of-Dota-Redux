@@ -93,7 +93,13 @@ function prepareLanguageFiles(next) {
 
         var toUse;
         if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
-            var ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            var ourData
+            if(lang == 'english') {
+                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            } else {
+                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
+            }
+
             toUse = parseKV(ourData).lang.Tokens;
         } else {
             toUse = english;

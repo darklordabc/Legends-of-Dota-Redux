@@ -2781,7 +2781,7 @@ ListenToGameEvent('npc_spawned', function(keys)
         handled[spawnedUnit] = true
 
         -- Handle the free courier stuff
-        handleFreeCourier(spawnedUnit)
+        --handleFreeCourier(spawnedUnit)
 
         -- Handle free scepter stuff
         handleFreeScepter(spawnedUnit)

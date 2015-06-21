@@ -14,6 +14,9 @@ mkdir "dota\game\resource"
 mkdir "dota\game\scripts\npc"
 mkdir "dota\game\maps"
 
+mkdir "dota\game\panorama"
+mkdir "dota\game\panorama\localization"
+
 :: Hard link info files
 mklink /H "dota\game\addoninfo.txt" "src\addoninfo.txt"
 
@@ -46,6 +49,10 @@ mklink /D /J "dota\game\resource\overviews" "src\resource\overviews"
 :: Hard link generated scripts
 mklink /H "dota\game\resource\addon_english.txt" "script_generator\BIN\addon_english.txt"
 mklink /H "dota\game\resource\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
+
+::mklink /H "dota\game\panorama\localization\addon_english.txt" "script_generator\BIN\addon_english.txt"
+::mklink /H "dota\game\panorama\localization\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
+
 mklink /H "dota\game\scripts\npc\npc_abilities_custom.txt" "script_generator\BIN\npc_abilities_custom.txt"
 mklink /H "dota\game\scripts\npc\npc_heroes_custom.txt" "script_generator\BIN\npc_heroes_custom.txt"
 
