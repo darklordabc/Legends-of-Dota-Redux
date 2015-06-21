@@ -142,23 +142,13 @@ local function precacheSkill(skillName)
             alreadyCached[heroName] = true
 
             -- Cache it
-            if GameRules:isSource1() then
-                -- Ensure it exists
-                if unitExists('npc_precache_'..heroName) then
+            if unitExists('npc_precache_'..heroName) then
+                -- Precache source2 style
+                PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
                     CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-                else
-                    print('Failed to precache unit: npc_precache_'..heroName)
-                end
+                end)
             else
-                -- Ensure it exists
-                if unitExists('npc_precache_'..heroName) then
-                    -- Precache source2 style
-                    PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
-                        CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-                    end)
-                else
-                    print('Failed to precache unit: npc_precache_'..heroName)
-                end
+                print('Failed to precache unit: npc_precache_'..heroName)
             end
         end
     end
@@ -288,6 +278,17 @@ function skillManager:GetMultiplierSkillName(skillName)
 
     -- Doesn't exist, use the normal skill
     return skillName
+end
+
+-- Precaches a build <3
+function skillManager:PrecacheBuild(build)
+    for i=1,16 do
+        local v = build[i]
+        if v then
+            -- Precache
+            precacheSkill(v)
+        end
+    end
 end
 
 local inSwap = false

@@ -2363,6 +2363,9 @@ function lod:OnThink()
         -- Validate all builds
         for i=0,9 do
             validateBuild(i)
+
+            -- Precache the builds <3
+            SkillManager:PrecacheBuild((skillList[i] or {})[SKILL_LIST_YOUR] or {})
         end
 
         -- Change to the playing stage
