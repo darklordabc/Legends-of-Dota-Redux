@@ -3,6 +3,6 @@
         <include src="file://{resources}/styles/custom_game/game_setup.css" />
     </styles>
     <Panel>
-        <Label text="#ADDON_GAME_NAME" />
+        <Label text="#addonname" />
     </Panel>
 </root>

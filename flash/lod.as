@@ -380,6 +380,9 @@
                 rightClickMenu = new RightClickMenu(stage, this);
             } catch(e) {}
 
+            // We are the host
+            gameAPI.SendServerCommand('lod_host');
+
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
 		}
 

@@ -1,0 +1,16 @@
+"addon"
+{
+    // The name of the game
+    "ADDON_GAME_NAME"                               "Legends of Dota"
+    "addonname"                                     "Legends of Dota"
+
+    // Hints
+    "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added!"
+    "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."
+    "hintMulticast"                                 "Mulicast can be used with all active abilties, allowing you to cast a spell upto 4 times almost instantly."
+    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand alone abilities."
+    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabled the OP Skills option."
+    "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
+    "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
+    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
+}

@@ -15,7 +15,7 @@ mkdir "dota\game\scripts\npc"
 mkdir "dota\game\maps"
 
 mkdir "dota\game\panorama"
-mkdir "dota\game\panorama\localization"
+mklink /D /J "dota\game\panorama\localization" "src\localization"
 
 :: Hard link info files
 mklink /H "dota\game\addoninfo.txt" "src\addoninfo.txt"

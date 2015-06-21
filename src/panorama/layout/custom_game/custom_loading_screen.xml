@@ -2,7 +2,19 @@
 	<styles>
         <include src="file://{resources}/styles/custom_game/loading_screen.css" />
     </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/loading_screen.js" />
+    </scripts>
+
 	<Panel class="LoDLoadingRoot">
-        <Label text="#ADDON_GAME_NAME" />
+        <Panel class="LoDDeps">
+            <Image src="file://{images}/custom_game/hints/hint_empowering_haste.png" />
+        </Panel>
+
+        <Label id="LoDGameTitle" text="#addonname" />
+        <Panel id="LoDLoadingTip">
+            <Image id="LoDLoadingTipImage" />
+            <Label id="LoDLoadingTipText" />
+        </Panel>
 	</Panel>
 </root>
