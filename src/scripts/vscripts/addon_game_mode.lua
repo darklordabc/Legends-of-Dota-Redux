@@ -1961,6 +1961,9 @@ function lod:InitGameMode()
     -- Load survival commands
     --survival.LoadCommands()
 
+    -- Start listening to NPC spawns
+    listenToNPCs()
+
     print('Everything seems good!\n\n')
 end
 
@@ -2410,8 +2413,19 @@ function lod:OnThink()
     -- Don't stop the timer!
     if currentStage == STAGE_PLAYING then
         if not lodHasStarted then
+            --[[for i=0,9 do
+                -- Grab their heronames
+                local heroName = PlayerResource:GetSelectedHeroName(i)
+
+                -- Check if we have a name
+                if heroName and heroName ~= '' then
+                    -- Precache this hero
+                    SkillManager:PrecacheHero(heroName)
+                end
+            end]]
+
             -- Wait until hero selection ends
-            if GameRules:State_Get() <= DOTA_GAMERULES_STATE_HERO_SELECTION then return 0.1 end
+            if GameRules:State_Get() <= DOTA_GAMERULES_STATE_HERO_SELECTION then return 0.5 end
             lodHasStarted = true
 
             -- Ensure all player's have a hero
@@ -2597,7 +2611,7 @@ addExtraTowers= function()
                     local sep = dif / (OptionManager:GetOption('middleTowers') + 1)
 
                     -- Remove the middle tower
-                    UTIL_RemoveImmediate(two)
+                    UTIL_Remove(two)
 
                     -- Used to connect towers
                     local prevTower = three
@@ -2767,214 +2781,222 @@ local givenBonuses = {}
 local doneBots = {}
 local resetGold = {}
 local spiritBears = {}
-ListenToGameEvent('npc_spawned', function(keys)
-    -- Grab the unit that spawned
-    local spawnedUnit = EntIndexToHScript(keys.entindex)
+function listenToNPCs()
+    ListenToGameEvent('npc_spawned', function(keys)
+        -- Add a minor delay to the mix
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Grab the unit that spawned
+            local spawnedUnit = EntIndexToHScript(keys.entindex)
 
-    -- Make sure it is a hero
-    if spawnedUnit:IsHero() then
-        -- Grab their playerID
-        local playerID = spawnedUnit:GetPlayerID()
+            -- Ensure it's a valid unit
+            if IsValidEntity(spawnedUnit) then
+                -- Make sure it is a hero
+                if spawnedUnit:IsHero() then
+                    -- Grab their playerID
+                    local playerID = spawnedUnit:GetPlayerID()
 
-        -- Handle hero buffing
-        handleHeroBuffing(spawnedUnit)
+                    -- Handle hero buffing
+                    handleHeroBuffing(spawnedUnit)
 
-        -- Don't touch this hero more than once :O
-        if handled[spawnedUnit] then return end
-        handled[spawnedUnit] = true
+                    -- Don't touch this hero more than once :O
+                    if handled[spawnedUnit] then return end
+                    handled[spawnedUnit] = true
 
-        -- Handle the free courier stuff
-        --handleFreeCourier(spawnedUnit)
+                    -- Handle the free courier stuff
+                    --handleFreeCourier(spawnedUnit)
 
-        -- Handle free scepter stuff
-        handleFreeScepter(spawnedUnit)
+                    -- Handle free scepter stuff
+                    handleFreeScepter(spawnedUnit)
 
-        -- Fix gold bug
-        if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
-            resetGold[playerID] = true
-            PlayerResource:SetGold(playerID, 525, false)
-        end
-
-        -- Only give bonuses once
-        if not givenBonuses[playerID] then
-            -- We have given bonuses
-            givenBonuses[playerID] = true
-
-            local startingLevel = OptionManager:GetOption('startingLevel')
-            -- Do we need to level up?
-            if startingLevel > 1 then
-                -- Level it up
-                --for i=1,startingLevel-1 do
-                --    spawnedUnit:HeroLevelUp(false)
-                --end
-
-                -- Fix EXP
-                if GameRules:isSource1() then
-                    spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
-                else
-                    -- This is damned unstable, it always changes arguments FFS
-                    spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
-                end
-            end
-
-            -- Any bonus gold?
-            if OptionManager:GetOption('bonusGold') > 0 then
-                PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
-            end
-        end
-
-        -- Give bots skills differently
-        if PlayerResource:IsFakeClient(playerID) then
-            if not doneBots[playerID] then
-                doneBots[playerID] = true
-                skillList[playerID] = nil
-            end
-
-            -- Generate skill list if not already have one
-            if skillList[playerID] == nil then
-                -- Store the bots skills
-                local tmpSkills = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
-                skillList[playerID] = {}
-
-                for interface,_ in pairs(validInterfaces) do
-                    skillList[playerID][interface] = {}
-                end
-
-                -- Filter the skills
-                for k,v in pairs(tmpSkills) do
-                    if not CheckBans(skillList[playerID][SKILL_LIST_YOUR], #skillList[playerID][SKILL_LIST_YOUR]+1, v, playerID) then
-                        table.insert(skillList[playerID][SKILL_LIST_YOUR], v)
+                    -- Fix gold bug
+                    if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
+                        resetGold[playerID] = true
+                        PlayerResource:SetGold(playerID, 525, false)
                     end
-                end
 
-                -- Grab how many skills to add
-                local addSkills = OptionManager:GetOption('maxSlots') - 4 + (#tmpSkills - #skillList[playerID][SKILL_LIST_YOUR])
+                    -- Only give bonuses once
+                    if not givenBonuses[playerID] then
+                        -- We have given bonuses
+                        givenBonuses[playerID] = true
 
-                -- Do we need to add any skills?
-                if addSkills <= 0 then return end
+                        local startingLevel = OptionManager:GetOption('startingLevel')
+                        -- Do we need to level up?
+                        if startingLevel > 1 then
+                            -- Level it up
+                            --for i=1,startingLevel-1 do
+                            --    spawnedUnit:HeroLevelUp(false)
+                            --end
 
-                -- Add the skills
-                for interface,_ in pairs(validInterfaces) do
-                    for i=1,addSkills do
-                        local msg, skillName = findRandomSkill(playerID, interface, i, botSkillsOnly)
+                            -- Fix EXP
+                            if GameRules:isSource1() then
+                                spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                            else
+                                -- This is damned unstable, it always changes arguments FFS
+                                spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                            end
+                        end
 
-                        -- Failed to find a new skill
-                        if skillName == nil then break end
-
-                        table.insert(skillList[playerID][SKILL_LIST_YOUR], skillName)
-                    end
-                end
-
-                -- Sort it randomly
-                --skillList[playerID][SKILL_LIST_YOUR] = shuffle(skillList[playerID][SKILL_LIST_YOUR])
-
-                -- Store that we added skills
-                specialAddedSkills[playerID] = {}
-                for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR]) do
-                    local found = false
-                    for kk,vv in pairs(tmpSkills) do
-                        if vv == v then
-                            found = true
-                            break
+                        -- Any bonus gold?
+                        if OptionManager:GetOption('bonusGold') > 0 then
+                            PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
                         end
                     end
 
-                    if not found then
-                        specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v)] = true
+                    -- Give bots skills differently
+                    if PlayerResource:IsFakeClient(playerID) then
+                        if not doneBots[playerID] then
+                            doneBots[playerID] = true
+                            skillList[playerID] = nil
+                        end
+
+                        -- Generate skill list if not already have one
+                        if skillList[playerID] == nil then
+                            -- Store the bots skills
+                            local tmpSkills = SkillManager:GetHeroSkills(spawnedUnit:GetClassname()) or {}
+                            skillList[playerID] = {}
+
+                            for interface,_ in pairs(validInterfaces) do
+                                skillList[playerID][interface] = {}
+                            end
+
+                            -- Filter the skills
+                            for k,v in pairs(tmpSkills) do
+                                if not CheckBans(skillList[playerID][SKILL_LIST_YOUR], #skillList[playerID][SKILL_LIST_YOUR]+1, v, playerID) then
+                                    table.insert(skillList[playerID][SKILL_LIST_YOUR], v)
+                                end
+                            end
+
+                            -- Grab how many skills to add
+                            local addSkills = OptionManager:GetOption('maxSlots') - 4 + (#tmpSkills - #skillList[playerID][SKILL_LIST_YOUR])
+
+                            -- Do we need to add any skills?
+                            if addSkills <= 0 then return end
+
+                            -- Add the skills
+                            for interface,_ in pairs(validInterfaces) do
+                                for i=1,addSkills do
+                                    local msg, skillName = findRandomSkill(playerID, interface, i, botSkillsOnly)
+
+                                    -- Failed to find a new skill
+                                    if skillName == nil then break end
+
+                                    table.insert(skillList[playerID][SKILL_LIST_YOUR], skillName)
+                                end
+                            end
+
+                            -- Sort it randomly
+                            --skillList[playerID][SKILL_LIST_YOUR] = shuffle(skillList[playerID][SKILL_LIST_YOUR])
+
+                            -- Store that we added skills
+                            specialAddedSkills[playerID] = {}
+                            for k,v in pairs(skillList[playerID][SKILL_LIST_YOUR]) do
+                                local found = false
+                                for kk,vv in pairs(tmpSkills) do
+                                    if vv == v then
+                                        found = true
+                                        break
+                                    end
+                                end
+
+                                if not found then
+                                    specialAddedSkills[playerID][SkillManager:GetMultiplierSkillName(v)] = true
+                                end
+                            end
+                        end
+
+                        SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
+
+                        return
                     end
-                end
-            end
 
-            SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
+                    -- Check if the game has started yet
+                    if currentStage > STAGE_PICKING then
+                        -- Validate the build
+                        validateBuild(playerID)
 
-            return
-        end
-
-        -- Check if the game has started yet
-        if currentStage > STAGE_PICKING then
-            -- Validate the build
-            validateBuild(playerID)
-
-            -- Grab their build
-            local build = (skillList[playerID] or {})[SKILL_LIST_YOUR] or {}
-
-            -- Apply the build
-            SkillManager:ApplyBuild(spawnedUnit, build)
-
-            -- Store playerID has handled
-            handledPlayerIDs[playerID] = true
-        else
-            -- Store that this hero needs fixing
-            brokenHeroes[spawnedUnit] = true
-
-            -- Remove their skills
-            SkillManager:RemoveAllSkills(spawnedUnit)
-        end
-    end
-
-    -- Check if we should apply custom bear skills
-    if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
-        -- Kill server if no one is on it anymore
-        GameRules:GetGameModeEntity():SetThink(function()
-            -- Ensure the unit is valid still
-            if IsValidEntity(spawnedUnit) then
-                -- Grab playerID
-                local playerID = spawnedUnit:GetPlayerOwnerID()
-
-                -- Store the bear
-                spiritBears[playerID] = spawnedUnit
-
-                -- Grab the skill list
-                local skillz = (skillList[playerID] or {})[SKILL_LIST_BEAR]
-                if skillz then
-                    -- Change levels if already allocated skillz
-                    if not handled[spawnedUnit] then
-                        -- We are now handled
-                        handled[spawnedUnit] = true
+                        -- Grab their build
+                        local build = (skillList[playerID] or {})[SKILL_LIST_YOUR] or {}
 
                         -- Apply the build
-                        SkillManager:ApplyBuild(spawnedUnit, skillz)
-                    end
+                        SkillManager:ApplyBuild(spawnedUnit, build)
 
-                    -- Grab their hero
-                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                        -- Store playerID has handled
+                        handledPlayerIDs[playerID] = true
+                    else
+                        -- Store that this hero needs fixing
+                        brokenHeroes[spawnedUnit] = true
 
-                    if hero then
-                        -- Level skills based on hero
-                        levelSpiritSkills(spawnedUnit, skillz, hero:GetLevel())
+                        -- Remove their skills
+                        SkillManager:RemoveAllSkills(spawnedUnit)
                     end
                 end
-            end
-        end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
-    end
 
-    -- Creep buffing
-    local unitName = spawnedUnit:GetUnitName()
-    if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'siege') or string.find(unitName, 'roshan') then
-        if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
-            -- Neutral Creep
-            local buffNeutralCreeps = OptionManager:GetOption('buffNeutralCreeps')
-            if buffNeutralCreeps > 1 then
-                local buffer = getHealthBuffer()
-                spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffNeutralCreeps)
-                spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffNeutralCreeps)
-                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffNeutralCreeps, {})
-            end
-        else
-            -- Lane Creep
-            local buffCreeps = OptionManager:GetOption('buffCreeps')
-            if buffCreeps > 1 then
-                local buffer = getHealthBuffer()
-                spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffCreeps)
-                spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffCreeps)
-                buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
-            end
-        end
+                -- Check if we should apply custom bear skills
+                if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
+                    -- Kill server if no one is on it anymore
+                    GameRules:GetGameModeEntity():SetThink(function()
+                        -- Ensure the unit is valid still
+                        if IsValidEntity(spawnedUnit) then
+                            -- Grab playerID
+                            local playerID = spawnedUnit:GetPlayerOwnerID()
 
-        -- Apply creep skills
-        applyCreepSkills(spawnedUnit)
-    end
-end, nil)
+                            -- Store the bear
+                            spiritBears[playerID] = spawnedUnit
+
+                            -- Grab the skill list
+                            local skillz = (skillList[playerID] or {})[SKILL_LIST_BEAR]
+                            if skillz then
+                                -- Change levels if already allocated skillz
+                                if not handled[spawnedUnit] then
+                                    -- We are now handled
+                                    handled[spawnedUnit] = true
+
+                                    -- Apply the build
+                                    SkillManager:ApplyBuild(spawnedUnit, skillz)
+                                end
+
+                                -- Grab their hero
+                                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                                if hero then
+                                    -- Level skills based on hero
+                                    levelSpiritSkills(spawnedUnit, skillz, hero:GetLevel())
+                                end
+                            end
+                        end
+                    end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
+                end
+
+                -- Creep buffing
+                local unitName = spawnedUnit:GetUnitName()
+                if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'siege') or string.find(unitName, 'roshan') then
+                    if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+                        -- Neutral Creep
+                        local buffNeutralCreeps = OptionManager:GetOption('buffNeutralCreeps')
+                        if buffNeutralCreeps > 1 then
+                            local buffer = getHealthBuffer()
+                            spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffNeutralCreeps)
+                            spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffNeutralCreeps)
+                            buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffNeutralCreeps, {})
+                        end
+                    else
+                        -- Lane Creep
+                        local buffCreeps = OptionManager:GetOption('buffCreeps')
+                        if buffCreeps > 1 then
+                            local buffer = getHealthBuffer()
+                            spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() * buffCreeps)
+                            spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() * buffCreeps)
+                            buffer:ApplyDataDrivenModifier(spawnedUnit, spawnedUnit, "modifier_other_health_mod_"..buffCreeps, {})
+                        end
+                    end
+
+                    -- Apply creep skills
+                    applyCreepSkills(spawnedUnit)
+                end
+            end
+        end, 'npc_spawned'..DoUniqueString('npc_spawned'), 0.1, nil)
+    end, nil)
+end
 
 --[[ListenToGameEvent('modifier_event', function(keys)
     for k,v in pairs(keys) do

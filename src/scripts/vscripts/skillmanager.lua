@@ -291,6 +291,17 @@ function skillManager:PrecacheBuild(build)
     end
 end
 
+-- Precaches a hero
+local realHeroCache = {}
+function skillManager:PrecacheHero(heroName)
+    if realHeroCache[heroName] then return end
+    realHeroCache[heroName] = true
+    alreadyCached[heroName] = true
+
+    -- Precache the unit
+    PrecacheUnitByNameAsync(heroName, function() end)
+end
+
 local inSwap = false
 function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- Ensure the hero isn't nil
