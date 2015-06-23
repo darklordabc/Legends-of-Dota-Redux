@@ -1964,6 +1964,9 @@ function lod:InitGameMode()
     -- Start listening to NPC spawns
     listenToNPCs()
 
+    -- Ban meepo ulty, for now
+    banSkill('meepo_divided_we_stand')
+
     print('Everything seems good!\n\n')
 end
 
@@ -3189,6 +3192,11 @@ doLock = function(playerID)
         first = false
     end
 
+    -- Can only unlock during the picking phase
+    if currentStage ~= STAGE_PICKING then
+        first = true
+    end
+
     -- Store our lock as taken
     playerLocks[playerID] = 1
 
@@ -4046,12 +4054,18 @@ registerConsoleCommands = function()
                 return
             end
 
+            -- Check the current phase
+            if currentStage ~= STAGE_PICKING then
+                sendChatMessage(playerID, '#lod_extra_time_wrong_stage')
+                return
+            end
+
             -- Grab their team
             local team = PlayerResource:GetTeam(playerID)
 
             -- Allow extra time ONCE from each team
             extraTime[team] = extraTime[team] or 0
-            if extraTime[team] >= 2 then
+            if extraTime[team] >= 1 then
                 sendChatMessage(playerID, '#lod_already_time')
                 return
             end

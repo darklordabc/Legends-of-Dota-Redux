@@ -11,6 +11,8 @@
 		"ADDON_GAME_NAME"                  	"Legends of Dota"
 		"game_mode_15_desc"					"Build a fully sick hero"
 
+		"lod_extra_time_wrong_stage"		"You can only allocate extra time during the picking phase."
+
 		// Filtering
 		"Ability"							"Ability"
 		"Ultimate"							"Ultimate"
