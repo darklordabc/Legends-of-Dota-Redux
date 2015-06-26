@@ -110,6 +110,11 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     ab:StartCooldown(newCooldown)
                                 end
                             end
+
+                            -- Mana refund
+                            local manaRefund = 5 + 5 * lvl
+                            local currentMana = hero:GetMana()
+                            hero:SetMana(currentMana + manaRefund)
                         end
                     end
                 end
