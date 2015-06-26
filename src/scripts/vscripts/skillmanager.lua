@@ -53,6 +53,11 @@ local towerClasses = {
     npc_dota_tower = true
 }
 
+-- Auto set this to max level
+local autoSkill = {
+    nyx_assassin_unburrow = true
+}
+
 local heroIDToName = {}
 local skillOwningHero = {}
 for k,v in pairs(heroListKV) do
@@ -547,6 +552,11 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)
+
+                    -- Check for auto skilling
+                    if autoSkill[v] then
+                        newAb:SetLevel(newAb:GetMaxLevel())
+                    end
                 end
 
                 -- Insert
@@ -670,6 +680,14 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
             -- Store that we have it
             currentSkillList[hero][abNum] = realAbility
+
+            -- Check for auto skilling
+            if autoSkill[k] then
+                local newAb = hero:FindAbilityByName(realAbility)
+                if newAb then
+                    newAb:SetLevel(newAb:GetMaxLevel())
+                end
+            end
         end
     end
 end
