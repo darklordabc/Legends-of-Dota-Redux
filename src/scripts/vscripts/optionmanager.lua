@@ -100,6 +100,9 @@ OptionManager:SetOption('maxHeroLevel', 25)
 -- Force unique skills?
 OptionManager:SetOption('forceUniqueSkills', 0)
 
+-- Force unique heroes?
+OptionManager:SetOption('uniqueHeroes', 0)
+
 -- Allow the passives on skills to be used
 OptionManager:SetOption('allowItemModifers', true)
 

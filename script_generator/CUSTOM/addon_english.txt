@@ -120,6 +120,9 @@
 		"desBuffNeutralCreeps"				"Buff Neutral Creeps"
 		"hintBuffNeutralCreeps"				"Adds a buff which works best with the selected multiplier."
 
+		"desUniqueHeroes"					"Force unique heroes"
+		"hintUniqueHeroes"					"Turning this on allows a given hero to only be selected by one player."
+
 		"noBuff"							"No Buff"
 		"buff5x"							"5x Buff"
 		"buff10x"							"10x Buff"

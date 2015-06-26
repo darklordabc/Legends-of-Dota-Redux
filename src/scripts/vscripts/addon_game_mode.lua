@@ -1400,6 +1400,15 @@ setupGamemodeSettings = function()
         Convars:SetInt('dota_easy_mode', 1)
     end
 
+    -- Are we using unique heroes?
+    if OptionManager:GetOption('uniqueHeroes') then
+        -- Force unique
+        GameRules:SetSameHeroSelectionEnabled(false)
+    else
+        -- Allow the same
+        GameRules:SetSameHeroSelectionEnabled(true)
+    end
+
     if OptionManager:GetOption('fullPriceSellback') then
         -- Enable it
         Convars:SetFloat('dota_item_fullprice_buyback_interval', 100000000)
@@ -1656,8 +1665,11 @@ finishVote = function()
     -- Are we using unique skills?
     OptionManager:SetOption('forceUniqueSkills', optionToValue(10, winners[10]))
 
+    -- Uniqye heroes
+    OptionManager:SetOption('uniqueHeroes', optionToValue(28, winners[28]))
+
     -- Free courier
-    OptionManager:SetOption('freeCourier', optionToValue(28, winners[28]))
+    OptionManager:SetOption('freeCourier', optionToValue(40, winners[40]))
 
     -- Number of towers in each lane
     OptionManager:SetOption('middleTowers', optionToValue(29, winners[29]))
@@ -1923,7 +1935,7 @@ function lod:InitGameMode()
 
     -- Set the selection time
     GameRules:SetHeroSelectionTime(60)
-    GameRules:SetSameHeroSelectionEnabled(true)
+    GameRules:SetSameHeroSelectionEnabled(false)    -- Default to off, we will turn it on if it is enabled in the options
 
     -- Setup standard rules
     if not GameRules:isSource1() then
