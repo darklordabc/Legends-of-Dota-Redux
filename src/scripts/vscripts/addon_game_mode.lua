@@ -1666,7 +1666,7 @@ finishVote = function()
     OptionManager:SetOption('forceUniqueSkills', optionToValue(10, winners[10]))
 
     -- Uniqye heroes
-    OptionManager:SetOption('uniqueHeroes', optionToValue(28, winners[28]))
+    OptionManager:SetOption('uniqueHeroes', optionToValue(28, winners[28]) == 1)
 
     -- Free courier
     OptionManager:SetOption('freeCourier', optionToValue(40, winners[40]))
@@ -1935,7 +1935,7 @@ function lod:InitGameMode()
 
     -- Set the selection time
     GameRules:SetHeroSelectionTime(60)
-    GameRules:SetSameHeroSelectionEnabled(false)    -- Default to off, we will turn it on if it is enabled in the options
+    --GameRules:SetSameHeroSelectionEnabled(false)    -- Default to off, we will turn it on if it is enabled in the options
 
     -- Setup standard rules
     if not GameRules:isSource1() then
