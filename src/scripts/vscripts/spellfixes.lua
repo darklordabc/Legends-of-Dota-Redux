@@ -16,6 +16,18 @@ local canMulticast = function(skillName)
     return true
 end
 
+-- Stop multicast on weird stuff
+local function isValidTargetEntity(ent)
+    -- Ensure it's a valid entity
+    if not IsValidEntity(ent) then return false end
+
+    -- No buildings
+    if ent:IsBuilding() then return false end
+    if ent:IsTower() then return false end
+
+    return true
+end
+
 -- Multicast
 
 local multicastChannel = {}
@@ -331,7 +343,8 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                                         local newTarget = target
                                                         while #targets > 0 do
                                                             newTarget = table.remove(targets, 1)
-                                                            if newTarget ~= target then
+
+                                                            if newTarget ~= target and isValidTargetEntity(newTarget) then
                                                                 break
                                                             end
                                                         end
@@ -351,7 +364,6 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                         end
                                     end
                                 end
-
                             else
                                 -- Grab the position
                                 local pos = hero:GetCursorPosition()
@@ -363,62 +375,6 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                                 local targets
                                 if target and util:isTargetSpell(keys.abilityname) then
-                                    -- Target based spells dont work in source1, sue me
-                                    if GameRules:isSource1() then
-                                        -- Disable this experiment
-                                        if 1==1 then return end
-
-                                        -- Forget multicasting target based items for now
-                                        if isItemAb then return end
-
-                                        multUnits = {}
-
-                                        -- Create dummy units to cast target spells
-                                        for multNum=1,mult-1 do
-                                            local multUnit = CreateUnitByName('npc_multicast', hero:GetOrigin(), false, hero, hero, hero:GetTeamNumber())
-
-                                            if multUnit then
-                                                multUnit:AddAbility(keys.abilityname)
-                                                local multAb = multUnit:FindAbilityByName(keys.abilityname)
-                                                if multAb then
-                                                    -- Level the spell
-                                                    multAb:SetLevel(ab:GetLevel())
-
-                                                    -- Store unit
-                                                    table.insert(multUnits, multUnit)
-
-                                                    -- Add cleanup timer
-                                                    Timers:CreateTimer(function()
-                                                        -- Ensure it is still valid
-                                                        if IsValidEntity(multUnit) then
-                                                            -- Run the cleanup
-                                                            UTIL_RemoveImmediate(multUnit)
-                                                        end
-                                                    end, DoUniqueString('cleanup'), 2)
-
-                                                    -- Ensure it can't be killed
-                                                    local dummySpell = multUnit:FindAbilityByName('lod_dummy_unit')
-                                                    if dummySpell then
-                                                        dummySpell:SetLevel(1)
-                                                    end
-                                                    multUnit:AddNewModifier(multUnit, nil, 'modifier_invulnerable', {})
-
-                                                    -- Give it a scepter, if we have one
-                                                    if hero:HasModifier('modifier_item_ultimate_scepter') then
-                                                        multUnit:AddNewModifier(multUnit, nil, 'modifier_item_ultimate_scepter', {
-                                                            bonus_all_stats = 0,
-                                                            bonus_health = 0,
-                                                            bonus_mana = 0
-                                                        })
-                                                    end
-                                                else
-                                                    -- Remove straight away
-                                                    UTIL_RemoveImmediate(multUnit)
-                                                end
-                                            end
-                                        end
-                                    end
-
                                     isaTargetSpell = true
 
                                     targets = FindUnitsInRadius(target:GetTeam(),
@@ -451,7 +407,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                                 local t = targets[index]
 
                                                 -- Ensure it is valid and still alive
-                                                if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget then
+                                                if IsValidEntity(t) and t:GetHealth() > 0 and t ~= ourTarget and isValidTargetEntity(t) then
                                                     -- Target is valid and alive, target it
                                                     ourTarget = t
                                                     doneTarget = true
@@ -465,25 +421,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                                         if isaTargetSpell then
                                             if IsValidEntity(ourTarget) and ourTarget:GetHealth() > 0 then
-                                                if GameRules:isSource1() then
-                                                    if #multUnits > 0 then
-                                                        -- Do source1 casting, doh!
-                                                        local multUnit = table.remove(multUnits)
-
-                                                        if IsValidEntity(multUnit) then
-                                                            local multAb = multUnit:FindAbilityByName(keys.abilityname)
-
-                                                            if multAb then
-                                                                multUnit:CastAbilityOnTarget(ourTarget, multAb, -1)
-                                                            else
-                                                                -- Remove straight away
-                                                                UTIL_RemoveImmediate(multUnit)
-                                                            end
-                                                        end
-                                                    end
-                                                else
-                                                    hero:SetCursorCastTarget(ourTarget)
-                                                end
+                                                hero:SetCursorCastTarget(ourTarget)
                                             else
                                                 return
                                             end
@@ -503,15 +441,15 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                             end
 
                             -- Create sexy particles
-                            local prt = ParticleManager:CreateParticle('ogre_magi_multicast', PATTACH_OVERHEAD_FOLLOW, hero)
+                            local prt = ParticleManager:CreateParticle('particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf', PATTACH_OVERHEAD_FOLLOW, hero)
                             ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
                             ParticleManager:ReleaseParticleIndex(prt)
 
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_b', PATTACH_OVERHEAD_FOLLOW, hero)
+                            prt = ParticleManager:CreateParticle('particles/units/heroes/hero_ogre_magi/ogre_magi_multicast_b.vpcf', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            prt = ParticleManager:CreateParticle('particles/units/heroes/hero_ogre_magi/ogre_magi_multicast_b.vpcf', PATTACH_OVERHEAD_FOLLOW, hero)
                             ParticleManager:ReleaseParticleIndex(prt)
 
-                            prt = ParticleManager:CreateParticle('ogre_magi_multicast_c', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
+                            prt = ParticleManager:CreateParticle('particles/units/heroes/hero_ogre_magi/ogre_magi_multicast_c.vpcf', PATTACH_OVERHEAD_FOLLOW, hero:GetCursorCastTarget() or hero)
                             ParticleManager:SetParticleControl(prt, 1, Vector(mult, 0, 0))
                             ParticleManager:ReleaseParticleIndex(prt)
 
