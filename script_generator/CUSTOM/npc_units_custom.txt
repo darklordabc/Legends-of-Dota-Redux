@@ -925,6 +925,20 @@
 
 		"precache"
 		{
+			//"model"					"models/heroes/undying/undying_minion.vmdl"
+			//"model"					"models/heroes/undying/undying_minion_torso.vmdl"
+			//"model"					"models/heroes/visage/visage_familiar.vmdl"
+			//"model"					"models/heroes/undying/undying_tower.vmdl"
+			//"model"					"models/heroes/undying/undying_tower_destruction.vmdl"
+		}
+	}
+
+	"npc_precache_always"
+	{
+		"BaseClass"					"npc_dota_creep"
+
+		"precache"
+		{
 			"model"					"models/heroes/undying/undying_minion.vmdl"
 			"model"					"models/heroes/visage/visage_familiar.vmdl"
 			"model"					"models/heroes/undying/undying_tower.vmdl"

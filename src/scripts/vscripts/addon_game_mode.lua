@@ -1938,31 +1938,29 @@ function lod:InitGameMode()
     --GameRules:SetSameHeroSelectionEnabled(false)    -- Default to off, we will turn it on if it is enabled in the options
 
     -- Setup standard rules
-    if not GameRules:isSource1() then
-        GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
-        --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
 
-        -- Precache orgre magi stuff
-        PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
-            CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
-        end)
+    GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
+    --GameRules:GetGameModeEntity():SetBotThinkingEnabled( true )
 
-        -- Precache survival resources
-        --[[PrecacheUnitByNameAsync('npc_precache_survival', function()
-            CreateUnitByName('npc_precache_survival', Vector(-10000, -10000, 0), false, nil, nil, 0)
-        end)]]
-
-        -- Precache wraithnight stuff
-        PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
-            CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
-        end)
-    else
-        -- Precache ogre magi
+    -- Precache orgre magi stuff
+    PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)
 
-        -- Precache wraithnight
+    -- Precache survival resources
+    --[[PrecacheUnitByNameAsync('npc_precache_survival', function()
+        CreateUnitByName('npc_precache_survival', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)]]
+
+    -- Precache wraithnight stuff
+    PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
         CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
-    end
+    end)
+
+    -- Precache the stuff that needs to always be precached
+    PrecacheUnitByNameAsync('npc_precache_always', function()
+        CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)
 
     -- Setup console commands
     registerConsoleCommands()
@@ -2220,14 +2218,6 @@ local shownHosterIssue = false
 function lod:OnThink()
     -- Source1 fix to the backdoor issues
     if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        if GameRules:isSource1() then
-            -- Only run once
-            fixedBackdoor = true
-
-            -- Fix backdoor
-            backdoorFix()
-        end
-
         -- Fix tower skills
         setTowerOwnership()
 
@@ -2314,29 +2304,16 @@ function lod:OnThink()
         -- Fix locks
         playerLocks = {}
 
-        if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
-            -- Tell everyone
-            sendChatMessage(-1, '#lod_hero_banning', {
-                OptionManager:GetOption('heroBanningTime')
-            })
+         -- Tell everyone
+        sendChatMessage(-1, '#lod_picking', {
+            OptionManager:GetOption('pickingTime')
+        })
 
-            -- Change to picking state
-            currentStage = STAGE_HERO_BANNING
+         -- Change to picking state
+        currentStage = STAGE_PICKING
 
-            -- Store when the picking phase ends
-            endOfTimer = Time() + OptionManager:GetOption('heroBanningTime')
-        else
-            -- Tell everyone
-            sendChatMessage(-1, '#lod_picking', {
-                OptionManager:GetOption('pickingTime')
-            })
-
-             -- Change to picking state
-            currentStage = STAGE_PICKING
-
-            -- Store when the picking phase ends
-            endOfTimer = Time() + OptionManager:GetOption('pickingTime')
-        end
+        -- Store when the picking phase ends
+        endOfTimer = Time() + OptionManager:GetOption('pickingTime')
 
         -- Update the state
         self:OnEmitStateInfo()
@@ -2841,12 +2818,7 @@ function listenToNPCs()
                         --end
 
                         -- Fix EXP
-                        if GameRules:isSource1() then
-                            spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
-                        else
-                            -- This is damned unstable, it always changes arguments FFS
-                            spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
-                        end
+                        spawnedUnit:AddExperience(Constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
                     end
 
                     -- Any bonus gold?
@@ -3397,7 +3369,7 @@ end
 -- Registers hero banning
 registerHeroBanning = function()
     -- Source1 hero banning
-    if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
+    --[[if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
         Convars:RegisterCommand('dota_select_hero', function(name, heroName)
             local cmdPlayer = Convars:GetCommandClient()
             if cmdPlayer then
@@ -3518,7 +3490,7 @@ registerHeroBanning = function()
                 end
             end
         end, 'hero selection override', CLIENT_COMMAND)
-    end
+    end]]
 end
 
 -- Register fancy functions
@@ -4429,9 +4401,9 @@ skillWarnings = {
     phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
 }
 
-if GameRules:isSource1() then
+--[[if GameRules:isSource1() then
     skillWarnings.ogre_magi_multicast_lod = {getSpellIcon('ogre_magi_multicast'), tranAbility('ogre_magi_multicast')}
-end
+end]]
 
 if lod == nil then
 	print('LOD FAILED TO INIT!\n\n')
