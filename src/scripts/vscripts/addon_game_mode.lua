@@ -21,6 +21,9 @@ if _G.lod == nil then
 end
 
 -- Stat collection
+local statCollection = require('lib.statcollection')
+
+-- Stat collection
 --[[require('lib.statcollection')
 statcollection.addStats({
 	modID = '2374504c2c518fafc9731a120e67fdf5'
@@ -4416,6 +4419,11 @@ end
 
 -- Create the game mode when we activate
 function Activate()
+    -- Init stat collection
+    statCollection:init({
+        modID = '2374504c2c518fafc9731a120e67fdf5'
+    })
+
 	GameRules.lod = lod()
 	GameRules.lod:InitGameMode()
 end
