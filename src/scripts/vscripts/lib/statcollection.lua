@@ -222,8 +222,6 @@ function statCollection:sendStage1()
         schemaVersion = schemaVersion
     }
 
-    DeepPrintTable(payload)
-
     -- Begin the initial request
     self:sendStage('s2_phase_1.php', payload, function(err, res)
         -- Check if we got an error
