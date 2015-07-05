@@ -4420,9 +4420,9 @@ end
 -- Create the game mode when we activate
 function Activate()
     -- Init stat collection
-    statCollection:init({
+    --[[statCollection:init({
         modID = '2374504c2c518fafc9731a120e67fdf5'
-    })
+    })]]
 
 	GameRules.lod = lod()
 	GameRules.lod:InitGameMode()
