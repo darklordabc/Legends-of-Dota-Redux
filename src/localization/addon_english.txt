@@ -4,6 +4,14 @@
     "ADDON_GAME_NAME"                               "Legends of Dota"
     "addonname"                                     "Legends of Dota"
 
+    "theRadiant"                                    "The Radiant"
+    "theDire"                                       "The Dire"
+    "theUnassigned"                                 "Unassigned"
+
+    "autoAssignTeams"                               "Auto Assign"
+    "shuffleTeams"                                  "Shuffle"
+    "lockOptions"                                   "Lock Options"
+
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added!"
     "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."

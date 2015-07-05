@@ -1,0 +1,15 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/teamPlayer.js" />
+    </scripts>
+    <Panel class="teamPlayerContainer">
+        <DOTAAvatarImage id="playerAvatar" />
+        <Panel class="playerNameContainer">
+            <Label id="playerIsHostPanel" />
+            <Label id="playerName" text="PLAYER_NAME" />
+        </Panel>
+    </Panel>
+</root>

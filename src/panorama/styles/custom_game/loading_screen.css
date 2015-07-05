@@ -13,8 +13,11 @@
 }
 
 #LoDLoadingTip {
-    margin-top: 450px;
-    margin-left: 60px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    horizontal-align: right;
+    vertical-align: bottom;
+
     width: 640px;
     height: 140px;
 
@@ -36,8 +39,10 @@
 }
 
 #LoDGameTitle {
-    margin-top: 400px;
-    margin-left: 70px;
+    margin-right: 415px;
+    margin-bottom: 155px;
+    horizontal-align: right;
+    vertical-align: bottom;
 
     color: #FFFFFF;
     font-size: 30px;

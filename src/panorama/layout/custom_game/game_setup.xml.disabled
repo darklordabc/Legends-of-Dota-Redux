@@ -1,8 +1,0 @@
-<root>
-    <styles>
-        <include src="file://{resources}/styles/custom_game/game_setup.css" />
-    </styles>
-    <Panel>
-        <Label text="#addonname" />
-    </Panel>
-</root>

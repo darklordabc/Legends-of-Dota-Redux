@@ -1,0 +1,48 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/game_setup.js" />
+    </scripts>
+    <Panel class="lodOptionsInterface">
+        <Panel id="mainSelectionRoot">
+            <Panel id="mainTeamContainer">
+                <Panel id="theRadiant" class="theTeamTopLevel" onactivate="onJoinRadiantPressed()">
+                    <Label class="radiantGlow" text="theRadiant" />
+                    <Panel id="theRadiantContainer" class="theTeamContainer" />
+                </Panel>
+                <Panel id="theDire" class="theTeamTopLevel" onactivate="onJoinDirePressed()">
+                    <Label class="direGlow" text="theDire" />
+                    <Panel id="theDireContainer" class="theTeamContainer" />
+                </Panel>
+
+                <Panel id="middleButtons">
+                    <Button onactivate="onAutoAssignPressed()">
+                        <Label text="autoAssignTeams" />
+                    </Button>
+                    <Button onactivate="onShufflePressed()">
+                        <Label text="shuffleTeams" />
+                    </Button>
+                </Panel>
+            </Panel>
+
+            <Panel class="direGlow" id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
+                <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
+                <Label id="unassignedTeamLabel" text="theUnassigned" />
+            </Panel>
+
+            <Panel id="optionSelection">
+                <Panel id="optionCategories" />
+                <Panel id="optionList">
+                    <Label style="color: #FFFFFF; font-size: 24px;" text="Option Selection Coming Soon!" />
+                </Panel>
+                <Panel id="optionButtons">
+                    <Button id="lockOptionsButton">
+                        <Label text="lockOptions" />
+                    </Button>
+                </Panel>
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

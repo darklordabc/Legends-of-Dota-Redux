@@ -1980,6 +1980,10 @@ function lod:InitGameMode()
     -- Ban meepo ulty, for now
     --banSkill('meepo_divided_we_stand')
 
+    -- Setup phase stuff
+    GameRules:SetCustomGameSetupTimeout(-1)
+    GameRules:EnableCustomGameSetupAutoLaunch(false)
+
     print('Everything seems good!\n\n')
 end
 

@@ -23,10 +23,10 @@
         // The hero selection clock
         // GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false );
 
-        $.Msg('32Starting...');
+        /*$.Msg('32Starting...');
         $.Schedule(2, function() {
             $.Msg('32Done!');
-        });
+        });*/
     </script>
 
 	<Panel>
