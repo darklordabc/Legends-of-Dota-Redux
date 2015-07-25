@@ -928,6 +928,12 @@ function doCSP(next) {
 */
 
 function doLvl1Ults(next) {
+    // Allow us to disable lvl1 stuff
+    if(settings.noPermute) {
+        if(next) next();
+        return;
+    }
+
     console.log('Generating level 1 abilities...');
 
     var toStore = {};
