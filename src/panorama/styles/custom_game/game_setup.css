@@ -1,10 +1,10 @@
 #mainSelectionRoot {
     width: 100%;
+    flow-children: down;
 }
 
 .lodOptionsInterface {
     width: 100%;
-    flow-children: down;
 }
 
 #mainTeamContainer {

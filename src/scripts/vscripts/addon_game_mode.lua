@@ -4432,10 +4432,8 @@ function Activate()
 	GameRules.lod:InitGameMode()
 end
 
--- Attempt to allow players to not load
---[[if not GameRules:isSource1() then
-    Convars:SetInt('dota_wait_for_players_to_load', 0)
-end]]
+-- Boot directly into LoD interface
+Convars:SetInt('dota_wait_for_players_to_load', 0)
 
 -- Debug info for noobs
 print('Legends of Dota script has run successfully!\n\n')
