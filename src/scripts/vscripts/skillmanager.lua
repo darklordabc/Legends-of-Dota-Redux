@@ -298,13 +298,13 @@ end
 
 -- Precaches a hero
 local realHeroCache = {}
-function skillManager:PrecacheHero(heroName)
+function skillManager:PrecacheHero(heroName, playerID)
     if realHeroCache[heroName] then return end
     realHeroCache[heroName] = true
     alreadyCached[heroName] = true
 
     -- Precache the unit
-    PrecacheUnitByNameAsync(heroName, function() end)
+    PrecacheUnitByNameAsync(heroName, function() end, playerID)
 end
 
 local inSwap = false

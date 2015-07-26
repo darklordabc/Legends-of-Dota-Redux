@@ -2412,16 +2412,16 @@ function lod:OnThink()
     -- Don't stop the timer!
     if currentStage == STAGE_PLAYING then
         if not lodHasStarted then
-            --[[for i=0,9 do
+            for i=0,9 do
                 -- Grab their heronames
                 local heroName = PlayerResource:GetSelectedHeroName(i)
 
                 -- Check if we have a name
                 if heroName and heroName ~= '' then
                     -- Precache this hero
-                    SkillManager:PrecacheHero(heroName)
+                    SkillManager:PrecacheHero(heroName, i)
                 end
-            end]]
+            end
 
             -- Wait until hero selection ends
             if GameRules:State_Get() <= DOTA_GAMERULES_STATE_HERO_SELECTION then return 0.5 end
@@ -4433,7 +4433,7 @@ function Activate()
 end
 
 -- Boot directly into LoD interface
-Convars:SetInt('dota_wait_for_players_to_load', 0)
+--Convars:SetInt('dota_wait_for_players_to_load', 0)
 
 -- Debug info for noobs
 print('Legends of Dota script has run successfully!\n\n')

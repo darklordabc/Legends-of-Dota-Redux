@@ -1,5 +1,7 @@
 <root>
     <styles>
+        <include src="file://{resources}/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/play.css" />
         <include src="file://{resources}/styles/custom_game/game_setup.css" />
     </styles>
     <scripts>
@@ -38,7 +40,7 @@
                     <Label style="color: #FFFFFF; font-size: 24px;" text="Option Selection Coming Soon!" />
                 </Panel>
                 <Panel id="optionButtons">
-                    <Button id="lockOptionsButton">
+                    <Button id="lockOptionsButton" class="PlayButton">
                         <Label text="lockOptions" />
                     </Button>
                 </Panel>

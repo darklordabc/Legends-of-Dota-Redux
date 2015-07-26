@@ -180,6 +180,10 @@
 }
 
 #optionCategories {
+    flow-children: down;
+}
+
+#optionCategories {
     width: 320px;
     height: 100%;
     padding: 8px;
@@ -201,11 +205,10 @@
 #optionButtons Button {
     color: #FFFFFF;
     font-size: 24px;
+    margin: 0px;
 }
 
 #lockOptionsButton {
-    padding: 4px;
-    horizontal-align: right;
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
     box-shadow: fill #486ca922 -4px -4px 8px 8px;
     border-top: 1px solid #ffffff03;

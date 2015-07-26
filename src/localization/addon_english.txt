@@ -12,6 +12,14 @@
     "shuffleTeams"                                  "Shuffle"
     "lockOptions"                                   "Lock Options"
 
+    // Categories for option selection
+    "presets_lod"                                   "Presets"
+    "common_selection_lod"                          "Common Selection"
+    "game_speed_lod"                                "Game Speed"
+    "advanced_selection_lod"                        "Advanced Selection"
+    "buffs_lod"                                     "Buffs"
+    "crazyness_lod"                                 "Crazyness"
+
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added!"
     "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."

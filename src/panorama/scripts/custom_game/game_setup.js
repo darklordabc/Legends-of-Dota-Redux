@@ -1,5 +1,38 @@
 "use strict";
 
+// All options JSON (todo: EXPORT IT)
+var allOptions = {
+    // Presets, to make selection FAST
+    presets: {
+
+    },
+
+    // The common stuff people play with
+    common_selection: {
+
+    },
+
+    // Changing the speed of the match
+    game_speed: {
+
+    },
+
+    // Advanced stuff, for pros
+    advanced_selection: {
+
+    },
+
+    // Buffing of heroes, towers, etc
+    buffs: {
+
+    },
+
+    // Stuff that is just crazy
+    crazyness: {
+
+    }
+}
+
 // List of all player team panels
 var allPlayerPanels = [];
 
@@ -30,6 +63,25 @@ function addPlayerToTeam(playerID, panel) {
 
     // Add this panel to the list of panels we've generated
     allPlayerPanels.push(newPlayerPanel);
+}
+
+// Build the options categories
+function buildOptionsCategories() {
+    // Grab the main container for option categories
+    var catContainer = $('#optionCategories');
+
+    // Delete any children
+    catContainer.RemoveAndDeleteChildren();
+
+    // Loop over all the option labels
+    for(var optionLabelText in allOptions) {
+        var optionCategory = $.CreatePanel('Button', catContainer, 'option_button_' + optionLabelText);
+        optionCategory.SetAttributeString('cat', optionLabelText);
+        optionCategory.AddClass('PlayButton');
+
+        var optionLabel = $.CreatePanel('Label', optionCategory, 'option_button_' + optionLabelText + '_label');
+        optionLabel.text = $.Localize(optionLabelText + '_lod');
+    }
 }
 
 // Player presses auto assign
@@ -168,6 +220,9 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
 
     // Start updating the timer, this function will schedule itself to be called periodically
     //UpdateTimer();
+
+    // Build the options categories
+    buildOptionsCategories();
 
     // Register a listener for the event which is brodcast when the team assignment of a player is actually assigned
     $.RegisterForUnhandledEvent( "DOTAGame_TeamPlayerListChanged", OnTeamPlayerListChanged );
