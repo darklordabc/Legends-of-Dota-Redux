@@ -2497,6 +2497,9 @@ function lod:OnThink()
             sendChatMessage(-1, '#lod_slotWarning')
         end
 
+        -- Reclaulcate gold offsets
+        recalculatePlayerCounts()
+
         -- Sleep
         return 0.1
     end
