@@ -1984,7 +1984,99 @@ function lod:InitGameMode()
     GameRules:SetCustomGameSetupTimeout(-1)
     GameRules:EnableCustomGameSetupAutoLaunch(false)
 
+    -- Init gold balancer
+    self:initGoldBalancer()
+
     print('Everything seems good!\n\n')
+end
+
+-- Init gold balancer
+function lod:initGoldBalancer()
+    -- recalculate player team counts
+    self:recalculatePlayerCounts()
+
+    -- Filter event
+    GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap( lod, "FilterModifyGold" ), self)
+
+    local this = self
+
+    -- Hook recalculations
+    ListenToGameEvent('player_connect', function(keys)
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Recalculate the counts
+            this:recalculatePlayerCounts()
+        end, 'calcPlayerTotals', 1, nil)
+    end, nil)
+
+    ListenToGameEvent('player_connect_full', function(keys)
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Recalculate the counts
+            this:recalculatePlayerCounts()
+        end, 'calcPlayerTotals', 1, nil)
+    end, nil)
+
+    ListenToGameEvent('player_disconnect', function(keys)
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Recalculate the counts
+            this:recalculatePlayerCounts()
+        end, 'calcPlayerTotals', 1, nil)
+    end, nil)
+end
+
+-- Counts how many players on each team
+function lod:recalculatePlayerCounts()
+    -- Default to no players
+    self.playersOnTeam = {
+        radiant = 0,
+        dire = 0
+    }
+
+    -- Work it out
+    for i=0,9 do
+        local connectionState = PlayerResource:GetConnectionState(i)
+        if connectionState == 2 then
+            local teamID = PlayerResource:GetTeam(i)
+
+            if teamID == DOTA_TEAM_GOODGUYS then
+                self.playersOnTeam.radiant = self.playersOnTeam.radiant + 1
+            elseif teamID == DOTA_TEAM_BADGUYS then
+                self.playersOnTeam.dire = self.playersOnTeam.dire + 1
+            end
+        end
+    end
+
+    -- Ensure never less than one
+    for k,v in pairs(self.playersOnTeam) do
+        if v <= 0 then
+            self.playersOnTeam[k] = 1
+        end
+    end
+end
+
+-- Attempt to balance gold
+function lod:FilterModifyGold(filterTable)
+    -- Grab useful information
+    local playerID = filterTable.player_id_const
+    local teamID = PlayerResource:GetTeam(playerID)
+
+    local myTeam = 1
+    local enemyTeam = 1
+
+    if teamID == DOTA_TEAM_GOODGUYS then
+        myTeam = self.playersOnTeam.radiant
+        enemyTeam = self.playersOnTeam.dire
+    elseif teamID == DOTA_TEAM_BADGUYS then
+        myTeam = self.playersOnTeam.dire
+        enemyTeam = self.playersOnTeam.radiant
+    end
+
+    -- Slow down the gold intake for the team with more players
+    local ratio = enemyTeam / myTeam
+    if ratio < 1 then
+        filterTable.gold = math.ceil(filterTable.gold * ratio)
+    end
+
+    return true
 end
 
 -- Emits state info every 5 seconds
