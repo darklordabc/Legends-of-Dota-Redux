@@ -944,6 +944,9 @@
 			"model"					"models/heroes/visage/visage_familiar.vmdl"
 			"model"					"models/heroes/undying/undying_tower.vmdl"
 			"model"					"models/heroes/undying/undying_tower_destruction.vmdl"
+
+			"model"					"models/props_structures/tower_good.vmdl"
+			"model"					"models/props_structures/tower_bad.vmdl"
 		}
 	}
 }

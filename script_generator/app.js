@@ -4,7 +4,7 @@ var fs = require('fs')
 var settings = require('./settings.json');                              // The settings file
 var scriptDir = settings.scriptDir + '/';                               // The directory where dota scripts are placed
 var scriptDirOut = settings.scriptDirOut;                               // The directory where our files are outputted
-var resourcePath = settings.dotaDir + 'game/dota_imported/resource/';   // The directory to read resource files from
+var resourcePath = settings.dotaDir + 'game/dota/resource/';   // The directory to read resource files from
 var customDir = settings.customDir;                                     // The directory where our mods are read from, to be merged in
 
 // Code needed to do multipliers
