@@ -658,8 +658,8 @@ local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
 math.randomseed(tonumber(timeTxt))
 
 -- These numbers are used to encode radiant / dire skills
-local encodeRadiant = math.random(50,100)
-local encodeDire = math.random(50,100)
+local encodeRadiant = 55--math.random(50,100)
+local encodeDire = 55--math.random(50,100)
 
 -- Should we hide the enemy team's skills
 local hideSkills = true
@@ -4528,7 +4528,7 @@ function Activate()
 end
 
 -- Boot directly into LoD interface
-Convars:SetInt('dota_wait_for_players_to_load', 0)
+--Convars:SetInt('dota_wait_for_players_to_load', 0)
 
 -- Debug info for noobs
 print('Legends of Dota script has run successfully!\n\n')
