@@ -10,7 +10,10 @@
 
     "autoAssignTeams"                               "Auto Assign"
     "shuffleTeams"                                  "Shuffle"
+    "lockTeams"                                     "Lock Teams"
+    "unlockTeams"                                   "Unlock Teams"
     "lockOptions"                                   "Lock Options"
+    "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
     "presets_lod"                                   "Presets"

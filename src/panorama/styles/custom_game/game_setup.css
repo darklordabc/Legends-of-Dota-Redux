@@ -166,6 +166,14 @@
     padding: 4px;
 }
 
+.teams_locked #lodLockButton {
+    visibility: collapse;
+}
+
+.teams_unlocked #lodUnlockButton {
+    visibility: collapse;
+}
+
 /*
     Option Selection Interface
 */
@@ -197,6 +205,7 @@
 }
 
 #optionButtons {
+    flow-children: down;
     horizontal-align: right;
     vertical-align: bottom;
     padding: 16px;
@@ -216,7 +225,11 @@
     visibility: collapse;
 }
 
-.unassigned_players #lockOptionsButton {
+.teams_locked #lockTeamsFirst {
+    visibility: collapse;
+}
+
+.teams_unlocked #lockOptionsButton {
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
     box-shadow: fill #00000000 0px 0px 0px 0px;
     border-top: 1px solid #ffffff03;

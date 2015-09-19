@@ -88,12 +88,31 @@ function buildOptionsCategories() {
 function onAutoAssignPressed() {
     // Auto assign teams
     Game.AutoAssignPlayersToTeams();
+
+    // Lock teams
+    Game.SetTeamSelectionLocked(true);
 }
 
 // Player presses shuffle
 function onShufflePressed() {
     // Shuffle teams
     Game.ShufflePlayerTeamAssignments();
+}
+
+// Player presses lock teams
+function onLockPressed() {
+    // Don't allow a forced start if there are unassigned players
+    if (Game.GetUnassignedPlayerIDs().length > 0)
+        return;
+
+    // Lock the team selection so that no more team changes can be made
+    Game.SetTeamSelectionLocked(true);
+}
+
+// Player presses unlock teams
+function onUnlockPressed() {
+    // Unlock Teams
+    Game.SetTeamSelectionLocked(false);
 }
 
 // Player tries to join radiant
@@ -193,6 +212,42 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Update the state for the transition timer periodically
+//--------------------------------------------------------------------------------------------------
+function UpdateTimer()
+{
+    /*var gameTime = Game.GetGameTime();
+    var transitionTime = Game.GetStateTransitionTime();
+
+    CheckForHostPrivileges();
+
+    var mapInfo = Game.GetMapInfo();
+    $( "#MapInfo" ).SetDialogVariable( "map_name", mapInfo.map_display_name );
+
+    if ( transitionTime >= 0 )
+    {
+        $( "#StartGameCountdownTimer" ).SetDialogVariableInt( "countdown_timer_seconds", Math.max( 0, Math.floor( transitionTime - gameTime ) ) );
+        $( "#StartGameCountdownTimer" ).SetHasClass( "countdown_active", true );
+        $( "#StartGameCountdownTimer" ).SetHasClass( "countdown_inactive", false );
+    }
+    else
+    {
+        $( "#StartGameCountdownTimer" ).SetHasClass( "countdown_active", false );
+        $( "#StartGameCountdownTimer" ).SetHasClass( "countdown_inactive", true );
+    }
+
+    var autoLaunch = Game.GetAutoLaunchEnabled();
+    $( "#StartGameCountdownTimer" ).SetHasClass( "auto_start", autoLaunch );
+    $( "#StartGameCountdownTimer" ).SetHasClass( "forced_start", ( autoLaunch == false ) );*/
+
+    // Allow the ui to update its state based on team selection being locked or unlocked
+    $('#mainSelectionRoot').SetHasClass('teams_locked', Game.GetTeamSelectionLocked());
+    $('#mainSelectionRoot').SetHasClass('teams_unlocked', Game.GetTeamSelectionLocked() == false);
+
+    $.Schedule(0.1, UpdateTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
 (function() {
@@ -219,7 +274,7 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     OnTeamPlayerListChanged();
 
     // Start updating the timer, this function will schedule itself to be called periodically
-    //UpdateTimer();
+    UpdateTimer();
 
     // Build the options categories
     buildOptionsCategories();

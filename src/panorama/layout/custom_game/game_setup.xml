@@ -26,6 +26,12 @@
                     <Button onactivate="onShufflePressed()">
                         <Label text="shuffleTeams" />
                     </Button>
+                    <Button id="lodLockButton" onactivate="onLockPressed()">
+                        <Label text="lockTeams" />
+                    </Button>
+                    <Button id="lodUnlockButton" onactivate="onUnlockPressed()">
+                        <Label text="unlockTeams" />
+                    </Button>
                 </Panel>
             </Panel>
 
@@ -40,6 +46,7 @@
                     <Label style="color: #FFFFFF; font-size: 24px;" text="Option Selection Coming Soon!" />
                 </Panel>
                 <Panel id="optionButtons">
+                    <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                     <Button id="lockOptionsButton" class="PlayButton">
                         <Label text="lockOptions" />
                     </Button>
