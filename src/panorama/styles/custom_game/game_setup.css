@@ -7,8 +7,19 @@
     width: 100%;
 }
 
+/*
+    Team Selection
+*/
+
+/* During option selection */
+
 #mainTeamContainer {
     width: 100%;
+    visibility: collapse;
+}
+
+.phase_option_selection #mainTeamContainer {
+    visibility: visible;
 }
 
 #unassignedTeamContainer {
@@ -16,6 +27,11 @@
     horizontal-align: center;
     text-align: center;
     flow-children: down;
+    visibility: collapse;
+}
+
+.phase_option_selection #unassignedTeamContainer {
+    visibility: visible;
 }
 
 #unassignedPlayersContainer {
@@ -26,6 +42,16 @@
 .unassignedPlayerContainer {
     color: #FFFFFF;
     padding: 4px;
+}
+
+/* Rest of the time */
+#heroTeamContainer {
+    width: 100%;
+    visibility: visible;
+}
+
+.phase_option_selection #heroTeamContainer {
+    visibility: collapse;
 }
 
 /*
@@ -146,6 +172,18 @@
 .direGlow {
     horizontal-align: right;
     color: #FF0000;
+}
+
+/*
+    The Teams (Hero selection)
+*/
+
+#theRadiantHeroes {
+    horizontal-align: left;
+}
+
+#theDireHeroes {
+    horizontal-align: right;
 }
 
 /*
