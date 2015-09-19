@@ -2,6 +2,7 @@
 {
     custom_net_tables =
     [
-        "phase_pregame"
+        "phase_pregame",
+        "options"
     ]
 }

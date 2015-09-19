@@ -392,3 +392,54 @@
 .no_unassigned_players #lockOptionsButton:active {
     sound: "ui_team_select_lock_and_start";
 }
+
+.OptionButton.activeMenu {
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
+    box-shadow: fill #486ca922 -4px -4px 8px 8px;
+    border-top: 1px solid #ffffff03;
+    border-left: 1px solid #ffffff03;
+}
+
+.OptionButton.activeHostMenu {
+    box-shadow: fill #48FFa922 -4px -4px 8px 8px;
+}
+
+.OptionPanel {
+    width: 100%;
+    height: 600px;
+    background-color: #FF0000;
+    flow-children: down;
+    visibility: collapse;
+}
+
+.OptionPanel.activeMenu {
+    visibility: visible;
+}
+
+.optionSlotPanel {
+    width: 100%;
+    flow-children: right;
+}
+
+.optionsSlotPanelContainer {
+    horizontal-align: right;
+    flow-children: right;
+}
+
+.optionsSlotPanelHost {
+    visibility: visible;
+}
+
+.optionsSlotPanelSlave {
+    visibility: visible;
+}
+
+.disallow_custom_settings .optionButtonCustomRequired {
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
+    border-top: 1px solid #ffffff03;
+    border-left: 1px solid #ffffff03;
+}
+
+.allow_custom_settings .optionSlotPanelNoCustom {
+    visibility: collapse;
+}

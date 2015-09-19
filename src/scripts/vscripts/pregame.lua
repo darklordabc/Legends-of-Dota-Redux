@@ -17,12 +17,29 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
 
+    -- Store for options
+    self.optionStore = {}
+
     -- Grab a reference to self
     local this = self
 
-    -- Listen to events
+    --[[
+        Listen to events
+    ]]
+
+    -- Options are locked
     CustomGameEventManager:RegisterListener('lodOptionsLocked', function(eventSourceIndex, args)
         this:onOptionsLocked(eventSourceIndex, args)
+    end)
+
+    -- Host looks at a different tab
+    CustomGameEventManager:RegisterListener('lodOptionsMenu', function(eventSourceIndex, args)
+        this:onOptionsMenuChanged(eventSourceIndex, args)
+    end)
+
+    -- Host wants to set an option
+    CustomGameEventManager:RegisterListener('lodOptionSet', function(eventSourceIndex, args)
+        this:onOptionChanged(eventSourceIndex, args)
     end)
 end
 
@@ -120,6 +137,49 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
 
         end
     end
+end
+
+-- Options menu changed
+function Pregame:onOptionsMenuChanged(eventSourceIndex, args)
+    -- Ensure we are in the options locking phase
+    if self:getPhase() ~= constants.PHASE_OPTION_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure they have hosting privileges
+    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+        -- Grab and set which tab is active
+        local newActiveTab = args.v
+        network:setActiveOptionsTab(newActiveTab)
+    end
+end
+
+-- An option was changed
+function Pregame:onOptionChanged(eventSourceIndex, args)
+    -- Ensure we are in the options locking phase
+    if self:getPhase() ~= constants.PHASE_OPTION_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure they have hosting privileges
+    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+        -- Grab options
+        local optionName = args.k
+        local optionValue = args.v
+
+        -- TODO: Validate option name
+        -- Option values are validated at a later stage
+
+        -- Set the option
+        self.optionStore[optionName] = optionValue
+        network:setOption(optionName, optionValue)
+    end
+
+
 end
 
 -- Sets the stage
