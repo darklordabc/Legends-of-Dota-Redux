@@ -35,9 +35,30 @@
                 </Panel>
             </Panel>
 
-            <Panel class="direGlow" id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
+            <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
                 <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
                 <Label id="unassignedTeamLabel" text="theUnassigned" />
+            </Panel>
+
+            <Panel id="stageSelection">
+                <Button id="stageButtonOptionSelection" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
+                    <Label text="lodStageButtonOptionSelection" />
+                </Button>
+                <Label class="lodStageArrow" text="->" />
+                <Button id="stageButtonBanning" onactivate="SetSelectedPhase(PHASE_BANNING)">
+                    <Label text="lodStageButtonBanning" />
+                    <Label text="" id="lodBanningTimeRemaining" />
+                </Button>
+                <Label class="lodStageArrow" text="->" />
+                <Button id="stageButtonSelection" onactivate="SetSelectedPhase(PHASE_SELECTION)">
+                    <Label text="lodStageButtonSelection" />
+                    <Label text="" id="lodSelectionTimeRemaining" />
+                </Button>
+                <Label class="lodStageArrow" text="->" />
+                <Button id="stageButtonReview" onactivate="SetSelectedPhase(PHASE_REVIEW)">
+                    <Label text="lodStageButtonReview" />
+                    <Label text="" id="lodReviewTimeRemaining" />
+                </Button>
             </Panel>
 
             <Panel id="optionSelection">
@@ -47,11 +68,13 @@
                 </Panel>
                 <Panel id="optionButtons">
                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
-                    <Button id="lockOptionsButton" class="PlayButton">
+                    <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">
                         <Label text="lockOptions" />
                     </Button>
                 </Panel>
             </Panel>
+
+
         </Panel>
     </Panel>
 </root>

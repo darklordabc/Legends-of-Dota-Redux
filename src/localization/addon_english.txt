@@ -4,14 +4,24 @@
     "ADDON_GAME_NAME"                               "Legends of Dota"
     "addonname"                                     "Legends of Dota"
 
+    // Teams
     "theRadiant"                                    "The Radiant"
     "theDire"                                       "The Dire"
     "theUnassigned"                                 "Unassigned"
 
+    // The team locking buttons
     "autoAssignTeams"                               "Auto Assign"
     "shuffleTeams"                                  "Shuffle"
     "lockTeams"                                     "Lock Teams"
     "unlockTeams"                                   "Unlock Teams"
+
+    // The stage selection interface
+    "lodStageButtonOptionSelection"                 "Option Selection"
+    "lodStageButtonBanning"                         "Banning"
+    "lodStageButtonSelection"                       "Hero Builder"
+    "lodStageButtonReview"                          "Review"
+
+    // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
 

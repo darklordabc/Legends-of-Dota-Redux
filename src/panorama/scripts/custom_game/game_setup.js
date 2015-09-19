@@ -33,8 +33,35 @@ var allOptions = {
     }
 }
 
+// Phases
+var PHASE_LOADING = 1;          // Waiting for players, etc
+var PHASE_OPTION_SELECTION = 2; // Selection options
+var PHASE_BANNING = 3;          // Banning stuff
+var PHASE_SELECTION = 4;        // Selecting heroes
+var PHASE_DRAFTING = 5;         // Place holder for drafting mode
+var PHASE_REVIEW = 6;           // Review Phase
+var PHASE_INGAME = 7;           // Game has started
+
+// The current phase we are in
+var currentPhase = PHASE_LOADING;
+var selectedPhase = PHASE_OPTION_SELECTION;
+var endOfTimer = -1;
+
 // List of all player team panels
 var allPlayerPanels = [];
+
+// Hooks an events and fires for all the keys
+function hookAndFire(tableName, callback) {
+    // Listen for phase changing information
+    CustomNetTables.SubscribeNetTableListener(tableName, callback);
+
+    // Grab the data
+    var data = CustomNetTables.GetAllTableValues(tableName);
+    for(var i=0; i<data.length; ++i) {
+        var info = data[i];
+        callback(tableName, info.key, info.value);
+    }
+}
 
 // Adds a player to the list of unassigned players
 function addUnassignedPlayer(playerID) {
@@ -113,6 +140,15 @@ function onLockPressed() {
 function onUnlockPressed() {
     // Unlock Teams
     Game.SetTeamSelectionLocked(false);
+}
+
+// Lock options pressed
+function onLockOptionsPressed() {
+    // Ensure teams are locked
+    if(!Game.GetTeamSelectionLocked()) return;
+
+    // Lock options
+    GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
 
 // Player tries to join radiant
@@ -211,11 +247,60 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     }
 }
 
+// A phase was changed
+function OnPhaseChanged(table_name, key, data) {
+    switch(key) {
+        case 'phase':
+            // Update the current phase
+            currentPhase = data.v;
+
+            // Update phase classes
+            var masterRoot = $('#mainSelectionRoot');
+            masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
+            masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
+            masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
+            masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
+            masterRoot.SetHasClass('phase_drafting', currentPhase == PHASE_DRAFTING);
+            masterRoot.SetHasClass('phase_review', currentPhase == PHASE_REVIEW);
+            masterRoot.SetHasClass('phase_ingame', currentPhase == PHASE_INGAME);
+
+            // Progrss to the new phase
+            SetSelectedPhase(currentPhase, true);
+        break;
+
+        case 'endOfTimer':
+            // Store the end time
+            endOfTimer = data.v;
+        break;
+    }
+}
+
+// Changes which phase the player currently has selected
+function SetSelectedPhase(newPhase, noSound) {
+    if(newPhase > currentPhase) {
+        Game.EmitSound('ui_team_select_pick_team_failed');
+        return;
+    }
+
+    // Emit the click noise
+    if(!noSound) Game.EmitSound('ui_team_select_pick_team');
+
+    // Set the phase
+    selectedPhase = newPhase;
+
+    // Update CSS
+    var masterRoot = $('#mainSelectionRoot');
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
+    masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION);
+    masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
+    masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Update the state for the transition timer periodically
 //--------------------------------------------------------------------------------------------------
-function UpdateTimer()
-{
+function UpdateTimer() {
     /*var gameTime = Game.GetGameTime();
     var transitionTime = Game.GetStateTransitionTime();
 
@@ -243,6 +328,36 @@ function UpdateTimer()
     // Allow the ui to update its state based on team selection being locked or unlocked
     $('#mainSelectionRoot').SetHasClass('teams_locked', Game.GetTeamSelectionLocked());
     $('#mainSelectionRoot').SetHasClass('teams_unlocked', Game.GetTeamSelectionLocked() == false);
+
+    // Phase specific stuff
+    switch(currentPhase) {
+        case PHASE_BANNING:
+            // Workout how long is left
+            var currentTime = Game.Time();
+            var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            var timeLeftLabel = $('#lodBanningTimeRemaining');
+            timeLeftLabel.text = '(' + timeLeft + ')'
+        break;
+
+        case PHASE_SELECTION:
+            // Workout how long is left
+            var currentTime = Game.Time();
+            var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            var timeLeftLabel = $('#lodSelectionTimeRemaining');
+            timeLeftLabel.text = '(' + timeLeft + ')'
+        break;
+
+        case PHASE_REVIEW:
+            // Workout how long is left
+            var currentTime = Game.Time();
+            var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            var timeLeftLabel = $('#lodReviewTimeRemaining');
+            timeLeftLabel.text = '(' + timeLeft + ')'
+        break;
+    }
 
     $.Schedule(0.1, UpdateTimer);
 }
@@ -285,4 +400,6 @@ function UpdateTimer()
     // Register a listener for the event which is broadcast whenever a player attempts to pick a team
     $.RegisterForUnhandledEvent( "DOTAGame_PlayerSelectedCustomTeam", OnPlayerSelectedTeam );
 
+    // Hook stuff
+    hookAndFire('phase_pregame', OnPhaseChanged);
 })();

@@ -71,6 +71,8 @@ local SkillManager = require('skillmanager')
 local OptionManager = require('optionmanager')
 local SpellFixes = require('spellfixes')
 local Timers = require('easytimers')
+local network = require('network')
+local pregame = require('pregame')
 
 --[[
     FUNCTION DEFINITIONS
@@ -1987,6 +1989,10 @@ function lod:InitGameMode()
     -- Init gold balancer
     self:initGoldBalancer()
 
+    -- Init other stuff
+    network:init()
+    pregame:init()
+
     print('Everything seems good!\n\n')
 end
 
@@ -2498,7 +2504,7 @@ function lod:OnThink()
         end
 
         -- Reclaulcate gold offsets
-        recalculatePlayerCounts()
+        self:recalculatePlayerCounts()
 
         -- Sleep
         return 0.1

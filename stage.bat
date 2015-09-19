@@ -23,6 +23,7 @@ mklink /H "dota\game\addoninfo.txt" "src\addoninfo.txt"
 :: Hard link top level scripts
 mklink /H "dota\game\scripts\custom_events.txt" "src\scripts\custom_events.txt"
 mklink /H "dota\game\scripts\stat_collection.kv" "src\scripts\stat_collection.kv"
+mklink /H "dota\game\scripts\custom_net_tables.txt" "src\scripts\custom_net_tables.txt"
 
 :: Hard link the panorama source code
 mklink /D /J "dota\content\panorama" "src\panorama"
