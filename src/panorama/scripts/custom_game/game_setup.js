@@ -1003,7 +1003,7 @@ function OnOptionChanged(table_name, key, data) {
 function SetSelectedPhase(newPhase, noSound) {
     if(newPhase > currentPhase) {
         Game.EmitSound('ui_team_select_pick_team_failed');
-        return;
+        //return;   UNCOMMENT ME AFTER DONE DEBUGGING BIIIIIIITTTTTTTTTHHHHHHH
     }
 
     // Emit the click noise

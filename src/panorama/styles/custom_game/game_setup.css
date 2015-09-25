@@ -427,8 +427,18 @@
 }
 
 .optionsSlotPanelHost {
+    visibility: collapse;
+}
+
+.player_has_host_privileges.phase_option_selection .optionsSlotPanelSlave {
+    visibility: collapse;
+}
+
+.player_has_host_privileges.phase_option_selection .optionsSlotPanelHost {
     visibility: visible;
 }
+
+.optionsSlotPanelHost
 
 .optionsSlotPanelSlave {
     visibility: visible;
