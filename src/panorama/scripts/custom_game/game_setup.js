@@ -676,6 +676,10 @@ function buildOptionsCategories() {
             var optionPanel = $.CreatePanel('Panel', optionContainer, 'option_panel_' + optionLabelText);
             optionPanel.AddClass('OptionPanel');
 
+            if(optionData.custom) {
+                optionPanel.AddClass('optionButtonCustomRequired');
+            }
+
             // Build the fields
             var fieldData = optionData.fields;
 

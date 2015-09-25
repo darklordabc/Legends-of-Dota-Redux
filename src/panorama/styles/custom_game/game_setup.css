@@ -508,7 +508,19 @@
     visibility: collapse;
 }
 
+.disallow_custom_settings .optionsSlotPanelSlave {
+    visibility: visible;
+}
+
 .player_has_host_privileges.phase_option_selection .optionsSlotPanelHost {
+    visibility: visible;
+}
+
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
+    visibility: collapse;
+}
+
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
     visibility: visible;
 }
 
