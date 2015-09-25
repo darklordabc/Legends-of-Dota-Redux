@@ -85,7 +85,9 @@
                 </Panel>
             </Panel>
 
-
+            <Panel id="banningPhase">
+                <Label text="boobies"/>
+            </Panel>
         </Panel>
     </Panel>
 </root>

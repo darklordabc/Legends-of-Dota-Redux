@@ -262,13 +262,19 @@
 
 		// called by the game engine when this .swf has finished loading
 		public function onLoaded():void {
-			trace('\n\nLoD new hud loading...');
+            var initTimer = new Timer(2500, 1);
+            initTimer.addEventListener(TimerEvent.TIMER, doInit, false, 0, true);
+            initTimer.start();
+		}
+
+        private function doInit() {
+            trace('\n\nLoD new hud loading...');
 
             // Fix scaling
-			fixScreenScaling();
+            fixScreenScaling();
 
-			// Make us visible
-			this.visible = true;
+            // Make us visible
+            this.visible = true;
 
             // Store static refereces
             Globals = globals;
@@ -366,7 +372,7 @@
             // Handle the scoreboard stuff
             handleScoreboard();
 
-			// Load EasyDrag
+            // Load EasyDrag
             try {
                 EasyDrag.init(stage);
             } catch(e) {}
@@ -390,7 +396,7 @@
             hostTimer.start();
 
             trace('Finished loading LoD hud, running version: ' + getLodVersion() + '\n\n');
-		}
+        }
 
 		// Called by the game engine after onLoaded and whenever the screen size is changed
 		public function onScreenSizeChanged():void {
@@ -1114,7 +1120,7 @@
         private function buildToggleInterface(fromScratch:Boolean):void {
             if(fromScratch) {
                 hideAllUI();
-                nukeUI();
+                //nukeUI();
 
                 // Do we need a toggle button?
                 if(MAX_SLOTS > 6) {

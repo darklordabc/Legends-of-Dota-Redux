@@ -307,7 +307,9 @@ function generatePrecacheData(next) {
 
         // List of heroes to ignore differs based on s1 and s2
         // In s2, no bots are supported, so we can just strip every hero
-        var ignoreHeroes = {};
+        var ignoreHeroes = {
+            npc_dota_hero_techies: true
+        };
 
         var heroes = rootHeroes.DOTAHeroes;
         for(var name in heroes) {
@@ -319,7 +321,8 @@ function generatePrecacheData(next) {
             if(!ignoreHeroes[name]) {
                 newKV[name+'_lod'] = {
                     override_hero: name,
-                    Ability1: 'attribute_bonus'
+                    Ability1: 'attribute_bonus',
+                    AbilityLayout: 6
                 }
 
                 for(var i=2;i<=16;++i) {
