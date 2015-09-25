@@ -27,11 +27,9 @@
         $.Schedule(2, function() {
             $.Msg('32Done!');
         });*/
-
-        // <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
     </script>
 
 	<Panel>
-
+        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
     </Panel>
 </root>
