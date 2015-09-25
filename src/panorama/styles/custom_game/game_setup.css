@@ -393,16 +393,90 @@
     sound: "ui_team_select_lock_and_start";
 }
 
-.OptionButton.activeMenu {
+.OptionButton {
+    padding: 0px;
+
+    transition-property: background-color, box-shadow, color, brightness;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+
+    flow-children: none;
+}
+
+.OptionButtonFancy {
+    margin-top: 12px;
+    width: 285px;
+    height: 48px;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #12181acc ), to( #222f37cc ) );
+    box-shadow: fill #00000044 -3px -3px 6px 6px;
+
+    border-left: 2px solid transparent;
+    transition-property: background-color, border;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+
+.activeMenu .OptionButtonFancy {
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #12181acc ), color-stop( 0.98, #2e4f76cc ), color-stop( 0.98, white ), to( #ffffff ) );
+    border-top: 2px solid #33496388;
+    border-right: 2px solid white;
+    border-bottom: 2px solid #33496388;
+}
+
+.OptionButton.activeHostMenu .OptionButtonLabel {
+    background-image: url("s2r://panorama/images/custom_game/hosticon_png.vtex");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: 0px 8px;
+    padding-left: 32px;
+}
+
+.OptionButtonGlow {
+    margin-top: -14px;
+    width: 300px;
+    height: 96px;
+    background-image: url("s2r://panorama/images/glows/herogridnavglow_psd.vtex");
+    background-repeat: no-repeat;
+    background-position: center 10px;
+    background-size: 100% 85%;
+    opacity: 0.0;
+    transition-property: opacity, transform, wash-color;
+    transition-timing-function: ease-in-out;
+    z-index: -1;
+}
+
+.OptionButtonLabel {
+    margin-top: 12px;
+    font-size: 24px;
+    padding: 8px;
+    horizontal-align: right;
+    margin-right: 24px;
+}
+
+.activeMenu .OptionButtonGlow {
+    opacity: 0.4;
+    transition-duration: 0.25s;
+    transform: translateX( 0px );
+}
+
+.disallow_custom_settings .optionButtonCustomRequired .OptionButtonLabel {
+    color: #333333;
+    /*box-shadow: #33333377 -4px -4px 8px 8px;*/
+    /*background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
+    border-top: 1px solid #ffffff03;
+    border-left: 1px solid #ffffff03;*/
+}
+
+/*.OptionButton.activeMenu {
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
     box-shadow: fill #486ca922 -4px -4px 8px 8px;
     border-top: 1px solid #ffffff03;
     border-left: 1px solid #ffffff03;
-}
+}*/
 
-.OptionButton.activeHostMenu {
+/*.OptionButton.activeHostMenu {
     box-shadow: fill #48FFa922 -4px -4px 8px 8px;
-}
+}*/
 
 .OptionPanel {
     width: 100%;
@@ -442,12 +516,6 @@
 
 .optionsSlotPanelSlave {
     visibility: visible;
-}
-
-.disallow_custom_settings .optionButtonCustomRequired {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
-    border-top: 1px solid #ffffff03;
-    border-left: 1px solid #ffffff03;
 }
 
 .allow_custom_settings .optionSlotPanelNoCustom {

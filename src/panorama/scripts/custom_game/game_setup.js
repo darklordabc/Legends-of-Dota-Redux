@@ -650,8 +650,17 @@ function buildOptionsCategories() {
             // The button
             var optionCategory = $.CreatePanel('Button', catContainer, 'option_button_' + optionLabelText);
             optionCategory.SetAttributeString('cat', optionLabelText);
-            optionCategory.AddClass('PlayButton');
+            //optionCategory.AddClass('PlayButton');
+            //optionCategory.AddClass('RadioBox');
+            //optionCategory.AddClass('HeroGridNavigationButtonBox');
+            //optionCategory.AddClass('NavigationButtonGlow');
             optionCategory.AddClass('OptionButton');
+
+            var innerPanel = $.CreatePanel('Panel', optionCategory, 'option_button_' + optionLabelText + '_fancy');
+            innerPanel.AddClass('OptionButtonFancy');
+
+            var innerPanelTwo = $.CreatePanel('Panel', optionCategory, 'option_button_' + optionLabelText + '_glow');
+            innerPanelTwo.AddClass('OptionButtonGlow');
 
             // Check if this requires custom settings
             if(optionData.custom) {
@@ -661,6 +670,7 @@ function buildOptionsCategories() {
             // Button text
             var optionLabel = $.CreatePanel('Label', optionCategory, 'option_button_' + optionLabelText + '_label');
             optionLabel.text = $.Localize(optionLabelText + '_lod');
+            optionLabel.AddClass('OptionButtonLabel');
 
             // The panel
             var optionPanel = $.CreatePanel('Panel', optionContainer, 'option_panel_' + optionLabelText);
