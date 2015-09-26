@@ -87,6 +87,7 @@
 
             <Panel id="banningPhase">
                 <Label text="boobies"/>
+                <DOTAAbilityImage id="bs" abilityname="abaddon_death_coil" />
             </Panel>
         </Panel>
     </Panel>

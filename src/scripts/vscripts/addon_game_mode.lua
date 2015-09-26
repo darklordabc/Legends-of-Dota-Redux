@@ -2031,31 +2031,41 @@ end
 
 -- Counts how many players on each team
 function lod:recalculatePlayerCounts()
-    -- Default to no players
-    self.playersOnTeam = {
-        radiant = 0,
-        dire = 0
-    }
+    local this = self
 
-    -- Work it out
-    for i=0,9 do
-        local connectionState = PlayerResource:GetConnectionState(i)
-        if connectionState == 2 then
-            local teamID = PlayerResource:GetTeam(i)
+    if not pcall(function()
+        -- Default to no players
+        this.playersOnTeam = {
+            radiant = 0,
+            dire = 0
+        }
 
-            if teamID == DOTA_TEAM_GOODGUYS then
-                self.playersOnTeam.radiant = self.playersOnTeam.radiant + 1
-            elseif teamID == DOTA_TEAM_BADGUYS then
-                self.playersOnTeam.dire = self.playersOnTeam.dire + 1
+        -- Work it out
+        for i=0,9 do
+            local connectionState = PlayerResource:GetConnectionState(i)
+            if connectionState == 2 then
+                local teamID = PlayerResource:GetTeam(i)
+
+                if teamID == DOTA_TEAM_GOODGUYS then
+                    this.playersOnTeam.radiant = this.playersOnTeam.radiant + 1
+                elseif teamID == DOTA_TEAM_BADGUYS then
+                    this.playersOnTeam.dire = this.playersOnTeam.dire + 1
+                end
             end
         end
-    end
 
-    -- Ensure never less than one
-    for k,v in pairs(self.playersOnTeam) do
-        if v <= 0 then
-            self.playersOnTeam[k] = 1
+        -- Ensure never less than one
+        for k,v in pairs(this.playersOnTeam) do
+            if v <= 0 then
+                this.playersOnTeam[k] = 1
+            end
         end
+    end) then
+        print('Failed to even team gold :/')
+        this.playersOnTeam = {
+            radiant = 1,
+            dire = 1
+        }
     end
 end
 
