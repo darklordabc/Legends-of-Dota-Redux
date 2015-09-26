@@ -1,8 +1,15 @@
+// Dota Heroes File
 "DOTAHeroes"
 {
 	"Version"		"1"
+	//=================================================================================================================
+	// HERO: Base 
+	// Note: This is loaded and overriden/added to by values in the specific heroes chunks.
+	//=================================================================================================================
 	"npc_dota_hero_base"
 	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"		"npc_dota_hero"
 		"Model"		"models/error.vmdl"
 		"SoundSet"		"0"
@@ -15,10 +22,26 @@
 		"CMEnabled"		"0"
 		"CMTournamentIgnore"		"0"
 		"new_player_enable"		"0"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilityLayout"		"4"
+		"Ability1"					""										// Ability 1.
+		"Ability2"					""										// Ability 2.
+		"Ability3"					""										// Ability 3.
+		"Ability4"					""										// Ability 4.
 		"Ability5"		"attribute_bonus"
+		"Ability6"					""										// Ability 6 - Extra.
+		"Ability7"					""										// Ability 7 - Extra.
+		"Ability8"					""										// Ability 8 - Extra.
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
 		"ArmorPhysical"		"-1"
 		"MagicalResistance"		"25"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"1"
 		"AttackDamageMax"		"1"
@@ -29,6 +52,9 @@
 		"AttackRange"		"600"
 		"ProjectileModel"		"particles/base_attacks/ranged_hero.vpcf"
 		"ProjectileSpeed"		"900"
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"0"
 		"AttributeStrengthGain"		"0"
@@ -36,28 +62,53 @@
 		"AttributeIntelligenceGain"		"0"
 		"AttributeBaseAgility"		"0"
 		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//-------------------------------------------------------------------------------------------------------------
 		"BountyXP"		"62"
 		"BountyGoldMin"		"0"
 		"BountyGoldMax"		"0"
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"RingRadius"		"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.500000"
 		"HasAggressiveStance"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
 		"StatusHealth"		"150"
 		"StatusHealthRegen"		"0.250000"
 		"StatusMana"		"0"
 		"StatusManaRegen"		"0.010000"
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
 		"TeamName"		"DOTA_TEAM_GOODGUYS"
 		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
 		"VisionDaytimeRange"		"1800"
 		"VisionNighttimeRange"		"800"
+
+		//Inventory
 		"HasInventory"		"1"
+
+		//Voice
+		"VoiceBackgroundSound"		""
+				
 		"HealthBarOffset"		"-1"
 		"IdleExpression"		"scenes/default_idle.vcd"
+		"IdleSoundLoop"				""
 		"AbilityDraftDisabled"		"0"
 		"ARDMDisabled"		"0"
 		"HUD"
@@ -85,16 +136,21 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// HERO: Antimage
+	//=================================================================================================================
 	"npc_dota_hero_antimage"
 	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
 		"Model"		"models/heroes/antimage/antimage.vmdl"
 		"SoundSet"		"Hero_Antimage"
 		"IdleExpression"		"scenes/antimage/antimage_exp_idle_01.vcd"
 		"HeroID"		"1"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"2,3"
+		"Role"			"Carry,Escape,Nuker"
+		"Rolelevels"	"3,3,1"
 		"Team"		"Good"
 		"Portrait"		"vgui/hud/heroportraits/portrait_antimage"
 		"ModelScale"		"0.900000"
@@ -106,11 +162,20 @@
 		"url"		"Anti-Mage"
 		"LastHitChallengeRival"		"npc_dota_hero_bounty_hunter"
 		"HeroSelectSoundEffect"		"Hero_Antimage.Pick"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"		"antimage_mana_break"
 		"Ability2"		"antimage_blink"
 		"Ability3"		"antimage_spell_shield"
 		"Ability4"		"antimage_mana_void"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
 		"ArmorPhysical"		"-1"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"		"27"
 		"AttackDamageMax"		"31"
@@ -119,6 +184,9 @@
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"128"
 		"ProjectileSpeed"		"0"
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"22"
 		"AttributeStrengthGain"		"1.200000"
@@ -126,6 +194,9 @@
 		"AttributeIntelligenceGain"		"1.800000"
 		"AttributeBaseAgility"		"22"
 		"AttributeAgilityGain"		"2.800000"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
 		"MovementSpeed"		"315"
 		"MovementTurnRate"		"0.500000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
@@ -133,6 +204,8 @@
 		"particle_folder"		"particles/units/heroes/hero_antimage"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_antimage.vsndevts"
+
+		// Additional data needed to render the out of game portrait
 		"RenderablePortrait"
 		{
 			"Particles"
@@ -147,6 +220,9 @@
 				}
 			}
 		}
+
+		// Items
+		//-------------------------------------------------------------------------------------------------------------
 		"ItemSlots"
 		{
 			"0"
@@ -241,8 +317,14 @@
 			}
 		}
 	}
+
+	//=================================================================================================================
+	// HERO: Axe
+	//=================================================================================================================
 	"npc_dota_hero_axe"
 	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------	
 		"Model"		"models/heroes/axe/axe.vmdl"
 		"Portrait"		"vgui/hud/heroportraits/portrait_axe"
 		"SoundSet"		"Hero_Axe"
@@ -250,8 +332,8 @@
 		"BanSound"		"axe_axe_anger_01"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Durable,Initiator,Disabler,Jungler"
-		"Rolelevels"		"3,2,1,1"
+		"Role"			"Initiator,Durable,Disabler,Jungler"
+		"Rolelevels"	"3,3,2,2"
 		"Team"		"Bad"
 		"HeroID"		"2"
 		"BotImplemented"		"1"
@@ -350,6 +432,11 @@
 				"SlotIndex"		"6"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_axe"
@@ -443,6 +530,10 @@
 			}
 		}
 	}
+
+	//=================================================================================================================
+	// HERO: Bane
+	//=================================================================================================================
 	"npc_dota_hero_bane"
 	{
 		"Model"		"models/heroes/bane/bane.vmdl"
@@ -454,8 +545,8 @@
 		"BanSound"		"bane_bane_anger_10"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Disabler,Nuker,Support"
-		"Rolelevels"		"3,2,1"
+		"Role"			"Support,Disabler,Nuker,Durable"
+		"Rolelevels"	"2,3,1,1"
 		"Team"		"Bad"
 		"HeroID"		"3"
 		"BotImplemented"		"1"
@@ -585,6 +676,10 @@
 			}
 		}
 	}
+
+	//=================================================================================================================
+	// HERO: Bloodseeker
+	//=================================================================================================================
 	"npc_dota_hero_bloodseeker"
 	{
 		"Model"		"models/heroes/blood_seeker/blood_seeker.vmdl"
@@ -596,8 +691,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Jungler"
-		"Rolelevels"		"1,1"
+		"Role"			"Carry,Disabler,Jungler,Nuker,Initiator"
+		"Rolelevels"	"1,1,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"4"
 		"ModelScale"		"0.880000"
@@ -808,6 +903,10 @@
 			}
 		}
 	}
+
+	//=================================================================================================================
+	// HERO: Crystal Maiden
+	//=================================================================================================================
 	"npc_dota_hero_crystal_maiden"
 	{
 		"Model"		"models/heroes/crystal_maiden/crystal_maiden.vmdl"
@@ -818,8 +917,8 @@
 		"BanSound"		"crystalmaiden_cm_anger_08"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Support,Disabler,Nuker,LaneSupport"
-		"Rolelevels"		"3,2,2,1"
+		"Role"			"Support,Disabler,Nuker,Jungler"
+		"Rolelevels"	"3,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"5"
 		"BotImplemented"		"1"
@@ -831,11 +930,20 @@
 		"url"		"Crystal_Maiden"
 		"LastHitChallengeRival"		"npc_dota_hero_lina"
 		"HeroSelectSoundEffect"		"Hero_CrystalMaiden.Pick"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"		"crystal_maiden_crystal_nova"
 		"Ability2"		"crystal_maiden_frostbite"
 		"Ability3"		"crystal_maiden_brilliance_aura"
 		"Ability4"		"crystal_maiden_freezing_field"
+ 
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
 		"ArmorPhysical"		"-1"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"19"
 		"AttackDamageMax"		"25"
@@ -1017,8 +1125,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry"
-		"Rolelevels"		"2"
+		"Role"			"Carry,Disabler,Pusher"
+		"Rolelevels"	"2,1,1"
 		"Team"		"Good"
 		"HeroID"		"6"
 		"ModelScale"		"0.970000"
@@ -1237,8 +1345,8 @@
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
 		"BotImplemented"		"1"
-		"Role"		"Initiator,Disabler,Support,LaneSupport"
-		"Rolelevels"		"3,2,1,1"
+		"Role"			"Support,Initiator,Disabler,Nuker"
+		"Rolelevels"	"1,3,2,1"
 		"Team"		"Good"
 		"HeroID"		"7"
 		"ModelScale"		"0.930000"
@@ -1342,6 +1450,11 @@
 				"SlotIndex"		"4"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"Bot"
@@ -1419,8 +1532,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Pusher"
-		"Rolelevels"		"2,1"
+		"Role"			"Carry,Pusher,Escape"
+		"Rolelevels"	"2,1,1"
 		"Team"		"Good"
 		"HeroID"		"8"
 		"BotImplemented"		"1"
@@ -1541,12 +1654,21 @@
 				"SlotName"		"ability2"
 				"SlotText"		"#LoadoutSlot_Juggernaut_HealingWard"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_juggernaut_healing_ward"
+				}
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_juggernaut"
@@ -1645,8 +1767,8 @@
 		"BanSound"		"mirana_mir_anger_01"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Nuker,Disabler,Escape"
-		"Rolelevels"		"1,1,1,1"
+		"Role"			"Carry,Support,Escape,Nuker,Disabler"
+		"Rolelevels"	"1,1,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"9"
 		"ModelScale"		"0.790000"
@@ -1675,7 +1797,7 @@
 		"AttributeBaseIntelligence"		"17"
 		"AttributeIntelligenceGain"		"1.650000"
 		"AttributeBaseAgility"		"20"
-		"AttributeAgilityGain"		"2.750000"
+		"AttributeAgilityGain"		"3.30000"
 		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.400000"
 		"VisionNighttimeRange"		"800"
@@ -1866,8 +1988,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Nuker"
-		"Rolelevels"		"2,2"
+		"Role"			"Carry,Nuker"
+		"Rolelevels"	"2,3"
 		"Team"		"Bad"
 		"HeroID"		"11"
 		"ModelScale"		"0.980000"
@@ -1933,6 +2055,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -1973,6 +2096,7 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"1500"
 				"MaxPolygonsLOD1"		"1500"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
@@ -2082,8 +2206,8 @@
 		"IdleSoundLoop"		"Hero_Morphling.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Escape,Initiator,Nuker"
-		"Rolelevels"		"3,3,1,1"
+		"Role"			"Carry,Escape,Durable,Nuker,Disabler"
+		"Rolelevels"	"3,3,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"10"
 		"ModelScale"		"0.880000"
@@ -2121,7 +2245,7 @@
 		"AttributeBaseIntelligence"		"17"
 		"AttributeIntelligenceGain"		"1.500000"
 		"AttributeBaseAgility"		"24"
-		"AttributeAgilityGain"		"3.000000"
+		"AttributeAgilityGain"		"3.400000"
 		"MovementSpeed"		"285"
 		"MovementTurnRate"		"0.600000"
 		"HealthBarOffset"		"140"
@@ -2277,8 +2401,8 @@
 		"SoundSet"		"Hero_PhantomLancer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry,Escape,Pusher"
-		"Rolelevels"		"2,2,1"
+		"Role"			"Carry,Escape,Pusher,Nuker"
+		"Rolelevels"	"2,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"12"
 		"NameAliases"		"pl"
@@ -2308,7 +2432,7 @@
 		"AttributeBaseIntelligence"		"21"
 		"AttributeIntelligenceGain"		"2.000000"
 		"AttributeBaseAgility"		"29"
-		"AttributeAgilityGain"		"3.000000"
+		"AttributeAgilityGain"		"2.600000"
 		"StatusHealthRegen"		"0.750000"
 		"MovementSpeed"		"290"
 		"MovementTurnRate"		"0.600000"
@@ -2385,12 +2509,14 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
 				"SlotIndex"		"5"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -2432,8 +2558,8 @@
 		"BanSound"		"puck_puck_anger_02"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Initiator,Nuker,Disabler,Escape"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Initiator,Disabler,Escape,Nuker"
+		"Rolelevels"	"3,3,3,2"
 		"Team"		"Good"
 		"HeroID"		"13"
 		"ModelScale"		"0.860000"
@@ -2626,8 +2752,8 @@
 		"IdleSoundLoop"		"Hero_Pudge.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Durable,Disabler"
-		"Rolelevels"		"3,1"
+		"Role"			"Disabler,Initiator,Durable,Nuker"
+		"Rolelevels"	"2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"14"
 		"BotImplemented"		"1"
@@ -2878,8 +3004,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Durable,Nuker"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Carry,Durable,Nuker,Pusher"
+		"Rolelevels"	"2,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"15"
 		"BotImplemented"		"1"
@@ -2997,6 +3123,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -3098,8 +3225,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Initiator,Disabler,Nuker"
-		"Rolelevels"		"3,2,1"
+		"Role"			"Initiator,Disabler,Nuker,Escape,Jungler"
+		"Rolelevels"	"3,2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"16"
 		"ModelScale"		"0.840000"
@@ -3304,8 +3431,8 @@
 		"BanSound"		"stormspirit_ss_anger_03"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Initiator,Escape,Disabler"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Carry,Escape,Nuker,Initiator,Disabler"
+		"Rolelevels"	"2,3,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"17"
 		"ModelScale"		"1.150000"
@@ -3423,6 +3550,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"misc"
 				"SlotText"		"#LoadoutSlot_Misc"
+				"DisplayInLoadout" "0"
 			}
 			"4"
 			{
@@ -3522,8 +3650,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Disabler,Initiator,Carry,Support"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Carry,Disabler,Initiator,Durable,Nuker"
+		"Rolelevels"	"2,2,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"18"
 		"BotImplemented"		"1"
@@ -3551,7 +3679,7 @@
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"23"
 		"AttributeStrengthGain"		"2.700000"
-		"AttributeBaseIntelligence"		"14"
+		"AttributeBaseIntelligence"		"16"
 		"AttributeIntelligenceGain"		"1.300000"
 		"AttributeBaseAgility"		"21"
 		"AttributeAgilityGain"		"2.000000"
@@ -3630,6 +3758,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -3646,6 +3775,11 @@
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_sven"
@@ -3728,8 +3862,8 @@
 		"BanSound"		"tiny_tiny_anger_01"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Disabler,Nuker,Initiator,Durable"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Nuker,Pusher,Initiator,Durable,Disabler"
+		"Rolelevels"	"3,2,2,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"19"
 		"BotImplemented"		"1"
@@ -3754,9 +3888,9 @@
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"128"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"24"
+		"AttributeBaseStrength"		"26"
 		"AttributeStrengthGain"		"3.000000"
-		"AttributeBaseIntelligence"		"14"
+		"AttributeBaseIntelligence"		"17"
 		"AttributeIntelligenceGain"		"1.600000"
 		"AttributeBaseAgility"		"9"
 		"AttributeAgilityGain"		"0.900000"
@@ -3805,6 +3939,7 @@
 				"SlotIndex"		"1"
 				"SlotName"		"misc"
 				"SlotText"		"#LoadoutSlot_Misc"
+				"DisplayInLoadout" "0"
 			}
 			"2"
 			{
@@ -3933,8 +4068,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Support,Disabler,LaneSupport,Initiator"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Support,Initiator,Disabler,Nuker,Escape"
+		"Rolelevels"	"3,2,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"20"
 		"BotImplemented"		"1"
@@ -3966,9 +4101,9 @@
 		"AttributeBaseIntelligence"		"15"
 		"AttributeIntelligenceGain"		"1.750000"
 		"AttributeBaseAgility"		"27"
-		"AttributeAgilityGain"		"2.800000"
+		"AttributeAgilityGain"		"3.300000"
 		"ArmorPhysical"		"0"
-		"MovementSpeed"		"295"
+		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.600000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"		"170"
@@ -4133,8 +4268,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Disabler,Nuker,Support,Escape"
-		"Rolelevels"		"1,1,1,1"
+		"Role"			"Carry,Support,Disabler,Escape,Nuker"
+		"Rolelevels"	"1,1,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"21"
 		"BotImplemented"		"1"
@@ -4336,8 +4471,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Nuker,Support"
-		"Rolelevels"		"3,1"
+		"Role"			"Nuker"
+		"Rolelevels"	"3"
 		"Team"		"Good"
 		"HeroID"		"22"
 		"BotImplemented"		"1"
@@ -4394,6 +4529,16 @@
 		}
 		"ItemSlots"
 		{
+			"0"
+			{
+				"SlotIndex"		"0"
+				"SlotName"		"weapon"
+				"SlotText"		"#LoadoutSlot_Weapon"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"450"
+				"MaxPolygonsLOD1"		"350"
+			}
 			"1"
 			{
 				"SlotIndex"		"1"
@@ -4487,8 +4632,8 @@
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
 		"BotImplemented"		"1"
-		"Role"		"Disabler,Initiator,Carry,Durable"
-		"Rolelevels"		"1,1,1,1"
+		"Role"			"Carry,Disabler,Initiator,Durable,Nuker"
+		"Rolelevels"	"1,1,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"23"
 		"ModelScale"		"0.840000"
@@ -4710,12 +4855,13 @@
 		"IdleSoundLoop"		"Hero_Lina.IdleLoop"
 		"PickSound"		"lina_lina_spawn_01"
 		"BanSound"		"lina_lina_anger_02"
+		"HeroPool1"		"1"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
 		"BotImplemented"		"1"
 		"BotForceSelection"		"0"
-		"Role"		"Nuker,Disabler,Support"
-		"Rolelevels"		"3,1,1"
+		"Role"			"Support,Carry,Nuker,Disabler"
+		"Rolelevels"	"1,1,3,1"
 		"Team"		"Good"
 		"HeroID"		"25"
 		"ModelScale"		"0.810000"
@@ -4913,8 +5059,8 @@
 		"HeroPool1"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Support,LaneSupport,Nuker"
-		"Rolelevels"		"3,3,2"
+		"Role"			"Support,Nuker"
+		"Rolelevels"	"3,2"
 		"Team"		"Bad"
 		"HeroID"		"31"
 		"ModelScale"		"0.790000"
@@ -5121,8 +5267,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Disabler,Nuker,LaneSupport,Support"
-		"Rolelevels"		"3,3,2,2"
+		"Role"			"Support,Disabler,Nuker,Initiator"
+		"Rolelevels"	"2,3,3,2"
 		"Team"		"Bad"
 		"HeroID"		"26"
 		"ModelScale"		"0.700000"
@@ -5333,8 +5479,8 @@
 		"SoundSet"		"Hero_ShadowShaman"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Pusher,Disabler,Nuker,Support"
-		"Rolelevels"		"3,3,1,1"
+		"Role"			"Support,Pusher,Disabler,Nuker,Initiator"
+		"Rolelevels"	"2,3,3,2,1"
 		"Team"		"Good"
 		"HeroID"		"27"
 		"ModelScale"		"0.910000"
@@ -5463,6 +5609,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -5474,6 +5621,10 @@
 				"MaxPolygonsLOD0"		"750"
 				"MaxPolygonsLOD1"		"500"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_shadow_shaman_ward"
+				}
 			}
 		}
 		"Bot"
@@ -5559,8 +5710,8 @@
 		"HeroID"		"28"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Durable,Disabler,Initiator"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Durable,Initiator,Disabler,Escape"
+		"Rolelevels"	"2,2,2,1,1"
 		"Team"		"Bad"
 		"ModelScale"		"0.880000"
 		"HeroGlowColor"		"78 127 208"
@@ -5644,6 +5795,7 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
@@ -5750,8 +5902,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Initiator,Durable,Disabler,Support"
-		"Rolelevels"		"3,3,2,1"
+		"Role"			"Initiator,Durable,Disabler,Nuker"
+		"Rolelevels"	"3,3,2,1"
 		"Team"		"Bad"
 		"HeroID"		"29"
 		"BotImplemented"		"1"
@@ -5950,8 +6102,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Support,Disabler"
-		"Rolelevels"		"2,1"
+		"Role"			"Support,Nuker,Disabler"
+		"Rolelevels"	"3,2,1"
 		"Team"		"Bad"
 		"HeroID"		"30"
 		"ModelScale"		"0.840000"
@@ -6074,6 +6226,7 @@
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"2000"
 				"no_import"		"1"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -6170,8 +6323,8 @@
 		"SoundSet"		"Hero_Riki"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"2,1"
+		"Role"			"Carry,Escape,Disabler"
+		"Rolelevels"	"2,2,1"
 		"Team"		"Good"
 		"HeroID"		"32"
 		"BotImplemented"		"1"
@@ -6289,12 +6442,18 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_riki"
@@ -6401,8 +6560,8 @@
 		"BanSound"		"enigma_enig_anger_01"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Disabler,Initiator,Jungler,Pusher"
-		"Rolelevels"		"2,2,2,2"
+		"Role"			"Disabler,Jungler,Initiator,Pusher"
+		"Rolelevels"	"2,3,2,2"
 		"Team"		"Bad"
 		"HeroID"		"33"
 		"ModelScale"		"0.810000"
@@ -6434,6 +6593,7 @@
 		"AttributeIntelligenceGain"		"3.400000"
 		"AttributeBaseAgility"		"14"
 		"AttributeAgilityGain"		"1"
+		"StatusHealthRegen"		"0.250000"
 		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.500000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
@@ -6456,12 +6616,14 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
 				"SlotIndex"		"1"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"2"
 			{
@@ -6482,6 +6644,14 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"1000"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_dire_eidolon"
+					"1" "npc_dota_greater_eidolon"
+					"2" "npc_dota_eidolon"
+					"3" "npc_dota_lesser_eidolon"
+				}
 			}
 			"4"
 			{
@@ -6577,8 +6747,8 @@
 		"SoundSet"		"Hero_Tinker"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Nuker,Pusher"
-		"Rolelevels"		"3,1"
+		"Role"			"Carry,Nuker,Pusher"
+		"Rolelevels"	"1,3,2"
 		"Team"		"Good"
 		"HeroID"		"34"
 		"ModelScale"		"0.800000"
@@ -6663,6 +6833,7 @@
 				"SlotIndex"		"2"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"3"
 			{
@@ -6780,8 +6951,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry"
-		"Rolelevels"		"2"
+		"Role"			"Carry,Nuker"
+		"Rolelevels"	"3,1"
 		"Team"		"Good"
 		"HeroID"		"35"
 		"BotImplemented"		"1"
@@ -6990,8 +7161,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry,Durable"
-		"Rolelevels"		"2,2"
+		"Role"			"Carry,Nuker,Durable,Disabler"
+		"Rolelevels"	"1,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"36"
 		"ModelScale"		"0.790000"
@@ -7075,6 +7246,7 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
@@ -7196,8 +7368,8 @@
 		"HeroPool1"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Initiator,Support,LaneSupport,Disabler"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Support,Initiator,Disabler"
+		"Rolelevels"	"1,2,1"
 		"Team"		"Bad"
 		"HeroID"		"37"
 		"ModelScale"		"0.930000"
@@ -7327,6 +7499,10 @@
 				"MaxPolygonsLOD0"		"6500"
 				"MaxPolygonsLOD1"		"3500"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_warlock_golem"
+				}
 			}
 			"5"
 			{
@@ -7449,8 +7625,8 @@
 		"SoundSet"		"Hero_Beastmaster"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Initiator,Disabler,Durable"
-		"Rolelevels"		"2,2,2"
+		"Role"			"Initiator,Disabler,Durable,Nuker"
+		"Rolelevels"	"2,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"38"
 		"ModelScale"		"0.770000"
@@ -7556,6 +7732,11 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"1000"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_beastmaster_hawk"
+				}
 			}
 			"6"
 			{
@@ -7567,12 +7748,17 @@
 				"MaxPolygonsLOD0"		"4000"
 				"MaxPolygonsLOD1"		"2000"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_beastmaster_boar"
+				}
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_beastmaster"
@@ -7667,8 +7853,8 @@
 		"SoundSet"		"Hero_QueenOfPain"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Nuker,Escape,Carry"
-		"Rolelevels"		"3,3,1"
+		"Role"			"Carry,Nuker,Escape"
+		"Rolelevels"	"1,3,3"
 		"Team"		"Bad"
 		"HeroID"		"39"
 		"ModelScale"		"0.840000"
@@ -7769,6 +7955,7 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -7794,10 +7981,9 @@
 		"SoundSet"		"Hero_Venomancer"
 		"IdleSoundLoop"		"Hero_Venomancer.IdleLoop"
 		"Enabled"		"1"
-		"ForceEnable"		"0"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Support,Nuker,Initiator,Pusher"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Support,Nuker,Initiator,Pusher,Disabler"
+		"Rolelevels"	"2,1,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"40"
 		"ModelScale"		"0.700000"
@@ -7901,12 +8087,14 @@
 				"SlotIndex"		"4"
 				"SlotName"		"misc"
 				"SlotText"		"#LoadoutSlot_Misc"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -7918,6 +8106,10 @@
 				"MaxPolygonsLOD0"		"1500"
 				"MaxPolygonsLOD1"		"800"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_venomancer_plague_ward"
+				}
 			}
 			"6"
 			{
@@ -8003,8 +8195,8 @@
 		"SoundSet"		"Hero_FacelessVoid"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry,Initiator,Disabler,Escape"
-		"Rolelevels"		"3,2,1,1"
+		"Role"			"Carry,Initiator,Disabler,Escape,Durable"
+		"Rolelevels"	"2,3,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"41"
 		"ModelScale"		"0.840000"
@@ -8098,6 +8290,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_faceless_void"
@@ -8202,8 +8395,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Durable,Carry,Disabler"
-		"Rolelevels"		"3,2,2"
+		"Role"			"Carry,Support,Durable,Disabler,Initiator"
+		"Rolelevels"	"2,1,3,2,1"
 		"Team"		"Bad"
 		"HeroID"		"42"
 		"ModelScale"		"0.940000"
@@ -8224,8 +8417,8 @@
 		"Ability4"		"skeleton_king_reincarnation"
 		"ArmorPhysical"		"0"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"32"
-		"AttackDamageMax"		"34"
+		"AttackDamageMin"		"39"
+		"AttackDamageMax"		"41"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.560000"
 		"AttackAcquisitionRange"		"600"
@@ -8332,12 +8525,14 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
 				"SlotIndex"		"6"
 				"SlotName"		"misc"
 				"SlotText"		"#LoadoutSlot_Misc"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
@@ -8447,8 +8642,8 @@
 		"HeroPool1"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Pusher,Nuker,Durable"
-		"Rolelevels"		"2,1,1"
+		"Role"			"Carry,Pusher,Nuker,Disabler"
+		"Rolelevels"	"1,3,1,1"
 		"Team"		"Bad"
 		"HeroID"		"43"
 		"ModelScale"		"0.930000"
@@ -8536,6 +8731,7 @@
 				"SlotIndex"		"2"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"3"
 			{
@@ -8577,6 +8773,10 @@
 				"MaxPolygonsLOD0"		"600"
 				"MaxPolygonsLOD1"		"450"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "dota_death_prophet_exorcism_spirit"
+				}
 			}
 			"7"
 			{
@@ -8687,8 +8887,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"3,1"
+		"Role"			"Carry,Escape"
+		"Rolelevels"	"3,1"
 		"Team"		"Bad"
 		"HeroID"		"44"
 		"ModelScale"		"0.860000"
@@ -8889,8 +9089,8 @@
 		"SoundSet"		"Hero_Pugna"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Nuker,Pusher,Support"
-		"Rolelevels"		"2,1,1"
+		"Role"			"Nuker,Pusher"
+		"Rolelevels"	"2,2"
 		"Team"		"Bad"
 		"HeroID"		"45"
 		"ModelScale"		"0.740000"
@@ -8923,7 +9123,7 @@
 		"AttributeAgilityGain"		"1.000000"
 		"AttributeBaseIntelligence"		"26"
 		"AttributeIntelligenceGain"		"4.000000"
-		"MovementSpeed"		"320"
+		"MovementSpeed"		"330"
 		"MovementTurnRate"		"0.500000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"		"140"
@@ -8999,6 +9199,10 @@
 				"MaxPolygonsLOD0"		"500"
 				"MaxPolygonsLOD1"		"500"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_pugna_nether_ward"
+				}
 			}
 			"7"
 			{
@@ -9057,8 +9261,8 @@
 		"SoundSet"		"Hero_TemplarAssassin"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"2,1"
+		"Role"			"Carry,Escape"
+		"Rolelevels"	"2,1"
 		"Team"		"Good"
 		"HeroID"		"46"
 		"ModelScale"		"0.880000"
@@ -9125,6 +9329,12 @@
 			"0"
 			{
 				"SlotIndex"		"0"
+				"SlotName"		"weapon"
+				"SlotText"		"#LoadoutSlot_Weapon"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head_Accessory"
 				"TextureWidth"		"256"
@@ -9132,9 +9342,9 @@
 				"MaxPolygonsLOD0"		"800"
 				"MaxPolygonsLOD1"		"500"
 			}
-			"1"
+			"2"
 			{
-				"SlotIndex"		"1"
+				"SlotIndex"		"2"
 				"SlotName"		"shoulder"
 				"SlotText"		"#LoadoutSlot_Shoulder"
 				"TextureWidth"		"512"
@@ -9142,9 +9352,9 @@
 				"MaxPolygonsLOD0"		"1350"
 				"MaxPolygonsLOD1"		"600"
 			}
-			"2"
+			"3"
 			{
-				"SlotIndex"		"2"
+				"SlotIndex"		"3"
 				"SlotName"		"armor"
 				"SlotText"		"#LoadoutSlot_Armor"
 				"TextureWidth"		"256"
@@ -9152,15 +9362,15 @@
 				"MaxPolygonsLOD0"		"650"
 				"MaxPolygonsLOD1"		"500"
 			}
-			"3"
-			{
-				"SlotIndex"		"3"
-				"SlotName"		"taunt"
-				"SlotText"		"#LoadoutSlot_Taunt"
-			}
 			"4"
 			{
 				"SlotIndex"		"4"
+				"SlotName"		"taunt"
+				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex"		"5"
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
@@ -9191,8 +9401,8 @@
 		"HeroPool1"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Durable"
-		"Rolelevels"		"1,1"
+		"Role"			"Carry,Durable,Initiator,Disabler"
+		"Rolelevels"	"1,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"47"
 		"ModelScale"		"0.740000"
@@ -9223,7 +9433,7 @@
 		"AttributeBaseStrength"		"20"
 		"AttributeStrengthGain"		"1.900000"
 		"AttributeBaseAgility"		"21"
-		"AttributeAgilityGain"		"2.500000"
+		"AttributeAgilityGain"		"2.900000"
 		"AttributeBaseIntelligence"		"15"
 		"AttributeIntelligenceGain"		"1.800000"
 		"MovementSpeed"		"285"
@@ -9257,6 +9467,16 @@
 			"0"
 			{
 				"SlotIndex"		"0"
+				"SlotName"		"head"
+				"SlotText"		"#LoadoutSlot_Head_Accessory"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"500"
+				"MaxPolygonsLOD1"		"300"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
@@ -9348,10 +9568,11 @@
 		"IdleExpression"		"scenes/luna/luna_exp_idle_01.vcd"
 		"SoundSet"		"Hero_Luna"
 		"Enabled"		"1"
+		"HeroPool1"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry,Nuker"
-		"Rolelevels"		"2,2"
+		"Role"			"Carry,Nuker,Pusher"
+		"Rolelevels"	"2,2,1"
 		"Team"		"Good"
 		"HeroID"		"48"
 		"ModelScale"		"0.740000"
@@ -9378,7 +9599,7 @@
 		"ProjectileSpeed"		"900"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"15"
-		"AttributeStrengthGain"		"1.900000"
+		"AttributeStrengthGain"		"2.200000"
 		"AttributeBaseAgility"		"18"
 		"AttributeAgilityGain"		"2.800000"
 		"AttributeBaseIntelligence"		"16"
@@ -9461,6 +9682,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -9561,8 +9783,8 @@
 		"Enabled"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry,Durable,Disabler,Pusher"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Carry,Pusher,Durable,Disabler,Initiator,Nuker"
+		"Rolelevels"	"2,3,2,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"49"
 		"ModelScale"		"0.840000"
@@ -9774,12 +9996,14 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"800"
 				"MaxPolygonsLOD1"		"500"
+				"LoadoutPreviewMode"		"transformation"
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 	}
@@ -9792,8 +10016,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Support,LaneSupport"
-		"Rolelevels"		"3,3"
+		"Role"			"Support,Nuker,Disabler"
+		"Rolelevels"	"3,1,1"
 		"Team"		"Bad"
 		"HeroID"		"50"
 		"ModelScale"		"0.790000"
@@ -9887,6 +10111,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_dazzle"
@@ -9996,8 +10221,8 @@
 		"SoundSet"		"Hero_Rattletrap"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Initiator,Durable"
-		"Rolelevels"		"1,1"
+		"Role"			"Initiator,Disabler,Durable,Nuker"
+		"Rolelevels"	"3,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"51"
 		"ModelScale"		"0.880000"
@@ -10109,6 +10334,11 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"800"
 				"MaxPolygonsLOD1"		"500"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_rattletrap_cog"
+				}
 			}
 			"5"
 			{
@@ -10139,8 +10369,8 @@
 		"SoundSet"		"Hero_Leshrac"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Nuker,Pusher,Disabler,Support"
-		"Rolelevels"		"3,3,1,1"
+		"Role"			"Carry,Support,Nuker,Pusher,Disabler"
+		"Rolelevels"	"1,1,3,3,1"
 		"Team"		"Bad"
 		"HeroID"		"52"
 		"ModelScale"		"0.840000"
@@ -10158,8 +10388,8 @@
 		"Ability4"		"leshrac_pulse_nova"
 		"ArmorPhysical"		"0"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"		"19"
-		"AttackDamageMax"		"23"
+		"AttackDamageMin"		"15"
+		"AttackDamageMax"		"19"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.400000"
 		"AttackAcquisitionRange"		"800"
@@ -10308,8 +10538,8 @@
 		"SoundSet"		"Hero_Furion"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Jungler,Pusher,Carry,Escape"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Jungler,Pusher,Escape,Nuker"
+		"Rolelevels"	"1,3,3,1,1"
 		"Team"		"Good"
 		"HeroID"		"53"
 		"ModelScale"		"0.790000"
@@ -10446,6 +10676,10 @@
 				"MaxPolygonsLOD0"		"2400"
 				"MaxPolygonsLOD1"		"1200"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_furion_treant"
+				}
 			}
 		}
 		"Bot"
@@ -10471,8 +10705,8 @@
 		"SoundSet"		"Hero_LifeStealer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Durable,Jungler,Escape"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Durable,Jungler,Escape,Disabler"
+		"Rolelevels"	"2,2,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"54"
 		"ModelScale"		"0.810000"
@@ -10536,6 +10770,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -10639,8 +10874,8 @@
 		"SoundSet"		"Hero_DarkSeer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Initiator,Nuker,Escape"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Initiator,Jungler,Escape,Disabler"
+		"Rolelevels"	"1,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"55"
 		"ModelScale"		"0.740000"
@@ -10670,7 +10905,7 @@
 		"AttributeStrengthGain"		"2.300000"
 		"AttributeBaseAgility"		"12"
 		"AttributeAgilityGain"		"1.200000"
-		"AttributeBaseIntelligence"		"29"
+		"AttributeBaseIntelligence"		"27"
 		"AttributeIntelligenceGain"		"2.700000"
 		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.600000"
@@ -10700,6 +10935,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -10783,8 +11019,8 @@
 		"IdleSoundLoop"		"Hero_Clinkz.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"2,2"
+		"Role"			"Carry,Escape,Pusher"
+		"Rolelevels"	"2,3,1"
 		"Team"		"Bad"
 		"HeroID"		"56"
 		"ModelScale"		"0.650000"
@@ -10861,6 +11097,7 @@
 				"SlotIndex"		"1"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"2"
 			{
@@ -10907,6 +11144,7 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
@@ -10941,8 +11179,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Durable,LaneSupport,Support"
-		"Rolelevels"		"2,1,1"
+		"Role"			"Support,Durable,Nuker"
+		"Rolelevels"	"2,1,1"
 		"Team"		"Good"
 		"HeroID"		"57"
 		"ModelScale"		"0.740000"
@@ -11051,12 +11289,14 @@
 				"SlotIndex"		"5"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
@@ -11167,8 +11407,8 @@
 		"SoundSet"		"Hero_Enchantress"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Support,Pusher,Durable,Jungler"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Support,Jungler,Pusher,Durable,Disabler"
+		"Rolelevels"	"2,3,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"58"
 		"ModelScale"		"0.740000"
@@ -11263,6 +11503,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_enchantress.vsndevts"
@@ -11313,8 +11554,8 @@
 		"SoundSet"		"Hero_Huskar"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Initiator,Durable"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Carry,Durable,Initiator"
+		"Rolelevels"	"2,2,1"
 		"Team"		"Good"
 		"HeroID"		"59"
 		"ModelScale"		"0.790000"
@@ -11425,6 +11666,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -11489,8 +11731,8 @@
 		"SoundSet"		"Hero_NightStalker"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Durable,Initiator"
-		"Rolelevels"		"2,1"
+		"Role"			"Carry,Initiator,Durable,Disabler,Nuker"
+		"Rolelevels"	"1,2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"60"
 		"ModelScale"		"0.740000"
@@ -11522,6 +11764,7 @@
 		"AttributeIntelligenceGain"		"1.600000"
 		"AttributeBaseAgility"		"18"
 		"AttributeAgilityGain"		"2.250000"
+		"StatusHealthRegen"		"2.000000"
 		"MovementSpeed"		"295"
 		"MovementTurnRate"		"0.500000"
 		"VisionDaytimeRange"		"1200"
@@ -11560,6 +11803,7 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"450"
 				"MaxPolygonsLOD1"		"400"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -11635,8 +11879,8 @@
 		"SoundSet"		"Hero_Broodmother"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Pusher,Carry,Escape"
-		"Rolelevels"		"3,1,1"
+		"Role"			"Carry,Pusher,Escape,Nuker"
+		"Rolelevels"	"1,3,3,1"
 		"Team"		"Bad"
 		"HeroID"		"61"
 		"ModelScale"		"0.930000"
@@ -11757,6 +12001,11 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"800"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_broodmother_spider"
+				}
 			}
 		}
 		"Bot"
@@ -11784,8 +12033,8 @@
 		"BotImplemented"		"1"
 		"HeroPool1"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry,Escape,Nuker"
-		"Rolelevels"		"1,2,1"
+		"Role"			"Escape,Nuker"
+		"Rolelevels"	"2,1"
 		"Team"		"Good"
 		"HeroID"		"62"
 		"HeroGlowColor"		"221 201 63"
@@ -11914,6 +12163,7 @@
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -12011,8 +12261,8 @@
 		"SoundSet"		"Hero_Weaver"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Escape"
-		"Rolelevels"		"2,3"
+		"Role"			"Carry,Escape"
+		"Rolelevels"	"2,3"
 		"Team"		"Bad"
 		"HeroID"		"63"
 		"NewHero"		"1"
@@ -12126,6 +12376,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -12152,8 +12403,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Nuker,Pusher,LaneSupport,Disabler"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Support,Nuker,Pusher,Disabler"
+		"Rolelevels"	"1,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"64"
 		"NewHero"		"1"
@@ -12214,18 +12465,21 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
 				"SlotIndex"		"1"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"2"
 			{
 				"SlotIndex"		"2"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -12316,8 +12570,8 @@
 		"SoundSet"		"Hero_Batrider"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Initiator,Disabler,Nuker,Escape"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Initiator,Jungler,Disabler,Escape"
+		"Rolelevels"	"3,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"65"
 		"ModelScale"		"0.740000"
@@ -12361,6 +12615,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -12510,8 +12765,8 @@
 		"SoundSet"		"Hero_Chen"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Support,Jungler,Pusher"
-		"Rolelevels"		"3,3,2"
+		"Role"			"Support,Jungler,Pusher"
+		"Rolelevels"	"2,3,2"
 		"Team"		"Good"
 		"HeroID"		"66"
 		"ModelScale"		"0.930000"
@@ -12753,8 +13008,8 @@
 		"IdleSoundLoop"		"Hero_Spectre.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry,Durable"
-		"Rolelevels"		"3,1"
+		"Role"			"Carry,Durable,Escape"
+		"Rolelevels"	"3,1,1"
 		"Team"		"Bad"
 		"HeroID"		"67"
 		"ModelScale"		"0.670000"
@@ -12943,8 +13198,8 @@
 		"IdleSoundLoop"		"Hero_DoomBringer.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Durable,Carry,Nuker"
-		"Rolelevels"		"2,2,1"
+		"Role"			"Carry,Disabler,Initiator,Durable,Nuker"
+		"Rolelevels"	"1,2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"69"
 		"ModelScale"		"0.860000"
@@ -13078,6 +13333,7 @@
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -13158,8 +13414,8 @@
 		"IdleSoundLoop"		"Hero_Ancient_Apparition.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Support,Disabler"
-		"Rolelevels"		"2,1"
+		"Role"			"Support,Disabler,Nuker"
+		"Rolelevels"	"2,1,1"
 		"Team"		"Bad"
 		"PickSound"		"ancient_apparition_appa_spawn_01"
 		"BanSound"		"ancient_apparition_appa_anger_03"
@@ -13222,6 +13478,12 @@
 			"0"
 			{
 				"SlotIndex"		"0"
+				"SlotName"		"head"
+				"SlotText"		"#LoadoutSlot_Head"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
@@ -13308,8 +13570,8 @@
 		"SoundSet"		"Hero_Ursa"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry,Jungler,Durable"
-		"Rolelevels"		"2,2,1"
+		"Role"			"Carry,Jungler,Durable,Disabler"
+		"Rolelevels"	"2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"70"
 		"ModelScale"		"0.740000"
@@ -13336,7 +13598,7 @@
 		"AttackRange"		"128"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"23"
-		"AttributeStrengthGain"		"2.900000"
+		"AttributeStrengthGain"		"2.700000"
 		"AttributeBaseAgility"		"18"
 		"AttributeAgilityGain"		"2.100000"
 		"AttributeBaseIntelligence"		"16"
@@ -13408,6 +13670,7 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
@@ -13482,8 +13745,8 @@
 		"SoundSet"		"Hero_spirit_breaker"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Durable,Carry,Initiator,Disabler"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Carry,Initiator,Disabler,Durable,Escape"
+		"Rolelevels"	"1,2,2,2,1"
 		"Team"		"Bad"
 		"CMEnabled"		"1"
 		"NameAliases"		"sb"
@@ -13573,6 +13836,7 @@
 				"SlotIndex"		"3"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"4"
 			{
@@ -13609,6 +13873,7 @@
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -13696,8 +13961,8 @@
 		"IdleSoundLoop"		"Hero_Gyrocopter.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Disabler,Initiator,Nuker"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Carry,Nuker,Disabler"
+		"Rolelevels"	"3,1,1"
 		"Team"		"Good"
 		"HeroID"		"72"
 		"ModelScale"		"0.840000"
@@ -13805,12 +14070,18 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"300"
 				"MaxPolygonsLOD1"		"200"
+				"LoadoutPreviewMode"		"hero"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_gyrocopter_homing_missile"
+				}
 			}
 			"6"
 			{
 				"SlotIndex"		"6"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
@@ -13889,8 +14160,8 @@
 		"SoundSet"		"Hero_Alchemist"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Durable,Carry,Disabler"
-		"Rolelevels"		"2,1,1"
+		"Role"			"Carry,Support,Durable,Disabler,Initiator,Nuker"
+		"Rolelevels"	"2,1,2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"73"
 		"ModelScale"		"0.930000"
@@ -13971,6 +14242,7 @@
 				"SlotIndex"		"2"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"3"
 			{
@@ -14027,6 +14299,7 @@
 				"SlotIndex"		"8"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14116,8 +14389,8 @@
 		"IdleSoundLoop"		"Hero_Invoker.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Nuker,Initiator,Escape"
-		"Rolelevels"		"1,1,1,1"
+		"Role"			"Carry,Nuker,Disabler,Escape,Pusher"
+		"Rolelevels"	"1,3,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"74"
 		"ModelScale"		"0.740000"
@@ -14163,7 +14436,7 @@
 		"AttributeBaseAgility"		"20"
 		"AttributeAgilityGain"		"1.900000"
 		"AttributeBaseIntelligence"		"22"
-		"AttributeIntelligenceGain"		"3.200000"
+		"AttributeIntelligenceGain"		"4.000000"
 		"MovementSpeed"		"280"
 		"MovementTurnRate"		"0.500000"
 		"HealthBarOffset"		"170"
@@ -14215,6 +14488,7 @@
 				"SlotIndex"		"2"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"3"
 			{
@@ -14246,6 +14520,10 @@
 				"MaxPolygonsLOD0"		"1800"
 				"MaxPolygonsLOD1"		"1800"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_invoker_forged_spirit"
+				}
 			}
 			"6"
 			{
@@ -14262,6 +14540,7 @@
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14287,8 +14566,8 @@
 		"SoundSet"		"Hero_Silencer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Support,Carry,Initiator"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Carry,Support,Disabler,Initiator,Nuker"
+		"Rolelevels"	"1,1,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"75"
 		"ModelScale"		"0.740000"
@@ -14409,6 +14688,7 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14482,8 +14762,8 @@
 		"IdleSoundLoop"		"Hero_ObsidianDestroyer.IdleLoop"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry"
-		"Rolelevels"		"2"
+		"Role"			"Carry,Nuker,Disabler"
+		"Rolelevels"	"2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"76"
 		"ModelScale"		"0.700000"
@@ -14511,7 +14791,7 @@
 		"ProjectileSpeed"		"900"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"19"
-		"AttributeStrengthGain"		"1.850000"
+		"AttributeStrengthGain"		"2.30000"
 		"AttributeBaseAgility"		"24"
 		"AttributeAgilityGain"		"2.000000"
 		"AttributeBaseIntelligence"		"26"
@@ -14583,12 +14863,14 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"5"
 			{
 				"SlotIndex"		"5"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -14667,8 +14949,9 @@
 		"SoundSet"		"Hero_Lycan"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry,Jungler,Pusher,Durable"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Carry,Pusher,Jungler,Durable,Escape"
+		"Rolelevels"	"2,3,1,1,1"
+		"AlternateLoadoutScale" "0.6"
 		"Team"		"Bad"
 		"HeroID"		"77"
 		"ModelScale"		"0.850000"
@@ -14694,7 +14977,7 @@
 		"AttackRange"		"128"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"22"
-		"AttributeStrengthGain"		"2.750000"
+		"AttributeStrengthGain"		"3.0000"
 		"AttributeBaseAgility"		"16"
 		"AttributeAgilityGain"		"1.900000"
 		"AttributeBaseIntelligence"		"17"
@@ -14791,6 +15074,7 @@
 				"MaxPolygonsLOD0"		"5500"
 				"MaxPolygonsLOD1"		"3500"
 				"no_import"		"1"
+				"LoadoutPreviewMode"		"transformation"
 			}
 			"6"
 			{
@@ -14802,12 +15086,17 @@
 				"MaxPolygonsLOD0"		"3500"
 				"MaxPolygonsLOD1"		"2250"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_lycan_wolf"
+				}
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14833,8 +15122,8 @@
 		"SoundSet"		"Hero_Brewmaster"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"		"Carry,Durable,Initiator,Pusher"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Carry,Initiator,Durable,Disabler,Nuker"
+		"Rolelevels"	"1,3,2,2,1"
 		"Team"		"Good"
 		"HeroID"		"78"
 		"ModelScale"		"0.790000"
@@ -14952,6 +15241,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14996,8 +15286,8 @@
 		"SoundSet"		"Hero_ShadowDemon"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Support,Disabler,Nuker"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Support,Disabler,Initiator,Nuker"
+		"Rolelevels"	"2,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"79"
 		"ModelScale"		"0.840000"
@@ -15078,6 +15368,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -15200,8 +15491,8 @@
 		"SoundSet"		"Hero_LoneDruid"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Durable,Pusher,Jungler"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Carry,Pusher,Jungler,Durable"
+		"Rolelevels"	"2,3,1,1"
 		"Team"		"Good"
 		"HeroID"		"80"
 		"ModelScale"		"0.790000"
@@ -15316,6 +15607,8 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"5000"
 				"MaxPolygonsLOD1"		"3000"
+				"LoadoutPreviewMode"		"transformation"
+				"no_import"		"1"
 			}
 			"5"
 			{
@@ -15327,6 +15620,10 @@
 				"MaxPolygonsLOD0"		"4500"
 				"MaxPolygonsLOD1"		"3000"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_lone_druid_bear"
+				}
 			}
 			"6"
 			{
@@ -15361,8 +15658,8 @@
 		"SoundSet"		"Hero_ChaosKnight"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Disabler,Durable,Pusher"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Disabler,Durable,Pusher,Initiator"
+		"Rolelevels"	"3,2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"81"
 		"ModelScale"		"0.790000"
@@ -15457,6 +15754,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -15553,8 +15851,8 @@
 		"SoundSet"		"Hero_Meepo"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Carry,Disabler,Initiator"
-		"Rolelevels"		"1,1,1"
+		"Role"			"Carry,Escape,Nuker,Disabler,Initiator,Pusher"
+		"Rolelevels"	"2,2,2,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"82"
 		"ModelScale"		"0.930000"
@@ -15592,7 +15890,7 @@
 		"VisionNighttimeRange"		"800"
 		"MovementSpeed"		"315"
 		"MovementTurnRate"		"0.650000"
-		"HealthBarOffset"		"100"
+		"HealthBarOffset"		"125"
 		"particle_folder"		"particles/units/heroes/hero_meepo"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_meepo.vsndevts"
@@ -15677,6 +15975,7 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -15700,8 +15999,8 @@
 		"Portrait"		"vgui/hud/heroportraits/portrait_treant"
 		"SoundSet"		"Hero_Treant"
 		"Enabled"		"1"
-		"Role"		"Durable,Initiator,LaneSupport,Disabler"
-		"Rolelevels"		"2,2,2,1"
+		"Role"			"Support,Initiator,Durable,Disabler,Escape"
+		"Rolelevels"	"3,2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"83"
 		"ModelScale"		"0.840000"
@@ -15762,6 +16061,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -15808,6 +16108,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -15832,8 +16133,8 @@
 		"IdleExpression"		"scenes/ogre_magi/ogre_magi_exp_idle_01.vcd"
 		"SoundSet"		"Hero_OgreMagi"
 		"Enabled"		"1"
-		"Role"		"Nuker,Disabler,Durable"
-		"Rolelevels"		"2,2,1"
+		"Role"			"Support,Nuker,Disabler,Durable,Initiator"
+		"Rolelevels"	"2,2,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"84"
 		"ModelScale"		"0.930000"
@@ -15852,11 +16153,11 @@
 		"Ability4"		"ogre_magi_unrefined_fireblast"
 		"Ability5"		"ogre_magi_multicast"
 		"Ability6"		"attribute_bonus"
-		"ArmorPhysical"		"5.000000"
+		"ArmorPhysical"		"6.000000"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"		"41"
 		"AttackDamageMax"		"47"
-		"AttackRate"		"1.700000"
+		"AttackRate"		"1.70000"
 		"AttackAnimationPoint"		"0.300000"
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"128"
@@ -15971,8 +16272,8 @@
 		"SoundSet"		"Hero_Undying"
 		"IdleSoundLoop"		"Hero_Undying.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Durable,Pusher,Disabler,Initiator"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Support,Durable,Disabler,Nuker"
+		"Rolelevels"	"1,2,1,1"
 		"Team"		"Bad"
 		"HeroID"		"85"
 		"ModelScale"		"0.930000"
@@ -16059,6 +16360,12 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"4500"
 				"MaxPolygonsLOD1"		"3000"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_unit_tombstone"
+					"1" "npc_dota_unit_undying_zombie"
+				}
 			}
 			"3"
 			{
@@ -16069,6 +16376,7 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"6000"
 				"MaxPolygonsLOD1"		"4000"
+				"DisplayInLoadout" "0"
 			}
 			"4"
 			{
@@ -16099,8 +16407,8 @@
 		"Portrait"		"vgui/hud/heroportraits/portrait_rubick"
 		"SoundSet"		"Hero_Rubick"
 		"Enabled"		"1"
-		"Role"		"Disabler,Nuker"
-		"Rolelevels"		"2,2"
+		"Role"			"Support,Disabler,Nuker"
+		"Rolelevels"	"2,1,1"
 		"Team"		"Good"
 		"HeroID"		"86"
 		"ModelScale"		"0.700000"
@@ -16249,8 +16557,8 @@
 		"Portrait"		"vgui/hud/heroportraits/portrait_disruptor"
 		"SoundSet"		"Hero_Disruptor"
 		"Enabled"		"1"
-		"Role"		"Nuker,Support,Initiator,Disabler"
-		"Rolelevels"		"2,1,1,1"
+		"Role"			"Support,Disabler,Nuker,Initiator"
+		"Rolelevels"	"2,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"87"
 		"ModelScale"		"0.790000"
@@ -16371,6 +16679,7 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
@@ -16402,8 +16711,8 @@
 		"IdleExpression"		"scenes/nyx_assassin/nyx_assassin_exp_idle_01.vcd"
 		"SoundSet"		"Hero_NyxAssassin"
 		"Enabled"		"1"
-		"Role"		"Disabler,Nuker"
-		"Rolelevels"		"2,2"
+		"Role"			"Disabler,Nuker,Initiator,Escape"
+		"Rolelevels"	"2,2,2,1"
 		"Team"		"Bad"
 		"HeroID"		"88"
 		"ModelScale"		"0.980000"
@@ -16527,8 +16836,8 @@
 		"SoundSet"		"Hero_NagaSiren"
 		"IdleSoundLoop"		"Hero_NagaSiren.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Carry,Disabler,Pusher,Escape"
-		"Rolelevels"		"2,2,1,1"
+		"Role"			"Carry,Support,Pusher,Disabler,Initiator,Escape"
+		"Rolelevels"	"3,1,2,2,1,1"
 		"Team"		"good"
 		"HeroID"		"89"
 		"ModelScale"		"0.770000"
@@ -16664,6 +16973,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -16681,8 +16991,8 @@
 		"IdleExpression"		"scenes/keeper_of_the_light/keeper_of_the_light_exp_idle_01.vcd"
 		"SoundSet"		"Hero_KeeperOfTheLight"
 		"Enabled"		"1"
-		"Role"		"Nuker,Support,LaneSupport"
-		"Rolelevels"		"2,2,2"
+		"Role"			"Support,Nuker,Disabler,Jungler"
+		"Rolelevels"	"3,2,1,1"
 		"Team"		"Good"
 		"HeroID"		"90"
 		"ModelScale"		"0.800000"
@@ -16800,6 +17110,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -16881,8 +17192,8 @@
 		"SoundSet"		"Hero_Wisp"
 		"IdleSoundLoop"		"Hero_Wisp.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Support,LaneSupport,Nuker"
-		"Rolelevels"		"3,2,1"
+		"Role"			"Support,Escape,Nuker"
+		"Rolelevels"	"3,2,1"
 		"Team"		"Good"
 		"HeroID"		"91"
 		"ModelScale"		"0.930000"
@@ -16943,6 +17254,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -16975,8 +17287,8 @@
 		"SoundSet"		"Hero_Visage"
 		"IdleSoundLoop"		"Hero_Visage.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Nuker,Durable,Disabler"
-		"Rolelevels"		"2,2,1"
+		"Role"			"Support,Nuker,Durable,Disabler,Pusher"
+		"Rolelevels"	"1,2,1,1,1"
 		"Team"		"Bad"
 		"HeroID"		"92"
 		"ModelScale"		"0.670000"
@@ -17041,6 +17353,17 @@
 			"0"
 			{
 				"SlotIndex"		"0"
+				"SlotName"		"summon"
+				"SlotText"		"#LoadoutSlot_Visage_Familiar"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
+				"MaxPolygonsLOD0"		"1800"
+				"MaxPolygonsLOD1"		"1800"
+				"no_import"		"1"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
@@ -17070,8 +17393,8 @@
 		"HeroID"		"93"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Escape"
-		"Rolelevels"		"3"
+		"Role"			"Carry,Escape,Disabler,Nuker"
+		"Rolelevels"	"2,3,1,1"
 		"Team"		"Bad"
 		"Portrait"		"vgui/hud/heroportraits/portrait_slark"
 		"ModelScale"		"0.900000"
@@ -17184,6 +17507,11 @@
 				"SlotIndex"		"5"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 			"6"
 			{
@@ -17216,8 +17544,8 @@
 		"HeroID"		"94"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry"
-		"Rolelevels"		"3"
+		"Role"			"Carry,Disabler,Durable"
+		"Rolelevels"	"3,1,1"
 		"Team"		"Bad"
 		"Portrait"		"vgui/hud/heroportraits/portrait_medusa"
 		"ModelScale"		"0.850000"
@@ -17358,8 +17686,8 @@
 		"HeroID"		"95"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Carry"
-		"Rolelevels"		"3"
+		"Role"			"Carry,Pusher,Disabler,Durable"
+		"Rolelevels"	"3,2,1,1"
 		"Team"		"Good"
 		"Portrait"		"vgui/hud/heroportraits/portrait_troll_warlord"
 		"ModelScale"		"0.900000"
@@ -17521,8 +17849,8 @@
 		"HeroID"		"96"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Durable,Disabler,Initiator"
-		"Rolelevels"		"3,2,1"
+		"Role"			"Durable,Initiator,Disabler,Nuker,Escape"
+		"Rolelevels"	"3,3,1,1,1"
 		"Team"		"Good"
 		"Portrait"		"vgui/hud/heroportraits/portrait_centaur"
 		"ModelScale"		"0.740000"
@@ -17669,6 +17997,11 @@
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 	}
@@ -17679,8 +18012,8 @@
 		"HeroID"		"97"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"		"Initiator,Disabler,Nuker,Carry"
-		"Rolelevels"		"3,1,1,1"
+		"Role"			"Initiator,Disabler,Nuker,Escape"
+		"Rolelevels"	"3,2,1,1"
 		"Team"		"Bad"
 		"Portrait"		"vgui/hud/heroportraits/portrait_centaur"
 		"ModelScale"		"0.920000"
@@ -17823,8 +18156,8 @@
 		"SoundSet"		"Hero_Shredder"
 		"IdleSoundLoop"		"Hero_Shredder.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Durable,Nuker,Escape"
-		"Rolelevels"		"2,1,1"
+		"Role"			"Nuker,Durable,Escape"
+		"Rolelevels"	"3,2,2"
 		"Team"		"Good"
 		"HeroID"		"98"
 		"ModelScale"		"0.825000"
@@ -17965,9 +18298,10 @@
 		"Model"		"models/heroes/bristleback/bristleback.vmdl"
 		"Portrait"		"vgui/hud/heroportraits/portrait_bristleback"
 		"SoundSet"		"Hero_Bristleback"
+		"IdleSoundLoop"		"Hero_Bristleback.IdleLoop"
 		"Enabled"		"1"
-		"Role"		"Durable,Initiator,Disabler"
-		"Rolelevels"		"3,1,1"
+		"Role"			"Carry,Durable,Initiator,Nuker"
+		"Rolelevels"	"2,3,1,1"
 		"Team"		"Good"
 		"HeroID"		"99"
 		"BotImplemented"		"1"
@@ -18083,6 +18417,11 @@
 				"SlotIndex"		"5"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 			"6"
 			{
@@ -18183,8 +18522,8 @@
 		"IdleExpression"		"scenes/tusk/tusk_exp_idle_01.vcd"
 		"SoundSet"		"Hero_Tusk"
 		"Enabled"		"1"
-		"Role"		"Initiator,Durable"
-		"Rolelevels"		"1,1"
+		"Role"			"Initiator,Disabler,Nuker"
+		"Rolelevels"	"2,2,1"
 		"Team"		"Good"
 		"HeroID"		"100"
 		"ModelScale"		"0.900000"
@@ -18221,7 +18560,7 @@
 		"AttributeIntelligenceGain"		"1.700000"
 		"MovementSpeed"		"305"
 		"MovementTurnRate"		"0.500000"
-		"HealthBarOffset"		"250"
+		"HealthBarOffset"		"190"
 		"particle_folder"		"particles/units/heroes/hero_tusk"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_tusk.vsndevts"
@@ -18311,12 +18650,17 @@
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"750"
 				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_tusk_frozen_sigil"
+				}
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"8"
 			{
@@ -18340,8 +18684,8 @@
 		"Enabled"		"1"
 		"url"		"Skywrath_Mage"
 		"HeroUnlockOrder"		"3"
-		"Role"		"Nuker,Support"
-		"Rolelevels"		"3,1"
+		"Role"			"Support,Nuker,Disabler"
+		"Rolelevels"	"2,3,1"
 		"Team"		"Good"
 		"HeroID"		"101"
 		"ModelScale"		"0.750000"
@@ -18556,8 +18900,8 @@
 		"Portrait"		"vgui/hud/heroportraits/portrait_abaddon"
 		"SoundSet"		"Hero_Abaddon"
 		"Enabled"		"1"
-		"Role"		"Durable,Support,Carry"
-		"Rolelevels"		"3,2,1"
+		"Role"			"Support,Carry,Durable"
+		"Rolelevels"	"2,1,2"
 		"Team"		"Bad"
 		"HeroID"		"102"
 		"ModelScale"		"0.780000"
@@ -18682,8 +19026,8 @@
 		"IdleExpression"		"scenes/elder_titan/elder_titan_exp_idle_01.vcd"
 		"SoundSet"		"Hero_ElderTitan"
 		"Enabled"		"1"
-		"Role"		"Initiator,Durable"
-		"Rolelevels"		"1,2"
+		"Role"			"Initiator,Disabler,Nuker,Durable"
+		"Rolelevels"	"2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"103"
 		"ModelScale"		"0.750000"
@@ -18794,12 +19138,14 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"7"
 			{
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_ElderTitan_AstralSpirit"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -18815,9 +19161,8 @@
 		"SoundSet"		"Hero_LegionCommander"
 		"Enabled"		"1"
 		"CMEnabled"		"1"
-		"ForceEnable"		"0"
-		"Role"		"Carry,Durable"
-		"Rolelevels"		"1,2"
+		"Role"			"Carry,Disabler,Initiator,Durable,Nuker"
+		"Rolelevels"	"1,2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"104"
 		"ModelScale"		"1.025000"
@@ -18834,8 +19179,8 @@
 		"Ability5"		"attribute_bonus"
 		"ArmorPhysical"		"0.000000"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"31"
-		"AttackDamageMax"		"35"
+		"AttackDamageMin"		"35"
+		"AttackDamageMax"		"39"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.460000"
 		"AttackAcquisitionRange"		"600"
@@ -18930,6 +19275,11 @@
 				"SlotIndex"		"6"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_Pet"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
 			}
 		}
 		"Bot"
@@ -18944,9 +19294,8 @@
 		"SoundSet"		"Hero_EmberSpirit"
 		"IdleSoundLoop"		"Hero_EmberSpirit.IdleLoop"
 		"Enabled"		"1"
-		"ForceEnable"		"0"
-		"Role"		"Carry,Nuker"
-		"Rolelevels"		"1,2"
+		"Role"			"Carry,Escape,Nuker,Disabler,Initiator"
+		"Rolelevels"	"2,3,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"106"
 		"ModelScale"		"1.200000"
@@ -19090,9 +19439,8 @@
 		"SoundSet"		"Hero_EarthSpirit"
 		"Enabled"		"1"
 		"CMEnabled"		"0"
-		"ForceEnable"		"0"
-		"Role"		"Carry,Nuker"
-		"Rolelevels"		"1,2"
+		"Role"			"Nuker,Escape,Disabler,Initiator,Durable"
+		"Rolelevels"	"2,2,1,1,1"
 		"Team"		"Good"
 		"HeroID"		"107"
 		"ModelScale"		"0.950000"
@@ -19217,6 +19565,7 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"3000"
+				"LoadoutPreviewMode"		"particle"
 			}
 			"7"
 			{
@@ -19247,7 +19596,6 @@
 		"Portrait"		"vgui/hud/heroportraits/abyssal_underlord"
 		"SoundSet"		"Hero_AbyssalUnderlord"
 		"Enabled"		"0"
-		"ForceEnable"		"0"
 		"Team"		"Bad"
 		"HeroID"		"108"
 		"ModelScale"		"1.000000"
@@ -19289,10 +19637,10 @@
 		"SoundSet"		"Hero_Terrorblade"
 		"HeroID"		"109"
 		"Enabled"		"1"
-		"CMEnabled"		"1"
+		"CMEnabled"		"0"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Carry"
-		"Rolelevels"		"3"
+		"Role"			"Carry,Pusher,Nuker"
+		"Rolelevels"	"3,2,1"
 		"Team"		"Bad"
 		"Portrait"		"vgui/hud/heroportraits/portrait_terrorblade"
 		"ModelScale"		"1.100000"
@@ -19399,12 +19747,14 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"6000"
 				"MaxPolygonsLOD1"		"3000"
+				"LoadoutPreviewMode"		"transformation"
 			}
 			"5"
 			{
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
 			}
 			"6"
 			{
@@ -19426,8 +19776,8 @@
 		"Enabled"		"1"
 		"CMEnabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Initiator,Disabler,Nuker"
-		"Rolelevels"		"3,2,3"
+		"Role"			"Support,Nuker,Initiator,Escape,Disabler"
+		"Rolelevels"	"1,3,2,2,1"
 		"Team"		"Good"
 		"Portrait"		"vgui/hud/heroportraits/portrait_phoenix"
 		"ModelScale"		"0.950000"
@@ -19498,8 +19848,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"		"Support,LaneSupport,Nuker"
-		"Rolelevels"		"3,1,1"
+		"Role"			"Support,Nuker,Disabler,Escape"
+		"Rolelevels"	"3,3,2,1"
 		"Team"		"Good"
 		"Portrait"		"vgui/hud/heroportraits/portrait_oracle"
 		"IdleExpression"		"scenes/oracle/oracle_exp_idle_01.vcd"
@@ -19717,6 +20067,8 @@
 		"Enabled"		"1"
 		"url"		"Techies"
 		"BotImplemented"		"0"
+		"Role"			"Nuker,Disabler"
+		"Rolelevels"	"3,1"
 		"Team"		"Good"
 		"NewHero"		"0"
 		"HeroPool1"		"0"
@@ -19840,6 +20192,13 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"400"
 				"MaxPolygonsLOD1"		"300"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_techies_remote_mine"
+					"1" "npc_dota_techies_stasis_trap"
+					"2" "npc_dota_techies_land_mine"
+				}
 			}
 			"5"
 			{
@@ -19860,6 +20219,11 @@
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"430"
 				"MaxPolygonsLOD1"		"420"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_techies_minefield_sign"
+				}
 			}
 			"7"
 			{
@@ -19880,6 +20244,8 @@
 		"Enabled"		"1"
 		"url"		"Winter_Wyvern"
 		"BotImplemented"		"0"
+		"Role"			"Support,Disabler,Nuker"
+		"Rolelevels"	"3,2,1"
 		"Team"		"Bad"
 		"NewHero"		"0"
 		"HeroPool1"		"0"
@@ -19959,6 +20325,7 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
+				"DisplayInLoadout" "0"
 			}
 			"1"
 			{
@@ -19988,5 +20355,77 @@
 				"DisplayInLoadout"		"0"
 			}
 		}
+	}
+
+	//=================================================================================================================
+	// HERO: Arc Warden
+	//=================================================================================================================
+	"npc_dota_hero_arc_warden"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"Model"		"models/heroes/arc_warden/arc_warden.vmdl"
+		"SoundSet"		"Hero_ArcWarden"
+		"IdleExpression"		"scenes/arc_warden/arc_warden_exp_idle_01.vcd"
+		"HeroID"		"113"
+		"Enabled"		"1"
+		"HeroUnlockOrder"		"1"
+		"Role"			"Carry,Escape,Nuker"
+		"Rolelevels"	"3,3,1"
+		"Team"		"Good"
+		"Portrait"		"vgui/hud/heroportraits/portrait_arc_warden"
+		"ModelScale"		"1.0"
+		"HeroGlowColor"		"120 64 148"
+		"PickSound"		"arc_warden_anti_spawn_01"
+		"BanSound"		"arc_warden_anti_anger_04"
+		"CMEnabled"		"1"
+		"NameAliases"		"zet"
+		"url"		"Arc Warden"
+		"HeroSelectSoundEffect"		"Hero_ArcWarden.Pick"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"		"arc_warden_flux"
+		"Ability2"		"arc_warden_magnetic_field"
+		"Ability3"		"arc_warden_spark_wraith"
+		"Ability4"		"arc_warden_tempest_double"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"		"-2"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"25"
+		"AttackDamageMax"		"35"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"		"1.700000"
+		"AttackAnimationPoint"		"0.3"
+		"AttackAcquisitionRange"		"800"
+		"AttackRange"		"625"
+		"ProjectileModel"		"particles/units/heroes/hero_arc_warden/arc_warden_base_attack.vpcf"
+		"ProjectileSpeed"		"900"
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"24"
+		"AttributeStrengthGain"		"1.9"
+		"AttributeBaseIntelligence"		"24"
+		"AttributeIntelligenceGain"		"2.1"
+		"AttributeBaseAgility"		"15"
+		"AttributeAgilityGain"		"1.8"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"		"295"
+		"MovementTurnRate"		"0.4"
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"		"140"
+		"particle_folder"		"particles/units/heroes/hero_arc_warden"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_arc_warden.vsndevts"
+
 	}
 }
