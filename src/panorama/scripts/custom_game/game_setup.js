@@ -582,6 +582,20 @@ function hookAndFire(tableName, callback) {
     }
 }
 
+// Makes skill info appear when you hover the panel that is parsed in
+function hookSkillInfo(panel) {
+    // Show
+    panel.SetPanelEvent('onmouseover', function() {
+        var ability = panel.GetAttributeString('abilityname', 'unknown');
+        $.DispatchEvent('DOTAShowAbilityTooltip', panel, ability);
+    });
+
+    // Hide
+    panel.SetPanelEvent('onmouseout', function() {
+        $.DispatchEvent('DOTAHideAbilityTooltip', panel);
+    });
+}
+
 // Are we the host?
 function isHost() {
     var playerInfo = Game.GetLocalPlayerInfo();
@@ -1141,4 +1155,6 @@ function UpdateTimer() {
     // Hook stuff
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
+
+    hookSkillInfo($('#bs'));
 })();
