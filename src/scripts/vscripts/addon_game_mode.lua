@@ -2089,6 +2089,8 @@ function lod:FilterModifyGold(filterTable)
     -- Slow down the gold intake for the team with more players
     local ratio = enemyTeam / myTeam
     if ratio < 1 then
+        ratio = 1 - (1 - ratio) / 2
+
         filterTable.gold = math.ceil(filterTable.gold * ratio)
     end
 
