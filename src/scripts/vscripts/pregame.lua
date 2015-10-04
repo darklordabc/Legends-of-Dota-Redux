@@ -41,6 +41,9 @@ function Pregame:init()
     CustomGameEventManager:RegisterListener('lodOptionSet', function(eventSourceIndex, args)
         this:onOptionChanged(eventSourceIndex, args)
     end)
+
+    -- Network heroes
+    self:networkHeroes()
 end
 
 -- Thinker function to handle logic
@@ -109,6 +112,44 @@ function Pregame:onThink()
     end
 
     -- Shouldn't get here
+end
+
+-- Setup the selectable heroes
+function Pregame:networkHeroes()
+    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+
+    local heroData = {}
+    local allowedHeroes = {}
+
+    for heroName,heroValues in pairs(allHeroes) do
+        -- Ensure it is enabled
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroName ~= 'npc_dota_hero_arc_warden' and heroValues.Enabled == 1 then
+            -- Store all the useful information
+            network:setHeroData(heroName, {
+                AttributePrimary = heroValues.AttributePrimary,
+                Role = heroValues.Role,
+                Rolelevels = heroValues.Rolelevels,
+                AttackCapabilities = heroValues.AttackCapabilities,
+                AttackDamageMin = heroValues.AttackDamageMin,
+                AttackDamageMax = heroValues.AttackDamageMax,
+                AttackRate = heroValues.AttackRate,
+                AttackRange = heroValues.AttackRange,
+                MovementSpeed = heroValues.MovementSpeed,
+                AttributeBaseStrength = heroValues.AttributeBaseStrength,
+                AttributeStrengthGain = heroValues.AttributeStrengthGain,
+                AttributeBaseIntelligence = heroValues.AttributeBaseIntelligence,
+                AttributeIntelligenceGain = heroValues.AttributeIntelligenceGain,
+                AttributeBaseAgility = heroValues.AttributeBaseAgility,
+                AttributeAgilityGain = heroValues.AttributeAgilityGain
+            })
+
+            -- Store allowed heroes
+            allowedHeroes[heroName] = true
+        end
+    end
+
+    -- Store it locally
+    self.allowedHeroes = allowedHeroes
 end
 
 -- Options Locked event was fired

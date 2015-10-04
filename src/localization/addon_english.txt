@@ -49,12 +49,12 @@
     "lodOptionBalancedBan"                          "Balanced Bans"
     "lodOptionManualBan"                            "Fast Ban Phase"
 
-    "lodOptionsPresetSlots"                         "Preset Slots"
+    "lodOptionsPresetSlots"                         "Preset Max Slots"
     "lodOptionBalancedSlots4"                       "4 Slots"
     "lodOptionBalancedSlots5"                       "5 Slots"
     "lodOptionBalancedSlots6"                       "6 Slots"
 
-    "lodOptionUlts"                                 "Preset Ults"
+    "lodOptionsPresetUlts"                          "Preset Max Ultimate Abilities"
     "lodOptionBalancedUlts1"                        "1 Ult"
     "lodOptionBalancedUlts2"                        "2 Ults"
     "lodOptionBalancedUlts3"                        "3 Ults"

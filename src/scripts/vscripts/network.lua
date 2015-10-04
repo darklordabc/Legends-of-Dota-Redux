@@ -29,5 +29,10 @@ function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue});
 end
 
+-- Sets the network hero data
+function Network:setHeroData(heroName, heroData)
+    CustomNetTables:SetTableValue('heroes', heroName, heroData);
+end
+
 -- Return an instance of it
 return Network()

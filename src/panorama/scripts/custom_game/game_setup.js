@@ -551,6 +551,12 @@ var PHASE_DRAFTING = 5;         // Place holder for drafting mode
 var PHASE_REVIEW = 6;           // Review Phase
 var PHASE_INGAME = 7;           // Game has started
 
+// Hero data
+var heroData = {};
+
+// Used to make data transfer smoother
+var dataHooks = {};
+
 // The current phase we are in
 var currentPhase = PHASE_LOADING;
 var selectedPhase = PHASE_OPTION_SELECTION;
@@ -594,6 +600,128 @@ function hookSkillInfo(panel) {
     panel.SetPanelEvent('onmouseout', function() {
         $.DispatchEvent('DOTAHideAbilityTooltip', panel);
     });
+}
+
+// Hero data has changed
+function OnHeroDataChanged(table_name, key, data) {
+    heroData[key] = data;
+
+    // Do the schedule
+    if(dataHooks.OnHeroDataChanged == null) dataHooks.OnHeroDataChanged = 0;
+    var myHookNumber = ++dataHooks.OnHeroDataChanged;
+    $.Schedule(1, function() {
+        if(dataHooks.OnHeroDataChanged == myHookNumber) {
+            buildHeroList();
+        }
+    });
+}
+
+// Sets up the hero builder tab
+function setupBuilderTabs() {
+    var mainPanel = $('#pickingPhaseTabs');
+    $.Each(mainPanel.Children(), function(panelTab) {
+        if(panelTab.BHasClass('pickingPhaseTab')) {
+            $.Each(panelTab.Children(), function(tabElement) {
+                var tabLink = tabElement.GetAttributeString('link', '-1');
+
+                if(tabLink != '-1') {
+                    tabElement.SetPanelEvent('onactivate', function() {
+                        showBuilderTab(tabLink);
+                    });
+                }
+            });
+        }
+    });
+
+    var mainContentPanel = $('#pickingPhaseTabsContent');
+    $.Each(mainContentPanel.Children(), function(panelTab) {
+        if(panelTab.BHasClass('pickingPhaseTabContent')) {
+            panelTab.visible = false;
+        }
+    });
+
+    // Show the main tab only
+    showBuilderTab('pickingPhaseMainTab');
+
+    // Loop over all the panels we need to hook
+    /*for(var i=0; i<toHook.length; ++i) {
+        var panel = $('#' + toHook[i]);
+
+        $.Each(panel.Children(), function(obj) {
+            $.Msg(obj);
+        })
+    }*/
+}
+
+// Builds the hero list
+function buildHeroList() {
+    $.Msg('building...');
+
+    var strHeroes = [];
+    var agiHeroes = [];
+    var intHeroes = [];
+
+    for(var heroName in heroData) {
+        var info = heroData[heroName];
+
+        switch(info.AttributePrimary) {
+            case 'DOTA_ATTRIBUTE_STRENGTH':
+                strHeroes.push(heroName);
+            break;
+
+            case 'DOTA_ATTRIBUTE_AGILITY':
+                agiHeroes.push(heroName);
+            break;
+
+            case 'DOTA_ATTRIBUTE_INTELLECT':
+                intHeroes.push(heroName);
+            break;
+        }
+    }
+
+    function doInsertHeroes(container, heroList) {
+        // Cleanup container
+        container.RemoveAndDeleteChildren();
+
+        // Sort the hero list
+        heroList.sort();
+
+        // Insert it
+        for(var i=0; i<heroList.length; ++i) {
+            var heroName = heroList[i];
+
+            // Create the panel
+            var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
+            newPanel.heroname = heroName;
+            newPanel.heroimagestyle = 'portrait';
+        }
+
+    }
+
+    // Insert heroes
+    doInsertHeroes($('#strHeroContainer'), strHeroes);
+    doInsertHeroes($('#agiHeroContainer'), agiHeroes);
+    doInsertHeroes($('#intHeroContainer'), intHeroes);
+}
+
+function showBuilderTab(tabName) {
+    // Hide all panels
+    var mainPanel = $('#pickingPhaseTabs');
+    $.Each(mainPanel.Children(), function(panelTab) {
+        panelTab.visible = false;
+    });
+
+    var mainContentPanel = $('#pickingPhaseTabsContent');
+    $.Each(mainContentPanel.Children(), function(panelTab) {
+        panelTab.visible = false;
+    });
+
+    // Show our tab
+    var ourTab = $('#' + tabName);
+    if(ourTab != null) ourTab.visible = true;
+
+    var ourTabContent = $('#' + tabName + 'Content');
+    if(ourTabContent != null) ourTabContent.visible = true;
 }
 
 // Are we the host?
@@ -711,6 +839,7 @@ function buildOptionsCategories() {
                     mainSlot.AddClass('optionSlotPanel');
                     var infoLabel = $.CreatePanel('Label', mainSlot, 'option_panel_main_' + fieldName);
                     infoLabel.text = $.Localize(info.des);
+                    infoLabel.AddClass('optionSlotPanelLabel');
 
                     // Is this a preset?
                     if(info.preset) {
@@ -724,6 +853,7 @@ function buildOptionsCategories() {
                     var hostPanel;
                     var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
                     slavePanel.AddClass('optionsSlotPanelSlave');
+                    slavePanel.AddClass('optionSlotPanelLabel');
                     slavePanel.text = 'Unknown';
 
                     switch(sort) {
@@ -1155,6 +1285,10 @@ function UpdateTimer() {
     // Hook stuff
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
+    hookAndFire('heroes', OnHeroDataChanged);
+
+    // Setup the tabs
+    setupBuilderTabs();
 
     hookSkillInfo($('#bs'));
 })();
