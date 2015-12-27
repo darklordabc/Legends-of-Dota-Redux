@@ -150,4 +150,8 @@
     "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
     "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
+
+    // Hero builder
+    "lockBuild"                                     "Lock Build"
+    "moreTime"                                      "More Time"
 }

@@ -125,7 +125,7 @@ function Pregame:networkHeroes()
         -- Ensure it is enabled
         if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroName ~= 'npc_dota_hero_arc_warden' and heroValues.Enabled == 1 then
             -- Store all the useful information
-            network:setHeroData(heroName, {
+            local theData = {
                 AttributePrimary = heroValues.AttributePrimary,
                 Role = heroValues.Role,
                 Rolelevels = heroValues.Rolelevels,
@@ -141,7 +141,31 @@ function Pregame:networkHeroes()
                 AttributeIntelligenceGain = heroValues.AttributeIntelligenceGain,
                 AttributeBaseAgility = heroValues.AttributeBaseAgility,
                 AttributeAgilityGain = heroValues.AttributeAgilityGain
-            })
+            }
+
+            if heroName == 'npc_dota_hero_invoker' then
+                theData.Ability1 = 'invoker_alacrity_lod'
+                theData.Ability2 = 'invoker_chaos_meteor_lod'
+                theData.Ability3 = 'invoker_cold_snap_lod'
+                theData.Ability4 = 'invoker_emp_lod'
+                theData.Ability5 = 'invoker_forge_spirit_lod'
+                theData.Ability6 = 'invoker_ghost_walk_lod'
+                theData.Ability7 = 'invoker_ice_wall_lod'
+                theData.Ability8 = 'invoker_sun_strike_lod'
+                theData.Ability9 = 'invoker_tornado_lod'
+            else
+                local sn = 1
+                for i=1,16 do
+                    local abName = heroValues['Ability' .. i]
+
+                    if abName ~= 'attribute_bonus' then
+                        theData['Ability' .. sn] = abName
+                        sn = sn + 1
+                    end
+                end
+            end
+
+            network:setHeroData(heroName, theData)
 
             -- Store allowed heroes
             allowedHeroes[heroName] = true

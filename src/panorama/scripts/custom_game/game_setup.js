@@ -643,6 +643,9 @@ function setupBuilderTabs() {
     // Show the main tab only
     showBuilderTab('pickingPhaseMainTab');
 
+    // Default to no selected preview hero
+    setSelectedHelperHero();
+
     // Loop over all the panels we need to hook
     /*for(var i=0; i<toHook.length; ++i) {
         var panel = $('#' + toHook[i]);
@@ -688,12 +691,19 @@ function buildHeroList() {
 
         // Insert it
         for(var i=0; i<heroList.length; ++i) {
-            var heroName = heroList[i];
+            (function() {
+                var heroName = heroList[i];
 
-            // Create the panel
-            var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
-            newPanel.heroname = heroName;
-            newPanel.heroimagestyle = 'portrait';
+                // Create the panel
+                var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
+                newPanel.heroname = heroName;
+                newPanel.heroimagestyle = 'portrait';
+
+                newPanel.SetPanelEvent('onactivate', function() {
+                    // Set the selected helper hero
+                    setSelectedHelperHero(heroName);
+                });
+            })();
         }
 
     }
@@ -702,6 +712,37 @@ function buildHeroList() {
     doInsertHeroes($('#strHeroContainer'), strHeroes);
     doInsertHeroes($('#agiHeroContainer'), agiHeroes);
     doInsertHeroes($('#intHeroContainer'), intHeroes);
+}
+
+function setSelectedHelperHero(heroName) {
+    var previewCon = $('#buildingHelperHeroPreview');
+
+    // Validate hero name
+    if(heroName == null || !heroData[heroName]) {
+        previewCon.visible = false;
+        return;
+    }
+
+    // Show the preview
+    previewCon.visible = true;
+
+    // Grab the info
+    var info = heroData[heroName];
+
+    // Update the hero
+    $('#buildingHelperHeroPreviewHero').heroname = heroName;
+
+    for(var i=1; i<=16; ++i) {
+        var abName = info['Ability' + i];
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+
+        if(abName != null && abName != '') {
+            abCon.visible = true;
+            abCon.abilityname = abName;
+        } else {
+            abCon.visible = false;
+        }
+    }
 }
 
 function showBuilderTab(tabName) {
@@ -1289,6 +1330,4 @@ function UpdateTimer() {
 
     // Setup the tabs
     setupBuilderTabs();
-
-    hookSkillInfo($('#bs'));
 })();

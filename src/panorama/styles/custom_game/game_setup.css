@@ -375,21 +375,58 @@
     margin-top: 8px;
 }
 
-#pickingPhaseBuildButtons Label {
-    border: 1px solid #FFFFFF;
-    padding: 4px;
-    margin-left: 4px;
-    margin-right: 4px;
+#pickingPhaseBuildButtons Button {
+    width: 140px;
+    height: 20px;
+    padding: 0px;
+    margin: 4px;
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #5e842c ), to( #40621d ) );
+}
+
+#pickingPhaseBuildButtons Button:Hover {
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #9eb46c ), to( #60823d ) );
+}
+
+#pickingPhaseBuildButtons Button Label {
+    font-size: 14px;
+    text-align: center;
+}
+
+.makeThePlayerNoticeThisButton {
+    animation-name: lodButtonHighlight;
+    animation-duration: 1.51s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes 'lodButtonHighlight' {
+    0% {
+        box-shadow: fill #00FF00FF 0px 0px 0px 0px;
+    }
+    50% {
+        box-shadow: fill #00FF00FF -4px -4px 4px 4px;
+    }
+    100% {
+        box-shadow: fill #00FF00FF 0px 0px 0px 0px;
+    }
 }
 
 .pickingPhaseTab {
     flow-children: down;
+    width: 100%;
+    height: 100%;
 }
 
 #pickingPhaseRightSide {
     background-color: #005500;
     width: fill-parent-flow(0);
     height: 100%;
+}
+
+#pickingPhaseTabs {
+    width: 100%;
+    height: 500px;
 }
 
 #pickingPhaseTabsContent {
@@ -445,6 +482,61 @@
     transform-origin: 0% 0%;
 
     border-bottom: 2px solid #6f829cee;
+}
+
+#buildingHelperHeroPreview {
+    width: 100%;
+    flow-children: down;
+}
+
+#buildingHelperHeroPreviewHeroContainer {
+    horizontal-align: center;
+    border: 1px solid #000000;
+    margin-bottom: 4px;
+}
+
+#buildingHelperHeroPreviewHeroSelect {
+    horizontal-align: center;
+}
+
+#buildingHelperHeroPreviewHeroContainer DOTAHeroImage {
+    width: 128px;
+    height: 72px;
+}
+
+#buildingHelperHeroPreviewSkillsContainer {
+    flow-children: right-wrap;
+    horizontal-align: center;
+}
+
+#buildingHelperHeroPreviewSkillsContainer DOTAAbilityImage {
+    border: 1px solid #000000;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 48px;
+    height: 48px;
+}
+
+.lodSelected {
+    animation-name: lodHighlightLoop;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes 'lodHighlightLoop' {
+    0% {
+        border: 1px solid #FFFF00;
+        border-radius: 4px;
+    }
+    50% {
+        border: 4px solid #FFFF00;
+        border-radius: 4px;
+    }
+    100% {
+        border: 1px solid #FFFF00;
+        border-radius: 4px;
+    }
 }
 
 /*
