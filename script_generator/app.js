@@ -1,19 +1,11 @@
 var fs = require('fs')
 
-// Read in which version we are compiling
-var compileVersion = process.argv[2] || 's1';
-
 // Script directories
-var settings = require('./settings.json');                          // The settings file
-var scriptDir = settings.scriptDir + '/' + compileVersion + '/';    // The directory where dota scripts are placed
-var scriptDirOut = settings.scriptDirOut;                           // The directory where our files are outputted
-var resourcePath = settings.dotaDir + 'dota/resource/';             // The directory to read resource files from
-var customDir = settings.customDir;                                 // The directory where our mods are read from, to be merged in
-
-// Change s2 resource folder
-if(compileVersion == 's2') {
-    resourcePath = settings.dotaDir + 'dota_ugc/game/dota_imported/resource/';
-}
+var settings = require('./settings.json');                              // The settings file
+var scriptDir = settings.scriptDir + '/';                               // The directory where dota scripts are placed
+var scriptDirOut = settings.scriptDirOut;                               // The directory where our files are outputted
+var resourcePath = settings.dotaDir + 'game/dota/resource/';   // The directory to read resource files from
+var customDir = settings.customDir;                                     // The directory where our mods are read from, to be merged in
 
 // Code needed to do multipliers
 var spellMult = require('./spellMult.json');
@@ -21,11 +13,8 @@ var spellMult = require('./spellMult.json');
 // Create the output folder
 if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
-// Correct the output directory
-scriptDirOut +=  '/' + compileVersion + '/';
-
 // Create the output folder
-if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
+//if(!fs.existsSync(scriptDirOut)) fs.mkdirSync(scriptDirOut);
 
 // Store for our custom stuff
 var customAbilities = {};
@@ -104,7 +93,13 @@ function prepareLanguageFiles(next) {
 
         var toUse;
         if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
-            var ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            var ourData
+            if(lang == 'english') {
+                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+            } else {
+                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
+            }
+
             toUse = parseKV(ourData).lang.Tokens;
         } else {
             toUse = english;
@@ -312,58 +307,9 @@ function generatePrecacheData(next) {
 
         // List of heroes to ignore differs based on s1 and s2
         // In s2, no bots are supported, so we can just strip every hero
-        var ignoreHeroes = {};
-        if(compileVersion == 's1') {
-            ignoreHeroes = {    // These are heroes bots can play as, can't edit those, DOH!
-                npc_dota_hero_alchemist: true,
-                npc_dota_hero_axe: true,
-                npc_dota_hero_antimage: true,
-                npc_dota_hero_bane: true,
-                npc_dota_hero_batrider: true,
-                npc_dota_hero_beastmaster: true,
-                npc_dota_hero_bounty_hunter: true,
-                npc_dota_hero_bloodseeker: true,
-                npc_dota_hero_bristleback: true,
-                npc_dota_hero_broodmother: true,
-                npc_dota_hero_chaos_knight: true,
-                npc_dota_hero_clinkz: true,
-                npc_dota_hero_crystal_maiden: true,
-                npc_dota_hero_dazzle: true,
-                npc_dota_hero_death_prophet: true,
-                npc_dota_hero_dragon_knight: true,
-                npc_dota_hero_drow_ranger: true,
-                npc_dota_hero_earthshaker: true,
-                npc_dota_hero_jakiro: true,
-                npc_dota_hero_juggernaut: true,
-                npc_dota_hero_kunkka: true,
-                npc_dota_hero_lich: true,
-                npc_dota_hero_lina: true,
-                npc_dota_hero_lion: true,
-                npc_dota_hero_luna: true,
-                npc_dota_hero_necrolyte: true,
-                npc_dota_hero_omniknight: true,
-                npc_dota_hero_oracle: true,
-                npc_dota_hero_phantom_assassin: true,
-                npc_dota_hero_pudge: true,
-                npc_dota_hero_razor: true,
-                npc_dota_hero_riki: true,
-                npc_dota_hero_sand_king: true,
-                npc_dota_hero_nevermore: true,
-                npc_dota_hero_skywrath_mage: true,
-                npc_dota_hero_sniper: true,
-                npc_dota_hero_sven: true,
-                npc_dota_hero_techies: true,
-                npc_dota_hero_tidehunter: true,
-                npc_dota_hero_tiny: true,
-                npc_dota_hero_vengefulspirit: true,
-                npc_dota_hero_viper: true,
-                npc_dota_hero_warlock: true,
-                npc_dota_hero_windrunner: true,
-                npc_dota_hero_witch_doctor: true,
-                npc_dota_hero_skeleton_king: true,
-                npc_dota_hero_zuus: true
-            }
-        }
+        var ignoreHeroes = {
+            npc_dota_hero_techies: true
+        };
 
         var heroes = rootHeroes.DOTAHeroes;
         for(var name in heroes) {
@@ -375,7 +321,8 @@ function generatePrecacheData(next) {
             if(!ignoreHeroes[name]) {
                 newKV[name+'_lod'] = {
                     override_hero: name,
-                    Ability1: 'attribute_bonus'
+                    Ability1: 'attribute_bonus',
+                    AbilityLayout: 6
                 }
 
                 for(var i=2;i<=16;++i) {
@@ -398,24 +345,20 @@ function generatePrecacheData(next) {
                 newKV[name+'_lod'].ProjectileModel = 'luna_base_attack'
             }
 
-            // Store precacher data
-            if(compileVersion == 's1') {
-                // Old source1 stuff
-                customUnits['npc_precache_'+name] = {
-                    BaseClass: 'npc_dota_creep',
-                    precache: {
-                        particlefile: data.ParticleFile,
-                        soundfile: data.GameSoundsFile
-                    }
+            // Add ability layout = 6
+            if(!newKV[name+'_lod']) {
+                newKV[name+'_lod'] = {
+                    override_hero: name
                 }
-            } else {
-                // Source2 precache
-                customUnits['npc_precache_'+name] = {
-                    BaseClass: 'npc_dota_creep',
-                    precache: {
-                        particle_folder: data.particle_folder,
-                        soundfile: data.GameSoundsFile
-                    }
+            }
+            newKV[name+'_lod'].AbilityLayout = 6;
+
+            // Source2 precache
+            customUnits['npc_precache_'+name] = {
+                BaseClass: 'npc_dota_creep',
+                precache: {
+                    particle_folder: data.particle_folder,
+                    soundfile: data.GameSoundsFile
                 }
             }
 
@@ -427,10 +370,8 @@ function generatePrecacheData(next) {
             }
         }
 
-        if(compileVersion == 's2') {
-            // Techies override prcaching
-            customUnits.npc_precache_npc_dota_hero_techies.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
-        }
+        // Techies override prcaching
+        customUnits.npc_precache_npc_dota_hero_techies.precache.model = 'models/heroes/techies/fx_techiesfx_mine.vmdl';
 
         // Store the hero data
         fs.writeFile(scriptDirOut+'npc_heroes_custom.txt', toKV(newKV, 'DOTAHeroes'), function(err) {
@@ -472,7 +413,7 @@ function loadAbilities(next) {
 
 function loadCustomUnits(next) {
     // Simply read in the file, and store into our varible
-    fs.readFile(customDir+'npc_units_custom_' + compileVersion + '.txt', function(err, rawCustomUnits) {
+    fs.readFile(customDir+'npc_units_custom.txt', function(err, rawCustomUnits) {
         console.log('Loading custom units...');
         customUnits = parseKV(''+rawCustomUnits).DOTAUnits;
 
@@ -990,6 +931,12 @@ function doCSP(next) {
 */
 
 function doLvl1Ults(next) {
+    // Allow us to disable lvl1 stuff
+    if(settings.noPermute) {
+        if(next) next();
+        return;
+    }
+
     console.log('Generating level 1 abilities...');
 
     var toStore = {};

@@ -1,0 +1,37 @@
+<root>
+    <script>
+        /*
+            In game UI
+        */
+
+        // The hero icons at the top
+        // GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false );
+
+        // The flyout scoreboard
+        //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false );
+
+        /*
+            Hero Selection UI
+        */
+
+        // The teams at the top
+        //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false );
+
+        // The name of the game
+        //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false );
+
+        // The hero selection clock
+        // GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false );
+
+        /*$.Msg('32Starting...');
+        $.Schedule(2, function() {
+            $.Msg('32Done!');
+        });*/
+
+        // <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
+    </script>
+
+	<Panel>
+
+    </Panel>
+</root>

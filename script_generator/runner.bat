@@ -1,2 +1,2 @@
-node app.js s1
+node app.js
 pause

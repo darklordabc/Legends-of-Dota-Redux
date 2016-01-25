@@ -1388,6 +1388,7 @@
         "BaseClass"                     "invoker_quas"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1421,6 +1422,7 @@
         "BaseClass"                     "invoker_wex"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1459,6 +1461,7 @@
         "BaseClass"                     "invoker_exort"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1492,6 +1495,7 @@
         "BaseClass"                     "invoker_cold_snap"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Unit Targeting
         //-------------------------------------------------------------------------------------------------------------
@@ -1552,6 +1556,7 @@
         "BaseClass"                     "invoker_ghost_walk"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1601,6 +1606,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1672,6 +1678,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1717,6 +1724,7 @@
         "BaseClass"                     "invoker_alacrity"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Unit Targeting
         //-------------------------------------------------------------------------------------------------------------
@@ -1764,6 +1772,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1844,6 +1853,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1894,6 +1904,7 @@
         "BaseClass"                     "invoker_forge_spirit"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -1948,6 +1959,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "RequiredLevel"                 "1"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -2012,6 +2024,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "MaxLevel"                      "4"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "RequiredLevel"                 "1"
 
 
         // Stats

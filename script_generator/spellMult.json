@@ -1802,7 +1802,10 @@
 
       "batrider_sticky_napalm":true,
       "legion_commander_duel":true,
-      "legion_commander_overwhelming_odds":true
+      "legion_commander_overwhelming_odds":true,
+
+      "nyx_assassin_burrow":true,
+      "nyx_assassin_unburrow":true
    },
    "ignore_partial_names":[
       "cooldown"

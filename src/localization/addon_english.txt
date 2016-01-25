@@ -1,0 +1,157 @@
+"addon"
+{
+    // The name of the game
+    "ADDON_GAME_NAME"                               "Legends of Dota"
+    "addonname"                                     "Legends of Dota"
+
+    // Teams
+    "theRadiant"                                    "The Radiant"
+    "theDire"                                       "The Dire"
+    "theUnassigned"                                 "Unassigned"
+
+    // The team locking buttons
+    "autoAssignTeams"                               "Auto Assign"
+    "shuffleTeams"                                  "Shuffle"
+    "lockTeams"                                     "Lock Teams"
+    "unlockTeams"                                   "Unlock Teams"
+
+    // The stage selection interface
+    "lodStageButtonOptionSelection"                 "Option Selection"
+    "lodStageButtonBanning"                         "Banning"
+    "lodStageButtonSelection"                       "Hero Builder"
+    "lodStageButtonReview"                          "Review"
+
+    // The options menu
+    "lockOptions"                                   "Lock Options"
+    "lockTeamsFirst"                                "Lock the teams first"
+
+    // Categories for option selection
+    "presets_lod"                                   "Presets"
+    "common_selection_lod"                          "Common Selection"
+    "banning_lod"                                   "Banning"
+    "game_speed_lod"                                "Game Speed"
+    "advanced_selection_lod"                        "Advanced Selection"
+    "buffs_lod"                                     "Buffs"
+    "crazyness_lod"                                 "Crazyness"
+
+    "lodOptionYes"                                  "Yes"
+    "lodOptionNo"                                   "No"
+
+    // Option text
+    "lodOptionsPresetGamemode"                      "Preset Gamemode"
+    "lodOptionBalancedAllPick"                      "Balanced All Pick"
+    "lodOptionBalancedSingleDraft"                  "Balanced Single Draft"
+    "lodOptionBalancedMirrorDraft"                  "Balanced Mirror Draft"
+    "lodOptionBalancedAllRandom"                    "Balanced All Random"
+    "lodOptionBalancedCustom"                       "Custom Settings"
+
+    "lodOptionsPresetBanning"                       "Preset Banning"
+    "lodOptionBalancedBan"                          "Balanced Bans"
+    "lodOptionManualBan"                            "Fast Ban Phase"
+
+    "lodOptionsPresetSlots"                         "Preset Max Slots"
+    "lodOptionBalancedSlots4"                       "4 Slots"
+    "lodOptionBalancedSlots5"                       "5 Slots"
+    "lodOptionBalancedSlots6"                       "6 Slots"
+
+    "lodOptionsPresetUlts"                          "Preset Max Ultimate Abilities"
+    "lodOptionBalancedUlts1"                        "1 Ult"
+    "lodOptionBalancedUlts2"                        "2 Ults"
+    "lodOptionBalancedUlts3"                        "3 Ults"
+    "lodOptionBalancedUlts4"                        "4 Ults"
+    "lodOptionBalancedUlts5"                        "5 Ults"
+    "lodOptionBalancedUlts6"                        "6 Ults"
+    "lodOptionBalancedUlts0"                        "No Ults"
+
+    "lodOptionDesCommonGamemode"                    "Gamemode"
+    "lodOptionAllPick"                              "All Pick"
+    "lodOptionSingleDraft"                          "Single Draft"
+    "lodOptionMirrorDraft"                          "Mirror Draft"
+    "lodOptionAllRandom"                            "All Random"
+
+    "lodOptionDesCommonMaxSlots"                    "Max Slots"
+    "lodOptionCommonSlots4"                         "4 Slots"
+    "lodOptionCommonSlots5"                         "5 Slots"
+    "lodOptionCommonSlots6"                         "6 Slots"
+
+    "lodOptionDesCommonMaxSkills"                   "Max Regular Abilities"
+    "lodOptionCommonSkills0"                        "No Regular Abilities"
+    "lodOptionCommonSkills1"                        "1 Regular Abilities"
+    "lodOptionCommonSkills2"                        "2 Regular Abilities"
+    "lodOptionCommonSkills3"                        "3 Regular Abilities"
+    "lodOptionCommonSkills4"                        "4 Regular Abilities"
+    "lodOptionCommonSkills5"                        "5 Regular Abilities"
+    "lodOptionCommonSkills6"                        "6 Regular Abilities"
+    "lodOptionCommonSkills7"                        "7 Regular Abilities"
+    "lodOptionCommonSkills8"                        "8 Regular Abilities"
+    "lodOptionCommonSkills9"                        "9 Regular Abilities"
+    "lodOptionCommonSkills10"                       "10 Regular Abilities"
+    "lodOptionCommonSkills11"                       "11 Regular Abilities"
+    "lodOptionCommonSkills12"                       "12 Regular Abilities"
+
+    "lodOptionDesCommonMaxUlts"                     "Max Ultimate Abilities"
+    "lodOptionCommonUlts0"                          "No Ultimate Abilities"
+    "lodOptionCommonUlts1"                          "1 Ultimate Ability"
+    "lodOptionCommonUlts2"                          "2 Ultimate Abilities"
+    "lodOptionCommonUlts3"                          "3 Ultimate Abilities"
+    "lodOptionCommonUlts4"                          "4 Ultimate Abilities"
+    "lodOptionCommonUlts5"                          "5 Ultimate Abilities"
+    "lodOptionCommonUlts6"                          "6 Ultimate Abilities"
+    "lodOptionCommonUlts7"                          "7 Ultimate Abilities"
+    "lodOptionCommonUlts8"                          "8 Ultimate Abilities"
+    "lodOptionCommonUlts9"                          "9 Ultimate Abilities"
+    "lodOptionCommonUlts10"                         "10 Ultimate Abilities"
+    "lodOptionCommonUlts11"                         "11 Ultimate Abilities"
+    "lodOptionCommonUlts12"                         "12 Ultimate Abilities"
+
+    "lodOptionDesBanningMaxBans"                    "Max User Bans"
+    "lodOptionBanningMaxBans0"                      "No User Bans"
+    "lodOptionBanningMaxBans1"                      "1 Ban Per Player"
+    "lodOptionBanningMaxBans2"                      "2 Bans Per Player"
+    "lodOptionBanningMaxBans3"                      "3 Bans Per Player"
+    "lodOptionBanningMaxBans5"                      "4 Bans Per Player"
+    "lodOptionBanningMaxBans10"                     "10 Bans Per Player"
+    "lodOptionBanningMaxBans25"                     "25 Bans Per Player"
+
+    "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
+    "lodOptionDesBanningUseBanList"                 "Ban Common OP Skills"
+    "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
+
+    "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
+    "lodOptionLevel1"                               "Level 1"
+    "lodOptionLevel6"                               "Level 6"
+    "lodOptionLevel11"                              "Level 11"
+    "lodOptionLevel16"                              "Level 16"
+    "lodOptionLevel25"                              "Level 25"
+    "lodOptionLevel50"                              "Level 50"
+    "lodOptionLevel75"                              "Level 75"
+    "lodOptionLevel100"                             "Level 100"
+
+    "lodOptionDesGameSpeedMaxLevel"                 "Max Level"
+
+    "lodOptionDesGameSpeedStartingGold"             "Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold0"               "No Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold250"             "25 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold500"             "500 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold1000"            "1,000 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold2500"            "2,500 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold5000"            "5,000 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold10000"           "10,000 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold25000"           "25,000 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold50000"           "50,000 Bonus Starting Gold"
+    "lodOptionGameSpeedStartingGold100000"          "100,000 Bonus Starting Gold"
+
+    // Hints
+    "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added!"
+    "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."
+    "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell upto 4 times almost instantly."
+    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand alone abilities."
+    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabled the OP Skills option."
+    "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
+    "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
+    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
+
+    // Hero builder
+    "lockBuild"                                     "Lock Build"
+    "moreTime"                                      "More Time"
+}
