@@ -54,6 +54,7 @@ mklink /H "dota\game\resource\addon_russian.txt" "script_generator\BIN\addon_rus
 ::mklink /H "dota\game\panorama\localization\addon_english.txt" "script_generator\BIN\addon_english.txt"
 ::mklink /H "dota\game\panorama\localization\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
 
+mklink /H "dota\game\scripts\npc\npc_abilities_override.txt" "src\scripts\npc\npc_abilities_override.txt"
 mklink /H "dota\game\scripts\npc\npc_abilities_custom.txt" "script_generator\BIN\npc_abilities_custom.txt"
 mklink /H "dota\game\scripts\npc\npc_heroes_custom.txt" "script_generator\BIN\npc_heroes_custom.txt"
 

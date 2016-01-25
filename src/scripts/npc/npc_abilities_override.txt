@@ -1,0 +1,8 @@
+"DOTAAbilities"
+{
+	"attribute_bonus"
+	{
+		"MaxLevel" "999"
+		"LevelsBetweenUpgrades" "1"
+	}
+}
