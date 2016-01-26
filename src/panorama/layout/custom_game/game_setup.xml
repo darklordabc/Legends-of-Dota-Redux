@@ -87,6 +87,7 @@
 
             <Panel id="banningPhase">
                 <Label text="boobies"/>
+                <DOTAScenePanel style="width: 600px; height: 600px; opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');" unit="npc_dota_hero_sniper"/>
             </Panel>
 
             <Panel id="pickingPhase">
@@ -104,7 +105,11 @@
                                 <Panel id="buildingHelperHeroPreviewHeroContainer">
                                     <DOTAHeroImage id="buildingHelperHeroPreviewHero" heroname="npc_dota_hero_nevermore" />
                                 </Panel>
-                                <Label id="buildingHelperHeroPreviewHeroSelect" text="Select" />
+
+                                <Button id="buildingHelperHeroPreviewHeroSelect" onactivate="onNewHeroSelected()">
+                                    <Label text="Select Hero" />
+                                </Button>
+
                                 <Panel id="buildingHelperHeroPreviewSkillsContainer">
                                     <DOTAAbilityImage id="buildingHelperHeroPreviewSkill1" abilityname="nevermore_dark_lord" class="lodSelected"/>
                                     <DOTAAbilityImage id="buildingHelperHeroPreviewSkill2" abilityname="nevermore_dark_lord" />

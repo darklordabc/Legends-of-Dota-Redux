@@ -557,11 +557,19 @@ var heroData = {};
 // Used to make data transfer smoother
 var dataHooks = {};
 
+// Used to store selected heroes and skills
+var selectedHeroes = {};
+var selectedSkills = {};
+
 // The current phase we are in
 var currentPhase = PHASE_LOADING;
 var selectedPhase = PHASE_OPTION_SELECTION;
 var endOfTimer = -1;
 var allowCustomSettings = false;
+
+// Current hero & Skill
+var currentSelectedHero = '';
+var currentSelectedSkill = '';
 
 // List of all player team panels
 var allPlayerPanels = [];
@@ -614,6 +622,28 @@ function OnHeroDataChanged(table_name, key, data) {
             buildHeroList();
         }
     });
+}
+
+// Selected heroes has changed
+function OnSelectedHeroesChanged(table_name, key, data) {
+    // Grab data
+    var playerID = data.playerID;
+    var heroName = data.heroName;
+
+    // Store the change
+    selectedHeroes[playerID] = heroName;
+
+    // Was it an update on our local player?
+    if(playerID == Players.GetLocalPlayer()) {
+        // Update our hero icon and text
+        $('#pickingPhaseSelectedHeroImage').heroname = heroName;
+        $('#pickingPhaseSelectedHeroText').text = heroName;
+    }
+}
+
+// Selected abilities has changed
+function OnSelectedSkillsChanged(table_name, key, data) {
+
 }
 
 // Sets up the hero builder tab
@@ -732,6 +762,9 @@ function setSelectedHelperHero(heroName) {
     // Update the hero
     $('#buildingHelperHeroPreviewHero').heroname = heroName;
 
+    // Set this as the selected one
+    currentSelectedHero = heroName;
+
     for(var i=1; i<=16; ++i) {
         var abName = info['Ability' + i];
         var abCon = $('#buildingHelperHeroPreviewSkill' + i);
@@ -743,6 +776,14 @@ function setSelectedHelperHero(heroName) {
             abCon.visible = false;
         }
     }
+}
+
+// They try to set a new hero
+function onNewHeroSelected() {
+    $.Msg('Hello!');
+
+    // Push data to the server
+    chooseHero(currentSelectedHero);
 }
 
 function showBuilderTab(tabName) {
@@ -781,7 +822,19 @@ function setOption(optionName, optionValue) {
     if(lastOptionValues[optionName] && lastOptionValues[optionName] == optionValue) return;
 
     // Tell the server we changed a setting
-    GameEvents.SendCustomGameEventToServer('lodOptionSet', {k:optionName, v: optionValue});
+    GameEvents.SendCustomGameEventToServer('lodOptionSet', {
+        k:optionName,
+        v: optionValue
+    });
+}
+
+// Updates our selected hero
+function chooseHero(heroName) {
+    $.Msg(heroName);
+
+    GameEvents.SendCustomGameEventToServer('lodChooseHero', {
+        heroName:heroName
+    });
 }
 
 // Adds a player to the list of unassigned players
@@ -1327,6 +1380,8 @@ function UpdateTimer() {
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
     hookAndFire('heroes', OnHeroDataChanged);
+    hookAndFire('selected_heroes', OnSelectedHeroesChanged);
+    hookAndFire('selected_skills', OnSelectedSkillsChanged);
 
     // Setup the tabs
     setupBuilderTabs();

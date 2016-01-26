@@ -20,6 +20,10 @@ function Pregame:init()
     -- Store for options
     self.optionStore = {}
 
+    -- Store for selected heroes and skills
+    self.selectedHeroes = {}
+    self.selectedSkills = {}
+
     -- Grab a reference to self
     local this = self
 
@@ -40,6 +44,11 @@ function Pregame:init()
     -- Host wants to set an option
     CustomGameEventManager:RegisterListener('lodOptionSet', function(eventSourceIndex, args)
         this:onOptionChanged(eventSourceIndex, args)
+    end)
+
+    -- Player wants to set their hero
+    CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
+        this:onPlayerSelectHero(eventSourceIndex, args)
     end)
 
     -- Network heroes
@@ -118,12 +127,11 @@ end
 function Pregame:networkHeroes()
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
-    local heroData = {}
     local allowedHeroes = {}
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
-        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroName ~= 'npc_dota_hero_arc_warden' and heroValues.Enabled == 1 then
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
             -- Store all the useful information
             local theData = {
                 AttributePrimary = heroValues.AttributePrimary,
@@ -245,6 +253,35 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     end
 
 
+end
+
+-- Player wants to select a hero
+function Pregame:onPlayerSelectHero(eventSourceIndex, args)
+    -- Ensure we are in the options locking phase
+    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local heroName = args.heroName
+
+    -- Validate hero
+    if not self.allowedHeroes[heroName] then
+        print('Failed to find hero!')
+
+        -- TODO: Show some kind of error
+        return
+    end
+
+    -- Is there an actual change?
+    if self.selectedHeroes[playerID] ~= heroName then
+        -- Update local store
+        self.selectedHeroes[playerID] = heroName
+
+        -- Update the selected hero
+        network:setSelectedHero(playerID, heroName)
+    end
 end
 
 -- Sets the stage

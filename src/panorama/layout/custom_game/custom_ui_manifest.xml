@@ -32,6 +32,6 @@
     </script>
 
 	<Panel>
-
+        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
     </Panel>
 </root>

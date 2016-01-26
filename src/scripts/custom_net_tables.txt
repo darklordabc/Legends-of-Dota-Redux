@@ -4,6 +4,8 @@
     [
         "phase_pregame",
         "options",
-        "heroes"
+        "heroes",
+        "selected_heroes",
+        "selected_skills"
     ]
 }
