@@ -2902,6 +2902,20 @@ function listenToNPCs()
         if IsValidEntity(spawnedUnit) then
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
+                -- Silencer Fix?
+                Timers:CreateTimer(function()
+                    if IsValidEntity(spawnedUnit) then
+                        -- Check if we should intsteal
+                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom') then
+                            if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_silencer_int_steal', {})
+                            end
+                        else
+                            spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                        end
+                    end
+                end, DoUniqueString('silencerFix'), 0.1)
+
                 -- Grab their playerID
                 local playerID = spawnedUnit:GetPlayerID()
 
@@ -3009,7 +3023,6 @@ function listenToNPCs()
                         end
                     end
 
-                    print('APPLY!')
                     SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
 
                     return
