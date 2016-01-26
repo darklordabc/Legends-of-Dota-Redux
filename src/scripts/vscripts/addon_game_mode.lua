@@ -21,7 +21,7 @@ if _G.lod == nil then
 end
 
 -- Stat collection
-local statCollection = require('lib.statcollection')
+local statCollection = require('statcollection.init')
 
 -- Stat collection
 --[[require('lib.statcollection')
