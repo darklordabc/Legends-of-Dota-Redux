@@ -32,6 +32,7 @@
     </script>
 
 	<Panel>
+        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
     </Panel>
 </root>

@@ -42,5 +42,14 @@ function Network:setSelectedHero(playerID, heroName)
     })
 end
 
+-- Puts a skill into a slot, NO VALIDATION
+function Network:setSelectedAbilities(playerID, skills)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('selected_skills', tostring(playerID), {
+        playerID = playerID,
+        skills = skills
+    })
+end
+
 -- Return an instance of it
 return Network()

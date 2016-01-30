@@ -87,7 +87,6 @@
 
             <Panel id="banningPhase">
                 <Label text="boobies"/>
-                <DOTAScenePanel style="width: 600px; height: 600px; opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');" unit="npc_dota_hero_sniper"/>
             </Panel>
 
             <Panel id="pickingPhase">
@@ -111,22 +110,22 @@
                                 </Button>
 
                                 <Panel id="buildingHelperHeroPreviewSkillsContainer">
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill1" abilityname="nevermore_dark_lord" class="lodSelected"/>
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill2" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill3" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill4" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill5" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill6" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill7" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill8" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill9" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill10" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill11" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill12" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill13" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill14" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill15" abilityname="nevermore_dark_lord" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill16" abilityname="nevermore_dark_lord" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill1" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(1)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill2" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(2)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill3" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(3)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill4" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(4)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill5" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(5)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill6" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(6)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill7" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(7)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill8" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(8)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill9" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(9)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill10" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(10)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill11" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(11)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill12" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(12)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill13" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(13)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill14" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(14)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill15" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(15)" />
+                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill16" abilityname="nevermore_dark_lord" onactivate="onHeroAbilityClicked(16)" />
                                 </Panel>
                             </Panel>
                         </Panel>
@@ -145,12 +144,12 @@
                         </Panel>
 
                         <Panel id="pickingPhaseBuildSkills">
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
-                            <DOTAAbilityImage abilityname="nevermore_dark_lord" />
+                            <DOTAAbilityImage id="lodYourAbility1" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(1)" />
+                            <DOTAAbilityImage id="lodYourAbility2" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(2)" />
+                            <DOTAAbilityImage id="lodYourAbility3" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(3)" />
+                            <DOTAAbilityImage id="lodYourAbility4" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(4)" />
+                            <DOTAAbilityImage id="lodYourAbility5" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(5)" />
+                            <DOTAAbilityImage id="lodYourAbility6" abilityname="nevermore_dark_lord" onactivate="onYourAbilityIconPressed(6)" />
                         </Panel>
 
                         <Panel id="pickingPhaseBuildButtons">
@@ -196,6 +195,10 @@
                         </Panel>
                     </Panel>
                 </Panel>
+            </Panel>
+
+            <Panel id="reviewPhase">
+                <DOTAScenePanel style="width: 600px; height: 600px; opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');" unit="npc_dota_hero_sniper"/>
             </Panel>
         </Panel>
     </Panel>

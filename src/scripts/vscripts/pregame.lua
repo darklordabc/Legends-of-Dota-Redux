@@ -51,6 +51,11 @@ function Pregame:init()
         this:onPlayerSelectHero(eventSourceIndex, args)
     end)
 
+    -- Player wants to change which ability is in a slot
+    CustomGameEventManager:RegisterListener('lodChooseAbility', function(eventSourceIndex, args)
+        this:onPlayerSelectAbility(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 end
@@ -257,7 +262,7 @@ end
 
 -- Player wants to select a hero
 function Pregame:onPlayerSelectHero(eventSourceIndex, args)
-    -- Ensure we are in the options locking phase
+    -- Ensure we are in the picking phase
     --if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
@@ -281,6 +286,41 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
+    end
+end
+
+-- Player wants to select a new ability
+function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
+    -- Ensure we are in the picking phase
+    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local slot = args.slot
+    local abilityName = args.abilityName
+
+    -- TODO: Validate the slot is a valid slot index
+
+    -- TODO: Validate ability is an actual ability
+
+    -- TODO: Validate the ability isn't already banned
+
+    -- TODO: Validate that the ability is allowed in this slot (ulty count)
+
+    -- TODO: Validate that it isn't a troll build
+
+    -- Ensure a container for this player exists
+    self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
+
+    -- Is there an actual change?
+    if self.selectedSkills[playerID][slot] ~= abilityName then
+        -- New ability in this slot
+        self.selectedSkills[playerID][slot] = abilityName
+
+        -- Network it
+        network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
     end
 end
 

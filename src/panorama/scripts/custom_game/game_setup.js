@@ -643,7 +643,22 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 
 // Selected abilities has changed
 function OnSelectedSkillsChanged(table_name, key, data) {
+    var playerID = data.playerID;
 
+    // Store the change
+    selectedSkills[playerID] = data.skills;
+
+    if(playerID == Players.GetLocalPlayer()) {
+        for(var key in selectedSkills[playerID]) {
+            var ab = $('#lodYourAbility' + key);
+            var abName = selectedSkills[playerID][key];
+
+            if(ab != null) {
+                ab.abilityname = abName;
+                ab.SetAttributeString('abilityname', abName);
+            }
+        }
+    }
 }
 
 // Sets up the hero builder tab
@@ -657,6 +672,9 @@ function setupBuilderTabs() {
                 if(tabLink != '-1') {
                     tabElement.SetPanelEvent('onactivate', function() {
                         showBuilderTab(tabLink);
+
+                        // No skills selected anymore
+                        setSelectedDropAbility();
                     });
                 }
             });
@@ -675,6 +693,15 @@ function setupBuilderTabs() {
 
     // Default to no selected preview hero
     setSelectedHelperHero();
+
+    // Hook abilitys that should show info
+    for(var i=1;i<=6; ++i) {
+        hookSkillInfo($('#lodYourAbility' + i));
+    }
+
+    for(var i=1;i<=16; ++i) {
+        hookSkillInfo($('#buildingHelperHeroPreviewSkill' + i));
+    }
 
     // Loop over all the panels we need to hook
     /*for(var i=0; i<toHook.length; ++i) {
@@ -772,18 +799,86 @@ function setSelectedHelperHero(heroName) {
         if(abName != null && abName != '') {
             abCon.visible = true;
             abCon.abilityname = abName;
+            abCon.SetAttributeString('abilityname', abName);
         } else {
             abCon.visible = false;
         }
     }
+
+    // No abilities selected anymore
+    setSelectedDropAbility();
 }
 
 // They try to set a new hero
 function onNewHeroSelected() {
-    $.Msg('Hello!');
-
     // Push data to the server
     chooseHero(currentSelectedHero);
+}
+
+// Deselects all abilities
+function deselectAllAbilities() {
+    for(var i=1; i<=16; ++i) {
+        var ab = $('#buildingHelperHeroPreviewSkill' + i);
+        ab.SetHasClass('lodSelected', false);
+    }
+}
+
+// Highlights slots for dropping
+function highlightDropSlots() {
+    // If no skill is selected, highlight nothing
+    if(currentSelectedSkill == '') {
+        for(var i=1; i<=6; ++i) {
+            var ab = $('#lodYourAbility' + i);
+            ab.SetHasClass('lodSelectedDrop', false);
+        }
+        return;
+    }
+
+    // Decide which slots can be dropped into
+    for(var i=1; i<=6; ++i) {
+        var ab = $('#lodYourAbility' + i);
+        ab.SetHasClass('lodSelectedDrop', true);
+    }
+}
+
+// Sets the currently selected ability for dropping
+function setSelectedDropAbility(abName, abcon) {
+    currentSelectedSkill = abName || '';
+
+    deselectAllAbilities();
+    if(abcon != null) {
+        abcon.SetHasClass('lodSelected', true);
+    }
+
+    // Highlight which slots we can drop it into
+    highlightDropSlots();
+}
+
+// They clicked on a skill
+function onHeroAbilityClicked(heroAbilityID) {
+    var abcon = $('#buildingHelperHeroPreviewSkill' + heroAbilityID);
+    var ab = abcon.abilityname;
+
+    if(currentSelectedSkill != ab) {
+        setSelectedDropAbility(ab, abcon);
+    } else {
+        setSelectedDropAbility();
+    }
+}
+
+// They clicked on one of their ability icons
+function onYourAbilityIconPressed(slot) {
+    // Check what action should be performed
+    if(currentSelectedSkill != '') {
+        // They are trying to select a new skill
+        chooseNewAbility(slot, currentSelectedSkill);
+
+        // Done
+        return;
+    }
+
+    // TODO: allow swapping of skills
+
 }
 
 function showBuilderTab(tabName) {
@@ -823,17 +918,29 @@ function setOption(optionName, optionValue) {
 
     // Tell the server we changed a setting
     GameEvents.SendCustomGameEventToServer('lodOptionSet', {
-        k:optionName,
+        k: optionName,
         v: optionValue
     });
 }
 
 // Updates our selected hero
 function chooseHero(heroName) {
-    $.Msg(heroName);
-
     GameEvents.SendCustomGameEventToServer('lodChooseHero', {
         heroName:heroName
+    });
+}
+
+// Updates our selected abilities
+function chooseNewAbility(slot, abilityName) {
+    var theSkill = abilityName;
+
+    // No skills are selected anymore
+    setSelectedDropAbility();
+
+    // Push it to the server to validate
+    GameEvents.SendCustomGameEventToServer('lodChooseAbility', {
+        slot: slot,
+        abilityName: abilityName
     });
 }
 
