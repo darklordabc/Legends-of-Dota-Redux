@@ -29,10 +29,22 @@
         });*/
 
         // <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
+
+        // Disable the default hero selection UI
+
+        // The teams at the top
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false );
+
+        // The name of the game
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false );
+
+        // The hero selection clock
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false );
     </script>
 
 	<Panel>
         <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
+        <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
     </Panel>
 </root>
