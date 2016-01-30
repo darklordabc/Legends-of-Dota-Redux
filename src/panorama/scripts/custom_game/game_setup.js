@@ -561,6 +561,9 @@ var flagDataInverse = {}
 // Used to make data transfer smoother
 var dataHooks = {};
 
+// Used to hook when players are clicking around
+var onLoadTabHook = {};
+
 // Used to store selected heroes and skills
 var selectedHeroes = {};
 var selectedSkills = {};
@@ -598,6 +601,11 @@ function hookAndFire(tableName, callback) {
         var info = data[i];
         callback(tableName, info.key, info.value);
     }
+}
+
+// Hooks a tab change
+function hookTabChange(tabName, callback) {
+    onLoadTabHook[tabName] = callback;
 }
 
 // Makes skill info appear when you hover the panel that is parsed in
@@ -935,6 +943,31 @@ function showBuilderTab(tabName) {
 
     var ourTabContent = $('#' + tabName + 'Content');
     if(ourTabContent != null) ourTabContent.visible = true;
+
+    // Process hooks
+    if(onLoadTabHook[tabName]) {
+        onLoadTabHook[tabName](tabName);
+    }
+}
+
+// When the skill tab is shown
+function OnSkillTabShown(tabName) {
+    // Empty the skills tab
+    var con = $('#pickingPhaseSkillTabContent');
+    con.RemoveAndDeleteChildren();
+
+    // Used to provide unique handles
+    var unqiueCounter = 0;
+
+    // Start to add skills
+
+    for(var abName in flagDataInverse) {
+        var ab = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
+        hookSkillInfo(ab);
+        ab.abilityname = abName;
+        ab.SetAttributeString('abilityname', abName);
+        ab.SetHasClass('lodMiniAbility', true);
+    }
 }
 
 // Are we the host?
@@ -1526,6 +1559,9 @@ function UpdateTimer() {
     hookAndFire('flags', OnFlagDataChanged);
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
+
+    // Hook tab changes
+    hookTabChange('pickingPhaseSkillTab', OnSkillTabShown);
 
     // Setup the tabs
     setupBuilderTabs();
