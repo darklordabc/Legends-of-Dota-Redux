@@ -131,6 +131,12 @@
                         </Panel>
                         <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>
+
+                            <Label text="Filter by name:"/>
+                            <Panel class="lodSearchPanel">
+                                <TextEntry multiline="false" textmode="normal" class="lodSearchText" onupdate="$.Msg('asd');" />
+                                    <Button class="lodSearchButton" />
+                            </Panel>
                         </Panel>
                         <Panel id="pickingPhaseRecommendedBuildsTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>

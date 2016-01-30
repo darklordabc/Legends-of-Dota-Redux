@@ -521,6 +521,31 @@
     border: 1px solid #000000;
 }
 
+.lodSearchPanel {
+    flow-children: right;
+    border: 2px solid #556663FF;
+    background-color: #333333;
+    margin: 8px;
+}
+
+.lodSearchText {
+    width: fill-parent-flow(1.0);
+    border: 0px solid transparent;
+    background-color: #00000000;
+}
+
+.lodSearchButton {
+    position: 302.400024px 0.0px 0.0px;
+    background-image: url("s2r://panorama/images/control_icons/icon_search_png.vtex");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 27px;
+    height: 27px;
+    vertical-align: middle;
+    margin: 0px 8px;
+    wash-color: #667774dd;
+}
+
 #buildingHelperHeroPreview {
     width: 100%;
     flow-children: down;
