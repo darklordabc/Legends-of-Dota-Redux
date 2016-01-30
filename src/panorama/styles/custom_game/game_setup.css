@@ -721,12 +721,11 @@
     border-bottom: 2px solid #33496388;
 }
 
-.OptionButton.activeHostMenu .OptionButtonLabel {
+.OptionButton.activeHostMenu {
     background-image: url("s2r://panorama/images/custom_game/hosticon_png.vtex");
     background-size: 24px 24px;
     background-repeat: no-repeat;
-    background-position: 0px 8px;
-    padding-left: 32px;
+    background-position: 8px 22px;
 }
 
 .OptionButtonGlow {

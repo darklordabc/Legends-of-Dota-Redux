@@ -196,6 +196,7 @@ end
 function Pregame:networkHeroes()
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local flags = LoadKeyValues('scripts/kv/flags.kv')
+    local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
 
     -- Prepare flags
     local flagsInverse = {}
@@ -203,7 +204,17 @@ function Pregame:networkHeroes()
         for abilityName,nothing in pairs(abilityList) do
             -- Ensure a store exists
             flagsInverse[abilityName] = flagsInverse[abilityName] or {}
-            flagsInverse[abilityName][flagName] = 1
+            flagsInverse[abilityName][flagName] = true
+        end
+    end
+
+    -- Load in the category data for abilities
+    local oldSkillList = oldAbList.skills
+
+    for tabName, tabList in pairs(oldSkillList) do
+        for abilityName,uselessNumber in pairs(tabList) do
+            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+            flagsInverse[abilityName].category = tabName
         end
     end
 

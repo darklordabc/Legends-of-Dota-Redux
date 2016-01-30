@@ -801,7 +801,7 @@ function buildFlagList() {
         for(var flag in flags) {
             if(flagData[flag] == null) flagData[flag] = {};
 
-            flagData[flag][abilityName] = true;
+            flagData[flag][abilityName] = flags[flag];
         }
     }
 }
@@ -831,7 +831,8 @@ function setSelectedHelperHero(heroName) {
         var abName = info['Ability' + i];
         var abCon = $('#buildingHelperHeroPreviewSkill' + i);
 
-        if(abName != null && abName != '') {
+        // Ensure it is a valid ability, and we have flag data about it
+        if(abName != null && abName != '' && flagDataInverse[abName]) {
             abCon.visible = true;
             abCon.abilityname = abName;
             abCon.SetAttributeString('abilityname', abName);
