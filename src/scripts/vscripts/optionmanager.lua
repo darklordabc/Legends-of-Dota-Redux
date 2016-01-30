@@ -28,7 +28,7 @@ OptionManager:SetOption('banningTime', 1)--90)
 OptionManager:SetOption('heroBanningTime', 60)
 
 -- Picking Time (3 minutes)
-OptionManager:SetOption('pickingTime', 5)--60 * 2)
+OptionManager:SetOption('pickingTime', 1)--60 * 2)
 
 -- Review time (30 seconds)
 OptionManager:SetOption('reviewTime', 1)--30)

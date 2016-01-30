@@ -2,6 +2,7 @@
 local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
+local SkillManager = require('skillmanager')
 
 --[[
     Main pregame, selection related handler
@@ -16,6 +17,7 @@ function Pregame:init()
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
+    GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
 
     -- Store for options
     self.optionStore = {}
@@ -125,7 +127,69 @@ function Pregame:onThink()
         return 0.1
     end
 
-    -- Shouldn't get here
+    -- Once we get to this point, we will not fire again
+
+    -- Game is starting, spawn heroes
+    if ourPhase == constants.PHASE_INGAME then
+        self:spawnAllHeroes()
+    end
+end
+
+-- Spawns all heroes (this should only be called once!)
+function Pregame:spawnAllHeroes()
+    local minPlayerID = 0
+    local maxPlayerID = 24
+
+    -- Loop over all playerIDs
+    for playerID = minPlayerID,maxPlayerID do
+        -- Is there a player in this slot?
+        if PlayerResource:IsValidPlayerID(playerID) then
+            -- There is, go ahead and build this player
+
+            -- Grab their build
+            local build = self.selectedSkills[playerID]
+
+            -- Validate the player
+            local player = PlayerResource:GetPlayer(playerID)
+            if player ~= nil then
+                local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+
+                -- Attempt to precache their hero
+                PrecacheUnitByNameAsync(heroName, function()
+                    -- Create the hero and validate it
+                    local hero = CreateHeroForPlayer(heroName, player)
+                    if hero ~= nil and IsValidEntity(hero) then
+                        SkillManager:ApplyBuild(hero, build)
+                    end
+                end, playerID)
+            end
+        end
+    end
+end
+
+-- Returns a random hero [will be unique]
+function Pregame:getRandomHero()
+    -- Build a list of heroes that have already been taken
+    local takenHeroes = {}
+    for k,v in pairs(self.selectedHeroes) do
+        takenHeroes[v] = true
+    end
+
+    local possibleHeroes = {}
+
+    for k,v in pairs(self.allowedHeroes) do
+        if not takenHeroes[k] then
+            table.insert(possibleHeroes, k)
+        end
+    end
+
+    -- If no heroes were found, just give them pudge
+    -- This should never happen, but if it does, WTF mate?
+    if #possibleHeroes == 0 then
+        return 'npc_dota_hero_pudge'
+    end
+
+    return possibleHeroes[math.random(#possibleHeroes)]
 end
 
 -- Setup the selectable heroes
