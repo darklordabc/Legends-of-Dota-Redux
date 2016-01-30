@@ -195,6 +195,22 @@ end
 -- Setup the selectable heroes
 function Pregame:networkHeroes()
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+    local flags = LoadKeyValues('scripts/kv/flags.kv')
+
+    -- Prepare flags
+    local flagsInverse = {}
+    for flagName,abilityList in pairs(flags) do
+        for abilityName,nothing in pairs(abilityList) do
+            -- Ensure a store exists
+            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+            flagsInverse[abilityName][flagName] = 1
+        end
+    end
+
+    -- Push flags to clients
+    for abilityName, flagData in pairs(flagsInverse) do
+        network:setFlagData(abilityName, flagData)
+    end
 
     local allowedHeroes = {}
 

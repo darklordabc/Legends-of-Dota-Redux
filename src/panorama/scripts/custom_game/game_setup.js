@@ -554,6 +554,10 @@ var PHASE_INGAME = 7;           // Game has started
 // Hero data
 var heroData = {};
 
+// Ability Data
+var flagData = {}
+var flagDataInverse = {}
+
 // Used to make data transfer smoother
 var dataHooks = {};
 
@@ -620,6 +624,20 @@ function OnHeroDataChanged(table_name, key, data) {
     $.Schedule(1, function() {
         if(dataHooks.OnHeroDataChanged == myHookNumber) {
             buildHeroList();
+        }
+    });
+}
+
+// Flag data has changed
+function OnFlagDataChanged(table_name, key, data) {
+    flagDataInverse[key] = data;
+
+    // Do the schedule
+    if(dataHooks.OnFlagDataChanged == null) dataHooks.OnFlagDataChanged = 0;
+    var myHookNumber = ++dataHooks.OnFlagDataChanged;
+    $.Schedule(1, function() {
+        if(dataHooks.OnFlagDataChanged == myHookNumber) {
+            buildFlagList();
         }
     });
 }
@@ -715,7 +733,7 @@ function setupBuilderTabs() {
 
 // Builds the hero list
 function buildHeroList() {
-    $.Msg('building...');
+    $.Msg('building hero list...');
 
     var strHeroes = [];
     var agiHeroes = [];
@@ -769,6 +787,23 @@ function buildHeroList() {
     doInsertHeroes($('#strHeroContainer'), strHeroes);
     doInsertHeroes($('#agiHeroContainer'), agiHeroes);
     doInsertHeroes($('#intHeroContainer'), intHeroes);
+}
+
+// Build the flags list
+function buildFlagList() {
+    $.Msg('Building flag list...');
+
+    flagData = {};
+
+    for(var abilityName in flagDataInverse) {
+        var flags = flagDataInverse[abilityName];
+
+        for(var flag in flags) {
+            if(flagData[flag] == null) flagData[flag] = {};
+
+            flagData[flag][abilityName] = true;
+        }
+    }
 }
 
 function setSelectedHelperHero(heroName) {
@@ -1487,6 +1522,7 @@ function UpdateTimer() {
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
     hookAndFire('heroes', OnHeroDataChanged);
+    hookAndFire('flags', OnFlagDataChanged);
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
 

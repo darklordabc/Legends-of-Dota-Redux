@@ -34,6 +34,11 @@ function Network:setHeroData(heroName, heroData)
     CustomNetTables:SetTableValue('heroes', heroName, heroData)
 end
 
+-- Networks flag info
+function Network:setFlagData(abilityName, flagData)
+    CustomNetTables:SetTableValue('flags', abilityName, flagData)
+end
+
 -- Sets a player's selected hero
 function Network:setSelectedHero(playerID, heroName)
     CustomNetTables:SetTableValue('selected_heroes', tostring(playerID), {
