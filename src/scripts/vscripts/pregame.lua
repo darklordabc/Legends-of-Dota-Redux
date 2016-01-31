@@ -97,6 +97,11 @@ function Pregame:onThink()
         return 0.1
     end
 
+    -- Process options ONCE here
+    if not self.processedOptions then
+        self:processOptions()
+    end
+
     --[[
         BANNING PHASE
     ]]
@@ -142,6 +147,8 @@ function Pregame:onThink()
     -- Game is starting, spawn heroes
     if ourPhase == constants.PHASE_INGAME then
         self:spawnAllHeroes()
+        self:addExtraTowers()
+        self:preventCamping()
     end
 end
 
@@ -169,7 +176,7 @@ function Pregame:spawnAllHeroes()
                     -- Create the hero and validate it
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
-                        SkillManager:ApplyBuild(hero, build)
+                        SkillManager:ApplyBuild(hero, build or {})
                     end
                 end, playerID)
             end
@@ -616,71 +623,113 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Game Speed - Easy Mode
         lodOptionCrazyEasymode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Hero Abilities
-        lodOptionAdvancedHeroAbilities = function()
+        lodOptionAdvancedHeroAbilities = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Neutral Abilities
-        lodOptionAdvancedNeutralAbilities = function()
+        lodOptionAdvancedNeutralAbilities = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Wraith Night Abilities
-        lodOptionAdvancedNeutralWraithNight = function()
+        lodOptionAdvancedNeutralWraithNight = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable OP Abilities
-        lodOptionAdvancedOPAbilities = function()
+        lodOptionAdvancedOPAbilities = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Hide enemy picks
-        lodOptionAdvancedHidePicks = function()
+        lodOptionAdvancedHidePicks = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Unique Skills
-        lodOptionAdvancedUniqueSkills = function()
+        lodOptionAdvancedUniqueSkills = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Unique Heroes
-        lodOptionAdvancedUniqueHeroes = function()
+        lodOptionAdvancedUniqueHeroes = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Other -- No Fountain Camping
-        lodOptionCrazyNoCamping = function()
+        lodOptionCrazyNoCamping = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Other -- Universal Shop
-        lodOptionCrazyUniversalShop = function()
+        lodOptionCrazyUniversalShop = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Other -- All Vision
-        lodOptionCrazyAllVision = function()
+        lodOptionCrazyAllVision = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Other -- Multicast Madness
-        lodOptionCrazyMulticast = function()
+        lodOptionCrazyMulticast = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
         -- Other -- WTF Mode
-        lodOptionCrazyWTF = function()
+        lodOptionCrazyWTF = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
     }
@@ -809,6 +858,54 @@ function Pregame:initOptionSelector()
     self.fastHeroBansTotalBans = 1
 end
 
+-- Processes options to push around to the rest of the systems
+function Pregame:processOptions()
+    -- Only process options once
+    if self.processedOptions then return end
+    self.processedOptions = true
+
+    -- Push settings externally where possible
+    OptionManager:SetOption('startingLevel', self.optionStore['lodOptionGameSpeedStartingLevel'])
+    OptionManager:SetOption('bonusGold', self.optionStore['lodOptionGameSpeedStartingGold'])
+    OptionManager:SetOption('maxHeroLevel', self.optionStore['lodOptionGameSpeedMaxLevel'])
+    OptionManager:SetOption('multicastMadness', self.optionStore['lodOptionCrazyMulticast'] == 1)
+    OptionManager:SetOption('respawnModifier', self.optionStore['lodOptionGameSpeedRespawnTime'])
+    OptionManager:SetOption('freeScepter', self.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+
+    -- Enforce max level
+    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
+        OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
+    end
+
+    -- Enable easy mode
+    if self.optionStore['lodOptionCrazyEasymode'] == 1 then
+        Convars:SetInt('dota_easy_mode', 1)
+    end
+
+    -- Enable WTF mode
+    if self.optionStore['lodOptionCrazyWTF'] == 1 then
+        -- TODO: Auto ban powerful abilities
+
+        Convars:SetBool('dota_ability_debug', true)
+    end
+
+    -- Enable Universal Shop
+    if self.optionStore['lodOptionCrazyUniversalShop'] == 1 then
+        GameRules:SetUseUniversalShopMode(true)
+    end
+
+    -- Enable All Vision
+    if self.optionStore['lodOptionCrazyAllVision'] == 1 then
+        Convars:SetBool('dota_all_vision', true)
+    end
+
+    if OptionManager:GetOption('maxHeroLevel') ~= 25 then
+        GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(constants.XP_PER_LEVEL_TABLE)
+        GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
+        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+    end
+end
+
 -- Validates, and then sets an option
 function Pregame:setOption(optionName, optionValue, force)
     -- option validator
@@ -923,6 +1020,138 @@ end
 -- Returns the current phase
 function Pregame:getPhase()
     return self.currentPhase
+end
+
+-- Adds extra towers
+-- Adds extra towers
+function Pregame:addExtraTowers()
+    local totalMiddleTowers = self.optionStore['lodOptionGameSpeedTowersPerLane'] - 2
+
+    -- Is there any work to do?
+    if totalMiddleTowers > 1 then
+        -- Create a store for tower connectors
+        self.towerConnectors = {}
+
+        local lanes = {
+            top = true,
+            mid = true,
+            bot = true
+        }
+
+        local teams = {
+            good = DOTA_TEAM_GOODGUYS,
+            bad = DOTA_TEAM_BADGUYS
+        }
+
+        local patchMap = {
+            dota_goodguys_tower3_top = '1021_tower_radiant',
+            dota_goodguys_tower3_mid = '1020_tower_radiant',
+            dota_goodguys_tower3_bot = '1019_tower_radiant',
+
+            dota_goodguys_tower2_top = '1026_tower_radiant',
+            dota_goodguys_tower2_mid = '1024_tower_radiant',
+            dota_goodguys_tower2_bot = '1022_tower_radiant',
+
+            dota_goodguys_tower1_top = '1027_tower_radiant',
+            dota_goodguys_tower1_mid = '1025_tower_radiant',
+            dota_goodguys_tower1_bot = '1023_tower_radiant',
+
+            dota_badguys_tower3_top = '1036_tower_dire',
+            dota_badguys_tower3_mid = '1031_tower_dire',
+            dota_badguys_tower3_bot = '1030_tower_dire',
+
+            dota_badguys_tower2_top = '1035_tower_dire',
+            dota_badguys_tower2_mid = '1032_tower_dire',
+            dota_badguys_tower2_bot = '1029_tower_dire',
+
+            dota_badguys_tower1_top = '1034_tower_dire',
+            dota_badguys_tower1_mid = '1033_tower_dire',
+            dota_badguys_tower1_bot = '1028_tower_dire',
+        }
+
+        for team,teamNumber in pairs(teams) do
+            for lane,__ in pairs(lanes) do
+                local threeRaw = 'dota_'..team..'guys_tower3_'..lane
+                local three = Entities:FindByName(nil, threeRaw) or Entities:FindByName(nil, patchMap[threeRaw] or '_unknown_')
+
+                local twoRaw = 'dota_'..team..'guys_tower2_'..lane
+                local two = Entities:FindByName(nil, twoRaw) or Entities:FindByName(nil, patchMap[twoRaw] or '_unknown_')
+
+                local oneRaw = 'dota_'..team..'guys_tower1_'..lane
+                local one = Entities:FindByName(nil, oneRaw) or Entities:FindByName(nil, patchMap[oneRaw] or '_unknown_')
+
+                -- Unit name
+                local unitName = 'npc_dota_'..team..'guys_tower_lod_'..lane
+
+                if one and two and three then
+                    -- Proceed to patch the towers
+                    local onePos = one:GetOrigin()
+                    local threePos = three:GetOrigin()
+
+                    -- Workout the difference in the positions
+                    local dif = threePos - onePos
+                    local sep = dif / totalMiddleTowers + 1
+
+                    -- Remove the middle tower
+                    UTIL_Remove(two)
+
+                    -- Used to connect towers
+                    local prevTower = three
+
+                    for i=1,totalMiddleTowers do
+                        local newPos = threePos - (sep * i)
+
+                        local newTower = CreateUnitByName(unitName, newPos, false, nil, nil, teamNumber)
+
+                        if newTower then
+                            -- Make it unkillable
+                            newTower:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
+
+                            -- Store connection
+                            self.towerConnectors[newTower] = prevTower
+                            prevTower = newTower
+                        else
+                            print('Failed to create tower #'..i..' in lane '..lane)
+                        end
+                    end
+
+                    -- Store initial connection
+                    self.towerConnectors[one] = prevTower
+                else
+                    -- Failure
+                    print('Failed to patch towers!')
+                end
+            end
+        end
+    end
+end
+
+-- Prevents Fountain Camping
+function Pregame:preventCamping()
+    -- Should we prevent fountain camping?
+    if self.optionStore['lodOptionCrazyNoCamping'] == 1 then
+        local toAdd = {
+            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes')] = 4,
+            templar_assassin_psi_blades = 1
+        }
+
+        local fountains = Entities:FindAllByClassname('ent_dota_fountain')
+        -- Loop over all ents
+        for k,fountain in pairs(fountains) do
+            for skillName,skillLevel in pairs(toAdd) do
+                fountain:AddAbility(skillName)
+                local ab = fountain:FindAbilityByName(skillName)
+                if ab then
+                    ab:SetLevel(skillLevel)
+                end
+            end
+
+            local item = CreateItem('item_monkey_king_bar', fountain, fountain)
+            if item then
+                fountain:AddItem(item)
+            end
+        end
+    end
 end
 
 -- Return an instance of it

@@ -1172,7 +1172,7 @@ end
 -- Prints options to the given player
 printOptionsToPlayer = function(playerID)
     -- Announce results
-    sendChatMessage(playerID, '#lod_results', {
+    --[[sendChatMessage(playerID, '#lod_results', {
         OptionManager:GetOption('maxSlots'),
         OptionManager:GetOption('maxSkills'),
         ((OptionManager:GetOption('maxSkills') == 1 and '#lod_ability') or '#lod_abilities'),
@@ -1253,7 +1253,7 @@ printOptionsToPlayer = function(playerID)
     end]]
 
     -- Respawn Timer
-    local respawnModifier = OptionManager:GetOption('respawnModifier')
+    --[[local respawnModifier = OptionManager:GetOption('respawnModifier')
     if respawnModifier ~= 0 then
         if respawnModifier < 0 then
             sendChatMessage(playerID, '#lod_respawn_modifier_constant', {
@@ -1313,13 +1313,13 @@ printOptionsToPlayer = function(playerID)
 
     if OptionManager:GetOption('maxSlots') > 6 then
         sendChatMessage(playerID, '#lod_slotWarning')
-    end
+    end]]
 end
 
 -- Takes the current gamemode number, and sets the required settings
 setupGamemodeSettings = function()
     -- Default to not using the draft array
-    OptionManager:SetOption('useDraftArray', false)
+    --[[OptionManager:SetOption('useDraftArray', false)
 
     -- Single Draft Mode
     if OptionManager:GetOption('gamemode') == GAMEMODE_SD then
@@ -1400,10 +1400,10 @@ setupGamemodeSettings = function()
     end
 
     -- Are we using easy mode?
-    if OptionManager:GetOption('useEasyMode') then
-        -- Enable it
-        Convars:SetInt('dota_easy_mode', 1)
-    end
+    --if OptionManager:GetOption('useEasyMode') then
+    --    -- Enable it
+    --    Convars:SetInt('dota_easy_mode', 1)
+    --end
 
     -- Are we using unique heroes?
     if OptionManager:GetOption('uniqueHeroes') then
@@ -1420,20 +1420,20 @@ setupGamemodeSettings = function()
     end
 
     -- WTF Mode stuff
-    if OptionManager:GetOption('wtfMode') then
-        -- Ban skills
-        for k,v in pairs(wtfAutoBan) do
-            bannedSkills[k] = true
-        end
-
-        -- Enable WTF
-        Convars:SetBool('dota_ability_debug', true)
-    end
+    --if OptionManager:GetOption('wtfMode') then
+    --    -- Ban skills
+    --    for k,v in pairs(wtfAutoBan) do
+    --        bannedSkills[k] = true
+    --    end
+    --
+    --    -- Enable WTF
+    --    Convars:SetBool('dota_ability_debug', true)
+    --end
 
     -- Universal Shop
-    if OptionManager:GetOption('universalShop') then
-        GameRules:SetUseUniversalShopMode(true)
-    end
+    --if OptionManager:GetOption('universalShop') then
+    --    GameRules:SetUseUniversalShopMode(true)
+    --end
 
     -- Fast creep spawning
     if OptionManager:GetOption('fastJungleCreeps') then
@@ -1442,9 +1442,9 @@ setupGamemodeSettings = function()
     end
 
     -- All Vision
-    if OptionManager:GetOption('allVision') then
-        Convars:SetBool('dota_all_vision', true)
-    end
+    --if OptionManager:GetOption('allVision') then
+    --    Convars:SetBool('dota_all_vision', true)
+    --end
 
     if OptionManager:GetOption('banningTime') > 0 then
         -- Move onto banning mode
@@ -1467,7 +1467,7 @@ setupGamemodeSettings = function()
     end]]
 
     -- Setup allowed tabs
-    GameRules.allowItemModifers = OptionManager:GetOption('allowItemModifers')
+    --[[GameRules.allowItemModifers = OptionManager:GetOption('allowItemModifers')
 
     -- Build ability string
     buildAllowedTabsString()
@@ -1486,13 +1486,13 @@ setupGamemodeSettings = function()
     GameRules.lod:OnEmitStateInfo()
 
     -- Print the options
-    printOptionsToPlayer(-1)
+    printOptionsToPlayer(-1)]]
 end
 
 -- Called when picking ends
 postGamemodeSettings = function()
     -- All Random
-    if OptionManager:GetOption('gamemode') == GAMEMODE_AR then
+    --[[if OptionManager:GetOption('gamemode') == GAMEMODE_AR then
         -- Create random builds
 
         -- Loop over all players
@@ -1513,7 +1513,7 @@ postGamemodeSettings = function()
                 end
             end
         end
-    end
+    end]]
 end
 
 -- Returns the current options encoded as a string
@@ -1572,7 +1572,7 @@ end
 -- This function tallys the votes, and sets the options
 finishVote = function()
     -- Create container for all the votes
-    local votes = {}
+    --[[local votes = {}
     for i=0,totalVotableOptions-1 do
         votes[i] = {}
     end
@@ -1780,7 +1780,7 @@ finishVote = function()
     })]]
 
     -- Setup gamemode specific settings
-    setupGamemodeSettings()
+    --setupGamemodeSettings()
 end
 
 -- A fix for source1 backdoor protection
@@ -2022,6 +2022,13 @@ function lod:initGoldBalancer()
     end, nil)
 
     ListenToGameEvent('player_disconnect', function(keys)
+        GameRules:GetGameModeEntity():SetThink(function()
+            -- Recalculate the counts
+            this:recalculatePlayerCounts()
+        end, 'calcPlayerTotals', 1, nil)
+    end, nil)
+
+    ListenToGameEvent('game_rules_state_change', function(keys)
         GameRules:GetGameModeEntity():SetThink(function()
             -- Recalculate the counts
             this:recalculatePlayerCounts()
@@ -2614,129 +2621,6 @@ upgradeTowers = function()
         -- Loop over all ents
         for k,fort in pairs(forts) do
             buffer:ApplyDataDrivenModifier(fort, fort, "modifier_other_health_mod_"..buffBuildings, {})
-        end
-    end
-
-    -- Should we prevent fountain camping?
-    if OptionManager:GetOption('preventFountainCamping') then
-        local toAdd = {
-            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes')] = 4,
-            templar_assassin_psi_blades = 1
-        }
-
-        local fountains = Entities:FindAllByClassname('ent_dota_fountain')
-        -- Loop over all ents
-        for k,fountain in pairs(fountains) do
-            for skillName,skillLevel in pairs(toAdd) do
-                fountain:AddAbility(skillName)
-                local ab = fountain:FindAbilityByName(skillName)
-                if ab then
-                    ab:SetLevel(skillLevel)
-                end
-            end
-
-            local item = CreateItem('item_monkey_king_bar', fountain, fountain)
-            if item then
-                fountain:AddItem(item)
-            end
-        end
-    end
-end
-
--- Adds extra towers
-addExtraTowers= function()
-    -- Is there any work to do?
-    if OptionManager:GetOption('middleTowers') > 1 then
-        local lanes = {
-            top = true,
-            mid = true,
-            bot = true
-        }
-
-        local teams = {
-            good = DOTA_TEAM_GOODGUYS,
-            bad = DOTA_TEAM_BADGUYS
-        }
-
-        local patchMap = {
-            dota_goodguys_tower3_top = '1021_tower_radiant',
-            dota_goodguys_tower3_mid = '1020_tower_radiant',
-            dota_goodguys_tower3_bot = '1019_tower_radiant',
-
-            dota_goodguys_tower2_top = '1026_tower_radiant',
-            dota_goodguys_tower2_mid = '1024_tower_radiant',
-            dota_goodguys_tower2_bot = '1022_tower_radiant',
-
-            dota_goodguys_tower1_top = '1027_tower_radiant',
-            dota_goodguys_tower1_mid = '1025_tower_radiant',
-            dota_goodguys_tower1_bot = '1023_tower_radiant',
-
-            dota_badguys_tower3_top = '1036_tower_dire',
-            dota_badguys_tower3_mid = '1031_tower_dire',
-            dota_badguys_tower3_bot = '1030_tower_dire',
-
-            dota_badguys_tower2_top = '1035_tower_dire',
-            dota_badguys_tower2_mid = '1032_tower_dire',
-            dota_badguys_tower2_bot = '1029_tower_dire',
-
-            dota_badguys_tower1_top = '1034_tower_dire',
-            dota_badguys_tower1_mid = '1033_tower_dire',
-            dota_badguys_tower1_bot = '1028_tower_dire',
-        }
-
-        for team,teamNumber in pairs(teams) do
-            for lane,__ in pairs(lanes) do
-                local threeRaw = 'dota_'..team..'guys_tower3_'..lane
-                local three = Entities:FindByName(nil, threeRaw) or Entities:FindByName(nil, patchMap[threeRaw] or '_unknown_')
-
-                local twoRaw = 'dota_'..team..'guys_tower2_'..lane
-                local two = Entities:FindByName(nil, twoRaw) or Entities:FindByName(nil, patchMap[twoRaw] or '_unknown_')
-
-                local oneRaw = 'dota_'..team..'guys_tower1_'..lane
-                local one = Entities:FindByName(nil, oneRaw) or Entities:FindByName(nil, patchMap[oneRaw] or '_unknown_')
-
-                -- Unit name
-                local unitName = 'npc_dota_'..team..'guys_tower_lod_'..lane
-
-                if one and two and three then
-                    -- Proceed to patch the towers
-                    local onePos = one:GetOrigin()
-                    local threePos = three:GetOrigin()
-
-                    -- Workout the difference in the positions
-                    local dif = threePos - onePos
-                    local sep = dif / (OptionManager:GetOption('middleTowers') + 1)
-
-                    -- Remove the middle tower
-                    UTIL_Remove(two)
-
-                    -- Used to connect towers
-                    local prevTower = three
-
-                    for i=1,OptionManager:GetOption('middleTowers') do
-                        local newPos = threePos - (sep * i)
-
-                        local newTower = CreateUnitByName(unitName, newPos, false, nil, nil, teamNumber)
-
-                        if newTower then
-                            -- Make it unkillable
-                            newTower:AddNewModifier(ent, nil, 'modifier_invulnerable', {})
-
-                            -- Store connection
-                            towerConnectors[newTower] = prevTower
-                            prevTower = newTower
-                        else
-                            print('Failed to create tower #'..i..' in lane '..lane)
-                        end
-                    end
-
-                    -- Store initial connection
-                    towerConnectors[one] = prevTower
-                else
-                    -- Failure
-                    print('Failed to patch towers!')
-                end
-            end
         end
     end
 end
