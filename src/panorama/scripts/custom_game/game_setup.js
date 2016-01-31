@@ -577,6 +577,7 @@ var allowCustomSettings = false;
 // Current hero & Skill
 var currentSelectedHero = '';
 var currentSelectedSkill = '';
+var currentSelectedAbCon = null;
 
 // List of all player team panels
 var allPlayerPanels = [];
@@ -601,6 +602,44 @@ function hookAndFire(tableName, callback) {
         var info = data[i];
         callback(tableName, info.key, info.value);
     }
+}
+
+// Focuses on nothing
+function focusNothing() {
+    $('#mainSelectionRoot').SetFocus();
+}
+
+// Hooks a change event
+function addInputChangedEvent(panel, callback) {
+    var shouldListen = false;
+    var checkRate = 0.25;
+    var currentString = panel.text;
+
+    var inputChangedLoop = function() {
+        // Check for a change
+        if(currentString != panel.text) {
+            // Update current string
+            currentString = panel.text;
+
+            // Run the callback
+            callback(panel, currentString);
+        }
+
+        if(shouldListen) {
+            $.Schedule(checkRate, inputChangedLoop);
+        }
+    }
+
+    panel.SetPanelEvent('onfocus', function() {
+        // Enable listening, and monitor the field
+        shouldListen = true;
+        inputChangedLoop();
+    });
+
+    panel.SetPanelEvent('onblur', function() {
+        // No longer listen
+        shouldListen = false;
+    });
 }
 
 // Hooks a tab change
@@ -701,6 +740,9 @@ function setupBuilderTabs() {
 
                         // No skills selected anymore
                         setSelectedDropAbility();
+
+                        // Focus to nothing
+                        focusNothing();
                     });
                 }
             });
@@ -859,14 +901,6 @@ function onNewHeroSelected() {
     chooseHero(currentSelectedHero);
 }
 
-// Deselects all abilities
-function deselectAllAbilities() {
-    for(var i=1; i<=16; ++i) {
-        var ab = $('#buildingHelperHeroPreviewSkill' + i);
-        ab.SetHasClass('lodSelected', false);
-    }
-}
-
 // Highlights slots for dropping
 function highlightDropSlots() {
     // If no skill is selected, highlight nothing
@@ -887,11 +921,26 @@ function highlightDropSlots() {
 
 // Sets the currently selected ability for dropping
 function setSelectedDropAbility(abName, abcon) {
-    currentSelectedSkill = abName || '';
+    abName = abName || '';
 
-    deselectAllAbilities();
-    if(abcon != null) {
-        abcon.SetHasClass('lodSelected', true);
+    // Remove the highlight from the old ability icon
+    if(currentSelectedAbCon != null) {
+        currentSelectedAbCon.SetHasClass('lodSelected', false);
+        currentSelectedAbCon = null;
+    }
+
+    if(currentSelectedSkill == abName || abName == '') {
+        // Nothing selected
+        currentSelectedSkill = '';
+    } else {
+        // Do a selection
+        currentSelectedSkill = abName;
+        currentSelectedAbCon = abcon;
+
+        // Highlight ability
+        if(abcon != null) {
+            abcon.SetHasClass('lodSelected', true);
+        }
     }
 
     // Highlight which slots we can drop it into
@@ -900,18 +949,21 @@ function setSelectedDropAbility(abName, abcon) {
 
 // They clicked on a skill
 function onHeroAbilityClicked(heroAbilityID) {
+    // Focus nothing
+    focusNothing();
+
     var abcon = $('#buildingHelperHeroPreviewSkill' + heroAbilityID);
     var ab = abcon.abilityname;
 
-    if(currentSelectedSkill != ab) {
-        setSelectedDropAbility(ab, abcon);
-    } else {
-        setSelectedDropAbility();
-    }
+    // Push the event
+    setSelectedDropAbility(ab, abcon);
 }
 
 // They clicked on one of their ability icons
 function onYourAbilityIconPressed(slot) {
+    // Focus nothing
+    focusNothing();
+
     // Check what action should be performed
     if(currentSelectedSkill != '') {
         // They are trying to select a new skill
@@ -951,23 +1003,69 @@ function showBuilderTab(tabName) {
 }
 
 // When the skill tab is shown
+var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
-    // Empty the skills tab
-    var con = $('#pickingPhaseSkillTabContent');
-    con.RemoveAndDeleteChildren();
+    if(firstSkillTabCall) {
+        // Empty the skills tab
+        var con = $('#pickingPhaseSkillTabContent');
+        con.RemoveAndDeleteChildren();
 
-    // Used to provide unique handles
-    var unqiueCounter = 0;
+        // Used to provide unique handles
+        var unqiueCounter = 0;
 
-    // Start to add skills
+        // A store for all abilities
+        var abilityStore = {};
 
-    for(var abName in flagDataInverse) {
-        var ab = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
-        hookSkillInfo(ab);
-        ab.abilityname = abName;
-        ab.SetAttributeString('abilityname', abName);
-        ab.SetHasClass('lodMiniAbility', true);
+        // Clear filters
+
+        // Hook searchbox
+
+        addInputChangedEvent($('#testasd'), function(panel, newValue) {
+            if(newValue.length > 0) {
+                // We got some text, apply filter
+                for(var abilityName in abilityStore) {
+                    var ab = abilityStore[abilityName];
+
+                    if(abilityName.indexOf(newValue) == -1) {
+                        ab.visible = false;
+                    } else {
+                        ab.visible = true;
+                    }
+                }
+            } else {
+                // No text, display all results
+                for(var abilityName in abilityStore) {
+                    var ab = abilityStore[abilityName];
+                    ab.visible = true;
+                }
+            }
+        });
+
+
+        // Start to add skills
+
+        for(var abName in flagDataInverse) {
+            // Create a new scope
+            (function(abName) {
+                // Create the image
+                var abcon = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
+                hookSkillInfo(abcon);
+                abcon.abilityname = abName;
+                abcon.SetAttributeString('abilityname', abName);
+                abcon.SetHasClass('lodMiniAbility', true);
+
+                abcon.SetPanelEvent('onactivate', function() {
+                    setSelectedDropAbility(abName, abcon);
+                });
+
+                // Store a reference to it
+                abilityStore[abName] = abcon;
+            })(abName);
+        }
     }
+
+    // No longewr the first call
+    firstSkillTabCall = false;
 }
 
 // Are we the host?
@@ -1565,4 +1663,7 @@ function UpdateTimer() {
 
     // Setup the tabs
     setupBuilderTabs();
+
+    // Make input boxes nicer to use
+    $('#mainSelectionRoot').SetPanelEvent('onactivate', focusNothing);
 })();

@@ -134,8 +134,8 @@
 
                             <Label text="Filter by name:"/>
                             <Panel class="lodSearchPanel">
-                                <TextEntry multiline="false" textmode="normal" class="lodSearchText" onupdate="$.Msg('asd');" />
-                                    <Button class="lodSearchButton" />
+                                <TextEntry id="testasd" multiline="false" textmode="normal" class="lodSearchText" />
+                                <Button class="lodSearchButton" />
                             </Panel>
                         </Panel>
                         <Panel id="pickingPhaseRecommendedBuildsTab" class="pickingPhaseTab">
