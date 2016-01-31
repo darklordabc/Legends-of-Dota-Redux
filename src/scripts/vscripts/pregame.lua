@@ -26,6 +26,9 @@ function Pregame:init()
     self.selectedHeroes = {}
     self.selectedSkills = {}
 
+    -- Init options
+    self:initOptionSelector()
+
     -- Grab a reference to self
     local this = self
 
@@ -60,6 +63,13 @@ function Pregame:init()
 
     -- Network heroes
     self:networkHeroes()
+
+    -- Setup default option related stuff
+    network:setActiveOptionsTab('presets')
+    self:setOption('lodOptionBanning', 1)
+    self:setOption('lodOptionSlots', 6)
+    self:setOption('lodOptionUlts', 2)
+    self:setOption('lodOptionGamemode', 1)
 end
 
 -- Thinker function to handle logic
@@ -343,12 +353,308 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         -- TODO: Validate option name
         -- Option values are validated at a later stage
 
-        -- Set the option
-        self.optionStore[optionName] = optionValue
-        network:setOption(optionName, optionValue)
+        self:setOption(optionName, optionValue)
+    end
+end
+
+-- init option validator
+function Pregame:initOptionSelector()
+    -- Option validator can only init once
+    if self.doneInitOptions then return end
+    self.doneInitOptions = true
+
+    self.validOptions = {
+        -- Fast gamemode selection
+        lodOptionGamemode = function(value)
+            -- Ensure it is a number
+            if type(value) ~= 'number' then return false end
+
+            local validGamemodes = {
+                [-1] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true,
+                [4] = true
+            }
+
+            -- Ensure it is one of the above gamemodes
+            if not validGamemodes[value] then return false end
+
+            -- It must be valid
+            return true
+        end,
+
+        -- Fast banning selection
+        lodOptionBanning = function(value)
+            return value == 1 or value == 2
+        end,
+
+        -- Fast slots selection
+        lodOptionSlots = function(value)
+            return value == 4 or value == 5 or value == 6
+        end,
+
+        -- Fast ult selection
+        lodOptionUlts = function(value)
+            local valid = {
+                [0] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true,
+                [4] = true,
+                [5] = true,
+                [6] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Common gamemode
+        lodOptionCommonGamemode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 1 or value == 2 or value == 3 or value == 4
+        end,
+
+        -- Common max slots
+        lodOptionCommonMaxSlots = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 4 or value == 5 or value == 6
+        end,
+
+        -- Common max skills
+        lodOptionCommonMaxSkills = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true,
+                [4] = true,
+                [5] = true,
+                [6] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Common max ults
+        lodOptionCommonMaxUlts = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true,
+                [4] = true,
+                [5] = true,
+                [6] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Common max bans
+        lodOptionBanningMaxBans = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true,
+                [5] = true,
+                [10] = true,
+                [25] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Common block troll combos
+        lodOptionBanningBlockTrollCombos = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
+        -- Common use ban list
+        lodOptionBanningUseBanList = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
+        -- Common ban all invis
+        lodOptionBanningBanInvis = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
+        -- Game Speed -- Starting Level
+        lodOptionGameSpeedStartingLevel = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [1] = true,
+                [6] = true,
+                [11] = true,
+                [16] = true,
+                [25] = true,
+                [50] = true,
+                [75] = true,
+                [100] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Game Speed -- Max Level
+        lodOptionGameSpeedMaxLevel = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [6] = true,
+                [11] = true,
+                [16] = true,
+                [25] = true,
+                [50] = true,
+                [75] = true,
+                [100] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Game Speed -- Starting Gold
+        lodOptionGameSpeedStartingGold = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [250] = true,
+                [500] = true,
+                [1000] = true,
+                [2500] = true,
+                [5000] = true,
+                [10000] = true,
+                [25000] = true,
+                [50000] = true,
+                [100000] = true
+            }
+
+            return valid[value] or false
+        end
+    }
+
+    -- Callbacks
+    self.onOptionsChanged = {
+        -- Fast Gamemode
+        lodOptionGamemode = function(optionName, optionValue)
+            -- If we are using a hard coded gamemode, then, set all options automatically
+            if optionValue ~= -1 then
+                -- Gamemode is copied
+                self:setOption('lodOptionCommonGamemode', optionValue, true)
+
+                -- Total slots is copied
+                self:setOption('lodOptionCommonMaxSlots', self.optionStore['lodOptionSlots'], true)
+
+                -- Max skills is always 6
+                self:setOption('lodOptionCommonMaxSkills', 6, true)
+
+                -- Max ults is copied
+                self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
+
+                -- Banning mode depends on the option, but is baically copied
+                if self.optionStore['lodOptionBanning'] == 1 then
+                    self:setOption('lodOptionBanningMaxBans', 0, true)
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
+                else
+                    self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
+                    self:setOption('lodOptionBanningUseBanList', 0, true)
+                end
+
+                -- Block troll combos is always on
+                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+
+                -- Default, we don't ban all invisiblity
+                self:setOption('lodOptionBanningBanInvis', 0, true)
+
+                -- Starting level is lvl 1
+                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+
+                -- Max level is 25
+                self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
+
+                -- No bonus starting gold
+                self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+            end
+        end,
+
+        -- Fast Banning
+        lodOptionBanning = function(optionName, optionValue)
+            if self.optionStore['lodOptionBanning'] == 1 then
+                self:setOption('lodOptionBanningMaxBans', 0, true)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
+            else
+                self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+            end
+        end,
+
+        -- Fast max slots
+        lodOptionSlots = function(optionName, optionValue)
+            -- Copy max slots in
+            self:setOption('lodOptionCommonMaxSlots', self.optionStore['lodOptionSlots'], true)
+        end,
+
+        -- Fast max ults
+        lodOptionUlts = function(optionName, optionValue)
+            self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
+        end
+    }
+
+    -- Some default values
+    self.fastBansTotalBans = 3
+end
+
+-- Validates, and then sets an option
+function Pregame:setOption(optionName, optionValue, force)
+    -- option validator
+
+    if not self.validOptions[optionName] then
+        -- TODO: Tell the user they tried to modify an invalid option
+        return
     end
 
+    if not force and not self.validOptions[optionName](optionValue) then
+        -- TODO: Tell the user they gave an invalid value
+        return
+    end
 
+    -- Set the option
+    self.optionStore[optionName] = optionValue
+    network:setOption(optionName, optionValue)
+
+    -- Check for option changing callbacks
+    if self.onOptionsChanged[optionName] then
+        self.onOptionsChanged[optionName](optionName, optionValue)
+    end
 end
 
 -- Player wants to select a hero

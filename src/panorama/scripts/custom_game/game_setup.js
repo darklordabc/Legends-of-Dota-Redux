@@ -134,10 +134,10 @@ var allOptions = {
                         text: 'lodOptionMirrorDraft',
                         value: 3
                     },
-                    /*{
+                    {
                         text: 'lodOptionAllRandom',
                         value: 4
-                    }*/
+                    }
                 ]
             },
             {
@@ -167,10 +167,6 @@ var allOptions = {
                 sort: 'dropdown',
                 values: [
                     {
-                        text: 'lodOptionCommonSkills12',
-                        value: 12
-                    },
-                    {
                         text: 'lodOptionCommonSkills0',
                         value: 0
                     },
@@ -197,30 +193,6 @@ var allOptions = {
                     {
                         text: 'lodOptionCommonSkills6',
                         value: 6
-                    },
-                    {
-                        text: 'lodOptionCommonSkills7',
-                        value: 7
-                    },
-                    {
-                        text: 'lodOptionCommonSkills8',
-                        value: 8
-                    },
-                    {
-                        text: 'lodOptionCommonSkills9',
-                        value: 9
-                    },
-                    {
-                        text: 'lodOptionCommonSkills10',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionCommonSkills11',
-                        value: 11
-                    },
-                    {
-                        text: 'lodOptionCommonSkills12',
-                        value: 12
                     }
                 ]
             },
@@ -230,10 +202,6 @@ var allOptions = {
                 about: 'lodOptionAboutCommonMaxUlts',
                 sort: 'dropdown',
                 values: [
-                    {
-                        text: 'lodOptionCommonUlts12',
-                        value: 12
-                    },
                     {
                         text: 'lodOptionCommonUlts0',
                         value: 0
@@ -261,30 +229,6 @@ var allOptions = {
                     {
                         text: 'lodOptionCommonUlts6',
                         value: 6
-                    },
-                    {
-                        text: 'lodOptionCommonUlts7',
-                        value: 7
-                    },
-                    {
-                        text: 'lodOptionCommonUlts8',
-                        value: 8
-                    },
-                    {
-                        text: 'lodOptionCommonUlts9',
-                        value: 9
-                    },
-                    {
-                        text: 'lodOptionCommonUlts10',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionCommonUlts11',
-                        value: 11
-                    },
-                    {
-                        text: 'lodOptionCommonUlts12',
-                        value: 12
                     }
                 ]
             },
@@ -432,10 +376,6 @@ var allOptions = {
                 about: 'lodOptionAboutGameSpeedMaxLevel',
                 sort: 'dropdown',
                 values: [
-                    {
-                        text: 'lodOptionLevel25',
-                        value: 25
-                    },
                     {
                         text: 'lodOptionLevel6',
                         value: 6
@@ -1070,7 +1010,7 @@ function OnSkillTabShown(tabName) {
         var categoryHeader = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
         categoryHeader.text = $.Localize('lod_cat_none');
         dropdownCategories.AddOption(categoryHeader);
-        dropdownCategories.SetSelected(categoryHeader);
+        dropdownCategories.SetSelected('skillTabCategory' + unqiueCounter);
 
         // Add categories
         for(var category in flagData) {
@@ -1272,17 +1212,6 @@ function buildOptionsCategories() {
                             hostPanel.AddClass('optionsSlotPanelHost');
                             hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
 
-                            // When the data changes
-                            hostPanel.SetPanelEvent('oninputsubmit', function() {
-                                // Grab the selected one
-                                var selected = hostPanel.GetSelected();
-                                //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
-
-                                // Sets an option
-                                setOption(fieldName, fieldValue);
-                            });
-
                             // Maps values to panels
                             var valueToPanel = {};
 
@@ -1291,17 +1220,17 @@ function buildOptionsCategories() {
                                 var fieldText = valueInfo.text;
                                 var fieldValue = valueInfo.value;
 
-                                var subPanel = $.CreatePanel('Label', hostPanel, 'option_panel_field_' + fieldName + '_' + fieldText);
+                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
                                 subPanel.text = $.Localize(fieldText);
                                 //subPanel.SetAttributeString('fieldText', fieldText);
                                 subPanel.SetAttributeInt('fieldValue', fieldValue);
                                 hostPanel.AddOption(subPanel);
 
                                 // Store the map
-                                valueToPanel[fieldValue] = subPanel;
+                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
 
-                                if(j == 0) {
-                                    hostPanel.SetSelected(subPanel);
+                                if(j == values.length-1) {
+                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
                                 }
                             }
 
@@ -1325,6 +1254,19 @@ function buildOptionsCategories() {
                                     }
                                 }
                             }
+
+                            // When the data changes
+                            hostPanel.SetPanelEvent('oninputsubmit', function() {
+                                // Grab the selected one
+                                var selected = hostPanel.GetSelected();
+                                //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                // Sets an option
+                                setOption(fieldName, fieldValue);
+
+                                $.Msg('Pushing option ' + fieldName + ' = ' + fieldValue);
+                            });
                         break;
                     }
 
