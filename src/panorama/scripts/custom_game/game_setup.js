@@ -702,7 +702,7 @@ function OnSelectedHeroesChanged(table_name, key, data) {
     if(playerID == Players.GetLocalPlayer()) {
         // Update our hero icon and text
         $('#pickingPhaseSelectedHeroImage').heroname = heroName;
-        $('#pickingPhaseSelectedHeroText').text = heroName;
+        $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
     }
 }
 
@@ -1016,30 +1016,71 @@ function OnSkillTabShown(tabName) {
         // A store for all abilities
         var abilityStore = {};
 
-        // Clear filters
+        // TODO: Clear filters
+
+
+        // Filter processor
+        var searchText = '';
+        var searchCategory = '';
+
+        var calculateFilters = function() {
+            // Loop over all abilties
+            for(var abilityName in abilityStore) {
+                var ab = abilityStore[abilityName];
+                var shouldShow = true;
+
+                if(shouldShow && searchCategory.length > 0) {
+                    if(!flagDataInverse[abilityName][searchCategory]) {
+                        shouldShow = false;
+                    }
+                }
+
+                if(shouldShow && searchText.length > 0) {
+                    if(abilityName.indexOf(searchText) == -1) {
+                        shouldShow = false;
+                    }
+                }
+
+                ab.visible = shouldShow;
+            }
+        }
 
         // Hook searchbox
 
-        addInputChangedEvent($('#testasd'), function(panel, newValue) {
-            if(newValue.length > 0) {
-                // We got some text, apply filter
-                for(var abilityName in abilityStore) {
-                    var ab = abilityStore[abilityName];
+        addInputChangedEvent($('#lodSkillSearchInput'), function(panel, newValue) {
+            // Store the new text
+            searchText = newValue.toLowerCase();
 
-                    if(abilityName.indexOf(newValue) == -1) {
-                        ab.visible = false;
-                    } else {
-                        ab.visible = true;
-                    }
-                }
-            } else {
-                // No text, display all results
-                for(var abilityName in abilityStore) {
-                    var ab = abilityStore[abilityName];
-                    ab.visible = true;
-                }
-            }
+            // Update list of abs
+            calculateFilters();
         });
+
+        // Add input categories
+        var dropdownCategories = $('#lodSkillCategoryHolder');
+        dropdownCategories.RemoveAllOptions();
+        dropdownCategories.SetPanelEvent('oninputsubmit', function() {
+            // Update the category
+            searchCategory = dropdownCategories.GetSelected().GetAttributeString('category', '');
+
+            // Update the visible abilties
+            calculateFilters();
+        });
+
+        // Add header
+        var categoryHeader = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
+        categoryHeader.text = $.Localize('lod_cat_none');
+        dropdownCategories.AddOption(categoryHeader);
+        dropdownCategories.SetSelected(categoryHeader);
+
+        // Add categories
+        for(var category in flagData) {
+            if(category == 'category') continue;
+
+            var dropdownLabel = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
+            dropdownLabel.text = $.Localize('lod_cat_' + category);
+            dropdownLabel.SetAttributeString('category', category);
+            dropdownCategories.AddOption(dropdownLabel);
+        }
 
 
         // Start to add skills

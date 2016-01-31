@@ -134,9 +134,11 @@
 
                             <Label text="Filter by name:"/>
                             <Panel class="lodSearchPanel">
-                                <TextEntry id="testasd" multiline="false" textmode="normal" class="lodSearchText" />
-                                <Button class="lodSearchButton" />
+                                <TextEntry id="lodSkillSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
+                                <Button class="lodSearchButton" onactivate="$('#lodSkillSearchInput').SetFocus()" />
                             </Panel>
+                            <Label text="Filter by category:"/>
+                            <DropDown id="lodSkillCategoryHolder" />
                         </Panel>
                         <Panel id="pickingPhaseRecommendedBuildsTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>

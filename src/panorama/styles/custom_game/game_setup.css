@@ -546,6 +546,11 @@
     wash-color: #667774dd;
 }
 
+#lodSkillCategoryHolder {
+    margin: 8px;
+    vertical-align: top;
+}
+
 #buildingHelperHeroPreview {
     width: 100%;
     flow-children: down;
