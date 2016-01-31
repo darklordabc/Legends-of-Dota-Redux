@@ -276,6 +276,30 @@ var allOptions = {
                 ]
             },
             {
+                name: 'lodOptionBanningMaxHeroBans',
+                des: 'lodOptionDesBanningMaxHeroBans',
+                about: 'lodOptionAboutBanningMaxBans',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionBanningMaxHeroBans0',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionBanningMaxBans1',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionBanningMaxBans2',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBanningMaxBans3',
+                        value: 3
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionBanningBlockTrollCombos',
                 des: 'lodOptionDesBanningBlockTrollCombos',
                 about: 'lodOptionAboutBanningBlockTrollCombos',
@@ -454,6 +478,118 @@ var allOptions = {
                     },
                 ]
             },
+            {
+                name: 'lodOptionGameSpeedRespawnTime',
+                des: 'lodOptionDesGameSpeedRespawnTime',
+                about: 'lodOptionAboutGameSpeedRespawnTime',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionGameSpeedRespawnTimeDefault',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTimeHalf',
+                        value: 0.5
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTimeTenth',
+                        value: 0.1
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTimeSecond',
+                        value: -1
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTime10Second',
+                        value: -10
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTime20Second',
+                        value: -20
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTime30Second',
+                        value: -30
+                    },
+                    {
+                        text: 'lodOptionGameSpeedRespawnTime60Second',
+                        value: -60
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGameSpeedTowersPerLane',
+                des: 'lodOptionDesGameSpeedTowersPerLane',
+                about: 'lodOptionAboutGameSpeedTowersPerLane',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionTower3',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionTower4',
+                        value: 4
+                    },
+                    {
+                        text: 'lodOptionTower5',
+                        value: 5
+                    },
+                    {
+                        text: 'lodOptionTower6',
+                        value: 6
+                    },
+                    {
+                        text: 'lodOptionTower7',
+                        value: 7
+                    },
+                    {
+                        text: 'lodOptionTower8',
+                        value: 8
+                    },
+                    {
+                        text: 'lodOptionTower9',
+                        value: 9
+                    },
+                    {
+                        text: 'lodOptionTower10',
+                        value: 10
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGameSpeedUpgradedUlts',
+                des: 'lodOptionDesGameSpeedUpgradedUlts',
+                about: 'lodOptionAboutGameSpeedUpgradedUlts',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCrazyEasymode',
+                des: 'lodOptionDesCrazyEasymode',
+                about: 'lodOptionAboutCrazyEasymode',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
         ]
     },
 
@@ -461,23 +597,214 @@ var allOptions = {
     advanced_selection: {
         custom: true,
         fields: [
+            {
+                name: 'lodOptionAdvancedHeroAbilities',
+                des: 'lodOptionDesAdvancedHeroAbilities',
+                about: 'lodOptionAboutAdvancedHeroAbilities',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedNeutralAbilities',
+                des: 'lodOptionDesAdvancedNeutralAbilities',
+                about: 'lodOptionAboutAdvancedNeutralAbilities',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedNeutralWraithNight',
+                des: 'lodOptionDesAdvancedWraithNight',
+                about: 'lodOptionAboutAdvancedWraithNight',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedOPAbilities',
+                des: 'lodOptionDesAdvancedOPAbilities',
+                about: 'lodOptionAboutAdvancedOPAbilities',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
 
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedHidePicks',
+                des: 'lodOptionDesAdvancedHidePicks',
+                about: 'lodOptionAboutAdvancedHidePicks',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedUniqueSkills',
+                des: 'lodOptionDesAdvancedUniqueSkills',
+                about: 'lodOptionAboutAdvancedUniqueSkills',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedUniqueHeroes',
+                des: 'lodOptionDesAdvancedUniqueHeroes',
+                about: 'lodOptionAboutAdvancedUniqueHeroes',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
         ]
     },
 
     // Buffing of heroes, towers, etc
-    buffs: {
+    /*buffs: {
         custom: true,
         fields: [
 
         ]
-    },
+    },*/
 
     // Stuff that is just crazy
     crazyness: {
         custom: true,
         fields: [
-
+            {
+                name: 'lodOptionCrazyNoCamping',
+                des: 'lodOptionDesCrazyNoCamping',
+                about: 'lodOptionAboutCrazyNoCamping',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCrazyUniversalShop',
+                des: 'lodOptionDesCrazyUniversalShop',
+                about: 'lodOptionAboutCrazyUniversalShop',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCrazyAllVision',
+                des: 'lodOptionDesCrazyAllVision',
+                about: 'lodOptionAboutCrazyAllVision',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCrazyMulticast',
+                des: 'lodOptionDesCrazyMulticast',
+                about: 'lodOptionAboutCrazyMulticast',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCrazyWTF',
+                des: 'lodOptionDesCrazyWTF',
+                about: 'lodOptionAboutCrazyWTF',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
         ]
     }
 }

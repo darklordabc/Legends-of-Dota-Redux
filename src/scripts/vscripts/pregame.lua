@@ -479,6 +479,21 @@ function Pregame:initOptionSelector()
             return valid[value] or false
         end,
 
+        -- Common max hero bans
+        lodOptionBanningMaxHeroBans = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [1] = true,
+                [2] = true,
+                [3] = true
+            }
+
+            return valid[value] or false
+        end,
+
         -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
             -- Ensure gamemode is set to custom
@@ -559,7 +574,115 @@ function Pregame:initOptionSelector()
             }
 
             return valid[value] or false
-        end
+        end,
+
+        -- Game Speed -- Respawn Time
+        lodOptionGameSpeedRespawnTime = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [0] = true,
+                [0.5] = true,
+                [0.1] = true,
+                [-1] = true,
+                [-10] = true,
+                [-20] = true,
+                [-30] = true,
+                [-60] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Game Speed -- Towers per lane
+        lodOptionGameSpeedTowersPerLane = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [3] = true,
+                [4] = true,
+                [5] = true,
+                [6] = true,
+                [7] = true,
+                [8] = true,
+                [9] = true,
+                [10] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Game Speed - Scepter Upgraded
+        lodOptionGameSpeedUpgradedUlts = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Game Speed - Easy Mode
+        lodOptionCrazyEasymode = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Enable Hero Abilities
+        lodOptionAdvancedHeroAbilities = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Enable Neutral Abilities
+        lodOptionAdvancedNeutralAbilities = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Enable Wraith Night Abilities
+        lodOptionAdvancedNeutralWraithNight = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Enable OP Abilities
+        lodOptionAdvancedOPAbilities = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Hide enemy picks
+        lodOptionAdvancedHidePicks = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Unique Skills
+        lodOptionAdvancedUniqueSkills = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Advanced -- Unique Heroes
+        lodOptionAdvancedUniqueHeroes = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- No Fountain Camping
+        lodOptionCrazyNoCamping = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- Universal Shop
+        lodOptionCrazyUniversalShop = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- All Vision
+        lodOptionCrazyAllVision = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- Multicast Madness
+        lodOptionCrazyMulticast = function()
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- WTF Mode
+        lodOptionCrazyWTF = function()
+            return value == 0 or value == 1
+        end,
     }
 
     -- Callbacks
@@ -583,9 +706,11 @@ function Pregame:initOptionSelector()
                 -- Banning mode depends on the option, but is baically copied
                 if self.optionStore['lodOptionBanning'] == 1 then
                     self:setOption('lodOptionBanningMaxBans', 0, true)
+                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                     self:setOption('lodOptionBanningUseBanList', 1, true)
                 else
                     self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
+                    self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                 end
 
@@ -603,6 +728,54 @@ function Pregame:initOptionSelector()
 
                 -- No bonus starting gold
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+
+                -- Default respawn time
+                self:setOption('lodOptionGameSpeedRespawnTime', 0, true)
+
+                -- 3 Towers per lane
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+
+                -- Do not start scepter upgraded
+                self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+                -- Turn easy mode off
+                self:setOption('lodOptionCrazyEasymode', 0, true)
+
+                -- Enable hero abilities
+                self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
+
+                -- Enable neutral abilities
+                self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+
+                -- Enable Wraith Night abilities
+                self:setOption('lodOptionAdvancedNeutralWraithNight', 1, true)
+
+                -- Disable OP abilities
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+
+                -- Hide enemy picks
+                self:setOption('lodOptionAdvancedHidePicks', 1, true)
+
+                -- Disable Unique Skills
+                self:setOption('lodOptionAdvancedUniqueSkills', 0, true)
+
+                -- Disable Unique Heroes
+                self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
+
+                -- Disable Fountain Camping
+                self:setOption('lodOptionCrazyNoCamping', 1, true)
+
+                -- Disable Universal Shop
+                self:setOption('lodOptionCrazyUniversalShop', 0, true)
+
+                -- Disable All Vision
+                self:setOption('lodOptionCrazyAllVision', 0, true)
+
+                -- Disable Multicast Madness
+                self:setOption('lodOptionCrazyMulticast', 0, true)
+
+                -- Disable WTF Mode
+                self:setOption('lodOptionCrazyWTF', 0, true)
             end
         end,
 
@@ -610,9 +783,11 @@ function Pregame:initOptionSelector()
         lodOptionBanning = function(optionName, optionValue)
             if self.optionStore['lodOptionBanning'] == 1 then
                 self:setOption('lodOptionBanningMaxBans', 0, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                 self:setOption('lodOptionBanningUseBanList', 1, true)
             else
                 self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
+                self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
             end
         end,
@@ -631,6 +806,7 @@ function Pregame:initOptionSelector()
 
     -- Some default values
     self.fastBansTotalBans = 3
+    self.fastHeroBansTotalBans = 1
 end
 
 -- Validates, and then sets an option
