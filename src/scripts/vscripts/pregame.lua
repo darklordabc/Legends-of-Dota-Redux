@@ -3,6 +3,7 @@ local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
+local Timers = require('easytimers')
 
 --[[
     Main pregame, selection related handler
@@ -24,6 +25,7 @@ function Pregame:init()
 
     -- Store for selected heroes and skills
     self.selectedHeroes = {}
+    self.selectedPlayerAttr = {}
     self.selectedSkills = {}
 
     -- Init options
@@ -54,6 +56,11 @@ function Pregame:init()
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
+    end)
+
+    -- Player wants to set their new primary attribute
+    CustomGameEventManager:RegisterListener('lodChooseAttr', function(eventSourceIndex, args)
+        this:onPlayerSelectAttr(eventSourceIndex, args)
     end)
 
     -- Player wants to change which ability is in a slot
@@ -177,6 +184,28 @@ function Pregame:spawnAllHeroes()
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
+
+                        -- Do they have a custom attribute set?
+                        if self.selectedPlayerAttr[playerID] ~= nil then
+                            -- Set it
+
+                            local toSet = 0
+
+                            if self.selectedPlayerAttr[playerID] == 'str' then
+                                toSet = 0
+                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                                toSet = 1
+                            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                                toSet = 2
+                            end
+
+                            -- Set a timer to fix stuff up
+                            Timers:CreateTimer(function()
+                                if IsValidEntity(hero) then
+                                    hero:SetPrimaryAttribute(toSet)
+                                end
+                            end, DoUniqueString('primaryAttrFix'), 0.1)
+                        end
                     end
                 end, playerID)
             end
@@ -241,6 +270,7 @@ function Pregame:networkHeroes()
     end
 
     local allowedHeroes = {}
+    self.heroPrimaryAttr = {}
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
@@ -263,6 +293,15 @@ function Pregame:networkHeroes()
                 AttributeBaseAgility = heroValues.AttributeBaseAgility,
                 AttributeAgilityGain = heroValues.AttributeAgilityGain
             }
+
+            local attr = heroValues.AttributePrimary
+            if attr == 'DOTA_ATTRIBUTE_INTELLECT' then
+                self.heroPrimaryAttr[heroName] = 'int'
+            elseif attr == 'DOTA_ATTRIBUTE_AGILITY' then
+                self.heroPrimaryAttr[heroName] = 'agi'
+            else
+                self.heroPrimaryAttr[heroName] = 'str'
+            end
 
             if heroName == 'npc_dota_hero_invoker' then
                 theData.Ability1 = 'invoker_alacrity_lod'
@@ -693,6 +732,14 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Advanced -- Allow picking primary attr
+        lodOptionAdvancedSelectPrimaryAttr = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Other -- No Fountain Camping
         lodOptionCrazyNoCamping = function(value)
             -- Ensure gamemode is set to custom
@@ -810,6 +857,9 @@ function Pregame:initOptionSelector()
 
                 -- Disable Unique Heroes
                 self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
+
+                -- Enable picking primary attr
+                self:setOption('lodOptionAdvancedSelectPrimaryAttr', 1, true)
 
                 -- Disable Fountain Camping
                 self:setOption('lodOptionCrazyNoCamping', 1, true)
@@ -949,6 +999,16 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         return
     end
 
+    -- Attempt to set the primary attribute
+    local newAttr = self.heroPrimaryAttr[heroName] or 'str'
+    if self.selectedPlayerAttr[playerID] ~= newAttr then
+        -- Update local store
+        self.selectedPlayerAttr[playerID] = newAttr
+
+        -- Update the selected hero
+        network:setSelectedAttr(playerID, newAttr)
+    end
+
     -- Is there an actual change?
     if self.selectedHeroes[playerID] ~= heroName then
         -- Update local store
@@ -956,6 +1016,41 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
+    end
+end
+
+-- Player wants to select a new primary attribute
+function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
+    -- Ensure we are in the picking phase
+    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local newAttr = args.newAttr
+
+    -- Validate that the option is enabled
+    if self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 0 then
+        -- TODO: Show some kind of error
+
+        return
+    end
+
+    -- Validate the new attribute
+    if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' then
+        -- TODO: Show some kind of error
+
+        return
+    end
+
+    -- Is there an actual change?
+    if self.selectedPlayerAttr[playerID] ~= newAttr then
+        -- Update local store
+        self.selectedPlayerAttr[playerID] = newAttr
+
+        -- Update the selected hero
+        network:setSelectedAttr(playerID, newAttr)
     end
 end
 

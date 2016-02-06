@@ -357,19 +357,50 @@
 }
 
 #pickingPhaseSelectedHero {
-    flow-children: down;
     margin: 4px;
     width: 100%;
 }
 
-#pickingPhaseSelectedHeroImage {
+#pickingPhaseSelectedHeroImageCon {
+    flow-children: down;
     horizontal-align: middle;
+}
+
+.bannedSkill {
+    opacity: .2;
+    saturation: 0.0;
+    wash-color: #FF5555FF;
+}
+
+.disallowedSkill {
+    opacity: .2;
+    saturation: 0.0;
+    wash-color: #777777aa;
+}
+
+.pickingPhaseAttr {
+    background-color: #FF0000;
+}
+
+.pickingPhaseAttr Label {
+    color: #000000;
+}
+
+.pickingPhaseAttr.selectedAttribute {
+    background-color: #00FF00;
+}
+
+#pickingPhaseSelectedHeroImage {
     width: 128px;
     height: 72px;
 }
 
 #pickingPhaseSelectedHeroText {
     horizontal-align: middle;
+}
+
+#pickingPhaseSelectedAttr {
+    flow-children: down;
 }
 
 #pickingPhaseBuildSkills {
@@ -502,7 +533,7 @@
 #pickingPhaseSkillTabContent {
     width: 100%;
     height: 100%;
-    background-color: #FF0000;
+    background-color: #000000;
     flow-children: right-wrap;
 
     horizontal-align: center;

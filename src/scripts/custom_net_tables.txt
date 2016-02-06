@@ -5,6 +5,7 @@
         "phase_pregame",
         "options",
         "heroes",
+        "selected_attr",
         "flags",
         "selected_heroes",
         "selected_skills"

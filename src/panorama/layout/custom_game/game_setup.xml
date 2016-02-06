@@ -139,6 +139,8 @@
                             </Panel>
                             <Label text="Filter by category:"/>
                             <DropDown id="lodSkillCategoryHolder" />
+                            <ToggleButton text="Show Banned Skills" />
+                            <ToggleButton text="Show Disallowed Skills" />
                         </Panel>
                         <Panel id="pickingPhaseRecommendedBuildsTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>
@@ -147,8 +149,24 @@
 
                     <Panel id="pickingPhaseBuild">
                         <Panel id="pickingPhaseSelectedHero">
-                            <DOTAHeroImage id="pickingPhaseSelectedHeroImage" heroname="npc_dota_hero_nevermore" heroimagestyle="landscape" />
-                            <Label id="pickingPhaseSelectedHeroText" text="Nevermore" />
+                            <Panel id="pickingPhaseSelectedAttr">
+                                <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroStr" onactivate="setPrimaryAttr('str');">
+                                    <Label text="Str"/>
+                                </Button>
+
+                                 <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAgi" onactivate="setPrimaryAttr('agi');">
+                                    <Label text="Agi"/>
+                                </Button>
+
+                                 <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
+                                    <Label text="Int"/>
+                                </Button>
+                            </Panel>
+
+                            <Panel id="pickingPhaseSelectedHeroImageCon">
+                                <DOTAHeroImage id="pickingPhaseSelectedHeroImage" heroname="npc_dota_hero_nevermore" heroimagestyle="landscape" />
+                                <Label id="pickingPhaseSelectedHeroText" text="Nevermore" />
+                            </Panel>
                         </Panel>
 
                         <Panel id="pickingPhaseBuildSkills">

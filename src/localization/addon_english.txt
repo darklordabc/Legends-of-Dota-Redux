@@ -166,6 +166,7 @@
     "lodOptionDesAdvancedHidePicks"                 "Hide Enemy Picks"
     "lodOptionDesAdvancedUniqueSkills"              "Unique Skills"
     "lodOptionDesAdvancedUniqueHeroes"              "Unique Heroes"
+    "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
 
     "lodOptionDesGameSpeedRespawnTime"              "Respawn Time"

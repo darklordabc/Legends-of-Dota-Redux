@@ -47,6 +47,14 @@ function Network:setSelectedHero(playerID, heroName)
     })
 end
 
+-- Sets a player's selected primary attribute
+function Network:setSelectedAttr(playerID, newAttr)
+    CustomNetTables:SetTableValue('selected_attr', tostring(playerID), {
+        newAttr = newAttr,
+        playerID = playerID
+    })
+end
+
 -- Puts a skill into a slot, NO VALIDATION
 function Network:setSelectedAbilities(playerID, skills)
     -- Push to everyone

@@ -710,6 +710,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionAdvancedSelectPrimaryAttr',
+                des: 'lodOptionDesAdvancedSelectPrimaryAttr',
+                about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    }
+                ]
+            },
         ]
     },
 
@@ -833,6 +849,7 @@ var onLoadTabHook = {};
 
 // Used to store selected heroes and skills
 var selectedHeroes = {};
+var selectedAttr = {};
 var selectedSkills = {};
 
 // The current phase we are in
@@ -857,6 +874,9 @@ var lastOptionValues = {};
 
 // Map of optionName -> callback for value change
 var optionFieldMap = {};
+
+// Map of optionName -> Value
+var optionValueList = {};
 
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
@@ -970,6 +990,24 @@ function OnSelectedHeroesChanged(table_name, key, data) {
         // Update our hero icon and text
         $('#pickingPhaseSelectedHeroImage').heroname = heroName;
         $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
+    }
+}
+
+// Selected primary attribute changes
+function OnSelectedAttrChanged(table_name, key, data) {
+    // Grab data
+    var playerID = data.playerID;
+    var newAttr = data.newAttr;
+
+    // Store the change
+    selectedAttr[playerID] = newAttr;
+
+    // Was it an update on our local player?
+    if(playerID == Players.GetLocalPlayer()) {
+        // Update which attribute is selected
+        $('#pickingPhaseSelectHeroStr').SetHasClass('selectedAttribute', newAttr == 'str');
+        $('#pickingPhaseSelectHeroAgi').SetHasClass('selectedAttribute', newAttr == 'agi');
+        $('#pickingPhaseSelectHeroInt').SetHasClass('selectedAttribute', newAttr == 'int');
     }
 }
 
@@ -1168,6 +1206,11 @@ function onNewHeroSelected() {
     chooseHero(currentSelectedHero);
 }
 
+// They tried to set a new primary attribute
+function setPrimaryAttr(newAttr) {
+    choosePrimaryAttr(newAttr);
+}
+
 // Highlights slots for dropping
 function highlightDropSlots() {
     // If no skill is selected, highlight nothing
@@ -1362,6 +1405,8 @@ function OnSkillTabShown(tabName) {
                 abcon.SetAttributeString('abilityname', abName);
                 abcon.SetHasClass('lodMiniAbility', true);
 
+                //abcon.SetHasClass('disallowedSkill', true);
+
                 abcon.SetPanelEvent('onactivate', function() {
                     setSelectedDropAbility(abName, abcon);
                 });
@@ -1402,6 +1447,13 @@ function setOption(optionName, optionValue) {
 function chooseHero(heroName) {
     GameEvents.SendCustomGameEventToServer('lodChooseHero', {
         heroName:heroName
+    });
+}
+
+// Updates our selected primary attribute
+function choosePrimaryAttr(newAttr) {
+    GameEvents.SendCustomGameEventToServer('lodChooseAttr', {
+        newAttr:newAttr
     });
 }
 
@@ -1820,6 +1872,9 @@ function OnPhaseChanged(table_name, key, data) {
 
 // An option just changed
 function OnOptionChanged(table_name, key, data) {
+    // Store new value
+    optionValueList[key] = data.v;
+
     // Check if there is a mapping function available
     if(optionFieldMap[key]) {
         // Yep, run it!
@@ -1832,6 +1887,31 @@ function OnOptionChanged(table_name, key, data) {
         allowCustomSettings = data.v == -1;
         $('#mainSelectionRoot').SetHasClass('allow_custom_settings', allowCustomSettings);
         $('#mainSelectionRoot').SetHasClass('disallow_custom_settings', !allowCustomSettings);
+    }
+
+    // Check if it's the number of slots allowed
+    if(key == 'lodOptionCommonMaxSkills' || key == 'lodOptionCommonMaxSlots' || key == 'lodOptionCommonMaxUlts') {
+        onMaxSlotsChanged();
+    }
+}
+
+// The max number of slots / ults / regular abs has changed!
+function onMaxSlotsChanged() {
+    var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
+    var maxSkills = optionValueList['lodOptionCommonMaxSkills'];
+    var maxUlts = optionValueList['lodOptionCommonMaxUlts'];
+
+    // Ensure all variables are defined
+    if(maxSlots == null || maxSkills == null || maxUlts == null) return;
+
+    for(var i=1; i<=6; ++i) {
+        var con = $('#lodYourAbility' + i);
+
+        if(i <= maxSlots) {
+            con.visible = true;
+        } else {
+            con.visible = false;
+        }
     }
 }
 
@@ -1966,6 +2046,7 @@ function UpdateTimer() {
     hookAndFire('heroes', OnHeroDataChanged);
     hookAndFire('flags', OnFlagDataChanged);
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);
+    hookAndFire('selected_attr', OnSelectedAttrChanged);
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
 
     // Hook tab changes
