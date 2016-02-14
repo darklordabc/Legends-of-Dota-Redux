@@ -885,6 +885,9 @@ var allowedCategories = {};
 var showBannedSkills = false;
 var showDisallowedSkills = false;
 
+// List of banned abilities
+var bannedAbilities = {};
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 
@@ -1081,6 +1084,17 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
     }
+}
+
+// A ban was sent through
+function OnSkillBanned(table_name, key, data) {
+    var abilityName = key;
+
+    // Store the ban
+    bannedAbilities[abilityName] = true;
+
+    // Recalculate filters
+    calculateFilters();
 }
 
 // Sets up the hero builder tab
@@ -1429,6 +1443,17 @@ function OnSkillTabShown(tabName) {
                         }
                     } else {
                         ab.SetHasClass('disallowedSkill', false);
+                    }
+
+                    // Check for bans
+                    if(shouldShow && bannedAbilities[abilityName]) {
+                        if(showBannedSkills) {
+                            ab.SetHasClass('bannedSkill', true);
+                        } else {
+                            shouldShow = false;
+                        }
+                    } else {
+                        ab.SetHasClass('bannedSkill', false);
                     }
 
                     // Check if the tab is active
@@ -2100,6 +2125,9 @@ function onAllowedCategoriesChanged() {
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {
         allowedCategories['OP'] = true;
     }
+
+    // Update the filters
+    calculateFilters();
 }
 
 // Changes which phase the player currently has selected
@@ -2235,6 +2263,7 @@ function UpdateTimer() {
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);
     hookAndFire('selected_attr', OnSelectedAttrChanged);
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
+    hookAndFire('banned', OnSkillBanned);
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

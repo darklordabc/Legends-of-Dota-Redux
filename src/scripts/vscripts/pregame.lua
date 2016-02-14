@@ -29,6 +29,13 @@ function Pregame:init()
     self.selectedPlayerAttr = {}
     self.selectedSkills = {}
 
+    -- List of banned abilities
+    self.bannedAbilities = {}
+
+    -- temp: ban stuff
+    self:banAbility('doom_bringer_doom')
+    self:banAbility('pudge_rot')
+
     -- Load troll combos
     self:loadTrollCombos()
 
@@ -1074,6 +1081,19 @@ function Pregame:setOption(optionName, optionValue, force)
     end
 end
 
+-- Bans an ability
+function Pregame:banAbility(abilityName)
+    if not self.bannedAbilities[abilityName] then
+        -- Do the ban
+        self.bannedAbilities[abilityName] = true
+        network:banAbility(abilityName)
+
+        return true
+    end
+
+    return false
+end
+
 -- Player wants to select a hero
 function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Ensure we are in the picking phase
@@ -1208,7 +1228,19 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
-    -- TODO: Validate the ability isn't already banned
+    -- Validate the ability isn't already banned
+    if self.bannedAbilities[abilityName] then
+        -- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedSkillIsBanned',
+            params = {
+                ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+            }
+        })
+
+        return
+    end
 
     -- Validate that the ability is allowed in this slot (ulty count)
     if SkillManager:hasTooMany(newBuild, maxUlts, function(ab)

@@ -76,5 +76,13 @@ function Network:sendNotification(ply, options)
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
 end
 
+-- Pushes that a skill is banned
+function Network:banAbility(abilityName)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('banned', abilityName, {
+        abilityName = abilityName
+    })
+end
+
 -- Return an instance of it
 return Network()

@@ -440,7 +440,7 @@
 }
 
 .bannedSkill {
-    opacity: .2;
+    opacity: .1;
     saturation: 0.0;
     wash-color: #FF5555FF;
     border: 0px;
