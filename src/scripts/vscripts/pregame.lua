@@ -475,6 +475,28 @@ function Pregame:loadTrollCombos()
     end
 end
 
+-- Tests a build to decide if it is a troll combo
+function Pregame:isTrollCombo(build)
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    for i=1,maxSlots do
+        local ab1 = build[i]
+        if ab1 ~= nil and self.banList[ab1] then
+            for j=(i+1),maxSlots do
+                local ab2 = build[j]
+
+                if ab2 ~= nil and self.banList[ab1][ab2] then
+                    -- Ability should be banned
+
+                    return true, ab1, ab2
+                end
+            end
+        end
+    end
+
+    return false
+end
+
 -- init option validator
 function Pregame:initOptionSelector()
     -- Option validator can only init once
@@ -1220,8 +1242,24 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
-    -- Validate that it isn't a troll build
+    -- Should we block troll combinations?
+    if self.optionStore['lodOptionBanningBlockTrollCombos'] == 1 then
+        -- Validate that it isn't a troll build
+        local isTrollCombo, ab1, ab2 = self:isTrollCombo(newBuild)
+        if isTrollCombo then
+            -- Invalid ability name
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedTrollCombo',
+                params = {
+                    ['ab1'] = 'DOTA_Tooltip_ability_' .. ab1,
+                    ['ab2'] = 'DOTA_Tooltip_ability_' .. ab2
+                }
+            })
 
+            return
+        end
+    end
 
     -- Is there an actual change?
     if build[slot] ~= abilityName then
