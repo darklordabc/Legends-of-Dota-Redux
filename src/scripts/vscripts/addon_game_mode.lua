@@ -11,13 +11,6 @@ end
 -- Ensure lod exists
 if _G.lod == nil then
     _G.lod = class({})
-
-    -- Checks if we are running in source1, or 2
-    local isSource1 = Convars:GetStr('dota_local_addon_game') ~= nil
-
-	function GameRules:isSource1()
-	    return isSource1
-	end
 end
 
 -- Stat collection
@@ -77,7 +70,7 @@ local pregame = require('pregame')
 --[[
     FUNCTION DEFINITIONS
 ]]
-local stub = function()end
+--[[local stub = function()end
 
 setupGamemodeSettings = stub
 slotTypeString = stub
@@ -144,7 +137,7 @@ getHealthBuffer = stub
 ]]
 
 -- Unique skills constants
-local UNIQUE_SKILLS_NONE = 0
+--[[local UNIQUE_SKILLS_NONE = 0
 local UNIQUE_SKILLS_TEAM = 1
 local UNIQUE_SKILLS_GLOBAL = 2
 
@@ -170,7 +163,7 @@ local FREE_COURIER_FLYING = 2
 ]]
 
 -- Balance constants
-local BALANCE_NONE = 0
+--[[local BALANCE_NONE = 0
 local BALANCE_BASIC = 1
 local BALANCE_EXTENDED = 2
 
@@ -199,82 +192,82 @@ local SKILL_LIST_CREEP = 5
 local validInterfaces = {
     [SKILL_LIST_YOUR] = true,
     [SKILL_LIST_BEAR] = true,
-}
+}]]
 
 -- The current stage we are in
-local currentStage = STAGE_WAITING
+--local currentStage = STAGE_WAITING
 
 -- Has LoD started?
-local lodHasStarted = false
+--local lodHasStarted = false
 
 -- Stores which heroes a player can use skills from
 -- draftArray[playerID][heroID] = true
-local draftArray = {}
+--local draftArray = {}
 
 -- Player's vote data, key = playerID
-local voteData = {}
+--local voteData = {}
 
 -- Table of banned skills
-local bannedSkills = {}
+--local bannedSkills = {}
 
 -- Skill list for a given player
-local skillList = {}
+--local skillList = {}
 
 -- List of skills for towers (per team)
-local towerSkills = {}
+--local towerSkills = {}
 
 -- List of skills for buildings (per team)
-local buildingSkills = {}
+--local buildingSkills = {}
 
 -- List of skills for creeps (per team)
-local creepSkills = {}
+--local creepSkills = {}
 
 -- The total amount banned by each player
-local totalBans = {}
+--local totalBans = {}
 
 -- When the hero selection started
-local heroSelectionStart = nil
+--local heroSelectionStart = nil
 
 -- A list of heroes that were picking before the game started
-local brokenHeroes = {}
+--local brokenHeroes = {}
 
 -- Stick skills into slots
-local handled = {}
-local handledPlayerIDs = {}
+--local handled = {}
+--local handledPlayerIDs = {}
 
 -- Teams which have requested extra time
-local extraTime = {}
+--local extraTime = {}
 
 -- A list of warning attached to skills
-local skillWarnings
+--local skillWarnings
 
 -- List of tower connectors
-local towerConnectors = {}
+--local towerConnectors = {}
 
 --[[
     STATUS VARIABLES
 ]]
 
 -- User is trying to pick
-local hasHero = {}
-local hasBanned = {}
-local banChance = {}
-local bannedHeroes = {}
+--local hasHero = {}
+--local hasBanned = {}
+--local banChance = {}
+--local bannedHeroes = {}
 
 --[[
     CONSTANTS
 ]]
-local SPLIT_CHAR = string.char(7)
+--local SPLIT_CHAR = string.char(7)
 
-local SERVER_COMMAND = 0x10000000
-local CLIENT_COMMAND = 268435456--0x80000000
+--local SERVER_COMMAND = 0x10000000
+--local CLIENT_COMMAND = 268435456--0x80000000
 
 --[[
     LOAD EXTERNAL OPTIONS
 ]]
 
 -- Check for options module
-local patchOptions = false
+--local patchOptions = false
 --if Options then
     --[[ CURRENTLY NOT NEEDED, RECODE THIS IF NEEDED
     -- Woot, load the options :)
@@ -439,19 +432,19 @@ end
 ]]
 
 -- This will contain the total number of votable options
-local totalVotableOptions = 0
+--local totalVotableOptions = 0
 
 -- Load voting options
-local votingList = LoadKeyValues('scripts/kv/voting.kv');
+--local votingList = LoadKeyValues('scripts/kv/voting.kv');
 
 -- This will store the total number of choices for each option
-local totalChoices = {}
+--local totalChoices = {}
 
 -- Are we still voting?
-local stillVoting = true
+--local stillVoting = true
 
 -- Generate choices index
-for k,v in pairs(votingList) do
+--[[for k,v in pairs(votingList) do
     -- Count number of choices
     local total = 0
     for kk, vv in pairs(v.options) do
@@ -463,26 +456,26 @@ for k,v in pairs(votingList) do
 
     -- We found another option
     totalVotableOptions = totalVotableOptions+1
-end
+end]]
 
 -- Slot types
-local slotTypes = {}
+--[[local slotTypes = {}
 
 local SLOT_TYPE_ABILITY = '1'
 local SLOT_TYPE_ULT = '2'
 local SLOT_TYPE_EITHER = '3'
-local SLOT_TYPE_NEITHER = '4'
+local SLOT_TYPE_NEITHER = '4']]
 
 -- Ban List
-local banList = {}
+--[[local banList = {}
 local wtfAutoBan = {}
 local noTower = {}
 local noTowerAlways = {}
 local noBear = {}
-local noHero = {}
+local noHero = {}]]
 
 -- Load and process the bans
-(function()
+--[[(function()
     -- Load in the ban list
     local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
 
@@ -540,10 +533,10 @@ local noHero = {}
             end
         end
     end
-end)()
+end)()]]
 
 -- Ability stuff
-local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+--[[local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
 local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 local iconLookup = {}
 local skillLookup = {}
@@ -613,13 +606,13 @@ for k,v in pairs(abs) do
             iconLookup[k] = k
         end
     end
-end
+end]]
 
 -- Create list of spells with certain attributes
-util:SetupSpellProperties(abs)
+--util:SetupSpellProperties(abs)
 
 -- Load the hero KV file
-local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
+--[[local heroKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- Build a table of valid hero IDs to pick from, and skill owners
 local validHeroIDs = {}
@@ -653,24 +646,24 @@ end
 local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
 for k,v in pairs(ownersKV) do
     skillOwningHero[k] = tonumber(v);
-end
+end]]
 
 -- Change random seed
 local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
 math.randomseed(tonumber(timeTxt))
 
 -- These numbers are used to encode radiant / dire skills
-local encodeRadiant = 55--math.random(50,100)
-local encodeDire = 55--math.random(50,100)
+--local encodeRadiant = 55--math.random(50,100)
+--local encodeDire = 55--math.random(50,100)
 
 -- Should we hide the enemy team's skills
-local hideSkills = true
+--local hideSkills = true
 
 -- Stores player locks
-local playerLocks = {}
+--local playerLocks = {}
 
 -- Stores when the next timer should end (-1 = no timer)
-local endOfTimer = -1
+--local endOfTimer = -1
 
 -- Version stuff
 local versionFile = LoadKeyValues('addoninfo.txt')
@@ -681,7 +674,7 @@ function getLodVersion()
     return versionNumber
 end
 
-isUlt = function(skillName)
+--[[isUlt = function(skillName)
     -- Check if it is tagged as an ulty
     if abs[skillName] and abs[skillName].AbilityType and abs[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
         return true
@@ -829,7 +822,7 @@ end
     Message Senders
 ]]
 
-sendChatMessage = function(playerID, msg, args)
+--[[sendChatMessage = function(playerID, msg, args)
     -- Fire the event
      FireGameEvent('lod_msg', {
         playerID = playerID,
@@ -876,7 +869,7 @@ alreadyHas = function(skillList, skill)
     return false
 end
 
-CheckBans = function(skillList2, slotNumber, skillName, playerID)
+--[[CheckBans = function(skillList2, slotNumber, skillName, playerID)
     -- Old fashion bans
     if isSkillBanned(skillName) then
         return '#lod_skill_banned'
@@ -959,8 +952,8 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
                 -- Ignore the skill in our current slot
                 if i ~= slotNumber then
                     -- Check the banned combo
-                    if banList[skillName][skillList2[i]] then
-                        return '{0} <font color=\"#EB4B4B\">{1}</font> can not be used with {2}<font color=\"#EB4B4B\">{3}</font>', {
+                    if banList[skillName][skillList2[i]] --then
+                        --[[return '{0} <font color=\"#EB4B4B\">{1}</font> can not be used with {2}<font color=\"#EB4B4B\">{3}</font>', {
                             getSpellIcon(skillName),
                             tranAbility(skillName),
                             getSpellIcon(skillList2[i]),
@@ -979,7 +972,7 @@ CheckBans = function(skillList2, slotNumber, skillName, playerID)
 end
 
 -- Sets up slot types
-setupSlotType = function(playerID)
+--[[setupSlotType = function(playerID)
     if slotTypes[playerID] then return end
 
     -- Create store for this player
@@ -1028,7 +1021,7 @@ setupSlotType = function(playerID)
     end
 end
 
-setupSlotTypes = function()
+--[[setupSlotTypes = function()
     local maxPlayers = 10
 
     for i=0,maxPlayers-1 do
@@ -1040,7 +1033,7 @@ setupSlotTypes = function()
     end
 end
 
-findRandomSkill = function(playerID, interface, slotNumber, filter)
+--[[findRandomSkill = function(playerID, interface, slotNumber, filter)
     -- Workout if we can put an ulty here, or a skill
     local canUlt
     local canSkill
@@ -1106,7 +1099,7 @@ findRandomSkill = function(playerID, interface, slotNumber, filter)
 end
 
 -- Ensures the person has all their slots used
-validateBuild = function(playerID)
+--[[validateBuild = function(playerID)
     -- Ensure it exists
     skillList[playerID] = skillList[playerID] or {}
 
@@ -1170,7 +1163,7 @@ slotTypeString = function (playerID, interface)
 end
 
 -- Prints options to the given player
-printOptionsToPlayer = function(playerID)
+--printOptionsToPlayer = function(playerID)
     -- Announce results
     --[[sendChatMessage(playerID, '#lod_results', {
         OptionManager:GetOption('maxSlots'),
@@ -1314,10 +1307,10 @@ printOptionsToPlayer = function(playerID)
     if OptionManager:GetOption('maxSlots') > 6 then
         sendChatMessage(playerID, '#lod_slotWarning')
     end]]
-end
+--end
 
 -- Takes the current gamemode number, and sets the required settings
-setupGamemodeSettings = function()
+--setupGamemodeSettings = function()
     -- Default to not using the draft array
     --[[OptionManager:SetOption('useDraftArray', false)
 
@@ -1487,10 +1480,10 @@ setupGamemodeSettings = function()
 
     -- Print the options
     printOptionsToPlayer(-1)]]
-end
+--end
 
 -- Called when picking ends
-postGamemodeSettings = function()
+--postGamemodeSettings = function()
     -- All Random
     --[[if OptionManager:GetOption('gamemode') == GAMEMODE_AR then
         -- Create random builds
@@ -1514,10 +1507,10 @@ postGamemodeSettings = function()
             end
         end
     end]]
-end
+--end
 
 -- Returns the current options encoded as a string
-getOptionsString = function()
+--[[getOptionsString = function()
     local str = ''
 
     for k,v in pairs(voteData[OptionManager:GetOption('slaveID')] or {}) do
@@ -1570,7 +1563,7 @@ valueToOption = function(optionNumber, value)
 end
 
 -- This function tallys the votes, and sets the options
-finishVote = function()
+--finishVote = function()
     -- Create container for all the votes
     --[[local votes = {}
     for i=0,totalVotableOptions-1 do
@@ -1781,10 +1774,10 @@ finishVote = function()
 
     -- Setup gamemode specific settings
     --setupGamemodeSettings()
-end
+--end
 
 -- A fix for source1 backdoor protection
-backdoorFix = function()
+--[[backdoorFix = function()
     local ents = Entities:FindAllByClassname('npc_dota_tower')
 
     -- List of towers to not protect
@@ -1844,7 +1837,7 @@ backdoorFix = function()
 end
 
 -- A function that returns true if the given skill is valid for bots
-botSkillsOnly = function(skillName)
+--[[botSkillsOnly = function(skillName)
     -- We require a random passive
     if isPassive(skillName) then
         return true
@@ -1856,7 +1849,7 @@ botSkillsOnly = function(skillName)
 
     -- Not a valid skill
     return false
-end
+end]]
 
 -- Gives a free courier
 local givenFreeCouriers = {}
@@ -1911,35 +1904,35 @@ handleFreeScepter = function(unit)
 end
 
 -- Buffs a hero
-handleHeroBuffing = function(hero)
+--[[handleHeroBuffing = function(hero)
     -- Hero buffing
     if OptionManager:GetOption('buffHeroes') > 0 then
         local healthItem = getHealthBuffer()
         healthItem:ApplyDataDrivenModifier(hero, hero, "modifier_health_mod_"..OptionManager:GetOption('buffHeroes'), {})
     end
-end
+end]]
 
 -- Gets the health buffing item
-local healthBuffer
+--[[local healthBuffer
 getHealthBuffer = function()
     if not IsValidEntity(healthBuffer) then
         healthBuffer = CreateItem("item_health_modifier", nil, nil)
     end
 
     return healthBuffer
-end
+end]]
 
 -- Called when LoD starts
 function lod:InitGameMode()
     print('\n\nLegends of dota started! (v'..getLodVersion()..')')
-    GameRules:GetGameModeEntity():SetThink('OnThink', self, 'GlobalThink', 0.25)
-    GameRules:GetGameModeEntity():SetThink('OnEmitStateInfo', self, 'EmitStateInfo', 5)
+    --GameRules:GetGameModeEntity():SetThink('OnThink', self, 'GlobalThink', 0.25)
+    --GameRules:GetGameModeEntity():SetThink('OnEmitStateInfo', self, 'EmitStateInfo', 5)
 
     -- Override source1 hooks
-    SkillManager:overrideHooks()
+    --SkillManager:overrideHooks()
 
     -- Set the selection time
-    GameRules:SetHeroSelectionTime(60)
+    --GameRules:SetHeroSelectionTime(60)
     --GameRules:SetSameHeroSelectionEnabled(false)    -- Default to off, we will turn it on if it is enabled in the options
 
     -- Setup standard rules
@@ -1968,7 +1961,7 @@ function lod:InitGameMode()
     end)
 
     -- Setup console commands
-    registerConsoleCommands()
+    --registerConsoleCommands()
 
     -- Setup load helper
     --loadhelper.init()
@@ -2105,7 +2098,7 @@ function lod:FilterModifyGold(filterTable)
 end
 
 -- Emits state info every 5 seconds
-function lod:OnEmitStateInfo()
+--[[function lod:OnEmitStateInfo()
     -- Build the state table
     local s = {
         -- Add the version
@@ -2332,14 +2325,14 @@ function lod:OnEmitStateInfo()
 
     -- Run again after a delay
     return 5
-end
+end]]
 
 -- Thinker function, run roughly once every second
-local fixedBackdoor = false
-local doneBotStuff = false
-local patchedOptions = false
-local shownHosterIssue = false
-function lod:OnThink()
+--local fixedBackdoor = false
+--local doneBotStuff = false
+--local patchedOptions = false
+--local shownHosterIssue = false
+--function lod:OnThink()
     -- Source1 fix to the backdoor issues
     --[[if not fixedBackdoor and GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         -- Fix tower skills
@@ -2552,11 +2545,11 @@ function lod:OnThink()
 
     -- We should never get here
     print('WARNING: Unknown stage: '..currentStage)]]
-end
+--end
 
 -- Sets ownership of tower
 -- Doesn't appear to work :O
-setTowerOwnership = function()
+--[[setTowerOwnership = function()
     -- Ensure tower skills are allowed
     if not OptionManager:GetOption('allowTowerSkills') then return end
     if 1 ==1 then return end -- disabled
@@ -2576,10 +2569,10 @@ setTowerOwnership = function()
             end
         end
     end
-end
+end]]
 
 -- Upgrades towers
-upgradeTowers = function()
+--[[upgradeTowers = function()
     -- Grab the health buffer
     local buffer = getHealthBuffer()
 
@@ -2623,10 +2616,10 @@ upgradeTowers = function()
             buffer:ApplyDataDrivenModifier(fort, fort, "modifier_other_health_mod_"..buffBuildings, {})
         end
     end
-end
+end]]
 
 -- Applies tower skills if they are allowed
-applyTowerSkills = function()
+--[[applyTowerSkills = function()
     -- Ensure tower skills are allowed
     if not OptionManager:GetOption('allowTowerSkills') then return end
 
@@ -2669,10 +2662,10 @@ applyTowerSkills = function()
 
     -- Log that this was successful
     print('Done allocating tower skills!')
-end
+end]]
 
 -- Applies building skills if they are allowed
-applyBuildingSkills = function()
+--[[applyBuildingSkills = function()
     -- Ensure building skills are allowed
     if not OptionManager:GetOption('allowBuildingSkills') then return end
 
@@ -2719,10 +2712,10 @@ applyBuildingSkills = function()
 
     -- Log that this was successful
     print('Done allocating building skills!')
-end
+end]]
 
 -- Prepares creep skills
-prepareCreepSkills = function()
+--[[prepareCreepSkills = function()
     -- Ensure there isn't one sided building skills
     if not creepSkills[DOTA_TEAM_BADGUYS] then
         if creepSkills[DOTA_TEAM_GOODGUYS] then
@@ -2741,10 +2734,10 @@ prepareCreepSkills = function()
             end
         end
     end
-end
+end]]
 
 -- Applies skills onto the given creep
-applyCreepSkills = function(creep)
+--[[applyCreepSkills = function(creep)
     -- Ensure building skills are allowed
     if not OptionManager:GetOption('allowCreepSkills') then return end
 
@@ -2753,15 +2746,16 @@ applyCreepSkills = function(creep)
     if skillz then
         SkillManager:ApplyBuild(creep, skillz, true)
     end
-end
+end]]
 
 -- When a hero spawns
-local specialAddedSkills = {}
-local mainHeros = {}
+--local specialAddedSkills = {}
+--local mainHeros = {}
 local givenBonuses = {}
-local doneBots = {}
-local resetGold = {}
-local spiritBears = {}
+--local doneBots = {}
+--local resetGold = {}
+--local spiritBears = {}
+local handled = {}
 function listenToNPCs()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
@@ -2789,7 +2783,7 @@ function listenToNPCs()
                 local playerID = spawnedUnit:GetPlayerID()
 
                 -- Handle hero buffing
-                handleHeroBuffing(spawnedUnit)
+                --handleHeroBuffing(spawnedUnit)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
@@ -2831,7 +2825,7 @@ function listenToNPCs()
                 end
 
                 -- Give bots skills differently
-                if PlayerResource:IsFakeClient(playerID) then
+                --[[if PlayerResource:IsFakeClient(playerID) then
                     if not doneBots[playerID] then
                         doneBots[playerID] = true
                         skillList[playerID] = nil
@@ -2895,10 +2889,10 @@ function listenToNPCs()
                     SkillManager:ApplyBuild(spawnedUnit, skillList[playerID][SKILL_LIST_YOUR])
 
                     return
-                end
+                end]]
 
                 -- Check if the game has started yet
-                if currentStage > STAGE_PICKING then
+                --[[if currentStage > STAGE_PICKING then
                     -- Validate the build
                     validateBuild(playerID)
 
@@ -2916,11 +2910,11 @@ function listenToNPCs()
 
                     -- Remove their skills
                     SkillManager:RemoveAllSkills(spawnedUnit)
-                end
+                end]]
             end
 
             -- Check if we should apply custom bear skills
-            if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
+            --[[if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
                 -- Kill server if no one is on it anymore
                 GameRules:GetGameModeEntity():SetThink(function()
                     -- Ensure the unit is valid still
@@ -2953,10 +2947,10 @@ function listenToNPCs()
                         end
                     end
                 end, 'spiritBear'..DoUniqueString('spiritBear'), 0.1, nil)
-            end
+            end]]
 
             -- Creep buffing
-            local unitName = spawnedUnit:GetUnitName()
+            --[[local unitName = spawnedUnit:GetUnitName()
             if string.find(unitName, 'creep') or string.find(unitName, 'neutral') or string.find(unitName, 'siege') or string.find(unitName, 'roshan') then
                 if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
                     -- Neutral Creep
@@ -2980,7 +2974,7 @@ function listenToNPCs()
 
                 -- Apply creep skills
                 applyCreepSkills(spawnedUnit)
-            end
+            end]]
         end
     end, nil)
 end
@@ -2998,7 +2992,7 @@ ListenToGameEvent('dota_non_player_used_ability', function(keys)
     print('hmmm 2')
 end, nil)]]
 
-ListenToGameEvent('entity_hurt', function(keys)
+--[[ListenToGameEvent('entity_hurt', function(keys)
     -- Grab the entity that was hurt
     local ent = EntIndexToHScript(keys.entindex_killed)
 
@@ -3012,7 +3006,7 @@ ListenToGameEvent('entity_hurt', function(keys)
             tower:RemoveModifierByName('modifier_invulnerable')
         end
     end
-end, nil)
+end, nil)]]
 
 ListenToGameEvent('entity_killed', function(keys)
     -- Ensure our respawn modifier is in effect
@@ -3046,7 +3040,7 @@ ListenToGameEvent('entity_killed', function(keys)
 end, nil)
 
 -- Levels up a player's bear skills
-levelSpiritSkills = function(spiritBear, skillz, playerLevel)
+--[[levelSpiritSkills = function(spiritBear, skillz, playerLevel)
     for i=1,OptionManager:GetOption('maxSlots') do
         local skillName = skillz[i]
 
@@ -3087,10 +3081,10 @@ levelSpiritSkills = function(spiritBear, skillz, playerLevel)
             end
         end
     end
-end
+end]]
 
 -- Auto level bot skills <3
-local botUsedPoints = {}
+--[[local botUsedPoints = {}
 ListenToGameEvent('dota_player_gained_level', function(keys)
     -- Check every player
     for playerID = 0,9 do
@@ -3142,10 +3136,10 @@ ListenToGameEvent('dota_player_gained_level', function(keys)
             end
         end
     end
-end, nil)
+end, nil)]]
 
 -- Returns how many more people need to lock their skills
-local function countLocks()
+--[[local function countLocks()
     local locksLeft = 0
     for i=0,9 do
         if PlayerResource:GetConnectionState(i) == 2 then
@@ -3156,18 +3150,18 @@ local function countLocks()
     end
 
     return locksLeft
-end
+end]]
 
 -- Tells players about a given player's current lock status
-fireLockChange = function(playerID)
+--[[fireLockChange = function(playerID)
     FireGameEvent('lod_lock', {
         slot = getPlayerSlot(playerID),
         lock = playerLocks[playerID] or 0
     })
-end
+end]]
 
 -- Do a lock for the given player
-doLock = function(playerID)
+--[[doLock = function(playerID)
     -- Is it valid to use this?
     if currentStage ~= STAGE_BANNING and currentStage ~= STAGE_PICKING and currentStage ~= STAGE_HERO_BANNING then return end
 
@@ -3214,10 +3208,10 @@ doLock = function(playerID)
         })
     end
     fireLockChange(playerID)
-end
+end]]
 
 -- Register server hax
-registerServerCommands = function()
+--[[registerServerCommands = function()
     Convars:RegisterCommand('lod_applybuild', function(name, target, source)
         -- Server only command!
         if not Convars:GetCommandClient() then
@@ -3369,7 +3363,7 @@ registerServerCommands = function()
 end
 
 -- Registers hero banning
-registerHeroBanning = function()
+--registerHeroBanning = function()
     -- Source1 hero banning
     --[[if GameRules:isSource1() and OptionManager:GetOption('enableHeroBanning') then
         Convars:RegisterCommand('dota_select_hero', function(name, heroName)
@@ -3493,10 +3487,10 @@ registerHeroBanning = function()
             end
         end, 'hero selection override', CLIENT_COMMAND)
     end]]
-end
+--end
 
 -- Register fancy functions
-registerFancyConsoleCommands = function()
+--[[registerFancyConsoleCommands = function()
     -- Swap two slots
     Convars:RegisterCommand('lod_swap_slots', function(name, theirInterface, slot1, slot2)
         -- Input validation
@@ -3897,7 +3891,7 @@ registerFancyConsoleCommands = function()
 end
 
 -- Init console commands
-registerConsoleCommands = function()
+--[[registerConsoleCommands = function()
     if IsDedicatedServer() then
         registerServerCommands()
     end
@@ -4279,10 +4273,10 @@ registerConsoleCommands = function()
     end, 'User asked for decoding info', CLIENT_COMMAND)
 
     print('LoD client commands loaded!')
-end
+end]]
 
 -- Attempts to pick a random hero, returns 'random' if it fails
-getRandomHeroName = function()
+--[[getRandomHeroName = function()
     local choices = {}
 
     for k,v in pairs(validHeroNames) do
@@ -4327,12 +4321,12 @@ buildAllowedTabsString = function()
     end
 
     allowedTabsString = str or ''
-end
+end]]
 
 --[[
     Special Gamemodes
 ]]
-loadSpecialGamemode = function()
+--[[loadSpecialGamemode = function()
     if OptionManager:GetOption('cyclingBuilds') then
         -- Settings for cycling skills
         local minTime = 1           -- Min wait time before trying again
@@ -4387,10 +4381,10 @@ loadSpecialGamemode = function()
 
         Say(nil, 'Cycling builds was enabled. You will get a new build randomly every so often.', false)
     end
-end
+end]]
 
 -- Define skill warnings
-skillWarnings = {
+--[[skillWarnings = {
     life_stealer_infest = {getSpellIcon('life_stealer_infest'), tranAbility('life_stealer_infest'), getSpellIcon('life_stealer_consume'), tranAbility('life_stealer_consume')},
     shadow_demon_demonic_purge = {getSpellIcon('shadow_demon_demonic_purge'), tranAbility('shadow_demon_demonic_purge'), transHero('shadow_demon')},
     phantom_lancer_phantom_edge = {getSpellIcon('phantom_lancer_phantom_edge'), tranAbility('phantom_lancer_phantom_edge'), getSpellIcon('phantom_lancer_juxtapose'), tranAbility('phantom_lancer_juxtapose')},
@@ -4401,7 +4395,7 @@ skillWarnings = {
     nyx_assassin_burrow = {getSpellIcon('nyx_assassin_burrow'), tranAbility('nyx_assassin_burrow'), getSpellIcon('nyx_assassin_vendetta'), tranAbility('nyx_assassin_vendetta')},
     lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('lone_druid_true_form')},
     phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
-}
+}]]
 
 --[[if GameRules:isSource1() then
     skillWarnings.ogre_magi_multicast_lod = {getSpellIcon('ogre_magi_multicast'), tranAbility('ogre_magi_multicast')}

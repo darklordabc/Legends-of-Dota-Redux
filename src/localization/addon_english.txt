@@ -201,4 +201,13 @@
     "lod_cat_aoe_attack"                            "AoE Attack"
     "lod_cat_attack_modifier"                       "Attack Modifier"
     "lod_cat_stun"                                  "Stun"
+
+    // Error messages
+    "lodFailedToFindHero"                           "You tried to select an invalid hero."
+    "lodFailedToChangeAttr"                         "The option to change your primary attribute is disabled."
+    "lodFailedToChangeAttrInvalid"                  "You tried to select an invalid primary attribute."
+    "lodFailedInvalidSlot"                          "You tried to place a skill into an invalid slot number."
+    "lodFailedInvalidAbility"                       "'{abilityName}' is not a valid ability."
+    "lodFailedTooManyUlts"                          "You have {maxUlts}/{maxUlts} ultimate abilities."
+    "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} reguluar abilities."
 }

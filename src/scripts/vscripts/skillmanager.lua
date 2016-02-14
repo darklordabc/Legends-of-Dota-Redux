@@ -9,6 +9,18 @@ local util = require('util')
 -- Keeps track of what skills a given hero has
 local currentSkillList = {}
 
+-- Contains ability info
+local mainAbList = LoadKeyValues('scripts/npc/npc_abilities.txt')
+local customAbList = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+
+-- Calculate attributes on skills (channelled, etc, for multicast)
+util:SetupSpellProperties(mainAbList)
+
+-- Merge custom abilities into main abiltiies file
+for k,v in pairs(customAbList) do
+    mainAbList[k] = v
+end
+
 -- Contains info on heroes
 local heroListKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
@@ -692,9 +704,9 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     end
 end
 
-function skillManager:overrideHooks()
+--function skillManager:overrideHooks()
     -- Implement the get ability by slot index method
-    if GameRules:isSource1() then
+    --[[if GameRules:isSource1() then
         function CDOTA_BaseNPC:GetAbilityByIndex(index)
             if currentSkillList[self] then
                 local skillName = currentSkillList[self][index]
@@ -703,7 +715,57 @@ function skillManager:overrideHooks()
                 end
             end
         end
+    end]]
+--end
+
+-- Grabs an object that has a new build with an ability slot changed
+function skillManager:grabNewBuild(originalBuild, slotNumber, newAbility)
+    local build = {}
+    for k,v in pairs(originalBuild) do
+        build[k] = v
     end
+
+    build[slotNumber] = newAbility
+
+    return build
+end
+
+-- Checks the number of ults in a build
+function skillManager:hasTooMany(build, maxCount, checkFunction)
+    -- Check stuff
+    local totalSoFar = 0
+    for k,v in pairs(build) do
+        if checkFunction(v) then
+            totalSoFar = totalSoFar + 1
+
+            if totalSoFar > maxCount then
+                -- Build failed
+                return true
+            end
+        end
+    end
+
+    -- Must be a valid build
+    return false
+end
+
+-- Returns true if a skill is an ultimate
+function skillManager:isUlt(skillName)
+    -- Check if it is tagged as an ulty
+    if mainAbList[skillName] and mainAbList[skillName].AbilityType and mainAbList[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
+        return true
+    end
+
+    return false
+end
+
+-- Returns true if a skill is a passive
+function skillManager:isPassive()
+    if mainAbList[skillName] and mainAbList[skillName].AbilityBehavior and string.match(mainAbList[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') and not string.match(mainAbList[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE') then
+        return true
+    end
+
+    return false
 end
 
 -- Attempt to store the precacher of everything

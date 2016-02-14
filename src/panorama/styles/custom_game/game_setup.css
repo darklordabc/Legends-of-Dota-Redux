@@ -8,6 +8,79 @@
 }
 
 /*
+    Notifications
+*/
+
+#lodNotificationArea {
+    z-index: 9999;
+    horizontal-align: right;
+    margin-right: 8px;
+    margin-top: 8px;
+    flow-children: down;
+}
+
+.lodNotification {
+    width: 240px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 8px;
+
+    margin-bottom: 8px;
+
+    opacity: 0.0;
+    transform: translateX(100%);
+
+    transition-property: transform,opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.lodNotificationLoading {
+    transform: translateX(0%);
+    opacity: 0.5;
+}
+
+.lodNotificationRemoving {
+    opacity: 0.0;
+}
+
+.lodSuccess {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.lodSuccess Label {
+    color: #3c763d;
+}
+
+.lodInfo {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.lodInfo Label {
+    color: #31708f;
+}
+
+.lodWarning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.lodWarning Label {
+    color: #8a6d3b;
+}
+
+.lodDanger {
+    background-color: #f2dede;
+    border-color: #EBCCD1;
+}
+
+.lodDanger Label {
+    color: #a94442;
+}
+
+/*
     Team Selection
 */
 

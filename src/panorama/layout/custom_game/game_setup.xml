@@ -8,6 +8,10 @@
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
     </scripts>
     <Panel class="lodOptionsInterface">
+        <Panel id="lodNotificationArea">
+        </Panel>
+
+
         <Panel id="mainSelectionRoot">
             <Panel id="mainTeamContainer">
                 <Panel id="theRadiant" class="theTeamTopLevel" onactivate="onJoinRadiantPressed()">

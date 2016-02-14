@@ -4,6 +4,7 @@ local network = require('network')
 local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
 local Timers = require('easytimers')
+local SpellFixes = require('spellfixes')
 
 --[[
     Main pregame, selection related handler
@@ -27,6 +28,9 @@ function Pregame:init()
     self.selectedHeroes = {}
     self.selectedPlayerAttr = {}
     self.selectedSkills = {}
+
+    -- Load troll combos
+    self:loadTrollCombos()
 
     -- Init options
     self:initOptionSelector()
@@ -269,6 +273,9 @@ function Pregame:networkHeroes()
         network:setFlagData(abilityName, flagData)
     end
 
+    -- Store the inverse flags list
+    self.flagsInverse = flagsInverse
+
     local allowedHeroes = {}
     self.heroPrimaryAttr = {}
 
@@ -400,6 +407,71 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         -- Option values are validated at a later stage
 
         self:setOption(optionName, optionValue)
+    end
+end
+
+-- Load up the troll combo bans list
+function Pregame:loadTrollCombos()
+    -- Load in the ban list
+    local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+
+    -- Store no multicast
+    SpellFixes:SetNoCasting(tempBanList.noMulticast, tempBanList.noWitchcraft)
+
+    --local noTower = tempBanList.noTower
+    --local noTowerAlways = tempBanList.noTowerAlways
+    --local noBear = tempBanList.noBear
+
+    -- Create the stores
+    self.banList = {}
+    self.wtfAutoBan = tempBanList.wtfAutoBan
+    self.noHero = tempBanList.noHero
+
+    -- Bans a skill combo
+    local function banCombo(a, b)
+        -- Ensure ban lists exist
+        self.banList[a] = self.banList[a] or {}
+        self.banList[b] = self.banList[b] or {}
+
+        -- Store the ban
+        self.banList[a][b] = true
+        self.banList[b][a] = true
+    end
+
+    -- Loop over the banned combinations
+    for skillName, group in pairs(tempBanList.BannedCombinations) do
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Function to do a category ban
+    local doCatBan
+    doCatBan = function(skillName, cat)
+        for skillName2,sort in pairs(tempBanList.Categories[cat] or {}) do
+            if sort == 1 then
+                banCombo(skillName, skillName2)
+            elseif sort == 2 then
+                doCatBan(skillName, skillName2)
+            else
+                print('Unknown category banning sort: '..sort)
+            end
+        end
+    end
+
+
+    -- Loop over category bans
+    for skillName,cat in pairs(tempBanList.CategoryBans) do
+        doCatBan(skillName, cat)
+    end
+
+    -- Ban the group bans
+    for _,group in pairs(tempBanList.BannedGroups) do
+        for skillName,__ in pairs(group) do
+            for skillName2,___ in pairs(group) do
+                banCombo(skillName, skillName2)
+            end
+        end
     end
 end
 
@@ -993,9 +1065,12 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     -- Validate hero
     if not self.allowedHeroes[heroName] then
-        print('Failed to find hero!')
+        -- Add an error
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedToFindHero'
+        })
 
-        -- TODO: Show some kind of error
         return
     end
 
@@ -1032,14 +1107,22 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
 
     -- Validate that the option is enabled
     if self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 0 then
-        -- TODO: Show some kind of error
+        -- Add an error
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedToChangeAttr'
+        })
 
         return
     end
 
     -- Validate the new attribute
     if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' then
-        -- TODO: Show some kind of error
+        -- Add an error
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedToChangeAttrInvalid'
+        })
 
         return
     end
@@ -1063,29 +1146,90 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
-    local slot = args.slot
+    local slot = math.floor(tonumber(args.slot))
     local abilityName = args.abilityName
 
-    -- TODO: Validate the slot is a valid slot index
-
-    -- TODO: Validate ability is an actual ability
-
-    -- TODO: Validate the ability isn't already banned
-
-    -- TODO: Validate that the ability is allowed in this slot (ulty count)
-
-    -- TODO: Validate that it isn't a troll build
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
 
     -- Ensure a container for this player exists
     self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
 
+    local build = self.selectedSkills[playerID]
+
+    -- Grab what the new build would be, to run tests against it
+    local newBuild = SkillManager:grabNewBuild(build, slot, abilityName)
+
+    -- Validate the slot is a valid slot index
+    if slot < 1 or slot > maxSlots then
+        -- Invalid slot number
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedInvalidSlot'
+        })
+
+        return
+    end
+
+    -- Validate ability is an actual ability
+    if not self.flagsInverse[abilityName] then
+        -- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedInvalidAbility',
+            params = {
+                ['abilityName'] = abilityName
+            }
+        })
+
+        return
+    end
+
+    -- TODO: Validate the ability isn't already banned
+
+    -- Validate that the ability is allowed in this slot (ulty count)
+    if SkillManager:hasTooMany(newBuild, maxUlts, function(ab)
+        return SkillManager:isUlt(ab)
+    end) then
+        -- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedTooManyUlts',
+            params = {
+                ['maxUlts'] = maxUlts
+            }
+        })
+
+        return
+    end
+
+    -- Validate that the ability is allowed in this slot (regular count)
+    if SkillManager:hasTooMany(newBuild, maxRegulars, function(ab)
+        return not SkillManager:isUlt(ab)
+    end) then
+        -- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedTooManyRegulars',
+            params = {
+                ['maxRegulars'] = maxRegulars
+            }
+        })
+
+        return
+    end
+
+    -- Validate that it isn't a troll build
+
+
     -- Is there an actual change?
-    if self.selectedSkills[playerID][slot] ~= abilityName then
+    if build[slot] ~= abilityName then
         -- New ability in this slot
-        self.selectedSkills[playerID][slot] = abilityName
+        build[slot] = abilityName
 
         -- Network it
-        network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+        network:setSelectedAbilities(playerID, build)
     end
 end
 
@@ -1218,6 +1362,25 @@ function Pregame:addExtraTowers()
                 end
             end
         end
+
+        -- Hook the towers properly
+        local this = self
+
+        ListenToGameEvent('entity_hurt', function(keys)
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+
+            -- Check for tower connections
+            if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
+                local tower = this.towerConnectors[ent]
+                this.towerConnectors[ent] = nil
+
+                if IsValidEntity(tower) then
+                    -- Make it killable!
+                    tower:RemoveModifierByName('modifier_invulnerable')
+                end
+            end
+        end, nil)
     end
 end
 
