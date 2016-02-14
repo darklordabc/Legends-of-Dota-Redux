@@ -136,6 +136,12 @@
                         <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>
 
+                            <Label text="Category:"/>
+
+                            <Panel id="pickingPhaseTabFilterThingo">
+
+                            </Panel>
+
                             <Label text="Filter by name:"/>
                             <Panel class="lodSearchPanel">
                                 <TextEntry id="lodSkillSearchInput" multiline="false" textmode="normal" class="lodSearchText" />

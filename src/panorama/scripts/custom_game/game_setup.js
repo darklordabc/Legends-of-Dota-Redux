@@ -1375,25 +1375,58 @@ function OnSkillTabShown(tabName) {
         var searchText = '';
         var searchCategory = '';
 
+        var activeTabs = {
+            main: true,
+            neutral: true,
+            wraith: true,
+            OP: true
+        };
+
         var calculateFilters = function() {
+            // Array used to sort abilities
+            var toSort = [];
+
             // Loop over all abilties
             for(var abilityName in abilityStore) {
                 var ab = abilityStore[abilityName];
-                var shouldShow = true;
 
-                if(shouldShow && searchCategory.length > 0) {
-                    if(!flagDataInverse[abilityName][searchCategory]) {
+                if(ab != null) {
+                    var shouldShow = true;
+
+                    var cat = (flagDataInverse[abilityName] || {}).category;
+
+                    if(shouldShow && activeTabs[cat] == null) {
                         shouldShow = false;
                     }
-                }
 
-                if(shouldShow && searchText.length > 0) {
-                    if(abilityName.indexOf(searchText) == -1) {
-                        shouldShow = false;
+                    if(shouldShow && searchCategory.length > 0) {
+                        if(!flagDataInverse[abilityName][searchCategory]) {
+                            shouldShow = false;
+                        }
+                    }
+
+                    if(shouldShow && searchText.length > 0) {
+                        if(abilityName.indexOf(searchText) == -1) {
+                            shouldShow = false;
+                        }
+                    }
+
+                    ab.visible = shouldShow;
+
+                    if(shouldShow) {
+                        toSort.push(abilityName);
                     }
                 }
+            }
 
-                ab.visible = shouldShow;
+            // Do the sort
+            toSort.sort();
+
+            for(var i=1; i<toSort.length; ++i) {
+                var left = abilityStore[toSort[i-1]];
+                var right = abilityStore[toSort[i]];
+
+                con.MoveChildAfter(right, left);
             }
         }
 
@@ -1456,6 +1489,52 @@ function OnSkillTabShown(tabName) {
                 // Store a reference to it
                 abilityStore[abName] = abcon;
             })(abName);
+        }
+
+        /*
+            Add Skill Tab Buttons
+        */
+
+        var tabButtonsContainer = $('#pickingPhaseTabFilterThingo');
+
+        // List of tabs to show
+        var tabList = [
+            'main',
+            'neutral',
+            'wraith',
+            'OP'
+        ];
+
+        for(var i=0; i<tabList.length; ++i) {
+            // New script scope!
+            (function() {
+                var tabName = tabList[i];
+                var tabButton = $.CreatePanel('Button', tabButtonsContainer, 'tabButton_' + tabName);
+                tabButton.AddClass('lodSkillTabButton');
+
+                // Add the text
+                var tabLabel = $.CreatePanel('Label', tabButton, 'tabButton_text_' + tabName);
+                tabLabel.text = $.Localize('lodCategory_' + tabName);
+
+                tabButton.SetPanelEvent('onactivate', function() {
+                    // When it is activated!
+
+                    if(GameUI.IsControlDown()) {
+                        if(activeTabs[tabName]) {
+                            delete activeTabs[tabName];
+                        } else {
+                            activeTabs[tabName] = true;
+                        }
+                    } else {
+                        // Reset active tabs
+                        activeTabs = {};
+                        activeTabs[tabName] = true;
+                    }
+
+                    // Recalculate which skills should be shown
+                    calculateFilters();
+                });
+            })();
         }
     }
 
@@ -1685,8 +1764,6 @@ function buildOptionsCategories() {
 
                                 // Sets an option
                                 setOption(fieldName, fieldValue);
-
-                                $.Msg('Pushing option ' + fieldName + ' = ' + fieldValue);
                             });
                         break;
                     }

@@ -615,6 +615,23 @@
     padding-top: 4px;
 }
 
+#pickingPhaseTabFilterThingo {
+    flow-children: down;
+}
+
+.lodSkillTabButton {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    width: 320px;
+    padding: 4px;
+    margin-bottom: 2px;
+}
+
+.lodSkillTabButton Label {
+    color: #000000;
+    horizontal-align: right;
+}
+
 .lodMiniAbility {
     width: 32px;
     height: 32px;
