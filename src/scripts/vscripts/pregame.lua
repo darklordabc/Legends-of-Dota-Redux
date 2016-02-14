@@ -1243,6 +1243,45 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     end
 
     -- Is the ability in one of the allowed categories?
+    local cat = (self.flagsInverse[abilityName] or {}).category
+    if cat then
+        local allowed = true
+
+        if cat == 'main' then
+            allowed = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1
+        elseif cat == 'neutral' then
+            allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
+        elseif cat == 'wraith' then
+            allowed = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1
+        elseif cat == 'OP' then
+            allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 1
+        end
+
+        if not allowed then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedBannedCategory',
+                params = {
+                    ['cat'] = 'lodCategory_' .. cat,
+                    ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
+                }
+            })
+
+            return
+        end
+    else
+        -- Category not found, don't allow this skill
+
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedUnknownCategory',
+            params = {
+                ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
+            }
+        })
+
+        return
+    end
 
     -- Should we block troll combinations?
     if self.optionStore['lodOptionBanningBlockTrollCombos'] == 1 then

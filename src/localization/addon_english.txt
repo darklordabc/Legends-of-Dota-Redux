@@ -202,6 +202,12 @@
     "lod_cat_attack_modifier"                       "Attack Modifier"
     "lod_cat_stun"                                  "Stun"
 
+    // Categories
+    "lodCategory_main"                              "Hero Abilities"
+    "lodCategory_neutral"                           "Neutral Abilities"
+    "lodCategory_wraith"                            "Wraith Night Abilities"
+    "lodCategory_OP"                                "Over Powered Abilities"
+
     // Error messages
     "lodFailedToFindHero"                           "You tried to select an invalid hero."
     "lodFailedToChangeAttr"                         "The option to change your primary attribute is disabled."
@@ -211,4 +217,6 @@
     "lodFailedTooManyUlts"                          "You have {maxUlts}/{maxUlts} ultimate abilities."
     "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} reguluar abilities."
     "lodFailedTrollCombo"                           "'{ab1}' can not be picked with '{ab2}' because it is considered a troll combination and troll combinations have been banned."
+    "lodFailedUnknownCategory"                      "'{ab}' does not belong to a valid category of skills. (You will only see this error if LoD has been configured incorrectly)."
+    "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
 }
