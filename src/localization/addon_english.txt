@@ -115,7 +115,7 @@
     "lodOptionBanningMaxBans25"                     "25 Bans Per Player"
 
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
-    "lodOptionDesBanningUseBanList"                 "Ban Common OP Skills"
+    "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
@@ -219,4 +219,5 @@
     "lodFailedTrollCombo"                           "'{ab1}' can not be picked with '{ab2}' because it is considered a troll combination and troll combinations have been banned."
     "lodFailedUnknownCategory"                      "'{ab}' does not belong to a valid category of skills. (You will only see this error if LoD has been configured incorrectly)."
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
+    "lodFailedAlreadyGotSkill"                      "'{abilityName}' is already part of your build. You can not select the same ability twice."
 }

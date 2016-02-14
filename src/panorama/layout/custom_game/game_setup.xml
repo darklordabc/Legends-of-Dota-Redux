@@ -136,11 +136,7 @@
                         <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>
 
-                            <Label text="Category:"/>
-
-                            <Panel id="pickingPhaseTabFilterThingo">
-
-                            </Panel>
+                            <Panel id="pickingPhaseTabFilterThingo" />
 
                             <Label text="Filter by name:"/>
                             <Panel class="lodSearchPanel">

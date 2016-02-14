@@ -1242,6 +1242,22 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
+    -- Do they already have this ability?
+    for k,v in pairs(build) do
+        if k ~= slot and v == abilityName then
+            -- Invalid ability name
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedAlreadyGotSkill',
+                params = {
+                    ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+                }
+            })
+
+            return
+        end
+    end
+
     -- Is the ability in one of the allowed categories?
     local cat = (self.flagsInverse[abilityName] or {}).category
     if cat then

@@ -1536,6 +1536,9 @@ function OnSkillTabShown(tabName) {
                 });
             })();
         }
+
+        // Do initial calculation:
+        calculateFilters();
     }
 
     // No longewr the first call
