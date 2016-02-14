@@ -1242,6 +1242,8 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
+    -- Is the ability in one of the allowed categories?
+
     -- Should we block troll combinations?
     if self.optionStore['lodOptionBanningBlockTrollCombos'] == 1 then
         -- Validate that it isn't a troll build
