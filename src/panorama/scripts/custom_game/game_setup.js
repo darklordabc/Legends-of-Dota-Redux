@@ -878,6 +878,16 @@ var optionFieldMap = {};
 // Map of optionName -> Value
 var optionValueList = {};
 
+// Map of categories that are allowed to be picked from
+var allowedCategories = {};
+
+// Should we show banned / disallowed skills?
+var showBannedSkills = false;
+var showDisallowedSkills = false;
+
+// Used to calculate filters (stub function)
+var calculateFilters = function(){};
+
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -1354,6 +1364,20 @@ function showBuilderTab(tabName) {
     }
 }
 
+function toggleShowBanned() {
+    showBannedSkills = !showBannedSkills;
+
+    // Update filters
+    calculateFilters();
+}
+
+function toggleShowDisallowed() {
+    showDisallowedSkills = !showDisallowedSkills;
+
+    // Update filters
+    calculateFilters();
+}
+
 // When the skill tab is shown
 var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
@@ -1382,7 +1406,7 @@ function OnSkillTabShown(tabName) {
             OP: true
         };
 
-        var calculateFilters = function() {
+        calculateFilters = function() {
             // Array used to sort abilities
             var toSort = [];
 
@@ -1395,16 +1419,31 @@ function OnSkillTabShown(tabName) {
 
                     var cat = (flagDataInverse[abilityName] || {}).category;
 
+                    // Check if the category is banned
+                    if(shouldShow && !allowedCategories[cat]) {
+                        // If we should show banned skills
+                        if(showDisallowedSkills) {
+                            ab.SetHasClass('disallowedSkill', true);
+                        } else {
+                            shouldShow = false;
+                        }
+                    } else {
+                        ab.SetHasClass('disallowedSkill', false);
+                    }
+
+                    // Check if the tab is active
                     if(shouldShow && activeTabs[cat] == null) {
                         shouldShow = false;
                     }
 
+                    // Check if the search category is active
                     if(shouldShow && searchCategory.length > 0) {
                         if(!flagDataInverse[abilityName][searchCategory]) {
                             shouldShow = false;
                         }
                     }
 
+                    // Check if hte search text is active
                     if(shouldShow && searchText.length > 0) {
                         if(abilityName.indexOf(searchText) == -1) {
                             shouldShow = false;
@@ -2011,6 +2050,11 @@ function OnOptionChanged(table_name, key, data) {
         $('#mainSelectionRoot').SetHasClass('disallow_custom_settings', !allowCustomSettings);
     }
 
+    // Check for allowed categories changing
+    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedNeutralWraithNight' || key == 'lodOptionAdvancedOPAbilities') {
+        onAllowedCategoriesChanged();
+    }
+
     // Check if it's the number of slots allowed
     if(key == 'lodOptionCommonMaxSkills' || key == 'lodOptionCommonMaxSlots' || key == 'lodOptionCommonMaxUlts') {
         onMaxSlotsChanged();
@@ -2034,6 +2078,27 @@ function onMaxSlotsChanged() {
         } else {
             con.visible = false;
         }
+    }
+}
+
+function onAllowedCategoriesChanged() {
+    // Reset the allowed categories
+    allowedCategories = {};
+
+    if(optionValueList['lodOptionAdvancedHeroAbilities'] == 1) {
+        allowedCategories['main'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedNeutralAbilities'] == 1) {
+        allowedCategories['neutral'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedNeutralWraithNight'] == 1) {
+        allowedCategories['wraith'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {
+        allowedCategories['OP'] = true;
     }
 }
 

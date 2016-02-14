@@ -443,12 +443,14 @@
     opacity: .2;
     saturation: 0.0;
     wash-color: #FF5555FF;
+    border: 0px;
 }
 
 .disallowedSkill {
-    opacity: .2;
+    opacity: .1;
     saturation: 0.0;
     wash-color: #777777aa;
+    border: 0px;
 }
 
 .pickingPhaseAttr {
@@ -639,7 +641,7 @@
     margin-right: 4px;
     margin-bottom: 4px;
 
-    border: 1px solid #000000;
+    border: 1px solid #444444;
 }
 
 .lodSearchPanel {
