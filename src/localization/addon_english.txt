@@ -221,4 +221,6 @@
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
     "lodFailedAlreadyGotSkill"                      "'{abilityName}' is already part of your build. You can not select the same ability twice."
     "lodFailedSkillIsBanned"                        "'{abilityName}' is banned."
+    "lodFailedSwapSlotSameSlot"                     "You can not swap a slot with itself."
+    "lodFailedSwapSlotInvalidSlots"                 "Please select a valid slot to swap."
 }

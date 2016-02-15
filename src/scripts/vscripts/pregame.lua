@@ -79,6 +79,11 @@ function Pregame:init()
         this:onPlayerSelectAbility(eventSourceIndex, args)
     end)
 
+    -- Player wants to swap two slots
+    CustomGameEventManager:RegisterListener('lodSwapSlots', function(eventSourceIndex, args)
+        this:onPlayerSwapSlot(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 
@@ -1358,6 +1363,56 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         -- Network it
         network:setSelectedAbilities(playerID, build)
     end
+end
+
+-- Player wants to swap two slots
+function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
+    -- Ensure we are in the picking phase
+    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local slot1 = math.floor(tonumber(args.slot1))
+    local slot2 = math.floor(tonumber(args.slot2))
+
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    -- Ensure a container for this player exists
+    self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
+
+    local build = self.selectedSkills[playerID]
+
+    -- Ensure they are not the same slot
+    if slot1 == slot2 then
+    	-- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedSwapSlotSameSlot'
+        })
+
+        return
+    end
+
+    -- Ensure both the slots are valid
+    if slot1 < 1 or slot1 > maxSlots or slot2 < 1 or slot2 > maxSlots then
+    	-- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedSwapSlotInvalidSlots'
+        })
+
+        return
+    end
+
+    -- Perform the slot
+    local tempSkill = build[slot1]
+    build[slot1] = build[slot2]
+    build[slot2] = tempSkill
+
+    -- Network it
+    network:setSelectedAbilities(playerID, build)
 end
 
 -- Sets the stage
