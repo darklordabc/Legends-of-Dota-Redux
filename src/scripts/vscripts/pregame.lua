@@ -85,6 +85,11 @@ function Pregame:init()
         this:onPlayerSelectAbility(eventSourceIndex, args)
     end)
 
+    -- Player wants a random ability for a slot
+    CustomGameEventManager:RegisterListener('lodChooseRandomAbility', function(eventSourceIndex, args)
+        this:onPlayerSelectRandomAbility(eventSourceIndex, args)
+    end)
+
     -- Player wants to swap two slots
     CustomGameEventManager:RegisterListener('lodSwapSlots', function(eventSourceIndex, args)
         this:onPlayerSwapSlot(eventSourceIndex, args)
@@ -1404,7 +1409,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
-    -- Validate the ability isn't already banned
+    -- Don't allow picking banned abilities
     if self.bannedAbilities[abilityName] then
         -- Invalid ability name
         network:sendNotification(player, {
@@ -1617,7 +1622,21 @@ function Pregame:findRandomSkill(build, slotNumber)
 
 		local shouldAdd = true
 
-		-- TODO: Consider ulty count
+		-- consider ulty count
+		if SkillManager:isUlt(abilityName) then
+			if totalUlts >= maxUlts then
+				shouldAdd = false
+			end
+		else
+			if totalNormal >= maxRegulars then
+				shouldAdd = false
+			end
+		end
+
+		-- check bans
+		if self.bannedAbilities[abilityName] then
+			shouldAdd = false
+		end
 
 		for slotNumber,abilityInSlot in pairs(build) do
 			if abilityName == abilityInSlot then
@@ -1630,11 +1649,11 @@ function Pregame:findRandomSkill(build, slotNumber)
 				break
 			end
 		end
-	end
 
-	-- Should we add it?
-	if shouldAdd then
-		table.insert(possibleSkills, abilityName)
+		-- Should we add it?
+		if shouldAdd then
+			table.insert(possibleSkills, abilityName)
+		end
 	end
 
 	-- Are there any possible skills for this slot?
