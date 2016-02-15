@@ -90,6 +90,11 @@ function Pregame:init()
         this:onPlayerSwapSlot(eventSourceIndex, args)
     end)
 
+    -- Player wants to perform a ban
+    CustomGameEventManager:RegisterListener('lodBan', function(eventSourceIndex, args)
+        this:onPlayerBan(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 
