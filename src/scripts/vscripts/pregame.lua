@@ -1586,6 +1586,66 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
     network:setSelectedAbilities(playerID, build)
 end
 
+-- Returns a random skill for a player, given a build and the slot the skill would be for
+function Pregame:findRandomSkill(build, slotNumber)
+	-- Ensure we have a valid build
+	build = build or {}
+
+	-- Table that will contain all possible skills
+	local possibleSkills = {}
+
+	-- Grab the limits
+	local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
+
+    -- Count how many ults
+    local totalUlts = 0
+    local totalNormal = 0
+
+    for slotID,abilityName in pairs(build) do
+    	if slotID ~= slotNumber then
+    		if SkillManager:isUlt(abilityName) then
+    			totalUlts = totalUlts + 1
+    		else
+    			totalNormal = totalNormal + 1
+    		end
+    	end
+    end
+
+	for abilityName,_ in pairs(self.flagsInverse) do
+		-- Do we already have this ability / is this in vilation of our troll combos
+
+		local shouldAdd = true
+
+		-- TODO: Consider ulty count
+
+		for slotNumber,abilityInSlot in pairs(build) do
+			if abilityName == abilityInSlot then
+				shouldAdd = false
+				break
+			end
+
+			if self.banList[abilityName] and self.banList[abilityName][abilityInSlot] then
+				shouldAdd = false
+				break
+			end
+		end
+	end
+
+	-- Should we add it?
+	if shouldAdd then
+		table.insert(possibleSkills, abilityName)
+	end
+
+	-- Are there any possible skills for this slot?
+	if #possibleSkills == 0 then
+		return nil
+	end
+
+	-- Pick a random skill to return
+	return possibleSkills[math.random(#possibleSkills)]
+end
+
 -- Sets the stage
 function Pregame:setPhase(newPhaseNumber)
     -- Store the current phase
