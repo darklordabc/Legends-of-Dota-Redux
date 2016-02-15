@@ -84,5 +84,13 @@ function Network:banAbility(abilityName)
     })
 end
 
+-- Pushes that a hero is banned
+function Network:banHero(heroName)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('bannedHero', heroName, {
+        heroName = heroName
+    })
+end
+
 -- Return an instance of it
 return Network()

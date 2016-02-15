@@ -32,6 +32,12 @@ function Pregame:init()
     -- List of banned abilities
     self.bannedAbilities = {}
 
+    -- List of banned heroes
+    self.bannedHeroes = {}
+
+    -- Stores the total bans for each player
+    self.usedBans = {}
+
     -- temp: ban stuff
     self:banAbility('doom_bringer_doom')
     self:banAbility('pudge_rot')
@@ -1099,6 +1105,19 @@ function Pregame:banAbility(abilityName)
     return false
 end
 
+-- Bans a hero
+function Pregame:banHero(heroName)
+	if not self.bannedHeroes[heroName] then
+        -- Do the ban
+        self.bannedHeroes[heroName] = true
+        network:banHero(heroName)
+
+        return true
+    end
+
+    return false
+end
+
 -- Player wants to select a hero
 function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Ensure we are in the picking phase
@@ -1116,6 +1135,21 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedToFindHero'
+        })
+
+        return
+    end
+
+    -- Is this hero banned?
+    -- Validate the ability isn't already banned
+    if self.bannedHeroes[heroName] then
+        -- Invalid ability name
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedHeroIsBanned',
+            params = {
+                ['heroName'] = heroName
+            }
         })
 
         return
@@ -1182,6 +1216,138 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerBan(eventSourceIndex, args)
+	-- Ensure we are in the banning phase
+    --if self:getPhase() ~= constants.PHASE_BANNING then return end
+
+	local usedBans = self.usedBans
+
+	local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we have a store
+    usedBans[playerID] = usedBans[playerID] or {
+    	heroBans = 0,
+    	abilityBans = 0
+	}
+
+	-- Grab the ban object
+	local playerBans = usedBans[playerID]
+
+	-- Grab settings
+	local maxBans = self.optionStore['lodOptionBanningMaxBans']
+	local maxHeroBans = self.optionStore['lodOptionBanningMaxHeroBans']
+
+	-- Check what kind of ban it is
+	local heroName = args.heroName
+	local abilityName = args.abilityName
+
+	-- Default is heroBan
+	if heroName ~= nil then
+		-- Check the number of bans
+		if playerBans.heroBans >= maxHeroBans then
+			-- Player has used all their bans
+	        network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedBanHeroLimit',
+	            params = {
+	            	['used'] = playerBans.heroBans,
+	            	['max'] = maxHeroBans
+	        	}
+	        })
+
+			return
+		end
+
+		-- Is this a valid hero?
+		if not self.allowedHeroes[heroName] then
+	        -- Add an error
+	        network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedToFindHero'
+	        })
+
+	        return
+	    end
+
+	    -- Perform the ban
+		if self:banHero(heroName) then
+			-- Success
+
+			network:sendNotification(player, {
+	            sort = 'lodSuccess',
+	            text = 'lodSuccessBanHero',
+	            params = {
+	            	['heroName'] = heroName
+	        	}
+	        })
+		else
+			-- Ability was already banned
+
+			network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedBanHeroAlreadyBanned',
+	            params = {
+	            	['heroName'] = heroName
+	        	}
+	        })
+		end
+	elseif abilityName ~= nil then
+		-- Check the number of bans
+		if playerBans.abilityBans >= maxBans then
+			-- Player has used all their bans
+	        network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedBanAbilityLimit',
+	            params = {
+	            	['used'] = playerBans.abilityBans,
+	            	['max'] = maxHeroBans
+	        	}
+	        })
+
+			return
+		end
+
+		-- Is this even a real skill?
+	    if not self.flagsInverse[abilityName] then
+	        -- Invalid ability name
+	        network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedInvalidAbility',
+	            params = {
+	                ['abilityName'] = abilityName
+	            }
+	        })
+
+	        return
+	    end
+
+		-- Perform the ban
+		if self:banAbility(abilityName) then
+			-- Success
+
+			network:sendNotification(player, {
+	            sort = 'lodSuccess',
+	            text = 'lodSuccessBanAbility',
+	            params = {
+	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+	        	}
+	        })
+		else
+			-- Ability was already banned
+
+			network:sendNotification(player, {
+	            sort = 'lodDanger',
+	            text = 'lodFailedBanAbilityAlreadyBanned',
+	            params = {
+	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+	        	}
+	        })
+		end
+	end
 end
 
 -- Player wants to select a new ability

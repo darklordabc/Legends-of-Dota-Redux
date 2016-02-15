@@ -209,7 +209,7 @@
     "lodCategory_OP"                                "Over Powered Abilities"
 
     // Error messages
-    "lodFailedToFindHero"                           "You tried to select an invalid hero."
+    "lodFailedToFindHero"                           "Please select a valid hero."
     "lodFailedToChangeAttr"                         "The option to change your primary attribute is disabled."
     "lodFailedToChangeAttrInvalid"                  "You tried to select an invalid primary attribute."
     "lodFailedInvalidSlot"                          "You tried to place a skill into an invalid slot number."
@@ -221,6 +221,15 @@
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
     "lodFailedAlreadyGotSkill"                      "'{abilityName}' is already part of your build. You can not select the same ability twice."
     "lodFailedSkillIsBanned"                        "'{abilityName}' is banned."
+    "lodFailedHeroIsBanned"                         "'{heroName}' is banned."
     "lodFailedSwapSlotSameSlot"                     "You can not swap a slot with itself."
     "lodFailedSwapSlotInvalidSlots"                 "Please select a valid slot to swap."
+    "lodFailedBanHeroLimit"                         "You have already banned {used}/{max} heroes."
+    "lodFailedBanAbilityLimit"                      "You have already banned {used}/{max} abilities."
+    "lodFailedBanAbilityAlreadyBanned"              "'{abilityName}' is already banned."
+    "lodFailedBanHeroAlreadyBanned"                 "'{heroName}' is already banned."
+
+    // Success Messages
+    "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."
+    "lodSuccessBanHero"                             "'{heroName}' was banned successfully!"
 }
