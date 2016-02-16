@@ -228,6 +228,9 @@
     "lodFailedBanAbilityLimit"                      "You have already banned {used}/{max} abilities."
     "lodFailedBanAbilityAlreadyBanned"              "'{abilityName}' is already banned."
     "lodFailedBanHeroAlreadyBanned"                 "'{heroName}' is already banned."
+    "lodFailedNoValidAbilities"                     "Failed to find a random ability."
+    "lodFailedToFindOption"                         "'{optionName}' is not a valid option."
+    "lodFailedToSetOptionValue"                     "'{optionValue}' is not a valid value for '{optionName}'"
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."

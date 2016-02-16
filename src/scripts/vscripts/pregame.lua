@@ -431,9 +431,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         local optionName = args.k
         local optionValue = args.v
 
-        -- TODO: Validate option name
-        -- Option values are validated at a later stage
-
+        -- Option values and names are validated at a later stage
         self:setOption(optionName, optionValue)
     end
 end
@@ -1056,8 +1054,12 @@ function Pregame:processOptions()
 
     -- Enable WTF mode
     if self.optionStore['lodOptionCrazyWTF'] == 1 then
-        -- TODO: Auto ban powerful abilities
+        -- Auto ban powerful abilities
+        for abilityName,v in pairs(self.wtfAutoBan) do
+        	self:banAbility(abilityName)
+        end
 
+        -- Enable debug mode
         Convars:SetBool('dota_ability_debug', true)
     end
 
@@ -1083,12 +1085,29 @@ function Pregame:setOption(optionName, optionValue, force)
     -- option validator
 
     if not self.validOptions[optionName] then
-        -- TODO: Tell the user they tried to modify an invalid option
+        -- Tell the user they tried to modify an invalid option
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedToFindOption',
+            params = {
+            	['optionName'] = optionName
+        	}
+        })
+
         return
     end
 
     if not force and not self.validOptions[optionName](optionValue) then
-        -- TODO: Tell the user they gave an invalid value
+        -- Tell the user they gave an invalid value
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedToSetOptionValue',
+            params = {
+	            ['optionName'] = optionName,
+            	['optionValue'] = optionValue
+        	}
+        })
+
         return
     end
 
@@ -1358,6 +1377,57 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	        })
 		end
 	end
+end
+
+-- Player wants to select a random ability
+function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
+	-- Ensure we are in the picking phase
+    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local slot = math.floor(tonumber(args.slot))
+
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
+
+    -- Ensure a container for this player exists
+    self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
+
+    local build = self.selectedSkills[playerID]
+
+    -- Validate the slot is a valid slot index
+    if slot < 1 or slot > maxSlots then
+        -- Invalid slot number
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedInvalidSlot'
+        })
+
+        return
+    end
+
+    -- Grab a random ability
+    local newAbility = self:findRandomSkill(build, slot)
+
+    if newAbility == nil then
+    	-- No ability found, report error
+    	network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedNoValidAbilities'
+        })
+
+        return
+    else
+    	-- Store it
+        build[slot] = newAbility
+
+        -- Network it
+        network:setSelectedAbilities(playerID, build)
+    end
 end
 
 -- Player wants to select a new ability
@@ -1632,6 +1702,8 @@ function Pregame:findRandomSkill(build, slotNumber)
 				shouldAdd = false
 			end
 		end
+
+		-- TODO: Check draft array?
 
 		-- check bans
 		if self.bannedAbilities[abilityName] then
