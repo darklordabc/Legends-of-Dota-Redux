@@ -59,7 +59,7 @@
                 <Button id="stageButtonOptionSelection" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />
                 </Button>
-                <Label class="lodStageArrow" text="->" />
+                <Label class="lodStageArrow" id="lodArrowBanningPhase" text="->" />
                 <Button id="stageButtonBanning" onactivate="SetSelectedPhase(PHASE_BANNING)">
                     <Label text="lodStageButtonBanning" />
                     <Label text="" id="lodBanningTimeRemaining" />
@@ -89,10 +89,6 @@
                 </Panel>
             </Panel>
 
-            <Panel id="banningPhase">
-                <Label text="boobies"/>
-            </Panel>
-
             <Panel id="pickingPhase">
                 <Panel id="pickingPhaseLeftSide">
                     <Panel id="pickingPhaseTabs">
@@ -111,6 +107,10 @@
 
                                 <Button id="buildingHelperHeroPreviewHeroSelect" onactivate="onNewHeroSelected()">
                                     <Label text="Select Hero" />
+                                </Button>
+
+                                <Button id="buildingHelperHeroPreviewHeroBan" onactivate="onHeroBanButtonPressed()">
+                                    <Label text="Ban Hero" />
                                 </Button>
 
                                 <Panel id="buildingHelperHeroPreviewSkillsContainer">
@@ -192,6 +192,13 @@
                                 <Label text="lockBuild" />
                             </Button>
                         </Panel>
+                    </Panel>
+                    <Panel id="pickingPhaseBans">
+                        <Label text="Banning" />
+
+                        <Button onactivate="onBanButtonPressed()">
+                            <Label text="Ban Ability" />
+                        </Button>
                     </Panel>
                 </Panel>
 

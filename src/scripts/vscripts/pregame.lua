@@ -1278,15 +1278,23 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	if heroName ~= nil then
 		-- Check the number of bans
 		if playerBans.heroBans >= maxHeroBans then
-			-- Player has used all their bans
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanHeroLimit',
-	            params = {
-	            	['used'] = playerBans.heroBans,
-	            	['max'] = maxHeroBans
-	        	}
-	        })
+            if maxHeroBans == 0 then
+                -- Therre is no hero banning
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanHeroNoBanning'
+                })
+            else
+                -- Player has used all their bans
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanHeroLimit',
+                    params = {
+                        ['used'] = playerBans.heroBans,
+                        ['max'] = maxHeroBans
+                    }
+                })
+            end
 
 			return
 		end
@@ -1313,6 +1321,9 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['heroName'] = heroName
 	        	}
 	        })
+
+            -- Increase the number of ability bans this player has done
+            playerBans.heroBans = playerBans.heroBans + 1
 		else
 			-- Ability was already banned
 
@@ -1327,15 +1338,23 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	elseif abilityName ~= nil then
 		-- Check the number of bans
 		if playerBans.abilityBans >= maxBans then
-			-- Player has used all their bans
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanAbilityLimit',
-	            params = {
-	            	['used'] = playerBans.abilityBans,
-	            	['max'] = maxHeroBans
-	        	}
-	        })
+            if maxBans == 0 then
+                -- No ability banning allowed
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanAbilityNoBanning'
+                })
+            else
+                -- Player has used all their bans
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanAbilityLimit',
+                    params = {
+                        ['used'] = playerBans.abilityBans,
+                        ['max'] = maxBans
+                    }
+                })
+            end
 
 			return
 		end
@@ -1365,6 +1384,9 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
 	        	}
 	        })
+
+            -- Increase the number of bans this player has done
+            playerBans.abilityBans = playerBans.abilityBans + 1
 		else
 			-- Ability was already banned
 

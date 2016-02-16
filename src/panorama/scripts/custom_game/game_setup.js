@@ -1286,6 +1286,11 @@ function onNewHeroSelected() {
     chooseHero(currentSelectedHero);
 }
 
+// They try to ban a hero
+function onHeroBanButtonPressed() {
+    banHero(currentSelectedHero);
+}
+
 // They tried to set a new primary attribute
 function setPrimaryAttr(newAttr) {
     choosePrimaryAttr(newAttr);
@@ -1363,6 +1368,21 @@ function onHeroAbilityClicked(heroAbilityID) {
 
     // Push the event
     setSelectedDropAbility(ab, abcon);
+}
+
+// They click on the banning button
+function onBanButtonPressed() {
+    // Focus nothing
+    focusNothing();
+
+    // Check what action should be performed
+    if(currentSelectedSkill != '') {
+        // They are trying to select a new skill
+        banAbility(currentSelectedSkill);
+
+        // Done
+        return;
+    }
 }
 
 // They clicked on one of their ability icons
@@ -1695,10 +1715,30 @@ function chooseHero(heroName) {
     });
 }
 
+// Tries to ban a hero
+function banHero(heroName) {
+    GameEvents.SendCustomGameEventToServer('lodBan', {
+        heroName:heroName
+    });
+}
+
 // Updates our selected primary attribute
 function choosePrimaryAttr(newAttr) {
     GameEvents.SendCustomGameEventToServer('lodChooseAttr', {
         newAttr:newAttr
+    });
+}
+
+// Attempts to ban an ability
+function banAbility(abilityName) {
+    var theSkill = abilityName;
+
+    // No skills are selected anymore
+    setSelectedDropAbility();
+
+    // Push it to the server to validate
+    GameEvents.SendCustomGameEventToServer('lodBan', {
+        abilityName: abilityName
     });
 }
 
@@ -2149,6 +2189,22 @@ function OnOptionChanged(table_name, key, data) {
     // Check if it's the number of slots allowed
     if(key == 'lodOptionCommonMaxSkills' || key == 'lodOptionCommonMaxSlots' || key == 'lodOptionCommonMaxUlts') {
         onMaxSlotsChanged();
+    }
+
+    // Check for banning phase
+    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans') {
+        onMaxBansChanged();
+    }
+}
+
+// Max number of bans has changed
+function onMaxBansChanged() {
+    var maxBans = optionValueList['lodOptionBanningMaxBans'];
+    var maxHeroBans = optionValueList['lodOptionBanningMaxHeroBans'];
+
+    if(maxBans != null && maxHeroBans != null) {
+        var masterRoot = $('#mainSelectionRoot');
+        masterRoot.SetHasClass('no_banning_phase', maxBans == 0 && maxHeroBans == 0);
     }
 }
 

@@ -313,6 +313,14 @@
     flow-children: right;
 }
 
+.no_banning_phase #stageButtonBanning {
+    visibility: collapse;
+}
+
+.no_banning_phase #lodArrowBanningPhase {
+    visibility: collapse;
+}
+
 #lodBanningTimeRemaining {
     visibility: collapse;
 }
@@ -414,6 +422,10 @@
     visibility: visible;
 }
 
+.phase_banning_selected #pickingPhase {
+    visibility: visible;
+}
+
 #pickingPhaseLeftSide {
     background-color: #FF0000;
     height: 100%;
@@ -427,6 +439,20 @@
     height: 200px;
     vertical-align: bottom;
     background-color: #0000FF;
+    visibility: collapse;
+}
+
+.phase_selection_selected #pickingPhaseBuild {
+    visibility: visible;
+}
+
+#pickingPhaseBans {
+    flow-children: down;
+    visibility: collapse;
+}
+
+.phase_banning_selected #pickingPhaseBans {
+    visibility: visible;
 }
 
 #pickingPhaseSelectedHero {
@@ -687,6 +713,20 @@
 
 #buildingHelperHeroPreviewHeroSelect {
     horizontal-align: center;
+    visibility: collapse;
+}
+
+.phase_selection_selected #buildingHelperHeroPreviewHeroSelect {
+    visibility: visible;
+}
+
+#buildingHelperHeroPreviewHeroBan {
+    horizontal-align: center;
+    visibility: collapse;
+}
+
+.phase_banning_selected #buildingHelperHeroPreviewHeroBan {
+    visibility: visible;
 }
 
 #buildingHelperHeroPreviewHeroContainer DOTAHeroImage {
