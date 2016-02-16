@@ -1076,7 +1076,6 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
     // Grab max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'] || 6;
-
     var defaultSkill = 'life_stealer_empty_1';
 
     if(playerID == Players.GetLocalPlayer()) {
@@ -1294,14 +1293,30 @@ function setPrimaryAttr(newAttr) {
 
 // Highlights slots for dropping
 function highlightDropSlots() {
-    // If no skill is selected, highlight nothing
-    if(currentSelectedSkill == '') {
+    // If no slot selected, default slots
+    if(currentSelectedSlot == -1) {
         for(var i=1; i<=6; ++i) {
             var ab = $('#lodYourAbility' + i);
+
+            ab.SetHasClass('lodSelected', false);
             ab.SetHasClass('lodSelectedDrop', false);
         }
-        return;
+    } else {
+        for(var i=1; i<=6; ++i) {
+            var ab = $('#lodYourAbility' + i);
+
+            if(currentSelectedSlot == i) {
+                ab.SetHasClass('lodSelected', true);
+                ab.SetHasClass('lodSelectedDrop', false);
+            } else {
+                ab.SetHasClass('lodSelected', false);
+                ab.SetHasClass('lodSelectedDrop', true);
+            }
+        }
     }
+
+    // If no skill is selected, highlight nothing
+    if(currentSelectedSkill == '') return;
 
     // Decide which slots can be dropped into
     for(var i=1; i<=6; ++i) {
