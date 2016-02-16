@@ -16,10 +16,10 @@ var allOptions = {
                         text: 'lodOptionBalancedAllPick',
                         value: 1
                     },
-                    {
+                    /*{
                         text: 'lodOptionBalancedSingleDraft',
                         value: 2
-                    },
+                    },*/
                     {
                         text: 'lodOptionBalancedMirrorDraft',
                         value: 3
@@ -126,10 +126,10 @@ var allOptions = {
                         text: 'lodOptionAllPick',
                         value: 1
                     },
-                    {
+                    /*{
                         text: 'lodOptionSingleDraft',
                         value: 2
-                    },
+                    },*/
                     {
                         text: 'lodOptionMirrorDraft',
                         value: 3
@@ -861,6 +861,7 @@ var allowCustomSettings = false;
 // Current hero & Skill
 var currentSelectedHero = '';
 var currentSelectedSkill = '';
+var currentSelectedSlot = -1;
 var currentSelectedAbCon = null;
 
 // List of all player team panels
@@ -1073,7 +1074,21 @@ function OnSelectedSkillsChanged(table_name, key, data) {
     // Store the change
     selectedSkills[playerID] = data.skills;
 
+    // Grab max slots
+    var maxSlots = optionValueList['lodOptionCommonMaxSlots'] || 6;
+
+    var defaultSkill = 'life_stealer_empty_1';
+
     if(playerID == Players.GetLocalPlayer()) {
+        for(var i=1; i<=maxSlots; ++i) {
+            // Default to no skills
+            if(!selectedSkills[playerID][i]) {
+                var ab = $('#lodYourAbility' + i);
+                ab.abilityname = defaultSkill;
+                ab.SetAttributeString('abilityname', defaultSkill);
+            }
+        }
+
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -1349,8 +1364,35 @@ function onYourAbilityIconPressed(slot) {
         return;
     }
 
-    // TODO: allow swapping of skills
+    // allow swapping of skills
+    if(currentSelectedSlot == -1) {
+        // Select this slot
+        currentSelectedSlot = slot;
 
+        // Do the highlight
+        highlightDropSlots();
+    } else {
+        // Attempt to drop the slot
+
+        // Is it a different slot?
+        if(currentSelectedSlot == slot) {
+            // Same slot, just deselect
+            currentSelectedSlot = -1;
+
+            // Do the highlight
+            highlightDropSlots();
+            return;
+        }
+
+        // Different slot, do the swap
+        swapSlots(currentSelectedSlot, slot);
+
+        // Same slot, just deselect
+        currentSelectedSlot = -1;
+
+        // Do the highlight
+        highlightDropSlots();
+    }
 }
 
 function showBuilderTab(tabName) {
@@ -1656,6 +1698,15 @@ function chooseNewAbility(slot, abilityName) {
     GameEvents.SendCustomGameEventToServer('lodChooseAbility', {
         slot: slot,
         abilityName: abilityName
+    });
+}
+
+// Swaps two slots
+function swapSlots(slot1, slot2) {
+    // Push it to the server to validate
+    GameEvents.SendCustomGameEventToServer('lodSwapSlots', {
+        slot1: slot1,
+        slot2: slot2
     });
 }
 
