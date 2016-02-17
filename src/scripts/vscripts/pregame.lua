@@ -293,6 +293,10 @@ function Pregame:networkHeroes()
         for abilityName,uselessNumber in pairs(tabList) do
             flagsInverse[abilityName] = flagsInverse[abilityName] or {}
             flagsInverse[abilityName].category = tabName
+
+            if SkillManager:isUlt(abilityName) then
+                flagsInverse[abilityName].isUlt = true
+            end
         end
     end
 
@@ -451,6 +455,7 @@ function Pregame:loadTrollCombos()
     -- Create the stores
     self.banList = {}
     self.wtfAutoBan = tempBanList.wtfAutoBan
+    self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
 
     -- Bans a skill combo
@@ -1068,6 +1073,13 @@ function Pregame:processOptions()
 
         -- Enable debug mode
         Convars:SetBool('dota_ability_debug', true)
+    end
+
+    -- Banning of OP Skills
+    if self.optionStore['lodOptionAdvancedOPAbilities'] == 0 then
+        for abilityName,v in pairs(self.OPSkillsList) do
+            self:banAbility(abilityName)
+        end
     end
 
     -- Enable Universal Shop

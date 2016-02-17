@@ -1394,11 +1394,38 @@ function highlightDropSlots() {
     // If no skill is selected, highlight nothing
     if(currentSelectedSkill == '') return;
 
+    // Count the number of ultimate abiltiies
+    var theCount = 0;
+    var theMax = optionValueList['lodOptionCommonMaxUlts'];
+    var isUlt = isUltimateAbility(currentSelectedSkill);
+    var playerID = Players.GetLocalPlayer();
+    if(!isUlt) {
+        theMax = optionValueList['lodOptionCommonMaxSkills'];
+    }
+
+    // Check our build
+    var ourBuild = selectedSkills[playerID] || {};
+
+    for(var slotID in ourBuild) {
+        var abilityName = selectedSkills[playerID][slotID];
+
+        if(isUltimateAbility(abilityName) == isUlt) {
+            ++theCount;
+        }
+    }
+
+    var easyAdd = theCount < theMax;
+
     // Decide which slots can be dropped into
     for(var i=1; i<=6; ++i) {
         var ab = $('#lodYourAbility' + i);
-        ab.SetHasClass('lodSelectedDrop', true);
+        ab.SetHasClass('lodSelectedDrop', (easyAdd || (ourBuild[i] != null && isUlt == isUltimateAbility(ourBuild[i]))));
     }
+}
+
+// Decides if the given ability is an ult or not
+function isUltimateAbility(abilityName) {
+    return (flagDataInverse[abilityName] || {}).isUlt != null;
 }
 
 // Sets the currently selected ability for dropping
@@ -1743,8 +1770,7 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
-            'wraith',
-            'OP'
+            'wraith'
         ];
 
         for(var i=0; i<tabList.length; ++i) {
