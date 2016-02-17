@@ -893,6 +893,7 @@ var allowedCategories = {};
 // Should we show banned / disallowed skills?
 var showBannedSkills = false;
 var showDisallowedSkills = false;
+var showTakenSkills = true;
 
 // List of banned abilities
 var bannedAbilities = {};
@@ -1510,6 +1511,13 @@ function toggleShowDisallowed() {
     calculateFilters();
 }
 
+function toggleShowTaken() {
+    showTakenSkills = !showTakenSkills;
+
+    // Update filters
+    calculateFilters();
+}
+
 // When the skill tab is shown
 var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
@@ -1581,7 +1589,7 @@ function OnSkillTabShown(tabName) {
                     if(shouldShow && takenAbilities[abilityName]) {
                         if(uniqueSkillsMode == 1 && takenTeamAbilities[abilityName]) {
                             // Team based unique skills
-                            if(showDisallowedSkills) {
+                            if(showTakenSkills) {
                                 ab.SetHasClass('takenSkill', true);
                             } else {
                                 shouldShow = false;
@@ -1589,7 +1597,7 @@ function OnSkillTabShown(tabName) {
 
                         } else if(uniqueSkillsMode == 2) {
                             // Global unique skills
-                            if(showDisallowedSkills) {
+                            if(showTakenSkills) {
                                 ab.SetHasClass('takenSkill', true);
                             } else {
                                 shouldShow = false;
@@ -2264,6 +2272,10 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionAdvancedUniqueSkills') {
         calculateFilters();
     }
+
+    if(key == 'lodOptionAdvancedUniqueSkills') {
+        $('#mainSelectionRoot').SetHasClass('unique_skills_mode', optionValueList['lodOptionAdvancedUniqueSkills'] > 0);
+    }
 }
 
 // Max number of bans has changed
@@ -2469,4 +2481,7 @@ function UpdateTimer() {
 
     // Make input boxes nicer to use
     $('#mainSelectionRoot').SetPanelEvent('onactivate', focusNothing);
+
+    // Toggle the show taken abilities button to be on
+    $('#lodToggleButton').checked = true;
 })();

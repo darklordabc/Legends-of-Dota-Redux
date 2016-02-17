@@ -147,6 +147,7 @@
                             <DropDown id="lodSkillCategoryHolder" />
                             <ToggleButton text="Show Banned Skills" onactivate="toggleShowBanned()" />
                             <ToggleButton text="Show Disallowed Skills" onactivate="toggleShowDisallowed()" />
+                            <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />
                         </Panel>
                         <Panel id="pickingPhaseRecommendedBuildsTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab"/>

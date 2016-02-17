@@ -482,8 +482,16 @@
 .takenSkill {
     opacity: .1;
     saturation: 0.0;
-    wash-color: #FFFF00FF;
+    wash-color: #FFAA00FF;
     border: 0px;
+}
+
+#lodToggleButton {
+    visibility: collapse;
+}
+
+.unique_skills_mode #lodToggleButton {
+    visibility: visible;
 }
 
 .pickingPhaseAttr {
