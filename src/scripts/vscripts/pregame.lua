@@ -552,7 +552,7 @@ function Pregame:initOptionSelector()
 
         -- Fast banning selection
         lodOptionBanning = function(value)
-            return value == 1 or value == 2
+            return value == 1 or value == 2 or value == 3
         end,
 
         -- Fast slots selection
@@ -1001,12 +1001,19 @@ function Pregame:initOptionSelector()
         -- Fast Banning
         lodOptionBanning = function(optionName, optionValue)
             if self.optionStore['lodOptionBanning'] == 1 then
+                -- Balanced Bans
                 self:setOption('lodOptionBanningMaxBans', 0, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                 self:setOption('lodOptionBanningUseBanList', 1, true)
-            else
+            elseif self.optionStore['lodOptionBanning'] == 2 then
+                -- Fast Banning Phase
                 self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
                 self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+            else
+                -- No Banning
+                self:setOption('lodOptionBanningMaxBans', 0, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
             end
         end,

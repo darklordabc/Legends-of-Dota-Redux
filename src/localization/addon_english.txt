@@ -48,6 +48,7 @@
     "lodOptionsPresetBanning"                       "Preset Banning"
     "lodOptionBalancedBan"                          "Balanced Bans"
     "lodOptionManualBan"                            "Fast Ban Phase"
+    "lodOptionNoBans"                               "No Bans"
 
     "lodOptionsPresetSlots"                         "Preset Max Slots"
     "lodOptionBalancedSlots4"                       "4 Slots"
