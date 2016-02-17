@@ -1179,7 +1179,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Is this hero banned?
     -- Validate the ability isn't already banned
     if self.bannedHeroes[heroName] then
-        -- Invalid ability name
+        -- hero is banned
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedHeroIsBanned',
@@ -1189,6 +1189,24 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         })
 
         return
+    end
+
+    -- Is unique heroes on?
+    if self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1 then
+        for thePlayerID,theSelectedHero in pairs(self.selectedHeroes) do
+            if theSelectedHero == heroName then
+                -- Tell them
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedHeroIsTaken',
+                    params = {
+                        ['heroName'] = heroName
+                    }
+                })
+
+                return
+            end
+        end
     end
 
     -- Attempt to set the primary attribute

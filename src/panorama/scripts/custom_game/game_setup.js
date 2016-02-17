@@ -875,6 +875,9 @@ var currentSelectedAbCon = null;
 // List of all player team panels
 var allPlayerPanels = [];
 
+// List of hero panels
+var heroPanelMap = {};
+
 // List of option links
 var allOptionLinks = {};
 
@@ -1059,6 +1062,24 @@ function OnSelectedHeroesChanged(table_name, key, data) {
         // Update our hero icon and text
         $('#pickingPhaseSelectedHeroImage').heroname = heroName;
         $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
+    }
+
+    // Shows which heroes have been taken
+    showTakenHeroes();
+}
+
+// Shows which heroes have been taken
+function showTakenHeroes() {
+    // Calculate which heroes are taken
+    var allSelectedHeroes = {};
+    for(var playerID in selectedHeroes) {
+        allSelectedHeroes[selectedHeroes[playerID]] = true;
+    }
+
+    // Mark them as taken
+    for(var heroName in heroPanelMap) {
+        var panel = heroPanelMap[heroName];
+        panel.SetHasClass('takenHero', allSelectedHeroes[heroName] != null);
     }
 }
 
@@ -1255,15 +1276,23 @@ function buildHeroList() {
                     // Set the selected helper hero
                     setSelectedHelperHero(heroName);
                 });
+
+                // Store it
+                heroPanelMap[heroName] = newPanel;
             })();
         }
-
     }
+
+    // Reset the hero map
+    heroPanelMap = {};
 
     // Insert heroes
     doInsertHeroes($('#strHeroContainer'), strHeroes);
     doInsertHeroes($('#agiHeroContainer'), agiHeroes);
     doInsertHeroes($('#intHeroContainer'), intHeroes);
+
+    // Update which heroes are taken
+    showTakenHeroes();
 }
 
 // Build the flags list
@@ -2275,6 +2304,10 @@ function OnOptionChanged(table_name, key, data) {
 
     if(key == 'lodOptionAdvancedUniqueSkills') {
         $('#mainSelectionRoot').SetHasClass('unique_skills_mode', optionValueList['lodOptionAdvancedUniqueSkills'] > 0);
+    }
+
+    if(key == 'lodOptionAdvancedUniqueHeroes') {
+        $('#mainSelectionRoot').SetHasClass('unique_heroes_mode', optionValueList['lodOptionAdvancedUniqueHeroes'] == 1);
     }
 }
 

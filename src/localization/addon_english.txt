@@ -239,6 +239,7 @@
     "lodFailedBanHeroNoBanning"                     "You can not ban any heroes."
     "lodFailedBanAbilityNoBanning"                  "You can not ban any abilities."
     "lodFailedSkillTaken"                           "'{ab}' has already been taken and unique skills is enabled."
+    "lodFailedHeroIsTaken"                          "'{heroName}' has already been taken and unique heroes is enabled."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."
