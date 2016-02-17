@@ -170,6 +170,10 @@
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
 
+    "lodUniqueSkillsOff"                            "Disabled"
+    "lodUniqueSkillsTeam"                           "Unique Team Skills"
+    "lodUniqueSkillsGlobal"                         "Unique Global Skills"
+
     "lodOptionDesGameSpeedRespawnTime"              "Respawn Time"
     "lodOptionGameSpeedRespawnTimeDefault"          "Default Respawn Time"
     "lodOptionGameSpeedRespawnTimeHalf"             "50% Respawn Time"

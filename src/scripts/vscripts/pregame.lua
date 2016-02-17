@@ -841,7 +841,7 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2
         end,
 
         -- Advanced -- Unique Heroes
@@ -1733,6 +1733,8 @@ function Pregame:findRandomSkill(build, slotNumber)
 		end
 
 		-- TODO: Check draft array?
+
+        -- TODO: Consider unique skills
 
 		-- check bans
 		if self.bannedAbilities[abilityName] then

@@ -479,6 +479,13 @@
     border: 0px;
 }
 
+.takenSkill {
+    opacity: .1;
+    saturation: 0.0;
+    wash-color: #FFFF00FF;
+    border: 0px;
+}
+
 .pickingPhaseAttr {
     background-color: #FF0000;
 }

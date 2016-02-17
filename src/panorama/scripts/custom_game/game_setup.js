@@ -48,6 +48,10 @@ var allOptions = {
                     {
                         text: 'lodOptionManualBan',
                         value: 2
+                    },
+                    {
+                        text: 'lodOptionNoBans',
+                        value: 3
                     }
                 ]
             },
@@ -685,13 +689,17 @@ var allOptions = {
                 sort: 'dropdown',
                 values: [
                     {
-                        text: 'lodOptionYes',
+                        text: 'lodUniqueSkillsOff',
+                        value: 0
+                    },
+                    {
+                        text: 'lodUniqueSkillsTeam',
                         value: 1
                     },
                     {
-                        text: 'lodOptionNo',
-                        value: 0
-                    }
+                        text: 'lodUniqueSkillsGlobal',
+                        value: 2
+                    },
                 ]
             },
             {
@@ -888,6 +896,10 @@ var showDisallowedSkills = false;
 
 // List of banned abilities
 var bannedAbilities = {};
+
+// List of taken abilities
+var takenAbilities = {};
+var takenTeamAbilities = {};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -1098,6 +1110,35 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
     }
+
+    // Update which skills are taken
+    updateTakenSkills();
+}
+
+// Updates which skills have been taken
+function updateTakenSkills() {
+    var myTeam = (Game.GetPlayerInfo(Players.GetLocalPlayer()) || {}).player_team_id || -1;
+
+    // Loop over each build
+    for(var playerID in selectedSkills) {
+        var build = selectedSkills[playerID];
+
+        var theTeam = (Game.GetPlayerInfo(parseInt(playerID)) || {}).player_team_id || -1;
+
+        for(var slotID in build) {
+            var abilityName = build[slotID];
+
+            // This ability is taken
+            takenAbilities[abilityName] = true;
+
+            if(myTeam == theTeam) {
+                takenTeamAbilities[abilityName] = true;
+            }
+        }
+    }
+
+    // Rebuild the visible skills
+    calculateFilters();
 }
 
 // A ban was sent through
@@ -1501,6 +1542,9 @@ function OnSkillTabShown(tabName) {
             // Array used to sort abilities
             var toSort = [];
 
+            // Check on unique skills mode
+            var uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
+
             // Loop over all abilties
             for(var abilityName in abilityStore) {
                 var ab = abilityStore[abilityName];
@@ -1531,6 +1575,26 @@ function OnSkillTabShown(tabName) {
                         }
                     } else {
                         ab.SetHasClass('bannedSkill', false);
+                    }
+
+                    // Mark taken abilities
+                    if(shouldShow && takenAbilities[abilityName]) {
+                        if(uniqueSkillsMode == 1 && takenTeamAbilities[abilityName]) {
+                            // Team based unique skills
+                            if(showDisallowedSkills) {
+                                ab.SetHasClass('takenSkill', true);
+                            } else {
+                                shouldShow = false;
+                            }
+
+                        } else if(uniqueSkillsMode == 2) {
+                            // Global unique skills
+                            if(showDisallowedSkills) {
+                                ab.SetHasClass('takenSkill', true);
+                            } else {
+                                shouldShow = false;
+                            }
+                        }
                     }
 
                     // Check if the tab is active
@@ -2194,6 +2258,11 @@ function OnOptionChanged(table_name, key, data) {
     // Check for banning phase
     if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans') {
         onMaxBansChanged();
+    }
+
+    // Check for unique abilities changing
+    if(key == 'lodOptionAdvancedUniqueSkills') {
+        calculateFilters();
     }
 }
 
