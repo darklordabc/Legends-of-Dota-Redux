@@ -1908,17 +1908,25 @@ function addUnassignedPlayer(playerID) {
 }
 
 // Adds a player to a team
-function addPlayerToTeam(playerID, panel) {
+function addPlayerToTeam(playerID, panel, heroPanel) {
     // Validate the panel
     if(panel == null) return;
 
     // Create the new panel
-    var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer');
+    var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
     newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/teamPlayer.xml', false, false);
 
     // Add this panel to the list of panels we've generated
     allPlayerPanels.push(newPlayerPanel);
+
+    for(var key in newPlayerPanel) {
+        //$.Msg(key);
+    }
+
+    for(var key in $) {
+        $.Msg(key);
+    }
 }
 
 // Build the options categories
@@ -2258,7 +2266,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Update phase classes
             var masterRoot = $('#mainSelectionRoot');
             masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
-            masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
+            masterRoot.SetHasClass('phase_option_selection', currentPhase != PHASE_OPTION_SELECTION);
             masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
             masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
             masterRoot.SetHasClass('phase_drafting', currentPhase == PHASE_DRAFTING);

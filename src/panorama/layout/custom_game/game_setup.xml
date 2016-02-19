@@ -44,17 +44,6 @@
                 <Label id="unassignedTeamLabel" text="theUnassigned" />
             </Panel>
 
-            <Panel id="heroTeamContainer">
-                <Panel id="theRadiantHeroes" class="theTeamTopLevel">
-                    <Label class="radiantGlow" text="theRadiant" />
-                    <Panel id="theRadiantContainerHeroes" class="theTeamContainer" />
-                </Panel>
-                <Panel id="theDireHeroes" class="theTeamTopLevel">
-                    <Label class="direGlow" text="theDire" />
-                    <Panel id="theDireContainerHeroes" class="theTeamContainer" />
-                </Panel>
-            </Panel>
-
             <Panel id="stageSelection">
                 <Button id="stageButtonOptionSelection" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />

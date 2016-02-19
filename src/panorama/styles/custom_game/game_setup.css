@@ -88,12 +88,12 @@
 
 #mainTeamContainer {
     width: 100%;
-    visibility: collapse;
+    /*visibility: collapse;*/
 }
 
-.phase_option_selection #mainTeamContainer {
+/*.phase_option_selection #mainTeamContainer {
     visibility: visible;
-}
+}*/
 
 #unassignedTeamContainer {
     height: 58px;
@@ -230,7 +230,7 @@
 .theTeamTopLevel {
     flow-children: down;
     font-size: 24px;
-    height: 128px;
+    /*height: 128px;*/
 }
 
 .theTeamContainer {
@@ -270,6 +270,7 @@
     font-size: 24px;
     font-weight: bold;
     color: #FFFFFF;
+    visibility: collapse;
 }
 
 #middleButtons Button {
@@ -277,11 +278,43 @@
     padding: 4px;
 }
 
+.phase_option_selection #middleButtons {
+    visibility: visible;
+}
+
+#playerAvatar {
+    visibility: collapse;
+}
+
+.phase_option_selection #playerAvatar {
+    visibility: visible;
+}
+
 .teams_locked #lodLockButton {
     visibility: collapse;
 }
 
 .teams_unlocked #lodUnlockButton {
+    visibility: collapse;
+}
+
+#playerSkillContainer {
+    flow-children: right;
+    background-color: #FF0000;
+    horizontal-align: center;
+    margin-top: 4px;
+}
+
+#playerSkillContainer DOTAAbilityImage {
+    width: 20px;
+    height: 20px;
+}
+
+.phase_option_selection #playerHeroImage {
+    visibility: collapse;
+}
+
+.phase_option_selection #playerSkillContainer {
     visibility: collapse;
 }
 
