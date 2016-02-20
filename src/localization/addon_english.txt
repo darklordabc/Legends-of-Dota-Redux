@@ -156,7 +156,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedWraithNight"               "Allow Wraith Night Abilities"
-    "lodOptionDesAdvancedOPAbilities"               "Allow OP Abilities"
+    "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"

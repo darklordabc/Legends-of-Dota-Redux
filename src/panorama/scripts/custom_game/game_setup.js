@@ -336,6 +336,23 @@ var allOptions = {
                 ]
             },
             {
+                name: 'lodOptionAdvancedOPAbilities',
+                des: 'lengthodOptionDesAdvancedOPAbilities',
+                about: 'lodOptionAboutAdvancedOPAbilities',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 0
+                    }
+
+                ]
+            },
+            {
                 name: 'lodOptionBanningBanInvis',
                 des: 'lodOptionDesBanningBanInvis',
                 about: 'lodOptionAboutBanningBanInvis',
@@ -650,23 +667,6 @@ var allOptions = {
                 ]
             },
             {
-                name: 'lodOptionAdvancedOPAbilities',
-                des: 'lodOptionDesAdvancedOPAbilities',
-                about: 'lodOptionAboutAdvancedOPAbilities',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-
-                ]
-            },
-            {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
                 about: 'lodOptionAboutAdvancedHidePicks',
@@ -874,6 +874,7 @@ var currentSelectedAbCon = null;
 
 // List of all player team panels
 var allPlayerPanels = [];
+var activePlayerPanels = {};
 
 // List of hero panels
 var heroPanelMap = {};
@@ -1010,7 +1011,13 @@ function hookTabChange(tabName, callback) {
 function hookSkillInfo(panel) {
     // Show
     panel.SetPanelEvent('onmouseover', function() {
-        var ability = panel.GetAttributeString('abilityname', 'unknown');
+        var ability = panel.GetAttributeString('abilityname', 'life_stealer_empty_1');
+
+        // If no ability, give life stealer empty
+        if(ability == '') {
+            ability = 'life_stealer_empty_1';
+        }
+
         $.DispatchEvent('DOTAShowAbilityTooltip', panel, ability);
     });
 
@@ -1062,10 +1069,17 @@ function OnSelectedHeroesChanged(table_name, key, data) {
         // Update our hero icon and text
         $('#pickingPhaseSelectedHeroImage').heroname = heroName;
         $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
+
+        // Set it so no hero is selected
+        $('#pickingPhaseSelectedHeroImageCon').SetHasClass('no_hero_selected', false);
     }
 
     // Shows which heroes have been taken
     showTakenHeroes();
+
+    if(activePlayerPanels[playerID]) {
+        activePlayerPanels[playerID].OnGetHeroData(heroName);
+    }
 }
 
 // Shows which heroes have been taken
@@ -1131,6 +1145,11 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 ab.SetAttributeString('abilityname', abName);
             }
         }
+    }
+
+    // Push the build
+    if(activePlayerPanels[playerID]) {
+        activePlayerPanels[playerID].OnGetHeroBuildData(data.skills);
     }
 
     // Update which skills are taken
@@ -1316,7 +1335,7 @@ function setSelectedHelperHero(heroName) {
     var previewCon = $('#buildingHelperHeroPreview');
 
     // Validate hero name
-    if(heroName == null || !heroData[heroName]) {
+    if(heroName == null || heroName.length <= 0 || !heroData[heroName]) {
         previewCon.visible = false;
         return;
     }
@@ -1349,6 +1368,9 @@ function setSelectedHelperHero(heroName) {
 
     // No abilities selected anymore
     setSelectedDropAbility();
+
+    // Jump to the right tab
+    showBuilderTab('pickingPhaseHeroTab');
 }
 
 // They try to set a new hero
@@ -1901,7 +1923,7 @@ function addUnassignedPlayer(playerID) {
     // Create the new panel
     var newPlayerPanel = $.CreatePanel('Panel', unassignedPlayersContainerNode, 'unassignedPlayer');
     newPlayerPanel.SetAttributeInt('playerID', playerID);
-    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/unasignedPlayer.xml', false, false);
+    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/unassigned_player.xml', false, false);
 
     // Add this panel to the list of panels we've generated
     allPlayerPanels.push(newPlayerPanel);
@@ -1915,18 +1937,28 @@ function addPlayerToTeam(playerID, panel, heroPanel) {
     // Create the new panel
     var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
-    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/teamPlayer.xml', false, false);
+    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player.xml', false, false);
+    newPlayerPanel.hookStuff(hookSkillInfo, setSelectedDropAbility, setSelectedHelperHero);
+
+    // Check max slots
+    var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
+    if(maxSlots != null) {
+        newPlayerPanel.OnGetHeroSlotCount(maxSlots);
+    }
+
+    // Check for hero icon
+    if(selectedHeroes[playerID] != null) {
+        newPlayerPanel.OnGetHeroData(selectedHeroes[playerID]);
+    }
+
+    // Check for skill data
+    if(selectedSkills[playerID] != null) {
+        newPlayerPanel.OnGetHeroBuildData(selectedSkills[playerID]);
+    }
 
     // Add this panel to the list of panels we've generated
     allPlayerPanels.push(newPlayerPanel);
-
-    for(var key in newPlayerPanel) {
-        //$.Msg(key);
-    }
-
-    for(var key in $) {
-        $.Msg(key);
-    }
+    activePlayerPanels[playerID] = newPlayerPanel;
 }
 
 // Build the options categories
@@ -2192,6 +2224,7 @@ function OnTeamPlayerListChanged() {
         panel.DeleteAsync(0);
     }
     allPlayerPanels = [];
+    activePlayerPanels = {};
 
     // Move all existing player panels back to the unassigned player list
     /*for ( var i = 0; i < g_PlayerPanels.length; ++i )
@@ -2373,6 +2406,11 @@ function onMaxSlotsChanged() {
         } else {
             con.visible = false;
         }
+    }
+
+    // Push it
+    for(var playerID in activePlayerPanels) {
+        activePlayerPanels[playerID].OnGetHeroSlotCount(maxSlots);
     }
 }
 

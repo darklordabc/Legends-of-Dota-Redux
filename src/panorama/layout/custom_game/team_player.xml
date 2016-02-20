@@ -3,13 +3,14 @@
         <include src="file://{resources}/styles/custom_game/game_setup.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/scripts/custom_game/teamPlayer.js" />
+        <include src="file://{resources}/scripts/custom_game/team_player.js" />
     </scripts>
-    <Panel class="teamPlayerContainer">
+    <Panel class="teamPlayerContainer no_hero_selected">
         <DOTAAvatarImage id="playerAvatar" />
-        <DOTAHeroImage id="playerHeroImage" heroname="" />
+        <DOTAHeroImage id="playerHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" onactivate="onPlayerHeroClicked()" />
+        <Image id="playerNoHeroSelected" src="file://{images}/heroes/npc_dota_hero_default.png" />
         <Panel id="playerSkillContainer">
-            <DOTAAbilityImage id="playerSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerHeroAbilityClicked(1)" />
+            <DOTAAbilityImage id="playerSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(1)" />
             <DOTAAbilityImage id="playerSkill2" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(2)" />
             <DOTAAbilityImage id="playerSkill3" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(3)" />
             <DOTAAbilityImage id="playerSkill4" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(4)" />

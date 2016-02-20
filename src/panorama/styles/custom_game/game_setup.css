@@ -318,6 +318,26 @@
     visibility: collapse;
 }
 
+.no_hero_selected #playerHeroImage {
+    visibility: collapse;
+}
+
+#playerNoHeroSelected {
+    visibility: collapse;
+}
+
+.no_hero_selected #playerNoHeroSelected {
+    visibility: visible;
+}
+
+.phase_option_selection #playerNoHeroSelected {
+    visibility: collapse;
+}
+
+.phase_option_selection #playerHeroImage {
+    visibility: collapse;
+}
+
 /*
     Stage Selection
 */
@@ -549,6 +569,20 @@
 #pickingPhaseSelectedHeroImage {
     width: 128px;
     height: 72px;
+}
+
+.no_hero_selected #pickingPhaseSelectedHeroImage {
+    visibility: collapse;
+}
+
+#pickingPhaseSelectedHeroImageNone {
+    visibility: collapse;
+    width: 128px;
+    height: 72px;
+}
+
+.no_hero_selected #pickingPhaseSelectedHeroImageNone {
+    visibility: visible;
 }
 
 #pickingPhaseSelectedHeroText {
