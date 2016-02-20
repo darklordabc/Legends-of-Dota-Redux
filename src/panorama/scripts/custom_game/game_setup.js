@@ -2418,7 +2418,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Update phase classes
             var masterRoot = $('#mainSelectionRoot');
             masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
-            masterRoot.SetHasClass('phase_option_selection', currentPhase != PHASE_OPTION_SELECTION);
+            masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
             masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
             masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
             masterRoot.SetHasClass('phase_drafting', currentPhase == PHASE_DRAFTING);

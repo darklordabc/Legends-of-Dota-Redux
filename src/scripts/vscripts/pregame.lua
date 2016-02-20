@@ -2018,8 +2018,9 @@ function Pregame:preventCamping()
     -- Should we prevent fountain camping?
     if self.optionStore['lodOptionCrazyNoCamping'] == 1 then
         local toAdd = {
-            [SkillManager:GetMultiplierSkillName('ursa_fury_swipes')] = 4,
-            templar_assassin_psi_blades = 1
+            ursa_fury_swipes = 4,
+            templar_assassin_psi_blades = 1,
+            slark_essence_shift = 4
         }
 
         local fountains = Entities:FindAllByClassname('ent_dota_fountain')
