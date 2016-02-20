@@ -1256,6 +1256,40 @@ function setupBuilderTabs() {
                     }
                 });
             });
+
+            // TODO: Allow for slot swapping
+            /*$.RegisterEventHandler('DragStart', con, function(panelID, dragCallbacks) {
+                var abName = con.GetAttributeString('abilityname', '');
+
+                if(abName == null || abName.length <= 0) return false;
+
+                setSelectedDropAbility(abName, abcon);
+
+                // Create a temp image to drag around
+                var displayPanel = $.CreatePanel('DOTAAbilityImage', $.GetContextPanel(), 'dragImage');
+                displayPanel.abilityname = abName;
+                dragCallbacks.displayPanel = displayPanel;
+                dragCallbacks.offsetX = 0;
+                dragCallbacks.offsetY = 0;
+                displayPanel.SetAttributeString('abilityname', abName);
+            });
+
+            $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
+                // Delete the draggable panel
+                draggedPanel.deleted = true;
+                draggedPanel.DeleteAsync(0.0);
+
+                var dropSlot = draggedPanel.GetAttributeInt('activeSlot', -1);
+                if(dropSlot != -1) {
+                    var abName = draggedPanel.GetAttributeString('abilityname', '');
+                    if(abName != null && abName.length > 0) {
+                        chooseNewAbility(dropSlot, abName);
+                    }
+                }
+
+                // Highlight nothing
+                setSelectedDropAbility();
+            });*/
         })($('#lodYourAbility' + i), i);
     }
 
@@ -1633,7 +1667,10 @@ function toggleShowTaken() {
 
 function makeSkillSelectable(abcon) {
     abcon.SetPanelEvent('onactivate', function() {
-        setSelectedDropAbility(abcon.GetAttributeString('abilityname'), abcon);
+        var abName = abcon.GetAttributeString('abilityname', '');
+        if(abName == null || abName.length <= 0) return false;
+
+        setSelectedDropAbility(abName, abcon);
     });
 
     // Dragging
@@ -1641,7 +1678,6 @@ function makeSkillSelectable(abcon) {
 
     $.RegisterEventHandler('DragStart', abcon, function(panelID, dragCallbacks) {
         var abName = abcon.GetAttributeString('abilityname', '');
-
         if(abName == null || abName.length <= 0) return false;
 
         setSelectedDropAbility(abName, abcon);
