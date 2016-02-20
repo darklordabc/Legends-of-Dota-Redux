@@ -1113,6 +1113,11 @@ function OnSelectedAttrChanged(table_name, key, data) {
         $('#pickingPhaseSelectHeroAgi').SetHasClass('selectedAttribute', newAttr == 'agi');
         $('#pickingPhaseSelectHeroInt').SetHasClass('selectedAttribute', newAttr == 'int');
     }
+
+    // Push the attribute
+    if(activePlayerPanels[playerID]) {
+        activePlayerPanels[playerID].OnGetNewAttribute(newAttr);
+    }
 }
 
 // Selected abilities has changed
@@ -1229,9 +1234,29 @@ function setupBuilderTabs() {
     // Default to no selected preview hero
     setSelectedHelperHero();
 
-    // Hook abilitys that should show info
     for(var i=1;i<=6; ++i) {
-        hookSkillInfo($('#lodYourAbility' + i));
+        (function(con, slotID) {
+            // Hook abilitys that should show info
+            hookSkillInfo(con);
+
+            //con.SetDraggable(true);
+
+            // Allow for dropping
+            $.RegisterEventHandler('DragEnter', con, function(panelID, draggedPanel) {
+                con.AddClass('potential_drop_target');
+                draggedPanel.SetAttributeInt('activeSlot', slotID);
+            });
+
+            $.RegisterEventHandler('DragLeave', con, function(panelID, draggedPanel) {
+                $.Schedule(0.1, function() {
+                    con.RemoveClass('potential_drop_target');
+
+                    if(draggedPanel.deleted == null && draggedPanel.GetAttributeInt('activeSlot', -1) == slotID) {
+                        draggedPanel.SetAttributeInt('activeSlot', -1);
+                    }
+                });
+            });
+        })($('#lodYourAbility' + i), i);
     }
 
     for(var i=1;i<=16; ++i) {
@@ -1454,6 +1479,16 @@ function isUltimateAbility(abilityName) {
 function setSelectedDropAbility(abName, abcon) {
     abName = abName || '';
 
+    // Was there a slot selected?
+    if(currentSelectedSlot != -1) {
+        var theSlot = currentSelectedSlot;
+        currentSelectedSlot = -1;
+        chooseNewAbility(theSlot, abName);
+        highlightDropSlots();
+        return;
+    }
+
+
     // Remove the highlight from the old ability icon
     if(currentSelectedAbCon != null) {
         currentSelectedAbCon.SetHasClass('lodSelected', false);
@@ -1596,6 +1631,48 @@ function toggleShowTaken() {
     calculateFilters();
 }
 
+function makeSkillSelectable(abcon) {
+    abcon.SetPanelEvent('onactivate', function() {
+        setSelectedDropAbility(abcon.GetAttributeString('abilityname'), abcon);
+    });
+
+    // Dragging
+    abcon.SetDraggable(true);
+
+    $.RegisterEventHandler('DragStart', abcon, function(panelID, dragCallbacks) {
+        var abName = abcon.GetAttributeString('abilityname', '');
+
+        if(abName == null || abName.length <= 0) return false;
+
+        setSelectedDropAbility(abName, abcon);
+
+        // Create a temp image to drag around
+        var displayPanel = $.CreatePanel('DOTAAbilityImage', $.GetContextPanel(), 'dragImage');
+        displayPanel.abilityname = abName;
+        dragCallbacks.displayPanel = displayPanel;
+        dragCallbacks.offsetX = 0;
+        dragCallbacks.offsetY = 0;
+        displayPanel.SetAttributeString('abilityname', abName);
+    });
+
+    $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
+        // Delete the draggable panel
+        draggedPanel.deleted = true;
+        draggedPanel.DeleteAsync(0.0);
+
+        var dropSlot = draggedPanel.GetAttributeInt('activeSlot', -1);
+        if(dropSlot != -1) {
+            var abName = draggedPanel.GetAttributeString('abilityname', '');
+            if(abName != null && abName.length > 0) {
+                chooseNewAbility(dropSlot, abName);
+            }
+        }
+
+        // Highlight nothing
+        setSelectedDropAbility();
+    });
+}
+
 // When the skill tab is shown
 var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
@@ -1736,10 +1813,13 @@ function OnSkillTabShown(tabName) {
         dropdownCategories.RemoveAllOptions();
         dropdownCategories.SetPanelEvent('oninputsubmit', function() {
             // Update the category
-            searchCategory = dropdownCategories.GetSelected().GetAttributeString('category', '');
+            var sel = dropdownCategories.GetSelected();
+            if(sel != null) {
+                searchCategory = dropdownCategories.GetSelected().GetAttributeString('category', '');
 
-            // Update the visible abilties
-            calculateFilters();
+                // Update the visible abilties
+                calculateFilters();
+            }
         });
 
         // Add header
@@ -1773,9 +1853,7 @@ function OnSkillTabShown(tabName) {
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
-                abcon.SetPanelEvent('onactivate', function() {
-                    setSelectedDropAbility(abName, abcon);
-                });
+                makeSkillSelectable(abcon, abName);
 
                 // Store a reference to it
                 abilityStore[abName] = abcon;
@@ -1938,7 +2016,7 @@ function addPlayerToTeam(playerID, panel, heroPanel) {
     var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
     newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, setSelectedDropAbility, setSelectedHelperHero);
+    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero);
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
@@ -1954,6 +2032,11 @@ function addPlayerToTeam(playerID, panel, heroPanel) {
     // Check for skill data
     if(selectedSkills[playerID] != null) {
         newPlayerPanel.OnGetHeroBuildData(selectedSkills[playerID]);
+    }
+
+    // Check for attr data
+    if(selectedAttr[playerID] != null) {
+        newPlayerPanel.OnGetNewAttribute(selectedAttr[playerID]);
     }
 
     // Add this panel to the list of panels we've generated

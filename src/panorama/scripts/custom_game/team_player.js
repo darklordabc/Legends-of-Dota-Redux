@@ -1,8 +1,9 @@
 "use strict";
 
 // Stub
-var setSelectedDropAbility = function(){};
+//var setSelectedDropAbility = function(){};
 var setSelectedHelperHero = function(){};
+var makeSkillSelectable = function(){};
 
 // The current hero we hold
 var currentSelectedHero = '';
@@ -54,7 +55,7 @@ function OnGetHeroBuildData(build) {
 }
 
 // Hooks the abilities to show what they are
-function hookStuff(hookSkillInfo, setSelectedDropAbilityReplace, setSelectedHelperHeroReplace) {
+function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace) {
 	// Hook it up
 	for(var i=1; i<=6; ++i) {
 		(function(con) {
@@ -63,17 +64,36 @@ function hookStuff(hookSkillInfo, setSelectedDropAbilityReplace, setSelectedHelp
 			//con.SetPanelEvent('onactivate', function() {
 	        //    setSelectedDropAbility(con.GetAttributeString('abilityname'), con);
 	        //});
+
+			makeSkillSelectable(con);
 		})($('#playerSkill' + i));
 	}
 
 	// Store ability
-	setSelectedDropAbility = setSelectedDropAbilityReplace;
 	setSelectedHelperHero = setSelectedHelperHeroReplace;
 }
 
+function OnGetNewAttribute(newAttr) {
+	var attr = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
+	if(newAttr == 'agi') {
+		attr = 'file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd';
+	} else if(newAttr == 'int') {
+		attr = 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd';
+	}
+
+	// Grab con
+	var con = $('#playerAttribute');
+
+	// Set it
+	con.SetImage(attr);
+
+	// Show it 
+	con.SetHasClass('doNotShow', false);
+}
+
 function onPlayerAbilityClicked(slotID) {
-	var con = $('#playerSkill' + slotID);
-	setSelectedDropAbility(con.GetAttributeString('abilityname', ''), con);
+	//var con = $('#playerSkill' + slotID);
+	//setSelectedDropAbility(con.GetAttributeString('abilityname', ''), con);
 }
 
 function onPlayerHeroClicked() {
@@ -94,5 +114,6 @@ function onPlayerHeroClicked() {
     mainPanel.OnGetHeroData = OnGetHeroData;
     mainPanel.OnGetHeroSlotCount = OnGetHeroSlotCount;
     mainPanel.OnGetHeroBuildData = OnGetHeroBuildData;
+    mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
 })();

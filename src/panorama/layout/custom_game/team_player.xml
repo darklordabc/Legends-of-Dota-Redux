@@ -7,8 +7,11 @@
     </scripts>
     <Panel class="teamPlayerContainer no_hero_selected">
         <DOTAAvatarImage id="playerAvatar" />
-        <DOTAHeroImage id="playerHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" onactivate="onPlayerHeroClicked()" />
-        <Image id="playerNoHeroSelected" src="file://{images}/heroes/npc_dota_hero_default.png" />
+        <Panel id="playerHeroImageContainer">
+            <DOTAHeroImage id="playerHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" onactivate="onPlayerHeroClicked()" />
+            <Image id="playerNoHeroSelected" src="file://{images}/heroes/npc_dota_hero_default.png" />
+            <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="doNotShow" />
+        </Panel>
         <Panel id="playerSkillContainer">
             <DOTAAbilityImage id="playerSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(1)" />
             <DOTAAbilityImage id="playerSkill2" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(2)" />

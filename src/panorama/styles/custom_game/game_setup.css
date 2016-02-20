@@ -330,12 +330,18 @@
     visibility: visible;
 }
 
-.phase_option_selection #playerNoHeroSelected {
+.phase_option_selection #playerHeroImageContainer {
     visibility: collapse;
 }
 
-.phase_option_selection #playerHeroImage {
-    visibility: collapse;
+#playerHeroImageContainer #playerAttribute {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    horizontal-align: right;
+    background-color: #000000;
+    border-radius: 12px;
+    border: 1px solid #000000;
 }
 
 /*
@@ -1124,4 +1130,12 @@
 
 .allow_custom_settings .optionSlotPanelNoCustom {
     visibility: collapse;
+}
+
+.doNotShow {
+    visibility: collapse;
+}
+
+.potential_drop_target {
+    opacity: 0.3;
 }
