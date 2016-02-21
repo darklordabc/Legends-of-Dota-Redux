@@ -1023,7 +1023,7 @@ function hookSkillInfo(panel) {
 
     // Hide
     panel.SetPanelEvent('onmouseout', function() {
-        $.DispatchEvent('DOTAHideAbilityTooltip', panel);
+        $.DispatchEvent('DOTAHideAbilityTooltip');
     });
 }
 
@@ -1407,6 +1407,7 @@ function setSelectedHelperHero(heroName) {
 
     // Update the hero
     $('#buildingHelperHeroPreviewHero').heroname = heroName;
+    $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
 
     // Set this as the selected one
     currentSelectedHero = heroName;
@@ -1548,7 +1549,7 @@ function setSelectedDropAbility(abName, abcon) {
 }
 
 // They clicked on a skill
-function onHeroAbilityClicked(heroAbilityID) {
+/*function onHeroAbilityClicked(heroAbilityID) {
     // Focus nothing
     focusNothing();
 
@@ -1557,7 +1558,7 @@ function onHeroAbilityClicked(heroAbilityID) {
 
     // Push the event
     setSelectedDropAbility(ab, abcon);
-}
+}*/
 
 // They click on the banning button
 function onBanButtonPressed() {
@@ -1689,6 +1690,9 @@ function makeSkillSelectable(abcon) {
         dragCallbacks.offsetX = 0;
         dragCallbacks.offsetY = 0;
         displayPanel.SetAttributeString('abilityname', abName);
+
+        // Hide skill info
+        $.DispatchEvent('DOTAHideAbilityTooltip');
     });
 
     $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
@@ -1714,7 +1718,7 @@ var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
         // Empty the skills tab
-        var con = $('#pickingPhaseSkillTabContent');
+        var con = $('#pickingPhaseSkillTabContentSkills');
         con.RemoveAndDeleteChildren();
 
         // Used to provide unique handles
@@ -1889,11 +1893,16 @@ function OnSkillTabShown(tabName) {
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
-                makeSkillSelectable(abcon, abName);
+                makeSkillSelectable(abcon);
 
                 // Store a reference to it
                 abilityStore[abName] = abcon;
             })(abName);
+        }
+
+        // Hook hero skills
+        for(var i=1; i<=16; ++i) {
+            makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
         }
 
         /*
@@ -1909,12 +1918,19 @@ function OnSkillTabShown(tabName) {
             'wraith'
         ];
 
+        // Used to store tabs to highlight them correctly
+        var storedTabs = {};
+
         for(var i=0; i<tabList.length; ++i) {
             // New script scope!
             (function() {
                 var tabName = tabList[i];
                 var tabButton = $.CreatePanel('Button', tabButtonsContainer, 'tabButton_' + tabName);
                 tabButton.AddClass('lodSkillTabButton');
+
+                if(activeTabs[tabName]) {
+                    tabButton.AddClass('lodSkillTabActivated');
+                }
 
                 // Add the text
                 var tabLabel = $.CreatePanel('Label', tabButton, 'tabButton_text_' + tabName);
@@ -1935,9 +1951,18 @@ function OnSkillTabShown(tabName) {
                         activeTabs[tabName] = true;
                     }
 
+                    // Fix highlights
+                    for(var theTabName in storedTabs) {
+                        var theTab = storedTabs[theTabName];
+                        theTab.SetHasClass('lodSkillTabActivated', activeTabs[theTabName] == true);
+                    }
+
                     // Recalculate which skills should be shown
                     calculateFilters();
                 });
+
+                // Store it
+                storedTabs[tabName] = tabButton;
             })();
         }
 
