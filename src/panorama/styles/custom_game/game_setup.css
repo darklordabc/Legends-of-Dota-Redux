@@ -607,6 +607,11 @@
     visibility: collapse;
 }
 
+.pickingPhaseSelectedHeroImage {
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
 #pickingPhaseSelectedHeroImageNone {
     visibility: collapse;
     width: 128px;

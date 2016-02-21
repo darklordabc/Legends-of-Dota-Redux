@@ -155,8 +155,8 @@
                             </Panel>
 
                             <Panel id="pickingPhaseSelectedHeroImageCon" class="no_hero_selected">
-                                <DOTAHeroImage id="pickingPhaseSelectedHeroImage" heroname="" heroimagestyle="landscape" />
-                                <Image id="pickingPhaseSelectedHeroImageNone" src="file://{images}/heroes/npc_dota_hero_default.png" />
+                                <DOTAHeroImage id="pickingPhaseSelectedHeroImage" class="pickingPhaseSelectedHeroImage" heroname="" heroimagestyle="landscape" />
+                                <Image id="pickingPhaseSelectedHeroImageNone" class="pickingPhaseSelectedHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" />
                                 <Label id="pickingPhaseSelectedHeroText" text="Random" />
                             </Panel>
                         </Panel>
