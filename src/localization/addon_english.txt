@@ -195,6 +195,7 @@
     "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
 
     // Hero builder
+    "finishBanning"                                 "Finish Banning"
     "unlockBuild"                                   "Unlock Build"
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"

@@ -179,9 +179,13 @@
                     <Panel id="pickingPhaseBans">
                         <Label text="Banning" />
 
-                        <Button onactivate="onBanButtonPressed()">
+                        <Button class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
                             <Label text="Ban Ability" />
                         </Button>
+
+                        <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                                <Label id="heroBuilderLockButtonText" text="finshBanning" />
+                            </Button>
                     </Panel>
                 </Panel>
 

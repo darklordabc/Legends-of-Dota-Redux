@@ -14,13 +14,6 @@ local Pregame = class({})
 
 -- Init pregame stuff
 function Pregame:init()
-    -- Set it to the loading phase
-    self:setPhase(constants.PHASE_LOADING)
-
-    -- Init thinker
-    GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
-    GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
-
     -- Store for options
     self.optionStore = {}
 
@@ -40,6 +33,13 @@ function Pregame:init()
 
     -- Who is ready?
     self.isReady = {}
+
+    -- Set it to the loading phase
+    self:setPhase(constants.PHASE_LOADING)
+
+    -- Init thinker
+    GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
+    GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
 
     -- Load troll combos
     self:loadTrollCombos()
@@ -1950,7 +1950,9 @@ function Pregame:setPhase(newPhaseNumber)
     network:setPhase(newPhaseNumber)
 
     -- Ready state should reset
-    self.isReady = {}
+    for k,v in pairs(self.isReady) do
+        self.isReady[k] = 0
+    end
 
     -- Network it
     network:sendReadyState(self.isReady)

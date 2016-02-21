@@ -1215,14 +1215,16 @@ function OnGetReadyState(table_name, key, data) {
 
         // Is it our local player?
         if(playerID == Players.GetLocalPlayer()) {
-            var thePanel = $('#heroBuilderLockButton');
-            thePanel.SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
+            $('#heroBuilderLockButton').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
+            $('#heroBuilderLockButtonBans').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
 
             // Set the text
             if(data[playerID] == 0) {
                 $('#heroBuilderLockButtonText').text = $.Localize('lockBuild');
+                $('#heroBuilderLockButtonBans').visible = true;
             } else {
                 $('#heroBuilderLockButtonText').text = $.Localize('unlockBuild');
+                $('#heroBuilderLockButtonBans').visible = false;
             }
         }
     }
