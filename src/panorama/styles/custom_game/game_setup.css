@@ -103,7 +103,7 @@
     visibility: collapse;
 }
 
-.phase_option_selection #unassignedTeamContainer {
+.phase_option_selection.phase_option_selection_selected #unassignedTeamContainer {
     visibility: visible;
 }
 
@@ -278,7 +278,7 @@
     padding: 4px;
 }
 
-.phase_option_selection #middleButtons {
+.phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
 }
 
@@ -286,7 +286,7 @@
     visibility: collapse;
 }
 
-.phase_option_selection #playerAvatar {
+.phase_option_selection.phase_option_selection_selected #playerAvatar {
     visibility: visible;
 }
 
@@ -300,21 +300,23 @@
 
 #playerSkillContainer {
     flow-children: right;
-    background-color: #FF0000;
     horizontal-align: center;
     margin-top: 4px;
 }
 
 #playerSkillContainer DOTAAbilityImage {
+    border: 1px solid #444444;
+    border-radius: 2px;
     width: 20px;
     height: 20px;
+    margin: 0.5px;
 }
 
-.phase_option_selection #playerHeroImage {
+.phase_option_selection.phase_option_selection_selected #playerHeroImage {
     visibility: collapse;
 }
 
-.phase_option_selection #playerSkillContainer {
+.phase_option_selection.phase_option_selection_selected #playerSkillContainer {
     visibility: collapse;
 }
 
@@ -330,7 +332,7 @@
     visibility: visible;
 }
 
-.phase_option_selection #playerHeroImageContainer {
+.phase_option_selection.phase_option_selection_selected #playerHeroImageContainer {
     visibility: collapse;
 }
 
@@ -342,6 +344,11 @@
     background-color: #000000;
     border-radius: 12px;
     border: 1px solid #000000;
+}
+
+.playerHeroImageTop {
+    border: 1px solid #444444;
+    border-radius: 4px;
 }
 
 /*
@@ -356,14 +363,21 @@
 .lodStageArrow {
     margin-left: 8px;
     margin-right: 8px;
+    padding: 2px;
+}
+
+.lodStageButton {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 .phase_option_selection #stageButtonOptionSelection {
-    background-color: #FF0000;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
 
 .phase_option_selection_selected #stageButtonOptionSelection {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #AAFFAA;
 }
 
 /* Banning */
@@ -390,11 +404,11 @@
 }
 
 .phase_banning #stageButtonBanning {
-    background-color: #FF0000;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
 
 .phase_banning_selected #stageButtonBanning {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #AAFFAA;
 }
 
 #heroPreviewTest {
@@ -418,11 +432,11 @@
 }
 
 .phase_selection #stageButtonSelection {
-    background-color: #FF0000;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
 
 .phase_selection_selected #stageButtonSelection {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #AAFFAA;
 }
 
 /* Review */
@@ -455,11 +469,11 @@
 }
 
 .phase_review #stageButtonReview {
-    background-color: #FF0000;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
 
 .phase_review_selected #stageButtonReview {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #AAFFAA;
 }
 
 /*
@@ -631,7 +645,7 @@
     margin-top: 8px;
 }
 
-#pickingPhaseBuildButtons Button {
+/*#pickingPhaseBuildButtons Button {
     width: 140px;
     height: 20px;
     padding: 0px;
@@ -647,26 +661,7 @@
 #pickingPhaseBuildButtons Button Label {
     font-size: 14px;
     text-align: center;
-}
-
-.makeThePlayerNoticeThisButton {
-    animation-name: lodButtonHighlight;
-    animation-duration: 1.51s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-}
-
-@keyframes 'lodButtonHighlight' {
-    0% {
-        box-shadow: fill #00FF00FF 0px 0px 0px 0px;
-    }
-    50% {
-        box-shadow: fill #00FF00FF -4px -4px 4px 4px;
-    }
-    100% {
-        box-shadow: fill #00FF00FF 0px 0px 0px 0px;
-    }
-}
+}*/
 
 .pickingPhaseTab {
     flow-children: down;
@@ -957,6 +952,33 @@
 
 .heroBuildMenuButtonSmall:hover {
     wash-color: #FFFFFFFF;
+}
+
+.lockBuildButton {
+    width: fill-parent-flow(1.0);
+}
+
+.lockBuildButton Label {
+    horizontal-align: center;
+}
+
+.makeThePlayerNoticeThisButton {
+    animation-name: lodButtonHighlight;
+    animation-duration: 1.51s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes 'lodButtonHighlight' {
+    0% {
+        box-shadow: #00FF00FF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00FF00FF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00FF00FF 0px 0px 1px 0px;
+    }
 }
 
 .buildingHelperInfoText {

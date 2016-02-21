@@ -38,10 +38,6 @@ function Pregame:init()
     -- Stores the total bans for each player
     self.usedBans = {}
 
-    -- temp: ban stuff
-    self:banAbility('doom_bringer_doom')
-    self:banAbility('pudge_rot')
-
     -- Load troll combos
     self:loadTrollCombos()
 

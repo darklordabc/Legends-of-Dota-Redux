@@ -45,21 +45,21 @@
             </Panel>
 
             <Panel id="stageSelection">
-                <Button id="stageButtonOptionSelection" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
+                <Button id="stageButtonOptionSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />
                 </Button>
                 <Label class="lodStageArrow" id="lodArrowBanningPhase" text="->" />
-                <Button id="stageButtonBanning" onactivate="SetSelectedPhase(PHASE_BANNING)">
+                <Button id="stageButtonBanning" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_BANNING)">
                     <Label text="lodStageButtonBanning" />
                     <Label text="" id="lodBanningTimeRemaining" />
                 </Button>
                 <Label class="lodStageArrow" text="->" />
-                <Button id="stageButtonSelection" onactivate="SetSelectedPhase(PHASE_SELECTION)">
+                <Button id="stageButtonSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_SELECTION)">
                     <Label text="lodStageButtonSelection" />
                     <Label text="" id="lodSelectionTimeRemaining" />
                 </Button>
                 <Label class="lodStageArrow" text="->" />
-                <Button id="stageButtonReview" onactivate="SetSelectedPhase(PHASE_REVIEW)">
+                <Button id="stageButtonReview" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_REVIEW)">
                     <Label text="lodStageButtonReview" />
                     <Label text="" id="lodReviewTimeRemaining" />
                 </Button>
@@ -171,10 +171,7 @@
                         </Panel>
 
                         <Panel id="pickingPhaseBuildButtons">
-                            <Button class="PlayButton">
-                                <Label text="moreTime" />
-                            </Button>
-                            <Button class="makeThePlayerNoticeThisButton">
+                            <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton">
                                 <Label text="lockBuild" />
                             </Button>
                         </Panel>
