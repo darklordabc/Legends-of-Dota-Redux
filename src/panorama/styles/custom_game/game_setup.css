@@ -351,6 +351,20 @@
     border-radius: 4px;
 }
 
+.lodPlayerReadyText {
+    vertical-align: bottom;
+    color: gradient(linear, 0% 0%, 0% 100%, from(#00FF00FF), to(#000000FF));
+    font-size: 16px;
+    horizontal-align: center;
+    padding: 4px;
+    text-shadow: 0px 0px 2px 4.0 #000000FF;
+    visibility: collapse;
+}
+
+.lodPlayerIsReady .lodPlayerReadyText {
+    visibility: visible;
+}
+
 /*
     Stage Selection
 */

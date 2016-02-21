@@ -10,6 +10,7 @@
         "selected_heroes",
         "selected_skills",
         "banned",
-        "bannedHero"
+        "bannedHero",
+        "ready"
     ]
 }

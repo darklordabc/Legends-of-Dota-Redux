@@ -38,6 +38,9 @@ function Pregame:init()
     -- Stores the total bans for each player
     self.usedBans = {}
 
+    -- Who is ready?
+    self.isReady = {}
+
     -- Load troll combos
     self:loadTrollCombos()
 
@@ -96,6 +99,11 @@ function Pregame:init()
         this:onPlayerBan(eventSourceIndex, args)
     end)
 
+    -- Player wants to ready up
+    CustomGameEventManager:RegisterListener('lodReady', function(eventSourceIndex, args)
+        this:onPlayerReady(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 
@@ -142,10 +150,10 @@ function Pregame:onThink()
     ]]
     if ourPhase == constants.PHASE_BANNING then
         -- Is it over?
-        if Time() >= self:getEndOfPhase() then
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
             self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
 
         return 0.1
@@ -154,7 +162,7 @@ function Pregame:onThink()
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
         -- Is it over?
-        if Time() >= self:getEndOfPhase() then
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
             self:setPhase(constants.PHASE_REVIEW)
             self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
@@ -166,7 +174,7 @@ function Pregame:onThink()
     -- Review
     if ourPhase == constants.PHASE_REVIEW then
         -- Is it over?
-        if Time() >= self:getEndOfPhase() then
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
             self:setPhase(constants.PHASE_INGAME)
 
@@ -385,15 +393,15 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
         -- Should verify if the teams are locked here, oh well
 
         -- Move onto the next phase
-        if OptionManager:GetOption('banningTime') > 0 then
+        if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 then
             -- There is banning
             self:setPhase(constants.PHASE_BANNING)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
 
         else
             -- There is not banning
             self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
 
         end
     end
@@ -1280,6 +1288,81 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     end
 end
 
+-- Player wants to ready up
+function Pregame:onPlayerReady(eventSourceIndex, args)
+    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION then return end
+
+    local playerID = args.PlayerID
+
+    local currentTime = self.endOfTimer - Time()
+    local maxTime = OptionManager:GetOption('pickingTime')
+    local minTime = 3
+
+    -- If we are in the banning phase
+    if self:getPhase() == constants.PHASE_BANNING then
+        maxTime = OptionManager:GetOption('banningTime')
+
+        -- TODO: Check max bans
+    end
+
+    -- Ensure we have a store for this player's ready state
+    self.isReady[playerID] = self.isReady[playerID] or 0
+
+    -- Toggle their state
+    self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
+
+    -- Network it
+    network:sendReadyState(self.isReady)
+
+    -- Calculate how many players are ready
+    local totalPlayers = 0
+    local readyPlayers = 0
+
+    for playerID,readyState in pairs(self.isReady) do
+        if readyState == 1 then
+            readyPlayers = readyPlayers + 1
+        end
+    end
+
+    -- Is there at least one player that is ready?
+    if readyPlayers > 0 then
+        -- Someone is ready, timer should be moving
+
+        -- Is time currently frozen?
+        if self.freezeTimer ~= nil then
+            -- Start the clock
+
+            if readyPlayers >= totalPlayers then
+                -- Single player
+                self:setEndOfPhase(Time() + minTime)
+            else
+                -- Multiplayer, start the timer ticking
+                self:setEndOfPhase(Time() + maxTime)
+            end
+        else
+            -- Check if we can lower the timer
+
+            -- If everyone is ready, set the remaining time to be the min
+            if readyPlayers >= totalPlayers then
+                if currentTime > minTime then
+                    self:setEndOfPhase(Time() + minTime)
+                end
+            else
+                local percentageReady = (readyPlayers-1) / totalPlayers
+
+                local discountTime = maxTime * (1-percentageReady) * 1.5
+
+                if discountTime < currentTime then
+                    self:setEndOfPhase(Time() + discountTime)
+                end
+            end
+        end
+    else
+        -- No one is ready, freeze time at max
+        self:setEndOfPhase(Time() + maxTime, maxTime)
+    end
+end
+
 -- Player wants to ban an ability
 function Pregame:onPlayerBan(eventSourceIndex, args)
 	-- Ensure we are in the banning phase
@@ -1865,15 +1948,30 @@ function Pregame:setPhase(newPhaseNumber)
 
     -- Update the phase for the clients
     network:setPhase(newPhaseNumber)
+
+    -- Ready state should reset
+    self.isReady = {}
+
+    -- Network it
+    network:sendReadyState(self.isReady)
 end
 
 -- Sets when the next phase is going to end
-function Pregame:setEndOfPhase(endTime)
+function Pregame:setEndOfPhase(endTime, freezeTimer)
     -- Store the time
     self.endOfTimer = endTime
 
     -- Network it
     network:setEndOfPhase(endTime)
+
+    -- Should we freeze the timer?
+    if freezeTimer then
+        self.freezeTimer = freezeTimer
+        network:freezeTimer(freezeTimer)
+    else
+        self.freezeTimer = nil
+        network:freezeTimer(-1)
+    end
 end
 
 -- Returns when the current phase should end

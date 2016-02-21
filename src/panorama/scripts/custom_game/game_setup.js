@@ -859,11 +859,13 @@ var onLoadTabHook = {};
 var selectedHeroes = {};
 var selectedAttr = {};
 var selectedSkills = {};
+var readyState = {};
 
 // The current phase we are in
 var currentPhase = PHASE_LOADING;
 var selectedPhase = PHASE_OPTION_SELECTION;
 var endOfTimer = -1;
+var freezeTimer = -1;
 var allowCustomSettings = false;
 
 // Current hero & Skill
@@ -1198,6 +1200,40 @@ function OnSkillBanned(table_name, key, data) {
     calculateFilters();
 }
 
+// Server just sent the ready state
+function OnGetReadyState(table_name, key, data) {
+    // Store it
+    readyState = data;
+
+    // Process it
+    for(var playerID in data) {
+        var panel = activePlayerPanels[playerID];
+
+        if(panel) {
+            panel.setReadyState(data[playerID])
+        }
+
+        // Is it our local player?
+        if(playerID == Players.GetLocalPlayer()) {
+            var thePanel = $('#heroBuilderLockButton');
+            thePanel.SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
+
+            // Set the text
+            if(data[playerID] == 0) {
+                $('#heroBuilderLockButtonText').text = $.Localize('lockBuild');
+            } else {
+                $('#heroBuilderLockButtonText').text = $.Localize('unlockBuild');
+            }
+        }
+    }
+}
+
+// When the lock build button is pressed
+function onLockBuildButtonPressed() {
+    // Tell the server we clicked it
+    GameEvents.SendCustomGameEventToServer('lodReady', {});
+}
+
 // Sets up the hero builder tab
 function setupBuilderTabs() {
     var mainPanel = $('#pickingPhaseTabs');
@@ -1295,6 +1331,7 @@ function setupBuilderTabs() {
 
     for(var i=1;i<=16; ++i) {
         hookSkillInfo($('#buildingHelperHeroPreviewSkill' + i));
+        makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
     }
 
     // Loop over all the panels we need to hook
@@ -1900,11 +1937,6 @@ function OnSkillTabShown(tabName) {
             })(abName);
         }
 
-        // Hook hero skills
-        for(var i=1; i<=16; ++i) {
-            makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
-        }
-
         /*
             Add Skill Tab Buttons
         */
@@ -2098,6 +2130,11 @@ function addPlayerToTeam(playerID, panel, heroPanel) {
     // Check for attr data
     if(selectedAttr[playerID] != null) {
         newPlayerPanel.OnGetNewAttribute(selectedAttr[playerID]);
+    }
+
+    // Check for ready state
+    if(readyState[playerID] != null) {
+        newPlayerPanel.setReadyState(readyState[playerID]);
     }
 
     // Add this panel to the list of panels we've generated
@@ -2471,6 +2508,10 @@ function OnPhaseChanged(table_name, key, data) {
                 optionButton.SetHasClass('activeHostMenu', key == newActiveTab);
             }
         break;
+
+        case 'freezeTimer':
+            freezeTimer = data.v;
+        break;
     }
 }
 
@@ -2643,6 +2684,11 @@ function UpdateTimer() {
             var currentTime = Game.Time();
             var timeLeft = Math.ceil(endOfTimer - currentTime);
 
+            // Freeze timer
+            if(freezeTimer != -1) {
+                timeLeft = freezeTimer;
+            }
+
             var timeLeftLabel = $('#lodBanningTimeRemaining');
             timeLeftLabel.text = '(' + timeLeft + ')'
         break;
@@ -2652,6 +2698,11 @@ function UpdateTimer() {
             var currentTime = Game.Time();
             var timeLeft = Math.ceil(endOfTimer - currentTime);
 
+            // Freeze timer
+            if(freezeTimer != -1) {
+                timeLeft = freezeTimer;
+            }
+
             var timeLeftLabel = $('#lodSelectionTimeRemaining');
             timeLeftLabel.text = '(' + timeLeft + ')'
         break;
@@ -2660,6 +2711,11 @@ function UpdateTimer() {
             // Workout how long is left
             var currentTime = Game.Time();
             var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            // Freeze timer
+            if(freezeTimer != -1) {
+                timeLeft = freezeTimer;
+            }
 
             var timeLeftLabel = $('#lodReviewTimeRemaining');
             timeLeftLabel.text = '(' + timeLeft + ')'
@@ -2716,6 +2772,7 @@ function UpdateTimer() {
     hookAndFire('selected_attr', OnSelectedAttrChanged);
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
     hookAndFire('banned', OnSkillBanned);
+    hookAndFire('ready', OnGetReadyState);
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

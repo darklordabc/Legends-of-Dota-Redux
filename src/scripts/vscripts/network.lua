@@ -19,6 +19,11 @@ function Network:setEndOfPhase(endTime)
     CustomNetTables:SetTableValue('phase_pregame', 'endOfTimer', {v = endTime})
 end
 
+-- Freezes the timer on a given number
+function Network:freezeTimer(freezeTimer)
+    CustomNetTables:SetTableValue('phase_pregame', 'freezeTimer', {v = freezeTimer})
+end
+
 -- Sets the active tab
 function Network:setActiveOptionsTab(newActiveTab)
     CustomNetTables:SetTableValue('phase_pregame', 'activeTab', {v = newActiveTab})
@@ -90,6 +95,12 @@ function Network:banHero(heroName)
     CustomNetTables:SetTableValue('bannedHero', heroName, {
         heroName = heroName
     })
+end
+
+-- Pushes the ready state
+function Network:sendReadyState(readyState)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('ready', 'ready', readyState)
 end
 
 -- Return an instance of it

@@ -87,7 +87,7 @@ function OnGetNewAttribute(newAttr) {
 	// Set it
 	con.SetImage(attr);
 
-	// Show it 
+	// Show it
 	con.SetHasClass('doNotShow', false);
 }
 
@@ -99,6 +99,10 @@ function onPlayerAbilityClicked(slotID) {
 function onPlayerHeroClicked() {
 	// Set the selected hero
 	setSelectedHelperHero(currentSelectedHero);
+}
+
+function setReadyState(newState) {
+    $.GetContextPanel().SetHasClass("lodPlayerIsReady", newState == 1);
 }
 
 // When this panel loads
@@ -116,4 +120,5 @@ function onPlayerHeroClicked() {
     mainPanel.OnGetHeroBuildData = OnGetHeroBuildData;
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
+    mainPanel.setReadyState = setReadyState;
 })();

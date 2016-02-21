@@ -171,8 +171,8 @@
                         </Panel>
 
                         <Panel id="pickingPhaseBuildButtons">
-                            <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton">
-                                <Label text="lockBuild" />
+                            <Button id="heroBuilderLockButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                                <Label id="heroBuilderLockButtonText" text="lockBuild" />
                             </Button>
                         </Panel>
                     </Panel>
