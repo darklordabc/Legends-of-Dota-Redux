@@ -31,7 +31,7 @@ OptionManager:SetOption('heroBanningTime', 60)
 OptionManager:SetOption('pickingTime', 60 * 2)
 
 -- Review time (30 seconds)
-OptionManager:SetOption('reviewTime', 10)
+OptionManager:SetOption('reviewTime', 15)
 
 -- Should we use slave voting, set ID = -1 for no
 -- Set to the ID of the player who is the master
