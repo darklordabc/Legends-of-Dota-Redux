@@ -96,7 +96,6 @@
 }*/
 
 #unassignedTeamContainer {
-    height: 58px;
     horizontal-align: center;
     text-align: center;
     flow-children: down;
@@ -230,7 +229,8 @@
 .theTeamTopLevel {
     flow-children: down;
     font-size: 24px;
-    /*height: 128px;*/
+    width: 45%;
+    min-height: 110px;
 }
 
 .theTeamContainer {
