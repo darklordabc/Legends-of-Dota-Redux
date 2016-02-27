@@ -839,8 +839,9 @@ var PHASE_OPTION_SELECTION = 2; // Selection options
 var PHASE_BANNING = 3;          // Banning stuff
 var PHASE_SELECTION = 4;        // Selecting heroes
 var PHASE_DRAFTING = 5;         // Place holder for drafting mode
-var PHASE_REVIEW = 6;           // Review Phase
-var PHASE_INGAME = 7;           // Game has started
+var PHASE_RANDOM_SELECTION = 6; // Random build selection (For All Random)
+var PHASE_REVIEW = 7;           // Review Phase
+var PHASE_INGAME = 8;           // Game has started
 
 // Hero data
 var heroData = {};
@@ -1218,6 +1219,8 @@ function OnGetReadyState(table_name, key, data) {
             $('#heroBuilderLockButton').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
             $('#heroBuilderLockButtonBans').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
 
+            $('#allRandomLockButton').visible = data[playerID] == 0;
+
             // Set the text
             if(data[playerID] == 0) {
                 $('#heroBuilderLockButtonText').text = $.Localize('lockBuild');
@@ -1226,6 +1229,31 @@ function OnGetReadyState(table_name, key, data) {
                 $('#heroBuilderLockButtonText').text = $.Localize('unlockBuild');
                 $('#heroBuilderLockButtonBans').visible = false;
             }
+        }
+    }
+}
+
+// Server just sent us random build data
+function OnGetRandomBuilds(table_name, key, data) {
+    // See who's data we just got
+    var playerID = data.playerID;
+    if(playerID == Players.GetLocalPlayer()) {
+        // It's our data!
+        var builds = data.builds;
+
+        var con = $('#allRandomBuildsContainer');
+
+        // Clear out any current builds
+        con.RemoveAndDeleteChildren();
+
+        for(var buildID in builds) {
+            var theBuild = builds[buildID];
+
+            // Create the container
+            var buildCon = $.CreatePanel('Panel', con, 'allRandomBuild' + buildID);
+            buildCon.BLoadLayout('file://{resources}/layout/custom_game/all_random_build.xml', false, false);
+            buildCon.setBuild(buildID, theBuild.heroName, theBuild.build);
+            buildCon.hook(hookSkillInfo);
         }
     }
 }
@@ -2485,6 +2513,7 @@ function OnPhaseChanged(table_name, key, data) {
             masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
             masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
             masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
+            masterRoot.SetHasClass('phase_all_random', currentPhase == PHASE_RANDOM_SELECTION);
             masterRoot.SetHasClass('phase_drafting', currentPhase == PHASE_DRAFTING);
             masterRoot.SetHasClass('phase_review', currentPhase == PHASE_REVIEW);
             masterRoot.SetHasClass('phase_ingame', currentPhase == PHASE_INGAME);
@@ -2563,6 +2592,28 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionAdvancedUniqueHeroes') {
         $('#mainSelectionRoot').SetHasClass('unique_heroes_mode', optionValueList['lodOptionAdvancedUniqueHeroes'] == 1);
     }
+
+    if(key == 'lodOptionCommonGamemode') {
+        onGamemodeChanged();
+    }
+}
+
+// The gamemode has changed
+function onGamemodeChanged() {
+    var theGamemode = optionValueList['lodOptionCommonGamemode'];
+
+    var noHeroSelection = false;
+
+    if(theGamemode == 4) {
+        // All Random
+        noHeroSelection = true;
+    }
+
+    var masterRoot = $('#mainSelectionRoot');
+    masterRoot.SetHasClass('no_hero_selection', noHeroSelection);
+
+    // All random mode
+    masterRoot.SetHasClass('all_random_mode', theGamemode == 4);
 }
 
 // Max number of bans has changed
@@ -2643,6 +2694,7 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
     masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION);
+    masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
 }
@@ -2706,6 +2758,20 @@ function UpdateTimer() {
             }
 
             var timeLeftLabel = $('#lodSelectionTimeRemaining');
+            timeLeftLabel.text = '(' + timeLeft + ')'
+        break;
+
+        case PHASE_RANDOM_SELECTION:
+            // Workout how long is left
+            var currentTime = Game.Time();
+            var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            // Freeze timer
+            if(freezeTimer != -1) {
+                timeLeft = freezeTimer;
+            }
+
+            var timeLeftLabel = $('#lodRandomSelectionTimeRemaining');
             timeLeftLabel.text = '(' + timeLeft + ')'
         break;
 
@@ -2775,6 +2841,7 @@ function UpdateTimer() {
     hookAndFire('selected_skills', OnSelectedSkillsChanged);
     hookAndFire('banned', OnSkillBanned);
     hookAndFire('ready', OnGetReadyState);
+    hookAndFire('random_builds', OnGetRandomBuilds);
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

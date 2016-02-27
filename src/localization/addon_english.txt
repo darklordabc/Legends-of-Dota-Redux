@@ -19,6 +19,7 @@
     "lodStageButtonOptionSelection"                 "Option Selection"
     "lodStageButtonBanning"                         "Banning"
     "lodStageButtonSelection"                       "Hero Builder"
+    "lodStageButtonRandomSelection"                 "All Random Build Selection"
     "lodStageButtonReview"                          "Review"
 
     // The options menu
@@ -200,6 +201,10 @@
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
 
+    // All Random
+    "selectThisRandomBuild"                         "Select Build"
+    "selectThisRandomHero"                          "Select Hero"
+
     // Categories
     "lod_cat_none"                                  "<Filter by category>"
     "lod_cat_invis"                                 "Invisibility"
@@ -242,6 +247,9 @@
     "lodFailedBanAbilityNoBanning"                  "You can not ban any abilities."
     "lodFailedSkillTaken"                           "'{ab}' has already been taken and unique skills is enabled."
     "lodFailedHeroIsTaken"                          "'{heroName}' has already been taken and unique heroes is enabled."
+    "lodFailedNotAllRandomPhase"                    "You can only select your build during the selection phase."
+    "lodFailedAllRandomNoBuilds"                    "Failed to find any valid builds for you."
+    "lodFailedAllRandomInvalidBuild"                "'{buildID}' is not a valid buildID."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."

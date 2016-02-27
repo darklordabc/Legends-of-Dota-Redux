@@ -11,6 +11,7 @@
         "selected_skills",
         "banned",
         "bannedHero",
-        "ready"
+        "ready",
+        "random_builds"
     ]
 }

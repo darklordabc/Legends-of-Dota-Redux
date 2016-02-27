@@ -30,6 +30,9 @@ OptionManager:SetOption('heroBanningTime', 60)
 -- Picking Time (2 minutes)
 OptionManager:SetOption('pickingTime', 60 * 2)
 
+-- Time to review random builds (120 seconds)
+OptionManager:SetOption('randomSelectionTime', 120)
+
 -- Review time (30 seconds)
 OptionManager:SetOption('reviewTime', 15)
 

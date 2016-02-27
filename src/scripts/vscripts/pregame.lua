@@ -104,6 +104,11 @@ function Pregame:init()
         this:onPlayerReady(eventSourceIndex, args)
     end)
 
+    -- Player wants to select their all random build
+    CustomGameEventManager:RegisterListener('lodSelectAllRandomBuild', function(eventSourceIndex, args)
+        this:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 
@@ -151,9 +156,23 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_BANNING then
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
-            -- Change to picking phase
-            self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+            -- Is there hero selection?
+            if self.noHeroSelection then
+                -- Is there all random selection?
+                if self.allRandomSelection then
+                    -- Goto all random
+                    self:setPhase(constants.PHASE_RANDOM_SELECTION)
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
+                else
+                    -- Nope, change to review
+                    self:setPhase(constants.PHASE_REVIEW)
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+                end
+            else
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_SELECTION)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+            end
         end
 
         return 0.1
@@ -169,6 +188,29 @@ function Pregame:onThink()
         end
 
         return 0.1
+    end
+
+
+
+    -- All random phase
+    if ourPhase == constants.PHASE_RANDOM_SELECTION then
+        if not self.allRandomBuilds then
+            self:generateAllRandomBuilds()
+        end
+
+        -- Is it over?
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
+            -- Change to picking phase
+            self:setPhase(constants.PHASE_REVIEW)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+        end
+
+        return 0.1
+    end
+
+    -- Process options ONCE here
+    if not self.validatedBuilds then
+        self:validateBuilds()
     end
 
     -- Review
@@ -390,7 +432,13 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
 
     -- Ensure they have hosting privileges
     if GameRules:PlayerHasCustomGameHostPrivileges(player) then
-        -- Should verify if the teams are locked here, oh well
+        -- TODO: Should verify if the teams are locked here, oh well
+
+         -- Process gamemodes
+        if self.optionStore['lodOptionCommonGamemode'] == 4 then
+            self.noHeroSelection = true
+            self.allRandomSelection = true
+        end
 
         -- Move onto the next phase
         if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 then
@@ -400,9 +448,26 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
 
         else
             -- There is not banning
-            self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
 
+            -- Is there hero selection?
+            if self.noHeroSelection then
+                -- No hero selection
+
+                -- Is there all random selection?
+                if self.allRandomSelection then
+                    -- Goto all random
+                    self:setPhase(constants.PHASE_RANDOM_SELECTION)
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
+                else
+                    -- Goto review
+                    self:setPhase(constants.PHASE_REVIEW)
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+                end
+            else
+                -- Hero selection
+                self:setPhase(constants.PHASE_SELECTION)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+            end
         end
     end
 end
@@ -1044,6 +1109,117 @@ function Pregame:initOptionSelector()
     self.fastHeroBansTotalBans = 1
 end
 
+-- Generates a random build
+function Pregame:generateRandomBuild(playerID)
+    local heroName = self:getRandomHero()
+    local build = {}
+
+    -- Validate it
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    for slot=1,maxSlots do
+        -- Grab a random ability
+        local newAbility = self:findRandomSkill(build, slot, PlayerResource:GetTeam(playerID))
+
+        -- Ensure we found an ability
+        if newAbility ~= nil then
+            build[slot] = newAbility
+        end
+    end
+
+    -- Return the data
+    return heroName, build
+end
+
+-- Generates builds for all random mode
+function Pregame:generateAllRandomBuilds()
+    -- Only process this once
+    if self.allRandomBuilds then return end
+    self.allRandomBuilds = {}
+
+    -- Generate 10 builds
+    local minPlayerID = 0
+    local maxPlayerID = 9
+
+    -- Max builds per player
+    local maxPlayerBuilds = 5
+
+    for playerID = minPlayerID,maxPlayerID do
+        local theBuilds = {}
+
+        for buildID = 0,(maxPlayerBuilds-1) do
+            local heroName, build = self:generateRandomBuild(playerID)
+
+            theBuilds[buildID] = {
+                heroName = heroName,
+                build = build
+            }
+        end
+
+        -- Store and network
+        self.allRandomBuilds[playerID] = theBuilds
+        network:setAllRandomBuild(playerID, theBuilds)
+    end
+end
+
+-- Validates builds
+function Pregame:validateBuilds()
+    -- Only process this once
+    if self.validatedBuilds then return end
+    self.validatedBuilds = true
+
+    -- Generate 10 builds
+    local minPlayerID = 0
+    local maxPlayerID = 9
+
+    -- Validate it
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    -- Loop over all playerIDs
+    for playerID = minPlayerID,maxPlayerID do
+        -- Ensure they have a hero
+        if not  self.selectedHeroes[playerID] then
+            local heroName = self:getRandomHero()
+            self.selectedHeroes[playerID] = heroName
+            network:setSelectedHero(playerID, heroName)
+
+            -- Attempt to set the primary attribute
+            local newAttr = self.heroPrimaryAttr[heroName] or 'str'
+            if self.selectedPlayerAttr[playerID] ~= newAttr then
+                -- Update local store
+                self.selectedPlayerAttr[playerID] = newAttr
+
+                -- Update the selected hero
+                network:setSelectedAttr(playerID, newAttr)
+            end
+        end
+
+        -- Grab their build
+        local build = self.selectedSkills[playerID]
+
+        -- Ensure they have a build
+        if not build then
+            build = {}
+            self.selectedSkills[playerID] = build
+        end
+
+        for slot=1,maxSlots do
+            if not build[slot] then
+                -- Grab a random ability
+                local newAbility = self:findRandomSkill(build, slot, PlayerResource:GetTeam(playerID))
+
+                -- Ensure we found an ability
+                if newAbility ~= nil then
+                    build[slot] = newAbility
+                end
+            end
+        end
+
+        -- Network it
+        network:setSelectedAbilities(playerID, build)
+    end
+end
+
 -- Processes options to push around to the rest of the systems
 function Pregame:processOptions()
     -- Only process options once
@@ -1288,9 +1464,74 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     end
 end
 
+-- Player wants to select an all random build
+function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
+    -- Player shouldn't be able to do this unless it is the all random phase
+    if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedNotAllRandomPhase'
+        })
+        return
+    end
+
+    -- Read options
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+    local buildID = args.buildID
+    local heroOnly = args.heroOnly == 1
+
+    -- Validate builds
+    local builds = self.allRandomBuilds[playerID]
+    if builds == nil then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedAllRandomNoBuilds'
+        })
+        return
+    end
+
+    local build = builds[tonumber(buildID)]
+    if build == nil then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedAllRandomInvalidBuild',
+            params = {
+                ['buildID'] = buildID
+            }
+        })
+        return
+    end
+
+    -- Are we meant to set the hero or hte build?
+    if not heroOnly then
+        -- Push the build
+        self.selectedSkills[playerID] = build.build
+        network:setSelectedAbilities(playerID, build.build)
+    else
+        -- Must be valid, select it
+        local heroName = build.heroName
+
+        if self.selectedHeroes[playerID] ~= heroName then
+            self.selectedHeroes[playerID] = heroName
+            network:setSelectedHero(playerID, heroName)
+
+            -- Attempt to set the primary attribute
+            local newAttr = self.heroPrimaryAttr[heroName] or 'str'
+            if self.selectedPlayerAttr[playerID] ~= newAttr then
+                -- Update local store
+                self.selectedPlayerAttr[playerID] = newAttr
+
+                -- Update the selected hero
+                network:setSelectedAttr(playerID, newAttr)
+            end
+        end
+    end
+end
+
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION then return end
 
     local playerID = args.PlayerID
 
@@ -1305,6 +1546,11 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
         -- TODO: Check max bans
     end
 
+    -- If we are in the random phase
+    if self:getPhase() == constants.PHASE_RANDOM_SELECTION then
+        maxTime = OptionManager:GetOption('randomSelectionTime')
+    end
+
     -- Ensure we have a store for this player's ready state
     self.isReady[playerID] = self.isReady[playerID] or 0
 
@@ -1315,11 +1561,12 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
     network:sendReadyState(self.isReady)
 
     -- Calculate how many players are ready
-    local totalPlayers = 0
+    local totalPlayers = self:getActivePlayers()
     local readyPlayers = 0
 
     for playerID,readyState in pairs(self.isReady) do
-        if readyState == 1 then
+        -- Ensure the player is connected AND ready
+        if readyState == 1 and PlayerResource:GetConnectionState(playerID) == 2 then
             readyPlayers = readyPlayers + 1
         end
     end
@@ -1984,6 +2231,19 @@ end
 -- Returns the current phase
 function Pregame:getPhase()
     return self.currentPhase
+end
+
+-- Calculates how many players are in the server
+function Pregame:getActivePlayers()
+    local total = 0
+
+    for i=0,9 do
+        if PlayerResource:GetConnectionState(i) == 2 then
+            total = total + 1
+        end
+    end
+
+    return total
 end
 
 -- Adds extra towers

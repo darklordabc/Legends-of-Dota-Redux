@@ -1,0 +1,41 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/all_random_build.js" />
+    </scripts>
+    <Panel class="allRandomBuildContainer">
+        <Panel class="allRandomBuildInnerContainer">
+             <Panel>
+                <DOTAHeroImage id="allRandomHeroImage" heroname="npc_dota_hero_axe" />
+                <Label id="allRandomHeroName" class="allRandomHeroName" text="heroName" />
+            </Panel>
+        </Panel>
+
+         <Panel class="allRandomButtonContainer">
+            <Button class="heroBuildMenuButtonSmall allRandomSelectBuildButton" onactivate="onSelectRandomHero()">
+                <Label text="selectThisRandomHero" />
+            </Button>
+        </Panel>
+
+        <Panel class="allRandomBuildSpacing" />
+
+        <Panel class="allRandomBuildInnerContainer">
+            <Panel id="allRandomSkillContainer">
+                <DOTAAbilityImage id="skill1" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill2" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill3" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill4" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill5" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill6" abilityname="life_stealer_empty_1" />
+            </Panel>
+        </Panel>
+
+        <Panel class="allRandomButtonContainer">
+            <Button class="heroBuildMenuButtonSmall allRandomSelectBuildButton" onactivate="onSelectRandomBuild()">
+                <Label text="selectThisRandomBuild" />
+            </Button>
+        </Panel>
+    </Panel>
+</root>

@@ -69,6 +69,15 @@ function Network:setSelectedAbilities(playerID, skills)
     })
 end
 
+-- Sends a player's potential builds
+function Network:setAllRandomBuild(playerID, builds)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('random_builds', tostring(playerID), {
+        playerID = playerID,
+        builds = builds
+    })
+end
+
 -- Sends a notification to a player
 function Network:sendNotification(ply, options)
     -- Ensure we have an options table

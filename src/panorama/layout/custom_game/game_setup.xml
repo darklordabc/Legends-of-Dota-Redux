@@ -48,16 +48,25 @@
                 <Button id="stageButtonOptionSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />
                 </Button>
+
                 <Label class="lodStageArrow" id="lodArrowBanningPhase" text="->" />
                 <Button id="stageButtonBanning" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_BANNING)">
                     <Label text="lodStageButtonBanning" />
                     <Label text="" id="lodBanningTimeRemaining" />
                 </Button>
-                <Label class="lodStageArrow" text="->" />
+
+                <Label id="lodArrowSelectionPhase" class="lodStageArrow" text="->" />
                 <Button id="stageButtonSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_SELECTION)">
                     <Label text="lodStageButtonSelection" />
                     <Label text="" id="lodSelectionTimeRemaining" />
                 </Button>
+
+                <Label id="lodArrowRandomPhase" class="lodStageArrow" text="->" />
+                <Button id="stageButtonRandom" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_RANDOM_SELECTION)">
+                    <Label text="lodStageButtonRandomSelection" />
+                    <Label text="" id="lodRandomSelectionTimeRemaining" />
+                </Button>
+
                 <Label class="lodStageArrow" text="->" />
                 <Button id="stageButtonReview" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_REVIEW)">
                     <Label text="lodStageButtonReview" />
@@ -184,7 +193,7 @@
                         </Button>
 
                         <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                <Label id="heroBuilderLockButtonText" text="finshBanning" />
+                                <Label id="heroBuilderLockButtonText" text="finishBanning" />
                             </Button>
                     </Panel>
                 </Panel>
@@ -222,6 +231,14 @@
                         </Panel>
                     </Panel>
                 </Panel>
+            </Panel>
+
+            <Panel id="allRandomPhase">
+                <Panel id="allRandomBuildsContainer" />
+
+                <Button id="allRandomLockButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                    <Label text="lockBuild" />
+                </Button>
             </Panel>
 
             <Panel id="reviewPhase">

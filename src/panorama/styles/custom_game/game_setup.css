@@ -436,6 +436,14 @@
     flow-children: right;
 }
 
+.no_hero_selection #stageButtonSelection {
+    visibility: collapse;
+}
+
+.no_hero_selection #lodArrowSelectionPhase {
+    visibility: collapse;
+}
+
 #lodSelectionTimeRemaining {
     visibility: collapse;
 }
@@ -451,6 +459,131 @@
 
 .phase_selection_selected #stageButtonSelection {
     border: 1px solid #AAFFAA;
+}
+
+/* All Random */
+
+#lodArrowRandomPhase {
+    visibility: collapse;
+}
+
+.all_random_mode #lodArrowRandomPhase {
+    visibility: visible;
+}
+
+#stageButtonRandom {
+    visibility: collapse;
+    flow-children: right;
+}
+
+.all_random_mode #stageButtonRandom {
+    visibility: visible;
+}
+
+#lodRandomSelectionTimeRemaining {
+    visibility: collapse;
+}
+
+.phase_all_random #lodRandomSelectionTimeRemaining {
+    visibility: visible;
+}
+
+.phase_all_random #stageButtonRandom {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+}
+
+.phase_all_random_selected #stageButtonRandom {
+    border: 1px solid #AAFFAA;
+}
+
+#allRandomPhase {
+    max-height: 700px;
+    margin-top: 4px;
+    border-radius: 8px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    box-shadow: black -4px -4px 8px 8px;
+    visibility: collapse;
+    flow-children: down;
+    horizontal-align: middle;
+}
+
+.phase_all_random_selected #allRandomPhase {
+    visibility: visible;
+}
+
+.allRandomBuildContainer {
+    flow-children: right;
+
+    margin: 4px;
+}
+
+.allRandomBuildInnerContainer {
+    flow-children: right;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 4px;
+    padding-right: 0px;
+}
+
+#allRandomSkillContainer {
+    flow-children: right;
+}
+
+#allRandomBuildsContainer {
+    flow-children: down;
+    horizontal-align: middle;
+}
+
+#allRandomHeroImage {
+    width: 114px;
+    height: 64px;
+
+    border: 1px solid #444444;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+#allRandomSkillContainer DOTAAbilityImage {
+    width: 64px;
+    height: 64px;
+
+    border: 1px solid #444444;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+.allRandomSelectBuildButton {
+    color: #FFFFFF;
+    visibility: collapse;
+    margin-bottom: 4px;
+}
+
+.phase_all_random .allRandomSelectBuildButton {
+    visibility: visible;
+}
+
+.allRandomHeroName {
+    vertical-align: bottom;
+    horizontal-align: middle;
+    color: #FFFFFF;
+    margin: 4px;
+    text-shadow: 0px 0px 2px 4.0 #000000FF;
+}
+
+.allRandomButtonContainer {
+    flow-children: down;
+    vertical-align: middle;
+}
+
+#allRandomLockButton {
+    width: 320px;
+    margin: 8px;
+    margin-top: 32px;
+    horizontal-align: middle;
+}
+
+.allRandomBuildSpacing {
+    width: 16px;
 }
 
 /* Review */
@@ -937,6 +1070,10 @@
         border: 1px solid #00FF00;
         border-radius: 4px;
     }
+}
+
+.lodSelectedDrop:hover {
+    opacity: 0.1;
 }
 
 .heroBuildMenuButton {
