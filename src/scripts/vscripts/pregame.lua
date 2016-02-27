@@ -166,7 +166,7 @@ function Pregame:onThink()
                 else
                     -- Nope, change to review
                     self:setPhase(constants.PHASE_REVIEW)
-                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
                 end
             else
                 -- Change to picking phase
@@ -184,7 +184,7 @@ function Pregame:onThink()
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
             self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
         end
 
         return 0.1
@@ -202,7 +202,7 @@ function Pregame:onThink()
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
             self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
         end
 
         return 0.1
@@ -461,7 +461,7 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
                 else
                     -- Goto review
                     self:setPhase(constants.PHASE_REVIEW)
-                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'))
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
                 end
             else
                 -- Hero selection
