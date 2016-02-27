@@ -1349,7 +1349,7 @@ end
 -- Player wants to select a hero
 function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
     local playerID = args.PlayerID
@@ -1424,7 +1424,7 @@ end
 -- Player wants to select a new primary attribute
 function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
     local playerID = args.PlayerID
@@ -1613,7 +1613,7 @@ end
 -- Player wants to ban an ability
 function Pregame:onPlayerBan(eventSourceIndex, args)
 	-- Ensure we are in the banning phase
-    --if self:getPhase() ~= constants.PHASE_BANNING then return end
+    if self:getPhase() ~= constants.PHASE_BANNING then return end
 
 	local usedBans = self.usedBans
 
@@ -1767,7 +1767,7 @@ end
 -- Player wants to select a random ability
 function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
 	-- Ensure we are in the picking phase
-    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
     local playerID = args.PlayerID
@@ -1818,7 +1818,7 @@ end
 -- Player wants to select a new ability
 function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
     local playerID = args.PlayerID
@@ -2041,7 +2041,7 @@ end
 -- Player wants to swap two slots
 function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    --if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then return end
 
     -- Grab data
     local playerID = args.PlayerID

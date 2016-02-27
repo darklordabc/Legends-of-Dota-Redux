@@ -2746,7 +2746,7 @@ function onAllowedCategoriesChanged() {
 function SetSelectedPhase(newPhase, noSound) {
     if(newPhase > currentPhase) {
         Game.EmitSound('ui_team_select_pick_team_failed');
-        //return;   UNCOMMENT ME AFTER DONE DEBUGGING BIIIIIIITTTTTTTTTHHHHHHH
+        return;
     }
 
     // Emit the click noise
