@@ -200,6 +200,7 @@
     "unlockBuild"                                   "Unlock Build"
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
+    "continueFast"                                  "Ready"
 
     // All Random
     "selectThisRandomBuild"                         "Select Build"
@@ -213,6 +214,7 @@
     "lod_cat_aoe_attack"                            "AoE Attack"
     "lod_cat_attack_modifier"                       "Attack Modifier"
     "lod_cat_stun"                                  "Stun"
+    "lod_cat_isUlt"                                 "Ultimate Ability"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"

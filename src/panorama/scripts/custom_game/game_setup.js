@@ -878,6 +878,7 @@ var currentSelectedAbCon = null;
 // List of all player team panels
 var allPlayerPanels = [];
 var activePlayerPanels = {};
+var activeReviewPanels = {};
 
 // List of hero panels
 var heroPanelMap = {};
@@ -1083,6 +1084,10 @@ function OnSelectedHeroesChanged(table_name, key, data) {
     if(activePlayerPanels[playerID]) {
         activePlayerPanels[playerID].OnGetHeroData(heroName);
     }
+
+    if(activeReviewPanels[playerID]) {
+        activeReviewPanels[playerID].OnGetHeroData(heroName);
+    }
 }
 
 // Shows which heroes have been taken
@@ -1121,6 +1126,10 @@ function OnSelectedAttrChanged(table_name, key, data) {
     if(activePlayerPanels[playerID]) {
         activePlayerPanels[playerID].OnGetNewAttribute(newAttr);
     }
+
+    if(activeReviewPanels[playerID]) {
+        activeReviewPanels[playerID].OnGetNewAttribute(newAttr);
+    }
 }
 
 // Selected abilities has changed
@@ -1158,6 +1167,10 @@ function OnSelectedSkillsChanged(table_name, key, data) {
     // Push the build
     if(activePlayerPanels[playerID]) {
         activePlayerPanels[playerID].OnGetHeroBuildData(data.skills);
+    }
+
+    if(activeReviewPanels[playerID]) {
+        activeReviewPanels[playerID].OnGetHeroBuildData(data.skills);
     }
 
     // Update which skills are taken
@@ -1209,7 +1222,11 @@ function OnGetReadyState(table_name, key, data) {
     // Process it
     for(var playerID in data) {
         var panel = activePlayerPanels[playerID];
+        if(panel) {
+            panel.setReadyState(data[playerID])
+        }
 
+        var panel = activeReviewPanels[playerID];
         if(panel) {
             panel.setReadyState(data[playerID])
         }
@@ -1220,6 +1237,7 @@ function OnGetReadyState(table_name, key, data) {
             $('#heroBuilderLockButtonBans').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
 
             $('#allRandomLockButton').visible = data[playerID] == 0;
+            $('#reviewReadyButton').visible = data[playerID] == 0;
 
             // Set the text
             if(data[playerID] == 0) {
@@ -2131,9 +2149,13 @@ function addUnassignedPlayer(playerID) {
 }
 
 // Adds a player to a team
-function addPlayerToTeam(playerID, panel, heroPanel) {
+function addPlayerToTeam(playerID, panel, reviewContainer) {
     // Validate the panel
-    if(panel == null) return;
+    if(panel == null || reviewContainer == null) return;
+
+    /*
+        Create the panel at the top of the screen
+    */
 
     // Create the new panel
     var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
@@ -2170,6 +2192,46 @@ function addPlayerToTeam(playerID, panel, heroPanel) {
     // Add this panel to the list of panels we've generated
     allPlayerPanels.push(newPlayerPanel);
     activePlayerPanels[playerID] = newPlayerPanel;
+
+    /*
+        Create the panel in the review screen
+    */
+
+    // Create the new panel
+    var newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
+    newPlayerPanel.SetAttributeInt('playerID', playerID);
+    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
+    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero);
+
+    // Check max slots
+    var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
+    if(maxSlots != null) {
+        newPlayerPanel.OnGetHeroSlotCount(maxSlots);
+    }
+
+    // Check for hero icon
+    if(selectedHeroes[playerID] != null) {
+        newPlayerPanel.OnGetHeroData(selectedHeroes[playerID]);
+    }
+
+    // Check for skill data
+    if(selectedSkills[playerID] != null) {
+        newPlayerPanel.OnGetHeroBuildData(selectedSkills[playerID]);
+    }
+
+    // Check for attr data
+    if(selectedAttr[playerID] != null) {
+        newPlayerPanel.OnGetNewAttribute(selectedAttr[playerID]);
+    }
+
+    // Check for ready state
+    if(readyState[playerID] != null) {
+        newPlayerPanel.setReadyState(readyState[playerID]);
+    }
+
+    // Add this panel to the list of panels we've generated
+    allPlayerPanels.push(newPlayerPanel);
+    activeReviewPanels[playerID] = newPlayerPanel;
 }
 
 // Build the options categories
@@ -2455,14 +2517,14 @@ function OnTeamPlayerListChanged() {
     var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
     for(var i=0; i<radiantPlayers.length; ++i) {
         // Add this player to the unassigned list
-        addPlayerToTeam(radiantPlayers[i], $('#theRadiantContainer'));
+        addPlayerToTeam(radiantPlayers[i], $('#theRadiantContainer'), $('#reviewRadiantTeam'));
     }
 
     // Add radiant players
     var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
     for(var i=0; i<direPlayers.length; ++i) {
         // Add this player to the unassigned list
-        addPlayerToTeam(direPlayers[i], $('#theDireContainer'));
+        addPlayerToTeam(direPlayers[i], $('#theDireContainer'), $('#reviewDireTeam'));
     }
 
     // Update all of the team panels moving the player panels for the
@@ -2649,6 +2711,10 @@ function onMaxSlotsChanged() {
     // Push it
     for(var playerID in activePlayerPanels) {
         activePlayerPanels[playerID].OnGetHeroSlotCount(maxSlots);
+    }
+
+    for(var playerID in activeReviewPanels) {
+        activeReviewPanels[playerID].OnGetHeroSlotCount(maxSlots);
     }
 }
 

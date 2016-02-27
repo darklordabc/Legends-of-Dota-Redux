@@ -242,7 +242,15 @@
             </Panel>
 
             <Panel id="reviewPhase">
-                <DOTAScenePanel style="width: 600px; height: 600px; opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');" unit="npc_dota_hero_sniper"/>
+                <Panel id="reviewRadiantTeam" class="reviewPhaseTeam" />
+                <Label id="reviewPhaseVS" text="VS" />
+                <Panel id="reviewDireTeam" class="reviewPhaseTeam" />
+
+                <Panel class="reviewButtons">
+                    <Button id="reviewReadyButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                        <Label text="continueFast" />
+                    </Button>
+                </Panel>
             </Panel>
         </Panel>
     </Panel>

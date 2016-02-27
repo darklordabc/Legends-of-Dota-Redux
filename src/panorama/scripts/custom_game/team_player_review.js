@@ -5,17 +5,13 @@
 var setSelectedHelperHero = function(){};
 var makeSkillSelectable = function(){};
 
-// The current hero we hold
-var currentSelectedHero = '';
-
 // When player details are changed
 function OnPlayerDetailsChanged() {
     var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
     var playerInfo = Game.GetPlayerInfo(playerID);
     if (!playerInfo) return;
 
-    // Set Avatar
-    $("#playerAvatar").steamid = playerInfo.player_steamid;
+    $("#reviewPhasePlayerAvatar").steamid = playerInfo.player_steamid;
 
     // Is it the real Ash47?
     var playerName = playerInfo.player_name;
@@ -42,8 +38,11 @@ function OnGetHeroData(heroName) {
 	mainPanel.SetHasClass('no_hero_selected', false);
 
 	// Put the hero image in place
-	$('#playerHeroImage').heroname = heroName;
-	currentSelectedHero = heroName;
+    var con = $('#reviewPhaseHeroImageContainer');
+    con.RemoveAndDeleteChildren();
+
+    var heroImage = $.CreatePanel('Panel', con, 'reviewPhaseHeroImageLoader');
+    heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: 256px; height: 256px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + heroName + '"/></Panel></root>', false, false);
 }
 
 // When we get the slot count
@@ -108,11 +107,6 @@ function OnGetNewAttribute(newAttr) {
 function onPlayerAbilityClicked(slotID) {
 	//var con = $('#playerSkill' + slotID);
 	//setSelectedDropAbility(con.GetAttributeString('abilityname', ''), con);
-}
-
-function onPlayerHeroClicked() {
-	// Set the selected hero
-	setSelectedHelperHero(currentSelectedHero);
 }
 
 function setReadyState(newState) {

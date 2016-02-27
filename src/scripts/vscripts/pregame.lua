@@ -1531,7 +1531,7 @@ end
 
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW then return end
 
     local playerID = args.PlayerID
 
