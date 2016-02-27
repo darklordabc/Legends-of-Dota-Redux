@@ -430,6 +430,14 @@
     height: 320px;
 }
 
+#heroBuilderLockButtonBans {
+    visibility: collapse;
+}
+
+.phase_banning #heroBuilderLockButtonBans {
+    visibility: visible;
+}
+
 /* Selection */
 
 #stageButtonSelection {
@@ -459,6 +467,14 @@
 
 .phase_selection_selected #stageButtonSelection {
     border: 1px solid #AAFFAA;
+}
+
+#heroBuilderLockButton {
+    visibility: collapse;
+}
+
+.phase_selection #heroBuilderLockButton {
+    visibility: visible;
 }
 
 /* All Random */
@@ -580,6 +596,11 @@
     margin: 8px;
     margin-top: 32px;
     horizontal-align: middle;
+    visibility: collapse;
+}
+
+.phase_all_random #allRandomLockButton {
+    visibility: visible;
 }
 
 .allRandomBuildSpacing {

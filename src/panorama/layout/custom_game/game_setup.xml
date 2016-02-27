@@ -193,7 +193,7 @@
                         </Button>
 
                         <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                <Label id="heroBuilderLockButtonText" text="finishBanning" />
+                                <Label text="finishBanning" />
                             </Button>
                     </Panel>
                 </Panel>
