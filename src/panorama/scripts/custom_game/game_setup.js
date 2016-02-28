@@ -1323,14 +1323,22 @@ function OnGetDraftArray(table_name, key, data) {
 
     var playerID = Players.GetLocalPlayer();
     var myInfo = Game.GetPlayerInfo(playerID);
-    var myTeamPlayers = Game.GetPlayerIDsOnTeam(myInfo.player_team_id);
+    var myTeamID = myInfo.player_team_id;
+    var myTeamPlayers = Game.GetPlayerIDsOnTeam(myTeamID);
 
-    for(var i=0; i<myTeamPlayers.length; ++i) {
-        if(myTeamPlayers[i] == playerID) {
-            myDraftID = i;
-            break;
+    var maxPlayers = 10;
+    for(var i=0; i<maxPlayers; ++i) {
+        if(i == playerID) break;
+
+        var info = Game.GetPlayerInfo(i);
+
+        if(info != null && myTeamID == info.player_team_id) {
+            ++myDraftID;
         }
     }
+
+    // Ensure we don't get a weird value for draftID
+    myDraftID = myDraftID % 5;
 
     // Is this data for us?
     if(myDraftID != draftID) return;

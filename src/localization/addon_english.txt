@@ -252,6 +252,7 @@
     "lodFailedNotAllRandomPhase"                    "You can only select your build during the selection phase."
     "lodFailedAllRandomNoBuilds"                    "Failed to find any valid builds for you."
     "lodFailedAllRandomInvalidBuild"                "'{buildID}' is not a valid buildID."
+    "lodFailedDraftWrongHero"                       "'{heroName}' is not one of your draftable heroes."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."

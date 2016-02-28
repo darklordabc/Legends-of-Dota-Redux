@@ -362,6 +362,9 @@ function Pregame:networkHeroes()
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
 
+    -- Stores which abilities belong to which heroes
+    self.abilityHeroOwner = {}
+
     local allowedHeroes = {}
     self.heroPrimaryAttr = {}
 
@@ -422,6 +425,14 @@ function Pregame:networkHeroes()
 
             -- Store allowed heroes
             allowedHeroes[heroName] = true
+
+            -- Store the owners
+            for i=1,16 do
+                if theData['Ability'..i] ~= nil then
+                    self.abilityHeroOwner[theData['Ability'..i]] = heroName
+                end
+            end
+
         end
     end
 
@@ -1440,6 +1451,28 @@ function Pregame:banHero(heroName)
     return false
 end
 
+-- Returns a player's draft index
+function Pregame:getDraftID(playerID)
+    local maxPlayers = 10
+
+    local theirTeam = PlayerResource:GetTeam(playerID)
+
+    local draftID = 0
+    for i=0,(maxPlayers - 1) do
+        -- Stop when we hit our playerID
+        if playerID == i then break end
+
+        if PlayerResource:GetTeam(i) == theirTeam then
+            draftID = draftID + 1
+            if draftID > 4 then
+                draftID = 0
+            end
+        end
+    end
+
+    return draftID
+end
+
 -- Player wants to select a hero
 function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Ensure we are in the picking phase
@@ -1485,6 +1518,28 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
                 network:sendNotification(player, {
                     sort = 'lodDanger',
                     text = 'lodFailedHeroIsTaken',
+                    params = {
+                        ['heroName'] = heroName
+                    }
+                })
+
+                return
+            end
+        end
+    end
+
+    -- Check draft array
+    if self.useDraftArrays then
+        local draftID = self:getDraftID(playerID)
+        local draftArray = self.draftArrays[draftID] or {}
+        local heroDraft = draftArray.heroDraft
+
+        if self.maxDraftHeroes > 0 then
+            if not heroDraft[heroName] then
+                -- Tell them
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedDraftWrongHero',
                     params = {
                         ['heroName'] = heroName
                     }
