@@ -1830,6 +1830,7 @@ function makeSkillSelectable(abcon) {
 
 // When the hero tab is shown
 var firstHeroTabCall = true;
+var heroFilterInfo = {};
 function OnHeroTabShown(tabName) {
     // Only run this code once
     if(firstHeroTabCall) {
@@ -1841,7 +1842,18 @@ function OnHeroTabShown(tabName) {
             for(var heroName in heroPanelMap) {
                 var shouldShow = true;
 
-                // Check hero name
+                // Filter by melee / ranged
+                if(shouldShow && heroFilterInfo.classType) {
+                    var info = heroData[heroName];
+                    if(info) {
+                        $.Msg(info.AttackCapabilities);
+                        if(info.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK' && heroFilterInfo.classType == 'ranged' || info.AttackCapabilities == 'DOTA_UNIT_CAP_RANGED_ATTACK' && heroFilterInfo.classType == 'melee') {
+                            shouldShow = false;
+                        }
+                    }
+                }
+
+                // Filter by hero name
                 if(shouldShow && heroSearchText.length > 0) {
                     // Check each part
                     for(var i=0; i<searchParts.length; ++i) {
@@ -1869,6 +1881,45 @@ function OnHeroTabShown(tabName) {
 
     // No longer the first call
     firstHeroTabCall = false;
+}
+
+function onHeroFilterPressed(filterName) {
+    switch(filterName) {
+        case 'melee':
+            if(heroFilterInfo.classType) {
+                if(heroFilterInfo.classType == 'melee') {
+                    delete heroFilterInfo.classType;
+                } else {
+                    heroFilterInfo.classType = 'melee';
+                }
+            } else {
+                heroFilterInfo.classType = 'melee';
+            }
+        break;
+
+        case 'ranged':
+            if(heroFilterInfo.classType) {
+                if(heroFilterInfo.classType == 'ranged') {
+                    delete heroFilterInfo.classType;
+                } else {
+                    heroFilterInfo.classType = 'ranged';
+                }
+            } else {
+                heroFilterInfo.classType = 'ranged';
+            }
+        break;
+
+        case 'clear':
+            delete heroFilterInfo.classType;
+        break;
+    }
+
+    $('#heroPickingFiltersMelee').SetHasClass('lod_hero_filter_selected', heroFilterInfo.classType == 'melee');
+    $('#heroPickingFiltersRanged').SetHasClass('lod_hero_filter_selected', heroFilterInfo.classType == 'ranged');
+    $('#heroPickingFiltersClear').visible = heroFilterInfo.classType != null;
+
+    // Calculate filters:
+    calculateHeroFilters();
 }
 
 // When the skill tab is shown

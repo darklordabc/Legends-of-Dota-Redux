@@ -225,6 +225,15 @@
                                 <Label text="Intelligence" class="pickingHeroListCategory"/>
                                 <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                             </Panel>
+
+                            <Panel id="pickingHeroListFilters">
+                                <Label class="pickingHeroListFilterHeading" text="Filter Heroes:" />
+                                <Panel class="pickingHeroListFilterGroup">
+                                    <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
+                                    <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
+                                    <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
+                                </Panel>
+                            </Panel>
                         </Panel>
 
                         <Panel id="pickingPhaseSkillTabContent" class="pickingPhaseTabContent">
