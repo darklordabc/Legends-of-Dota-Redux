@@ -1252,6 +1252,11 @@ function OnGetReadyState(table_name, key, data) {
 }
 
 // Server just sent us random build data
+var allRandomBuildContainers = {};
+var allRandomSelectedBuilds = {
+    hero: 0,
+    build: 0
+};
 function OnGetRandomBuilds(table_name, key, data) {
     // See who's data we just got
     var playerID = data.playerID;
@@ -1272,7 +1277,31 @@ function OnGetRandomBuilds(table_name, key, data) {
             buildCon.BLoadLayout('file://{resources}/layout/custom_game/all_random_build.xml', false, false);
             buildCon.setBuild(buildID, theBuild.heroName, theBuild.build);
             buildCon.hook(hookSkillInfo);
+
+            allRandomBuildContainers[buildID] = buildCon;
         }
+
+        updateAllRandomHighlights();
+    }
+}
+
+// The build we selected changed
+function OnSelectedRandomBuildChanged(table_name, key, data) {
+    // See who's data we just got
+    var playerID = data.playerID;
+
+    if(playerID == Players.GetLocalPlayer()) {
+        allRandomSelectedBuilds.hero = data.hero;
+        allRandomSelectedBuilds.build = data.build;
+        updateAllRandomHighlights();
+    }
+}
+
+// Update the highlights
+function updateAllRandomHighlights() {
+    for(var buildID in allRandomBuildContainers) {
+        var con = allRandomBuildContainers[buildID];
+        con.setSelected(buildID == allRandomSelectedBuilds.hero, buildID == allRandomSelectedBuilds.build);
     }
 }
 
@@ -2908,6 +2937,7 @@ function UpdateTimer() {
     hookAndFire('banned', OnSkillBanned);
     hookAndFire('ready', OnGetReadyState);
     hookAndFire('random_builds', OnGetRandomBuilds);
+    hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

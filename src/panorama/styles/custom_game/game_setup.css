@@ -594,7 +594,7 @@
 #allRandomLockButton {
     width: 320px;
     margin: 8px;
-    margin-top: 32px;
+    margin-top: 8px;
     horizontal-align: middle;
     visibility: collapse;
 }
@@ -604,7 +604,7 @@
 }
 
 .allRandomBuildSpacing {
-    width: 16px;
+    width: 8px;
 }
 
 /* Review */
@@ -721,6 +721,10 @@
 
 .phase_review #reviewReadyButton {
     visibility: visible;
+}
+
+.allRandomSelectedItem {
+    border: 1px solid #00FF00;
 }
 
 /*

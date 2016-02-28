@@ -21,6 +21,7 @@ function Pregame:init()
     self.selectedHeroes = {}
     self.selectedPlayerAttr = {}
     self.selectedSkills = {}
+    self.selectedRandomBuilds = {}
 
     -- List of banned abilities
     self.bannedAbilities = {}
@@ -1159,6 +1160,35 @@ function Pregame:generateAllRandomBuilds()
         -- Store and network
         self.allRandomBuilds[playerID] = theBuilds
         network:setAllRandomBuild(playerID, theBuilds)
+
+        -- Highlight which build is selected
+        self.selectedRandomBuilds[playerID] = {
+            hero = 0,
+            build = 0
+        }
+        network:setSelectedAllRandomBuild(playerID, self.selectedRandomBuilds[playerID])
+
+        -- Assign the skills
+        self.selectedSkills[playerID] = theBuilds[0].build
+        network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+
+        -- Must be valid, select it
+        local heroName = theBuilds[0].heroName
+
+        if self.selectedHeroes[playerID] ~= heroName then
+            self.selectedHeroes[playerID] = heroName
+            network:setSelectedHero(playerID, heroName)
+
+            -- Attempt to set the primary attribute
+            local newAttr = self.heroPrimaryAttr[heroName] or 'str'
+            if self.selectedPlayerAttr[playerID] ~= newAttr then
+                -- Update local store
+                self.selectedPlayerAttr[playerID] = newAttr
+
+                -- Update the selected hero
+                network:setSelectedAttr(playerID, newAttr)
+            end
+        end
     end
 end
 
@@ -1508,6 +1538,10 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
         -- Push the build
         self.selectedSkills[playerID] = build.build
         network:setSelectedAbilities(playerID, build.build)
+
+        -- Change which build has been selected
+        self.selectedRandomBuilds[playerID].build = buildID
+        network:setSelectedAllRandomBuild(playerID, self.selectedRandomBuilds[playerID])
     else
         -- Must be valid, select it
         local heroName = build.heroName
@@ -1526,6 +1560,10 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
                 network:setSelectedAttr(playerID, newAttr)
             end
         end
+
+        -- Change which hero has been selected
+        self.selectedRandomBuilds[playerID].hero = buildID
+        network:setSelectedAllRandomBuild(playerID, self.selectedRandomBuilds[playerID])
     end
 end
 

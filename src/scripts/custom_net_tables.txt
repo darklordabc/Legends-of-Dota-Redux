@@ -12,6 +12,7 @@
         "banned",
         "bannedHero",
         "ready",
-        "random_builds"
+        "random_builds",
+        "selected_random_builds"
     ]
 }

@@ -78,6 +78,16 @@ function Network:setAllRandomBuild(playerID, builds)
     })
 end
 
+-- Sends which networked build has been selected
+function Network:setSelectedAllRandomBuild(playerID, selectedBuilds)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('selected_random_builds', tostring(playerID), {
+        playerID = playerID,
+        hero = selectedBuilds.hero,
+        build = selectedBuilds.build
+    })
+end
+
 -- Sends a notification to a player
 function Network:sendNotification(ply, options)
     -- Ensure we have an options table

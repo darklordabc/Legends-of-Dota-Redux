@@ -42,6 +42,11 @@ function hook(hookSkillInfo) {
     }
 }
 
+function setSelected(selectedHero, selectedBuild) {
+    $('#selectedHeroHighlighter').SetHasClass('allRandomSelectedItem', selectedHero);
+    $('#selectedBuildHighlighter').SetHasClass('allRandomSelectedItem', selectedBuild);
+}
+
 // When this panel loads
 (function()
 {
@@ -51,4 +56,5 @@ function hook(hookSkillInfo) {
     // Add the events
     mainPanel.setBuild = setBuild;
     mainPanel.hook = hook;
+    mainPanel.setSelected = setSelected;
 })();
