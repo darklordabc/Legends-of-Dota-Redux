@@ -845,6 +845,7 @@ var PHASE_INGAME = 8;           // Game has started
 
 // Hero data
 var heroData = {};
+var abilityHeroOwner = {};
 
 // Ability Data
 var flagData = {}
@@ -861,6 +862,10 @@ var selectedHeroes = {};
 var selectedAttr = {};
 var selectedSkills = {};
 var readyState = {};
+
+// Mirror Draft stuff
+var heroDraft = null;
+var abilityDraft = null;
 
 // The current phase we are in
 var currentPhase = PHASE_LOADING;
@@ -902,6 +907,7 @@ var allowedCategories = {};
 var showBannedSkills = false;
 var showDisallowedSkills = false;
 var showTakenSkills = true;
+var showNonDraftSkills = false;
 
 // List of banned abilities
 var bannedAbilities = {};
@@ -1035,6 +1041,12 @@ function hookSkillInfo(panel) {
 // Hero data has changed
 function OnHeroDataChanged(table_name, key, data) {
     heroData[key] = data;
+
+    for(var i=1; i<=16; ++i) {
+        if(data['Ability' + i] != null) {
+            abilityHeroOwner[data['Ability' + i]] = key;
+        }
+    }
 
     // Do the schedule
     if(dataHooks.OnHeroDataChanged == null) dataHooks.OnHeroDataChanged = 0;
@@ -1259,6 +1271,11 @@ var allRandomSelectedBuilds = {
     build: 0
 };
 function OnGetRandomBuilds(table_name, key, data) {
+    if(data.selected != null) {
+        OnSelectedRandomBuildChanged(table_name, key, data);
+        return;
+    }
+
     // See who's data we just got
     var playerID = data.playerID;
     if(playerID == Players.GetLocalPlayer()) {
@@ -1300,7 +1317,34 @@ function OnSelectedRandomBuildChanged(table_name, key, data) {
 
 // Server just sent us a draft array
 function OnGetDraftArray(table_name, key, data) {
-    $.Msg(data);
+    var draftID = data.draftID;
+
+    var myDraftID = 0;
+
+    var playerID = Players.GetLocalPlayer();
+    var myInfo = Game.GetPlayerInfo(playerID);
+    var myTeamPlayers = Game.GetPlayerIDsOnTeam(myInfo.player_team_id);
+
+    for(var i=0; i<myTeamPlayers.length; ++i) {
+        if(myTeamPlayers[i] == playerID) {
+            myDraftID = i;
+            break;
+        }
+    }
+
+    // Is this data for us?
+    if(myDraftID != draftID) return;
+
+    var draftArray = data.draftArray;
+    heroDraft = draftArray.heroDraft;
+    abilityDraft = draftArray.abilityDraft;
+
+    // Run the calculations
+    calculateFilters();
+    calculateHeroFilters();
+
+    // Show the button to show non-draft abilities
+    $('#toggleShowDraftAblilities').visible = true;
 }
 
 // Update the highlights
@@ -1786,6 +1830,13 @@ function toggleShowTaken() {
     calculateFilters();
 }
 
+function toggleShowDraftSkills() {
+    showNonDraftSkills = !showNonDraftSkills;
+
+    // Update filters
+    calculateFilters();
+}
+
 function makeSkillSelectable(abcon) {
     abcon.SetPanelEvent('onactivate', function() {
         var abName = abcon.GetAttributeString('abilityname', '');
@@ -1869,6 +1920,13 @@ function OnHeroTabShown(tabName) {
                     }
                 }
 
+                // Show draft array
+                if(shouldShow && heroDraft != null) {
+                    if(heroDraft[heroName] == null) {
+                        shouldShow = false;
+                    }
+                }
+
                 var con = heroPanelMap[heroName];
                 con.SetHasClass('should_hide_this_hero', !shouldShow);
             }
@@ -1882,6 +1940,9 @@ function OnHeroTabShown(tabName) {
             // Update list of abs
             calculateHeroFilters();
         });
+
+        // Calculate hero filters
+        calculateHeroFilters();
     }
 
     // No longer the first call
@@ -2034,6 +2095,18 @@ function OnSkillTabShown(tabName) {
                             if(abilityName.indexOf(searchParts[i]) == -1 && $.Localize(abilityName).toLowerCase().indexOf(searchParts[i]) == -1) {
                                 shouldShow = false;
                                 break;
+                            }
+                        }
+                    }
+
+                    // Check draft array
+                    if(shouldShow && heroDraft != null) {
+                        if(!heroDraft[abilityHeroOwner[abilityName]]) {
+                            // Global unique skills
+                            if(showNonDraftSkills) {
+                                ab.SetHasClass('notDraftable', true);
+                            } else {
+                                shouldShow = false;
                             }
                         }
                     }
@@ -3041,7 +3114,7 @@ function UpdateTimer() {
     hookAndFire('banned', OnSkillBanned);
     hookAndFire('ready', OnGetReadyState);
     hookAndFire('random_builds', OnGetRandomBuilds);
-    hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
+    //hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
     hookAndFire('draft_array', OnGetDraftArray);
 
     // Listen for notifications

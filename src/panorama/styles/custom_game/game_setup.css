@@ -793,6 +793,13 @@
     horizontal-align: middle;
 }
 
+.notDraftable {
+    opacity: .1;
+    saturation: 0.0;
+    wash-color: #FFFF00FF;
+    border: 0px;
+}
+
 .bannedSkill {
     opacity: .1;
     saturation: 0.0;
@@ -812,6 +819,10 @@
     saturation: 0.0;
     wash-color: #FFAA00FF;
     border: 0px;
+}
+
+#toggleShowDraftAblilities {
+    visibility: collapse;
 }
 
 .unique_heroes_mode .takenHero {

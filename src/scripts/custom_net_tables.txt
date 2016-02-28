@@ -13,6 +13,6 @@
         "bannedHero",
         "ready",
         "random_builds",
-        "selected_random_builds"
+        "draft_array"
     ]
 }
