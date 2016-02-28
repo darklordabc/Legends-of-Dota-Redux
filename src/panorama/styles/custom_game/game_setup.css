@@ -972,7 +972,13 @@
     height: 61px;
     margin-right: 4px;
     margin-top: 4px;
-    border: 1px solid #000000;
+    border: 1px solid #111111;
+    border-radius: 4px;
+}
+
+.pickingHeroListHeroes DOTAHeroImage.should_hide_this_hero {
+    opacity: 0.1;
+    border: 1px solid #00000000;
 }
 
 .pickingHeroListCategory {
@@ -1069,10 +1075,6 @@
     vertical-align: middle;
     margin: 0px 8px;
     wash-color: #667774dd;
-}
-
-.should_hide_this_hero {
-    opacity: 0.1;
 }
 
 #lodSkillCategoryHolder {
