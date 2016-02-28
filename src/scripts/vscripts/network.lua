@@ -88,6 +88,15 @@ function Network:setSelectedAllRandomBuild(playerID, selectedBuilds)
     })
 end
 
+-- Sends a draft array
+function Network:setDraftArray(draftID, draftArray)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('draft_array', tostring(playerID), {
+        draftID = draftID,
+        draftArray = draftArray
+    })
+end
+
 -- Sends a notification to a player
 function Network:sendNotification(ply, options)
     -- Ensure we have an options table

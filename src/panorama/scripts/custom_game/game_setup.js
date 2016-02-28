@@ -1298,6 +1298,11 @@ function OnSelectedRandomBuildChanged(table_name, key, data) {
     }
 }
 
+// Server just sent us a draft array
+function OnGetDraftArray(table_name, key, data) {
+    $.Msg(data);
+}
+
 // Update the highlights
 function updateAllRandomHighlights() {
     for(var buildID in allRandomBuildContainers) {
@@ -3037,6 +3042,7 @@ function UpdateTimer() {
     hookAndFire('ready', OnGetReadyState);
     hookAndFire('random_builds', OnGetRandomBuilds);
     hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
+    hookAndFire('draft_array', OnGetDraftArray);
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

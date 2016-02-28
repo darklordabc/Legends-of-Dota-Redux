@@ -23,6 +23,11 @@ function Pregame:init()
     self.selectedSkills = {}
     self.selectedRandomBuilds = {}
 
+    -- Mirror draft stuff
+    self.useDraftArrays = false
+    self.maxDraftHeroes = 30
+    self.maxDraftSkills = 0
+
     -- List of banned abilities
     self.bannedAbilities = {}
 
@@ -181,6 +186,10 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
+        if self.useDraftArrays and not self.draftArrays then
+            self:buildDraftArrays()
+        end
+
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
@@ -190,8 +199,6 @@ function Pregame:onThink()
 
         return 0.1
     end
-
-
 
     -- All random phase
     if ourPhase == constants.PHASE_RANDOM_SELECTION then
@@ -439,6 +446,10 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
         if self.optionStore['lodOptionCommonGamemode'] == 4 then
             self.noHeroSelection = true
             self.allRandomSelection = true
+        end
+
+        if self.optionStore['lodOptionCommonGamemode'] == 3 then
+            self.useDraftArrays = true
         end
 
         -- Move onto the next phase
@@ -1189,6 +1200,59 @@ function Pregame:generateAllRandomBuilds()
                 network:setSelectedAttr(playerID, newAttr)
             end
         end
+    end
+end
+
+-- Generates draft arrays
+function Pregame:buildDraftArrays()
+    -- Only build draft arrays once
+    if self.draftArrays then return end
+    self.draftArrays = {}
+
+    local maxDraftArrays = 5
+    for draftID = 0,(maxDraftArrays - 1) do
+        -- Create store for data
+        local draftData = {}
+        self.draftArrays[draftID] = draftData
+
+        local possibleHeroes = {}
+        for k,v in pairs(self.allowedHeroes) do
+            table.insert(possibleHeroes, k)
+        end
+
+        -- Select random heroes
+        local heroDraft = {}
+        for i=1,self.maxDraftHeroes do
+            heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
+        end
+
+        local possibleSkills = {}
+        for abilityName,_ in pairs(self.flagsInverse) do
+            local shouldAdd = true
+
+            -- check bans
+            if self.bannedAbilities[abilityName] then
+                shouldAdd = false
+            end
+
+            -- Should we add it?
+            if shouldAdd then
+                table.insert(possibleSkills, abilityName)
+            end
+        end
+
+        -- Select random skills
+        local abilityDraft = {}
+        for i=1,self.maxDraftSkills do
+            abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
+        end
+
+        -- Store data
+        draftData.heroDraft = heroDraft
+        draftData.abilityDraft = abilityDraft
+
+        -- Network data
+        network:setDraftArray(draftID, draftData)
     end
 end
 
