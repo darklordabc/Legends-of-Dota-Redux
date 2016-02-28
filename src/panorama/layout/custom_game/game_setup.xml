@@ -97,6 +97,12 @@
                         <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
 
+                            <Label text="Filter by name:" class="buildingHelperInfoText addMarginTop" />
+                            <Panel class="lodSearchPanel">
+                                <TextEntry id="lodHeroSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
+                                <Button class="lodSearchButton" onactivate="$('#lodHeroSearchInput').SetFocus()" />
+                            </Panel>
+
                             <Panel id="buildingHelperHeroPreview">
                                 <Panel id="buildingHelperHeroPreviewHeroContainer">
                                     <DOTAHeroImage id="buildingHelperHeroPreviewHero" heroname="npc_dota_hero_nevermore" />

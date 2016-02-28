@@ -1071,6 +1071,10 @@
     wash-color: #667774dd;
 }
 
+.should_hide_this_hero {
+    opacity: 0.1;
+}
+
 #lodSkillCategoryHolder {
     margin: 8px;
     vertical-align: top;
@@ -1513,4 +1517,8 @@
     color: #000000;
     text-shadow: 0px 0px 2px 2.0 #FFFF00FF;
     font-weight: bold;
+}
+
+.addMarginTop {
+    margin-top: 8px;
 }

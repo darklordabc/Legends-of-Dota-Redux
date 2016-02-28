@@ -912,6 +912,7 @@ var takenTeamAbilities = {};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
+var calculateHeroFilters = function(){};
 
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
@@ -1827,6 +1828,49 @@ function makeSkillSelectable(abcon) {
     });
 }
 
+// When the hero tab is shown
+var firstHeroTabCall = true;
+function OnHeroTabShown(tabName) {
+    // Only run this code once
+    if(firstHeroTabCall) {
+        var heroSearchText = '';
+
+        calculateHeroFilters = function() {
+            var searchParts = heroSearchText.split(/\s/g);
+
+            for(var heroName in heroPanelMap) {
+                var shouldShow = true;
+
+                // Check hero name
+                if(shouldShow && heroSearchText.length > 0) {
+                    // Check each part
+                    for(var i=0; i<searchParts.length; ++i) {
+                        if(heroName.indexOf(searchParts[i]) == -1 && $.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1) {
+                            shouldShow = false;
+                            break;
+                        }
+                    }
+                }
+
+                var con = heroPanelMap[heroName];
+                con.SetHasClass('should_hide_this_hero', !shouldShow);
+            }
+        }
+
+        // Hook searchbox
+        addInputChangedEvent($('#lodHeroSearchInput'), function(panel, newValue) {
+            // Store the new text
+            heroSearchText = newValue.toLowerCase();
+
+            // Update list of abs
+            calculateHeroFilters();
+        });
+    }
+
+    // No longer the first call
+    firstHeroTabCall = false;
+}
+
 // When the skill tab is shown
 var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
@@ -1861,6 +1905,8 @@ function OnSkillTabShown(tabName) {
 
             // Check on unique skills mode
             var uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
+
+            var searchParts = searchText.split(/\s/g);
 
             // Loop over all abilties
             for(var abilityName in abilityStore) {
@@ -1928,8 +1974,11 @@ function OnSkillTabShown(tabName) {
 
                     // Check if hte search text is active
                     if(shouldShow && searchText.length > 0) {
-                        if(abilityName.indexOf(searchText) == -1) {
-                            shouldShow = false;
+                        for(var i=0; i<searchParts.length; ++i) {
+                            if(abilityName.indexOf(searchParts[i]) == -1 && $.Localize(abilityName).toLowerCase().indexOf(searchParts[i]) == -1) {
+                                shouldShow = false;
+                                break;
+                            }
                         }
                     }
 
@@ -1953,7 +2002,6 @@ function OnSkillTabShown(tabName) {
         }
 
         // Hook searchbox
-
         addInputChangedEvent($('#lodSkillSearchInput'), function(panel, newValue) {
             // Store the new text
             searchText = newValue.toLowerCase();
@@ -2945,6 +2993,7 @@ function UpdateTimer() {
     });
 
     // Hook tab changes
+    hookTabChange('pickingPhaseHeroTab', OnHeroTabShown);
     hookTabChange('pickingPhaseSkillTab', OnSkillTabShown);
 
     // Setup the tabs
