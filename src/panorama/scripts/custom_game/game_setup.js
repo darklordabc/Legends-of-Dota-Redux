@@ -2619,8 +2619,8 @@ function buildOptionsCategories() {
                             hostPanel.AddClass('optionsSlotPanelHost');
                             hostPanel.AddClass('optionsHostToggleSelector');
 
-                            // When the data changes
-                            hostPanel.SetPanelEvent('onactivate', function() {
+                            // When the checkbox has been toggled
+                            var checkboxToggled = function() {
                                 // Check if it is checked or not
                                 if(hostPanel.checked) {
                                     setOption(fieldName, 1);
@@ -2631,7 +2631,10 @@ function buildOptionsCategories() {
                                     hostPanel.text = values[0].text;
                                     slavePanel.text = $.Localize(values[0].text);
                                 }
-                            });
+                            }
+
+                            // When the data changes
+                            hostPanel.SetPanelEvent('onactivate', checkboxToggled);
 
                             // Mapping function
                             optionFieldMap[fieldName] = function(newValue) {
@@ -2645,6 +2648,12 @@ function buildOptionsCategories() {
                                     slavePanel.text = $.Localize(values[0].text);
                                 }
                             }
+
+                            // When the main slot is pressed
+                            mainSlot.SetPanelEvent('onactivate', function() {
+                                hostPanel.checked = !hostPanel.checked;
+                                checkboxToggled();
+                            });
                         break;
                     }
                 })();
