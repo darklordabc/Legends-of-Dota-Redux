@@ -121,7 +121,7 @@ end
 -- Pushes that a hero is banned
 function Network:banHero(heroName)
     -- Push to everyone
-    CustomNetTables:SetTableValue('bannedHero', heroName, {
+    CustomNetTables:SetTableValue('banned', 'hero_' .. heroName, {
         heroName = heroName
     })
 end

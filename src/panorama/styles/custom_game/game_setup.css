@@ -432,10 +432,17 @@
 
 #heroBuilderLockButtonBans {
     visibility: collapse;
+    vertical-align: bottom;
+    margin-top: 16px;
+    margin-bottom: 8px;
 }
 
 .phase_banning #heroBuilderLockButtonBans {
     visibility: visible;
+}
+
+#heroBuilderLockButtonBans.hideThisButton {
+    visibility: collapse;
 }
 
 /* Selection */
@@ -777,6 +784,7 @@
 #pickingPhaseBans {
     flow-children: down;
     visibility: collapse;
+    vertical-align: bottom;
 }
 
 .phase_banning_selected #pickingPhaseBans {

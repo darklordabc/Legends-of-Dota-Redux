@@ -1692,6 +1692,21 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
 
     local playerID = args.PlayerID
 
+    -- Ensure we have a store for this player's ready state
+    self.isReady[playerID] = self.isReady[playerID] or 0
+
+    -- Toggle their state
+    self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
+
+    -- Checks if people are ready
+    self:checkForReady()
+end
+
+-- Checks if people are ready
+function Pregame:checkForReady()
+    -- Network it
+    network:sendReadyState(self.isReady)
+
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
     local minTime = 3
@@ -1707,15 +1722,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
     if self:getPhase() == constants.PHASE_RANDOM_SELECTION then
         maxTime = OptionManager:GetOption('randomSelectionTime')
     end
-
-    -- Ensure we have a store for this player's ready state
-    self.isReady[playerID] = self.isReady[playerID] or 0
-
-    -- Toggle their state
-    self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-
-    -- Network it
-    network:sendReadyState(self.isReady)
 
     -- Calculate how many players are ready
     local totalPlayers = self:getActivePlayers()
@@ -1799,11 +1805,13 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Check the number of bans
 		if playerBans.heroBans >= maxHeroBans then
             if maxHeroBans == 0 then
-                -- Therre is no hero banning
+                -- There is no hero banning
                 network:sendNotification(player, {
                     sort = 'lodDanger',
                     text = 'lodFailedBanHeroNoBanning'
                 })
+
+                return
             else
                 -- Player has used all their bans
                 network:sendNotification(player, {
@@ -1854,6 +1862,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['heroName'] = heroName
 	        	}
 	        })
+
+            return
 		end
 	elseif abilityName ~= nil then
 		-- Check the number of bans
@@ -1864,6 +1874,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                     sort = 'lodDanger',
                     text = 'lodFailedBanAbilityNoBanning'
                 })
+
+                return
             else
                 -- Player has used all their bans
                 network:sendNotification(player, {
@@ -1917,8 +1929,19 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
 	        	}
 	        })
+
+            return
 		end
 	end
+
+    -- Have they hit the ban limit?
+    if playerBans.heroBans >= maxHeroBans and playerBans.abilityBans >= maxBans then
+        -- Toggle their state
+        self.isReady[playerID] =  1
+
+        -- Checks if people are ready
+        self:checkForReady()
+    end
 end
 
 -- Player wants to select a random ability

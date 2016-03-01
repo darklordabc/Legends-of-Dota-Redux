@@ -911,6 +911,7 @@ var showNonDraftSkills = false;
 
 // List of banned abilities
 var bannedAbilities = {};
+var bannedHeroes = {};
 
 // List of taken abilities
 var takenAbilities = {};
@@ -1218,13 +1219,24 @@ function updateTakenSkills() {
 
 // A ban was sent through
 function OnSkillBanned(table_name, key, data) {
-    var abilityName = key;
+    var heroName = data.heroName;
+    var abilityName = data.abilityName;
 
-    // Store the ban
-    bannedAbilities[abilityName] = true;
+    if(heroName != null) {
+        // Store the ban
+        bannedHeroes[heroName] = true;
 
-    // Recalculate filters
-    calculateFilters();
+        // Recalculate filters
+        calculateHeroFilters();
+    }
+
+    if(abilityName != null) {
+        // Store the ban
+        bannedAbilities[abilityName] = true;
+
+        // Recalculate filters
+        calculateFilters();
+    }
 }
 
 // Server just sent the ready state
@@ -1248,6 +1260,7 @@ function OnGetReadyState(table_name, key, data) {
         if(playerID == Players.GetLocalPlayer()) {
             $('#heroBuilderLockButton').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
             $('#heroBuilderLockButtonBans').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
+            $('#heroBuilderLockButtonBans').SetHasClass('hideThisButton', data[playerID] == 1);
 
             $('#allRandomLockButton').visible = data[playerID] == 0;
             $('#reviewReadyButton').visible = data[playerID] == 0;
@@ -1255,10 +1268,8 @@ function OnGetReadyState(table_name, key, data) {
             // Set the text
             if(data[playerID] == 0) {
                 $('#heroBuilderLockButtonText').text = $.Localize('lockBuild');
-                $('#heroBuilderLockButtonBans').visible = true;
             } else {
                 $('#heroBuilderLockButtonText').text = $.Localize('unlockBuild');
-                $('#heroBuilderLockButtonBans').visible = false;
             }
         }
     }
@@ -1933,6 +1944,11 @@ function OnHeroTabShown(tabName) {
                     if(heroDraft[heroName] == null) {
                         shouldShow = false;
                     }
+                }
+
+                // Filter banned heroes
+                if(shouldShow && bannedHeroes[heroName]) {
+                    shouldShow = false;
                 }
 
                 var con = heroPanelMap[heroName];

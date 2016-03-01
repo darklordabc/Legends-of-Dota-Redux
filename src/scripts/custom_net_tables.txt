@@ -10,7 +10,6 @@
         "selected_heroes",
         "selected_skills",
         "banned",
-        "bannedHero",
         "ready",
         "random_builds",
         "draft_array"
