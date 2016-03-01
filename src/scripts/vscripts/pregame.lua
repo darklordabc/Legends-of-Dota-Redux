@@ -115,6 +115,11 @@ function Pregame:init()
         this:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     end)
 
+    -- Player wants their hero to be spawned
+    CustomGameEventManager:RegisterListener('lodSpawnHero', function(eventSourceIndex, args)
+        this:onPlayerAskForHero(eventSourceIndex, args)
+    end)
+
     -- Network heroes
     self:networkHeroes()
 
@@ -252,49 +257,58 @@ function Pregame:spawnAllHeroes()
 
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID do
-        -- Is there a player in this slot?
-        if PlayerResource:IsValidPlayerID(playerID) then
-            -- There is, go ahead and build this player
+        -- Attempt to spawn the player
+        self:spawnPlayer(playerID)
+    end
+end
 
-            -- Grab their build
-            local build = self.selectedSkills[playerID]
+-- Spawns a given player
+function Pregame:spawnPlayer(playerID)
+    -- Is there a player in this slot?
+    if PlayerResource:IsValidPlayerID(playerID) then
+        -- There is, go ahead and build this player
 
-            -- Validate the player
-            local player = PlayerResource:GetPlayer(playerID)
-            if player ~= nil then
-                local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+        -- This player must already have a hero
+        if PlayerResource:GetSelectedHeroName(playerID) ~= '' then return end
 
-                -- Attempt to precache their hero
-                PrecacheUnitByNameAsync(heroName, function()
-                    -- Create the hero and validate it
-                    local hero = CreateHeroForPlayer(heroName, player)
-                    if hero ~= nil and IsValidEntity(hero) then
-                        SkillManager:ApplyBuild(hero, build or {})
+        -- Grab their build
+        local build = self.selectedSkills[playerID]
 
-                        -- Do they have a custom attribute set?
-                        if self.selectedPlayerAttr[playerID] ~= nil then
-                            -- Set it
+        -- Validate the player
+        local player = PlayerResource:GetPlayer(playerID)
+        if player ~= nil then
+            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
-                            local toSet = 0
+            -- Attempt to precache their hero
+            PrecacheUnitByNameAsync(heroName, function()
+                -- Create the hero and validate it
+                local hero = CreateHeroForPlayer(heroName, player)
+                if hero ~= nil and IsValidEntity(hero) then
+                    SkillManager:ApplyBuild(hero, build or {})
 
-                            if self.selectedPlayerAttr[playerID] == 'str' then
-                                toSet = 0
-                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                                toSet = 1
-                            elseif self.selectedPlayerAttr[playerID] == 'int' then
-                                toSet = 2
-                            end
+                    -- Do they have a custom attribute set?
+                    if self.selectedPlayerAttr[playerID] ~= nil then
+                        -- Set it
 
-                            -- Set a timer to fix stuff up
-                            Timers:CreateTimer(function()
-                                if IsValidEntity(hero) then
-                                    hero:SetPrimaryAttribute(toSet)
-                                end
-                            end, DoUniqueString('primaryAttrFix'), 0.1)
+                        local toSet = 0
+
+                        if self.selectedPlayerAttr[playerID] == 'str' then
+                            toSet = 0
+                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                            toSet = 1
+                        elseif self.selectedPlayerAttr[playerID] == 'int' then
+                            toSet = 2
                         end
+
+                        -- Set a timer to fix stuff up
+                        Timers:CreateTimer(function()
+                            if IsValidEntity(hero) then
+                                hero:SetPrimaryAttribute(toSet)
+                            end
+                        end, DoUniqueString('primaryAttrFix'), 0.1)
                     end
-                end, playerID)
-            end
+                end
+            end, playerID)
         end
     end
 end
@@ -1611,6 +1625,15 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
+end
+
+-- Player is asking why they don't have a hero
+function Pregame:onPlayerAskForHero(eventSourceIndex, args)
+    -- This code only works during the game phase
+    if self:getPhase() ~= constants.PHASE_INGAME then return end
+
+    -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
+    self:spawnPlayer(args.PlayerID)
 end
 
 -- Player wants to select an all random build
