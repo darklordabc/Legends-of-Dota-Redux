@@ -307,15 +307,15 @@ var allOptions = {
                 name: 'lodOptionBanningBlockTrollCombos',
                 des: 'lodOptionDesBanningBlockTrollCombos',
                 about: 'lodOptionAboutBanningBlockTrollCombos',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -323,15 +323,15 @@ var allOptions = {
                 name: 'lodOptionBanningUseBanList',
                 des: 'lodOptionDesBanningUseBanList',
                 about: 'lodOptionAboutBanningUseBanList',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -339,15 +339,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedOPAbilities',
                 des: 'lodOptionDesAdvancedOPAbilities',
                 about: 'lodOptionAboutAdvancedOPAbilities',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
                     {
                         text: 'lodOptionNo',
-                        value: 1
+                        value: 0
                     },
                     {
                         text: 'lodOptionYes',
-                        value: 0
+                        value: 1
                     }
 
                 ]
@@ -356,15 +356,15 @@ var allOptions = {
                 name: 'lodOptionBanningBanInvis',
                 des: 'lodOptionDesBanningBanInvis',
                 about: 'lodOptionAboutBanningBanInvis',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -583,15 +583,15 @@ var allOptions = {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -599,15 +599,15 @@ var allOptions = {
                 name: 'lodOptionCrazyEasymode',
                 des: 'lodOptionDesCrazyEasymode',
                 about: 'lodOptionAboutCrazyEasymode',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -622,15 +622,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedHeroAbilities',
                 des: 'lodOptionDesAdvancedHeroAbilities',
                 about: 'lodOptionAboutAdvancedHeroAbilities',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -638,15 +638,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedNeutralAbilities',
                 des: 'lodOptionDesAdvancedNeutralAbilities',
                 about: 'lodOptionAboutAdvancedNeutralAbilities',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -654,15 +654,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedNeutralWraithNight',
                 des: 'lodOptionDesAdvancedWraithNight',
                 about: 'lodOptionAboutAdvancedWraithNight',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -670,15 +670,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
                 about: 'lodOptionAboutAdvancedHidePicks',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -706,15 +706,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedUniqueHeroes',
                 des: 'lodOptionDesAdvancedUniqueHeroes',
                 about: 'lodOptionAboutAdvancedUniqueHeroes',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -722,15 +722,15 @@ var allOptions = {
                 name: 'lodOptionAdvancedSelectPrimaryAttr',
                 des: 'lodOptionDesAdvancedSelectPrimaryAttr',
                 about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -753,15 +753,15 @@ var allOptions = {
                 name: 'lodOptionCrazyNoCamping',
                 des: 'lodOptionDesCrazyNoCamping',
                 about: 'lodOptionAboutCrazyNoCamping',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -769,15 +769,15 @@ var allOptions = {
                 name: 'lodOptionCrazyUniversalShop',
                 des: 'lodOptionDesCrazyUniversalShop',
                 about: 'lodOptionAboutCrazyUniversalShop',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -785,15 +785,15 @@ var allOptions = {
                 name: 'lodOptionCrazyAllVision',
                 des: 'lodOptionDesCrazyAllVision',
                 about: 'lodOptionAboutCrazyAllVision',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -801,15 +801,15 @@ var allOptions = {
                 name: 'lodOptionCrazyMulticast',
                 des: 'lodOptionDesCrazyMulticast',
                 about: 'lodOptionAboutCrazyMulticast',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -817,15 +817,15 @@ var allOptions = {
                 name: 'lodOptionCrazyWTF',
                 des: 'lodOptionDesCrazyWTF',
                 about: 'lodOptionAboutCrazyWTF',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    },
                     {
                         text: 'lodOptionNo',
                         value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
@@ -2608,6 +2608,107 @@ function buildOptionsCategories() {
                                 // Sets an option
                                 setOption(fieldName, fieldValue);
                             });
+                        break;
+
+                        case 'toggle':
+                            // Create the toggle box
+                            hostPanel = $.CreatePanel('ToggleButton', floatRightContiner, 'option_panel_field_' + fieldName);
+                            hostPanel.AddClass('optionsSlotPanelHost');
+                            hostPanel.AddClass('optionsHostToggleSelector');
+
+                            // When the data changes
+                            hostPanel.SetPanelEvent('onactivate', function() {
+                                // Grab the selected one
+                                //var selected = hostPanel.GetSelected();
+                                //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                //var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                if(hostPanel.checked) {
+                                    setOption(fieldName, 1);
+                                    hostPanel.text = values[1].text;
+                                    slavePanel.text = $.Localize(values[1].text);
+                                } else {
+                                    setOption(fieldName, 0);
+                                    hostPanel.text = values[0].text;
+                                    slavePanel.text = $.Localize(values[0].text);
+                                }
+                            });
+
+                            // Mapping function
+                            optionFieldMap[fieldName] = function(newValue) {
+                                $.Msg('Got a new value: ' + newValue);
+
+                                hostPanel.checked = newValue == 1;
+
+                                if(hostPanel.checked) {
+                                    hostPanel.text = $.Localize(values[1].text);
+                                    slavePanel.text = $.Localize(values[1].text);
+                                } else {
+                                    hostPanel.text = $.Localize(values[0].text);
+                                    slavePanel.text = $.Localize(values[0].text);
+                                }
+
+                                $.Msg(values[0])
+                            }
+
+                            // Create the drop down
+                            /*hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
+                            hostPanel.AddClass('optionsSlotPanelHost');
+                            hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
+
+                            // Maps values to panels
+                            var valueToPanel = {};
+
+                            for(var j=0; j<values.length; ++j) {
+                                var valueInfo = values[j];
+                                var fieldText = valueInfo.text;
+                                var fieldValue = valueInfo.value;
+
+                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
+                                subPanel.text = $.Localize(fieldText);
+                                //subPanel.SetAttributeString('fieldText', fieldText);
+                                subPanel.SetAttributeInt('fieldValue', fieldValue);
+                                hostPanel.AddOption(subPanel);
+
+                                // Store the map
+                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
+
+                                if(j == values.length-1) {
+                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
+                                }
+                            }
+
+                            // Mapping function
+                            optionFieldMap[fieldName] = function(newValue) {
+                                for(var i=0; i<values.length; ++i) {
+                                    var valueInfo = values[i];
+                                    var fieldText = valueInfo.text;
+                                    var fieldValue = valueInfo.value;
+
+                                    if(fieldValue == newValue) {
+                                        var thePanel = valueToPanel[fieldValue];
+                                        if(thePanel) {
+                                            // Select that panel
+                                            hostPanel.SetSelected(thePanel);
+
+                                            // Update text
+                                            slavePanel.text = $.Localize(fieldText);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // When the data changes
+                            hostPanel.SetPanelEvent('oninputsubmit', function() {
+                                // Grab the selected one
+                                var selected = hostPanel.GetSelected();
+                                //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                // Sets an option
+                                setOption(fieldName, fieldValue);
+                            });*/
                         break;
                     }
 

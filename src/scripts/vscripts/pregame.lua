@@ -1090,7 +1090,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionAdvancedNeutralWraithNight', 1, true)
 
                 -- Disable OP abilities
-                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
 
                 -- Hide enemy picks
                 self:setOption('lodOptionAdvancedHidePicks', 1, true)
@@ -1420,7 +1420,7 @@ function Pregame:processOptions()
     end
 
     -- Banning of OP Skills
-    if self.optionStore['lodOptionAdvancedOPAbilities'] == 0 then
+    if self.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
         for abilityName,v in pairs(self.OPSkillsList) do
             self:banAbility(abilityName)
         end
@@ -2248,7 +2248,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         elseif cat == 'wraith' then
             allowed = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1
         elseif cat == 'OP' then
-            allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 1
+            allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
 
         if not allowed then
