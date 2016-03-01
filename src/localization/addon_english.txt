@@ -253,6 +253,8 @@
     "lodFailedAllRandomNoBuilds"                    "Failed to find any valid builds for you."
     "lodFailedAllRandomInvalidBuild"                "'{buildID}' is not a valid buildID."
     "lodFailedDraftWrongHero"                       "'{heroName}' is not one of your draftable heroes."
+    "lodFailedDraftWrongHeroAbility"                "'{abilityName}' does not belong to one of your draftable heroes."
+    "lodFailedDraftWrongAbility"                    "'{abilityName}' is not one of your draftable abilities."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."

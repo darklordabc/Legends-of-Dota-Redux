@@ -1142,7 +1142,7 @@ function Pregame:generateRandomBuild(playerID)
 
     for slot=1,maxSlots do
         -- Grab a random ability
-        local newAbility = self:findRandomSkill(build, slot, PlayerResource:GetTeam(playerID))
+        local newAbility = self:findRandomSkill(build, slot, playerID)
 
         -- Ensure we found an ability
         if newAbility ~= nil then
@@ -1311,7 +1311,7 @@ function Pregame:validateBuilds()
         for slot=1,maxSlots do
             if not build[slot] then
                 -- Grab a random ability
-                local newAbility = self:findRandomSkill(build, slot, PlayerResource:GetTeam(playerID))
+                local newAbility = self:findRandomSkill(build, slot, playerID)
 
                 -- Ensure we found an ability
                 if newAbility ~= nil then
@@ -1953,7 +1953,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
     end
 
     -- Grab a random ability
-    local newAbility = self:findRandomSkill(build, slot, PlayerResource:GetTeam(playerID))
+    local newAbility = self:findRandomSkill(build, slot, playerID)
 
     if newAbility == nil then
     	-- No ability found, report error
@@ -2019,6 +2019,46 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         })
 
         return
+    end
+
+    -- Check draft array
+    if self.useDraftArrays then
+        local draftID = self:getDraftID(playerID)
+        local draftArray = self.draftArrays[draftID] or {}
+        local heroDraft = draftArray.heroDraft
+        local abilityDraft = draftArray.abilityDraft
+
+        if self.maxDraftHeroes > 0 then
+            local heroName = self.abilityHeroOwner[abilityName]
+
+            if not heroDraft[heroName] then
+                -- Tell them
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedDraftWrongHeroAbility',
+                    params = {
+                        ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+                    }
+                })
+
+                return
+            end
+        end
+
+        if self.maxDraftSkills > 0 then
+            if not abilityDraft[abilityName] then
+                -- Tell them
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedDraftWrongAbility',
+                    params = {
+                        ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+                    }
+                })
+
+                return
+            end
+        end
     end
 
     -- Don't allow picking banned abilities
@@ -2246,7 +2286,9 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
 end
 
 -- Returns a random skill for a player, given a build and the slot the skill would be for
-function Pregame:findRandomSkill(build, slotNumber, team)
+function Pregame:findRandomSkill(build, slotNumber, playerID)
+    local team = PlayerResource:GetTeam(playerID)
+
 	-- Ensure we have a valid build
 	build = build or {}
 
@@ -2287,7 +2329,27 @@ function Pregame:findRandomSkill(build, slotNumber, team)
 			end
 		end
 
-		-- TODO: Check draft array?
+		-- Check draft array
+        if self.useDraftArrays then
+            local draftID = self:getDraftID(playerID)
+            local draftArray = self.draftArrays[draftID] or {}
+            local heroDraft = draftArray.heroDraft
+            local abilityDraft = draftArray.abilityDraft
+
+            if self.maxDraftHeroes > 0 then
+                local heroName = self.abilityHeroOwner[abilityName]
+
+                if not heroDraft[heroName] then
+                    shouldAdd = false
+                end
+            end
+
+            if self.maxDraftSkills > 0 then
+                if not abilityDraft[abilityName] then
+                    shouldAdd = false
+                end
+            end
+        end
 
         -- Consider unique skills
         if self.optionStore['lodOptionAdvancedUniqueSkills'] == 1 then
