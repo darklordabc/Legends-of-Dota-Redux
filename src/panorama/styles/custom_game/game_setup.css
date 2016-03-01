@@ -1560,6 +1560,10 @@
     vertical-align: middle;
 }
 
+.optionsHostToggleSelector Label {
+    text-transform: none;
+}
+
 .optionsSlotPanelHost {
     visibility: collapse;
 }

@@ -2651,6 +2651,8 @@ function buildOptionsCategories() {
 
                             // When the main slot is pressed
                             mainSlot.SetPanelEvent('onactivate', function() {
+                                if(!hostPanel.visible) return;
+
                                 hostPanel.checked = !hostPanel.checked;
                                 checkboxToggled();
                             });
