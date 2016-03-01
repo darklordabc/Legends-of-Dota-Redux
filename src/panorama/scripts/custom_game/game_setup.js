@@ -2618,11 +2618,7 @@ function buildOptionsCategories() {
 
                             // When the data changes
                             hostPanel.SetPanelEvent('onactivate', function() {
-                                // Grab the selected one
-                                //var selected = hostPanel.GetSelected();
-                                //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                //var fieldValue = selected.GetAttributeInt('fieldValue', -1);
-
+                                // Check if it is checked or not
                                 if(hostPanel.checked) {
                                     setOption(fieldName, 1);
                                     hostPanel.text = values[1].text;
@@ -2636,8 +2632,6 @@ function buildOptionsCategories() {
 
                             // Mapping function
                             optionFieldMap[fieldName] = function(newValue) {
-                                $.Msg('Got a new value: ' + newValue);
-
                                 hostPanel.checked = newValue == 1;
 
                                 if(hostPanel.checked) {
@@ -2647,72 +2641,9 @@ function buildOptionsCategories() {
                                     hostPanel.text = $.Localize(values[0].text);
                                     slavePanel.text = $.Localize(values[0].text);
                                 }
-
-                                $.Msg(values[0])
                             }
-
-                            // Create the drop down
-                            /*hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
-                            hostPanel.AddClass('optionsSlotPanelHost');
-                            hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
-
-                            // Maps values to panels
-                            var valueToPanel = {};
-
-                            for(var j=0; j<values.length; ++j) {
-                                var valueInfo = values[j];
-                                var fieldText = valueInfo.text;
-                                var fieldValue = valueInfo.value;
-
-                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
-                                subPanel.text = $.Localize(fieldText);
-                                //subPanel.SetAttributeString('fieldText', fieldText);
-                                subPanel.SetAttributeInt('fieldValue', fieldValue);
-                                hostPanel.AddOption(subPanel);
-
-                                // Store the map
-                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
-
-                                if(j == values.length-1) {
-                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
-                                }
-                            }
-
-                            // Mapping function
-                            optionFieldMap[fieldName] = function(newValue) {
-                                for(var i=0; i<values.length; ++i) {
-                                    var valueInfo = values[i];
-                                    var fieldText = valueInfo.text;
-                                    var fieldValue = valueInfo.value;
-
-                                    if(fieldValue == newValue) {
-                                        var thePanel = valueToPanel[fieldValue];
-                                        if(thePanel) {
-                                            // Select that panel
-                                            hostPanel.SetSelected(thePanel);
-
-                                            // Update text
-                                            slavePanel.text = $.Localize(fieldText);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-
-                            // When the data changes
-                            hostPanel.SetPanelEvent('oninputsubmit', function() {
-                                // Grab the selected one
-                                var selected = hostPanel.GetSelected();
-                                //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
-
-                                // Sets an option
-                                setOption(fieldName, fieldValue);
-                            });*/
                         break;
                     }
-
-
                 })();
             }
 
