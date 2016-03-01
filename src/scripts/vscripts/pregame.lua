@@ -1776,7 +1776,14 @@ end
 -- Player wants to ban an ability
 function Pregame:onPlayerBan(eventSourceIndex, args)
 	-- Ensure we are in the banning phase
-    if self:getPhase() ~= constants.PHASE_BANNING then return end
+    if self:getPhase() ~= constants.PHASE_BANNING then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseBanning'
+        })
+
+        return
+    end
 
 	local usedBans = self.usedBans
 
@@ -1947,7 +1954,14 @@ end
 -- Player wants to select a random ability
 function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
 	-- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseAllRandom'
+        })
+
+        return
+    end
 
     -- Grab data
     local playerID = args.PlayerID
@@ -1998,7 +2012,14 @@ end
 -- Player wants to select a new ability
 function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
 
     -- Grab data
     local playerID = args.PlayerID

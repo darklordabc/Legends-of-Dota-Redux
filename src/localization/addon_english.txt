@@ -255,6 +255,9 @@
     "lodFailedDraftWrongHero"                       "'{heroName}' is not one of your draftable heroes."
     "lodFailedDraftWrongHeroAbility"                "'{abilityName}' does not belong to one of your draftable heroes."
     "lodFailedDraftWrongAbility"                    "'{abilityName}' is not one of your draftable abilities."
+    "lodFailedWrongPhaseBanning"                    "You can only ban abilities during the banning phase."
+    "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
+    "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."
