@@ -337,7 +337,7 @@ var allOptions = {
             },
             {
                 name: 'lodOptionAdvancedOPAbilities',
-                des: 'lengthodOptionDesAdvancedOPAbilities',
+                des: 'lodOptionDesAdvancedOPAbilities',
                 about: 'lodOptionAboutAdvancedOPAbilities',
                 sort: 'dropdown',
                 values: [
