@@ -1171,24 +1171,25 @@ function Pregame:generateRandomBuild(playerID, buildID)
             return this.heroPrimaryAttr[heroName] == 'str'
         end
     elseif buildID == 1 then
-        -- A Agility based hero only
+        -- A Agility melee based hero only
         filter = function(heroName)
-            return this.heroPrimaryAttr[heroName] == 'agi'
+            return this.heroPrimaryAttr[heroName] == 'agi' and this.heroRole[heroName] == 'melee'
         end
     elseif buildID == 2 then
+        -- A Agility ranged based hero only
+        filter = function(heroName)
+            return this.heroPrimaryAttr[heroName] == 'agi' and this.heroRole[heroName] == 'ranged'
+        end
+
+    elseif buildID == 3 then
         -- A int based hero only
         filter = function(heroName)
             return this.heroPrimaryAttr[heroName] == 'int'
         end
-    elseif buildID == 3 then
-        -- A melee based hero
-        filter = function(heroName)
-            return this.heroRole[heroName] == 'melee'
-        end
     elseif buildID == 4 then
-        -- A ranged based hero
+        -- Any hero except agility
         filter = function(heroName)
-            return this.heroRole[heroName] == 'ranged'
+            return this.heroPrimaryAttr[heroName] ~= 'agi'
         end
     end
 
