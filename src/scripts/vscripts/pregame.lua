@@ -5,6 +5,7 @@ local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
+require('statcollection.init')
 
 --[[
     Main pregame, selection related handler
@@ -132,6 +133,39 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
+
+    -- Exports for stat collection
+    local this = self
+    function PlayerResource:getPlayerStats(playerID)
+        this:getPlayerStats(playerID)
+    end
+end
+
+-- Gets stats for the given player
+function Pregame:getPlayerStats(playerID)
+    local playerInfo =  {
+        -- steamID32 required in here
+        steamID32 = PlayerResource:GetSteamAccountID(playerID),
+
+        -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
+        -- Add player values here as someValue = GetSomePlayerValue(),
+    }
+
+    -- Add selected hero
+    playerInfo.selectedHero = self.selectedHeroes[playerID] or ''
+
+    -- Add selected skills
+    local build = self.selectedSkills[playerID] or {}
+    for i=1,6 do
+        playerInfo['Ability' .. i] = build[i] or ''
+    end
+
+    -- Add selected attribute
+    playerInfo.selectedAttribute = self.selectedPlayerAttr[playerID] or ''
+
+    DeepPrintTable(playerInfo)
+
+    return playerInfo
 end
 
 -- Thinker function to handle logic
@@ -1404,6 +1438,7 @@ function Pregame:processOptions()
 
     -- Enforce max level
     if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
+        self.optionStore['lodOptionGameSpeedStartingLevel'] = self.optionStore['lodOptionGameSpeedMaxLevel']
         OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
     end
 
@@ -1459,6 +1494,42 @@ function Pregame:processOptions()
         GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
         GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
     end
+
+    -- Store flags
+    statCollection:setFlags({
+        ['presetGamemode'] = self.optionStore['lodOptionGamemode'],
+        ['presentBanning'] = self.optionStore['lodOptionBanning'],
+        ['gamemode'] = self.optionStore['lodOptionCommonGamemode'],
+        ['maxSlots'] = self.optionStore['lodOptionCommonMaxSlots'],
+        ['maxSkills'] = self.optionStore['lodOptionCommonMaxSkills'],
+        ['maxUlts'] = self.optionStore['lodOptionCommonMaxUlts'],
+        ['maxBans'] = self.optionStore['lodOptionBanningMaxBans'],
+        ['maxHeroBans'] = self.optionStore['lodOptionBanningMaxHeroBans'],
+        ['blockTrollCombos'] = self.optionStore['lodOptionBanningBlockTrollCombos'] == 1,
+        ['useBanList'] = self.optionStore['lodOptionBanningUseBanList'] == 1,
+        ['blockOPAbilities'] = self.optionStore['lodOptionAdvancedOPAbilities'] == 1,
+        ['blockInvisAbilities'] = self.optionStore['lodOptionBanningBanInvis'] == 1,
+        ['blockInvisAbilities'] = self.optionStore['lodOptionBanningBanInvis'] == 1,
+        ['startingLevel'] = self.optionStore['lodOptionGameSpeedStartingLevel'],
+        ['maxHeroLevel'] = self.optionStore['lodOptionGameSpeedMaxLevel'],
+        ['bonusGold'] = self.optionStore['lodOptionGameSpeedStartingGold'],
+        ['respawnModifier'] = self.optionStore['lodOptionGameSpeedRespawnTime'],
+        ['towersPerLane'] = self.optionStore['lodOptionGameSpeedTowersPerLane'],
+        ['upgradeUlts'] = self.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1,
+        ['easyMode'] = self.optionStore['lodOptionCrazyEasymode'] == 1,
+        ['allowHeroAbilities'] = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1,
+        ['allowNeutralAbilities'] = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1,
+        ['allowWraithNightAbilities'] = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1,
+        ['hideEnemyPicks'] = self.optionStore['lodOptionAdvancedHidePicks'] == 1,
+        ['uniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills'],
+        ['uniqueHeroes'] = self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1,
+        ['selectPrimaryAttribute'] = self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 1,
+        ['stopFountainCamping'] = self.optionStore['lodOptionCrazyNoCamping'] == 1,
+        ['universalShop'] = self.optionStore['lodOptionCrazyUniversalShop'] == 1,
+        ['allVision'] = self.optionStore['lodOptionCrazyAllVision'] == 1,
+        ['multicastMadness'] = self.optionStore['lodOptionCrazyMulticast'] == 1,
+        ['wtf'] = self.optionStore['lodOptionCrazyWTF'] == 1,
+    })
 end
 
 -- Validates, and then sets an option

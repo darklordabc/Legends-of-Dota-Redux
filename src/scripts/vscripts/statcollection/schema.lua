@@ -56,13 +56,7 @@ function BuildPlayersArray()
 
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-                table.insert(players, {
-                    -- steamID32 required in here
-                    steamID32 = PlayerResource:GetSteamAccountID(playerID),
-
-                    -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
-                    -- Add player values here as someValue = GetSomePlayerValue(),
-                })
+                table.insert(players, PlayerResource:getPlayerStats(playerID))
             end
         end
     end
