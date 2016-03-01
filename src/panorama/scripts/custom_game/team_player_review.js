@@ -12,6 +12,7 @@ function OnPlayerDetailsChanged() {
     if (!playerInfo) return;
 
     $("#reviewPhasePlayerAvatar").steamid = playerInfo.player_steamid;
+    $("#reviewPhasePlayerAvatarBig").steamid = playerInfo.player_steamid;
 
     // Is it the real Ash47?
     var playerName = playerInfo.player_name;

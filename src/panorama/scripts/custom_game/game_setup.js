@@ -863,6 +863,9 @@ var selectedAttr = {};
 var selectedSkills = {};
 var readyState = {};
 
+// Hide enemy picks?
+var hideEnemyPicks = false;
+
 // Mirror Draft stuff
 var heroDraft = null;
 var abilityDraft = null;
@@ -2800,6 +2803,9 @@ function OnTeamPlayerListChanged() {
     $('#mainSelectionRoot').SetHasClass('unassigned_players', unassignedPlayers.length != 0 );
     $('#mainSelectionRoot').SetHasClass('no_unassigned_players', unassignedPlayers.length == 0 );
 
+    // Hide the correct stuff
+    calculateHideEnemyPicks();
+
     // Set host privledges
     var playerInfo = Game.GetLocalPlayerInfo();
     if (!playerInfo) return;
@@ -2868,6 +2874,9 @@ function OnPhaseChanged(table_name, key, data) {
             freezeTimer = data.v;
         break;
     }
+
+    // Ensure we are hiding the correct enemy picks
+    calculateHideEnemyPicks();
 }
 
 // An option just changed
@@ -2920,6 +2929,39 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionCommonGamemode') {
         onGamemodeChanged();
     }
+
+    if(key == 'lodOptionAdvancedHidePicks') {
+        // Hide enemy picks
+        hideEnemyPicks = data.v == 1;
+        calculateHideEnemyPicks();
+    }
+}
+
+// Recalculates what teams should be hidden
+function calculateHideEnemyPicks() {
+    // Hide picks
+    var hideRadiantPicks = false;
+    var hideDirePicks = false;
+
+    if(hideEnemyPicks) {
+        var playerInfo = Game.GetLocalPlayerInfo();
+        if(playerInfo) {
+            var teamID = playerInfo.player_team_id;
+
+            if(teamID == DOTATeam_t.DOTA_TEAM_GOODGUYS) {
+                hideDirePicks = true;
+            }
+
+            if(teamID == DOTATeam_t.DOTA_TEAM_BADGUYS) {
+                hideRadiantPicks = true;
+            }
+        }
+    }
+
+    $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
+    $('#reviewRadiantTeam').SetHasClass('hide_picks', hideRadiantPicks);
+    $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
+    $('#reviewDireTeam').SetHasClass('hide_picks', hideDirePicks);
 }
 
 // The gamemode has changed

@@ -290,6 +290,10 @@
     visibility: visible;
 }
 
+.hide_picks #playerAvatar {
+    visibility: visible;
+}
+
 .teams_locked #lodLockButton {
     visibility: collapse;
 }
@@ -320,6 +324,10 @@
     visibility: collapse;
 }
 
+.hide_picks #playerSkillContainer {
+    visibility: collapse;
+}
+
 .no_hero_selected #playerHeroImage {
     visibility: collapse;
 }
@@ -333,6 +341,10 @@
 }
 
 .phase_option_selection.phase_option_selection_selected #playerHeroImageContainer {
+    visibility: collapse;
+}
+
+.hide_picks #playerHeroImageContainer {
     visibility: collapse;
 }
 
@@ -732,6 +744,36 @@
 
 .allRandomSelectedItem {
     border: 1px solid #00FF00;
+}
+
+.hide_picks #reviewPhaseHeroImageContainer {
+    visibility: collapse;
+}
+
+.hide_picks #playerAttribute {
+    visibility: collapse;
+}
+
+.hide_picks #reviewPhasePlayerSkillContainer {
+    visibility: collapse;
+}
+
+#reviewPhasePlayerAvatarBig {
+    visibility: collapse;
+    width: 128px;
+    height: 128px;
+    margin-top: 36px;
+    margin-bottom: 8px;
+    margin-left: 64px;
+    horizontal-align: center;
+}
+
+#reviewRadiantTeam #reviewPhasePlayerAvatarBig {
+    margin-top: 104px;
+}
+
+.hide_picks #reviewPhasePlayerAvatarBig {
+    visibility: visible;
 }
 
 /*
