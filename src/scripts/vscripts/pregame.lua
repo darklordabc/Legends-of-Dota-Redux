@@ -1701,6 +1701,9 @@ end
 
 -- Player wants to select an all random build
 function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
     -- Player shouldn't be able to do this unless it is the all random phase
     if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION then
         network:sendNotification(player, {
@@ -1711,8 +1714,6 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     end
 
     -- Read options
-    local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
     local buildID = args.buildID
     local heroOnly = args.heroOnly == 1
 
