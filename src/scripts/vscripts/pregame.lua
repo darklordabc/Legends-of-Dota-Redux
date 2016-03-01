@@ -28,6 +28,9 @@ function Pregame:init()
     self.maxDraftHeroes = 30
     self.maxDraftSkills = 0
 
+    -- Stores which playerIDs we have already spawned
+    self.spawnedHeroesFor = {}
+
     -- List of banned abilities
     self.bannedAbilities = {}
 
@@ -268,8 +271,9 @@ function Pregame:spawnPlayer(playerID)
     if PlayerResource:IsValidPlayerID(playerID) then
         -- There is, go ahead and build this player
 
-        -- This player must already have a hero
-        if PlayerResource:GetSelectedHeroName(playerID) ~= '' then return end
+        -- Only spawn a hero for a given player ONCE
+        if self.spawnedHeroesFor[playerID] then return end
+        self.spawnedHeroesFor[playerID] = true
 
         -- Grab their build
         local build = self.selectedSkills[playerID]
@@ -314,7 +318,7 @@ function Pregame:spawnPlayer(playerID)
 end
 
 -- Returns a random hero [will be unique]
-function Pregame:getRandomHero()
+function Pregame:getRandomHero(filter)
     -- Build a list of heroes that have already been taken
     local takenHeroes = {}
     for k,v in pairs(self.selectedHeroes) do
@@ -324,7 +328,7 @@ function Pregame:getRandomHero()
     local possibleHeroes = {}
 
     for k,v in pairs(self.allowedHeroes) do
-        if not takenHeroes[k] then
+        if not takenHeroes[k] and (filter == nil or filter(k)) then
             table.insert(possibleHeroes, k)
         end
     end
@@ -381,6 +385,7 @@ function Pregame:networkHeroes()
 
     local allowedHeroes = {}
     self.heroPrimaryAttr = {}
+    self.heroRole = {}
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
@@ -411,6 +416,13 @@ function Pregame:networkHeroes()
                 self.heroPrimaryAttr[heroName] = 'agi'
             else
                 self.heroPrimaryAttr[heroName] = 'str'
+            end
+
+            local role = heroValues.AttackCapabilities
+            if role == 'DOTA_UNIT_CAP_RANGED_ATTACK' then
+                self.heroRole[heroName] = 'ranged'
+            else
+                self.heroRole[heroName] = 'melee'
             end
 
             if heroName == 'npc_dota_hero_invoker' then
@@ -1147,8 +1159,40 @@ function Pregame:initOptionSelector()
 end
 
 -- Generates a random build
-function Pregame:generateRandomBuild(playerID)
-    local heroName = self:getRandomHero()
+function Pregame:generateRandomBuild(playerID, buildID)
+    -- Default filter allows all heroes
+    local filter = function() return true end
+
+    local this = self
+
+    if buildID == 0 then
+        -- A strength based hero only
+        filter = function(heroName)
+            return this.heroPrimaryAttr[heroName] == 'str'
+        end
+    elseif buildID == 1 then
+        -- A Agility based hero only
+        filter = function(heroName)
+            return this.heroPrimaryAttr[heroName] == 'agi'
+        end
+    elseif buildID == 2 then
+        -- A int based hero only
+        filter = function(heroName)
+            return this.heroPrimaryAttr[heroName] == 'int'
+        end
+    elseif buildID == 3 then
+        -- A melee based hero
+        filter = function(heroName)
+            return this.heroRole[heroName] == 'melee'
+        end
+    elseif buildID == 4 then
+        -- A ranged based hero
+        filter = function(heroName)
+            return this.heroRole[heroName] == 'ranged'
+        end
+    end
+
+    local heroName = self:getRandomHero(filter)
     local build = {}
 
     -- Validate it
@@ -1185,7 +1229,7 @@ function Pregame:generateAllRandomBuilds()
         local theBuilds = {}
 
         for buildID = 0,(maxPlayerBuilds-1) do
-            local heroName, build = self:generateRandomBuild(playerID)
+            local heroName, build = self:generateRandomBuild(playerID, buildID)
 
             theBuilds[buildID] = {
                 heroName = heroName,
@@ -1297,7 +1341,7 @@ function Pregame:validateBuilds()
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID do
         -- Ensure they have a hero
-        if not  self.selectedHeroes[playerID] then
+        if not self.selectedHeroes[playerID] then
             local heroName = self:getRandomHero()
             self.selectedHeroes[playerID] = heroName
             network:setSelectedHero(playerID, heroName)
