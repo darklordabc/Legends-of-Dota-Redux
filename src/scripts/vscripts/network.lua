@@ -81,7 +81,7 @@ end
 -- Sends which networked build has been selected
 function Network:setSelectedAllRandomBuild(playerID, selectedBuilds)
     -- Push to everyone
-    CustomNetTables:SetTableValue('random_builds', 'selected_' + tostring(playerID), {
+    CustomNetTables:SetTableValue('random_builds', 'selected_' .. tostring(playerID), {
         selected = 1,
         playerID = playerID,
         hero = selectedBuilds.hero,
