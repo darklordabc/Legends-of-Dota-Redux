@@ -1775,6 +1775,10 @@ end
 
 -- Player wants to ban an ability
 function Pregame:onPlayerBan(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
 	-- Ensure we are in the banning phase
     if self:getPhase() ~= constants.PHASE_BANNING then
         network:sendNotification(player, {
@@ -1786,9 +1790,6 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
     end
 
 	local usedBans = self.usedBans
-
-	local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we have a store
     usedBans[playerID] = usedBans[playerID] or {
@@ -1953,6 +1954,10 @@ end
 
 -- Player wants to select a random ability
 function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
 	-- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION then
         network:sendNotification(player, {
@@ -1962,10 +1967,6 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
 
         return
     end
-
-    -- Grab data
-    local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local slot = math.floor(tonumber(args.slot))
 
@@ -2011,6 +2012,10 @@ end
 
 -- Player wants to select a new ability
 function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION then
         network:sendNotification(player, {
@@ -2020,10 +2025,6 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
 
         return
     end
-
-    -- Grab data
-    local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local slot = math.floor(tonumber(args.slot))
     local abilityName = args.abilityName
