@@ -75,6 +75,20 @@
         });
     }
 
+    function checkIfWeShouldMoveTheHintToTheRight() {
+        if(Game.GetState() >= 2) {
+            $.GetContextPanel().AddClass('moveHintTheHint');
+
+            // Done
+            return;
+        }
+
+        $.Schedule(0.1, checkIfWeShouldMoveTheHintToTheRight);
+    }
+
     // Show the first hint
     nextHint();
+
+    // Check if we should move the hint
+    checkIfWeShouldMoveTheHintToTheRight();
 })();
