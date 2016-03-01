@@ -578,6 +578,7 @@ function Pregame:loadTrollCombos()
     self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
     self.lodBanList = tempBanList.lodBanList
+    self.doNotRandom = tempBanList.doNotRandom
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -2448,8 +2449,13 @@ function Pregame:findRandomSkill(build, slotNumber, playerID)
 
 		local shouldAdd = true
 
+        -- Prevent certain skills from being randomed
+        if self.doNotRandom[abilityName] then
+            shouldAdd = false
+        end
+
 		-- consider ulty count
-		if SkillManager:isUlt(abilityName) then
+		if shouldAdd and SkillManager:isUlt(abilityName) then
 			if totalUlts >= maxUlts then
 				shouldAdd = false
 			end

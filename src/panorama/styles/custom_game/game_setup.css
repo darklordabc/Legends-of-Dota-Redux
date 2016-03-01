@@ -373,6 +373,11 @@
     visibility: collapse;
 }
 
+.hide_picks .lodPlayerReadyText {
+    margin-left: 64px;
+    margin-bottom: 4px;
+}
+
 .lodPlayerIsReady .lodPlayerReadyText {
     visibility: visible;
 }
