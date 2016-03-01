@@ -377,6 +377,8 @@ function Pregame:networkHeroes()
         network:setFlagData(abilityName, flagData)
     end
 
+    self.invisSkills = flags.invis
+
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
 
@@ -575,6 +577,7 @@ function Pregame:loadTrollCombos()
     self.wtfAutoBan = tempBanList.wtfAutoBan
     self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
+    self.lodBanList = tempBanList.lodBanList
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -1422,6 +1425,20 @@ function Pregame:processOptions()
     -- Banning of OP Skills
     if self.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
         for abilityName,v in pairs(self.OPSkillsList) do
+            self:banAbility(abilityName)
+        end
+    end
+
+    -- Banning invis skills
+    if self.optionStore['lodOptionBanningBanInvis'] == 1 then
+        for abilityName,v in pairs(self.invisSkills) do
+            self:banAbility(abilityName)
+        end
+    end
+
+    -- LoD ban list
+    if self.optionStore['lodOptionBanningUseBanList'] == 1 then
+        for abilityName,v in pairs(self.lodBanList) do
             self:banAbility(abilityName)
         end
     end
