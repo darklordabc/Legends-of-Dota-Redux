@@ -144,24 +144,20 @@ end
 -- Gets stats for the given player
 function Pregame:getPlayerStats(playerID)
     local playerInfo =  {
-        -- steamID32 required in here
-        steamID32 = PlayerResource:GetSteamAccountID(playerID),
-
-        -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
-        -- Add player values here as someValue = GetSomePlayerValue(),
+        steamID32 = PlayerResource:GetSteamAccountID(playerID),                         -- steamID32    The player's steamID
     }
 
     -- Add selected hero
-    playerInfo.selectedHero = self.selectedHeroes[playerID] or ''
+    playerInfo.h = (self.selectedHeroes[playerID] or ''):gsub('npc_dota_hero_', '')     -- h            The hero they selected
 
     -- Add selected skills
     local build = self.selectedSkills[playerID] or {}
     for i=1,6 do
-        playerInfo['Ability' .. i] = build[i] or ''
+        playerInfo['A' .. i] = build[i] or ''                                           -- A[1-6]       Ability 1 - 6
     end
 
     -- Add selected attribute
-    playerInfo.selectedAttribute = self.selectedPlayerAttr[playerID] or ''
+    playerInfo.s = self.selectedPlayerAttr[playerID] or ''                              -- s            Selected Attribute (str, agi, int)
 
     -- Grab there hero and attempt to add info on it
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -169,24 +165,19 @@ function Pregame:getPlayerStats(playerID)
     -- Ensure we have a hero
     if hero ~= nil then
         -- Attempt to find team
-        if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
-            playerInfo.team = "Radiant"
-        else
-            playerInfo.team = "Dire"
-        end
+        playerInfo.t = hero:GetTeam()                                                   -- t            The team number this player is on
 
         -- Read key info
-        playerInfo.level = hero:GetLevel()
-        playerInfo.kills = hero:GetKills()
-        playerInfo.assists = hero:GetAssists()
-        playerInfo.deaths = hero:GetDeaths()
-        playerInfo.goldPerMinute = PlayerResource:GetGoldPerMin(playerID)
-
+        playerInfo.l = hero:GetLevel()                                                  -- l            The level of this hero
+        playerInfo.k = hero:GetKills()                                                  -- k            The number of kills this hero has
+        playerInfo.a = hero:GetAssists()                                                -- a            The number of assists this player has
+        playerInfo.d = hero:GetDeaths()                                                 -- d            The number of deaths this player has
+        playerInfo.g = math.floor(PlayerResource:GetGoldPerMin(playerID))               -- g            This player's gold per minute
         for slotID=1,6 do
             local item = hero:GetItemInSlot(slotID - 1)
 
             if item then
-                playerInfo['Item' .. slotID] = item:GetAbilityName()
+                playerInfo['I' .. slotID] = item:GetAbilityName():gsub('item_', '')     -- I[1-6]       Items 1 - 6
             end
         end
     end
@@ -1521,40 +1512,47 @@ function Pregame:processOptions()
         GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
     end
 
+    -- Respawn modifier
+    local statCollectionRespawnModifier = self.optionStore['lodOptionGameSpeedRespawnTime']
+    if statCollectionRespawnModifier == 0.1 then
+        statCollectionRespawnModifier = 10
+    elseif statCollectionRespawnModifier == 0.5 then
+        statCollectionRespawnModifier = 2
+    end
+
     -- Store flags
     statCollection:setFlags({
-        ['presetGamemode'] = self.optionStore['lodOptionGamemode'],
-        ['presentBanning'] = self.optionStore['lodOptionBanning'],
-        ['gamemode'] = self.optionStore['lodOptionCommonGamemode'],
-        ['maxSlots'] = self.optionStore['lodOptionCommonMaxSlots'],
-        ['maxSkills'] = self.optionStore['lodOptionCommonMaxSkills'],
-        ['maxUlts'] = self.optionStore['lodOptionCommonMaxUlts'],
-        ['maxBans'] = self.optionStore['lodOptionBanningMaxBans'],
-        ['maxHeroBans'] = self.optionStore['lodOptionBanningMaxHeroBans'],
-        ['blockTrollCombos'] = self.optionStore['lodOptionBanningBlockTrollCombos'] == 1,
-        ['useBanList'] = self.optionStore['lodOptionBanningUseBanList'] == 1,
-        ['blockOPAbilities'] = self.optionStore['lodOptionAdvancedOPAbilities'] == 1,
-        ['blockInvisAbilities'] = self.optionStore['lodOptionBanningBanInvis'] == 1,
-        ['blockInvisAbilities'] = self.optionStore['lodOptionBanningBanInvis'] == 1,
-        ['startingLevel'] = self.optionStore['lodOptionGameSpeedStartingLevel'],
-        ['maxHeroLevel'] = self.optionStore['lodOptionGameSpeedMaxLevel'],
-        ['bonusGold'] = self.optionStore['lodOptionGameSpeedStartingGold'],
-        ['respawnModifier'] = self.optionStore['lodOptionGameSpeedRespawnTime'],
-        ['towersPerLane'] = self.optionStore['lodOptionGameSpeedTowersPerLane'],
-        ['upgradeUlts'] = self.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1,
-        ['easyMode'] = self.optionStore['lodOptionCrazyEasymode'] == 1,
-        ['allowHeroAbilities'] = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1,
-        ['allowNeutralAbilities'] = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1,
-        ['allowWraithNightAbilities'] = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1,
-        ['hideEnemyPicks'] = self.optionStore['lodOptionAdvancedHidePicks'] == 1,
-        ['uniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills'],
-        ['uniqueHeroes'] = self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1,
-        ['selectPrimaryAttribute'] = self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 1,
-        ['stopFountainCamping'] = self.optionStore['lodOptionCrazyNoCamping'] == 1,
-        ['universalShop'] = self.optionStore['lodOptionCrazyUniversalShop'] == 1,
-        ['allVision'] = self.optionStore['lodOptionCrazyAllVision'] == 1,
-        ['multicastMadness'] = self.optionStore['lodOptionCrazyMulticast'] == 1,
-        ['wtf'] = self.optionStore['lodOptionCrazyWTF'] == 1,
+        ['a'] = self.optionStore['lodOptionGamemode'],                                      -- a    Preset Gamemode                 [number, -1 - 4]
+        ['b'] = self.optionStore['lodOptionBanning'],                                       -- b    Present Banning                 [number, 1 - 3]
+        ['c'] = self.optionStore['lodOptionCommonGamemode'],                                -- c    Gamemode                        [number, 1 - 4]
+        ['d'] = self.optionStore['lodOptionCommonMaxSlots'],                                -- d    Max Slots                       [number, 0 - 6]
+        ['e'] = self.optionStore['lodOptionCommonMaxSkills'],                               -- e    Max Skills                      [number, 0 - 6]
+        ['f'] = self.optionStore['lodOptionCommonMaxUlts'],                                 -- f    Max Ults                        [number, 0 - 6]
+        ['g'] = self.optionStore['lodOptionBanningMaxBans'],                                -- g    Max Ability Bans                [number, 0 - 25]
+        ['h'] = self.optionStore['lodOptionBanningMaxHeroBans'],                            -- h    Max Hero Bans                   [number, 0 - 3]
+        ['i'] = self.optionStore['lodOptionBanningBlockTrollCombos'] == 1,                  -- i    Block Troll Combos              [boolean, true/false]
+        ['j'] = self.optionStore['lodOptionBanningUseBanList'] == 1,                        -- j    Use LoD BanList                 [boolean, true/false]
+        ['k'] = self.optionStore['lodOptionAdvancedOPAbilities'] == 1,                      -- k    Block OP Abilities              [boolean, true/false]
+        ['l'] = self.optionStore['lodOptionBanningBanInvis'] == 1,                          -- l    Block Invis Abilities           [boolean, true/false]
+        ['m'] = self.optionStore['lodOptionGameSpeedStartingLevel'],                        -- m    Starting Level                  [number, 1 - 100]
+        ['n'] = self.optionStore['lodOptionGameSpeedMaxLevel'],                             -- n    Max Hero Level                  [number, 6 - 100]
+        ['o'] = self.optionStore['lodOptionGameSpeedStartingGold'],                         -- o    Bonus Starting Gold             [number, 0 - 100,000]
+        ['p'] = statCollectionRespawnModifier,                                              -- p    Respawn Modifier                [number, -60 - 10]
+        ['q'] = self.optionStore['lodOptionGameSpeedTowersPerLane'],                        -- q    Towers Per Lane                 [boolean, true/false]
+        ['r'] = self.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1,                    -- r    Start with upgraded ults        [boolean, true/false]
+        ['s'] = self.optionStore['lodOptionCrazyEasymode'] == 1,                            -- s    Enabled Easy Mode               [boolean, true/false]
+        ['t'] = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1,                    -- t    Allow Hero Abilities            [boolean, true/false]
+        ['u'] = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1,                 -- u    Allow Neutral Abilities         [boolean, true/false]
+        ['v'] = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1,               -- v    Allow Wraith Night Abilities    [boolean, true/false]
+        ['w'] = self.optionStore['lodOptionAdvancedHidePicks'] == 1,                        -- w    Hide Enemy Picks                [boolean, true/false]
+        ['x'] = self.optionStore['lodOptionAdvancedUniqueSkills'],                          -- x    Unique Skills                   [number, 0 - 2]
+        ['y'] = self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1,                     -- y    Unique Heroes                   [boolean, true/false]
+        ['z'] = self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 1,                -- z    Allow Select Primary Attribute  [boolean, true/false]
+        ['A'] = self.optionStore['lodOptionCrazyNoCamping'] == 1,                           -- A    Stop Fountain Camping           [boolean, true/false]
+        ['B'] = self.optionStore['lodOptionCrazyUniversalShop'] == 1,                       -- B    Universal Shop                  [boolean, true/false]
+        ['C'] = self.optionStore['lodOptionCrazyAllVision'] == 1,                           -- C    Enabled All Vision              [boolean, true/false]
+        ['D'] = self.optionStore['lodOptionCrazyMulticast'] == 1,                           -- D    Enable Multicast Madness        [boolean, true/false]
+        ['E'] = self.optionStore['lodOptionCrazyWTF'] == 1,                                 -- E    Enable WTF Mode                 [boolean, true/false]
     })
 end
 
