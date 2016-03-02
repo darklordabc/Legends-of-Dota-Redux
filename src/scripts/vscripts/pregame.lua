@@ -180,8 +180,26 @@ function Pregame:getPlayerStats(playerID)
 
             if item then
                 playerInfo['I' .. slotID] = item:GetAbilityName():gsub('item_', '')     -- I[1-6]       Items 1 - 6
+            else
+                playerInfo['I' .. slotID] = ''
             end
         end
+    else
+        -- Default values if hero doesn't exist for some weird reason
+        playerInfo.t = 0
+        playerInfo.l = 0
+        playerInfo.k = 0
+        playerInfo.a = 0
+        playerInfo.d = 0
+        playerInfo.g = 0
+        playerInfo.x = 0
+        playerInfo.r = 0
+        playerInfo['I1'] = ''
+        playerInfo['I2'] = ''
+        playerInfo['I3'] = ''
+        playerInfo['I4'] = ''
+        playerInfo['I5'] = ''
+        playerInfo['I6'] = ''
     end
 
     return playerInfo
