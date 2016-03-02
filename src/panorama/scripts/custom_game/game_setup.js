@@ -2015,6 +2015,46 @@ function onHeroFilterPressed(filterName) {
     calculateHeroFilters();
 }
 
+// When the main selection tab is shown
+var firstBuildTabCall = true;
+function OnMainSelectionTabShown() {
+    if(firstBuildTabCall) {
+        // Only do this once
+        firstBuildTabCall = false;
+
+        // The  container to work with
+        var con = $('#pickingPhaseMainTabContent');
+
+        // Cleanup the current builds
+        con.RemoveAndDeleteChildren();
+
+        var hero = 'npc_dota_hero_axe';
+        var build = {
+            1: 'centaur_double_edge',
+            2: 'chen_penitence',
+            3: 'earthshaker_fissure',
+            4: 'enigma_midnight_pulse',
+            5: 'faceless_void_time_walk',
+            6: 'gyrocopter_call_down'
+        };
+
+        var title = 'Example Build';
+
+        var attr = 'int';
+
+        // Add a test build
+        addRecommendedBuild(con, hero, build, attr, title);
+    }
+}
+
+// Adds a build to the main selection tab
+var recBuildCounter = 0;
+function addRecommendedBuild(con, hero, build, attr, title) {
+    var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
+    buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
+    buildCon.setBuildData(hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+}
+
 // When the skill tab is shown
 var firstSkillTabCall = true;
 function OnSkillTabShown(tabName) {
@@ -3234,6 +3274,7 @@ function UpdateTimer() {
     // Hook tab changes
     hookTabChange('pickingPhaseHeroTab', OnHeroTabShown);
     hookTabChange('pickingPhaseSkillTab', OnSkillTabShown);
+    hookTabChange('pickingPhaseMainTab', OnMainSelectionTabShown);
 
     // Setup the tabs
     setupBuilderTabs();

@@ -1342,6 +1342,60 @@
     margin-bottom: 8px;
 }
 
+#pickingPhaseMainTabContent {
+    padding: 8px;
+}
+
+.recommendedBuild {
+    flow-children: down;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.recommendedHeroImageCon {
+    padding: 4px;
+    border: 1px solid #444444;
+    border-radius: 4px;
+}
+
+#recommendedHeroImage {
+    width: 85px;
+    height: 48px;
+    border-radius: 4px;
+}
+
+#recommendedSkillContainer {
+    flow-children: right;
+}
+
+#recommendedSkillContainer DOTAAbilityImage {
+    width: 48px;
+    height: 48px;
+    margin-left: 2px;
+    margin-top: 2px;
+    border: 1px solid #444444;
+    border-radius: 4px;
+}
+
+.recommendedBuildHolder {
+    flow-children: right;
+}
+
+#recommendedAttribute {
+    width: 24px;
+    height: 24px;
+    background-color: #000000;
+    border-radius: 16px;
+    border: 1px solid #000000;
+    horizontal-align: right;
+}
+
+#buildName {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
 /*
     BANNING INTERFACE
 */
