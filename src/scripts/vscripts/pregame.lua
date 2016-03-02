@@ -137,7 +137,7 @@ function Pregame:init()
     -- Exports for stat collection
     local this = self
     function PlayerResource:getPlayerStats(playerID)
-        this:getPlayerStats(playerID)
+        return this:getPlayerStats(playerID)
     end
 end
 
