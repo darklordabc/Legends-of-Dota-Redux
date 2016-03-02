@@ -173,6 +173,8 @@ function Pregame:getPlayerStats(playerID)
         playerInfo.a = hero:GetAssists()                                                -- a            The number of assists this player has
         playerInfo.d = hero:GetDeaths()                                                 -- d            The number of deaths this player has
         playerInfo.g = math.floor(PlayerResource:GetGoldPerMin(playerID))               -- g            This player's gold per minute
+        playerInfo.x = math.floor(PlayerResource:GetXPPerMin(playerID))                 -- x            This player's EXP per minute
+        playerInfo.r = math.floor(PlayerResource:GetGold(playerID))                     -- r            How much gold this player currently has
         for slotID=1,6 do
             local item = hero:GetItemInSlot(slotID - 1)
 
