@@ -163,7 +163,33 @@ function Pregame:getPlayerStats(playerID)
     -- Add selected attribute
     playerInfo.selectedAttribute = self.selectedPlayerAttr[playerID] or ''
 
-    DeepPrintTable(playerInfo)
+    -- Grab there hero and attempt to add info on it
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+    -- Ensure we have a hero
+    if hero ~= nil then
+        -- Attempt to find team
+        if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+            playerInfo.team = "Radiant"
+        else
+            playerInfo.team = "Dire"
+        end
+
+        -- Read key info
+        playerInfo.level = hero:GetLevel()
+        playerInfo.kills = hero:GetKills()
+        playerInfo.assists = hero:GetAssists()
+        playerInfo.deaths = hero:GetDeaths()
+        playerInfo.goldPerMinute = PlayerResource:GetGoldPerMin(playerID)
+
+        for slotID=1,6 do
+            local item = hero:GetItemInSlot(slotID - 1)
+
+            if item then
+                playerInfo['Item' .. slotID] = item:GetAbilityName()
+            end
+        end
+    end
 
     return playerInfo
 end
