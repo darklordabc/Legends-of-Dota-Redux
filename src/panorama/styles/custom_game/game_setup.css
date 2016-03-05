@@ -1344,6 +1344,12 @@
 
 #pickingPhaseMainTabContent {
     padding: 8px;
+    flow-children: down;
+}
+
+.buildCategoryLabel {
+    font-size: 24px;
+    margin: 8px;
 }
 
 #pickingPhaseRecommendedBuildContainer {
@@ -1351,6 +1357,7 @@
     width: fit-children;
     flow-children: right-wrap;
     height: 100%;
+    overflow: squish scroll;
 }
 
 .recommendedBuild {

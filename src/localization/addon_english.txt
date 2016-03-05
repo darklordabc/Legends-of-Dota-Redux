@@ -203,6 +203,8 @@
     "continueFast"                                  "Ready"
     "selectBuild"                                   "Select Build"
 
+    "txtRecommendedBuilds"                          "Recommended Builds:"
+
     // All Random
     "selectThisRandomBuild"                         "Select Build"
     "selectThisRandomHero"                          "Select Hero"

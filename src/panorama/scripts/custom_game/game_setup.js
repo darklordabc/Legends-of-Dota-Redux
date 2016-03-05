@@ -952,6 +952,19 @@ var recommendedBuilds = [
             6: 'enigma_black_hole',
         },
     },
+    {
+        title: 'The Duelist',
+        heroName: 'npc_dota_hero_juggernaut',
+        attr: 'agi',
+        build: {
+            1: 'phantom_assassin_phantom_strike',
+            2: 'slardar_bash',
+            3: 'windrunner_focusfire',
+            4: 'slark_essence_shift',
+            5: 'troll_warlord_fervor',
+            6: 'legion_commander_duel',
+        },
+    },
 ];
 
 // Phases

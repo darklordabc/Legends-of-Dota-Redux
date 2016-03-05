@@ -208,6 +208,7 @@
                 <Panel id="pickingPhaseRightSide">
                     <Panel id="pickingPhaseTabsContent">
                         <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
+                            <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
                             <Panel id="pickingPhaseRecommendedBuildContainer" />
                         </Panel>
 
