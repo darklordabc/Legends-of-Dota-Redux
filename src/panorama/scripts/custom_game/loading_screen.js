@@ -26,6 +26,9 @@
     }, {
         img: 'file://{images}/custom_game/hints/hint_empowering_haste.png',
         txt: '#hintEmpoweringHaste'
+    }, {
+        img: 'file://{images}/spellicons/invoker_empty1.png',
+        txt: '#hintSuggestBuild'
     }];
 
     // How long to wait before we show the next tip
