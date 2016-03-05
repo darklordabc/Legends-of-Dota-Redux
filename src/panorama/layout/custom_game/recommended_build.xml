@@ -19,9 +19,15 @@
                 <DOTAAbilityImage id="recommendedSkill5" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(5)" />
                 <DOTAAbilityImage id="recommendedSkill6" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(6)" />
             </Panel>
+            <Panel>
+
+            </Panel>
         </Panel>
-        <Panel>
+        <Panel class="recommendedBuildBottomRow">
             <Label id="buildName" text="Build Name" />
+            <Button id="recommendedSelectButton" class="heroBuildMenuButtonSmall" onactivate="onSelectBuildPressed()">
+                <Label text="selectBuild" />
+            </Button>
         </Panel>
     </Panel>
 </root>

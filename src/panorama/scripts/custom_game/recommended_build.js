@@ -1,3 +1,6 @@
+// Store build data to send to the server
+var buildData = null;
+
 function setBuildData(hookSkillInfo, makeSkillSelectable, hero, build, attr, title) {
     // Push skills
     for(var slotID=1; slotID<=6; ++slotID) {
@@ -27,7 +30,7 @@ function setBuildData(hookSkillInfo, makeSkillSelectable, hero, build, attr, tit
     } else {
         titleLabel.visible = false;
     }
-    
+
     // Set hero attribute
     var attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
     if(attr == 'agi') {
@@ -36,7 +39,23 @@ function setBuildData(hookSkillInfo, makeSkillSelectable, hero, build, attr, tit
         attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd';
     }
 
-    $('#recommendedAttribute').src = attrImage;
+    $('#recommendedAttribute').SetImage(attrImage);
+
+    // Store the build data
+    buildData = {
+        hero: hero,
+        attr: attr,
+        build: build
+    };
+}
+
+// When the build is selected
+function onSelectBuildPressed() {
+    // Prevent reloading issues
+    if(buildData == null) return;
+
+    // Push it to the server
+    GameEvents.SendCustomGameEventToServer('lodSelectBuild', buildData);
 }
 
 // When this panel loads

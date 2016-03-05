@@ -119,6 +119,11 @@ function Pregame:init()
         this:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     end)
 
+    -- Player wants to select a full build
+    CustomGameEventManager:RegisterListener('lodSelectBuild', function(eventSourceIndex, args)
+        this:onPlayerSelectBuild(eventSourceIndex, args)
+    end)
+
     -- Player wants their hero to be spawned
     CustomGameEventManager:RegisterListener('lodSpawnHero', function(eventSourceIndex, args)
         this:onPlayerAskForHero(eventSourceIndex, args)
@@ -1665,16 +1670,10 @@ function Pregame:getDraftID(playerID)
     return draftID
 end
 
--- Player wants to select a hero
-function Pregame:onPlayerSelectHero(eventSourceIndex, args)
-    -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then return end
-
-    -- Grab data
-    local playerID = args.PlayerID
+-- Tries to set a player's selected hero
+function Pregame:setSelectedHero(playerID, heroName)
+    -- Grab the player so we can push messages
     local player = PlayerResource:GetPlayer(playerID)
-
-    local heroName = args.heroName
 
     -- Validate hero
     if not self.allowedHeroes[heroName] then
@@ -1762,16 +1761,34 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     end
 end
 
--- Player wants to select a new primary attribute
-function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
-    -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then return end
-
+-- Player wants to select a hero
+function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
-    local newAttr = args.newAttr
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        -- Ensure we are in the picking phase
+        if self:getPhase() ~= constants.PHASE_SELECTION then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedWrongPhaseSelection'
+            })
+
+            return
+        end
+
+        return
+    end
+
+    -- Attempt to select the hero
+    self:setSelectedHero(playerID, args.heroName)
+end
+
+-- Attempts to set a player's attribute
+function Pregame:setSelectedAttr(playerID, newAttr)
+    local player = PlayerResource:GetPlayer(playerID)
 
     -- Validate that the option is enabled
     if self.optionStore['lodOptionAdvancedSelectPrimaryAttr'] == 0 then
@@ -1805,6 +1822,26 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     end
 end
 
+-- Player wants to select a new primary attribute
+function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    -- Attempt to set it
+    self:setSelectedAttr(playerID, args.newAttr)
+end
+
 -- Player is asking why they don't have a hero
 function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     -- This code only works during the game phase
@@ -1812,6 +1849,55 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
 
     -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
     self:spawnPlayer(args.PlayerID)
+end
+
+-- Player wants to select an entire build
+function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    -- Grab the stuff
+    local hero = args.hero
+    local attr = args.attr
+    local build = args.build
+
+    -- Do we need to change our hero?
+    if self.selectedHeroes ~= hero then
+        -- Set the hero
+        self:setSelectedHero(playerID, hero)
+    end
+
+    -- Do we have a different attr?
+    if self.selectedPlayerAttr[playerID] ~= attr then
+        -- Attempt to set it
+        self:setSelectedAttr(playerID, attr)
+    end
+
+    -- Grab number of slots
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    -- Reset the player's build
+    self.selectedSkills[playerID] = {}
+
+    for slotID=1,maxSlots do
+        if build[tostring(slotID)] ~= nil then
+            self:setSelectedAbility(playerID, slotID, build[tostring(slotID)], true)
+        end
+    end
+
+    -- Perform the networking
+    network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
 end
 
 -- Player wants to select an all random build
@@ -2212,25 +2298,12 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
     end
 end
 
--- Player wants to select a new ability
-function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
-    -- Grab data
-    local playerID = args.PlayerID
+-- Tries to set which ability is in the given slot
+function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
+    -- Grab the player so we can push messages
     local player = PlayerResource:GetPlayer(playerID)
 
-    -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
-        network:sendNotification(player, {
-            sort = 'lodDanger',
-            text = 'lodFailedWrongPhaseSelection'
-        })
-
-        return
-    end
-
-    local slot = math.floor(tonumber(args.slot))
-    local abilityName = args.abilityName
-
+    -- Grab settings
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
     local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
     local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
@@ -2477,9 +2550,35 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         -- New ability in this slot
         build[slot] = abilityName
 
-        -- Network it
-        network:setSelectedAbilities(playerID, build)
+        -- Should we network it
+        if not dontNetwork then
+            -- Network it
+            network:setSelectedAbilities(playerID, build)
+        end
     end
+end
+
+-- Player wants to select a new ability
+function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    local slot = math.floor(tonumber(args.slot))
+    local abilityName = args.abilityName
+
+    -- Attempt to set the ability
+    self:setSelectedAbility(playerID, slot, abilityName)
 end
 
 -- Player wants to swap two slots

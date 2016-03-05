@@ -1346,11 +1346,20 @@
     padding: 8px;
 }
 
+#pickingPhaseRecommendedBuildContainer {
+    horizontal-align: center;
+    width: fit-children;
+    flow-children: right-wrap;
+    height: 100%;
+}
+
 .recommendedBuild {
     flow-children: down;
     border: 1px solid #444444;
     border-radius: 4px;
     padding: 4px;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
 
 .recommendedHeroImageCon {
@@ -1378,6 +1387,21 @@
     border-radius: 4px;
 }
 
+.recommendedBuildBottomRow {
+    flow-children: right;
+    width: 100%;
+}
+
+#recommendedSelectButton {
+    width: 96px;
+    horizontal-align: right;
+    margin: 0px;
+}
+
+#recommendedSelectButton Label {
+    color: #FFFFFF;
+}
+
 .recommendedBuildHolder {
     flow-children: right;
 }
@@ -1392,8 +1416,10 @@
 }
 
 #buildName {
-    font-size: 24px;
+    font-size: 18px;
     color: #FFFFFF;
+    margin-left: 4px;
+    vertical-align: middle;
 }
 
 /*

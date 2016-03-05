@@ -201,6 +201,7 @@
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
     "continueFast"                                  "Ready"
+    "selectBuild"                                   "Select Build"
 
     // All Random
     "selectThisRandomBuild"                         "Select Build"

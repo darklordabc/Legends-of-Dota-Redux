@@ -833,6 +833,101 @@ var allOptions = {
     }
 }
 
+// Hard Coded Recommended Builds
+var recommendedBuilds = [
+    {
+        title: 'Hunter in the night',
+        heroName: 'npc_dota_hero_night_stalker',
+        attr: 'str',
+        build: {
+            1: 'magnataur_empower',
+            2: 'antimage_blink',
+            3: 'lycan_shapeshift',
+            4: 'luna_lunar_blessing',
+            5: 'night_stalker_hunter_in_the_night',
+            6: 'night_stalker_darkness',
+        },
+    },
+    {
+        title: 'Generic Tank',
+        heroName: 'npc_dota_hero_centaur',
+        attr: 'str',
+        build: {
+            1: 'huskar_berserkers_blood',
+            2: 'dragon_knight_dragon_blood',
+            3: 'spectre_dispersion',
+            4: 'viper_corrosive_skin',
+            5: 'shredder_reactive_armor',
+            6: 'alchemist_chemical_rage',
+        },
+    },
+    {
+        title: 'Infest Support',
+        heroName: 'npc_dota_hero_night_stalker',
+        attr: 'str',
+        build: {
+            1: 'pudge_rot',
+            2: 'witch_doctor_voodoo_restoration',
+            3: 'magnataur_empower',
+            4: 'alpha_wolf_command_aura',
+            5: 'omniknight_degen_aura',
+            6: 'life_stealer_infest',
+        },
+    },
+    {
+        title: 'Global Caster',
+        heroName: 'npc_dota_hero_pugna',
+        attr: 'int',
+        build: {
+            1: 'treant_living_armor',
+            2: 'holdout_arcane_aura',
+            3: 'ancient_apparition_ice_blast',
+            4: 'silencer_glaives_of_wisdom',
+            5: 'bloodseeker_thirst',
+            6: 'zuus_thundergods_wrath',
+        },
+    },
+    {
+        title: 'Magic Be Dashed!',
+        heroName: 'npc_dota_hero_mirana',
+        attr: 'agi',
+        build: {
+            1: 'medusa_split_shot',
+            2: 'sniper_take_aim',
+            3: 'spectre_desolate',
+            4: 'meepo_geostrike',
+            5: 'necronomicon_warrior_mana_burn_lod',
+            6: 'phantom_lancer_juxtapose',
+        },
+    },
+    {
+        title: 'All your attributes are belong to me',
+        heroName: 'npc_dota_hero_windrunner',
+        attr: 'int',
+        build: {
+            1: 'obsidian_destroyer_arcane_orb',
+            2: 'obsidian_destroyer_essence_aura',
+            3: 'slark_essence_shift',
+            4: 'pudge_flesh_heap',
+            5: 'silencer_glaives_of_wisdom',
+            6: 'windrunner_focusfire',
+        },
+    },
+    {
+        title: 'Rapture',
+        heroName: 'npc_dota_hero_enchantress',
+        attr: 'int',
+        build: {
+            1: 'pudge_meat_hook',
+            2: 'lone_druid_savage_roar',
+            3: 'vengefulspirit_nether_swap',
+            4: 'earth_spirit_boulder_smash',
+            5: 'magnataur_skewer',
+            6: 'bloodseeker_rupture',
+        },
+    },
+];
+
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
 var PHASE_OPTION_SELECTION = 2; // Selection options
@@ -2023,27 +2118,22 @@ function OnMainSelectionTabShown() {
         firstBuildTabCall = false;
 
         // The  container to work with
-        var con = $('#pickingPhaseMainTabContent');
+        var con = $('#pickingPhaseRecommendedBuildContainer');
 
         // Cleanup the current builds
         con.RemoveAndDeleteChildren();
 
-        var hero = 'npc_dota_hero_axe';
-        var build = {
-            1: 'centaur_double_edge',
-            2: 'chen_penitence',
-            3: 'earthshaker_fissure',
-            4: 'enigma_midnight_pulse',
-            5: 'faceless_void_time_walk',
-            6: 'gyrocopter_call_down'
-        };
+        for(var i=0; i<recommendedBuilds.length; ++i) {
+            var build = recommendedBuilds[i];
 
-        var title = 'Example Build';
-
-        var attr = 'int';
-
-        // Add a test build
-        addRecommendedBuild(con, hero, build, attr, title);
+            addRecommendedBuild(
+                con,
+                build.heroName,
+                build.build,
+                build.attr,
+                build.title
+            );
+        }
     }
 }
 

@@ -208,7 +208,7 @@
                 <Panel id="pickingPhaseRightSide">
                     <Panel id="pickingPhaseTabsContent">
                         <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
-                            <Label text="main content"/>
+                            <Panel id="pickingPhaseRecommendedBuildContainer" />
                         </Panel>
 
                         <Panel id="pickingPhaseHeroTabContent" class="pickingPhaseTabContent">
