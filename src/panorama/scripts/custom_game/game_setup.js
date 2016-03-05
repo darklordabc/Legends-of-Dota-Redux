@@ -915,7 +915,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Rapture',
-        heroName: 'npc_dota_hero_enchantress',
+        heroName: 'npc_dota_hero_pugna',
         attr: 'int',
         build: {
             1: 'pudge_meat_hook',
@@ -924,6 +924,32 @@ var recommendedBuilds = [
             4: 'earth_spirit_boulder_smash',
             5: 'magnataur_skewer',
             6: 'bloodseeker_rupture',
+        },
+    },
+    {
+        title: 'Global Stunner',
+        heroName: 'npc_dota_hero_pugna',
+        attr: 'int',
+        build: {
+            1: 'sven_storm_bolt',
+            2: 'vengefulspirit_magic_missile',
+            3: 'antimage_blink',
+            4: 'furion_teleportation',
+            5: 'holdout_arcane_aura',
+            6: 'magnataur_reverse_polarity',
+        },
+    },
+    {
+        title: 'Bring the team fight',
+        heroName: 'npc_dota_hero_slark',
+        attr: 'agi',
+        build: {
+            1: 'enigma_midnight_pulse',
+            2: 'necrolyte_heartstopper_aura',
+            3: 'warlock_rain_of_chaos',
+            4: 'magnataur_empower',
+            5: 'skeleton_king_vampiric_aura',
+            6: 'enigma_black_hole',
         },
     },
 ];
