@@ -942,7 +942,7 @@ var recommendedBuilds = [
     {
         title: 'Bring the team fight',
         heroName: 'npc_dota_hero_silencer',
-        attr: 'agi',
+        attr: 'int',
         build: {
             1: 'enigma_midnight_pulse',
             2: 'necrolyte_heartstopper_aura',
