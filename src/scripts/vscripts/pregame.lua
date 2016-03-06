@@ -424,6 +424,8 @@ function Pregame:networkHeroes()
     local flags = LoadKeyValues('scripts/kv/flags.kv')
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
 
+    local heroToSkillMap = oldAbList.heroToSkillMap
+
     -- Prepare flags
     local flagsInverse = {}
     for flagName,abilityList in pairs(flags) do
@@ -503,16 +505,12 @@ function Pregame:networkHeroes()
                 self.heroRole[heroName] = 'melee'
             end
 
-            if heroName == 'npc_dota_hero_invoker' then
-                theData.Ability1 = 'invoker_alacrity_lod'
-                theData.Ability2 = 'invoker_chaos_meteor_lod'
-                theData.Ability3 = 'invoker_cold_snap_lod'
-                theData.Ability4 = 'invoker_emp_lod'
-                theData.Ability5 = 'invoker_forge_spirit_lod'
-                theData.Ability6 = 'invoker_ghost_walk_lod'
-                theData.Ability7 = 'invoker_ice_wall_lod'
-                theData.Ability8 = 'invoker_sun_strike_lod'
-                theData.Ability9 = 'invoker_tornado_lod'
+
+
+            if heroToSkillMap[heroName] then
+                for k,v in pairs(heroToSkillMap[heroName]) do
+                    theData[k] = v
+                end
             else
                 local sn = 1
                 for i=1,16 do
