@@ -1046,7 +1046,7 @@
     border-radius: 4px;
 }
 
-.pickingHeroListHeroes DOTAHeroImage.should_hide_this_hero {
+.should_hide_this_hero {
     opacity: 0.05;
 }
 

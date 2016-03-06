@@ -1211,6 +1211,7 @@ function OnFlagDataChanged(table_name, key, data) {
 }
 
 // Selected heroes has changed
+var allSelectedHeroes = {};
 function OnSelectedHeroesChanged(table_name, key, data) {
     // Grab data
     var playerID = data.playerID;
@@ -1231,6 +1232,8 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 
     // Shows which heroes have been taken
     showTakenHeroes();
+    updateHeroPreviewFilters();
+    updateRecommendedBuildFilters();
 
     if(activePlayerPanels[playerID]) {
         activePlayerPanels[playerID].OnGetHeroData(heroName);
@@ -1244,7 +1247,7 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 // Shows which heroes have been taken
 function showTakenHeroes() {
     // Calculate which heroes are taken
-    var allSelectedHeroes = {};
+    allSelectedHeroes = {};
     for(var playerID in selectedHeroes) {
         allSelectedHeroes[selectedHeroes[playerID]] = true;
     }
@@ -1353,6 +1356,7 @@ function updateTakenSkills() {
     // Rebuild the visible skills
     calculateFilters();
     updateHeroPreviewFilters();
+    updateRecommendedBuildFilters();
 }
 
 // A ban was sent through
@@ -1375,6 +1379,7 @@ function OnSkillBanned(table_name, key, data) {
         // Recalculate filters
         calculateFilters();
         updateHeroPreviewFilters();
+        updateRecommendedBuildFilters();
     }
 }
 
@@ -1501,6 +1506,7 @@ function OnGetDraftArray(table_name, key, data) {
     calculateFilters();
     calculateHeroFilters();
     updateHeroPreviewFilters();
+    updateRecommendedBuildFilters();
 
     // Show the button to show non-draft abilities
     $('#toggleShowDraftAblilities').visible = true;
@@ -1694,6 +1700,8 @@ function buildHeroList() {
 
     // Update which heroes are taken
     showTakenHeroes();
+    updateHeroPreviewFilters();
+    updateRecommendedBuildFilters();
 }
 
 // Build the flags list
@@ -2077,6 +2085,28 @@ function makeSkillSelectable(abcon) {
     });
 }
 
+function getHeroFilterInfo(heroName) {
+    var shouldShow = true;
+
+    // Are we using a draft array?
+    if(shouldShow && heroDraft != null) {
+        // Is this hero in our draft array?
+        if(heroDraft[heroName] == null) {
+            shouldShow = false;
+        }
+    }
+
+    // Filter banned heroes
+    if(shouldShow && bannedHeroes[heroName]) {
+        shouldShow = false;
+    }
+
+    return {
+        shouldShow: shouldShow,
+        takenHero: allSelectedHeroes[heroName] != null
+    };
+}
+
 // When the hero tab is shown
 var firstHeroTabCall = true;
 var heroFilterInfo = {};
@@ -2089,7 +2119,7 @@ function OnHeroTabShown(tabName) {
             var searchParts = heroSearchText.split(/\s/g);
 
             for(var heroName in heroPanelMap) {
-                var shouldShow = true;
+                var shouldShow = getHeroFilterInfo(heroName).shouldShow;
 
                 // Filter by melee / ranged
                 if(shouldShow && heroFilterInfo.classType) {
@@ -2111,18 +2141,6 @@ function OnHeroTabShown(tabName) {
                             break;
                         }
                     }
-                }
-
-                // Show draft array
-                if(shouldShow && heroDraft != null) {
-                    if(heroDraft[heroName] == null) {
-                        shouldShow = false;
-                    }
-                }
-
-                // Filter banned heroes
-                if(shouldShow && bannedHeroes[heroName]) {
-                    shouldShow = false;
                 }
 
                 var con = heroPanelMap[heroName];
@@ -2215,12 +2233,30 @@ function OnMainSelectionTabShown() {
 
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
+var recommenedBuildContainerList = [];
 function addRecommendedBuild(con, hero, build, attr, title) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
     buildCon.setBuildData(setSelectedHelperHero, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+    buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
+
+    // Store the container
+    recommenedBuildContainerList.push(buildCon);
 }
 
+// Updates the filters applied to recommended builds
+function updateRecommendedBuildFilters() {
+    // Loop over all recommended builds
+    for(var i=0; i<recommenedBuildContainerList.length; ++i) {
+        // Grab the con
+        var con = recommenedBuildContainerList[i];
+
+        // Push the filter function to the con
+        con.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
+    }
+}
+
+// Updates the filters applied to the hero preview
 function updateHeroPreviewFilters() {
     // Prepare the filter info
     prepareFilterInfo();
@@ -2246,6 +2282,17 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
         }
     }
+
+    // Should we filter the hero image?
+    var heroImageCon = $('#buildingHelperHeroPreviewHero');
+    var heroFilterInfo = getHeroFilterInfo('npc_dota_hero_' + heroImageCon.heroname);
+
+    heroImageCon.SetHasClass('should_hide_this_hero', !heroFilterInfo.shouldShow);
+    heroImageCon.SetHasClass('takenHero', heroFilterInfo.takenHero);
+
+    var heroImageText = $('#buildingHelperHeroPreviewHeroName');
+    heroImageText.SetHasClass('should_hide_this_hero', !heroFilterInfo.shouldShow);
+    heroImageText.SetHasClass('takenHero', heroFilterInfo.takenHero);
 }
 
 // Gets skill filter info
@@ -3193,6 +3240,7 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionAdvancedUniqueSkills') {
         calculateFilters();
         updateHeroPreviewFilters();
+        updateRecommendedBuildFilters();
     }
 
     if(key == 'lodOptionAdvancedUniqueSkills') {
@@ -3322,6 +3370,7 @@ function onAllowedCategoriesChanged() {
     // Update the filters
     calculateFilters();
     updateHeroPreviewFilters();
+    updateRecommendedBuildFilters();
 }
 
 // Changes which phase the player currently has selected

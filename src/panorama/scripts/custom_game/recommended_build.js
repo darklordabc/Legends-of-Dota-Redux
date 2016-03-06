@@ -63,6 +63,36 @@ function onSelectBuildPressed() {
     GameEvents.SendCustomGameEventToServer('lodSelectBuild', buildData);
 }
 
+// Does filtering on the abilities
+function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
+    if(buildData == null) return;
+
+    // Grab the build
+    var build = buildData.build;
+
+    // Filter each ability
+    for(var slotID=1; slotID<=6; ++slotID) {
+        // Grab the slot
+        var slot = $('#recommendedSkill' + slotID);
+
+        // Grab the filter info
+        var abilityName = build[slotID];
+        var filterInfo = getSkillFilterInfo(abilityName);
+
+        // Apply the filter info
+        slot.SetHasClass('disallowedSkill', filterInfo.disallowed);
+        slot.SetHasClass('bannedSkill', filterInfo.banned);
+        slot.SetHasClass('takenSkill', filterInfo.taken);
+        slot.SetHasClass('notDraftable', filterInfo.cantDraft);
+    }
+
+    // Update hero
+    var heroFilterInfo = getHeroFilterInfo(buildData.hero);
+    var heroImageCon = $('#recommendedHeroImage');
+    heroImageCon.SetHasClass('should_hide_this_hero', !heroFilterInfo.shouldShow);
+    heroImageCon.SetHasClass('takenHero', heroFilterInfo.takenHero);
+}
+
 // When this panel loads
 (function()
 {
@@ -71,4 +101,5 @@ function onSelectBuildPressed() {
 
     // Add the events
     mainPanel.setBuildData = setBuildData;
+    mainPanel.updateFilters = updateFilters;
 })();
