@@ -1374,6 +1374,8 @@ function OnSkillBanned(table_name, key, data) {
 
         // Recalculate filters
         calculateHeroFilters();
+        updateHeroPreviewFilters();
+        updateRecommendedBuildFilters();
     }
 
     if(abilityName != null) {
