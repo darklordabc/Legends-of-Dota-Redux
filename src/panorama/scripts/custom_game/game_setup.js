@@ -1352,6 +1352,7 @@ function updateTakenSkills() {
 
     // Rebuild the visible skills
     calculateFilters();
+    updateHeroPreviewFilters();
 }
 
 // A ban was sent through
@@ -1373,6 +1374,7 @@ function OnSkillBanned(table_name, key, data) {
 
         // Recalculate filters
         calculateFilters();
+        updateHeroPreviewFilters();
     }
 }
 
@@ -1498,6 +1500,7 @@ function OnGetDraftArray(table_name, key, data) {
     // Run the calculations
     calculateFilters();
     calculateHeroFilters();
+    updateHeroPreviewFilters();
 
     // Show the button to show non-draft abilities
     $('#toggleShowDraftAblilities').visible = true;
@@ -1710,7 +1713,7 @@ function buildFlagList() {
     }
 }
 
-function setSelectedHelperHero(heroName) {
+function setSelectedHelperHero(heroName, dontUnselect) {
     var previewCon = $('#buildingHelperHeroPreview');
 
     // Validate hero name
@@ -1746,17 +1749,26 @@ function setSelectedHelperHero(heroName) {
         }
     }
 
-    // No abilities selected anymore
-    setSelectedDropAbility();
+    // Highlight drop slots correctly
+    if(!dontUnselect) {
+        // No abilities selected anymore
+        setSelectedDropAbility();
+    }
+
+    // Update the filters for this hero
+    updateHeroPreviewFilters();
 
     // Jump to the right tab
-    showBuilderTab('pickingPhaseHeroTab');
+    //showBuilderTab('pickingPhaseHeroTab');
 }
 
 // They try to set a new hero
 function onNewHeroSelected() {
     // Push data to the server
     chooseHero(currentSelectedHero);
+
+    // Unselect selected skill
+    setSelectedDropAbility();
 }
 
 // They try to ban a hero
@@ -1804,6 +1816,7 @@ function highlightDropSlots() {
     if(!isUlt) {
         theMax = optionValueList['lodOptionCommonMaxSkills'];
     }
+    var alreadyHas = false;
 
     // Check our build
     var ourBuild = selectedSkills[playerID] || {};
@@ -1814,6 +1827,10 @@ function highlightDropSlots() {
         if(isUltimateAbility(abilityName) == isUlt) {
             ++theCount;
         }
+
+        if(currentSelectedSkill == abilityName) {
+            alreadyHas = true;
+        }
     }
 
     var easyAdd = theCount < theMax;
@@ -1821,7 +1838,13 @@ function highlightDropSlots() {
     // Decide which slots can be dropped into
     for(var i=1; i<=6; ++i) {
         var ab = $('#lodYourAbility' + i);
-        ab.SetHasClass('lodSelectedDrop', (easyAdd || (ourBuild[i] != null && isUlt == isUltimateAbility(ourBuild[i]))));
+
+        // Do we already have this ability?
+        if(alreadyHas) {
+            ab.SetHasClass('lodSelectedDrop', currentSelectedSkill == ourBuild[i]);
+        } else {
+            ab.SetHasClass('lodSelectedDrop', (easyAdd || (ourBuild[i] != null && isUlt == isUltimateAbility(ourBuild[i]))));
+        }
     }
 }
 
@@ -1956,6 +1979,13 @@ function showBuilderTab(tabName) {
     var ourTab = $('#' + tabName);
     if(ourTab != null) ourTab.visible = true;
 
+    // Try to move the hero preview
+    var heroPreview = $('#buildingHelperHeroPreview');
+    var heroPreviewCon = $('#' + tabName + 'HeroPreview');
+    if(heroPreviewCon != null) {
+        heroPreview.SetParent(heroPreviewCon);
+    }
+
     var ourTabContent = $('#' + tabName + 'Content');
     if(ourTabContent != null) ourTabContent.visible = true;
 
@@ -1998,7 +2028,14 @@ function makeSkillSelectable(abcon) {
         var abName = abcon.GetAttributeString('abilityname', '');
         if(abName == null || abName.length <= 0) return false;
 
+        // Mark it as dropable
         setSelectedDropAbility(abName, abcon);
+
+        // Find the owning hero
+        var heroOwner = abilityHeroOwner[abName];
+        if(heroOwner != null) {
+            setSelectedHelperHero(heroOwner, true);
+        }
     });
 
     // Dragging
@@ -2181,11 +2218,147 @@ var recBuildCounter = 0;
 function addRecommendedBuild(con, hero, build, attr, title) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
-    buildCon.setBuildData(hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+    buildCon.setBuildData(setSelectedHelperHero, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+}
+
+function updateHeroPreviewFilters() {
+    // Prepare the filter info
+    prepareFilterInfo();
+
+    // Remove any search text
+    searchParts = [];
+
+    for(var i=1; i<=16; ++i) {
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+
+        // Is it visible?
+        if(abCon.visible) {
+            // Grab ability name
+            var abilityName = abCon.GetAttributeString('abilityname', '');
+
+            // Grab filters
+            var filterInfo = getSkillFilterInfo(abilityName);
+
+            // Apply filters
+            abCon.SetHasClass('disallowedSkill', filterInfo.disallowed);
+            abCon.SetHasClass('bannedSkill', filterInfo.banned);
+            abCon.SetHasClass('takenSkill', filterInfo.taken);
+            abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
+        }
+    }
+}
+
+// Gets skill filter info
+function getSkillFilterInfo(abilityName) {
+    var shouldShow = true;
+    var disallowed = false;
+    var banned = false;
+    var taken = false;
+    var cantDraft = false;
+
+    var cat = (flagDataInverse[abilityName] || {}).category;
+
+    // Check if the category is banned
+    if(!allowedCategories[cat]) {
+        // Skill is disallowed
+        disallowed = true;
+
+        // If we should show banned skills
+        if(!showDisallowedSkills) {
+            shouldShow = false;
+        }
+    }
+
+    // Check for bans
+    if(bannedAbilities[abilityName]) {
+        // Skill is banned
+        banned = true;
+
+        if(!showBannedSkills) {
+            shouldShow = false;
+        }
+    }
+
+    // Mark taken abilities
+    if(takenAbilities[abilityName]) {
+        if(uniqueSkillsMode == 1 && takenTeamAbilities[abilityName]) {
+            // Team based unique skills
+            // Skill is taken
+            taken = true;
+
+            if(!showTakenSkills) {
+                shouldShow = false;
+            }
+        } else if(uniqueSkillsMode == 2) {
+            // Global unique skills
+            // Skill is taken
+            taken = true;
+
+            if(!showTakenSkills) {
+                shouldShow = false;
+            }
+        }
+    }
+
+    // Check if the tab is active
+    if(shouldShow && activeTabs[cat] == null) {
+        shouldShow = false;
+    }
+
+    // Check if the search category is active
+    if(shouldShow && searchCategory.length > 0) {
+        if(!flagDataInverse[abilityName][searchCategory]) {
+            shouldShow = false;
+        }
+    }
+
+    // Check if hte search text is active
+    if(shouldShow && searchText.length > 0) {
+        for(var i=0; i<searchParts.length; ++i) {
+            if(abilityName.indexOf(searchParts[i]) == -1 && $.Localize(abilityName).toLowerCase().indexOf(searchParts[i]) == -1) {
+                shouldShow = false;
+                break;
+            }
+        }
+    }
+
+    // Check draft array
+    if(heroDraft != null) {
+        if(!heroDraft[abilityHeroOwner[abilityName]]) {
+            // Skill cant be drafted
+            cantDraft = true;
+
+            if(!showNonDraftSkills) {
+                shouldShow = false;
+            }
+        }
+    }
+
+    return {
+        shouldShow: shouldShow,
+        disallowed: disallowed,
+        banned: banned,
+        taken: taken,
+        cantDraft: cantDraft
+    };
+}
+
+// Updates some of the filters ready for skill filtering
+function prepareFilterInfo() {
+    // Check on unique skills mode
+    uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
+
+    // Grab what to search for
+    searchParts = searchText.split(/\s/g);
 }
 
 // When the skill tab is shown
 var firstSkillTabCall = true;
+var searchText = '';
+var searchCategory = '';
+var activeTabs = {};
+var uniqueSkillsMode = 0;
+var searchParts = [];
 function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
         // Empty the skills tab
@@ -2202,10 +2375,10 @@ function OnSkillTabShown(tabName) {
 
 
         // Filter processor
-        var searchText = '';
-        var searchCategory = '';
+        searchText = '';
+        searchCategory = '';
 
-        var activeTabs = {
+        activeTabs = {
             main: true,
             neutral: true,
             wraith: true,
@@ -2216,100 +2389,23 @@ function OnSkillTabShown(tabName) {
             // Array used to sort abilities
             var toSort = [];
 
-            // Check on unique skills mode
-            var uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
-
-            var searchParts = searchText.split(/\s/g);
+            // Prepare skill filters
+            prepareFilterInfo();
 
             // Loop over all abilties
             for(var abilityName in abilityStore) {
                 var ab = abilityStore[abilityName];
 
                 if(ab != null) {
-                    var shouldShow = true;
+                    var filterInfo = getSkillFilterInfo(abilityName);
 
-                    var cat = (flagDataInverse[abilityName] || {}).category;
+                    ab.visible = filterInfo.shouldShow;
+                    ab.SetHasClass('disallowedSkill', filterInfo.disallowed);
+                    ab.SetHasClass('bannedSkill', filterInfo.banned);
+                    ab.SetHasClass('takenSkill', filterInfo.taken);
+                    ab.SetHasClass('notDraftable', filterInfo.cantDraft);
 
-                    // Check if the category is banned
-                    if(shouldShow && !allowedCategories[cat]) {
-                        // If we should show banned skills
-                        if(showDisallowedSkills) {
-                            ab.SetHasClass('disallowedSkill', true);
-                        } else {
-                            shouldShow = false;
-                        }
-                    } else {
-                        ab.SetHasClass('disallowedSkill', false);
-                    }
-
-                    // Check for bans
-                    if(shouldShow && bannedAbilities[abilityName]) {
-                        if(showBannedSkills) {
-                            ab.SetHasClass('bannedSkill', true);
-                        } else {
-                            shouldShow = false;
-                        }
-                    } else {
-                        ab.SetHasClass('bannedSkill', false);
-                    }
-
-                    // Mark taken abilities
-                    if(shouldShow && takenAbilities[abilityName]) {
-                        if(uniqueSkillsMode == 1 && takenTeamAbilities[abilityName]) {
-                            // Team based unique skills
-                            if(showTakenSkills) {
-                                ab.SetHasClass('takenSkill', true);
-                            } else {
-                                shouldShow = false;
-                            }
-
-                        } else if(uniqueSkillsMode == 2) {
-                            // Global unique skills
-                            if(showTakenSkills) {
-                                ab.SetHasClass('takenSkill', true);
-                            } else {
-                                shouldShow = false;
-                            }
-                        }
-                    }
-
-                    // Check if the tab is active
-                    if(shouldShow && activeTabs[cat] == null) {
-                        shouldShow = false;
-                    }
-
-                    // Check if the search category is active
-                    if(shouldShow && searchCategory.length > 0) {
-                        if(!flagDataInverse[abilityName][searchCategory]) {
-                            shouldShow = false;
-                        }
-                    }
-
-                    // Check if hte search text is active
-                    if(shouldShow && searchText.length > 0) {
-                        for(var i=0; i<searchParts.length; ++i) {
-                            if(abilityName.indexOf(searchParts[i]) == -1 && $.Localize(abilityName).toLowerCase().indexOf(searchParts[i]) == -1) {
-                                shouldShow = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    // Check draft array
-                    if(shouldShow && heroDraft != null) {
-                        if(!heroDraft[abilityHeroOwner[abilityName]]) {
-                            // Global unique skills
-                            if(showNonDraftSkills) {
-                                ab.SetHasClass('notDraftable', true);
-                            } else {
-                                shouldShow = false;
-                            }
-                        }
-                    }
-
-                    ab.visible = shouldShow;
-
-                    if(shouldShow) {
+                    if(filterInfo.shouldShow) {
                         toSort.push(abilityName);
                     }
                 }
@@ -3096,6 +3192,7 @@ function OnOptionChanged(table_name, key, data) {
     // Check for unique abilities changing
     if(key == 'lodOptionAdvancedUniqueSkills') {
         calculateFilters();
+        updateHeroPreviewFilters();
     }
 
     if(key == 'lodOptionAdvancedUniqueSkills') {
@@ -3224,6 +3321,7 @@ function onAllowedCategoriesChanged() {
 
     // Update the filters
     calculateFilters();
+    updateHeroPreviewFilters();
 }
 
 // Changes which phase the player currently has selected

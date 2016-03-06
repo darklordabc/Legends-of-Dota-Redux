@@ -8,16 +8,16 @@
     <Panel class="recommendedBuild">
         <Panel class="recommendedBuildHolder">
             <Panel class="recommendedHeroImageCon">
-                <DOTAHeroImage id="recommendedHeroImage" onactivate="onPlayerHeroClicked()" />
+                <DOTAHeroImage id="recommendedHeroImage" />
                 <Image id="recommendedAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" />
             </Panel>
             <Panel id="recommendedSkillContainer">
-                <DOTAAbilityImage id="recommendedSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(1)" />
-                <DOTAAbilityImage id="recommendedSkill2" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(2)" />
-                <DOTAAbilityImage id="recommendedSkill3" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(3)" />
-                <DOTAAbilityImage id="recommendedSkill4" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(4)" />
-                <DOTAAbilityImage id="recommendedSkill5" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(5)" />
-                <DOTAAbilityImage id="recommendedSkill6" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(6)" />
+                <DOTAAbilityImage id="recommendedSkill1" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="recommendedSkill2" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="recommendedSkill3" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="recommendedSkill4" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="recommendedSkill5" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="recommendedSkill6" abilityname="life_stealer_empty_1" />
             </Panel>
             <Panel>
 

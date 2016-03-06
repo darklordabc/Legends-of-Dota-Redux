@@ -203,6 +203,8 @@
     "moreTime"                                      "More Time"
     "continueFast"                                  "Ready"
     "selectBuild"                                   "Select Build"
+    "selectHero"                                    "Select Hero"
+    "banHero"                                       "Ban Hero"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 

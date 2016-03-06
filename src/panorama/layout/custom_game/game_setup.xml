@@ -93,6 +93,8 @@
                         <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
                             <Label text="Find a hero" link="pickingPhaseHeroTab" class="heroBuildMenuButton" />
                             <Label text="Find a skill" link="pickingPhaseSkillTab" class="heroBuildMenuButton" />
+
+                            <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                         </Panel>
                         <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
                             <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
@@ -103,37 +105,39 @@
                                 <Button class="lodSearchButton" onactivate="$('#lodHeroSearchInput').SetFocus()" />
                             </Panel>
 
-                            <Panel id="buildingHelperHeroPreview">
-                                <Panel id="buildingHelperHeroPreviewHeroContainer">
-                                    <DOTAHeroImage id="buildingHelperHeroPreviewHero" heroname="npc_dota_hero_nevermore" />
-                                    <Label id="buildingHelperHeroPreviewHeroName" text="heroName" />
-                                </Panel>
+                            <Panel id="pickingPhaseHeroTabHeroPreview" class="buildingHelperHeroPreviewContainer">
+                                <Panel id="buildingHelperHeroPreview">
+                                    <Panel id="buildingHelperHeroPreviewHeroContainer">
+                                        <DOTAHeroImage id="buildingHelperHeroPreviewHero" heroname="npc_dota_hero_nevermore" />
+                                        <Label id="buildingHelperHeroPreviewHeroName" text="heroName" />
+                                    </Panel>
 
-                                <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall" onactivate="onNewHeroSelected()">
-                                    <Label text="Select Hero" />
-                                </Button>
+                                    <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall" onactivate="onNewHeroSelected()">
+                                        <Label text="selectHero" />
+                                    </Button>
 
-                                <Button id="buildingHelperHeroPreviewHeroBan" class="heroBuildMenuButtonSmall" onactivate="onHeroBanButtonPressed()">
-                                    <Label text="Ban Hero" />
-                                </Button>
+                                    <Button id="buildingHelperHeroPreviewHeroBan" class="heroBuildMenuButtonSmall" onactivate="onHeroBanButtonPressed()">
+                                        <Label text="banHero" />
+                                    </Button>
 
-                                <Panel id="buildingHelperHeroPreviewSkillsContainer">
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill1" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill2" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill3" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill4" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill5" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill6" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill7" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill8" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill9" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill10" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill11" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill12" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill13" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill14" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill15" abilityname="life_stealer_empty_1" />
-                                    <DOTAAbilityImage id="buildingHelperHeroPreviewSkill16" abilityname="life_stealer_empty_1" />
+                                    <Panel id="buildingHelperHeroPreviewSkillsContainer">
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill1" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill2" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill3" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill4" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill5" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill6" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill7" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill8" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill9" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill10" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill11" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill12" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill13" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill14" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill15" abilityname="life_stealer_empty_1" />
+                                        <DOTAAbilityImage id="buildingHelperHeroPreviewSkill16" abilityname="life_stealer_empty_1" />
+                                    </Panel>
                                 </Panel>
                             </Panel>
                         </Panel>
