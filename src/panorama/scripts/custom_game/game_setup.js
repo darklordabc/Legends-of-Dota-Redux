@@ -1335,6 +1335,10 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 function updateTakenSkills() {
     var myTeam = (Game.GetPlayerInfo(Players.GetLocalPlayer()) || {}).player_team_id || -1;
 
+    // Reset taken skills
+    takenTeamAbilities = {};
+    takenAbilities = {};
+
     // Loop over each build
     for(var playerID in selectedSkills) {
         var build = selectedSkills[playerID];
