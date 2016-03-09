@@ -282,6 +282,19 @@
     visibility: visible;
 }
 
+.lodTopAvatarPanel {
+    horizontal-align: center;
+    visibility: collapse;
+}
+
+.phase_option_selection.phase_option_selection_selected .lodTopAvatarPanel {
+    visibility: visible;
+}
+
+.hide_picks .lodTopAvatarPanel {
+    visibility: visible;
+}
+
 #playerAvatar {
     visibility: collapse;
 }
@@ -373,7 +386,12 @@
     visibility: collapse;
 }
 
-.hide_picks .lodPlayerReadyText {
+.hide_picks #playerHeroImageContainer .lodPlayerReadyText {
+    margin-left: 64px;
+    margin-bottom: 4px;
+}
+
+.hide_picks.reviewPhaseTeam .lodPlayerReadyText {
     margin-left: 64px;
     margin-bottom: 4px;
 }

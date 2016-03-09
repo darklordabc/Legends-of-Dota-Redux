@@ -6,7 +6,10 @@
         <include src="file://{resources}/scripts/custom_game/team_player.js" />
     </scripts>
     <Panel class="teamPlayerContainer no_hero_selected">
-        <DOTAAvatarImage id="playerAvatar" />
+        <Panel class="lodTopAvatarPanel">
+            <DOTAAvatarImage id="playerAvatar" />
+            <Label class="lodPlayerReadyText" text="Ready" />
+        </Panel>
         <Panel id="playerHeroImageContainer">
             <DOTAHeroImage id="playerHeroImage" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" onactivate="onPlayerHeroClicked()" />
             <Image id="playerNoHeroSelected" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" />
