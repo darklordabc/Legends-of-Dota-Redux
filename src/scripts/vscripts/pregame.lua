@@ -2048,8 +2048,6 @@ function Pregame:checkForReady()
     -- If we are in the banning phase
     if self:getPhase() == constants.PHASE_BANNING then
         maxTime = OptionManager:GetOption('banningTime')
-
-        -- TODO: Check max bans
     end
 
     -- If we are in the random phase
