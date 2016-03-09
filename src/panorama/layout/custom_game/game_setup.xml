@@ -47,6 +47,7 @@
             <Panel id="stageSelection">
                 <Button id="stageButtonOptionSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />
+                    <Label text="" id="lodOptionSelectionTimeRemaining" />
                 </Button>
 
                 <Label class="lodStageArrow" id="lodArrowBanningPhase" text="->" />

@@ -3436,6 +3436,20 @@ function UpdateTimer() {
 
     // Phase specific stuff
     switch(currentPhase) {
+        case PHASE_OPTION_SELECTION:
+            // Workout how long is left
+            var currentTime = Game.Time();
+            var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+            // Freeze timer
+            if(freezeTimer != -1) {
+                timeLeft = freezeTimer;
+            }
+
+            var timeLeftLabel = $('#lodOptionSelectionTimeRemaining');
+            timeLeftLabel.text = '(' + timeLeft + ')';
+        break;
+
         case PHASE_BANNING:
             // Workout how long is left
             var currentTime = Game.Time();
@@ -3447,7 +3461,7 @@ function UpdateTimer() {
             }
 
             var timeLeftLabel = $('#lodBanningTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')'
+            timeLeftLabel.text = '(' + timeLeft + ')';
         break;
 
         case PHASE_SELECTION:

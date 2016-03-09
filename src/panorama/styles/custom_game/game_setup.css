@@ -404,9 +404,22 @@
     Stage Selection
 */
 
+#stageButtonOptionSelection {
+    flow-children: right;
+}
+
 #stageSelection {
     flow-children: right;
     horizontal-align: center;
+}
+
+#lodOptionSelectionTimeRemaining {
+    visibility: collapse;
+}
+
+.phase_option_selection #lodOptionSelectionTimeRemaining {
+    visibility: visible;
+    margin-left: 4px;
 }
 
 .lodStageArrow {

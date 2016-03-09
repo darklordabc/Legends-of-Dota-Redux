@@ -21,6 +21,9 @@ end
     Settings
 ]]
 
+-- Max time for picking options
+OptionManager:SetOption('maxOptionSelectionTime', 60 * 3)
+
 -- Banning Period (2 minutes)
 OptionManager:SetOption('banningTime', 90)
 

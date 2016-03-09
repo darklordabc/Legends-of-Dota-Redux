@@ -222,6 +222,7 @@ function Pregame:onThink()
         -- Are we in the custom game setup phase?
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
             self:setPhase(constants.PHASE_OPTION_SELECTION)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
         end
 
         -- Wait for time to pass
@@ -232,6 +233,12 @@ function Pregame:onThink()
         OPTION SELECTION PHASE
     ]]
     if ourPhase == constants.PHASE_OPTION_SELECTION then
+        -- Is it over?
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
+            -- Finish the option selection
+            self:finishOptionSelection()
+        end
+
         return 0.1
     end
 
@@ -542,6 +549,86 @@ function Pregame:networkHeroes()
     self.allowedHeroes = allowedHeroes
 end
 
+-- Finishes option selection
+function Pregame:finishOptionSelection()
+    -- Ensure we are in the options locking phase
+    if self:getPhase() ~= constants.PHASE_OPTION_SELECTION then return end
+
+    -- Validate teams
+    local totalRadiant = 0
+    local totalDire = 0
+
+    local maxPlayerID = 24
+
+    for playerID=0,maxPlayerID do
+        local team = PlayerResource:GetCustomTeamAssignment(playerID)
+
+        if team == DOTA_TEAM_GOODGUYS then
+            totalRadiant = totalRadiant + 1
+        elseif team == DOTA_TEAM_BADGUYS then
+            totalDire = totalDire + 1
+        end
+    end
+
+    for playerID=0,maxPlayerID do
+        local team = PlayerResource:GetCustomTeamAssignment(playerID)
+
+        if team ~= DOTA_TEAM_GOODGUYS and team ~= DOTA_TEAM_BADGUYS then
+            if totalDire < totalRadiant then
+                totalDire = totalDire + 1
+                PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)
+            else
+                totalRadiant = totalRadiant + 1
+                PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
+            end
+            
+        end
+    end
+
+    -- Lock teams
+    GameRules:LockCustomGameSetupTeamAssignment(true)
+
+     -- Process gamemodes
+    if self.optionStore['lodOptionCommonGamemode'] == 4 then
+        self.noHeroSelection = true
+        self.allRandomSelection = true
+    end
+
+    if self.optionStore['lodOptionCommonGamemode'] == 3 then
+        self.useDraftArrays = true
+    end
+
+    -- Move onto the next phase
+    if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 then
+        -- There is banning
+        self:setPhase(constants.PHASE_BANNING)
+        self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
+
+    else
+        -- There is not banning
+
+        -- Is there hero selection?
+        if self.noHeroSelection then
+            -- No hero selection
+
+            -- Is there all random selection?
+            if self.allRandomSelection then
+                -- Goto all random
+                self:setPhase(constants.PHASE_RANDOM_SELECTION)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
+            else
+                -- Goto review
+                self:setPhase(constants.PHASE_REVIEW)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+            end
+        else
+            -- Hero selection
+            self:setPhase(constants.PHASE_SELECTION)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+        end
+    end
+end
+
 -- Options Locked event was fired
 function Pregame:onOptionsLocked(eventSourceIndex, args)
     -- Ensure we are in the options locking phase
@@ -553,47 +640,8 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
 
     -- Ensure they have hosting privileges
     if GameRules:PlayerHasCustomGameHostPrivileges(player) then
-        -- TODO: Should verify if the teams are locked here, oh well
-
-         -- Process gamemodes
-        if self.optionStore['lodOptionCommonGamemode'] == 4 then
-            self.noHeroSelection = true
-            self.allRandomSelection = true
-        end
-
-        if self.optionStore['lodOptionCommonGamemode'] == 3 then
-            self.useDraftArrays = true
-        end
-
-        -- Move onto the next phase
-        if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 then
-            -- There is banning
-            self:setPhase(constants.PHASE_BANNING)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
-
-        else
-            -- There is not banning
-
-            -- Is there hero selection?
-            if self.noHeroSelection then
-                -- No hero selection
-
-                -- Is there all random selection?
-                if self.allRandomSelection then
-                    -- Goto all random
-                    self:setPhase(constants.PHASE_RANDOM_SELECTION)
-                    self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
-                else
-                    -- Goto review
-                    self:setPhase(constants.PHASE_REVIEW)
-                    self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
-                end
-            else
-                -- Hero selection
-                self:setPhase(constants.PHASE_SELECTION)
-                self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
-            end
-        end
+        -- Finish the option selection
+        self:finishOptionSelection()
     end
 end
 
