@@ -2009,6 +2009,11 @@ function Pregame:checkForReady()
         maxTime = OptionManager:GetOption('randomSelectionTime')
     end
 
+    -- If we are in the review phase
+    if self:getPhase() == constants.PHASE_REVIEW then
+        maxTime = OptionManager:GetOption('reviewTime')
+    end
+
     -- Calculate how many players are ready
     local totalPlayers = self:getActivePlayers()
     local readyPlayers = 0
