@@ -1631,7 +1631,7 @@ function setupBuilderTabs() {
             // Hook abilitys that should show info
             hookSkillInfo(con);
 
-            //con.SetDraggable(true);
+            con.SetDraggable(true);
 
             // Allow for dropping
             $.RegisterEventHandler('DragEnter', con, function(panelID, draggedPanel) {
@@ -1650,12 +1650,12 @@ function setupBuilderTabs() {
             });
 
             // TODO: Allow for slot swapping
-            /*$.RegisterEventHandler('DragStart', con, function(panelID, dragCallbacks) {
+            $.RegisterEventHandler('DragStart', con, function(panelID, dragCallbacks) {
                 var abName = con.GetAttributeString('abilityname', '');
 
                 if(abName == null || abName.length <= 0) return false;
 
-                setSelectedDropAbility(abName, abcon);
+                //setSelectedDropAbility(abName, con);
 
                 // Create a temp image to drag around
                 var displayPanel = $.CreatePanel('DOTAAbilityImage', $.GetContextPanel(), 'dragImage');
@@ -1664,24 +1664,30 @@ function setupBuilderTabs() {
                 dragCallbacks.offsetX = 0;
                 dragCallbacks.offsetY = 0;
                 displayPanel.SetAttributeString('abilityname', abName);
+
+                // Select this slot
+                currentSelectedSlot = slotID;
+
+                // Do the highlight
+                highlightDropSlots();
+
+                // Hide skill info
+                $.DispatchEvent('DOTAHideAbilityTooltip');
             });
 
-            $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
+            $.RegisterEventHandler('DragEnd', con, function(panelId, draggedPanel) {
                 // Delete the draggable panel
                 draggedPanel.deleted = true;
                 draggedPanel.DeleteAsync(0.0);
 
                 var dropSlot = draggedPanel.GetAttributeInt('activeSlot', -1);
-                if(dropSlot != -1) {
-                    var abName = draggedPanel.GetAttributeString('abilityname', '');
-                    if(abName != null && abName.length > 0) {
-                        chooseNewAbility(dropSlot, abName);
-                    }
+                if(dropSlot != -1 && dropSlot != slotID) {
+                    swapSlots(dropSlot, slotID);
                 }
 
                 // Highlight nothing
                 setSelectedDropAbility();
-            });*/
+            });
         })($('#lodYourAbility' + i), i);
     }
 
@@ -1933,7 +1939,10 @@ function setSelectedDropAbility(abName, abcon) {
     if(currentSelectedSlot != -1) {
         var theSlot = currentSelectedSlot;
         currentSelectedSlot = -1;
-        chooseNewAbility(theSlot, abName);
+
+        if(abName.length > 0) {
+            chooseNewAbility(theSlot, abName);
+        }
         highlightDropSlots();
         return;
     }
@@ -2725,6 +2734,9 @@ function chooseNewAbility(slot, abilityName) {
 
     // No skills are selected anymore
     setSelectedDropAbility();
+
+    // Can't select nothing
+    if(theSkill.length <= 0) return;
 
     // Push it to the server to validate
     GameEvents.SendCustomGameEventToServer('lodChooseAbility', {
