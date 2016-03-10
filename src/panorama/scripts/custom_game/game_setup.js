@@ -3402,6 +3402,17 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
 }
 
+function getFancyTime(timeNumber) {
+    var minutes = Math.floor(timeNumber / 60);
+    var seconds = timeNumber % 60;
+    
+    if(seconds < 10) {
+        seconds = '0' + seconds;
+    }
+
+    return minutes + ':' + seconds;
+}
+
 //--------------------------------------------------------------------------------------------------
 // Update the state for the transition timer periodically
 //--------------------------------------------------------------------------------------------------
@@ -3434,77 +3445,44 @@ function UpdateTimer() {
     $('#mainSelectionRoot').SetHasClass('teams_locked', Game.GetTeamSelectionLocked());
     $('#mainSelectionRoot').SetHasClass('teams_unlocked', Game.GetTeamSelectionLocked() == false);
 
+    // Container to place the time into
+    var placeInto = null;
+
     // Phase specific stuff
     switch(currentPhase) {
         case PHASE_OPTION_SELECTION:
-            // Workout how long is left
-            var currentTime = Game.Time();
-            var timeLeft = Math.ceil(endOfTimer - currentTime);
-
-            // Freeze timer
-            if(freezeTimer != -1) {
-                timeLeft = freezeTimer;
-            }
-
-            var timeLeftLabel = $('#lodOptionSelectionTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')';
+            placeInto = $('#lodOptionSelectionTimeRemaining');
         break;
 
         case PHASE_BANNING:
-            // Workout how long is left
-            var currentTime = Game.Time();
-            var timeLeft = Math.ceil(endOfTimer - currentTime);
-
-            // Freeze timer
-            if(freezeTimer != -1) {
-                timeLeft = freezeTimer;
-            }
-
-            var timeLeftLabel = $('#lodBanningTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')';
+            placeInto = $('#lodBanningTimeRemaining');
         break;
 
         case PHASE_SELECTION:
-            // Workout how long is left
-            var currentTime = Game.Time();
-            var timeLeft = Math.ceil(endOfTimer - currentTime);
-
-            // Freeze timer
-            if(freezeTimer != -1) {
-                timeLeft = freezeTimer;
-            }
-
-            var timeLeftLabel = $('#lodSelectionTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')'
+            placeInto = $('#lodSelectionTimeRemaining');
         break;
 
         case PHASE_RANDOM_SELECTION:
-            // Workout how long is left
-            var currentTime = Game.Time();
-            var timeLeft = Math.ceil(endOfTimer - currentTime);
-
-            // Freeze timer
-            if(freezeTimer != -1) {
-                timeLeft = freezeTimer;
-            }
-
-            var timeLeftLabel = $('#lodRandomSelectionTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')'
+            placeInto = $('#lodRandomSelectionTimeRemaining');
         break;
 
         case PHASE_REVIEW:
-            // Workout how long is left
-            var currentTime = Game.Time();
-            var timeLeft = Math.ceil(endOfTimer - currentTime);
-
-            // Freeze timer
-            if(freezeTimer != -1) {
-                timeLeft = freezeTimer;
-            }
-
-            var timeLeftLabel = $('#lodReviewTimeRemaining');
-            timeLeftLabel.text = '(' + timeLeft + ')'
+            placeInto = $('#lodReviewTimeRemaining');
         break;
+    }
+
+    if(placeInto != null) {
+        // Workout how long is left
+        var currentTime = Game.Time();
+        var timeLeft = Math.ceil(endOfTimer - currentTime);
+
+        // Freeze timer
+        if(freezeTimer != -1) {
+            timeLeft = freezeTimer;
+        }
+
+        // Place the text
+        placeInto.text = '(' + getFancyTime(timeLeft) + ')';
     }
 
     $.Schedule(0.1, UpdateTimer);
