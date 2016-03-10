@@ -91,6 +91,9 @@ function Util:SetupSpellProperties(abs)
             end
         end
     end
+
+    -- techies remote mines are channeled
+    --chanelledSpells['techies_remote_mines'] = true
 end
 
 -- Tells you if a given spell is channelled or not

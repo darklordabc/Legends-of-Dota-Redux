@@ -80,18 +80,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
         if hero then
             -- Check for witchcraft
             if not noWitchcraft[keys.abilityname] then
-                local mab
-                if hero:HasAbility('death_prophet_witchcraft') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft')
-                elseif hero:HasAbility('death_prophet_witchcraft_5') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_5')
-                elseif hero:HasAbility('death_prophet_witchcraft_10') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_10')
-                elseif hero:HasAbility('death_prophet_witchcraft_20') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_20')
-                elseif hero:HasAbility('death_prophet_witchcraft_d') then
-                    mab = hero:FindAbilityByName('death_prophet_witchcraft_d')
-                end
+                local mab = hero:FindAbilityByName('death_prophet_witchcraft')
 
                 if mab then
                     -- Grab the level of the ability
@@ -135,22 +124,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             -- Check if they have multicast
             local multicastMadness = OptionManager:GetOption('multicastMadness')
             if canMulticast(keys.abilityname) then
-                local mab
+                local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
 
                 local doubleMode = false
-
-                -- Grab the ability (PLEAE DEAR LORD, SOMEONE MAKE THIS NICER!)
-                if hero:HasAbility('ogre_magi_multicast_lod') then
-                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                elseif hero:HasAbility('ogre_magi_multicast_lod_d') then
-                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_d')
-                    doubleMode = true
-                elseif hero:HasAbility('ogre_magi_multicast_lod_lvl1') then
-                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_lvl1')
-                elseif hero:HasAbility('ogre_magi_multicast_lod_d_lvl1') then
-                    mab = hero:FindAbilityByName('ogre_magi_multicast_lod_d_lvl1')
-                    doubleMode = true
-                end
 
                 if multicastMadness or mab then
                     -- Grab the level of the ability
