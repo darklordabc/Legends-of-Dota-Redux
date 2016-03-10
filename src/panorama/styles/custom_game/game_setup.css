@@ -442,6 +442,26 @@
     border: 1px solid #AAFFAA;
 }
 
+#option_panel_main_lodOptionMirrorHeroes {
+    visibility: collapse;
+}
+
+#option_panel_main_lodOptionMirrorHeroes.showThis {
+    visibility: visible;
+}
+
+.allow_custom_settings #option_panel_main_lodOptionMirrorHeroes.showThis {
+    visibility: collapse;
+}
+
+.showThis #option_panel_main_lodOptionMirrorHeroes {
+    visibility: visible;
+}
+
+.allow_custom_settings .showThis #option_panel_main_lodOptionMirrorHeroes {
+    visibility: collapse;
+}
+
 /* Banning */
 
 #stageButtonBanning {

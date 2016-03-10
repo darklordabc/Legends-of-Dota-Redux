@@ -138,6 +138,7 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
+    self:setOption('lodOptionMirrorHeroes', 20)
 
     -- Exports for stat collection
     local this = self
@@ -824,6 +825,19 @@ function Pregame:initOptionSelector()
             return valid[value] or false
         end,
 
+        -- Fast mirror draft hero selection
+        lodOptionMirrorHeroes = function(value)
+            local valid = {
+                [10] = true,
+                [20] = true,
+                [30] = true,
+                [40] = true,
+                [50] = true
+            }
+
+            return valid[value] or false
+        end,
+
         -- Common gamemode
         lodOptionCommonGamemode = function(value)
             -- Ensure gamemode is set to custom
@@ -904,6 +918,22 @@ function Pregame:initOptionSelector()
                 [1] = true,
                 [2] = true,
                 [3] = true
+            }
+
+            return valid[value] or false
+        end,
+
+        -- Common mirror draft hero selection
+        lodOptionCommonMirrorHeroes = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            local valid = {
+                [10] = true,
+                [20] = true,
+                [30] = true,
+                [40] = true,
+                [50] = true
             }
 
             return valid[value] or false
@@ -1276,6 +1306,16 @@ function Pregame:initOptionSelector()
         -- Fast max ults
         lodOptionUlts = function(optionName, optionValue)
             self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
+        end,
+
+        -- Fast mirror draft
+        lodOptionMirrorHeroes = function()
+            self:setOption('lodOptionCommonMirrorHeroes', self.optionStore['lodOptionMirrorHeroes'], true)
+        end,
+
+        -- Common mirror draft heroes
+        lodOptionCommonMirrorHeroes = function()
+            self.maxDraftHeroes = self.optionStore['lodOptionMirrorHeroes']
         end
     }
 

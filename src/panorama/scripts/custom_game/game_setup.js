@@ -112,6 +112,35 @@ var allOptions = {
                         value: 0
                     },
                 ]
+            },
+            {
+                preset: true,
+                name: 'lodOptionMirrorHeroes',
+                des: 'lodOptionsPresetMirrorHeroes',
+                about: 'lodOptionAboutPresetMirrorHeroes',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionMirrorHeroes10',
+                        value: 10
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes20',
+                        value: 20
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes30',
+                        value: 30
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes40',
+                        value: 40
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes50',
+                        value: 50
+                    }
+                ]
             }
         ]
     },
@@ -233,6 +262,35 @@ var allOptions = {
                     {
                         text: 'lodOptionCommonUlts6',
                         value: 6
+                    }
+                ]
+            },
+            {
+                preset: true,
+                name: 'lodOptionCommonMirrorHeroes',
+                des: 'lodOptionsCommonMirrorHeroes',
+                about: 'lodOptionAboutCommonMirrorHeroes',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionMirrorHeroes10',
+                        value: 10
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes20',
+                        value: 20
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes30',
+                        value: 30
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes40',
+                        value: 40
+                    },
+                    {
+                        text: 'lodOptionMirrorHeroes50',
+                        value: 50
                     }
                 ]
             },
@@ -3225,6 +3283,14 @@ function OnOptionChanged(table_name, key, data) {
         allowCustomSettings = data.v == -1;
         $('#mainSelectionRoot').SetHasClass('allow_custom_settings', allowCustomSettings);
         $('#mainSelectionRoot').SetHasClass('disallow_custom_settings', !allowCustomSettings);
+    }
+
+    if(key == 'lodOptionCommonGamemode') {
+        // Mirror draft options
+        var showMirrorDraftOptions = data.v == 3;
+
+        $('#option_panel_main_lodOptionMirrorHeroes').SetHasClass('showThis', showMirrorDraftOptions);
+        $('#option_panel_main_lodOptionCommonMirrorHeroes').visible = showMirrorDraftOptions;
     }
 
     // Check for allowed categories changing
