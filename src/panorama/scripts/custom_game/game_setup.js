@@ -3402,6 +3402,7 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
 }
 
+// Return X:XX time (M:SS)
 function getFancyTime(timeNumber) {
     var minutes = Math.floor(timeNumber / 60);
     var seconds = timeNumber % 60;
