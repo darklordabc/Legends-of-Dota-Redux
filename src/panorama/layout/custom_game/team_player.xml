@@ -11,7 +11,7 @@
             <Label class="lodPlayerReadyText" text="Ready" />
         </Panel>
         <Panel id="playerHeroImageContainer">
-            <DOTAHeroImage id="playerHeroImage" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" onactivate="onPlayerHeroClicked()" />
+            <DOTAHeroImage id="playerHeroImage" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" />
             <Image id="playerNoHeroSelected" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" />
             <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="doNotShow" />
             <Label class="lodPlayerReadyText" text="Ready" />

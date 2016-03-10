@@ -2,11 +2,11 @@
 
 // Stub
 //var setSelectedDropAbility = function(){};
-var setSelectedHelperHero = function(){};
-var makeSkillSelectable = function(){};
+//var setSelectedHelperHero = function(){};
+//var makeSkillSelectable = function(){};
 
 // The current hero we hold
-var currentSelectedHero = '';
+//var currentSelectedHero = '';
 
 // When player details are changed
 function OnPlayerDetailsChanged() {
@@ -42,8 +42,9 @@ function OnGetHeroData(heroName) {
 	mainPanel.SetHasClass('no_hero_selected', false);
 
 	// Put the hero image in place
-	$('#playerHeroImage').heroname = heroName;
-	currentSelectedHero = heroName;
+	var heroCon = $('#playerHeroImage');
+	heroCon.heroname = heroName;
+	heroCon.SetAttributeString('heroName', heroName);
 }
 
 // When we get the slot count
@@ -69,7 +70,7 @@ function OnGetHeroBuildData(build) {
 }
 
 // Hooks the abilities to show what they are
-function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace) {
+function hookStuff(hookSkillInfo, makeSkillSelectable, makeHeroSelectable) {
 	// Hook it up
 	for(var i=1; i<=6; ++i) {
 		(function(con) {
@@ -83,8 +84,11 @@ function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroRepl
 		})($('#playerSkill' + i));
 	}
 
+	// Make the hero selectable
+	makeHeroSelectable($('#playerHeroImage'));
+
 	// Store ability
-	setSelectedHelperHero = setSelectedHelperHeroReplace;
+	//setSelectedHelperHero = setSelectedHelperHeroReplace;
 }
 
 function OnGetNewAttribute(newAttr) {
@@ -110,10 +114,10 @@ function onPlayerAbilityClicked(slotID) {
 	//setSelectedDropAbility(con.GetAttributeString('abilityname', ''), con);
 }
 
-function onPlayerHeroClicked() {
+/*function onPlayerHeroClicked() {
 	// Set the selected hero
 	setSelectedHelperHero(currentSelectedHero);
-}
+}*/
 
 function setReadyState(newState) {
     $.GetContextPanel().SetHasClass("lodPlayerIsReady", newState == 1);

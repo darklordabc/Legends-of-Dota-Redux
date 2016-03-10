@@ -1,7 +1,7 @@
 // Store build data to send to the server
 var buildData = null;
 
-function setBuildData(setSelectedHelperHero, hookSkillInfo, makeSkillSelectable, hero, build, attr, title) {
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title) {
     // Push skills
     for(var slotID=1; slotID<=6; ++slotID) {
         var slot = $('#recommendedSkill' + slotID);
@@ -22,10 +22,8 @@ function setBuildData(setSelectedHelperHero, hookSkillInfo, makeSkillSelectable,
     // Set hero image
     var heroImageCon = $('#recommendedHeroImage');
     heroImageCon.heroname = hero;
-    heroImageCon.SetPanelEvent('onactivate', function() {
-        // Set the selected helper hero
-        setSelectedHelperHero(hero);
-    });
+    heroImageCon.SetAttributeString('heroName', hero);
+    makeHeroSelectable(heroImageCon);
 
     // Set the title
     var titleLabel = $('#buildName');

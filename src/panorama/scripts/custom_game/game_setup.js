@@ -1635,8 +1635,11 @@ function setupBuilderTabs() {
 
             // Allow for dropping
             $.RegisterEventHandler('DragEnter', con, function(panelID, draggedPanel) {
-                con.AddClass('potential_drop_target');
-                draggedPanel.SetAttributeInt('activeSlot', slotID);
+                // Are we dragging an ability?
+                if(draggedPanel.GetAttributeString('abilityname', '') != '') {
+                    con.AddClass('potential_drop_target');
+                    draggedPanel.SetAttributeInt('activeSlot', slotID);
+                }
             });
 
             $.RegisterEventHandler('DragLeave', con, function(panelID, draggedPanel) {
@@ -1695,6 +1698,37 @@ function setupBuilderTabs() {
         hookSkillInfo($('#buildingHelperHeroPreviewSkill' + i));
         makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
     }
+
+    // Hook drag and drop stuff for heroes
+    var heroDragEnter = function(panelID, draggedPanel) {
+        // Are we dragging an ability?
+        if(draggedPanel.GetAttributeString('heroName', '') != '') {
+            heroDropCon.AddClass('potential_drop_target');
+            heroDropConBlank.AddClass('potential_drop_target');
+            draggedPanel.SetAttributeInt('canSelectHero', 1);
+        }
+    };
+
+    var heroDragLeave = function(panelID, draggedPanel) {
+        $.Schedule(0.1, function() {
+            heroDropCon.RemoveClass('potential_drop_target');
+            heroDropConBlank.RemoveClass('potential_drop_target');
+
+            if(draggedPanel.deleted == null) {
+                draggedPanel.SetAttributeInt('canSelectHero', 0);
+            }
+        });        
+    };
+
+    var heroDropCon = $('#pickingPhaseSelectedHeroImage');
+    $.RegisterEventHandler('DragEnter', heroDropCon, heroDragEnter);
+    $.RegisterEventHandler('DragLeave', heroDropCon, heroDragLeave);
+
+    var heroDropConBlank = $('#pickingPhaseSelectedHeroImageNone');
+    $.RegisterEventHandler('DragEnter', heroDropConBlank, heroDragEnter);
+    $.RegisterEventHandler('DragLeave', heroDropConBlank, heroDragLeave);
+
+    $('#pickingPhaseSelectedHeroText').hittest = false;
 
     // Loop over all the panels we need to hook
     /*for(var i=0; i<toHook.length; ++i) {
@@ -2104,6 +2138,57 @@ function toggleShowDraftSkills() {
     calculateFilters();
 }
 
+// Makes the given hero container selectable
+function makeHeroSelectable(heroCon) {
+    heroCon.SetPanelEvent('onactivate', function() {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        setSelectedHelperHero(heroName);
+    });
+
+    // Dragging
+    heroCon.SetDraggable(true);
+
+    $.RegisterEventHandler('DragStart', heroCon, function(panelID, dragCallbacks) {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        // Create a temp image to drag around
+        var displayPanel = $.CreatePanel('DOTAHeroImage', $.GetContextPanel(), 'dragImage');
+        displayPanel.heroname = heroName;
+        dragCallbacks.displayPanel = displayPanel;
+        dragCallbacks.offsetX = 0;
+        dragCallbacks.offsetY = 0;
+        displayPanel.SetAttributeString('heroName', heroName);
+
+        // Hide skill info
+        $.DispatchEvent('DOTAHideAbilityTooltip');
+
+        // Highlight drop cell
+        $('#pickingPhaseSelectedHeroImage').SetHasClass('lodSelectedDrop', true)
+        $('#pickingPhaseSelectedHeroImageNone').SetHasClass('lodSelectedDrop', true)
+    });
+
+    $.RegisterEventHandler('DragEnd', heroCon, function(panelId, draggedPanel) {
+        // Delete the draggable panel
+        draggedPanel.deleted = true;
+        draggedPanel.DeleteAsync(0.0);
+
+        // Highlight drop cell
+        $('#pickingPhaseSelectedHeroImage').SetHasClass('lodSelectedDrop', false);
+        $('#pickingPhaseSelectedHeroImageNone').SetHasClass('lodSelectedDrop', false);
+
+        var heroName = draggedPanel.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        // Can we select this as our hero?
+        if(draggedPanel.GetAttributeInt('canSelectHero', 0) == 1) {
+            chooseHero(heroName);
+        }
+    });
+}
+
 function makeSkillSelectable(abcon) {
     abcon.SetPanelEvent('onactivate', function() {
         var abName = abcon.GetAttributeString('abilityname', '');
@@ -2310,7 +2395,7 @@ var recommenedBuildContainerList = [];
 function addRecommendedBuild(con, hero, build, attr, title) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
-    buildCon.setBuildData(setSelectedHelperHero, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
 
     // Store the container
@@ -2782,7 +2867,7 @@ function addPlayerToTeam(playerID, panel, reviewContainer) {
     var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
     newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero);
+    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, makeHeroSelectable);
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
