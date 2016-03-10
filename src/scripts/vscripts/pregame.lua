@@ -1315,7 +1315,7 @@ function Pregame:initOptionSelector()
 
         -- Common mirror draft heroes
         lodOptionCommonMirrorHeroes = function()
-            self.maxDraftHeroes = self.optionStore['lodOptionMirrorHeroes']
+            self.maxDraftHeroes = self.optionStore['lodOptionCommonMirrorHeroes']
         end
     }
 
