@@ -68,8 +68,107 @@ function OnGetHeroBuildData(build) {
 	}
 }
 
+// Do the highlight
+var selectedSlotID = -1;
+function doSlotHighlight() {
+	for(var i=1; i<=6; ++i) {
+		var slot = $('#playerSkill' + i);
+
+		if(selectedSlotID == -1) {
+			slot.SetHasClass('lodSelectedDrop', false);
+			slot.SetHasClass('lodSelected', false);
+		} else {
+			slot.SetHasClass('lodSelectedDrop', selectedSlotID != i);
+			slot.SetHasClass('lodSelected', selectedSlotID == i);
+		}
+	}
+}
+
+// Implement slot swapping
+function makeSwapable(slotID, abcon) {
+	abcon.SetPanelEvent('onactivate', function() {
+        if(selectedSlotID == -1) {
+        	selectedSlotID = slotID;
+        } else {
+        	if(selectedSlotID != slotID) {
+        		// Do the swap slot
+        		swapSlots(selectedSlotID, slotID);
+        	}
+
+        	// None selected anymore
+        	selectedSlotID = -1;
+        }
+
+        doSlotHighlight();
+    });
+
+    // Dragging
+    abcon.SetDraggable(true);
+
+    $.RegisterEventHandler('DragEnter', abcon, function(panelID, draggedPanel) {
+        abcon.AddClass('potential_drop_target');
+        selectedSlotID = slotID;
+    });
+
+    $.RegisterEventHandler('DragLeave', abcon, function(panelID, draggedPanel) {
+        $.Schedule(0.1, function() {
+            abcon.RemoveClass('potential_drop_target');
+
+            if(draggedPanel.deleted == null && selectedSlotID == slotID) {
+                selectedSlotID = -1
+            }
+        });
+    });
+
+    $.RegisterEventHandler('DragStart', abcon, function(panelID, dragCallbacks) {
+        var abName = abcon.GetAttributeString('abilityname', '');
+        if(abName == null || abName.length <= 0) return false;
+
+        // Create a temp image to drag around
+        var displayPanel = $.CreatePanel('DOTAAbilityImage', $.GetContextPanel(), 'dragImage');
+        displayPanel.abilityname = abName;
+        dragCallbacks.displayPanel = displayPanel;
+        dragCallbacks.offsetX = 0;
+        dragCallbacks.offsetY = 0;
+        displayPanel.SetAttributeString('abilityname', abName);
+
+        // Hide skill info
+        $.DispatchEvent('DOTAHideAbilityTooltip');
+
+        selectedSlotID = slotID;
+        doSlotHighlight();
+    });
+
+    $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
+        // Delete the draggable panel
+        draggedPanel.deleted = true;
+        draggedPanel.DeleteAsync(0.0);
+
+        if(selectedSlotID != -1) {
+        	if(selectedSlotID != slotID) {
+        		// Do the swap slot
+        		swapSlots(selectedSlotID, slotID);
+        	}
+
+        	// None selected anymore
+        	selectedSlotID = -1;
+        }
+
+        doSlotHighlight();
+    });
+}
+
+// Swaps two slots
+function swapSlots(slot1, slot2) {
+    // Push it to the server to validate
+    GameEvents.SendCustomGameEventToServer('lodSwapSlots', {
+        slot1: slot1,
+        slot2: slot2
+    });
+}
+
 // Hooks the abilities to show what they are
-function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace) {
+function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace, canSwap) {
 	// Hook it up
 	for(var i=1; i<=6; ++i) {
 		(function(con) {
@@ -79,7 +178,12 @@ function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroRepl
 	        //    setSelectedDropAbility(con.GetAttributeString('abilityname'), con);
 	        //});
 
-			makeSkillSelectable(con);
+			if(canSwap) {
+				// Make it swapable
+				makeSwapable(i, con);
+			}
+
+			//makeSkillSelectable(con);
 		})($('#playerSkill' + i));
 	}
 

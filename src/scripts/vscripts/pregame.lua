@@ -2673,7 +2673,7 @@ end
 -- Player wants to swap two slots
 function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW then return end
 
     -- Grab data
     local playerID = args.PlayerID

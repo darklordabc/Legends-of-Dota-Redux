@@ -2911,7 +2911,7 @@ function addPlayerToTeam(playerID, panel, reviewContainer) {
     var newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
     newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero);
+    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
