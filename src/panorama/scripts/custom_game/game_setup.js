@@ -1067,6 +1067,7 @@ var currentPhase = PHASE_LOADING;
 var selectedPhase = PHASE_OPTION_SELECTION;
 var endOfTimer = -1;
 var freezeTimer = -1;
+var lastTimerShow = -1;
 var allowCustomSettings = false;
 
 // Current hero & Skill
@@ -1717,7 +1718,7 @@ function setupBuilderTabs() {
             if(draggedPanel.deleted == null) {
                 draggedPanel.SetAttributeInt('canSelectHero', 0);
             }
-        });        
+        });
     };
 
     var heroDropCon = $('#pickingPhaseSelectedHeroImage');
@@ -3573,7 +3574,7 @@ function SetSelectedPhase(newPhase, noSound) {
 function getFancyTime(timeNumber) {
     var minutes = Math.floor(timeNumber / 60);
     var seconds = timeNumber % 60;
-    
+
     if(seconds < 10) {
         seconds = '0' + seconds;
     }
@@ -3651,6 +3652,50 @@ function UpdateTimer() {
 
         // Place the text
         placeInto.text = '(' + getFancyTime(timeLeft) + ')';
+
+        // Set how long is left
+        $('#lodTimerWarningLabel').text = getFancyTime(timeLeft);
+
+        // Make it more obvious how long is left
+        if(freezeTimer != -1) {
+            lastTimerShow = -1;
+        } else {
+            var shouldShowTimer = false;
+
+            if(lastTimerShow == -1) {
+                // Timer was frozen, show the time
+                shouldShowTimer = true;
+            } else {
+                if(timeLeft < lastTimerShow) {
+                    shouldShowTimer = true;
+                }
+            }
+
+            // Should we show the timer?
+            if(shouldShowTimer) {
+                // Work out how long to show for
+                var showDuration = 3;
+
+                // Calculate when the next show should occur
+                if(timeLeft <= 30) {
+                    // Always show
+                    showDuration = timeLeft;
+
+                    lastTimerShow = 0;
+                } else {
+                    // Show once every 30 seconds
+                    lastTimerShow = Math.floor((timeLeft-1) / 30) * 30 + 1
+                }
+
+                $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
+
+                //$('#lodTimerWarningLabel').visible = true;
+                $.Schedule(showDuration, function() {
+                    //$('#lodTimerWarningLabel').visible = false;
+                    $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
+                });
+            }
+        }
     }
 
     $.Schedule(0.1, UpdateTimer);

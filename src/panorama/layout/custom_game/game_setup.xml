@@ -11,6 +11,10 @@
         <Panel id="lodNotificationArea">
         </Panel>
 
+        <Panel id="lodTimerWarning" hittest="false">
+            <Label id="lodTimerWarningLabel" text="lol" />
+        </Panel>
+
 
         <Panel id="mainSelectionRoot">
             <Panel id="mainTeamContainer">
