@@ -110,6 +110,15 @@ function Network:sendNotification(ply, options)
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
 end
 
+-- Sends a notification to all players
+function Network:broadcastNotification(options)
+    -- Ensure we have an options table
+    options = options or {}
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToAllClients('lodNotification', options)
+end
+
 -- Pushes that a skill is banned
 function Network:banAbility(abilityName)
     -- Push to everyone

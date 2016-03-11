@@ -582,7 +582,7 @@ function Pregame:finishOptionSelection()
                 totalRadiant = totalRadiant + 1
                 PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
             end
-            
+
         end
     end
 
@@ -2227,7 +2227,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if self:banHero(heroName) then
 			-- Success
 
-			network:sendNotification(player, {
+			network:broadcastNotification({
 	            sort = 'lodSuccess',
 	            text = 'lodSuccessBanHero',
 	            params = {
@@ -2294,7 +2294,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if self:banAbility(abilityName) then
 			-- Success
 
-			network:sendNotification(player, {
+			network:broadcastNotification({
 	            sort = 'lodSuccess',
 	            text = 'lodSuccessBanAbility',
 	            params = {

@@ -274,6 +274,6 @@
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
 
     // Success Messages
-    "lodSuccessBanAbility"                          "'{abilityName}' was banned successfully."
-    "lodSuccessBanHero"                             "'{heroName}' was banned successfully!"
+    "lodSuccessBanAbility"                          "'{abilityName}' was banned."
+    "lodSuccessBanHero"                             "'{heroName}' was banned."
 }
