@@ -3653,13 +3653,16 @@ function UpdateTimer() {
         // Place the text
         placeInto.text = '(' + getFancyTime(timeLeft) + ')';
 
-        // Set how long is left
-        $('#lodTimerWarningLabel').text = getFancyTime(timeLeft);
-
         // Make it more obvious how long is left
         if(freezeTimer != -1) {
             lastTimerShow = -1;
+
+            // Show no text
+            $('#lodTimerWarningLabel').text = '';
         } else {
+            // Set how long is left
+            $('#lodTimerWarningLabel').text = getFancyTime(timeLeft);
+
             var shouldShowTimer = false;
 
             if(lastTimerShow == -1) {
