@@ -1780,13 +1780,17 @@ function buildHeroList() {
 
                 // Create the panel
                 var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
+                newPanel.SetAttributeString('heroName', heroName);
                 newPanel.heroname = heroName;
                 newPanel.heroimagestyle = 'portrait';
 
-                newPanel.SetPanelEvent('onactivate', function() {
+                /*newPanel.SetPanelEvent('onactivate', function() {
                     // Set the selected helper hero
                     setSelectedHelperHero(heroName);
-                });
+                });*/
+
+                // Make the hero selectable
+                makeHeroSelectable(newPanel);
 
                 // Store it
                 heroPanelMap[heroName] = newPanel;
