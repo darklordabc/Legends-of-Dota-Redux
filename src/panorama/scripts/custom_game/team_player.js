@@ -65,6 +65,9 @@ function OnGetHeroBuildData(build) {
 		if(build[i]) {
 			con.abilityname = build[i];
 			con.SetAttributeString('abilityname', build[i]);
+		} else {
+			con.abilityname = 'life_stealer_empty_1';
+			con.SetAttributeString('abilityname', 'life_stealer_empty_1');
 		}
 	}
 }
