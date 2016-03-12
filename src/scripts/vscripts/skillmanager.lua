@@ -147,7 +147,7 @@ end
 
 -- Precaches a skill -- DODGY!
 local alreadyCached = {}
-local function precacheSkill(skillName)
+function skillManager:precacheSkill(skillName, callback)
     local heroID = skillOwningHero[skillName]
 
     if heroID then
@@ -155,7 +155,10 @@ local function precacheSkill(skillName)
 
         if heroName then
             -- Have we already cached this?
-            if alreadyCached[heroName] then return end
+            if alreadyCached[heroName] then
+                callback()
+                return
+            end
             alreadyCached[heroName] = true
 
             -- Cache it
@@ -163,11 +166,22 @@ local function precacheSkill(skillName)
                 -- Precache source2 style
                 PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
                     CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
+
+                    if callback ~= nil then
+                        callback()
+                    end
                 end)
             else
                 print('Failed to precache unit: npc_precache_'..heroName)
+
+                if callback ~= nil then
+                    callback()
+                end
             end
         end
+    else
+        -- Done
+        callback()
     end
 end
 
@@ -303,7 +317,7 @@ function skillManager:PrecacheBuild(build)
         local v = build[i]
         if v then
             -- Precache
-            precacheSkill(v)
+            self:precacheSkill(v)
         end
     end
 end
@@ -539,7 +553,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             -- Precache
-            precacheSkill(v)
+            --precacheSkill(v)
 
             local multV = self:GetMultiplierSkillName(v)
             if isRealHero then
@@ -679,7 +693,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             abNum = abNum + 1
 
             -- Precache
-            precacheSkill(k)
+            --precacheSkill(k)
 
             -- Grab the real name (this was different for mult, disabled for now)
             local realAbility = k

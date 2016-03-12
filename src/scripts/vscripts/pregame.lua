@@ -362,6 +362,7 @@ function Pregame:onThink()
     -- Process options ONCE here
     if not self.validatedBuilds then
         self:validateBuilds()
+        self:precacheBuilds()
     end
 
     -- Review
@@ -410,6 +411,9 @@ function Pregame:spawnAllHeroes()
 end
 
 -- Spawns a given player
+local spawnQueue = {}
+local currentlySpawning = false
+local cachedPlayerHeroes = {}
 function Pregame:spawnPlayer(playerID)
     -- Is there a player in this slot?
     if PlayerResource:IsValidPlayerID(playerID) then
@@ -419,45 +423,89 @@ function Pregame:spawnPlayer(playerID)
         if self.spawnedHeroesFor[playerID] then return end
         self.spawnedHeroesFor[playerID] = true
 
-        -- Grab their build
-        local build = self.selectedSkills[playerID]
+        -- Insert the player for spawning
+        table.insert(spawnQueue, playerID)
 
-        -- Validate the player
-        local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
-            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+        -- Actually spawn the player
+        self:actualSpawnPlayer()
+    end
+end
+
+function Pregame:actualSpawnPlayer()
+    -- Is there someone to spawn?
+    if #spawnQueue <= 0 then return end
+
+    -- Only spawn ONE player at a time!
+    if currentlySpawning then return end
+    currentlySpawning = true
+
+    -- Grab a player to spawn
+    local playerID = table.remove(spawnQueue, playerID)
+
+    -- Grab their build
+    local build = self.selectedSkills[playerID]
+
+    -- Grab a reference to self
+    local this = self
+
+    -- Validate the player
+    local player = PlayerResource:GetPlayer(playerID)
+    if player ~= nil then
+        local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+
+        function spawnTheHero()
+            -- Create the hero and validate it
+            local hero = CreateHeroForPlayer(heroName, player)
+            if hero ~= nil and IsValidEntity(hero) then
+                SkillManager:ApplyBuild(hero, build or {})
+
+                -- Do they have a custom attribute set?
+                if self.selectedPlayerAttr[playerID] ~= nil then
+                    -- Set it
+
+                    local toSet = 0
+
+                    if self.selectedPlayerAttr[playerID] == 'str' then
+                        toSet = 0
+                    elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                        toSet = 1
+                    elseif self.selectedPlayerAttr[playerID] == 'int' then
+                        toSet = 2
+                    end
+
+                    -- Set a timer to fix stuff up
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(hero) then
+                            hero:SetPrimaryAttribute(toSet)
+                        end
+                    end, DoUniqueString('primaryAttrFix'), 0.1)
+                end
+            end
+
+            -- Make a small delay
+            Timers:CreateTimer(function()
+                -- Done spawning, start the next one
+                currentlySpawning = false
+
+                -- Continue actually spawning
+                this:actualSpawnPlayer()
+            end, DoUniqueString('continueSpawning'), 0.1)
+        end
+
+        if cachedPlayerHeroes[playerID] then
+            -- Directly spawn the hero
+            spawnTheHero()
+        else
+            -- Already cached this player's hero
+            cachedPlayerHeroes[playerID] = true
 
             -- Attempt to precache their hero
             PrecacheUnitByNameAsync(heroName, function()
-                -- Create the hero and validate it
-                local hero = CreateHeroForPlayer(heroName, player)
-                if hero ~= nil and IsValidEntity(hero) then
-                    SkillManager:ApplyBuild(hero, build or {})
-
-                    -- Do they have a custom attribute set?
-                    if self.selectedPlayerAttr[playerID] ~= nil then
-                        -- Set it
-
-                        local toSet = 0
-
-                        if self.selectedPlayerAttr[playerID] == 'str' then
-                            toSet = 0
-                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                            toSet = 1
-                        elseif self.selectedPlayerAttr[playerID] == 'int' then
-                            toSet = 2
-                        end
-
-                        -- Set a timer to fix stuff up
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(hero) then
-                                hero:SetPrimaryAttribute(toSet)
-                            end
-                        end, DoUniqueString('primaryAttrFix'), 0.1)
-                    end
-                end
+                spawnTheHero()
             end, playerID)
         end
+
+
     end
 end
 
@@ -1572,6 +1620,92 @@ function Pregame:buildDraftArrays()
     end
 end
 
+-- Precaches builds
+local donePrecaching = false
+function Pregame:precacheBuilds()
+    local allSkills = {}
+    local alreadyAdded = {}
+
+    for k,v in pairs(self.selectedSkills) do
+        for kk,vv in pairs(v) do
+            if not alreadyAdded[vv] then
+                alreadyAdded[vv] = true
+                table.insert(allSkills, vv)
+            end
+        end
+    end
+
+    local allPlayerIDs = {}
+    for i=0,24 do
+        if PlayerResource:IsValidPlayerID(i) then
+            table.insert(allPlayerIDs, i)
+        end
+    end
+
+    local this = self
+
+    function continueCachingHeroes()
+        --print('continue caching hero')
+
+        -- Any more to cache?
+        if #allPlayerIDs <= 0 then
+            donePrecaching = true
+
+            -- Check for ready
+            this:checkForReady()
+            return
+        end
+
+        local playerID = table.remove(allPlayerIDs, 1)
+
+        if PlayerResource:IsValidPlayerID(playerID) then
+            local heroName = self.selectedHeroes[playerID]
+
+            if heroName then
+                -- Store that it is cached
+                cachedPlayerHeroes[playerID] = true
+
+                --print('Caching ' .. heroName)
+
+                PrecacheUnitByNameAsync(heroName, function()
+                    -- Done caching
+                    Timers:CreateTimer(function()
+                        continueCachingHeroes()
+                    end, DoUniqueString('keepCaching'), 0.1)
+                end, playerID)
+            else
+                Timers:CreateTimer(function()
+                    continueCachingHeroes()
+                end, DoUniqueString('keepCaching'), 0.1)
+            end
+        else
+            Timers:CreateTimer(function()
+                continueCachingHeroes()
+            end, DoUniqueString('keepCaching'), 0.1)
+        end
+    end
+
+    function continueCaching()
+        --print('Continue caching!')
+
+        Timers:CreateTimer(function()
+            if #allSkills > 0 then
+                local abName = table.remove(allSkills, 1)
+
+                --print('Precaching ' .. abName)
+
+                SkillManager:precacheSkill(abName, continueCaching)
+            else
+                Timers:CreateTimer(function()
+                    continueCachingHeroes()
+                end, DoUniqueString('keepCaching'), 0.1)
+            end
+        end, DoUniqueString('keepCaching'), 0.1)
+    end
+
+    continueCaching()
+end
+
 -- Validates builds
 function Pregame:validateBuilds()
     -- Only process this once
@@ -2178,6 +2312,9 @@ function Pregame:checkForReady()
     -- If we are in the review phase
     if self:getPhase() == constants.PHASE_REVIEW then
         maxTime = OptionManager:GetOption('reviewTime')
+
+        -- Caching must complete first!
+        if not donePrecaching then return end
     end
 
     -- Calculate how many players are ready
