@@ -5,6 +5,7 @@ local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
+local util = require('util')
 require('statcollection.init')
 
 --[[
@@ -50,6 +51,38 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
+
+    -- Rune fix
+    local totalRunes = 0
+    local needBounty = false
+    GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
+        totalRunes = totalRunes + 1
+        if totalRunes < 3 then
+            runeStuff.rune_type = DOTA_RUNE_BOUNTY
+        else
+            if totalRunes % 2 == 1 then
+                if math.random() < 0.5 then
+                    needBounty = false
+                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
+                else
+                    needBounty = true
+                    runeStuff.rune_type = util:pickRandomRune()
+                end
+            else
+                if needBounty then
+                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
+                else
+                    runeStuff.rune_type = util:pickRandomRune()
+
+                end
+
+                -- No longer need a bounty rune
+                needBounty = false
+            end
+        end
+
+        return true
+    end, self)
 
     -- Load troll combos
     self:loadTrollCombos()

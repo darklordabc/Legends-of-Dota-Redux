@@ -114,5 +114,20 @@ function Util:isTargetSpell(skillName)
     return false
 end
 
+-- Picks a random rune
+function Util:pickRandomRune()
+    local validRunes = {
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    }
+
+    return validRunes[math.random(#validRunes)]
+end
+
 -- Define the export
 return Util
