@@ -3336,11 +3336,8 @@ function onJoinUnassignedPressed() {
     Game.PlayerJoinTeam(DOTATeam_t.DOTA_TEAM_NOTEAM);
 }
 
-//--------------------------------------------------------------------------------------------------
-// Update the unassigned players list and all of the team panels whenever a change is made to the
-// player team assignments
-//--------------------------------------------------------------------------------------------------
-function OnTeamPlayerListChanged() {
+// Does the actual update
+function doActualTeamUpdate() {
     // Kill all of the old panels
     for(var i=0; i<allPlayerPanels.length; ++i) {
         // Grab the panel
@@ -3351,6 +3348,10 @@ function OnTeamPlayerListChanged() {
     }
     allPlayerPanels = [];
     activePlayerPanels = {};
+
+    $('#theRadiantContainer').RemoveAndDeleteChildren();
+    $('#theDireContainer').RemoveAndDeleteChildren();
+    $('#unassignedPlayersContainer').RemoveAndDeleteChildren();
 
     // Move all existing player panels back to the unassigned player list
     /*for ( var i = 0; i < g_PlayerPanels.length; ++i )
@@ -3399,6 +3400,21 @@ function OnTeamPlayerListChanged() {
     if (!playerInfo) return;
 
     $('#mainSelectionRoot').SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Update the unassigned players list and all of the team panels whenever a change is made to the
+// player team assignments
+//--------------------------------------------------------------------------------------------------
+var teamUpdateCapper = 0;
+function OnTeamPlayerListChanged() {
+    var myUpdateTimer = ++teamUpdateCapper;
+
+    $.Schedule(1, function() {
+        if(myUpdateTimer == teamUpdateCapper) {
+            doActualTeamUpdate();
+        }
+    });
 }
 
 //--------------------------------------------------------------------------------------------------
