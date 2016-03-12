@@ -93,11 +93,11 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                             local reduction = lvl * -1
 
                             -- Octarine Core fix
-                            if GameRules:isSource1() then
+                            --if GameRules:isSource1() then
                                 if hero:HasModifier('modifier_item_octarine_core') then
                                     reduction = reduction * 0.75
                                 end
-                            end
+                            --end
 
                             local timeRemaining = ab:GetCooldownTimeRemaining()
                             local newCooldown = timeRemaining + reduction
@@ -404,9 +404,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                         end
 
                                         -- Run the spell again
-                                        if not GameRules:isSource1() or not isaTargetSpell then
+                                        --if not isaTargetSpell then
                                             ab:OnSpellStart()
-                                        end
+                                        --end
 
                                         mult = mult-1
                                         if mult > 1 then
