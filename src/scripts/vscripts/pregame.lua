@@ -30,6 +30,12 @@ function Pregame:init()
     self.maxDraftHeroes = 30
     self.maxDraftSkills = 0
 
+    -- Some default values
+    self.fastBansTotalBans = 3
+    self.fastHeroBansTotalBans = 1
+    self.fullBansTotalBans = 10
+    self.fullHeroBansTotalBans = 2
+
     -- Stores which playerIDs we have already spawned
     self.spawnedHeroesFor = {}
 
@@ -930,7 +936,7 @@ function Pregame:initOptionSelector()
 
         -- Fast banning selection
         lodOptionBanning = function(value)
-            return value == 1 or value == 2 or value == 3
+            return value == 1 or value == 2 or value == 3 or value == 4
         end,
 
         -- Fast slots selection
@@ -1326,16 +1332,8 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Banning mode depends on the option, but is baically copied
-                if self.optionStore['lodOptionBanning'] == 1 then
-                    self:setOption('lodOptionBanningMaxBans', 0, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
-                else
-                    self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
-                    self:setOption('lodOptionBanningUseBanList', 0, true)
-                end
+                -- Set banning
+                self:setOption('lodOptionBanning', 1)
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
@@ -1417,6 +1415,11 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
                 self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
+            elseif self.optionStore['lodOptionBanning'] == 3 then
+                -- Full Banning Phase
+                self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
+                self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
             else
                 -- No Banning
                 self:setOption('lodOptionBanningMaxBans', 0, true)
@@ -1446,10 +1449,6 @@ function Pregame:initOptionSelector()
             self.maxDraftHeroes = self.optionStore['lodOptionCommonMirrorHeroes']
         end
     }
-
-    -- Some default values
-    self.fastBansTotalBans = 3
-    self.fastHeroBansTotalBans = 1
 end
 
 -- Generates a random build
@@ -1650,6 +1649,9 @@ function Pregame:precacheBuilds()
         -- Any more to cache?
         if #allPlayerIDs <= 0 then
             donePrecaching = true
+
+            -- Tell clients
+            network:donePrecaching()
 
             -- Check for ready
             this:checkForReady()

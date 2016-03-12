@@ -49,6 +49,7 @@
     "lodOptionsPresetBanning"                       "Preset Banning"
     "lodOptionBalancedBan"                          "Balanced Bans"
     "lodOptionManualBan"                            "Fast Ban Phase"
+    "lodOptionManualBalancedBan"                    "Full Ban Phase"
     "lodOptionNoBans"                               "No Bans"
 
     "lodOptionsPresetSlots"                         "Preset Max Slots"
@@ -195,7 +196,7 @@
 
     // Info
     "lodOptionAboutPresetGamemode"                  "Choose from a predefined gamemode.\nThis option can only be changed if you are playing on the 'custom' map.\n\nAll Pick: Pick from every available skill.\nMirror Draft: Pick from a limited number of heroes.\nAll Random: Pick from a random set of builds.\nCustom: Build a custom gamemode."
-    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban upto one (1) hero and three (3) skills.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
+    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban upto one (1) hero and three (3) skills.\nFull Ban Phase: Balanced bans will be turned on and players can ban upto 10 abilities and upto 2 heroes each.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
     "lodOptionAboutPresetSlots"                     "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutPresetUlts"                      "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutPresetMirrorHeroes"              "The number of heroes each player will receive to draft from."
@@ -231,7 +232,8 @@
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
 
-
+    // Game is currently precaching abilities / heroes, please wait!
+    "lodPrecaching"    "Setting the game up..."
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."

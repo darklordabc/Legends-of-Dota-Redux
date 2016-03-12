@@ -151,5 +151,11 @@ function Network:sendReadyState(readyState)
     CustomNetTables:SetTableValue('ready', 'ready', readyState)
 end
 
+-- Pushes that precaching is done
+function Network:donePrecaching()
+    -- Push to everyone
+    CustomNetTables:SetTableValue('phase_pregame', 'doneCaching', {})
+end
+
 -- Return an instance of it
 return Network()

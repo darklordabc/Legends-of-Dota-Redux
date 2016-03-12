@@ -50,8 +50,12 @@ var allOptions = {
                         value: 2
                     },
                     {
-                        text: 'lodOptionNoBans',
+                        text: 'lodOptionManualBalancedBan',
                         value: 3
+                    },
+                    {
+                        text: 'lodOptionNoBans',
+                        value: 4
                     }
                 ]
             },
@@ -1116,6 +1120,9 @@ var takenTeamAbilities = {};
 // Keeping track of bans
 var currentHeroBans = 0;
 var currentAbilityBans = 0;
+
+// Waiting for preache
+var waitingForPrecache = true;
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -3479,6 +3486,13 @@ function OnPhaseChanged(table_name, key, data) {
         case 'freezeTimer':
             freezeTimer = data.v;
         break;
+
+        case 'doneCaching':
+            // No longer waiting for precache
+            waitingForPrecache = false;
+
+            $.Msg('Yes');
+        break;
     }
 
     // Ensure we are hiding the correct enemy picks
@@ -3869,6 +3883,12 @@ function UpdateTimer() {
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });
             }
+        }
+
+        // Review override
+        if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
+            $('#lodTimerWarningLabel').text = $.Localize('lodPrecaching');
+            $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
         }
     }
 
