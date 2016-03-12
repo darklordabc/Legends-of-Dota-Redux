@@ -340,7 +340,7 @@ var allOptions = {
             {
                 name: 'lodOptionBanningMaxHeroBans',
                 des: 'lodOptionDesBanningMaxHeroBans',
-                about: 'lodOptionAboutBanningMaxBans',
+                about: 'lodOptionAboutBanningMaxHeroBans',
                 sort: 'dropdown',
                 values: [
                     {
@@ -3014,6 +3014,10 @@ function buildOptionsCategories() {
                     infoLabel.text = $.Localize(info.des);
                     infoLabel.AddClass('optionSlotPanelLabel');
 
+                    mainSlot.SetPanelEvent('onmouseover', function() {
+                        $('#optionInfoLabel').text = $.Localize(info.about);
+                    });
+
                     // Is this a preset?
                     if(info.preset) {
                         mainSlot.AddClass('optionSlotPanelNoCustom');
@@ -3801,4 +3805,7 @@ function UpdateTimer() {
 
     // Toggle the show taken abilities button to be on
     $('#lodToggleButton').checked = true;
+
+    // Disable clicking on the warning timer
+    $('#lodTimerWarning').hittest = false;
 })();

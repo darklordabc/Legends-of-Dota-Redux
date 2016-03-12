@@ -1610,6 +1610,14 @@
     margin-left: 320px;
 }
 
+#optionInfo {
+    vertical-align: bottom;
+    horizontal-align: left;
+    margin: 8px;
+    margin-left: 12px;
+    max-width: 600px;
+}
+
 #optionButtons {
     flow-children: down;
     horizontal-align: right;
