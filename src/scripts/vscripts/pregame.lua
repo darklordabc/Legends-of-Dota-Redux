@@ -1628,6 +1628,8 @@ function Pregame:precacheBuilds()
     local allSkills = {}
     local alreadyAdded = {}
 
+    local timerDelay = 0
+
     for k,v in pairs(self.selectedSkills) do
         for kk,vv in pairs(v) do
             if not alreadyAdded[vv] then
@@ -1676,17 +1678,17 @@ function Pregame:precacheBuilds()
                     -- Done caching
                     Timers:CreateTimer(function()
                         continueCachingHeroes()
-                    end, DoUniqueString('keepCaching'), 0.1)
+                    end, DoUniqueString('keepCaching'), timerDelay)
                 end, playerID)
             else
                 Timers:CreateTimer(function()
                     continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), 0.1)
+                end, DoUniqueString('keepCaching'), timerDelay)
             end
         else
             Timers:CreateTimer(function()
                 continueCachingHeroes()
-            end, DoUniqueString('keepCaching'), 0.1)
+            end, DoUniqueString('keepCaching'), timerDelay)
         end
     end
 
@@ -1703,9 +1705,9 @@ function Pregame:precacheBuilds()
             else
                 Timers:CreateTimer(function()
                     continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), 0.1)
+                end, DoUniqueString('keepCaching'), timerDelay)
             end
-        end, DoUniqueString('keepCaching'), 0.1)
+        end, DoUniqueString('keepCaching'), timerDelay)
     end
 
     continueCaching()
