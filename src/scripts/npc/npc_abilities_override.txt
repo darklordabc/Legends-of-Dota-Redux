@@ -5,4 +5,8 @@
 		"MaxLevel" "999"
 		"LevelsBetweenUpgrades" "1"
 	}
+    "life_stealer_consume"
+    {
+        "AbilityCooldown"  "3"
+    }
 }
