@@ -185,16 +185,19 @@ function Pregame:init()
     -- All Pick Only
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
+        OptionManager:SetOption('maxOptionSelectionTime', 45)
     end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
+        OptionManager:SetOption('maxOptionSelectionTime', 45)
     end
 
     -- All random only
     if mapName == 'all_random' then
         self:setOption('lodOptionGamemode', 4)
+        OptionManager:SetOption('maxOptionSelectionTime', 45)
     end
 
     -- Exports for stat collection
