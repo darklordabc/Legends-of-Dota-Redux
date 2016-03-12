@@ -12,7 +12,11 @@ mkdir "dota\game"
 mkdir "dota\content"
 mkdir "dota\game\resource"
 mkdir "dota\game\scripts\npc"
-mkdir "dota\game\maps"
+::mkdir "dota\game\maps"
+
+:: Link the maps
+mklink /D /J "dota\game\maps" "maps"
+mklink /D /J "dota\content\maps" "src\maps"
 
 mkdir "dota\game\panorama"
 mklink /D /J "dota\game\panorama\localization" "src\localization"
