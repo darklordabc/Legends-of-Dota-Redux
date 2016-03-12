@@ -3350,7 +3350,9 @@ function doActualTeamUpdate() {
     activePlayerPanels = {};
 
     $('#theRadiantContainer').RemoveAndDeleteChildren();
+    $('#reviewRadiantTeam').RemoveAndDeleteChildren();
     $('#theDireContainer').RemoveAndDeleteChildren();
+    $('#reviewDireTeam').RemoveAndDeleteChildren();
     $('#unassignedPlayersContainer').RemoveAndDeleteChildren();
 
     // Move all existing player panels back to the unassigned player list
