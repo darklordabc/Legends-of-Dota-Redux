@@ -173,6 +173,24 @@ function Pregame:init()
     self:setOption('lodOptionGamemode', 1)
     self:setOption('lodOptionMirrorHeroes', 20)
 
+    -- Map enforcements
+    local mapName = GetMapName()
+
+    -- All Pick Only
+    if mapName == 'all_pick' then
+        self:setOption('lodOptionGamemode', 1)
+    end
+
+    -- Mirror Draft Only
+    if mapName == 'mirror_draft' then
+        self:setOption('lodOptionGamemode', 3)
+    end
+
+    -- All random only
+    if mapName == 'all_random' then
+        self:setOption('lodOptionGamemode', 4)
+    end
+
     -- Exports for stat collection
     local this = self
     function PlayerResource:getPlayerStats(playerID)
@@ -818,10 +836,30 @@ function Pregame:initOptionSelector()
             -- Ensure it is a number
             if type(value) ~= 'number' then return false end
 
+            -- Map enforcements
+            local mapName = GetMapName()
+
+            -- All Pick Only
+            if mapName == 'all_pick' then
+                return value == 1
+            end
+
+            -- Mirror Draft Only
+            if mapName == 'mirror_draft' then
+                return value == 3
+            end
+
+            -- All random only
+            if mapName == 'all_random' then
+                return value == 4
+            end
+
+            -- Not in a forced map, allow any preset gamemode
+
             local validGamemodes = {
                 [-1] = true,
                 [1] = true,
-                [2] = true,
+                --[2] = true,
                 [3] = true,
                 [4] = true
             }

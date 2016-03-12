@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"dota"
+	maps			"all_pick mirror_draft all_random custom"
 	"IsPlayable"	"1"
     "version"       "3.0.0"
 }

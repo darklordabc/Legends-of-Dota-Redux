@@ -3724,6 +3724,33 @@ function UpdateTimer() {
         g_TeamPanels.push( teamNode );
     }*/
 
+    // Grab the map's name
+    var mapName = Game.GetMapInfo().map_display_name;
+
+    // All Pick Only
+    if(mapName == 'all_pick') {
+        allOptions.presets.fields[0].values = [{
+            text: 'lodOptionBalancedAllPick',
+            value: 1
+        }]
+    }
+
+    // Mirror Draft Only
+    if(mapName == 'mirror_draft') {
+        allOptions.presets.fields[0].values = [{
+            text: 'lodOptionBalancedMirrorDraft',
+            value: 3
+        }]
+    }
+
+    // All Random Only
+    if(mapName == 'all_random') {
+        allOptions.presets.fields[0].values = [{
+            text: 'lodOptionBalancedAllRandom',
+            value: 4
+        }]
+    }
+
     // Automatically assign players to teams.
     Game.AutoAssignPlayersToTeams();
 
