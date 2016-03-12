@@ -2693,7 +2693,31 @@ function OnSkillTabShown(tabName) {
             }
 
             // Do the sort
-            toSort.sort();
+            toSort.sort(function(a, b) {
+                var ownerA = abilityHeroOwner[a];
+                var ownerB = abilityHeroOwner[b];
+
+                if(ownerA == ownerB) {
+                    var isUltA = isUltimateAbility(a);
+                    var isUltB = isUltimateAbility(b);
+
+                    if(isUltA & !isUltB) {
+                        return 1;
+                    }
+
+                    if(!isUltA & isUltB) {
+                        return -1;
+                    }
+                }
+
+                if(a < b) {
+                    return -1;
+                } else if(a > b) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
 
             for(var i=1; i<toSort.length; ++i) {
                 var left = abilityStore[toSort[i-1]];
