@@ -21,8 +21,9 @@ Legends of Dota
 
 ###Can I translate this into my language?###
  - Yes!
- - Open `script_generator/CUSTOM/addon_<your langage>.txt`
+ - Open `src/localization/addon_<your langage>.txt`
  - You can reference `addon_english.txt`
  - You might need to save it as unicode, if non standard characters are used
- - Any strings you don't fill in, will be auto copied in from the english file anyways when the gamemode is compiled
- - Note to Ash47: You need to add new languages to the `stage.bat` file!
+
+###Translation Credits###
+ - [Chinese by ethereal](http://steamcommunity.com/profiles/76561198124343304/)
