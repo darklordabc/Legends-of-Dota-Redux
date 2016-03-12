@@ -382,9 +382,18 @@ function Pregame:onThink()
 
     -- Game is starting, spawn heroes
     if ourPhase == constants.PHASE_INGAME then
-        self:spawnAllHeroes()
-        self:addExtraTowers()
-        self:preventCamping()
+        -- Do things after a small delay
+        local this = self
+
+        -- Add extra towers
+        Timers:CreateTimer(function()
+            this:addExtraTowers()
+        end, DoUniqueString('createtowers'), 0.1)
+
+
+        Timers:CreateTimer(function()
+            this:preventCamping()
+        end, DoUniqueString('preventcamping'), 0.2)
     end
 end
 
