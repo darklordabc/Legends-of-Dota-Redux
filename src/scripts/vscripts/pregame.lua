@@ -2308,6 +2308,9 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 
             -- Increase the number of ability bans this player has done
             playerBans.heroBans = playerBans.heroBans + 1
+
+            -- Network how many bans have been used
+            network:setTotalBans(playerID, playerBans.heroBans, playerBans.abilityBans)
 		else
 			-- Ability was already banned
 
@@ -2375,6 +2378,9 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 
             -- Increase the number of bans this player has done
             playerBans.abilityBans = playerBans.abilityBans + 1
+
+            -- Network how many bans have been used
+            network:setTotalBans(playerID, playerBans.heroBans, playerBans.abilityBans)
 		else
 			-- Ability was already banned
 

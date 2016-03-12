@@ -135,6 +135,16 @@ function Network:banHero(heroName)
     })
 end
 
+-- Pushes that a hero is banned
+function Network:setTotalBans(playerID, currentHeroBans, currentAbilityBans)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('banned', 'ban_info_' .. playerID, {
+        playerID = playerID,
+        currentHeroBans = currentHeroBans,
+        currentAbilityBans = currentAbilityBans
+    })
+end
+
 -- Pushes the ready state
 function Network:sendReadyState(readyState)
     -- Push to everyone

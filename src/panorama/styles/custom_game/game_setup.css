@@ -552,7 +552,6 @@
 #heroBuilderLockButtonBans {
     visibility: collapse;
     vertical-align: bottom;
-    margin-top: 16px;
     margin-bottom: 8px;
 }
 
@@ -938,6 +937,37 @@
 
 .phase_banning_selected #pickingPhaseBans {
     visibility: visible;
+}
+
+#banningButtonContainer {
+    flow-children: right;
+    padding: 8px;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.lodBanningHeader {
+    font-size: 24px;
+    padding-left: 8px;
+}
+
+.lodBanningInstructions {
+    padding-left: 12px;
+}
+
+#lodBanLimits {
+    padding-left: 12px;
+}
+
+#lodBanThisSkill {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+#lodBanSkillButton {
+    vertical-align: middle;
 }
 
 #pickingPhaseSelectedHero {
@@ -1419,10 +1449,19 @@
     horizontal-align: left;
     margin-left: 8px;
     margin-right: 8px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 .heroBuildMenuButtonSmall:hover {
     wash-color: #FFFFFFFF;
+}
+
+.disableButton {
+    opacity: 0.0;
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 .lockBuildButton {

@@ -1113,6 +1113,10 @@ var bannedHeroes = {};
 var takenAbilities = {};
 var takenTeamAbilities = {};
 
+// Keeping track of bans
+var currentHeroBans = 0;
+var currentAbilityBans = 0;
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -1426,6 +1430,7 @@ function updateTakenSkills() {
 function OnSkillBanned(table_name, key, data) {
     var heroName = data.heroName;
     var abilityName = data.abilityName;
+    var playerInfo = data.playerInfo;
 
     if(heroName != null) {
         // Store the ban
@@ -1445,6 +1450,20 @@ function OnSkillBanned(table_name, key, data) {
         calculateFilters();
         updateHeroPreviewFilters();
         updateRecommendedBuildFilters();
+    }
+
+    if(data.playerID != null) {
+        // Someone's ban info
+        if(data.playerID == Players.GetLocalPlayer()) {
+            // Our banning info
+
+            // Store new values
+            currentHeroBans = data.currentHeroBans;
+            currentAbilityBans = data.currentAbilityBans;
+
+            // Recalculate
+            recalculateBanLimits();
+        }
     }
 }
 
@@ -1731,20 +1750,43 @@ function setupBuilderTabs() {
 
     $('#pickingPhaseSelectedHeroText').hittest = false;
 
-    // Loop over all the panels we need to hook
-    /*for(var i=0; i<toHook.length; ++i) {
-        var panel = $('#' + toHook[i]);
+    // Hook banning
+    //var theSet = '';
+    var hookSet = function(setName) {
+        var enterNumber = 0;
+        var banningArea = $('#pickingPhaseBans');
 
-        $.Each(panel.Children(), function(obj) {
-            $.Msg(obj);
-        })
-    }*/
+        var banningDragEnter = function(panelID, draggedPanel) {
+            banningArea.AddClass('potential_drop_target');
+            draggedPanel.SetAttributeInt('banThis', 1);
+
+            // Prevent annoyingness
+            ++enterNumber;
+        };
+
+        var banningDragLeave = function(panelID, draggedPanel) {
+            var myNumber = ++enterNumber;
+
+            $.Schedule(0.1, function() {
+                if(myNumber == enterNumber) {
+                    banningArea.RemoveClass('potential_drop_target');
+
+                    if(draggedPanel.deleted == null) {
+                        draggedPanel.SetAttributeInt('banThis', 0);
+                    }
+                }
+            });
+        };
+
+        $.RegisterEventHandler('DragEnter', $(setName), banningDragEnter);
+        $.RegisterEventHandler('DragLeave', $(setName), banningDragLeave);
+    };
+
+    hookSet('#pickingPhaseBans');
 }
 
 // Builds the hero list
 function buildHeroList() {
-    $.Msg('building hero list...');
-
     var strHeroes = [];
     var agiHeroes = [];
     var intHeroes = [];
@@ -1815,8 +1857,6 @@ function buildHeroList() {
 
 // Build the flags list
 function buildFlagList() {
-    $.Msg('Building flag list...');
-
     flagData = {};
 
     for(var abilityName in flagDataInverse) {
@@ -1996,6 +2036,9 @@ function setSelectedDropAbility(abName, abcon) {
     if(currentSelectedSkill == abName || abName == '') {
         // Nothing selected
         currentSelectedSkill = '';
+
+        // Update the banning skill icon
+        $('#banningButtonContainer').SetHasClass('disableButton', true);
     } else {
         // Do a selection
         currentSelectedSkill = abName;
@@ -2005,6 +2048,10 @@ function setSelectedDropAbility(abName, abcon) {
         if(abcon != null) {
             abcon.SetHasClass('lodSelected', true);
         }
+
+        // Update the banning skill icon
+        $('#lodBanThisSkill').abilityname = abName;
+        $('#banningButtonContainer').SetHasClass('disableButton', false);
     }
 
     // Highlight which slots we can drop it into
@@ -2173,6 +2220,9 @@ function makeHeroSelectable(heroCon) {
         // Highlight drop cell
         $('#pickingPhaseSelectedHeroImage').SetHasClass('lodSelectedDrop', true)
         $('#pickingPhaseSelectedHeroImageNone').SetHasClass('lodSelectedDrop', true)
+
+        // Banning
+        $('#pickingPhaseBans').SetHasClass('lodSelectedDrop', true)
     });
 
     $.RegisterEventHandler('DragEnd', heroCon, function(panelId, draggedPanel) {
@@ -2184,12 +2234,20 @@ function makeHeroSelectable(heroCon) {
         $('#pickingPhaseSelectedHeroImage').SetHasClass('lodSelectedDrop', false);
         $('#pickingPhaseSelectedHeroImageNone').SetHasClass('lodSelectedDrop', false);
 
+        // Banning
+        $('#pickingPhaseBans').SetHasClass('lodSelectedDrop', false)
+
         var heroName = draggedPanel.GetAttributeString('heroName', '');
         if(heroName == null || heroName.length <= 0) return;
 
         // Can we select this as our hero?
         if(draggedPanel.GetAttributeInt('canSelectHero', 0) == 1) {
             chooseHero(heroName);
+        }
+
+        // Are we banning a hero?
+        if(draggedPanel.GetAttributeInt('banThis', 0) == 1) {
+            banHero(heroName);
         }
     });
 }
@@ -2228,6 +2286,9 @@ function makeSkillSelectable(abcon) {
 
         // Hide skill info
         $.DispatchEvent('DOTAHideAbilityTooltip');
+
+        // Banning
+        $('#pickingPhaseBans').SetHasClass('lodSelectedDrop', true)
     });
 
     $.RegisterEventHandler('DragEnd', abcon, function(panelId, draggedPanel) {
@@ -2245,6 +2306,17 @@ function makeSkillSelectable(abcon) {
 
         // Highlight nothing
         setSelectedDropAbility();
+
+        // Are we banning a hero?
+        if(draggedPanel.GetAttributeInt('banThis', 0) == 1) {
+            var abName = draggedPanel.GetAttributeString('abilityname', '');
+            if(abName != null && abName.length > 0) {
+                banAbility(abName);
+            }
+        }
+
+        // Banning
+        $('#pickingPhaseBans').SetHasClass('lodSelectedDrop', false)
     });
 }
 
@@ -2288,7 +2360,6 @@ function OnHeroTabShown(tabName) {
                 if(shouldShow && heroFilterInfo.classType) {
                     var info = heroData[heroName];
                     if(info) {
-                        $.Msg(info.AttackCapabilities);
                         if(info.AttackCapabilities == 'DOTA_UNIT_CAP_MELEE_ATTACK' && heroFilterInfo.classType == 'ranged' || info.AttackCapabilities == 'DOTA_UNIT_CAP_RANGED_ATTACK' && heroFilterInfo.classType == 'melee') {
                             shouldShow = false;
                         }
@@ -3438,6 +3509,60 @@ function OnOptionChanged(table_name, key, data) {
         hideEnemyPicks = data.v == 1;
         calculateHideEnemyPicks();
     }
+
+    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans') {
+        recalculateBanLimits();
+    }
+}
+
+// Recalculates how many abilities / heroes we can ban
+function recalculateBanLimits() {
+    var maxHeroBans = optionValueList['lodOptionBanningMaxHeroBans'] || 0;
+    var maxAbilityBans = optionValueList['lodOptionBanningMaxBans'] || 0;
+
+    var heroBansLeft = maxHeroBans - currentHeroBans;
+    var abilityBansLeft = maxAbilityBans - currentAbilityBans;
+
+    var txt = '';
+    var txtMainLeft = $.Localize('lodYouCanBan');
+    var txtHero = '';
+    var txtAb = '';
+
+    if(heroBansLeft > 0) {
+        if(heroBansLeft > 1) {
+            txtHero = $.Localize('lodUptoHeroes');
+        } else {
+            txtHero = $.Localize('lodUptoOneHero');
+        }
+    }
+
+    if(abilityBansLeft > 0) {
+        if(abilityBansLeft > 1) {
+            txtAb = $.Localize('lodUptoAbilities');
+        } else {
+            txtAb = $.Localize('lodUptoAbility');
+        }
+    }
+
+    if(heroBansLeft > 0) {
+        txt = txtMainLeft + txtHero;
+
+        if(abilityBansLeft > 0) {
+            txt += $.Localize('lodBanAnd') + txtAb;
+        }
+    } else if(abilityBansLeft) {
+        txt = txtMainLeft + txtAb;
+    } else {
+        txt = $.Localize('lodNoMoreBans');
+    }
+
+    // Add full stop
+    txt += '.';
+
+    txt = txt.replace(/\{heroBansLeft\}/g, heroBansLeft);
+    txt = txt.replace(/\{abilityBansLeft\}/g, abilityBansLeft);
+
+    $('#lodBanLimits').text = txt;
 }
 
 // Recalculates what teams should be hidden

@@ -253,8 +253,21 @@
     "selectBuild"                                   "Select Build"
     "selectHero"                                    "Select Hero"
     "banHero"                                       "Ban Hero"
+    "banAbility"                                    "Ban Ability"
+    "lodBanningSection"                             "Banning"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
+
+    "lodBanningInstructions"                        "Drag abilities or heroes here to ban them."
+
+    "lodYouCanBan"                                  "You can ban "
+    "lodUptoHeroes"                                 "upto {heroBansLeft} more heroes"
+    "lodUptoOneHero"                                "upto 1 more hero"
+    "lodUptoAbilities"                              "upto {abilityBansLeft} more abilities"
+    "lodUptoAbility"                                "upto 1 more ability"
+    "lodBanAnd"                                     " and "
+    "lodNoMoreBans"                                 "You can not ban any more heroes or abilities"
+
 
     // All Random
     "selectThisRandomBuild"                         "Select Build"

@@ -203,15 +203,20 @@
                         </Panel>
                     </Panel>
                     <Panel id="pickingPhaseBans">
-                        <Label text="Banning" />
+                        <Label class="lodBanningHeader" text="lodBanningSection" />
+                        <Label class="lodBanningInstructions" text="lodBanningInstructions" />
+                        <Label id="lodBanLimits" text="banLimits" />
 
-                        <Button class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
-                            <Label text="Ban Ability" />
-                        </Button>
+                        <Panel id="banningButtonContainer" class="disableButton">
+                            <DOTAAbilityImage id="lodBanThisSkill" abilityname="life_stealer_empty_1" />
+                            <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
+                                <Label text="banAbility" />
+                            </Button>
+                        </Panel>
 
                         <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                <Label text="finishBanning" />
-                            </Button>
+                            <Label text="finishBanning" />
+                        </Button>
                     </Panel>
                 </Panel>
 
