@@ -1029,7 +1029,7 @@ var recommendedBuilds = [
     },
     {
         title: 'The Anti-Tank',
-        heroName: 'npc_dota_hero_juggernaut',
+        heroName: 'npc_dota_hero_mirana',
         attr: 'agi',
         build: {
             1: 'antimage_blink',
