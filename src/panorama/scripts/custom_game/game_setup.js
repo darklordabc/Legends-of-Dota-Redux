@@ -1040,6 +1040,19 @@ var recommendedBuilds = [
             6: 'beastmaster_primal_roar',
         },
     },
+    {
+        title: 'Glass Cannon',
+        heroName: 'npc_dota_hero_sniper',
+        attr: 'agi',
+        build: {
+            1: 'phantom_assassin_coup_de_grace',
+            2: 'slardar_bash',
+            3: 'drow_ranger_trueshot',
+            4: 'slark_essence_shift',
+            5: 'alpha_wolf_command_aura',
+            6: 'drow_ranger_marksmanship',
+        },
+    },
 ];
 
 // Phases
