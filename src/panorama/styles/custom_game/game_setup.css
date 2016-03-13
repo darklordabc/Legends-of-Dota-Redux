@@ -11,6 +11,29 @@
     Notifications
 */
 
+#lodYouAreTheHost {
+    z-index: 10000;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 16px;
+    width: 600px;
+    height: 200px;
+    flow-children: down;
+    vertical-align: middle;
+    horizontal-align: center;
+}
+
+.lodHostButtonContainer {
+    vertical-align: bottom;
+    width: 100%;
+}
+
+.lodHostButtonContainer Button {
+    width: 120px;
+    horizontal-align: center;
+}
+
 #lodTimerWarning {
     z-index: 9999;
     width: 100%;
@@ -329,7 +352,7 @@
     padding: 4px;
 }
 
-.phase_option_selection.phase_option_selection_selected #middleButtons {
+.player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
 }
 
@@ -1681,6 +1704,14 @@
     border-top: 1px solid #ffffff03;
     border-left: 1px solid #ffffff03;
     visibility: collapse;
+}
+
+#lockTeamsFirst {
+    visibility: collapse;
+}
+
+.player_has_host_privileges #lockTeamsFirst {
+    visibility: visible;
 }
 
 .teams_locked #lockTeamsFirst {

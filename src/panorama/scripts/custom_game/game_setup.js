@@ -3895,6 +3895,11 @@ function UpdateTimer() {
     $.Schedule(0.1, UpdateTimer);
 }
 
+// Player has accepting the hosting message
+function onAcceptHosting() {
+    $('#lodYouAreTheHost').visible = false;
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
