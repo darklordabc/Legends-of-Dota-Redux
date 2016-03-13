@@ -1027,6 +1027,19 @@ var recommendedBuilds = [
             6: 'legion_commander_duel',
         },
     },
+    {
+        title: 'The Anti-Tank',
+        heroName: 'npc_dota_hero_juggernaut',
+        attr: 'agi',
+        build: {
+            1: 'antimage_blink',
+            2: 'ancient_apparition_ice_blast',
+            3: 'life_stealer_feast',
+            4: 'slark_essence_shift',
+            5: 'troll_warlord_fervor',
+            6: 'beastmaster_primal_roar',
+        },
+    },
 ];
 
 // Phases
