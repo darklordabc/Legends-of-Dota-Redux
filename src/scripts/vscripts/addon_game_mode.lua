@@ -1892,7 +1892,7 @@ handleFreeCourier = function(hero)
 end
 
 -- Gives a free scepter
-handleFreeScepter = function(unit)
+--[[handleFreeScepter = function(unit)
     -- Give free scepter
     if OptionManager:GetOption('freeScepter') then
         unit:AddNewModifier(unit, nil, 'modifier_item_ultimate_scepter', {
@@ -1901,7 +1901,7 @@ handleFreeScepter = function(unit)
             bonus_mana = 0
         })
     end
-end
+end]]
 
 -- Buffs a hero
 --[[handleHeroBuffing = function(hero)
@@ -1970,7 +1970,7 @@ function lod:InitGameMode()
     --survival.LoadCommands()
 
     -- Start listening to NPC spawns
-    listenToNPCs()
+    --listenToNPCs()
 
     -- Ban meepo ulty, for now
     --banSkill('meepo_divided_we_stand')
@@ -2751,7 +2751,7 @@ end]]
 -- When a hero spawns
 --local specialAddedSkills = {}
 --local mainHeros = {}
-local givenBonuses = {}
+--[[local givenBonuses = {}
 --local doneBots = {}
 --local resetGold = {}
 --local spiritBears = {}
@@ -2765,10 +2765,13 @@ function listenToNPCs()
         if IsValidEntity(spawnedUnit) then
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
-                -- Silencer Fix?
+                -- Grab their playerID
+                local playerID = spawnedUnit:GetPlayerID()
+
+                -- Various fixes
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
-                        -- Check if we should intsteal
+                        -- Silencer Fix
                         if spawnedUnit:HasAbility('silencer_glaives_of_wisdom') then
                             if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
                                 spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_silencer_int_steal', {})
@@ -2776,11 +2779,19 @@ function listenToNPCs()
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
+
+                        -- Fix meepo clones and illusions
+
+                        local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                        -- Must be a hero, or an illusion
+                        if mainHero ~= spawnedUnit then
+                            SkillManager:ApplyBuild(spawnedUnit, build or {})
+                        end
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-                -- Grab their playerID
-                local playerID = spawnedUnit:GetPlayerID()
+
 
                 -- Handle hero buffing
                 --handleHeroBuffing(spawnedUnit)
@@ -2796,10 +2807,10 @@ function listenToNPCs()
                 handleFreeScepter(spawnedUnit)
 
                 -- Fix gold bug
-                if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
-                    resetGold[playerID] = true
-                    PlayerResource:SetGold(playerID, 525, false)
-                end
+                --if PlayerResource:HasRepicked(playerID) and not resetGold[playerID] then
+                --    resetGold[playerID] = true
+                --    PlayerResource:SetGold(playerID, 525, false)
+                --end
 
                 -- Only give bonuses once
                 if not givenBonuses[playerID] then
@@ -2911,7 +2922,7 @@ function listenToNPCs()
                     -- Remove their skills
                     SkillManager:RemoveAllSkills(spawnedUnit)
                 end]]
-            end
+--            end
 
             -- Check if we should apply custom bear skills
             --[[if OptionManager:GetOption('allowBearSkills') and spawnedUnit:GetClassname() == 'npc_dota_lone_druid_bear' then
@@ -2975,9 +2986,9 @@ function listenToNPCs()
                 -- Apply creep skills
                 applyCreepSkills(spawnedUnit)
             end]]
-        end
-    end, nil)
-end
+--        end
+--    end, nil)
+--end
 
 --[[ListenToGameEvent('modifier_event', function(keys)
     for k,v in pairs(keys) do

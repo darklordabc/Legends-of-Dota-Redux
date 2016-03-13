@@ -168,6 +168,9 @@ function Pregame:init()
         this:onPlayerAskForHero(eventSourceIndex, args)
     end)
 
+    -- Fix spawning issues
+    self:fixSpawningIssues()
+
     -- Network heroes
     self:networkHeroes()
 
@@ -3285,6 +3288,105 @@ function Pregame:preventCamping()
             end
         end
     end
+end
+
+-- Apply fixes
+function Pregame:fixSpawningIssues()
+    local givenBonuses = {}
+    local handled = {}
+
+    -- Grab a reference to self
+    local this = self
+
+    ListenToGameEvent('npc_spawned', function(keys)
+        -- Grab the unit that spawned
+        local spawnedUnit = EntIndexToHScript(keys.entindex)
+
+        -- Ensure it's a valid unit
+        if IsValidEntity(spawnedUnit) then
+            -- Make sure it is a hero
+            if spawnedUnit:IsHero() then
+                -- Grab their playerID
+                local playerID = spawnedUnit:GetPlayerID()
+
+                local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                -- Fix meepo clones and illusions
+                if mainHero and mainHero ~= spawnedUnit then
+                    -- Apply the build
+                    local build = this.selectedSkills[playerID] or {}
+                    SkillManager:ApplyBuild(spawnedUnit, build)
+
+                    -- Set the correct level for each ability
+                    --[[for k,v in pairs(build) do
+                        local abMain = mainHero:FindAbilityByName(v)
+
+                        if abMain then
+                            local abAlt = spawnedUnit:FindAbilityByName(v)
+
+                            if abAlt then
+                                -- Both heroes have both skills, set the level
+                                abAlt:SetLevel(abMain:GetLevel())
+                            end
+                        end
+                    end]]
+                end
+
+                -- Various fixes
+                Timers:CreateTimer(function()
+                    if IsValidEntity(spawnedUnit) then
+                        -- Silencer Fix
+                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom') then
+                            if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_silencer_int_steal', {})
+                            end
+                        else
+                            spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                        end
+                    end
+                end, DoUniqueString('silencerFix'), 0.1)
+
+                -- Don't touch this hero more than once :O
+                if handled[spawnedUnit] then return end
+                handled[spawnedUnit] = true
+
+                -- Handle the free courier stuff
+                --handleFreeCourier(spawnedUnit)
+
+                -- Handle free scepter stuff
+                if OptionManager:GetOption('freeScepter') then
+                    spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter', {
+                        bonus_all_stats = 0,
+                        bonus_health = 0,
+                        bonus_mana = 0
+                    })
+                end
+
+                -- Only give bonuses once
+                if not givenBonuses[playerID] then
+                    -- We have given bonuses
+                    givenBonuses[playerID] = true
+
+                    local startingLevel = OptionManager:GetOption('startingLevel')
+                    -- Do we need to level up?
+                    if startingLevel > 1 then
+                        -- Level it up
+                        --for i=1,startingLevel-1 do
+                        --    spawnedUnit:HeroLevelUp(false)
+                        --end
+
+                        -- Fix EXP
+                        spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                    end
+
+                    -- Any bonus gold?
+                    if OptionManager:GetOption('bonusGold') > 0 then
+                        PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
+                    end
+                end
+            end
+        end
+    end, nil)
 end
 
 -- Return an instance of it
