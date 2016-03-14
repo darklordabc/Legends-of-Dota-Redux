@@ -357,7 +357,7 @@
     padding: 4px;
 }
 
-.player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
+.player_has_host_privileges .phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
 }
 
@@ -1268,6 +1268,7 @@
     height: 100%;
     background-color: #111111;
     flow-children: right-wrap;
+    overflow: squish scroll;
 }
 
 .lodSkillTabButton {
@@ -1301,6 +1302,38 @@
     margin-bottom: 4px;
 
     border: 1px solid #444444;
+}
+
+.grouped_skills {
+    flow-children: down-wrap;
+
+    background-color: #181a1e;
+    border: 2px solid #4B634C;
+    border-radius: 8px;
+
+    padding: 4px;
+    padding-right: 1px;
+    padding-bottom: 0px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    height: 44px;
+    margin-top: 16px;
+}
+
+.grouped_skills.manySkills {
+    margin-top: 0px;
+    height: 80px;
+}
+
+.grouped_skills .lodMiniAbility {
+    margin: 0px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-top: 0px;
+}
+
+.grouped_skills .lodMiniAbility.ultimateAbility {
+    vertical-align: bottom;
 }
 
 .lodSearchPanel {
@@ -1857,7 +1890,7 @@
     visibility: collapse;
 }
 
-.player_has_host_privileges.phase_option_selection .optionsSlotPanelSlave {
+.player_has_host_privileges .phase_option_selection .optionsSlotPanelSlave {
     visibility: collapse;
 }
 
@@ -1865,15 +1898,15 @@
     visibility: visible;
 }
 
-.player_has_host_privileges.phase_option_selection .optionsSlotPanelHost {
+.player_has_host_privileges .phase_option_selection .optionsSlotPanelHost {
     visibility: visible;
 }
 
-.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
+.player_has_host_privileges .phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
     visibility: collapse;
 }
 
-.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
+.player_has_host_privileges .phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
     visibility: visible;
 }
 

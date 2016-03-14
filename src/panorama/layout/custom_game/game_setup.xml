@@ -169,7 +169,8 @@
                             </Panel>
                             <Label text="Filter by category:" class="buildingHelperInfoText" />
                             <DropDown id="lodSkillCategoryHolder" />
-                            <ToggleButton text="Show Banned Skills" onactivate="toggleShowBanned()" />
+                            <ToggleButton id="buttonHeroGrouping" text="Group Hero Abilities" onactivate="toggleHeroGrouping()" />
+                            <ToggleButton id="buttonShowBanned" text="Show Banned Skills" onactivate="toggleShowBanned()" />
                             <ToggleButton text="Show Disallowed Skills" onactivate="toggleShowDisallowed()" />
                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />

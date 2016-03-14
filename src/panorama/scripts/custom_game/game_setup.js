@@ -1156,10 +1156,11 @@ var optionValueList = {};
 var allowedCategories = {};
 
 // Should we show banned / disallowed skills?
-var showBannedSkills = false;
+var showBannedSkills = true;
 var showDisallowedSkills = false;
 var showTakenSkills = true;
 var showNonDraftSkills = false;
+var useSmartGrouping = true;
 
 // List of banned abilities
 var bannedAbilities = {};
@@ -2221,6 +2222,13 @@ function showBuilderTab(tabName) {
     }
 }
 
+function toggleHeroGrouping() {
+    useSmartGrouping = !useSmartGrouping;
+
+    // Update filters
+    calculateFilters();
+}
+
 function toggleShowBanned() {
     showBannedSkills = !showBannedSkills;
 
@@ -2719,18 +2727,26 @@ function OnSkillTabShown(tabName) {
         searchCategory = '';
 
         activeTabs = {
-            main: true,
-            neutral: true,
-            wraith: true,
-            OP: true
+            main: true
         };
 
+        var heroOwnerBlocks = {};
         calculateFilters = function() {
             // Array used to sort abilities
             var toSort = [];
 
             // Prepare skill filters
             prepareFilterInfo();
+
+            // Hide all hero owner blocks
+            for(var heroName in heroOwnerBlocks) {
+                heroOwnerBlocks[heroName].visible = false;
+                heroOwnerBlocks[heroName].SetHasClass('manySkills', false);
+            }
+
+            // Counters for how many skills are in a block
+            var heroBlockCounts = {};
+            var subSorting = {};
 
             // Loop over all abilties
             for(var abilityName in abilityStore) {
@@ -2746,19 +2762,110 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
 
                     if(filterInfo.shouldShow) {
-                        toSort.push(abilityName);
+                        if(useSmartGrouping) {
+                            var theOwner = abilityHeroOwner[abilityName];
+
+                            if(theOwner != null) {
+                                // Group it
+                                var groupCon = heroOwnerBlocks[theOwner];
+                                if(groupCon == null) {
+                                    groupCon = $.CreatePanel('Panel', con, 'group_container_' + theOwner);
+                                    groupCon.SetHasClass('grouped_skills', true);
+
+                                    // Store it
+                                    heroOwnerBlocks[theOwner] = groupCon;
+                                }
+
+                                // Making the layout much nicer
+                                if(heroBlockCounts[theOwner] == null) {
+                                    heroBlockCounts[theOwner] = 1;
+                                } else {
+                                    ++heroBlockCounts[theOwner];
+
+                                    if(heroBlockCounts[theOwner] == 3) {
+                                        groupCon.SetHasClass('manySkills', true);
+                                    }
+                                }
+
+                                // Set that it is an ulty
+                                if(isUltimateAbility(abilityName)) {
+                                    ab.SetHasClass('ultimateAbility', true);
+                                }
+
+                                abilityStore[abilityName].SetParent(groupCon);
+                                groupCon.visible = true;
+
+                                // Add it to the sort list
+                                toSort.push({
+                                    txt: theOwner,
+                                    con: groupCon,
+                                    grouped: true
+                                });
+
+                                if(subSorting[theOwner] == null) {
+                                    subSorting[theOwner] = [];
+                                }
+
+                                subSorting[theOwner].push({
+                                    txt: abilityName,
+                                    con: ab
+                                });
+                            } else {
+                                toSort.push({
+                                    txt: abilityName,
+                                    con: ab
+                                });
+                            }
+
+                        } else {
+                            toSort.push({
+                                txt: abilityName,
+                                con: ab
+                            });
+
+                            // Ensure correct parent is set
+                            abilityStore[abilityName].SetParent(con);
+                        }
                     }
                 }
             }
 
-            // Do the sort
+            // Do the main sort
             toSort.sort(function(a, b) {
-                var ownerA = abilityHeroOwner[a];
-                var ownerB = abilityHeroOwner[b];
+                var txtA = a.txt;
+                var txtB = b.txt;
 
-                if(ownerA == ownerB) {
-                    var isUltA = isUltimateAbility(a);
-                    var isUltB = isUltimateAbility(b);
+                if(a.grouped != b.grouped) {
+                    if(a.grouped) return -1;
+                    return 1;
+                }
+
+                if(txtA < txtB) {
+                    return -1;
+                } else if(txtA > txtB) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+
+            for(var i=1; i<toSort.length; ++i) {
+                var left = toSort[i-1];
+                var right = toSort[i];
+
+                con.MoveChildAfter(right.con, left.con);
+            }
+
+            // Do sub sorts
+            for(var heroName in subSorting) {
+                var sortGroup = subSorting[heroName];
+
+                sortGroup.sort(function(a, b) {
+                    var txtA = a.txt;
+                    var txtB = b.txt;
+
+                    var isUltA = isUltimateAbility(txtA);
+                    var isUltB = isUltimateAbility(txtB);
 
                     if(isUltA & !isUltB) {
                         return 1;
@@ -2767,22 +2874,23 @@ function OnSkillTabShown(tabName) {
                     if(!isUltA & isUltB) {
                         return -1;
                     }
+
+                    if(txtA < txtB) {
+                        return -1;
+                    } else if(txtA > txtB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+
+                var subCon = heroOwnerBlocks[heroName];
+                for(var i=1; i<sortGroup.length; ++i) {
+                    var left = sortGroup[i-1];
+                    var right = sortGroup[i];
+
+                    subCon.MoveChildAfter(right.con, left.con);
                 }
-
-                if(a < b) {
-                    return -1;
-                } else if(a > b) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            });
-
-            for(var i=1; i<toSort.length; ++i) {
-                var left = abilityStore[toSort[i-1]];
-                var right = abilityStore[toSort[i]];
-
-                con.MoveChildAfter(right, left);
             }
         }
 
@@ -4049,6 +4157,12 @@ function onAcceptHosting() {
 
     // Toggle the show taken abilities button to be on
     $('#lodToggleButton').checked = true;
+
+    // Toggle the hero grouping button
+    $('#buttonHeroGrouping').checked = true;
+
+    // Show banned abilities by default
+    $('#buttonShowBanned').checked = true;
 
     // Disable clicking on the warning timer
     $('#lodTimerWarning').hittest = false;
