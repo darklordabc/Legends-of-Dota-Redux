@@ -1425,7 +1425,7 @@ function Pregame:initOptionSelector()
                 -- Full Banning Phase
                 self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
                 self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
             else
                 -- No Banning
                 self:setOption('lodOptionBanningMaxBans', 0, true)
