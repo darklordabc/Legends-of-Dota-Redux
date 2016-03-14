@@ -22,6 +22,11 @@
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
+    visibility: collapse;
+}
+
+.player_has_host_privileges #lodYouAreTheHost {
+    visibility: visible;
 }
 
 .lodHostButtonContainer {

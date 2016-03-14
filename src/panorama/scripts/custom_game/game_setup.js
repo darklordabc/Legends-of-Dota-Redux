@@ -1053,6 +1053,32 @@ var recommendedBuilds = [
             6: 'drow_ranger_marksmanship',
         },
     },
+    {
+        title: 'No ulty, can\'t war',
+        heroName: 'npc_dota_hero_windrunner',
+        attr: 'int',
+        build: {
+            1: 'medusa_split_shot',
+            2: 'antimage_blink',
+            3: 'medusa_mana_shield',
+            4: 'furion_teleportation',
+            5: 'alchemist_goblins_greed',
+            6: 'life_stealer_feast',
+        },
+    },
+    {
+        title: 'The Brew Trow',
+        heroName: 'npc_dota_hero_windrunner',
+        attr: 'int',
+        build: {
+            1: 'spectre_dispersion',
+            2: 'silencer_curse_of_the_silent',
+            3: 'windrunner_windrun',
+            4: 'huskar_berserkers_blood',
+            5: 'tiny_grow_lod',
+            6: 'drow_ranger_marksmanship',
+        },
+    },
 ];
 
 // Phases
@@ -3434,7 +3460,7 @@ function doActualTeamUpdate() {
     var playerInfo = Game.GetLocalPlayerInfo();
     if (!playerInfo) return;
 
-    $('#mainSelectionRoot').SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
 }
 
 //--------------------------------------------------------------------------------------------------
