@@ -17,6 +17,7 @@
 
     // The stage selection interface
     "lodStageButtonOptionSelection"                 "Option Selection"
+    "lodStageButtonOptionVoting"                    "Option Voting"
     "lodStageButtonBanning"                         "Banning"
     "lodStageButtonSelection"                       "Hero Builder"
     "lodStageButtonRandomSelection"                 "All Random Build Selection"

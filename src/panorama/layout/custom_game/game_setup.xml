@@ -66,6 +66,11 @@
                     <Label text="" id="lodOptionSelectionTimeRemaining" />
                 </Button>
 
+                <Button id="stageButtonOptionVoting" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_OPTION_VOTING)">
+                    <Label text="lodStageButtonOptionVoting" />
+                    <Label text="" id="lodOptionVotingTimeRemaining" />
+                </Button>
+
                 <Label class="lodStageArrow" id="lodArrowBanningPhase" text="->" />
                 <Button id="stageButtonBanning" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_BANNING)">
                     <Label text="lodStageButtonBanning" />

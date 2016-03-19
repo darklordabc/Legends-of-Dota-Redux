@@ -3606,7 +3606,7 @@ var teamUpdateCapper = 0;
 function OnTeamPlayerListChanged() {
     var myUpdateTimer = ++teamUpdateCapper;
 
-    $.Schedule(1, function() {
+    $.Schedule(0.1, function() {
         if(myUpdateTimer == teamUpdateCapper) {
             doActualTeamUpdate();
         }
@@ -3641,6 +3641,7 @@ function OnPhaseChanged(table_name, key, data) {
             var masterRoot = $('#mainSelectionRoot');
             masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
             masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
+            masterRoot.SetHasClass('phase_option_voting', currentPhase == PHASE_OPTION_VOTING);
             masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
             masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
             masterRoot.SetHasClass('phase_all_random', currentPhase == PHASE_RANDOM_SELECTION);
@@ -3935,6 +3936,7 @@ function SetSelectedPhase(newPhase, noSound) {
     // Update CSS
     var masterRoot = $('#mainSelectionRoot');
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
+    masterRoot.SetHasClass('phase_option_voting_selected', selectedPhase == PHASE_OPTION_VOTING);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
     masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION);
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
@@ -4110,12 +4112,17 @@ function onAcceptHosting() {
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name;
 
+    // Should we use option voting?
+    var useOptionVoting = false;
+
     // All Pick Only
     if(mapName == 'all_pick') {
         allOptions.presets.fields[0].values = [{
             text: 'lodOptionBalancedAllPick',
             value: 1
-        }]
+        }];
+
+        useOptionVoting = true;
     }
 
     // Mirror Draft Only
@@ -4123,7 +4130,9 @@ function onAcceptHosting() {
         allOptions.presets.fields[0].values = [{
             text: 'lodOptionBalancedMirrorDraft',
             value: 3
-        }]
+        }];
+
+        useOptionVoting = true;
     }
 
     // All Random Only
@@ -4131,7 +4140,14 @@ function onAcceptHosting() {
         allOptions.presets.fields[0].values = [{
             text: 'lodOptionBalancedAllRandom',
             value: 4
-        }]
+        }];
+
+        useOptionVoting = true;
+    }
+
+    // Apply option voting related CSS
+    if(useOptionVoting) {
+        $.GetContextPanel().SetHasClass('option_voting_enabled', true);
     }
 
     // Automatically assign players to teams.

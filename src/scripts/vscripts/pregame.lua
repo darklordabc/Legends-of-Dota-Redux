@@ -189,18 +189,21 @@ function Pregame:init()
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
+        self.useOptionVoting = true
     end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
+        self.useOptionVoting = true
     end
 
     -- All random only
     if mapName == 'all_random' then
         self:setOption('lodOptionGamemode', 4)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
+        self.useOptionVoting = true
     end
 
     -- Exports for stat collection
@@ -285,8 +288,15 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_LOADING then
         -- Are we in the custom game setup phase?
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-            self:setPhase(constants.PHASE_OPTION_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
+            -- Are we using option selection, or option voting?
+            if self.useOptionVoting then
+                -- Option voting
+                self:setPhase(constants.PHASE_OPTION_VOTING)
+            else
+                -- Option selection
+                self:setPhase(constants.PHASE_OPTION_SELECTION)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
+            end
         end
 
         -- Wait for time to pass

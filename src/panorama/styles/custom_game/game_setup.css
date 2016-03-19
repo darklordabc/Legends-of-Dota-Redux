@@ -521,6 +521,27 @@
     border: 1px solid #AAFFAA;
 }
 
+.option_voting_enabled #stageButtonOptionSelection {
+    visibility: collapse;
+}
+
+#stageButtonOptionVoting {
+    flow-children: right;
+    visibility: collapse;
+}
+
+.phase_option_voting #stageButtonOptionVoting {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+}
+
+.phase_option_voting_selected #stageButtonOptionVoting {
+    border: 1px solid #AAFFAA;
+}
+
+.option_voting_enabled #stageButtonOptionVoting {
+    visibility: visible;
+}
+
 #option_panel_main_lodOptionMirrorHeroes {
     visibility: collapse;
 }
