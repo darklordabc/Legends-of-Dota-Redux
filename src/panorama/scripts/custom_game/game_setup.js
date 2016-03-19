@@ -1079,17 +1079,44 @@ var recommendedBuilds = [
             6: 'drow_ranger_marksmanship',
         },
     },
+    {
+        title: 'Ranged Death',
+        heroName: 'npc_dota_hero_windrunner',
+        attr: 'agi',
+        build: {
+            1: 'clinkz_wind_walk',
+            2: 'ursa_overpower',
+            3: 'medusa_split_shot',
+            4: 'life_stealer_feast',
+            5: 'phantom_assassin_coup_de_grace',
+            6: 'tiny_grow_lod',
+        },
+    },
+    {
+        title: 'MEDIC!',
+        heroName: 'npc_dota_hero_wisp',
+        attr: 'str',
+        build: {
+            1: 'wisp_tether',
+            2: 'wisp_overcharge',
+            3: 'clinkz_wind_walk',
+            4: 'dragon_knight_dragon_blood',
+            5: 'holdout_arcane_aura',
+            6: 'alchemist_chemical_rage',
+        },
+    },
 ];
 
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
-var PHASE_OPTION_SELECTION = 2; // Selection options
-var PHASE_BANNING = 3;          // Banning stuff
-var PHASE_SELECTION = 4;        // Selecting heroes
-var PHASE_DRAFTING = 5;         // Place holder for drafting mode
-var PHASE_RANDOM_SELECTION = 6; // Random build selection (For All Random)
-var PHASE_REVIEW = 7;           // Review Phase
-var PHASE_INGAME = 8;           // Game has started
+var PHASE_OPTION_VOTING = 2;    // Selection options
+var PHASE_OPTION_SELECTION = 3; // Selection options
+var PHASE_BANNING = 4;          // Banning stuff
+var PHASE_SELECTION = 5;        // Selecting heroes
+var PHASE_DRAFTING = 6;         // Place holder for drafting mode
+var PHASE_RANDOM_SELECTION = 7; // Random build selection (For All Random)
+var PHASE_REVIEW = 8;           // Review Phase
+var PHASE_INGAME = 9;           // Game has started
 
 // Hero data
 var heroData = {};

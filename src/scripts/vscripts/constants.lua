@@ -2,13 +2,14 @@ local Constants = {}
 
 -- Game Phases
 Constants.PHASE_LOADING = 1             -- Waiting for players, etc
-Constants.PHASE_OPTION_SELECTION = 2    -- Selection options
-Constants.PHASE_BANNING = 3             -- Banning stuff
-Constants.PHASE_SELECTION = 4           -- Selecting heroes
-Constants.PHASE_DRAFTING = 5            -- Place holder for drafting mode
-Constants.PHASE_RANDOM_SELECTION = 6    -- Random build selection phase (for All Random)
-Constants.PHASE_REVIEW = 7              -- Review Phase
-Constants.PHASE_INGAME = 8              -- Game has started
+Constants.PHASE_OPTION_VOTING = 2       -- Voting for options
+Constants.PHASE_OPTION_SELECTION = 3    -- Selection options
+Constants.PHASE_BANNING = 4             -- Banning stuff
+Constants.PHASE_SELECTION = 5           -- Selecting heroes
+Constants.PHASE_DRAFTING = 6            -- Place holder for drafting mode
+Constants.PHASE_RANDOM_SELECTION = 7    -- Random build selection phase (for All Random)
+Constants.PHASE_REVIEW = 8              -- Review Phase
+Constants.PHASE_INGAME = 9              -- Game has started
 
 -- EXP Needed for each level
 Constants.XP_PER_LEVEL_TABLE = {
