@@ -3946,14 +3946,22 @@ function SetSelectedPhase(newPhase, noSound) {
 
 // Return X:XX time (M:SS)
 function getFancyTime(timeNumber) {
-    var minutes = Math.floor(timeNumber / 60);
-    var seconds = timeNumber % 60;
+    // Are we dealing with a negative number?
+    if(timeNumber >= 0) {
+        // Nope, EZ
+        var minutes = Math.floor(timeNumber / 60);
+        var seconds = timeNumber % 60;
 
-    if(seconds < 10) {
-        seconds = '0' + seconds;
+        if(seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        return minutes + ':' + seconds;
+    } else {
+        // Yes, use normal function, add a negative
+        return '-' + getFancyTime(timeNumber * -1);
     }
 
-    return minutes + ':' + seconds;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3995,6 +4003,10 @@ function UpdateTimer() {
     switch(currentPhase) {
         case PHASE_OPTION_SELECTION:
             placeInto = $('#lodOptionSelectionTimeRemaining');
+        break;
+
+        case PHASE_OPTION_VOTING:
+            placeInto = $('#lodOptionVotingTimeRemaining');
         break;
 
         case PHASE_BANNING:
@@ -4147,7 +4159,11 @@ function onAcceptHosting() {
 
     // Apply option voting related CSS
     if(useOptionVoting) {
+        // Change to option voting interface
         $.GetContextPanel().SetHasClass('option_voting_enabled', true);
+
+        // Hide host panel
+        $('#lodYouAreTheHost').visible = false;
     }
 
     // Automatically assign players to teams.

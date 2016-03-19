@@ -316,9 +316,22 @@ function Pregame:onThink()
         return 0.1
     end
 
+    --[[
+        OPTION VOTING PHASE
+    ]]
+
+    if ourPhase == constants.PHASE_OPTION_VOTING then
+        return 0.1
+    end
+
     -- Process options ONCE here
     if not self.processedOptions then
-        self:processOptions()
+        -- Decide how to process options
+        if self.useOptionVoting then
+
+        else
+            self:processOptions()
+        end
     end
 
     --[[
