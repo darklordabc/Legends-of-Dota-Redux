@@ -7,6 +7,9 @@ local storedNames = {}
 local chanelledSpells = {}
 local targetSpells = {}
 
+-- Grab contributors file
+local contributors = LoadKeyValues('scripts/kv/contributors.kv')
+
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
 --       This method is safe for all of our internal uses
@@ -127,6 +130,35 @@ function Util:pickRandomRune()
     }
 
     return validRunes[math.random(#validRunes)]
+end
+
+-- Returns true if a player is premium
+function Util:playerIsPremium(playerID)
+    -- Check our premium rank
+    return self:getPremiumRank(playerID) > 0
+end
+
+-- Returns a player's premium rank
+function Util:getPremiumRank(playerID)
+    local steamID = PlayerResource:GetSteamAccountID(playerID)
+    local conData = contributors[tostring(steamID)]
+
+    -- Default is no premium
+    local totalPremium = 0
+
+    -- Check their contributor status
+    if conData then
+        -- Do they have premium?
+        if conData.premium then
+            -- Add this to their total premium
+            totalPremium = totalPremium + conData.premium
+        end
+    end
+
+    -- TODO: Check dota tickets
+
+    -- They are not
+    return totalPremium
 end
 
 -- Define the export
