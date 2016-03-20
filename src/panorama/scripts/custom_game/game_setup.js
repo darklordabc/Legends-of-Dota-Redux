@@ -4202,7 +4202,7 @@ function showPopupMessage(msg) {
             value: 4
         }];
 
-        useOptionVoting = true;
+        //useOptionVoting = true;
     }
 
     // Apply option voting related CSS
