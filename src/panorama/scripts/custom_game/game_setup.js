@@ -3631,6 +3631,7 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
 }
 
 // A phase was changed
+var seenPopupMessages = {};
 function OnPhaseChanged(table_name, key, data) {
     switch(key) {
         case 'phase':
@@ -3651,6 +3652,38 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Progrss to the new phase
             SetSelectedPhase(currentPhase, true);
+
+            // Message for hosters
+            if(currentPhase == PHASE_OPTION_SELECTION) {
+                // Should we show the host message popup?
+                if(!seenPopupMessages.hostWarning) {
+                    seenPopupMessages.hostWarning = true;
+                    if(isHost()) {
+                        showPopupMessage('lodHostingMessage');
+                    } else {
+                        showPopupMessage('lodHostingNoobMessage');
+                    }
+                }
+
+            }
+
+            // Message for banning phase
+            if(currentPhase == PHASE_BANNING) {
+                // Should we show the host message popup?
+                if(!seenPopupMessages.skillBanningInfo) {
+                    seenPopupMessages.skillBanningInfo = true;
+                    showPopupMessage('lodBanningMessage');
+                }
+            }
+
+            // Message for players selecting skills
+            if(currentPhase == PHASE_SELECTION) {
+                // Should we show the host message popup?
+                if(!seenPopupMessages.skillDraftingInfo) {
+                    seenPopupMessages.skillDraftingInfo = true;
+                    showPopupMessage('lodPickingMessage');
+                }
+            }
         break;
 
         case 'endOfTimer':
@@ -4097,8 +4130,14 @@ function UpdateTimer() {
 }
 
 // Player has accepting the hosting message
-function onAcceptHosting() {
-    $('#lodYouAreTheHost').visible = false;
+function onAcceptPopup() {
+    $('#lodPopupMessage').visible = false;
+}
+
+// Shows a popup message to a player
+function showPopupMessage(msg) {
+    $('#lodPopupMessageLabel').text = $.Localize(msg);
+    $('#lodPopupMessage').visible = true;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4161,9 +4200,6 @@ function onAcceptHosting() {
     if(useOptionVoting) {
         // Change to option voting interface
         $.GetContextPanel().SetHasClass('option_voting_enabled', true);
-
-        // Hide host panel
-        $('#lodYouAreTheHost').visible = false;
     }
 
     // Automatically assign players to teams.

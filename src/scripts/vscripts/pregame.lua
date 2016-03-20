@@ -2109,6 +2109,16 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         return
     end
 
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+
+        return
+    end
+
     -- Attempt to select the hero
     self:setSelectedHero(playerID, args.heroName)
 end
@@ -2155,6 +2165,16 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+
+        return
+    end
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION then
         network:sendNotification(player, {
@@ -2189,6 +2209,16 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
         })
 
         return
@@ -2595,6 +2625,16 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
         return
     end
 
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+
+        return
+    end
+
     local slot = math.floor(tonumber(args.slot))
 
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
@@ -2908,6 +2948,16 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
         })
 
         return

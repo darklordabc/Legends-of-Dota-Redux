@@ -15,13 +15,13 @@
             <Label id="lodTimerWarningLabel" text="lol" />
         </Panel>
 
-        <Panel id="lodYouAreTheHost">
+        <Panel id="lodPopupMessage">
             <Panel>
-                <Label text="lodHostingMessage" />
+                <Label id="lodPopupMessageLabel" />
             </Panel>
 
-            <Panel class="lodHostButtonContainer">
-                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptHosting()">
+            <Panel class="lodPopupMessageAcceptContainer">
+                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptPopup()">
                     <Label text="acceptHosting" />
                 </Button>
             </Panel>

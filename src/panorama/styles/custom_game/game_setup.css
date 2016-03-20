@@ -11,7 +11,7 @@
     Notifications
 */
 
-#lodYouAreTheHost {
+#lodPopupMessage {
     z-index: 10000;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
     border: 1px solid #000000;
@@ -25,16 +25,12 @@
     visibility: collapse;
 }
 
-.player_has_host_privileges #lodYouAreTheHost {
-    visibility: visible;
-}
-
-.lodHostButtonContainer {
+.lodPopupMessageAcceptContainer {
     vertical-align: bottom;
     width: 100%;
 }
 
-.lodHostButtonContainer Button {
+.lodPopupMessageAcceptContainer Button {
     width: 120px;
     horizontal-align: center;
 }
