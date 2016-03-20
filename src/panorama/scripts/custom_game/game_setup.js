@@ -3684,6 +3684,15 @@ function OnPhaseChanged(table_name, key, data) {
                     showPopupMessage('lodPickingMessage');
                 }
             }
+
+            // Message for players selecting skills
+            if(currentPhase == PHASE_REVIEW) {
+                // Should we show the host message popup?
+                if(!seenPopupMessages.skillReviewInfo) {
+                    seenPopupMessages.skillReviewInfo = true;
+                    showPopupMessage('lodReviewMessage');
+                }
+            }
         break;
 
         case 'endOfTimer':
