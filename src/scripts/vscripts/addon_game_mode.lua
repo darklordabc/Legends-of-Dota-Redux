@@ -3030,6 +3030,10 @@ ListenToGameEvent('entity_killed', function(keys)
     -- Ensure it is a hero
     if IsValidEntity(hero) then
         if hero:IsHero() then
+            -- Ensure we are not using aegis!
+            if hero:WillReincarnate() then return end
+            if hero:IsReincarnating() then return end
+
             Timers:CreateTimer(function()
                 if IsValidEntity(hero) and not hero:IsAlive() then
                     -- Ensure we are not using aegis!
@@ -3041,7 +3045,7 @@ ListenToGameEvent('entity_killed', function(keys)
                     if respawnModifier < 0 then
                         timeLeft = -respawnModifier
                     else
-                        timeLeft = timeLeft * respawnModifier
+                        timeLeft = timeLeft / respawnModifier
                     end
 
                     -- Set the time left until we respawn

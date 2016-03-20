@@ -1189,10 +1189,12 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
+            print(value)
+
             local valid = {
                 [0] = true,
-                [0.5] = true,
-                [0.1] = true,
+                [2] = true,
+                [10] = true,
                 [-1] = true,
                 [-10] = true,
                 [-20] = true,
@@ -1870,14 +1872,6 @@ function Pregame:processOptions()
         GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
     end
 
-    -- Respawn modifier
-    local statCollectionRespawnModifier = self.optionStore['lodOptionGameSpeedRespawnTime']
-    if statCollectionRespawnModifier == 0.1 then
-        statCollectionRespawnModifier = 10
-    elseif statCollectionRespawnModifier == 0.5 then
-        statCollectionRespawnModifier = 2
-    end
-
     -- Store flags
     statCollection:setFlags({
         ['Preset Gamemode'] = self.optionStore['lodOptionGamemode'],                                            -- Preset Gamemode                 [number, -1 - 4]
@@ -1895,7 +1889,7 @@ function Pregame:processOptions()
         ['Starting Level'] = self.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
         ['Max Hero Level'] = self.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
         ['Bonus Starting Gold'] = self.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
-        ['Respawn Modifier'] = statCollectionRespawnModifier,                                                   -- Respawn Modifier                [number, -60 - 10]
+        ['Respawn Modifier'] = self.optionStore['lodOptionGameSpeedRespawnTime'],                               -- Respawn Modifier                [number, -60 - 10]
         ['Towers Per Lane'] = self.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
         ['Start With Upgraded Ults'] = self.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
         ['Enable Easy Mode'] = self.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]

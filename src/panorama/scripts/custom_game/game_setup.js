@@ -573,11 +573,11 @@ var allOptions = {
                     },
                     {
                         text: 'lodOptionGameSpeedRespawnTimeHalf',
-                        value: 0.5
+                        value: 2
                     },
                     {
                         text: 'lodOptionGameSpeedRespawnTimeTenth',
-                        value: 0.1
+                        value: 10
                     },
                     {
                         text: 'lodOptionGameSpeedRespawnTimeSecond',
