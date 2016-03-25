@@ -301,6 +301,10 @@
     horizontal-align: right;
 }
 
+#theDireContainer {
+    horizontal-align: right;
+}
+
 .theTeamTopLevel {
     flow-children: down;
     font-size: 24px;

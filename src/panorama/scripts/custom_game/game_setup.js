@@ -3602,13 +3602,25 @@ function doActualTeamUpdate() {
 // Update the unassigned players list and all of the team panels whenever a change is made to the
 // player team assignments
 //--------------------------------------------------------------------------------------------------
-var teamUpdateCapper = 0;
+var teamUpdateInProgress = false;
+var needsAnotherUpdate = false;
 function OnTeamPlayerListChanged() {
-    var myUpdateTimer = ++teamUpdateCapper;
+    if(teamUpdateInProgress) {
+        needsAnotherUpdate = true;
+        return;
+    }
+    teamUpdateInProgress = true;
 
-    $.Schedule(0.1, function() {
-        if(myUpdateTimer == teamUpdateCapper) {
-            doActualTeamUpdate();
+    // Do the update
+    doActualTeamUpdate();
+
+    // Give a delay before allowing another update
+    $.Schedule(0.5, function() {
+        teamUpdateInProgress = false;
+        needsAnotherUpdate = false;
+
+        if(needsAnotherUpdate) {
+            OnTeamPlayerListChanged();
         }
     });
 }
@@ -3720,9 +3732,32 @@ function OnPhaseChanged(table_name, key, data) {
         case 'doneCaching':
             // No longer waiting for precache
             waitingForPrecache = false;
-
-            $.Msg('Yes');
         break;
+    }
+
+    // Server wants us to add a bot onto a team
+    if(key.indexOf('add_bot_') != -1) {
+        var playerID = data.playerID;
+
+        if(data.team == 'good') {
+            addPlayerToTeam(playerID, $('#theRadiantContainer'), $('#reviewRadiantTeam'));
+        } else {
+            addPlayerToTeam(playerID, $('#theDireContainer'), $('#reviewDireTeam'));
+        }
+
+        var topCon = activePlayerPanels[playerID];
+        var revCon = activeReviewPanels[playerID];
+
+        topCon.OnGetHeroData(data.heroName);
+        topCon.OnGetHeroBuildData(data.build);
+        topCon.setPlayerName('Bot', 76561197988355984);
+
+        revCon.OnGetHeroData(data.heroName);
+        revCon.OnGetHeroBuildData(data.build);
+        revCon.setPlayerName('Bot', 76561197988355984);
+
+        //var theCon = activePlayerPanels[playerID];
+        //  var theReviewCon = activeReviewPanels[playerID];
     }
 
     // Ensure we are hiding the correct enemy picks

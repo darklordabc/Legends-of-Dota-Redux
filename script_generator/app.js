@@ -321,13 +321,16 @@ function generatePrecacheData(next) {
             if(!ignoreHeroes[name]) {
                 newKV[name+'_lod'] = {
                     override_hero: name,
-                    Ability1: 'attribute_bonus',
                     AbilityLayout: 6
                 }
 
-                for(var i=2;i<=16;++i) {
-                    if(heroes[name]['Ability' + i]) {
-                        newKV[name+'_lod']['Ability' + i] = '';
+                if(data.BotImplemented != 1) {
+                    newKV[name+'_lod'].Ability1 = 'attribute_bonus';
+
+                    for(var i=2;i<=16;++i) {
+                        if(heroes[name]['Ability' + i]) {
+                            newKV[name+'_lod']['Ability' + i] = '';
+                        }
                     }
                 }
             }

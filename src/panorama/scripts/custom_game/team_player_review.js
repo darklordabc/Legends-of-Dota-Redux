@@ -32,6 +32,13 @@ function OnPlayerDetailsChanged() {
     $.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
 }
 
+// Sets the player's name
+function setPlayerName(newName, steamID) {
+    $("#playerName").text = newName;
+    $("#reviewPhasePlayerAvatar").steamid = steamID;
+    $("#reviewPhasePlayerAvatarBig").steamid = steamID;
+}
+
 // When we get hero data
 function OnGetHeroData(heroName) {
 	// Show the actual hero icon
@@ -234,4 +241,5 @@ function setReadyState(newState) {
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
+    mainPanel.setPlayerName = setPlayerName;
 })();

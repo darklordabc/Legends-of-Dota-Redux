@@ -57,6 +57,7 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
+    GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
 
     -- Rune fix
     local totalRunes = 0
@@ -204,6 +205,11 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 4)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
         --self.useOptionVoting = true
+    end
+
+    -- Bot match
+    if mapName == 'custom_bot' then
+        self.enabledBots = true
     end
 
     -- Exports for stat collection
@@ -368,6 +374,12 @@ function Pregame:onThink()
             self:buildDraftArrays()
         end
 
+        -- Pick builds for bots
+        if not self.doneBotStuff then
+            self.doneBotStuff = true
+            self:generateBotBuilds()
+        end
+
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
@@ -382,6 +394,12 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_RANDOM_SELECTION then
         if not self.allRandomBuilds then
             self:generateAllRandomBuilds()
+        end
+
+        -- Pick builds for bots
+        if not self.doneBotStuff then
+            self.doneBotStuff = true
+            self:generateBotBuilds()
         end
 
         -- Is it over?
@@ -430,6 +448,11 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.2)
+
+        -- Spawn the bots
+        Timers:CreateTimer(function()
+            this:spawnBots()
+        end, DoUniqueString('spawnbots'), 0.5)
     end
 end
 
@@ -474,14 +497,27 @@ function Pregame:actualSpawnPlayer()
     if currentlySpawning then return end
     currentlySpawning = true
 
+    -- Grab a reference to self
+    local this = self
+
+    -- We actually require that bots spawn first
+    if not self.doneSpawningBots then
+        -- Add a small delay
+        Timers:CreateTimer(function()
+                -- Done spawning, start the next one
+                currentlySpawning = false
+
+                -- Continue actually spawning
+                this:actualSpawnPlayer()
+            end, DoUniqueString('continueSpawning'), 1)
+        return
+    end
+
     -- Grab a player to spawn
     local playerID = table.remove(spawnQueue, playerID)
 
     -- Grab their build
     local build = self.selectedSkills[playerID]
-
-    -- Grab a reference to self
-    local this = self
 
     -- Validate the player
     local player = PlayerResource:GetPlayer(playerID)
@@ -618,9 +654,16 @@ function Pregame:networkHeroes()
     self.heroPrimaryAttr = {}
     self.heroRole = {}
 
+    self.botHeroes = {}
+
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
         if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
+            -- Store if we can select it as a bot
+            if heroValues.BotImplemented == 1 then
+                self.botHeroes[heroName] = true
+            end
+
             -- Store all the useful information
             local theData = {
                 AttributePrimary = heroValues.AttributePrimary,
@@ -2116,7 +2159,7 @@ function Pregame:getDraftID(playerID)
 end
 
 -- Tries to set a player's selected hero
-function Pregame:setSelectedHero(playerID, heroName)
+function Pregame:setSelectedHero(playerID, heroName, force)
     -- Grab the player so we can push messages
     local player = PlayerResource:GetPlayer(playerID)
 
@@ -2131,57 +2174,60 @@ function Pregame:setSelectedHero(playerID, heroName)
         return
     end
 
-    -- Is this hero banned?
-    -- Validate the ability isn't already banned
-    if self.bannedHeroes[heroName] then
-        -- hero is banned
-        network:sendNotification(player, {
-            sort = 'lodDanger',
-            text = 'lodFailedHeroIsBanned',
-            params = {
-                ['heroName'] = heroName
-            }
-        })
+    -- Check forced stuff
+    if not force then
+        -- Is this hero banned?
+        -- Validate the ability isn't already banned
+        if self.bannedHeroes[heroName] then
+            -- hero is banned
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedHeroIsBanned',
+                params = {
+                    ['heroName'] = heroName
+                }
+            })
 
-        return
-    end
+            return
+        end
 
-    -- Is unique heroes on?
-    if self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1 then
-        for thePlayerID,theSelectedHero in pairs(self.selectedHeroes) do
-            if theSelectedHero == heroName then
-                -- Tell them
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedHeroIsTaken',
-                    params = {
-                        ['heroName'] = heroName
-                    }
-                })
+        -- Is unique heroes on?
+        if self.optionStore['lodOptionAdvancedUniqueHeroes'] == 1 then
+            for thePlayerID,theSelectedHero in pairs(self.selectedHeroes) do
+                if theSelectedHero == heroName then
+                    -- Tell them
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedHeroIsTaken',
+                        params = {
+                            ['heroName'] = heroName
+                        }
+                    })
 
-                return
+                    return
+                end
             end
         end
-    end
 
-    -- Check draft array
-    if self.useDraftArrays then
-        local draftID = self:getDraftID(playerID)
-        local draftArray = self.draftArrays[draftID] or {}
-        local heroDraft = draftArray.heroDraft
+        -- Check draft array
+        if self.useDraftArrays then
+            local draftID = self:getDraftID(playerID)
+            local draftArray = self.draftArrays[draftID] or {}
+            local heroDraft = draftArray.heroDraft
 
-        if self.maxDraftHeroes > 0 then
-            if not heroDraft[heroName] then
-                -- Tell them
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedDraftWrongHero',
-                    params = {
-                        ['heroName'] = heroName
-                    }
-                })
+            if self.maxDraftHeroes > 0 then
+                if not heroDraft[heroName] then
+                    -- Tell them
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedDraftWrongHero',
+                        params = {
+                            ['heroName'] = heroName
+                        }
+                    })
 
-                return
+                    return
+                end
             end
         end
     end
@@ -3475,6 +3521,137 @@ function Pregame:preventCamping()
     end
 end
 
+-- Counts how many people on radiant and dire
+function Pregame:countRadiantDire()
+    local maxplayerID = 24
+    local totalRadiant = 0
+    local totalDire = 0
+    local desiredPlayers = 10
+
+    -- Work out how many bots are going to be needed
+    for playerID=0,maxplayerID do
+        local state = PlayerResource:GetConnectionState(playerID)
+
+        if state ~= 0 then
+            if PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                totalRadiant = totalRadiant + 1
+            elseif PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+                totalDire = totalDire + 1
+            end
+        end
+    end
+
+    return totalRadiant, totalDire, desiredPlayers
+end
+
+-- Generate builds for bots
+function Pregame:generateBotBuilds()
+    -- Ensure bots are actually enabled
+    if not self.enabledBots then return end
+
+    -- Grab number of players
+    local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
+
+    -- Create a table to store bot builds
+    self.botBuilds = {}
+
+    -- Generate a list of possible heroes
+    local possibleHeroes = {}
+    for k,v in pairs(self.botHeroes) do
+        table.insert(possibleHeroes, k)
+    end
+
+    -- Allocate builds
+    while totalRadiant + totalDire < desiredPlayers do
+        local build = {}
+        local heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+
+        -- Store the build
+        table.insert(self.botBuilds, {
+            heroName = heroName,
+            build = build
+        })
+
+        -- Allocate playerID
+        local playerID = totalRadiant + totalDire
+
+        -- Network their build
+        self:setSelectedHero(playerID, heroName, true)
+        self.selectedSkills[playerID] = build
+        network:setSelectedAbilities(playerID, build)
+
+        local team = 'good'
+        if totalRadiant <= totalDire then
+            totalRadiant = totalRadiant + 1
+        else
+            totalDire = totalDire + 1
+            team = 'bad'
+        end
+
+        -- Tells clients to add a bot to a team
+        network:addBot(playerID, {
+            heroName = heroName,
+            build = build,
+            team = team,
+            playerID = playerID
+        })
+    end
+end
+
+-- Spawns bots
+function Pregame:spawnBots()
+    -- Ensure bots are actually enabled
+    if not self.enabledBots then
+        self.doneSpawningBots = true
+        return
+    end
+
+    -- Grab number of players
+    local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
+
+    -- Grab a reference to self
+    local this = self
+
+    function continueSpawningBots()
+        if totalDire + totalRadiant < desiredPlayers then
+            if totalRadiant <= totalDire then
+                -- Adding a player to radiant
+                totalRadiant = totalRadiant + 1
+
+                -- Spawn radiant player
+            else
+                -- Adding a plater to dire
+                totalDire = totalDire + 1
+
+                -- Spawn dire player
+            end
+
+            if #self.botBuilds > 0 then
+                -- Grab the build
+                local buildInfo = table.remove(self.botBuilds, 1)
+                local heroName = buildInfo.heroName
+                local build = buildInfo.build
+
+                -- Spawn the hero
+                Tutorial:AddBot(heroName, '', 'unfair', false)
+
+                -- Find the hero and apply the build
+                local hero = Entities:FindByClassname(nil, heroName)
+
+                -- Continue spawning
+                Timers:CreateTimer(function()
+                    continueSpawningBots()
+                end, DoUniqueString('spawnbots'), 0.1)
+            end
+        else
+            this.doneSpawningBots = true
+        end
+    end
+
+    -- Start spawning bots
+    continueSpawningBots()
+end
+
 -- Apply fixes
 function Pregame:fixSpawningIssues()
     local givenBonuses = {}
@@ -3534,6 +3711,35 @@ function Pregame:fixSpawningIssues()
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
                 handled[spawnedUnit] = true
+
+                -- Are they a bot?
+                if PlayerResource:GetConnectionState(playerID) == 1 then
+                    -- Apply build!
+                    local build = this.selectedSkills[playerID] or {}
+                    SkillManager:ApplyBuild(spawnedUnit, build)
+                end
+
+                --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
+                local ab2 = spawnedUnit:GetAbilityByIndex(2)
+                local ab3 = spawnedUnit:GetAbilityByIndex(3)
+
+                local ab1Name = ab1:GetAbilityName()
+                local ab2Name = ab2:GetAbilityName()
+                local ab3Name = ab3:GetAbilityName()
+
+                print('NEW')
+                print(ab1Name)
+                print(ab2Name)
+                print(ab3Name)]]
+
+                --spawnedUnit:RemoveAbility(ab1Name)
+                --spawnedUnit:RemoveAbility(ab2Name)
+                --spawnedUnit:RemoveAbility(ab3Name)
+
+                --[[spawnedUnit:AddAbility('pudge_meat_hook')
+                spawnedUnit:AddAbility('pudge_flesh_heap')
+                spawnedUnit:AddAbility('pudge_dismember')
+                spawnedUnit:AddAbility('pudge_rot')]]
 
                 -- Handle the free courier stuff
                 --handleFreeCourier(spawnedUnit)
