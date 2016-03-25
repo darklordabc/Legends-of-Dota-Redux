@@ -774,7 +774,7 @@ function skillManager:isUlt(skillName)
 end
 
 -- Returns true if a skill is a passive
-function skillManager:isPassive()
+function skillManager:isPassive(skillName)
     if mainAbList[skillName] and mainAbList[skillName].AbilityBehavior and string.match(mainAbList[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_PASSIVE') and not string.match(mainAbList[skillName].AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE') then
         return true
     end

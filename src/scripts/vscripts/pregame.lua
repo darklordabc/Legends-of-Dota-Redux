@@ -661,7 +661,14 @@ function Pregame:networkHeroes()
         if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
             -- Store if we can select it as a bot
             if heroValues.BotImplemented == 1 then
-                self.botHeroes[heroName] = true
+                self.botHeroes[heroName] = {}
+
+                for i=1,16 do
+                    local abName = heroValues['Ability' .. i]
+                    if abName ~= 'attribute_bonus' then
+                        table.insert(self.botHeroes[heroName], abName)
+                    end
+                end
             end
 
             -- Store all the useful information
@@ -3185,7 +3192,8 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
 end
 
 -- Returns a random skill for a player, given a build and the slot the skill would be for
-function Pregame:findRandomSkill(build, slotNumber, playerID)
+-- optionalFilter is a function(abilityName), return true to allow that ability
+function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
     local team = PlayerResource:GetTeam(playerID)
 
 	-- Ensure we have a valid build
@@ -3295,6 +3303,12 @@ function Pregame:findRandomSkill(build, slotNumber, playerID)
 				break
 			end
 		end
+
+        if shouldAdd and optionalFilter ~= nil then
+            if not optionalFilter(abilityName) then
+                shouldAdd = false
+            end
+        end
 
 		-- Should we add it?
 		if shouldAdd then
@@ -3558,22 +3572,85 @@ function Pregame:generateBotBuilds()
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
-        table.insert(possibleHeroes, k)
+        if not self.bannedHeroes[k] then
+            table.insert(possibleHeroes, k)
+        end
     end
+
+    -- Max number of slots to aim for
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    -- High priority bot skills
+    local bestSkills = {
+        abaddon_borrowed_time = true,
+        ursa_fury_swipes = true,
+        slark_essence_shift = true,
+        skeleton_king_reincarnation = true,
+        bloodseeker_thirst = true,
+        slark_shadow_dance = true,
+        huskar_berserkers_blood = true,
+        phantom_assassin_coup_de_grace = true,
+        life_stealer_feast = true,
+        alchemist_goblins_greed = true,
+        sniper_take_aim = true,
+        troll_warlord_fervor = true,
+        tiny_grow_lod = true
+    }
 
     -- Allocate builds
     while totalRadiant + totalDire < desiredPlayers do
+        -- Allocate playerID
+        local playerID = totalRadiant + totalDire
+
+        -- Grab a hero
+        local heroName
+        if #possibleHeroes > 0 then
+            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+        else
+            heroName = 'npc_dota_hero_pudge'
+        end
+
+        -- Generate build
         local build = {}
-        local heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+        local skillID = 1
+        local defaultSkills = self.botHeroes[heroName]
+        if defaultSkills then
+            for k,abilityName in pairs(defaultSkills) do
+                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] then
+                    build[skillID] = abilityName
+                    skillID = skillID + 1
+                end
+            end
+        end
+
+        -- Allocate more abilities
+        while skillID <= maxSlots do
+            -- Attempt to pick a high priority skill, otherwise pick any passive, otherwise pick any
+            local newAb = self:findRandomSkill(build, skillID, playerID, function(abilityName)
+                return bestSkills[abilityName] ~= nil
+            end) or self:findRandomSkill(build, skillID, playerID, function(abilityName)
+                return SkillManager:isPassive(abilityName)
+            end) or self:findRandomSkill(build, skillID, playerID)
+
+            if newAb ~= nil then
+                build[skillID] = newAb
+            end
+
+            -- Move onto next slot
+            skillID = skillID + 1
+        end
+
+        -- Shuffle their build to make it look like a random set
+        for i = maxSlots, 2, -1 do
+            local j = math.random (i)
+            build[i], build[j] = build[j], build[i]
+        end
 
         -- Store the build
         table.insert(self.botBuilds, {
             heroName = heroName,
             build = build
         })
-
-        -- Allocate playerID
-        local playerID = totalRadiant + totalDire
 
         -- Network their build
         self:setSelectedHero(playerID, heroName, true)
@@ -3647,6 +3724,64 @@ function Pregame:spawnBots()
             this.doneSpawningBots = true
         end
     end
+
+    -- Auto level bot skills (bots will get 2 ability points per level)
+    ListenToGameEvent('dota_player_gained_level', function(keys)
+        local playerID = keys.player - 1
+        local level = keys.level
+
+        -- Is this player a bot?
+        if PlayerResource:GetConnectionState(playerID) == 1 then
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if IsValidEntity(hero) then
+                local build = this.selectedSkills[playerID]
+
+                local heroName = hero:GetClassname()
+                local defaultSkills = {}
+                for k,abilityName in pairs(this.botHeroes[heroName]) do
+                    defaultSkills[abilityName] = true
+                end
+
+                local lowestLevel = 25
+                local lowestAb
+
+                for k,abilityName in pairs(build) do
+                    -- We are not going to touch hero default skills
+                    if not defaultSkills[abilityName] then
+                        local ab = hero:FindAbilityByName(abilityName)
+                        if ab then
+                            local abLevel = ab:GetLevel()
+
+                            -- Has it already hit it's max level?
+                            if abLevel < ab:GetMaxLevel() then
+                                -- Work out what level we need to be to legally skill this ability
+                                local nextUpgrade = abLevel * 2 + 1
+                                if SkillManager:isUlt(abilityName) then
+                                    nextUpgrade = 6 + 5 * abLevel
+                                end
+
+                                -- Can we legally skill this ability?
+                                if nextUpgrade <= level then
+                                    -- Is this the lowest level skill?
+                                    if abLevel < lowestLevel then
+
+
+
+                                        lowestLevel = abLevel
+                                        lowestAb = ab
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+
+                if lowestAb ~= nil then
+                    lowestAb:SetLevel(lowestLevel + 1)
+                end
+            end
+        end
+    end, nil)
 
     -- Start spawning bots
     continueSpawningBots()
