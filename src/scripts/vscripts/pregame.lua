@@ -3720,6 +3720,7 @@ function Pregame:spawnBots()
 
     function continueSpawningBots()
         if totalDire + totalRadiant < desiredPlayers then
+            local playerID = totalDire + totalRadiant
             local isRadiant = false
             if totalRadiant <= totalDire then
                 -- Adding a player to radiant
@@ -3741,10 +3742,19 @@ function Pregame:spawnBots()
                 local build = buildInfo.build
 
                 -- Spawn the hero
-                Tutorial:AddBot(heroName, '', 'unfair', isRadiant)
+                --Tutorial:AddBot(heroName, '', 'unfair', isRadiant)
+                Tutorial:AddBot('', '', 'unfair', isRadiant)
 
-                -- Find the hero and apply the build
-                local hero = Entities:FindByClassname(nil, heroName)
+                -- Did we successfully add them?
+                local ply = PlayerResource:GetPlayer(playerID)
+                if ply then
+                    -- Precache their hero
+                    --PrecacheUnitByNameAsync(heroName, function()
+                        -- Spawn their hero
+                        local hero = CreateHeroForPlayer(heroName, ply)
+                        SkillManager:ApplyBuild(hero, build)
+                    --end, playerID)
+                end
 
                 -- Continue spawning
                 Timers:CreateTimer(function()
@@ -3879,11 +3889,11 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                if PlayerResource:GetConnectionState(playerID) == 1 then
+                --[[if PlayerResource:GetConnectionState(playerID) == 1 then
                     -- Apply build!
                     local build = this.selectedSkills[playerID] or {}
                     SkillManager:ApplyBuild(spawnedUnit, build)
-                end
+                end]]
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)

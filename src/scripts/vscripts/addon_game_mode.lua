@@ -1986,6 +1986,9 @@ function lod:InitGameMode()
     network:init()
     pregame:init()
 
+    -- Store a reference to pregame
+    GameRules.pregame = pregame
+
     print('Everything seems good!\n\n')
 end
 
