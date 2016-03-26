@@ -3622,7 +3622,8 @@ function Pregame:generateBotBuilds()
         alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
-        tiny_grow_lod = true
+        tiny_grow_lod = true,
+        riki_permanent_invisibility = true
     }
 
     -- Allocate builds
