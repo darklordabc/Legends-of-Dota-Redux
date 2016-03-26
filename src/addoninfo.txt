@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"all_pick mirror_draft all_random custom"
+	maps			"all_pick mirror_draft all_random custom custom_bot"
 	"IsPlayable"	"1"
     "version"       "3.0.1"
 }

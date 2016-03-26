@@ -3749,11 +3749,14 @@ function Pregame:spawnBots()
                 local ply = PlayerResource:GetPlayer(playerID)
                 if ply then
                     -- Precache their hero
-                    --PrecacheUnitByNameAsync(heroName, function()
+                    PrecacheUnitByNameAsync(heroName, function()
                         -- Spawn their hero
                         local hero = CreateHeroForPlayer(heroName, ply)
-                        SkillManager:ApplyBuild(hero, build)
-                    --end, playerID)
+
+                        if hero then
+                            SkillManager:ApplyBuild(hero, build)
+                        end
+                    end, playerID)
                 end
 
                 -- Continue spawning
@@ -3763,6 +3766,7 @@ function Pregame:spawnBots()
             end
         else
             this.doneSpawningBots = true
+            Tutorial:StartTutorialMode()
         end
     end
 
