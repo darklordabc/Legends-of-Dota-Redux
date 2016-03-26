@@ -3719,11 +3719,13 @@ function Pregame:spawnBots()
 
     function continueSpawningBots()
         if totalDire + totalRadiant < desiredPlayers then
+            local isRadiant = false
             if totalRadiant <= totalDire then
                 -- Adding a player to radiant
                 totalRadiant = totalRadiant + 1
 
                 -- Spawn radiant player
+                isRadiant = true
             else
                 -- Adding a plater to dire
                 totalDire = totalDire + 1
@@ -3738,7 +3740,7 @@ function Pregame:spawnBots()
                 local build = buildInfo.build
 
                 -- Spawn the hero
-                Tutorial:AddBot(heroName, '', 'unfair', false)
+                Tutorial:AddBot(heroName, '', 'unfair', isRadiant)
 
                 -- Find the hero and apply the build
                 local hero = Entities:FindByClassname(nil, heroName)
