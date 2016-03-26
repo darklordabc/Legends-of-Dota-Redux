@@ -137,6 +137,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         lvl = 3
                     else
                         lvl = mab:GetLevel()
+
+                        -- Multicast now has a cooldown
+                        if not mab:IsCooldownReady() then return end
                     end
 
                     -- If they have no level in it, stop
@@ -224,6 +227,17 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                     -- Are we doing any multiplying?
                     if mult > 0 then
+                        -- Apply cooldown
+                        if mab then
+                            local theCooldown = 30
+                            if lvl == 2 then
+                                theCooldown = 15
+                            elseif lvl == 3 then
+                                theCooldown = 10
+                            end
+                            mab:StartCooldown(theCooldown)
+                        end
+
                         local ab = hero:FindAbilityByName(keys.abilityname)
 
                         -- Is this an item based ability?

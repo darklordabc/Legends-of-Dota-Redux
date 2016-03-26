@@ -968,7 +968,7 @@ var recommendedBuilds = [
         attr: 'int',
         build: {
             1: 'obsidian_destroyer_arcane_orb',
-            2: 'obsidian_destroyer_essence_aura',
+            2: 'obsidian_destroyer_essence_aura_lod',
             3: 'slark_essence_shift',
             4: 'pudge_flesh_heap',
             5: 'silencer_glaives_of_wisdom',

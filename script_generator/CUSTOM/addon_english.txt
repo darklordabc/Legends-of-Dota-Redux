@@ -845,5 +845,26 @@
 		"DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note0"					"Being entangled by Overgrowth through enchanted trees from Eyes of the Forest does damage. Being entangled by Overgrowth directly from Treant Protector does not."
 		"DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note1"					"If the enemy has True Sight, they will be able to see which trees are enchanted."
 		"DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Lore"						"One can never be too certain who, or what, might need protecting."
+
+		// Essence Aura
+		"DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod"                      "Essence Aura"
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_radius"               "RADIUS:"
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_bonus_mana"           "BASE MANA:"
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_amount"           "%RESTORED MANA:"
+	    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_chance"       "%RESTORE CHANCE:"
+
+	    "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
+	    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
+
+	    // Aftershock
+	    "DOTA_Tooltip_ability_earthshaker_aftershock_lod"									"Aftershock"
+		"DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"						"Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities."
+		"DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"								"The earth trembles beneath the mighty footsteps of Raigor."
+		"DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"								"Using items does not trigger Aftershock."
+		"DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"					"RADIUS:"
+		"DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"					"DURATION:"
 	}
 }
