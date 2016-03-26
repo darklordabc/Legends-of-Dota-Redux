@@ -169,6 +169,34 @@ function Pregame:init()
         this:onPlayerAskForHero(eventSourceIndex, args)
     end)
 
+    -- Debug command for debugging, this command will only work for Ash47
+    Convars:RegisterCommand('lua_exec', function(...)
+        local ply = Convars:GetCommandClient()
+        if not ply then return end
+        local playerID = ply:GetPlayerID()
+        local steamID = PlayerResource:GetSteamAccountID(playerID)
+        if steamID ~= 28090256 then return end
+
+        local theArgs = {...}
+        if #theArgs == 1 then return end
+
+        local toExec = ''
+        for i=2,#theArgs do
+            toExec = toExec .. ' ' .. theArgs[i]
+        end
+
+        -- Execute Lua Code
+        print(toExec)
+        local res = loadstring(toExec)
+        if res then
+            -- Run it inside a protected call
+            pcall(function()
+                res()
+            end)
+        end
+        --Tutorial:AddBot('npc_dota_hero_pudge', '', 'unfair', false)
+    end, 'test', 0)
+
     -- Fix spawning issues
     self:fixSpawningIssues()
 

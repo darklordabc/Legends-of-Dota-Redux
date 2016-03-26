@@ -3617,9 +3617,9 @@ function OnTeamPlayerListChanged() {
     // Give a delay before allowing another update
     $.Schedule(0.5, function() {
         teamUpdateInProgress = false;
-        needsAnotherUpdate = false;
 
         if(needsAnotherUpdate) {
+            needsAnotherUpdate = false;
             OnTeamPlayerListChanged();
         }
     });
@@ -4249,9 +4249,6 @@ function showPopupMessage(msg) {
     // Automatically assign players to teams.
     Game.AutoAssignPlayersToTeams();
 
-    // Do an initial update of the player team assignment
-    OnTeamPlayerListChanged();
-
     // Start updating the timer, this function will schedule itself to be called periodically
     UpdateTimer();
 
@@ -4305,4 +4302,7 @@ function showPopupMessage(msg) {
 
     // Disable clicking on the warning timer
     $('#lodTimerWarning').hittest = false;
+
+    // Do an initial update of the player team assignment
+    OnTeamPlayerListChanged();
 })();
