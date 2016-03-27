@@ -2033,6 +2033,7 @@ function Pregame:processOptions()
 
     -- Banning of OP Skills
     if self.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
+        SpellFixes:SetOPMode(true)
         for abilityName,v in pairs(self.OPSkillsList) do
             self:banAbility(abilityName)
         end

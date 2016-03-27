@@ -5,6 +5,9 @@ local Timers = require('easytimers')
 local noMulticast = {}
 local noWitchcraft = {}
 
+-- Disables the cooldown on multicast
+local opSellMode = false
+
 -- Function to work out if we can multicast with a given spell or not
 local canMulticast = function(skillName)
     -- No banned multicast spells
@@ -186,7 +189,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         -- Are we doing any multiplying?
                         if mult > 0 then
                             -- Apply cooldown
-                            if mab then
+                            if mab and not opSellMode then
                                 local theCooldown = 30
                                 if lvl == 2 then
                                     theCooldown = 15
@@ -508,6 +511,10 @@ local SpellFixes = {}
 function SpellFixes:SetNoCasting(mc, wc)
     noMulticast = mc
     noWitchcraft = wc
+end
+
+function SpellFixes:SetOPMode(enabled)
+    opSellMode = enabled
 end
 
 return SpellFixes
