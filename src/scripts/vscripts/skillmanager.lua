@@ -716,6 +716,10 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
         end
     end
+
+    -- Remove certain modifiers
+    hero:RemoveModifierByName('modifier_slark_shadow_dance_passive')
+    hero:RemoveModifierByName('modifier_slark_shadow_dance_passive_regen')
 end
 
 --function skillManager:overrideHooks()
