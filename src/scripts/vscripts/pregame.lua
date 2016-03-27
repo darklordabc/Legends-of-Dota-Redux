@@ -3456,7 +3456,7 @@ function Pregame:addExtraTowers()
 
                     -- Workout the difference in the positions
                     local dif = threePos - onePos
-                    local sep = dif / totalMiddleTowers + 1
+                    local sep = dif / (totalMiddleTowers + 1)
 
                     -- Remove the middle tower
                     UTIL_Remove(two)
