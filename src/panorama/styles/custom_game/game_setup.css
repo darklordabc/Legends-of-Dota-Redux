@@ -52,6 +52,7 @@
 
     horizontal-align: center;
     vertical-align: middle;
+    text-align: center;
 
     transition-property: opacity;
     transition-duration: 0.25s;

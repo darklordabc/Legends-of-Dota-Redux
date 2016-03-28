@@ -1201,6 +1201,9 @@ var takenTeamAbilities = {};
 var currentHeroBans = 0;
 var currentAbilityBans = 0;
 
+// We have not picked a hero
+var pickedAHero = false;
+
 // Waiting for preache
 var waitingForPrecache = true;
 
@@ -1378,6 +1381,9 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 
         // Set it so no hero is selected
         $('#pickingPhaseSelectedHeroImageCon').SetHasClass('no_hero_selected', false);
+
+        // We have now picked a hero
+        pickedAHero = true;
     }
 
     // Shows which heroes have been taken
@@ -4044,6 +4050,7 @@ function getFancyTime(timeNumber) {
 //--------------------------------------------------------------------------------------------------
 // Update the state for the transition timer periodically
 //--------------------------------------------------------------------------------------------------
+var updateTimerCounter = 0;
 function UpdateTimer() {
     /*var gameTime = Game.GetGameTime();
     var transitionTime = Game.GetStateTransitionTime();
@@ -4116,15 +4123,19 @@ function UpdateTimer() {
         // Place the text
         placeInto.text = '(' + getFancyTime(timeLeft) + ')';
 
+        // Text to show in the timer
+        var theTimerText = ''
+
         // Make it more obvious how long is left
         if(freezeTimer != -1) {
             lastTimerShow = -1;
-
-            // Show no text
-            $('#lodTimerWarningLabel').text = '';
         } else {
             // Set how long is left
-            $('#lodTimerWarningLabel').text = getFancyTime(timeLeft);
+            theTimerText = getFancyTime(timeLeft);
+
+            if(timeLeft <= 30 && !pickedAHero) {
+                theTimerText += '\n' + $.Localize('lodPickAHero');
+            }
 
             var shouldShowTimer = false;
 
@@ -4155,13 +4166,22 @@ function UpdateTimer() {
 
                 $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
 
+                // Used to fix timers disappearing at hte wrong time
+                var myUpdateNumber = ++updateTimerCounter;
+
                 //$('#lodTimerWarningLabel').visible = true;
                 $.Schedule(showDuration, function() {
+                    // Ensure there wasn't another timer scheduled
+                    if(myUpdateNumber != updateTimerCounter) return;
+
                     //$('#lodTimerWarningLabel').visible = false;
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });
             }
         }
+
+        // Show the text
+        $('#lodTimerWarningLabel').text = theTimerText;
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
