@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"all_pick custom custom_bot"
+	maps			"all_pick all_pick_fast custom custom_bot"
 	"IsPlayable"	"1"
     "version"       "3.0.1"
 }

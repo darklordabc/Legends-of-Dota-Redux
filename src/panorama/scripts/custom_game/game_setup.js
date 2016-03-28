@@ -16,10 +16,10 @@ var allOptions = {
                         text: 'lodOptionBalancedAllPick',
                         value: 1
                     },
-                    /*{
-                        text: 'lodOptionBalancedSingleDraft',
+                    {
+                        text: 'lodOptionBalancedAllPickFast',
                         value: 2
-                    },*/
+                    },
                     {
                         text: 'lodOptionBalancedMirrorDraft',
                         value: 3
@@ -4240,6 +4240,16 @@ function showPopupMessage(msg) {
         useOptionVoting = true;
     }
 
+    // Fast All Pick Only
+    if(mapName == 'all_pick_fast') {
+        allOptions.presets.fields[0].values = [{
+            text: 'lodOptionBalancedAllPickFast',
+            value: 2
+        }];
+
+        useOptionVoting = true;
+    }
+
     // Mirror Draft Only
     if(mapName == 'mirror_draft') {
         allOptions.presets.fields[0].values = [{
@@ -4257,8 +4267,10 @@ function showPopupMessage(msg) {
             value: 4
         }];
 
-        //useOptionVoting = true;
+        useOptionVoting = true;
     }
+
+    useOptionVoting = false;
 
     // Apply option voting related CSS
     if(useOptionVoting) {

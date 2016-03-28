@@ -42,6 +42,7 @@
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
     "lodOptionBalancedAllPick"                      "Balanced All Pick"
+    "lodOptionBalancedAllPickFast"                  "Fast All Pick"
     "lodOptionBalancedSingleDraft"                  "Balanced Single Draft"
     "lodOptionBalancedMirrorDraft"                  "Balanced Mirror Draft"
     "lodOptionBalancedAllRandom"                    "Balanced All Random"

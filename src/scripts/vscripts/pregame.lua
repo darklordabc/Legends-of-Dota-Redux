@@ -197,6 +197,13 @@ function Pregame:init()
         --self.useOptionVoting = true
     end
 
+    -- Fast All Pick Only
+    if mapName == 'all_pick_fast' then
+        self:setOption('lodOptionGamemode', 2)
+        OptionManager:SetOption('maxOptionSelectionTime', 45)
+        --self.useOptionVoting = true
+    end
+
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
@@ -990,6 +997,11 @@ function Pregame:initOptionSelector()
                 return value == 1
             end
 
+            -- Fast All Pick Only
+            if mapName == 'all_pick_fast' then
+                return value == 2
+            end
+
             -- Mirror Draft Only
             if mapName == 'mirror_draft' then
                 return value == 3
@@ -1005,7 +1017,7 @@ function Pregame:initOptionSelector()
             local validGamemodes = {
                 [-1] = true,
                 [1] = true,
-                --[2] = true,
+                [2] = true,
                 [3] = true,
                 [4] = true
             }
@@ -1485,6 +1497,24 @@ function Pregame:initOptionSelector()
 
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
+
+                -- Fast All Pick Mode
+                if optionValue == 2 then
+                    -- Set gamemode to all pick
+                    self:setOption('lodOptionCommonGamemode', 1, true)
+
+                    -- Set respawn to 10%
+                    self:setOption('lodOptionGameSpeedRespawnTime', 10, true)
+
+                    -- Starting level is lvl 6
+                    self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+
+                    -- Turn easy mode on
+                    self:setOption('lodOptionCrazyEasymode', 1, true)
+
+                    -- Start with 2500 bonus gold
+                    self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
+                end
             end
         end,
 
