@@ -3685,8 +3685,16 @@ function OnPhaseChanged(table_name, key, data) {
                         showPopupMessage('lodHostingNoobMessage');
                     }
                 }
-
             }
+
+            // Message voting
+            /*if(currentPhase == PHASE_OPTION_VOTING) {
+                // Should we show the host message popup?
+                if(!seenPopupMessages.optionVoting) {
+                    seenPopupMessages.optionVoting = true;
+                    showPopupMessage('lodOptionVoting');
+                }
+            }*/
 
             // Message for banning phase
             if(currentPhase == PHASE_BANNING) {
