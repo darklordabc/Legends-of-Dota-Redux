@@ -186,6 +186,10 @@
     visibility: visible;
 }
 
+.phase_option_voting.phase_option_voting_selected #unassignedTeamContainer {
+    visibility: visible;
+}
+
 #unassignedPlayersContainer {
     horizontal-align: center;
     flow-children: right;
@@ -362,7 +366,11 @@
     padding: 4px;
 }
 
-.player_has_host_privileges .phase_option_selection.phase_option_selection_selected #middleButtons {
+.player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
+    visibility: visible;
+}
+
+.player_has_host_privileges.phase_option_voting.phase_option_voting_selected #middleButtons {
     visibility: visible;
 }
 
@@ -375,19 +383,11 @@
     visibility: visible;
 }
 
+.phase_option_voting.phase_option_voting_selected .lodTopAvatarPanel {
+    visibility: visible;
+}
+
 .hide_picks .lodTopAvatarPanel {
-    visibility: visible;
-}
-
-#playerAvatar {
-    visibility: collapse;
-}
-
-.phase_option_selection.phase_option_selection_selected #playerAvatar {
-    visibility: visible;
-}
-
-.hide_picks #playerAvatar {
     visibility: visible;
 }
 
@@ -421,6 +421,14 @@
     visibility: collapse;
 }
 
+.phase_option_voting.phase_option_voting_selected #playerHeroImage {
+    visibility: collapse;
+}
+
+.phase_option_voting.phase_option_voting_selected #playerSkillContainer {
+    visibility: collapse;
+}
+
 .hide_picks #playerSkillContainer {
     visibility: collapse;
 }
@@ -438,6 +446,10 @@
 }
 
 .phase_option_selection.phase_option_selection_selected #playerHeroImageContainer {
+    visibility: collapse;
+}
+
+.phase_option_voting.phase_option_voting_selected #playerHeroImageContainer {
     visibility: collapse;
 }
 

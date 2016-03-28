@@ -3660,7 +3660,7 @@ function OnPhaseChanged(table_name, key, data) {
             currentPhase = data.v;
 
             // Update phase classes
-            var masterRoot = $('#mainSelectionRoot');
+            var masterRoot = $.GetContextPanel();
             masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
             masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
             masterRoot.SetHasClass('phase_option_voting', currentPhase == PHASE_OPTION_VOTING);
