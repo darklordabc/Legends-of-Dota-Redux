@@ -170,6 +170,11 @@ function Pregame:init()
         this:onPlayerAskForHero(eventSourceIndex, args)
     end)
 
+    -- Player wants to cast a vote
+    CustomGameEventManager:RegisterListener('lodCastVote', function(eventSourceIndex, args)
+        this:onPlayerCastVote(eventSourceIndex, args)
+    end)
+
     -- Init debug
     Debug:init()
 
@@ -194,29 +199,32 @@ function Pregame:init()
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
-        --self.useOptionVoting = true
+        self.useOptionVoting = true
     end
 
     -- Fast All Pick Only
     if mapName == 'all_pick_fast' then
         self:setOption('lodOptionGamemode', 2)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
-        --self.useOptionVoting = true
+        self.useOptionVoting = true
     end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
-        --self.useOptionVoting = true
+        self.useOptionVoting = true
     end
 
     -- All random only
     if mapName == 'all_random' then
         self:setOption('lodOptionGamemode', 4)
         OptionManager:SetOption('maxOptionSelectionTime', 45)
-        --self.useOptionVoting = true
+        self.useOptionVoting = true
     end
+
+    -- Default banning
+    self:setOption('lodOptionBanning', 3)
 
     -- Bot match
     if mapName == 'custom_bot' then
@@ -294,6 +302,23 @@ function Pregame:getPlayerStats(playerID)
     return playerInfo
 end
 
+-- Checks for premium players
+function Pregame:checkForPremiumPlayers()
+    local maxPlayerID = 24
+
+    -- Stores premium info
+    local premiumInfo = {}
+
+    for playerID=0,maxPlayerID do
+        if PlayerResource:GetConnectionState(playerID) >= 2 then
+            premiumInfo[playerID] = util:getPremiumRank(playerID)
+        end
+    end
+
+    -- Push the premium info
+    network:setPremiumInfo(premiumInfo)
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -309,6 +334,7 @@ function Pregame:onThink()
             if self.useOptionVoting then
                 -- Option voting
                 self:setPhase(constants.PHASE_OPTION_VOTING)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionVotingTime'))
             else
                 -- Option selection
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
@@ -318,6 +344,12 @@ function Pregame:onThink()
 
         -- Wait for time to pass
         return 0.1
+    end
+
+    -- Check for premium players
+    if not self.checkedPremiumPlayers then
+        self.checkedPremiumPlayers = true
+        self:checkForPremiumPlayers()
     end
 
     --[[
@@ -338,6 +370,12 @@ function Pregame:onThink()
     ]]
 
     if ourPhase == constants.PHASE_OPTION_VOTING then
+        -- Is it over?
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
+            -- Finish the option selection
+            self:finishOptionSelection()
+        end
+
         return 0.1
     end
 
@@ -757,7 +795,7 @@ end
 -- Finishes option selection
 function Pregame:finishOptionSelection()
     -- Ensure we are in the options locking phase
-    if self:getPhase() ~= constants.PHASE_OPTION_SELECTION then return end
+    if self:getPhase() ~= constants.PHASE_OPTION_SELECTION and self:getPhase() ~= constants.PHASE_OPTION_VOTING then return end
 
     -- Validate teams
     local totalRadiant = 0
@@ -885,6 +923,93 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         -- Option values and names are validated at a later stage
         self:setOption(optionName, optionValue)
     end
+end
+
+-- Player wants to cast a vote
+function Pregame:onPlayerCastVote(eventSourceIndex, args)
+    -- Ensure we are in the options voting
+    if self:getPhase() ~= constants.PHASE_OPTION_VOTING then return end
+
+    -- Grab the data
+    local playerID = args.PlayerID
+    local optionName = args.optionName
+    local optionValue = args.optionValue
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we have a store for vote data
+    self.voteData = self.voteData or {}
+
+    -- Option validator
+    local optionValidator = {
+        slots = function(slotCount)
+            return slotCount == 4 or slotCount == 5 or slotCount == 6
+        end,
+
+        banning = function(choice)
+            return choice == 1 or choice == 0
+        end
+    }
+
+    -- Validate options
+    if not optionValidator[optionName] or not optionValidator[optionName](optionValue) then return end
+
+    -- Ensure we have a store for this option
+    self.voteData[optionName] = self.voteData[optionName] or {}
+
+    -- Store their vote
+    self.voteData[optionName][playerID] = optionValue
+
+    -- Process / update the vote data
+    self:processVoteData()
+end
+
+-- Processes Vote Data
+function Pregame:processVoteData()
+    -- Will store results
+    local results = {}
+    local counts = {}
+
+    for optionName,data in pairs(self.voteData or {}) do
+        counts[optionName] = {}
+
+        for playerID,choice in pairs(data) do
+            counts[optionName][choice] = (counts[choice] or 0) + util:getVotingPower(playerID)
+        end
+
+        local maxNumber = 0
+        for choice,count in pairs(counts[optionName]) do
+            if count > maxNumber then
+                maxNumber = count
+                results[optionName] = choice
+            end
+        end
+    end
+
+    -- Do we have a choice for slots
+    if results.slots ~= nil then
+        if results.slots == 4 then
+            self:setOption('lodOptionCommonMaxSlots', 4, true)
+            self:setOption('lodOptionCommonMaxUlts', 1, true)
+        elseif results.slots == 5 then
+            self:setOption('lodOptionCommonMaxSlots', 5, true)
+            self:setOption('lodOptionCommonMaxUlts', 1, true)
+        elseif results.slots == 6 then
+            self:setOption('lodOptionCommonMaxSlots', 6, true)
+            self:setOption('lodOptionCommonMaxUlts', 2, true)
+        end
+    end
+
+    -- Do we have a choice for banning phase?
+    if results.banning ~= nil then
+        if results.banning == 1 then
+            self:setOption('lodOptionBanning', 3, true)
+        else
+            self:setOption('lodOptionBanning', 1, true)
+        end
+    end
+
+    -- Push the counts
+    network:voteCounts(counts)
 end
 
 -- Load up the troll combo bans list

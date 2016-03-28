@@ -162,5 +162,15 @@ function Network:addBot(playerID, buildInfo)
     CustomNetTables:SetTableValue('phase_pregame', 'add_bot_' .. playerID, buildInfo)
 end
 
+-- Shares the vote counts
+function Network:voteCounts(counts)
+    CustomNetTables:SetTableValue('phase_pregame', 'vote_counts', counts)
+end
+
+-- Shares premium info
+function Network:setPremiumInfo(info)
+    CustomNetTables:SetTableValue('phase_pregame', 'premium_info', info)
+end
+
 -- Return an instance of it
 return Network()

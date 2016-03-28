@@ -42,16 +42,16 @@ var allOptions = {
                 sort: 'dropdown',
                 values: [
                     {
-                        text: 'lodOptionBalancedBan',
-                        value: 1
+                        text: 'lodOptionManualBalancedBan',
+                        value: 3
                     },
                     {
                         text: 'lodOptionManualBan',
                         value: 2
                     },
                     {
-                        text: 'lodOptionManualBalancedBan',
-                        value: 3
+                        text: 'lodOptionBalancedBan',
+                        value: 1
                     },
                     {
                         text: 'lodOptionNoBans',
@@ -1206,6 +1206,9 @@ var pickedAHero = false;
 
 // Waiting for preache
 var waitingForPrecache = true;
+
+// Are we a premium player?
+var isPremiumPlayer = false;
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -3739,6 +3742,32 @@ function OnPhaseChanged(table_name, key, data) {
             // No longer waiting for precache
             waitingForPrecache = false;
         break;
+
+        case 'vote_counts':
+            // Server just sent us vote counts
+
+            // Defaults
+            data.banning = data.banning || {};
+            data.slots = data.slots || {};
+
+            // Set vote counts
+            $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
+            $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
+
+            $('#voteCountSlots4').text = (data.slots[4] || 0);
+            $('#voteCountSlots5').text = (data.slots[5] || 0);
+            $('#voteCountSlots6').text = (data.slots[6] || 0);
+        break;
+
+        case 'premium_info':
+            var playerID = Players.GetLocalPlayer();
+
+            if(data[playerID] != null) {
+                // Store if we are a premium player
+                isPremiumPlayer = data[playerID] > 0;
+                $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
+            }
+        break;
     }
 
     // Server wants us to add a bot onto a team
@@ -3975,6 +4004,13 @@ function onMaxSlotsChanged() {
     for(var playerID in activeReviewPanels) {
         activeReviewPanels[playerID].OnGetHeroSlotCount(maxSlots);
     }
+
+    // Do the highlight on the option voting
+    for(var i=4; i<=6; ++i) {
+        $('#optionVotingSlotAnswer' + i).RemoveClass('optionSlotsCurrentlySelected');
+    }
+
+    $('#optionVotingSlotAnswer' + maxSlots).AddClass('optionSlotsCurrentlySelected');
 }
 
 function onAllowedCategoriesChanged() {
@@ -4017,7 +4053,7 @@ function SetSelectedPhase(newPhase, noSound) {
     selectedPhase = newPhase;
 
     // Update CSS
-    var masterRoot = $('#mainSelectionRoot');
+    var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
     masterRoot.SetHasClass('phase_option_voting_selected', selectedPhase == PHASE_OPTION_VOTING);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
@@ -4133,7 +4169,7 @@ function UpdateTimer() {
             // Set how long is left
             theTimerText = getFancyTime(timeLeft);
 
-            if(timeLeft <= 30 && !pickedAHero) {
+            if(timeLeft <= 30 && !pickedAHero && currentPhase == PHASE_SELECTION) {
                 theTimerText += '\n' + $.Localize('lodPickAHero');
             }
 
@@ -4204,6 +4240,57 @@ function showPopupMessage(msg) {
     $('#lodPopupMessage').visible = true;
 }
 
+// Cast a vote
+function castVote(optionName, optionValue) {
+    // Tell the server we clicked it
+    GameEvents.SendCustomGameEventToServer('lodCastVote', {
+        optionName: optionName,
+        optionValue: optionValue
+    });
+}
+
+// Player casts a vote
+function onPlayerCastVote(category, choice) {
+    // No voting unless it is the voting phase
+    if(currentPhase != PHASE_OPTION_VOTING) return;
+
+    switch(category) {
+        case 'slots':
+            // Remove glow
+            for(var i=4; i<=6; ++i) {
+                $('#optionVoteMaxSlots' + i).RemoveClass('makeThePlayerNoticeThisButton');
+                $('#optionVoteMaxSlots' + i).RemoveClass('optionCurrentlySelected');
+            }
+
+            // Add the selection
+            $('#optionVoteMaxSlots' + choice).AddClass('optionCurrentlySelected');
+
+            // Send the vote to the server
+            castVote(category, choice);
+        break;
+
+        case 'banning':
+            // Remove glow
+            $('#optionVoteBanningNo').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteBanningNo').RemoveClass('optionCurrentlySelected');
+
+            $('#optionVoteBanningYes').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteBanningYes').RemoveClass('optionCurrentlySelected');
+
+            // Add the selection
+            var answer = 0;
+            if(choice) {
+                $('#optionVoteBanningYes').AddClass('optionCurrentlySelected');
+                answer = 1;
+            } else {
+                $('#optionVoteBanningNo').AddClass('optionCurrentlySelected');
+            }
+
+            castVote(category, answer);
+        break;
+    }
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -4270,7 +4357,7 @@ function showPopupMessage(msg) {
         useOptionVoting = true;
     }
 
-    useOptionVoting = false;
+    //useOptionVoting = false;
 
     // Apply option voting related CSS
     if(useOptionVoting) {

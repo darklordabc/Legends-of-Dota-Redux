@@ -343,4 +343,13 @@
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
     "lodSuccessBanHero"                             "'{heroName}' was banned."
+
+    // OPTION VOTING
+    "lodOptionVotingHeader"                         "Vote For Options"
+    "lodHowManySlots"                               "How many slots?"
+    "voteMaxSlots4"                                 "4 Slots"
+    "voteMaxSlots5"                                 "5 Slots"
+    "voteMaxSlots6"                                 "6 Slots"
+
+    "lodBanningPhase"                               "Enable The Banning Phase?"
 }

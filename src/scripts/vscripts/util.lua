@@ -161,5 +161,10 @@ function Util:getPremiumRank(playerID)
     return totalPremium
 end
 
+-- Returns a player's voting power
+function Util:getVotingPower(playerID)
+    return self:getPremiumRank(playerID) + 1
+end
+
 -- Define the export
 return Util
