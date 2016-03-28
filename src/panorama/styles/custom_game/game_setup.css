@@ -2052,7 +2052,7 @@
     visibility: collapse;
 }
 
-.player_has_host_privileges .phase_option_selection .optionsSlotPanelSlave {
+.player_has_host_privileges.phase_option_selection .optionsSlotPanelSlave {
     visibility: collapse;
 }
 
@@ -2060,15 +2060,15 @@
     visibility: visible;
 }
 
-.player_has_host_privileges .phase_option_selection .optionsSlotPanelHost {
+.player_has_host_privileges.phase_option_selection .optionsSlotPanelHost {
     visibility: visible;
 }
 
-.player_has_host_privileges .phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
     visibility: collapse;
 }
 
-.player_has_host_privileges .phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
     visibility: visible;
 }
 
