@@ -2,16 +2,22 @@
 
 function OnClientCheckIn(args) {
 
+    var playerInfo = Game.GetLocalPlayerInfo();
+    var hostInfo = 0
+    if ( playerInfo )
+        hostInfo = playerInfo.player_has_host_privileges
+
     var payload = {
         modIdentifier: args.modID,
         steamID32: GetSteamID32(),
+        isHost: hostInfo, 
         matchID: args.matchID,
         schemaVersion: args.schemaVersion
     };
 
     $.Msg('Sending: ', payload);
 
-    $.AsyncWebRequest('http://getdotastats.com/s2/api/s2_check_in.php',
+    $.AsyncWebRequest('https://api.getdotastats.com/s2_check_in.php',
         {
             type: 'POST',
             data: {payload: JSON.stringify(payload)},
@@ -31,9 +37,14 @@ function GetSteamID32() {
     return steamID32;
 }
 
+function Print(msg) {
+    $.Msg(msg.content)
+}
+
 (function () {
     $.Msg("StatCollection Client Loaded");
 
     GameEvents.Subscribe("statcollection_client", OnClientCheckIn);
+    GameEvents.Subscribe("statcollection_print", Print);
 
 })();
