@@ -3953,6 +3953,19 @@ function Pregame:spawnBots()
                     end
                 end
 
+                -- If we failed to find any skills to skill
+                if lowestAb == nil then
+                    -- Try to skill attribute bonus
+                    lowestAb = hero:FindAbilityByName('attribute_bonus')
+                    if lowestAb ~= nil then
+                        lowestLevel = lowestAb:GetLevel()
+                        if lowestLevel >= lowestAb:GetMaxLevel() then
+                            lowestAb = nil
+                        end
+                    end
+                end
+
+                -- Apply the point
                 if lowestAb ~= nil then
                     lowestAb:SetLevel(lowestLevel + 1)
                 end
