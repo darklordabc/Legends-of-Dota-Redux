@@ -3887,6 +3887,11 @@ function Pregame:spawnBots()
 
                         if hero then
                             SkillManager:ApplyBuild(hero, build)
+
+                            -- Stop other player's from touching it
+                            for i=0,24 do
+                                hero:SetControllableByPlayer(i, false)
+                            end
                         end
                     end, playerID)
                 end
