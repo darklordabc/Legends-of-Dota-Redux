@@ -166,5 +166,41 @@ function Util:getVotingPower(playerID)
     return self:getPremiumRank(playerID) + 1
 end
 
+-- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
+local toIgnore
+function Util:getToggleIgnores()
+    return toIgnore
+end
+
+(function()
+    toIgnore = {
+        nyx_assassin_burrow = true,
+        spectre_reality = true,
+        techies_focused_detonate = true,
+        furion_teleportation = true,
+    }
+
+    local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+    local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+
+    for k,v in pairs(absCustom) do
+        abs[k] = v
+    end
+
+    for abilityName,data in pairs(abs) do
+        if type(data) == 'table' then
+            if data.AbilityBehavior and string.match(data.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_TOGGLE') then
+                toIgnore[abilityName] = true
+            end
+        end
+    end
+
+    -- No items
+    local items = LoadKeyValues('scripts/npc/items.txt')
+    for abilityName,data in pairs(items) do
+        toIgnore[abilityName] = true
+    end
+end)()
+
 -- Define the export
 return Util

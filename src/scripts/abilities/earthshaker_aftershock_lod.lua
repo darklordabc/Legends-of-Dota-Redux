@@ -1,28 +1,5 @@
-local toIgnore = {}
-
--- Generate list of abilities to ignore
-(function()
-    local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
-    local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-
-    for k,v in pairs(absCustom) do
-        abs[k] = v
-    end
-
-    for abilityName,data in pairs(abs) do
-        if type(data) == 'table' then
-            if data.AbilityBehavior and string.match(data.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_TOGGLE') then
-                toIgnore[abilityName] = true
-            end
-        end
-    end
-
-    -- No items
-    local items = LoadKeyValues('scripts/npc/items.txt')
-    for abilityName,data in pairs(items) do
-        toIgnore[abilityName] = true
-    end
-end)()
+local util = require('util')
+local toIgnore = util:getToggleIgnores()
 
 function TryAftershock(keys)
     local abName = keys.event_ability:GetClassname()
