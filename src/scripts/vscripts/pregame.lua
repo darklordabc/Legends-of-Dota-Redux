@@ -381,12 +381,8 @@ function Pregame:onThink()
 
     -- Process options ONCE here
     if not self.processedOptions then
-        -- Decide how to process options
-        if self.useOptionVoting then
-
-        else
-            self:processOptions()
-        end
+        -- Process options
+        self:processOptions()
     end
 
     --[[
@@ -2164,10 +2160,11 @@ function Pregame:processOptions()
 
     -- Banning of OP Skills
     if self.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-        SpellFixes:SetOPMode(true)
         for abilityName,v in pairs(self.OPSkillsList) do
             self:banAbility(abilityName)
         end
+    else
+    	SpellFixes:SetOPMode(true)
     end
 
     -- Banning invis skills
