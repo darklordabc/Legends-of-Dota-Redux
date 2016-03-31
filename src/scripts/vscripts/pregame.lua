@@ -498,6 +498,9 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:spawnBots()
         end, DoUniqueString('spawnbots'), 0.5)
+
+        -- Spawn all players
+        self:spawnAllHeroes()
     end
 end
 
@@ -3886,9 +3889,9 @@ function Pregame:spawnBots()
                             SkillManager:ApplyBuild(hero, build)
 
                             -- Stop other player's from touching it
-                            for i=0,24 do
+                            --[[for i=0,24 do
                                 hero:SetControllableByPlayer(i, false)
-                            end
+                            end]]
                         end
                     end, playerID)
                 end
