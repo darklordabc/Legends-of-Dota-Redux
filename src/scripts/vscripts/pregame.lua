@@ -1032,6 +1032,11 @@ function Pregame:loadTrollCombos()
     self.lodBanList = tempBanList.lodBanList
     self.doNotRandom = tempBanList.doNotRandom
 
+    -- All OP skills should be added to the LoD ban list
+    for skillName,_ in pairs(self.OPSkillsList) do
+        self.lodBanList[skillName] = 1
+    end
+
     -- Bans a skill combo
     local function banCombo(a, b)
         -- Ensure ban lists exist
