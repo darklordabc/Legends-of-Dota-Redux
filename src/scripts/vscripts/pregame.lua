@@ -484,23 +484,26 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
-        -- Spawn all players
-        self:spawnAllHeroes()
+        -- Spawn the bots
+        Timers:CreateTimer(function()
+            this:spawnBots()
+        end, DoUniqueString('spawnbots'), 0.1)
+
+        -- Spawn all humans
+        Timers:CreateTimer(function()
+            -- Spawn all players
+        	this:spawnAllHeroes()
+        end, DoUniqueString('spawnbots'), 0.2)
 
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
-        end, DoUniqueString('createtowers'), 0.1)
+        end, DoUniqueString('createtowers'), 0.3)
 
-
+        -- Prevent fountain camping
         Timers:CreateTimer(function()
             this:preventCamping()
-        end, DoUniqueString('preventcamping'), 0.2)
-
-        -- Spawn the bots
-        Timers:CreateTimer(function()
-            this:spawnBots()
-        end, DoUniqueString('spawnbots'), 0.5)
+        end, DoUniqueString('preventcamping'), 0.4)
     end
 end
 
