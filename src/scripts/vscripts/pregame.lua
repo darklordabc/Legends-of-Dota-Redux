@@ -576,15 +576,6 @@ function Pregame:actualSpawnPlayer()
         local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
         function spawnTheHero()
-            -- Make a small delay
-            Timers:CreateTimer(function()
-                -- Done spawning, start the next one
-                currentlySpawning = false
-
-                -- Continue actually spawning
-                this:actualSpawnPlayer()
-            end, DoUniqueString('continueSpawning'), 0.1)
-
             -- Create the hero and validate it
             local hero = CreateHeroForPlayer(heroName, player)
             if hero ~= nil and IsValidEntity(hero) then
@@ -626,9 +617,16 @@ function Pregame:actualSpawnPlayer()
                 spawnTheHero()
             end, playerID)
         end
-
-
     end
+
+    -- Give a small delay, and then continue
+    Timers:CreateTimer(function()
+        -- Done spawning, start the next one
+        currentlySpawning = false
+
+        -- Continue actually spawning
+        this:actualSpawnPlayer()
+    end, DoUniqueString('continueSpawning'), 0.1)
 end
 
 -- Returns a random hero [will be unique]
