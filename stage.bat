@@ -36,7 +36,7 @@ mklink /D /J "dota\content\panorama" "src\panorama"
 mklink /H "dota\game\scripts\npc\activelist.txt" "src\scripts\npc\activelist.txt"
 mklink /H "dota\game\scripts\npc\herolist.txt" "src\scripts\npc\herolist.txt"
 mklink /H "dota\game\scripts\npc\npc_units_custom.txt" "script_generator\BIN\npc_units_custom.txt"
-mklink /H "dota\game\scripts\npc\npc_items_custom.txt" "script_generator\BIN\npc_items_custom.txt"
+mklink /H "dota\game\scripts\npc\npc_items_custom.txt" "src\scripts\npc\npc_items_custom.txt"
 
 :: Link script folders
 mklink /D /J "dota\game\scripts\vscripts" "src\scripts\vscripts\"
@@ -59,7 +59,7 @@ mklink /H "dota\game\resource\addon_russian.txt" "script_generator\BIN\addon_rus
 ::mklink /H "dota\game\panorama\localization\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
 
 mklink /H "dota\game\scripts\npc\npc_abilities_override.txt" "src\scripts\npc\npc_abilities_override.txt"
-mklink /H "dota\game\scripts\npc\npc_abilities_custom.txt" "script_generator\BIN\npc_abilities_custom.txt"
+mklink /H "dota\game\scripts\npc\npc_abilities_custom.txt" "src\scripts\npc\npc_abilities_custom.txt"
 mklink /H "dota\game\scripts\npc\npc_heroes_custom.txt" "script_generator\BIN\npc_heroes_custom.txt"
 
 :: Hard link materials folder

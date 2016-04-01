@@ -484,6 +484,9 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
+        -- Spawn all players
+        self:spawnAllHeroes()
+
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
@@ -498,16 +501,13 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:spawnBots()
         end, DoUniqueString('spawnbots'), 0.5)
-
-        -- Spawn all players
-        self:spawnAllHeroes()
     end
 end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
     local minPlayerID = 0
-    local maxPlayerID = 24
+    local maxPlayerID = 9
 
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID do
@@ -522,7 +522,7 @@ local currentlySpawning = false
 local cachedPlayerHeroes = {}
 function Pregame:spawnPlayer(playerID)
     -- Is there a player in this slot?
-    if PlayerResource:IsValidPlayerID(playerID) then
+    if PlayerResource:GetConnectionState(playerID) >= 2 then
         -- There is, go ahead and build this player
 
         -- Only spawn a hero for a given player ONCE
@@ -552,17 +552,17 @@ function Pregame:actualSpawnPlayer()
     if not self.doneSpawningBots then
         -- Add a small delay
         Timers:CreateTimer(function()
-                -- Done spawning, start the next one
-                currentlySpawning = false
+            -- Done spawning, start the next one
+            currentlySpawning = false
 
-                -- Continue actually spawning
-                this:actualSpawnPlayer()
-            end, DoUniqueString('continueSpawning'), 1)
+            -- Continue actually spawning
+            this:actualSpawnPlayer()
+        end, DoUniqueString('continueSpawning'), 1)
         return
     end
 
     -- Grab a player to spawn
-    local playerID = table.remove(spawnQueue, playerID)
+    local playerID = table.remove(spawnQueue, 1)
 
     -- Grab their build
     local build = self.selectedSkills[playerID]
