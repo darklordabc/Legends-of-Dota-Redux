@@ -236,6 +236,11 @@ function Pregame:init()
     function PlayerResource:getPlayerStats(playerID)
         return this:getPlayerStats(playerID)
     end
+
+    -- Spawning stuff
+    self.spawnQueue = {}
+    self.currentlySpawning = false
+    self.cachedPlayerHeroes = {}
 end
 
 -- Gets stats for the given player
@@ -520,9 +525,6 @@ function Pregame:spawnAllHeroes()
 end
 
 -- Spawns a given player
-local spawnQueue = {}
-local currentlySpawning = false
-local cachedPlayerHeroes = {}
 function Pregame:spawnPlayer(playerID)
     -- Is there a player in this slot?
     if PlayerResource:GetConnectionState(playerID) >= 2 then
@@ -533,7 +535,7 @@ function Pregame:spawnPlayer(playerID)
         self.spawnedHeroesFor[playerID] = true
 
         -- Insert the player for spawning
-        table.insert(spawnQueue, playerID)
+        table.insert(self.spawnQueue, playerID)
 
         -- Actually spawn the player
         self:actualSpawnPlayer()
@@ -542,11 +544,11 @@ end
 
 function Pregame:actualSpawnPlayer()
     -- Is there someone to spawn?
-    if #spawnQueue <= 0 then return end
+    if #self.spawnQueue <= 0 then return end
 
     -- Only spawn ONE player at a time!
-    if currentlySpawning then return end
-    currentlySpawning = true
+    if self.currentlySpawning then return end
+    self.currentlySpawning = true
 
     -- Grab a reference to self
     local this = self
@@ -556,7 +558,7 @@ function Pregame:actualSpawnPlayer()
         -- Add a small delay
         Timers:CreateTimer(function()
             -- Done spawning, start the next one
-            currentlySpawning = false
+            this.currentlySpawning = false
 
             -- Continue actually spawning
             this:actualSpawnPlayer()
@@ -564,65 +566,75 @@ function Pregame:actualSpawnPlayer()
         return
     end
 
-    -- Grab a player to spawn
-    local playerID = table.remove(spawnQueue, 1)
+    -- Try to spawn this player using safe stuff
+    local status, err = pcall(function()
+        -- Grab a player to spawn
+        local playerID = table.remove(this.spawnQueue, 1)
 
-    -- Grab their build
-    local build = self.selectedSkills[playerID]
+        -- Grab their build
+        local build = self.selectedSkills[playerID]
 
-    -- Validate the player
-    local player = PlayerResource:GetPlayer(playerID)
-    if player ~= nil then
-        local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+        -- Validate the player
+        local player = PlayerResource:GetPlayer(playerID)
+        if player ~= nil then
+            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
-        function spawnTheHero()
-            -- Create the hero and validate it
-            local hero = CreateHeroForPlayer(heroName, player)
-            if hero ~= nil and IsValidEntity(hero) then
-                SkillManager:ApplyBuild(hero, build or {})
+            function spawnTheHero()
+                -- Create the hero and validate it
+                local hero = CreateHeroForPlayer(heroName, player)
+                if hero ~= nil and IsValidEntity(hero) then
+                    SkillManager:ApplyBuild(hero, build or {})
 
-                -- Do they have a custom attribute set?
-                if self.selectedPlayerAttr[playerID] ~= nil then
-                    -- Set it
+                    -- Do they have a custom attribute set?
+                    if self.selectedPlayerAttr[playerID] ~= nil then
+                        -- Set it
 
-                    local toSet = 0
+                        local toSet = 0
 
-                    if self.selectedPlayerAttr[playerID] == 'str' then
-                        toSet = 0
-                    elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                        toSet = 1
-                    elseif self.selectedPlayerAttr[playerID] == 'int' then
-                        toSet = 2
-                    end
-
-                    -- Set a timer to fix stuff up
-                    Timers:CreateTimer(function()
-                        if IsValidEntity(hero) then
-                            hero:SetPrimaryAttribute(toSet)
+                        if self.selectedPlayerAttr[playerID] == 'str' then
+                            toSet = 0
+                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                            toSet = 1
+                        elseif self.selectedPlayerAttr[playerID] == 'int' then
+                            toSet = 2
                         end
-                    end, DoUniqueString('primaryAttrFix'), 0.1)
+
+                        -- Set a timer to fix stuff up
+                        Timers:CreateTimer(function()
+                            if IsValidEntity(hero) then
+                                hero:SetPrimaryAttribute(toSet)
+                            end
+                        end, DoUniqueString('primaryAttrFix'), 0.1)
+                    end
                 end
             end
-        end
 
-        if cachedPlayerHeroes[playerID] then
-            -- Directly spawn the hero
-            spawnTheHero()
-        else
-            -- Already cached this player's hero
-            cachedPlayerHeroes[playerID] = true
-
-            -- Attempt to precache their hero
-            PrecacheUnitByNameAsync(heroName, function()
+            if this.cachedPlayerHeroes[playerID] then
+                -- Directly spawn the hero
                 spawnTheHero()
-            end, playerID)
+            else
+                -- Already cached this player's hero
+                this.cachedPlayerHeroes[playerID] = true
+
+                -- Attempt to precache their hero
+                PrecacheUnitByNameAsync(heroName, function()
+                    spawnTheHero()
+                end, playerID)
+            end
+        else
+            -- This player has not spawned!
+            self.spawnedHeroesFor[playerID] = nil
         end
+    end)
+
+    if not status then
+        SendToServerConsole('say "Post this to the LoD comments section: '..err:gsub('"',"''")..'"')
     end
 
     -- Give a small delay, and then continue
     Timers:CreateTimer(function()
         -- Done spawning, start the next one
-        currentlySpawning = false
+        this.currentlySpawning = false
 
         -- Continue actually spawning
         this:actualSpawnPlayer()
@@ -1929,7 +1941,7 @@ function Pregame:precacheBuilds()
 
             if heroName then
                 -- Store that it is cached
-                cachedPlayerHeroes[playerID] = true
+                this.cachedPlayerHeroes[playerID] = true
 
                 --print('Caching ' .. heroName)
 
