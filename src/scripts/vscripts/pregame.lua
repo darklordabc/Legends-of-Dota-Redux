@@ -627,10 +627,6 @@ function Pregame:actualSpawnPlayer()
         end
     end)
 
-    if not status then
-        SendToServerConsole('say "Post this to the LoD comments section: '..err:gsub('"',"''")..'"')
-    end
-
     -- Give a small delay, and then continue
     Timers:CreateTimer(function()
         -- Done spawning, start the next one
@@ -639,6 +635,11 @@ function Pregame:actualSpawnPlayer()
         -- Continue actually spawning
         this:actualSpawnPlayer()
     end, DoUniqueString('continueSpawning'), 0.1)
+
+    -- Did the spawning of this hero fail?
+    if not status then
+        SendToServerConsole('say "Post this to the LoD comments section: '..err:gsub('"',"''")..'"')
+    end
 end
 
 -- Returns a random hero [will be unique]
