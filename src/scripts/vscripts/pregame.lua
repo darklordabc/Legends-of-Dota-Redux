@@ -3735,10 +3735,15 @@ function Pregame:generateBotBuilds()
     -- Create a table to store bot builds
     self.botBuilds = {}
 
+    -- List of bots that are borked
+    local brokenBots = {
+        npc_dota_hero_tidehunter = true,
+    }
+
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
-        if not self.bannedHeroes[k] then
+        if not self.bannedHeroes[k] and not brokenBots[k] then
             table.insert(possibleHeroes, k)
         end
     end
@@ -3926,7 +3931,7 @@ function Pregame:spawnBots()
 
                 local heroName = hero:GetClassname()
                 local defaultSkills = {}
-                for k,abilityName in pairs(this.botHeroes[heroName]) do
+                for k,abilityName in pairs(this.botHeroes[heroName] or {}) do
                     defaultSkills[abilityName] = true
                 end
 
