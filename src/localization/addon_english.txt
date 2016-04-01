@@ -123,7 +123,7 @@
     "lodOptionBanningMaxBans1"                      "1 Ban Per Player"
     "lodOptionBanningMaxBans2"                      "2 Bans Per Player"
     "lodOptionBanningMaxBans3"                      "3 Bans Per Player"
-    "lodOptionBanningMaxBans5"                      "4 Bans Per Player"
+    "lodOptionBanningMaxBans5"                      "5 Bans Per Player"
     "lodOptionBanningMaxBans10"                     "10 Bans Per Player"
     "lodOptionBanningMaxBans25"                     "25 Bans Per Player"
 
