@@ -867,7 +867,7 @@ function Pregame:finishOptionSelection()
     end
 
     -- Move onto the next phase
-    if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 then
+    if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 or self.optionStore['lodOptionBanningHostBanning'] == 1 then
         -- There is banning
         self:setPhase(constants.PHASE_BANNING)
         self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
@@ -1274,6 +1274,14 @@ function Pregame:initOptionSelector()
             return valid[value] or false
         end,
 
+        -- Common host banning
+        lodOptionBanningHostBanning = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Common max bans
         lodOptionBanningMaxBans = function(value)
             -- Ensure gamemode is set to custom
@@ -1675,6 +1683,9 @@ function Pregame:initOptionSelector()
 
         -- Fast Banning
         lodOptionBanning = function(optionName, optionValue)
+            -- No host banning phase
+            self:setOption('lodOptionBanningHostBanning', 0, true)
+
             if self.optionStore['lodOptionBanning'] == 1 then
                 -- Balanced Bans
                 self:setOption('lodOptionBanningMaxBans', 0, true)
@@ -2239,6 +2250,7 @@ function Pregame:processOptions()
         ['Max Slots'] = self.optionStore['lodOptionCommonMaxSlots'],                                            -- Max Slots                       [number, 0 - 6]
         ['Max Skills'] = self.optionStore['lodOptionCommonMaxSkills'],                                          -- Max Skills                      [number, 0 - 6]
         ['Max Ults'] = self.optionStore['lodOptionCommonMaxUlts'],                                              -- Max Ults                        [number, 0 - 6]
+        ['Host Banning'] = self.optionStore['lodOptionBanningHostBanning'],                                     -- Host Banning Mode               [boolean, 1/0]
         ['Max Ability Bans'] = self.optionStore['lodOptionBanningMaxBans'],                                     -- Max Ability Bans                [number, 0 - 25]
         ['Max Hero Bans'] = self.optionStore['lodOptionBanningMaxHeroBans'],                                    -- Max Hero Bans                   [number, 0 - 3]
         ['Block Troll Combos'] = self.optionStore['lodOptionBanningBlockTrollCombos'],                          -- Block Troll Combos              [boolean, 1/0]
@@ -2817,6 +2829,11 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	local maxBans = self.optionStore['lodOptionBanningMaxBans']
 	local maxHeroBans = self.optionStore['lodOptionBanningMaxHeroBans']
 
+    local unlimitedBans = false
+    if self.optionStore['lodOptionBanningHostBanning'] == 1 and GameRules:PlayerHasCustomGameHostPrivileges(player) then
+        unlimitedBans = true
+    end
+
 	-- Check what kind of ban it is
 	local heroName = args.heroName
 	local abilityName = args.abilityName
@@ -2824,7 +2841,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	-- Default is heroBan
 	if heroName ~= nil then
 		-- Check the number of bans
-		if playerBans.heroBans >= maxHeroBans then
+		if playerBans.heroBans >= maxHeroBans and not unlimitedBans then
             if maxHeroBans == 0 then
                 -- There is no hero banning
                 network:sendNotification(player, {
@@ -2891,7 +2908,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		end
 	elseif abilityName ~= nil then
 		-- Check the number of bans
-		if playerBans.abilityBans >= maxBans then
+		if playerBans.abilityBans >= maxBans and not unlimitedBans then
             if maxBans == 0 then
                 -- No ability banning allowed
                 network:sendNotification(player, {
@@ -2962,7 +2979,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	end
 
     -- Have they hit the ban limit?
-    if playerBans.heroBans >= maxHeroBans and playerBans.abilityBans >= maxBans then
+    if playerBans.heroBans >= maxHeroBans and playerBans.abilityBans >= maxBans and not unlimitedBans then
         -- Toggle their state
         self.isReady[playerID] =  1
 

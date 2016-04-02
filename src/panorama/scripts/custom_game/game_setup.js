@@ -306,6 +306,22 @@ var allOptions = {
         custom: true,
         fields: [
             {
+                name: 'lodOptionBanningHostBanning',
+                des: 'lodOptionDesBanningHostBanning',
+                about: 'lodOptionAboutHostBanning',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionBanningMaxBans',
                 des: 'lodOptionDesBanningMaxBans',
                 about: 'lodOptionAboutBanningMaxBans',
@@ -3845,7 +3861,7 @@ function OnOptionChanged(table_name, key, data) {
     }
 
     // Check for banning phase
-    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans') {
+    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans' || key == 'lodOptionBanningHostBanning') {
         onMaxBansChanged();
     }
 
@@ -3873,16 +3889,19 @@ function OnOptionChanged(table_name, key, data) {
         hideEnemyPicks = data.v == 1;
         calculateHideEnemyPicks();
     }
-
-    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans') {
-        recalculateBanLimits();
-    }
 }
 
 // Recalculates how many abilities / heroes we can ban
 function recalculateBanLimits() {
     var maxHeroBans = optionValueList['lodOptionBanningMaxHeroBans'] || 0;
     var maxAbilityBans = optionValueList['lodOptionBanningMaxBans'] || 0;
+    var hostBanning = optionValueList['lodOptionBanningHostBanning'] || 0;
+
+    // Is host banning enabled, and we are the host?
+    if(hostBanning && isHost()) {
+        $('#lodBanLimits').text = $.Localize('hostBanningPanelText');
+        return;
+    }
 
     var heroBansLeft = maxHeroBans - currentHeroBans;
     var abilityBansLeft = maxAbilityBans - currentAbilityBans;
@@ -3978,11 +3997,16 @@ function onGamemodeChanged() {
 function onMaxBansChanged() {
     var maxBans = optionValueList['lodOptionBanningMaxBans'];
     var maxHeroBans = optionValueList['lodOptionBanningMaxHeroBans'];
+    var hostBanning = optionValueList['lodOptionBanningHostBanning'];
 
-    if(maxBans != null && maxHeroBans != null) {
+    // Hide / show the banning phase button
+    if(maxBans != null && maxHeroBans != null && hostBanning != null) {
         var masterRoot = $('#mainSelectionRoot');
-        masterRoot.SetHasClass('no_banning_phase', maxBans == 0 && maxHeroBans == 0);
+        masterRoot.SetHasClass('no_banning_phase', maxBans == 0 && maxHeroBans == 0 && hostBanning == 0);
     }
+
+    // Recalculate limits
+    recalculateBanLimits();
 }
 
 // The max number of slots / ults / regular abs has changed!

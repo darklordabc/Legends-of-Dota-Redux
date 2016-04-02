@@ -117,6 +117,8 @@
     "lodOptionCommonUlts11"                         "11 Ultimate Abilities"
     "lodOptionCommonUlts12"                         "12 Ultimate Abilities"
 
+    "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
+    "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
     "lodOptionDesBanningMaxBans"                    "Max Ability Bans"
     "lodOptionBanningMaxBans0"                      "No Ability Bans"
     "lodOptionBanningMaxHeroBans0"                  "No Hero Bans"
@@ -281,6 +283,7 @@
     "lodUptoAbility"                                "upto 1 more ability"
     "lodBanAnd"                                     " and "
     "lodNoMoreBans"                                 "You can not ban any more heroes or abilities"
+    "hostBanningPanelText"                          "You can ban as many heroes and abilities as you like."
 
 
     // All Random
