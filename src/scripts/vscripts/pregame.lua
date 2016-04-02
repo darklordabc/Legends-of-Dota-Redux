@@ -223,6 +223,11 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
+    -- Custom -- set preset
+    if mapName == 'custom' or mapName == 'custom_bot' then
+        self:setOption('lodOptionGamemode', -1)
+    end
+
     -- Default banning
     self:setOption('lodOptionBanning', 3)
 
