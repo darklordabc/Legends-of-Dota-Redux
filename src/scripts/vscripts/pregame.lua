@@ -585,32 +585,39 @@ function Pregame:actualSpawnPlayer()
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             function spawnTheHero()
-                -- Create the hero and validate it
-                local hero = CreateHeroForPlayer(heroName, player)
-                if hero ~= nil and IsValidEntity(hero) then
-                    SkillManager:ApplyBuild(hero, build or {})
+                local status2,err2 = pcall(function()
+                    -- Create the hero and validate it
+                    local hero = CreateHeroForPlayer(heroName, player)
+                    if hero ~= nil and IsValidEntity(hero) then
+                        SkillManager:ApplyBuild(hero, build or {})
 
-                    -- Do they have a custom attribute set?
-                    if self.selectedPlayerAttr[playerID] ~= nil then
-                        -- Set it
+                        -- Do they have a custom attribute set?
+                        if self.selectedPlayerAttr[playerID] ~= nil then
+                            -- Set it
 
-                        local toSet = 0
+                            local toSet = 0
 
-                        if self.selectedPlayerAttr[playerID] == 'str' then
-                            toSet = 0
-                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                            toSet = 1
-                        elseif self.selectedPlayerAttr[playerID] == 'int' then
-                            toSet = 2
-                        end
-
-                        -- Set a timer to fix stuff up
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(hero) then
-                                hero:SetPrimaryAttribute(toSet)
+                            if self.selectedPlayerAttr[playerID] == 'str' then
+                                toSet = 0
+                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                                toSet = 1
+                            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                                toSet = 2
                             end
-                        end, DoUniqueString('primaryAttrFix'), 0.1)
+
+                            -- Set a timer to fix stuff up
+                            Timers:CreateTimer(function()
+                                if IsValidEntity(hero) then
+                                    hero:SetPrimaryAttribute(toSet)
+                                end
+                            end, DoUniqueString('primaryAttrFix'), 0.1)
+                        end
                     end
+                end)
+
+                -- Did the spawning of this hero fail?
+                if not status2 then
+                    SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
                 end
             end
 
