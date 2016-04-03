@@ -14,8 +14,13 @@ function OnPlayerDetailsChanged() {
     var playerInfo = Game.GetPlayerInfo(playerID);
     if (!playerInfo) return;
 
-    // Set Avatar
-    $("#playerAvatar").steamid = playerInfo.player_steamid;
+    if(playerInfo.player_connection_state == 1) {
+    	// Bot player
+    	$("#playerAvatar").steamid = 76561197988355984;
+    } else {
+    	// Set Avatar
+    	$("#playerAvatar").steamid = playerInfo.player_steamid;
+    }
 
     // Is it the real Ash47?
     var playerName = playerInfo.player_name;
@@ -33,12 +38,6 @@ function OnPlayerDetailsChanged() {
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
     $.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
-}
-
-// Sets the player's name
-function setPlayerName(newName, steamID) {
-    $("#playerName").text = newName;
-    $("#playerAvatar").steamid = steamID;
 }
 
 // When we get hero data
@@ -148,5 +147,4 @@ function setReadyState(newState) {
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
-    mainPanel.setPlayerName = setPlayerName;
 })();

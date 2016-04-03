@@ -3809,11 +3809,9 @@ function OnPhaseChanged(table_name, key, data) {
 
         topCon.OnGetHeroData(data.heroName);
         topCon.OnGetHeroBuildData(data.build);
-        topCon.setPlayerName('Bot', 76561197988355984);
 
         revCon.OnGetHeroData(data.heroName);
         revCon.OnGetHeroBuildData(data.build);
-        revCon.setPlayerName('Bot', 76561197988355984);
 
         //var theCon = activePlayerPanels[playerID];
         //  var theReviewCon = activeReviewPanels[playerID];

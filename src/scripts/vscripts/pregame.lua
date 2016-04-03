@@ -350,7 +350,7 @@ function Pregame:onThink()
         	if self.challengeMode then
         		-- Setup challenge mode
         		challenge:setup(self)
-        		return
+        		return 0.1
         	end
 
             -- Are we using option selection, or option voting?
@@ -406,6 +406,11 @@ function Pregame:onThink()
     if not self.processedOptions then
         -- Process options
         self:processOptions()
+    end
+
+    -- Try to add bot players
+    if not self.addedBotPlayers then
+    	self:addBotPlayers()
     end
 
     --[[
@@ -509,7 +514,7 @@ function Pregame:onThink()
 
         -- Spawn the bots
         Timers:CreateTimer(function()
-            this:spawnBots()
+            this:spawnBotHeroes()
         end, DoUniqueString('spawnbots'), 0.1)
 
         -- Spawn all humans
@@ -3761,7 +3766,6 @@ function Pregame:countRadiantDire()
     local maxplayerID = 24
     local totalRadiant = 0
     local totalDire = 0
-    local desiredPlayers = 10
 
     -- Work out how many bots are going to be needed
     for playerID=0,maxplayerID do
@@ -3776,7 +3780,76 @@ function Pregame:countRadiantDire()
         end
     end
 
-    return totalRadiant, totalDire, desiredPlayers
+    return totalRadiant, totalDire
+end
+
+-- Adds bot players to the game
+function Pregame:addBotPlayers()
+	-- Ensure bots should actually be added
+	if self.addedBotPlayers then return end
+	self.addedBotPlayers = true
+	if not self.enabledBots then return end
+
+	-- Start tutorial mode so we can show tips to players
+	Tutorial:StartTutorialMode()
+
+	-- Settings to determine how many players to place onto each team
+	self.desiredRadiant = self.desiredRadiant or 5
+	self.desiredDire = self.desiredDire or 5
+
+	-- Grab number of players
+    local totalRadiant, totalDire = self:countRadiantDire()
+
+    -- Add bot players
+    self.botPlayers = {
+    	radiant = {},
+    	dire = {},
+    	all = {}
+	}
+
+	-- Add radiant players
+	while totalRadiant < self.desiredRadiant do
+		local playerID = totalRadiant + totalDire
+		totalRadiant = totalRadiant + 1
+		Tutorial:AddBot('', '', 'unfair', true)
+
+		local ply = PlayerResource:GetPlayer(playerID)
+		if ply then
+			local store = {
+				ply = ply,
+				team = DOTA_TEAM_GOODGUYS
+			}
+
+			-- Store this bot player
+			self.botPlayers.radiant[playerID] = store
+			self.botPlayers.all[playerID] = store
+
+			-- Push them onto the correct team
+			PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
+		end
+	end
+
+	-- Add dire players
+	while totalDire < self.desiredDire do
+		local playerID = totalRadiant + totalDire
+		totalDire = totalDire + 1
+		Tutorial:AddBot('', '', 'unfair', false)
+
+		local ply = PlayerResource:GetPlayer(playerID)
+		if ply then
+			local store = {
+				ply = ply,
+				team = DOTA_TEAM_BADGUYS
+			}
+
+			-- Store this bot player
+			self.botPlayers.dire[playerID] = store
+			self.botPlayers.all[playerID] = store
+
+			-- Push them onto the correct team
+			PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)
+		end
+	end
 end
 
 -- Generate builds for bots
@@ -3784,11 +3857,11 @@ function Pregame:generateBotBuilds()
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 
-    -- Grab number of players
-    local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
+    -- Ensure we have bot players allocated
+    if not self.botPlayers.all then return end
 
     -- Create a table to store bot builds
-    self.botBuilds = {}
+    --self.botBuilds = {}
 
     -- List of bots that are borked
     local brokenBots = {
@@ -3824,17 +3897,11 @@ function Pregame:generateBotBuilds()
         riki_permanent_invisibility = true
     }
 
-    -- Allocate builds
-    while totalRadiant + totalDire < desiredPlayers do
-        -- Allocate playerID
-        local playerID = totalRadiant + totalDire
-
-        -- Grab a hero
-        local heroName
+    for playerID,botInfo in pairs(self.botPlayers.all) do
+    	-- Grab a hero
+        local heroName = 'npc_dota_hero_pudge'
         if #possibleHeroes > 0 then
-            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
-        else
-            heroName = 'npc_dota_hero_pudge'
+            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes)) 
         end
 
         -- Generate build
@@ -3873,115 +3940,77 @@ function Pregame:generateBotBuilds()
             build[i], build[j] = build[j], build[i]
         end
 
-        -- Store the build
-        table.insert(self.botBuilds, {
-            heroName = heroName,
-            build = build
-        })
+        -- Store the info
+        botInfo.build = build
+        botInfo.heroName = heroName
 
         -- Network their build
         self:setSelectedHero(playerID, heroName, true)
         self.selectedSkills[playerID] = build
         network:setSelectedAbilities(playerID, build)
-
-        local team = 'good'
-        if totalRadiant <= totalDire then
-            totalRadiant = totalRadiant + 1
-        else
-            totalDire = totalDire + 1
-            team = 'bad'
-        end
-
-        -- Tells clients to add a bot to a team
-        network:addBot(playerID, {
-            heroName = heroName,
-            build = build,
-            team = team,
-            playerID = playerID
-        })
     end
 end
 
 -- Spawns bots
-function Pregame:spawnBots()
+function Pregame:spawnBotHeroes()
     -- Ensure bots are actually enabled
-    if not self.enabledBots then
+    if not self.enabledBots or not self.botPlayers.all then
         self.doneSpawningBots = true
         return
     end
 
     -- Grab number of players
-    local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
+    --local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
 
     --GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 24)
 
     -- Grab a reference to self
     local this = self
 
+    -- Generate a list of bots that are left to spawn
+    local botsLeftToSpawn = {}
+    for playerID,botInfo in pairs(self.botPlayers.all) do
+    	table.insert(botsLeftToSpawn, {
+    		playerID = playerID,
+    		botInfo = botInfo
+    	})
+    end
+
     function continueSpawningBots()
-        if totalDire + totalRadiant < desiredPlayers then
-            local playerID = totalDire + totalRadiant
-            local isRadiant = false
-            if totalRadiant <= totalDire then
-                -- Adding a player to radiant
-                totalRadiant = totalRadiant + 1
+    	if #botsLeftToSpawn <= 0 then
+    		-- Done
+    		this.doneSpawningBots = true
+    		return
+    	end
 
-                -- Spawn radiant player
-                isRadiant = true
-            else
-                -- Adding a plater to dire
-                totalDire = totalDire + 1
+    	local theBot = table.remove(botsLeftToSpawn, 1)
+    	local playerID = theBot.playerID
+    	local botInfo = theBot.botInfo
+    	local ply = botInfo.ply
+    	local heroName = botInfo.heroName
+    	local build = botInfo.build
 
-                -- Spawn dire player
-            end
+    	if ply then
+    		-- Precache their hero
+            PrecacheUnitByNameAsync(heroName, function()
+                -- Spawn their hero
+                local hero = CreateHeroForPlayer(heroName, ply)
 
-            --isRadiant = false
+                if hero then
+                    SkillManager:ApplyBuild(hero, build)
 
-            if #self.botBuilds > 0 then
-                -- Grab the build
-                local buildInfo = table.remove(self.botBuilds, 1)
-                local heroName = buildInfo.heroName
-                local build = buildInfo.build
-
-                -- Spawn the hero
-                --Tutorial:AddBot(heroName, '', 'unfair', isRadiant)
-                Tutorial:AddBot('', '', 'unfair', isRadiant)
-
-                -- Did we successfully add them?
-                local ply = PlayerResource:GetPlayer(playerID)
-                if ply then
-                	-- Push onto correct team
-                	if isRadiant then
-	                	PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
-	                else
-	                	PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)	
-	                end
-
-                    -- Precache their hero
-                    PrecacheUnitByNameAsync(heroName, function()
-                        -- Spawn their hero
-                        local hero = CreateHeroForPlayer(heroName, ply)
-
-                        if hero then
-                            SkillManager:ApplyBuild(hero, build)
-
-                            -- Stop other player's from touching it
-                            --[[for i=0,24 do
-                                hero:SetControllableByPlayer(i, false)
-                            end]]
-                        end
-                    end, playerID)
+                    -- Stop other player's from touching it
+                    --[[for i=0,10 do
+                        hero:SetControllableByPlayer(i, false)
+                    end]]
                 end
+            end, playerID)
 
-                -- Continue spawning
-                Timers:CreateTimer(function()
-                    continueSpawningBots()
-                end, DoUniqueString('spawnbots'), 0.1)
-            end
-        else
-            this.doneSpawningBots = true
-            Tutorial:StartTutorialMode()
-        end
+            -- Continue spawning
+            Timers:CreateTimer(function()
+                continueSpawningBots()
+            end, DoUniqueString('spawnbots'), 0.1)
+    	end
     end
 
     -- Auto level bot skills (bots will get 2 ability points per level)
