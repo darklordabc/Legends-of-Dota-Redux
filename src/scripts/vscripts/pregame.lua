@@ -8,6 +8,7 @@ local SpellFixes = require('spellfixes')
 local util = require('util')
 require('statcollection.init')
 local Debug = require('lod_debug')    -- Debug library with helper functions, by Ash47
+local challenge = require('challenge')
 
 --[[
     Main pregame, selection related handler
@@ -228,6 +229,11 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', -1)
     end
 
+    -- Challenge Mode
+    if mapName == 'challenge' then
+        self.challengeMode = true
+    end
+
     -- Default banning
     self:setOption('lodOptionBanning', 3)
 
@@ -340,6 +346,13 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_LOADING then
         -- Are we in the custom game setup phase?
         if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+        	-- Are we using challenge mode?
+        	if self.challengeMode then
+        		-- Setup challenge mode
+        		challenge:setup(self)
+        		return
+        	end
+
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
                 -- Option voting
@@ -3900,6 +3913,8 @@ function Pregame:spawnBots()
     -- Grab number of players
     local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
 
+    --GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 24)
+
     -- Grab a reference to self
     local this = self
 
@@ -3920,6 +3935,8 @@ function Pregame:spawnBots()
                 -- Spawn dire player
             end
 
+            --isRadiant = false
+
             if #self.botBuilds > 0 then
                 -- Grab the build
                 local buildInfo = table.remove(self.botBuilds, 1)
@@ -3933,6 +3950,13 @@ function Pregame:spawnBots()
                 -- Did we successfully add them?
                 local ply = PlayerResource:GetPlayer(playerID)
                 if ply then
+                	-- Push onto correct team
+                	if isRadiant then
+	                	PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
+	                else
+	                	PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)	
+	                end
+
                     -- Precache their hero
                     PrecacheUnitByNameAsync(heroName, function()
                         -- Spawn their hero
