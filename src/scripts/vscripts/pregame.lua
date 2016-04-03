@@ -3940,6 +3940,21 @@ function Pregame:generateBotBuilds()
             build[i], build[j] = build[j], build[i]
         end
 
+        -- Are there any premade builds?
+        if self.premadeBotBuilds then
+        	if botInfo.team == DOTA_TEAM_BADGUYS and self.premadeBotBuilds.dire and #self.premadeBotBuilds.dire > 0 then
+        		local info = table.remove(self.premadeBotBuilds.dire, 1)
+        		build = info.build
+        		heroName = info.heroName
+        	end
+
+        	if botInfo.team == DOTA_TEAM_GOODGUYS and self.premadeBotBuilds.radiant and #self.premadeBotBuilds.radiant > 0 then
+        		local info = table.remove(self.premadeBotBuilds.radiant, 1)
+        		build = info.build
+        		heroName = info.heroName
+        	end
+        end
+
         -- Store the info
         botInfo.build = build
         botInfo.heroName = heroName
