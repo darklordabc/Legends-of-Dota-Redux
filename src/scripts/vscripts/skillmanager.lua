@@ -718,6 +718,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     end
 
     -- Remove certain modifiers
+    hero:RemoveModifierByName('modifier_storm_spirit_overload_passive')
     hero:RemoveModifierByName('modifier_slark_shadow_dance_passive')
     hero:RemoveModifierByName('modifier_slark_shadow_dance_passive_regen')
 end
