@@ -2714,8 +2714,13 @@ function getSkillFilterInfo(abilityName) {
 
     // Check if hte search text is active
     if(shouldShow && searchText.length > 0) {
+        var localAbName = $.Localize('DOTA_Tooltip_' + abilityName).toLowerCase();
+        var owningHeroName = abilityHeroOwner[abilityName] || '';
+        var localOwningHeroName = $.Localize(owningHeroName).toLowerCase();
+
         for(var i=0; i<searchParts.length; ++i) {
-            if(abilityName.indexOf(searchParts[i]) == -1 && $.Localize(abilityName).toLowerCase().indexOf(searchParts[i]) == -1) {
+            var prt = searchParts[i];
+            if(abilityName.indexOf(prt) == -1 && localAbName.indexOf(prt) == -1 && owningHeroName.indexOf(prt) == -1 && localOwningHeroName.indexOf(prt) == -1) {
                 shouldShow = false;
                 break;
             }
