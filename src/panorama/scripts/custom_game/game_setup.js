@@ -64,87 +64,33 @@ var allOptions = {
                 name: 'lodOptionSlots',
                 des: 'lodOptionsPresetSlots',
                 about: 'lodOptionAboutPresetSlots',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionBalancedSlots4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionBalancedSlots5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionBalancedSlots6',
-                        value: 6
-                    }
-                ]
+                sort: 'range',
+                min: 4,
+                max: 6,
+                step: 1,
+                default: 6
             },
             {
                 preset: true,
                 name: 'lodOptionUlts',
                 des: 'lodOptionsPresetUlts',
                 about: 'lodOptionAboutPresetUlts',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionBalancedUlts1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts2',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts3',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts6',
-                        value: 6
-                    },
-                    {
-                        text: 'lodOptionBalancedUlts0',
-                        value: 0
-                    },
-                ]
+                sort: 'range',
+                min: 0,
+                max: 6,
+                step: 1,
+                default: 2
             },
             {
                 preset: true,
                 name: 'lodOptionMirrorHeroes',
                 des: 'lodOptionsPresetMirrorHeroes',
                 about: 'lodOptionAboutPresetMirrorHeroes',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionMirrorHeroes10',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes20',
-                        value: 20
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes30',
-                        value: 30
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes40',
-                        value: 40
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes50',
-                        value: 50
-                    }
-                ]
+                sort: 'range',
+                min: 1,
+                max: 50,
+                step: 1,
+                default: 20
             }
         ]
     },
@@ -181,122 +127,42 @@ var allOptions = {
                 name: 'lodOptionCommonMaxSlots',
                 des: 'lodOptionDesCommonMaxSlots',
                 about: 'lodOptionAboutCommonMaxSlots',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionCommonSlots4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionCommonSlots5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionCommonSlots6',
-                        value: 6
-                    }
-                ]
+                sort: 'range',
+                min: 4,
+                max: 6,
+                step: 1,
+                default: 6
             },
             {
                 name: 'lodOptionCommonMaxSkills',
                 des: 'lodOptionDesCommonMaxSkills',
                 about: 'lodOptionAboutCommonMaxSkills',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionCommonSkills0',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionCommonSkills1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionCommonSkills2',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionCommonSkills3',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionCommonSkills4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionCommonSkills5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionCommonSkills6',
-                        value: 6
-                    }
-                ]
+                sort: 'range',
+                min: 0,
+                max: 6,
+                step: 1,
+                default: 6
             },
             {
                 name: 'lodOptionCommonMaxUlts',
                 des: 'lodOptionDesCommonMaxUlts',
                 about: 'lodOptionAboutCommonMaxUlts',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionCommonUlts0',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionCommonUlts1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionCommonUlts2',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionCommonUlts3',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionCommonUlts4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionCommonUlts5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionCommonUlts6',
-                        value: 6
-                    }
-                ]
+                sort: 'range',
+                min: 0,
+                max: 6,
+                step: 1,
+                default: 2
             },
             {
                 preset: true,
                 name: 'lodOptionCommonMirrorHeroes',
                 des: 'lodOptionsCommonMirrorHeroes',
                 about: 'lodOptionAboutCommonMirrorHeroes',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionMirrorHeroes10',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes20',
-                        value: 20
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes30',
-                        value: 30
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes40',
-                        value: 40
-                    },
-                    {
-                        text: 'lodOptionMirrorHeroes50',
-                        value: 50
-                    }
-                ]
+                sort: 'range',
+                min: 1,
+                max: 50,
+                step: 1,
+                default: 20
             },
         ]
     },
@@ -325,61 +191,21 @@ var allOptions = {
                 name: 'lodOptionBanningMaxBans',
                 des: 'lodOptionDesBanningMaxBans',
                 about: 'lodOptionAboutBanningMaxBans',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionBanningMaxBans0',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans2',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans3',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans10',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans25',
-                        value: 25
-                    }
-                ]
+                sort: 'range',
+                min: 0,
+                max: 25,
+                step: 1,
+                default: 10
             },
             {
                 name: 'lodOptionBanningMaxHeroBans',
                 des: 'lodOptionDesBanningMaxHeroBans',
                 about: 'lodOptionAboutBanningMaxHeroBans',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionBanningMaxHeroBans0',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans2',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionBanningMaxBans3',
-                        value: 3
-                    }
-                ]
+                sort: 'range',
+                min: 0,
+                max: 5,
+                step: 1,
+                default: 2
             },
             {
                 name: 'lodOptionBanningBlockTrollCombos',
@@ -457,125 +283,31 @@ var allOptions = {
                 name: 'lodOptionGameSpeedStartingLevel',
                 des: 'lodOptionDesGameSpeedStartingLevel',
                 about: 'lodOptionAboutGameSpeedStartingLevel',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionLevel1',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionLevel6',
-                        value: 6
-                    },
-                    {
-                        text: 'lodOptionLevel11',
-                        value: 11
-                    },
-                    {
-                        text: 'lodOptionLevel16',
-                        value: 16
-                    },
-                    {
-                        text: 'lodOptionLevel25',
-                        value: 25
-                    },
-                    {
-                        text: 'lodOptionLevel50',
-                        value: 50
-                    },
-                    {
-                        text: 'lodOptionLevel75',
-                        value: 75
-                    },
-                    {
-                        text: 'lodOptionLevel100',
-                        value: 100
-                    }
-                ]
+                sort: 'range',
+                min: 1,
+                max: 100,
+                step: 1,
+                default: 1
             },
             {
                 name: 'lodOptionGameSpeedMaxLevel',
                 des: 'lodOptionDesGameSpeedMaxLevel',
                 about: 'lodOptionAboutGameSpeedMaxLevel',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionLevel6',
-                        value: 6
-                    },
-                    {
-                        text: 'lodOptionLevel11',
-                        value: 11
-                    },
-                    {
-                        text: 'lodOptionLevel16',
-                        value: 16
-                    },
-                    {
-                        text: 'lodOptionLevel25',
-                        value: 25
-                    },
-                    {
-                        text: 'lodOptionLevel50',
-                        value: 50
-                    },
-                    {
-                        text: 'lodOptionLevel75',
-                        value: 75
-                    },
-                    {
-                        text: 'lodOptionLevel100',
-                        value: 100
-                    }
-                ]
+                sort: 'range',
+                min: 6,
+                max: 100,
+                step: 1,
+                default: 25
             },
             {
                 name: 'lodOptionGameSpeedStartingGold',
                 des: 'lodOptionDesGameSpeedStartingGold',
                 about: 'lodOptionAboutGameSpeedStartingGold',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionGameSpeedStartingGold0',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold250',
-                        value: 250
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold500',
-                        value: 500
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold1000',
-                        value: 1000
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold2500',
-                        value: 2500
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold5000',
-                        value: 5000
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold10000',
-                        value: 10000
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold25000',
-                        value: 25000
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold50000',
-                        value: 50000
-                    },
-                    {
-                        text: 'lodOptionGameSpeedStartingGold100000',
-                        value: 100000
-                    },
-                ]
+                sort: 'range',
+                min: 0,
+                max: 100000,
+                step: 1,
+                default: 0
             },
             {
                 name: 'lodOptionGameSpeedRespawnTime',
@@ -621,41 +353,11 @@ var allOptions = {
                 name: 'lodOptionGameSpeedTowersPerLane',
                 des: 'lodOptionDesGameSpeedTowersPerLane',
                 about: 'lodOptionAboutGameSpeedTowersPerLane',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionTower3',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionTower4',
-                        value: 4
-                    },
-                    {
-                        text: 'lodOptionTower5',
-                        value: 5
-                    },
-                    {
-                        text: 'lodOptionTower6',
-                        value: 6
-                    },
-                    {
-                        text: 'lodOptionTower7',
-                        value: 7
-                    },
-                    {
-                        text: 'lodOptionTower8',
-                        value: 8
-                    },
-                    {
-                        text: 'lodOptionTower9',
-                        value: 9
-                    },
-                    {
-                        text: 'lodOptionTower10',
-                        value: 10
-                    }
-                ]
+                sort: 'range',
+                min: 3,
+                max: 10,
+                step: 1,
+                default: 3
             },
             {
                 name: 'lodOptionGameSpeedUpgradedUlts',
@@ -1320,6 +1022,41 @@ function addInputChangedEvent(panel, callback) {
     panel.SetPanelEvent('onblur', function() {
         // No longer listen
         shouldListen = false;
+    });
+}
+
+function hookSliderChange(panel, callback, onComplete) {
+    var shouldListen = false;
+    var checkRate = 0.03;
+    var currentValue = panel.value;
+
+    var inputChangedLoop = function() {
+        // Check for a change
+        if(currentValue != panel.value) {
+            // Update current string
+            currentValue = panel.value;
+
+            // Run the callback
+            callback(panel, currentValue);
+        }
+
+        if(shouldListen) {
+            $.Schedule(checkRate, inputChangedLoop);
+        }
+    }
+
+    panel.SetPanelEvent('onmouseover', function() {
+        // Enable listening, and monitor the field
+        shouldListen = true;
+        inputChangedLoop();
+    });
+
+    panel.SetPanelEvent('onmouseout', function() {
+        // No longer listen
+        shouldListen = false;
+
+        // When we complete
+        onComplete(panel, currentValue);
     });
 }
 
@@ -3412,6 +3149,147 @@ function buildOptionsCategories() {
                                 // Sets an option
                                 setOption(fieldName, fieldValue);
                             });
+                        break;
+
+                        case 'range':
+                            // Create the Container
+                            hostPanel = $.CreatePanel('Panel', floatRightContiner, 'option_panel_field_' + fieldName);
+                            hostPanel.BLoadLayout('file://{resources}/layout/custom_game/slider.xml', false, false);
+                            hostPanel.AddClass('optionsSlotPanelHost');
+
+                            var sliderStep = info.step;
+                            var sliderMin = info.min;
+                            var sliderMax = info.max;
+                            var sliderDefault = info.default;
+
+                            var sliderPanel = hostPanel.FindChildInLayoutFile('slider');
+                            sliderPanel.min = sliderMin;
+                            sliderPanel.max = sliderMax;
+                            sliderPanel.increment = sliderStep;
+                            sliderPanel.value = sliderDefault;
+                            sliderPanel.SetShowDefaultValue(true);
+
+                            var onGetNewSliderValue = function(newValue, shouldNetwork, ignoreSlider, ignoreText) {
+                                // Validate the new value
+                                newValue = Math.floor(newValue / sliderStep) * sliderStep;
+
+                                if(newValue < sliderMin) {
+                                    newValue = sliderMin;
+                                }
+
+                                if(newValue > sliderMax) {
+                                    newValue = sliderMax;
+                                }
+
+                                // Update Slider Position
+                                if(!ignoreSlider) {
+                                    sliderPanel.value = newValue;
+                                }
+
+                                // Update text value
+                                if(!ignoreText) {
+                                    inputValuePanel.text = newValue;
+                                }
+
+                                // Update slave text
+                                slavePanel.text = newValue;
+
+                                // Should we network it?
+                                if(shouldNetwork) {
+                                    // Set it
+                                    setOption(fieldName, newValue);
+                                }
+                            }
+
+                            hookSliderChange(sliderPanel, function(panel, newValue) {
+                                onGetNewSliderValue(newValue, false, true, false);
+                            }, function(panel, newValue) {
+                                onGetNewSliderValue(newValue, true, true, false);
+                            });
+
+                            var inputValuePanel = hostPanel.FindChildInLayoutFile('entry');
+                            inputValuePanel.text = sliderDefault;
+
+                            addInputChangedEvent(inputValuePanel, function(panel, newValue) {
+                                newValue = parseInt(newValue);
+                                if(isNaN(newValue)) {
+                                    newValue = sliderMin;
+                                }
+
+                                onGetNewSliderValue(newValue, false, false, true);
+                            });
+
+                            inputValuePanel.SetPanelEvent('onblur', function() {
+                                var newValue = inputValuePanel.text;
+
+                                newValue = parseInt(newValue);
+                                if(isNaN(newValue)) {
+                                    newValue = sliderMin;
+                                }
+
+                                onGetNewSliderValue(newValue, true);
+                            });
+
+                            optionFieldMap[fieldName] = function(newValue) {
+                                onGetNewSliderValue(newValue, false);
+                            }
+
+                            //hostPanel.AddClass('optionsSlotPanelHost');
+                            //hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
+
+                            // Maps values to panels
+                            /*var valueToPanel = {};
+
+                            for(var j=0; j<values.length; ++j) {
+                                var valueInfo = values[j];
+                                var fieldText = valueInfo.text;
+                                var fieldValue = valueInfo.value;
+
+                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
+                                subPanel.text = $.Localize(fieldText);
+                                //subPanel.SetAttributeString('fieldText', fieldText);
+                                subPanel.SetAttributeInt('fieldValue', fieldValue);
+                                hostPanel.AddOption(subPanel);
+
+                                // Store the map
+                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
+
+                                if(j == values.length-1) {
+                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
+                                }
+                            }*/
+
+                            // Mapping function
+                            /*optionFieldMap[fieldName] = function(newValue) {
+                                for(var i=0; i<values.length; ++i) {
+                                    var valueInfo = values[i];
+                                    var fieldText = valueInfo.text;
+                                    var fieldValue = valueInfo.value;
+
+                                    if(fieldValue == newValue) {
+                                        var thePanel = valueToPanel[fieldValue];
+                                        if(thePanel) {
+                                            // Select that panel
+                                            hostPanel.SetSelected(thePanel);
+
+                                            // Update text
+                                            slavePanel.text = $.Localize(fieldText);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }*/
+
+                            // When the data changes
+                            /*hostPanel.SetPanelEvent('oninputsubmit', function() {
+                                // Grab the selected one
+                                var selected = hostPanel.GetSelected();
+                                //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                // Sets an option
+                                setOption(fieldName, fieldValue);
+                            });*/
                         break;
 
                         case 'toggle':

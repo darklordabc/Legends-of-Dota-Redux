@@ -1209,35 +1209,35 @@ function Pregame:initOptionSelector()
 
         -- Fast slots selection
         lodOptionSlots = function(value)
-            return value == 4 or value == 5 or value == 6
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 4 or value > 6 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Fast ult selection
         lodOptionUlts = function(value)
-            local valid = {
-                [0] = true,
-                [1] = true,
-                [2] = true,
-                [3] = true,
-                [4] = true,
-                [5] = true,
-                [6] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 6 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Fast mirror draft hero selection
         lodOptionMirrorHeroes = function(value)
-            local valid = {
-                [10] = true,
-                [20] = true,
-                [30] = true,
-                [40] = true,
-                [50] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 1 or value > 50 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common gamemode
@@ -1253,7 +1253,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            return value == 4 or value == 5 or value == 6
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 4 or value > 6 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Common max skills
@@ -1261,17 +1267,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [1] = true,
-                [2] = true,
-                [3] = true,
-                [4] = true,
-                [5] = true,
-                [6] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 6 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common max ults
@@ -1279,17 +1281,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [1] = true,
-                [2] = true,
-                [3] = true,
-                [4] = true,
-                [5] = true,
-                [6] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 6 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common host banning
@@ -1305,17 +1303,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [1] = true,
-                [2] = true,
-                [3] = true,
-                [5] = true,
-                [10] = true,
-                [25] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 25 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common max hero bans
@@ -1323,14 +1317,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [1] = true,
-                [2] = true,
-                [3] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 5 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common mirror draft hero selection
@@ -1338,15 +1331,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [10] = true,
-                [20] = true,
-                [30] = true,
-                [40] = true,
-                [50] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 1 or value > 50 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Common block troll combos
@@ -1378,18 +1369,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [1] = true,
-                [6] = true,
-                [11] = true,
-                [16] = true,
-                [25] = true,
-                [50] = true,
-                [75] = true,
-                [100] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 1 or value > 100 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Game Speed -- Max Level
@@ -1397,17 +1383,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [6] = true,
-                [11] = true,
-                [16] = true,
-                [25] = true,
-                [50] = true,
-                [75] = true,
-                [100] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 6 or value > 100 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Game Speed -- Starting Gold
@@ -1415,20 +1397,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [250] = true,
-                [500] = true,
-                [1000] = true,
-                [2500] = true,
-                [5000] = true,
-                [10000] = true,
-                [25000] = true,
-                [50000] = true,
-                [100000] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 100000 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Game Speed -- Respawn Time
@@ -1457,18 +1432,13 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [3] = true,
-                [4] = true,
-                [5] = true,
-                [6] = true,
-                [7] = true,
-                [8] = true,
-                [9] = true,
-                [10] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 3 or value > 10 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
         end,
 
         -- Game Speed - Scepter Upgraded

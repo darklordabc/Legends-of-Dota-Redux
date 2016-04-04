@@ -2072,7 +2072,20 @@
     visibility: visible;
 }
 
-.optionsSlotPanelHost
+.optionsSlotPanelSlider {
+    flow-children: right;
+}
+
+.optionsSlotPanelSlider TextEntry {
+    margin-left: 8px;
+    width: 88px;
+    text-align: right;
+}
+
+.optionsSlotPanelSlider Slider {
+    width:  226px;
+    margin-top: 8px;
+}
 
 .optionsSlotPanelSlave {
     visibility: visible;
