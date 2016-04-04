@@ -3057,6 +3057,17 @@ ListenToGameEvent('entity_killed', function(keys)
 
                         -- Set the time left until we respawn
                         hero:SetTimeUntilRespawn(timeLeft)
+
+                        -- Check if we have any meepo clones
+                        if hero:HasAbility('meepo_divided_we_stand') then
+                            local clones = Entities:FindAllByName(hero:GetClassname())
+
+                            for k,meepoClone in pairs(clones) do
+                                if meepoClone:IsClone() and playerID == meepoClone:GetPlayerID() then
+                                    meepoClone:SetTimeUntilRespawn(timeLeft)
+                                end
+                            end
+                        end
                     end
                 end, DoUniqueString('respawn'), 0.1)
             end
