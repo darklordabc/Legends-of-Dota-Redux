@@ -29,36 +29,36 @@ function challenge:setup(pregame)
     pregame.premadeBotBuilds = {
     	dire = {
     		[1] = {
-    			heroName = 'npc_dota_hero_axe',
+    			heroName = 'npc_dota_hero_lich',
     			build = {
-    				[1] = 'antimage_blink',
-    				[2] = 'antimage_mana_break',
-    				[3] = 'antimage_mana_void',
-    				[4] = 'antimage_spell_shield',
-    				[5] = 'alchemist_acid_spray',
-    				[6] = 'abyssal_underlord_pit_of_malice',
+    				[1] = 'lich_frost_nova',
+    				[2] = 'lich_frost_armor',
+    				[3] = 'lich_dark_ritual',
+    				[4] = '',
+    				[5] = '',
+    				[6] = 'lich_chain_frost',
     			}
     		},
     		[2] = {
-    			heroName = 'npc_dota_hero_pudge',
+    			heroName = 'npc_dota_hero_witch_doctor',
     			build = {
-    				[1] = 'antimage_blink',
-    				[2] = 'antimage_mana_break',
-    				[3] = 'antimage_mana_void',
-    				[4] = 'antimage_spell_shield',
-    				[5] = 'alchemist_acid_spray',
-    				[6] = 'abyssal_underlord_pit_of_malice',
+    				[1] = 'witch_doctor_paralyzing_cask',
+    				[2] = 'witch_doctor_voodoo_restoration',
+    				[3] = 'witch_doctor_maledict',
+    				[4] = 'granite_golem_hp_aura',
+    				[5] = '',
+    				[6] = 'witch_doctor_death_ward',
     			}
     		},
     		[3] = {
-    			heroName = 'npc_dota_hero_witch_doctor',
+    			heroName = 'npc_dota_hero_pudge',
     			build = {
-    				[1] = 'antimage_blink',
-    				[2] = 'antimage_mana_break',
-    				[3] = 'antimage_mana_void',
-    				[4] = 'antimage_spell_shield',
-    				[5] = 'alchemist_acid_spray',
-    				[6] = 'abyssal_underlord_pit_of_malice',
+    				[1] = 'pudge_meat_hook',
+    				[2] = 'pudge_rot',
+    				[3] = 'pudge_flesh_heap',
+    				[4] = 'skeleton_king_vampiric_aura',
+    				[5] = 'skeleton_king_reincarnation',
+    				[6] = 'pudge_dismember',
     			}
     		},
     	}
