@@ -4081,6 +4081,11 @@ function Pregame:fixSpawningIssues()
     -- Grab a reference to self
     local this = self
 
+    local notOnIllusions = {
+    	lone_druid_spirit_bear = true,
+    	necronomicon_warrior_last_will_lod = true
+	}
+
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -4099,6 +4104,24 @@ function Pregame:fixSpawningIssues()
                     -- Apply the build
                     local build = this.selectedSkills[playerID] or {}
                     SkillManager:ApplyBuild(spawnedUnit, build)
+
+                    -- Illusion and Tempest Double fixes
+                    if not spawnedUnit:IsClone() then
+	                    Timers:CreateTimer(function()
+		                    if IsValidEntity(spawnedUnit) then
+		                    	for k,abilityName in pairs(build) do
+		                    		if notOnIllusions[abilityName] then
+		                    			local ab = spawnedUnit:FindAbilityByName(abilityName)
+	                    				if ab then
+	                    					ab:SetLevel(0)
+	                    				end
+		                    		end
+		                    	end
+
+		                        
+		                    end
+		                end, DoUniqueString('fixBrokenSkills'), 0)
+		            end
 
                     -- Set the correct level for each ability
                     --[[for k,v in pairs(build) do
