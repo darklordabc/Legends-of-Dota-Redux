@@ -2265,6 +2265,20 @@ function Pregame:processOptions()
         ['Enable Multicast Madness'] = self.optionStore['lodOptionCrazyMulticast'],                             -- Enable Multicast Madness        [boolean, 1/0]
         ['Enable WTF Mode'] = self.optionStore['lodOptionCrazyWTF'],                                            -- Enable WTF Mode                 [boolean, 1/0]
     })
+
+	-- If bots are enabled, add a bots flags
+	if self.enabledBots then
+		statCollection:setFlags({
+			['Bots Enabled'] = 1
+		})
+	end
+
+	-- Challenge mode
+	if self.challengeMode then
+		statCollection:setFlags({
+			['Challenge Mode'] = challenge:getChallengeName()
+		})
+	end
 end
 
 -- Validates, and then sets an option

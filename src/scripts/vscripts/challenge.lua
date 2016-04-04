@@ -10,6 +10,9 @@ function challenge:setup(pregame)
 	if self.doneSetup then return end
 	self.doneSetup = true
 
+	-- Challenge name
+	self.challengeName = 'Debug Test Challenge'
+
 	-- Push options
 	pregame:setOption('lodOptionGamemode', 1)
 	pregame:setOption('lodOptionGamemode', -1)
@@ -74,6 +77,11 @@ function challenge:setup(pregame)
 	pregame:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
 
 	print('Challenge mode was loaded!')
+end
+
+-- Returns the name of this challenge
+function challenge:getChallengeName()
+	return self.challengeName
 end
 
 -- Return the class to use
