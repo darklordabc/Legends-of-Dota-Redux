@@ -531,7 +531,7 @@ function Pregame:onThink()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
 
-        -- Prevent fountain camping
+        -- Showing Tips
         Timers:CreateTimer(function()
             -- Start tutorial mode so we can show tips to players
 			Tutorial:StartTutorialMode()
