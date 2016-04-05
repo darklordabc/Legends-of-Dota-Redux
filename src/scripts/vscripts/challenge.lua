@@ -19,6 +19,23 @@ function challenge:setup(pregame)
 	pregame:setOption('lodOptionSlots', 6)
     pregame:setOption('lodOptionUlts', 2)
     pregame:setOption('lodOptionAdvancedHidePicks', 0)
+    pregame:setOption('lodOptionGameSpeedUpgradedUlts', 1)
+    pregame:setOption('lodOptionGameSpeedStartingLevel', 7)
+    pregame:setOption('lodOptionGameSpeedStartingGold', 4375)
+    pregame:setOption('lodOptionBanningBanInvis', 1)
+
+    -- Ban some abilities
+    pregame:banAbility('slark_essence_shift')
+    pregame:banAbility('windrunner_focusfire')
+    pregame:banAbility('silencer_glaives_of_wisdom')
+    pregame:banAbility('alchemist_chemical_rage')
+    pregame:banAbility('necronomicon_warrior_mana_burn_lod')
+    pregame:banAbility('necronomicon_warrior_last_will_lod')
+    pregame:banAbility('tiny_grow_lod')
+    pregame:banAbility('obsidian_destroyer_arcane_orb')
+    pregame:banAbility('ursa_overpower')
+    pregame:banAbility('life_stealer_feast')
+    pregame:banAbility('necrolyte_heartstopper_aura')
 
     -- Setup bots
     pregame.enabledBots = true
@@ -34,8 +51,8 @@ function challenge:setup(pregame)
     				[1] = 'lich_frost_nova',
     				[2] = 'lich_frost_armor',
     				[3] = 'lich_dark_ritual',
-    				[4] = '',
-    				[5] = '',
+    				[4] = 'holdout_arcane_aura',
+    				[5] = 'holdout_arcane_aura',
     				[6] = 'lich_chain_frost',
     			}
     		},
@@ -45,8 +62,8 @@ function challenge:setup(pregame)
     				[1] = 'witch_doctor_paralyzing_cask',
     				[2] = 'witch_doctor_voodoo_restoration',
     				[3] = 'witch_doctor_maledict',
-    				[4] = 'granite_golem_hp_aura',
-    				[5] = '',
+    				[4] = 'drow_ranger_marksmanship`',
+    				[5] = 'magnataur_empower',
     				[6] = 'witch_doctor_death_ward',
     			}
     		},
@@ -68,6 +85,9 @@ function challenge:setup(pregame)
     for playerID=0,9 do
     	PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
     end
+
+    -- Swap to option select so we can lock the options
+    pregame:setPhase(constants.PHASE_OPTION_SELECTION)
 
     -- Finish option selection
     pregame:finishOptionSelection()
