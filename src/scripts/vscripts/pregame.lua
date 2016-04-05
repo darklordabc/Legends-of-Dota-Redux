@@ -2161,123 +2161,132 @@ function Pregame:processOptions()
     if self.processedOptions then return end
     self.processedOptions = true
 
-    -- Push settings externally where possible
-    OptionManager:SetOption('startingLevel', self.optionStore['lodOptionGameSpeedStartingLevel'])
-    OptionManager:SetOption('bonusGold', self.optionStore['lodOptionGameSpeedStartingGold'])
-    OptionManager:SetOption('maxHeroLevel', self.optionStore['lodOptionGameSpeedMaxLevel'])
-    OptionManager:SetOption('multicastMadness', self.optionStore['lodOptionCrazyMulticast'] == 1)
-    OptionManager:SetOption('respawnModifier', self.optionStore['lodOptionGameSpeedRespawnTime'])
-    OptionManager:SetOption('freeScepter', self.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+    local this = self
 
-    -- Enforce max level
-    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
-        self.optionStore['lodOptionGameSpeedStartingLevel'] = self.optionStore['lodOptionGameSpeedMaxLevel']
-        OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
-    end
+    local status,err = pcall(function()
+    	-- Push settings externally where possible
+	    OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
+	    OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
+	    OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
+	    OptionManager:SetOption('multicastMadness', this.optionStore['lodOptionCrazyMulticast'] == 1)
+	    OptionManager:SetOption('respawnModifier', this.optionStore['lodOptionGameSpeedRespawnTime'])
+	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
 
-    -- Enable easy mode
-    if self.optionStore['lodOptionCrazyEasymode'] == 1 then
-        Convars:SetInt('dota_easy_mode', 1)
-    end
+	    -- Enforce max level
+	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
+	        this.optionStore['lodOptionGameSpeedStartingLevel'] = this.optionStore['lodOptionGameSpeedMaxLevel']
+	        OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
+	    end
 
-    -- Enable WTF mode
-    if self.optionStore['lodOptionCrazyWTF'] == 1 then
-        -- Auto ban powerful abilities
-        for abilityName,v in pairs(self.wtfAutoBan) do
-        	self:banAbility(abilityName)
-        end
+	    -- Enable easy mode
+	    if this.optionStore['lodOptionCrazyEasymode'] == 1 then
+	        Convars:SetInt('dota_easy_mode', 1)
+	    end
 
-        -- Enable debug mode
-        Convars:SetBool('dota_ability_debug', true)
-    end
+	    -- Enable WTF mode
+	    if this.optionStore['lodOptionCrazyWTF'] == 1 then
+	        -- Auto ban powerful abilities
+	        for abilityName,v in pairs(this.wtfAutoBan) do
+	        	this:banAbility(abilityName)
+	        end
 
-    -- Banning of OP Skills
-    if self.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-        for abilityName,v in pairs(self.OPSkillsList) do
-            self:banAbility(abilityName)
-        end
-    else
-    	SpellFixes:SetOPMode(true)
-    end
+	        -- Enable debug mode
+	        Convars:SetBool('dota_ability_debug', true)
+	    end
 
-    -- Banning invis skills
-    if self.optionStore['lodOptionBanningBanInvis'] == 1 then
-        for abilityName,v in pairs(self.invisSkills) do
-            self:banAbility(abilityName)
-        end
-    end
+	    -- Banning of OP Skills
+	    if this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
+	        for abilityName,v in pairs(this.OPSkillsList) do
+	            this:banAbility(abilityName)
+	        end
+	    else
+	    	SpellFixes:SetOPMode(true)
+	    end
 
-    -- LoD ban list
-    if self.optionStore['lodOptionBanningUseBanList'] == 1 then
-        for abilityName,v in pairs(self.lodBanList) do
-            self:banAbility(abilityName)
-        end
-    end
+	    -- Banning invis skills
+	    if this.optionStore['lodOptionBanningBanInvis'] == 1 then
+	        for abilityName,v in pairs(this.invisSkills) do
+	            this:banAbility(abilityName)
+	        end
+	    end
 
-    -- Enable Universal Shop
-    if self.optionStore['lodOptionCrazyUniversalShop'] == 1 then
-        GameRules:SetUseUniversalShopMode(true)
-    end
+	    -- LoD ban list
+	    if this.optionStore['lodOptionBanningUseBanList'] == 1 then
+	        for abilityName,v in pairs(this.lodBanList) do
+	            this:banAbility(abilityName)
+	        end
+	    end
 
-    -- Enable All Vision
-    if self.optionStore['lodOptionCrazyAllVision'] == 1 then
-        Convars:SetBool('dota_all_vision', true)
-    end
+	    -- Enable Universal Shop
+	    if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
+	        GameRules:SetUseUniversalShopMode(true)
+	    end
 
-    if OptionManager:GetOption('maxHeroLevel') ~= 25 then
-        GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(constants.XP_PER_LEVEL_TABLE)
-        GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
-        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
-    end
+	    -- Enable All Vision
+	    if this.optionStore['lodOptionCrazyAllVision'] == 1 then
+	        Convars:SetBool('dota_all_vision', true)
+	    end
 
-    -- Store flags
-    statCollection:setFlags({
-        ['Preset Gamemode'] = self.optionStore['lodOptionGamemode'],                                            -- Preset Gamemode                 [number, -1 - 4]
-        ['Preset Banning'] = self.optionStore['lodOptionBanning'],                                              -- Present Banning                 [number, 1 - 3]
-        ['Gamemode'] = self.optionStore['lodOptionCommonGamemode'],                                             -- Gamemode                        [number, 1 - 4]
-        ['Max Slots'] = self.optionStore['lodOptionCommonMaxSlots'],                                            -- Max Slots                       [number, 0 - 6]
-        ['Max Skills'] = self.optionStore['lodOptionCommonMaxSkills'],                                          -- Max Skills                      [number, 0 - 6]
-        ['Max Ults'] = self.optionStore['lodOptionCommonMaxUlts'],                                              -- Max Ults                        [number, 0 - 6]
-        ['Host Banning'] = self.optionStore['lodOptionBanningHostBanning'],                                     -- Host Banning Mode               [boolean, 1/0]
-        ['Max Ability Bans'] = self.optionStore['lodOptionBanningMaxBans'],                                     -- Max Ability Bans                [number, 0 - 25]
-        ['Max Hero Bans'] = self.optionStore['lodOptionBanningMaxHeroBans'],                                    -- Max Hero Bans                   [number, 0 - 3]
-        ['Block Troll Combos'] = self.optionStore['lodOptionBanningBlockTrollCombos'],                          -- Block Troll Combos              [boolean, 1/0]
-        ['Use LoD BanList'] = self.optionStore['lodOptionBanningUseBanList'],                                   -- Use LoD BanList                 [boolean, 1/0]
-        ['Block OP Abilities'] = self.optionStore['lodOptionAdvancedOPAbilities'],                              -- Block OP Abilities              [boolean, 1/0]
-        ['Block Invis Abilities'] = self.optionStore['lodOptionBanningBanInvis'],                               -- Block Invis Abilities           [boolean, 1/0]
-        ['Starting Level'] = self.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
-        ['Max Hero Level'] = self.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
-        ['Bonus Starting Gold'] = self.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
-        ['Respawn Modifier'] = self.optionStore['lodOptionGameSpeedRespawnTime'],                               -- Respawn Modifier                [number, -60 - 10]
-        ['Towers Per Lane'] = self.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
-        ['Start With Upgraded Ults'] = self.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
-        ['Enable Easy Mode'] = self.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
-        ['Allow Hero Abilities'] = self.optionStore['lodOptionAdvancedHeroAbilities'],                          -- Allow Hero Abilities            [boolean, 1/0]
-        ['Allow Neutral Abilities'] = self.optionStore['lodOptionAdvancedNeutralAbilities'],                    -- Allow Neutral Abilities         [boolean, 1/0]
-        ['Allow Wraith Night Skills'] = self.optionStore['lodOptionAdvancedNeutralWraithNight'],                -- Allow Wraith Night Abilities    [boolean, 1/0]
-        ['Hide Enemy Picks'] = self.optionStore['lodOptionAdvancedHidePicks'],                                  -- Hide Enemy Picks                [boolean, 1/0]
-        ['Unique Skills'] = self.optionStore['lodOptionAdvancedUniqueSkills'],                                  -- Unique Skills                   [number, 0 - 2]
-        ['Unique Heroes'] = self.optionStore['lodOptionAdvancedUniqueHeroes'],                                  -- Unique Heroes                   [boolean, 1/0]
-        ['Allow Selecting Primary Attribute'] = self.optionStore['lodOptionAdvancedSelectPrimaryAttr'],         -- Allow Select Primary Attribute  [boolean, 1/0]
-        ['Stop Fountain Camping'] = self.optionStore['lodOptionCrazyNoCamping'],                                -- Stop Fountain Camping           [boolean, 1/0]
-        ['Enable Universal Shop'] = self.optionStore['lodOptionCrazyUniversalShop'],                            -- Universal Shop                  [boolean, 1/0]
-        ['Enable All Vision'] = self.optionStore['lodOptionCrazyAllVision'],                                    -- Enabled All Vision              [boolean, 1/0]
-        ['Enable Multicast Madness'] = self.optionStore['lodOptionCrazyMulticast'],                             -- Enable Multicast Madness        [boolean, 1/0]
-        ['Enable WTF Mode'] = self.optionStore['lodOptionCrazyWTF'],                                            -- Enable WTF Mode                 [boolean, 1/0]
-    })
+	    if OptionManager:GetOption('maxHeroLevel') ~= 25 then
+	        GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(constants.XP_PER_LEVEL_TABLE)
+	        GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
+	        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+	    end
 
-	-- If bots are enabled, add a bots flags
-	if self.enabledBots then
-		statCollection:setFlags({
-			['Bots Enabled'] = 1
-		})
-	end
+	    -- Store flags
+	    statCollection:setFlags({
+	        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],                                            -- Preset Gamemode                 [number, -1 - 4]
+	        ['Preset Banning'] = this.optionStore['lodOptionBanning'],                                              -- Present Banning                 [number, 1 - 3]
+	        ['Gamemode'] = this.optionStore['lodOptionCommonGamemode'],                                             -- Gamemode                        [number, 1 - 4]
+	        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],                                            -- Max Slots                       [number, 0 - 6]
+	        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],                                          -- Max Skills                      [number, 0 - 6]
+	        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],                                              -- Max Ults                        [number, 0 - 6]
+	        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],                                     -- Host Banning Mode               [boolean, 1/0]
+	        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],                                     -- Max Ability Bans                [number, 0 - 25]
+	        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],                                    -- Max Hero Bans                   [number, 0 - 3]
+	        ['Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],                          -- Block Troll Combos              [boolean, 1/0]
+	        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],                                   -- Use LoD BanList                 [boolean, 1/0]
+	        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],                              -- Block OP Abilities              [boolean, 1/0]
+	        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],                               -- Block Invis Abilities           [boolean, 1/0]
+	        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
+	        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
+	        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
+	        ['Respawn Modifier'] = this.optionStore['lodOptionGameSpeedRespawnTime'],                               -- Respawn Modifier                [number, -60 - 10]
+	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
+	        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
+	        ['Enable Easy Mode'] = this.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
+	        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],                          -- Allow Hero Abilities            [boolean, 1/0]
+	        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],                    -- Allow Neutral Abilities         [boolean, 1/0]
+	        ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],                -- Allow Wraith Night Abilities    [boolean, 1/0]
+	        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],                                  -- Hide Enemy Picks                [boolean, 1/0]
+	        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],                                  -- Unique Skills                   [number, 0 - 2]
+	        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],                                  -- Unique Heroes                   [boolean, 1/0]
+	        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],         -- Allow Select Primary Attribute  [boolean, 1/0]
+	        ['Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],                                -- Stop Fountain Camping           [boolean, 1/0]
+	        ['Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],                            -- Universal Shop                  [boolean, 1/0]
+	        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],                                    -- Enabled All Vision              [boolean, 1/0]
+	        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],                             -- Enable Multicast Madness        [boolean, 1/0]
+	        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],                                            -- Enable WTF Mode                 [boolean, 1/0]
+	    })
 
-	-- Challenge mode
-	if self.challengeMode then
-		statCollection:setFlags({
-			['Challenge Mode'] = challenge:getChallengeName()
-		})
+		-- If bots are enabled, add a bots flags
+		if this.enabledBots then
+			statCollection:setFlags({
+				['Bots Enabled'] = 1
+			})
+		end
+
+		-- Challenge mode
+		if this.challengeMode then
+			statCollection:setFlags({
+				['Challenge Mode'] = challenge:getChallengeName()
+			})
+		end
+    end)
+
+	-- Did it fail?
+	if not status then
+		SendToServerConsole('say "Post this to the LoD comments section: '..err:gsub('"',"''")..'"')
 	end
 end
 
