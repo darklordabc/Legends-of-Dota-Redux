@@ -512,45 +512,49 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
-        -- Spawn the bots
-        Timers:CreateTimer(function()
-            this:spawnBotHeroes()
-        end, DoUniqueString('spawnbots'), 0.1)
+        -- Hook bot stuff
+        self:hookBotStuff()
 
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
         	this:spawnAllHeroes()
-        end, DoUniqueString('spawnbots'), 0.2)
+        end, DoUniqueString('spawnbots'), 0.1)
 
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
-        end, DoUniqueString('createtowers'), 0.3)
+        end, DoUniqueString('createtowers'), 0.2)
 
         -- Prevent fountain camping
         Timers:CreateTimer(function()
             this:preventCamping()
-        end, DoUniqueString('preventcamping'), 0.4)
+        end, DoUniqueString('preventcamping'), 0.3)
+
+        -- Prevent fountain camping
+        Timers:CreateTimer(function()
+            -- Start tutorial mode so we can show tips to players
+			Tutorial:StartTutorialMode()
+        end, DoUniqueString('starthints'), 5)
     end
 end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
     local minPlayerID = 0
-    local maxPlayerID = 9
+    local maxPlayerID = 24
 
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID do
-        -- Attempt to spawn the player
-        self:spawnPlayer(playerID)
+    	-- Attempt to spawn the player
+    	self:spawnPlayer(playerID)
     end
 end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID)
     -- Is there a player in this slot?
-    if PlayerResource:GetConnectionState(playerID) >= 2 then
+    if PlayerResource:GetConnectionState(playerID) >= 1 then
         -- There is, go ahead and build this player
 
         -- Only spawn a hero for a given player ONCE
@@ -575,19 +579,6 @@ function Pregame:actualSpawnPlayer()
 
     -- Grab a reference to self
     local this = self
-
-    -- We actually require that bots spawn first
-    if not self.doneSpawningBots then
-        -- Add a small delay
-        Timers:CreateTimer(function()
-            -- Done spawning, start the next one
-            this.currentlySpawning = false
-
-            -- Continue actually spawning
-            this:actualSpawnPlayer()
-        end, DoUniqueString('continueSpawning'), 1)
-        return
-    end
 
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
@@ -3783,9 +3774,6 @@ function Pregame:addBotPlayers()
 	self.addedBotPlayers = true
 	if not self.enabledBots then return end
 
-	-- Start tutorial mode so we can show tips to players
-	Tutorial:StartTutorialMode()
-
 	-- Settings to determine how many players to place onto each team
 	self.desiredRadiant = self.desiredRadiant or 5
 	self.desiredDire = self.desiredDire or 5
@@ -3859,6 +3847,7 @@ function Pregame:generateBotBuilds()
     -- List of bots that are borked
     local brokenBots = {
         npc_dota_hero_tidehunter = true,
+        npc_dota_hero_razor = true,
     }
 
     -- Generate a list of possible heroes
@@ -3960,66 +3949,15 @@ function Pregame:generateBotBuilds()
 end
 
 -- Spawns bots
-function Pregame:spawnBotHeroes()
+function Pregame:hookBotStuff()
     -- Ensure bots are actually enabled
-    if not self.enabledBots or not self.botPlayers.all then
-        self.doneSpawningBots = true
+    if not self.enabledBots or self.hookedBotStuff then
+        self.hookedBotStuff = true
         return
     end
 
-    -- Grab number of players
-    --local totalRadiant, totalDire, desiredPlayers = self:countRadiantDire()
-
-    --GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 24)
-
     -- Grab a reference to self
     local this = self
-
-    -- Generate a list of bots that are left to spawn
-    local botsLeftToSpawn = {}
-    for playerID,botInfo in pairs(self.botPlayers.all) do
-    	table.insert(botsLeftToSpawn, {
-    		playerID = playerID,
-    		botInfo = botInfo
-    	})
-    end
-
-    function continueSpawningBots()
-    	if #botsLeftToSpawn <= 0 then
-    		-- Done
-    		this.doneSpawningBots = true
-    		return
-    	end
-
-    	local theBot = table.remove(botsLeftToSpawn, 1)
-    	local playerID = theBot.playerID
-    	local botInfo = theBot.botInfo
-    	local ply = botInfo.ply
-    	local heroName = botInfo.heroName
-    	local build = botInfo.build
-
-    	if ply then
-    		-- Precache their hero
-            PrecacheUnitByNameAsync(heroName, function()
-                -- Spawn their hero
-                local hero = CreateHeroForPlayer(heroName, ply)
-
-                if hero then
-                    SkillManager:ApplyBuild(hero, build)
-
-                    -- Stop other player's from touching it
-                    --[[for i=0,10 do
-                        hero:SetControllableByPlayer(i, false)
-                    end]]
-                end
-            end, playerID)
-
-            -- Continue spawning
-            Timers:CreateTimer(function()
-                continueSpawningBots()
-            end, DoUniqueString('spawnbots'), 0.1)
-    	end
-    end
 
     -- Auto level bot skills (bots will get 2 ability points per level)
     ListenToGameEvent('dota_player_gained_level', function(keys)
@@ -4091,9 +4029,6 @@ function Pregame:spawnBotHeroes()
             end
         end
     end, nil)
-
-    -- Start spawning bots
-    continueSpawningBots()
 end
 
 -- Apply fixes
