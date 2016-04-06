@@ -580,10 +580,24 @@ function Pregame:actualSpawnPlayer()
     -- Grab a reference to self
     local this = self
 
+    -- Give a small delay, and then continue
+    Timers:CreateTimer(function()
+        -- Done spawning, start the next one
+        this.currentlySpawning = false
+
+        -- Continue actually spawning
+        this:actualSpawnPlayer()
+    end, DoUniqueString('continueSpawning'), 0.1)
+
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Grab a player to spawn
         local playerID = table.remove(this.spawnQueue, 1)
+
+        -- Don't allow a player to get two heroes
+        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
+        	return
+        end
 
         -- Grab their build
         local build = self.selectedSkills[playerID]
@@ -647,15 +661,6 @@ function Pregame:actualSpawnPlayer()
             self.spawnedHeroesFor[playerID] = nil
         end
     end)
-
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
-        -- Done spawning, start the next one
-        this.currentlySpawning = false
-
-        -- Continue actually spawning
-        this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
 
     -- Did the spawning of this hero fail?
     if not status then
@@ -1401,8 +1406,6 @@ function Pregame:initOptionSelector()
         lodOptionGameSpeedRespawnTime = function(value)
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
-            print(value)
 
             local valid = {
                 [0] = true,
@@ -2570,8 +2573,35 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     -- This code only works during the game phase
     if self:getPhase() ~= constants.PHASE_INGAME then return end
 
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Has this player already asked for their hero?
+    if self.spawnedHeroesFor[playerID] then
+    	-- Do they have a hero?
+    	if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
+    		return
+    	end
+
+    	if not self.requestHeroAgain then
+    		self.requestHeroAgain = {}
+    	end
+
+    	if self.requestHeroAgain[playerID] then
+    		if Time() > self.requestHeroAgain[playerID] then
+    			self.requestHeroAgain[playerID] = nil
+    			self.currentlySpawning = false
+    			self.spawnedHeroesFor[playerID] = false
+    		end
+    	else
+    		-- Allocate 3 seconds then allow them to spawn a hero
+    		self.requestHeroAgain[playerID] = Time() + 3
+    	end
+    end
+
     -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
-    self:spawnPlayer(args.PlayerID)
+    self:spawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
