@@ -784,7 +784,7 @@ var recommendedBuilds = [
             6: 'furion_teleportation',
         },
     },
-    {
+    /*{
         title: 'The Brew Trow',
         heroName: 'npc_dota_hero_brewmaster',
         attr: 'str',
@@ -809,7 +809,7 @@ var recommendedBuilds = [
             5: 'phantom_assassin_coup_de_grace',
             6: 'tiny_grow_lod',
         },
-    },
+    },*/
     {
         title: 'MEDIC!',
         heroName: 'npc_dota_hero_wisp',
