@@ -515,6 +515,9 @@ function Pregame:onThink()
         -- Hook bot stuff
         self:hookBotStuff()
 
+        -- Start tutorial mode so we can show tips to players
+        Tutorial:StartTutorialMode()
+
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
@@ -530,12 +533,6 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
-
-        -- Showing Tips
-        Timers:CreateTimer(function()
-            -- Start tutorial mode so we can show tips to players
-			Tutorial:StartTutorialMode()
-        end, DoUniqueString('starthints'), 5)
     end
 end
 
@@ -3825,6 +3822,10 @@ function Pregame:addBotPlayers()
 	self.desiredRadiant = self.desiredRadiant or 5
 	self.desiredDire = self.desiredDire or 5
 
+    -- Adjust the team sizes
+    GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, self.desiredRadiant)
+    GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, self.desiredDire)
+
 	-- Grab number of players
     local totalRadiant, totalDire = self:countRadiantDire()
 
@@ -3835,9 +3836,11 @@ function Pregame:addBotPlayers()
     	all = {}
 	}
 
+    local playerID
+
 	-- Add radiant players
 	while totalRadiant < self.desiredRadiant do
-		local playerID = totalRadiant + totalDire
+		playerID = totalRadiant + totalDire
 		totalRadiant = totalRadiant + 1
 		Tutorial:AddBot('', '', 'unfair', true)
 
@@ -3859,7 +3862,7 @@ function Pregame:addBotPlayers()
 
 	-- Add dire players
 	while totalDire < self.desiredDire do
-		local playerID = totalRadiant + totalDire
+		playerID = totalRadiant + totalDire
 		totalDire = totalDire + 1
 		Tutorial:AddBot('', '', 'unfair', false)
 
@@ -3895,6 +3898,16 @@ function Pregame:generateBotBuilds()
     local brokenBots = {
         npc_dota_hero_tidehunter = true,
         npc_dota_hero_razor = true,
+        --[[npc_dota_hero_sven = true,
+        npc_dota_hero_skeleton_king = true,
+        npc_dota_hero_lina = true,
+        npc_dota_hero_luna = true,
+        npc_dota_hero_dragon_knight = true,
+        npc_dota_hero_bloodseeker = true,
+        npc_dota_hero_lion = true,
+        npc_dota_hero_skywrath_mage = true,
+        npc_dota_hero_tiny = true,
+        npc_dota_hero_oracle = true,]]
     }
 
     -- Generate a list of possible heroes
