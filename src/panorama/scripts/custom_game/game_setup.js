@@ -109,10 +109,10 @@ var allOptions = {
                         text: 'lodOptionAllPick',
                         value: 1
                     },
-                    /*{
+                    {
                         text: 'lodOptionSingleDraft',
-                        value: 2
-                    },*/
+                        value: 5
+                    },
                     {
                         text: 'lodOptionMirrorDraft',
                         value: 3
@@ -120,7 +120,7 @@ var allOptions = {
                     {
                         text: 'lodOptionAllRandom',
                         value: 4
-                    }
+                    },
                 ]
             },
             {
@@ -1427,6 +1427,12 @@ function OnGetDraftArray(table_name, key, data) {
 
     // Ensure we don't get a weird value for draftID
     myDraftID = myDraftID % 5;
+
+    // Are we playing single draft?
+    if(optionValueList['lodOptionCommonGamemode'] == 5) {
+        // DraftID is just our playerID
+        myDraftID = playerID;
+    }
 
     // Is this data for us?
     if(myDraftID != draftID) return;
@@ -3725,7 +3731,7 @@ function OnOptionChanged(table_name, key, data) {
 
     if(key == 'lodOptionCommonGamemode') {
         // Mirror draft options
-        var showMirrorDraftOptions = data.v == 3;
+        var showMirrorDraftOptions = data.v == 3 || data.v == 5;
 
         $('#option_panel_main_lodOptionMirrorHeroes').SetHasClass('showThis', showMirrorDraftOptions);
         $('#option_panel_main_lodOptionCommonMirrorHeroes').visible = showMirrorDraftOptions;

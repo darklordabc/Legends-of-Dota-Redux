@@ -68,8 +68,8 @@
     "lodOptionBalancedUlts6"                        "6 Ults"
     "lodOptionBalancedUlts0"                        "No Ults"
 
-    "lodOptionsPresetMirrorHeroes"                  "Mirror Draft Heroes"
-    "lodOptionsCommonMirrorHeroes"                  "Mirror Draft Heroes"
+    "lodOptionsPresetMirrorHeroes"                  "Draft Heroes"
+    "lodOptionsCommonMirrorHeroes"                  "Draft Heroes"
     "lodOptionMirrorHeroes10"                       "10 Heroes"
     "lodOptionMirrorHeroes20"                       "20 Heroes"
     "lodOptionMirrorHeroes30"                       "30 Heroes"

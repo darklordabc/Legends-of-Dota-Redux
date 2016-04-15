@@ -878,6 +878,13 @@ function Pregame:finishOptionSelection()
 
     if self.optionStore['lodOptionCommonGamemode'] == 3 then
         self.useDraftArrays = true
+        self.singleDraft = false
+    end
+
+    -- Single Draft
+    if self.optionStore['lodOptionCommonGamemode'] == 5 then
+        self.useDraftArrays = true
+        self.singleDraft = true
     end
 
     -- Move onto the next phase
@@ -1241,7 +1248,7 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            return value == 1 or value == 2 or value == 3 or value == 4
+            return value == 1 or value == 3 or value == 4 or value == 5
         end,
 
         -- Common max slots
@@ -1836,6 +1843,11 @@ function Pregame:buildDraftArrays()
     self.draftArrays = {}
 
     local maxDraftArrays = 5
+
+    if self.singleDraft then
+        maxDraftArrays = 10
+    end
+
     for draftID = 0,(maxDraftArrays - 1) do
         -- Create store for data
         local draftData = {}
@@ -2353,6 +2365,11 @@ end
 
 -- Returns a player's draft index
 function Pregame:getDraftID(playerID)
+    -- If it's single draft, just use our playerID
+    if self.singleDraft then
+        return playerID
+    end
+
     local maxPlayers = 10
 
     local theirTeam = PlayerResource:GetTeam(playerID)
@@ -3913,7 +3930,7 @@ function Pregame:generateBotBuilds()
     	-- Grab a hero
         local heroName = 'npc_dota_hero_pudge'
         if #possibleHeroes > 0 then
-            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes)) 
+            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
         end
 
         -- Generate build
@@ -4106,7 +4123,7 @@ function Pregame:fixSpawningIssues()
 		                    		end
 		                    	end
 
-		                        
+
 		                    end
 		                end, DoUniqueString('fixBrokenSkills'), 0)
 		            end
