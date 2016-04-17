@@ -371,4 +371,15 @@
     "voteMaxSlots6"                                 "6 Slots"
 
     "lodBanningPhase"                               "Enable The Banning Phase?"
+
+    "bots_lod"                                      "Bots"
+
+    "lodOptionDesBotsRadiant"                       "Desired Radiant Players"
+    "lodOptionAboutBotRadiant"                      "Bots will be added to radiant if there is less than this number of players on radiant."
+
+    "lodOptionDesBotsDire"                          "Desired Dire Players"
+    "lodOptionAboutBotDire"                         "Bots will be added to dire if there is less than this number of players on dire."
+
+    "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
+    "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."
 }

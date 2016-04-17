@@ -1496,6 +1496,42 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Bots -- Desired number of radiant players
+        lodOptionBotsRadiant = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 1 or value > 10 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        -- Bots -- Desired number of dire players
+        lodOptionBotsDire = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 1 or value > 10 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        -- Bots - Unfair EXP balancing
+        lodOptionBotsUnfairBalance = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Easy Mode
         --[[lodOptionCrazyEasymode = function(value)
             -- Ensure gamemode is set to custom
@@ -1657,6 +1693,11 @@ function Pregame:initOptionSelector()
 
                 -- Do not start scepter upgraded
                 self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+                -- Set bot options
+                self:setOption('lodOptionBotsRadiant', 5, true)
+                self:setOption('lodOptionBotsDire', 5, true)
+                self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
                 -- Turn easy mode off
                 --self:setOption('lodOptionCrazyEasymode', 0, true)
@@ -2248,6 +2289,10 @@ function Pregame:processOptions()
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
 	    OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
 	    OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
+
+	    -- Bot options
+	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
+	    this.desiredDire = this.optionStore['lodOptionBotsDire']
 
 	    -- Enable WTF mode
 	    if this.optionStore['lodOptionCrazyWTF'] == 1 then

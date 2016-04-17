@@ -535,6 +535,49 @@ var allOptions = {
         ]
     },*/
 
+    // Bot related stuff
+    bots: {
+        custom: true,
+        fields: [
+            {
+                name: 'lodOptionBotsRadiant',
+                des: 'lodOptionDesBotsRadiant',
+                about: 'lodOptionAboutBotRadiant',
+                sort: 'range',
+                min: 1,
+                max: 10,
+                step: 1,
+                default: 5
+            },
+            {
+                name: 'lodOptionBotsDire',
+                des: 'lodOptionDesBotsDire',
+                about: 'lodOptionAboutBotDire',
+                sort: 'range',
+                min: 1,
+                max: 10,
+                step: 1,
+                default: 5
+            },
+            {
+                name: 'lodOptionBotsUnfairBalance',
+                des: 'lodOptionDesBotsUnfairBalance',
+                about: 'lodOptionAboutUnfairBalance',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+        ]
+    },
+
     // Stuff that is just crazy
     crazyness: {
         custom: true,
