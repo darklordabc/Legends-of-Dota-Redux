@@ -310,44 +310,24 @@ var allOptions = {
                 default: 0
             },
             {
-                name: 'lodOptionGameSpeedRespawnTime',
-                des: 'lodOptionDesGameSpeedRespawnTime',
-                about: 'lodOptionAboutGameSpeedRespawnTime',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionGameSpeedRespawnTimeDefault',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTimeHalf',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTimeTenth',
-                        value: 10
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTimeSecond',
-                        value: -1
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTime10Second',
-                        value: -10
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTime20Second',
-                        value: -20
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTime30Second',
-                        value: -30
-                    },
-                    {
-                        text: 'lodOptionGameSpeedRespawnTime60Second',
-                        value: -60
-                    }
-                ]
+                name: 'lodOptionGameSpeedRespawnTimePercentage',
+                des: 'lodOptionDesGameSpeedRespawnTimePercentage',
+                about: 'lodOptionAboutGameSpeedRespawnTimePercentage',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 0
+            },
+            {
+                name: 'lodOptionGameSpeedRespawnTimeConstant',
+                des: 'lodOptionDesGameSpeedRespawnTimeConstant',
+                about: 'lodOptionAboutGameSpeedRespawnTimeConstant',
+                sort: 'range',
+                min: 0,
+                max: 120,
+                step: 1,
+                default: 0
             },
             {
                 name: 'lodOptionGameSpeedTowersPerLane',

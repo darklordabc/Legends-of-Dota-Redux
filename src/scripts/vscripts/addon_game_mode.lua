@@ -3024,8 +3024,9 @@ end, nil)]]
 
 ListenToGameEvent('entity_killed', function(keys)
     -- Ensure our respawn modifier is in effect
-    local respawnModifier = OptionManager:GetOption('respawnModifier')
-    if respawnModifier == 0 then return end
+    local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
+    local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
+    if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
     -- Grab the killed entitiy (it isn't nessessarily a hero!)
     local hero = EntIndexToHScript(keys.entindex_killed)
@@ -3049,11 +3050,17 @@ ListenToGameEvent('entity_killed', function(keys)
 
                         local timeLeft = hero:GetRespawnTime()
 
-                        if respawnModifier < 0 then
+                        timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
+
+                        if timeLeft <= 0 then
+                            timeLeft = 1
+                        end
+
+                        --[[if respawnModifier < 0 then
                             timeLeft = -respawnModifier
                         else
                             timeLeft = timeLeft / respawnModifier
-                        end
+                        end]]
 
                         -- Set the time left until we respawn
                         hero:SetTimeUntilRespawn(timeLeft)

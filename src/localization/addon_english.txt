@@ -188,6 +188,12 @@
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
 
+    "lodOptionGameSpeedRespawnTimePercentage"       "Respawn Time Percentage"
+    "lodOptionAboutGameSpeedRespawnTimePercentage"  "Makes the default respawn time decrease by the given percentage."
+
+    "lodOptionGameSpeedRespawnTimeConstant"         "Additional Respawn Time"
+    "lodOptionAboutGameSpeedRespawnTimeConstant"    "Adds a constant number of seconds onto the default respawn time."
+
     "lodOptionDesGameSpeedRespawnTime"              "Respawn Time"
     "lodOptionGameSpeedRespawnTimeDefault"          "Default Respawn Time"
     "lodOptionGameSpeedRespawnTimeHalf"             "50% Respawn Time"

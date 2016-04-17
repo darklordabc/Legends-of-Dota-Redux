@@ -1406,23 +1406,32 @@ function Pregame:initOptionSelector()
             return true
         end,
 
-        -- Game Speed -- Respawn Time
-        lodOptionGameSpeedRespawnTime = function(value)
+        -- Game Speed -- Respawn time percentage
+        lodOptionGameSpeedRespawnTimePercentage = function(value)
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
-            local valid = {
-                [0] = true,
-                [2] = true,
-                [10] = true,
-                [-1] = true,
-                [-10] = true,
-                [-20] = true,
-                [-30] = true,
-                [-60] = true
-            }
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 100 then return false end
 
-            return valid[value] or false
+            -- Valid
+            return true
+        end,
+
+        -- Game Speed -- Respawn time constant
+        lodOptionGameSpeedRespawnTimeConstant = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 120 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Game Speed -- Towers per lane
@@ -1597,7 +1606,8 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
 
                 -- Default respawn time
-                self:setOption('lodOptionGameSpeedRespawnTime', 0, true)
+                self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
+                self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
 
                 -- 3 Towers per lane
                 self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
@@ -1653,7 +1663,8 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionCommonGamemode', 1, true)
 
                     -- Set respawn to 10%
-                    self:setOption('lodOptionGameSpeedRespawnTime', 10, true)
+                    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 10, true)
+                    self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
 
                     -- Starting level is lvl 6
                     self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
@@ -2172,7 +2183,8 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
 	    OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
 	    OptionManager:SetOption('multicastMadness', this.optionStore['lodOptionCrazyMulticast'] == 1)
-	    OptionManager:SetOption('respawnModifier', this.optionStore['lodOptionGameSpeedRespawnTime'])
+        OptionManager:SetOption('respawnModifierPercentage', this.optionStore['lodOptionGameSpeedRespawnTimePercentage'])
+	    OptionManager:SetOption('respawnModifierConstant', this.optionStore['lodOptionGameSpeedRespawnTimeConstant'])
 	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
 
 	    -- Enforce max level
@@ -2254,7 +2266,8 @@ function Pregame:processOptions()
 	        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
 	        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
 	        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
-	        ['Respawn Modifier'] = this.optionStore['lodOptionGameSpeedRespawnTime'],                               -- Respawn Modifier                [number, -60 - 10]
+            ['Respawn Modifier Percentage'] = this.optionStore['lodOptionGameSpeedRespawnTimePercentage'],          -- Respawn Modifier Percentage     [number, 0 - 100]
+	        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],              -- Respawn Modifier Constant       [number, 0 - 120]
 	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
 	        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
 	        ['Enable Easy Mode'] = this.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
