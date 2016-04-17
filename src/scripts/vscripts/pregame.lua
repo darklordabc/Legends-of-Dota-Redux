@@ -1879,7 +1879,7 @@ function Pregame:generateAllRandomBuilds()
 
     -- Generate 10 builds
     local minPlayerID = 0
-    local maxPlayerID = 9
+    local maxPlayerID = 24
 
     -- Max builds per player
     local maxPlayerBuilds = 5
