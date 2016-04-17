@@ -1937,10 +1937,10 @@ function Pregame:buildDraftArrays()
     if self.draftArrays then return end
     self.draftArrays = {}
 
-    local maxDraftArrays = 5
+    local maxDraftArrays = 12
 
     if self.singleDraft then
-        maxDraftArrays = 10
+        maxDraftArrays = 24
     end
 
     for draftID = 0,(maxDraftArrays - 1) do
@@ -2206,7 +2206,7 @@ function Pregame:validateBuilds()
 
     -- Generate 10 builds
     local minPlayerID = 0
-    local maxPlayerID = 9
+    local maxPlayerID = 24
 
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
@@ -2479,7 +2479,7 @@ function Pregame:getDraftID(playerID)
         return playerID
     end
 
-    local maxPlayers = 10
+    local maxPlayers = 24
 
     local theirTeam = PlayerResource:GetTeam(playerID)
 

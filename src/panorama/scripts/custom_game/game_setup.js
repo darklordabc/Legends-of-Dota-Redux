@@ -1468,7 +1468,7 @@ function OnGetDraftArray(table_name, key, data) {
     var myTeamID = myInfo.player_team_id;
     var myTeamPlayers = Game.GetPlayerIDsOnTeam(myTeamID);
 
-    var maxPlayers = 10;
+    var maxPlayers = 24;
     for(var i=0; i<maxPlayers; ++i) {
         if(i == playerID) break;
 
