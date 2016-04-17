@@ -1016,7 +1016,7 @@ function Pregame:processVoteData()
         counts[optionName] = {}
 
         for playerID,choice in pairs(data) do
-            counts[optionName][choice] = (counts[choice] or 0) + util:getVotingPower(playerID)
+            counts[optionName][choice] = (counts[optionName][choice] or 0) + util:getVotingPower(playerID)
         end
 
         local maxNumber = 0
