@@ -2396,7 +2396,9 @@ function Pregame:processOptions()
 		-- If bots are enabled, add a bots flags
 		if this.enabledBots then
 			statCollection:setFlags({
-				['Bots Enabled'] = 1
+                ['Bots Enabled'] = 1,
+                ['Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
+                ['Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
 			})
 		end
 
