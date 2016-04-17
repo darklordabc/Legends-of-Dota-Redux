@@ -1,6 +1,11 @@
 "AddonInfo"
 {
-	maps			"all_pick all_pick_fast custom custom_bot"
+	maps			"all_pick all_pick_fast custom custom_bot 10_vs_10"
 	"IsPlayable"	"1"
-    "version"       "3.0.1"
+    "version"       "3.1.0"
+
+    "10_vs_10"
+    {
+                    "MaxPlayers"                    "20"
+    }
 }

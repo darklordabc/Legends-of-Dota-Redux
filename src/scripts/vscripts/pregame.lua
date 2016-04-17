@@ -225,7 +225,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', -1)
     end
 
@@ -238,8 +238,17 @@ function Pregame:init()
     self:setOption('lodOptionBanning', 3)
 
     -- Bot match
-    if mapName == 'custom_bot' then
+    if mapName == 'custom_bot' or mapName == '10_vs_10' then
         self.enabledBots = true
+    end
+
+    -- 10 VS 10
+    if mapName == '10_vs_10' then
+        GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 10)
+        GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 10)
+
+        self:setOption('lodOptionBotsRadiant', 10, true)
+        self:setOption('lodOptionBotsDire', 10, true)
     end
 
     -- Exports for stat collection

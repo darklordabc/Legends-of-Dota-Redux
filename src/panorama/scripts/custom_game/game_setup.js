@@ -4325,7 +4325,7 @@ function onPlayerCastVote(category, choice) {
     }
 
     // Bots
-    if(mapName != 'custom_bot') {
+    if(mapName != 'custom_bot' && mapName != '10_vs_10') {
         $.GetContextPanel().SetHasClass('disallow_bots', true);
     }
 
