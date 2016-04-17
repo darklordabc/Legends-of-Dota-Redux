@@ -320,6 +320,26 @@ var allOptions = {
                 default: 0
             },
             {
+                name: 'lodOptionGameSpeedGoldModifier',
+                des: 'lodOptionDesGameSpeedGoldModifier',
+                about: 'lodOptionAboutGameSpeedGoldModifier',
+                sort: 'range',
+                min: 0,
+                max: 10,
+                step: 0.01,
+                default: 0
+            },
+            {
+                name: 'lodOptionGameSpeedEXPModifier',
+                des: 'lodOptionDesGameSpeedEXPModifier',
+                about: 'lodOptionAboutGameSpeedEXPModifier',
+                sort: 'range',
+                min: 0,
+                max: 10,
+                step: 0.01,
+                default: 0
+            },
+            {
                 name: 'lodOptionGameSpeedRespawnTimePercentage',
                 des: 'lodOptionDesGameSpeedRespawnTimePercentage',
                 about: 'lodOptionAboutGameSpeedRespawnTimePercentage',

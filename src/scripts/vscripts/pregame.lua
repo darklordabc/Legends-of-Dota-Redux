@@ -1420,6 +1420,32 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Game Speed -- Gold Modifier
+        lodOptionGameSpeedGoldModifier = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if value < 0 or value > 10 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        -- Game Speed -- EXP Modifier
+        lodOptionGameSpeedEXPModifier = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if value < 0 or value > 10 then return false end
+
+            -- Valid
+            return true
+        end,
+
         -- Game Speed -- Respawn time percentage
         lodOptionGameSpeedRespawnTimePercentage = function(value)
             -- Ensure gamemode is set to custom
@@ -1616,9 +1642,11 @@ function Pregame:initOptionSelector()
                 -- Max level is 25
                 self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
 
-                -- No bonus starting gold
+                -- Don't mess with gold rate
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
                 self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+                self:setOption('lodOptionGameSpeedGoldModifier', 1, true)
+                self:setOption('lodOptionGameSpeedEXPModifier', 1, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
@@ -1685,11 +1713,13 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
 
                     -- Turn easy mode on
-                    self:setOption('lodOptionCrazyEasymode', 1, true)
+                    --self:setOption('lodOptionCrazyEasymode', 1, true)
 
                     -- Start with 2500 bonus gold
                     self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
                     self:setOption('lodOptionGameSpeedGoldTickRate', 5, true)
+                    self:setOption('lodOptionGameSpeedGoldModifier', 2.5, true)
+                    self:setOption('lodOptionGameSpeedEXPModifier', 2.5, true)
                 end
             end
         end,
@@ -2216,6 +2246,8 @@ function Pregame:processOptions()
 
 	    -- Gold per interval
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
+	    OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
+	    OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
 
 	    -- Enable WTF mode
 	    if this.optionStore['lodOptionCrazyWTF'] == 1 then
@@ -2286,6 +2318,8 @@ function Pregame:processOptions()
 	        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
 	        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
 	        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],                           		-- Gold gained every interval      [number, 0 - 25]
+	        ['Gold Modifier'] = this.optionStore['lodOptionGameSpeedGoldModifier'],                           		-- Gold percentage modifier        [number, 0 - 10]
+	        ['XP Modifier'] = this.optionStore['lodOptionGameSpeedEXPModifier'],	                           		-- EXP percentage modifier         [number, 0 - 10]
             ['Respawn Modifier Percentage'] = this.optionStore['lodOptionGameSpeedRespawnTimePercentage'],          -- Respawn Modifier Percentage     [number, 0 - 100]
 	        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],              -- Respawn Modifier Constant       [number, 0 - 120]
 	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]

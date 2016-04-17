@@ -1999,6 +1999,7 @@ function lod:initGoldBalancer()
 
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap( lod, "FilterModifyGold" ), self)
+    GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap( lod, "FilterModifyExperience" ), self)
 
     local this = self
 
@@ -2089,12 +2090,30 @@ function lod:FilterModifyGold(filterTable)
         enemyTeam = self.playersOnTeam.radiant
     end
 
+    -- Grab the gold modifier
+    local goldModifier = OptionManager:GetOption('goldModifier')
+
+    if goldModifier ~= 1 then
+        filterTable.gold = math.ceil(filterTable.gold * goldModifier)
+    end
+
     -- Slow down the gold intake for the team with more players
     local ratio = enemyTeam / myTeam
     if ratio < 1 then
         ratio = 1 - (1 - ratio) / 2
 
         filterTable.gold = math.ceil(filterTable.gold * ratio)
+    end
+
+    return true
+end
+
+-- Option to modify EXP
+function lod:FilterModifyExperience(filterTable)
+    local expModifier = OptionManager:GetOption('expModifier')
+
+    if expModifier ~= 1 then
+        filterTable.experience = math.ceil(filterTable.experience * expModifier)
     end
 
     return true

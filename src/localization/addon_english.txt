@@ -160,6 +160,12 @@
     "lodOptionDesGameSpeedGoldTickRate"             "Gold Per Tick"
     "lodOptionAboutGameSpeedGoldTickRate"           "The amount of gold that is gained every interval. The default in dota is 1 gold per interval."
 
+    "lodOptionDesGameSpeedGoldModifier"             "Gold Gain Modifier"
+    "lodOptionAboutGameSpeedGoldModifier"           "Multiplies the amount of gold gained when killing creeps / heroes / roshan."
+
+    "lodOptionDesGameSpeedEXPModifier"              "XP Gain Modifier"
+    "lodOptionAboutGameSpeedEXPModifier"            "Multiples the amount of experience that is gained when killing creeps / heroes / roshan."
+
     "lodOptionDesGameSpeedTowersPerLane"            "Towers Per Lane"
     "lodOptionTower3"                               "3 Towers"
     "lodOptionTower4"                               "4 Towers"

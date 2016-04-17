@@ -174,5 +174,9 @@ OptionManager:SetOption('useDraftArray', true)
 -- How many heroes should the game auto allocate if we're using the draft array?
 OptionManager:SetOption('autoDraftHeroNumber', 10)
 
+-- Gold Modifier
+OptionManager:SetOption('goldModifier', 1)
+OptionManager:SetOption('expModifier', 1)
+
 -- Return the export
 return OptionManager
