@@ -1497,12 +1497,12 @@ function Pregame:initOptionSelector()
         end,
 
         -- Game Speed - Easy Mode
-        lodOptionCrazyEasymode = function(value)
+        --[[lodOptionCrazyEasymode = function(value)
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
             return value == 0 or value == 1
-        end,
+        end,]]
 
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
@@ -1659,7 +1659,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
 
                 -- Turn easy mode off
-                self:setOption('lodOptionCrazyEasymode', 0, true)
+                --self:setOption('lodOptionCrazyEasymode', 0, true)
 
                 -- Enable hero abilities
                 self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
@@ -2240,9 +2240,9 @@ function Pregame:processOptions()
 	    end
 
 	    -- Enable easy mode
-	    if this.optionStore['lodOptionCrazyEasymode'] == 1 then
+	    --[[if this.optionStore['lodOptionCrazyEasymode'] == 1 then
 	        Convars:SetInt('dota_easy_mode', 1)
-	    end
+	    end]]
 
 	    -- Gold per interval
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
@@ -2324,7 +2324,7 @@ function Pregame:processOptions()
 	        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],              -- Respawn Modifier Constant       [number, 0 - 120]
 	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
 	        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
-	        ['Enable Easy Mode'] = this.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
+	        --['Enable Easy Mode'] = this.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
 	        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],                          -- Allow Hero Abilities            [boolean, 1/0]
 	        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],                    -- Allow Neutral Abilities         [boolean, 1/0]
 	        ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],                -- Allow Wraith Night Abilities    [boolean, 1/0]

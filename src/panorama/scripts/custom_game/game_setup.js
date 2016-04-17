@@ -385,7 +385,7 @@ var allOptions = {
                     }
                 ]
             },
-            {
+            /*{
                 name: 'lodOptionCrazyEasymode',
                 des: 'lodOptionDesCrazyEasymode',
                 about: 'lodOptionAboutCrazyEasymode',
@@ -400,7 +400,7 @@ var allOptions = {
                         value: 1
                     }
                 ]
-            },
+            },*/
         ]
     },
 
