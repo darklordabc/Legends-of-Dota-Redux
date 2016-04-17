@@ -157,11 +157,6 @@ function Network:donePrecaching()
     CustomNetTables:SetTableValue('phase_pregame', 'doneCaching', {})
 end
 
--- Sets the active tab
-function Network:addBot(playerID, buildInfo)
-    CustomNetTables:SetTableValue('phase_pregame', 'add_bot_' .. playerID, buildInfo)
-end
-
 -- Shares the vote counts
 function Network:voteCounts(counts)
     CustomNetTables:SetTableValue('phase_pregame', 'vote_counts', counts)

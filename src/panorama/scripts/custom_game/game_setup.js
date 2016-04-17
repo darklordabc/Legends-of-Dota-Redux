@@ -537,6 +537,7 @@ var allOptions = {
 
     // Bot related stuff
     bots: {
+        bot: true,
         custom: true,
         fields: [
             {
@@ -559,7 +560,7 @@ var allOptions = {
                 step: 1,
                 default: 5
             },
-            {
+            /*{
                 name: 'lodOptionBotsUnfairBalance',
                 des: 'lodOptionDesBotsUnfairBalance',
                 about: 'lodOptionAboutUnfairBalance',
@@ -574,7 +575,7 @@ var allOptions = {
                         value: 1
                     }
                 ]
-            },
+            },*/
         ]
     },
 
@@ -2975,7 +2976,7 @@ function addUnassignedPlayer(playerID) {
 }
 
 // Adds a player to a team
-function addPlayerToTeam(playerID, panel, reviewContainer) {
+function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     // Validate the panel
     if(panel == null || reviewContainer == null) return;
 
@@ -3027,7 +3028,7 @@ function addPlayerToTeam(playerID, panel, reviewContainer) {
     var newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
     newPlayerPanel.SetAttributeInt('playerID', playerID);
     newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
+    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer(), shouldMakeSmall);
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
@@ -3097,6 +3098,11 @@ function buildOptionsCategories() {
                 optionCategory.AddClass('optionButtonCustomRequired');
             }
 
+            // Check for bot settings
+            if(optionData.bot) {
+                optionCategory.AddClass('optionButtonBotRequired');
+            }
+
             // Button text
             var optionLabel = $.CreatePanel('Label', optionCategory, 'option_button_' + optionLabelText + '_label');
             optionLabel.text = $.Localize(optionLabelText + '_lod');
@@ -3108,6 +3114,10 @@ function buildOptionsCategories() {
 
             if(optionData.custom) {
                 optionPanel.AddClass('optionButtonCustomRequired');
+            }
+
+            if(optionData.bot) {
+                optionPanel.AddClass('optionButtonBotRequired');
             }
 
             // Build the fields
@@ -3534,15 +3544,23 @@ function doActualTeamUpdate() {
     var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
     for(var i=0; i<radiantPlayers.length; ++i) {
         // Add this player to the unassigned list
-        addPlayerToTeam(radiantPlayers[i], $('#theRadiantContainer'), $('#reviewRadiantTeam'));
+        addPlayerToTeam(radiantPlayers[i], $('#theRadiantContainer'), $('#reviewRadiantTeam'), radiantPlayers.length > 5);
     }
+
+    // Do we have more than 5 players on radiant?
+    $('#theRadiantContainer').SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
+    $('#reviewRadiantTeam').SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
 
     // Add radiant players
     var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
     for(var i=0; i<direPlayers.length; ++i) {
         // Add this player to the unassigned list
-        addPlayerToTeam(direPlayers[i], $('#theDireContainer'), $('#reviewDireTeam'));
+        addPlayerToTeam(direPlayers[i], $('#theDireContainer'), $('#reviewDireTeam'), direPlayers.length > 5);
     }
+
+    // Do we have more than 5 players on radiant?
+    $('#theDireContainer').SetHasClass('tooManyPlayers', direPlayers.length > 5);
+    $('#reviewDireTeam').SetHasClass('tooManyPlayers', direPlayers.length > 5);
 
     // Update all of the team panels moving the player panels for the
     // players assigned to each team to the corresponding team panel.
@@ -3736,29 +3754,6 @@ function OnPhaseChanged(table_name, key, data) {
         break;
     }
 
-    // Server wants us to add a bot onto a team
-    if(key.indexOf('add_bot_') != -1) {
-        var playerID = data.playerID;
-
-        if(data.team == 'good') {
-            addPlayerToTeam(playerID, $('#theRadiantContainer'), $('#reviewRadiantTeam'));
-        } else {
-            addPlayerToTeam(playerID, $('#theDireContainer'), $('#reviewDireTeam'));
-        }
-
-        var topCon = activePlayerPanels[playerID];
-        var revCon = activeReviewPanels[playerID];
-
-        topCon.OnGetHeroData(data.heroName);
-        topCon.OnGetHeroBuildData(data.build);
-
-        revCon.OnGetHeroData(data.heroName);
-        revCon.OnGetHeroBuildData(data.build);
-
-        //var theCon = activePlayerPanels[playerID];
-        //  var theReviewCon = activeReviewPanels[playerID];
-    }
-
     // Ensure we are hiding the correct enemy picks
     calculateHideEnemyPicks();
 }
@@ -3778,8 +3773,8 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionGamemode') {
         // Check if we are allowing custom settings
         allowCustomSettings = data.v == -1;
-        $('#mainSelectionRoot').SetHasClass('allow_custom_settings', allowCustomSettings);
-        $('#mainSelectionRoot').SetHasClass('disallow_custom_settings', !allowCustomSettings);
+        $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
+        $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);
     }
 
     if(key == 'lodOptionCommonGamemode') {
@@ -4327,6 +4322,11 @@ function onPlayerCastVote(category, choice) {
         }];
 
         useOptionVoting = true;
+    }
+
+    // Bots
+    if(mapName != 'custom_bot') {
+        $.GetContextPanel().SetHasClass('disallow_bots', true);
     }
 
     //useOptionVoting = false;
