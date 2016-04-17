@@ -1406,6 +1406,20 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Game Speed -- Gold per interval
+        lodOptionGameSpeedGoldTickRate = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 25 then return false end
+
+            -- Valid
+            return true
+        end,
+
         -- Game Speed -- Respawn time percentage
         lodOptionGameSpeedRespawnTimePercentage = function(value)
             -- Ensure gamemode is set to custom
@@ -1604,6 +1618,7 @@ function Pregame:initOptionSelector()
 
                 -- No bonus starting gold
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+                self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
@@ -1674,6 +1689,7 @@ function Pregame:initOptionSelector()
 
                     -- Start with 2500 bonus gold
                     self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
+                    self:setOption('lodOptionGameSpeedGoldTickRate', 5, true)
                 end
             end
         end,
@@ -2198,6 +2214,9 @@ function Pregame:processOptions()
 	        Convars:SetInt('dota_easy_mode', 1)
 	    end
 
+	    -- Gold per interval
+	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
+
 	    -- Enable WTF mode
 	    if this.optionStore['lodOptionCrazyWTF'] == 1 then
 	        -- Auto ban powerful abilities
@@ -2266,6 +2285,7 @@ function Pregame:processOptions()
 	        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
 	        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
 	        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
+	        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],                           		-- Gold gained every interval      [number, 0 - 25]
             ['Respawn Modifier Percentage'] = this.optionStore['lodOptionGameSpeedRespawnTimePercentage'],          -- Respawn Modifier Percentage     [number, 0 - 100]
 	        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],              -- Respawn Modifier Constant       [number, 0 - 120]
 	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]

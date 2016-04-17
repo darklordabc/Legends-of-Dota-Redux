@@ -310,6 +310,16 @@ var allOptions = {
                 default: 0
             },
             {
+                name: 'lodOptionGameSpeedGoldTickRate',
+                des: 'lodOptionDesGameSpeedGoldTickRate',
+                about: 'lodOptionAboutGameSpeedGoldTickRate',
+                sort: 'range',
+                min: 0,
+                max: 25,
+                step: 1,
+                default: 0
+            },
+            {
                 name: 'lodOptionGameSpeedRespawnTimePercentage',
                 des: 'lodOptionDesGameSpeedRespawnTimePercentage',
                 about: 'lodOptionAboutGameSpeedRespawnTimePercentage',

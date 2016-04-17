@@ -157,6 +157,9 @@
     "lodOptionGameSpeedStartingGold50000"           "50,000 Bonus Starting Gold"
     "lodOptionGameSpeedStartingGold100000"          "100,000 Bonus Starting Gold"
 
+    "lodOptionDesGameSpeedGoldTickRate"             "Gold Per Tick"
+    "lodOptionAboutGameSpeedGoldTickRate"           "The amount of gold that is gained every interval. The default in dota is 1 gold per interval."
+
     "lodOptionDesGameSpeedTowersPerLane"            "Towers Per Lane"
     "lodOptionTower3"                               "3 Towers"
     "lodOptionTower4"                               "4 Towers"
