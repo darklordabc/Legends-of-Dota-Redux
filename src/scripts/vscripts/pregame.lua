@@ -3740,7 +3740,7 @@ end
 function Pregame:getActivePlayers()
     local total = 0
 
-    for i=0,9 do
+    for i=0,24 do
         if PlayerResource:GetConnectionState(i) == 2 then
             total = total + 1
         end
