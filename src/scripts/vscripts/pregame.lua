@@ -334,7 +334,7 @@ function Pregame:checkForPremiumPlayers()
     -- Stores premium info
     local premiumInfo = {}
 
-    for playerID=0,maxPlayerID do
+    for playerID=0,maxPlayerID-1 do
         if PlayerResource:GetConnectionState(playerID) >= 2 then
             premiumInfo[playerID] = util:getPremiumRank(playerID)
         end
@@ -551,7 +551,7 @@ function Pregame:spawnAllHeroes()
     local maxPlayerID = 24
 
     -- Loop over all playerIDs
-    for playerID = minPlayerID,maxPlayerID do
+    for playerID = minPlayerID,maxPlayerID-1 do
     	-- Attempt to spawn the player
     	self:spawnPlayer(playerID)
     end
@@ -848,7 +848,7 @@ function Pregame:finishOptionSelection()
 
     local maxPlayerID = 24
 
-    for playerID=0,maxPlayerID do
+    for playerID=0,maxPlayerID-1 do
         local team = PlayerResource:GetCustomTeamAssignment(playerID)
 
         if team == DOTA_TEAM_GOODGUYS then
@@ -858,7 +858,7 @@ function Pregame:finishOptionSelection()
         end
     end
 
-    for playerID=0,maxPlayerID do
+    for playerID=0,maxPlayerID-1 do
         local team = PlayerResource:GetCustomTeamAssignment(playerID)
 
         if team ~= DOTA_TEAM_GOODGUYS and team ~= DOTA_TEAM_BADGUYS then
@@ -1893,7 +1893,7 @@ function Pregame:generateAllRandomBuilds()
     -- Max builds per player
     local maxPlayerBuilds = 5
 
-    for playerID = minPlayerID,maxPlayerID do
+    for playerID = minPlayerID,maxPlayerID-1 do
         local theBuilds = {}
 
         for buildID = 0,(maxPlayerBuilds-1) do
@@ -2221,7 +2221,7 @@ function Pregame:validateBuilds()
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
     -- Loop over all playerIDs
-    for playerID = minPlayerID,maxPlayerID do
+    for playerID = minPlayerID,maxPlayerID-1 do
         -- Ensure they have a hero
         if not self.selectedHeroes[playerID] then
             local heroName = self:getRandomHero()
@@ -3622,8 +3622,8 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
         if self.useDraftArrays then
             local draftID = self:getDraftID(playerID)
             local draftArray = self.draftArrays[draftID] or {}
-            local heroDraft = draftArray.heroDraft
-            local abilityDraft = draftArray.abilityDraft
+            local heroDraft = draftArray.heroDraft or {}
+            local abilityDraft = draftArray.abilityDraft or {}
 
             if self.maxDraftHeroes > 0 then
                 local heroName = self.abilityHeroOwner[abilityName]
@@ -3919,7 +3919,7 @@ function Pregame:countRadiantDire()
     local totalDire = 0
 
     -- Work out how many bots are going to be needed
-    for playerID=0,maxplayerID do
+    for playerID=0,maxplayerID-1 do
         local state = PlayerResource:GetConnectionState(playerID)
 
         if state ~= 0 then
