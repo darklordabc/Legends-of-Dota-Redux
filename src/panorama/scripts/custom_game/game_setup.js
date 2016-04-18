@@ -4285,48 +4285,20 @@ function onPlayerCastVote(category, choice) {
     var useOptionVoting = false;
 
     // All Pick Only
-    if(mapName == 'all_pick') {
-        allOptions.presets.fields[0].values = [{
-            text: 'lodOptionBalancedAllPick',
-            value: 1
-        }];
-
-        useOptionVoting = true;
-    }
-
-    // Fast All Pick Only
-    if(mapName == 'all_pick_fast') {
-        allOptions.presets.fields[0].values = [{
-            text: 'lodOptionBalancedAllPickFast',
-            value: 2
-        }];
-
-        useOptionVoting = true;
-    }
-
-    // Mirror Draft Only
-    if(mapName == 'mirror_draft') {
-        allOptions.presets.fields[0].values = [{
-            text: 'lodOptionBalancedMirrorDraft',
-            value: 3
-        }];
-
-        useOptionVoting = true;
-    }
-
-    // All Random Only
-    if(mapName == 'all_random') {
-        allOptions.presets.fields[0].values = [{
-            text: 'lodOptionBalancedAllRandom',
-            value: 4
-        }];
-
+    if(mapName == 'all_pick' || mapName == 'all_pick_fast' || mapName == 'mirror_draft' || mapName == 'all_random') {
         useOptionVoting = true;
     }
 
     // Bots
     if(mapName != 'custom_bot' && mapName != '10_vs_10') {
         $.GetContextPanel().SetHasClass('disallow_bots', true);
+    }
+
+    // Are we on a map that allocates slots for us?
+    if(mapName == 'all_pick_4' || mapName == 'all_pick_6') {
+        // Disable max slots voting
+        $.GetContextPanel().SetHasClass('veryBasicVoting', true);
+        useOptionVoting = true;
     }
 
     //useOptionVoting = false;

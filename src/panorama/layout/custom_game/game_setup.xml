@@ -99,7 +99,7 @@
             <Panel id="optionVoting">
                 <Label class="optionVoteMainHeader" text="lodOptionVotingHeader" />
 
-                <Panel class="optionVoteMaxSlots">
+                <Panel id="maxSlotsVotingContainer" class="optionVoteMaxSlots">
                     <Label class="optionVoteHeader" text="lodHowManySlots" />
                     <Panel class="maxSlotsVote">
                         <Panel class="maxSlotsVoteOption">

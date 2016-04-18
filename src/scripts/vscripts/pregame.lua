@@ -199,28 +199,48 @@ function Pregame:init()
     -- All Pick Only
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
-        OptionManager:SetOption('maxOptionSelectionTime', 45)
+        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
     -- Fast All Pick Only
     if mapName == 'all_pick_fast' then
         self:setOption('lodOptionGamemode', 2)
-        OptionManager:SetOption('maxOptionSelectionTime', 45)
+        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
+    end
+
+    -- All pick with 6 slots
+    if mapName == 'all_pick_6' then
+        self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionSlots', 6, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
+        OptionManager:SetOption('maxOptionVotingTime', 20)
+        self.useOptionVoting = true
+        self.noSlotVoting = true
+    end
+
+    -- All pick with 4 slots
+    if mapName == 'all_pick_4' then
+        self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionSlots', 4, true)
+        self:setOption('lodOptionCommonMaxUlts', 1, true)
+        OptionManager:SetOption('maxOptionVotingTime', 20)
+        self.useOptionVoting = true
+        self.noSlotVoting = true
     end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
-        OptionManager:SetOption('maxOptionSelectionTime', 45)
+        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
     -- All random only
     if mapName == 'all_random' then
         self:setOption('lodOptionGamemode', 4)
-        OptionManager:SetOption('maxOptionSelectionTime', 45)
+        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
@@ -1038,7 +1058,7 @@ function Pregame:processVoteData()
     end
 
     -- Do we have a choice for slots
-    if results.slots ~= nil then
+    if not self.noSlotVoting and results.slots ~= nil then
         if results.slots == 4 then
             self:setOption('lodOptionCommonMaxSlots', 4, true)
             self:setOption('lodOptionCommonMaxUlts', 1, true)
@@ -1182,6 +1202,16 @@ function Pregame:initOptionSelector()
             -- Fast All Pick Only
             if mapName == 'all_pick_fast' then
                 return value == 2
+            end
+
+            -- All Pick 4 slots
+            if mapName == 'all_pick_4' then
+                return value == 1
+            end
+
+            -- All Pick 6 slots
+            if mapName == 'all_pick_6' then
+                return value == 1
             end
 
             -- Mirror Draft Only

@@ -1777,6 +1777,10 @@
     Option Voting Interface
 */
 
+.veryBasicVoting #maxSlotsVotingContainer {
+    visibility: collapse;
+}
+
 #lodOptionVotingTimeRemaining {
     visibility: collapse;
 }
@@ -1801,6 +1805,11 @@
     padding-top: 16px;
 
     margin-top: 200px;
+}
+
+.veryBasicVoting #optionVoting {
+    width: 240px;
+    height: 160px;
 }
 
 .phase_option_voting_selected #optionVoting {
