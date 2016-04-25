@@ -185,6 +185,8 @@ end
 -- Respawn modifier
 function Ingame:handleRespawnModifier()
     ListenToGameEvent('entity_killed', function(keys)
+        print('death')
+
         -- Ensure our respawn modifier is in effect
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
@@ -199,6 +201,7 @@ function Ingame:handleRespawnModifier()
                 -- Ensure we are not using aegis!
                 if hero:WillReincarnate() then return end
                 if hero:IsReincarnating() then return end
+                if hero:HasItemInInventory('item_aegis') then return end
 
                 -- Only apply respawn modifiers to the main hero
                 local playerID = hero:GetPlayerID()
@@ -209,6 +212,7 @@ function Ingame:handleRespawnModifier()
                             -- Ensure we are not using aegis!
                             if hero:WillReincarnate() then return end
                             if hero:IsReincarnating() then return end
+                            if hero:HasItemInInventory('item_aegis') then return end
 
                             local timeLeft = hero:GetRespawnTime()
 
