@@ -59,6 +59,42 @@ function Ingame:onStart()
     end, nil)
 end
 
+-- Balances a player onto another team
+function Ingame:balancePlayer(playerID, newTeam)
+    -- Balance the player
+    PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
+
+    -- Balance their hero
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if IsValidEntity(hero) then
+        -- Change the team
+        hero:SetTeam(newTeam)
+
+        -- Kill the hero
+        hero:Kill(nil, nil)
+
+        -- Respawn after 1.11 seconds
+        Timers:CreateTimer(function()
+            -- Ensure the hero is still valid
+            if IsValidEntity(hero) then
+                -- Set the time left until we respawn
+                hero:SetTimeUntilRespawn(1)
+
+                -- Check if we have any meepo clones
+                if hero:HasAbility('meepo_divided_we_stand') then
+                    local clones = Entities:FindAllByName(hero:GetClassname())
+
+                    for k,meepoClone in pairs(clones) do
+                        if meepoClone:IsClone() and playerID == meepoClone:GetPlayerID() then
+                            meepoClone:SetTimeUntilRespawn(1)
+                        end
+                    end
+                end
+            end
+        end, DoUniqueString('respawn'), 0.11)
+    end
+end
+
 -- Sets it to no team balancing is required
 function Ingame:setNoTeamBalanceNeeded()
     -- Store state informatiion about team balance
