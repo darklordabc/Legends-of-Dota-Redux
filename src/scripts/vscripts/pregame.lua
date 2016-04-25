@@ -7,8 +7,9 @@ local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
 local util = require('util')
 require('statcollection.init')
-local Debug = require('lod_debug')    -- Debug library with helper functions, by Ash47
+local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
+local ingame = require('ingame')
 
 --[[
     Main pregame, selection related handler
@@ -55,6 +56,10 @@ function Pregame:init()
 
     -- Set it to the loading phase
     self:setPhase(constants.PHASE_LOADING)
+
+    -- Setup phase stuff
+    GameRules:SetCustomGameSetupTimeout(-1)
+    GameRules:EnableCustomGameSetupAutoLaunch(false)
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
@@ -562,6 +567,11 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
+
+        -- Init ingame stuff
+        Timers:CreateTimer(function()
+            ingame:onStart()
+        end, DoUniqueString('preventcamping'), 1)
     end
 end
 

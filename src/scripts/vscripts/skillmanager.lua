@@ -110,14 +110,6 @@ end
     util:MergeTables(heroListKV, ourPatch)
 end)();
 
-function lod:precacheAll(context)
-    --[[for k,v in pairs(heroIDToName) do
-        PrecacheUnitByNameSync('npc_precache_'..v, context)
-    end]]
-
-    --PrecacheUnitByNameSync('npc_precache_everything', context)
-end
-
 local ownersKV = LoadKeyValues('scripts/kv/owners.kv')
 for k,v in pairs(ownersKV) do
     skillOwningHero[k] = tonumber(v)

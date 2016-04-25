@@ -35,6 +35,10 @@
     horizontal-align: center;
 }
 
+.lodPopupMessageAcceptContainer Label {
+    white-space: nowrap;
+}
+
 #lodTimerWarning {
     z-index: 9999;
     width: 100%;

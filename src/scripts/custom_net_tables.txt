@@ -12,6 +12,7 @@
         "banned",
         "ready",
         "random_builds",
-        "draft_array"
+        "draft_array",
+        "phase_ingame"
     ]
 }
