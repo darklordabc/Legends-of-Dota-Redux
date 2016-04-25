@@ -1,24 +1,3 @@
--- Debug info for noobs
-print('\n\nBeginning to run legends of dota script....')
-
--- Ensure LoD is compiled
-local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
-if tst == 0 or tst == nil then
-    print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')
-    return
-end
-
--- Load specific modules
-local util = require('util')
-local Constants = require('constants')
-local SkillManager = require('skillmanager')
-local OptionManager = require('optionmanager')
-local SpellFixes = require('spellfixes')
-local Timers = require('easytimers')
-local network = require('network')
-local pregame = require('pregame')
-local ingame = require('ingame')
-
 -- Define skill warnings
 --[[skillWarnings = {
     life_stealer_infest = {getSpellIcon('life_stealer_infest'), tranAbility('life_stealer_infest'), getSpellIcon('life_stealer_consume'), tranAbility('life_stealer_consume')},
@@ -44,16 +23,29 @@ function Activate()
     local versionNumber = versionFile.version
     print('\n\nLegends of dota is activating! (v'..versionNumber..')')
 
+    -- Ensure LoD is compiled
+    local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
+    if tst == 0 or tst == nil then
+        print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')
+        return
+    end
+
     -- Change random seed
     local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
     math.randomseed(tonumber(timeTxt))
+
+    -- Load specific modules
+    local network = require('network')
+    local pregame = require('pregame')
+    local ingame = require('ingame')
 
     -- Init other stuff
     network:init()
     pregame:init()
     ingame:init()
 
-    -- Store a reference to pregame
+    -- Store references (mostly used for debugging)
+    GameRules.network = network
     GameRules.pregame = pregame
     GameRules.ingame = ingame
 
@@ -62,6 +54,3 @@ end
 
 -- Boot directly into LoD interface
 --Convars:SetInt('dota_wait_for_players_to_load', 0)
-
--- Debug info for noobs
-print('Legends of Dota script has run successfully!\n\n')
