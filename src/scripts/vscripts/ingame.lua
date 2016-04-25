@@ -185,8 +185,6 @@ end
 -- Respawn modifier
 function Ingame:handleRespawnModifier()
     ListenToGameEvent('entity_killed', function(keys)
-        print('death')
-
         -- Ensure our respawn modifier is in effect
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
@@ -304,7 +302,7 @@ function Ingame:recalculatePlayerCounts()
         -- Work it out
         for i=0,9 do
             local connectionState = PlayerResource:GetConnectionState(i)
-            if connectionState == 2 then
+            if connectionState == 1 or connectionState == 2 then
                 local teamID = PlayerResource:GetTeam(i)
 
                 if teamID == DOTA_TEAM_GOODGUYS then
@@ -322,7 +320,6 @@ function Ingame:recalculatePlayerCounts()
             end
         end
     end) then
-        print('Failed to even team gold :/')
         this.playersOnTeam = {
             radiant = 1,
             dire = 1
