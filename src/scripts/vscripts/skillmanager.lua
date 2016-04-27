@@ -67,7 +67,8 @@ local towerClasses = {
 
 -- Auto set this to max level
 local autoSkill = {
-    nyx_assassin_unburrow = true
+    nyx_assassin_unburrow = true,
+    earth_spirit_stone_caller = true
 }
 
 local heroIDToName = {}
@@ -713,6 +714,21 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     hero:RemoveModifierByName('modifier_storm_spirit_overload_passive')
     hero:RemoveModifierByName('modifier_slark_shadow_dance_passive')
     hero:RemoveModifierByName('modifier_slark_shadow_dance_passive_regen')
+
+    local brokenModifierCounts = {
+        modifier_shadow_demon_demonic_purge_charge_counter = 3,
+        modifier_bloodseeker_rupture_charge_counter = 2,
+        modifier_earth_spirit_stone_caller_charge_counter = 6,
+        modifier_ember_spirit_fire_remnant_charge_counter = 3
+    }
+
+    for modifierName,countNeeded in pairs(brokenModifierCounts) do
+        local modifier = hero:FindModifierByName(modifierName)
+
+        if modifier then
+            modifier:SetStackCount(countNeeded)
+        end
+    end
 end
 
 --function skillManager:overrideHooks()
