@@ -204,14 +204,12 @@ function Pregame:init()
     -- All Pick Only
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
-        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
     -- Fast All Pick Only
     if mapName == 'all_pick_fast' then
         self:setOption('lodOptionGamemode', 2)
-        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
@@ -220,7 +218,6 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
-        OptionManager:SetOption('maxOptionVotingTime', 20)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -230,7 +227,6 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 4, true)
         self:setOption('lodOptionCommonMaxUlts', 1, true)
-        OptionManager:SetOption('maxOptionVotingTime', 20)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -238,14 +234,12 @@ function Pregame:init()
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
-        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
     -- All random only
     if mapName == 'all_random' then
         self:setOption('lodOptionGamemode', 4)
-        OptionManager:SetOption('maxOptionVotingTime', 30)
         self.useOptionVoting = true
     end
 
