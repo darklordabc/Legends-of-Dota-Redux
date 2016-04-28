@@ -230,7 +230,7 @@
     "lodOptionAboutPresetUlts"                      "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutPresetMirrorHeroes"              "The number of heroes each player will receive to draft from."
 
-    "lodOptionAboutCommonGamemode"                  "Which gamemode will be used.\n\nAll Pick: Pick from every available skill.\nMirror Draft: Pick from a limited number of heroes.\nAll Random: Pick from a random set of builds."
+    "lodOptionAboutCommonGamemode"                  "Which gamemode will be used.\n\nAll Pick: Pick from every available skill.\nSingle Draft: Pick from a limited number of heroes.\nMirror Draft: Pick from a limited number of heroes, both teams get the same pool.\nAll Random: Pick from a random set of builds."
     "lodOptionAboutCommonMaxSlots"                  "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutCommonMaxSkills"                 "The max number of regular abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutCommonMaxUlts"                   "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
