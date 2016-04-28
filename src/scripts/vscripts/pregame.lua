@@ -1078,9 +1078,13 @@ function Pregame:processVoteData()
     -- Do we have a choice for banning phase?
     if results.banning ~= nil then
         if results.banning == 1 then
+        	-- Option Voting
             self:setOption('lodOptionBanning', 3, true)
+            self.optionVotingBanning = 1
         else
+        	-- No option voting
             self:setOption('lodOptionBanning', 1, true)
+            self.optionVotingBanning = 0
         end
     end
 
@@ -2387,45 +2391,83 @@ function Pregame:processOptions()
 	        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 	    end
 
-	    -- Store flags
-	    statCollection:setFlags({
-	        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],                                            -- Preset Gamemode                 [number, -1 - 4]
-	        ['Preset Banning'] = this.optionStore['lodOptionBanning'],                                              -- Present Banning                 [number, 1 - 3]
-	        ['Gamemode'] = this.optionStore['lodOptionCommonGamemode'],                                             -- Gamemode                        [number, 1 - 4]
-	        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],                                            -- Max Slots                       [number, 0 - 6]
-	        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],                                          -- Max Skills                      [number, 0 - 6]
-	        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],                                              -- Max Ults                        [number, 0 - 6]
-	        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],                                     -- Host Banning Mode               [boolean, 1/0]
-	        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],                                     -- Max Ability Bans                [number, 0 - 25]
-	        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],                                    -- Max Hero Bans                   [number, 0 - 3]
-	        ['Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],                          -- Block Troll Combos              [boolean, 1/0]
-	        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],                                   -- Use LoD BanList                 [boolean, 1/0]
-	        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],                              -- Block OP Abilities              [boolean, 1/0]
-	        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],                               -- Block Invis Abilities           [boolean, 1/0]
-	        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],                               -- Starting Level                  [number, 1 - 100]
-	        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],                                    -- Max Hero Level                  [number, 6 - 100]
-	        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],                           -- Bonus Starting Gold             [number, 0 - 100,000]
-	        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],                           		-- Gold gained every interval      [number, 0 - 25]
-	        ['Gold Modifier'] = this.optionStore['lodOptionGameSpeedGoldModifier'],                           		-- Gold percentage modifier        [number, 0 - 10]
-	        ['XP Modifier'] = this.optionStore['lodOptionGameSpeedEXPModifier'],	                           		-- EXP percentage modifier         [number, 0 - 10]
-            ['Respawn Modifier Percentage'] = this.optionStore['lodOptionGameSpeedRespawnTimePercentage'],          -- Respawn Modifier Percentage     [number, 0 - 100]
-	        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],              -- Respawn Modifier Constant       [number, 0 - 120]
-	        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                              -- Towers Per Lane                 [boolean, 1/0]
-	        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],                      -- Start with upgraded ults        [boolean, 1/0]
-	        --['Enable Easy Mode'] = this.optionStore['lodOptionCrazyEasymode'],                                      -- Enabled Easy Mode               [boolean, 1/0]
-	        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],                          -- Allow Hero Abilities            [boolean, 1/0]
-	        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],                    -- Allow Neutral Abilities         [boolean, 1/0]
-	        ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],                -- Allow Wraith Night Abilities    [boolean, 1/0]
-	        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],                                  -- Hide Enemy Picks                [boolean, 1/0]
-	        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],                                  -- Unique Skills                   [number, 0 - 2]
-	        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],                                  -- Unique Heroes                   [boolean, 1/0]
-	        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],         -- Allow Select Primary Attribute  [boolean, 1/0]
-	        ['Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],                                -- Stop Fountain Camping           [boolean, 1/0]
-	        ['Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],                            -- Universal Shop                  [boolean, 1/0]
-	        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],                                    -- Enabled All Vision              [boolean, 1/0]
-	        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],                             -- Enable Multicast Madness        [boolean, 1/0]
-	        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],                                            -- Enable WTF Mode                 [boolean, 1/0]
-	    })
+	    -- Check what kind of flags we should be recording
+	    if this.useOptionVoting then
+	    	-- We are using option voting
+
+	    	-- Did anyone actually post to the banning bote?
+	    	if this.optionVotingBanning ~= nil then
+	    		-- Someone actually voted
+	    		statCollection:setFlags({
+			        ['Voting Banning Enabled'] = this.optionVotingBanning
+			    })
+	    	end
+	    else
+	    	-- We are using option selection
+	    	if this.optionStore['lodOptionGamemode'] == -1 then
+	    		-- Players can pick all options, store all options
+			    statCollection:setFlags({
+			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
+			        ['Gamemode'] = this.optionStore['lodOptionCommonGamemode'],
+			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
+			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
+			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
+			        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
+			        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
+			        ['Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
+			        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
+			        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
+			        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
+			        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
+			        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
+			        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
+			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
+			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier'] * 100),
+			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier'] * 100),
+		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage'] * 100),
+			        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
+			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
+			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
+			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
+			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
+			        ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],
+			        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
+			        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
+			        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
+			        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
+			        ['Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
+			        ['Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
+			        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
+			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
+			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
+			    })
+
+				-- Draft arrays
+				if this.useDraftArrays then
+					statCollection:setFlags({
+				        ['Draft Heroes'] = this.optionStore['lodOptionMirrorHeroes'],
+				    })
+				end
+			else
+				-- Store presets
+				statCollection:setFlags({
+			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
+			        ['Preset Banning'] = this.optionStore['lodOptionBanning'],
+			        ['Preset Max Slots'] = this.optionStore['lodOptionSlots'],
+			        ['Preset Max Ults'] = this.optionStore['lodOptionUlts'],
+			    })
+
+				-- Store draft array setting if it is being used
+			    if this.useDraftArrays then
+			    	statCollection:setFlags({
+				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonMirrorHeroes'],
+				    })
+			    end
+	    	end
+	    end
+
+	    
 
 		-- If bots are enabled, add a bots flags
 		if this.enabledBots then
@@ -2433,6 +2475,10 @@ function Pregame:processOptions()
                 ['Bots Enabled'] = 1,
                 ['Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
                 ['Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
+			})
+		else
+			statCollection:setFlags({
+                ['Bots Enabled'] = 0,
 			})
 		end
 
