@@ -2456,7 +2456,7 @@ function Pregame:processOptions()
 			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
 			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier'] * 100),
 			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier'] * 100),
-		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage'] * 100),
+		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
 			        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
