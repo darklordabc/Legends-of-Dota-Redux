@@ -9,6 +9,7 @@ local targetSpells = {}
 
 -- Grab contributors file
 local contributors = LoadKeyValues('scripts/kv/contributors.kv')
+local bannedKV = LoadKeyValues('scripts/kv/banned.kv')
 
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
@@ -161,8 +162,23 @@ function Util:getPremiumRank(playerID)
     return totalPremium
 end
 
+-- Returns if a player is a time burger
+function Util:isTimeBurgler(playerID)
+    local allTimeBurglers = bannedKV.timeburglers
+
+    local steamID = PlayerResource:GetSteamAccountID(playerID)
+
+    return allTimeBurglers[playerID] ~= nil 
+end
+
 -- Returns a player's voting power
 function Util:getVotingPower(playerID)
+    -- Are they a time burgler?
+    if self:isTimeBurgler(playerID) then
+        -- Time burglers get one less vote
+        return self:getPremiumRank(playerID)
+    end
+
     return self:getPremiumRank(playerID) + 1
 end
 
