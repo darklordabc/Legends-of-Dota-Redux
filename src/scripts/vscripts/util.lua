@@ -168,7 +168,7 @@ function Util:isTimeBurgler(playerID)
 
     local steamID = PlayerResource:GetSteamAccountID(playerID)
 
-    return allTimeBurglers[playerID] ~= nil 
+    return allTimeBurglers[tostring(steamID)] ~= nil 
 end
 
 -- Returns a player's voting power
