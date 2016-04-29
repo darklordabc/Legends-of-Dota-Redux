@@ -168,7 +168,7 @@ function Util:isTimeBurgler(playerID)
 
     local steamID = PlayerResource:GetSteamAccountID(playerID)
 
-    return allTimeBurglers[tostring(steamID)] ~= nil 
+    return allTimeBurglers[tostring(steamID)] ~= nil
 end
 
 -- Returns a player's voting power
@@ -197,7 +197,7 @@ function Util:fetchPlayerData()
 
     local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
     local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
-    
+
     local payload = {
         modIdentifier = statInfo.modID,
         schemaVersion = 1,
@@ -256,21 +256,50 @@ function Util:fetchPlayerData()
     end)
 end
 
+function Util:split(pString, pPattern)
+    local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
+    local fpat = '(.-)' .. pPattern
+    local last_end = 1
+    local s, e, cap = pString:find(fpat, 1)
+    while s do
+        if s ~= 1 or cap ~= '' then
+            table.insert(Table,cap)
+        end
+        last_end = e+1
+        s, e, cap = pString:find(fpat, last_end)
+    end
+    if last_end <= #pString then
+        cap = pString:sub(last_end)
+        table.insert(Table, cap)
+    end
+    return Table
+end
+
 -- Parses a time
 function Util:parseTime(timeString)
     timeString = timeString or ''
 
-    local year = 2016
-    local month = 04
-    local day = 29
+    local year = 0
+    local month = 0
+    local day = 0
 
-    local hour = 17
-    local minute = 43
+    local hour = 0
+    local minute = 0
     local second = 0
 
-    local parts = timeString:gmatch(' ')
-    if parts == 2 then
-        print('woot!')
+    local parts = self:split(timeString, '%s')
+
+    if #parts == 2 then
+        local dateParts = self:split(parts[1], '-')
+        local timeParts = self:split(parts[2], ':')
+
+        year = tonumber(dateParts[1])
+        month = tonumber(dateParts[2])
+        day = tonumber(dateParts[3])
+
+        hour = tonumber(timeParts[1])
+        minute = tonumber(timeParts[2])
+        second = tonumber(timeParts[3])
     end
 
     return {
