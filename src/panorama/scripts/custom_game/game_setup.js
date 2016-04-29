@@ -1109,6 +1109,9 @@ function hookSliderChange(panel, callback, onComplete) {
         // No longer listen
         shouldListen = false;
 
+        // Check the value once more
+        inputChangedLoop();
+
         // When we complete
         onComplete(panel, currentValue);
     });
