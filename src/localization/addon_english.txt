@@ -382,4 +382,17 @@
 
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."
+
+    "statsPlayerName"                               "Player Name"
+    "statsTotalGames"                               "Total Games"
+    "statsTotalWins"                                "Total Wins"
+    "statsTotalAbandons"                            "Total Abandons"
+    "statsTotalFails"                               "Total Times Failed to Load"
+    "statsLastAbandoned"                            "Last Abandoned"
+
+    "statAbandonNever"                              "Never"
+    "statAbandonLastMinute"                         "About a minute ago"
+    "statAbandonLastHour"                           "About {0} minutes ago"
+    "statAbandonLessThanDay"                        "About {0} hours ago"
+    "statAbandonMoreThanOneDay"                     "About {0} days ago"
 }

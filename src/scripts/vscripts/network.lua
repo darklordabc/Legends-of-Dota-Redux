@@ -174,7 +174,7 @@ end
 
 -- Gameplay Stats
 function Network:sharePlayerStats(stats)
-    CustomNetTables:SetTableValue('phase_ingame', 'stats', stats)
+    CustomNetTables:SetTableValue('phase_pregame', 'stats', stats)
 end
 
 -- Return an instance of it

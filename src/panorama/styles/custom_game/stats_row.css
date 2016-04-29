@@ -1,0 +1,51 @@
+.statsRow {
+    flow-children: right;
+}
+
+.statColumn {
+    text-overflow: ellipsis;
+    padding: 8px;
+
+    font-size: 16px;
+    height: 32px;
+
+    background-color: #888888;
+    color: #000000;
+}
+
+.statNumber {
+    text-align: center;
+}
+
+.statHeader .statColumn {
+    background-color: #222222;
+    color: #FFFFFF;
+}
+
+.evenStatRow .statColumn {
+    background-color: #666666;
+}
+
+#playerName {
+    width: 300px;
+}
+
+#totalGames {
+    width: 110px;
+}
+
+#totalWins {
+    width: 90px;
+}
+
+#totalAbandons {
+    width: 120px;
+}
+
+#totalFails {
+    width: 200px;
+}
+
+#lastAbandon {
+    width: 200px;
+}

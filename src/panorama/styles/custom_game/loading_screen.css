@@ -63,3 +63,15 @@
     font-size: 20px;
 }
 
+#statsContainer {
+    margin-top: 160px;
+    margin-left: 8px;
+    flow-children: down;
+
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+}
+
+.moveHintTheHint #statsContainer {
+    visibility: collapse;
+}

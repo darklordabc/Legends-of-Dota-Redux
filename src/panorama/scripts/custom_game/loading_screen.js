@@ -1,5 +1,47 @@
 "use strict";
 
+// Hooks an events and fires for all the keys
+function hookAndFire(tableName, callback) {
+    // Listen for phase changing information
+    CustomNetTables.SubscribeNetTableListener(tableName, callback);
+
+    // Grab the data
+    var data = CustomNetTables.GetAllTableValues(tableName);
+    if(data != null) {
+        for(var i=0; i<data.length; ++i) {
+            var info = data[i];
+            callback(tableName, info.key, info.value);
+        }
+    }
+}
+
+// When we get player stats
+function onGetPlayerStats(table_name, key, data) {
+    // Are we dealing with stats?
+    if(key != 'stats') return;
+
+    // Cleanup the stats container
+    var statsCon = $('#statsContainer');
+    statsCon.RemoveAndDeleteChildren();
+
+    // Create the header
+    var statsRow = $.CreatePanel('Panel', statsCon, 'stats_row_header');
+    statsRow.BLoadLayout( "file://{resources}/layout/custom_game/stats_row.xml", false, false);
+    statsRow.onGetRowData(-1);
+
+    var even = true;
+
+    // Loop over the data
+    for(var playerID in data) {
+        var statsRow = $.CreatePanel('Panel', statsCon, 'stats_row_' + playerID);
+        statsRow.BLoadLayout( "file://{resources}/layout/custom_game/stats_row.xml", false, false);
+        statsRow.onGetRowData(parseInt(playerID), data[playerID]);
+
+        even = !even;
+        statsRow.SetHasClass('evenStatRow', even);
+    }
+}
+
 (function() {
     // The tips we can show
     var tips = [{
@@ -94,4 +136,7 @@
 
     // Check if we should move the hint
     checkIfWeShouldMoveTheHintToTheRight();
+
+    // Hook getting player data
+    hookAndFire('phase_pregame', onGetPlayerStats);
 })();

@@ -15,5 +15,9 @@
             <Image id="LoDLoadingTipImage" />
             <Label id="LoDLoadingTipText" />
         </Panel>
+
+        <Panel id="statsContainer">
+            <Label text="asd"    />
+        </Panel>
 	</Panel>
 </root>

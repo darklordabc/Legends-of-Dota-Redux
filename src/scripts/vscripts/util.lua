@@ -241,7 +241,7 @@ function Util:fetchPlayerData()
                 local totalAbandons = data.numAbandons
                 local totalWins = data.numWins
                 local totalGames = data.numGames
-                local numFails = data.numFails
+                local totalFails = data.numFails
 
                 local lastAbandon = this:parseTime(lastAbandonRaw)
 
@@ -253,7 +253,7 @@ function Util:fetchPlayerData()
                     totalAbandons = totalAbandons,
                     totalWins = totalWins,
                     totalGames = totalGames,
-                    numFails = numFails,
+                    totalFails = totalFails,
                     timeSinceLastAbandon = this:timeDifference(currentTime, lastAbandon)
                 }
             end
