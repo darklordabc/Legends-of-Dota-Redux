@@ -54,6 +54,9 @@ function Pregame:init()
     -- Who is ready?
     self.isReady = {}
 
+    -- Fetch player data
+    self:preparePlayerDataFetch()
+
     -- Set it to the loading phase
     self:setPhase(constants.PHASE_LOADING)
 
@@ -567,6 +570,19 @@ function Pregame:onThink()
             ingame:onStart()
         end, DoUniqueString('preventcamping'), 1)
     end
+end
+
+-- Called to prepare to get player data when someone connects
+function Pregame:preparePlayerDataFetch()
+	-- Listen for someone who is connecting
+	ListenToGameEvent('player_connect_full', function(keys)
+		util:fetchPlayerData()
+	end, nil)
+end
+
+-- Called automatically when we get player data
+function Pregame:onGetPlayerData(playerDataBySteamID)
+	DeepPrintTable(playerDataBySteamID)
 end
 
 -- Spawns all heroes (this should only be called once!)

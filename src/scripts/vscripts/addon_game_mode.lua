@@ -45,6 +45,7 @@ function Activate()
     ingame:init()
 
     -- Store references (mostly used for debugging)
+    GameRules.util = require('util')
     GameRules.network = network
     GameRules.pregame = pregame
     GameRules.ingame = ingame

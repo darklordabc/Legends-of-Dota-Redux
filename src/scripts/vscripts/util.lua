@@ -182,6 +182,108 @@ function Util:getVotingPower(playerID)
     return self:getPremiumRank(playerID) + 1
 end
 
+-- Attempts to fetch gameinfo of players
+function Util:fetchPlayerData()
+    local fullPlayerArray = {}
+
+    local maxPlayerID = 24
+
+    for playerID=0,maxPlayerID-1 do
+        if PlayerResource:GetConnectionState(playerID) >= 2 then
+            local steamID = PlayerResource:GetSteamAccountID(playerID)
+            table.insert(fullPlayerArray, steamID)
+        end
+    end
+
+    local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
+    local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
+    
+    local payload = {
+        modIdentifier = statInfo.modID,
+        schemaVersion = 1,
+        players = fullPlayerArray
+    }
+
+    -- Make the request
+    local req = CreateHTTPRequest('POST', gameInfoHost)
+
+    -- Add the data
+    req:SetHTTPRequestGetOrPostParameter('payload', json.encode(payload))
+
+    -- Send the request
+    req:Send(function(res)
+        if res.StatusCode ~= 200 or not res.Body then
+            print('Failed to query for player info!')
+            return
+        end
+
+        -- Try to decode the result
+        local obj, pos, err = json.decode(res.Body, 1, nil)
+
+        -- Feed the result into our callback
+        if err then
+            print(err)
+            return
+        end
+
+        if obj and obj.result then
+            local mapData = {}
+
+            for k,data in pairs(obj.result) do
+                local steamID = data.steamID32
+                local lastUpdateRaw = data.dataUpdated
+                local lastAbandonRaw = data.lastAbandon
+                local totalAbandons = data.numAbandons
+                local totalWins = data.numWins
+                local totalGames = data.numGames
+                local numFails = data.numFails
+
+                mapData[steamID] = {
+                    lastUpdateRaw = lastUpdateRaw,
+                    lastUpdate = GameRules.util:parseTime(lastUpdateRaw),
+                    lastAbandonRaw = lastAbandonRaw,
+                    lastAbandon = GameRules.util:parseTime(lastAbandonRaw),
+                    totalAbandons = totalAbandons,
+                    totalWins = totalWins,
+                    totalGames = totalGames,
+                    numFails = numFails
+                }
+            end
+
+            -- Push to pregame
+            GameRules.pregame:onGetPlayerData(mapData)
+        end
+    end)
+end
+
+-- Parses a time
+function Util:parseTime(timeString)
+    timeString = timeString or ''
+
+    local year = 2016
+    local month = 04
+    local day = 29
+
+    local hour = 17
+    local minute = 43
+    local second = 0
+
+    local parts = timeString:gmatch(' ')
+    if parts == 2 then
+        print('woot!')
+    end
+
+    return {
+        year = year,
+        month = month,
+        day = day,
+
+        hour = hour,
+        minute = minute,
+        second = second
+    }
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
