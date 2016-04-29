@@ -582,7 +582,22 @@ end
 
 -- Called automatically when we get player data
 function Pregame:onGetPlayerData(playerDataBySteamID)
-	DeepPrintTable(playerDataBySteamID)
+	local maxPlayerID = 24
+
+    self.playerGameStats = {}
+
+    for playerID = 0,maxPlayerID-1 do
+        local steamID = PlayerResource:GetSteamAccountID(playerID)
+        if steamID ~= 0 then
+            local theirData = playerDataBySteamID[tostring(steamID)]
+            if theirData then
+                self.playerGameStats[playerID] = theirData
+            end
+        end
+    end
+
+    -- Share stats
+    network:sharePlayerStats(self.playerGameStats)
 end
 
 -- Spawns all heroes (this should only be called once!)
@@ -2483,7 +2498,7 @@ function Pregame:processOptions()
 	    	end
 	    end
 
-	    
+
 
 		-- If bots are enabled, add a bots flags
 		if this.enabledBots then

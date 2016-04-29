@@ -172,5 +172,10 @@ function Network:setTeamBalanceData(info)
     CustomNetTables:SetTableValue('phase_ingame', 'balance_data', info)
 end
 
+-- Gameplay Stats
+function Network:sharePlayerStats(stats)
+    CustomNetTables:SetTableValue('phase_ingame', 'stats', stats)
+end
+
 -- Return an instance of it
 return Network()

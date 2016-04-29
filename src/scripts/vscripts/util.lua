@@ -189,8 +189,8 @@ function Util:fetchPlayerData()
     local maxPlayerID = 24
 
     for playerID=0,maxPlayerID-1 do
-        if PlayerResource:GetConnectionState(playerID) >= 2 then
-            local steamID = PlayerResource:GetSteamAccountID(playerID)
+        local steamID = PlayerResource:GetSteamAccountID(playerID)
+        if steamID ~= 0 then
             table.insert(fullPlayerArray, steamID)
         end
     end
@@ -209,6 +209,9 @@ function Util:fetchPlayerData()
 
     -- Add the data
     req:SetHTTPRequestGetOrPostParameter('payload', json.encode(payload))
+
+    -- Reference to self
+    local this = self
 
     -- Send the request
     req:Send(function(res)
@@ -229,24 +232,29 @@ function Util:fetchPlayerData()
         if obj and obj.result then
             local mapData = {}
 
+            local currentTime = this:parseTime('2016-04-02 15:40:39')
+
             for k,data in pairs(obj.result) do
-                local steamID = data.steamID32
-                local lastUpdateRaw = data.dataUpdated
+                local steamID = tostring(data.steamID32)
+                local lastUpdateRaw = data.dateUpdated
                 local lastAbandonRaw = data.lastAbandon
                 local totalAbandons = data.numAbandons
                 local totalWins = data.numWins
                 local totalGames = data.numGames
                 local numFails = data.numFails
 
+                local lastAbandon = this:parseTime(lastAbandonRaw)
+
                 mapData[steamID] = {
                     lastUpdateRaw = lastUpdateRaw,
-                    lastUpdate = GameRules.util:parseTime(lastUpdateRaw),
+                    lastUpdate = this:parseTime(lastUpdateRaw),
                     lastAbandonRaw = lastAbandonRaw,
-                    lastAbandon = GameRules.util:parseTime(lastAbandonRaw),
+                    lastAbandon = lastAbandon,
                     totalAbandons = totalAbandons,
                     totalWins = totalWins,
                     totalGames = totalGames,
-                    numFails = numFails
+                    numFails = numFails,
+                    timeSinceLastAbandon = this:timeDifference(currentTime, lastAbandon)
                 }
             end
 
@@ -272,7 +280,53 @@ function Util:split(pString, pPattern)
         cap = pString:sub(last_end)
         table.insert(Table, cap)
     end
+
     return Table
+end
+
+-- Works out the time difference between two LoD times
+function Util:timeDifference(lodCurrentTime, lodPreviousTime)
+    return self:countSeconds(lodCurrentTime) - self:countSeconds(lodPreviousTime)
+end
+
+-- Calculates how many seconds in the given LoD timestamp
+function Util:countSeconds(lodTime)
+    local seconds = lodTime.second
+    local minuteSeconds = lodTime.minute * 60
+    local hourSeconds = lodTime.hour * 60 * 60
+
+    local daySeconds = lodTime.day * 60 * 60 * 24
+    local monthSeconds = self:getDaysInPreviousMonths(lodTime.month) * 60 * 60 * 24
+    local yearSeconds = lodTime.year * 60 * 60 * 24 * 365
+
+    -- Add all the seconds together
+    return seconds + minuteSeconds + hourSeconds + daySeconds + monthSeconds + yearSeconds
+end
+
+-- Works out how many days have passed in order to get to the given month
+function Util:getDaysInPreviousMonths(currentMonth)
+    local daysInMonth = {
+        [1] = 31,
+        [2] = 28,
+        [3] = 31,
+        [4] = 30,
+        [5] = 31,
+        [6] = 30,
+        [7] = 31,
+        [8] = 31,
+        [9] = 30,
+        [10] = 31,
+        [11] = 30,
+        [12] = 31
+    }
+
+    local total = 0
+
+    for i=1,(currentMonth-1) do
+        total = total + daysInMonth[i] or 0
+    end
+
+    return total
 end
 
 -- Parses a time
