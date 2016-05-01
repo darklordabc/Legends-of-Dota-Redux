@@ -1,8 +1,10 @@
 .statsRow {
     flow-children: right;
+    width: fill-parent-flow(1);
 }
 
 .statColumn {
+    width: fill-parent-flow(1);
     text-overflow: ellipsis;
     padding: 8px;
 
@@ -26,26 +28,33 @@
     background-color: #666666;
 }
 
-#playerName {
-    width: 300px;
+#playerNameContainer {
+    width: fill-parent-flow(1);
 }
 
-#totalGames {
+#totalGamesContainer {
     width: 110px;
 }
 
-#totalWins {
+#totalWinsContainer {
     width: 90px;
 }
 
-#totalAbandons {
+#totalAbandonsContainer {
     width: 120px;
 }
 
-#totalFails {
+#totalFailsContainer {
     width: 200px;
 }
 
-#lastAbandon {
+#lastAbandonContainer {
     width: 200px;
+}
+
+/* Adds a glow to the author's name */
+.theRealAsh47 {
+    color: #000000;
+    text-shadow: 0px 0px 2px 2.0 #FFFF00FF;
+    font-weight: bold;
 }

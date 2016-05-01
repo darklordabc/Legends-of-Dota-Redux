@@ -16,15 +16,29 @@ function onGetRowData(playerID, data) {
     } else {
         var playerInfo = Game.GetPlayerInfo(playerID);
 
+        var allElements = [
+            'playerName',
+            'totalGames',
+            'totalWins',
+            'totalAbandons',
+            'totalFails',
+            'lastAbandon'
+        ];
+
         // Is it the real Ash47?
         var playerName = playerInfo.player_name;
         if(playerInfo.player_steamid == 76561197988355984) {
-            //$("#playerName").AddClass('theRealAsh47');
+            for(var i=0; i<allElements.length; ++i) {
+                $('#' + allElements[i]).AddClass('theRealAsh47');
+            }
         } else {
             // No one can steal my name
             playerName = playerName.replace(/ash47/ig, 'some noob');
             playerName = playerName.replace(/47/ig, '48');
-            //$("#playerName").RemoveClass('theRealAsh47');
+
+            for(var i=0; i<allElements.length; ++i) {
+                $('#' + allElements[i]).RemoveClass('theRealAsh47');
+            }
         }
 
 

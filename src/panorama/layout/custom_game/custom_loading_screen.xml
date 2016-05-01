@@ -12,7 +12,12 @@
             <Label id="LoDLoadingTipText" />
         </Panel>
 
-        <Panel id="statsContainer">
+        <Panel id="statsContainerOuter">
+            <Panel id="statsContainer">
+            </Panel>
+            <Panel id="statsContainerMargin">
+
+            </Panel>
         </Panel>
 	</Panel>
 </root>

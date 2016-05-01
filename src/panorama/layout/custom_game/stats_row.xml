@@ -6,22 +6,22 @@
         <include src="file://{resources}/scripts/custom_game/stats_row.js" />
     </scripts>
     <Panel class="statsRow">
-        <Panel>
+        <Panel id="playerNameContainer">
             <Label id="playerName" class="statColumn" text="Player Name" />
         </Panel>
-        <Panel>
+        <Panel id="totalGamesContainer">
             <Label id="totalGames" class="statColumn statNumber" text="Total Games" />
         </Panel>
-        <Panel>
+        <Panel id="totalWinsContainer">
             <Label id="totalWins" class="statColumn statNumber" text="Total Wins" />
         </Panel>
-        <Panel>
+        <Panel id="totalAbandonsContainer">
             <Label id="totalAbandons" class="statColumn statNumber" text="Total Abandons" />
         </Panel>
-        <Panel>
+        <Panel id="totalFailsContainer">
             <Label id="totalFails" class="statColumn statNumber" text="Total Fails" />
         </Panel>
-        <Panel>
+        <Panel id="lastAbandonContainer">
             <Label id="lastAbandon" class="statColumn" text="Last Abandon" />
         </Panel>
     </Panel>

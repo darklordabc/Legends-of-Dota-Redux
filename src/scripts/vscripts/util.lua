@@ -200,7 +200,6 @@ function Util:fetchPlayerData()
 
     -- Did we fail to find anyone?
     if #fullPlayerArray <= 0 then return end
-    self.fetchedPlayerData = true
 
     local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
     local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
@@ -213,6 +212,9 @@ function Util:fetchPlayerData()
 
     -- Make the request
     local req = CreateHTTPRequest('POST', gameInfoHost)
+
+    if not req then return end
+    self.fetchedPlayerData = true
 
     -- Add the data
     req:SetHTTPRequestGetOrPostParameter('payload', json.encode(payload))

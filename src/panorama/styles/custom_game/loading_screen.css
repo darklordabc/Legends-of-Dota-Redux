@@ -67,9 +67,20 @@
     font-size: 20px;
 }
 
+#statsContainerOuter {
+    margin-top: 48px;
+    width: fill-parent-flow(1);
+    flow-children: right;
+    visibility: collapse;
+}
+
+.statsFullyLoaded #statsContainerOuter {
+    visibility: visible;
+}
+
 #statsContainer {
-    margin-top: 160px;
-    margin-left: 8px;
+    margin: 8px;
+    width: fill-parent-flow(1);
     flow-children: down;
 
     border: 1px solid #FFFFFF;
@@ -78,4 +89,9 @@
 
 .moveHintTheHint #statsContainer {
     visibility: collapse;
+}
+
+#statsContainerMargin {
+    width: 400px;
+    height:100px;
 }
