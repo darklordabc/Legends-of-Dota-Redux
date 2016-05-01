@@ -575,9 +575,25 @@ end
 -- Called to prepare to get player data when someone connects
 function Pregame:preparePlayerDataFetch()
 	-- Listen for someone who is connecting
-	ListenToGameEvent('player_connect_full', function(keys)
-		util:fetchPlayerData()
-	end, nil)
+	ListenToGameEvent('player_connect', function(keys)
+        -- Give a small delay for steamID to propegate
+        Timers:CreateTimer(function()
+            util:fetchPlayerData()
+        end, DoUniqueString('fetchPlayerData'), 0.1)
+    end, nil)
+
+    -- Listen for someone who is connecting
+    ListenToGameEvent('player_connect_full', function(keys)
+        util:fetchPlayerData()
+    end, nil)
+
+    -- Attempt to pull instantly
+    util:fetchPlayerData()
+
+    -- Attempt to pull after a minor delay
+    Timers:CreateTimer(function()
+        util:fetchPlayerData()
+    end, DoUniqueString('fetchPlayerData'), 0.1)
 end
 
 -- Called automatically when we get player data

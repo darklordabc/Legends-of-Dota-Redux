@@ -32,6 +32,10 @@
     horizontal-align: right;
 }
 
+.statsFullyLoaded #LoDLoadingTip {
+    visibility: collapse;
+}
+
 #LoDLoadingTipImage {
     width: 140px;
     height: 140px;

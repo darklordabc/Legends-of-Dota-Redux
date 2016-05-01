@@ -40,6 +40,9 @@ function onGetPlayerStats(table_name, key, data) {
         even = !even;
         statsRow.SetHasClass('evenStatRow', even);
     }
+
+    // Hide the stupid tip
+    $.GetContextPanel().SetHasClass('statsFullyLoaded', true);
 }
 
 (function() {

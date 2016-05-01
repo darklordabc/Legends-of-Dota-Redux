@@ -7,17 +7,12 @@
     </scripts>
 
 	<Panel class="LoDLoadingRoot">
-        <Panel class="LoDDeps">
-            <Image src="file://{images}/custom_game/hints/hint_empowering_haste.png" />
-        </Panel>
-
         <Panel id="LoDLoadingTip">
             <Image id="LoDLoadingTipImage" />
             <Label id="LoDLoadingTipText" />
         </Panel>
 
         <Panel id="statsContainer">
-            <Label text="asd"    />
         </Panel>
 	</Panel>
 </root>

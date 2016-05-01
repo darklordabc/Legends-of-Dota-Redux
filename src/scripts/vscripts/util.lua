@@ -184,6 +184,9 @@ end
 
 -- Attempts to fetch gameinfo of players
 function Util:fetchPlayerData()
+    -- Only fetch player data once
+    if self.fetchedPlayerData then return end
+
     local fullPlayerArray = {}
 
     local maxPlayerID = 24
@@ -194,6 +197,10 @@ function Util:fetchPlayerData()
             table.insert(fullPlayerArray, steamID)
         end
     end
+
+    -- Did we fail to find anyone?
+    if #fullPlayerArray <= 0 then return end
+    self.fetchedPlayerData = true
 
     local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
     local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
