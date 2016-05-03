@@ -41,20 +41,18 @@ function onGetRowData(playerID, data) {
             }
         }
 
-
-
         // Workout when the last abandon was
         var abandonText = $.Localize('statAbandonNever');
-        var lat = data.timeSinceLastAbandon;
-        if(lat > 0 && data.totalAbandons > 0) {
-            if(lat < 60 * 5) {
+        var lat = data.lastAbandon;
+        if(lat != -1 && data.totalAbandons > 0) {
+            if(lat <= 0.1) {
                 abandonText = $.Localize('statAbandonLastMinute');
-            } else if(lat < 60 * 60 * 2) {
-                abandonText = $.Localize('statAbandonLastHour').replace('{0}', Math.ceil(lat/60));
-            } else if(lat < 60 * 60 * 48) {
-                abandonText = $.Localize('statAbandonLessThanDay').replace('{0}', Math.ceil(lat/60/60));
+            } else if(lat < 2) {
+                abandonText = $.Localize('statAbandonLastHour').replace('{0}', Math.ceil(lat * 60));
+            } else if(lat < 48) {
+                abandonText = $.Localize('statAbandonLessThanDay').replace('{0}', Math.ceil(lat));
             } else {
-                abandonText = $.Localize('statAbandonMoreThanOneDay').replace('{0}', Math.ceil(lat/60/60/24));
+                abandonText = $.Localize('statAbandonMoreThanOneDay').replace('{0}', Math.ceil(lat/24));
             }
         }
 

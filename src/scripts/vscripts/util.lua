@@ -241,29 +241,29 @@ function Util:fetchPlayerData()
         if obj and obj.result then
             local mapData = {}
 
-            local currentTime = this:parseTime('2016-04-02 15:40:39')
-
             for k,data in pairs(obj.result) do
-                local steamID = tostring(data.steamID32)
-                local lastUpdateRaw = data.dateUpdated
-                local lastAbandonRaw = data.lastAbandon
-                local totalAbandons = data.numAbandons
-                local totalWins = data.numWins
-                local totalGames = data.numGames
-                local totalFails = data.numFails
+                local steamID = tostring(data.sid)
 
-                local lastAbandon = this:parseTime(lastAbandonRaw)
+                local totalAbandons = data.na
+                local totalWins = data.nw
+                local totalGames = data.ng
+                local totalFails = data.nf
+
+                local lastAbandon = data.la
+                local lastFail = data.lf
+                local lastGame = data.lr
+                local lastUpdate = data.lu
 
                 mapData[steamID] = {
-                    lastUpdateRaw = lastUpdateRaw,
-                    lastUpdate = this:parseTime(lastUpdateRaw),
-                    lastAbandonRaw = lastAbandonRaw,
-                    lastAbandon = lastAbandon,
                     totalAbandons = totalAbandons,
                     totalWins = totalWins,
                     totalGames = totalGames,
                     totalFails = totalFails,
-                    timeSinceLastAbandon = this:timeDifference(currentTime, lastAbandon)
+
+                    lastAbandon = lastAbandon,
+                    lastFail = lastFail,
+                    lastGame = lastGame,
+                    lastUpdate = lastUpdate
                 }
             end
 
