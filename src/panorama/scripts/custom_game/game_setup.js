@@ -385,6 +385,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionGameSpeedFreeCourier',
+                des: 'lodOptionDesGameSpeedFreeCourier',
+                about: 'lodOptionAboutGameSpeedFreeCourier',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
             /*{
                 name: 'lodOptionCrazyEasymode',
                 des: 'lodOptionDesCrazyEasymode',

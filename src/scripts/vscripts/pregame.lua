@@ -1581,6 +1581,14 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Game Speed - Free Courier
+        lodOptionGameSpeedFreeCourier = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Bots -- Desired number of radiant players
         lodOptionBotsRadiant = function(value)
             -- Ensure gamemode is set to custom
@@ -1778,6 +1786,9 @@ function Pregame:initOptionSelector()
 
                 -- Do not start scepter upgraded
                 self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+                -- Start with a free courier
+                self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
 
                 -- Set bot options
                 self:setOption('lodOptionBotsRadiant', 5, true)
@@ -2358,6 +2369,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('respawnModifierPercentage', this.optionStore['lodOptionGameSpeedRespawnTimePercentage'])
 	    OptionManager:SetOption('respawnModifierConstant', this.optionStore['lodOptionGameSpeedRespawnTimeConstant'])
 	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2467,6 +2479,7 @@ function Pregame:processOptions()
 			        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
+			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
 			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
 			        ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],
@@ -4336,6 +4349,7 @@ end
 function Pregame:fixSpawningIssues()
     local givenBonuses = {}
     local handled = {}
+    local givenCouriers = {}
 
     -- Grab a reference to self
     local this = self
@@ -4454,6 +4468,18 @@ function Pregame:fixSpawningIssues()
                         bonus_health = 0,
                         bonus_mana = 0
                     })
+                end
+
+                if OptionManager:GetOption('freeCourier') then
+                    local team = spawnedUnit:GetTeam()
+
+                    if not givenCouriers[team] then
+                    	givenCouriers[team] = true
+                    	spawnedUnit:AddItemByName('item_courier')
+
+                    	-- TODO: Auto activate
+                    	-- item_flying_courier
+                    end
                 end
 
                 -- Only give bonuses once
