@@ -931,6 +931,77 @@ function doCSP(next) {
 }
 
 /*
+	Process Skill Warnings
+*/
+
+function generateSkillWarnings(next) {
+	// Grab a reference to english
+    var english = langIn.english;
+
+    for(var word in english) {
+    	if(word.indexOf('warning_') == 0) {
+    		var value = english[word];
+
+    		var abilityName = word.replace('warning_', '');
+
+    		for(var i=0; i<langs.length; ++i) {
+    			// Grab a language
+		        var lang = langs[i];
+		        var langFile = langIn[lang];
+		        var storeTo = langOut[lang];
+
+		        var storeValue = value;
+
+		        // Does this language have a different translation of the word?
+		        if(langFile[word]) {
+		        	storeValue = langFile[word];
+		        }
+
+		        // Add fonts
+		        storeValue = '<font color="#0000FF">' + storeValue + '</font>';
+
+		        // Do we have anything to change?
+		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
+		        if(langFile[searchKey]) {
+		        	storeValue = langFile[searchKey] + '\n' + storeValue;
+		        }
+
+		        // Store it
+		        storeTo[searchKey] = storeValue;
+    		}
+    	}
+    }
+
+    // Continue
+    next();
+
+    /*
+
+    for(var i=0; i<langs.length; ++i) {
+        // Grab a language
+        var lang = langs[i];
+        var langFile = langIn[lang];
+        var storeTo = langOut[lang];
+
+        if(langFile[theString]) {
+            storeTo[theString] = langFile[theString] + appendOnEnd;
+        } else if(langFile[altString]) {
+            storeTo[theString] = langFile[altString] + appendOnEnd;
+        } else if(english[theString]) {
+            storeTo[theString] = english[theString] + appendOnEnd;
+        } else if(english[altString]) {
+            storeTo[theString] = english[altString] + appendOnEnd;
+        } else if(storeTo[altString]) {
+            storeTo[theString] = storeTo[altString] + appendOnEnd;
+        } else {
+            console.log('Failed to find ' + theString);
+        }
+
+        if(!langFile[theString]) langFile[theString] = storeTo[theString];
+    }*/
+}
+
+/*
     Level 1 ult stuff
 */
 
@@ -1283,36 +1354,38 @@ prepareLanguageFiles(function() {
                             generatePrecacheData(function() {
                                 doCSP(function() {
                                     doLvl1Ults(function() {
-                                        // Output language files
-                                        for(var i=0; i<langs.length; ++i) {
-                                            (function(lang) {
-                                                fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
-                                                    if (err) throw err;
+                                    	generateSkillWarnings(function() {
+                                    		// Output language files
+	                                        for(var i=0; i<langs.length; ++i) {
+	                                            (function(lang) {
+	                                                fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+	                                                    if (err) throw err;
 
-                                                    console.log('Finished saving ' + lang + '!');
-                                                });
-                                            })(langs[i]);
-                                        }
+	                                                    console.log('Finished saving ' + lang + '!');
+	                                                });
+	                                            })(langs[i]);
+	                                        }
 
-                                        // Output custom files
+	                                        // Output custom files
 
-                                        fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
-                                            if (err) throw err;
+	                                        fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
+	                                            if (err) throw err;
 
-                                            console.log('Done saving custom abilities file!');
-                                        });
+	                                            console.log('Done saving custom abilities file!');
+	                                        });
 
-                                        fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
-                                            if (err) throw err;
+	                                        fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
+	                                            if (err) throw err;
 
-                                            console.log('Done saving custom items file!');
-                                        });
+	                                            console.log('Done saving custom items file!');
+	                                        });
 
-                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
-                                            if (err) throw err;
+	                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
+	                                            if (err) throw err;
 
-                                            console.log('Done saving custom units file!');
-                                        });
+	                                            console.log('Done saving custom units file!');
+	                                        });
+                                    	});
                                     });
                                 });
                             });

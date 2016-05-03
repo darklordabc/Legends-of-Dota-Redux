@@ -340,17 +340,13 @@
 		// Skill Warnings
 		////////////////
 
-		"warning_keeper_of_the_light_spirit_form"	"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">will not give you the two extra spells!</font>"
-		"warning_life_stealer_infest"				"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">if you want to uninfest.</font>"
-		"warning_lone_druid_true_form"				"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> <font color=\"#4B69FF\">a ranged hero</font> <font color=\"#ADE55C\">or you will be stuck not being able to attack, due to lack of range!</font>"
-		"warning_luna_eclipse"						"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">if you want it to do anything.</font>"
-		"warning_ogre_magi_multicast_lod"			"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">will NOT proc on target based spells.</font>"
-		"warning_phantom_lancer_phantom_edge"		"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">in order to make illusions.</font>"
-		"warning_phoenix_supernova"					"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">will only refresh</font> <font color=\"#4B69FF\">regular abilities</font>!"
-		"warning_puck_illusory_orb"					"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">if you want to teleport to your orb.</font>"
-		"warning_shadow_demon_demonic_purge"		"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> <font color=\"#4B69FF\">{2}</font> <font color=\"#ADE55C\">if you want to get any charges.</font>"
-		"warning_techies_remote_mines"				"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">if you want to detonate your remote mines. Alternately, detonate them individually, or select a large group with your mouse.</font>"
-		"warning_nyx_assassin_burrow"				"<font color=\"#EB4B4B\">Warning:</font> {0} <font color=\"#4B69FF\">{1}</font> <font color=\"#ADE55C\">requires</font> {2} <font color=\"#4B69FF\">{3}</font> <font color=\"#ADE55C\">if you want to be able to unburrow!</font>"
+		"warning_keeper_of_the_light_spirit_form"	"This spell will not give you any additional spells. This skill only works correctly on keeper of the light."
+		//"warning_life_stealer_infest"				""
+		"warning_lone_druid_true_form"				"This only works correctly with Lone Druid. It may work with other ranged heroes. You will most likely be left unable to attack."
+		"warning_luna_eclipse"						"This spell is useless without Lucent Beam."
+		"warning_phoenix_supernova"					"This spell only refreshes the cooldowns of regular abilities, not ultimate abilities."
+		"warning_puck_illusory_orb"					"You need Illusory Orb if you want to teleport to your orb."
+		"warning_techies_remote_mines"				"If you do not have remote detonate, you will need to manually select remote mines in order to explode them."
 
 		/////////////////
 		// Picking Messages
