@@ -325,8 +325,8 @@ var allOptions = {
                 about: 'lodOptionAboutGameSpeedGoldModifier',
                 sort: 'range',
                 min: 0,
-                max: 10,
-                step: 0.01,
+                max: 1000,
+                step: 10,
                 default: 0
             },
             {
@@ -335,8 +335,8 @@ var allOptions = {
                 about: 'lodOptionAboutGameSpeedEXPModifier',
                 sort: 'range',
                 min: 0,
-                max: 10,
-                step: 0.01,
+                max: 1000,
+                step: 10,
                 default: 0
             },
             {

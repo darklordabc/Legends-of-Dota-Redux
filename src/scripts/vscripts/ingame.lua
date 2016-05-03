@@ -348,7 +348,7 @@ function Ingame:FilterModifyGold(filterTable)
     local goldModifier = OptionManager:GetOption('goldModifier')
 
     if goldModifier ~= 1 then
-        filterTable.gold = math.ceil(filterTable.gold * goldModifier)
+        filterTable.gold = math.ceil(filterTable.gold * goldModifier / 100)
     end
 
     -- Slow down the gold intake for the team with more players
@@ -367,7 +367,7 @@ function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
 
     if expModifier ~= 1 then
-        filterTable.experience = math.ceil(filterTable.experience * expModifier)
+        filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 
     return true

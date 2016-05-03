@@ -160,10 +160,10 @@
     "lodOptionDesGameSpeedGoldTickRate"             "Gold Per Tick"
     "lodOptionAboutGameSpeedGoldTickRate"           "The amount of gold that is gained every interval. The default in dota is 1 gold per interval."
 
-    "lodOptionDesGameSpeedGoldModifier"             "Gold Gain Modifier"
+    "lodOptionDesGameSpeedGoldModifier"             "Gold Gain Modifier Percentage (100 = normal)"
     "lodOptionAboutGameSpeedGoldModifier"           "Multiplies the amount of gold gained when killing creeps / heroes / roshan."
 
-    "lodOptionDesGameSpeedEXPModifier"              "XP Gain Modifier"
+    "lodOptionDesGameSpeedEXPModifier"              "XP Gain Modifier Percentage (100 = normal)"
     "lodOptionAboutGameSpeedEXPModifier"            "Multiples the amount of experience that is gained when killing creeps / heroes / roshan."
 
     "lodOptionDesGameSpeedTowersPerLane"            "Towers Per Lane"
@@ -197,7 +197,7 @@
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
 
-    "lodOptionDesGameSpeedRespawnTimePercentage"    "Respawn Time Percentage"
+    "lodOptionDesGameSpeedRespawnTimePercentage"    "Respawn Time Percentage (100 = normal)"
     "lodOptionAboutGameSpeedRespawnTimePercentage"  "Makes the default respawn time decrease by the given percentage."
 
     "lodOptionDesGameSpeedRespawnTimeConstant"      "Additional Respawn Time"

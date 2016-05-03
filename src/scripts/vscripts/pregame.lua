@@ -1510,7 +1510,8 @@ function Pregame:initOptionSelector()
 
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
-            if value < 0 or value > 10 then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 1000 then return false end
 
             -- Valid
             return true
@@ -1523,7 +1524,8 @@ function Pregame:initOptionSelector()
 
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
-            if value < 0 or value > 10 then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 1000 then return false end
 
             -- Valid
             return true
@@ -1764,8 +1766,8 @@ function Pregame:initOptionSelector()
                 -- Don't mess with gold rate
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
                 self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
-                self:setOption('lodOptionGameSpeedGoldModifier', 1, true)
-                self:setOption('lodOptionGameSpeedEXPModifier', 1, true)
+                self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
+                self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
@@ -1842,8 +1844,8 @@ function Pregame:initOptionSelector()
                     -- Start with 2500 bonus gold
                     self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
                     self:setOption('lodOptionGameSpeedGoldTickRate', 5, true)
-                    self:setOption('lodOptionGameSpeedGoldModifier', 2.5, true)
-                    self:setOption('lodOptionGameSpeedEXPModifier', 2.5, true)
+                    self:setOption('lodOptionGameSpeedGoldModifier', 250, true)
+                    self:setOption('lodOptionGameSpeedEXPModifier', 250, true)
                 end
             end
         end,
@@ -2459,8 +2461,8 @@ function Pregame:processOptions()
 			        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
 			        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
 			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
-			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier'] * 100),
-			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier'] * 100),
+			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
+			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
 		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
 			        ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
