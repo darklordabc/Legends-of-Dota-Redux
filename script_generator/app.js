@@ -6,6 +6,7 @@ var scriptDir = settings.scriptDir + '/';                               // The d
 var scriptDirOut = settings.scriptDirOut;                               // The directory where our files are outputted
 var resourcePath = settings.dotaDir + 'game/dota/resource/';   // The directory to read resource files from
 var customDir = settings.customDir;                                     // The directory where our mods are read from, to be merged in
+var customAbilitiesLocation = '../src/scripts/npc/npc_abilities_custom.txt'
 
 // Code needed to do multipliers
 var spellMult = require('./spellMult.json');
@@ -130,7 +131,7 @@ function prepareLanguageFiles(next) {
     Generate our custom items
 */
 
-function generateAbilityItems(next) {
+/*function generateAbilityItems(next) {
     var currentID = 2000;
     var currentIDPassive = 3000;
     //var newKV = {};
@@ -291,7 +292,7 @@ function generateAbilityItems(next) {
         // Check if there is another function to run
         if(next) next();
     });
-}
+}*/
 
 /*
     Precache generator
@@ -428,7 +429,7 @@ function loadCustomUnits(next) {
 
 function loadCustomAbilities(next) {
     // Simply read in the file, and store into our varible
-    fs.readFile(customDir+'npc_abilities_custom.txt', function(err, rawCustomAbilities) {
+    fs.readFile(customAbilitiesLocation, function(err, rawCustomAbilities) {
         console.log('Loading custom abilities...');
         customAbilities = parseKV(''+rawCustomAbilities).DOTAAbilities;
 
@@ -437,7 +438,7 @@ function loadCustomAbilities(next) {
     });
 }
 
-function loadCustomItems(next) {
+/*function loadCustomItems(next) {
     // Simply read in the file, and store into our varible
     fs.readFile(customDir+'npc_items_custom.txt', function(err, rawCustomAbilities) {
         console.log('Loading custom item...');
@@ -446,14 +447,14 @@ function loadCustomItems(next) {
         // Continue, if there is something else to run
         if(next) next();
     });
-}
+}*/
 
 /*
     CSP Stuff
 */
 
 // Doubles the max levels really nicely
-function doubleMaxLevels(newAb, fieldName) {
+/*function doubleMaxLevels(newAb, fieldName) {
     // Grab vals
     var vals;
 
@@ -928,7 +929,7 @@ function doCSP(next) {
         // Run the next function, if it exists
         if(next) next();
     });
-}
+}*/
 
 /*
 	Process Skill Warnings
@@ -1005,7 +1006,7 @@ function generateSkillWarnings(next) {
     Level 1 ult stuff
 */
 
-function doLvl1Ults(next) {
+/*function doLvl1Ults(next) {
     // Allow us to disable lvl1 stuff
     if(settings.noPermute) {
         if(next) next();
@@ -1085,7 +1086,7 @@ function doLvl1Ults(next) {
 
     // Continue
     if(next) next();
-}
+}*/
 
 /*
     Helper functions
@@ -1343,17 +1344,17 @@ prepareLanguageFiles(function() {
         // Load abilities
         loadAbilities(function() {
             // Load items
-            loadItems(function() {
+            //loadItems(function() {
                 // Load our custom items
-                loadCustomItems(function() {
+                //loadCustomItems(function() {
                     // Load our custom abilities
                     loadCustomAbilities(function() {
                         // Generate the custom item abilities
-                        generateAbilityItems(function() {
+                        //generateAbilityItems(function() {
                             // Generate our precache data
                             generatePrecacheData(function() {
-                                doCSP(function() {
-                                    doLvl1Ults(function() {
+                                //doCSP(function() {
+                                    //doLvl1Ults(function() {
                                     	generateSkillWarnings(function() {
                                     		// Output language files
 	                                        for(var i=0; i<langs.length; ++i) {
@@ -1368,17 +1369,17 @@ prepareLanguageFiles(function() {
 
 	                                        // Output custom files
 
-	                                        fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
+	                                        /*fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
 	                                            if (err) throw err;
 
 	                                            console.log('Done saving custom abilities file!');
-	                                        });
+	                                        });*/
 
-	                                        fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
+	                                        /*fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
 	                                            if (err) throw err;
 
 	                                            console.log('Done saving custom items file!');
-	                                        });
+	                                        });*/
 
 	                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
 	                                            if (err) throw err;
@@ -1386,13 +1387,13 @@ prepareLanguageFiles(function() {
 	                                            console.log('Done saving custom units file!');
 	                                        });
                                     	});
-                                    });
-                                });
+                                    //});
+                                //});
                             });
-                        });
+                        //});
                     });
-                });
-            });
+                //});
+            //});
         });
     });
 });

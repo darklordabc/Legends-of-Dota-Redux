@@ -3,5 +3,5 @@
     "scriptDirOut": "BIN/",
     "dotaDir":      "path to dota 2 beta/",
     "customDir":    "CUSTOM/",
-    "noPermute":    false
+    "noPermute":    true
 }
