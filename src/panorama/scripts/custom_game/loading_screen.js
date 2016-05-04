@@ -140,6 +140,9 @@ function onGetPlayerStats(table_name, key, data) {
     // Check if we should move the hint
     checkIfWeShouldMoveTheHintToTheRight();
 
-    // Hook getting player data
-    hookAndFire('phase_pregame', onGetPlayerStats);
+    // Give a delay, and then hook pregame stuff
+    $.Schedule(0.1, function() {
+        // Hook getting player data
+        hookAndFire('phase_pregame', onGetPlayerStats);
+    });
 })();
