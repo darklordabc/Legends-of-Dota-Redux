@@ -580,9 +580,9 @@ function Pregame:preparePlayerDataFetch()
     end, nil)
 
     -- Attempt to pull after a minor delay
-    Timers:CreateTimer(function()
-        util:fetchPlayerData()
-    end, DoUniqueString('fetchPlayerData'), 0.1)
+    --Timers:CreateTimer(function()
+        --util:fetchPlayerData()
+    --end, DoUniqueString('fetchPlayerData'), 0.1)
 end
 
 -- Called automatically when we get player data
