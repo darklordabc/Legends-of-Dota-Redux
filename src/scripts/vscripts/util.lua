@@ -184,93 +184,100 @@ end
 
 -- Attempts to fetch gameinfo of players
 function Util:fetchPlayerData()
-    -- Only fetch player data once
-    if self.fetchedPlayerData then return end
-
-    local fullPlayerArray = {}
-
-    local maxPlayerID = 24
-
-    for playerID=0,maxPlayerID-1 do
-        local steamID = PlayerResource:GetSteamAccountID(playerID)
-        if steamID ~= 0 then
-            table.insert(fullPlayerArray, steamID)
-        end
-    end
-
-    -- Did we fail to find anyone?
-    if #fullPlayerArray <= 0 then return end
-
-    local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
-    local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
-
-    local payload = {
-        modIdentifier = statInfo.modID,
-        schemaVersion = 1,
-        players = fullPlayerArray
-    }
-
-    -- Make the request
-    local req = CreateHTTPRequest('POST', gameInfoHost)
-
-    if not req then return end
-    self.fetchedPlayerData = true
-
-    -- Add the data
-    req:SetHTTPRequestGetOrPostParameter('payload', json.encode(payload))
-
-    -- Reference to self
     local this = self
 
-    -- Send the request
-    req:Send(function(res)
-        if res.StatusCode ~= 200 or not res.Body then
-            print('Failed to query for player info!')
-            return
+    -- Protected call
+    local status, err = pcall(function()
+        -- Only fetch player data once
+        if this.fetchedPlayerData then return end
+
+        local fullPlayerArray = {}
+
+        local maxPlayerID = 24
+
+        for playerID=0,maxPlayerID-1 do
+            local steamID = PlayerResource:GetSteamAccountID(playerID)
+            if steamID ~= 0 then
+                table.insert(fullPlayerArray, steamID)
+            end
         end
 
-        -- Try to decode the result
-        local obj, pos, err = json.decode(res.Body, 1, nil)
+        -- Did we fail to find anyone?
+        if #fullPlayerArray <= 0 then return end
 
-        -- Feed the result into our callback
-        if err then
-            print(err)
-            return
-        end
+        local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
+        local gameInfoHost = 'https://api.getdotastats.com/player_summary.php'
 
-        if obj and obj.result then
-            local mapData = {}
+        local payload = {
+            modIdentifier = statInfo.modID,
+            schemaVersion = 1,
+            players = fullPlayerArray
+        }
 
-            for k,data in pairs(obj.result) do
-                local steamID = tostring(data.sid)
+        -- Make the request
+        local req = CreateHTTPRequest('POST', gameInfoHost)
 
-                local totalAbandons = data.na
-                local totalWins = data.nw
-                local totalGames = data.ng
-                local totalFails = data.nf
+        if not req then return end
+        this.fetchedPlayerData = true
 
-                local lastAbandon = data.la
-                local lastFail = data.lf
-                local lastGame = data.lr
-                local lastUpdate = data.lu
+        -- Add the data
+        req:SetHTTPRequestGetOrPostParameter('payload', json.encode(payload))
 
-                mapData[steamID] = {
-                    totalAbandons = totalAbandons,
-                    totalWins = totalWins,
-                    totalGames = totalGames,
-                    totalFails = totalFails,
-
-                    lastAbandon = lastAbandon,
-                    lastFail = lastFail,
-                    lastGame = lastGame,
-                    lastUpdate = lastUpdate
-                }
+        -- Send the request
+        req:Send(function(res)
+            if res.StatusCode ~= 200 or not res.Body then
+                print('Failed to query for player info!')
+                return
             end
 
-            -- Push to pregame
-            GameRules.pregame:onGetPlayerData(mapData)
-        end
+            -- Try to decode the result
+            local obj, pos, err = json.decode(res.Body, 1, nil)
+
+            -- Feed the result into our callback
+            if err then
+                print(err)
+                return
+            end
+
+            if obj and obj.result then
+                local mapData = {}
+
+                for k,data in pairs(obj.result) do
+                    local steamID = tostring(data.sid)
+
+                    local totalAbandons = data.na
+                    local totalWins = data.nw
+                    local totalGames = data.ng
+                    local totalFails = data.nf
+
+                    local lastAbandon = data.la
+                    local lastFail = data.lf
+                    local lastGame = data.lr
+                    local lastUpdate = data.lu
+
+                    mapData[steamID] = {
+                        totalAbandons = totalAbandons,
+                        totalWins = totalWins,
+                        totalGames = totalGames,
+                        totalFails = totalFails,
+
+                        lastAbandon = lastAbandon,
+                        lastFail = lastFail,
+                        lastGame = lastGame,
+                        lastUpdate = lastUpdate
+                    }
+                end
+
+                -- Push to pregame
+                GameRules.pregame:onGetPlayerData(mapData)
+            end
+        end)
     end)
+
+    -- Failure?
+    if not status then
+        this.fetchedPlayerData = nil
+    end
 end
 
 function Util:split(pString, pPattern)
