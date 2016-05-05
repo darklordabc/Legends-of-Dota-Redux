@@ -40,6 +40,12 @@ Legends of Dota
   - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
+###Can I contribute code?###
+ - Yes, however, your code will be code reviewed.
+ - Your code will not be merged unless it meets the quality controls that are in place on this project.
+ - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
+ - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
+
 ###Can I translate this into my language?###
  - Yes!
  - Open `src/localization/addon_<your langage>.txt`
