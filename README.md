@@ -52,6 +52,11 @@ Legends of Dota
  - Launch your created mod by Dota 2 workshop tools. When in game, open console, type "dota_launch_custom_game [MODNAMEHERE] custom", to start game. 
  -  Accompanying Video Walkthrough: https://drive.google.com/file/d/0B7dpugx95_vaTjRYUWVrOGtfQlE/view?usp=sharing1
 
+###Can I contribute code?###
+ - Yes, however, your code will be code reviewed.
+ - Your code will not be merged unless it meets the quality controls that are in place on this project.
+ - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
+ - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
 
 ###Can I translate this into my language?###
  - Yes!
