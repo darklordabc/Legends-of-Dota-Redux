@@ -4470,15 +4470,22 @@ function Pregame:fixSpawningIssues()
                     })
                 end
 
-                if OptionManager:GetOption('freeCourier') then
+               if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
-
+					
                     if not givenCouriers[team] then
-                    	givenCouriers[team] = true
-                    	spawnedUnit:AddItemByName('item_courier')
-
-                    	-- TODO: Auto activate
-                    	-- item_flying_courier
+                    	givenCouriers[team] = true		
+						
+			--Timer is necessary to prevent bug with courier spawning in center of map (Probably because it takes players a moment to be allocated to their team). "item_courier_start" is a modified courier that spawns on pickup.
+						
+			Timers:CreateTimer(function()
+				if IsValidEntity(spawnedUnit) then
+				 	spawnedUnit:AddItemByName('item_courier_start')
+				end
+				
+			end, DoUniqueString('spawncourier'), 1)
+                    	
+						
                     end
                 end
 
