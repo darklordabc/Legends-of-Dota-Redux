@@ -351,7 +351,7 @@
 		
 		"warning_puck_illusory_orb"					"<br><font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Ethereal Jaunt</font>, if you want to teleport to your orb. <br>"
 						
-		"warning_luna_eclipse"						"<br><font color=\"#FF4949\">LoD Warning:</font> This spell is useless without <font color=\"#70EA72\">Lucent Beam.</font><br>"
+		"warning_luna_eclipse"						"<br><font color=\"#FF4949\">LoD Warning:</font> This spell does no damage without <font color=\"#70EA72\">Lucent Beam.</font><br>"
 		
 		"warning_lone_druid_spirit_bear"			"<br><font color=\"#FF4949\">LoD Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\"#70EA72\">Lone Druid.</font><br>"
 		
