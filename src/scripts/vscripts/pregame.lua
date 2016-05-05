@@ -4479,8 +4479,11 @@ function Pregame:fixSpawningIssues()
 			--Timer is necessary to prevent bug with courier spawning in center of map (Probably because it takes players a moment to be allocated to their team). "item_courier_start" is a modified courier that spawns on pickup.
 						
 			Timers:CreateTimer(function()
-				spawnedUnit:AddItemByName('item_courier_start')
-				end, DoUniqueString('spawncourier'), 1)
+				if IsValidEntity(spawnedUnit) then
+				 	spawnedUnit:AddItemByName('item_courier_start')
+				end
+				
+			end, DoUniqueString('spawncourier'), 1)
                     	
 						
                     end
