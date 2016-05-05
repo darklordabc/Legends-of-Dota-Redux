@@ -575,9 +575,9 @@ end
 -- Called to prepare to get player data when someone connects
 function Pregame:preparePlayerDataFetch()
     -- Listen for someone who is connecting
-    ListenToGameEvent('player_connect_full', function(keys)
-        util:fetchPlayerData()
-    end, nil)
+    --ListenToGameEvent('player_connect_full', function(keys)
+    --    util:fetchPlayerData()
+    --end, nil)
 
     -- Attempt to pull after a minor delay
     --Timers:CreateTimer(function()
