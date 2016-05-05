@@ -6,7 +6,7 @@
         "ItemCastOnPickup" 				"1"
 		"ItemPurchasable"               "0"
     }
-    
+
     "item_survival_modifier"
     {
         "BaseClass"                     "item_datadriven"
