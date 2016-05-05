@@ -534,7 +534,9 @@
 		"DOTA_Tooltip_ability_item_force_boots_bonus_movement_speed"	"+$move_speed"
 		"DOTA_Tooltip_ability_item_force_boots_bonus_str"				"+$all"
 		"DOTA_Tooltip_ability_item_force_boots_bonus_attack_speed"		"+$attack"
-
+		
+		"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Aghanim's Scepter BUFF"
+		"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
 		/////////////////
 		// CUSTOM ABILITIES
