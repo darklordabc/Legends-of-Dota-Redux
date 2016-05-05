@@ -40,11 +40,18 @@ Legends of Dota
   - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
-###Can I contribute code?###
- - Yes, however, your code will be code reviewed.
- - Your code will not be merged unless it meets the quality controls that are in place on this project.
- - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
- - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
+###Alternative Install Method###
+ - Download and Unzip Latest LoD Repository
+ - Open "script_generator\settings_example.txt", add your dota diretory, rename "settings_example.txt" to "settings.txt"
+ - Run "compile.bat"
+ - Run "altSetup.bat", it should create "alt_dota" folder, with "content" and "game" folder inside.
+ - If you haven't already, create a new empty mod folder with the Dota 2 workshop tools program. When you create it, the foldies will not literally be empty, but thats good, you need those default files. 
+ - Copy the contents of "alt_dota\content\" to "\Steam\SteamApps\common\dota 2 beta\content\dota_addons\[NAME OF YOUR EMPTY MOD FOLDER]\".
+ - Copy the contents of "alt_dota\game\" to "\Steam\SteamApps\common\dota 2 beta\game\dota_addons\[NAME OF YOUR EMPTY MOD FOLDER]\".
+ - Replace any conflicting files.
+ - Launch your created mod by Dota 2 workshop tools. When in game, open console, type "dota_launch_custom_game [MODNAMEHERE] custom", to start game. 
+ -  Accompanying Video Walkthrough: https://drive.google.com/file/d/0B7dpugx95_vaTjRYUWVrOGtfQlE/view?usp=sharing1
+
 
 ###Can I translate this into my language?###
  - Yes!
