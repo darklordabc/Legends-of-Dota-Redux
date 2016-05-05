@@ -958,10 +958,6 @@ function generateSkillWarnings(next) {
 		        	storeValue = langFile[word];
 		        }
 
-		        // Add fonts
-		        // storeValue = '<font color="#0000FF">' + storeValue + '</font>';
-                        // Darklord: Fonts are handled in warnings themselves. 
-                       
 		        // Do we have anything to change?
 		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
 		        if(langFile[searchKey]) {
