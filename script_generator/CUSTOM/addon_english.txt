@@ -340,13 +340,40 @@
 		// Skill Warnings
 		////////////////
 
-		"warning_keeper_of_the_light_spirit_form"	"This spell will not give you any additional spells. This skill only works correctly on keeper of the light."
-		//"warning_life_stealer_infest"				""
-		"warning_lone_druid_true_form"				"This only works correctly with Lone Druid. It may work with other ranged heroes. You will most likely be left unable to attack."
-		"warning_luna_eclipse"						"This spell is useless without Lucent Beam."
-		"warning_phoenix_supernova"					"This spell only refreshes the cooldowns of regular abilities, not ultimate abilities."
-		"warning_puck_illusory_orb"					"You need Illusory Orb if you want to teleport to your orb."
-		"warning_techies_remote_mines"				"If you do not have remote detonate, you will need to manually select remote mines in order to explode them."
+		"warning_keeper_of_the_light_spirit_form"	"<br><font color=\"#FF4949\">LoD Warning:</font> Will not give additional abilities.<br>
+		<font color=\"#FF4949\">LoD Hero Requirement:</font> You have to play as <font color=\"#70EA72\">Elazor</font> to get Aghanim's Scepter bonuses.<br>"
+		
+		"warning_life_stealer_infest"				"<br><font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Consume</font>, if you want to uninfest.<br>"
+		
+		"warning_night_stalker_darkness"				"<br><font color=\"#FF4949\">LoD Hero Requirement:</font> You have to play as <font color=\"#70EA72\">Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter.<br>"
+		
+		"warning_lone_druid_true_form"				"<br><font color=\"#FF4949\">LoD Warning:</font> Requires picking a ranged hero or else you will not be able to attack.<br>"
+		
+		"warning_puck_illusory_orb"					"<br><font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Ethereal Jaunt</font>, if you want to teleport to your orb. <br>"
+						
+		"warning_luna_eclipse"						"<br><font color=\"#FF4949\">LoD Warning:</font> This spell is useless without <font color=\"#70EA72\">Lucent Beam.</font><br>"
+		
+		"warning_lone_druid_spirit_bear"			"<br><font color=\"#FF4949\">LoD Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\"#70EA72\">Lone Druid.</font><br>"
+		
+		"warning_lone_druid_true_form_battle_cry"	"<br><font color=\"#FF4949\">LoD Warning:</font> Disabled, unless you have at least one point in <font color=\"#70EA72\">True Form.</font></font><br>"
+		
+		"warning_phoenix_supernova"					"<br><font color=\"#FF4949\">LoD Warning:</font> Will only refresh non-ultimate abilities. <br>"
+		
+		"warning_techies_remote_mines"				"<br><font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group.<br>"
+		
+		"warning_alchemist_chemical_rage"			"<br><font color=\"#FF4949\">LoD Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\"#70EA72\">Alchemist</font> hero and not Chemical Rage. <br>"
+		
+		"warning_ember_spirit_activate_fire_remnant" "<br><font color=\"#FF4949\">LoD Warning:</font> Useless without <font color=\"#70EA72\">Fire Remnant.</font>"
+		
+		"warning_ember_spirit_fire_remnant"			"<br><font color=\"#FF4949\">LoD Warning:</font> Useless without <font color=\"#70EA72\">Activate Fire Remnant.</font> <br>"
+		
+		"warning_faceless_void_chronosphere"		"<br><font color=\"#FF4949\">LoD Warning:</font> Any player that plays as the <font color=\"#70EA72\">Faceless Void</font>, will be able to move within Chronosphere, including enemies. <br>"
+		
+		"warning_furion_wrath_of_nature"			"<br><font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\"#70EA72\">Nature's Call.</font> <br>"
+		
+		"warning_gyrocopter_call_down"			"<br><font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter.</font><br>"
+		
+		"warning_tusk_walrus_punch"			"<br><font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Walrus Kick.</font><br>"
 
 		/////////////////
 		// Picking Messages
