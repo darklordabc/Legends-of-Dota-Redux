@@ -374,6 +374,14 @@
 		"warning_gyrocopter_call_down"			"<br><font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter.</font><br>"
 		
 		"warning_tusk_walrus_punch"			"<br><font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Walrus Kick.</font><br>"
+		
+		"warning_abyssal_underlord_atrophy_aura"			"<br><font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics.<br>"
+		
+		"warning_abyssal_underlord_dark_rift"			"<br><font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics.<br>"
+		
+		"warning_abyssal_underlord_firestorm"			"<br><font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics.<br>"
+		
+		"warning_abyssal_underlord_pit_of_malice"			"<br><font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics.<br>"
 
 		/////////////////
 		// Picking Messages
