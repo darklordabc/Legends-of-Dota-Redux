@@ -19,7 +19,8 @@ mklink /D /J "dota\game\maps" "maps"
 mklink /D /J "dota\content\maps" "src\maps"
 
 mkdir "dota\game\panorama"
-mklink /D /J "dota\game\panorama\localization" "src\localization"
+mkdir "dota\game\panorama\localization"
+::mklink /D /J "dota\game\panorama\localization" "src\localization"
 
 :: Hard link info files
 mklink /H "dota\game\addoninfo.txt" "src\addoninfo.txt"
@@ -52,8 +53,11 @@ mklink /D /J "dota\game\resource\flash3" "src\resource\flash3"
 mklink /D /J "dota\game\resource\overviews" "src\resource\overviews"
 
 :: Hard link generated scripts
-mklink /H "dota\game\resource\addon_english.txt" "script_generator\BIN\addon_english.txt"
-mklink /H "dota\game\resource\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
+mklink /H "dota\game\resource\addon_english.txt" "script_generator\BIN\addon_english_token.txt"
+mklink /H "dota\game\panorama\localization\addon_english.txt" "script_generator\BIN\addon_english.txt"
+
+mklink /H "dota\game\resource\addon_schinese.txt" "script_generator\BIN\addon_schinese_token.txt"
+mklink /H "dota\game\panorama\localization\addon_schinese.txt" "script_generator\BIN\addon_schinese.txt"
 
 ::mklink /H "dota\game\panorama\localization\addon_english.txt" "script_generator\BIN\addon_english.txt"
 ::mklink /H "dota\game\panorama\localization\addon_russian.txt" "script_generator\BIN\addon_russian.txt"

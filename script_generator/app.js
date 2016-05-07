@@ -7,6 +7,7 @@ var scriptDirOut = settings.scriptDirOut;                               // The d
 var resourcePath = settings.dotaDir + 'game/dota/resource/';   // The directory to read resource files from
 var customDir = settings.customDir;                                     // The directory where our mods are read from, to be merged in
 var customAbilitiesLocation = '../src/scripts/npc/npc_abilities_custom.txt'
+var langDir = '../src/localization/';
 
 // Code needed to do multipliers
 var spellMult = require('./spellMult.json');
@@ -28,7 +29,7 @@ var abilities = {};
     Prepare language files
 */
 
-var langs = ['english', 'russian'];
+var langs = ['english', 'schinese'];
 var langIn = {};
 var langOut = {};
 var specialChar;    // Special character needed for doto encoding
@@ -77,8 +78,8 @@ function clearGenerateAfter() {
 
 // Read in our language files
 function prepareLanguageFiles(next) {
-    var ourData = ''+fs.readFileSync(customDir + 'addon_english.txt');
-    var english = parseKV(ourData).lang.Tokens;
+    var ourData = ''+fs.readFileSync(langDir + 'addon_english.txt');
+    var english = parseKV(ourData).addon;
 
     specialChar = fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
 
@@ -93,15 +94,15 @@ function prepareLanguageFiles(next) {
         langOut[lang] = {};
 
         var toUse;
-        if(fs.existsSync(customDir + 'addon_' + lang + '.txt')) {
+        if(fs.existsSync(langDir + 'addon_' + lang + '.txt')) {
             var ourData
             if(lang == 'english') {
-                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt');
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else {
-                ourData = ''+fs.readFileSync(customDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
             }
 
-            toUse = parseKV(ourData).lang.Tokens;
+            toUse = parseKV(ourData).addon;
         } else {
             toUse = english;
         }
@@ -126,173 +127,6 @@ function prepareLanguageFiles(next) {
     // Run the next step if there is one
     if(next) next();
 }
-
-/*
-    Generate our custom items
-*/
-
-/*function generateAbilityItems(next) {
-    var currentID = 2000;
-    var currentIDPassive = 3000;
-    //var newKV = {};
-    //var newKVPassive = {};
-    var outputSkillIDs = '';
-    var outputSkillIDsPassive = '';
-
-    for(var itemName in items) {
-        if(itemName == 'Version') continue;
-        if(itemName.indexOf('recipe') != -1) continue;
-        if(itemName.indexOf('winter') != -1) continue;
-        if(itemName.indexOf('present') != -1) continue;
-        if(itemName.indexOf('greevil') != -1) continue;
-        if(itemName.indexOf('halloween') != -1) continue;
-        if(itemName.indexOf('mystery') != -1) continue;
-        if(itemName.indexOf('courier') != -1) continue;
-        if(itemName.indexOf('tango') != -1) continue;
-        if(itemName.indexOf('mango') != -1) continue;
-        if(itemName.indexOf('tpscroll') != -1) continue;
-        if(itemName.indexOf('ward') != -1) continue;
-        if(itemName.indexOf('clarity') != -1) continue;
-        if(itemName.indexOf('flask') != -1) continue;
-        if(itemName.indexOf('dust') != -1) continue;
-        if(itemName.indexOf('bottle') != -1) continue;
-        if(itemName.indexOf('smoke') != -1) continue;
-        var item = items[itemName];
-
-        var cost = item.ItemCost;
-        if(!cost) continue;
-
-        var requiredLevel = Math.floor(cost / 500)+1;
-
-        var store = {
-            BaseClass: 'ability_datadriven',
-            AbilityBehavior: item.AbilityBehavior,
-            AbilityTextureName: 'lod_' + itemName,
-            RequiredLevel: requiredLevel,
-            MaxLevel: 1,
-            OnUpgrade: {
-                RunScript: {
-                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
-                    Function: 'init'
-                }
-            },
-            OnSpellStart: {
-                RunScript: {
-                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
-                    Function: 'onUse'
-                }
-            },
-            AbilitySpecial: item.AbilitySpecial
-        };
-
-        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_UNIT_TARGET') != -1) {
-            store.OnSpellStart.RunScript.Function = 'onUnitTarget';
-        }
-
-        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_POINT') != -1) {
-            store.OnSpellStart.RunScript.Function = 'onPointTarget';
-        }
-
-        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_TOGGLE') != -1) {
-            store.OnToggleOn = {
-                RunScript: {
-                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
-                    Function: 'onToggle'
-                }
-            };
-
-            store.OnToggleOff = {
-                RunScript: {
-                    ScriptFile: 'scripts/vscripts/../abilities/items.lua',
-                    Function: 'onToggle'
-                }
-            };
-
-            store.OnUpgrade.RunScript.Function = 'initToggle';
-        }
-
-        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_CHANNELLED') != -1) {
-            store.OnSpellStart.RunScript.Function = 'onChannel';
-        }
-
-        if(item.AbilityUnitTargetType) {
-            store.AbilityUnitTargetType = item.AbilityUnitTargetType;
-        }
-
-        if(item.AbilityUnitTargetTeam) {
-            store.AbilityUnitTargetTeam = item.AbilityUnitTargetTeam;
-        }
-
-        if(item.AbilityManaCost) {
-            store.AbilityManaCost = item.AbilityManaCost;
-        }
-
-        if(item.AbilityCastRange) {
-            store.AbilityCastRange = item.AbilityCastRange
-        }
-
-        if(item.AbilityCastPoint) {
-            store.AbilityCastPoint = item.AbilityCastPoint;
-        }
-
-        if(item.AbilityCooldown) {
-            store.AbilityCooldown = item.AbilityCooldown;
-        }
-
-        if(item.AbilityUnitTargetFlags) {
-            store.AbilityUnitTargetFlags = item.AbilityUnitTargetFlags;
-        }
-
-        if(item.AbilitySharedCooldown) {
-            store.AbilitySharedCooldown = item.AbilitySharedCooldown;
-        }
-
-        if(item.AbilityChannelTime) {
-            store.AbilityChannelTime = item.AbilityChannelTime;
-        }
-
-        if(item.AbilityBehavior.indexOf('DOTA_ABILITY_BEHAVIOR_PASSIVE') != -1) {
-            // Passive Item
-            customAbilities['lod_' + itemName] = store;
-            delete store.OnSpellStart;
-
-            // Store number
-            outputSkillIDsPassive += '"lod_' + itemName+'"    "' + (currentIDPassive++) + '"\n';
-        } else {
-            // Active item
-            customAbilities['lod_' + itemName] = store;
-
-            // Store number
-            outputSkillIDs += '"lod_' + itemName+'"    "' + (currentID++) + '"\n';
-        }
-
-        // Grab english
-        var english = langIn.english;
-
-        // Generate language for this spell
-        var toAdd = [];
-        for(var key in english) {
-            if(key.indexOf(itemName) != -1) {
-                toAdd.push(key);
-            }
-        }
-
-        for(var i=0; i<toAdd.length; ++i) {
-            var key = toAdd[i];
-            var newStr = key.replace(itemName, 'lod_' + itemName);
-            generateLanguage(newStr, key, '');
-        }
-    }
-
-    fs.writeFile(scriptDirOut+'outputSkillIDs.txt', outputSkillIDs+'\n\n'+outputSkillIDsPassive, function(err) {
-        if (err) throw err;
-
-        console.log('Done skill IDs');
-
-        // Check if there is another function to run
-        if(next) next();
-    });
-}*/
 
 /*
     Precache generator
@@ -438,499 +272,6 @@ function loadCustomAbilities(next) {
     });
 }
 
-/*function loadCustomItems(next) {
-    // Simply read in the file, and store into our varible
-    fs.readFile(customDir+'npc_items_custom.txt', function(err, rawCustomAbilities) {
-        console.log('Loading custom item...');
-        customItems = parseKV(''+rawCustomAbilities).DOTAAbilities;
-
-        // Continue, if there is something else to run
-        if(next) next();
-    });
-}*/
-
-/*
-    CSP Stuff
-*/
-
-// Doubles the max levels really nicely
-/*function doubleMaxLevels(newAb, fieldName) {
-    // Grab vals
-    var vals;
-
-    try {
-        vals = newAb[fieldName][0].split(' ');
-    } catch(e) {
-        return 1;
-    }
-
-    // Check if we have any data to work with
-    if(vals.length > 1) {
-        var newMaxVals = vals.length * 2;
-
-        // If our levels are too high, just revert to the old level values
-        if(newMaxVals > 8) {
-            newMaxVals = vals.length;
-        }
-
-        // Workout if this is a float value, or int value
-        var isFloat = false;
-        for(var i=0; i<vals.length; ++i) {
-            var intVal = parseInt(vals[i]);
-            var floatVal = parseFloat(vals[i]);
-
-            // We ONLY work with numbers
-            if(isNaN(intVal)) return 1;
-
-            if(floatVal > intVal) {
-                isFloat = true;
-                vals[i] = floatVal;
-            } else {
-                vals[i] = intVal;
-            }
-        }
-
-        // Grab the first and last values
-        var first = vals[0];
-        var last = vals[vals.length - 1];
-
-        // Workout the different between the two
-        var dif = last - first;
-        var avgDif = dif / (vals.length-1);
-
-        // Calculate the new last value
-        var newLast = first + avgDif * (newMaxVals-1);
-
-        // Check the sign (cant change signs!)
-        if(last > 0 && newLast < 0) {
-            newLast = 0;
-        }
-        if(last < 0 && newLast > 0) {
-            newLast = 0;
-        }
-        if(last == 0) {
-            newLast = 0;
-        }
-
-        // Enforce any caps
-        if(spellMult.double_caps[fieldName]) {
-            if(Math.abs(first) > Math.abs(last)) {
-                if(Math.abs(newLast) < spellMult.double_caps[fieldName]) {
-                    newLast = spellMult.double_caps[fieldName];
-
-                    // If the old value breaks our caps, assign it
-                    if(newLast > last) {
-                        newLast = last;
-                    }
-                }
-            } else {
-                if(Math.abs(newLast) > spellMult.double_caps[fieldName]) {
-                    newLast = spellMult.double_caps[fieldName];
-
-                    // If the old value breaks our caps, assign it
-                    if(newLast < last) {
-                        newLast = last;
-                    }
-                }
-            }
-        }
-
-        // Calculate the new average different
-        var newDif = newLast - first;
-        var newAvgDif = newDif / (newMaxVals-1);
-
-        // Put the new values in
-        for(var i=0; i<(newMaxVals); ++i) {
-            var newVal = first + newAvgDif * i;
-
-            // Decide how to store it
-            if(isFloat) {
-                vals[i] = Math.round(newVal * 10) / 10;
-            } else {
-                vals[i] = Math.round(newVal);
-            }
-        }
-
-        // Store the new vals
-        newAb[fieldName] = vals.join(' ');
-
-        return newMaxVals;
-    }
-
-    return 1;
-}
-
-var permutations = {
-    vals: ['d', 5, 10, 20],
-    func: function(spellName, ability, newAb, mult) {
-        // Double Max Levels Mode
-        if(mult == 'd') {
-            var maxLevel = 1;
-
-            for(var key in newAb) {
-                if(newAb[key] != null) {
-                    if(key == 'ID') continue;
-                    if(key == 'AbilityType') continue;
-                    if(key == 'AbilityBehavior') continue;
-                    if(key == 'OnCastbar') continue;
-                    if(key == 'OnLearnbar') continue;
-                    if(key == 'FightRecapLevel') continue;
-                    if(key == 'AbilitySharedCooldown') continue;
-                    if(key == 'AbilityModifierSupportValue') continue;
-                    if(key == 'AbilityModifierSupportBonus') continue;
-                    if(key == 'AbilitySpecial') continue;
-                    if(key == 'AbilityTextureName') continue;
-                    if(key == 'BaseClass') continue;
-
-                    // Double the max levels
-                    var testMax = doubleMaxLevels(newAb, key);
-                    if(testMax > maxLevel) {
-                        maxLevel = testMax;
-                    }
-                }
-            }
-
-            if(newAb.AbilitySpecial) {
-                for(var slotNum in newAb.AbilitySpecial) {
-                    var slot = newAb.AbilitySpecial[slotNum];
-
-                    for(var specialName in slot) {
-                        if(specialName == 'var_type') continue;
-
-                        // Double the max levels
-                        var testMax = doubleMaxLevels(slot, specialName);
-                        if(testMax > maxLevel) {
-                            maxLevel = testMax;
-                        }
-                    }
-                }
-            }
-
-            // Store the new max level
-            newAb.MaxLevel = maxLevel;
-
-            return newAb;
-        }
-
-        function divide(specialName, vals) {
-            for(var i=0; i<vals.length; ++i) {
-                vals[i] = parseFunction(vals[i] / mult);
-            }
-
-            return vals.join(' ');
-        }
-
-        function multiply(specialName, vals) {
-            // Check if there is a max
-            var max = null;
-            if(spellMult.specific_max_value[specialName]) {
-                max = parseFunction(spellMult.specific_max_value[specialName]);
-            }
-            if(spellMult.more_specific_max_value[spellName] && spellMult.more_specific_max_value[spellName][specialName]) {
-                max = parseFunction(spellMult.more_specific_max_value[spellName][specialName]);
-            }
-
-            // Do the mult
-            for(var i=0; i<vals.length; ++i) {
-                vals[i] = parseFunction(vals[i] * mult);
-
-                // Enfore the max
-                if(max != null && vals[i] > max) {
-                    vals[i] = max;
-                }
-            }
-
-            return vals.join(' ');
-        }
-
-        function divide_or_multiply(specialName, valString, parseFunction) {
-            var vals = valString.split(' ');
-
-            // Convert all to floats
-            for(var i=0; i<vals.length; ++i) {
-                vals[i] = parseFunction(vals[i]);
-            }
-
-            // Check for specific values
-            if(spellMult.fixed_value[spellName] && spellMult.fixed_value[spellName][specialName]) {
-                return spellMult.fixed_value[spellName][specialName];
-            }
-
-            // Should we always divide this attribute?
-            if(spellMult.force_divide[specialName]) {
-                return divide(specialName, vals);
-            }
-
-            // Check if we need to multiply or divide
-            if(vals.length > 1) {
-                // Check if we are increasing, or decreasing
-                if(Math.abs(vals[0]) > Math.abs(vals[1])) {
-                    // Decreasing, divide
-                    return divide(specialName, vals, parseFunction);
-                } else {
-                    // Increasing, multiply
-                    return multiply(specialName, vals, parseFunction);
-                }
-            } else {
-                // Only one value, assume multiply
-                return multiply(specialName, vals, parseFunction);
-            }
-        }
-
-        for(var key in newAb) {
-            (function(key) {
-                if(newAb[key] != null && !spellMult.ignore_all_normal[key] && !isNaN(parseInt(newAb[key][0]))) {
-                    function divide2(vals, parseFunction) {
-                        for(var i=0; i<vals.length; ++i) {
-                            vals[i] = parseFunction(vals[i] / mult);
-                        }
-
-                        return vals.join(' ');
-                    }
-
-                    function multiply2(vals, parseFunction) {
-                        // Do the mult
-                        for(var i=0; i<vals.length; ++i) {
-                            vals[i] = parseFunction(vals[i] * mult);
-                        }
-
-                        return vals.join(' ');
-                    }
-
-                    function divide_or_multiply2(valString, parseFunction) {
-                        var vals = valString.split(' ');
-
-                        // Convert all to floats
-                        for(var i=0; i<vals.length; ++i) {
-                            vals[i] = parseFunction(vals[i]);
-                        }
-
-                        // Check if we need to multiply or divide
-                        if(vals.length > 1) {
-                            // Check if we are increasing, or decreasing
-                            if(Math.abs(vals[0]) > Math.abs(vals[1])) {
-                                // Decreasing, divide
-                                return divide2(vals, parseFunction);
-                            } else {
-                                // Increasing, multiply
-                                return multiply2(vals, parseFunction);
-                            }
-                        } else {
-                            // Only one value, assume multiply
-                            return multiply2(vals, parseFunction);
-                        }
-                    }
-
-                    // Do it
-                    newAb[key] = [divide_or_multiply2(newAb[key][0], function(str) {
-                        // Decide if it's a float or int
-                        return parseInt(str);
-                    })];
-                }
-            })(key);
-        }
-
-        if(ability.AbilitySpecial) {
-            for(var slotNum in ability.AbilitySpecial) {
-                var slot = ability.AbilitySpecial[slotNum];
-                var parseFunction = parseInt;
-                if(slot.var_type) {
-                    if(slot.var_type == 'FIELD_FLOAT') {
-                        parseFunction = function(str) {
-                            var retNum = parseFloat(str);
-
-                            retNum *= 100;
-                            retNum = Math.floor(retNum);
-                            retNum = retNum / 100;
-
-                            return retNum;
-                        };
-                    } else if(slot.var_type != 'FIELD_INTEGER') {
-                        console.log('Unknown field type: ' + slot.var_type);
-                    }
-                }
-                for(var specialName in slot) {
-                    if(specialName == 'var_type') continue;
-
-                    // Check for ignores
-                    if(spellMult.ignore_all_special[specialName]) continue;
-                    if(spellMult.ignore_special[spellName] && spellMult.ignore_special[spellName][specialName]) continue;
-
-                    var oldVal = slot[specialName][0];
-                    var newVal = divide_or_multiply(specialName, oldVal, parseFunction);
-
-                    // Did we actually change anything?
-                    if(newVal != oldVal) {
-                        // Store the change
-                        newAb.AbilitySpecial[slotNum][specialName] = [newVal];
-                    }
-                }
-            }
-        }
-
-        // Return the changes
-        return newAb;
-    }
-};
-
-// Permutate a spell
-function permute(spellName, ability, storage) {
-    // List of suffixes we found
-    var suffixes = [];
-    var appendsOnEnd = [];
-
-    // Loop over all the things we need to apply
-    for(var permNumber=0; permNumber<permutations.vals.length; permNumber++) {
-        // Grab our spell value
-        var spellValue = permutations.vals[permNumber];
-
-        // Items don't need a doubled version
-        if(spellValue == 'd' && (items[spellName] || items[spellName.replace('lod_', '')])) continue;
-        if(spellName == 'ogre_magi_multicast_lod' && spellValue != 'd') continue;
-
-        var newSpell = {
-            BaseClass: spellName,
-            AbilityType: ability.AbilityType,
-            AbilityBehavior: ability.AbilityBehavior,
-            AbilitySpecial: clone(ability.AbilitySpecial)
-        };
-        if(ability.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = ability.AbilityUnitDamageType;
-
-        // Copy over useful things
-        if(ability.BaseClass) newSpell.BaseClass = ability.BaseClass;
-        for(var key in ability) {
-            if(!newSpell[key]) newSpell[key] = ability[key];
-        }
-
-        // Don't store the spellID
-        delete newSpell.ID;
-
-        var tempChange = permutations.func(spellName, ability, newSpell, spellValue);
-
-        if(tempChange != null) {
-            newSpell = tempChange;
-        }
-
-        // Grab the suffix
-        var suffix = '_' + spellValue;
-
-        // Store the spell
-        storage[spellName + suffix] = newSpell;
-
-        // Store suffix
-        suffixes.push(suffix);
-
-        if(spellValue != 'd') {
-            appendsOnEnd.push(' x' + spellValue);
-        } else {
-            appendsOnEnd.push(' Doubled');
-        }
-    }
-
-    // Grab english
-    var english = langIn.english;
-
-    // Generate language for this spell
-    var toAdd = [];
-    for(var key in english) {
-        if(key.indexOf(spellName) != -1) {
-            toAdd.push(key);
-        }
-    }
-
-    for(var i=0; i<toAdd.length; ++i) {
-        for(var j=0; j<suffixes.length; ++j) {
-            var key = toAdd[i];
-
-            var appendOnEnd = '';
-            if(key.toLowerCase() == 'dota_tooltip_ability_' + spellName) {
-                appendOnEnd = appendsOnEnd[j];
-            }
-
-            var suffix = suffixes[j];
-            var newStr = key.replace(spellName, spellName + suffix);
-            generateLanguageAfter(newStr, key, appendOnEnd);
-        }
-    }
-}
-
-function doCSP(next) {
-    fs.readFile(scriptDir+'npc_abilities.txt', function(err, abilitesRaw) {
-        // Convert into something useable
-        var abs = parseKV(''+abilitesRaw).DOTAAbilities;
-
-        // Merge in custom abilities
-        for(var key in customAbilities) {
-            if(key == 'Version') continue;
-
-            // Store into our CSP file
-            abs[key] = customAbilities[key];
-        }
-
-        // Merge in items
-        for(var key in items) {
-            abs[key] = items[key];
-        }
-
-        // Loop over all spells
-        if(!settings.noPermute) {
-            console.log('Beginning permutations...');
-
-            for(var spellName in abs) {
-                // Spells to simply ignore
-                if(spellName == 'Version') continue;
-                if(spellName == 'ability_base') continue;
-                if(spellName == 'attribute_bonus') continue;
-                if(spellName == 'default_attack') continue;
-                if(spellName.indexOf('recipe') != -1) continue;
-                if(spellName.indexOf('winter') != -1) continue;
-                if(spellName.indexOf('present') != -1) continue;
-                if(spellName.indexOf('greevil') != -1) continue;
-                if(spellName.indexOf('halloween') != -1) continue;
-                if(spellName.indexOf('mystery') != -1) continue;
-                if(spellName.indexOf('courier') != -1) continue;
-                if(spellName.indexOf('tango') != -1) continue;
-                if(spellName.indexOf('tpscroll') != -1) continue;
-                if(spellName.indexOf('ward') != -1) continue;
-                if(spellName.indexOf('clarity') != -1) continue;
-                if(spellName.indexOf('flask') != -1) continue;
-                if(spellName.indexOf('dust') != -1) continue;
-                if(spellName.indexOf('bottle') != -1) continue;
-                if(spellName.indexOf('smoke') != -1) continue;
-                if(spellMult.dont_parse[spellName]) continue;
-
-                var newSpell = {};
-
-                // Where to store the spell/item into
-                var storeLocation = customAbilities;
-                if(items[spellName]) {
-                    storeLocation = customItems;
-                }
-
-                // Store all permutions of the spell
-                permute(spellName, abs[spellName], storeLocation);
-            }
-        }
-
-        // Ensure none of our generated items are buyable
-        for(var key in customItems) {
-            customItems[key].ItemPurchacustomAbilitiesseable = 0;
-        }
-
-        // Done with permutions
-        console.log('Generating language...');
-
-        for(var i=0; i<generateAfter.length; ++i) {
-            var g = generateAfter[i];
-            generateLanguage(g[0], g[1], g[2]);
-        }
-        clearGenerateAfter();
-
-        // Run the next function, if it exists
-        if(next) next();
-    });
-}*/
-
 /*
 	Process Skill Warnings
 */
@@ -961,7 +302,7 @@ function generateSkillWarnings(next) {
 		        // Do we have anything to change?
 		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
 		        if(langFile[searchKey]) {
-		        	storeValue = langFile[searchKey] + '\n' + storeValue;
+		        	storeValue = langFile[searchKey] + '<br>' + storeValue;
 		        }
 
 		        // Store it
@@ -972,118 +313,7 @@ function generateSkillWarnings(next) {
 
     // Continue
     next();
-
-    /*
-
-    for(var i=0; i<langs.length; ++i) {
-        // Grab a language
-        var lang = langs[i];
-        var langFile = langIn[lang];
-        var storeTo = langOut[lang];
-
-        if(langFile[theString]) {
-            storeTo[theString] = langFile[theString] + appendOnEnd;
-        } else if(langFile[altString]) {
-            storeTo[theString] = langFile[altString] + appendOnEnd;
-        } else if(english[theString]) {
-            storeTo[theString] = english[theString] + appendOnEnd;
-        } else if(english[altString]) {
-            storeTo[theString] = english[altString] + appendOnEnd;
-        } else if(storeTo[altString]) {
-            storeTo[theString] = storeTo[altString] + appendOnEnd;
-        } else {
-            console.log('Failed to find ' + theString);
-        }
-
-        if(!langFile[theString]) langFile[theString] = storeTo[theString];
-    }*/
 }
-
-/*
-    Level 1 ult stuff
-*/
-
-/*function doLvl1Ults(next) {
-    // Allow us to disable lvl1 stuff
-    if(settings.noPermute) {
-        if(next) next();
-        return;
-    }
-
-    console.log('Generating level 1 abilities...');
-
-    var toStore = {};
-
-    // Language stuff
-    var english = langIn.english;
-
-    var suffix = '_lvl1';
-
-    var allSpells = [];
-
-    for(var spellName in customAbilities) {
-        allSpells[spellName] = true;
-    }
-
-    for(var spellName in abilities) {
-        allSpells[spellName] = true;
-    }
-
-    for(var spellName in allSpells) {
-        var spell = customAbilities[spellName] || abilities[spellName];
-        if(!spell) continue;
-
-        if((spell.AbilityType && spell.AbilityType[0] == 'DOTA_ABILITY_TYPE_ULTIMATE') || (spell.RequiredLevel && parseInt(spell.RequiredLevel[0]) > 1)) {
-            var newSpell = {
-                BaseClass: spellName,
-                AbilityType: spell.AbilityType,
-                AbilityBehavior: spell.AbilityBehavior,
-                AbilitySpecial: clone(spell.AbilitySpecial)
-            };
-            if(spell.AbilityUnitDamageType) newSpell.AbilityUnitDamageType = spell.AbilityUnitDamageType;
-
-            // Copy over useful things
-            if(spell.BaseClass) newSpell.BaseClass = spell.BaseClass;
-            for(var key in spell) {
-                if(!newSpell[key]) newSpell[key] = spell[key];
-            }
-
-            // Don't store the spellID
-            delete newSpell.ID;
-
-            // Fixup levels
-            newSpell.RequiredLevel = 1;
-            newSpell.LevelsBetweenUpgrades = 2;
-
-            // Store it
-            toStore[spellName + '_lvl1'] = newSpell;
-
-            // Generate language for this spell
-            for(var key in english) {
-                if(key.indexOf(spellName) != -1) {
-                    var newStr = key.replace(spellName, spellName + suffix);
-                    generateLanguageAfter(newStr, key, '');
-                }
-            }
-        }
-    }
-
-    // Store them
-    for(var key in toStore) {
-        customAbilities[key] = toStore[key];
-    }
-
-    for(var i=0; i<generateAfter.length; ++i) {
-        var g = generateAfter[i];
-        generateLanguage(g[0], g[1], g[2]);
-    }
-    clearGenerateAfter();
-
-    console.log('Done!');
-
-    // Continue
-    if(next) next();
-}*/
 
 /*
     Helper functions
@@ -1356,27 +586,21 @@ prepareLanguageFiles(function() {
                                     		// Output language files
 	                                        for(var i=0; i<langs.length; ++i) {
 	                                            (function(lang) {
-	                                                fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
-	                                                    if (err) throw err;
+	                                                fs.writeFile(scriptDirOut+'addon_' + lang + '_token.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                                                        if (err) throw err;
 
-	                                                    console.log('Finished saving ' + lang + '!');
-	                                                });
+                                                        console.log('Finished saving ' + lang + '!');
+                                                    });
+
+                                                    fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV(langOut[lang], 'addon'), 'utf16le', function(err) {
+                                                        if (err) throw err;
+
+                                                        console.log('Finished saving ' + lang + '!');
+                                                    });
 	                                            })(langs[i]);
 	                                        }
 
 	                                        // Output custom files
-
-	                                        /*fs.writeFile(scriptDirOut+'npc_abilities_custom.txt', toKV(customAbilities, 'DOTAAbilities'), function(err) {
-	                                            if (err) throw err;
-
-	                                            console.log('Done saving custom abilities file!');
-	                                        });*/
-
-	                                        /*fs.writeFile(scriptDirOut+'npc_items_custom.txt', toKV(customItems, 'DOTAAbilities'), function(err) {
-	                                            if (err) throw err;
-
-	                                            console.log('Done saving custom items file!');
-	                                        });*/
 
 	                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
 	                                            if (err) throw err;
