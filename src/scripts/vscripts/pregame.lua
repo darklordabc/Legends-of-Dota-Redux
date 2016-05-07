@@ -4472,20 +4472,20 @@ function Pregame:fixSpawningIssues()
 
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
-					
+
                     if not givenCouriers[team] then
-                    	givenCouriers[team] = true		
-						
-			--Timer is necessary to prevent bug with courier spawning in center of map (Probably because it takes players a moment to be allocated to their team). "item_courier_start" is a modified courier that spawns on pickup.
-						
-			Timers:CreateTimer(function()
-				if IsValidEntity(spawnedUnit) then
-				 	spawnedUnit:AddItemByName('item_courier_start')
-				end
-				
-			end, DoUniqueString('spawncourier'), 1)
-                    	
-						
+            			Timers:CreateTimer(function()
+            				if IsValidEntity(spawnedUnit) then
+                                if not givenCouriers[team] then
+                                    givenCouriers[team] = true
+                                    local item = spawnedUnit:AddItemByName('item_courier')
+
+                                    if item then
+                                        spawnedUnit:CastAbilityImmediately(item, spawnedUnit:GetPlayerID())
+                                    end
+                                end
+            				end
+            			end, DoUniqueString('spawncourier'), 1)
                     end
                 end
 
