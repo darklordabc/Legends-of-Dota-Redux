@@ -418,7 +418,7 @@
     "warning_ember_spirit_fire_remnant"         "<font color=\"#FF4949\">LoD Warning:</font> Useless without <font color=\"#70EA72\">Activate Fire Remnant.</font>"
     "warning_faceless_void_chronosphere"        "<font color=\"#FF4949\">LoD Warning:</font> Any other player that plays as the <font color=\"#70EA72\">Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
     "warning_furion_wrath_of_nature"            "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\"#70EA72\">Nature's Call.</font>"
-    "warning_gyrocopter_call_down"          "<font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter. Side Gunner will apply even without having Call Down ability.</font>"
+    "warning_gyrocopter_call_down"          "<font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
     "warning_tusk_walrus_punch"         "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Walrus Kick.</font>"
     "warning_abyssal_underlord_atrophy_aura"            "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
     "warning_abyssal_underlord_dark_rift"           "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
