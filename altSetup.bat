@@ -84,3 +84,4 @@ xcopy script_generator\BIN\npc_heroes_custom.txt alt_dota\game\scripts\npc\ /Y
 :: Hard link materials folder
 ::mklink /D /J "alt_dota\game\materials" "src\materials"
 xcopy /s src\materials alt_dota\game\materials\ /Y
+
