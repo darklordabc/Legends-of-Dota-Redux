@@ -302,7 +302,7 @@ function generateSkillWarnings(next) {
 		        // Do we have anything to change?
 		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
 		        if(langFile[searchKey]) {
-		        	storeValue = langFile[searchKey] + '<br>' + storeValue;
+		        	storeValue = langFile[searchKey] + '<br>' + '<br>' + storeValue + '<br>';
 		        }
 
 		        // Store it
