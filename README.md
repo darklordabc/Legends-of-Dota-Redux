@@ -35,6 +35,7 @@ Legends of Dota
   - Run an admin level command prompt, navigate to the "Legends of Dota" root folder (the one with stage.bat in it):
     - `cd "C:\path\to\cloned\repo\Legends of Dota"`
   - Create two directory junctions, one for content, one for game:
+    - Note: You will need to delete the actual mod folders (<modfolder>) if they already exist
     - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota_addons\<modfolder>" "dota\game"`
     - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\content\dota_addons\<modfolder>" "dota\content"`
  - If successfully setup, the following file should exist `Steam\steamapps\common\dota 2 beta\game\dota_addons\lod\scripts\npc\npc_heroes_custom.txt`
