@@ -764,6 +764,7 @@ function Pregame:networkHeroes()
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local flags = LoadKeyValues('scripts/kv/flags.kv')
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
+    local hashCollisions = LoadKeyValues('scripts/kv/hashes.kv')
 
     local heroToSkillMap = oldAbList.heroToSkillMap
 
@@ -800,6 +801,43 @@ function Pregame:networkHeroes()
 
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
+
+    -- Maps to convert hashes
+    self.hashToSkill = {}
+    self.skillToHash = {}
+
+    local totalCollisions = 0
+
+    -- Calculate the hashes
+    for abilityName, _ in pairs(flagsInverse) do
+    	local parts = util:split(abilityName, '_')
+
+    	local hash = ''
+
+    	for i=1,#parts do
+    		local part = parts[i]
+    		local letter = part:sub(1, 1)
+
+    		hash = hash .. letter
+    	end
+
+    	-- Do we need to fix a collision?
+    	if hashCollisions[abilityName] then
+    		hash = hash .. hashCollisions[abilityName]
+    	end
+
+    	if self.hashToSkill[hash] then
+    		print(hash .. ' hash collision - ' .. abilityName)
+    		totalCollisions = totalCollisions + 1
+    	else
+    		self.hashToSkill[hash] = abilityName
+    		self.skillToHash[abilityName] = hash
+    	end
+    end
+
+    if totalCollisions > 0 then
+    	print('Found ' .. totalCollisions .. ' hash collisions!')
+    end
 
     -- Stores which abilities belong to which heroes
     self.abilityHeroOwner = {}
