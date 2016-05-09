@@ -32,10 +32,11 @@ Legends of Dota
  - The contents of `<lod>/dota/game` needs to be placed into `Steam\steamapps\common\dota 2 beta\game\dota_addons\<addonname>`
  - The contents can be simply copied, or a directory junction can be used to mount the folders directly into place. See documention for help, there are directory junctions created in stage.bat
   - Ensure dota 2 is closed while doing any staging, or while modifiying directory junctions
-  - Run an admin level command prompt, navigate to the "Legends of Dota" root folder `cd "C:\path\to\Legends of Dota"`
+  - Run an admin level command prompt, navigate to the "Legends of Dota" root folder (the one with stage.bat in it):
+    - `cd "C:\path\to\cloned\repo\Legends of Dota"`
   - Create two directory junctions, one for content, one for game:
-   - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota_addons\<modfolder>" "dota\game"`
-   - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\content\dota_addons\<modfolder>" "dota\content"`
+    - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota_addons\<modfolder>" "dota\game"`
+    - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\content\dota_addons\<modfolder>" "dota\content"`
  - If successfully setup, the following file should exist `Steam\steamapps\common\dota 2 beta\game\dota_addons\lod\scripts\npc\npc_heroes_custom.txt`
 
 ###Running Legends of Dota###
