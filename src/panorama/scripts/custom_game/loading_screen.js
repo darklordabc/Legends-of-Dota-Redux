@@ -74,9 +74,6 @@ function onGetPlayerStats(table_name, key, data) {
     }, {
         img: 'file://{images}/spellicons/invoker_empty1.png',
         txt: '#hintSuggestBuild'
-    }{
-        img: 'file://{images}/spellicons/invoker_empty1.png',
-        txt: '#hintEmpoweringHaste2'
     }];
 
     // How long to wait before we show the next tip
