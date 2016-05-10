@@ -277,7 +277,6 @@
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
     "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
-    "hintEmpoweringHasteB"                          "Do you know a good build? Submit it and it may be added to the recommended builds sections."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
