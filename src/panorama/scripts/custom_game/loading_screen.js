@@ -77,6 +77,9 @@ function onGetPlayerStats(table_name, key, data) {
     }, {
         img: 'file://{images}/items/silver_edge.png',
         txt: '#hintBreakPassives'
+    }, {
+        img: 'file://{images}/spellicons/night_stalker_darkness.png',
+        txt: '#hintInnateAbilities'
     }];
 
     // How long to wait before we show the next tip
