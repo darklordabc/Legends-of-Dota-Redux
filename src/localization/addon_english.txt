@@ -435,7 +435,7 @@
     "warning_invoker_sun_strike_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_tornado_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is innate to this ability."
-    "elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is innate to this ability."
+    "elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The spirit wont have <font color=\"#70EA72\">Natural Order</font>" or <font color=\"#70EA72\">Echo Stomp</font>", unless you also have it."
 
 
     /////////////////
