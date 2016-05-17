@@ -445,7 +445,8 @@
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
 	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."	
 	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"	
-	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."	
+	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
+	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
 
     /////////////////
     // CUSTOM ABILITIES
@@ -453,7 +454,7 @@
 
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
-    "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter.\n\n<font color='#70EA72'>You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\n\nCheck the modifier to verify you have the upgrade.</font>"
+    "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_tiny_grow_lod_Lore"                                           "Watching a hill become a mountain is awe-inspiring - especially if the mountain begins laying waste to adversaries."
     "DOTA_Tooltip_ability_tiny_grow_lod_Note0"                                          "Cleave damage is reduced by armor type but not by armor value."
     "DOTA_Tooltip_ability_tiny_grow_lod_Note1"                                          "Cleave damage goes through spell immunity."
