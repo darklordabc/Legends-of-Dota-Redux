@@ -80,6 +80,9 @@ function onGetPlayerStats(table_name, key, data) {
     }, {
         img: 'file://{images}/spellicons/night_stalker_darkness.png',
         txt: '#hintInnateAbilities'
+    }, {
+        img: 'file://{images}/spellicons/weaver_the_swarm.png',
+        txt: '#hintReport'
     }];
 
     // How long to wait before we show the next tip
