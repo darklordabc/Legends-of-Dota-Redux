@@ -401,7 +401,38 @@
     "statAbandonLastHour"                           "About {0} minutes ago"
     "statAbandonLessThanDay"                        "About {0} hours ago"
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
+	
+	//Hero Stats
 
+    "heroStats_Damage"                              "DAMAGE"
+    "heroStats_Armor"                               "ARMOR"
+    "heroStats_attackPoints"                        "ATTACK POINT"
+    "heroStats_baseAttackTime"                      "BASE ATTACK TIME"
+    "heroStats_baseHPRegen"                         "BASE HP REGEN"
+
+    "heroStats_strength"                            "STRENGTH"
+    "heroStats_agility"                             "AGILITY"
+    "heroStats_intelligence"                        "INTELLIGENCE"
+
+    "heroStats_attributes_starting"                 "TOTAL STARTING ATTRIBUTES"
+    "heroStats_attributes_perLevel"                 "TOTAL ATTRIBUTES PER LEVEL"
+
+    "heroStats_attackRange"                         "ATTACK RANGE"
+    "heroStats_movementSpeed"                       "MOVEMENT SPEED"
+
+    "heroStats_uniqueMechanic"                      "UNIQUE MECHANIC"
+
+    /////////////////
+    // UNIQUE HERO MECHANICS
+    ////////////////
+
+    "unique_mechanic_meepo"                         "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero a free clone.</font>"
+    "unique_mechanic_night_stalker"                 "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero unobstructed night<br> vision.</font>"
+    "unique_mechanic_gyrocopter"                    "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero a side gunner.</font>"
+    "unique_mechanic_keeper_of_the_light"           "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision.</font>"
+    "unique_mechanic_alchemist"                     "<font color=\"#70EA72\">This hero can gift<br> Aghnamin's Scepters.</font>"
+    "unique_mechanic_faceless_void"                 "<font color=\"#70EA72\">This hero can move<br> freely in friendly and enemy chronospheres.</font>"
+	
     /////////////////
     // Skill Warnings
     ////////////////
