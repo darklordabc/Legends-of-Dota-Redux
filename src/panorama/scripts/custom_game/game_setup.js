@@ -3676,7 +3676,7 @@ function heroStatsLine(lineName, value, color, color2) {
 
 // Converts a string into a number with a certain number of decimal places
 function stringToDecimalPlaces(numberString, places) {
-    if(places == null) places = 1;
+    if(places == null) places = 2;
     return parseFloat(numberString).toFixed(places);
 }
 
@@ -3709,20 +3709,20 @@ function generateFormattedHeroStatsString(heroName, info) {
         heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
         
         heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
-        heroStats += heroStatsLine('heroStats_attackAnimationPoint', info.AttackAnimationPoint);
+        heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
         heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
 
         // Health and Mana
         heroStats += heroStatsLine('heroStats_baseHealth', info.StatusHealth);
-        heroStats += heroStatsLine('heroStats_baseHealthRegen', info.StatusHealthRegen);
+        heroStats += heroStatsLine('heroStats_baseHealthRegen', stringToDecimalPlaces(info.StatusHealthRegen));
         heroStats += heroStatsLine('heroStats_baseMana', info.StatusMana);
-        heroStats += heroStatsLine('heroStats_baseManaRegen', info.StatusManaRegen);
+        heroStats += heroStatsLine('heroStats_baseManaRegen', stringToDecimalPlaces(info.StatusManaRegen));
         
         // General Hero Stats
         heroStats += seperator;
 
         heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
-        heroStats += heroStatsLine('heroStats_turnrate', info.MovementTurnRate);
+        heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
         heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
         heroStats += heroStatsLine('heroStats_magicalResistance', info.MagicalResistance);
         heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
