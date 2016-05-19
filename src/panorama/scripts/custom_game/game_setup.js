@@ -3697,16 +3697,34 @@ function generateFormattedHeroStatsString(heroName, info) {
         var agiGain = parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1);
         var intGain = parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1);
 
-        // Top section (base stats)
+        // Attack Related Status
         heroStats += seperator;
 
-        heroStats += heroStatsLine('heroStats_Damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
-        heroStats += heroStatsLine('heroStats_Armor', info.ArmorPhysical);
-        heroStats += heroStatsLine('heroStats_attackPoints', info.AttackAnimationPoint);
-        heroStats += heroStatsLine('heroStats_baseAttackTime', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
-        heroStats += heroStatsLine('heroStats_baseHPRegen', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
+        heroStats += heroStatsLine('heroStats_damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
+        heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
         
-        // Middle Section (Attributes)
+        heroStats += heroStatsLine('heroStats_attackRate', info.AttackRate);
+        heroStats += heroStatsLine('heroStats_attackAnimationPoint', info.AttackAnimationPoint);
+        heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
+
+        // Health and Mana
+        heroStats += heroStatsLine('heroStats_baseHealth', info.StatusHealth);
+        heroStats += heroStatsLine('heroStats_baseHealthRegen', info.StatusHealthRegen);
+        heroStats += heroStatsLine('heroStats_baseMana', info.StatusMana);
+        heroStats += heroStatsLine('heroStats_baseManaRegen', info.StatusManaRegen);
+        
+        // General Hero Stats
+        heroStats += seperator;
+
+        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
+        heroStats += heroStatsLine('heroStats_turnrate', info.MovementTurnRate);
+        heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_magicalResistance', info.MagicalResistance);
+        heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
+        heroStats += heroStatsLine('heroStats_visionDay', info.VisionDaytimeRange);
+        heroStats += heroStatsLine('heroStats_visionNight', info.VisionNighttimeRange);
+
+        // Attribute Stats
         heroStats += seperator;
 
         heroStats += heroStatsLine('heroStats_strength', info.AttributeBaseStrength + ' + ' + strGain, strColor);
@@ -3717,12 +3735,6 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         heroStats += heroStatsLine('heroStats_attributes_starting', startingAttributes, 'F9891A');
         heroStats += heroStatsLine('heroStats_attributes_perLevel', attributesPerLevel, 'F9891A');
-
-        // Bottom Section (Misc Info)
-        heroStats += seperator;
-
-        heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
-        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed); 
     }
 
     // Unique Mechanics

@@ -404,11 +404,16 @@
 	
 	//Hero Stats
 
-    "heroStats_Damage"                              "DAMAGE"
-    "heroStats_Armor"                               "ARMOR"
-    "heroStats_attackPoints"                        "ATTACK POINT"
-    "heroStats_baseAttackTime"                      "BASE ATTACK TIME"
-    "heroStats_baseHPRegen"                         "BASE HP REGEN"
+    "heroStats_damage"                              "DAMAGE"
+    "heroStats_armor"                               "ARMOR"
+    "heroStats_magicalResistance"                   "MAGICAL RESISTANCE"
+    "heroStats_attackAnimationPoint"                "ATTACK ANIMATION POINT"
+
+    "heroStats_baseHealth"                          "BASE HP"
+    "heroStats_baseHealthRegen"                     "BASE HP REGEN"
+
+    "heroStats_attackRate"                          "BASE ATTACK TIME"
+    "heroStats_projectileSpeed"                     "PROJECTILE SPEED"
 
     "heroStats_strength"                            "STRENGTH"
     "heroStats_agility"                             "AGILITY"
@@ -419,8 +424,13 @@
 
     "heroStats_attackRange"                         "ATTACK RANGE"
     "heroStats_movementSpeed"                       "MOVEMENT SPEED"
+    "heroStats_turnrate"                            "TURN SPEED"
 
     "heroStats_uniqueMechanic"                      "UNIQUE MECHANIC"
+
+    "heroStats_ringRadius"                          "HERO SIZE RADIUS"
+    "heroStats_visionDay"                           "DAY VISION"
+    "heroStats_visionNight"                         "NIGHT VISION"
 
     /////////////////
     // UNIQUE HERO MECHANICS
