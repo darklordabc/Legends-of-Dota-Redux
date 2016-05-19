@@ -879,7 +879,18 @@ function Pregame:networkHeroes()
                 AttributeBaseIntelligence = heroValues.AttributeBaseIntelligence,
                 AttributeIntelligenceGain = heroValues.AttributeIntelligenceGain,
                 AttributeBaseAgility = heroValues.AttributeBaseAgility,
-                AttributeAgilityGain = heroValues.AttributeAgilityGain
+                AttributeAgilityGain = heroValues.AttributeAgilityGain,
+                ArmorPhysical = heroValues.ArmorPhysical,
+                MagicalResistance = heroValues.MagicalResistance,
+                ProjectileSpeed = heroValues.ProjectileSpeed,
+                RingRadius = heroValues.RingRadius,
+                MovementTurnRate = heroValues.MovementTurnRate,
+                StatusHealth = heroValues.StatusHealth,
+                StatusHealthRegen = heroValues.StatusHealthRegen,
+                StatusMana = heroValues.StatusMana,
+                StatusManaRegen = heroValues.StatusManaRegen,
+                VisionDaytimeRange = heroValues.VisionDaytimeRange,
+                VisionNighttimeRange = heroValues.VisionNighttimeRange
             }
 
             local attr = heroValues.AttributePrimary
