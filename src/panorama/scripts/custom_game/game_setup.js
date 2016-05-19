@@ -3674,6 +3674,12 @@ function heroStatsLine(lineName, value, color, color2) {
     return '<font color=\'#' + color + '\'>' + $.Localize(lineName) + ':</font> <font color=\'#' + color2 + '\'>' + value + '</font><br>';
 }
 
+// Converts a string into a number with a certain number of decimal places
+function stringToDecimalPlaces(numberString, places) {
+    if(places == null) places = 1;
+    return parseFloat(numberString).toFixed(places);
+}
+
 function generateFormattedHeroStatsString(heroName, info) {
     // Will contain hero stats
     var heroStats = '';
@@ -3684,8 +3690,7 @@ function generateFormattedHeroStatsString(heroName, info) {
     if(info != null) {
         // Calculate how many total stats we have
         var startingAttributes = info.AttributeBaseStrength + info.AttributeBaseAgility + info.AttributeBaseIntelligence;
-        var attributesPerLevel = info.AttributeStrengthGain + info.AttributeAgilityGain + info.AttributeIntelligenceGain;
-        attributesPerLevel = parseFloat(Math.round(attributesPerLevel * 10) / 10).toFixed(1);
+        var attributesPerLevel = stringToDecimalPlaces(info.AttributeStrengthGain + info.AttributeAgilityGain + info.AttributeIntelligenceGain);
 
         // Pick the colors for primary attribute
         var strColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_STRENGTH' ? 'FF3939' : 'FFFFFF';
@@ -3693,9 +3698,9 @@ function generateFormattedHeroStatsString(heroName, info) {
         var intColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_INTELLECT' ? 'FF3939' : 'FFFFFF';
 
         // Calculate our stat gain
-        var strGain = parseFloat(Math.round(info.AttributeStrengthGain * 10) / 10).toFixed(1);
-        var agiGain = parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1);
-        var intGain = parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1);
+        var strGain = stringToDecimalPlaces(info.AttributeStrengthGain);
+        var agiGain = stringToDecimalPlaces(info.AttributeAgilityGain);
+        var intGain = stringToDecimalPlaces(info.AttributeIntelligenceGain);
 
         // Attack Related Status
         heroStats += seperator;
@@ -3703,7 +3708,7 @@ function generateFormattedHeroStatsString(heroName, info) {
         heroStats += heroStatsLine('heroStats_damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
         heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
         
-        heroStats += heroStatsLine('heroStats_attackRate', info.AttackRate);
+        heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
         heroStats += heroStatsLine('heroStats_attackAnimationPoint', info.AttackAnimationPoint);
         heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
 
