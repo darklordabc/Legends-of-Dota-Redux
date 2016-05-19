@@ -426,12 +426,12 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_meepo"                         "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero a free clone.</font>"
-    "unique_mechanic_night_stalker"                 "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero unobstructed night<br> vision.</font>"
-    "unique_mechanic_gyrocopter"                    "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero a side gunner.</font>"
-    "unique_mechanic_keeper_of_the_light"           "<font color=\"#70EA72\">Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision.</font>"
-    "unique_mechanic_alchemist"                     "<font color=\"#70EA72\">This hero can gift<br> Aghnamin's Scepters.</font>"
-    "unique_mechanic_faceless_void"                 "<font color=\"#70EA72\">This hero can move<br> freely in friendly and enemy chronospheres.</font>"
+    "unique_mechanic_meepo"                         "Aghnamin's Scepter<br> will give this hero a free clone."
+    "unique_mechanic_night_stalker"                 "Aghnamin's Scepter<br> will give this hero unobstructed night<br> vision."
+    "unique_mechanic_gyrocopter"                    "Aghnamin's Scepter<br> will give this hero a side gunner."
+    "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
+    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
+    "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
 	
     /////////////////
     // Skill Warnings
