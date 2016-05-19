@@ -411,6 +411,8 @@
 
     "heroStats_baseHealth"                          "BASE HP"
     "heroStats_baseHealthRegen"                     "BASE HP REGEN"
+    "heroStats_baseMana"                            "BASE MANA"
+    "heroStats_baseManaRegen"                       "BASE MANA REGEN"
 
     "heroStats_attackRate"                          "BASE ATTACK TIME"
     "heroStats_projectileSpeed"                     "PROJECTILE SPEED"
