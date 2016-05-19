@@ -1863,8 +1863,8 @@ function Pregame:initOptionSelector()
                 -- Disable Fountain Camping
                 self:setOption('lodOptionCrazyNoCamping', 1, true)
 
-                -- Disable Universal Shop
-                self:setOption('lodOptionCrazyUniversalShop', 0, true)
+                -- Enable Universal Shop
+                self:setOption('lodOptionCrazyUniversalShop', 1, true)
 
                 -- Disable All Vision
                 self:setOption('lodOptionCrazyAllVision', 0, true)
