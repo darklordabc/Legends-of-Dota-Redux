@@ -3713,21 +3713,14 @@ function generateFormattedHeroStatsString(heroName, info) {
         heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
 
         // Health and Mana
+        heroStats += seperator;
+
         heroStats += heroStatsLine('heroStats_baseHealth', info.StatusHealth);
         heroStats += heroStatsLine('heroStats_baseHealthRegen', stringToDecimalPlaces(info.StatusHealthRegen));
         heroStats += heroStatsLine('heroStats_baseMana', info.StatusMana);
         heroStats += heroStatsLine('heroStats_baseManaRegen', stringToDecimalPlaces(info.StatusManaRegen));
-        
-        // General Hero Stats
-        heroStats += seperator;
-
-        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
-        heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
         heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
         heroStats += heroStatsLine('heroStats_magicalResistance', info.MagicalResistance);
-        heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
-        heroStats += heroStatsLine('heroStats_visionDay', info.VisionDaytimeRange);
-        heroStats += heroStatsLine('heroStats_visionNight', info.VisionNighttimeRange);
 
         // Attribute Stats
         heroStats += seperator;
@@ -3740,6 +3733,15 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         heroStats += heroStatsLine('heroStats_attributes_starting', startingAttributes, 'F9891A');
         heroStats += heroStatsLine('heroStats_attributes_perLevel', attributesPerLevel, 'F9891A');
+        
+        // General Hero Stats
+        heroStats += seperator;
+
+        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
+        heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
+        heroStats += heroStatsLine('heroStats_visionDay', info.VisionDaytimeRange);
+        heroStats += heroStatsLine('heroStats_visionNight', info.VisionNighttimeRange);
+        heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
     }
 
     // Unique Mechanics
