@@ -1154,6 +1154,7 @@ function hookHeroInfo(panel) {
 
     // Hide
     panel.SetPanelEvent('onmouseout', function() {
+        $.DispatchEvent('DOTAHideAbilityTooltip');
         $.DispatchEvent('DOTAHideTitleTextTooltip');
     });
 }
@@ -1175,6 +1176,7 @@ function hookSkillInfo(panel) {
     // Hide
     panel.SetPanelEvent('onmouseout', function() {
         $.DispatchEvent('DOTAHideAbilityTooltip');
+        $.DispatchEvent('DOTAHideTitleTextTooltip');
     });
 }
 
@@ -1644,6 +1646,7 @@ function setupBuilderTabs() {
 
                 // Hide skill info
                 $.DispatchEvent('DOTAHideAbilityTooltip');
+                $.DispatchEvent('DOTAHideTitleTextTooltip');
             });
 
             $.RegisterEventHandler('DragEnd', con, function(panelId, draggedPanel) {
@@ -2172,6 +2175,7 @@ function makeHeroSelectable(heroCon) {
         displayPanel.SetAttributeString('heroName', heroName);
 
         // Hide skill info
+        $.DispatchEvent('DOTAHideAbilityTooltip');
         $.DispatchEvent('DOTAHideTitleTextTooltip');
 
         // Highlight drop cell
@@ -2243,6 +2247,7 @@ function makeSkillSelectable(abcon) {
 
         // Hide skill info
         $.DispatchEvent('DOTAHideAbilityTooltip');
+        $.DispatchEvent('DOTAHideTitleTextTooltip');
 
         // Banning
         $('#pickingPhaseBans').SetHasClass('lodSelectedDrop', true)
