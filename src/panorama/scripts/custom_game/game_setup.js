@@ -1138,26 +1138,6 @@ function hookTabChange(tabName, callback) {
     onLoadTabHook[tabName] = callback;
 }
 
-// Makes hero info appear when you hover the panel that is parsed in
-function hookHeroInfo(panel) {
-    // Show hero info
-    panel.SetPanelEvent('onmouseover', function() {
-        var heroName = panel.GetAttributeString('heroName', '');
-        var info = heroData[heroName];
-
-        var displayNameTitle = $.Localize(heroName);
-        var heroStats = generateFormattedHeroStatsString(heroName, info);
-
-        $.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel, displayNameTitle, heroStats, "testStyle");
-    });
-
-    // Hide hero info
-    panel.SetPanelEvent('onmouseout', function() {
-        $.DispatchEvent('DOTAHideAbilityTooltip');
-        $.DispatchEvent('DOTAHideTitleTextTooltip');
-    });
-}
-
 // Makes skill info appear when you hover the panel that is parsed in
 function hookSkillInfo(panel) {
     // Show
@@ -1226,7 +1206,10 @@ function OnSelectedHeroesChanged(table_name, key, data) {
     // Was it an update on our local player?
     if(playerID == Players.GetLocalPlayer()) {
         // Update our hero icon and text
-        $('#pickingPhaseSelectedHeroImage').heroname = heroName;
+        var heroCon = $('#pickingPhaseSelectedHeroImage');
+        heroCon.SetAttributeString('heroName', heroName);
+        heroCon.heroname = heroName;
+        
         $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
 
         // Set it so no hero is selected
@@ -1694,6 +1677,9 @@ function setupBuilderTabs() {
     $.RegisterEventHandler('DragEnter', heroDropCon, heroDragEnter);
     $.RegisterEventHandler('DragLeave', heroDropCon, heroDragLeave);
 
+    // Display info about the hero on hover
+    hookHeroInfo(heroDropCon);
+
     var heroDropConBlank = $('#pickingPhaseSelectedHeroImageNone');
     $.RegisterEventHandler('DragEnter', heroDropConBlank, heroDragEnter);
     $.RegisterEventHandler('DragLeave', heroDropConBlank, heroDragLeave);
@@ -1773,7 +1759,6 @@ function buildHeroList() {
 
                 // Create the panel
                 var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
-                hookHeroInfo(newPanel);
                 newPanel.SetAttributeString('heroName', heroName);
                 newPanel.heroname = heroName;
                 newPanel.heroimagestyle = 'portrait';
@@ -2150,7 +2135,6 @@ function toggleShowDraftSkills() {
 
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
-
     heroCon.SetPanelEvent('onactivate', function() {
         var heroName = heroCon.GetAttributeString('heroName', '');
         if(heroName == null || heroName.length <= 0) return;
@@ -2209,6 +2193,29 @@ function makeHeroSelectable(heroCon) {
         if(draggedPanel.GetAttributeInt('banThis', 0) == 1) {
             banHero(heroName);
         }
+    });
+
+    // Hook the hero info display
+    hookHeroInfo(heroCon);
+}
+
+function hookHeroInfo(heroCon) {
+    // Show hero info
+    heroCon.SetPanelEvent('onmouseover', function() {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        var info = heroData[heroName];
+
+        var displayNameTitle = $.Localize(heroName);
+        var heroStats = generateFormattedHeroStatsString(heroName, info);
+
+        // Show the tip
+        $.DispatchEvent('DOTAShowTitleTextTooltipStyled', heroCon, displayNameTitle, heroStats, "testStyle");
+    });
+
+    // Hide hero info
+    heroCon.SetPanelEvent('onmouseout', function() {
+        $.DispatchEvent('DOTAHideAbilityTooltip');
+        $.DispatchEvent('DOTAHideTitleTextTooltip');
     });
 }
 
@@ -3706,8 +3713,8 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         heroStats += '<br>';
 
-        heroStats += heroStatsLine('heroStats_attributes_starting', info.AttributeBaseIntelligence + ' + ' + startingAttributes, 'F9891A');
-        heroStats += heroStatsLine('heroStats_attributes_perLevel', info.AttributeBaseIntelligence + ' + ' + attributesPerLevel, 'F9891A');
+        heroStats += heroStatsLine('heroStats_attributes_starting', startingAttributes, 'F9891A');
+        heroStats += heroStatsLine('heroStats_attributes_perLevel', attributesPerLevel, 'F9891A');
 
         // Bottom Section (Misc Info)
         heroStats += seperator;
