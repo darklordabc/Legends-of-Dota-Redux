@@ -1140,7 +1140,7 @@ function hookTabChange(tabName, callback) {
 
 // Makes hero info appear when you hover the panel that is parsed in
 function hookHeroInfo(panel) {
-    // Show
+    // Show hero info
     panel.SetPanelEvent('onmouseover', function() {
         var heroName = panel.GetAttributeString('heroName', '');
         var info = heroData[heroName];
@@ -1149,10 +1149,9 @@ function hookHeroInfo(panel) {
         var heroStats = GenerateFormattedHeroStatsString(heroName, info);
 
         $.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel, displayNameTitle, heroStats, "testStyle");
-        //$.DispatchEvent('DOTAShowHeroStatsTooltip', string heroName, uint8 styleIndex, int32 heroID);
     });
 
-    // Hide
+    // Hide hero info
     panel.SetPanelEvent('onmouseout', function() {
         $.DispatchEvent('DOTAHideAbilityTooltip');
         $.DispatchEvent('DOTAHideTitleTextTooltip');
