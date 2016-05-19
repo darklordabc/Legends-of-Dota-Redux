@@ -1146,7 +1146,7 @@ function hookHeroInfo(panel) {
         var info = heroData[heroName];
 
         var displayNameTitle = $.Localize(heroName);
-        var heroStats = GenerateFormattedHeroStatsString(heroName, info);
+        var heroStats = generateFormattedHeroStatsString(heroName, info);
 
         $.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel, displayNameTitle, heroStats, "testStyle");
     });
@@ -3658,7 +3658,16 @@ function OnTeamPlayerListChanged() {
 //--------------------------------------------------------------------------------------------------
 //Generate formatted string of Hero stats from sent
 //--------------------------------------------------------------------------------------------------
-function GenerateFormattedHeroStatsString( heroName, info ) {
+function heroStatsLine(lineName, value, color, color2) {
+    // Ensure we have a color
+    if(color == null) color = 'FFFFFF';
+    if(color2 == null) color2 = '7C7C7C';
+
+    // Create the line
+    return '<font color=\'#' + color + '\'>' + $.Localize(lineName) + ':</font> <font color=\'#' + color2 + '\'>' + value + '</font><br>';
+}
+
+function generateFormattedHeroStatsString(heroName, info) {
     // Will contain hero stats
     var heroStats = '';
 
@@ -3674,34 +3683,44 @@ function GenerateFormattedHeroStatsString( heroName, info ) {
         // Top section (base stats)
         heroStats += seperator;
 
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_Damage') + ':</font> <font color=\'#7C7C7C\'>' + info.AttackDamageMin + '-' + info.AttackDamageMax + '</font><br>';
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_Armor') + ':</font> <font color=\'#67F286\'>' + '</font><br>';
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_attackPoints') + ':</font> <font color=\'#67F286\'>' + '</font><br>';
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_baseAttackTime') + ':</font> <font color=\'#7C7C7C\'>' + parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1) + '</font><br>';
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_baseHPRegen') + ': ' + '</font><br>';
+        heroStats += heroStatsLine('heroStats_Damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
+        heroStats += heroStatsLine('heroStats_Armor', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_attackPoints', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_baseAttackTime', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
+        heroStats += heroStatsLine('heroStats_baseHPRegen', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
         
         // Middle Section (Attributes)
         heroStats += seperator;
 
-        heroStats += ((info.AttributePrimary == 'DOTA_ATTRIBUTE_STRENGTH') ? '<font color=\'#FF3939\'>' : '<font color=\'#B6E002\'>') + $.Localize('heroStats_strength') + ':</font> <font color=\'#7C7C7C\'>' + info.AttributeBaseStrength + ' + ' + parseFloat(Math.round(info.AttributeStrengthGain * 10) / 10).toFixed(1) + '</font><br>';
-        heroStats += ((info.AttributePrimary == 'DOTA_ATTRIBUTE_AGILITY') ? '<font color=\'#FF3939\'>' : '<font color=\'#B6E002\'>') + $.Localize('heroStats_agility') + ':</font> <font color=\'#7C7C7C\'>' + info.AttributeBaseAgility + ' + ' + parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1) + '</font><br>';
-        heroStats += ((info.AttributePrimary == 'DOTA_ATTRIBUTE_INTELLECT') ? '<font color=\'#FF3939\'>' : '<font color=\'#B6E002\'>') + $.Localize('heroStats_intelligence') + ':</font> <font color=\'#7C7C7C\'>' + info.AttributeBaseIntelligence + ' + ' + parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1) + '</font><br>';
+        var strColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_STRENGTH' ? 'FF3939' : 'FFFFFF';
+        var agiColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_AGILITY' ? 'FF3939' : 'FFFFFF';
+        var intColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_INTELLECT' ? 'FF3939' : 'FFFFFF';
+
+        var strGain = parseFloat(Math.round(info.AttributeStrengthGain * 10) / 10).toFixed(1);
+        var agiGain = parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1);
+        var intGain = parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1);
+
+        heroStats += heroStatsLine('heroStats_strength', info.AttributeBaseStrength + ' + ' + strGain, strColor);
+        heroStats += heroStatsLine('heroStats_agility', info.AttributeBaseAgility + ' + ' + agiGain, agiColor);
+        heroStats += heroStatsLine('heroStats_intelligence', info.AttributeBaseIntelligence + ' + ' + intGain, intColor);
+
         heroStats += '<br>';
 
-        heroStats += '<font color=\'#F9891A\'>' + $.Localize('heroStats_attributes_starting') + ':</font> <font color=\'#7C7C7C\'>' + startingAttributes + '</font><br>';
-        heroStats += '<font color=\'#F9891A\'>' + $.Localize('heroStats_attributes_perLevel') + ':</font> <font color=\'#7C7C7C\'>' + attributesPerLevel + '</font><br>';
+        heroStats += heroStatsLine('heroStats_attributes_starting', info.AttributeBaseIntelligence + ' + ' + startingAttributes, 'F9891A');
+        heroStats += heroStatsLine('heroStats_attributes_perLevel', info.AttributeBaseIntelligence + ' + ' + attributesPerLevel, 'F9891A');
 
         // Bottom Section (Misc Info)
-        heroStats += '<font color=\'#FFFFFF\'>____________________________________</font><br>';
+        heroStats += seperator;
 
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_attackRange') + ':</font> <font color=\'#7C7C7C\'>' + info.AttackRange + '</font><br>';
-        heroStats += '<font color=\'#FFFFFF\'>' + $.Localize('heroStats_movementSpeed') + ':</font> <font color=\'#7C7C7C\'>' + info.MovementSpeed + '</font><br>';   
+        heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
+        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed); 
     }
 
     // Unique Mechanics
-    if($.Localize("unique_mechanic_" + heroName.substring(14)) != "unique_mechanic_" + heroName.substring(14)){
-        var warning = $.Localize('warning_' + heroName.substring(14));
-        heroStats += '<br><font color=\'#23FF27\'>' + $.Localize('heroStats_uniqueMechanic') + ':</font> <font color=\'#70EA72\'>' + $.Localize('unique_mechanic_' + heroName.substring(14)) + '</font><br>';
+    var heroMechanic = $.Localize("unique_mechanic_" + heroName.substring(14));
+    if(heroMechanic != "unique_mechanic_" + heroName.substring(14)) {
+        heroStats += '<br>';
+        heroStats += heroStatsLine('heroStats_uniqueMechanic', heroMechanic, '23FF27', '70EA72');
     }
 
     return heroStats;
