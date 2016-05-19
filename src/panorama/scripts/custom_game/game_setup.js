@@ -1209,7 +1209,7 @@ function OnSelectedHeroesChanged(table_name, key, data) {
         var heroCon = $('#pickingPhaseSelectedHeroImage');
         heroCon.SetAttributeString('heroName', heroName);
         heroCon.heroname = heroName;
-        
+
         $('#pickingPhaseSelectedHeroText').text = $.Localize(heroName);
 
         // Set it so no hero is selected
@@ -3687,25 +3687,27 @@ function generateFormattedHeroStatsString(heroName, info) {
         var attributesPerLevel = info.AttributeStrengthGain + info.AttributeAgilityGain + info.AttributeIntelligenceGain;
         attributesPerLevel = parseFloat(Math.round(attributesPerLevel * 10) / 10).toFixed(1);
 
+        // Pick the colors for primary attribute
+        var strColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_STRENGTH' ? 'FF3939' : 'FFFFFF';
+        var agiColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_AGILITY' ? 'FF3939' : 'FFFFFF';
+        var intColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_INTELLECT' ? 'FF3939' : 'FFFFFF';
+
+        // Calculate our stat gain
+        var strGain = parseFloat(Math.round(info.AttributeStrengthGain * 10) / 10).toFixed(1);
+        var agiGain = parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1);
+        var intGain = parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1);
+
         // Top section (base stats)
         heroStats += seperator;
 
         heroStats += heroStatsLine('heroStats_Damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
         heroStats += heroStatsLine('heroStats_Armor', info.ArmorPhysical);
-        heroStats += heroStatsLine('heroStats_attackPoints', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_attackPoints', info.AttackAnimationPoint);
         heroStats += heroStatsLine('heroStats_baseAttackTime', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
         heroStats += heroStatsLine('heroStats_baseHPRegen', parseFloat(Math.round(info.AttackRate * 10) / 10).toFixed(1));
         
         // Middle Section (Attributes)
         heroStats += seperator;
-
-        var strColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_STRENGTH' ? 'FF3939' : 'FFFFFF';
-        var agiColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_AGILITY' ? 'FF3939' : 'FFFFFF';
-        var intColor = info.AttributePrimary == 'DOTA_ATTRIBUTE_INTELLECT' ? 'FF3939' : 'FFFFFF';
-
-        var strGain = parseFloat(Math.round(info.AttributeStrengthGain * 10) / 10).toFixed(1);
-        var agiGain = parseFloat(Math.round(info.AttributeAgilityGain * 10) / 10).toFixed(1);
-        var intGain = parseFloat(Math.round(info.AttributeIntelligenceGain * 10) / 10).toFixed(1);
 
         heroStats += heroStatsLine('heroStats_strength', info.AttributeBaseStrength + ' + ' + strGain, strColor);
         heroStats += heroStatsLine('heroStats_agility', info.AttributeBaseAgility + ' + ' + agiGain, agiColor);

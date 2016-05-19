@@ -873,6 +873,7 @@ function Pregame:networkHeroes()
                 AttackDamageMax = heroValues.AttackDamageMax,
                 AttackRate = heroValues.AttackRate,
                 AttackRange = heroValues.AttackRange,
+                AttackAnimationPoint = AttackAnimationPoint,
                 MovementSpeed = heroValues.MovementSpeed,
                 AttributeBaseStrength = heroValues.AttributeBaseStrength,
                 AttributeStrengthGain = heroValues.AttributeStrengthGain,
