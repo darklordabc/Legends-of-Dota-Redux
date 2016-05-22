@@ -482,7 +482,7 @@
     "warning_invoker_sun_strike_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_tornado_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
-    "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font>" or <font color=\"#70EA72\">Echo Stomp</font>", unless you also have it."
+    "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>", unless you also have it."
     "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
