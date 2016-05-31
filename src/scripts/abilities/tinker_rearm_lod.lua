@@ -27,14 +27,15 @@ function rearm_refresh_cooldown( keys )
 	
 	-- Put item exemption in here
 	local exempt_table = { 
-        item_recipe_black_king_bar = true,
-        item_recipe_arcane_boots = true,
-        item_helm_of_the_dominator = true,
-        item_refresher = true,
-        item_sphere = true,
-        item_bottle = true,
-        item_recipe_necronomicon = true
-    }
+	   item_black_king_bar = true,
+	   item_arcane_boots = true,
+	   item_hand_of_midas = true,
+	   item_helm_of_the_dominator = true,
+	   item_refresher = true,
+	   item_sphere = true,
+	   item_bottle = true,
+	   item_recipe_necronomicon = true
+	}
 	
 	-- Reset cooldown for items
 	for i = 0, 5 do
