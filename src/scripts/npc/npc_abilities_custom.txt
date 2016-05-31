@@ -2311,7 +2311,7 @@
 		
 			"RunScript"
 			{
-				"ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm.lua"
+				"ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
 				"Function"			"rearm_start"
 			}
 		}
@@ -2341,7 +2341,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm.lua"
+				"ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
 				"Function"			"rearm_refresh_cooldown"
 			}
 		}
