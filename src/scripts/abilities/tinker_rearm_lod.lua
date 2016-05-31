@@ -34,8 +34,8 @@ function rearm_refresh_cooldown( keys )
 	   item_refresher = true,
 	   item_sphere = true,
 	   item_bottle = true,
-	   item_necronomicon = true
-	   item_necronomicon_2 = true
+	   item_necronomicon = true,
+	   item_necronomicon_2 = true,
 	   item_necronomicon_3 = true
 	}
 	
