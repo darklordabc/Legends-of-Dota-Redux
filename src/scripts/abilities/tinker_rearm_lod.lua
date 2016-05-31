@@ -34,7 +34,7 @@ function rearm_refresh_cooldown( keys )
 	   item_refresher = true,
 	   item_sphere = true,
 	   item_bottle = true,
-	   item_recipe_necronomicon = true
+	   item_necronomicon = true
 	}
 	
 	-- Reset cooldown for items
