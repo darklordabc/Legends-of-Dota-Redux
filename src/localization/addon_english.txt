@@ -845,6 +845,24 @@
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
 
+    // Essence Shift
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note0"						"Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"						"STRENGTH GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"						"DURATION:"
+
+    // Essence Shift
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intellect."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"						"Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLECT GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
