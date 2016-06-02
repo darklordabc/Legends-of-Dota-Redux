@@ -2246,7 +2246,232 @@
             }
         }
     }
+    // Rewrite of Slark's Essence Shift
+    // Author: Rook
+    // Date: January 28, 2015
 
+    "slark_essence_shift_strength_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "slark_essence_shift"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "str_gain"              "3"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stat_loss"             "-1"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "15 30 60 120"
+            }
+        }
+
+
+        "Modifiers"
+        {
+            "modifier_slark_essence_shift_strength_datadriven"  //This modifier is always on Slark and simply triggers a script when an autoattack lands on an enemy.
+            {
+                "Passive"   "1"
+                "IsHidden"  "1"
+
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_strength_datadriven_on_attack_landed"
+                        "StatLoss"                  "%stat_loss"
+                    }
+                }
+            }
+            "modifier_slark_essence_shift_strength_datadriven_buff_counter"  //A visible counter that will appear in Slark's modifier bar.
+            {
+                "Duration"          "%duration"
+                "Passive"           "0"
+                "IsHidden"          "0"
+            }
+            "modifier_slark_essence_shift_strength_datadriven_debuff_counter"  //A visible counter that will appear in Slark's target's modifier bar.
+            {
+                "Duration"          "%duration"
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "0"
+            }
+            "modifier_slark_essence_shift_strength_datadriven_buff"
+            {
+                "Duration"              "%duration"
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"     "%str_gain"
+                }
+
+                "OnDestroy"  //Decrement the visible counter.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_strength_datadriven_buff_on_destroy"
+                    }
+                }
+            }
+            "modifier_slark_essence_shift_strength_datadriven_debuff"
+            {
+                "Duration"              "%duration"
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
+                }
+
+                "OnDestroy"  //Decrement the visible counter.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy"
+                    }
+                }
+            }
+        }
+    }
+    // Rewrite of Slark's Essence Shift
+    // Author: Rook
+    // Date: January 28, 2015
+
+    "slark_essence_shift_intellect_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "slark_essence_shift"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "int_gain"              "3"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stat_loss"             "-1"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "15 30 60 120"
+            }
+        }
+
+
+        "Modifiers"
+        {
+            "modifier_slark_essence_shift_intellect_datadriven"  //This modifier is always on Slark and simply triggers a script when an autoattack lands on an enemy.
+            {
+                "Passive"   "1"
+                "IsHidden"  "1"
+
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_intellect_datadriven_on_attack_landed"
+                        "StatLoss"                  "%stat_loss"
+                    }
+                }
+            }
+            "modifier_slark_essence_shift_intellect_datadriven_buff_counter"  //A visible counter that will appear in Slark's modifier bar.
+            {
+                "Duration"          "%duration"
+                "Passive"           "0"
+                "IsHidden"          "0"
+            }
+            "modifier_slark_essence_shift_intellect_datadriven_debuff_counter"  //A visible counter that will appear in Slark's target's modifier bar.
+            {
+                "Duration"          "%duration"
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "0"
+            }
+            "modifier_slark_essence_shift_intellect_datadriven_buff"
+            {
+                "Duration"              "%duration"
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"     "%int_gain"
+                }
+
+                "OnDestroy"  //Decrement the visible counter.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_intellect_datadriven_buff_on_destroy"
+                    }
+                }
+            }
+            "modifier_slark_essence_shift_intellect_datadriven_debuff"
+            {
+                "Duration"              "%duration"
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
+                }
+
+                "OnDestroy"  //Decrement the visible counter.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "Function"                  "modifier_slark_essence_shift_intellect_datadriven_debuff_on_destroy"
+                    }
+                }
+            }
+        }
+    }    
     //=================================================================================================================
     // Dummy unit spell -- Taken from reflex github.com/bmddota/reflexdota
     //=================================================================================================================
