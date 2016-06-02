@@ -2257,8 +2257,7 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityTextureName"            "slark_essence_shift"
-
+        "AbilityTextureName"            "slark_essence_shift_strength_lod"
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
@@ -2370,7 +2369,7 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityTextureName"            "slark_essence_shift"
+        "AbilityTextureName"            "slark_essence_shift_intellect_lod"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
