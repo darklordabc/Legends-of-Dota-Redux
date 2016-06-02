@@ -2302,6 +2302,11 @@
                 "Duration"          "%duration"
                 "Passive"           "0"
                 "IsHidden"          "0"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"     "%str_gain"
+                }
             }
             "modifier_slark_essence_shift_strength_datadriven_debuff_counter"  //A visible counter that will appear in Slark's target's modifier bar.
             {
@@ -2311,6 +2316,14 @@
                 "IsBuff"            "0"
                 "IsDebuff"          "1"
                 "IsPurgable"        "0"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
+                }
             }
             "modifier_slark_essence_shift_strength_datadriven_buff"
             {
@@ -2318,11 +2331,6 @@
                 "Passive"               "0"
                 "IsHidden"              "1"
                 "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"     "%str_gain"
-                }
 
                 "OnDestroy"  //Decrement the visible counter.
                 {
@@ -2339,13 +2347,6 @@
                 "Passive"               "0"
                 "IsHidden"              "1"
                 "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
-                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
-                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
-                }
 
                 "OnDestroy"  //Decrement the visible counter.
                 {
@@ -2415,7 +2416,13 @@
                 "Duration"          "%duration"
                 "Passive"           "0"
                 "IsHidden"          "0"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"     "%int_gain"
+                }
             }
+            
             "modifier_slark_essence_shift_intellect_datadriven_debuff_counter"  //A visible counter that will appear in Slark's target's modifier bar.
             {
                 "Duration"          "%duration"
@@ -2424,7 +2431,17 @@
                 "IsBuff"            "0"
                 "IsDebuff"          "1"
                 "IsPurgable"        "0"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
+                }
+
             }
+            
             "modifier_slark_essence_shift_intellect_datadriven_buff"
             {
                 "Duration"              "%duration"
@@ -2432,10 +2449,6 @@
                 "IsHidden"              "1"
                 "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
 
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"     "%int_gain"
-                }
 
                 "OnDestroy"  //Decrement the visible counter.
                 {
@@ -2452,13 +2465,6 @@
                 "Passive"               "0"
                 "IsHidden"              "1"
                 "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
-                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
-                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
-                }
 
                 "OnDestroy"  //Decrement the visible counter.
                 {
