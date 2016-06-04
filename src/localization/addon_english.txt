@@ -492,6 +492,7 @@
 	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"
 	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
 	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
+    "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> This version of multicast is the standard version of multicast that ONLY works on Ogre Magi's abilities."
 
     /////////////////
     // CUSTOM ABILITIES
@@ -873,7 +874,7 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intellect."
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_TOOLTIP% of each attribute."
-                
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
