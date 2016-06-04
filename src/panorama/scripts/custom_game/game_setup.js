@@ -473,6 +473,22 @@ var allOptions = {
                 ]
             },
             {
+                name: 'lodOptionAdvancedCustomSkills',
+                des: 'lodOptionDesAdvancedCustomSkills',
+                about: 'lodOptionAboutAdvancedCustomSkills',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
                 about: 'lodOptionAboutAdvancedHidePicks',
@@ -2871,7 +2887,8 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
-            'wraith'
+            'wraith',
+            'custom'
         ];
 
         // Used to store tabs to highlight them correctly
@@ -3707,7 +3724,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         heroStats += heroStatsLine('heroStats_damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
         heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
-        
+
         heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
         heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
         heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
@@ -3733,7 +3750,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         heroStats += heroStatsLine('heroStats_attributes_starting', startingAttributes, 'F9891A');
         heroStats += heroStatsLine('heroStats_attributes_perLevel', attributesPerLevel, 'F9891A');
-        
+
         // General Hero Stats
         heroStats += seperator;
 
@@ -4138,6 +4155,10 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedNeutralWraithNight'] == 1) {
         allowedCategories['wraith'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
+        allowedCategories['custom'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {

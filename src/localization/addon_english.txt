@@ -180,6 +180,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedWraithNight"               "Allow Wraith Night Abilities"
+    "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
@@ -254,6 +255,7 @@
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
     "lodOptionAboutAdvancedWraithNight"             "Players are allowed to select wraith night abilities."
+    "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom LoD abilities."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
     "lodOptionAboutAdvancedUniqueHeroes"            "Players will not be able to select the same hero."
@@ -280,7 +282,7 @@
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Elazor and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
-    
+
     // Hero builder
     "finishBanning"                                 "Finish Banning"
     "unlockBuild"                                   "Unlock Build"
@@ -401,7 +403,7 @@
     "statAbandonLastHour"                           "About {0} minutes ago"
     "statAbandonLessThanDay"                        "About {0} hours ago"
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
-	
+
 	//Hero Stats
 
     "heroStats_damage"                              "DAMAGE"
@@ -444,7 +446,7 @@
     "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
     "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
-	
+
     /////////////////
     // Skill Warnings
     ////////////////
@@ -486,8 +488,8 @@
     "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
-	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."	
-	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"	
+	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."
+	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"
 	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
 	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
 
