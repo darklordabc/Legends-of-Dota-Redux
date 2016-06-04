@@ -52,6 +52,14 @@ Legends of Dota
  - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
  - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
 
+###Coding Style Guide###
+ - All variables and functions should be written in camera case, with the first letter being lowercase, and seperate words starting with uppercase
+  - someVariableName is acceptable, some_variable_name and SomeVariableName are not acceptable
+  - There are some instances where this rule has generally been broken, this was by mistake, before LoD had a well defined style
+ - All code should be thread safe
+  - If you make a call to an async function, ensure you check that the resources you want to access are still valid once the callback happens, this is usually needed when timers are used to process something on a unit after a short delay
+ - Do not put credits or your name in code, the commit log will have your name, as well as the blame section of GitHub
+
 ###Can I translate this into my language?###
  - Yes!
  - Open `src/localization/addon_<your langage>.txt`

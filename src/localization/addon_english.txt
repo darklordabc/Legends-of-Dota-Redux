@@ -180,6 +180,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedWraithNight"               "Allow Wraith Night Abilities"
+    "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
@@ -254,6 +255,7 @@
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
     "lodOptionAboutAdvancedWraithNight"             "Players are allowed to select wraith night abilities."
+    "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom LoD abilities."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
     "lodOptionAboutAdvancedUniqueHeroes"            "Players will not be able to select the same hero."
@@ -280,7 +282,7 @@
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Elazor and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
-    
+
     // Hero builder
     "finishBanning"                                 "Finish Banning"
     "unlockBuild"                                   "Unlock Build"
@@ -326,6 +328,7 @@
     "lodCategory_neutral"                           "Neutral Abilities"
     "lodCategory_wraith"                            "Wraith Night Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
+    "lodCategory_custom"                            "Custom Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."
@@ -401,7 +404,7 @@
     "statAbandonLastHour"                           "About {0} minutes ago"
     "statAbandonLessThanDay"                        "About {0} hours ago"
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
-	
+
 	//Hero Stats
 
     "heroStats_damage"                              "DAMAGE"
@@ -444,7 +447,7 @@
     "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
     "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
-	
+
     /////////////////
     // Skill Warnings
     ////////////////
@@ -486,10 +489,12 @@
     "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
-	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."	
-	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"	
+	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."
+	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"
 	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
 	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
+    "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> This version of multicast is the standard version of multicast that ONLY works on Ogre Magi's abilities."
+    "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled."
 
     /////////////////
     // CUSTOM ABILITIES
@@ -573,7 +578,7 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation time."
 
     // Ogre Magi
-    "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast"
+    "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast LoD"
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Description"                      "Gives a chance to cast a spell multiple times in one cast.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Lore"                             "Despite being largely incapacitated by his IQ, the Ogre Magi's success in battle is attributed to pure skill."
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_multicast_2_times"                "%2X CHANCE:"
@@ -851,6 +856,33 @@
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
+
+    // Essence Shift
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note0"						"Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"						"STRENGTH GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"						"DURATION:"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength."
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_TOOLTIP% of each attribute."
+
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intellect"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intellect."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"						"Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLECT GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intellect."
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_TOOLTIP% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
