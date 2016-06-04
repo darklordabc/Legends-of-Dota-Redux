@@ -493,6 +493,7 @@
 	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
 	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
     "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> This version of multicast is the standard version of multicast that ONLY works on Ogre Magi's abilities."
+    "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled."
 
     /////////////////
     // CUSTOM ABILITIES
@@ -576,7 +577,7 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation time."
 
     // Ogre Magi
-    "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast"
+    "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast LoD"
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Description"                      "Gives a chance to cast a spell multiple times in one cast.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Lore"                             "Despite being largely incapacitated by his IQ, the Ogre Magi's success in battle is attributed to pure skill."
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_multicast_2_times"                "%2X CHANCE:"
