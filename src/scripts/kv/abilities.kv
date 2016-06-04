@@ -351,7 +351,6 @@
                   "slardar_slithereen_crush"  "348"
                   "slardar_sprint"    "349"
                   "slark_dark_pact"   "350"
-                  "slark_essence_shift"   "351"
                   "slark_pounce"  "352"
                   "slark_shadow_dance"    "353"
                   "sniper_assassinate"    "354"
@@ -517,6 +516,9 @@
 
                   // Aftershock
                   "earthshaker_aftershock"    "487"
+
+                  // Essence Shift
+                  "slark_essence_shift"   "351"
             }
 
             // The neutrals skills
@@ -598,6 +600,12 @@
                   "holdout_omnislash" "705"
                   //"holdout_scourge_ward"  "706"
                   "zuus_thundergods_vengeance"    "707"
+            }
+
+            // The custom skills in LoD
+            "custom" {
+                  "slark_essence_shift_strength_lod"   "488"
+                  "slark_essence_shift_intellect_lod"   "489"
             }
       }
 
@@ -1271,7 +1279,7 @@
                   "hero_388"    "slark"
                   "388"   "slark_dark_pact"
                   "389"   "slark_pounce"
-                  "390"   "slark_essence_shift"
+                  "390"   "slark_essence_shift||slark_essence_shift_intellect_lod||slark_essence_shift_strength_lod"
                   "391"   "slark_shadow_dance"
 
                   // Queen of Pain
@@ -1660,6 +1668,15 @@
                   "Ability4"  "earthshaker_aftershock_lod"
                   "Ability5"  "earthshaker_echo_slam"
             }
+
+            "npc_dota_hero_slark" {
+                  "Ability1" "slark_dark_pact"
+                  "Ability2" "slark_pounce"
+                  "Ability3" "slark_essence_shift"
+                  "Ability4" "slark_essence_shift_intellect_lod"
+                  "Ability5" "slark_essence_shift_strength_lod"
+                  "Ability6" "slark_shadow_dance"
+           }
       }
 
       // This is the order tabs will appear in the GUI
