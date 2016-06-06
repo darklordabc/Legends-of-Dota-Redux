@@ -2316,7 +2316,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_TOOLTIP"                     "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
@@ -2431,7 +2430,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_TOOLTIP"                     "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
