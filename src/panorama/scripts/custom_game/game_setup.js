@@ -964,7 +964,8 @@ var currentSelectedSlot = -1;
 var currentSelectedAbCon = null;
 
 // List of all player team panels
-var allPlayerPanels = [];
+//var allPlayerPanels = [];
+var activeUnassignedPanels = {};
 var activePlayerPanels = {};
 var activeReviewPanels = {};
 
@@ -1246,6 +1247,10 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 
     if(activeReviewPanels[playerID]) {
         activeReviewPanels[playerID].OnGetHeroData(heroName);
+
+        if(currentPhase == PHASE_REVIEW) {
+            activeReviewPanels[playerID].OnReviewPhaseStart();
+        }
     }
 }
 
@@ -1463,10 +1468,9 @@ function OnGetRandomBuilds(table_name, key, data) {
         // It's our data!
         var builds = data.builds;
 
-        var con = $('#allRandomBuildsContainer');
+        // ASSUMPTION: This event will only fire ONCE!
 
-        // Clear out any current builds
-        con.RemoveAndDeleteChildren();
+        var con = $('#allRandomBuildsContainer');
 
         for(var buildID in builds) {
             var theBuild = builds[buildID];
@@ -1762,9 +1766,6 @@ function buildHeroList() {
     }
 
     function doInsertHeroes(container, heroList) {
-        // Cleanup container
-        container.RemoveAndDeleteChildren();
-
         // Sort the hero list
         heroList.sort();
 
@@ -2432,9 +2433,6 @@ function OnMainSelectionTabShown() {
         // The  container to work with
         var con = $('#pickingPhaseRecommendedBuildContainer');
 
-        // Cleanup the current builds
-        con.RemoveAndDeleteChildren();
-
         for(var i=0; i<recommendedBuilds.length; ++i) {
             var build = recommendedBuilds[i];
 
@@ -2633,7 +2631,6 @@ function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
         // Empty the skills tab
         var con = $('#pickingPhaseSkillTabContentSkills');
-        con.RemoveAndDeleteChildren();
 
         // Used to provide unique handles
         var unqiueCounter = 0;
@@ -3036,12 +3033,30 @@ function addUnassignedPlayer(playerID) {
     if (unassignedPlayersContainerNode == null) return;
 
     // Create the new panel
-    var newPlayerPanel = $.CreatePanel('Panel', unassignedPlayersContainerNode, 'unassignedPlayer');
-    newPlayerPanel.SetAttributeInt('playerID', playerID);
-    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/unassigned_player.xml', false, false);
+    var newPlayerPanel = activeUnassignedPanels[playerID];
+
+    if(newPlayerPanel == null) {
+        newPlayerPanel = $.CreatePanel('Panel', unassignedPlayersContainerNode, 'unassignedPlayer');
+        newPlayerPanel.SetAttributeInt('playerID', playerID);
+        newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/unassigned_player.xml', false, false);
+    } else {
+        newPlayerPanel.visible = true;
+    }
+
+    // Store it
+    activeUnassignedPanels[playerID] = newPlayerPanel;
+
+    // Do we need to hide the team panel?
+    if(activePlayerPanels[playerID] != null) {
+        activePlayerPanels[playerID].visible = false;
+    }
+
+    if(activeReviewPanels[playerID] != null) {
+        activeReviewPanels[playerID].visible = false;
+    }
 
     // Add this panel to the list of panels we've generated
-    allPlayerPanels.push(newPlayerPanel);
+    //allPlayerPanels.push(newPlayerPanel);
 }
 
 // Adds a player to a team
@@ -3049,15 +3064,27 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     // Validate the panel
     if(panel == null || reviewContainer == null) return;
 
+    // Hide the unassigned container
+    if(activeUnassignedPanels[playerID] != null) {
+        activeUnassignedPanels[playerID].visible = false;
+    }
+
     /*
         Create the panel at the top of the screen
     */
 
-    // Create the new panel
-    var newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
-    newPlayerPanel.SetAttributeInt('playerID', playerID);
-    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, makeHeroSelectable);
+    // Create the new panel if we need one
+    var newPlayerPanel = activePlayerPanels[playerID];
+
+    if(newPlayerPanel == null) {
+        newPlayerPanel = $.CreatePanel('Panel', panel, 'teamPlayer' + playerID);
+        newPlayerPanel.SetAttributeInt('playerID', playerID);
+        newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player.xml', false, false);
+        newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, makeHeroSelectable);
+    } else {
+        newPlayerPanel.SetParent(panel);
+        newPlayerPanel.visible = true;
+    }
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
@@ -3086,7 +3113,7 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     }
 
     // Add this panel to the list of panels we've generated
-    allPlayerPanels.push(newPlayerPanel);
+    //allPlayerPanels.push(newPlayerPanel);
     activePlayerPanels[playerID] = newPlayerPanel;
 
     /*
@@ -3094,10 +3121,17 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     */
 
     // Create the new panel
-    var newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
-    newPlayerPanel.SetAttributeInt('playerID', playerID);
-    newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
-    newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer(), shouldMakeSmall);
+    var newPlayerPanel = activeReviewPanels[playerID];
+
+    if(newPlayerPanel == null) {
+        newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
+        newPlayerPanel.SetAttributeInt('playerID', playerID);
+        newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
+        newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer(), shouldMakeSmall);
+    } else {
+        newPlayerPanel.SetParent(reviewContainer);
+        newPlayerPanel.visible = true;
+    }
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
@@ -3108,6 +3142,10 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     // Check for hero icon
     if(selectedHeroes[playerID] != null) {
         newPlayerPanel.OnGetHeroData(selectedHeroes[playerID]);
+
+        if(currentPhase == PHASE_REVIEW) {
+            newPlayerPanel.OnReviewPhaseStart();
+        }
     }
 
     // Check for skill data
@@ -3126,7 +3164,7 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
     }
 
     // Add this panel to the list of panels we've generated
-    allPlayerPanels.push(newPlayerPanel);
+    //allPlayerPanels.push(newPlayerPanel);
     activeReviewPanels[playerID] = newPlayerPanel;
 }
 
@@ -3135,10 +3173,6 @@ function buildOptionsCategories() {
     // Grab the main container for option categories
     var catContainer = $('#optionCategories');
     var optionContainer = $('#optionList');
-
-    // Delete any children
-    catContainer.RemoveAndDeleteChildren();
-    optionContainer.RemoveAndDeleteChildren();
 
     // Reset option links
     allOptionLinks = {};
@@ -3232,7 +3266,6 @@ function buildOptionsCategories() {
                             // Create the drop down
                             hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
                             hostPanel.AddClass('optionsSlotPanelHost');
-                            hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
 
                             // Maps values to panels
                             var valueToPanel = {};
@@ -3371,63 +3404,6 @@ function buildOptionsCategories() {
                             optionFieldMap[fieldName] = function(newValue) {
                                 onGetNewSliderValue(newValue, false);
                             }
-
-                            //hostPanel.AddClass('optionsSlotPanelHost');
-                            //hostPanel.AccessDropDownMenu().RemoveAndDeleteChildren();
-
-                            // Maps values to panels
-                            /*var valueToPanel = {};
-
-                            for(var j=0; j<values.length; ++j) {
-                                var valueInfo = values[j];
-                                var fieldText = valueInfo.text;
-                                var fieldValue = valueInfo.value;
-
-                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
-                                subPanel.text = $.Localize(fieldText);
-                                //subPanel.SetAttributeString('fieldText', fieldText);
-                                subPanel.SetAttributeInt('fieldValue', fieldValue);
-                                hostPanel.AddOption(subPanel);
-
-                                // Store the map
-                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
-
-                                if(j == values.length-1) {
-                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
-                                }
-                            }*/
-
-                            // Mapping function
-                            /*optionFieldMap[fieldName] = function(newValue) {
-                                for(var i=0; i<values.length; ++i) {
-                                    var valueInfo = values[i];
-                                    var fieldText = valueInfo.text;
-                                    var fieldValue = valueInfo.value;
-
-                                    if(fieldValue == newValue) {
-                                        var thePanel = valueToPanel[fieldValue];
-                                        if(thePanel) {
-                                            // Select that panel
-                                            hostPanel.SetSelected(thePanel);
-
-                                            // Update text
-                                            slavePanel.text = $.Localize(fieldText);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }*/
-
-                            // When the data changes
-                            /*hostPanel.SetPanelEvent('oninputsubmit', function() {
-                                // Grab the selected one
-                                var selected = hostPanel.GetSelected();
-                                //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
-
-                                // Sets an option
-                                setOption(fieldName, fieldValue);
-                            });*/
                         break;
 
                         case 'toggle':
@@ -3578,30 +3554,6 @@ function onJoinUnassignedPressed() {
 
 // Does the actual update
 function doActualTeamUpdate() {
-    // Kill all of the old panels
-    for(var i=0; i<allPlayerPanels.length; ++i) {
-        // Grab the panel
-        var panel = allPlayerPanels[i];
-
-        // Kill the panel
-        panel.DeleteAsync(0);
-    }
-    allPlayerPanels = [];
-    activePlayerPanels = {};
-
-    $('#theRadiantContainer').RemoveAndDeleteChildren();
-    $('#reviewRadiantTeam').RemoveAndDeleteChildren();
-    $('#theDireContainer').RemoveAndDeleteChildren();
-    $('#reviewDireTeam').RemoveAndDeleteChildren();
-    $('#unassignedPlayersContainer').RemoveAndDeleteChildren();
-
-    // Move all existing player panels back to the unassigned player list
-    /*for ( var i = 0; i < g_PlayerPanels.length; ++i )
-    {
-        var playerPanel = g_PlayerPanels[ i ];
-        playerPanel.SetParent( unassignedPlayersContainerNode );
-    }*/
-
     // Create a panel for each of the unassigned players
     var unassignedPlayers = Game.GetUnassignedPlayerIDs();
     for(var i=0; i<unassignedPlayers.length; ++i) {
@@ -3867,6 +3819,11 @@ function OnPhaseChanged(table_name, key, data) {
                 if(!seenPopupMessages.skillReviewInfo) {
                     seenPopupMessages.skillReviewInfo = true;
                     showPopupMessage('lodReviewMessage');
+                }
+
+                // Load all hero images
+                for(var playerID in activeReviewPanels) {
+                    activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
             }
         break;

@@ -8,6 +8,12 @@ var makeSkillSelectable = function(){};
 // Should we make everything small?
 var shouldMakeSmall = false;
 
+// The hero that we are
+var ourHeroName = null;
+
+// Have we already loaded our hero model?
+var loadedHeroModel = false;
+
 // When player details are changed
 function OnPlayerDetailsChanged() {
     var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
@@ -43,21 +49,31 @@ function OnPlayerDetailsChanged() {
 
 // When we get hero data
 function OnGetHeroData(heroName) {
-	// Show the actual hero icon
-	var mainPanel = $.GetContextPanel();
-	mainPanel.SetHasClass('no_hero_selected', false);
+    // Store our hero name
+    ourHeroName = heroName;
+}
 
-	// Put the hero image in place
-    var con = $('#reviewPhaseHeroImageContainer');
-    con.RemoveAndDeleteChildren();
+// When review phase starts
+function OnReviewPhaseStart() {
+    if(ourHeroName != null && !loadedHeroModel) {
+        // We have now loaded our hero icon
+        loadedHeroModel = true;
 
-    var size = 256;
-    if(shouldMakeSmall) {
-        size = 84;
+        // Show the actual hero icon
+        var mainPanel = $.GetContextPanel();
+        mainPanel.SetHasClass('no_hero_selected', false);
+
+        // Put the hero image in place
+        var con = $('#reviewPhaseHeroImageContainer');
+
+        var size = 256;
+        if(shouldMakeSmall) {
+            size = 84;
+        }
+
+        var heroImage = $.CreatePanel('Panel', con, 'reviewPhaseHeroImageLoader');
+        heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: ' + size + 'px; height: ' + size + 'px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + ourHeroName + '"/></Panel></root>', false, false);
     }
-
-    var heroImage = $.CreatePanel('Panel', con, 'reviewPhaseHeroImageLoader');
-    heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: ' + size + 'px; height: ' + size + 'px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + heroName + '"/></Panel></root>', false, false);
 }
 
 // When we get the slot count
@@ -254,4 +270,5 @@ function setReadyState(newState) {
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
+    mainPanel.OnReviewPhaseStart = OnReviewPhaseStart;
 })();
