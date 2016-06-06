@@ -53,7 +53,7 @@ Legends of Dota
  - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
 
 ###Coding Style Guide###
- - All variables and functions should be written in camera case, with the first letter being lowercase, and seperate words starting with uppercase
+ - All variables and functions should be written in camel case, with the first letter being lowercase, and seperate words starting with uppercase
   - someVariableName is acceptable, some_variable_name and SomeVariableName are not acceptable
   - There are some instances where this rule has generally been broken, this was by mistake, before LoD had a well defined style
  - All code should be thread safe
