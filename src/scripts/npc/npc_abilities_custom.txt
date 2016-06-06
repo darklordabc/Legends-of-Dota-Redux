@@ -2487,7 +2487,7 @@
         "BaseClass"				"ability_datadriven"
         "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityTextureName"			"tinker_rearm"
+        "AbilityTextureName"			"tinker_rearm_lod"
         "AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
     
         // Casting
