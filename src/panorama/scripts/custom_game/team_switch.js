@@ -34,6 +34,12 @@ function GetTeamInfo() {
     GameEvents.SendCustomGameEventToServer( "ask_custom_team_info", {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
 }
 
+function LeftGame(id) {
+    var connectionState = Game.GetPlayerInfo(id).player_connection_state
+    return [DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED,
+            DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED].indexOf(connectionState) != -1
+}
+
 function SetTeamInfo() {
 
     var playerIDS = Game.GetAllPlayerIDs();
@@ -41,37 +47,37 @@ function SetTeamInfo() {
 
     var i = 0;
     var teamDifference = 0;
+    
+    var enemyIDS = playerIDS.filter(function (id) { return customTeamAssignments[id] == enemyTeam })
+    var allyIDS = playerIDS.filter(function (id) { return customTeamAssignments[id] != enemyTeam })
 
-    for(var o = 0; o <= 5; o++){
-        $("#ListDivider"+o).AddClass("hidden");
-    }
-
-    for(var enemyID = playerIDS[0]; enemyID <= playerIDS[playerIDS.length-1]; enemyID++){
-        if(customTeamAssignments[enemyID] == enemyTeam){
-            var enemyInfo = Game.GetPlayerInfo(enemyID);
-
-            $("#Player"+i+"_Name").text = enemyInfo.player_name;
-            $("#Player"+i+"_Name").AddClass("connected");
-
-            $("#Player"+i+"_Icon").heroname = Players.GetPlayerSelectedHero(enemyInfo.player_id);
-            $("#Player"+i+"_Dis").AddClass("hidden");
-
-            if(enemyInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED || enemyInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED){
-                $("#Player"+i+"_Name").text = "DISCONNECTED";
-                $("#Player"+i+"_Name").RemoveClass("connected");
-                $("#Player"+i+"_Dis").RemoveClass("hidden");
-            }else{
-                teamDifference--;
-            }
+    for (var enemyID of enemyIDS) {
+        var enemyInfo = Game.GetPlayerInfo(enemyID);
+        if (LeftGame(enemyID)) {
+            $("#Player"+i+"_Name").text = "DISCONNECTED";
+            $("#ListDivider"+i).RemoveClass("hidden");
+            $("#Player"+i+"_Icon").heroname = Players.GetPlayerSelectedHero(enemyID);
+            $("#Player"+i+"_Dis").RemoveClass("hidden");
 
             $("#ListDivider"+i).RemoveClass("hidden");
             i++;
-        }else if(Game.GetPlayerInfo(enemyID).player_connection_state != DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED && Game.GetPlayerInfo(enemyID).player_connection_state != DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED){
+
             teamDifference++;
         }
     }
 
-    if(teamDifference >= 2 && active == false){
+    for (; i <= 5; ++i) {
+        $("#ListDivider"+i).AddClass("hidden");
+    }
+
+    for(var allyID of allyIDS) {
+        if (LeftGame(allyID))
+        {
+            teamDifference--;
+        }
+    }
+
+    if(Math.abs(teamDifference) >= 2 && active == false){
         $("#BalanceWarning").RemoveClass("hidden");
     }else{
         $("#BalanceWarning").AddClass("hidden");
