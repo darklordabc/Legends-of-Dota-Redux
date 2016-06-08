@@ -23,12 +23,12 @@ function CloseTeamSwitch() {
     $("#TeamSwitch_Panel").AddClass("hidden");
 }
 
-function RecieveCustomTeamInfo( team_info )
+function ReceiveCustomTeamInfo( team_info )
 {
 	customTeamAssignments = team_info;
     SetTeamInfo();
 }
-GameEvents.Subscribe( "send_custom_team_info", RecieveCustomTeamInfo);
+GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo);
 
 function GetTeamInfo() {
     GameEvents.SendCustomGameEventToServer( "ask_custom_team_info", {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
@@ -41,7 +41,6 @@ function LeftGame(id) {
 }
 
 function SetTeamInfo() {
-
     var playerIDS = Game.GetAllPlayerIDs();
     var enemyTeam = (customTeamAssignments[Game.GetLocalPlayerInfo().player_id] == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? DOTATeam_t.DOTA_TEAM_BADGUYS : DOTATeam_t.DOTA_TEAM_GOODGUYS;
 
@@ -54,12 +53,9 @@ function SetTeamInfo() {
     for (var enemyID of enemyIDS) {
         var enemyInfo = Game.GetPlayerInfo(enemyID);
         if (LeftGame(enemyID)) {
-            $("#Player"+i+"_Name").text = "DISCONNECTED";
             $("#ListDivider"+i).RemoveClass("hidden");
             $("#Player"+i+"_Icon").heroname = Players.GetPlayerSelectedHero(enemyID);
-            $("#Player"+i+"_Dis").RemoveClass("hidden");
 
-            $("#ListDivider"+i).RemoveClass("hidden");
             i++;
 
             teamDifference++;
