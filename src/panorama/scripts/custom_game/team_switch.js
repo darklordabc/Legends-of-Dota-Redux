@@ -40,15 +40,22 @@ function LeftGame(id) {
             DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED].indexOf(connectionState) != -1
 }
 
+function areAllies(x, y) {
+    return customTeamAssignments[x] == customTeamAssignments[y]
+}
+
+function areEnemies(x, y) {
+    return customTeamAssignments[x] != customTeamAssignments[y]
+}
+
 function SetTeamInfo() {
     var playerIDS = Game.GetAllPlayerIDs();
-    var enemyTeam = (customTeamAssignments[Game.GetLocalPlayerInfo().player_id] == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? DOTATeam_t.DOTA_TEAM_BADGUYS : DOTATeam_t.DOTA_TEAM_GOODGUYS;
+    var localPlayerID = Game.GetLocalPlayerID();
+    var enemyIDS = playerIDS.filter(function (id) { return areEnemies(localPlayerID, id) })
+    var allyIDS = playerIDS.filter(function (id) { return areAllies(localPlayerID, id )})
 
-    var i = 0;
     var teamDifference = 0;
-    
-    var enemyIDS = playerIDS.filter(function (id) { return customTeamAssignments[id] == enemyTeam })
-    var allyIDS = playerIDS.filter(function (id) { return customTeamAssignments[id] != enemyTeam })
+    var i = 0;
 
     for (var enemyID of enemyIDS) {
         var enemyInfo = Game.GetPlayerInfo(enemyID);
@@ -57,7 +64,6 @@ function SetTeamInfo() {
             $("#Player"+i+"_Icon").heroname = Players.GetPlayerSelectedHero(enemyID);
 
             i++;
-
             teamDifference++;
         }
     }
@@ -80,27 +86,14 @@ function SetTeamInfo() {
     }
 }
 
-function AttemptTeamSwitch(sentID) {
-
+function AttemptTeamSwitch(index) {
     var playerIDs = Game.GetAllPlayerIDs();
+    var localPlayerID = Game.GetLocalPlayerID();
     var enemyID;
     var k = 0;
 
-    if($("#Player"+sentID+"_Name").text == "DISCONNECTED"){
-        for(var playerID in playerIDs){
-            if(customTeamAssignments[playerID] != customTeamAssignments[Game.GetLocalPlayerID()]){
-                if(k == sentID){
-                    enemyID = playerID;
-                    break;
-                }
-                k++;
-            }
-        }
 
-        var swapTo = (customTeamAssignments[Game.GetLocalPlayerID()] == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? DOTATeam_t.DOTA_TEAM_BADGUYS : DOTATeam_t.DOTA_TEAM_GOODGUYS;
-        var enemySwapTo = (customTeamAssignments[enemyID] == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? DOTATeam_t.DOTA_TEAM_BADGUYS : DOTATeam_t.DOTA_TEAM_GOODGUYS;
+    enemyID = playerIDs.filter(function (id) { return areEnemies(localPlayerID, id)  && LeftGame(id)})[index]
 
-        GameEvents.SendCustomGameEventToServer( "attemptSwitchTeam", {swapID: Game.GetLocalPlayerInfo().player_id, newTeam: parseInt(swapTo)});
-        GameEvents.SendCustomGameEventToServer( "attemptSwitchTeam", {swapID: parseInt(enemyID), newTeam: parseInt(enemySwapTo)});
-    }
+    GameEvents.SendCustomGameEventToServer( 'swapPlayers', {x: localPlayerID, y: enemyID})
 }

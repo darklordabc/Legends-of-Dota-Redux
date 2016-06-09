@@ -18,6 +18,9 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     -- Balance Player
+    CustomGameEventManager:RegisterListener('swapPlayers', function(eventSourceIndex, args)
+        this:swapPlayers(args.x, args.y)
+    end)
     CustomGameEventManager:RegisterListener('attemptSwitchTeam', function(eventSourceIndex, args)
         this:switchTeam(eventSourceIndex, args)
     end)
@@ -118,6 +121,20 @@ function Ingame:balancePlayer(playerID, newTeam)
             end
         end, DoUniqueString('respawn'), 0.11)
     end
+end
+
+function otherTeam(team)
+    if team == DOTA_TEAM_BADGUYS then
+        return DOTA_TEAM_GOODGUYS
+    elseif team == DOTA_TEAM_GOODGUYS then
+        return DOTA_TEAM_BADGUYS
+    end
+    return -1
+end
+
+function Ingame:swapPlayers(x, y)
+    self:balancePlayer(x, otherTeam(PlayerResource:GetCustomTeamAssignment(x)))
+    self:balancePlayer(y, otherTeam(PlayerResource:GetCustomTeamAssignment(y)))
 end
 
 -- Sets it to no team balancing is required
