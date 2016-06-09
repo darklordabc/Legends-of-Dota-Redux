@@ -76,7 +76,7 @@ function Ingame:returnCustomTeams(eventSourceIndex, args)
     local playerCount = PlayerResource:GetPlayerCount();
     local customTeamAssignments = {};
 
-    for playerID = 0, playerCount do
+    for playerID = 0, playerCount-1 do
         customTeamAssignments[playerID] = PlayerResource:GetCustomTeamAssignment(playerID);
     end
 
@@ -97,6 +97,8 @@ function Ingame:balancePlayer(playerID, newTeam)
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
+        hero:SetPlayerID(playerID)
+        hero:SetOwner(PlayerResource:GetPlayer(playerID))
 
         -- Kill the hero
         hero:Kill(nil, nil)

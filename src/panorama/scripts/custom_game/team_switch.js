@@ -25,7 +25,7 @@ function CloseTeamSwitch() {
 
 function ReceiveCustomTeamInfo( team_info )
 {
-	customTeamAssignments = team_info;
+    customTeamAssignments = team_info;
     SetTeamInfo();
 }
 GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo);
@@ -95,5 +95,5 @@ function AttemptTeamSwitch(index) {
 
     enemyID = playerIDs.filter(function (id) { return areEnemies(localPlayerID, id)  && LeftGame(id)})[index]
 
-    GameEvents.SendCustomGameEventToServer( 'swapPlayers', {x: localPlayerID, y: enemyID})
+    GameEvents.SendCustomGameEventToServer('swapPlayers', {x: localPlayerID, y: enemyID})
 }

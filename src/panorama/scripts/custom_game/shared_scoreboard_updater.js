@@ -1,5 +1,12 @@
 "use strict";
 
+var customTeamAssignments = {};
+
+function ReceiveCustomTeamInfo( team_info )
+{
+        customTeamAssignments = team_info
+}
+GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo)
 
 //=============================================================================
 //=============================================================================
@@ -33,7 +40,6 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 	var ultStateOrTime = PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_HIDDEN; // values > 0 mean on cooldown for that many seconds
 	var goldValue = -1;
 	var isTeammate = false;
-
 	var playerInfo = Game.GetPlayerInfo( playerId );
 	if ( playerInfo )
 	{
@@ -174,6 +180,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 //=============================================================================
 function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, teamDetails, teamsInfo )
 {
+        GameEvents.SendCustomGameEventToServer( "ask_custom_team_info", {} );
 	if ( !containerPanel )
 		return;
 
@@ -210,15 +217,31 @@ function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, t
 	teamPanel.SetHasClass( "local_player_team", localPlayerTeamId == teamId );
 	teamPanel.SetHasClass( "not_local_player_team", localPlayerTeamId != teamId );
 
-	var teamPlayers = Game.GetPlayerIDsOnTeam( teamId )
+	var teamPlayers = [];
+        var enemyPlayers = []
+        var curIndex = 0;
+        for (var playerId in customTeamAssignments)
+                if ( parseInt(customTeamAssignments[playerId]) == teamId )
+                        teamPlayers.push(parseInt(playerId));
+        
+        for (var playerId in customTeamAssignments)
+                if ( parseInt(customTeamAssignments[playerId]) != teamId )
+                        enemyPlayers.push(parseInt(playerId));
+        
 	var playersContainer = teamPanel.FindChildInLayoutFile( "PlayersContainer" );
 	if ( playersContainer )
 	{
-		for ( var playerId of teamPlayers )
+	        for ( var playerId of teamPlayers )
 		{
-			_ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, playerId, localPlayerTeamId )
+			_ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, playerId, teamId, localPlayerTeamId )
 		}
 	}
+
+        for ( var enemyId of enemyPlayers )
+        {
+                var playerPanel = playersContainer.FindChild("_dynamic_player_" + enemyId);
+                playerPanel && playerPanel.DeleteAsync(0);
+        }
 	
 	teamPanel.SetHasClass( "no_players", (teamPlayers.length == 0) )
 	teamPanel.SetHasClass( "one_player", (teamPlayers.length == 1) )
