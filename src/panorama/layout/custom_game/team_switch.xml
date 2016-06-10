@@ -6,8 +6,12 @@
 		<include src="file://{resources}/scripts/custom_game/team_switch.js" />
 	</scripts>
 	<Panel hittest="false" class='TeamSwitchRoot'>
-		<Button id="TeamSwitch_Button" onactivate="TeamSwitchButton()"/>
-		<Label id="TeamSwitch_ButtonTitle" text="Switch Teams" class="TeamSwitchButtonFont"/>
+                <Panel id="OffsetHack">
+	                <Button id="TeamSwitch_Button" onactivate="TeamSwitchButton()">
+                                <Image src="file://{images}/custom_game/switch.png" id="TeamSwitch_Icon" scaling="stretch-to-fit-preserve-aspect" />
+		                <Label id="TeamSwitch_ButtonTitle" text="Switch Teams" class="TeamSwitchButtonFont"/>
+                        </Button>
+                </Panel>
 		<Panel id='TeamSwitch_Panel' class="hidden">
 			<Label id="TeamSwitchDescription" text="Select a hero to switch teams with"/>
 
@@ -42,7 +46,7 @@
 				<Label id="Player5_Name" text="DISCONNECTED" class="PlayerNameFont"/>
 			</Panel>
 		</Panel>
-		<Panel id='BalanceWarning' class= "hidden">
+		<Panel id="BalanceWarning" class="hidden">
 			<Label id="BalanceWarningDescription" text="Teams have become unbalanced. Press switch to nominate yourself to switch to the enemy side."/>
 		</Panel>
 	</Panel>
