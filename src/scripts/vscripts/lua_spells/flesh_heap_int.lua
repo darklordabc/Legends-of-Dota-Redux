@@ -14,10 +14,10 @@ function flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 	end
 
 	if hVictim:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and self:GetCaster():IsAlive() then
-		self.flesh_heap_range = self:GetSpecialValueFor( "flesh_heap_range" )
+		self.fleshHeapRange = self:GetSpecialValueFor( "flesh_heap_range" )
 		local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
 		local flDistance = vToCaster:Length2D()
-		if hKiller == self:GetCaster() or self.flesh_heap_range >= flDistance then
+		if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
 			if self.nKills == nil then
 				self.nKills = 0
 			end
