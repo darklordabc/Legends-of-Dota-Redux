@@ -11,6 +11,9 @@ end
 
 function flesh_heap_agi:OnHeroDiedNearby( hVictim, hKiller, kv )
 	if hVictim == nil or hKiller == nil then
+		return	
+	end
+	if hVictim:IsIllusion() then
 		return
 	end
 
