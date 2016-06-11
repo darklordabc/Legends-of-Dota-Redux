@@ -2507,6 +2507,7 @@
     	"AbilityTextureName"				"flesh_heap_agi"
     	"ScriptFile"						"lua_spells/flesh_heap_agi.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    	"AbilityCastRange"				"450"
     
     	// Precache
     	//-------------------------------------------------------------------------------------------------------------
@@ -2539,6 +2540,7 @@
     	"AbilityTextureName"					"flesh_heap_int"
     	"ScriptFile"						"lua_spells/flesh_heap_int.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    	"AbilityCastRange"				"450"
     
     	// Precache
     	//-------------------------------------------------------------------------------------------------------------
