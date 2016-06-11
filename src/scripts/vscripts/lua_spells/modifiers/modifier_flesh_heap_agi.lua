@@ -7,7 +7,7 @@ modifier_flesh_heap_agi = class({})
 --------------------------------------------------------------------------------
 
 function modifier_flesh_heap_agi:OnCreated( kv )
-	self.flesh_heap_agility_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
 	if IsServer() then
 		self:SetStackCount( self:GetAbility():GetFleshHeapKills() )
 		self:GetParent():CalculateStatBonus()
@@ -17,7 +17,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_flesh_heap_agi:OnRefresh( kv )
-	self.flesh_heap_agility_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
 	if IsServer() then
 		self:GetParent():CalculateStatBonus()
 	end
@@ -37,5 +37,5 @@ end
 
 
 function modifier_flesh_heap_agi:GetModifierBonusStats_Agility( params )
-	return self:GetStackCount() * self.flesh_heap_agility_buff_amount
+	return self:GetStackCount() * self.fleshHeapAgilityBuffAmount
 end
