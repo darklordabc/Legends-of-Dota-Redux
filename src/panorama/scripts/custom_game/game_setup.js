@@ -3127,11 +3127,13 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
         newPlayerPanel = $.CreatePanel('Panel', reviewContainer, 'reviewPlayer' + playerID);
         newPlayerPanel.SetAttributeInt('playerID', playerID);
         newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
-        newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer(), shouldMakeSmall);
+        newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
     } else {
         newPlayerPanel.SetParent(reviewContainer);
         newPlayerPanel.visible = true;
     }
+
+    newPlayerPanel.setShouldBeSmall(shouldMakeSmall);
 
     // Check max slots
     var maxSlots = optionValueList['lodOptionCommonMaxSlots'];
@@ -3561,27 +3563,72 @@ function doActualTeamUpdate() {
         addUnassignedPlayer(unassignedPlayers[i]);
     }
 
+    var theCon;
+    var theConMain;
+
+    var radiantTopContainer = $('#theRadiantContainer');
+    var radiantTopContainerTop = $('#theRadiantContainerTop');
+    var radiantTopContainerBot = $('#theRadiantContainerBot');
+
+    var reviewRadiantContainer = $('#reviewRadiantTeam');
+    var reviewRadiantTopContainer = $('#reviewPhaseRadiantTeamTop');
+    var reviewRadiantBotContainer = $('#reviewPhaseRadiantTeamBot');
+
     // Add radiant players
     var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
     for(var i=0; i<radiantPlayers.length; ++i) {
-        // Add this player to the unassigned list
-        addPlayerToTeam(radiantPlayers[i], $('#theRadiantContainer'), $('#reviewRadiantTeam'), radiantPlayers.length > 5);
+        if(radiantPlayers.length <= 5) {
+            theCon = reviewRadiantContainer;
+            theConMain = radiantTopContainer;
+        } else {
+            if(i < 5) {
+                theCon = reviewRadiantTopContainer;
+                theConMain = radiantTopContainerTop;
+            } else {
+                theCon = reviewRadiantBotContainer;
+                theConMain = radiantTopContainerBot;
+            }
+        }
+
+        // Add this player to radiant
+        addPlayerToTeam(radiantPlayers[i], theConMain, theCon, radiantPlayers.length > 5);
     }
 
     // Do we have more than 5 players on radiant?
-    $('#theRadiantContainer').SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
-    $('#reviewRadiantTeam').SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
+    radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
+    reviewRadiantContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
+
+    var direTopContainer = $('#theDireContainer');
+    var direTopContainerTop = $('#theDireContainerTop');
+    var direTopContainerBot = $('#theDireContainerBot');
+
+    var reviewDireContainer = $('#reviewDireTeam');
+    var reviewDireTopContainer = $('#reviewPhaseDireTeamTop');
+    var reviewDireBotContainer = $('#reviewPhaseDireTeamBot');
 
     // Add radiant players
     var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
     for(var i=0; i<direPlayers.length; ++i) {
-        // Add this player to the unassigned list
-        addPlayerToTeam(direPlayers[i], $('#theDireContainer'), $('#reviewDireTeam'), direPlayers.length > 5);
+        if(direPlayers.length <= 5) {
+            theCon = reviewDireContainer;
+            theConMain = direTopContainer;
+        } else {
+            if(i < 5) {
+                theCon = reviewDireTopContainer;
+                theConMain = direTopContainerTop;
+            } else {
+                theCon = reviewDireBotContainer;
+                theConMain = direTopContainerBot;
+            }
+        }
+
+        // Add this player to dire
+        addPlayerToTeam(direPlayers[i], theConMain, theCon, direPlayers.length > 5);
     }
 
     // Do we have more than 5 players on radiant?
-    $('#theDireContainer').SetHasClass('tooManyPlayers', direPlayers.length > 5);
-    $('#reviewDireTeam').SetHasClass('tooManyPlayers', direPlayers.length > 5);
+    direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
+    reviewDireContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
 
     // Update all of the team panels moving the player panels for the
     // players assigned to each team to the corresponding team panel.

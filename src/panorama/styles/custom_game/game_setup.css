@@ -333,6 +333,18 @@
     flow-children: right;
 }
 
+.tooManyPlayers.theTeamContainer {
+    flow-children: down;
+}
+
+.theTeamContainerSub {
+    flow-children: right;
+}
+
+#theDireContainerBot {
+    horizontal-align: right;
+}
+
 .radiantGlow {
     horizontal-align: left;
     color: #00FF00;
@@ -885,7 +897,15 @@
 }
 
 .tooManyPlayers.reviewPhaseTeam {
-    flow-children: right-wrap;
+    flow-children: down;
+}
+
+.tooManyPlayers.reviewPhaseTeam .subReviewContainer {
+    flow-children: right;
+}
+
+.subReviewContainer {
+    horizontal-align: center;
 }
 
 #reviewRadiantTeam {

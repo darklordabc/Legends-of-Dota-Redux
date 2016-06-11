@@ -198,7 +198,7 @@ function swapSlots(slot1, slot2) {
 }
 
 // Hooks the abilities to show what they are
-function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace, canSwap, shouldMakeSmallTemp) {
+function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroReplace, canSwap) {
 	// Hook it up
 	for(var i=1; i<=6; ++i) {
 		(function(con) {
@@ -219,7 +219,9 @@ function hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHeroRepl
 
 	// Store ability
 	setSelectedHelperHero = setSelectedHelperHeroReplace;
+}
 
+function setShouldBeSmall(shouldMakeSmallTemp) {
     // Store the temp
     shouldMakeSmall = shouldMakeSmallTemp;
 
@@ -271,4 +273,5 @@ function setReadyState(newState) {
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
     mainPanel.OnReviewPhaseStart = OnReviewPhaseStart;
+    mainPanel.setShouldBeSmall = setShouldBeSmall;
 })();
