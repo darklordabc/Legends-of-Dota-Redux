@@ -889,16 +889,16 @@
     
     //flesh heap spells
     "DOTA_Tooltip_ability_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap AGI is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
     "DOTA_Tooltip_ability_flesh_heap_agi_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
     "DOTA_Tooltip_ability_flesh_heap_int"					"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_ability_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap INT is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INT PER STACK:"
+    "DOTA_Tooltip_ability_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
     "DOTA_Tooltip_ability_flesh_heap_int_flesh_heap_range"				"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus agi"
+    "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus agility"
 
 }
