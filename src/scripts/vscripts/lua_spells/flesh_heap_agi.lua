@@ -1,5 +1,5 @@
 flesh_heap_agi = class({})
-LinkLuaModifier( "modifier_flesh_heap_agi", lua_spells/modifiers/modifier_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_flesh_heap_agi", "lua_spells/modifiers/modifier_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 function flesh_heap_agi:GetIntrinsicModifierName()
