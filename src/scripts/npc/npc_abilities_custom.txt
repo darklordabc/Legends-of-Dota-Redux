@@ -2505,7 +2505,7 @@
     	//-------------------------------------------------------------------------------------------------------------
     	"BaseClass"						"ability_lua"
     	"AbilityTextureName"				"flesh_heap_agi"
-    	"ScriptFile"						"heroes/test_hero/flesh_heap_agi.lua"
+    	"ScriptFile"						"lua_spells/flesh_heap_agi.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
     
     	// Precache
@@ -2537,7 +2537,7 @@
     	//-------------------------------------------------------------------------------------------------------------
     	"BaseClass"						"ability_lua"
     	"AbilityTextureName"					"flesh_heap_int"
-    	"ScriptFile"						"heroes/test_hero/flesh_heap_int.lua"
+    	"ScriptFile"						"lua_spells/flesh_heap_int.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
     
     	// Precache
