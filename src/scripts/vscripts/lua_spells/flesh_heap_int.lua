@@ -12,6 +12,9 @@ function flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 	if hVictim == nil or hKiller == nil then
 		return
 	end
+	if hVictim:IsIllusion() then
+		return
+	end
 
 	if hVictim:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and self:GetCaster():IsAlive() then
 		self.fleshHeapRange = self:GetSpecialValueFor( "flesh_heap_range" )
