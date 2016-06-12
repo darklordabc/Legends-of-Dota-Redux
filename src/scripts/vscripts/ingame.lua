@@ -25,6 +25,10 @@ function Ingame:init()
         this:switchTeam(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
+        this:declined(eventSourceIndex)
+    end)
+
     CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
@@ -120,6 +124,16 @@ function Ingame:balancePlayer(playerID, newTeam)
                         end
                     end
                 end
+
+                local num_cour_new = PlayerResource:GetNumCouriersForTeam(newTeam)
+                local oldTeam = otherTeam(newTeam)
+                local num_cour_old = PlayerResource:GetNumCouriersForTeam(oldTeam)
+                for i = 0, num_cour_new - 1 do
+                    PlayerResource:GetNthCourierForTeam(i, newTeam):SetControllableByPlayer(playerID, true)
+                end
+                for i = 0, num_cour_old - 1 do
+                    PlayerResource:GetNthCourierForTeam(i, oldTeam):SetControllableByPlayer(playerID, false)
+                end
             end
         end, DoUniqueString('respawn'), 0.11)
     end
@@ -135,8 +149,25 @@ function otherTeam(team)
 end
 
 function Ingame:swapPlayers(x, y)
-    self:balancePlayer(x, otherTeam(PlayerResource:GetCustomTeamAssignment(x)))
-    self:balancePlayer(y, otherTeam(PlayerResource:GetCustomTeamAssignment(y)))
+    local player_count = PlayerResource:GetPlayerCount()
+
+    for i = 0, player_count do
+        local recepientEntity = PlayerResource:GetPlayer(i)
+        CustomGameEventManager:Send_ServerToPlayer(recepientEntity, 'vote_dialog', {swapper = x, swappee = y })
+    end
+    Timers:CreateTimer(self:accepted(x,y), 'accepted', 10);
+end
+
+function Ingame:accepted(x, y)
+    return function ()
+        self:balancePlayer(x, otherTeam(PlayerResource:GetCustomTeamAssignment(x)))
+        self:balancePlayer(y, otherTeam(PlayerResource:GetCustomTeamAssignment(y)))
+    end
+end
+
+function Ingame:declined(event_source_index)
+    CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
+    Timers:CreateTimer(function () end, 'accepted', 0)
 end
 
 -- Sets it to no team balancing is required
