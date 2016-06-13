@@ -5,6 +5,19 @@ var active = false;
 var unbalanced = false;
 var disabled = false;
 var oldtd = 0;
+var debounce = false;
+
+var handler;
+
+GameEvents.Subscribe('vote_dialog', function () {
+    debounce = true;
+    handler = $.Schedule(10, function () { debounce = false });
+})
+
+GameEvents.Subscribe('player_declined', function () {
+    $.CancelScheduled(handler);
+    $.Schedule(2, function () { debounce = false });
+})
 
 GameEvents.Subscribe("player_team", GetTeamInfo);
 GameEvents.Subscribe("player_reconnected", GetTeamInfo);
@@ -43,8 +56,6 @@ function LeftGame(id) {
     var connectionState = Game.GetPlayerInfo(id).player_connection_state
     return DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == connectionState;
 }
-
-
 
 function areAllies(x, y) {
     return customTeamAssignments[x] == customTeamAssignments[y]
@@ -97,7 +108,9 @@ function SetTeamInfo() {
 }
 
 function AttemptTeamSwitch(index) {
-    if (!unbalanced || disabled) return;
+    if (!unbalanced || disabled || debounce) return;
+
+    CloseTeamSwitch();
 
     var playerIDs = Game.GetAllPlayerIDs();
     var localPlayerID = Game.GetLocalPlayerID();

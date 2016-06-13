@@ -155,6 +155,7 @@ function Ingame:swapPlayers(x, y)
         local recepientEntity = PlayerResource:GetPlayer(i)
         CustomGameEventManager:Send_ServerToPlayer(recepientEntity, 'vote_dialog', {swapper = x, swappee = y })
     end
+    PauseGame(true);
     Timers:CreateTimer(self:accepted(x,y), 'accepted', 10);
 end
 
@@ -162,12 +163,13 @@ function Ingame:accepted(x, y)
     return function ()
         self:balancePlayer(x, otherTeam(PlayerResource:GetCustomTeamAssignment(x)))
         self:balancePlayer(y, otherTeam(PlayerResource:GetCustomTeamAssignment(y)))
+        PauseGame(false);
     end
 end
 
 function Ingame:declined(event_source_index)
     CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
-    Timers:CreateTimer(function () end, 'accepted', 0)
+    Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 0)
 end
 
 -- Sets it to no team balancing is required

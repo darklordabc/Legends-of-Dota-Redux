@@ -3,7 +3,7 @@
     
     position: 50% 10% 0px;
     margin-left: -320px;
-    background-color: gradient( radial, 50% 50%, 0% 0%, 80% 80%, from( #40404040 ), to( #80808040 ) );
+    background-color: #404040;
     box-shadow: #000000 -5px -5px 10px 10px;
 
     flow-children: down;
