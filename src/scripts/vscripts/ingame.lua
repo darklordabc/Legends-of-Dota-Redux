@@ -17,6 +17,10 @@ function Ingame:init()
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
+    -- Register dc/rc events
+    ListenToGameEvent('player_team', self.pt, nil);
+    ListenToGameEvent('player_reconnected', self.player_rc, nil);
+
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
         this:swapPlayers(args.x, args.y)
@@ -52,6 +56,21 @@ function Ingame:init()
 
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame.pt(user)
+    if user.disconnect == 1 then
+        for k, v in pairs (user) do
+            print(k, '=', v)
+        end
+        Timers:CreateTimer(function()
+            CustomGameEventManager:Send_ServerToAllClients('dc_timeout', {id = user.userid})
+        end, 'dc_timeout_'..user.userid, 300)
+    end
+    if user.disconnect == 0 then
+        Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
+        CustomGameEventManager:Send_ServerToAllClients('dc_timeout_reconnect', {id = user.userid})
+    end
 end
 
 -- Called when the game starts

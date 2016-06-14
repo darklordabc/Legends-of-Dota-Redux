@@ -7,20 +7,34 @@ var disabled = false;
 var oldtd = 0;
 var debounce = false;
 
+var dc_timeout = [];
+
 var handler;
 
 GameEvents.Subscribe('vote_dialog', function () {
     debounce = true;
     handler = $.Schedule(10, function () { debounce = false });
-})
+});
 
 GameEvents.Subscribe('player_declined', function () {
     $.CancelScheduled(handler);
     $.Schedule(2, function () { debounce = false });
-})
+});
 
-GameEvents.Subscribe("player_team", GetTeamInfo);
-GameEvents.Subscribe("player_reconnected", GetTeamInfo);
+GameEvents.Subscribe('dc_timeout', function (args) {
+    dc_timeout.push(args.id);
+    $.Msg(dc_timeout);
+});
+
+GameEvents.Subscribe('dc_timeout_reconnect', function (args) {
+    var i;
+    if ((i = dc_timeout.indexOf(args.id)) != -1)
+        dc_timeout.splice(i, 1);
+});
+
+GameEvents.Subscribe('player_team', GetTeamInfo);
+GameEvents.Subscribe('player_reconnected', GetTeamInfo);
+    
 
 function TeamSwitchButton (){
     if(!active) {
@@ -33,12 +47,12 @@ function ShowTeamSwitch() {
     GetTeamInfo();
     if (unbalanced) {
         active = true;
-        $("#TeamSwitch_Panel").RemoveClass("hidden");
+        $('#TeamSwitch_Panel').RemoveClass('hidden');
     }
 }
 function CloseTeamSwitch() {
     active = false;
-    $("#TeamSwitch_Panel").AddClass("hidden");
+    $('#TeamSwitch_Panel').AddClass('hidden');
 }
 
 function ReceiveCustomTeamInfo( team_info )
@@ -46,15 +60,16 @@ function ReceiveCustomTeamInfo( team_info )
     customTeamAssignments = team_info;
     SetTeamInfo();
 }
-GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo);
+GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
 
 function GetTeamInfo() {
-    GameEvents.SendCustomGameEventToServer( "ask_custom_team_info", {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
+    GameEvents.SendCustomGameEventToServer( 'ask_custom_team_info', {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
 }
 
 function LeftGame(id) {
-    var connectionState = Game.GetPlayerInfo(id).player_connection_state
-    return DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == connectionState;
+    var abandoned = DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == Game.GetPlayerInfo(id).player_connection_state;
+    var timedout = dc_timeout.indexOf(id) != -1;
+    return abandoned || timedout;
 }
 
 function areAllies(x, y) {
@@ -78,8 +93,8 @@ function SetTeamInfo() {
     for (var enemyID of enemyIDS) {
         var enemyInfo = Game.GetPlayerInfo(enemyID);
         if (LeftGame(enemyID)) {
-            $("#ListDivider"+i).RemoveClass("hidden");
-            $("#Player"+i+"_Icon").heroname = Players.GetPlayerSelectedHero(enemyID);
+            $('#ListDivider'+i).RemoveClass('hidden');
+            $('#Player'+i+'_Icon').heroname = Players.GetPlayerSelectedHero(enemyID);
 
             i++;
             teamDifference++;
@@ -87,7 +102,7 @@ function SetTeamInfo() {
     }
     
     for (; i <= 5; ++i) {
-        $("#ListDivider"+i).AddClass("hidden");
+        $('#ListDivider'+i).AddClass('hidden');
     }
     
     for(var allyID of allyIDS) {
@@ -99,10 +114,10 @@ function SetTeamInfo() {
     unbalanced = teamDifference >= 2;
     
     if(unbalanced && active == false){
-        if (oldtd < teamDifference) $("#BalanceWarning").RemoveClass("hidden");
+        if (oldtd < teamDifference) $('#BalanceWarning').RemoveClass('hidden');
     }else{
 
-        $("#BalanceWarning").AddClass("hidden");
+        $('#BalanceWarning').AddClass('hidden');
     }
     oldtd = teamDifference;
 }
