@@ -2568,7 +2568,7 @@
     "global_break"
 {
     "BaseClass"                     "ability_datadriven"
-    "AbilityTextureName"            "barricade"
+    "AbilityTextureName"            "global_break"
     "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
