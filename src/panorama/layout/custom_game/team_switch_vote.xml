@@ -9,16 +9,20 @@
                 <Panel id='vote_dialog' class='hidden dialog'>
                         <Label class='title' text='TEAM SWITCH' />
                         <Panel class='bar_border' >
-                                <Panel class='bar_inner show' id='vote_timer' />
+                                <Panel class='bar_inner' id='vote_timer' />
                         </Panel>
                         <Panel id='swap_info' >
                                 <Panel id='swapper_switch' class='player_info'>
                                         <DOTAHeroImage id='swapper_icon' />
                                         <Label id='swapper_name' />
                                 </Panel>
-                                <Label text='would like to switch with' class='left' />
+                                <Label text='would like to switch with' />
                                 <Panel id='swappee_switch' class='player_info'>
-                                        <DOTAHeroImage id='swappee_icon' />
+                                        <Panel>
+                                                <DOTAHeroImage id='swappee_icon' />
+				                <Image src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" scaling="stretch-to-fit-x-preserve-aspect"/>
+
+                                        </Panel>
                                         <Label id='swappee_name' />
                                 </Panel>
                         </Panel>

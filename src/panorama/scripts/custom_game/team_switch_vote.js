@@ -15,9 +15,9 @@ function show_vote_dialog(swap_info) {
     $('#swappee_name').text = swappee_info.player_name;
 
     $('#vote_dialog').RemoveClass('hidden');
-    $('#vote_timer').AddClass('show');
-    $('#vote_timer').RemoveClass('show');
-    handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('hidden'); });
+    apply_transition_from_start('#vote_timer', '10s', 'shrink');
+    handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('hidden');
+                                          $('#vote_timer').RemoveClass('shrink') });
 }
 
 function accept() {
@@ -35,6 +35,7 @@ function player_declined() {
     vote_dialog.AddClass('declined');
 
     $.CancelScheduled(handler);
+    halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
         vote_dialog.RemoveClass('declined');
         vote_dialog.AddClass('hidden');
@@ -42,3 +43,20 @@ function player_declined() {
     })
 }
 
+function apply_transition(el, t, c) {
+    $(el).AddClass(t);
+    $(el).AddClass(c);
+    $(el).RemoveClass(t);
+}
+
+function apply_transition_from_start(el, t, c) {
+    $(el).AddClass(c);
+    $(el).RemoveClass(c);
+    apply_transition(el, t, c);
+}
+
+function halt_transition(el, c) {
+    $(el).AddClass('forever');
+    $(el).RemoveClass(c);
+    $(el).RemoveClass('forever');
+}
