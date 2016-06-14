@@ -18,11 +18,8 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     -- Balance Player
-    CustomGameEventManager:RegisterListener('swapPlayers', function(eventSourceIndex, args)
+    CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
         this:swapPlayers(args.x, args.y)
-    end)
-    CustomGameEventManager:RegisterListener('attemptSwitchTeam', function(eventSourceIndex, args)
-        this:switchTeam(eventSourceIndex, args)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
