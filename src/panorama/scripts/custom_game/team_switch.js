@@ -23,7 +23,6 @@ GameEvents.Subscribe('player_declined', function () {
 
 GameEvents.Subscribe('player_team', GetTeamInfo);
 GameEvents.Subscribe('player_reconnected', GetTeamInfo);
-    
 
 function TeamSwitchButton (){
     if(!active) {
@@ -113,7 +112,7 @@ function SetTeamInfo() {
 }
 
 function AttemptTeamSwitch(index) {
-    if (!unbalanced || disabled || debounce) return;
+    if (!unbalanced || debounce) return;
 
     CloseTeamSwitch();
 
