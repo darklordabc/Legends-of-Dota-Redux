@@ -59,19 +59,20 @@ function Ingame:init()
 end
 
 dc_table = {};
-for i = 1, 10 do
-    dc_table[i] = false;
-end
-
 function Ingame.player_dc(user)
     Timers:CreateTimer(function()
-            dc_table[user.userid] = true
+        dc_table[#dc_table + 1] = user.userid - 1;
     end, 'dc_timeout_'..user.userid, 10)
 end
 
 function Ingame.player_rc(user)
     Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
-    dc_table[user.userid] = false
+    for i,v in pairs(dc_table) do
+        if v == user.userid - 1 then
+            v:remove(i)
+            break
+        end
+    end
 end
 
 -- Called when the game starts
