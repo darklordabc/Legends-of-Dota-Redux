@@ -66,7 +66,7 @@ end
 function Ingame.player_dc(user)
     Timers:CreateTimer(function()
             dc_table[user.userid] = true
-    end, 'dc_timeout_'..user.userid, 10)
+    end, 'dc_timeout_'..user.userid, 300)
 end
 
 function Ingame.player_rc(user)
