@@ -2514,7 +2514,7 @@
         
         "precache"
         {
-            "particle"  "particles/break_smoke.vpcf"
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
         }
     
         "OnSpellStart"
@@ -2541,7 +2541,7 @@
                 "IsHidden"          "0"
                 "IsDebuff"          "1"
             
-                "EffectName"        "particles/break_smoke.vpcf"
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
             
                 "States"
