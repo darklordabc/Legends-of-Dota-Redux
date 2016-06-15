@@ -21,17 +21,6 @@ GameEvents.Subscribe('player_declined', function () {
     $.Schedule(2, function () { debounce = false });
 });
 
-GameEvents.Subscribe('dc_timeout', function (args) {
-    dc_timeout.push(args.id);
-    $.Msg(dc_timeout);
-});
-
-GameEvents.Subscribe('dc_timeout_reconnect', function (args) {
-    var i;
-    if ((i = dc_timeout.indexOf(args.id)) != -1)
-        dc_timeout.splice(i, 1);
-});
-
 GameEvents.Subscribe('player_team', GetTeamInfo);
 GameEvents.Subscribe('player_reconnected', GetTeamInfo);
     
@@ -57,7 +46,8 @@ function CloseTeamSwitch() {
 
 function ReceiveCustomTeamInfo( team_info )
 {
-    customTeamAssignments = team_info;
+    customTeamAssignments = team_info.x;
+    dc_timeout = team_info.y;
     SetTeamInfo();
 }
 GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
@@ -68,7 +58,7 @@ function GetTeamInfo() {
 
 function LeftGame(id) {
     var abandoned = DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == Game.GetPlayerInfo(id).player_connection_state;
-    var timedout = dc_timeout.indexOf(id) != -1;
+    var timedout = dc_timeout[id];
     return abandoned || timedout;
 }
 

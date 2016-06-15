@@ -4,7 +4,7 @@ var customTeamAssignments = {};
 
 function ReceiveCustomTeamInfo( team_info )
 {
-        customTeamAssignments = team_info
+        customTeamAssignments = team_info.x
 }
 GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo)
 

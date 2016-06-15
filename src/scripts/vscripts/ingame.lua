@@ -18,7 +18,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     -- Register dc/rc events
-    ListenToGameEvent('player_team', self.pt, nil);
+    ListenToGameEvent('player_disconnect', self.player_dc, nil);
     ListenToGameEvent('player_reconnected', self.player_rc, nil);
 
     -- Balance Player
@@ -34,7 +34,7 @@ function Ingame:init()
         this:returnCustomTeams(eventSourceIndex, args)
     end)
 
-    -- Precache orgre magi stuff
+    -- Precache ogre magi stuff
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
@@ -58,19 +58,20 @@ function Ingame:init()
     self:setNoTeamBalanceNeeded()
 end
 
-function Ingame.pt(user)
-    if user.disconnect == 1 then
-        for k, v in pairs (user) do
-            print(k, '=', v)
-        end
-        Timers:CreateTimer(function()
-            CustomGameEventManager:Send_ServerToAllClients('dc_timeout', {id = user.userid})
-        end, 'dc_timeout_'..user.userid, 300)
-    end
-    if user.disconnect == 0 then
-        Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
-        CustomGameEventManager:Send_ServerToAllClients('dc_timeout_reconnect', {id = user.userid})
-    end
+dc_table = {};
+for i = 1, 10 do
+    dc_table[i] = false;
+end
+
+function Ingame.player_dc(user)
+    Timers:CreateTimer(function()
+            dc_table[user.userid] = true
+    end, 'dc_timeout_'..user.userid, 10)
+end
+
+function Ingame.player_rc(user)
+    Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
+    dc_table[user.userid] = false
 end
 
 -- Called when the game starts
@@ -100,7 +101,7 @@ function Ingame:returnCustomTeams(eventSourceIndex, args)
         customTeamAssignments[playerID] = PlayerResource:GetCustomTeamAssignment(playerID);
     end
 
-    CustomGameEventManager:Send_ServerToAllClients( "send_custom_team_info", customTeamAssignments )
+    CustomGameEventManager:Send_ServerToAllClients( "send_custom_team_info", {x = customTeamAssignments, y = dc_table} )
 end
 
 function Ingame:switchTeam(eventSourceIndex, args)

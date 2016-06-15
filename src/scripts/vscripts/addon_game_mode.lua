@@ -55,6 +55,5 @@ function Activate()
     
 end
 
-require('ingame'):balancePlayer(2, 2)
 -- Boot directly into LoD interface
 --Convars:SetInt('dota_wait_for_players_to_load', 0)
