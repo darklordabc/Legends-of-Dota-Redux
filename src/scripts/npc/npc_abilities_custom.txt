@@ -2516,6 +2516,16 @@
         {
             "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
         }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "4 5 6"
+            }
+        }
+        
+        
     
         "OnSpellStart"
         {
