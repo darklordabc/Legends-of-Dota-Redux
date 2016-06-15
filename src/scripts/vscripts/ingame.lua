@@ -68,7 +68,7 @@ end
 function Ingame.player_rc(user)
     Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
     for i,v in pairs(dc_table) do
-        if v == user.userid - 1 then
+        if v == user.PlayerID - 1 then
             v:remove(i)
             break
         end
@@ -144,11 +144,12 @@ function Ingame:balancePlayer(playerID, newTeam)
                 end
 
                 local num_cour_new = PlayerResource:GetNumCouriersForTeam(newTeam)
-                local oldTeam = otherTeam(newTeam)
-                local num_cour_old = PlayerResource:GetNumCouriersForTeam(oldTeam)
                 for i = 0, num_cour_new - 1 do
                     PlayerResource:GetNthCourierForTeam(i, newTeam):SetControllableByPlayer(playerID, true)
                 end
+
+                local oldTeam = otherTeam(newTeam)
+                local num_cour_old = PlayerResource:GetNumCouriersForTeam(oldTeam)
                 for i = 0, num_cour_old - 1 do
                     PlayerResource:GetNthCourierForTeam(i, oldTeam):SetControllableByPlayer(playerID, false)
                 end
