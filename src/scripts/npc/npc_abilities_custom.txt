@@ -2499,10 +2499,10 @@
         }
     }
 
-    "global_break"
+    "silencer_global_break"
     {
         "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "global_break"
+        "AbilityTextureName"            "silencer_global_break"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2521,7 +2521,7 @@
         {
             "ApplyModifier"
             {
-                "ModifierName"  "modifier_global_break"
+                "ModifierName"  "modifier_silencer_global_break"
                 "Target"
                 {
                     "Center"                "CASTER"
@@ -2535,7 +2535,7 @@
         "Modifiers"
         {
             
-            "modifier_global_break"
+            "modifier_silencer_global_break"
             {
                 "Passive"           "0"
                 "IsHidden"          "0"
