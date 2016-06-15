@@ -901,10 +901,7 @@
     "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
     "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus intelligence"
     
-    "DOTA_Tooltip_modifier_global_break"                                              "Global Break"
-    "DOTA_Tooltip_modifier_global_break_Description"                                  "Disables abilities"
-    "DOTA_Tooltip_ability_global_break"                                               "Global Break"
-    "DOTA_Tooltip_ability_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
+   
 
 		
 
