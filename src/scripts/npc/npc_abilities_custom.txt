@@ -2505,7 +2505,7 @@
     	//-------------------------------------------------------------------------------------------------------------
     	"BaseClass"						"ability_lua"
     	"AbilityTextureName"				"flesh_heap_agi"
-    	"ScriptFile"						"lua_spells/flesh_heap_agi.lua"
+    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -2538,7 +2538,7 @@
     	//-------------------------------------------------------------------------------------------------------------
     	"BaseClass"						"ability_lua"
     	"AbilityTextureName"					"flesh_heap_int"
-    	"ScriptFile"						"lua_spells/flesh_heap_int.lua"
+    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
