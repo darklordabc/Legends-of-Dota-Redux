@@ -1385,6 +1385,7 @@
 
 #pickingPhaseTabFilterThingo {
     flow-children: right;
+    width: 100%;
 }
 
 #pickingPhaseSkillTabContentSkills {
@@ -1397,7 +1398,6 @@
 
 .lodSkillTabButton {
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    width: 320px;
     padding: 4px;
     margin-right: 8px;
     opacity: 0.25;
