@@ -107,7 +107,7 @@ function SetTeamInfo() {
         }
     }
     
-    unbalanced = teamDifference >= 2;
+    unbalanced = teamDifference >= 1;
     
     if(unbalanced && active == false){
         if (oldtd < teamDifference) $('#BalanceWarning').RemoveClass('hidden');

@@ -17,8 +17,8 @@ function Ingame:init()
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
-    -- Register dc/rc events
-    ListenToGameEvent('player_disconnect', self.player_dc, nil);
+    -- Register dc/rc events 
+    ListenToGameEvent('player_team', self.pt, nil);
     ListenToGameEvent('player_reconnected', self.player_rc, nil);
 
     -- Balance Player
@@ -59,10 +59,12 @@ function Ingame:init()
 end
 
 dc_table = {};
-function Ingame.player_dc(user)
-    Timers:CreateTimer(function()
-        dc_table[#dc_table + 1] = user.userid - 1;
-    end, 'dc_timeout_'..user.userid, 10)
+function Ingame.pt(user)
+    if user.disconnect == 1 then
+        Timers:CreateTimer(function()
+            dc_table[#dc_table + 1] = user.userid - 1;
+        end, 'dc_timeout_'..user.userid, 10)
+    end
 end
 
 function Ingame.player_rc(user)
