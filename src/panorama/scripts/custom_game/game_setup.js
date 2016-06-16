@@ -2646,7 +2646,10 @@ function OnSkillTabShown(tabName) {
         searchCategory = '';
 
         activeTabs = {
-            main: true
+            main: true,
+            wraith: true,
+            //neutral: true,
+            custom: true
         };
 
         var heroOwnerBlocks = {};
