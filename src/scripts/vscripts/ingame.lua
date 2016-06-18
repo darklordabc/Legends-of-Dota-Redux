@@ -61,7 +61,7 @@ function Ingame:FilterExecuteOrder(filterTable)
     local issuer = filterTable["issuer_player_id_const"]
     for n,unit_index in pairs(units) do
         local unit = EntIndexToHScript(unit_index)
-        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and not PlayerResource:GetConnectionState(issuer) == 0 then 
+        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
             return false
         end
     end
