@@ -196,7 +196,7 @@ function Ingame:accepted(x, y)
             cour:SetControllableByPlayer(x, false)
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
-                if item and item:GetPurchaser() == x then
+                if item and item:GetPurchaser():GetPlayerID() == x then
                     PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
                     cour:RemoveItem(item)
                 end
@@ -208,7 +208,7 @@ function Ingame:accepted(x, y)
             cour:SetControllableByPlayer(x, false)
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
-                if item and item:GetPurchaser() == x then
+                if item and item:GetPurchaser():GetPlayerID() == x then
                     PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
                     cour:RemoveItem(item)
                 end
