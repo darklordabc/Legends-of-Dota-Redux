@@ -17,10 +17,6 @@ function Ingame:init()
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
-    -- Register dc/rc events 
-    ListenToGameEvent('player_team', self.pt, nil);
-    ListenToGameEvent('player_reconnected', self.player_rc, nil);
-
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
         this:swapPlayers(args.x, args.y)
@@ -54,28 +50,25 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
+
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
 
-dc_table = {};
-function Ingame.pt(user)
-    if user.disconnect == 1 then
-        Timers:CreateTimer(function()
-            dc_table[#dc_table + 1] = user.userid - 1;
-        end, 'dc_timeout_'..user.userid, 10)
-    end
-end
-
-function Ingame.player_rc(user)
-    Timers:CreateTimer(function () end, 'dc_timeout_'..user.userid, 0)
-    for i,v in pairs(dc_table) do
-        if v == user.PlayerID - 1 then
-            v:remove(i)
-            break
+function Ingame:FilterExecuteOrder(filterTable)
+    local units = filterTable["units"]
+    local issuer = filterTable["issuer_player_id_const"]
+    for n,unit_index in pairs(units) do
+        local unit = EntIndexToHScript(unit_index)
+        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and not PlayerResource:GetConnectionState(issuer) == 0 then 
+            return false
         end
     end
-end
+    return true
+end    
+
+dc_table = {};
 
 -- Called when the game starts
 function Ingame:onStart()
@@ -100,11 +93,26 @@ function Ingame:returnCustomTeams(eventSourceIndex, args)
     local playerCount = PlayerResource:GetPlayerCount();
     local customTeamAssignments = {};
 
+    local cur_time = Time()
     for playerID = 0, playerCount-1 do
         customTeamAssignments[playerID] = PlayerResource:GetCustomTeamAssignment(playerID);
+        if PlayerResource:GetConnectionState(playerID) == 3 then
+            if not dc_table[playerID] then
+                dc_table[playerID] = cur_time
+            end
+        else
+            dc_table[playerID] = nil
+        end
     end
 
-    CustomGameEventManager:Send_ServerToAllClients( "send_custom_team_info", {x = customTeamAssignments, y = dc_table} )
+    local dc_timeout = {}
+    for i,v in pairs(dc_table) do
+        if cur_time - v >= 10 then
+            dc_timeout[#dc_timeout + 1] = i
+        end
+    end
+    
+    CustomGameEventManager:Send_ServerToAllClients( "send_custom_team_info", {x = customTeamAssignments, y = dc_timeout} )
 end
 
 function Ingame:switchTeam(eventSourceIndex, args)
@@ -144,17 +152,6 @@ function Ingame:balancePlayer(playerID, newTeam)
                         end
                     end
                 end
-
-                local num_cour_new = PlayerResource:GetNumCouriersForTeam(newTeam)
-                for i = 0, num_cour_new - 1 do
-                    PlayerResource:GetNthCourierForTeam(i, newTeam):SetControllableByPlayer(playerID, true)
-                end
-
-                local oldTeam = otherTeam(newTeam)
-                local num_cour_old = PlayerResource:GetNumCouriersForTeam(oldTeam)
-                for i = 0, num_cour_old - 1 do
-                    PlayerResource:GetNthCourierForTeam(i, oldTeam):SetControllableByPlayer(playerID, false)
-                end
             end
         end, DoUniqueString('respawn'), 0.11)
     end
@@ -182,8 +179,35 @@ end
 
 function Ingame:accepted(x, y)
     return function ()
-        self:balancePlayer(x, otherTeam(PlayerResource:GetCustomTeamAssignment(x)))
-        self:balancePlayer(y, otherTeam(PlayerResource:GetCustomTeamAssignment(y)))
+        local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
+        local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
+        self:balancePlayer(x, newTeam)
+        self:balancePlayer(y, oldTeam)
+        
+        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+            cour:SetControllableByPlayer(x, false)
+            for i=0, 5 do
+                local item = cour:GetItemInSlot(i)
+                if item and item:GetPurchaser() == x then
+                    PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
+                    cour:RemoveItem(item)
+                end
+            end
+        end
+
+        for i = 0, PlayerResource:GetNumCouriersForTeam(oldTeam) - 1 do
+            local cour = PlayerResource:GetNthCourierForTeam(i, oldTeam)
+            cour:SetControllableByPlayer(x, false)
+            for i=0, 5 do
+                local item = cour:GetItemInSlot(i)
+                if item and item:GetPurchaser() == x then
+                    PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
+                    cour:RemoveItem(item)
+                end
+            end
+        end
+        
         PauseGame(false);
     end
 end
