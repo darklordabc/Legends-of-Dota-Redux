@@ -134,6 +134,7 @@ function Ingame:balancePlayer(playerID, newTeam)
 
         -- Kill the hero
         hero:Kill(nil, nil)
+        hero:SetGold(0, true)
 
         -- Respawn after 1.11 seconds
         Timers:CreateTimer(function()
@@ -181,8 +182,14 @@ function Ingame:accepted(x, y)
     return function ()
         local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
         local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
+        local xMoney = PlayerResource:GetGold(x)
+		local yMoney = PlayerResource:GetGold(y)
         self:balancePlayer(x, newTeam)
         self:balancePlayer(y, oldTeam)
+        PlayerResource:SetGold(x, 0, false)
+		PlayerResource:SetGold(y, 0, false)
+		PlayerResource:ModifyGold(x, xMoney, true, 0)
+		PlayerResource:ModifyGold(y, yMoney, true, 0)
         
         for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
