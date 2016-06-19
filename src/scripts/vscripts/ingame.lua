@@ -201,8 +201,8 @@ function Ingame:accepted(x, y)
             cour:SetControllableByPlayer(x, true)
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
-                if item and item:GetPurchaser():GetPlayerID() == x then
-                    PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
+                if item and item:GetPurchaser():GetPlayerID() == y then
+                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
                     cour:RemoveItem(item)
                 end
             end
@@ -210,7 +210,7 @@ function Ingame:accepted(x, y)
 
         for i = 0, PlayerResource:GetNumCouriersForTeam(oldTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, oldTeam)
-            cour:SetControllableByPlayer(x, true)
+            cour:SetControllableByPlayer(y, true)
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
                 if item and item:GetPurchaser():GetPlayerID() == x then
