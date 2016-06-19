@@ -196,25 +196,9 @@ function Ingame:accepted(x, y)
         PlayerResource:SetGold(x, xrMoney, true)
         PlayerResource:SetGold(y, yrMoney, true)
         
-        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-            for j = 0, PlayerResource:GetPlayerCount() - 1 do
-                cour:SetControllableByPlayer(j, true)
-            end
-            for j=0, 5 do
-                local item = cour:GetItemInSlot(j)
-                if item and item:GetPurchaser():GetPlayerID() == y then
-                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                    cour:RemoveItem(item)
-                end
-            end
-        end
-
         for i = 0, PlayerResource:GetNumCouriersForTeam(oldTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, oldTeam)
-            for j = 0, PlayerResource:GetPlayerCount() - 1 do
-                cour:SetControllableByPlayer(j, true)
-            end 
+            cour:SetControllableByPlayer(y, true)
             for j=0, 5 do
                 local item = cour:GetItemInSlot(j)
                 if item and item:GetPurchaser():GetPlayerID() == x then
@@ -224,6 +208,18 @@ function Ingame:accepted(x, y)
             end
         end
         
+        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+            cour:SetControllableByPlayer(x, true)
+            for j=0, 5 do
+                local item = cour:GetItemInSlot(j)
+                if item and item:GetPurchaser():GetPlayerID() == y then
+                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
+                    cour:RemoveItem(item)
+                end
+            end
+        end
+
         PauseGame(false);
     end
 end
