@@ -182,14 +182,19 @@ function Ingame:accepted(x, y)
     return function ()
         local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
         local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
-        local xMoney = PlayerResource:GetGold(x)
-		local yMoney = PlayerResource:GetGold(y)
+
+        local xuMoney = PlayerResource:GetUnreliableGold(x)
+        local yuMoney = PlayerResource:GetUnreliableGold(y)
+        local xrMoney = PlayerResource:GetReliableGold(x)
+        local yrMoney = PlayerResource:GetReliableGold(y)
+
         self:balancePlayer(x, newTeam)
         self:balancePlayer(y, oldTeam)
-        PlayerResource:SetGold(x, 0, false)
-		PlayerResource:SetGold(y, 0, false)
-		PlayerResource:ModifyGold(x, xMoney, true, 0)
-		PlayerResource:ModifyGold(y, yMoney, true, 0)
+
+        PlayerResource:SetGold(x, xuMoney, false)
+        PlayerResource:SetGold(y, yuMoney, false)
+        PlayerResource:SetGold(x, xrMoney, true)
+        PlayerResource:SetGold(y, yrMoney, true)
         
         for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
