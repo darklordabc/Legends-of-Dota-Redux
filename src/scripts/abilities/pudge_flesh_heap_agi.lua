@@ -1,4 +1,4 @@
-flesh_heap_agi = class({})
+pudge_flesh_heap_agi = class({})
 
 LinkLuaModifier( "modifier_flesh_heap_agi", "scripts/vscripts/../abilities/modifiers/modifier_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
 
