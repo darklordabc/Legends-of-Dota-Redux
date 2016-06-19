@@ -198,7 +198,9 @@ function Ingame:accepted(x, y)
         
         for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-            cour:SetControllableByPlayer(x, true)
+            for j = 0, PlayerResource:GetPlayerCount() - 1 do
+                cour:SetControllableByPlayer(j, true)
+            end
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
                 if item and item:GetPurchaser():GetPlayerID() == y then
@@ -210,7 +212,9 @@ function Ingame:accepted(x, y)
 
         for i = 0, PlayerResource:GetNumCouriersForTeam(oldTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, oldTeam)
-            cour:SetControllableByPlayer(y, true)
+            for j = 0, PlayerResource:GetPlayerCount() - 1 do
+                cour:SetControllableByPlayer(j, true)
+            end 
             for i=0, 5 do
                 local item = cour:GetItemInSlot(i)
                 if item and item:GetPurchaser():GetPlayerID() == x then
