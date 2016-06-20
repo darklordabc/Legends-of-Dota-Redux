@@ -2,13 +2,13 @@ pudge_flesh_heap_int = class({})
 LinkLuaModifier( "modifier_flesh_heap_int", "scripts/vscripts/../abilities/modifiers/modifier_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
-function flesh_heap_int:GetIntrinsicModifierName()
+function pudge_flesh_heap_int:GetIntrinsicModifierName()
 	return "modifier_flesh_heap_int"
 end
 
 --------------------------------------------------------------------------------
 
-function flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
+function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 	if hVictim == nil or hKiller == nil then
 		return
 	end
@@ -42,7 +42,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function flesh_heap_int:GetFleshHeapKills()
+function pudge_flesh_heap_int:GetFleshHeapKills()
 	if self.nKills == nil then
 		self.nKills = 0
 	end
