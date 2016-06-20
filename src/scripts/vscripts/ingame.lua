@@ -196,18 +196,6 @@ function Ingame:accepted(x, y)
         PlayerResource:SetGold(x, xrMoney, true)
         PlayerResource:SetGold(y, yrMoney, true)
         
-        for i = 0, PlayerResource:GetNumCouriersForTeam(oldTeam) - 1 do
-            local cour = PlayerResource:GetNthCourierForTeam(i, oldTeam)
-            cour:SetControllableByPlayer(y, false)
-            for j=0, 5 do
-                local item = cour:GetItemInSlot(j)
-                if item and item:GetPurchaser():GetPlayerID() == x then
-                    PlayerResource:ModifyGold(x, item:GetCost(), true, 0)
-                    cour:RemoveItem(item)
-                end
-            end
-        end
-        
         for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
             local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
             cour:SetControllableByPlayer(x, false)
