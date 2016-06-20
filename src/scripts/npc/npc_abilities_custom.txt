@@ -1493,7 +1493,7 @@
                 "IsHidden"            "1"
                 "IsDebuff"            "0"
         
-                "ThinkInterval"  "0.3"
+                "ThinkInterval"  "1.0"
                 "OnIntervalThink"
                 {
                     "RunScript"
