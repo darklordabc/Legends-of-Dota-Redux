@@ -13,7 +13,7 @@ function ScepterStarfallCheck( keys )
 	
 		-- Loop through enemies and check if it actually sees caster
 		for k,v in pairs(enemies) do
-			if v:CanEntityBeSeenByMyTeam(caster) then
+			if v:CanEntityBeSeenByMyTeam(caster) and caster:CanEntityBeSeenByMyTeam(v) then
 				-- Remove thinker
 				caster:RemoveModifierByName("modifier_mirana_starfall_scepter_thinker")
 
