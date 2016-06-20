@@ -110,9 +110,11 @@ function SetTeamInfo() {
     unbalanced = teamDifference >= 1;
     
     if(unbalanced && active == false){
-        if (oldtd < teamDifference) $('#BalanceWarning').RemoveClass('hidden');
+        if (oldtd < teamDifference) {
+            $('#BalanceWarning').RemoveClass('hidden')
+            $.Schedule(30, function() { $('#BalanceWarning').AddClass('hidden') });
+        };
     }else{
-
         $('#BalanceWarning').AddClass('hidden');
     }
     oldtd = teamDifference;
