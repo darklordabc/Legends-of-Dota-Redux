@@ -15,7 +15,7 @@ function show_vote_dialog(swap_info) {
     $('#swappee_name').text = swappee_info.player_name;
 
     $('#vote_dialog').RemoveClass('hidden');
-    $('#choice').RemoveClass('hidden')
+    $('#choice').RemoveClass('hiddenoccupy')
     apply_transition_from_start('#vote_timer', '10s', 'shrink');
     handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('hidden');
                                           $('#vote_timer').RemoveClass('shrink')
@@ -23,7 +23,7 @@ function show_vote_dialog(swap_info) {
 }
 
 function accept() {
-    $('#choice').AddClass('hidden')
+    $('#choice').AddClass('hiddenoccupy')
 }
 
 function decline() {

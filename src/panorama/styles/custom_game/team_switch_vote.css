@@ -144,3 +144,7 @@
 .hidden {
     visibility: collapse;
 }
+
+.hiddenoccupy {
+    opacity: 0;
+}
