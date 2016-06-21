@@ -230,7 +230,7 @@ function Ingame:accepted(x, y)
         end
     end
 
-    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(), 2)
+    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
 end
 
 function Ingame:declined(event_source_index)
