@@ -141,6 +141,18 @@
     background-color: rgb(196, 75, 75);
 }
 
+.accepted .title {
+    color: rgb(10, 147, 10);
+}
+
+.accepted .bar_border {
+    border-color: rgb(10, 147, 10);
+}
+
+.accepted .bar_inner {
+    background-color: rgb(10, 147, 10);
+}
+
 .hidden {
     visibility: collapse;
 }

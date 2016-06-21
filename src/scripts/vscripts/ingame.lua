@@ -151,6 +151,7 @@ function Ingame:balancePlayer(playerID, newTeam)
                         if meepoClone:IsClone() and playerID == meepoClone:GetPlayerID() then
                             meepoClone:SetTimeUntilRespawn(1)
                         end
+                        
                     end
                 end
             end
@@ -169,47 +170,67 @@ end
 
 function Ingame:swapPlayers(x, y)
     local player_count = PlayerResource:GetPlayerCount()
-
+    local cp_count = 0
+    
     for i = 0, player_count do
         local recepientEntity = PlayerResource:GetPlayer(i)
         CustomGameEventManager:Send_ServerToPlayer(recepientEntity, 'vote_dialog', {swapper = x, swappee = y })
+        if PlayerResource:GetConnectionState(i) == 2 then
+            cp_count = cp_count + 1
+        end
     end
+
+    local accepted = 0;
+    local h;
+    h = CustomGameEventManager:RegisterListener( 'accept', function ()
+        accepted = accepted + 1
+        if accepted >= cp_count then
+            Timers:CreateTimer(function ()
+                self:accepted(x,y)
+                CustomGameEventManager:UnregisterListener(h)
+                CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
+            end, 'accepted', 0)
+        end
+    end)
+    
     PauseGame(true);
-    Timers:CreateTimer(self:accepted(x,y), 'accepted', 10);
+
+    Timers:CreateTimer(function ()
+        self:accepted(x,y)
+        CustomGameEventManager:UnregisterListener(h)
+    end, 'accepted', 10)
 end
 
 function Ingame:accepted(x, y)
-    return function ()
-        local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
-        local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
+    local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
+    local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
 
-        local xuMoney = PlayerResource:GetUnreliableGold(x)
-        local yuMoney = PlayerResource:GetUnreliableGold(y)
-        local xrMoney = PlayerResource:GetReliableGold(x)
-        local yrMoney = PlayerResource:GetReliableGold(y)
+    local xuMoney = PlayerResource:GetUnreliableGold(x)
+    local yuMoney = PlayerResource:GetUnreliableGold(y)
+    local xrMoney = PlayerResource:GetReliableGold(x)
+    local yrMoney = PlayerResource:GetReliableGold(y)
 
-        self:balancePlayer(x, newTeam)
-        self:balancePlayer(y, oldTeam)
+    self:balancePlayer(x, newTeam)
+    self:balancePlayer(y, oldTeam)
 
-        PlayerResource:SetGold(x, xuMoney, false)
-        PlayerResource:SetGold(y, yuMoney, false)
-        PlayerResource:SetGold(x, xrMoney, true)
-        PlayerResource:SetGold(y, yrMoney, true)
-        
-        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-            cour:SetControllableByPlayer(x, false)
-            for j=0, 5 do
-                local item = cour:GetItemInSlot(j)
-                if item and item:GetPurchaser():GetPlayerID() == y then
-                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                    cour:RemoveItem(item)
-                end
+    PlayerResource:SetGold(x, xuMoney, false)
+    PlayerResource:SetGold(y, yuMoney, false)
+    PlayerResource:SetGold(x, xrMoney, true)
+    PlayerResource:SetGold(y, yrMoney, true)
+    
+    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+        cour:SetControllableByPlayer(x, false)
+        for j=0, 5 do
+            local item = cour:GetItemInSlot(j)
+            if item and item:GetPurchaser():GetPlayerID() == y then
+                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
+                cour:RemoveItem(item)
             end
         end
-
-        PauseGame(false);
     end
+
+    PauseGame(false);
 end
 
 function Ingame:declined(event_source_index)

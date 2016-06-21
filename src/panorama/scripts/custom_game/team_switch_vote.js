@@ -1,6 +1,7 @@
 "use strict";
 GameEvents.Subscribe("vote_dialog", show_vote_dialog);
 GameEvents.Subscribe("player_declined", player_declined);
+GameEvents.Subscribe("player_accepted", player_accepted);
 
 var handler;
 
@@ -16,6 +17,7 @@ function show_vote_dialog(swap_info) {
 
     $('#vote_dialog').RemoveClass('hidden');
     $('#choice').RemoveClass('hiddenoccupy')
+
     apply_transition_from_start('#vote_timer', '10s', 'shrink');
     handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('hidden');
                                           $('#vote_timer').RemoveClass('shrink')
@@ -23,6 +25,7 @@ function show_vote_dialog(swap_info) {
 }
 
 function accept() {
+    GameEvents.SendCustomGameEventToServer( 'accept', {} );
     $('#choice').AddClass('hiddenoccupy')
 }
 
@@ -40,6 +43,21 @@ function player_declined() {
     halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
         vote_dialog.RemoveClass('declined');
+        vote_dialog.AddClass('hidden');
+        title.text = 'TEAM SWITCH';
+    })
+}
+
+function player_accepted() {
+    var vote_dialog = $('#vote_dialog')
+    var title = vote_dialog.FindChildrenWithClassTraverse('title')[0];
+    title.text = 'ACCEPTED';
+    vote_dialog.AddClass('accepted');
+
+    $.CancelScheduled(handler);
+    halt_transition('#vote_timer', 'shrink');
+    $.Schedule(2, function() {
+        vote_dialog.RemoveClass('accepted');
         vote_dialog.AddClass('hidden');
         title.text = 'TEAM SWITCH';
     })
