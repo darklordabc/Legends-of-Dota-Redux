@@ -11,8 +11,8 @@
         <Panel id="lodNotificationArea">
         </Panel>
 
-        <Panel id="lodTimerWarning">
-            <Label id="lodTimerWarningLabel" text="lol" />
+        <Panel id="lodTimerWarning" hittest="false">
+            <Label id="lodTimerWarningLabel" text="lol" hittest="false"/>
         </Panel>
 
         <Panel id="lodPopupMessage">
