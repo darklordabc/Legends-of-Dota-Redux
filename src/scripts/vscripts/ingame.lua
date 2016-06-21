@@ -230,12 +230,12 @@ function Ingame:accepted(x, y)
         end
     end
 
-    PauseGame(false);
+    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(), 2)
 end
 
 function Ingame:declined(event_source_index)
     CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
-    Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 0)
+    Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
 -- Sets it to no team balancing is required
