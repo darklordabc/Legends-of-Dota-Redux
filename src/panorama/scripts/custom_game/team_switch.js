@@ -107,7 +107,7 @@ function SetTeamInfo() {
         }
     }
     
-    unbalanced = teamDifference >= 1;
+    unbalanced = teamDifference >= 2;
     
     if(unbalanced && active == false){
         if (oldtd < teamDifference) {
@@ -121,7 +121,7 @@ function SetTeamInfo() {
 }
 
 function AttemptTeamSwitch(index) {
-    if (!unbalanced || debounce) return;
+    if (disabled || !unbalanced || debounce) return;
 
     CloseTeamSwitch();
 

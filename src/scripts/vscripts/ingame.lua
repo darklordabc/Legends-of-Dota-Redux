@@ -109,7 +109,7 @@ function Ingame:returnCustomTeams(eventSourceIndex, args)
 
     local dc_timeout = {}
     for i,v in pairs(dc_table) do
-        if cur_time - v >= 10 then
+        if cur_time - v >= 300 then
             dc_timeout[#dc_timeout + 1] = i
         end
     end
