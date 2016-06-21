@@ -7,6 +7,8 @@ local Timers = require('easytimers')
 -- Create the class for it
 local Ingame = class({})
 
+local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
+
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
     local this = self
@@ -151,7 +153,35 @@ function Ingame:balancePlayer(playerID, newTeam)
                         if meepoClone:IsClone() and playerID == meepoClone:GetPlayerID() then
                             meepoClone:SetTimeUntilRespawn(1)
                         end
+                    end
+                end
+                for spell, name in pairs(ts_entities.Switch) do
+                    if hero:HasAbility(spell) then
+                        local units = Entities:FindAllByName(name)
+                        if #units == 0 then
+                            units = Entities:FindAllByModel(name)
+                        end
                         
+                        for _, unit in pairs(units) do
+                            print("found units")
+                            if unit:GetPlayerOwnerID() == playerID then
+                                unit:SetTeam(newTeam)
+                            end
+                        end
+                    end
+                end
+                for spell, name in pairs(ts_entities.Kill) do
+                    if hero:HasAbility(spell) then
+                        local units = Entities:FindAllByName(name)
+                        if #units == 0 then
+                            units = Entities:FindAllByModel(name)
+                        end
+                        
+                        for _, unit in pairs(units) do
+                            if unit:GetPlayerOwnerID() == playerID then
+                                unit:Kill(nil, nil)
+                            end
+                        end
                     end
                 end
             end
