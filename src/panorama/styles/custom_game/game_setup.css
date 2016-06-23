@@ -333,6 +333,18 @@
     flow-children: right;
 }
 
+.tooManyPlayers.theTeamContainer {
+    flow-children: down;
+}
+
+.theTeamContainerSub {
+    flow-children: right;
+}
+
+#theDireContainerBot {
+    horizontal-align: right;
+}
+
 .radiantGlow {
     horizontal-align: left;
     color: #00FF00;
@@ -885,7 +897,15 @@
 }
 
 .tooManyPlayers.reviewPhaseTeam {
-    flow-children: right-wrap;
+    flow-children: down;
+}
+
+.tooManyPlayers.reviewPhaseTeam .subReviewContainer {
+    flow-children: right;
+}
+
+.subReviewContainer {
+    horizontal-align: center;
 }
 
 #reviewRadiantTeam {
@@ -1365,6 +1385,7 @@
 
 #pickingPhaseTabFilterThingo {
     flow-children: right;
+    width: 100%;
 }
 
 #pickingPhaseSkillTabContentSkills {
@@ -1377,7 +1398,6 @@
 
 .lodSkillTabButton {
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    width: 320px;
     padding: 4px;
     margin-right: 8px;
     opacity: 0.25;
