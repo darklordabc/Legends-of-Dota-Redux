@@ -1,5 +1,12 @@
 "use strict";
 
+var customTeamAssignments = {};
+
+function ReceiveCustomTeamInfo( team_info )
+{
+        customTeamAssignments = team_info.x
+}
+GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo)
 
 //=============================================================================
 //=============================================================================
@@ -17,23 +24,29 @@ function _ScoreboardUpdater_SetTextSafe( panel, childName, textValue )
 
 //=============================================================================
 //=============================================================================
-function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, playerId, localPlayerTeamId )
+function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, enemyPlayersContainer, playerId, localPlayerTeamId, teamId )
 {
 	var playerPanelName = "_dynamic_player_" + playerId;
 	var playerPanel = playersContainer.FindChild( playerPanelName );
-	if ( playerPanel === null )
-	{
-		playerPanel = $.CreatePanel( "Panel", playersContainer, playerPanelName );
+
+        if ( enemyPlayersContainer !== null && playerPanel === null )
+        {
+	        playerPanel = enemyPlayersContainer.FindChild( playerPanelName );
+                if ( playerPanel !== null ) playerPanel.SetParent( playersContainer );
+        }
+                
+        if ( playerPanel === null)
+        {
+                playerPanel = $.CreatePanel( "Panel", playersContainer, playerPanelName );
 		playerPanel.SetAttributeInt( "player_id", playerId );
 		playerPanel.BLoadLayout( scoreboardConfig.playerXmlName, false, false );
-	}
+        }
 
 	playerPanel.SetHasClass( "is_local_player", ( playerId == Game.GetLocalPlayerID() ) );
 	
 	var ultStateOrTime = PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_HIDDEN; // values > 0 mean on cooldown for that many seconds
 	var goldValue = -1;
 	var isTeammate = false;
-
 	var playerInfo = Game.GetPlayerInfo( playerId );
 	if ( playerInfo )
 	{
@@ -169,11 +182,19 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 	_ScoreboardUpdater_SetTextSafe( playerPanel, "PlayerUltimateCooldown", ultStateOrTime );
 }
 
-
+function OtherTeam( teamId )
+{
+        if (teamId == DOTATeam_t.DOTA_TEAM_GOODGUYS)
+                return DOTATeam_t.DOTA_TEAM_BADGUYS
+        else if (teamId == DOTATeam_t.DOTA_TEAM_BADGUYS)
+                return DOTATeam_t.DOTA_TEAM_GOODGUYS
+        return -1
+}
 //=============================================================================
 //=============================================================================
 function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, teamDetails, teamsInfo )
 {
+        GameEvents.SendCustomGameEventToServer( "ask_custom_team_info", {} );
 	if ( !containerPanel )
 		return;
 
@@ -210,13 +231,22 @@ function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, t
 	teamPanel.SetHasClass( "local_player_team", localPlayerTeamId == teamId );
 	teamPanel.SetHasClass( "not_local_player_team", localPlayerTeamId != teamId );
 
-	var teamPlayers = Game.GetPlayerIDsOnTeam( teamId )
+	var teamPlayers = [];
+        var curIndex = 0;
+        for (var playerId in customTeamAssignments)
+                if ( parseInt(customTeamAssignments[playerId]) == teamId )
+                        teamPlayers.push(parseInt(playerId));
+        
 	var playersContainer = teamPanel.FindChildInLayoutFile( "PlayersContainer" );
+
+        var enemyTeamPanel = containerPanel.FindChild( "_dynamic_team_" + OtherTeam(teamId) )
+        if (enemyTeamPanel) var enemyPlayersContainer = enemyTeamPanel.FindChildInLayoutFile( "PlayersContainer" );
+        
 	if ( playersContainer )
 	{
-		for ( var playerId of teamPlayers )
+	        for ( var playerId of teamPlayers )
 		{
-			_ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, playerId, localPlayerTeamId )
+			_ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, enemyPlayersContainer, playerId, localPlayerTeamId, teamId )
 		}
 	}
 	
