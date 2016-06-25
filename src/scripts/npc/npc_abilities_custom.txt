@@ -2918,7 +2918,7 @@
     		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
     	}
     }
-    "silencer_global_break"
+   "silencer_global_break"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityTextureName"            "silencer_global_break"
@@ -2934,6 +2934,8 @@
         "precache"
         {
             "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
+            "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
         }
         "AbilitySpecial"
         {
@@ -2959,6 +2961,18 @@
                     "Types"                 "DOTA_UNIT_TARGET_HERO" 
                 }
                 "Duration"      "%AbilityDuration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                "Target"        "CASTER"
+            }
+
+            "FireEffect"
+            {
+                "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"        "CASTER"
             }
         }
         "Modifiers"
