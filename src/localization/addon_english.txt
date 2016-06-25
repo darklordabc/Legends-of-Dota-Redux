@@ -447,6 +447,9 @@
     "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
     "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
+    "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
+    "unique_mechanic_spirit_breaker"                "Skull Basher and <br> Abyssal Blade will not proc for this hero."
+    "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
 
     /////////////////
     // Skill Warnings
