@@ -228,7 +228,7 @@
 
     // Info
     "lodOptionAboutPresetGamemode"                  "Choose from a predefined gamemode.\nThis option can only be changed if you are playing on the 'custom' map.\n\nAll Pick: Pick from every available skill.\nMirror Draft: Pick from a limited number of heroes.\nAll Random: Pick from a random set of builds.\nCustom: Build a custom gamemode."
-    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban upto one (1) hero and three (3) skills.\nFull Ban Phase: Balanced bans will be turned on and players can ban upto 10 abilities and upto 2 heroes each.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
+    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban up to one (1) hero and three (3) skills.\nFull Ban Phase: Balanced bans will be turned on and players can ban up to 10 abilities and up to 2 heroes each.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
     "lodOptionAboutPresetSlots"                     "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutPresetUlts"                      "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutPresetMirrorHeroes"              "The number of heroes each player will receive to draft from."
@@ -271,16 +271,16 @@
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
-    "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."
-    "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell upto 4 times almost instantly."
-    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand alone abilities."
-    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabled the OP Skills option."
+    "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second."
+    "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell up to 4 times almost instantly."
+    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand-alone abilities."
+    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabling the OP Skills option."
     "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
-    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
+    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
-    "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Elazor and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
+    "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
 
     // Hero builder
@@ -300,10 +300,10 @@
     "lodBanningInstructions"                        "Drag abilities or heroes here to ban them."
 
     "lodYouCanBan"                                  "You can ban "
-    "lodUptoHeroes"                                 "upto {heroBansLeft} more heroes"
-    "lodUptoOneHero"                                "upto 1 more hero"
-    "lodUptoAbilities"                              "upto {abilityBansLeft} more abilities"
-    "lodUptoAbility"                                "upto 1 more ability"
+    "lodUptoHeroes"                                 "up to {heroBansLeft} more heroes"
+    "lodUptoOneHero"                                "up to 1 more hero"
+    "lodUptoAbilities"                              "up to {abilityBansLeft} more abilities"
+    "lodUptoAbility"                                "up to 1 more ability"
     "lodBanAnd"                                     " and "
     "lodNoMoreBans"                                 "You can not ban any more heroes or abilities"
     "hostBanningPanelText"                          "You can ban as many heroes and abilities as you like."
@@ -441,11 +441,11 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_meepo"                         "Aghnamin's Scepter<br> will give this hero a free clone."
-    "unique_mechanic_night_stalker"                 "Aghnamin's Scepter<br> will give this hero unobstructed night<br> vision."
-    "unique_mechanic_gyrocopter"                    "Aghnamin's Scepter<br> will give this hero a side gunner."
-    "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
-    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
+    "unique_mechanic_meepo"                         "Aghanim's Scepter<br> will give this hero a free clone."
+    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision."
+    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner."
+    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision."
+    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
 
     /////////////////
@@ -831,17 +831,6 @@
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note1"                  "If the enemy has True Sight, they will be able to see which trees are enchanted."
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Lore"                       "One can never be too certain who, or what, might need protecting."
 
-    // Starfall
-    "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
-    "DOTA_Tooltip_ability_mirana_starfall_lod_Description"                              "Calls down a wave of meteors to damage nearby enemy units. The closest enemy unit to Mirana in a %starfall_secondary_radius% radius will be struck a second time for 75%% of the damage.\n\nUpgradable by Aghanim's Scepter."
-    "DOTA_Tooltip_ability_mirana_starfall_lod_Lore"                                     "The Goddess breaks the strata to empower her Princess in the time of need."
-    "DOTA_Tooltip_ability_mirana_starfall_lod_Note0"                                    "Starstorm is not blocked by Linken's Sphere."
-    "DOTA_Tooltip_ability_mirana_starfall_lod_Note1"                                    "Starstorm cannot hit invisible units."
-    "DOTA_Tooltip_ability_mirana_starfall_lod_Note2"                                    "Starstorm will choose a new target for the second star if the first died before impact."
-    "DOTA_Tooltip_ability_mirana_starfall_lod_starfall_radius"                          "RADIUS:"
-    "DOTA_Tooltip_ability_mirana_starfall_lod_scepter_interval"                         "SCEPTER INTERVAL:"
-    "DOTA_Tooltip_ability_mirana_starfall_lod_aghanim_description"                      "Passively triggers Starstorm every 8 seconds. Does not trigger if the enemy doesn't see Mirana."
-
     // Essence Aura
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod"                      "Essence Aura"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
@@ -862,13 +851,6 @@
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
-
-    // Rearm
-    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm"
-    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
-    "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
-    "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
-    "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
 
     // Essence Shift
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
@@ -898,31 +880,10 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
-    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
-    
-    //flesh heap spells
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
-    "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
-    "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"				"RANGE:"
-    "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus intelligence"
-    
-    // global break
-    "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
-    "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
-    "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
-    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
-    "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
 }
