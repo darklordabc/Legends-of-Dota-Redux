@@ -793,6 +793,13 @@ function Pregame:networkHeroes()
         end
     end
 
+    -- Merge custom heroes
+    for heroName,heroValues in pairs(allHeroesCustom) do
+        if not allHeroes[heroValues["override_hero"]] then
+            allHeroes[heroValues["override_hero"]] = heroValues
+        end
+    end
+
     -- Push flags to clients
     for abilityName, flagData in pairs(flagsInverse) do
         network:setFlagData(abilityName, flagData)
@@ -854,7 +861,7 @@ function Pregame:networkHeroes()
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
-        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and (heroValues.Enabled == 1 or heroName == "npc_dota_hero_abyssal_underlord") then
             -- Store if we can select it as a bot
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
@@ -916,8 +923,6 @@ function Pregame:networkHeroes()
             else
                 self.heroRole[heroName] = 'melee'
             end
-
-
 
             if heroToSkillMap[heroName] then
                 for k,v in pairs(heroToSkillMap[heroName]) do
