@@ -1750,18 +1750,20 @@ function buildHeroList() {
     for(var heroName in heroData) {
         var info = heroData[heroName];
 
-        switch(info.AttributePrimary) {
-            case 'DOTA_ATTRIBUTE_STRENGTH':
-                strHeroes.push(heroName);
-            break;
+        if (info.Enabled == 1) {
+            switch(info.AttributePrimary) {
+                case 'DOTA_ATTRIBUTE_STRENGTH':
+                    strHeroes.push(heroName);
+                break;
 
-            case 'DOTA_ATTRIBUTE_AGILITY':
-                agiHeroes.push(heroName);
-            break;
+                case 'DOTA_ATTRIBUTE_AGILITY':
+                    agiHeroes.push(heroName);
+                break;
 
-            case 'DOTA_ATTRIBUTE_INTELLECT':
-                intHeroes.push(heroName);
-            break;
+                case 'DOTA_ATTRIBUTE_INTELLECT':
+                    intHeroes.push(heroName);
+                break;
+            }
         }
     }
 

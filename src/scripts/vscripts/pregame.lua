@@ -761,6 +761,7 @@ end
 
 -- Setup the selectable heroes
 function Pregame:networkHeroes()
+    local heroList = LoadKeyValues('scripts/npc/herolist.txt')
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
     local flags = LoadKeyValues('scripts/kv/flags.kv')
@@ -861,7 +862,7 @@ function Pregame:networkHeroes()
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
-        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and (heroValues.Enabled == 1 or heroName == "npc_dota_hero_abyssal_underlord") then
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroList[heroName] then
             -- Store if we can select it as a bot
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
@@ -907,6 +908,8 @@ function Pregame:networkHeroes()
                 VisionDaytimeRange = customHero.VisionDaytimeRange or heroValues.VisionDaytimeRange or baseHero.VisionDaytimeRange,
                 VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange
             }
+
+            theData["Enabled"] = heroList[heroName]
 
             local attr = heroValues.AttributePrimary
             if attr == 'DOTA_ATTRIBUTE_INTELLECT' then
