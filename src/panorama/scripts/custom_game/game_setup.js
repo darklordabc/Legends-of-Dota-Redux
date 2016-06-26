@@ -1199,7 +1199,6 @@ function OnHeroDataChanged(table_name, key, data) {
 // Flag data has changed
 function OnFlagDataChanged(table_name, key, data) {
     flagDataInverse[key] = data;
-
     // Do the schedule
     if(dataHooks.OnFlagDataChanged == null) dataHooks.OnFlagDataChanged = 0;
     var myHookNumber = ++dataHooks.OnFlagDataChanged;
@@ -2655,6 +2654,7 @@ function OnSkillTabShown(tabName) {
         };
 
         var heroOwnerBlocks = {};
+        var groupBlocks = {};
         calculateFilters = function() {
             // Array used to sort abilities
             var toSort = [];
@@ -2688,27 +2688,55 @@ function OnSkillTabShown(tabName) {
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
                             var theOwner = abilityHeroOwner[abilityName];
-
-                            if(theOwner != null) {
+                            var neutralGroup = flagDataInverse[abilityName].group;
+                            $.Msg(flagDataInverse[abilityName].group);
+                            if(theOwner != null || neutralGroup != null) {
                                 // Group it
-                                var groupCon = heroOwnerBlocks[theOwner];
+                                var groupCon = theOwner != null ? heroOwnerBlocks[theOwner] : groupBlocks[neutralGroup];
                                 if(groupCon == null) {
                                     groupCon = $.CreatePanel('Panel', con, 'group_container_' + theOwner);
                                     groupCon.SetHasClass('grouped_skills', true);
-
-                                    // Store it
-                                    heroOwnerBlocks[theOwner] = groupCon;
                                 }
 
-                                // Making the layout much nicer
-                                if(heroBlockCounts[theOwner] == null) {
-                                    heroBlockCounts[theOwner] = 1;
-                                } else {
-                                    ++heroBlockCounts[theOwner];
+                                if (theOwner != null) {
+                                    // Store it
+                                    heroOwnerBlocks[theOwner] = groupCon;
 
-                                    if(heroBlockCounts[theOwner] == 3) {
-                                        groupCon.SetHasClass('manySkills', true);
+                                    // Making the layout much nicer
+                                    if(heroBlockCounts[theOwner] == null) {
+                                        heroBlockCounts[theOwner] = 1;
+                                    } else {
+                                        ++heroBlockCounts[theOwner];
+
+                                        if(heroBlockCounts[theOwner] == 3) {
+                                            groupCon.SetHasClass('manySkills', true);
+                                        }
                                     }
+
+                                    // Add it to the sort list
+                                    toSort.push({
+                                        txt: theOwner,
+                                        con: groupCon,
+                                        grouped: true
+                                    });
+
+                                    if(subSorting[theOwner] == null) {
+                                        subSorting[theOwner] = [];
+                                    }
+
+                                    subSorting[theOwner].push({
+                                        txt: abilityName,
+                                        con: ab
+                                    });
+                                } else {
+                                    // Store it
+                                    groupBlocks[neutralGroup] = groupCon;
+
+                                    toSort.push({
+                                        txt: abilityName,
+                                        con: groupCon,
+                                        grouped: true
+                                    });
                                 }
 
                                 // Set that it is an ulty
@@ -2718,22 +2746,6 @@ function OnSkillTabShown(tabName) {
 
                                 abilityStore[abilityName].SetParent(groupCon);
                                 groupCon.visible = true;
-
-                                // Add it to the sort list
-                                toSort.push({
-                                    txt: theOwner,
-                                    con: groupCon,
-                                    grouped: true
-                                });
-
-                                if(subSorting[theOwner] == null) {
-                                    subSorting[theOwner] = [];
-                                }
-
-                                subSorting[theOwner].push({
-                                    txt: abilityName,
-                                    con: ab
-                                });
                             } else {
                                 toSort.push({
                                     txt: abilityName,

@@ -780,16 +780,29 @@ function Pregame:networkHeroes()
         end
     end
 
+    function prepareAbility( abilityName, tabName, abilityGroup )
+        flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+        flagsInverse[abilityName].category = tabName
+        if abilityGroup then
+            flagsInverse[abilityName].group = abilityGroup
+        end
+
+        if SkillManager:isUlt(abilityName) then
+            flagsInverse[abilityName].isUlt = true
+        end
+    end
+
     -- Load in the category data for abilities
     local oldSkillList = oldAbList.skills
 
     for tabName, tabList in pairs(oldSkillList) do
-        for abilityName,uselessNumber in pairs(tabList) do
-            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
-            flagsInverse[abilityName].category = tabName
-
-            if SkillManager:isUlt(abilityName) then
-                flagsInverse[abilityName].isUlt = true
+        for abilityName,abilityGroup in pairs(tabList) do
+            if type(abilityGroup) == "table" then
+                for groupedAbilityName,_ in pairs(abilityGroup) do
+                   prepareAbility( groupedAbilityName, tabName, abilityName )
+                end
+            else
+                prepareAbility( abilityName, tabName )
             end
         end
     end
