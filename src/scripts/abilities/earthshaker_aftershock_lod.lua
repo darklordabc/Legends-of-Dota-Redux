@@ -37,6 +37,8 @@ function TryAftershock(keys)
     )
 
     -- Loop over targets
+	local abType = ability:GetAbilityDamageType()
+	if not abType then abType = DAMAGE_TYPE_MAGICAL end
     for k,unit in pairs(units) do
         -- Apply stun
         unit:AddNewModifier(target, ability, 'modifier_stunned', {
@@ -48,7 +50,7 @@ function TryAftershock(keys)
             victim = unit,
             attacker = target,
             damage = abDamage,
-            damage_type = DAMAGE_TYPE_MAGICAL
+            damage_type = abType
         })
     end
 

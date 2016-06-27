@@ -25,6 +25,10 @@ function onTinyGrowUpgrade(keys)
 
     -- Set the model
     --hero:SetModel()
+	local scale = 1 + (keys.ability:GetLevel()*0.1)
+	if hero:GetName() ~= "npc_dota_hero_tiny" then
+		hero:SetModelScale(scale)
+	end
 end
 
 ListenToGameEvent('dota_item_purchased', function(keys)
