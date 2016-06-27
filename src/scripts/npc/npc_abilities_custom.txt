@@ -57,7 +57,7 @@
         {
             "tiny_grow_lod"
             {
-                //"IsHidden"  "true"
+                "IsHidden"  "1"
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
@@ -69,7 +69,7 @@
 
             "tiny_grow_lod_scepter"
             {
-                //"IsHidden"  "true"
+                "IsHidden"  "1"
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
@@ -171,6 +171,11 @@
                 "var_type"              "FIELD_FLOAT"
                 "multicast_4_times"     "0 0 12.5"
             }
+			"04"
+			{
+				"var_type"              "FIELD_FLOAT"
+                "delay"     "0.1"
+			}
         }
     }
 
@@ -201,17 +206,17 @@
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "base_attack_time"      "1.55"
+                "base_attack_time"      "1.5"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_hp"              "100"
+                "bonus_hp"              "0"
             }
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_armor"           "3"
+                "bonus_armor"           "6"
             }
             "07"
             {
@@ -2246,9 +2251,6 @@
             }
         }
     }
-    // Rewrite of Slark's Essence Shift
-    // Author: Rook
-    // Date: January 28, 2015
 
     "slark_essence_shift_strength_lod"
     {
@@ -2319,7 +2321,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
@@ -2434,7 +2435,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
