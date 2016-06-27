@@ -2708,7 +2708,7 @@ function OnSkillTabShown(tabName) {
                                     // Store it
                                     groupBlocks[neutralGroup] = groupCon;
 
-                                    txt = abilityName;
+                                    txt = neutralGroup;
                                 }
 
                                 toSort.push({
