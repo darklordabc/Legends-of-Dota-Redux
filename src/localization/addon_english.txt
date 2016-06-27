@@ -179,7 +179,6 @@
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
-    "lodOptionDesAdvancedWraithNight"               "Allow Wraith Night Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
@@ -254,7 +253,6 @@
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
-    "lodOptionAboutAdvancedWraithNight"             "Players are allowed to select wraith night abilities."
     "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom LoD abilities."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
@@ -326,7 +324,6 @@
     // Categories
     "lodCategory_main"                              "Hero Abilities"
     "lodCategory_neutral"                           "Neutral Abilities"
-    "lodCategory_wraith"                            "Wraith Night Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
 

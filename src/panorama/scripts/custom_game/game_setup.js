@@ -457,22 +457,6 @@ var allOptions = {
                 ]
             },
             {
-                name: 'lodOptionAdvancedNeutralWraithNight',
-                des: 'lodOptionDesAdvancedWraithNight',
-                about: 'lodOptionAboutAdvancedWraithNight',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionAdvancedCustomSkills',
                 des: 'lodOptionDesAdvancedCustomSkills',
                 about: 'lodOptionAboutAdvancedCustomSkills',
@@ -2647,7 +2631,6 @@ function OnSkillTabShown(tabName) {
 
         activeTabs = {
             main: true,
-            wraith: true,
             //neutral: true,
             custom: true
         };
@@ -2887,7 +2870,6 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
-            'wraith',
             'custom'
         ];
 
@@ -3967,7 +3949,7 @@ function OnOptionChanged(table_name, key, data) {
     }
 
     // Check for allowed categories changing
-    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedNeutralWraithNight' || key == 'lodOptionAdvancedOPAbilities') {
+    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities') {
         onAllowedCategoriesChanged();
     }
 
@@ -4171,10 +4153,6 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedNeutralAbilities'] == 1) {
         allowedCategories['neutral'] = true;
-    }
-
-    if(optionValueList['lodOptionAdvancedNeutralWraithNight'] == 1) {
-        allowedCategories['wraith'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
