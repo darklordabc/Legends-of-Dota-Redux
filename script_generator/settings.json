@@ -1,0 +1,7 @@
+{
+    "scriptDir":    "SRC/",
+    "scriptDirOut": "BIN/",
+	"dotaDir":      "D:/Steam/steamapps/common/dota 2 beta/",
+    "customDir":    "CUSTOM/",
+    "noPermute":    true
+}
