@@ -875,7 +875,7 @@ function Pregame:networkHeroes()
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
-        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroList[heroName] then
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
             -- Store if we can select it as a bot
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
