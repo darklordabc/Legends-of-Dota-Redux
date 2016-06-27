@@ -870,7 +870,7 @@
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
 
-    // Essence Shift
+        // Essence Shift
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength."
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
@@ -879,9 +879,9 @@
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"						"STRENGTH GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"						"DURATION:"
-    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift (STR)"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength."
-    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift (STR)"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
@@ -892,9 +892,9 @@
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLIGENCE GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift (INT)"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift (INT)"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
