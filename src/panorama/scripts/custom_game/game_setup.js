@@ -2653,7 +2653,6 @@ function OnSkillTabShown(tabName) {
             custom: true
         };
 
-        var heroOwnerBlocks = {};
         var groupBlocks = {};
         calculateFilters = function() {
             // Array used to sort abilities
@@ -2663,9 +2662,9 @@ function OnSkillTabShown(tabName) {
             prepareFilterInfo();
 
             // Hide all hero owner blocks
-            for(var heroName in heroOwnerBlocks) {
-                heroOwnerBlocks[heroName].visible = false;
-                heroOwnerBlocks[heroName].SetHasClass('manySkills', false);
+            for(var groupName in groupBlocks) {
+                groupBlocks[groupName].visible = false;
+                groupBlocks[groupName].SetHasClass('manySkills', false);
             }
 
             // Counters for how many skills are in a block
@@ -2692,7 +2691,7 @@ function OnSkillTabShown(tabName) {
 
                             if(theOwner != null || neutralGroup != null) {
                                 // Group it
-                                var groupCon = theOwner != null ? heroOwnerBlocks[theOwner] : groupBlocks[neutralGroup];
+                                var groupCon = theOwner != null ? groupBlocks[theOwner] : groupBlocks[neutralGroup];
                                 if(groupCon == null) {
                                     groupCon = $.CreatePanel('Panel', con, 'group_container_' + theOwner);
                                     groupCon.SetHasClass('grouped_skills', true);
@@ -2700,7 +2699,7 @@ function OnSkillTabShown(tabName) {
 
                                 if (theOwner != null) {
                                     // Store it
-                                    heroOwnerBlocks[theOwner] = groupCon;
+                                    groupBlocks[theOwner] = groupCon;
 
                                     // Making the layout much nicer
                                     if(heroBlockCounts[theOwner] == null) {
@@ -2820,7 +2819,7 @@ function OnSkillTabShown(tabName) {
                     }
                 });
 
-                var subCon = heroOwnerBlocks[heroName];
+                var subCon = groupBlocks[heroName];
                 for(var i=1; i<sortGroup.length; ++i) {
                     var left = sortGroup[i-1];
                     var right = sortGroup[i];
