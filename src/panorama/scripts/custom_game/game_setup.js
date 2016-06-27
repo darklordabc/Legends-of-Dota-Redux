@@ -2688,51 +2688,40 @@ function OnSkillTabShown(tabName) {
                         if(useSmartGrouping) {
                             var theOwner = abilityHeroOwner[abilityName];
                             var neutralGroup = flagDataInverse[abilityName].group;
-
+                            $.Msg(neutralGroup);
                             if(theOwner != null || neutralGroup != null) {
                                 // Group it
-                                var groupCon = theOwner != null ? groupBlocks[theOwner] : groupBlocks[neutralGroup];
+                                var groupKey = theOwner != null ? theOwner : neutralGroup;
+                                var groupCon = groupBlocks[groupKey];
                                 if(groupCon == null) {
-                                    groupCon = $.CreatePanel('Panel', con, 'group_container_' + theOwner);
+                                    groupCon = $.CreatePanel('Panel', con, 'group_container_' + groupKey);
                                     groupCon.SetHasClass('grouped_skills', true);
                                 }
 
-                                var txt;
-
-                                if (theOwner != null) {
-                                    // Store it
-                                    groupBlocks[theOwner] = groupCon;
-
-                                    txt = theOwner;
-                                } else {
-                                    // Store it
-                                    groupBlocks[neutralGroup] = groupCon;
-
-                                    txt = neutralGroup;
-                                }
+                                groupBlocks[groupKey] = groupCon;
 
                                 toSort.push({
-                                    txt: txt,
+                                    txt: groupKey,
                                     con: groupCon,
                                     grouped: true
                                 });
 
                                 // Making the layout much nicer
-                                if(blockCounts[txt] == null) {
-                                    blockCounts[txt] = 1;
+                                if(blockCounts[groupKey] == null) {
+                                    blockCounts[groupKey] = 1;
                                 } else {
-                                    ++blockCounts[txt];
+                                    ++blockCounts[groupKey];
 
-                                    if(blockCounts[txt] == 3) {
+                                    if(blockCounts[groupKey] == 3) {
                                         groupCon.SetHasClass('manySkills', true);
                                     }
                                 }
 
-                                if(subSorting[txt] == null) {
-                                    subSorting[txt] = [];
+                                if(subSorting[groupKey] == null) {
+                                    subSorting[groupKey] = [];
                                 }
 
-                                subSorting[txt].push({
+                                subSorting[groupKey].push({
                                     txt: abilityName,
                                     con: ab
                                 });
