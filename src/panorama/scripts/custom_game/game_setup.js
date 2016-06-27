@@ -2668,7 +2668,7 @@ function OnSkillTabShown(tabName) {
             }
 
             // Counters for how many skills are in a block
-            var heroBlockCounts = {};
+            var blockCounts = {};
             var subSorting = {};
 
             // Loop over all abilties
@@ -2697,46 +2697,45 @@ function OnSkillTabShown(tabName) {
                                     groupCon.SetHasClass('grouped_skills', true);
                                 }
 
+                                var txt;
+
                                 if (theOwner != null) {
                                     // Store it
                                     groupBlocks[theOwner] = groupCon;
 
-                                    // Making the layout much nicer
-                                    if(heroBlockCounts[theOwner] == null) {
-                                        heroBlockCounts[theOwner] = 1;
-                                    } else {
-                                        ++heroBlockCounts[theOwner];
-
-                                        if(heroBlockCounts[theOwner] == 3) {
-                                            groupCon.SetHasClass('manySkills', true);
-                                        }
-                                    }
-
-                                    // Add it to the sort list
-                                    toSort.push({
-                                        txt: theOwner,
-                                        con: groupCon,
-                                        grouped: true
-                                    });
-
-                                    if(subSorting[theOwner] == null) {
-                                        subSorting[theOwner] = [];
-                                    }
-
-                                    subSorting[theOwner].push({
-                                        txt: abilityName,
-                                        con: ab
-                                    });
+                                    txt = theOwner;
                                 } else {
                                     // Store it
                                     groupBlocks[neutralGroup] = groupCon;
 
-                                    toSort.push({
-                                        txt: abilityName,
-                                        con: groupCon,
-                                        grouped: true
-                                    });
+                                    txt = abilityName;
                                 }
+
+                                toSort.push({
+                                    txt: txt,
+                                    con: groupCon,
+                                    grouped: true
+                                });
+
+                                // Making the layout much nicer
+                                if(blockCounts[txt] == null) {
+                                    blockCounts[txt] = 1;
+                                } else {
+                                    ++blockCounts[txt];
+
+                                    if(blockCounts[txt] == 3) {
+                                        groupCon.SetHasClass('manySkills', true);
+                                    }
+                                }
+
+                                if(subSorting[txt] == null) {
+                                    subSorting[txt] = [];
+                                }
+
+                                subSorting[txt].push({
+                                    txt: abilityName,
+                                    con: ab
+                                });
 
                                 // Set that it is an ulty
                                 if(isUltimateAbility(abilityName)) {
