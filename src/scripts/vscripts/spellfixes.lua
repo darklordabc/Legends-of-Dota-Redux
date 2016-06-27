@@ -491,7 +491,7 @@ ListenToGameEvent('entity_hurt', function(keys)
                             redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
                         })
 							-- Apply the cooldown
-							ab:GetCooldown(lvl)
+							local cd = ab:GetCooldown(lvl)
                             ab:StartCooldown(cd)
                     end
                 end
