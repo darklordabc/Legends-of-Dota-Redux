@@ -2688,7 +2688,7 @@ function OnSkillTabShown(tabName) {
                         if(useSmartGrouping) {
                             var theOwner = abilityHeroOwner[abilityName];
                             var neutralGroup = flagDataInverse[abilityName].group;
-                            $.Msg(neutralGroup);
+
                             if(theOwner != null || neutralGroup != null) {
                                 // Group it
                                 var groupKey = theOwner != null ? theOwner : neutralGroup;
