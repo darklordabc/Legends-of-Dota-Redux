@@ -761,6 +761,7 @@ end
 
 -- Setup the selectable heroes
 function Pregame:networkHeroes()
+    local heroList = LoadKeyValues('scripts/npc/herolist.txt')
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
     local flags = LoadKeyValues('scripts/kv/flags.kv')
@@ -779,16 +780,29 @@ function Pregame:networkHeroes()
         end
     end
 
+    function prepareAbility( abilityName, tabName, abilityGroup )
+        flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+        flagsInverse[abilityName].category = tabName
+        if abilityGroup then
+            flagsInverse[abilityName].group = abilityGroup
+        end
+
+        if SkillManager:isUlt(abilityName) then
+            flagsInverse[abilityName].isUlt = true
+        end
+    end
+
     -- Load in the category data for abilities
     local oldSkillList = oldAbList.skills
 
     for tabName, tabList in pairs(oldSkillList) do
-        for abilityName,uselessNumber in pairs(tabList) do
-            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
-            flagsInverse[abilityName].category = tabName
-
-            if SkillManager:isUlt(abilityName) then
-                flagsInverse[abilityName].isUlt = true
+        for abilityName,abilityGroup in pairs(tabList) do
+            if type(abilityGroup) == "table" then
+                for groupedAbilityName,_ in pairs(abilityGroup) do
+                   prepareAbility( groupedAbilityName, tabName, abilityName )
+                end
+            else
+                prepareAbility( abilityName, tabName )
             end
         end
     end
@@ -861,7 +875,7 @@ function Pregame:networkHeroes()
 
     for heroName,heroValues in pairs(allHeroes) do
         -- Ensure it is enabled
-        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
+        if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroList[heroName] then
             -- Store if we can select it as a bot
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
@@ -907,6 +921,8 @@ function Pregame:networkHeroes()
                 VisionDaytimeRange = customHero.VisionDaytimeRange or heroValues.VisionDaytimeRange or baseHero.VisionDaytimeRange,
                 VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange
             }
+
+            theData["Enabled"] = heroList[heroName]
 
             local attr = heroValues.AttributePrimary
             if attr == 'DOTA_ATTRIBUTE_INTELLECT' then
