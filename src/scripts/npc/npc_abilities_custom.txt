@@ -2918,7 +2918,7 @@
     		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
     	}
     }
-   "silencer_global_break"
+    "silencer_global_break"
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityTextureName"            "silencer_global_break"
@@ -2934,8 +2934,6 @@
         "precache"
         {
             "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
-            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
-            "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
         }
         "AbilitySpecial"
         {
@@ -2949,30 +2947,26 @@
         
     
         "OnSpellStart"
-        {
-            "ApplyModifier"
-            {
-                "ModifierName"  "modifier_silencer_global_break"
-                "Target"
-                {
-                    "Center"                "CASTER"
-                    "Radius"                "GLOBAL"
-                    "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types"                 "DOTA_UNIT_TARGET_HERO" 
-                }
-                "Duration"      "%AbilityDuration"
-            }
-            "FireSound"
-            {
-                "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                "Target"        "CASTER"
-            }
+        {   
+        "ActOnTargets"
+		{
 
-            "FireEffect"
-            {
-                "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
-                "EffectAttachType"  "follow_origin"
-                "Target"        "CASTER"
+			"Target"
+			{
+				"Center" "CASTER"
+				"Radius" "GLOBAL"
+				"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+            "Action"
+			{
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_silencer_global_break"
+                    "Target"	"TARGET"
+                    "Duration"      "%AbilityDuration"
+                }
             }
         }
         "Modifiers"
@@ -2986,14 +2980,7 @@
             
                 "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
-                "OnCreated"
-                {
-                    "FireSound"
-                    {
-                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                        "Target"        "TARGET"
-                    }
-                }
+            
                 "States"
                 {
                     "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
