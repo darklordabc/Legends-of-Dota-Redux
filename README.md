@@ -69,4 +69,4 @@ Legends of Dota
 
 ###Translation Credits###
  - [Chinese by ethereal](http://steamcommunity.com/profiles/76561198124343304/)
-1
+
