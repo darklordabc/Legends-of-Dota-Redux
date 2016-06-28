@@ -3765,7 +3765,7 @@
 		}
 		"precache"
 		{
-			"particle" 	"particles/cherub_sleep_cloud.vpcf"
+			"particle"	"particles/units/heroes/hero_riki/riki_smokebomb_smoke.vpcf"
 			"particle"	"particles/cherub_sleep_status.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
 		}
@@ -3825,7 +3825,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"	"particles/cherub_sleep_cloud.vpcf"
+						"EffectName"	"particles/units/heroes/hero_riki/riki_smokebomb_smoke.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"		"TARGET"
 	
@@ -3836,7 +3836,7 @@
 					}
 					"AttachEffect"
 					{
-						"EffectName"	"particles/cherub_sleep_cloud.vpcf"
+						"EffectName"	"particles/units/heroes/hero_riki/riki_smokebomb_smoke.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"		"TARGET"
 	
