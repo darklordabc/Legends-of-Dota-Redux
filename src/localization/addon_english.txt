@@ -497,6 +497,7 @@
     "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> Only works with <font color=\"#70EA72\">Fireblast, Ignire, Bloodlust</font> and <font color=\"#70EA72\">Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
+    "warning_custom_cast_range"	"<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -925,4 +926,9 @@
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
+    
+    "DOTA_Tooltip_ability_custom_cast_range" "Aether Range"
+	"DOTA_Tooltip_ability_custom_cast_range_Description" "Increases spell cast range."
+	"DOTA_Tooltip_ability_custom_cast_range_Lore"		"Great magicians can cast spells from miles away."
+	"DOTA_Tooltip_ability_custom_cast_range_cast_range_bonus"		"BONUS CAST RANGE:"	
 }
