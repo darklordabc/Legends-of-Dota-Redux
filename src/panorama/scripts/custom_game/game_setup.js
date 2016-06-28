@@ -2708,11 +2708,7 @@ function OnSkillTabShown(tabName) {
                                 });
 
                                 // Making the layout much nicer
-                                if(!blockCounts[groupKey]) {
-                                    blockCounts[groupKey] = 1;
-                                } else {
-                                    ++blockCounts[groupKey];
-                                }
+                                blockCounts[groupKey] = !blockCounts[groupKey] ? 1 : blockCounts[groupKey] + 1;
 
                                 if(blockCounts[groupKey] == 3) {
                                     groupCon.SetHasClass('manySkills', true);
