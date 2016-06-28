@@ -1,6 +1,7 @@
 function SetCastRange(keys)
 	local caster = keys.caster
-	if keys.ability:GetLevel() <= 0 then return end
+	local ability = keys.ability
+	if ability:GetLevel() <= 0 then return end
 	-- Remove old cast range
 	caster:RemoveModifierByName("modifier_item_aether_lens")
 	-- Replace cast range
