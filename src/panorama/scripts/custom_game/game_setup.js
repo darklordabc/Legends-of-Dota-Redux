@@ -2689,9 +2689,10 @@ function OnSkillTabShown(tabName) {
                             var theOwner = abilityHeroOwner[abilityName];
                             var neutralGroup = flagDataInverse[abilityName].group;
 
-                            if(theOwner != null || neutralGroup != null) {
-                                // Group it
-                                var groupKey = theOwner != null ? theOwner : neutralGroup;
+                            // Group it
+                            var groupKey = theOwner != null ? theOwner : neutralGroup;
+
+                            if(groupKey) {  
                                 var groupCon = groupBlocks[groupKey];
                                 if(groupCon == null) {
                                     groupCon = $.CreatePanel('Panel', con, 'group_container_' + groupKey);
@@ -2707,14 +2708,14 @@ function OnSkillTabShown(tabName) {
                                 });
 
                                 // Making the layout much nicer
-                                if(blockCounts[groupKey] == null) {
+                                if(!blockCounts[groupKey]) {
                                     blockCounts[groupKey] = 1;
                                 } else {
                                     ++blockCounts[groupKey];
+                                }
 
-                                    if(blockCounts[groupKey] == 3) {
-                                        groupCon.SetHasClass('manySkills', true);
-                                    }
+                                if(blockCounts[groupKey] == 3) {
+                                    groupCon.SetHasClass('manySkills', true);
                                 }
 
                                 if(subSorting[groupKey] == null) {
