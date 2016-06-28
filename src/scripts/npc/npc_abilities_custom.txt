@@ -2998,8 +2998,8 @@
         }
     }
     //=================================================================================================================
-	//
-	//
+    //
+    //
 	//
 	//
 	//
@@ -3105,7 +3105,7 @@
 					"Center"	"CASTER"
 					"ScriptSelectPoints"
 					{
-						"ScriptFile"	"heroes/hero_cherub/explosive_spore.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_explosive_spore.lua"
 						"Function"	"GetSummonPoints"
 						"Target"	"CASTER"
 						"Count"		"1"
@@ -3127,7 +3127,7 @@
 					}
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/explosive_spore.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_explosive_spore.lua"
 						"Function"	"SetForwardVector"
 					}
 	
@@ -3184,12 +3184,6 @@
 						}
 						"Action"
 						{
-							"RunScript"
-							{
-								"ScriptFile"	"libraries/popups.lua"
-								"Function"		"PopupSporeDamage"
-								"Damage"		"%damage"
-							}
 							"Damage"
 							{
 								"Target"		 "TARGET"
@@ -3216,12 +3210,6 @@
 						}
 						"Action"
 						{
-							"RunScript"
-							{
-								"ScriptFile"	"libraries/popups.lua"
-								"Function"		"PopupSporeDamage"
-								"Damage"		"%damage"
-							}
 							"Damage"
 							{
 								"Target"		 "TARGET"
@@ -3399,7 +3387,7 @@
 					}
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"		"SetAbilityLevel"
 					}
 				}
@@ -3431,7 +3419,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"GardenCheck"
 					}
 				}
@@ -3472,7 +3460,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3485,7 +3473,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyWhite"
 					}
 				}
@@ -3502,7 +3490,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3516,7 +3504,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyRed"
 					}
 				}
@@ -3534,7 +3522,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3548,7 +3536,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"		"HealUnits"
 						"projectile" 	"particles/cherub_pink_flower_heal_projectile.vpcf"
 					}
@@ -3557,7 +3545,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyPink"
 					}
 				}
@@ -3575,7 +3563,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3589,7 +3577,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"BlueFlowerRestoreMana"
 						"ReplenishRadius"		"700"
 						"ReplenishAmount"		"%blue_flower_restore"
@@ -3600,7 +3588,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyBlue"
 					}
 				}
@@ -3622,7 +3610,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3635,7 +3623,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyYellow"
 					}
 				}
@@ -3671,7 +3659,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -3684,7 +3672,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyPurple"
 					}
 				}
@@ -3890,7 +3878,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/sleep_cloud.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
 						"Function"		"SleepAuraCheck"
 					}
 				}
@@ -3898,7 +3886,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/sleep_cloud.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
 						"Function"	"SleepDamageRemove"
 					}
 				}
@@ -3906,7 +3894,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/sleep_cloud.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
 						"Function"		"SleepDamageCheck"
 						"DamageTaken"	"%attack_damage"
 					}
@@ -3976,7 +3964,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/synthesis.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_synthesis.lua"
 						"Function"	"SynthesisCreate"
 					}
 				}
@@ -3986,7 +3974,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/synthesis.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_synthesis.lua"
 						"Function"	"SynthesisCheck"
 					}
 				}
@@ -4022,7 +4010,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/synthesis.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_synthesis.lua"
 						"Function"	"SynthesisDay"
 					}
 					"FireEffect"
@@ -4052,7 +4040,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/synthesis.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_synthesis.lua"
 						"Function"	"SynthesisNight"
 					}
 					"FireEffect"
@@ -4129,7 +4117,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"		"PlantBlueBase"
 				"Target"		"POINT"
 			}
@@ -4145,7 +4133,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"		"GardenCheck"
 					}
 				}
@@ -4163,7 +4151,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -4177,7 +4165,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"BlueFlowerRestoreMana"
 						"ReplenishRadius"		"700"
 						"ReplenishAmount"		"%restore_amount"
@@ -4188,7 +4176,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyBlue"
 					}
 				}
@@ -4259,7 +4247,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"		"PlantPinkBase"
 				"Target"		"POINT"
 			}
@@ -4287,7 +4275,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"GardenCheck"
 					}
 				}
@@ -4305,7 +4293,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -4319,7 +4307,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"		"HealUnits"
 						"projectile" 	"particles/cherub_pink_flower_heal_projectile.vpcf"
 					}
@@ -4328,7 +4316,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyPink"
 					}
 				}
@@ -4393,7 +4381,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"		"PlantPurpleBase"
 				"Target"		"POINT"
 			}
@@ -4432,7 +4420,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -4445,7 +4433,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyPurple"
 					}
 				}
@@ -4521,7 +4509,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"		"PlantRedBase"
 				"Target"		"POINT"
 			}
@@ -4537,7 +4525,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"GardenCheck"
 					}
 				}
@@ -4555,7 +4543,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -4569,7 +4557,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyRed"
 					}
 				}
@@ -4634,7 +4622,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"		"PlantWhiteBase"
 				"Target"		"POINT"
 			}
@@ -4650,7 +4638,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"GardenCheck"
 					}
 				}
@@ -4783,7 +4771,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"PlantSetHealth"
 					}
 					"FireSound"
@@ -4796,7 +4784,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 						"Function"	"OnDestroyYellow"
 					}
 				}
@@ -4842,7 +4830,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantBlue"
 			}
 		}
@@ -4878,7 +4866,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantPink"
 			}
 		}
@@ -4907,7 +4895,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantPurple"
 			}
 		}
@@ -4936,7 +4924,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantRed"
 			}
 		}
@@ -4965,7 +4953,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantWhite"
 			}
 		}
@@ -4994,7 +4982,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/cherub_flower_garden.lua"
 				"Function"	"PlantYellow"
 			}
 		}
