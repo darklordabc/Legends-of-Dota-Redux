@@ -7,7 +7,7 @@
 		"SoundSet"					"Hero_TechiesLandMines"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		"Level"						"1"
-		"ModelScale" 					"0.6"
+		"ModelScale" 					"0.6" 
 	
 		// Abilities
 		//----------------------------------------------------------------
