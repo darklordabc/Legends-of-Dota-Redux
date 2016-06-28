@@ -925,4 +925,9 @@
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
+	
+	"DOTA_Tooltip_ability_custom_cast_range" "Aether Range"
+	"DOTA_Tooltip_ability_custom_cast_range_Description" "Increases spell cast range. \n<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
+	"DOTA_Tooltip_ability_custom_cast_range_Lore"		"Great magicians can cast spells from miles away."
+	"DOTA_Tooltip_ability_custom_cast_range_cast_range_bonus"		"BONUS CAST RANGE:"	
 }
