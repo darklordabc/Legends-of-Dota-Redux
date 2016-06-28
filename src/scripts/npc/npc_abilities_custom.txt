@@ -3012,7 +3012,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "100 2000 3000 4000"
+                "cast_range_bonus"          "150 200 250 300"
             }
         }
 		"OnOwnerSpawned"
