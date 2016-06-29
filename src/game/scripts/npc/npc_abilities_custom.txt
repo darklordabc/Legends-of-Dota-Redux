@@ -3163,6 +3163,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityTextureName"            "shards_of_truesight_lod"
         "AbilityCooldown"                "30"
         "AbilityManaCost"                "175 150 125 100"
