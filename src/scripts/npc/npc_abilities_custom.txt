@@ -2997,13 +2997,13 @@
                 
         }
     }
-    "custom_cast_range"
+    "aether_range_lod"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"            "custom_cast_range"
+        "AbilityTextureName"            "aether_range_lod"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3019,7 +3019,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
+                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
@@ -3027,7 +3027,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
+                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
