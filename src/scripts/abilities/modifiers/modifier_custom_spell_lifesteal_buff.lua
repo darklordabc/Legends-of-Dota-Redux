@@ -4,6 +4,7 @@ modifier_custom_spell_lifesteal_buff = class({})
 function modifier_custom_spell_lifesteal_buff:DeclareFunctions(params)
 local funcs = {
 	MODIFIER_EVENT_ON_TAKEDAMAGE,
+	MODIFIER_PROPERTY_TOOLTIP
 	}
 	return funcs
 end
@@ -36,7 +37,11 @@ function modifier_custom_spell_lifesteal_buff:OnRefresh( kv )
 	self.hero_lifesteal = self:GetAbility():GetSpecialValueFor( "hero_lifesteal" )
 	self.creep_lifesteal = self:GetAbility():GetSpecialValueFor( "creep_lifesteal" )
 end
+--------------------------------------------------------------------------------
 
+function modifier_custom_spell_lifesteal_buff:OnTooltip( params )
+	return self.hero_lifesteal
+end
 
 --------------------------------------------------------------------------------
 
