@@ -2704,6 +2704,7 @@ function OnSkillTabShown(tabName) {
                                 toSort.push({
                                     txt: groupKey,
                                     con: groupCon,
+                                    category: flagDataInverse[abilityName]["category"], 
                                     grouped: true
                                 });
 
@@ -2750,10 +2751,16 @@ function OnSkillTabShown(tabName) {
                 }
             }
 
+            var categorySorting = [];
+            categorySorting["main"] = 1;
+            categorySorting["custom"] = 2;
+            categorySorting["wraith"] = 3;
+            categorySorting["neutral"] = 4;
+            
             // Do the main sort
             toSort.sort(function(a, b) {
-                var txtA = a.txt;
-                var txtB = b.txt;
+                var txtA = categorySorting[a.category];
+                var txtB = categorySorting[b.category];
 
                 if(a.grouped != b.grouped) {
                     if(a.grouped) return -1;
