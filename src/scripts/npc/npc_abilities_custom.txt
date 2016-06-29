@@ -2710,24 +2710,24 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"				"ability_datadriven"
-        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-        "AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityTextureName"			"tinker_rearm_lod"
-        "AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
+        "BaseClass"                "ability_datadriven"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"            "tinker_rearm_lod"
+        "AbilityCastAnimation"            "ACT_DOTA_CHANNEL_ABILITY_4"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastPoint"				"0.53 0.53 0.53 0.53"
-        "AbilityChannelTime"			"3.0 1.5 0.75"
+        "AbilityCastPoint"                "0.53 0.53 0.53 0.53"
+        "AbilityChannelTime"            "3.0 1.5 0.75"
     
-        // Time		
+        // Time        
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"				"60.0 30.0 15.0"
+        "AbilityCooldown"                "60.0 30.0 15.0"
     
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"				"100 200 300"
+        "AbilityManaCost"                "100 200 300"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -2735,8 +2735,8 @@
         {
             "01"
             {
-                "var_type"				"FIELD_FLOAT"
-                "channel_tooltip"			"3.0 1.5 0.75"
+                "var_type"                "FIELD_FLOAT"
+                "channel_tooltip"            "3.0 1.5 0.75"
             }
         }
         
@@ -2744,16 +2744,16 @@
         //-------------------------------------------------------------------------------------------------------------
         "precache"
         {
-            "soundfile"				"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
-            "particle"				"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+            "soundfile"                "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+            "particle"                "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
         }
         
         "OnAbilityPhaseStart"
         {
             "FireSound"
             {
-                "Target"			"CASTER"
-                "EffectName"		"Hero_Tinker.RearmStart"
+                "Target"            "CASTER"
+                "EffectName"        "Hero_Tinker.RearmStart"
             }
         }
         
@@ -2761,14 +2761,14 @@
         {
             "FireSound"
             {
-                "Target"			"CASTER"
-                "EffectName"		"Hero_Tinker.Rearm"
+                "Target"            "CASTER"
+                "EffectName"        "Hero_Tinker.Rearm"
             }
         
             "RunScript"
             {
-                "ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
-                "Function"			"rearm_start"
+                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "Function"            "rearm_start"
             }
         }
         
@@ -2776,20 +2776,20 @@
         {
             "RemoveModifier"
             {
-                "Target"			"CASTER"
-                "ModifierName"		"modifier_rearm_level_1_datadriven"
+                "Target"            "CASTER"
+                "ModifierName"        "modifier_rearm_level_1_datadriven"
             }
         
             "RemoveModifier"
             {
-                "Target"			"CASTER"
-                "ModifierName"		"modifier_rearm_level_2_datadriven"
+                "Target"            "CASTER"
+                "ModifierName"        "modifier_rearm_level_2_datadriven"
             }
         
             "RemoveModifier"
             {
-                "Target"			"CASTER"
-                "ModifierName"		"modifier_rearm_level_3_datadriven"
+                "Target"            "CASTER"
+                "ModifierName"        "modifier_rearm_level_3_datadriven"
             }
         }
         
@@ -2797,8 +2797,8 @@
         {
             "RunScript"
             {
-                "ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
-                "Function"			"rearm_refresh_cooldown"
+                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "Function"            "rearm_refresh_cooldown"
             }
         }
         
@@ -2806,38 +2806,38 @@
         {
             "modifier_rearm_level_1_datadriven"
             {
-                "IsHidden"			"0"
+                "IsHidden"            "0"
         
-                "Duration"			"%channel_tooltip"
+                "Duration"            "%channel_tooltip"
         
-                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-                "EffectAttachType"	"follow_origin"
+                "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"    "follow_origin"
         
-                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM1"
+                "OverrideAnimation"    "ACT_DOTA_TINKER_REARM1"
             }
         
             "modifier_rearm_level_2_datadriven"
             {
-                "IsHidden"			"0"
+                "IsHidden"            "0"
         
-                "Duration"			"%channel_tooltip"
+                "Duration"            "%channel_tooltip"
                 
-                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-                "EffectAttachType"	"follow_origin"
+                "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"    "follow_origin"
         
-                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM2"
+                "OverrideAnimation"    "ACT_DOTA_TINKER_REARM2"
             }
         
             "modifier_rearm_level_3_datadriven"
             {
-                "IsHidden"			"0"
+                "IsHidden"            "0"
         
-                "Duration"			"%channel_tooltip"
+                "Duration"            "%channel_tooltip"
                 
-                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-                "EffectAttachType"	"follow_origin"
+                "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"    "follow_origin"
                 
-                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM3"
+                "OverrideAnimation"    "ACT_DOTA_TINKER_REARM3"
             }
         }
     }
@@ -2870,68 +2870,68 @@
 
     "pudge_flesh_heap_agi"
         {
-    	// General
-    	//-------------------------------------------------------------------------------------------------------------
-    	"BaseClass"						"ability_lua"
-    	"AbilityTextureName"				"flesh_heap_agi"
-    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
-    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                "flesh_heap_agi"
+        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
-    	// Precache
-    	//-------------------------------------------------------------------------------------------------------------
-    	"precache"
-    	{
-    		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
-    	}		
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }        
     
-    	// Special
-    	//-------------------------------------------------------------------------------------------------------------
-    	"AbilitySpecial"
-    	{
-    		"01"
-    		{
-    			"var_type"							"FIELD_FLOAT"
-    			"flesh_heap_agility_buff_amount"	"1.0 1.5 2 2.5"
-    		}
-    		"02"
-    		{
-    			"var_type"				"FIELD_INTEGER"
-    			"flesh_heap_range"		"450"
-    		}
-    	}
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_agility_buff_amount"    "1.0 1.5 2 2.5"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
     }
     "pudge_flesh_heap_int"
     {
-    	// General
-    	//-------------------------------------------------------------------------------------------------------------
-    	"BaseClass"						"ability_lua"
-    	"AbilityTextureName"					"flesh_heap_int"
-    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
-    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                    "flesh_heap_int"
+        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
-    	// Precache
-    	//-------------------------------------------------------------------------------------------------------------
-    	"precache"
-    	{
-    		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
-    	}
-    	// Special
-    	//-------------------------------------------------------------------------------------------------------------
-    	"AbilitySpecial"
-    	{
-    		"01"
-    		{
-    			"var_type"							"FIELD_FLOAT"
-    			"flesh_heap_intelligence_buff_amount"	"1.0 1.5 2 2.5"
-    		}
-    		"02"
-    		{
-    			"var_type"				"FIELD_INTEGER"
-    			"flesh_heap_range"		"450"
-    		}
-    	}
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_intelligence_buff_amount"    "1.0 1.5 2 2.5"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
     }
     
     "silencer_global_break"
@@ -2997,34 +2997,34 @@
                 
         }
     }
-	"custom_spell_lifesteal"
+    "custom_spell_lifesteal"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"
         "AbilityTextureName"            "custom_spell_lifesteal"
-	"ScriptFile"			"scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
+    "ScriptFile"            "scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
         {
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_lifesteal"                        "14 16 18 20"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"creep_lifesteal"                       "2 4 6 8"
-			}	
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"                                "900"
-			}
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "hero_lifesteal"                        "14 16 18 20"
+            }            
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "creep_lifesteal"                       "2 4 6 8"
+            }    
+            "03"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "radius"                                "900"
+            }
         }
     } 
     "custom_force_dash"
@@ -3033,187 +3033,187 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
         "AbilityTextureName"            "custom_force_dash"
-		"AbilityCooldown"				"20 18 16 14"
-		"AbilityManaCost"				"75"
-		"AbilityCastRange"				"650 800 950 1100"
-		"AbilityCastPoint"				"0.01"
-		
-		"precache"
-		{
-			"particle"	"particles/force_dash/force_dash.vpcf"
-			"particle"	"particles/status_fx/status_effect_forcestaff.vpcf"
-			"sound"		"sounds/items/force_staff.vsnd"
-		}
+        "AbilityCooldown"                "20 18 16 14"
+        "AbilityManaCost"                "75"
+        "AbilityCastRange"                "650 800 950 1100"
+        "AbilityCastPoint"                "0.01"
+        
+        "precache"
+        {
+            "particle"    "particles/force_dash/force_dash.vpcf"
+            "particle"    "particles/status_fx/status_effect_forcestaff.vpcf"
+            "sound"        "sounds/items/force_staff.vsnd"
+        }
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
         {
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"		"450 600 750 900"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"		"0.4"
-			}	
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "distance"        "450 600 750 900"
+            }            
+            "02"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "duration"        "0.4"
+            }    
         }
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.ForceStaff.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/../abilities/custom_force_dash.lua"
-				"Function"		"ForceDash"
-				"modifier"		"modifier_force_dash"
-			}
-		}
-		"Modifiers"
-		{	
-			"modifier_force_dash"
-			{
-				"IsHidden"	"1"
-				
-				"EffectName"	"particles/force_dash/force_dash.vpcf"
-				"EffectAttachType"	"follow_origin"
-				
-				"StatusEffectName"			"particles/status_fx/status_effect_forcestaff.vpcf"
-				"StatusEffectPriority"		"10"
-				
-				"OverrideAnimation"		"ACT_DOTA_FLAIL"
-				
-				"OnCreated"
-				{
-					"ApplyMotionController"
-					{
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-						}
-						"ScriptFile"	"scripts/vscripts/../abilities/custom_force_dash.lua"
-						"HorizontalControlFunction" "ForceMotion"
-					}
-					"DestroyTrees"
-					{
-						"Target"	"TARGET"
-						"Radius"	"150"
-					}
-				}
-				"ThinkInterval"	"0.05"
-				"OnIntervalThink"
-				{
-					"DestroyTrees"
-					{
-						"Target"	"CASTER"
-						"Radius"	"150"
-					}
-				}
-			}
-		}
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.ForceStaff.Activate"
+                "Target"        "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/../abilities/custom_force_dash.lua"
+                "Function"        "ForceDash"
+                "modifier"        "modifier_force_dash"
+            }
+        }
+        "Modifiers"
+        {    
+            "modifier_force_dash"
+            {
+                "IsHidden"    "1"
+                
+                "EffectName"    "particles/force_dash/force_dash.vpcf"
+                "EffectAttachType"    "follow_origin"
+                
+                "StatusEffectName"            "particles/status_fx/status_effect_forcestaff.vpcf"
+                "StatusEffectPriority"        "10"
+                
+                "OverrideAnimation"        "ACT_DOTA_FLAIL"
+                
+                "OnCreated"
+                {
+                    "ApplyMotionController"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                        "ScriptFile"    "scripts/vscripts/../abilities/custom_force_dash.lua"
+                        "HorizontalControlFunction" "ForceMotion"
+                    }
+                    "DestroyTrees"
+                    {
+                        "Target"    "TARGET"
+                        "Radius"    "150"
+                    }
+                }
+                "ThinkInterval"    "0.05"
+                "OnIntervalThink"
+                {
+                    "DestroyTrees"
+                    {
+                        "Target"    "CASTER"
+                        "Radius"    "150"
+                    }
+                }
+            }
+        }
     } 
-	"custom_true_sight"
+    "custom_true_sight"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityTextureName"            "custom_true_sight"
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"175 150 125 100"
-		"AbilityCastPoint"				"0.5"
-		"AbilityCastRange"				"%radius"
-		
-		"precache"
-		{
-			"particle"	"particles/true_sight/dust_of_gem.vpcf"
-			"particle"	"particles/items2_fx/true_sight_debuff.vpcf"
-			"sound"		"sounds/items/dust_of_appearance.vsnd"
-		}
+        "AbilityCooldown"                "30"
+        "AbilityManaCost"                "175 150 125 100"
+        "AbilityCastPoint"                "0.5"
+        "AbilityCastRange"                "%radius"
+        
+        "precache"
+        {
+            "particle"    "particles/true_sight/dust_of_gem.vpcf"
+            "particle"    "particles/items2_fx/true_sight_debuff.vpcf"
+            "sound"        "sounds/items/dust_of_appearance.vsnd"
+        }
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
         {
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ms_boost"				"15"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}	
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "ms_boost"                "15"
+            }            
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "duration"                "5"
+            }    
+            "03"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "radius"                "600 700 800 900"
+            }
         }
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"truesight_aura"
-				"Target"		"CASTER"
-				"Duration"		"%duration"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/true_sight/dust_of_gem.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"ControlPoints"
-				{
-					"01"                "%radius %radius %radius"
-				}
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.DustOfAppearance.Activate"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"truesight_aura"
-			{
-				"IsHidden" "0"
-				"IsPurgable"	"0"
-				
-				"EffectName"	"particles/items2_fx/true_sight_debuff.vpcf"
-				"EffectAttachType"		"follow_overhead"
-				
-				"Aura" "truesight_aura_debuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-				//"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"		"%ms_boost"
-					"MODIFIER_PROPERTY_TOOLTIP"							"%radius"
-				}
-			}
-			"truesight_aura_debuff"
-			{
-				"IsDebuff"		"1"
-				"IsPurgable"	"0"
-				"Priority"          "MODIFIER_PRIORITY_HIGH"
-	            "States"
-	            {
-	                "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_DISABLED"
-	            }
-			}
-		}
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"    "truesight_aura"
+                "Target"        "CASTER"
+                "Duration"        "%duration"
+            }
+            "FireEffect"
+            {
+                "EffectName"    "particles/true_sight/dust_of_gem.vpcf"
+                "EffectAttachType"    "attach_origin"
+                "ControlPoints"
+                {
+                    "01"                "%radius %radius %radius"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.DustOfAppearance.Activate"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "truesight_aura"
+            {
+                "IsHidden" "0"
+                "IsPurgable"    "0"
+                
+                "EffectName"    "particles/items2_fx/true_sight_debuff.vpcf"
+                "EffectAttachType"        "follow_overhead"
+                
+                "Aura" "truesight_aura_debuff"
+                "Aura_Radius" "%radius"
+                "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+                //"Aura_Flags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "%ms_boost"
+                    "MODIFIER_PROPERTY_TOOLTIP"                            "%radius"
+                }
+            }
+            "truesight_aura_debuff"
+            {
+                "IsDebuff"        "1"
+                "IsPurgable"    "0"
+                "Priority"          "MODIFIER_PRIORITY_HIGH"
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_DISABLED"
+                }
+            }
+        }
     } 
 }
