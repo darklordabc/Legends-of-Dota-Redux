@@ -47,7 +47,7 @@ Legends of Dota
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
 ###Can I contribute code?###
- - Yes, however, your code will be code reviewed.
+ - Yes, however, your code will be code reviewed. There needs to be 3 LGTMs from the designated people on the MAINTAINERS file.
  - Your code will not be merged unless it meets the quality controls that are in place on this project.
  - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
  - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
@@ -59,6 +59,7 @@ Legends of Dota
  - All code should be thread safe
   - If you make a call to an async function, ensure you check that the resources you want to access are still valid once the callback happens, this is usually needed when timers are used to process something on a unit after a short delay
  - Do not put credits or your name in code, the commit log will have your name, as well as the blame section of GitHub
+ - Filenames are strictly lowercase. Sperate words should be seperated by an underscore (_) to increase readability, short file names should be used where possible, however, file names need to be readible and easily understandable.
 
 ###Can I translate this into my language?###
  - Yes!
