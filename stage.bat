@@ -4,7 +4,7 @@
 :: -- Stage source2 binaries --
 
 :: Cleanup the old copy of it
-rmdir /S /Q "dota\game"
+rmdir /S /Q "dota"
 
 :: Create directory structure
 mkdir "dota"
