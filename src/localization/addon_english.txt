@@ -932,7 +932,7 @@
     "DOTA_Tooltip_ability_custom_spell_lifesteal_hero_lifesteal"    "%HERO LIFESTEAL:"    
     "DOTA_Tooltip_ability_custom_spell_lifesteal_creep_lifesteal"    "%CREEP LIFESTEAL:"    
     "DOTA_Tooltip_modifier_custom_spell_lifesteal_buff"    "Octarine Vampirism"
-    "DOTA_Tooltip_modifier_custom_spell_lifesteal_buff_Description"    "Gaining %dMODIFIER_PROPERTY_TOOLTIP%% hero lifesteal on spell damage."
+    "DOTA_Tooltip_modifier_custom_spell_lifesteal_buff_Description"    "Gaining lifesteal on spell damage."
     
     "DOTA_Tooltip_ability_custom_force_dash" "Force Dash"
     "DOTA_Tooltip_ability_custom_force_dash_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself"
