@@ -2997,41 +2997,6 @@
                 
         }
     }
-	"custom_cast_range"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"            "custom_cast_range"
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "15 200 250 300"
-            }
-        }
-		"OnOwnerSpawned"
-		{
-			"RunScript"
-			{
-				"ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
-                "Function"      "SetCastRange"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
-                "Function"      "SetCastRange"
-			}
-		}
-    } 
 	"custom_spell_lifesteal"
     {
         // General
