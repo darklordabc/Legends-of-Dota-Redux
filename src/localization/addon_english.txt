@@ -940,9 +940,9 @@
 	"DOTA_Tooltip_ability_custom_force_dash_Lore"		"Ejecting magic from one's body works very similar to a rocket."
 	"DOTA_Tooltip_ability_custom_force_dash_distance"		"PUSH DISTANCE:"	
 	
-	"DOTA_Tooltip_ability_custom_true_sight" "True Sight"
-	"DOTA_Tooltip_ability_custom_true_sight_Description" "Grants truesight to the owner in a radius and increases its base movements speed for the duration."
-	"DOTA_Tooltip_ability_custom_true_sight_Lore"		"The All-Seeing Eye has noticed your presence."
+	"DOTA_Tooltip_ability_custom_true_sight" "Shards of True Sight"
+	"DOTA_Tooltip_ability_custom_true_sight_Description" "Throws gem dust into the air, temporarily granting true sight and increasing base movement speed."
+	"DOTA_Tooltip_ability_custom_true_sight_Lore"		"Why pay for the whole Gem when the scraps can be just as useful."
 	"DOTA_Tooltip_ability_custom_true_sight_ms_boost"		"MS BONUS:"	
 	"DOTA_Tooltip_ability_custom_true_sight_duration"		"BUFF DURATION:"	
 	"DOTA_Tooltip_ability_custom_true_sight_radius"		"SIGHT RADIUS:"	
