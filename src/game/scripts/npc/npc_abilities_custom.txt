@@ -26,7 +26,7 @@
 
         "OnUpgrade"
         {
-            "RunScript"
+            "RunScript"    
             {
                 "ScriptFile"            "scripts/vscripts/../abilities/tiny_grow_lod.lua"
                 "Function"              "onTinyGrowUpgrade"
@@ -57,7 +57,7 @@
         {
             "tiny_grow_lod"
             {
-                //"IsHidden"  "true"
+                "IsHidden"  "1"
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
@@ -69,7 +69,7 @@
 
             "tiny_grow_lod_scepter"
             {
-                //"IsHidden"  "true"
+                "IsHidden"  "1"
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
@@ -170,6 +170,11 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "multicast_4_times"     "0 0 12.5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "delay"     "0.1"
             }
         }
     }
@@ -3163,7 +3168,6 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityTextureName"            "shards_of_truesight_lod"
         "AbilityCooldown"                "30"
         "AbilityManaCost"                "175 150 125 100"
