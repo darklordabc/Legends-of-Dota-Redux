@@ -2917,7 +2917,23 @@
     	{
     		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
     	}
+    	// Special
+    	//-------------------------------------------------------------------------------------------------------------
+    	"AbilitySpecial"
+    	{
+    		"01"
+    		{
+    			"var_type"							"FIELD_FLOAT"
+    			"flesh_heap_intelligence_buff_amount"	"1.0 1.5 2 2.5"
+    		}
+    		"02"
+    		{
+    			"var_type"				"FIELD_INTEGER"
+    			"flesh_heap_range"		"450"
+    		}
+    	}
     }
+    
     "silencer_global_break"
     {
         "BaseClass"                     "ability_datadriven"
