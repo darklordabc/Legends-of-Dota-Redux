@@ -3002,7 +3002,8 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityTextureName"            "custom_spell_lifesteal"
     "ScriptFile"            "scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
 
@@ -3114,7 +3115,7 @@
                 {
                     "DestroyTrees"
                     {
-                        "Target"    "CASTER"
+                        "Target"    "TARGET"
                         "Radius"    "150"
                     }
                 }
