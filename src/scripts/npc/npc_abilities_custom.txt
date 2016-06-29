@@ -2991,7 +2991,7 @@
             
                 "States"
                 {
-                    "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PASSIVES_DISABLED"           "MODIFIER_STATE_VALUE_ENABLED"
                 }
             }
                 
@@ -3004,7 +3004,7 @@
         "BaseClass"                     "ability_lua"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"
         "AbilityTextureName"            "custom_spell_lifesteal"
-		"ScriptFile"					"scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
+	"ScriptFile"			"scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3013,21 +3013,21 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hero_lifesteal"		"14 16 18 20"
+				"hero_lifesteal"                        "14 16 18 20"
 			}			
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"creep_lifesteal"		"2 4 6 8"
+				"creep_lifesteal"                       "2 4 6 8"
 			}	
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"radius"                                "900"
 			}
         }
     } 
-	"custom_force_dash"
+    "custom_force_dash"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
