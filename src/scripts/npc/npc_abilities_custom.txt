@@ -2997,12 +2997,47 @@
                 
         }
     }
-    "custom_spell_lifesteal"
+	"custom_cast_range"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom_cast_range"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "cast_range_bonus"          "15 200 250 300"
+            }
+        }
+		"OnOwnerSpawned"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
+                "Function"      "SetCastRange"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "scripts/vscripts/../abilities/custom_cast_range.lua"
+                "Function"      "SetCastRange"
+			}
+		}
+    } 
+	"custom_spell_lifesteal"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"
         "AbilityTextureName"            "custom_spell_lifesteal"
 		"ScriptFile"					"scripts/vscripts/../abilities/custom_spell_lifesteal.lua"
 
@@ -3032,16 +3067,19 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
         "AbilityTextureName"            "custom_force_dash"
 		"AbilityCooldown"				"20 18 16 14"
 		"AbilityManaCost"				"75"
-		"AbilityCastRange"				"%distance"
+		"AbilityCastRange"				"650 800 950 1100"
 		"AbilityCastPoint"				"0.01"
 		
 		"precache"
 		{
-			"particle"	"particles/econ/events/ti6/force_staff_ti6.vpcf"
+			"particle"	"particles/force_dash/force_dash.vpcf"
 			"particle"	"particles/status_fx/status_effect_forcestaff.vpcf"
 			"sound"		"sounds/items/force_staff.vsnd"
 		}
@@ -3065,7 +3103,7 @@
 			"FireSound"
 			{
 				"EffectName"	"DOTA_Item.ForceStaff.Activate"
-				"Target"		"CASTER"
+				"Target"		"TARGET"
 			}
 			"RunScript"
 			{
@@ -3079,21 +3117,40 @@
 			"modifier_force_dash"
 			{
 				"IsHidden"	"1"
-				"EffectName"	"particles/econ/events/ti6/force_staff_ti6.vpcf"
+				
+				"EffectName"	"particles/force_dash/force_dash.vpcf"
 				"EffectAttachType"	"follow_origin"
+				
 				"StatusEffectName"			"particles/status_fx/status_effect_forcestaff.vpcf"
 				"StatusEffectPriority"		"10"
+				
+				"OverrideAnimation"		"ACT_DOTA_FLAIL"
+				
 				"OnCreated"
 				{
 					"ApplyMotionController"
 					{
 						"Target"
 						{
-							"Center"	"CASTER"
+							"Center"	"TARGET"
 							"Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 						}
 						"ScriptFile"	"scripts/vscripts/../abilities/custom_force_dash.lua"
 						"HorizontalControlFunction" "ForceMotion"
+					}
+					"DestroyTrees"
+					{
+						"Target"	"TARGET"
+						"Radius"	"150"
+					}
+				}
+				"ThinkInterval"	"0.05"
+				"OnIntervalThink"
+				{
+					"DestroyTrees"
+					{
+						"Target"	"CASTER"
+						"Radius"	"150"
 					}
 				}
 			}
@@ -3113,9 +3170,9 @@
 		
 		"precache"
 		{
-			"particle"	"particles/items_fx/dust_of_appearance.vpcf"
+			"particle"	"particles/true_sight/dust_of_gem.vpcf"
 			"particle"	"particles/items2_fx/true_sight_debuff.vpcf"
-			"sound"		"sounds/items/force_staff.vsnd"
+			"sound"		"sounds/items/dust_of_appearance.vsnd"
 		}
 
         // Special
@@ -3148,12 +3205,17 @@
 			}
 			"FireEffect"
 			{
-				"EffectName"	"particles/items_fx/dust_of_appearance.vpcf"
+				"EffectName"	"particles/true_sight/dust_of_gem.vpcf"
 				"EffectAttachType"	"attach_origin"
 				"ControlPoints"
 				{
 					"01"                "%radius %radius %radius"
 				}
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.DustOfAppearance.Activate"
+				"Target"		"CASTER"
 			}
 		}
 		"Modifiers"
@@ -3174,6 +3236,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"		"%ms_boost"
+					"MODIFIER_PROPERTY_TOOLTIP"							"%radius"
 				}
 			}
 			"truesight_aura_debuff"
