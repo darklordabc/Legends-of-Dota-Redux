@@ -16,7 +16,7 @@ mkdir "dota\game\scripts\npc"
 
 :: Link the maps
 mklink /D /J "dota\game\maps" "src\game\maps"
-mklink /D /J "dota\content\maps" "src\content\aps"
+mklink /D /J "dota\content\maps" "src\content\maps"
 
 mkdir "dota\game\panorama"
 mkdir "dota\game\panorama\localization"
