@@ -2963,18 +2963,26 @@
         
     
         "OnSpellStart"
-        {
-            "ApplyModifier"
-            {
-                "ModifierName"  "modifier_silencer_global_break"
-                "Target"
+        {   
+        "ActOnTargets"
+		{
+
+			"Target"
+			{
+				"Center" "CASTER"
+				"Radius" "GLOBAL"
+				"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+            "Action"
+			{
+                "ApplyModifier"
                 {
-                    "Center"                "CASTER"
-                    "Radius"                "GLOBAL"
-                    "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types"                 "DOTA_UNIT_TARGET_HERO" 
+                    "ModifierName"  "modifier_silencer_global_break"
+                    "Target"	"TARGET"
+                    "Duration"      "%AbilityDuration"
                 }
-                "Duration"      "%AbilityDuration"
             }
         }
         "Modifiers"
