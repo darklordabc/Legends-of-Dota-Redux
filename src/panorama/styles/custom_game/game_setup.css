@@ -1904,6 +1904,15 @@
     horizontal-align: middle;
 }
 
+.optionVoteRoot {
+    flow-children: down;
+}
+
+.voteCountPercentage {
+    horizontal-align: middle;
+    margin-left: 5px;
+}
+
 .optionCurrentlySelected {
     border-color: #00FF00;
 }
