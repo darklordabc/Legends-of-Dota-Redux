@@ -946,6 +946,6 @@
     "DOTA_Tooltip_ability_custom_true_sight_ms_boost"    "BONUS MOVESPEED:"    
     "DOTA_Tooltip_ability_custom_true_sight_duration"    "DURATION:"    
     "DOTA_Tooltip_ability_custom_true_sight_radius"    "TRUESIGHT RADIUS:"
-    "DOTA_Tooltip_modifier_custom_true_sight_aura"    "True Sight Buff"
-    "DOTA_Tooltip_modifier_custom_true_sight_aura_Description"    "Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
+    "DOTA_Tooltip_modifier_truesight_aura"    "True Sight Buff"
+    "DOTA_Tooltip_modifier_truesight_aura_Description"    "Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
 }
