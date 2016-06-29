@@ -932,7 +932,7 @@
 	"DOTA_Tooltip_ability_custom_spell_lifesteal_hero_lifesteal"		"HERO LIFESTEAL:"	
 	"DOTA_Tooltip_ability_custom_spell_lifesteal_creep_lifesteal"		"CREEP LIFESTEAL:"	
 	"DOTA_Tooltip_modifier_custom_spell_lifesteal_buff"				"Octarine Vampirism"
-	"DOTA_Tooltip_modifier_custom_spell_lifesteal_buff_Description"	"Gaining %hero_lifesteal% health on hero damage or %creep_lifesteal% on creep damage."
+	"DOTA_Tooltip_modifier_custom_spell_lifesteal_buff_Description"	"Gaining %dMODIFIER_PROPERTY_TOOLTIP%% hero lifesteal on spell damage."
 	
 	"DOTA_Tooltip_ability_custom_force_dash" "Force Dash"
 	"DOTA_Tooltip_ability_custom_force_dash_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself"
@@ -946,4 +946,6 @@
 	"DOTA_Tooltip_ability_custom_true_sight_ms_boost"		"BONUS MOVESPEED:"	
 	"DOTA_Tooltip_ability_custom_true_sight_duration"		"DURATION:"	
 	"DOTA_Tooltip_ability_custom_true_sight_radius"		"TRUESIGHT RADIUS:"
+	"DOTA_Tooltip_modifier_custom_true_sight_aura"				"True Sight Buff"
+	"DOTA_Tooltip_modifier_custom_true_sight_aura_Description"	"Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
 }
