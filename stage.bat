@@ -47,6 +47,7 @@ mklink /D /J "dota\game\scripts\game_sounds" "src\scripts\game_sounds"
 
 :: Link particle folder
 mklink /D /J "dota\game\particles" "src\particles"
+mklink /D /J "dota\content\particles" "particles"
 
 :: Link resource folders
 mklink /D /J "dota\game\resource\flash3" "src\resource\flash3"
