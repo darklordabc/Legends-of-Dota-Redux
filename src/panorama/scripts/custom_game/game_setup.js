@@ -3923,10 +3923,15 @@ function OnPhaseChanged(table_name, key, data) {
             var voteCount = (data.banning[0] || 0) + (data.banning[1] || 0);
             var voteNoPercentage = Math.round(((data.banning[0] || 0) / voteCount) * 100);
             var voteYesPercentage = Math.round(((data.banning[1] || 0) / voteCount) * 100);
-            $('#voteCountNoPercentage').text = voteNoPercentage + "%";
-            $('#voteCountYesPercentage').text = voteYesPercentage + "%";
-            $('#voteCountNoPercentage').style.color = voteNoPercentage >= voteYesPercentage ? "green;" : "red;";
-            $('#voteCountYesPercentage').style.color = voteYesPercentage >= voteNoPercentage ? "green;" : "red;";
+
+            if (voteNoPercentage > 0 || voteYesPercentage > 0) {
+                $('#voteCountNoPercentage').text = voteNoPercentage + "%";
+                $('#voteCountYesPercentage').text = voteYesPercentage + "%";
+
+                // Highlight it
+                $('#voteCountNoPercentage').style.color = voteNoPercentage >= voteYesPercentage ? "green;" : "red;";
+                $('#voteCountYesPercentage').style.color = voteYesPercentage >= voteNoPercentage ? "green;" : "red;";
+            }
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
