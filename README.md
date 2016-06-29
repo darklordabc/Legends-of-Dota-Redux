@@ -47,7 +47,7 @@ Legends of Dota
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
 ###Can I contribute code?###
- - Yes, however, your code will be code reviewed.
+ - Yes, however, your code will be code reviewed. There needs to be 3 LGTMs from the designated people on the MAINTAINERS file.
  - Your code will not be merged unless it meets the quality controls that are in place on this project.
  - Your code will not be merged if it does not follow the coding patterns / layout of the other code in the project.
  - Your code will not be merged if it implements a feature that is not inline with the direction the project is taking -- Please raise an issue asking if a feature would be good before implementing it, you may find certain features will never be approved.
