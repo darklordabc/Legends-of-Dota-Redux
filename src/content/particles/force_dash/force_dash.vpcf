@@ -85,10 +85,10 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/force_dash_ground_trail.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_ground_trail.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/force_dash_glow_trail.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_glow_trail.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/econ/events/ti6/force_staff_ti6_glow.vpcf"
@@ -98,16 +98,16 @@
 			m_bDisableChild = true
 		},
 		{
-			m_ChildRef = resource:"particles/force_dash_ribbon.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_ribbon.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/force_dash_snow.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_snow.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/force_dash_mod_trail.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_mod_trail.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/force_dash_snow_glow.vpcf"
+			m_ChildRef = resource:"particles/force_dash/force_dash_snow_glow.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/econ/events/ti6/force_staff_ti6_ground_frost.vpcf"
