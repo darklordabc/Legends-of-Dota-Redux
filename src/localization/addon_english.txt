@@ -953,6 +953,6 @@
     "DOTA_Tooltip_ability_shards_of_truesight_lod_duration"        "BUFF DURATION:"    
     "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "SIGHT RADIUS:"    
     
-    "DOTA_Tooltip_modifier_truesight_aura"    "True Sight Buff"
-    "DOTA_Tooltip_modifier_truesight_aura_Description"    "Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
+    "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
+    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
 }
