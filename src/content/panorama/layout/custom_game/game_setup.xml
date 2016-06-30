@@ -158,17 +158,31 @@
                 <Panel class="optionVoteBanningPhase">
                     <Label class="optionVoteHeader" text="lodBanningPhase" />
                     <Panel class="optionVoteBanningOptions">
-                        <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', false)">
+                        <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('options[0]', false)">
                             <Label text="lodOptionNo" />
                             <Label id="voteCountNo" class="premiumFeature" />
                         </Button>
 
-                        <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', true)">
+                        <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('options[0]', true)">
                             <Label text="lodOptionYes" />
                             <Label id="voteCountYes" class="premiumFeature" />
                         </Button>
                     </Panel>
                 </Panel>
+				<Panel class="optionVoteFastStartPhase">
+					<Label class="optionVoteHeader" text="lodFastStart" />
+                    <Panel class="optionVoteFastStartOptions">
+                        <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('options[1]', false)">
+                            <Label text="lodOptionNo" />
+                            <Label id="voteCountNoFS" class="premiumFeature" />
+                        </Button>
+
+                        <Button id="optionVoteFastStartYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('options[1]', true)">
+                            <Label text="lodOptionYes" />
+                            <Label id="voteCountYesFS" class="premiumFeature" />
+                        </Button>
+                    </Panel>
+				</Panel>
             </Panel>
 
             <Panel id="optionSelection">
