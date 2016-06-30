@@ -39,7 +39,7 @@
 		},
 		{
 			_class = "C_OP_SetToCP"
-			m_vecOffset = [ 0.0, 0.0, 150.0 ]
+			m_vecOffset = [ 0.0, 0.0, 75.0 ]
 		},
 	]
 	m_Initializers = 
@@ -51,9 +51,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 125.0
-			m_flRadiusMin = 125.0
-			m_flRadiusRandExponent = -0.091
+			m_flRadiusMax = 70.0
+			m_flRadiusMin = 70.0
 		},
 		{
 			_class = "C_INIT_RandomColor"
