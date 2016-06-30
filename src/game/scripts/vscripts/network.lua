@@ -158,8 +158,8 @@ function Network:donePrecaching()
 end
 
 -- Shares the vote counts
-function Network:voteCounts(counts)
-    CustomNetTables:SetTableValue('phase_pregame', 'vote_counts', counts)
+function Network:voteCounts(counts,optionName)
+    CustomNetTables:SetTableValue('phase_pregame', 'vote_counts_'..optionName, counts)
 end
 
 -- Shares premium info

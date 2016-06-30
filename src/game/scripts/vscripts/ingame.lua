@@ -31,6 +31,11 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
+	
+	CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
+        this:returnCustomTeams(eventSourceIndex, args)
+    end)
+	ListenToGameEvent('player_spawn', Dynamic_Wrap(Ingame, 'playerSpawned'), self)
 
     -- Precache ogre magi stuff
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
@@ -58,6 +63,17 @@ function Ingame:init()
     self:setNoTeamBalanceNeeded()
 end
 
+function PlayerSpawned(event)
+	local vote_succes = CustomNetTables:GetTableValue('phase_pregame', 'vote_counts_faststart')
+	local playerID = event.PlayerID
+	if vote_succes >= DOTA_MAX_PLAYERS/2 then
+		while PlayerResource:GetLevel(playerID) < 6 do
+		PlayerResource:HeroLevelUp(playerID)
+		end
+		PlayerResource:SetGold(playerID, PlayerResource:GetGold(PlayerID) + 1000, true)
+	end
+end	
+	
 function Ingame:FilterExecuteOrder(filterTable)
     local units = filterTable["units"]
     local issuer = filterTable["issuer_player_id_const"]

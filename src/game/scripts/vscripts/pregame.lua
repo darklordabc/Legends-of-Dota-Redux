@@ -1129,11 +1129,11 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     self.voteData[optionName][playerID] = optionValue
 
     -- Process / update the vote data
-    self:processVoteData()
+    self:processVoteData(optionName)
 end
 
 -- Processes Vote Data
-function Pregame:processVoteData()
+function Pregame:processVoteData(optionName)
     -- Will store results
     local results = {}
     local counts = {}
@@ -1182,7 +1182,7 @@ function Pregame:processVoteData()
     end
 
     -- Push the counts
-    network:voteCounts(counts)
+    network:voteCounts(counts,optionName)
 end
 
 -- Load up the troll combo bans list
@@ -1706,6 +1706,14 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Advanced -- Enable Wraith Night Abilities
+        lodOptionAdvancedNeutralWraithNight = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
             -- Ensure gamemode is set to custom
@@ -1860,6 +1868,9 @@ function Pregame:initOptionSelector()
 
                 -- Enable neutral abilities
                 self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+
+                -- Enable Wraith Night abilities
+                self:setOption('lodOptionAdvancedNeutralWraithNight', 1, true)
 
                 -- Enable Custom Abilities
                 self:setOption('lodOptionAdvancedCustomSkills', 1, true)
@@ -2539,6 +2550,7 @@ function Pregame:processOptions()
 			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
 			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
+                    ['Allow Wraith Night Skills'] = this.optionStore['lodOptionAdvancedNeutralWraithNight'],
 			        ['Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
 			        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
 			        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
@@ -3567,6 +3579,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1
         elseif cat == 'neutral' then
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
+        elseif cat == 'wraith' then
+            allowed = self.optionStore['lodOptionAdvancedNeutralWraithNight'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
         elseif cat == 'OP' then
