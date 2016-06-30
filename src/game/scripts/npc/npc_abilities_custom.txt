@@ -3155,7 +3155,7 @@
                 {
                     "DestroyTrees"
                     {
-                        "Target"    "CASTER"
+                        "Target"    "TARGET"
                         "Radius"    "150"
                     }
                 }
