@@ -59,6 +59,31 @@ var allOptions = {
                     }
                 ]
             },
+			{
+                preset: true,
+                name: 'lodOptionFastStart',
+                des: 'lodOptionsPresetFastStart',
+                about: 'lodOptionAboutPresetFastStart',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionManualBalancedFastStart',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionManualFastStart',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBalancedFastStart',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionNoFastStart',
+                        value: 4
+                    }
+                ]
+            },
             {
                 preset: true,
                 name: 'lodOptionSlots',
@@ -444,6 +469,22 @@ var allOptions = {
                 name: 'lodOptionAdvancedNeutralAbilities',
                 des: 'lodOptionDesAdvancedNeutralAbilities',
                 about: 'lodOptionAboutAdvancedNeutralAbilities',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedNeutralWraithNight',
+                des: 'lodOptionDesAdvancedWraithNight',
+                about: 'lodOptionAboutAdvancedWraithNight',
                 sort: 'toggle',
                 values: [
                     {
@@ -2631,6 +2672,7 @@ function OnSkillTabShown(tabName) {
 
         activeTabs = {
             main: true,
+            wraith: true,
             //neutral: true,
             custom: true
         };
@@ -2870,6 +2912,7 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
+            'wraith',
             'custom'
         ];
 
@@ -3895,11 +3938,15 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Defaults
             data.banning = data.banning || {};
+			data.faststart = data.faststart || {};
             data.slots = data.slots || {};
 
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
             $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
+			
+			$('#voteCountNoFS').text = '(' + (data.faststart[0] || 0) + ')';
+            $('#voteCountYesFS').text = '(' + (data.faststart[1] || 0) + ')';
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
@@ -3949,7 +3996,7 @@ function OnOptionChanged(table_name, key, data) {
     }
 
     // Check for allowed categories changing
-    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities') {
+    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedNeutralWraithNight' || key == 'lodOptionAdvancedOPAbilities') {
         onAllowedCategoriesChanged();
     }
 
@@ -4153,6 +4200,10 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedNeutralAbilities'] == 1) {
         allowedCategories['neutral'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedNeutralWraithNight'] == 1) {
+        allowedCategories['wraith'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
@@ -4414,6 +4465,26 @@ function onPlayerCastVote(category, choice) {
                 answer = 1;
             } else {
                 $('#optionVoteBanningNo').AddClass('optionCurrentlySelected');
+            }
+
+            castVote(category, answer);
+        break;
+		
+		case 'faststart':
+            // Remove glow
+            $('#optionVoteFastStartNo').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteFastStartNo').RemoveClass('optionCurrentlySelected');
+
+            $('#optionVoteFastStartYes').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteFastStartYes').RemoveClass('optionCurrentlySelected');
+
+            // Add the selection
+            var answer = 0;
+            if(choice) {
+                $('#optionVoteFastStartYes').AddClass('optionCurrentlySelected');
+                answer = 1;
+            } else {
+                $('#optionVoteFastStartNo').AddClass('optionCurrentlySelected');
             }
 
             castVote(category, answer);
