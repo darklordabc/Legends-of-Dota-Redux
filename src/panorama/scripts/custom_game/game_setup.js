@@ -2759,20 +2759,29 @@ function OnSkillTabShown(tabName) {
             
             // Do the main sort
             toSort.sort(function(a, b) {
-                var txtA = categorySorting[a.category];
-                var txtB = categorySorting[b.category];
+                var txtA = a.txt;
+                var txtB = b.txt;
+
+                var catA = categorySorting[a.category];
+                var catB = categorySorting[b.category];
 
                 if(a.grouped != b.grouped) {
                     if(a.grouped) return -1;
                     return 1;
                 }
 
-                if(txtA < txtB) {
+                if(catA < catB) {
                     return -1;
-                } else if(txtA > txtB) {
+                } else if(catA > catB) {
                     return 1;
                 } else {
-                    return 0;
+                    if(txtA < txtB) {
+                        return -1;
+                    } else if(txtA > txtB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
                 }
             });
 
