@@ -1,4 +1,4 @@
-Legends of Dota
+Legends of Dota1
 =====
 
 **Support the innovators not the imitators.**
