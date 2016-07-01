@@ -169,6 +169,20 @@
                         </Button>
                     </Panel>
                 </Panel>
+				<Panel class="optionVoteFastStartPhase">
+					<Label class="optionVoteHeader" text="lodFastStart" />
+                    <Panel class="optionVoteFastStartOptions">
+                        <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('faststart', false)">
+                            <Label text="lodOptionNo" />
+                            <Label id="voteCountNoFS" class="premiumFeature" />
+                        </Button>
+
+                        <Button id="optionVoteFastStartYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('faststart', true)">
+                            <Label text="lodOptionYes" />
+                            <Label id="voteCountYesFS" class="premiumFeature" />
+                        </Button>
+                    </Panel>
+				</Panel>
             </Panel>
 
             <Panel id="optionSelection">

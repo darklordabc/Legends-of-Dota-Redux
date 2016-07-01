@@ -200,6 +200,7 @@ function Pregame:init()
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
     self:setOption('lodOptionMirrorHeroes', 20)
+	
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -1104,7 +1105,6 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     local optionName = args.optionName
     local optionValue = args.optionValue
     local player = PlayerResource:GetPlayer(playerID)
-
     -- Ensure we have a store for vote data
     self.voteData = self.voteData or {}
 
@@ -1116,14 +1116,18 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 
         banning = function(choice)
             return choice == 1 or choice == 0
+        end,
+		
+		faststart = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
     -- Validate options
     if not optionValidator[optionName] or not optionValidator[optionName](optionValue) then return end
-
     -- Ensure we have a store for this option
     self.voteData[optionName] = self.voteData[optionName] or {}
+	
 
     -- Store their vote
     self.voteData[optionName][playerID] = optionValue
@@ -1137,10 +1141,8 @@ function Pregame:processVoteData()
     -- Will store results
     local results = {}
     local counts = {}
-
     for optionName,data in pairs(self.voteData or {}) do
         counts[optionName] = {}
-
         for playerID,choice in pairs(data) do
             counts[optionName][choice] = (counts[optionName][choice] or 0) + util:getVotingPower(playerID)
         end
@@ -1180,6 +1182,20 @@ function Pregame:processVoteData()
             self.optionVotingBanning = 0
         end
     end
+	
+	if results.faststart ~= nil then
+        if results.faststart == 1 then
+        	-- Option Voting
+			self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+			self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+        else
+        	-- No option voting
+            self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+			self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+        end
+    end
+	
+	
 
     -- Push the counts
     network:voteCounts(counts)
