@@ -2704,7 +2704,8 @@ function OnSkillTabShown(tabName) {
                                 toSort.push({
                                     txt: groupKey,
                                     con: groupCon,
-                                    category: flagDataInverse[abilityName]["category"], 
+                                    category: flagDataInverse[abilityName]["category"],
+                                    hasOwner: theOwner != null,
                                     grouped: true
                                 });
 
@@ -2753,9 +2754,9 @@ function OnSkillTabShown(tabName) {
 
             var categorySorting = [];
             categorySorting["main"] = 1;
-            categorySorting["custom"] = 2;
+            categorySorting["neutral"] = 2;
             categorySorting["wraith"] = 3;
-            categorySorting["neutral"] = 4;
+            categorySorting["custom"] = 4;
             
             // Do the main sort
             toSort.sort(function(a, b) {
@@ -2769,18 +2770,29 @@ function OnSkillTabShown(tabName) {
                     if(a.grouped) return -1;
                     return 1;
                 }
-
-                if(catA < catB) {
-                    return -1;
-                } else if(catA > catB) {
-                    return 1;
-                } else {
+                
+                // Check if ability is custom and is attached to some hero 
+                if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
                     if(txtA < txtB) {
                         return -1;
                     } else if(txtA > txtB) {
                         return 1;
                     } else {
                         return 0;
+                    }
+                } else {
+                    if(catA < catB) {
+                        return -1;
+                    } else if(catA > catB) {
+                        return 1;
+                    } else {
+                        if(txtA < txtB) {
+                            return -1;
+                        } else if(txtA > txtB) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
                     }
                 }
             });
