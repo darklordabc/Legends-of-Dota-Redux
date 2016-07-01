@@ -3919,14 +3919,19 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Defaults
             data.banning = data.banning || {};
+			data.faststart = data.faststart || {};
             data.slots = data.slots || {};
 
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
             $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
-
+			
+			$('#voteCountNoFS').text = '(' + (data.faststart[0] || 0) + ')';
+            $('#voteCountYesFS').text = '(' + (data.faststart[1] || 0) + ')';
+			
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
+			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
@@ -4443,6 +4448,25 @@ function onPlayerCastVote(category, choice) {
                 $('#optionVoteBanningNo').AddClass('optionCurrentlySelected');
             }
 
+            castVote(category, answer);
+        break;
+		
+		case 'faststart':
+            // Remove glow
+            $('#optionVoteFastStartNo').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteFastStartNo').RemoveClass('optionCurrentlySelected');
+
+            $('#optionVoteFastStartYes').RemoveClass('makeThePlayerNoticeThisButton');
+            $('#optionVoteFastStartYes').RemoveClass('optionCurrentlySelected');
+
+            // Add the selection
+            var answer = 0;
+            if(choice) {
+                $('#optionVoteFastStartYes').AddClass('optionCurrentlySelected');
+                answer = 1;
+            } else {
+                $('#optionVoteFastStartNo').AddClass('optionCurrentlySelected');
+            }
             castVote(category, answer);
         break;
     }
