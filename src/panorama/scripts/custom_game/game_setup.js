@@ -3808,9 +3808,7 @@ function updateVotingPercentage(votes, labels) {
     var votePercentages = [];
     var largestPercentage = 0;
     for (var i = 0; i < labels.length; i++) {
-        if (votes[i]) {
-            voteCount += votes[i];
-        }
+        voteCount += votes[i] || 0;
     }
     for (var i = 0; i < labels.length; i++) {
         votePercentages[i] = Math.round(((votes[i] || 0) / voteCount) * 100);
