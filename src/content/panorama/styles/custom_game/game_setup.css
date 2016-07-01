@@ -1833,7 +1833,7 @@
 
 .veryBasicVoting #optionVoting {
     width: 240px;
-    height: 160px;
+    height: 300px;
 }
 
 .phase_option_voting_selected #optionVoting {
@@ -1904,6 +1904,21 @@
     horizontal-align: middle;
 }
 
+.optionVoteFastStartPhase {
+    flow-children: down;
+    horizontal-align: middle;
+
+    margin-top: 16px;
+    padding: 8px;
+    border: 1px solid #444444;
+    border-radius: 8px;
+}
+
+.optionVoteFastStartOptions {
+    flow-children: right;
+    horizontal-align: middle;
+}
+
 .optionVoteRoot {
     flow-children: down;
 }
@@ -1924,6 +1939,11 @@
 .votingButtonBanning {
     flow-children: right;
 }
+
+.votingButtonFastStart {
+    flow-children: right;
+}
+
 
 .voteCountSlots {
     vertical-align: middle;
