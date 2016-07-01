@@ -2948,45 +2948,46 @@
     
         "OnSpellStart"
         {   
-        "ActOnTargets"
-		{
-
-			"Target"
-			{
-				"Center" "CASTER"
-				"Radius" "GLOBAL"
-				"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-            "Action"
-			{
-                "ApplyModifier"
-                {
-                    "ModifierName"  "modifier_silencer_global_break"
-                    "Target"	"TARGET"
-                    "Duration"      "%AbilityDuration"
+            "ActOnTargets"
+    		{
+    
+    			"Target"
+    			{
+    				"Center" "CASTER"
+    				"Radius" "GLOBAL"
+    				"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    				"Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+    				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    			}
+                "Action"
+    			{
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_silencer_global_break"
+                        "Target"	"TARGET"
+                        "Duration"      "%AbilityDuration"
+                    }
                 }
             }
-        }
-        "Modifiers"
-        {
-            
-            "modifier_silencer_global_break"
+            "Modifiers"
             {
-                "Passive"           "0"
-                "IsHidden"          "0"
-                "IsDebuff"          "1"
-            
-                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
-                "EffectAttachType"  "follow_origin"
-            
-                "States"
-                {
-                    "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
-                }
-            }
                 
+                "modifier_silencer_global_break"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "1"
+                
+                    "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                
+                    "States"
+                    {
+                        "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
+                    }
+                }
+                    
+            }
         }
     }
 
