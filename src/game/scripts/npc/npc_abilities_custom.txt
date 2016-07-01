@@ -3242,7 +3242,7 @@
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "%ms_boost"
-                    "MODIFIER_PROPERTY_TOOLTIP"                            "%radius"
+                    "MODIFIER_PROPERTY_TOOLTIP"                         "%radius"
                 }
             }
             "truesight_aura_debuff"
