@@ -377,6 +377,7 @@
     "voteMaxSlots6"                                 "6 Slots"
 
     "lodBanningPhase"                               "Enable The Banning Phase?"
+    "lodFastStart"                                  "Enable Fast Start?"
 
     "bots_lod"                                      "Bots"
 
