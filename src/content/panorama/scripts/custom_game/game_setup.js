@@ -59,7 +59,7 @@ var allOptions = {
                     }
                 ]
             },
-			{
+            {
                 preset: true,
                 name: 'lodOptionFastStart',
                 des: 'lodOptionsPresetFastStart',
@@ -3733,9 +3733,9 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         // Essentials
         heroStats += seperator;
-    	heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
-    	heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
-    	heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
+        heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
+        heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
         heroStats += heroStatsLine('heroStats_damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
 
         // Attribute Stats
@@ -3750,11 +3750,11 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         // Advanced
         heroStats += seperator;
-    	heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
-    	heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
-    	heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
+        heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
+        heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
+        heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
 
-    	if(stringToDecimalPlaces(info.StatusHealthRegen) != 0.25) {
+        if(stringToDecimalPlaces(info.StatusHealthRegen) != 0.25) {
             heroStats += heroStatsLine('heroStats_baseHealthRegen', stringToDecimalPlaces(info.StatusHealthRegen));
         }
 
@@ -3762,15 +3762,15 @@ function generateFormattedHeroStatsString(heroName, info) {
             heroStats += heroStatsLine('heroStats_magicalResistance', info.MagicalResistance);
         }
 
-    	if(stringToDecimalPlaces(info.StatusManaRegen) != 0.01) {
+        if(stringToDecimalPlaces(info.StatusManaRegen) != 0.01) {
             heroStats += heroStatsLine('heroStats_baseManaRegen', stringToDecimalPlaces(info.StatusManaRegen));
         }
 
-    	if(info.ProjectileSpeed != 900 && info.ProjectileSpeed != 0) {
+        if(info.ProjectileSpeed != 900 && info.ProjectileSpeed != 0) {
             heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
         }
 
-    	if(info.VisionDaytimeRange != 1800) {
+        if(info.VisionDaytimeRange != 1800) {
             heroStats += heroStatsLine('heroStats_visionDay', info.VisionDaytimeRange);
         }
 
@@ -3778,7 +3778,7 @@ function generateFormattedHeroStatsString(heroName, info) {
             heroStats += heroStatsLine('heroStats_visionNight', info.VisionNighttimeRange);
         }
 
-    	if(info.RingRadius != 70) {
+        if(info.RingRadius != 70) {
             heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
         }
     }
@@ -3920,13 +3920,13 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Store vote settings in an array
             data.settings[0] = data.settings[0] || {};
-			data.settings[1] = data.settings[1] || {};
+            data.settings[1] = data.settings[1] || {};
             data.slots = data.slots || {};
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.settings[0][0] || 0) + ')';
             $('#voteCountYes').text = '(' + (data.settings[0][1] || 0) + ')';
-			
-			$('#voteCountNoFS').text = '(' + (data.settings[1][0] || 0) + ')';
+            
+            $('#voteCountNoFS').text = '(' + (data.settings[1][0] || 0) + ')';
             $('#voteCountYesFS').text = '(' + (data.settings[1][1] || 0) + ')';
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
@@ -4446,8 +4446,8 @@ function onPlayerCastVote(category, choice) {
 
             castVote(category, answer);
         break;
-		
-		case 'faststart':
+        
+        case 'faststart':
             // Remove glow
             $('#optionVoteFastStartNo').RemoveClass('makeThePlayerNoticeThisButton');
             $('#optionVoteFastStartNo').RemoveClass('optionCurrentlySelected');
