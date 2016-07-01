@@ -2969,24 +2969,23 @@
                     }
                 }
             }
-            "Modifiers"
+        }
+        "Modifiers"
+        {
+                
+            "modifier_silencer_global_break"
             {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+            
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
                 
-                "modifier_silencer_global_break"
+                "States"
                 {
-                    "Passive"           "0"
-                    "IsHidden"          "0"
-                    "IsDebuff"          "1"
-                
-                    "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
-                    "EffectAttachType"  "follow_origin"
-                
-                    "States"
-                    {
-                        "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
-                    }
+                    "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
                 }
-                    
             }
         }
     }
