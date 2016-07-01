@@ -31,7 +31,7 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
-
+	
     -- Precache ogre magi stuff
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
