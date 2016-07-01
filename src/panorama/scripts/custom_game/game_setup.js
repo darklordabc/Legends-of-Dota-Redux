@@ -3803,6 +3803,32 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     }
 }
 
+function updateVotingPercentage(votes, labels) {
+    var voteCount = 0;
+    var votePercentages = [];
+    var largestPercentage = 0;
+    for (var i = 0; i < labels.length; i++) {
+        if (votes[i]) {
+            voteCount += votes[i];
+        }
+    }
+    for (var i = 0; i < labels.length; i++) {
+        votePercentages[i] = Math.round(((votes[i] || 0) / voteCount) * 100);
+
+        if (votePercentages[i] >= votePercentages[largestPercentage]) {
+            largestPercentage = i;
+        }
+    }
+    for (var i = 0; i < labels.length; i++) {
+        labels[i].text = (votePercentages[i] || 0) + "%";
+        if (i == largestPercentage) {
+            labels[i].style.color = "green;";
+        } else {
+            labels[i].style.color = "red;";
+        }
+    }
+}
+
 // A phase was changed
 var seenPopupMessages = {};
 function OnPhaseChanged(table_name, key, data) {
@@ -3920,18 +3946,7 @@ function OnPhaseChanged(table_name, key, data) {
             $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
 
             // Set vote percentages
-            var voteCount = (data.banning[0] || 0) + (data.banning[1] || 0);
-            var voteNoPercentage = Math.round(((data.banning[0] || 0) / voteCount) * 100);
-            var voteYesPercentage = Math.round(((data.banning[1] || 0) / voteCount) * 100);
-
-            if (voteNoPercentage > 0 || voteYesPercentage > 0) {
-                $('#voteCountNoPercentage').text = voteNoPercentage + "%";
-                $('#voteCountYesPercentage').text = voteYesPercentage + "%";
-
-                // Highlight it
-                $('#voteCountNoPercentage').style.color = voteNoPercentage >= voteYesPercentage ? "green;" : "red;";
-                $('#voteCountYesPercentage').style.color = voteYesPercentage >= voteNoPercentage ? "green;" : "red;";
-            }
+            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
