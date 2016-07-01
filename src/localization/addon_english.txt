@@ -932,7 +932,7 @@
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"    
     
-    "DOTA_Tooltip_ability_octarine_vampirism_lod" "Arcane Vampirism"
+    "DOTA_Tooltip_ability_octarine_vampirism_lod" "Octarine Vampirism"
     "DOTA_Tooltip_ability_octarine_vampirism_lod_Description" "Gives lifesteal on spell damage, gives less lifesteal on creeps."
     "DOTA_Tooltip_ability_octarine_vampirism_lod_Lore"        "The art of thieving life through arcane means is a lost one."
     "DOTA_Tooltip_ability_octarine_vampirism_lod_hero_lifesteal"        "%HERO LIFESTEAL:"    
@@ -946,7 +946,7 @@
     "DOTA_Tooltip_ability_force_dash_lod_Lore"        "Ejecting magic from one's body works very similar to a rocket."
     "DOTA_Tooltip_ability_force_dash_lod_distance"        "PUSH DISTANCE:"    
     
-    "DOTA_Tooltip_ability_shards_of_truesight_lod" "True Sight"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod" "Shards of True Sight"
     "DOTA_Tooltip_ability_shards_of_truesight_lod_Description" "Grants truesight to the owner in a radius and increases its base movements speed for the duration."
     "DOTA_Tooltip_ability_shards_of_truesight_lod_Lore"        "The All-Seeing Eye has noticed your presence."
     "DOTA_Tooltip_ability_shards_of_truesight_lod_ms_boost"        "MS BONUS:"    
@@ -954,5 +954,5 @@
     "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "SIGHT RADIUS:"    
     
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
-    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in %dMODIFIER_PROPERTY_TOOLTIP% and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
+    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a %dMODIFIER_PROPERTY_TOOLTIP% radius and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%ms"
 }
