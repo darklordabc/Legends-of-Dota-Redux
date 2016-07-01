@@ -3931,6 +3931,7 @@ function OnPhaseChanged(table_name, key, data) {
 			
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
+			 updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')])
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
