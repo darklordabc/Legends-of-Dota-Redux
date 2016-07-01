@@ -3936,11 +3936,10 @@ function OnPhaseChanged(table_name, key, data) {
         case 'vote_counts':
             // Server just sent us vote counts
 
-            // Defaults
+            // Store vote settings in an array
             data.settings[0] = data.settings[0] || {};
 			data.settings[1] = data.settings[1] || {};
             data.slots = data.slots || {};
-
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.settings[0][0] || 0) + ')';
             $('#voteCountYes').text = '(' + (data.settings[0][1] || 0) + ')';
@@ -4486,7 +4485,6 @@ function onPlayerCastVote(category, choice) {
             } else {
                 $('#optionVoteFastStartNo').AddClass('optionCurrentlySelected');
             }
-
             castVote(category, answer);
         break;
     }
