@@ -1116,6 +1116,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 
         banning = function(choice)
             return choice == 1 or choice == 0
+        end,
+		
+		faststart = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
@@ -1178,6 +1182,17 @@ function Pregame:processVoteData()
         	-- No option voting
             self:setOption('lodOptionBanning', 1, true)
             self.optionVotingBanning = 0
+        end
+    end
+	if results.faststart ~= nil then
+        if results.faststart == 1 then
+        	-- Option Voting
+			self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+			self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+        else
+        	-- No option voting
+            self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+			self:setOption('lodOptionGameSpeedStartingGold', 0, true)
         end
     end
 
