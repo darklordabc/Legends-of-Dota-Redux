@@ -2772,26 +2772,14 @@ function OnSkillTabShown(tabName) {
                 
                 // Check if ability is custom and is attached to some hero 
                 if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
-                    if(txtA < txtB) {
-                        return -1;
-                    } else if(txtA > txtB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    helperSort(txtA,txtB)
                 } else {
                     if(catA < catB) {
                         return -1;
                     } else if(catA > catB) {
                         return 1;
                     } else {
-                        if(txtA < txtB) {
-                            return -1;
-                        } else if(txtA > txtB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
+                        helperSort(txtA,txtB)
                     }
                 }
             });
@@ -2973,6 +2961,16 @@ function OnSkillTabShown(tabName) {
 
     // No longewr the first call
     firstSkillTabCall = false;
+}
+
+private function helperSort(a,b){
+	if(a < b) {
+        return -1;
+    } else if(a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 // Are we the host?
