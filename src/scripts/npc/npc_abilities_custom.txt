@@ -2970,10 +2970,10 @@
                 }
             }
             "FireSound"
- +          {
- +            "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
- +            "Target"        "CASTER"
- +          }      
+            {
+              "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+              "Target"        "CASTER"
+            }      
         }
         "Modifiers"
         {
@@ -2988,14 +2988,13 @@
                 "EffectAttachType"  "follow_origin"
                 
                 "OnCreated"
- +                {
- +                    "FireSound"
- +                    {
- +                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
- +                        "Target"        "TARGET"
- +                    }
- +                }
-                
+                {
+                  "FireSound"
+                  {
+                    "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                    "Target"        "TARGET"
+                  }
+                }
                 "States"
                 {
                     "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
@@ -3003,5 +3002,4 @@
             }
         }
     }
-
 }
