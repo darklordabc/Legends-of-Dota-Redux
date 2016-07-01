@@ -2755,8 +2755,7 @@ function OnSkillTabShown(tabName) {
             var categorySorting = [];
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
-            categorySorting["wraith"] = 3;
-            categorySorting["custom"] = 4;
+            categorySorting["custom"] = 3;
             
             // Do the main sort
             toSort.sort(function(a, b) {
