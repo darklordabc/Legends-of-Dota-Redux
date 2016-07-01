@@ -1129,11 +1129,11 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     self.voteData[optionName][playerID] = optionValue
 
     -- Process / update the vote data
-    self:processVoteData(optionName)
+    self:processVoteData()
 end
 
 -- Processes Vote Data
-function Pregame:processVoteData(optionName)
+function Pregame:processVoteData()
     -- Will store results
     local results = {}
     local counts = {}
@@ -1182,7 +1182,7 @@ function Pregame:processVoteData(optionName)
     end
 
     -- Push the counts
-    network:voteCounts(counts,optionName)
+    network:voteCounts(counts)
 end
 
 -- Load up the troll combo bans list

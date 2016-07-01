@@ -122,7 +122,7 @@ end
 -- Pushes that a skill is banned
 function Network:banAbility(abilityName)
     -- Push to everyone
-    CustomNetTables:SetTableValue('banned', abilityName, {
+    CustomNetTables:SetTableValue('settings', abilityName, {
         abilityName = abilityName
     })
 end
@@ -130,7 +130,7 @@ end
 -- Pushes that a hero is banned
 function Network:banHero(heroName)
     -- Push to everyone
-    CustomNetTables:SetTableValue('banned', 'hero_' .. heroName, {
+    CustomNetTables:SetTableValue('settings', 'hero_' .. heroName, {
         heroName = heroName
     })
 end
@@ -138,12 +138,19 @@ end
 -- Pushes that a hero is banned
 function Network:setTotalBans(playerID, currentHeroBans, currentAbilityBans)
     -- Push to everyone
-    CustomNetTables:SetTableValue('banned', 'ban_info_' .. playerID, {
+    CustomNetTables:SetTableValue('settings', 'ban_info_' .. playerID, {
         playerID = playerID,
         currentHeroBans = currentHeroBans,
         currentAbilityBans = currentAbilityBans
     })
 end
+
+function Network:countFastStartVotes(count)
+    local current = CustomNetTables:GetTableValue('settings','faststart')
+	if current == nil then current = 0 end
+    CustomNetTables:SetTableValue('settings', 'faststart', current + 1)
+end
+
 
 -- Pushes the ready state
 function Network:sendReadyState(readyState)
@@ -158,8 +165,8 @@ function Network:donePrecaching()
 end
 
 -- Shares the vote counts
-function Network:voteCounts(counts,optionName)
-    CustomNetTables:SetTableValue('phase_pregame', 'vote_counts_'..optionName, counts)
+function Network:voteCounts(counts)
+    CustomNetTables:SetTableValue('phase_pregame', 'vote_counts', counts)
 end
 
 -- Shares premium info

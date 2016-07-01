@@ -64,7 +64,7 @@ function Ingame:init()
 end
 
 function PlayerSpawned(event)
-	local vote_succes = CustomNetTables:GetTableValue('phase_pregame', 'vote_counts_faststart')
+	local vote_succes = CustomNetTables:GetTableValue('settings', 'faststart')
 	local playerID = event.PlayerID
 	if vote_succes >= DOTA_MAX_PLAYERS/2 then
 		while PlayerResource:GetLevel(playerID) < 6 do
