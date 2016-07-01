@@ -3937,16 +3937,16 @@ function OnPhaseChanged(table_name, key, data) {
             // Server just sent us vote counts
 
             // Defaults
-            data.banning = data.banning || {};
-			data.faststart = data.faststart || {};
+            data.settings[0] = data.settings[0] || {};
+			data.settings[1] = data.settings[1] || {};
             data.slots = data.slots || {};
 
             // Set vote counts
-            $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
-            $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
+            $('#voteCountNo').text = '(' + (data.settings[0][0] || 0) + ')';
+            $('#voteCountYes').text = '(' + (data.settings[0][1] || 0) + ')';
 			
-			$('#voteCountNoFS').text = '(' + (data.faststart[0] || 0) + ')';
-            $('#voteCountYesFS').text = '(' + (data.faststart[1] || 0) + ')';
+			$('#voteCountNoFS').text = '(' + (data.settings[1][0] || 0) + ')';
+            $('#voteCountYesFS').text = '(' + (data.settings[1][1] || 0) + ')';
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
