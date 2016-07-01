@@ -2969,6 +2969,11 @@
                     }
                 }
             }
+            "FireSound"
+ +          {
+ +            "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+ +            "Target"        "CASTER"
+ +          }      
         }
         "Modifiers"
         {
@@ -2981,6 +2986,15 @@
             
                 "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
+                
+                "OnCreated"
+ +                {
+ +                    "FireSound"
+ +                    {
+ +                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+ +                        "Target"        "TARGET"
+ +                    }
+ +                }
                 
                 "States"
                 {
