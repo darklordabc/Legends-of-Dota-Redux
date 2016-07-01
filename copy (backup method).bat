@@ -1,0 +1,29 @@
+start "" /wait cmd /c "echo This batch file is the same as stage.bat but it uses xcopy instead of mklink. & echo.The files left in "\dota_copy" are not mklinked to any other folders/files and can be manually copied into their equivalent folders in the steam folder.& echo.Please refer to the readme.md for more information on where you have to copy the "game" and "content" folders. &echo(&pause"
+xcopy /s src\game\maps dota_copy\game\maps\ /Y
+xcopy /s src\content\maps dota_copy\content\maps\ /Y
+xcopy /s src\game\addoninfo.txt dota_copy\game\  /Y
+xcopy /s src\game\scripts\custom_events.txt dota_copy\game\scripts\ /Y
+xcopy /s src\game\scripts\stat_collection.kv dota_copy\game\scripts\ /Y
+xcopy /s src\content\panorama dota_copy\content\panorama\ /Y
+xcopy /s src\game\scripts\custom_net_tables.txt dota_copy\game\scripts\ /Y
+xcopy /s src\game\scripts\npc\activelist.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s src\game\scripts\npc\herolist.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s script_generator\BIN\npc_units_custom.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s src\game\scripts\npc\npc_items_custom.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s src\game\scripts\vscripts dota_copy\game\scripts\vscripts\ /Y
+xcopy /s src\game\scripts\kv dota_copy\game\scripts\kv\ /Y
+xcopy /s src\game\scripts\abilities dota_copy\game\scripts\abilities\ /Y
+xcopy /s src\game\scripts\game_sounds dota_copy\game\scripts\game_sounds\ /Y
+xcopy /s src\game\particles dota_copy\game\particles\ /Y
+xcopy /s src\content\particles dota_copy\content\particles\ /Y 
+xcopy /s src\game\resource\flash3 dota_copy\game\resource\flash3\ /Y
+xcopy /s src\game\resource\overviews dota_copy\game\resource\overviews\ /Y
+xcopy /s script_generator\BIN\addon_english_token.txt dota_copy\game\resource\ /Y
+xcopy /s script_generator\BIN\addon_english.txt dota_copy\game\panorama\localization\ /Y
+xcopy /s script_generator\BIN\addon_schinese_token.txt dota_copy\game\resource\ /Y
+xcopy /s script_generator\BIN\addon_schinese.txt dota_copy\game\panorama\localization\ /Y
+xcopy /s src\game\scripts\npc\npc_abilities_override.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s src\game\scripts\npc\npc_abilities_custom.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s script_generator\BIN\npc_heroes_custom.txt dota_copy\game\scripts\npc\ /Y
+xcopy /s src\game\materials dota_copy\game\materials\ /Y
+pause
