@@ -954,5 +954,5 @@
     "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "SIGHT RADIUS:"    
     
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
-    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a %dMODIFIER_PROPERTY_TOOLTIP% radius and gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% movement speed."
+    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
 }
