@@ -2944,10 +2944,14 @@
             }
         }
         
-        
-    
         "OnSpellStart"
         {   
+            "FireSound"
+            {
+              "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+              "Target"        "CASTER"
+            }
+
             "ActOnTargets"
     		{
     
@@ -2968,12 +2972,7 @@
                         "Duration"      "%AbilityDuration"
                     }
                 }
-            }
-            "FireSound"
-            {
-              "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-              "Target"        "CASTER"
-            }      
+            } 
         }
         "Modifiers"
         {
@@ -2989,11 +2988,11 @@
                 
                 "OnCreated"
                 {
-                  "FireSound"
-                  {
-                    "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                    "Target"        "TARGET"
-                  }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                        "Target"        "TARGET"
+                    }
                 }
                 "States"
                 {
