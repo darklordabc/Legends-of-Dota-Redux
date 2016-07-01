@@ -3785,6 +3785,30 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     }
 }
 
+function updateVotingPercentage(votes, labels) {
+    var voteCount = 0;
+    var votePercentages = [];
+    var largestPercentage = 0;
+    for (var i = 0; i < labels.length; i++) {
+        voteCount += votes[i] || 0;
+    }
+    for (var i = 0; i < labels.length; i++) {
+        votePercentages[i] = Math.round(((votes[i] || 0) / voteCount) * 100);
+
+        if (votePercentages[i] >= votePercentages[largestPercentage]) {
+            largestPercentage = i;
+        }
+    }
+    for (var i = 0; i < labels.length; i++) {
+        labels[i].text = (votePercentages[i] || 0) + "%";
+        if (i == largestPercentage) {
+            labels[i].style.color = "green;";
+        } else {
+            labels[i].style.color = "red;";
+        }
+    }
+}
+
 // A phase was changed
 var seenPopupMessages = {};
 function OnPhaseChanged(table_name, key, data) {
@@ -3900,6 +3924,9 @@ function OnPhaseChanged(table_name, key, data) {
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
             $('#voteCountYes').text = '(' + (data.banning[1] || 0) + ')';
+
+            // Set vote percentages
+            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
