@@ -197,18 +197,34 @@
                 <Panel id="pickingPhaseLeftSide">
                     <Panel id="pickingPhaseTabs">
                         <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
-                            <Label text="Find a hero" link="pickingPhaseHeroTab" class="heroBuildMenuButton" />
-                            <Label text="Find a skill" link="pickingPhaseSkillTab" class="heroBuildMenuButton" />
-
+                            <Panel class="pickingPhaseTabBar">
+                                <Label text="Hero" link="pickingPhaseHeroTab" class="heroBuildMenuButton" />
+                                <Label text="Skill" link="pickingPhaseSkillTab" class="heroBuildMenuButton" />
+                                <Label text="Preset Builds" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
+                            </Panel>
                             <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                         </Panel>
                         <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
-                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
+<!--                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton" /> -->
+                            <Panel class="pickingPhaseTabBar">
+                                <Label text="Hero" link="pickingPhaseHeroTab" class="heroBuildMenuButton" />
+                                <Label text="Skill" link="pickingPhaseSkillTab" class="heroBuildMenuButton" />
+                                <Label text="Preset Builds" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
+                            </Panel>
 
                             <Label text="Filter by name:" class="buildingHelperInfoText addMarginTop" />
                             <Panel class="lodSearchPanel">
                                 <TextEntry id="lodHeroSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
                                 <Button class="lodSearchButton" onactivate="$('#lodHeroSearchInput').SetFocus()" />
+                            </Panel>
+
+                            <Panel id="pickingHeroListFilters">
+                                <Label class="pickingHeroListFilterHeading" text="Filter Heroes:" />
+                                <Panel class="pickingHeroListFilterGroup">
+                                    <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
+                                    <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
+                                    <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
+                                </Panel>
                             </Panel>
 
                             <Panel id="pickingPhaseHeroTabHeroPreview" class="buildingHelperHeroPreviewContainer">
@@ -246,9 +262,15 @@
                                     </Panel>
                                 </Panel>
                             </Panel>
-                        </Panel>
+                        </Panel>C
+                        
                         <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
-                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton addMarginBelow" />
+<!--                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton addMarginBelow" /> -->
+                            <Panel class="pickingPhaseTabBar">
+                                <Label text="Hero" link="pickingPhaseHeroTab" class="heroBuildMenuButton" />
+                                <Label text="Skill" link="pickingPhaseSkillTab" class="heroBuildMenuButton" />
+                                <Label text="Preset Builds" link="pickingPhaseMainTab" class="heroBuildMenuButton" />
+                            </Panel>
 
                             <Label text="Filter by name:" class="buildingHelperInfoText" />
                             <Panel class="lodSearchPanel">
@@ -344,14 +366,6 @@
                                 <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                             </Panel>
 
-                            <Panel id="pickingHeroListFilters">
-                                <Label class="pickingHeroListFilterHeading" text="Filter Heroes:" />
-                                <Panel class="pickingHeroListFilterGroup">
-                                    <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
-                                    <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
-                                    <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
-                                </Panel>
-                            </Panel>
                         </Panel>
 
                         <Panel id="pickingPhaseSkillTabContent" class="pickingPhaseTabContent">
