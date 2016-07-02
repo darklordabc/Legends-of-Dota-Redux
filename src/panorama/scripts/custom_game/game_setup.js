@@ -2963,7 +2963,7 @@ function OnSkillTabShown(tabName) {
     firstSkillTabCall = false;
 }
 
-private function helperSort(a,b){
+function helperSort(a,b){
 	if(a < b) {
         return -1;
     } else if(a > b) {
