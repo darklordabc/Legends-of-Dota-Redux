@@ -183,7 +183,7 @@
                         <Panel class="optionVoteRoot">
                             <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('faststart', false)">
                                 <Label text="lodOptionNo" />
-                                <Label id="voteCountNo" class="premiumFeature" />
+                                <Label id="voteCountNoFS" class="premiumFeature" />
                             </Button>
 
                             <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageFS" />
@@ -198,6 +198,9 @@
                             <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageFS" />
                         </Panel>
                     </Panel>
+					<Panel class="VotingOptionInfo" id="FastStartInfo"> 
+						<Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+					</Panel>
                 </Panel>
             </Panel>
 
