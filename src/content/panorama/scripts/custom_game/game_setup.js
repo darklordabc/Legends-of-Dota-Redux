@@ -1003,6 +1003,17 @@ var isPremiumPlayer = false;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
+// Information on mouse-over lines.
+$('#FastStartInfo').SetPanelEvent('onmouseover', function(){
+    var label = $.CreatePanel( "Panel", $.GetContextPanel(), 'InfoFSTooltip' );
+    label.SetHasClass( 'InfoTooltip', true )
+    label.text = "Everyone starts at level 6 and receives 1000 bonus gold."
+    label.style.position = (GameUI.GetCursorPosition()[0]) +"px "+((GameUI.GetCursorPosition()[1])- 75)+"px 0px";
+    label.hittest = false});
+// $('#FastStartInfo').SetPanelEvent('onmouseout', (function(){$('#InfoFSTooltip').DeleteAsync(0)}))
+
+
+
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -3931,7 +3942,7 @@ function OnPhaseChanged(table_name, key, data) {
 			
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
-			 updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')])
+			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')])
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
