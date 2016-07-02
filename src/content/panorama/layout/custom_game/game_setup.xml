@@ -158,15 +158,23 @@
                 <Panel class="optionVoteBanningPhase">
                     <Label class="optionVoteHeader" text="lodBanningPhase" />
                     <Panel class="optionVoteBanningOptions">
-                        <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', false)">
-                            <Label text="lodOptionNo" />
-                            <Label id="voteCountNo" class="premiumFeature" />
-                        </Button>
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', false)">
+                                <Label text="lodOptionNo" />
+                                <Label id="voteCountNo" class="premiumFeature" />
+                            </Button>
 
-                        <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', true)">
-                            <Label text="lodOptionYes" />
-                            <Label id="voteCountYes" class="premiumFeature" />
-                        </Button>
+                            <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentage" />
+                        </Panel>
+
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', true)">
+                                <Label text="lodOptionYes" />
+                                <Label id="voteCountYes" class="premiumFeature" />
+                            </Button>
+
+                            <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentage" />
+                        </Panel>
                     </Panel>
                 </Panel>
             </Panel>

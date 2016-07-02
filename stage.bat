@@ -50,8 +50,8 @@ mklink /D /J "dota\game\particles" "src\game\particles"
 mklink /D /J "dota\content\particles" "src\content\particles"
 
 :: Link resource folders
-mklink /D /J "dota\game\resource\flash3" "src\resource\flash3"
-mklink /D /J "dota\game\resource\overviews" "src\resource\overviews"
+mklink /D /J "dota\game\resource\flash3" "src\game\resource\flash3"
+mklink /D /J "dota\game\resource\overviews" "src\game\resource\overviews"
 
 :: Hard link generated scripts
 mklink /H "dota\game\resource\addon_english.txt" "script_generator\BIN\addon_english_token.txt"
