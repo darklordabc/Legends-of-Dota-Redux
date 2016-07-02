@@ -2772,14 +2772,14 @@ function OnSkillTabShown(tabName) {
                 
                 // Check if ability is custom and is attached to some hero 
                 if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
-                    helperSort(txtA,txtB)
+                    return helperSort(txtA,txtB)
                 } else {
                     if(catA < catB) {
                         return -1;
                     } else if(catA > catB) {
                         return 1;
                     } else {
-                        helperSort(txtA,txtB)
+                        return helperSort(txtA,txtB)
                     }
                 }
             });
