@@ -65,28 +65,18 @@
 	"npc_dota_hero_death_prophet" "1"
 	"npc_dota_hero_ursa" "1"
 	"npc_dota_hero_bounty_hunter" "1"
-
-	// Why removed? Int steal? It's not that OP. Temp activated.
 	"npc_dota_hero_silencer" "1"
-
 	"npc_dota_hero_spirit_breaker" "1"
-
 	"npc_dota_hero_invoker" "1"
-
 	"npc_dota_hero_clinkz" "1"
 	"npc_dota_hero_obsidian_destroyer" "1"
 	"npc_dota_hero_shadow_demon" "1"
 	"npc_dota_hero_lycan" "1"
-
-	// Why is he disabled?
 	"npc_dota_hero_lone_druid" "1"
-
 	"npc_dota_hero_brewmaster" "1"
 	"npc_dota_hero_phantom_lancer" "1"
 	"npc_dota_hero_treant" "1"
-
 	"npc_dota_hero_ogre_magi" "1"
-
 	"npc_dota_hero_chaos_knight" "1"
 	"npc_dota_hero_phantom_assassin" "1"
 	"npc_dota_hero_gyrocopter" "1"
@@ -119,5 +109,7 @@
 	"npc_dota_hero_terrorblade" "1"
 	"npc_dota_hero_techies" "1"
 	"npc_dota_hero_oracle" "1"
+	"npc_dota_hero_winter_wyvern" "1"
 	"npc_dota_hero_arc_warden" "1"
+	"npc_dota_hero_abyssal_underlord" "0"
 }
