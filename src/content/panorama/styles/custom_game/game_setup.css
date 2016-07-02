@@ -1916,6 +1916,11 @@
     border-radius: 8px;
 }
 
+.optionVoteFastStartHeader {
+    flow-children: right;
+    horizontal-align: middle;
+}
+
 .optionVoteFastStartOptions {
     flow-children: right;
     horizontal-align: middle;
@@ -1925,19 +1930,24 @@
     flow-children: right;
     horizontal-align: right;
 	
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 }
 
 .InfoTooltip {
     text-align: center;
     text-overflow: clip;
     font-weight: thin;
-    font-size: 20px;
-    color: #FFEE33;
-	position: 3% 200px 100px;
-    height: 64px;
+    font-size: 18px;
+    color: #FFFFFF;
+	padding: 8px;
+    height: 88px;
     width: 200px;
+	background-image: url("file://{images}/custom_game/tooltipBG.png");
+	background-size: 100% 100%;
+	border: 1px solid #444444;
+    border-radius: 8px;
+
 }
 
 .optionVoteRoot {
