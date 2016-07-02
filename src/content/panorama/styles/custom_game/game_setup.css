@@ -1893,6 +1893,7 @@
     flow-children: down;
     horizontal-align: middle;
 
+	width: 220px;
     margin-top: 16px;
     padding: 8px;
     border: 1px solid #444444;
@@ -1907,7 +1908,8 @@
 .optionVoteFastStartPhase {
     flow-children: down;
     horizontal-align: middle;
-
+	
+	width: 220px;
     margin-top: 16px;
     padding: 8px;
     border: 1px solid #444444;
@@ -1917,6 +1919,25 @@
 .optionVoteFastStartOptions {
     flow-children: right;
     horizontal-align: middle;
+}
+
+.VotingOptionInfo {
+    flow-children: right;
+    horizontal-align: right;
+	
+	width: 20px;
+	height: 20px;
+}
+
+.InfoTooltip {
+    text-align: center;
+    text-overflow: clip;
+    font-weight: thin;
+    font-size: 20px;
+    color: #FFEE33;
+	position: 3% 200px 100px;
+    height: 64px;
+    width: 200px;
 }
 
 .optionVoteRoot {
