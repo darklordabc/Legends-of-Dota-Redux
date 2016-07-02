@@ -158,7 +158,8 @@ function generatePrecacheData(next) {
             if(!ignoreHeroes[name]) {
                 newKV[name+'_lod'] = {
                     override_hero: name,
-                    AbilityLayout: 6
+                    AbilityLayout: 6,
+                    Enabled: data.Enabled
                 }
 
                 if(data.BotImplemented != 1) {

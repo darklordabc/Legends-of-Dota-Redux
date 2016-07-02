@@ -1194,7 +1194,6 @@ function OnHeroDataChanged(table_name, key, data) {
 // Flag data has changed
 function OnFlagDataChanged(table_name, key, data) {
     flagDataInverse[key] = data;
-
     // Do the schedule
     if(dataHooks.OnFlagDataChanged == null) dataHooks.OnFlagDataChanged = 0;
     var myHookNumber = ++dataHooks.OnFlagDataChanged;
@@ -1745,18 +1744,20 @@ function buildHeroList() {
     for(var heroName in heroData) {
         var info = heroData[heroName];
 
-        switch(info.AttributePrimary) {
-            case 'DOTA_ATTRIBUTE_STRENGTH':
-                strHeroes.push(heroName);
-            break;
+        if (info.Enabled == 1) {
+            switch(info.AttributePrimary) {
+                case 'DOTA_ATTRIBUTE_STRENGTH':
+                    strHeroes.push(heroName);
+                break;
 
-            case 'DOTA_ATTRIBUTE_AGILITY':
-                agiHeroes.push(heroName);
-            break;
+                case 'DOTA_ATTRIBUTE_AGILITY':
+                    agiHeroes.push(heroName);
+                break;
 
-            case 'DOTA_ATTRIBUTE_INTELLECT':
-                intHeroes.push(heroName);
-            break;
+                case 'DOTA_ATTRIBUTE_INTELLECT':
+                    intHeroes.push(heroName);
+                break;
+            }
         }
     }
 
@@ -2646,7 +2647,7 @@ function OnSkillTabShown(tabName) {
             custom: true
         };
 
-        var heroOwnerBlocks = {};
+        var groupBlocks = {};
         calculateFilters = function() {
             // Array used to sort abilities
             var toSort = [];
@@ -2655,13 +2656,13 @@ function OnSkillTabShown(tabName) {
             prepareFilterInfo();
 
             // Hide all hero owner blocks
-            for(var heroName in heroOwnerBlocks) {
-                heroOwnerBlocks[heroName].visible = false;
-                heroOwnerBlocks[heroName].SetHasClass('manySkills', false);
+            for(var groupName in groupBlocks) {
+                groupBlocks[groupName].visible = false;
+                groupBlocks[groupName].SetHasClass('manySkills', false);
             }
 
             // Counters for how many skills are in a block
-            var heroBlockCounts = {};
+            var blockCounts = {};
             var subSorting = {};
 
             // Loop over all abilties
@@ -2680,28 +2681,43 @@ function OnSkillTabShown(tabName) {
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
                             var theOwner = abilityHeroOwner[abilityName];
+                            var neutralGroup = flagDataInverse[abilityName].group;
 
-                            if(theOwner != null) {
-                                // Group it
-                                var groupCon = heroOwnerBlocks[theOwner];
+                            // Group it
+                            var groupKey = theOwner != null ? theOwner : neutralGroup;
+
+                            if(groupKey) {  
+                                var groupCon = groupBlocks[groupKey];
                                 if(groupCon == null) {
-                                    groupCon = $.CreatePanel('Panel', con, 'group_container_' + theOwner);
+                                    groupCon = $.CreatePanel('Panel', con, 'group_container_' + groupKey);
                                     groupCon.SetHasClass('grouped_skills', true);
-
-                                    // Store it
-                                    heroOwnerBlocks[theOwner] = groupCon;
                                 }
+
+                                groupBlocks[groupKey] = groupCon;
+
+                                toSort.push({
+                                    txt: groupKey,
+                                    con: groupCon,
+                                    category: flagDataInverse[abilityName]["category"],
+                                    hasOwner: theOwner != null,
+                                    grouped: true
+                                });
 
                                 // Making the layout much nicer
-                                if(heroBlockCounts[theOwner] == null) {
-                                    heroBlockCounts[theOwner] = 1;
-                                } else {
-                                    ++heroBlockCounts[theOwner];
+                                blockCounts[groupKey] = !blockCounts[groupKey] ? 1 : blockCounts[groupKey] + 1;
 
-                                    if(heroBlockCounts[theOwner] == 3) {
-                                        groupCon.SetHasClass('manySkills', true);
-                                    }
+                                if(blockCounts[groupKey] == 3) {
+                                    groupCon.SetHasClass('manySkills', true);
                                 }
+
+                                if(subSorting[groupKey] == null) {
+                                    subSorting[groupKey] = [];
+                                }
+
+                                subSorting[groupKey].push({
+                                    txt: abilityName,
+                                    con: ab
+                                });
 
                                 // Set that it is an ulty
                                 if(isUltimateAbility(abilityName)) {
@@ -2710,22 +2726,6 @@ function OnSkillTabShown(tabName) {
 
                                 abilityStore[abilityName].SetParent(groupCon);
                                 groupCon.visible = true;
-
-                                // Add it to the sort list
-                                toSort.push({
-                                    txt: theOwner,
-                                    con: groupCon,
-                                    grouped: true
-                                });
-
-                                if(subSorting[theOwner] == null) {
-                                    subSorting[theOwner] = [];
-                                }
-
-                                subSorting[theOwner].push({
-                                    txt: abilityName,
-                                    con: ab
-                                });
                             } else {
                                 toSort.push({
                                     txt: abilityName,
@@ -2746,22 +2746,35 @@ function OnSkillTabShown(tabName) {
                 }
             }
 
+            var categorySorting = [];
+            categorySorting["main"] = 1;
+            categorySorting["neutral"] = 2;
+            categorySorting["custom"] = 3;
+            
             // Do the main sort
             toSort.sort(function(a, b) {
                 var txtA = a.txt;
                 var txtB = b.txt;
 
+                var catA = categorySorting[a.category];
+                var catB = categorySorting[b.category];
+
                 if(a.grouped != b.grouped) {
                     if(a.grouped) return -1;
                     return 1;
                 }
-
-                if(txtA < txtB) {
-                    return -1;
-                } else if(txtA > txtB) {
-                    return 1;
+                
+                // Check if ability is custom and is attached to some hero 
+                if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
+                    return helperSort(txtA,txtB)
                 } else {
-                    return 0;
+                    if(catA < catB) {
+                        return -1;
+                    } else if(catA > catB) {
+                        return 1;
+                    } else {
+                        return helperSort(txtA,txtB)
+                    }
                 }
             });
 
@@ -2800,7 +2813,7 @@ function OnSkillTabShown(tabName) {
                     }
                 });
 
-                var subCon = heroOwnerBlocks[heroName];
+                var subCon = groupBlocks[heroName];
                 for(var i=1; i<sortGroup.length; ++i) {
                     var left = sortGroup[i-1];
                     var right = sortGroup[i];
@@ -2941,6 +2954,16 @@ function OnSkillTabShown(tabName) {
 
     // No longewr the first call
     firstSkillTabCall = false;
+}
+
+function helperSort(a,b){
+	if(a < b) {
+        return -1;
+    } else if(a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 // Are we the host?
