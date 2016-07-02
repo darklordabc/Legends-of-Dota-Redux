@@ -2934,6 +2934,7 @@
         "precache"
         {
             "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+            "particle" "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
         }
         "AbilitySpecial"
         {
@@ -2951,6 +2952,12 @@
               "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
               "Target"        "CASTER"
             }
+            "FireEffect"
+		    {
+			  "EffectName"	"particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+			  "EffectAttachType"	"follow_origin"
+			  "Target"		"CASTER"
+	        }
 
             "ActOnTargets"
     		{
