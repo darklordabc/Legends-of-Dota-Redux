@@ -2969,7 +2969,7 @@
         //}
         "RunScript"
         {
-          "ScriptFile"	"scripts/vscripts/../abilities/silencer_global_silence.lua"
+          "ScriptFile"	"scripts/vscripts/../abilities/silencer_global_break.lua"
 		  "Function"	"PlaySound"
         }
         "FireEffect"
