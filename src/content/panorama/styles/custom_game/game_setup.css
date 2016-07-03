@@ -1354,7 +1354,7 @@
 
 #pickingHeroListFilters {
     flow-children: down;
-    padding: 8px;
+    /*padding: 8px;*/
 }
 
 #heroPickingFiltersClear {
@@ -2235,17 +2235,17 @@
     margin-top: 8px;
 }
 
-.pickingPhaseTabBar {
+#pickingPhaseTabBar {
     width: 100%;
     flow-children: right;
 }
 
-.pickingPhaseTabBar .heroBuildMenuButton {
+#pickingPhaseTabBar .heroBuildMenuButton {
     height: 50px;
     width: fill-parent-flow(1);
 }
 
-.pickingPhaseTabBar .heroBuildMenuButton Label {
+#pickingPhaseTabBar .heroBuildMenuButton Label {
     horizontal-align: center;
     vertical-align: middle;
 }    

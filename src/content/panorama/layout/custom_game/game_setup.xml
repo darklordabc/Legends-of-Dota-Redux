@@ -195,35 +195,22 @@
 
             <Panel id="pickingPhase">
                 <Panel id="pickingPhaseLeftSide">
+                    <Panel id="pickingPhaseTabBar">
+                        <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
+                            <Label text="#presets_lod" />
+                        </Panel>
+                        <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
+                            <Label text="#heroes_lod" />
+                        </Panel>
+                        <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
+                            <Label text="#skills_lod" />
+                        </Panel>
+                    </Panel>
                     <Panel id="pickingPhaseTabs">
                         <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
-                            <Panel class="pickingPhaseTabBar">
-                                <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
-                                    <Label text="#presets_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
-                                    <Label text="#heroes_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
-                                    <Label text="#skills_lod" />
-                                </Panel>
-                            </Panel>
                             <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                         </Panel>
                         <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
-<!--                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton" /> -->
-                            <Panel class="pickingPhaseTabBar">
-                                <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
-                                    <Label text="#presets_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
-                                    <Label text="#heroes_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
-                                    <Label text="#skills_lod" />
-                                </Panel>
-                            </Panel>
-
                             <Label text="Filter by name:" class="buildingHelperInfoText addMarginTop" />
                             <Panel class="lodSearchPanel">
                                 <TextEntry id="lodHeroSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
@@ -277,19 +264,6 @@
                         </Panel>
                         
                         <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
-<!--                            <Label text="Back" link="pickingPhaseMainTab" class="heroBuildMenuButton addMarginBelow" /> -->
-                            <Panel class="pickingPhaseTabBar">
-                                <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
-                                    <Label text="#presets_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
-                                    <Label text="#heroes_lod" />
-                                </Panel>
-                                <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
-                                    <Label text="#skills_lod" />
-                                </Panel>
-                            </Panel>
-
                             <Label text="Filter by name:" class="buildingHelperInfoText addMarginTop" />
                             <Panel class="lodSearchPanel">
                                 <TextEntry id="lodSkillSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
