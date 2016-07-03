@@ -1007,7 +1007,7 @@ var calculateHeroFilters = function(){};
 $('#FastStartInfo').SetPanelEvent('onmouseover', function(){
     var label = $.CreatePanel( "Label", $.GetContextPanel(), 'InfoFSTooltip' );
     label.SetHasClass( 'InfoTooltip', true )
-    label.text = "Everyone starts at level 6 and receives 1000 bonus gold."
+    label.text = $.Localize( "#textFSTooltip" );
     label.style.position = (GameUI.GetCursorPosition()[0] + 300) +"px "+((GameUI.GetCursorPosition()[1]) + 100)+"px 0px";
     label.hittest = false});
 $('#FastStartInfo').SetPanelEvent('onmouseout', (function(){$('#InfoFSTooltip').DeleteAsync(0)}))
