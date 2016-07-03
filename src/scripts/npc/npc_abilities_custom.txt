@@ -2978,6 +2978,7 @@
 	    {
 	      "ModifierName"	"modifier_silencer_global_break"
 	      "Target"	"TARGET"
+	      "Duration" "duration"
 	    }
 
 	    "FireSound"
