@@ -1940,12 +1940,13 @@
     font-weight: thin;
     font-size: 18px;
     color: #FFFFFF;
-	padding: 8px;
+    padding: 8px;
     height: 88px;
     width: 200px;
-	background-image: url("file://{images}/custom_game/tooltipBG.png");
-	background-size: 100% 100%;
-	border: 1px solid #444444;
+    position: 57% 67% 0px;
+    background-image: url("file://{images}/custom_game/tooltipBG.png");
+    background-size: 100% 100%;
+    border: 1px solid #444444;
     border-radius: 8px;
 
 }
