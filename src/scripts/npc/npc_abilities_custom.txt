@@ -2974,7 +2974,7 @@
         }
         "FireEffect"
         {
-          "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+          "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_break.vpcf"
           "EffectAttachType"  "follow_origin"
           "Target"        "CASTER"
         }
