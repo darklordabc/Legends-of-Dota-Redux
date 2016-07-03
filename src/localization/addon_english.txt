@@ -378,6 +378,8 @@
 
     "lodBanningPhase"                               "Enable The Banning Phase?"
     "lodFastStart"                                  "Enable Fast Start?"
+    
+    "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
 
     "bots_lod"                                      "Bots"
 
