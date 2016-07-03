@@ -148,7 +148,7 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "3"
-        "AbilityTextureName"            "ogre_magi_multicast"
+        "AbilityTextureName"            "ogre_magi_multicast_lod"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityCooldown"               "30 15 10"
 
@@ -404,7 +404,7 @@
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityTextureName"            "zuus_thundergods_wrath"
+        "AbilityTextureName"            "zuus_thundergods_wrath_lod"
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -646,7 +646,7 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityTextureName"            "legion_commander_duel"
+        "AbilityTextureName"            "holdout_gladiators_unite_lod"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
@@ -703,7 +703,7 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityTextureName"            "juggernaut_omni_slash"
+        "AbilityTextureName"            "holdout_omnislash_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
@@ -770,7 +770,7 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityTextureName"            "sven_gods_strength"
+        "AbilityTextureName"            "sven_gods_strength_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
@@ -1075,7 +1075,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "crystal_maiden_brilliance_aura"
+        "AbilityTextureName"            "crystal_maiden_brilliance_aura_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
@@ -2422,7 +2422,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-        "AbilityTextureName"            "earthshaker_aftershock"
+        "AbilityTextureName"            "earthshaker_aftershock_lod"
 
             // Precache
         //-------------------------------------------------------------------------------------------------------------
