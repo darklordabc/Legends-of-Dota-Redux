@@ -29,6 +29,7 @@
     "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
+    "filter_by_category"                            "Filter by category:"
     "presets_lod"                                   "Preset Builds"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"

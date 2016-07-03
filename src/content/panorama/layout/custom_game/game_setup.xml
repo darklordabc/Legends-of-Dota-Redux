@@ -218,7 +218,7 @@
                             </Panel>
 
                             <Panel id="pickingHeroListFilters">
-                                <Label class="pickingHeroListFilterHeading" text="Filter Heroes:" />
+                                <Label class="pickingHeroListFilterHeading" text="#filter_by_category" />
                                 <Panel class="pickingHeroListFilterGroup">
                                     <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
                                     <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
@@ -269,7 +269,7 @@
                                 <TextEntry id="lodSkillSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
                                 <Button class="lodSearchButton" onactivate="$('#lodSkillSearchInput').SetFocus()" />
                             </Panel>
-                            <Label text="Filter by category:" class="buildingHelperInfoText" />
+                            <Label text="#filter_by_category" class="buildingHelperInfoText" />
                             <DropDown id="lodSkillCategoryHolder" />
                             <ToggleButton id="buttonHeroGrouping" text="Group Hero Abilities" onactivate="toggleHeroGrouping()" />
                             <ToggleButton id="buttonShowBanned" text="Show Banned Skills" onactivate="toggleShowBanned()" />
