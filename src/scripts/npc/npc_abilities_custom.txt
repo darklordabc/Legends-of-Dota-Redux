@@ -2950,34 +2950,43 @@
     
       "OnSpellStart"
       {
-        "ApplyModifier"
+        "FireSound"
         {
-          "ModifierName"  "modifier_silencer_global_break"
-          "Target"
-          {
-            "Center"                "CASTER"
-            "Radius"                "GLOBAL"
-            "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-            "Types"                 "DOTA_UNIT_TARGET_HERO" 
-          }
-          "Duration"      "%AbilityDuration"
-        }
-        //"FireSound"
-        //{
-        //  "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-        //  "Target"        "CASTER"
-        //}
-        "RunScript"
-        {
-          "ScriptFile"	"scripts/vscripts/../abilities/silencer_global_break.lua"
-		  "Function"	"PlaySound"
-        }
-        "FireEffect"
-        {
-          "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_break.vpcf"
-          "EffectAttachType"  "follow_origin"
-          "Target"        "CASTER"
-        }
+          "EffectName"	"Hero_Silencer.GlobalSilence.Cast"
+	  "Target"		"CASTER"
+	}
+	"FireEffect"
+	{
+	  "EffectName"	"particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+	  "EffectAttachType"	"follow_origin"
+	  "Target"		"CASTER"
+	}
+	"ActOnTargets"
+	{
+	  "Target"
+	  {
+	    "Center" "CASTER"
+	    "Radius" "GLOBAL"
+	    "Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+            "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	  }
+
+	  "Action"
+	  {
+	    "ApplyModifier"
+	    {
+	      "ModifierName"	"modifier_silencer_global_break"
+	      "Target"	"TARGET"
+	    }
+
+	    "FireSound"
+	    {
+	      "EffectName"	"Hero_Silencer.GlobalSilence.Effect"
+	      "Target"		"TARGET"
+	    }	
+          }			
+	}
       }
       "Modifiers"
       {
