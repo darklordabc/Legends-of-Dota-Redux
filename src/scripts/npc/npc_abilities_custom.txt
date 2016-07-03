@@ -2981,11 +2981,11 @@
 	      "Duration" "duration"
 	    }
 
-	    "FireSound"
-	    {
-	      "EffectName"	"Hero_Silencer.GlobalSilence.Effect"
-	      "Target"		"TARGET"
-	    }	
+	   // "FireSound"
+	   // {  
+	   // "EffectName"	"Hero_Silencer.GlobalSilence.Effect"
+	   // "Target"		"TARGET"
+	   // }	
           }			
 	}
       }
