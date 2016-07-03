@@ -2920,86 +2920,81 @@
     }
     "silencer_global_break"
     {
-        "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "silencer_global_break"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityCastPoint"              "0.3"
-        "AbilityCooldown"               "130"
-        "AbilityManaCost"               "250 375 500"
-        "AbilityDuration"               "4 5 6"
+      "BaseClass"                     "ability_datadriven"
+      "AbilityTextureName"            "silencer_global_break"
+      "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+      "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+      "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+      "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+      "AbilityCastPoint"              "0.3"
+      "AbilityCooldown"               "130"
+      "AbilityManaCost"               "250 375 500"
+      "AbilityDuration"               "4 5 6"
         
-        "precache"
+      "precache"
+      {
+        "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
+        "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
+      }
+      "AbilitySpecial"
+      {
+        "01"
         {
-            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
-            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
-            "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
+          "var_type"              "FIELD_INTEGER"
+          "duration"              "4 5 6"
         }
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "duration"              "4 5 6"
-            }
-        }
+      }
         
         
     
-        "OnSpellStart"
+      "OnSpellStart"
+      {
+        "ApplyModifier"
         {
-            "ApplyModifier"
-            {
-                "ModifierName"  "modifier_silencer_global_break"
-                "Target"
-                {
-                    "Center"                "CASTER"
-                    "Radius"                "GLOBAL"
-                    "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types"                 "DOTA_UNIT_TARGET_HERO" 
-                }
-                "Duration"      "%AbilityDuration"
-            }
-            "FireSound"
-            {
-                "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                "Target"        "CASTER"
-            }
+          "ModifierName"  "modifier_silencer_global_break"
+          "Target"
+          {
+            "Center"                "CASTER"
+            "Radius"                "GLOBAL"
+            "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+            "Types"                 "DOTA_UNIT_TARGET_HERO" 
+          }
+          "Duration"      "%AbilityDuration"
+        }
+        //"FireSound"
+        //{
+        //  "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+        //  "Target"        "CASTER"
+        //}
+        "RunScript"
+        {
+          "ScriptFile"	"scripts/vscripts/../abilities/silencer_global_silence.lua"
+		  "Function"	"PlaySound"
+        }
+        "FireEffect"
+        {
+          "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+          "EffectAttachType"  "follow_origin"
+          "Target"        "CASTER"
+        }
+      }
+      "Modifiers"
+      {
+        "modifier_silencer_global_break"
+        {
+          "Passive"           "0"
+          "IsHidden"          "0"
+          "IsDebuff"          "1"
+            
+          "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+          "EffectAttachType"  "follow_origin"
 
-            "FireEffect"
-            {
-                "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
-                "EffectAttachType"  "follow_origin"
-                "Target"        "CASTER"
-            }
+          "States"
+          {
+            "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
+          }
         }
-        "Modifiers"
-        {
-            
-            "modifier_silencer_global_break"
-            {
-                "Passive"           "0"
-                "IsHidden"          "0"
-                "IsDebuff"          "1"
-            
-                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
-                "EffectAttachType"  "follow_origin"
-                "OnCreated"
-                {
-                    "FireSound"
-                    {
-                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                        "Target"        "TARGET"
-                    }
-                }
-                "States"
-                {
-                    "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
-                }
-            }
-                
-        }
+      }
     }
 }
