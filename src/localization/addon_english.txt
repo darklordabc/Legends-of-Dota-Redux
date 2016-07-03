@@ -29,7 +29,9 @@
     "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
-    "presets_lod"                                   "Presets"
+    "presets_lod"                                   "Preset Builds"
+    "heroes_lod"                                    "Heroes"
+    "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
@@ -179,6 +181,7 @@
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
+    "lodOptionDesAdvancedWraithNight"               "Allow Wraith Night Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
@@ -227,7 +230,7 @@
 
     // Info
     "lodOptionAboutPresetGamemode"                  "Choose from a predefined gamemode.\nThis option can only be changed if you are playing on the 'custom' map.\n\nAll Pick: Pick from every available skill.\nMirror Draft: Pick from a limited number of heroes.\nAll Random: Pick from a random set of builds.\nCustom: Build a custom gamemode."
-    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban up to one (1) hero and three (3) skills.\nFull Ban Phase: Balanced bans will be turned on and players can ban up to 10 abilities and up to 2 heroes each.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
+    "lodOptionAboutPresetBanning"                   "Use a preset banning mode.\n\nBalanced Bans: A set of skills that are generally annoying to play with will be banned.\nFast Ban Phase: OP skills will be banned, and players will be able to ban upto one (1) hero and three (3) skills.\nFull Ban Phase: Balanced bans will be turned on and players can ban upto 10 abilities and upto 2 heroes each.\nNo Bans: OP Abilities will be banned and players will not be able to ban any additional abilities."
     "lodOptionAboutPresetSlots"                     "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutPresetUlts"                      "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutPresetMirrorHeroes"              "The number of heroes each player will receive to draft from."
@@ -253,6 +256,7 @@
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
+    "lodOptionAboutAdvancedWraithNight"             "Players are allowed to select wraith night abilities."
     "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom LoD abilities."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
@@ -269,16 +273,16 @@
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
-    "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second."
-    "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell up to 4 times almost instantly."
-    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand-alone abilities."
-    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabling the OP Skills option."
+    "hintWitchCraft"                                "Select Witchcraft to lower the cooldown of all active skills by upto 4 seconds, however, it will not lower a cooldown to less than 1 second."
+    "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell upto 4 times almost instantly."
+    "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand alone abilities."
+    "hintRoshanSpells"                              "Roshan's abilities can be selected by enabled the OP Skills option."
     "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
-    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
+    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you, or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
-    "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
+    "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Elazor and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
 
     // Hero builder
@@ -298,10 +302,10 @@
     "lodBanningInstructions"                        "Drag abilities or heroes here to ban them."
 
     "lodYouCanBan"                                  "You can ban "
-    "lodUptoHeroes"                                 "up to {heroBansLeft} more heroes"
-    "lodUptoOneHero"                                "up to 1 more hero"
-    "lodUptoAbilities"                              "up to {abilityBansLeft} more abilities"
-    "lodUptoAbility"                                "up to 1 more ability"
+    "lodUptoHeroes"                                 "upto {heroBansLeft} more heroes"
+    "lodUptoOneHero"                                "upto 1 more hero"
+    "lodUptoAbilities"                              "upto {abilityBansLeft} more abilities"
+    "lodUptoAbility"                                "upto 1 more ability"
     "lodBanAnd"                                     " and "
     "lodNoMoreBans"                                 "You can not ban any more heroes or abilities"
     "hostBanningPanelText"                          "You can ban as many heroes and abilities as you like."
@@ -324,6 +328,7 @@
     // Categories
     "lodCategory_main"                              "Hero Abilities"
     "lodCategory_neutral"                           "Neutral Abilities"
+    "lodCategory_wraith"                            "Wraith Night Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
 
@@ -438,15 +443,12 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_meepo"                         "Aghanim's Scepter<br> will give this hero a free clone."
-    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision."
-    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner."
-    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision."
-    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters."
+    "unique_mechanic_meepo"                         "Aghnamin's Scepter<br> will give this hero a free clone."
+    "unique_mechanic_night_stalker"                 "Aghnamin's Scepter<br> will give this hero unobstructed night<br> vision."
+    "unique_mechanic_gyrocopter"                    "Aghnamin's Scepter<br> will give this hero a side gunner."
+    "unique_mechanic_keeper_of_the_light"           "Aghnamin's Scepter<br> will give this hero unobstructed day<br> vision."
+    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghnamin's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
-    "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
-    "unique_mechanic_spirit_breaker"                "Skull Basher and <br> Abyssal Blade will not proc for this hero."
-    "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
 
     /////////////////
     // Skill Warnings
@@ -485,7 +487,7 @@
     "warning_invoker_sun_strike_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_tornado_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
-    "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>, unless you also have it."
+    "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>", unless you also have it."
     "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
 	"warning_shredder_chakram" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Second Chakram</font> as an extra ability.</font>"
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
@@ -879,9 +881,9 @@
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"						"STRENGTH GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"						"DURATION:"
-    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift (STR)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength."
-    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift (STR)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
@@ -892,13 +894,13 @@
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLIGENCE GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift (INT)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift (INT)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
-    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"

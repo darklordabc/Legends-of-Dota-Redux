@@ -2237,11 +2237,15 @@
 
 .pickingPhaseTabBar {
     width: 100%;
-    height: 50px;
     flow-children: right;
 }
 
 .pickingPhaseTabBar .heroBuildMenuButton {
-    text-align: center;
+    height: 50px;
     width: fill-parent-flow(1);
 }
+
+.pickingPhaseTabBar .heroBuildMenuButton Label {
+    horizontal-align: center;
+    vertical-align: middle;
+}    
