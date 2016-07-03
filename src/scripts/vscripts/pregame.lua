@@ -3957,7 +3957,7 @@ end
 function Pregame:getActivePlayers()
     local total = 0
 
-    for i=0,24 do
+    for i=0,DOTA_MAX_PLAYERS do
         if PlayerResource:GetConnectionState(i) == 2 then
             total = total + 1
         end
@@ -3968,7 +3968,7 @@ end
 
 -- Get host player
 function Pregame:getHostPlayer()
-	for i=0,24 do
+	for i=0,DOTA_MAX_PLAYERS do
 		if PlayerResource:IsValidPlayer(i) then
 			local ply = PlayerResource:GetPlayer(i)
 			if ply and GameRules:PlayerHasCustomGameHostPrivileges(ply) then
