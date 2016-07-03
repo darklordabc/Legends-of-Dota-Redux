@@ -1547,23 +1547,19 @@ function onLockBuildButtonPressed() {
 
 // Sets up the hero builder tab
 function setupBuilderTabs() {
-    var mainPanel = $('#pickingPhaseTabs');
-    $.Each(mainPanel.Children(), function(panelTab) {
-        if(panelTab.BHasClass('pickingPhaseTab')) {
-            $.Each(panelTab.Children(), function(tabElement) {
-                var tabLink = tabElement.GetAttributeString('link', '-1');
+    var mainPanel = $('#pickingPhaseTabBar');
+    $.Each(mainPanel.Children(), function(tabElement) {
+        var tabLink = tabElement.GetAttributeString('link', '-1');
 
-                if(tabLink != '-1') {
-                    tabElement.SetPanelEvent('onactivate', function() {
-                        showBuilderTab(tabLink);
+        if(tabLink != '-1') {
+            tabElement.SetPanelEvent('onactivate', function() {
+                showBuilderTab(tabLink);
 
-                        // No skills selected anymore
-                        setSelectedDropAbility();
+                // No skills selected anymore
+                setSelectedDropAbility();
 
-                        // Focus to nothing
-                        focusNothing();
-                    });
-                }
+                // Focus to nothing
+                focusNothing();
             });
         }
     });

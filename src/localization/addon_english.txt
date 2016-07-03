@@ -29,7 +29,11 @@
     "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
-    "presets_lod"                                   "Presets"
+    "filter_by_category"                            "Filter by category:"
+    "filter_by_name"                                "Filter by name:"
+    "presets_lod"                                   "Preset Builds"
+    "heroes_lod"                                    "Heroes"
+    "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
