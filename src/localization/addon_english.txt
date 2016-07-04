@@ -13,7 +13,7 @@
     // The team locking buttons
     "autoAssignTeams"                               "Auto Assign"
     "shuffleTeams"                                  "Shuffle"
-    "lockTeams"                                     "Lock Teams"
+    "lockTeams"                                     "Lock Teams"c
     "unlockTeams"                                   "Unlock Teams"
 
     // The stage selection interface
@@ -317,12 +317,14 @@
 
     // Categories
     "lod_cat_none"                                  "<Filter by category>"
+    "lod_cat_tank"                                  "Tank"
+    "lod_cat_mobility"                              "Mobility and Escape"
     "lod_cat_invis"                                 "Invisibility"
-    "lod_cat_crit"                                  "Crit"
-    "lod_cat_bash"                                  "Bash"
-    "lod_cat_aoe_attack"                            "AoE Attack"
-    "lod_cat_attack_modifier"                       "Attack Modifier"
-    "lod_cat_stun"                                  "Stun"
+    "lod_cat_bash"                 		    "Bash"
+    "lod_cat_crit"                  		    "Critical strike"
+    "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
+    "lod_cat_attack_modifier"                       "All Attack Modifiers"
+    "lod_cat_stun"                                  "Stuns, Shackles and Roots"
     "lod_cat_isUlt"                                 "Ultimate Ability"
 
     // Categories
