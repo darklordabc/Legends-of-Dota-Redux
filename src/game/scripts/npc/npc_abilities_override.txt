@@ -19,6 +19,11 @@
     	{
         	"AbilityTextureName"            "Pit_of_Malice"
     	} 
+		
+	"beastmaster_greater_boar_poison"
+    	{
+        	"AbilityTextureName"            "beastmaster_greater_boar_poison_lod"
+    	} 
     	
 	"attribute_bonus"
 	{
@@ -51,6 +56,61 @@
 	}
 	
 	"lone_druid_spirit_bear_demolish"
+	{
+		"MaxLevel" "1"
+	}
+	
+	"lone_druid_spirit_bear_return"   
+	{
+		"MaxLevel" "1"
+	}
+	
+	"beastmaster_greater_boar_poison"   
+	{
+		"MaxLevel" "1"
+	}
+	
+	"brewmaster_earth_hurl_boulder"
+	{
+		"MaxLevel" "1"
+	}
+	"brewmaster_earth_spell_immunity"
+	{
+		"MaxLevel" "1"
+	}
+	"brewmaster_earth_pulverize"
+	{
+		"MaxLevel" "1"
+	}
+	"brewmaster_storm_dispel_magic"
+	{
+		"MaxLevel" "1"
+	}
+	"brewmaster_storm_cyclone"
+	{
+		"MaxLevel" "1"
+	}
+	"brewmaster_storm_wind_walk"
+	{
+		"MaxLevel" "3"
+	}
+	
+	"brewmaster_fire_permanent_immolation"
+	{
+		"MaxLevel" "3"
+	}
+	
+	"broodmother_poison_sting"
+	{
+		"MaxLevel" "1"
+	}
+	
+	"broodmother_spawn_spiderite"
+	{
+		"MaxLevel" "1"
+	}
+	
+	"big_thunder_lizard_wardrums_aura"
 	{
 		"MaxLevel" "1"
 	}
