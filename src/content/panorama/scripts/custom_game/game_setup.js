@@ -2839,7 +2839,7 @@ function OnSkillTabShown(tabName) {
 
         // Add categories
         for(var category in flagData) {
-            if(category == 'category') continue;
+            if(category == 'category' || category == 'group') continue;
 
             var dropdownLabel = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
             dropdownLabel.text = $.Localize('lod_cat_' + category);
