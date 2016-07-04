@@ -860,7 +860,7 @@
     "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
 
     // Aftershock
-    "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock"
+    "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock LoD"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"                              "The earth trembles beneath the mighty footsteps of Raigor."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
@@ -868,7 +868,7 @@
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
 
     // Rearm
-    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm"
+    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm LoD"
     "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
