@@ -196,13 +196,13 @@
             <Panel id="pickingPhase">
                 <Panel id="pickingPhaseLeftSide">
                     <Panel id="pickingPhaseTabBar">
-                        <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseMainTabRoot" link="pickingPhaseMainTab" class="heroBuildMenuButton">
                             <Label text="#presets_lod" />
                         </Panel>
-                        <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseHeroTabRoot" link="pickingPhaseHeroTab" class="heroBuildMenuButton">
                             <Label text="#heroes_lod" />
                         </Panel>
-                        <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseSkillTabRoot" link="pickingPhaseSkillTab" class="heroBuildMenuButton">
                             <Label text="#skills_lod" />
                         </Panel>
                     </Panel>

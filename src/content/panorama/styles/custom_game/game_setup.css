@@ -1288,6 +1288,11 @@
     /*overflow: squish scroll;*/
 }
 
+.tabHighlight {
+    hue-rotation: 260deg;
+    brightness: 2.5;
+}
+
 #pickingPhaseRightSide {
     background-color: #000000;
     width: fill-parent-flow(0);
