@@ -396,6 +396,7 @@ end
         techies_focused_detonate = true,
         furion_teleportation = true,
         life_stealer_consume = true,
+        winter_wyvern_arctic_burn = true,
     }
 
     local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')

@@ -1547,23 +1547,19 @@ function onLockBuildButtonPressed() {
 
 // Sets up the hero builder tab
 function setupBuilderTabs() {
-    var mainPanel = $('#pickingPhaseTabs');
-    $.Each(mainPanel.Children(), function(panelTab) {
-        if(panelTab.BHasClass('pickingPhaseTab')) {
-            $.Each(panelTab.Children(), function(tabElement) {
-                var tabLink = tabElement.GetAttributeString('link', '-1');
+    var mainPanel = $('#pickingPhaseTabBar');
+    $.Each(mainPanel.Children(), function(tabElement) {
+        var tabLink = tabElement.GetAttributeString('link', '-1');
 
-                if(tabLink != '-1') {
-                    tabElement.SetPanelEvent('onactivate', function() {
-                        showBuilderTab(tabLink);
+        if(tabLink != '-1') {
+            tabElement.SetPanelEvent('onactivate', function() {
+                showBuilderTab(tabLink);
 
-                        // No skills selected anymore
-                        setSelectedDropAbility();
+                // No skills selected anymore
+                setSelectedDropAbility();
 
-                        // Focus to nothing
-                        focusNothing();
-                    });
-                }
+                // Focus to nothing
+                focusNothing();
             });
         }
     });
@@ -2073,6 +2069,11 @@ function showBuilderTab(tabName) {
     var mainPanel = $('#pickingPhaseTabs');
     $.Each(mainPanel.Children(), function(panelTab) {
         panelTab.visible = false;
+
+        var tab = $('#' + panelTab.id + "Root");
+        if (tab) {
+            tab.SetHasClass("tabHighlight", panelTab.id == tabName);
+        }
     });
 
     var mainContentPanel = $('#pickingPhaseTabsContent');
@@ -2843,7 +2844,7 @@ function OnSkillTabShown(tabName) {
 
         // Add categories
         for(var category in flagData) {
-            if(category == 'category') continue;
+            if(category == 'category' || category == 'group') continue;
 
             var dropdownLabel = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
             dropdownLabel.text = $.Localize('lod_cat_' + category);
