@@ -1281,6 +1281,7 @@
 
 .tabHighlight {
     hue-rotation: 260deg;
+    brightness: 2.5;
 }
 
 #pickingPhaseRightSide {
