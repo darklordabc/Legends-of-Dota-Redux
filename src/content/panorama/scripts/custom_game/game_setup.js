@@ -2069,6 +2069,11 @@ function showBuilderTab(tabName) {
     var mainPanel = $('#pickingPhaseTabs');
     $.Each(mainPanel.Children(), function(panelTab) {
         panelTab.visible = false;
+
+        var tab = $('#' + panelTab.id + "Root");
+        if (tab) {
+            tab.SetHasClass("tabHighlight", panelTab.id == tabName);
+        }
     });
 
     var mainContentPanel = $('#pickingPhaseTabsContent');
