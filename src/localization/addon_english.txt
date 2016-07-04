@@ -13,7 +13,7 @@
     // The team locking buttons
     "autoAssignTeams"                               "Auto Assign"
     "shuffleTeams"                                  "Shuffle"
-    "lockTeams"                                     "Lock Teams"c
+    "lockTeams"                                     "Lock Teams"
     "unlockTeams"                                   "Unlock Teams"
 
     // The stage selection interface
