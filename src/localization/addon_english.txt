@@ -317,6 +317,7 @@
 
     // Categories
     "lod_cat_none"                                  "<Filter by category>"
+    "lod_cat_support"                               "Support"
     "lod_cat_tank"                                  "Tank"
     "lod_cat_mobility"                              "Mobility and Escape"
     "lod_cat_invis"                                 "Invisibility"
