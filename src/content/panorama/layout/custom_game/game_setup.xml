@@ -223,13 +223,13 @@
             <Panel id="pickingPhase">
                 <Panel id="pickingPhaseLeftSide">
                     <Panel id="pickingPhaseTabBar">
-                        <Panel link="pickingPhaseMainTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseMainTabRoot" link="pickingPhaseMainTab" class="heroBuildMenuButton">
                             <Label text="#presets_lod" />
                         </Panel>
-                        <Panel link="pickingPhaseHeroTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseHeroTabRoot" link="pickingPhaseHeroTab" class="heroBuildMenuButton">
                             <Label text="#heroes_lod" />
                         </Panel>
-                        <Panel link="pickingPhaseSkillTab" class="heroBuildMenuButton">
+                        <Panel id="pickingPhaseSkillTabRoot" link="pickingPhaseSkillTab" class="heroBuildMenuButton">
                             <Label text="#skills_lod" />
                         </Panel>
                     </Panel>
@@ -237,19 +237,21 @@
                         <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
                             <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                         </Panel>
-                        <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
-                            <Label text="#filter_by_name" class="buildingHelperInfoText addMarginTop" />
-                            <Panel class="lodSearchPanel">
-                                <TextEntry id="lodHeroSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
-                                <Button class="lodSearchButton" onactivate="$('#lodHeroSearchInput').SetFocus()" />
-                            </Panel>
+                        <Panel id="pickingPhaseHeroTab">
+                            <Panel class="pickingPhaseTab halfHeight">
+                                <Label text="#filter_by_name" class="buildingHelperInfoText addMarginTop" />
+                                <Panel class="lodSearchPanel">
+                                    <TextEntry id="lodHeroSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
+                                    <Button class="lodSearchButton" onactivate="$('#lodHeroSearchInput').SetFocus()" />
+                                </Panel>
 
-                            <Panel id="pickingHeroListFilters">
-                                <Label class="pickingHeroListFilterHeading" text="#filter_by_category" />
-                                <Panel class="pickingHeroListFilterGroup">
-                                    <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
-                                    <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
-                                    <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
+                                <Panel id="pickingHeroListFilters">
+                                    <Label class="pickingHeroListFilterHeading" text="#filter_by_category" />
+                                    <Panel class="pickingHeroListFilterGroup">
+                                        <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
+                                        <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
+                                        <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
+                                    </Panel>
                                 </Panel>
                             </Panel>
 

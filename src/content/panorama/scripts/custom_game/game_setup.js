@@ -2080,6 +2080,11 @@ function showBuilderTab(tabName) {
     var mainPanel = $('#pickingPhaseTabs');
     $.Each(mainPanel.Children(), function(panelTab) {
         panelTab.visible = false;
+
+        var tab = $('#' + panelTab.id + "Root");
+        if (tab) {
+            tab.SetHasClass("tabHighlight", panelTab.id == tabName);
+        }
     });
 
     var mainContentPanel = $('#pickingPhaseTabsContent');
@@ -2850,7 +2855,7 @@ function OnSkillTabShown(tabName) {
 
         // Add categories
         for(var category in flagData) {
-            if(category == 'category') continue;
+            if(category == 'category' || category == 'group') continue;
 
             var dropdownLabel = $.CreatePanel('Label', dropdownCategories, 'skillTabCategory' + (++unqiueCounter));
             dropdownLabel.text = $.Localize('lod_cat_' + category);
