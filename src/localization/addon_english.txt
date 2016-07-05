@@ -384,8 +384,8 @@
     "voteMaxSlots5"                                 "5 Slots"
     "voteMaxSlots6"                                 "6 Slots"
 
-    "lodBanningPhase"                               "Enable The Banning Phase?"
-    "lodFastStart"                                  "Enable Fast Start?"
+    "lodBanningPhase"                               "Enable The Banning Phase"
+    "lodFastStart"                                  "Enable Fast Start"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
 
