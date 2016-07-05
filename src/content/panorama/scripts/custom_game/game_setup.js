@@ -3826,9 +3826,9 @@ function updateVotingPercentage(votes, labels) {
     for (var i = 0; i < labels.length; i++) {
         labels[i].text = (votePercentages[i] || 0) + "%";
         if (i == largestPercentage) {
-            labels[i].style.color = "green;";
+            labels[i].style.color = "#0BB416;";
         } else {
-            labels[i].style.color = "red;";
+            labels[i].style.color = "grey;";
         }
     }
 }
