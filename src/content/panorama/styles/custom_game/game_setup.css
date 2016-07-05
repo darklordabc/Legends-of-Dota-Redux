@@ -1,3 +1,7 @@
+.halfHeight {
+    height: 50%;
+}
+
 #mainSelectionRoot {
     width: 100%;
     flow-children: down;
@@ -672,7 +676,7 @@
 #heroBuilderLockButtonBans {
     visibility: collapse;
     vertical-align: bottom;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .phase_banning #heroBuilderLockButtonBans {
@@ -1276,7 +1280,17 @@
     flow-children: down;
     width: 100%;
     height: 100%;
-    overflow: squish scroll;
+}
+
+#pickingPhaseHeroTab {
+    width: 100%;
+    height: 100%;
+    /*overflow: squish scroll;*/
+}
+
+.tabHighlight {
+    hue-rotation: 260deg;
+    brightness: 2.5;
 }
 
 #pickingPhaseRightSide {
@@ -1286,8 +1300,9 @@
 }
 
 #pickingPhaseTabs {
+    flow-children: down;
     width: 100%;
-    height: 500px;
+    height: 450px;
 }
 
 #pickingPhaseTabsContent {
@@ -1353,8 +1368,7 @@
 
 #pickingHeroListFilters {
     flow-children: down;
-    padding: 8px;
-    margin-left: 32px;
+    /*padding: 8px;*/
 }
 
 #heroPickingFiltersClear {
@@ -1492,9 +1506,9 @@
 
 .buildingHelperHeroPreviewContainer {
     width: 100%;
-    vertical-align: top;
+    vertical-align: bottom;
     padding: 0px;
-    margin: 0px;
+    margin-bottom: 10px;
 }
 
 #buildingHelperHeroPreview {
@@ -1682,6 +1696,10 @@
 
 .addMarginBelow {
     margin-bottom: 8px;
+}
+
+#pickingPhaseMainTab {
+    flow-children: none;
 }
 
 #pickingPhaseMainTabContent {
@@ -2234,3 +2252,18 @@
 .addMarginTop {
     margin-top: 8px;
 }
+
+#pickingPhaseTabBar {
+    width: 100%;
+    flow-children: right;
+}
+
+#pickingPhaseTabBar .heroBuildMenuButton {
+    height: 50px;
+    width: fill-parent-flow(1);
+}
+
+#pickingPhaseTabBar .heroBuildMenuButton Label {
+    horizontal-align: center;
+    vertical-align: middle;
+}    

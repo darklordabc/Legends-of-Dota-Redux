@@ -29,7 +29,11 @@
     "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
-    "presets_lod"                                   "Presets"
+    "filter_by_category"                            "Filter by category:"
+    "filter_by_name"                                "Filter by name:"
+    "presets_lod"                                   "Preset Builds"
+    "heroes_lod"                                    "Heroes"
+    "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
@@ -313,12 +317,16 @@
 
     // Categories
     "lod_cat_none"                                  "<Filter by category>"
+    "lod_cat_upgradeable"                           "Aghanim's Scepter"
+    "lod_cat_support"                               "Support"
+    "lod_cat_tank"                                  "Tank"
+    "lod_cat_mobility"                              "Mobility and Escape"
     "lod_cat_invis"                                 "Invisibility"
-    "lod_cat_crit"                                  "Crit"
-    "lod_cat_bash"                                  "Bash"
-    "lod_cat_aoe_attack"                            "AoE Attack"
-    "lod_cat_attack_modifier"                       "Attack Modifier"
-    "lod_cat_stun"                                  "Stun"
+    "lod_cat_bash"                 		    "Bash"
+    "lod_cat_crit"                  		    "Critical Strike"
+    "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
+    "lod_cat_attack_modifier"                       "All Attack Modifiers"
+    "lod_cat_stun"                                  "Stuns, Shackles and Roots"
     "lod_cat_isUlt"                                 "Ultimate Ability"
 
     // Categories
@@ -497,6 +505,7 @@
     "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> Only works with <font color=\"#70EA72\">Fireblast, Ignire, Bloodlust</font> and <font color=\"#70EA72\">Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
+	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -856,7 +865,7 @@
     "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
 
     // Aftershock
-    "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock"
+    "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock LoD"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"                              "The earth trembles beneath the mighty footsteps of Raigor."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
@@ -864,7 +873,7 @@
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
 
     // Rearm
-    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm"
+    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm LoD"
     "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
@@ -925,4 +934,33 @@
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
+	
+	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
+    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
+    "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"    
+    
+    "DOTA_Tooltip_ability_octarine_vampirism_lod" "Octarine Vampirism"
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_Description" "Grants aura for allied Heros that restores health for a percentage of any damage dealt from spells. Lifesteals less from damage dealt to creeps."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_Lore"        "The art of thieving life through arcane means is a lost one."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_hero_lifesteal"        "%HERO LIFESTEAL:"    
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_creep_lifesteal"        "%CREEP LIFESTEAL:"    
+    "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff"                "Octarine Vampirism"
+    "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff_Description"    "Gaining lifesteal on spell damage."
+    
+    "DOTA_Tooltip_ability_force_dash_lod" "Force Dash"
+    "DOTA_Tooltip_ability_force_dash_lod_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself."
+    "DOTA_Tooltip_ability_force_dash_lod_Note0" "The push lasts 0.4s."
+    "DOTA_Tooltip_ability_force_dash_lod_Lore"        "Ejecting magic from one's body works very similar to a rocket."
+    "DOTA_Tooltip_ability_force_dash_lod_distance"        "PUSH DISTANCE:"    
+    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod" "Shards of True Sight"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_Lore"        "Why pay for the whole Gem when the scraps can be just as useful."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_ms_boost"        "BONUS MOVESPEED:"    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_duration"        "DURATION:"    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "TRUE SIGHT RADIUS:"    
+    
+    "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
+    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
 }

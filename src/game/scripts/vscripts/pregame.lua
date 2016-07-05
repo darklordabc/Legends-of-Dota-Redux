@@ -3108,9 +3108,13 @@ function Pregame:checkForReady()
     local maxTime = OptionManager:GetOption('pickingTime')
     local minTime = 3
 
+    local canFinishBanning = false
+
     -- If we are in the banning phase
     if self:getPhase() == constants.PHASE_BANNING then
         maxTime = OptionManager:GetOption('banningTime')
+
+        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[Pregame:getHostPlayer():GetPlayerID()] == 1)
     end
 
     -- If we are in the random phase
@@ -3142,7 +3146,7 @@ function Pregame:checkForReady()
         -- Someone is ready, timer should be moving
 
         -- Is time currently frozen?
-        if self.freezeTimer ~= nil then
+        if self.freezeTimer ~= nil and not canFinishBanning then
             -- Start the clock
 
             if readyPlayers >= totalPlayers then
@@ -3156,7 +3160,7 @@ function Pregame:checkForReady()
             -- Check if we can lower the timer
 
             -- If everyone is ready, set the remaining time to be the min
-            if readyPlayers >= totalPlayers then
+            if readyPlayers >= totalPlayers or canFinishBanning then
                 if currentTime > minTime then
                     self:setEndOfPhase(Time() + minTime)
                 end
@@ -3960,13 +3964,27 @@ end
 function Pregame:getActivePlayers()
     local total = 0
 
-    for i=0,24 do
+    for i=0,DOTA_MAX_PLAYERS do
         if PlayerResource:GetConnectionState(i) == 2 then
             total = total + 1
         end
     end
 
     return total
+end
+
+-- Get host player
+function Pregame:getHostPlayer()
+	for i=0,DOTA_MAX_PLAYERS do
+		if PlayerResource:IsValidPlayer(i) then
+			local ply = PlayerResource:GetPlayer(i)
+			if ply and GameRules:PlayerHasCustomGameHostPrivileges(ply) then
+				return ply
+			end
+		end
+	end
+
+	return 0
 end
 
 -- Adds extra towers
