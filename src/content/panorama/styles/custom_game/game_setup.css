@@ -1969,6 +1969,21 @@
 
 }
 
+.tooltipContents
+{
+    min-width: 80px;
+    max-width: 350px;
+    flow-children: down;
+    background-image: url("file://{images}/custom_game/tooltipBG.png");
+}
+
+#Contents {
+    background-color: none;
+    border-width: 0px;
+    padding: 0px;
+    border-radius: 7px;
+}
+
 .optionVoteRoot {
     flow-children: down;
 }

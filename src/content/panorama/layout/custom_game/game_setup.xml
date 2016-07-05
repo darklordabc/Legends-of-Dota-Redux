@@ -180,7 +180,7 @@
                 <Panel class="optionVoteFastStartPhase">
 					<Panel class="optionVoteFastStartHeader">
 						<Label class="optionVoteHeader" text="lodFastStart" />
-						<Panel class="VotingOptionInfo" id="FastStartInfo"> 
+						<Panel class="VotingOptionInfo" id="FastStartInfo" onmouseover="UIShowCustomLayoutParametersTooltip( FastStartTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textFSTooltip )" onmouseout="UIHideCustomLayoutTooltip( FastStartTooltip )">  
 							<Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
 						</Panel>
 					</Panel>

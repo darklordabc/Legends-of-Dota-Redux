@@ -1003,17 +1003,6 @@ var isPremiumPlayer = false;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
-// Information on mouse-over lines.
-$('#FastStartInfo').SetPanelEvent('onmouseover', function(){
-    var label = $.CreatePanel( "Label", $.GetContextPanel(), 'InfoFSTooltip' );
-    label.SetHasClass( 'InfoTooltip', true )
-    label.text = $.Localize( "#textFSTooltip" );
-    label.style.position = (GameUI.GetCursorPosition()[0] + 300) +"px "+((GameUI.GetCursorPosition()[1]) + 100)+"px 0px";
-    label.hittest = false});
-$('#FastStartInfo').SetPanelEvent('onmouseout', (function(){$('#InfoFSTooltip').DeleteAsync(0)}))
-
-
-
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
