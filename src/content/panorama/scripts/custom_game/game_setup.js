@@ -3829,9 +3829,9 @@ function updateVotingPercentage(votes, labels) {
 			if (voteCount == 0) {
 				labels[i].style.color = "white;";
 			} else if (i == largestPercentage) {
-				labels[i].style.color = "green;";
+				labels[i].style.color = "#0BB416;";
 			} else {
-				labels[i].style.color = "red;";
+				labels[i].style.color = "grey;";
 			}
 		}
 	}
