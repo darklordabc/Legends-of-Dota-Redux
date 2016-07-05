@@ -2328,6 +2328,7 @@
 #pickingPhaseTabBar .heroBuildMenuButton {
     height: 50px;
     width: fill-parent-flow(1);
+    padding-left: 0px;
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton Label {
