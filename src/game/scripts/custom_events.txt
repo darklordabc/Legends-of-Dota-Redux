@@ -1,0 +1,591 @@
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{
+	// Fired when a skill is banned
+	"lod_ban"
+	{
+		"skill"	"string"
+	}
+
+    // A player stuck a skill into a slot
+    "lod_skill"
+    {
+        "playerID"      "short"
+        "slotNumber"    "byte"
+        "skillID"       "short"
+        "playerSlot"    "byte"
+        "interface"     "byte"
+    }
+
+    // A player wants to swap two slots
+    "lod_swap_slot"
+    {
+        "playerID"      "short"
+        "slot1"         "byte"
+        "slot2"         "byte"
+        "interface"     "byte"
+    }
+
+    // A message
+    "lod_msg"
+    {
+        "playerID"      "short"
+        "msg"           "string"
+        "args"          "string"
+    }
+
+    // A slave vote is being passed
+    "lod_slave"
+    {
+        // The option that is being changed
+        "opt"           "short"
+
+        // The new value for it
+        "nv"           "short"
+    }
+
+    // Server is sending info on the decoding number
+    "lod_decode"
+    {
+        // The player it related to
+        "playerID"      "byte"
+
+        // The encoded number that only this player can decode
+        "code"          "short"
+
+        // This player's team
+        "team"          "byte"
+
+        // The version the server is running
+        "version"       "string"
+    }
+
+    // Someone changed their lock state
+    "lod_lock"
+    {
+        // The slot it refers to
+        "slot"      "byte"
+
+        // Their new lock state
+        "lock"          "byte"
+    }
+
+    // The bear skills state
+    "lod_state_bear"
+    {
+        // Stores the type of each slot for each player
+        "t0"            "string"    // Format:
+        "t1"            "string"    //  String will be length 4 - 6, depends on slot count
+        "t2"            "string"    //  Each character will be either 1, 2 or 3, 4 which represents the slot type
+        "t3"            "string"
+        "t4"            "string"
+        "t5"            "string"
+        "t6"            "string"
+        "t7"            "string"
+        "t8"            "string"
+        "t9"            "string"
+
+        // Each player's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "01"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "02"            "short"
+        "03"            "short"
+        "04"            "short"
+        "05"            "short"
+        "06"            "short"
+        "07"            "short"
+        "08"            "short"
+        "09"            "short"
+        "010"           "short"
+        "011"           "short"
+        "012"           "short"
+
+        "11"            "short"
+        "12"            "short"
+        "13"            "short"
+        "14"            "short"
+        "15"            "short"
+        "16"            "short"
+        "17"            "short"
+        "18"            "short"
+        "19"            "short"
+        "110"           "short"
+        "111"           "short"
+        "112"           "short"
+
+        "21"            "short"
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"           "short"
+        "311"           "short"
+        "312"           "short"
+
+        "41"            "short"
+        "42"            "short"
+        "43"            "short"
+        "44"            "short"
+        "45"            "short"
+        "46"            "short"
+        "47"            "short"
+        "48"            "short"
+        "49"            "short"
+        "410"           "short"
+        "411"           "short"
+        "412"           "short"
+
+        "51"            "short"
+        "52"            "short"
+        "53"            "short"
+        "54"            "short"
+        "55"            "short"
+        "56"            "short"
+        "57"            "short"
+        "58"            "short"
+        "59"            "short"
+        "510"           "short"
+        "511"           "short"
+        "512"           "short"
+
+        "61"            "short"
+        "62"            "short"
+        "63"            "short"
+        "64"            "short"
+        "65"            "short"
+        "66"            "short"
+        "67"            "short"
+        "68"            "short"
+        "69"            "short"
+        "610"           "short"
+        "611"           "short"
+        "612"           "short"
+
+        "71"            "short"
+        "72"            "short"
+        "73"            "short"
+        "74"            "short"
+        "75"            "short"
+        "76"            "short"
+        "77"            "short"
+        "78"            "short"
+        "79"            "short"
+        "710"           "short"
+        "711"           "short"
+        "712"           "short"
+
+        "81"            "short"
+        "82"            "short"
+        "83"            "short"
+        "84"            "short"
+        "85"            "short"
+        "86"            "short"
+        "87"            "short"
+        "88"            "short"
+        "89"            "short"
+        "810"           "short"
+        "811"           "short"
+        "812"           "short"
+
+        "91"            "short"
+        "92"            "short"
+        "93"            "short"
+        "94"            "short"
+        "95"            "short"
+        "96"            "short"
+        "97"            "short"
+        "98"            "short"
+        "99"            "short"
+        "910"           "short"
+        "911"           "short"
+        "912"           "short"
+    }
+
+    // The tower skills state
+    "lod_state_tower"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each team's tower's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"            "short"
+        "311"            "short"
+        "312"            "short"
+    }
+
+    // The building skills state
+    "lod_state_building"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each team's tower's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"            "short"
+        "311"            "short"
+        "312"            "short"
+    }
+
+    // The creep skills state
+    "lod_state_creep"
+    {
+        // Stores the type of each slot for each team
+        "t2"            "string"
+        "t3"            "string"
+
+        // Each team's tower's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "21"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"            "short"
+        "311"            "short"
+        "312"            "short"
+    }
+
+    // The game state
+    "lod_state"
+    {
+        // Version Info
+        "v"             "string"
+
+        // Options Info
+        "o"             "string"
+
+        // The ID of the player who owns the vote, or -1 for free for all
+        "slaveID"       "byte"
+
+        // Useful Option Info
+        "spellMult"     "byte"  // The multiplier for spells
+        "itemMult"      "byte"  // The multiplier for items
+        "slots"         "byte"  // The number of slots allowed
+        "skills"        "byte"  // The number of regular skills allowed
+        "ults"          "byte"  // The number of ultimates allowed
+        "trolls"        "byte"  // Are troll combos allowed, or not
+        "hostBanning"   "byte"  // Should we use host banning or per player banning
+        "hideSkills"    "byte"  // Should skills be hidden (Readers beware: There is encryption!)
+        "source1"       "byte"  // Is this a source1 game? (affects ability pool)
+        //"balance"       "byte"  // Which balance mode to use (affects ability pool)
+        "bans"          "byte"  // Number of bans allowed
+        "bear"          "byte"  // Bear / Tower / Creep / Building skills allowed?
+
+        // When the timer should end
+        "t"             "float"
+
+        // The tabs that are allowed, || seperated
+        "tabs"          "string"
+
+        // Which UI should be shown (Stage)
+        "s"             "byte"
+
+        // PlayerID --> Slot
+        "0"             "byte"  // This is used to access the skills below, since playerID = 0 might not be stored in 01, 02, 03, etc
+        "1"             "byte"
+        "2"             "byte"
+        "3"             "byte"
+        "4"             "byte"
+        "5"             "byte"
+        "6"             "byte"
+        "7"             "byte"
+        "8"             "byte"
+        "9"             "byte"
+
+        // Stores the type of each slot for each player
+        "t0"            "string"    // Format:
+        "t1"            "string"    //  String will be length 4 - 6, depends on slot count
+        "t2"            "string"    //  Each character will be either 1, 2 or 3, 4 which represents the slot type
+        "t3"            "string"
+        "t4"            "string"
+        "t5"            "string"
+        "t6"            "string"
+        "t7"            "string"
+        "t8"            "string"
+        "t9"            "string"
+
+        // Player Locks (Locked skills, etc)
+        "l0"            "byte"
+        "l1"            "byte"
+        "l2"            "byte"
+        "l3"            "byte"
+        "l4"            "byte"
+        "l5"            "byte"
+        "l6"            "byte"
+        "l7"            "byte"
+        "l8"            "byte"
+        "l9"            "byte"
+
+        // Each player's selected skills, encoded as a number
+        // The number is the index into abilities.kv
+        "01"            "short" // Note: This might not be playerID = 0, this is the first player in terms of SLOTS, use playerID --> Slot converter
+        "02"            "short"
+        "03"            "short"
+        "04"            "short"
+        "05"            "short"
+        "06"            "short"
+        "07"            "short"
+        "08"            "short"
+        "09"            "short"
+        "010"           "short"
+        "011"           "short"
+        "012"           "short"
+
+        "11"            "short"
+        "12"            "short"
+        "13"            "short"
+        "14"            "short"
+        "15"            "short"
+        "16"            "short"
+        "17"            "short"
+        "18"            "short"
+        "19"            "short"
+        "110"           "short"
+        "111"           "short"
+        "112"           "short"
+
+        "21"            "short"
+        "22"            "short"
+        "23"            "short"
+        "24"            "short"
+        "25"            "short"
+        "26"            "short"
+        "27"            "short"
+        "28"            "short"
+        "29"            "short"
+        "210"           "short"
+        "211"           "short"
+        "212"           "short"
+
+        "31"            "short"
+        "32"            "short"
+        "33"            "short"
+        "34"            "short"
+        "35"            "short"
+        "36"            "short"
+        "37"            "short"
+        "38"            "short"
+        "39"            "short"
+        "310"           "short"
+        "311"           "short"
+        "312"           "short"
+
+        "41"            "short"
+        "42"            "short"
+        "43"            "short"
+        "44"            "short"
+        "45"            "short"
+        "46"            "short"
+        "47"            "short"
+        "48"            "short"
+        "49"            "short"
+        "410"           "short"
+        "411"           "short"
+        "412"           "short"
+
+        "51"            "short"
+        "52"            "short"
+        "53"            "short"
+        "54"            "short"
+        "55"            "short"
+        "56"            "short"
+        "57"            "short"
+        "58"            "short"
+        "59"            "short"
+        "510"           "short"
+        "511"           "short"
+        "512"           "short"
+
+        "61"            "short"
+        "62"            "short"
+        "63"            "short"
+        "64"            "short"
+        "65"            "short"
+        "66"            "short"
+        "67"            "short"
+        "68"            "short"
+        "69"            "short"
+        "610"           "short"
+        "611"           "short"
+        "612"           "short"
+
+        "71"            "short"
+        "72"            "short"
+        "73"            "short"
+        "74"            "short"
+        "75"            "short"
+        "76"            "short"
+        "77"            "short"
+        "78"            "short"
+        "79"            "short"
+        "710"           "short"
+        "711"           "short"
+        "712"           "short"
+
+        "81"            "short"
+        "82"            "short"
+        "83"            "short"
+        "84"            "short"
+        "85"            "short"
+        "86"            "short"
+        "87"            "short"
+        "88"            "short"
+        "89"            "short"
+        "810"           "short"
+        "811"           "short"
+        "812"           "short"
+
+        "91"            "short"
+        "92"            "short"
+        "93"            "short"
+        "94"            "short"
+        "95"            "short"
+        "96"            "short"
+        "97"            "short"
+        "98"            "short"
+        "99"            "short"
+        "910"           "short"
+        "911"           "short"
+        "912"           "short"
+
+        // List of Bans
+        "b"            "string"
+
+        // Heroes this player can pick skills from, seperated by |
+        // Could also be a list of skills this player can pick from
+        // Depends on the mode variables
+        "s0"            "string"
+        "s1"            "string"
+        "s2"            "string"
+        "s3"            "string"
+        "s4"            "string"
+        "s5"            "string"
+        "s6"            "string"
+        "s7"            "string"
+        "s8"            "string"
+        "s9"            "string"
+    }
+
+    // Stat collection
+    "stat_collection_part"
+    {
+        "data"          "string"
+    }
+
+    "stat_collection_send"
+    {
+    }
+
+    // Options module stuff
+    "gds_options"
+    {
+        "playerID"          "short"      // The ID of the player who should get stats
+        "command"           "string"    // The command to send to the website
+    }
+
+    // Fired to tell clients who is considered the host
+    "lh_hostid"
+    {
+        "hostID"       "byte"  // The ID of the player who is the host
+    }
+}

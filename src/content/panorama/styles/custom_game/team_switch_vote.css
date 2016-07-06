@@ -1,0 +1,162 @@
+.dialog {
+    width: 640px;
+    
+    position: 50% 10% 0px;
+    margin-left: -320px;
+    background-color: #404040;
+    box-shadow: #000000 -5px -5px 10px 10px;
+
+    flow-children: down;
+    font-family: Radiance;
+
+    horizontal-align: center;
+}
+
+.bar_border {
+    width: 80%;
+    height: 40px;
+
+    margin: 20px 10%;
+    padding: 2px;
+    border: 2px solid #b0b0b0;
+}
+
+.bar_border .bar_inner {
+    width: 100%;
+    height: 100%;
+    background-color: #b0b0b0;
+}
+
+.10s {
+    transition: width 10s linear 0s;
+}
+
+.forever {
+    transition: width 1000000s linear 0s;
+}
+
+.bar_border .shrink {
+    width: 0%;
+}
+
+#swap_info
+{
+    width: 400px;
+    height: 300px;
+    horizontal-align: middle;
+    flow-children: down;
+}
+
+.player_info {
+    flow-children: right;
+    width: 80%;
+    horizontal-align: center;
+}
+
+.player_info .bookmark {
+    margin-left: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.player_info Label {
+    horizontal-align: left;
+    vertical-align: center;
+    margin-top: 8px;
+    text-align: left;
+    font-size: 40px;
+    width: 100%;
+}
+
+.dialog Label {
+    width: 100%;
+    color: #b0b0b0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.dialog .title {
+    background-color: #202020;
+    box-shadow: #000000 -5px -5px 5px 10px;
+    font-size: 40px;
+    font-weight: bold;
+    height: 50px;
+}
+
+#swapper_switch {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+#swappee_switch {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#swappee_switch Image {
+    width: 100%;
+    vertical-align: bottom;
+    margin-bottom: -20%;
+}
+
+.choice {
+    width: 100%;
+    padding: 10px 5px;
+    padding-top: 0px;
+    flow-children: right;
+}
+
+.choice .isolation {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 50%;
+}
+
+.choice .accept {
+    width: 100%;
+    box-shadow: fill rgb(0, 127, 0) -1px -4px -1px 2px;
+    background-color: rgb(10, 147, 10);
+}
+
+.choice .decline {
+    width: 100%;
+    box-shadow: fill rgb(136, 55, 55) -1px -4px -1px 2px;
+    background-color: rgb(196, 75, 75);
+}
+
+.choice Label {
+    color: #eeeeee;
+}
+
+.declined .title {
+    color: rgb(196, 75, 75);
+}
+
+.declined .bar_border {
+     border-color: rgb(196, 75, 75);
+}
+
+.declined .bar_inner {
+    background-color: rgb(196, 75, 75);
+}
+
+.accepted .title {
+    color: rgb(10, 147, 10);
+}
+
+.accepted .bar_border {
+    border-color: rgb(10, 147, 10);
+}
+
+.accepted .bar_inner {
+    background-color: rgb(10, 147, 10);
+}
+
+.hidden {
+    visibility: collapse;
+}
+
+.hiddenoccupy {
+    opacity: 0;
+}
