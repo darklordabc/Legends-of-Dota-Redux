@@ -969,7 +969,7 @@
     
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
-    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports the Spirit Bear back to the Lone Druid. The Spirit Bear cannot teleport if it has taken damage from a player unit in the last 3 seconds."
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the mouse cursor. "
 	
     // Roshan spell block
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
