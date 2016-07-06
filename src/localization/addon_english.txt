@@ -984,4 +984,13 @@
    // Back door (in base) protection
    "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
    "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
+   
+   //Backstab
+    "DOTA_Tooltip_ability_riki_backstab_lod" "Backstab" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Description" "If Riki attacks from behind, bonus damage is applied based on his current agility." 
+    "Dota_Tooltip_riki_backstab_lod_Lore" "The Stealth Assassin is not afraid to fight dirty, and specializes in attacking his opponents from behind" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Note0" "Illusions of Riki will play Backstab animations, but not deal any bonus damage" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Note1" "Bonus damage from Backstab cannot be evaded" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_agility_damage" "%AGI DAMAGE MULT:" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
 }
