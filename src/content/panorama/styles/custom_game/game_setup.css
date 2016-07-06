@@ -1937,6 +1937,8 @@
 .optionVoteFastStartHeader {
     flow-children: right;
     horizontal-align: middle;
+	
+	margin-left: 23px;
 }
 
 .optionVoteFastStartOptions {
@@ -1948,6 +1950,7 @@
     flow-children: right;
     horizontal-align: right;
 	
+	margin-left: 5px;
 	width: 18px;
 	height: 18px;
 }
