@@ -966,4 +966,13 @@
     
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
     "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
+    
+    // Spirt Bear Return
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports the Spirit Bear back to the Lone Druid. The Spirit Bear cannot teleport if it has taken damage from a player unit in the last 3 seconds."
+	
+    // Roshan spell block
+    "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
+    "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
+    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Roshan will block one targeted spell every few seconds."
 }
