@@ -3288,7 +3288,7 @@
         "BaseClass"                     "roshan_spell_block"
         "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "4"
-		"AbilityTextureName"            "roshan_spell_block_lod"
+	"AbilityTextureName"            "roshan_spell_block_lod"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
