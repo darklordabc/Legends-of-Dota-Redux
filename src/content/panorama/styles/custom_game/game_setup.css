@@ -1851,7 +1851,7 @@
 
 .veryBasicVoting #optionVoting {
     width: 240px;
-    height: 160px;
+    height: 300px;
 }
 
 .phase_option_voting_selected #optionVoting {
@@ -1911,6 +1911,7 @@
     flow-children: down;
     horizontal-align: middle;
 
+	width: 220px;
     margin-top: 16px;
     padding: 8px;
     border: 1px solid #444444;
@@ -1920,6 +1921,70 @@
 .optionVoteBanningOptions {
     flow-children: right;
     horizontal-align: middle;
+}
+
+.optionVoteFastStartPhase {
+    flow-children: down;
+    horizontal-align: middle;
+	
+	width: 220px;
+    margin-top: 16px;
+    padding: 8px;
+    border: 1px solid #444444;
+    border-radius: 8px;
+}
+
+.optionVoteFastStartHeader {
+    flow-children: right;
+    horizontal-align: middle;
+	
+	margin-left: 23px;
+}
+
+.optionVoteFastStartOptions {
+    flow-children: right;
+    horizontal-align: middle;
+}
+
+.VotingOptionInfo {
+    flow-children: right;
+    horizontal-align: right;
+	
+	margin-left: 5px;
+	width: 18px;
+	height: 18px;
+}
+
+.InfoTooltip {
+    text-align: center;
+    text-overflow: clip;
+    font-weight: thin;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 8px;
+    height: 88px;
+    width: 200px;
+    position: 57% 67% 0px;
+    background-image: url("file://{images}/custom_game/tooltipBG.png");
+    background-size: 100% 100%;
+    border: 1px solid #444444;
+    border-radius: 8px;
+
+}
+
+.tooltipContents
+{
+    min-width: 80px;
+    max-width: 350px;
+    flow-children: down;
+    background-image: url("file://{images}/custom_game/tooltipBG.png");
+}
+
+#Contents {
+    background-color: none;
+    border-width: 0px;
+    padding: 0px;
+    border-radius: 7px;
 }
 
 .optionVoteRoot {
@@ -1942,6 +2007,11 @@
 .votingButtonBanning {
     flow-children: right;
 }
+
+.votingButtonFastStart {
+    flow-children: right;
+}
+
 
 .voteCountSlots {
     vertical-align: middle;
