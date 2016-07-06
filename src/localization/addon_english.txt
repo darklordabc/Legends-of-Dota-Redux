@@ -975,4 +975,13 @@
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
     "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
     "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Roshan will block one targeted spell every few seconds."
+    
+    // Back door protection
+    "DOTA_Tooltip_ability_backdoor_protection_radius"                      "RADIUS:"
+    "DOTA_Tooltip_ability_backdoor_protection_activation_time"             "ACTIVATION TIME:"
+    "DOTA_Tooltip_ability_backdoor_protection_regen_rate"                  "REGENERATION RATE:"
+	
+   // Back door (in base) protection
+   "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
+   "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
 }
