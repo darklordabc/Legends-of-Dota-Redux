@@ -1,4 +1,3 @@
-function PlaySound(keys)
-  local caster =keys.caster
-  StartSoundEvent("Hero_Silencer.GlobalSilence.Cast", caster)
+function SilenceSound()
+  EmitGlobalSound(Hero_Silencer.GlobalSilence.Effect)
 end
