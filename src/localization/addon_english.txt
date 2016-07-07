@@ -509,6 +509,26 @@
     "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
+	
+	
+    "credit_cherub_sleep_cloud"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_cherub_cherub_synthesis"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_cherub_explosive_spore"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_cherub_flower_garden"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_white_flower"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_red_flower"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_pink_blossom"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_blue_blossom"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_yellow_daisy"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_purple_lotus"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_white_flower_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_red_flower_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_pink_blossom_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_blue_blossom_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_yellow_daisy_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_garden_purple_lotus_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+
+    
 
     /////////////////
     // CUSTOM ABILITIES
