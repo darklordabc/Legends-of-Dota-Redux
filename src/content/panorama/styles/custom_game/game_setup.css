@@ -1460,7 +1460,6 @@
 
 .grouped_skills.manySkills {
     margin-top: 0px;
-    height: 80px;
 }
 
 .grouped_skills .lodMiniAbility {
@@ -1471,7 +1470,7 @@
 }
 
 .grouped_skills .lodMiniAbility.ultimateAbility {
-    vertical-align: bottom;
+    border-color: #b29600;
 }
 
 .lodSearchPanel {
