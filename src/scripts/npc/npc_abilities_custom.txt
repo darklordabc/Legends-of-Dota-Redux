@@ -2935,7 +2935,7 @@
       {
         "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
         "soundfile"     "sounds/weapons/hero/silencer/global_silence_cast.vsnd"      
-        "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
+        "particle"      "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"     
       }
       "AbilitySpecial"
       {
