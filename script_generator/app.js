@@ -331,7 +331,7 @@ function generateSkillAddendums(next) {
 
 		        // Do we have anything to change?
 		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
-		        if(langFile[searchKey] && storeTo[searchKey] == langOut[lang]) {
+		        if(langFile[searchKey] && storeTo[searchKey] == langFile[searchKey]) {
 		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
 		        } else if (langFile[searchKey] && storeTo[searchKey] != langOut[lang]){
 					storeValue = storeTo[searchKey] + storeValue + '<br>';
