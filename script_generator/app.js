@@ -334,7 +334,7 @@ function generateSkillAddendums(next) {
 		        if(langFile[searchKey] && storeTo[searchKey] == langOut[lang]) {
 		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
 		        } else if (langFile[searchKey] && storeTo[searchKey] != langOut[lang]){
-					storeValue = storeTo[searchKey] + '<br><br>' + storeValue + '<br>';
+					storeValue = storeTo[searchKey] + '<br>' + storeValue + '<br>';
 				}
 
 		        // Store it
