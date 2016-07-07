@@ -2950,10 +2950,10 @@
     
       "OnSpellStart"
       {
-        "FireSound"
+        "RunScript"
         {
-          "EffectName"	"Hero_Silencer.GlobalSilence.Cast"
-	  "Target"		"CASTER"
+          "ScriptFile"		"scripts/vscripts/../abilities/silencer_global_break.lua"
+	  "Function"		"SilenceSound"
 	}
 	"FireEffect"
 	{
@@ -2980,12 +2980,6 @@
 	      "Target"	"TARGET"
 	      "Duration" "duration"
 	    }
-
-	   // "FireSound"
-	   // {  
-	   // "EffectName"	"Hero_Silencer.GlobalSilence.Effect"
-	   // "Target"		"TARGET"
-	   // }	
           }			
 	}
       }
