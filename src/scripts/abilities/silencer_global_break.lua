@@ -1,3 +1,3 @@
 function SilenceSound()
-  EmitGlobalSound(Hero_Silencer.GlobalSilence.Effect)
+  EmitGlobalSound(sounds/weapons/hero/silencer/global_silence_cast.vsnd)
 end
