@@ -510,7 +510,6 @@
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
 	
-	
     "credit_cherub_sleep_cloud"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
     "credit_cherub_cherub_synthesis"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
     "credit_cherub_explosive_spore"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
@@ -527,6 +526,7 @@
     "credit_garden_blue_blossom_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
     "credit_garden_yellow_daisy_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
     "credit_garden_purple_lotus_base"   "<font color=\"#FFFF00\">Created by SwordBacon</font>"
+    "credit_aether_range_lod"           "<font color=\"#FFFF00\">Created by Yahnich</font>"
 
     
 
