@@ -2955,6 +2955,8 @@
         "precache"
         {
             "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
+            "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
         }
         "AbilitySpecial"
         {
@@ -2981,6 +2983,18 @@
                 }
                 "Duration"      "%AbilityDuration"
             }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                "Target"        "CASTER"
+            }
+
+            "FireEffect"
+            {
+                "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"        "CASTER"
+            }
         }
         "Modifiers"
         {
@@ -2993,7 +3007,14 @@
             
                 "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
-            
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                        "Target"        "TARGET"
+                    }
+                }
                 "States"
                 {
                     "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
@@ -3002,6 +3023,7 @@
                 
         }
     }
+    
     "aether_range_lod"
     {
         // General
