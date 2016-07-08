@@ -2696,7 +2696,7 @@ function OnSkillTabShown(tabName) {
                                 // Making the layout much nicer
                                 blockCounts[groupKey] = !blockCounts[groupKey] ? 1 : blockCounts[groupKey] + 1;
 
-                                if(blockCounts[groupKey] == 3) {
+                                if(blockCounts[groupKey] == 2) {
                                     groupCon.SetHasClass('manySkills', true);
                                 }
 
