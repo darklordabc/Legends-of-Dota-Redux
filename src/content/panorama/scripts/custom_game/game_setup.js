@@ -2563,7 +2563,7 @@ function getSkillFilterInfo(abilityName) {
 
     // Check if hte search text is active
     if(shouldShow && searchText.length > 0) {
-        var localAbName = $.Localize('DOTA_Tooltip_' + abilityName).toLowerCase();
+        var localAbName = $.Localize('DOTA_Tooltip_ability_' + abilityName).toLowerCase();
         var owningHeroName = abilityHeroOwner[abilityName] || '';
         var localOwningHeroName = $.Localize(owningHeroName).toLowerCase();
 
