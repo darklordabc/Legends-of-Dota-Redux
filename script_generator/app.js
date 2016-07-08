@@ -275,10 +275,10 @@ function loadCustomAbilities(next) {
 }
 
 /*
-	Process Skill Warnings
+	Process Skill Tooltips
 */
 
-function generateSkillWarnings(next) {
+function generateSkillAddendums(next) {
 	// Grab a reference to english
     var english = langIn.english;
 
@@ -306,6 +306,36 @@ function generateSkillWarnings(next) {
 		        if(langFile[searchKey]) {
 		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
 		        }
+
+		        // Store it
+		        storeTo[searchKey] = storeValue;
+    		}
+    	}
+    	if(word.indexOf('credit_') == 0) {
+    		var value = english[word];
+
+    		var abilityName = word.replace('credit_', '');
+
+    		for(var i=0; i<langs.length; ++i) {
+    			// Grab a language
+		        var lang = langs[i];
+		        var langFile = langIn[lang];
+		        var storeTo = langOut[lang];
+
+		        var storeValue = value;
+
+		        // Does this language have a different translation of the word?
+		        if(langFile[word]) {
+		        	storeValue = langFile[word];
+		        }
+
+		        // Do we have anything to change?
+		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
+		        if(langFile[searchKey] && storeTo[searchKey] == langFile[searchKey]) {
+		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
+		        } else if (langFile[searchKey] && storeTo[searchKey] != langOut[lang]){
+					storeValue = storeTo[searchKey] + storeValue + '<br>';
+				}
 
 		        // Store it
 		        storeTo[searchKey] = storeValue;
@@ -584,7 +614,7 @@ prepareLanguageFiles(function() {
                             generatePrecacheData(function() {
                                 //doCSP(function() {
                                     //doLvl1Ults(function() {
-                                    	generateSkillWarnings(function() {
+                                    	generateSkillAddendums(function() {
                                     		// Output language files
 	                                        for(var i=0; i<langs.length; ++i) {
 	                                            (function(lang) {
