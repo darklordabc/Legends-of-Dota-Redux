@@ -67,6 +67,34 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 		_ScoreboardUpdater_SetTextSafe( playerPanel, "Deaths", playerInfo.player_deaths );
 		_ScoreboardUpdater_SetTextSafe( playerPanel, "Assists", playerInfo.player_assists );
 
+		var abilitiesPanel = playerPanel.FindChildInLayoutFile("HeroAbilities");
+		if (abilitiesPanel)
+		{
+			var heroEntity = Players.GetPlayerHeroEntityIndex( playerId );
+			for (var i = Entities.GetAbilityCount(heroEntity) - 1; i >= 0; i--) {
+				(function () {
+					var ability = Entities.GetAbility(heroEntity, i);
+					var abilityName = Abilities.GetAbilityName(ability);
+
+					if (abilityName && Abilities.IsHidden(ability) == false && abilityName != "attribute_bonus") {
+						var abilityPanelID = "_" + abilityName;
+						if (abilitiesPanel.FindChildInLayoutFile(abilityPanelID) == null) {
+							var abilityPanel = $.CreatePanel("Panel", abilitiesPanel, abilityPanelID);
+							abilityPanel.BLoadLayoutSnippet("HeroAbility");
+							abilityPanel.FindChildTraverse("FlyoutAbilityImage").abilityname = abilityName;
+
+							abilityPanel.SetPanelEvent('onmouseover', function(){
+								$.DispatchEvent( "DOTAShowAbilityTooltipForEntityIndex", abilityPanel, abilityName, 0 );
+							});
+							abilityPanel.SetPanelEvent('onmouseout', (function(){
+								$.DispatchEvent( "DOTAHideAbilityTooltip", abilityPanel );
+							}));
+						}
+					}
+				})();
+			}
+		}
+
 		var playerPortrait = playerPanel.FindChildInLayoutFile( "HeroIcon" );
 		if ( playerPortrait )
 		{
