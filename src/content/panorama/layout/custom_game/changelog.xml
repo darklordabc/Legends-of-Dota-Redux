@@ -36,24 +36,74 @@
 							<Label class="displayText" text="- Main features" />
 							<Label class="displayText" text="- Main features" />
 							<Label class="displayText" text="- Main features" />
+						</Panel>
+						<Panel class="submitRoot">
+							<Panel class="submitPanelTxt">
+								<Label class="submitPnlText" text="#lodLeaveComment" />
+							</Panel>
 							<Panel class="submitPanel">
-                                    <TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" />
-                                    <Button class="submitButton" onactivate="$('#submitInput').SetFocus()">
-										<Label id="submitButtonText" text="#lodSubmitButton" />
-									</Button>
-                                </Panel>
+								<TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" />
+								<Button class="submitButton" onactivate="$('#submitInput').SetFocus()">
+									<Image class="submitButtonImage" src="file://{images}/custom_game/submit.png" />
+								</Button>
+							</Panel>
+							<Panel class="submitPanelTxt">
+							<Label class="submitPnlText" text="#GitHubReference" />
+							</Panel>
 						</Panel>
 					</Panel>
 					<Panel class="displayPanel" id="updateDisplay" hittest="false">
 						<Panel class="displayHeader" hittest="false">
 							<Label class="HeaderText" text="#lodUpdatesButtonText" />
-							<Panel class="displayHeader" hittest="false">
-								<Label class="updateHeaderText" text="Update 7th July" />
-								<Label class="displayText" text="- Fixed the entire game again." />
-							</Panel>
-							<Panel class="displayHeader" hittest="false">
-								<Label class="updateHeaderText" text="Update 5th July" />
-								<Label class="displayText" text="- Fixed the entire game." />
+							<Panel class="updateClipper" id="updateClipper" hittest="false">
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 5th July" />
+									<Label class="displayText" text="- Fixed the entire game." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
+								<Panel class="displayHeader" hittest="false">
+									<Label class="updateHeaderText" text="Update 7th July" />
+									<Label class="displayText" text="- Fixed the entire game again." />
+								</Panel>
 							</Panel>
 						</Panel>
 					</Panel>
