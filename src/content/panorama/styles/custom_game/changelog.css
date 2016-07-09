@@ -65,9 +65,9 @@
     color: #ffffff;
     font-size: 36px;
     margin-top: 16px;
+	margin-left: -10px;
     text-transform: uppercase;
-	font-family: 'Times New Roman';
-	font-family: Radiance;
+	font-family: Goudy Trajan Medium;
 	text-align: center;
 	horizontal-align: middle;
 }
@@ -77,10 +77,11 @@
     font-size: 12px;
 	margin-top: 5px;
 	margin-bottom: 15px;
+	margin-left: -10px;
     text-transform: uppercase;
     text-align: center;
 	horizontal-align: middle;
-	font-family: Radiance;
+	font-family: Goudy Trajan Medium;
 }
 
 #ObjectiveHeader
@@ -191,7 +192,7 @@
 	color: #ffffff;
 	font-size: 20px;
 	margin: 3px;
-	font-family: Radiance;
+	font-family:Radiance;
 }
 
 .submitPnlText {
