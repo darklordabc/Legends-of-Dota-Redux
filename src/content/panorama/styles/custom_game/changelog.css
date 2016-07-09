@@ -99,7 +99,7 @@
 	margin-left: 40px;
 }
 
-#OptionText
+.OptionText
 {
 	color: #ffffff;
     font-size: 18px;
@@ -107,6 +107,11 @@
     margin-top: 0px;
     vertical-align: top;
 	font-family: Radiance;
+}
+
+.displaySelected
+{
+	border-bottom: 2px solid #FFFFFF;
 }
 
 #currentDisplay
@@ -232,7 +237,7 @@
 	flow-children: down;
     margin-top: 5px;
 	margin-left: 25px;
-    height: 500px;
+    height: 450px;
 	width: fill-parent-flow(1.0);
 	overflow: clip scroll;
 }
