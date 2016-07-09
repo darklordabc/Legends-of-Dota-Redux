@@ -9,7 +9,7 @@
 {
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
     box-shadow: #52545520 0px 0px 1px;
-    border: 1px solid #323435;
+    border: 1px solid #323440;
 	
     vertical-align: top;
 	horizontal-align: left;
@@ -37,7 +37,7 @@
 	flow-children: down;
 	
 	box-shadow: #52545520 0px 0px 1px;
-    border: 3px solid #323435;
+    border: 3px solid #323440;
 	border-radius: 10px;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#202020), color-stop( 0.3, #212121), to(#101010));
 	
@@ -67,23 +67,23 @@
 {
     color: #ffffff;
     font-size: 36px;
-    margin-left: 35px;
     margin-top: 16px;
     text-transform: uppercase;
 	font-family: 'Times New Roman';
-    vertical-align: center;
+	font-family: Radiance;
+	text-align: center;
+	horizontal-align: middle;
 }
 #SubTitleName
 {
     color: #666666;
     font-size: 12px;
-    margin-left: 10px;
 	margin-top: 5px;
 	margin-bottom: 15px;
     text-transform: uppercase;
-	font-family: 'Times New Roman';
     text-align: center;
-	horizontal-align: center;
+	horizontal-align: middle;
+	font-family: Radiance;
 }
 
 #ObjectiveHeader
@@ -99,8 +99,7 @@
 
 .OptionButton
 {
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
-	margin-left: 35px;
+	margin-left: 40px;
 }
 
 #OptionText
@@ -110,6 +109,7 @@
 	margin-left: 0px;
     margin-top: 0px;
     vertical-align: top;
+	font-family: Radiance;
 }
 
 #currentDisplay
@@ -122,7 +122,7 @@
 {
 	flow-children: down;
     margin-top: 5px;
-	margin-left: 35px;
+	margin-left: 40px;
     height: fill-parent-flow(1.0);
 	width: fill-parent-flow(1.0);
 	visibility: collapse;
@@ -136,6 +136,7 @@
     text-align: left;
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
 }
 
 .displayHeader
@@ -159,6 +160,7 @@
 	text-decoration: underline;
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
 }
 
 .submitPanel {
@@ -167,7 +169,7 @@
     background-color: #333333;
 	width: 285px;
 	margin-left: -20px;
-	margin-top: 350px;
+	margin-top: 300px;
 	vertical-align: bottom;
 	horizontal-align: middle;
 }
@@ -179,6 +181,7 @@
     background-color: #00000000;
 	vertical-align: bottom;
 	color: #ffffff;
+	font-family: Radiance;
 }
 
 .submitButton {
@@ -199,6 +202,7 @@
 	text-decoration: underline;
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
 }
 
 #submitButtonText
