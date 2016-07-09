@@ -35,18 +35,14 @@
 #changelogDisplay
 {
 	flow-children: down;
-	
-	box-shadow: #52545520 0px 0px 1px;
-    border: 3px solid #323440;
-	border-radius: 10px;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#202020), color-stop( 0.3, #212121), to(#101010));
-	
+	background-image: url("file://{images}/custom_game/changelogBG.png");
+	background-size: 435px 825px;
+	background-position: -35px -75px;
     vertical-align: top;
     margin-top: 50px;
     margin-left: -10px;
     height: 700px;
 	width: 400px;
-	position: 0px 0px -5px;
 	
 	visibility: collapse;
 }
@@ -54,6 +50,7 @@
 #Title
 {
     flow-children: down;
+	margin-top: 20px;
 }
 
 #TitleIcon
@@ -142,6 +139,7 @@
 .displayHeader
 {
 	flow-children: down;
+	margin-right: 45px;
 }
 
 .displayBody
@@ -163,13 +161,19 @@
 	font-family: Radiance;
 }
 
+.submitRoot
+{
+	flow-children: down;
+	margin-left: -20px;
+	margin-top: 200px;
+}
+
 .submitPanel {
-    flow-children: down;
+    flow-children: right;
     border: 2px solid #556663FF;
     background-color: #333333;
-	width: 285px;
-	margin-left: -20px;
-	margin-top: 300px;
+	width: 275px;
+	margin-right: 35px;
 	vertical-align: bottom;
 	horizontal-align: middle;
 }
@@ -177,25 +181,43 @@
 .submitText {
     width: fill-parent-flow(1.0);
 	max-height: 50px;
-    border: 1px solid #556663;
     background-color: #00000000;
 	vertical-align: bottom;
 	color: #ffffff;
+	font-size: 20px;
+	margin: 3px;
 	font-family: Radiance;
+}
+
+.submitPnlText {
+    width: fill-parent-flow(1.0);
+	text-align: center;
+	color: #ffffff;
+	font-family: Radiance;
+}
+.submitPanelTxt
+{
+	margin-bottom: 5px;
+	margin-right: 35px;
+	margin-top: 5px;
 }
 
 .submitButton {
     background-repeat: no-repeat;
     background-size: contain;
-    vertical-align: middle;
-    margin: 8px 8px;
+    vertical-align: bottom;
+	horizontal-align: right;
     wash-color: #667774dd;
+}
+.submitButtonImage {
+	width: 36px;
+	height: 36px;
 }
 
 .updateHeaderText
 {
 	color: #a6a6a6;
-    font-size: 20px;
+    
 	margin-top: 5px;
 	margin-bottom: 5px;
     text-align: left;
@@ -205,11 +227,12 @@
 	font-family: Radiance;
 }
 
-#submitButtonText
+.updateClipper
 {
-	color: #ffffff;
-    font-size: 18px;
-    text-align: center;
-	text-overflow: clip;
-	width:	fill-parent-flow(1.0);
+	flow-children: down;
+    margin-top: 5px;
+	margin-left: 25px;
+    height: 500px;
+	width: fill-parent-flow(1.0);
+	overflow: clip scroll;
 }
