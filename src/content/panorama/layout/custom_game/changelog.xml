@@ -1,0 +1,75 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/changelog.css" />
+	</styles>
+	<scripts>
+	    <include src="file://{resources}/scripts/custom_game/changelog.js" /> 
+	</scripts>
+	<Panel class="changelogRoot" hittest="false">
+		<Panel id="changelogButton" hittest="false">
+			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
+				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>
+			</Button>
+		</Panel>
+		<Panel id="changelogDisplay" hittest="false">
+			<Panel id="Title" hittest="false">
+				<Label id="TitleName" text="#addonname" />
+				<Label id="SubTitleName" text="#addonname_description" />
+				<Panel id="OptionSelect" hittest="false">
+					<Button id="showDescriptionButton"  class="OptionButton" onactivate='toggleDescription()'>
+						<Label id="OptionText" text="#lodDescriptionButtonText" />
+					</Button>
+					<Button id="showUpdatesButton" class="OptionButton" onactivate='toggleUpdates()'>
+						<Label id="OptionText" text="#lodUpdatesButtonText" />
+					</Button>
+					<Button id="showCreditsButton" class="OptionButton" onactivate='toggleCredits()'>
+						<Label id="OptionText" text="#lodCreditsButtonText" />
+					</Button>
+				</Panel>
+				<Panel id="currentDisplay" hittest="false">
+					<Panel class="displayPanel" id="descriptionDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Label class="HeaderText" text=   "#lodMainFeatures" />
+							<Label class="displayText" text="- Main features" />
+							<Label class="displayText" text="- Main features" />
+							<Label class="displayText" text="- Main features" />
+							<Label class="displayText" text="- Main features" />
+							<Label class="displayText" text="- Main features" />
+							<Label class="displayText" text="- Main features" />
+							<Panel class="submitPanel">
+                                    <TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" />
+                                    <Button class="submitButton" onactivate="$('#submitInput').SetFocus()">
+										<Label id="submitButtonText" text="#lodSubmitButton" />
+									</Button>
+                                </Panel>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="updateDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Label class="HeaderText" text="#lodUpdatesButtonText" />
+							<Panel class="displayHeader" hittest="false">
+								<Label class="updateHeaderText" text="Update 7th July" />
+								<Label class="displayText" text="- Fixed the entire game again." />
+							</Panel>
+							<Panel class="displayHeader" hittest="false">
+								<Label class="updateHeaderText" text="Update 5th July" />
+								<Label class="displayText" text="- Fixed the entire game." />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="creditsDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Label class="HeaderText" text="#lodCreditsButtonText" />
+							<Label class="displayText" text="- Person X" />
+							<Label class="displayText" text="- Person X" />
+							<Label class="displayText" text="- Person X" />
+							<Label class="displayText" text="- Person X" />
+							<Label class="displayText" text="- Person X" />
+							<Label class="displayText" text="- Person X" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>		
+		</Panel>
+	</Panel>
+</root>
