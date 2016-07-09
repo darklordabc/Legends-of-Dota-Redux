@@ -2,7 +2,7 @@ local util = require('util')
 local toIgnore = util:getToggleIgnores()
 
 function TryAftershock(keys)
-    local abName = keys.event_ability:GetClassname()
+    local abName = keys.event_ability:GetAbilityName()
     if toIgnore[abName] then return true end
 
     -- Calculate how much mana to restore
