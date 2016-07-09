@@ -1,0 +1,150 @@
+.TeamSwitchRoot
+{
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    visibility: collapse;
+}
+.disconnected {
+    color: #ff0000 !important;
+}
+
+#OffsetHack {
+    margin-top: 9px;
+    margin-left: 225px;
+    width: 100%;
+    height: 1.9%;
+    padding: -4px;
+}
+
+#TeamSwitch_Button
+{
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+    box-shadow: #52545520 0px 0px 1px;
+    border: 1px solid #323435;
+
+    border-radius: 5px;
+    padding: 1px 10px;
+    vertical-align: top;
+}
+
+#TeamSwitch_Icon
+{
+    wash-color: #00000030;
+    height: 70%;
+    vertical-align: center;
+}
+
+#TeamSwitch_ButtonTitle
+{
+    font-size: 20;
+    font-family: Radiance;
+
+/*    text-shadow: 1px 1px 3px 2.0 #000000; */
+    opacity: 0.75;
+    color: #cbcbcb;
+
+    margin-left: 32px;
+
+     vertical-align: center;
+}
+
+#TeamSwitch_Panel
+{
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+    box-shadow: #52545520 0px 0px 1px;
+    border: 1px solid #323435;
+    border-radius: 5px;
+    padding: 0px;
+    width: 320px;
+    vertical-align: top;
+    horizontal-align: left;
+
+    margin-top: 45px;
+    margin-left: 225px;
+    flow-children: down;
+}
+
+#TeamSwitchDescription
+{
+    font-size: 18px;
+    font-family: Radiance;
+  	font-weight: bold;
+    text-align: center;
+
+    text-shadow: 1px 1px 3px 1.0 #000000;
+    color: #ffffff;
+    vertical-align: top;
+    horizontal-align: center;
+
+    height: 30px;
+    margin-top: 10px;
+}
+
+.ListDivider
+{
+    height: 55px;
+}
+
+.PlayerIcon
+{
+    height: 50px;
+    width: 90px;
+    margin-left: 15px;
+}
+
+.PlayerDis
+{
+    height: 30px;
+    width: 90px;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.PlayerNameFont
+{
+    font-size: 20px;
+    font-family: Radiance;
+  	font-weight: bold;
+    text-align: center;
+
+    //margin-top: -5px;
+    margin-left: 140px;
+
+    text-shadow: 1px 1px 3px 1.0 #000000;
+    vertical-align: center;
+    horizontal-align: right;
+}
+    
+#BalanceWarning {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+    box-shadow: #52545520 0px 0px 1px;
+    width: 250px;
+    border: 1px solid #323435;
+    border-radius: 5px;
+    padding: 1px 10px;
+    vertical-align: top;
+    horizontal-align: left;
+
+    margin-top: 45px;
+    margin-left: 225px;
+    flow-children: down;
+}
+
+#BalanceWarningDescription{
+    font-size: 16px;
+    font-family: Radiance;
+    font-weight: bold;
+    text-align: center;
+
+    margin-left: 0px;
+    padding: 5px;
+
+    text-shadow: 1px 1px 3px 1.0 #000000;
+    vertical-align: center;
+    horizontal-align: center;
+    color: #ffffff;
+    opacity: 0.8;
+}
