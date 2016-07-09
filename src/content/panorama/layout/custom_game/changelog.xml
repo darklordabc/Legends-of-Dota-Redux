@@ -17,13 +17,13 @@
 				<Label id="SubTitleName" text="#addonname_description" />
 				<Panel id="OptionSelect" hittest="false">
 					<Button id="showDescriptionButton"  class="OptionButton" onactivate='toggleDescription()'>
-						<Label id="OptionText" text="#lodDescriptionButtonText" />
+						<Label class="OptionText" id="OptionTextDescription" text="#lodDescriptionButtonText" />
 					</Button>
 					<Button id="showUpdatesButton" class="OptionButton" onactivate='toggleUpdates()'>
-						<Label id="OptionText" text="#lodUpdatesButtonText" />
+						<Label class="OptionText" id="OptionTextUpdates" text="#lodUpdatesButtonText" />
 					</Button>
 					<Button id="showCreditsButton" class="OptionButton" onactivate='toggleCredits()'>
-						<Label id="OptionText" text="#lodCreditsButtonText" />
+						<Label class="OptionText" id="OptionTextCredits" text="#lodCreditsButtonText" />
 					</Button>
 				</Panel>
 				<Panel id="currentDisplay" hittest="false">
