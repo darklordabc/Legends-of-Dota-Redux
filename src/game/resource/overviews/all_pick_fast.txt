@@ -1,8 +1,0 @@
-all_pick_fast
-{
-	material materials/overviews/all_pick_fast.vmat
-	pos_x -8192
-	pos_y 8192
-	scale 16.000
-}
-
