@@ -3,6 +3,7 @@
     // The name of the game
     "ADDON_GAME_NAME"                               "Legends of Dota"
     "addonname"                                     "Legends of Dota"
+    "addonname_description"                         "Based on the official Legends of Dota by Ash47"
     "game_mode_15_desc"                             "Build a fully sick hero"
 
     // Teams
@@ -412,6 +413,13 @@
     "statAbandonLastHour"                           "About {0} minutes ago"
     "statAbandonLessThanDay"                        "About {0} hours ago"
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
+    
+    //CHANGELOG BUTTONS
+    "lodDescriptionButtonText"                      "Description"
+    "lodUpdatesButtonText"                          "Updates"
+    "lodCreditsButtonText"                          "Credits"
+    "lodMainFeatures"                               "Main Features"
+    "lodSubmitButton"                               "Submit"
 
 	//Hero Stats
 
