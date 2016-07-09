@@ -419,7 +419,8 @@
     "lodUpdatesButtonText"                          "Updates"
     "lodCreditsButtonText"                          "Credits"
     "lodMainFeatures"                               "Main Features"
-    "lodSubmitButton"                               "Submit"
+    "lodLeaveComment"                               "Leave a comment for our developers."
+    "GitHubReference"                               "Alternatively submit to our Github."
 
 	//Hero Stats
 
