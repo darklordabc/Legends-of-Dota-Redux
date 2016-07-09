@@ -29,7 +29,11 @@
     "lockTeamsFirst"                                "Lock the teams first"
 
     // Categories for option selection
-    "presets_lod"                                   "Presets"
+    "filter_by_category"                            "Filter by category:"
+    "filter_by_name"                                "Filter by name:"
+    "presets_lod"                                   "Preset Builds"
+    "heroes_lod"                                    "Heroes"
+    "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
@@ -216,7 +220,7 @@
     "lodOptionGameSpeedRespawnTime60Second"         "60 Second Respawn"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "You are the host, you are required to select the options for this match. All options will be recorded and you may be banned from selecting options if you continue to troll other players.\n\nLock the teams using the buttons at the top center of the screen, and lock the options by pressing the button in the bottom right hand corner."
+    "lodHostingMessage"                             "You are the host, you are required to select the options for this match. All options will be recoreded and you may be banned from selecting options if you continue to troll other players.\n\nLock the teams using the buttons at the top center of the screen, and lock the options by pressing the button in the bottom right hand corner."
     "lodPickingMessage"                             "This is the drafting phase, you need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked."
     "lodBanningMessage"                             "This is the banning phase. You can ban heroes and abilities to prevent players from selecting them in this match. Once you have finished banning, press the 'Finish Banning' button to continue."
     "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
@@ -277,7 +281,7 @@
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
     "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
-    "hintBreakPassives"                             "Silver Edge, Doom (with scepter), Demonic Purge (with scepter), and Global Break are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
+    "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
 
@@ -313,12 +317,16 @@
 
     // Categories
     "lod_cat_none"                                  "<Filter by category>"
+    "lod_cat_upgradeable"                           "Aghanim's Scepter"
+    "lod_cat_support"                               "Support"
+    "lod_cat_tank"                                  "Tank"
+    "lod_cat_mobility"                              "Mobility and Escape"
     "lod_cat_invis"                                 "Invisibility"
-    "lod_cat_crit"                                  "Crit"
-    "lod_cat_bash"                                  "Bash"
-    "lod_cat_aoe_attack"                            "AoE Attack"
-    "lod_cat_attack_modifier"                       "Attack Modifier"
-    "lod_cat_stun"                                  "Stun"
+    "lod_cat_bash"                 		    "Bash"
+    "lod_cat_crit"                  		    "Critical Strike"
+    "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
+    "lod_cat_attack_modifier"                       "All Attack Modifiers"
+    "lod_cat_stun"                                  "Stuns, Shackles and Roots"
     "lod_cat_isUlt"                                 "Ultimate Ability"
 
     // Categories
@@ -376,7 +384,10 @@
     "voteMaxSlots5"                                 "5 Slots"
     "voteMaxSlots6"                                 "6 Slots"
 
-    "lodBanningPhase"                               "Enable The Banning Phase?"
+    "lodBanningPhase"                               "Enable The Banning Phase"
+    "lodFastStart"                                  "Enable Fast Start"
+    
+    "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
 
     "bots_lod"                                      "Bots"
 
@@ -941,10 +952,67 @@
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
 	
+	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
+    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
+    "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"    
+    
+    "DOTA_Tooltip_ability_octarine_vampirism_lod" "Octarine Vampirism"
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_Description" "Grants aura for allied Heros that restores health for a percentage of any damage dealt from spells. Lifesteals less from damage dealt to creeps."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_Lore"        "The art of thieving life through arcane means is a lost one."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_hero_lifesteal"        "%HERO LIFESTEAL:"    
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_creep_lifesteal"        "%CREEP LIFESTEAL:"    
+    "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff"                "Octarine Vampirism"
+    "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff_Description"    "Gaining lifesteal on spell damage."
+    
+    "DOTA_Tooltip_ability_force_dash_lod" "Force Dash"
+    "DOTA_Tooltip_ability_force_dash_lod_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself."
+    "DOTA_Tooltip_ability_force_dash_lod_Note0" "The push lasts 0.4s."
+    "DOTA_Tooltip_ability_force_dash_lod_Lore"        "Ejecting magic from one's body works very similar to a rocket."
+    "DOTA_Tooltip_ability_force_dash_lod_distance"        "PUSH DISTANCE:"    
+    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod" "Shards of True Sight"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_Lore"        "Why pay for the whole Gem when the scraps can be just as useful."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_ms_boost"        "BONUS MOVESPEED:"    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_duration"        "DURATION:"    
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "TRUE SIGHT RADIUS:"    
+    
+    "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
+    "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
+    
+    // Spirt Bear Return
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the mouse cursor. "
+	
+    // Roshan spell block
+    "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
+    "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
+    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Roshan will block one targeted spell every few seconds."
+    
+    // Back door protection
+    "DOTA_Tooltip_ability_backdoor_protection_radius"                      "RADIUS:"
+    "DOTA_Tooltip_ability_backdoor_protection_activation_time"             "ACTIVATION TIME:"
+    "DOTA_Tooltip_ability_backdoor_protection_regen_rate"                  "REGENERATION RATE:"
+	
+   // Back door (in base) protection
+   "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
+   "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
+   
+   //Backstab
+    "DOTA_Tooltip_ability_riki_backstab_lod" "Backstab" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Description" "If Riki attacks from behind, bonus damage is applied based on his current agility." 
+    "Dota_Tooltip_riki_backstab_lod_Lore" "The Stealth Assassin is not afraid to fight dirty, and specializes in attacking his opponents from behind" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Note0" "Illusions of Riki will play Backstab animations, but not deal any bonus damage" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_Note1" "Bonus damage from Backstab cannot be evaded" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_agility_damage" "%AGI DAMAGE MULT:" 
+    "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
+	
 	// HERO CONCEPTS (from The Next Generation)
 	//-------------------------------------------------------------------
     // Cherub, the Dancing Flower
     //-------------------------------------------------------------------
+	
     "DOTA_Tooltip_Ability_cherub_sleep_cloud"                     "Sleep Cloud"  
     "DOTA_Tooltip_Ability_cherub_sleep_cloud_Description"    "Cherub emits a cloud of soothing aromas which put enemies to sleep if they are within the cloud's radius for 4 seconds. Enemies will wake up when the cloud duration ends or when they take a certain amount of damage."  
     "DOTA_Tooltip_Ability_cherub_sleep_cloud_Radius"      "RADIUS:"  
@@ -1082,5 +1150,4 @@
     "blue_flower"           "Blue Blossom"
     "yellow_flower"         "Yellow Daisy"
     "purple_flower"         "Purple Lotus"
-
 }
