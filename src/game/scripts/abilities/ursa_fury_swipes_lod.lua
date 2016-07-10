@@ -18,6 +18,7 @@ function fury_swipes_attack( keys )
 	-- Necessary value from KV
 	local duration = ability:GetLevelSpecialValueFor( "bonus_reset_time", ability:GetLevel() - 1 )
 	local damage_per_stack = ability:GetLevelSpecialValueFor( "damage_per_stack", ability:GetLevel() - 1 )
+	-- Modifies damage bonus if ranged attacker
 	if caster:IsRangedAttacker() then damage_per_stack = ability:GetLevelSpecialValueFor( "damage_per_stack_ranged", ability:GetLevel() - 1 ) end
 
 
