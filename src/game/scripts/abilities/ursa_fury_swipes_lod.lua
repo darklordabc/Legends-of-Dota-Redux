@@ -14,6 +14,7 @@ function fury_swipes_attack( keys )
 	local exceptionName = "npc_dota_roshan"
 
 	if target:IsBuilding() then return end
+	if caster:IsIllusion() then return end
 	
 	-- Necessary value from KV
 	local duration = ability:GetLevelSpecialValueFor( "bonus_reset_time", ability:GetLevel() - 1 )
