@@ -898,7 +898,7 @@
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
 
     // Essence Shift
-    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength (Melee)"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength. <font color='#70EA72'>Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note0"						"Attributes cannot be dropped below 1."
@@ -912,7 +912,7 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift (STR)"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
-    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod"                                             "Essence Shift - Agility"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod"                                             "Essence Shift (Melee)"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Agility. <font color='#70EA72'>Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Note0"						"Attributes cannot be dropped below 1."
@@ -926,7 +926,7 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"			"Essence Shift (AGI)"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence (Melee)"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"                    "Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intelligence. <font color='#70EA72'>Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"                       "With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"                      "Attributes cannot be dropped below 1."
@@ -1026,7 +1026,7 @@
     "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
 
    //Fury Swipes
-    "DOTA_Tooltip_ability_ursa_fury_swipes_lod" "Fury Swipes"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod" "Fury Swipes (Melee)"
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Description" "Ursa's claws dig deeper wounds in the enemy, causing consecutive attacks to the same enemy to deal more damage. If the same target is not attacked after 20 seconds, the bonus damage is lost. <font color='#70EA72'>Half as effective on ranged heroes.</font>"
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Lore" "In nature, the wounded rarely survive the attacks of hungry predators."
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Bonus_reset_time" "RESET TIME:"
