@@ -7,6 +7,12 @@
 ================================================================================================================= ]]
 function modifier_slark_essence_shift_strength_datadriven_on_attack_landed(keys)
        if (not keys.caster:IsIllusion()) and (not keys.target:IsIllusion()) and keys.target:IsHero() and keys.target:IsOpposingTeam(keys.caster:GetTeam()) then
+       	--If ranged attacker, chance to do nothing
+		if keys.caster:IsRangedAttacker() then
+			local ranged_chance = keys.ability:GetSpecialValueFor("ranged_chance")
+			local check = math.random(100)
+			if check > ranged_chance then return end
+		end
 		--For the affected enemy, increment their visible counter modifier's stack count.
 		local previous_stack_count = 0
 		if keys.target:HasModifier("modifier_slark_essence_shift_strength_datadriven_debuff_counter") then
