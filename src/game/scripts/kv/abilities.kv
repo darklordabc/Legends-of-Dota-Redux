@@ -303,7 +303,7 @@
             "razor_unstable_current"            "1"
             "riki_blink_strike"            "1"
             "riki_smoke_screen"            "1"
-			"riki_backstab_lod"            "1"
+            "riki_backstab_lod"            "1"
             "rubick_fade_bolt"            "1"
             "rubick_null_field"            "1"
             "rubick_telekinesis"            "1"
@@ -406,7 +406,7 @@
             "undying_tombstone"            "1"
             "ursa_earthshock"            "1"
             "ursa_enrage"            "1"
-            "ursa_fury_swipes"            "1"
+            "ursa_fury_swipes_lod"              "1"
             "ursa_overpower"            "1"
             "vengefulspirit_command_aura"            "1"
             "vengefulspirit_magic_missile"            "1"
@@ -489,8 +489,6 @@
             "ogre_magi_multicast"            "1"
             // Aftershock
             "earthshaker_aftershock"            "1"
-            // Essence Shift
-            "slark_essence_shift"            "1"
         }
         // The neutrals skills
         "neutral" {
@@ -586,6 +584,7 @@
         "custom" {
             "slark_essence_shift_strength_lod"            "1"
             "slark_essence_shift_intellect_lod"            "1"
+            "slark_essence_shift_agility_lod"            "1"
             "pudge_flesh_heap_agi"            "1"
             "pudge_flesh_heap_int"            "1"
             "silencer_global_break"            "1"
@@ -603,6 +602,7 @@
             "zuus_thundergods_vengeance"            "1"
             // Global Break
             "silencer_global_break"            "1"
+            
             "item_abilities" {
                 "aether_range_lod"                "1"
                 "octarine_vampirism_lod"                "1"
@@ -735,7 +735,7 @@
         "npc_dota_hero_slark" {
             "Ability1"            "slark_dark_pact"
             "Ability2"            "slark_pounce"
-            "Ability3"            "slark_essence_shift"
+            "Ability3"            "slark_essence_shift_agility_lod"
             "Ability4"            "slark_essence_shift_intellect_lod"
             "Ability5"            "slark_essence_shift_strength_lod"
             "Ability6"            "slark_shadow_dance"
@@ -761,12 +761,18 @@
             "Ability3"            "abyssal_underlord_firestorm"
             "Ability4"            "abyssal_underlord_pit_of_malice"
         }
-		"npc_dota_hero_riki" {
-                  "Ability1" "riki_smoke_screen"
-                  "Ability2" "riki_blink_strike"
-                  "Ability3" "riki_permanent_invisibility"
-                  "Ability4" "riki_tricks_of_the_trade"
-                  "Ability5" "riki_backstab_lod"
-           }
+	  "npc_dota_hero_riki" {
+            "Ability1"            "riki_smoke_screen"
+            "Ability2"            "riki_blink_strike"
+            "Ability3"            "riki_permanent_invisibility"
+            "Ability4"            "riki_tricks_of_the_trade"
+            "Ability5"            "riki_backstab_lod"
+        }
+        "npc_dota_hero_ursa" {
+            "Ability1"            "ursa_earthshock"
+            "Ability2"            "ursa_overpower"
+            "Ability3"            "ursa_fury_swipes_lod"
+            "Ability4"            "ursa_enrage"
+        }
     }
 }
