@@ -521,6 +521,7 @@
     "credit_slark_essence_shift_agility_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_ursa_fury_swipes_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_mirana_starfall_lod"           "<font color=\"#7D7D7D\">Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
 
     
