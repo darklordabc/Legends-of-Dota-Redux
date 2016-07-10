@@ -893,7 +893,7 @@
 
     // Rearm
     "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm LoD"
-    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
+    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - <font color='#70EA72'>Removes 30 seconds from the cooldown on most of Tinker's items and abilities.</font>"
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
@@ -951,13 +951,13 @@
     
     //flesh heap spells
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"<font color='#70EA72'>Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"				"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
@@ -967,7 +967,7 @@
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
     "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
-    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
+    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
 	
 	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
