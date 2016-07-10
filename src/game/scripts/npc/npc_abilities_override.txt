@@ -114,4 +114,23 @@
 	{
 		"MaxLevel" "1"
 	}
+	
+	"satyr_hellcaller_shockwave"
+	{
+		"MaxLevel" "4"
+		"AbilityCastRange"				"700 1700 2000 2300"
+		"AbilityDamage"					"160 190 220 250"
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{						
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1380 1700 2000 2300"
+			}
+		}
+	}
 }	
