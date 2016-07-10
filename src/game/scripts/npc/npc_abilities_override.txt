@@ -114,4 +114,39 @@
 	{
 		"MaxLevel" "1"
 	}
+	
+	"enraged_wildkin_tornado"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5312"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"MaxLevel"						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 1000 2000 4000"
+		"AbilityCastPoint"				"0.75"
+		"AbilityCooldown"				"70.0"
+		"AbilityChannelTime"			"40.0"
+		"AbilityManaCost"				"200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01" // Only for tooltip, redundant with AbilityChannelTime
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			
+			"02" // Only for tooltip, redundant with AbilityChannelTime
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"500 1000 2000 4000"
+			}
+		}
+	}
 }	
