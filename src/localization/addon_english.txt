@@ -652,7 +652,7 @@
 
     // Zeus
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance"                                   "Thundergod's Vengeance"
-    "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Description"                       "Strikes %num_targets% enemy units with a bolt of lightning, within a large range around Zeus, prioritized based upon current health.  Thundergod's Vengeance also provides True Sight around each unit struck.  If an enemy unit is invisible, it takes no damage, but the True Sight is still created at that unit's location.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Description"                       "<font color='#70EA72'>Strikes %num_targets% enemy units with a bolt of lightning, within a large range around Zeus, prioritized based upon current health.  Thundergod's Vengeance also provides True Sight around each unit struck.  If an enemy unit is invisible, it takes no damage, but the True Sight is still created at that unit's location.</font>\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Lore"                              "The Lord of Heaven smites all who oppose him, near or far."
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_damage"                            "DAMAGE:"
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_damage_scepter"                    "SCEPTER DAMAGE:"
