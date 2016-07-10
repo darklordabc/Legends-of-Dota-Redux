@@ -1007,4 +1007,7 @@
     "DOTA_Tooltip_ability_riki_backstab_lod_Note1" "Bonus damage from Backstab cannot be evaded" 
     "DOTA_Tooltip_ability_riki_backstab_lod_agility_damage" "%AGI DAMAGE MULT:" 
     "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
+    
+    // Wildkin Tornado
+    "DOTA_Tooltip_ability_enraged_wildkin_tornado_cast_range"       "CAST RANGE:"
 }
