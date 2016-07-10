@@ -5,7 +5,7 @@
 	and leaves a counter on their modifier HUD.
 	Additional parameters: keys.StatLoss
 ================================================================================================================= ]]
-function modifier_slark_essence_shift_strength_datadriven_on_attack_landed(keys)
+function modifier_slark_essence_shift_intellect_datadriven_on_attack_landed(keys)
        if (not keys.caster:IsIllusion()) and (not keys.target:IsIllusion()) and keys.target:IsHero() and keys.target:IsOpposingTeam(keys.caster:GetTeam()) then
        	--If ranged attacker, chance to do nothing
 		if keys.caster:IsRangedAttacker() then
@@ -15,38 +15,38 @@ function modifier_slark_essence_shift_strength_datadriven_on_attack_landed(keys)
 		end
 		--For the affected enemy, increment their visible counter modifier's stack count.
 		local previous_stack_count = 0
-		if keys.target:HasModifier("modifier_slark_essence_shift_strength_datadriven_debuff_counter") then
-			previous_stack_count = keys.target:GetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster)
+		if keys.target:HasModifier("modifier_slark_essence_shift_intellect_datadriven_debuff_counter") then
+			previous_stack_count = keys.target:GetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster)
 			
 			--We have to remove and replace the modifier so the duration will refresh (so it will show the duration of the latest Essence Shift).
-			keys.target:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster)
+			keys.target:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster)
 		end
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_slark_essence_shift_strength_datadriven_debuff_counter", nil)
-		keys.target:SetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster, previous_stack_count + 1)		
+		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_slark_essence_shift_intellect_datadriven_debuff_counter", nil)
+		keys.target:SetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster, previous_stack_count + 1)		
 		
 		--Apply a stat debuff to the target StatLoss number of times.  Attributes bottom out at 0, so we do not need to worry about
 		--applying more debuffs than attribute points the target currently has.  This is the way the stock Essence Shift works.
 		local i = 0
 		local stat_loss_abs = math.abs(keys.StatLoss)
 		while i < stat_loss_abs do
-			keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_slark_essence_shift_strength_datadriven_debuff", nil)
+			keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_slark_essence_shift_intellect_datadriven_debuff", nil)
 			i = i + 1
 		end
 		
-		--For Slark, update his visible counter modifier's stack count and duration, and raise his Strength.  The full amount of Strength is gained
+		--For Slark, update his visible counter modifier's stack count and duration, and raise his Intellect.  The full amount of Intellect is gained
 		--even if the target does not have any more attributes to steal.
 		previous_stack_count = 0
-		if keys.caster:HasModifier("modifier_slark_essence_shift_strength_datadriven_buff_counter") then
-			previous_stack_count = keys.caster:GetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster)
+		if keys.caster:HasModifier("modifier_slark_essence_shift_intellect_datadriven_buff_counter") then
+			previous_stack_count = keys.caster:GetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster)
 			
 			--We have to remove and replace the modifier so the duration will refresh (so it will show the duration of the latest Essence Shift).
-			keys.caster:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster)
+			keys.caster:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster)
 		end
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_slark_essence_shift_strength_datadriven_buff_counter", nil)
-		keys.caster:SetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster, previous_stack_count + 1)
+		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_slark_essence_shift_intellect_datadriven_buff_counter", nil)
+		keys.caster:SetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster, previous_stack_count + 1)
 		
-		--Apply an Strength buff for Slark.
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_slark_essence_shift_strength_datadriven_buff", nil)
+		--Apply an Intellect buff for Slark.
+		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_slark_essence_shift_intellect_datadriven_buff", nil)
 	end
 end
 
@@ -56,13 +56,13 @@ end
 	Date: January 28, 2015
 	Called whenever an Essence Shift debuff on an opponent expires.  Decrements their debuff counter by one.
 ================================================================================================================= ]]
-function modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy(keys)
-	if keys.target:HasModifier("modifier_slark_essence_shift_strength_datadriven_debuff_counter") then
-		local previous_stack_count = keys.target:GetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster)
+function modifier_slark_essence_shift_intellect_datadriven_debuff_on_destroy(keys)
+	if keys.target:HasModifier("modifier_slark_essence_shift_intellect_datadriven_debuff_counter") then
+		local previous_stack_count = keys.target:GetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster)
 		if previous_stack_count > 1 then
-			keys.target:SetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster, previous_stack_count - 1)
+			keys.target:SetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster, previous_stack_count - 1)
 		else
-			keys.target:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_strength_datadriven_debuff_counter", keys.caster)
+			keys.target:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_intellect_datadriven_debuff_counter", keys.caster)
 		end
 	end
 end
@@ -73,13 +73,13 @@ end
 	Date: January 28, 2015
 	Called whenever an Essence Shift buff on Slark expires.  Decrements his buff counter by one.
 ================================================================================================================= ]]
-function modifier_slark_essence_shift_strength_datadriven_buff_on_destroy(keys)
-	if keys.caster:HasModifier("modifier_slark_essence_shift_strength_datadriven_buff_counter") then
-		local previous_stack_count = keys.caster:GetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster)
+function modifier_slark_essence_shift_intellect_datadriven_buff_on_destroy(keys)
+	if keys.caster:HasModifier("modifier_slark_essence_shift_intellect_datadriven_buff_counter") then
+		local previous_stack_count = keys.caster:GetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster)
 		if previous_stack_count > 1 then
-			keys.caster:SetModifierStackCount("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster, previous_stack_count - 1)
+			keys.caster:SetModifierStackCount("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster, previous_stack_count - 1)
 		else
-			keys.caster:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_strength_datadriven_buff_counter", keys.caster)
+			keys.caster:RemoveModifierByNameAndCaster("modifier_slark_essence_shift_intellect_datadriven_buff_counter", keys.caster)
 		end
 	end
 end
