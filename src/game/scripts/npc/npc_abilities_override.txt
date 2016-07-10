@@ -119,7 +119,7 @@
 	{
 		"MaxLevel" "4"
 		"AbilityCastRange"				"700 1700 2000 2300"
-		"AbilityDamage"					"150 200 250 300"
+		"AbilityDamage"					"150 190 230 270"
 		"AbilityManaCost"				"100"
 
 		// Special
