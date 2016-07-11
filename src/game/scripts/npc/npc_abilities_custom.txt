@@ -2738,7 +2738,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "ranged_chance"          "65"
+                "ranged_chance"          "100"
             }
             "02"
             {
