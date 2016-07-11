@@ -1010,5 +1010,4 @@
     
     // Wildkin Tornado
     "DOTA_Tooltip_ability_enraged_wildkin_tornado_cast_range"       "CAST RANGE:"
-    
 }
