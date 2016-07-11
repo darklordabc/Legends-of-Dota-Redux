@@ -1010,4 +1010,7 @@
     
     // Wildkin Tornado
     "DOTA_Tooltip_ability_enraged_wildkin_tornado_cast_range"       "CAST RANGE:"
+    
+    // Granite Aura
+    "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
 }
