@@ -33,7 +33,7 @@ function fury_swipes_attack( keys )
 	if current_stack == nil then current_stack = 0 end
 		
 	-- Reset duration
-	ability:RemoveModifierByName(modifierName)
+	target:RemoveModifierByName(modifierName)
 	ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
 	
 	-- Update current stacks
