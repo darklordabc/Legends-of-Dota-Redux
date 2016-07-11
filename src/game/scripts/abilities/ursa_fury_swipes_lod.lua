@@ -50,7 +50,7 @@ function fury_swipes_attack( keys )
 		local damage_table = {
 			victim = target,
 			attacker = caster,
-			damage = damage_per_stack,
+			damage = damage_per_stack/(1+caster:GetIntellect()/1600),
 			damage_type = damageType
 		}
 		ApplyDamage( damage_table )
