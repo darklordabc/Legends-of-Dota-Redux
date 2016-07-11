@@ -30,7 +30,7 @@ function fury_swipes_attack( keys )
 	-- Check if unit already have stack
 	if target:HasModifier( modifierName ) then
 		local current_stack = target:GetModifierStackCount( modifierName, ability )
-		local damagefilter = 1+(caster:GetIntellect()/1600)
+		
 		-- Deal damage
 		local damage_table = {
 			victim = target,
@@ -50,7 +50,7 @@ function fury_swipes_attack( keys )
 		local damage_table = {
 			victim = target,
 			attacker = caster,
-			damage = damage_per_stack/damagefilter,
+			damage = damage_per_stack,
 			damage_type = damageType
 		}
 		ApplyDamage( damage_table )
