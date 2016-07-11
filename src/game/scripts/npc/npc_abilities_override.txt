@@ -213,4 +213,25 @@
 			}
 		}
 	}
+	
+	"kobold_taskmaster_speed_aura"
+	{
+		"MaxLevel"				"4"
+		"AbilityCastRange"				"900 950 1000 1100"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"12 14 16 18"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900 950 1000 1100"
+			}
+		}
+	}
 }	
