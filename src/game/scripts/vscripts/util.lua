@@ -8,8 +8,8 @@ local chanelledSpells = {}
 local targetSpells = {}
 
 -- Grab contributors file
-local contributors = LoadKeyValues('scripts/kv/contributors.kv')
-local bannedKV = LoadKeyValues('scripts/kv/banned.kv')
+Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
+Util.bannedKV = Util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
 
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
@@ -142,7 +142,7 @@ end
 -- Returns a player's premium rank
 function Util:getPremiumRank(playerID)
     local steamID = PlayerResource:GetSteamAccountID(playerID)
-    local conData = contributors[tostring(steamID)]
+    local conData = Util.contributors[tostring(steamID)]
 
     -- Default is no premium
     local totalPremium = 0
@@ -164,7 +164,7 @@ end
 
 -- Returns if a player is a time burger
 function Util:isTimeBurgler(playerID)
-    local allTimeBurglers = bannedKV.timeburglers
+    local allTimeBurglers = Util.bannedKV.timeburglers
 
     local steamID = PlayerResource:GetSteamAccountID(playerID)
 

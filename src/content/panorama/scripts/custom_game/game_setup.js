@@ -3976,6 +3976,10 @@ function OnPhaseChanged(table_name, key, data) {
                 $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
             }
         break;
+
+        case 'contributors':
+            GameUI.CustomUIConfig().premiumData = data;
+        break;
     }
 
     // Ensure we are hiding the correct enemy picks

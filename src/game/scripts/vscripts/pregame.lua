@@ -366,6 +366,12 @@ function Pregame:checkForPremiumPlayers()
     network:setPremiumInfo(premiumInfo)
 end
 
+-- Send the contributors
+function Pregame:sendContributors()
+    -- Push the contributors
+    network:setContributors(util.contributors)
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -404,6 +410,12 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
+    end
+
+    -- Check for premium players
+    if not self.sentContributors then
+        self.sentContributors = true
+        self:sendContributors()
     end
 
     --[[
