@@ -1021,6 +1021,7 @@ var calculateHeroFilters = function(){};
 
 // Balance Mode
 var balanceMode = true; // For whatever reason, what you initialize this to is the opposite
+var currentBalance = 100;
 var showTier1 = true;
 var showTier2 = true;
 var showTier3 = true;
@@ -4373,6 +4374,9 @@ function onBalanceModeChanged() {
     $( "#buttonShowTier2" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#buttonShowTier3" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#buttonShowTier4" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#balanceModePointsSkills" ).SetHasClass("balanceModeDisabled", !balanceMode);
 }
 
 // Changes which phase the player currently has selected
@@ -4756,6 +4760,11 @@ function onPlayerCastVote(category, choice) {
     $('#buttonShowTier2').checked = true;
     $('#buttonShowTier3').checked = true;
     $('#buttonShowTier4').checked = true;
+
+    // Set Balance Mode points to default
+    $('#balanceModePointsPreset').SetDialogVariableInt( 'points', currentBalance );
+    $('#balanceModePointsHeroes').SetDialogVariableInt( 'points', currentBalance );
+    $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
 
     // Disable clicking on the warning timer
     $('#lodTimerWarning').hittest = false;

@@ -236,6 +236,7 @@
                     </Panel>
                     <Panel id="pickingPhaseTabs">
                         <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
+                            <Label id="balanceModePointsPreset" text="#balance_mode_points" />
                             <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                         </Panel>
                         <Panel id="pickingPhaseHeroTab">
@@ -254,6 +255,7 @@
                                         <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
                                     </Panel>
                                 </Panel>
+                                <Label id="balanceModePointsHeroes" text="#balance_mode_points" />
                             </Panel>
 
                             <Panel id="pickingPhaseHeroTabHeroPreview" class="buildingHelperHeroPreviewContainer">
@@ -310,6 +312,8 @@
                             <ToggleButton id="buttonShowTier2" text="#balance_mode_tier_2" onactivate="toggleShowTier2()" />
                             <ToggleButton id="buttonShowTier3" text="#balance_mode_tier_3" onactivate="toggleShowTier3()" />
                             <ToggleButton id="buttonShowTier4" text="#balance_mode_tier_4" onactivate="toggleShowTier4()" />
+
+                            <Label id="balanceModePointsSkills" text="#balance_mode_points" />
 
                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />

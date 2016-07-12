@@ -1168,6 +1168,24 @@
     visibility: collapse;
 }
 
+#balanceModePointsPreset {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+#balanceModePointsHeroes {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+#balanceModePointsSkills {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 25px;
+}
+
 #balanceModeFilter {
     margin-top: 10px;
     margin-bottom: 10px;
