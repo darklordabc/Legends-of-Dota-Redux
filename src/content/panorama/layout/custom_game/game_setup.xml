@@ -6,6 +6,7 @@
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
     </scripts>
     <Panel class="lodOptionsInterface">
         <Panel id="lodNotificationArea">

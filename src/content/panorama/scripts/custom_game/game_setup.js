@@ -2489,11 +2489,11 @@ function updateHeroPreviewFilters() {
             // Set the label to the cost of the ability
             var abCost = abCon.GetChild(0);
             if (abCost) {
-                abCost.SetHasClass('tier1', filterInfo.cost == 50);
-                abCost.SetHasClass('tier2', filterInfo.cost == 30);
-                abCost.SetHasClass('tier3', filterInfo.cost == 20);
-                abCost.SetHasClass('tier4', filterInfo.cost == 0);
-                abCost.text = (filterInfo.cost != 0)? filterInfo.cost: "";
+                abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
             }
         }
     }
@@ -2603,15 +2603,23 @@ function getSkillFilterInfo(abilityName) {
     }
     
     // Check and set the skill cost
-    var rand = Math.floor((Math.random() * 4));
-    if (rand == 3) {
-        cost = 50;
-    } else if (rand == 2) {
-        cost = 30;
-    } else if (rand == 1) {
-        cost = 20;
-    } else{
-        cost = 0;
+    if (GameUI.AbilityCosts.costList[abilityName] != null) {
+        cost = GameUI.AbilityCosts.costList[abilityName];
+    } else {
+        // For testing purposes, currently RNGing unset abilities
+        // In future will delete this else block so it just defaults
+        // to cost 0.
+        var rand = Math.floor((Math.random() * 4));
+        if (rand == 3) {
+            cost = GameUI.AbilityCosts.TIER_ONE;
+        } else if (rand == 2) {
+            cost = GameUI.AbilityCosts.TIER_TWO;
+        } else if (rand == 1) {
+            cost = GameUI.AbilityCosts.TIER_THREE;
+        } else{
+            cost = GameUI.AbilityCosts.TIER_FOUR;
+        }
+        GameUI.AbilityCosts.setCost(abilityName, cost);
     }
 
     return {
@@ -2697,11 +2705,11 @@ function OnSkillTabShown(tabName) {
 
                     // Set the label to the cost of the ability
                     var abCost = ab.GetChild(0);
-                    abCost.SetHasClass('tier1', filterInfo.cost == 50);
-                    abCost.SetHasClass('tier2', filterInfo.cost == 30);
-                    abCost.SetHasClass('tier3', filterInfo.cost == 20);
-                    abCost.SetHasClass('tier4', filterInfo.cost == 0);
-                    abCost.text = (filterInfo.cost != 0)? filterInfo.cost: "";
+                    abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                    abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                    abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                    abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
 
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
