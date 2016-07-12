@@ -2688,6 +2688,22 @@ function getSkillFilterInfo(abilityName) {
             }
             GameUI.AbilityCosts.setCost(abilityName, cost);
         }
+        
+        // Filter abilities
+        switch (cost) {
+            case GameUI.AbilityCosts.TIER_ONE:
+                shouldShow = showTier1 && shouldShow;
+                break;
+            case GameUI.AbilityCosts.TIER_TWO:
+                shouldShow = showTier2 && shouldShow;
+                break;
+            case GameUI.AbilityCosts.TIER_THREE:
+                shouldShow = showTier3 && shouldShow;
+                break;
+            default:
+                shouldShow = showTier4 && shouldShow;
+                break;
+        }
     }
 
     return {
@@ -4729,6 +4745,12 @@ function onPlayerCastVote(category, choice) {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = true;
+
+    // Show all tier values by default
+    $('#buttonShowTier1').checked = true;
+    $('#buttonShowTier2').checked = true;
+    $('#buttonShowTier3').checked = true;
+    $('#buttonShowTier4').checked = true;
 
     // Disable clicking on the warning timer
     $('#lodTimerWarning').hittest = false;

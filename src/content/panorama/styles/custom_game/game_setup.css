@@ -1164,6 +1164,11 @@
     border: 0px;
 }
 
+#balanceModeFilter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .skillCostLarge {
     font-size: 20px;
     font-weight: bold;

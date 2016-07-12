@@ -304,6 +304,13 @@
                             <ToggleButton id="buttonHeroGrouping" text="Group Hero Abilities" onactivate="toggleHeroGrouping()" />
                             <ToggleButton id="buttonShowBanned" text="Show Banned Skills" onactivate="toggleShowBanned()" />
                             <ToggleButton text="Show Disallowed Skills" onactivate="toggleShowDisallowed()" />
+                            
+                            <Label id="balanceModeFilter" text="#filter_by_value" class="buildingHelperInfoText" />
+                            <ToggleButton id="buttonShowTier1" text="#balance_mode_tier_1" onactivate="toggleShowTier1()" />
+                            <ToggleButton id="buttonShowTier2" text="#balance_mode_tier_2" onactivate="toggleShowTier2()" />
+                            <ToggleButton id="buttonShowTier3" text="#balance_mode_tier_3" onactivate="toggleShowTier3()" />
+                            <ToggleButton id="buttonShowTier4" text="#balance_mode_tier_4" onactivate="toggleShowTier4()" />
+
                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />
                         </Panel>
