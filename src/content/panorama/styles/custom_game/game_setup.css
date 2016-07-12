@@ -1173,6 +1173,15 @@
     horizontal-align: right;
 }
 
+.skillCostRecommended {
+    font-size: 18px;
+    font-weight: bold;
+	 margin-right: 0px;
+	 margin-bottom: 0px;
+    vertical-align: bottom;
+    horizontal-align: right;
+}
+
 .skillCostSmall {
     font-size: 12px;
     font-weight: bold;
