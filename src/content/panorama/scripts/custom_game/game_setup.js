@@ -1307,6 +1307,17 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             if(ab != null) {
                 ab.abilityname = abName;
                 ab.SetAttributeString('abilityname', abName);
+
+                // Set the label to the cost of the ability
+                var filterInfo = getSkillFilterInfo(abName);
+                var abCost = ab.GetChild(0);
+                if (abCost) {
+                    abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                    abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                    abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                    abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                }
             }
         }
     }
