@@ -1141,6 +1141,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 		
 		faststart = function(choice)
             return choice == 1 or choice == 0
+        end,
+		
+		balancemode = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
@@ -1214,6 +1218,13 @@ function Pregame:processVoteData()
         	-- No option voting
             self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 			self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+        end
+    end
+	if results.balancemode ~= nil then
+        if results.balancemode == 1 then
+        	-- Option Voting
+        else
+        	-- No option voting
         end
     end
 

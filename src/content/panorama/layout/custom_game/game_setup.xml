@@ -155,11 +155,11 @@
                     </Panel>
                 </Panel>
 
-                <Panel class="optionVoteBanningPhase">
+                <Panel class="optionVotePhase">
                     <Label class="optionVoteHeader" text="lodBanningPhase" />
-                    <Panel class="optionVoteBanningOptions">
+                    <Panel class="optionVoteOptions">
                         <Panel class="optionVoteRoot">
-                            <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', false)">
+                            <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', false)">
                                 <Label text="lodOptionNo" />
                                 <Label id="voteCountNo" class="premiumFeature" />
                             </Button>
@@ -168,7 +168,7 @@
                         </Panel>
 
                         <Panel class="optionVoteRoot">
-                            <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonBanning" onactivate="onPlayerCastVote('banning', true)">
+                            <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', true)">
                                 <Label text="lodOptionYes" />
                                 <Label id="voteCountYes" class="premiumFeature" />
                             </Button>
@@ -177,16 +177,16 @@
                         </Panel>
                     </Panel>
                 </Panel>
-                <Panel class="optionVoteFastStartPhase">
-					<Panel class="optionVoteFastStartHeader">
+                <Panel class="optionVotePhase">
+					<Panel class="optionVoteInfoHeader">
 						<Label class="optionVoteHeader" text="lodFastStart" />
 						<Panel class="VotingOptionInfo" id="FastStartInfo" onmouseover="UIShowCustomLayoutParametersTooltip( FastStartTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textFSTooltip )" onmouseout="UIHideCustomLayoutTooltip( FastStartTooltip )">  
 							<Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
 						</Panel>
 					</Panel>
-                    <Panel class="optionVoteFastStartOptions">
+                    <Panel class="optionVoteOptions">
                         <Panel class="optionVoteRoot">
-                            <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('faststart', false)">
+                            <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', false)">
                                 <Label text="lodOptionNo" />
                                 <Label id="voteCountNoFS" class="premiumFeature" />
                             </Button>
@@ -195,12 +195,38 @@
                         </Panel>
 
                         <Panel class="optionVoteRoot">
-                            <Button id="optionVoteFastStartYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButtonFastStart" onactivate="onPlayerCastVote('faststart', true)">
+                            <Button id="optionVoteFastStartYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', true)">
                                 <Label text="lodOptionYes" />
                                 <Label id="voteCountYesFS" class="premiumFeature" />
                             </Button>
 
                             <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageFS" />
+                        </Panel>
+                    </Panel>
+                </Panel>
+				<Panel class="optionVotePhase">
+					<Panel class="optionVoteInfoHeader">
+						<Label class="optionVoteHeader" text="lodBalanceMode" />
+						<Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( BalanceModeTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textBMTooltip )" onmouseout="UIHideCustomLayoutTooltip( BalanceModeTooltip )">  
+							<Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+						</Panel>
+					</Panel>
+                    <Panel class="optionVoteOptions">
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteBalanceModeNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', false)">
+                                <Label text="lodOptionNo" />
+                                <Label id="voteCountNoBM" class="premiumFeature" />
+                            </Button>
+
+                            <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageBM" />
+                        </Panel>
+
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteBalanceModeYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', true)">
+                                <Label text="lodOptionYes" />
+                                <Label id="voteCountYesBM" class="premiumFeature" />
+                            </Button>
+                            <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageBM" />
                         </Panel>
                     </Panel>
                 </Panel>
