@@ -36,6 +36,7 @@ var NO_COST = 0;
 // Globals for accessing costs outside of this file:
 
 GameUI.AbilityCosts = GameUI.AbilityCosts || {};
+GameUI.AbilityCosts.balanceModeEnabled = false;
 GameUI.AbilityCosts.costList = [];
 GameUI.AbilityCosts.TIER_ONE = COST_TIER_ONE;
 GameUI.AbilityCosts.TIER_TWO = COST_TIER_TWO;

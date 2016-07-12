@@ -1019,6 +1019,13 @@ var isPremiumPlayer = false;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
+// Balance Mode
+var balanceMode = true; // For whatever reason, what you initialize this to is the opposite
+var showTier1 = true;
+var showTier2 = true;
+var showTier3 = true;
+var showTier4 = true;
+
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -1323,16 +1330,18 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             if(ab != null) {
                 ab.abilityname = abName;
                 ab.SetAttributeString('abilityname', abName);
-
-                // Set the label to the cost of the ability
-                var filterInfo = getSkillFilterInfo(abName);
-                var abCost = ab.GetChild(0);
-                if (abCost) {
-                    abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
-                    abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
-                    abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
-                    abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
-                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                
+                if (balanceMode) {
+                    // Set the label to the cost of the ability
+                    var filterInfo = getSkillFilterInfo(abName);
+                    var abCost = ab.GetChild(0);
+                    if (abCost) {
+                        abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                        abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                        abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                        abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                        abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                    }
                 }
             }
         }
@@ -2166,6 +2175,34 @@ function toggleShowDraftSkills() {
     calculateFilters();
 }
 
+function toggleShowTier1() {
+    showTier1 = !showTier1;
+
+    // Update filters
+    calculateFilters();
+}
+
+function toggleShowTier2() {
+    showTier2 = !showTier2;
+
+    // Update filters
+    calculateFilters();
+}
+
+function toggleShowTier3() {
+    showTier3 = !showTier3;
+
+    // Update filters
+    calculateFilters();
+}
+
+function toggleShowTier4() {
+    showTier4 = !showTier4;
+
+    // Update filters
+    calculateFilters();
+}
+
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
     heroCon.SetPanelEvent('onactivate', function() {
@@ -2513,14 +2550,16 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('takenSkill', filterInfo.taken);
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
 
-            // Set the label to the cost of the ability
-            var abCost = abCon.GetChild(0);
-            if (abCost) {
-                abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
-                abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
-                abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
-                abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
-                abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+            if (balanceMode) {
+                // Set the label to the cost of the ability
+                var abCost = abCon.GetChild(0);
+                if (abCost) {
+                    abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                    abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                    abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                    abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                }
             }
         }
     }
@@ -2629,24 +2668,26 @@ function getSkillFilterInfo(abilityName) {
         }
     }
     
-    // Check and set the skill cost
-    if (GameUI.AbilityCosts.costList[abilityName] != null) {
-        cost = GameUI.AbilityCosts.costList[abilityName];
-    } else {
-        // For testing purposes, currently RNGing unset abilities
-        // In future will delete this else block so it just defaults
-        // to cost 0.
-        var rand = Math.floor((Math.random() * 4));
-        if (rand == 3) {
-            cost = GameUI.AbilityCosts.TIER_ONE;
-        } else if (rand == 2) {
-            cost = GameUI.AbilityCosts.TIER_TWO;
-        } else if (rand == 1) {
-            cost = GameUI.AbilityCosts.TIER_THREE;
-        } else{
-            cost = GameUI.AbilityCosts.TIER_FOUR;
+    // Check if Balance Mode and set the skill cost
+    if (balanceMode) {
+        if (GameUI.AbilityCosts.costList[abilityName] != null) {
+            cost = GameUI.AbilityCosts.costList[abilityName];
+        } else {
+            // For testing purposes, currently RNGing unset abilities
+            // In future will delete this else block so it just defaults
+            // to cost 0.
+            var rand = Math.floor((Math.random() * 4));
+            if (rand == 3) {
+                cost = GameUI.AbilityCosts.TIER_ONE;
+            } else if (rand == 2) {
+                cost = GameUI.AbilityCosts.TIER_TWO;
+            } else if (rand == 1) {
+                cost = GameUI.AbilityCosts.TIER_THREE;
+            } else{
+                cost = GameUI.AbilityCosts.TIER_FOUR;
+            }
+            GameUI.AbilityCosts.setCost(abilityName, cost);
         }
-        GameUI.AbilityCosts.setCost(abilityName, cost);
     }
 
     return {
@@ -2730,13 +2771,15 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
 
-                    // Set the label to the cost of the ability
-                    var abCost = ab.GetChild(0);
-                    abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
-                    abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
-                    abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
-                    abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
-                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                    if (balanceMode) {
+                        // Set the label to the cost of the ability
+                        var abCost = ab.GetChild(0);
+                        abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
+                        abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
+                        abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
+                        abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                        abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                    }
 
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
@@ -4120,6 +4163,10 @@ function OnOptionChanged(table_name, key, data) {
         hideEnemyPicks = data.v == 1;
         calculateHideEnemyPicks();
     }
+
+    if(key == 'lodOptionBalanceMode') {
+        onBalanceModeChanged();
+    }
 }
 
 // Recalculates how many abilities / heroes we can ban
@@ -4300,6 +4347,11 @@ function onAllowedCategoriesChanged() {
     calculateFilters();
     updateHeroPreviewFilters();
     updateRecommendedBuildFilters();
+}
+
+function onBalanceModeChanged() {
+    balanceMode = !balanceMode;
+    GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
 }
 
 // Changes which phase the player currently has selected
