@@ -4366,7 +4366,7 @@ function onAllowedCategoriesChanged() {
 }
 
 function onBalanceModeChanged() {
-    balanceMode = !balanceMode;
+    balanceMode = optionValueList['lodOptionBalanceMode'] || 0;
     GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
     $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#buttonShowTier1" ).SetHasClass("balanceModeDisabled", !balanceMode);
