@@ -1516,6 +1516,14 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Common -- Balance Mode
+        lodOptionBalanceMode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
             -- Ensure gamemode is set to custom
@@ -1848,6 +1856,9 @@ function Pregame:initOptionSelector()
 
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
+
+                -- Balance Mode disabled by default
+                self:setOption('lodOptionBalanceMode', 0, true)
 
                 -- Set banning
                 self:setOption('lodOptionBanning', 1)
@@ -2483,7 +2494,7 @@ function Pregame:processOptions()
 	    -- Bot options
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
 	    this.desiredDire = this.optionStore['lodOptionBotsDire']
-
+        
 	    -- Enable WTF mode
 	    if this.optionStore['lodOptionCrazyWTF'] == 1 then
 	        -- Auto ban powerful abilities
@@ -2555,6 +2566,7 @@ function Pregame:processOptions()
 			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
 			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
 			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+                    ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
 			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
 			        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
 			        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],

@@ -164,6 +164,22 @@ var allOptions = {
                 step: 1,
                 default: 20
             },
+            {
+                name: 'lodOptionBalanceMode',
+                des: 'lodOptionDesBalanceMode',
+                about: 'lodOptionAboutBalanceMode',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            }
         ]
     },
 

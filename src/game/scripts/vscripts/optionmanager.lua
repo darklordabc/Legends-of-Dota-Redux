@@ -73,6 +73,9 @@ OptionManager:SetOption('maxSkills', 6)
 -- Total number of ults to allow (Ults are always on the right)
 OptionManager:SetOption('maxUlts', 2)
 
+-- Set Balance Mode
+OptionManager:SetOption('balanceMode', false)
+
 -- Should we ban troll combos?
 OptionManager:SetOption('banTrollCombos', true)
 

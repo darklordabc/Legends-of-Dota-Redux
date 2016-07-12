@@ -122,6 +122,8 @@
     "lodOptionCommonUlts11"                         "11 Ultimate Abilities"
     "lodOptionCommonUlts12"                         "12 Ultimate Abilities"
 
+    "lodOptionDesBalanceMode"                       "Balance Mode"
+
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
     "lodOptionDesBanningMaxBans"                    "Max Ability Bans"
@@ -240,6 +242,7 @@
     "lodOptionAboutCommonMaxSlots"                  "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutCommonMaxSkills"                 "The max number of regular abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutCommonMaxUlts"                   "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
+    "lodOptionAboutBalanceMode"                     "This option will give abilities cost values associated with how strong they are in the meta and limit players to only pick abilities adding up to at most a certain cost."
     "lodOptionAboutCommonMirrorHeroes"              "The number of heroes each player will receive to draft from."
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
