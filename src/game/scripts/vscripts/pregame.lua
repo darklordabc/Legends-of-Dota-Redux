@@ -406,6 +406,28 @@ function Pregame:onThink()
         self:checkForPremiumPlayers()
     end
 
+    -- Load balance mode stats
+    if not self.loadedBalanceModePrices then
+        print('fuckyah')
+        self.loadedBalanceModePrices = true
+        local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+        self.spellCosts = {}
+        for tier, tierList in pairs(balanceMode) do
+            local price = 0
+            if tier == 'tier_1' then
+                price = 50
+            elseif tier == 'tier_2' then
+                price = 30
+            elseif tier == 'tier_3' then
+                price = 20
+            end
+            for abilityName,nothing in pairs(tierList) do
+                self.spellCosts[abilityName] = price
+                network:sendSpellPrice(abilityName, price)
+            end
+        end
+    end
+
     --[[
         OPTION SELECTION PHASE
     ]]
@@ -1296,6 +1318,28 @@ end
 
 -- Tests a build to decide if it is a troll combo
 function Pregame:isTrollCombo(build)
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    for i=1,maxSlots do
+        local ab1 = build[i]
+        if ab1 ~= nil and self.banList[ab1] then
+            for j=(i+1),maxSlots do
+                local ab2 = build[j]
+
+                if ab2 ~= nil and self.banList[ab1][ab2] then
+                    -- Ability should be banned
+
+                    return true, ab1, ab2
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+-- Tests a build to see if there's enough spells for 
+function Pregame:notEnoughPoints(build)
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
     for i=1,maxSlots do
@@ -3663,6 +3707,24 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 params = {
                     ['ab1'] = 'DOTA_Tooltip_ability_' .. ab1,
                     ['ab2'] = 'DOTA_Tooltip_ability_' .. ab2
+                }
+            })
+
+            return
+        end
+    end
+
+    -- Over the Balance Mode point balance
+    if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Validate that it isn't a troll build
+        local outOfPoints = true
+        if outOfPoints then
+            -- Invalid ability name
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedBalanceMode',
+                params = {
+                    ['ab1'] = 'DOTA_Tooltip_ability_' .. ab1
                 }
             })
 

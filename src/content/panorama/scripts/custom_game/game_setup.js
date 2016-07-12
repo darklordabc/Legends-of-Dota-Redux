@@ -1020,7 +1020,7 @@ var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
 // Balance Mode
-var balanceMode = true; // For whatever reason, what you initialize this to is the opposite
+var balanceMode = balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 100;
 var showTier1 = true;
 var showTier2 = true;
@@ -4367,7 +4367,7 @@ function onAllowedCategoriesChanged() {
 }
 
 function onBalanceModeChanged() {
-    balanceMode = optionValueList['lodOptionBalanceMode'] || 0;
+    balanceMode = optionValueList['lodOptionBalanceMode'];
     GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
     $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#buttonShowTier1" ).SetHasClass("balanceModeDisabled", !balanceMode);
