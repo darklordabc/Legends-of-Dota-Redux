@@ -4368,6 +4368,11 @@ function onAllowedCategoriesChanged() {
 function onBalanceModeChanged() {
     balanceMode = !balanceMode;
     GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
+    $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#buttonShowTier1" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#buttonShowTier2" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#buttonShowTier3" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#buttonShowTier4" ).SetHasClass("balanceModeDisabled", !balanceMode);
 }
 
 // Changes which phase the player currently has selected

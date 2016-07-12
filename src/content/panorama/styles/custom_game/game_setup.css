@@ -1164,6 +1164,10 @@
     border: 0px;
 }
 
+.balanceModeDisabled {
+    visibility: collapse;
+}
+
 #balanceModeFilter {
     margin-top: 10px;
     margin-bottom: 10px;
