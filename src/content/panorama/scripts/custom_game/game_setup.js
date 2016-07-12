@@ -2504,6 +2504,7 @@ function getSkillFilterInfo(abilityName) {
     var banned = false;
     var taken = false;
     var cantDraft = false;
+    var cost = 0;
 
     var cat = (flagDataInverse[abilityName] || {}).category;
 
@@ -2587,13 +2588,26 @@ function getSkillFilterInfo(abilityName) {
             }
         }
     }
+    
+    // Check and set the skill cost
+    var rand = Math.floor((Math.random() * 4));
+    if (rand == 3) {
+        cost = 50;
+    } else if (rand == 2) {
+        cost = 30;
+    } else if (rand == 1) {
+        cost = 20;
+    } else{
+        cost = 0;
+    }
 
     return {
         shouldShow: shouldShow,
         disallowed: disallowed,
         banned: banned,
         taken: taken,
-        cantDraft: cantDraft
+        cantDraft: cantDraft,
+        cost: cost
     };
 }
 
@@ -2667,6 +2681,14 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('bannedSkill', filterInfo.banned);
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
+
+                    // Set the label to the cost of the ability
+                    var abCost = ab.GetChild(0);
+                    abCost.SetHasClass('tier1', filterInfo.cost == 50);
+                    abCost.SetHasClass('tier2', filterInfo.cost == 30);
+                    abCost.SetHasClass('tier3', filterInfo.cost == 20);
+                    abCost.SetHasClass('tier4', filterInfo.cost == 0);
+                    abCost.text = (filterInfo.cost != 0)? filterInfo.cost: "";
 
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
@@ -2860,10 +2882,12 @@ function OnSkillTabShown(tabName) {
             (function(abName) {
                 // Create the image
                 var abcon = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
+                var label = $.CreatePanel('Label', abcon, 'skillTabCost' + (++unqiueCounter));
                 hookSkillInfo(abcon);
                 abcon.abilityname = abName;
                 abcon.SetAttributeString('abilityname', abName);
                 abcon.SetHasClass('lodMiniAbility', true);
+                label.SetHasClass('skillCost', true);
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
