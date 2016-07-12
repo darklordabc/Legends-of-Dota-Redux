@@ -39,6 +39,5 @@ function getCost(abilityName) {
 GameUI.AbilityCosts.getCost = getCost;
 
 function setCost(data) {
-    $.Msg(data.abilityName + " = " + data.cost);
     GameUI.AbilityCosts.costList[data.abilityName] = data.cost;
 } GameEvents.Subscribe( "balance_mode_price", setCost);

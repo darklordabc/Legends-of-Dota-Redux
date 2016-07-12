@@ -1321,9 +1321,20 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 var ab = $('#lodYourAbility' + i);
                 ab.abilityname = defaultSkill;
                 ab.SetAttributeString('abilityname', defaultSkill);
+                if (balanceMode) {
+                    // Clear the labels
+                    var abCost = ab.GetChild(0);
+                    if (abCost) {
+                        abCost.SetHasClass('tier1', false);
+                        abCost.SetHasClass('tier2', false);
+                        abCost.SetHasClass('tier3', false);
+                        abCost.SetHasClass('tier4', false);
+                        abCost.text = "";
+                    }
+                }
             }
         }
-
+        var balance = 100;
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -1342,9 +1353,17 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                         abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
                         abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
                         abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                        balance -= filterInfo.cost;
                     }
                 }
             }
+        }
+        // Update current price
+        currentBalance = balance;
+        if (balanceMode) {            
+            $('#balanceModePointsPreset').SetDialogVariableInt( 'points', currentBalance );
+            $('#balanceModePointsHeroes').SetDialogVariableInt( 'points', currentBalance );
+            $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
         }
     }
 
@@ -2687,7 +2706,7 @@ function getSkillFilterInfo(abilityName) {
             } else{
                 cost = GameUI.AbilityCosts.TIER_FOUR;
             }
-            GameUI.AbilityCosts.setCost(abilityName, cost);
+             GameUI.AbilityCosts.costList[abilityName] = cost;
         }
         
         // Filter abilities
