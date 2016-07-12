@@ -1647,8 +1647,11 @@ function setupBuilderTabs() {
     }
 
     for(var i=1;i<=16; ++i) {
-        hookSkillInfo($('#buildingHelperHeroPreviewSkill' + i));
-        makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+        hookSkillInfo(abCon);
+        makeSkillSelectable(abCon);
+        var label = $.CreatePanel('Label', abCon, 'buildingHelperSkillTabCost' + i);
+        label.SetHasClass('skillCostLarge', true);
     }
 
     // Hook drag and drop stuff for heroes
@@ -2482,6 +2485,16 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('bannedSkill', filterInfo.banned);
             abCon.SetHasClass('takenSkill', filterInfo.taken);
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
+
+            // Set the label to the cost of the ability
+            var abCost = abCon.GetChild(0);
+            if (abCost) {
+                abCost.SetHasClass('tier1', filterInfo.cost == 50);
+                abCost.SetHasClass('tier2', filterInfo.cost == 30);
+                abCost.SetHasClass('tier3', filterInfo.cost == 20);
+                abCost.SetHasClass('tier4', filterInfo.cost == 0);
+                abCost.text = (filterInfo.cost != 0)? filterInfo.cost: "";
+            }
         }
     }
 
@@ -2887,7 +2900,7 @@ function OnSkillTabShown(tabName) {
                 abcon.abilityname = abName;
                 abcon.SetAttributeString('abilityname', abName);
                 abcon.SetHasClass('lodMiniAbility', true);
-                label.SetHasClass('skillCost', true);
+                label.SetHasClass('skillCostSmall', true);
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
