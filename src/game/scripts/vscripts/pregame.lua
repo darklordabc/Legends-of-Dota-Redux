@@ -408,7 +408,6 @@ function Pregame:onThink()
 
     -- Load balance mode stats
     if not self.loadedBalanceModePrices then
-        print('fuckyah')
         self.loadedBalanceModePrices = true
         local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
         self.spellCosts = {}
@@ -1341,20 +1340,25 @@ end
 -- Tests a build to see if there's enough spells for 
 function Pregame:notEnoughPoints(build)
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
-
+    local spent = 0
+    
+    -- Calculate points spent
     for i=1,maxSlots do
-        local ab1 = build[i]
-        if ab1 ~= nil and self.banList[ab1] then
-            for j=(i+1),maxSlots do
-                local ab2 = build[j]
-
-                if ab2 ~= nil and self.banList[ab1][ab2] then
-                    -- Ability should be banned
-
-                    return true, ab1, ab2
-                end
+        local abil = build[i]
+        if abil then
+            local cost = self.spellCosts[abil] 
+            if not cost then
+                cost = 0
             end
+            spent = spent + cost
         end
+    end
+    
+    print(spent)
+    
+    -- Check to see if we exceed 100
+    if spent > 100 then
+        return true, spent - 100
     end
 
     return false
@@ -3714,20 +3718,20 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
-    -- Over the Balance Mode point balance
+   -- Over the Balance Mode point balance
     if self.optionStore['lodOptionBalanceMode'] == 1 then
-        -- Validate that it isn't a troll build
-        local outOfPoints = true
+        -- Validate that the user has enough points
+        local outOfPoints, overflow = self:notEnoughPoints(newBuild)
         if outOfPoints then
             -- Invalid ability name
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedBalanceMode',
                 params = {
-                    ['ab1'] = 'DOTA_Tooltip_ability_' .. ab1
+                    ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName,
+                    ['points'] = overflow
                 }
             })
-
             return
         end
     end

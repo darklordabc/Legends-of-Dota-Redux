@@ -383,6 +383,7 @@
     "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
+    "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
