@@ -25,7 +25,7 @@
 				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>
 			</Button>
 		</Panel>
-		<Panel id="changelogDisplay" class="hangelogDisplayHidden" hittest="false">
+		<Panel id="changelogDisplay" class="changelogDisplayHidden" hittest="false">
 			<Panel id="Title" hittest="false">
 				<Label id="TitleName" text="#addonname" />
 				<Label id="SubTitleName" text="#addonname_description" />
