@@ -31,18 +31,44 @@
     padding: 1px 10px;
     vertical-align: top;
 }
- #showChangelogButton
- {
-    width: 24px;
-    height: 24px;
+
+#changelogNotification {
+	margin-left: 440px;
+	margin-top: 5px;
+
+	width: 29px;
+	height: 28px;
+
+	background-color: #e51616bb;
+	border: 1px solid #323440;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#changelogNotification:hover {
+	wash-color: #bbbbbb;
+}
+
+#changelogNotificationLabel {
+	align: center center;
+	margin-top: 3px;
+	font-size: 16px;
+	font-family: RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-weight: bold;
+}
+
+#showChangelogButton
+{
+	width: 24px;
+	height: 24px;
 	wash-color: #00000030;
- }
- 
- #changelogIcon
- {
+}
+
+#changelogIcon
+{
 	width: 95%;
-    height: 95%;
- }
+	height: 95%;
+}
  
 #changelogDisplay
 {
@@ -222,10 +248,10 @@
 }
 
 .submitText {
-    width: fill-parent-flow(1.0);
+    width: 275px;
 	max-height: 300px;
-	overflow: clip scroll;
-	text-overflow: clip;
+	/*overflow: clip scroll;*/
+	text-overflow: shrink;
     opacity: 0.5;
 	vertical-align: bottom;
 	font-size: 20px;
@@ -341,4 +367,34 @@ TextEntry #PlaceholderText {
 	font-size: 14px;
 
 	color: #ffffff44;
+}
+
+.devMessage {
+	align: right center;
+
+	margin-right: 40px;
+	margin-top: 9px;
+
+	width: 36px;
+	height: 36px;
+
+	background-color: #e51616bb;
+	border: 1px solid #e51616;
+	border-radius: 6px;
+}
+
+.devMessage:hover {
+	wash-color: #bbbbbb;
+}
+
+.devMessageLabel {
+	align: center center;
+	margin-top: 3px;
+	font-size: 22px;
+	font-family: RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-weight: bold;
+}
+
+.userPicMessages {
+	align: right center;
 }

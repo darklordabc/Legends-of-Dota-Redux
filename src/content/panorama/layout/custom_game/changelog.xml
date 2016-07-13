@@ -16,7 +16,13 @@
 					<Label id="userPicName" class="userPicName" text="Nickname" />
 					<Label id="userPicDescription" class="userPicDescription" text="Info" />
 				</Panel>
+				<Panel class="userPicMessages" id="userPicMessages"/>
 			</Panel>
+		</snippet>
+		<snippet name="devMessage">
+			<Button class="devMessage">
+				<Label class="devMessageLabel" id="devMessageLabel" text="1" />
+			</Button>
 		</snippet>
 	</snippets>
 	<Panel class="changelogRoot" hittest="false">
@@ -25,6 +31,9 @@
 				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>
 			</Button>
 		</Panel>
+		<Button id="changelogNotification" onactivate='toggleChangelog(toggleCredits)'>
+			<Label id="changelogNotificationLabel" text="1" />
+		</Button>
 		<Panel id="changelogDisplay" class="changelogDisplayHidden" hittest="false">
 			<Panel id="Title" hittest="false">
 				<Label id="TitleName" text="#addonname" />
