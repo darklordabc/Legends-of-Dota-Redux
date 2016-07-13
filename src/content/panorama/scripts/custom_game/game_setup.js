@@ -2690,24 +2690,7 @@ function getSkillFilterInfo(abilityName) {
     
     // Check if Balance Mode and set the skill cost
     if (balanceMode) {
-        if (GameUI.AbilityCosts.costList[abilityName] != null) {
-            cost = GameUI.AbilityCosts.costList[abilityName];
-        } else {
-            // For testing purposes, currently RNGing unset abilities
-            // In future will delete this else block so it just defaults
-            // to cost 0.
-            var rand = Math.floor((Math.random() * 4));
-            if (rand == 3) {
-                cost = GameUI.AbilityCosts.TIER_ONE;
-            } else if (rand == 2) {
-                cost = GameUI.AbilityCosts.TIER_TWO;
-            } else if (rand == 1) {
-                cost = GameUI.AbilityCosts.TIER_THREE;
-            } else{
-                cost = GameUI.AbilityCosts.TIER_FOUR;
-            }
-             GameUI.AbilityCosts.costList[abilityName] = cost;
-        }
+        cost = GameUI.AbilityCosts.getCost(abilityName);
         
         // Filter abilities
         switch (cost) {
