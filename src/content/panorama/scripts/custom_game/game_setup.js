@@ -2194,30 +2194,8 @@ function toggleShowDraftSkills() {
     // Update filters
     calculateFilters();
 }
-
-function toggleShowTier1() {
-    showTier1 = !showTier1;
-
-    // Update filters
-    calculateFilters();
-}
-
-function toggleShowTier2() {
-    showTier2 = !showTier2;
-
-    // Update filters
-    calculateFilters();
-}
-
-function toggleShowTier3() {
-    showTier3 = !showTier3;
-
-    // Update filters
-    calculateFilters();
-}
-
-function toggleShowTier4() {
-    showTier4 = !showTier4;
+function toggleShowTier(tier) {
+    tier = !tier;
 
     // Update filters
     calculateFilters();
