@@ -25,8 +25,8 @@
 			</Button>
 		</snippet>
 	</snippets>
-	<Panel class="changelogRoot" hittest="false">
-		<Panel id="changelogButton" hittest="false">
+	<Panel class="changelogRoot">
+		<Panel id="changelogButton">
 			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
 				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>
 			</Button>
@@ -35,7 +35,9 @@
 			<Label id="changelogNotificationLabel" text="1" />
 		</Button>
 		<Panel id="changelogDisplay" class="changelogDisplayHidden" hittest="false">
-			<Panel id="Title" hittest="false">
+			<Button id="closeChangelogButton" class="CloseButton" onactivate='toggleChangelog()'>
+			</Button>
+			<Panel id="Title">
 				<Label id="TitleName" text="#addonname" />
 				<Label id="SubTitleName" text="#addonname_description" />
 				<Panel id="OptionSelect" hittest="false">
