@@ -4082,6 +4082,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Defaults
             data.banning = data.banning || {};
 			data.faststart = data.faststart || {};
+			data.balancemode = data.balancemode || {};
             data.slots = data.slots || {};
 
             // Set vote counts
@@ -4091,9 +4092,13 @@ function OnPhaseChanged(table_name, key, data) {
 			$('#voteCountNoFS').text = '(' + (data.faststart[0] || 0) + ')';
             $('#voteCountYesFS').text = '(' + (data.faststart[1] || 0) + ')';
 			
+			$('#voteCountNoBM').text = '(' + (data.balancemode[0] || 0) + ')';
+            $('#voteCountYesBM').text = '(' + (data.balancemode[1] || 0) + ')';
+			
             // Set vote percentages
-            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
-			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')])
+            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
+			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
+			updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
@@ -4605,53 +4610,44 @@ function onPlayerCastVote(category, choice) {
             }
 
             // Add the selection
-            $('#optionVoteMaxSlots' + choice).AddClass('optionCurrentlySelected');
+            $('#optionVoteMaxSlots' + choice).AddClass('optionCurrentlySelected',choice);
 
             // Send the vote to the server
             castVote(category, choice);
         break;
 
         case 'banning':
-            // Remove glow
-            $('#optionVoteBanningNo').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteBanningNo').RemoveClass('optionCurrentlySelected');
-
-            $('#optionVoteBanningYes').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteBanningYes').RemoveClass('optionCurrentlySelected');
-
-            // Add the selection
-            var answer = 0;
-            if(choice) {
-                $('#optionVoteBanningYes').AddClass('optionCurrentlySelected');
-                answer = 1;
-            } else {
-                $('#optionVoteBanningNo').AddClass('optionCurrentlySelected');
-            }
-
-            castVote(category, answer);
+            buttonGlowHelper(category,choice,$('#optionVoteBanningYes'),$('#optionVoteBanningNo'));
         break;
 		
 		case 'faststart':
-            // Remove glow
-            $('#optionVoteFastStartNo').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteFastStartNo').RemoveClass('optionCurrentlySelected');
-
-            $('#optionVoteFastStartYes').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteFastStartYes').RemoveClass('optionCurrentlySelected');
-
-            // Add the selection
-            var answer = 0;
-            if(choice) {
-                $('#optionVoteFastStartYes').AddClass('optionCurrentlySelected');
-                answer = 1;
-            } else {
-                $('#optionVoteFastStartNo').AddClass('optionCurrentlySelected');
-            }
-            castVote(category, answer);
+            buttonGlowHelper(category,choice,$('#optionVoteFastStartYes'),$('#optionVoteFastStartNo'));
+        break;
+		
+		case 'balancemode':
+			buttonGlowHelper(category,choice,$('#optionVoteBalanceModeYes'),$('#optionVoteBalanceModeNo'));
         break;
     }
 }
 
+function buttonGlowHelper(category,choice,yesBtn,noBtn){
+	// Remove glow
+	noBtn.RemoveClass('makeThePlayerNoticeThisButton');
+    noBtn.RemoveClass('optionCurrentlySelected');
+
+    yesBtn.RemoveClass('makeThePlayerNoticeThisButton');
+    yesBtn.RemoveClass('optionCurrentlySelected');
+
+            // Add the selection
+    var answer = 0;
+    if(choice) {
+        yesBtn.AddClass('optionCurrentlySelected');
+        answer = 1;
+    } else {
+        noBtn.AddClass('optionCurrentlySelected');
+    }
+	castVote(category, answer);
+}
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------

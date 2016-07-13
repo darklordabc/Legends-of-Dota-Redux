@@ -56,7 +56,8 @@
     text-shadow: 0px 0px 2px 4.0 #000000FF;
     opacity: 0.0;
 
-    margin-top: 200px;
+    margin-top: 0px;
+	margin-bottom: 100px;
 
     horizontal-align: center;
     vertical-align: middle;
@@ -1908,7 +1909,7 @@
 #optionVoting {
     width: 98%;
     max-width: 1024px;
-    height: 300px;
+    height: 200px;
     margin-top: 4px;
     border-radius: 8px;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
@@ -1924,7 +1925,7 @@
 
 .veryBasicVoting #optionVoting {
     width: 240px;
-    height: 300px;
+    height: 400px;
 }
 
 .phase_option_voting_selected #optionVoting {
@@ -1980,7 +1981,7 @@
     margin: 0px;
 }
 
-.optionVoteBanningPhase {
+.optionVotePhase {
     flow-children: down;
     horizontal-align: middle;
 
@@ -1991,32 +1992,16 @@
     border-radius: 4px;
 }
 
-.optionVoteBanningOptions {
+.optionVoteOptions {
     flow-children: right;
     horizontal-align: middle;
 }
 
-.optionVoteFastStartPhase {
-    flow-children: down;
-    horizontal-align: middle;
-	
-	width: 220px;
-    margin-top: 16px;
-    padding: 8px;
-    border: 1px solid #444444;
-    border-radius: 8px;
-}
-
-.optionVoteFastStartHeader {
+.optionVoteInfoHeader {
     flow-children: right;
     horizontal-align: middle;
 	
 	margin-left: 23px;
-}
-
-.optionVoteFastStartOptions {
-    flow-children: right;
-    horizontal-align: middle;
 }
 
 .VotingOptionInfo {
@@ -2035,9 +2020,6 @@
     font-size: 18px;
     color: #FFFFFF;
     padding: 8px;
-    height: 88px;
-    width: 200px;
-    position: 57% 67% 0px;
     background-image: url("file://{images}/custom_game/tooltipBG.png");
     background-size: 100% 100%;
     border: 1px solid #444444;
@@ -2050,7 +2032,6 @@
     min-width: 80px;
     max-width: 350px;
     flow-children: down;
-    background-image: url("file://{images}/custom_game/tooltipBG.png");
 }
 
 #Contents {
@@ -2077,14 +2058,9 @@
     border-color: #00FF00;
 }
 
-.votingButtonBanning {
+.votingButton {
     flow-children: right;
 }
-
-.votingButtonFastStart {
-    flow-children: right;
-}
-
 
 .voteCountSlots {
     vertical-align: middle;
