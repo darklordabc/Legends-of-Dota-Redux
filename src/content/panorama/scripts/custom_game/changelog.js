@@ -1,7 +1,7 @@
 "use strict";
 
 function toggleChangelog(arg){
-	$("#changelogDisplay").SetHasClass("hangelogDisplayHidden", !$("#changelogDisplay").BHasClass("hangelogDisplayHidden"))
+	$("#changelogDisplay").SetHasClass("changelogDisplayHidden", !$("#changelogDisplay").BHasClass("changelogDisplayHidden"))
 	$("#descriptionDisplay").visible = true
 	$("#updateDisplay").visible = false	
 	$("#creditsDisplay").visible = false
