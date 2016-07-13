@@ -3394,7 +3394,7 @@
         "precache"
         {
             "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/true_random_lod_swap.vpcf"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
         }
         
         "OnAbilityPhaseStart"
@@ -3406,7 +3406,7 @@
             }
             "FireEffect"
             {
-                "EffectName"    "particles/true_random_lod_swap.vpcf"
+                "EffectName"    "particles/true_random_lod/true_random_lod_swap.vpcf"
                 "EffectAttachType"    "follow_origin"
                 "Target"        "CASTER"
             }
