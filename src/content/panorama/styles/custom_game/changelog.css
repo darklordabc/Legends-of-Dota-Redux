@@ -363,6 +363,10 @@ TextEntry #PlaceholderText {
 	color: #ffffff88;
 }
 
+.userPicName:hover {
+	text-decoration: underline;
+}
+
 .userPicDescription {
 	font-size: 14px;
 

@@ -51,10 +51,6 @@ function decrementLabelNumber(panel) {
 	}
 }
 
-function openMessage(args) {
-
-}
-
 function setupCredits() {
 	var panel = $("#creditsPanel");
       
@@ -88,9 +84,15 @@ function setupCredits() {
 			}
 
 			userPic.FindChildTraverse("avatar").steamid = steamID64;
-
-			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID3.toString());
+			
 			userPic.FindChildTraverse("userPicDescription").text = $.Localize(steamID3.toString()+ "_Description");
+
+			userPic.FindChildTraverse("userPicName").github = GameUI.CustomUIConfig().premiumData[steamID3]["github"];
+
+			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID3.toString()) + " (github)";
+			userPic.FindChildTraverse("userPicName").SetPanelEvent('onactivate', function(){
+				$.DispatchEvent( 'BrowserGoToURL', $.GetContextPanel(), "https://github.com/"+userPic.FindChildTraverse("userPicName").github);
+			});
 		})();
 	}
 }
