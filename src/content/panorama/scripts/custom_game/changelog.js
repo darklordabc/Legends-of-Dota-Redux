@@ -54,12 +54,12 @@ function decrementLabelNumber(panel) {
 function setupCredits() {
 	var panel = $("#creditsPanel");
       
-	for (var steamID3 in GameUI.CustomUIConfig().premiumData) {
+	for (var contributor in GameUI.CustomUIConfig().premiumData) {
 		(function () {
-			var userPic = $.CreatePanel("Panel", panel, steamID3);
+			var userPic = $.CreatePanel("Panel", panel, contributor);
 			userPic.BLoadLayoutSnippet("userPic");
 
-			var steamID64 = GameUI.CustomUIConfig().premiumData[steamID3]["steamID64"]
+			var steamID64 = GameUI.CustomUIConfig().premiumData[contributor]["steamID64"]
 
 			for (var message in messages) {
 				(function () {
@@ -85,11 +85,11 @@ function setupCredits() {
 
 			userPic.FindChildTraverse("avatar").steamid = steamID64;
 			
-			userPic.FindChildTraverse("userPicDescription").text = $.Localize(steamID3.toString()+ "_Description");
+			userPic.FindChildTraverse("userPicDescription").text = $.Localize(steamID64.toString()+ "_Description");
 
-			userPic.FindChildTraverse("userPicName").github = GameUI.CustomUIConfig().premiumData[steamID3]["github"];
+			userPic.FindChildTraverse("userPicName").github = GameUI.CustomUIConfig().premiumData[contributor]["github"];
 
-			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID3.toString()) + " (github)";
+			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID64.toString()) + " (github)";
 			userPic.FindChildTraverse("userPicName").SetPanelEvent('onactivate', function(){
 				$.DispatchEvent( 'BrowserGoToURL', $.GetContextPanel(), "https://github.com/"+userPic.FindChildTraverse("userPicName").github);
 			});

@@ -7,12 +7,12 @@
     "game_mode_15_desc"                             "Build a fully sick hero"
 
     // Contributors
-    "28090256" "Ash47"
-    "28090256_Description" "Core coder and designer"
-    "93913347" "darklordabc"
-    "93913347_Description" "Redux project lead"
-    "41110316" "TideSofDarK"
-    "41110316_Description" "UI/Spells contributor"    
+    "76561197988355984" "Ash47"
+    "76561197988355984_Description" "Core coder and designer"
+    "76561198054179075" "darklordabc"
+    "76561198054179075_Description" "Redux project lead"
+    "76561198001376044" "TideSofDarK"
+    "76561198001376044_Description" "UI/Spells contributor"    
 
     // Teams
     "theRadiant"                                    "The Radiant"

@@ -368,8 +368,13 @@ end
 
 -- Send the contributors
 function Pregame:sendContributors()
+    local sortedContributors = {}
+    for k,v in pairs(util.contributors) do
+        table.insert(sortedContributors, v)
+    end
+
     -- Push the contributors
-    network:setContributors(util.contributors)
+    network:setContributors(sortedContributors)
 end
 
 -- Thinker function to handle logic
