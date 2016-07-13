@@ -1244,8 +1244,10 @@ function Pregame:processVoteData()
 	if results.balancemode ~= nil then
         if results.balancemode == 1 then
         	-- Option Voting
+        	self:setOption('lodOptionBalanceMode', 1, true)
         else
         	-- No option voting
+        	self:setOption('lodOptionBalanceMode', 0, true)
         end
     end
 
