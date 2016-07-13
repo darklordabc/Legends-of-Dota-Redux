@@ -154,7 +154,7 @@
     height: fill-parent-flow(1.0);
 	width: fill-parent-flow(1.0);
 	visibility: collapse;
-	overflow: clip scroll;
+	/*overflow: clip scroll;*/
 }
 
 .displayText
