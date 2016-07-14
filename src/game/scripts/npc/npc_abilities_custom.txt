@@ -3526,7 +3526,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityTextureName"            "ursa_fury_swipes_lod"
+        "AbilityTextureName"            "ursa_fury_swipes"
                 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3561,7 +3561,6 @@
             "particle"                          "particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
             "particle"                          "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
         }
-        
         "Modifiers"
         {
             "modifier_fury_swipes_caster_lod"
@@ -3569,7 +3568,16 @@
                 "Passive"                       "1"
                 "IsHidden"                      "1"
                 "IsPurgable"                    "0"
-            
+
+                "OnAttackStart"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua"
+                        "Function"              "fury_swipes_check_stacks"
+                    }
+                }
                 "OnAttackLanded"
                 {
                     "RunScript"
