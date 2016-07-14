@@ -334,10 +334,10 @@
                             <ToggleButton text="Show Disallowed Skills" onactivate="toggleShowDisallowed()" />
                             
                             <Label id="balanceModeFilter" text="#filter_by_value" class="buildingHelperInfoText" />
-                            <ToggleButton id="buttonShowTier1" text="#balance_mode_tier_1" onactivate="toggleShowTier(showTier1)" />
-                            <ToggleButton id="buttonShowTier2" text="#balance_mode_tier_2" onactivate="toggleShowTier(showTier2)" />
-                            <ToggleButton id="buttonShowTier3" text="#balance_mode_tier_3" onactivate="toggleShowTier(showTier3)" />
-                            <ToggleButton id="buttonShowTier4" text="#balance_mode_tier_4" onactivate="toggleShowTier(showTier4)" />
+                            <ToggleButton id="buttonShowTier1" text="#balance_mode_tier_1" onactivate="toggleShowTier('showTier1')" />
+                            <ToggleButton id="buttonShowTier2" text="#balance_mode_tier_2" onactivate="toggleShowTier('showTier2')" />
+                            <ToggleButton id="buttonShowTier3" text="#balance_mode_tier_3" onactivate="toggleShowTier('showTier3')" />
+                            <ToggleButton id="buttonShowTier4" text="#balance_mode_tier_4" onactivate="toggleShowTier('showTier4')" />
 
                             <Label id="balanceModePointsSkills" text="#balance_mode_points" />
 
