@@ -3388,13 +3388,13 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityTextureName"            "true_random_lod"
         
         "precache"
         {
             "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
+            "particle"        "particles/true_random_lod_swap.vpcf"
         }
         
         "OnAbilityPhaseStart"
@@ -3406,7 +3406,7 @@
             }
             "FireEffect"
             {
-                "EffectName"    "particles/true_random_lod/true_random_lod_swap.vpcf"
+                "EffectName"    "particles/true_random_lod_swap.vpcf"
                 "EffectAttachType"    "follow_origin"
                 "Target"        "CASTER"
             }
@@ -3432,16 +3432,6 @@
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                         "value"                 "all"
-                    }
-                }
-                
-                "ThinkInterval" "0.1"
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                        "Function"              "CooldownCheck"
                     }
                 }
             }
