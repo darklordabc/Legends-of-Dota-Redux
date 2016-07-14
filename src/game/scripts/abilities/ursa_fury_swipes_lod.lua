@@ -73,7 +73,6 @@ function fury_swipes_attack( keys )
 	end
 	
 	local current_stack = target.stacks or 0
-	print(current_stack)
 
 	-- Check if unit already have stack
 	if target:HasModifier( modifierName ) then
