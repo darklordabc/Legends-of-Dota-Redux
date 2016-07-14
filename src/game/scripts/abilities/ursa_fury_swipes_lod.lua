@@ -7,6 +7,7 @@
 LinkLuaModifier( "modifier_fury_swipes_bonus_damage", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fury_swipes_bonus_damage_ranged", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+--[[
 function fury_swipes_preattack_ranged( keys )
 	local caster = keys.attacker
 	local target = keys.target
@@ -18,7 +19,7 @@ function fury_swipes_preattack_ranged( keys )
 			Target = target,
 			Source = caster,
 			Ability = ability,
-			EffectName = "", -- "particles/holdout_lina/wildfire_projectile.vpcf" used for testing
+			EffectName = "particles/holdout_lina/wildfire_projectile.vpcf",
 			bDodgeable = false,
 			bProvidesVision = false,
 			iMoveSpeed = projectileSpeed, 
@@ -31,6 +32,7 @@ function fury_swipes_preattack_ranged( keys )
 	end
 
 end
+]]
 
 function fury_swipes_check_stacks( keys )
 	local caster = keys.caster
@@ -45,7 +47,6 @@ function fury_swipes_check_stacks( keys )
 
 	target.stacks = target:GetModifierStackCount( modifierName, ability )
 	ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
-	caster:SetModifierStackCount( modifierNameB, ability, target.stacks )
 end
 
 function fury_swipes_attack( keys )
@@ -72,30 +73,13 @@ function fury_swipes_attack( keys )
 		duration = ability:GetLevelSpecialValueFor( "bonus_reset_time_roshan", ability:GetLevel() - 1 )
 	end
 	
-	local current_stack = target.stacks or 0
+	local current_stack = target.stacks or 1
 
 	-- Check if unit already have stack
-	if target:HasModifier( modifierName ) then
-		-- Check stacks from local variable
-		
-		-- Apply modifier to target
-		ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
-		target:SetModifierStackCount( modifierName, ability, current_stack + 1 )
+	-- Apply modifier to target
+	ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
+	target:SetModifierStackCount( modifierName, ability, current_stack )
 
-		-- Apply modifier to caster (bonus damage)
-		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
-		caster:SetModifierStackCount( modifierNameB, ability, current_stack + 1 )
-	else
-		-- Apply modifier to target
-		ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
-		target:SetModifierStackCount( modifierName, ability, 1 )
-		
-		-- Apply modifier to caster (bonus damage)
-		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
-		caster:SetModifierStackCount( modifierNameB, ability, 1 )
-	end
-	target.stacks = 0
-	caster:RemoveModifierByName(modifierNameB)
 end
 
 -- FURY SWIPES DAMAGE MODIFIERS
@@ -118,8 +102,11 @@ function modifier_fury_swipes_bonus_damage:IsHidden()
 	return true
 end
 
-function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Physical()
-	return (self:GetStackCount() * self:GetAbility():GetLevelSpecialValueFor("damage_per_stack", self:GetAbility():GetLevel() - 1))
+function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Physical(params)
+    local target = params.target
+    local nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack", self:GetAbility():GetLevel() - 1))
+    target.stacks = target.stacks + 1
+    return nFurySwipes
 end
 
 
@@ -142,6 +129,9 @@ function modifier_fury_swipes_bonus_damage_ranged:IsHidden()
 	return true
 end
 
-function modifier_fury_swipes_bonus_damage_ranged:GetModifierProcAttack_BonusDamage_Physical()
-	return self:GetStackCount() * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack_ranged", self:GetAbility():GetLevel() - 1))
+function modifier_fury_swipes_bonus_damage_ranged:GetModifierProcAttack_BonusDamage_Physical(params)
+    local target = params.target
+    local nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack_ranged", self:GetAbility():GetLevel() - 1))
+    target.stacks = target.stacks + 1
+    return nFurySwipes
 end
