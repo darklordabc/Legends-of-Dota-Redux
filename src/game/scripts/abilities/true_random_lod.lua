@@ -2,23 +2,30 @@
 function RandomGet(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local randomAb = caster:AddAbility(ability.randomAb)
+	local randomAb = caster:FindAbilityByName(caster.randomAb)
+	if not randomAb then
+		randomAb = caster:AddAbility(caster.randomAb)
+	end
 	local maxLevel = randomAb:GetMaxLevel()
 	
-	-- Leveling filters
-	if ability:GetAbilityType() ~= DOTA_ABILITY_TYPE_ULTIMATE then
+	-- Leveling filters; 1 is the ultimate type
+	if randomAb:GetAbilityType() ~= 1 then
 		local level = ability:GetLevel()
 		if ability:GetLevel() > maxLevel then level = maxLevel end
 		randomAb:SetLevel(level)
 	else 
 		-- Clamp level to lowest achievable level; if ability is level 1 always use level 1 ultimate; otherwise check for caster's level
 		local clamp = ability:GetLevel()
-		if ability:GetLevel() > math.floor(caster:GetLevel()/5) then qualifier = math.floor(caster:GetLevel()/5) end
-		if qualifier > maxLevel then qualifier = maxLevel end
-		if qualifier < 1 then qualifier = 1 end
+		if ability:GetLevel() > math.floor(caster:GetLevel()/5) then clamp = math.floor(caster:GetLevel()/5) end
+		if clamp > maxLevel then clamp = maxLevel end
+		if clamp < 1 then clamp = 1 end
+		print(ability:GetLevel(), math.floor(caster:GetLevel()/5), maxLevel)
 		randomAb:SetLevel(clamp)
 	end
-	
+	if caster.prevAbility then 
+		local prevAb = caster:FindAbilityByName(caster.prevAbility)
+		randomAb:StartCooldown(prevAb:GetCooldownTimeRemaining())
+	end
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
 	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
@@ -26,35 +33,35 @@ end
 function RandomRemove(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local randomAb = caster:FindAbilityByName(ability.randomAb)
+	local randomAb = caster:FindAbilityByName(caster.randomAb)
 	
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
-	
-	caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
-	ability.prevAbility = ability.randomAb
-	local picker = math.random(1,#ability.randomSelection)
-	ability.randomAb = ability.randomSelection[picker]	
-end
-
-function CooldownCheck(keys)
-	local caster = keys.caster
-	local ability = keys.ability
-	local randomAb = caster:FindAbilityByName(ability.randomAb)
-	if not randomAb:IsCooldownReady() then
-		ability.spellused = true
+	if caster.lastAbility then 
+		caster:RemoveAbility(caster.lastAbility)
 	end
-	if randomAb:IsCooldownReady() and ability.spellused and not randomAb:IsChanneling() then
-		if ability.prevAbility then caster:RemoveAbility(ability.prevAbility) end
-		ability:OnChannelFinish(true)
-		ability:OnAbilityPhaseStart()
-		ability.spellused = false
-	end	
+	if randomAb then
+		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
+		randomAb:SetHidden(true) -- double check for flyout
+	end
+	caster.lastAbility = caster.penultimateAbility
+	caster.penultimateAbility = caster.prevAbility
+	caster.prevAbility = caster.randomAb
+	local picker = math.random(#caster.randomSelection)
+	caster.randomAb = caster.randomSelection[picker]	
+	if caster.subList[caster.randomAb] then 
+		caster.subAb = caster.subList[caster.randomAb]	
+	else
+		caster.subAb = nil
+	end
 end
 
 function RandomInit(keys)
 	local kv = LoadKeyValues('scripts/kv/randompicker.kv')
 	local ability = keys.ability
+	local caster = keys.caster
+	caster.random = ability
+	caster.subList = LoadKeyValues('scripts/kv/abilityDeps.kv')
 	-- find desired flags
 	for k, v in pairs( kv ) do
 		if k == keys.value then
@@ -69,10 +76,10 @@ function RandomInit(keys)
 			for l,m in pairs(v) do
 				s[m]=l
 			end
-			ability.randomSelection = s
+			caster.randomSelection = s
 		end
 	end
-	local picker = math.random(1,#ability.randomSelection)
-	ability.randomAb = ability.randomSelection[picker]	
-	ability:OnAbilityPhaseStart()
+	local picker = math.random(#caster.randomSelection)
+	caster.randomAb = caster.randomSelection[picker]
+	if caster.subList[caster.randomAb] then caster.subAb = caster.subList[caster.randomAb] end
 end
