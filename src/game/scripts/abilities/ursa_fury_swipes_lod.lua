@@ -7,6 +7,47 @@
 LinkLuaModifier( "modifier_fury_swipes_bonus_damage", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fury_swipes_bonus_damage_ranged", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function fury_swipes_preattack_ranged( keys )
+	local caster = keys.attacker
+	local target = keys.target
+	local ability = keys.ability
+	local projectileSpeed = caster:GetProjectileSpeed()
+
+	if caster:IsRangedAttacker() then
+		local projTable = {
+			Target = target,
+			Source = caster,
+			Ability = ability,
+			EffectName = "", -- "particles/holdout_lina/wildfire_projectile.vpcf" used for testing
+			bDodgeable = false,
+			bProvidesVision = false,
+			iMoveSpeed = projectileSpeed, 
+			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, 
+			vSpawnOrigin = caster:GetAbsOrigin()
+		}
+		ProjectileManager:CreateTrackingProjectile( projTable )
+	else
+		fury_swipes_check_stacks(keys)
+	end
+
+end
+
+function fury_swipes_check_stacks( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local modifierName = "modifier_fury_swipes_target_lod"
+	local modifierNameB = "modifier_fury_swipes_bonus_damage"
+
+	if caster:IsRangedAttacker() then 
+		modifierNameB = "modifier_fury_swipes_bonus_damage_ranged"
+	end
+
+	target.stacks = target:GetModifierStackCount( modifierName, ability )
+	ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
+	caster:SetModifierStackCount( modifierNameB, ability, target.stacks )
+end
+
 function fury_swipes_attack( keys )
 	-- Variables
 	local caster = keys.caster
@@ -31,16 +72,19 @@ function fury_swipes_attack( keys )
 		duration = ability:GetLevelSpecialValueFor( "bonus_reset_time_roshan", ability:GetLevel() - 1 )
 	end
 	
+	local current_stack = target.stacks or 0
+	print(current_stack)
+
 	-- Check if unit already have stack
 	if target:HasModifier( modifierName ) then
-		local current_stack = target:GetModifierStackCount( modifierName, ability )
+		-- Check stacks from local variable
 		
 		-- Apply modifier to target
 		ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
 		target:SetModifierStackCount( modifierName, ability, current_stack + 1 )
 
 		-- Apply modifier to caster (bonus damage)
-		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, { Duration = duration } )
+		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
 		caster:SetModifierStackCount( modifierNameB, ability, current_stack + 1 )
 	else
 		-- Apply modifier to target
@@ -48,9 +92,11 @@ function fury_swipes_attack( keys )
 		target:SetModifierStackCount( modifierName, ability, 1 )
 		
 		-- Apply modifier to caster (bonus damage)
-		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, { Duration = duration } )
+		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
 		caster:SetModifierStackCount( modifierNameB, ability, 1 )
 	end
+	target.stacks = 0
+	caster:RemoveModifierByName(modifierNameB)
 end
 
 -- FURY SWIPES DAMAGE MODIFIERS
