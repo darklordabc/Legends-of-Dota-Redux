@@ -2195,7 +2195,20 @@ function toggleShowDraftSkills() {
     calculateFilters();
 }
 function toggleShowTier(tier) {
-    tier = !tier;
+	switch(tier) {
+        case 'showTier1':
+		    showTier1 = !showTier1
+		    break;
+        case 'showTier2':
+		    showTier2 = !showTier2
+		    break;
+	case 'showTier3':
+		    showTier3 = !showTier3
+		    break;
+	case 'showTier4':
+		    showTier4 = !showTier4
+		    break;
+	}
 
     // Update filters
     calculateFilters();
