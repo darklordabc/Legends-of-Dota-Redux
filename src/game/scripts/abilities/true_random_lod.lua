@@ -50,7 +50,7 @@ function RandomRemove(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(caster.randomAb)
-	if caster.subAb then randomAb = caster:FindAbilityByName(caster.subAb) end
+	if caster.subAb and caster.subActivated then randomAb = caster:FindAbilityByName(caster.subAb) end
 	
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
@@ -115,6 +115,7 @@ function RandomInit(keys)
 			-- change values to ascending sequence
 			local i = 1
 			for l,m in pairs(v) do
+				print(ownedSkill[v[l]],v[l])
 				if not ownedSkill[v[l]] then -- do not add already owned skills to possible set
 					v[l] = i
 					i = i + 1
