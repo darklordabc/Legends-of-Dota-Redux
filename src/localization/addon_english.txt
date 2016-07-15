@@ -400,7 +400,7 @@
 
     "lodBanningPhase"                               "Enable The Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
-    "lodBalanceMode" 				    "Enable Balance Mode"
+    "lodBalanceMode" 				    "Disable Balance Mode"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "Everyone receives a pool of 100 points to spend on abilities. Abilities cost 50, 30, 20 points or are free, depending on their popularity."
