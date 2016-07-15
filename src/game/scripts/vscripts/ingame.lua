@@ -128,7 +128,12 @@ function Ingame:balancePlayer(playerID, newTeam)
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-    if IsValidEntity(hero) then
+    if not hero then 
+		local player = PlayerResource:GetPlayer(playerID)
+		player:MakeRandomHeroSelection()
+		hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	end
+    if IsValidEntity(hero) or hero then
         -- Change the team
         hero:SetTeam(newTeam)
         hero:SetPlayerID(playerID)
