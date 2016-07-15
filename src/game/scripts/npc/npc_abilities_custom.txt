@@ -3406,7 +3406,7 @@
             }
             "FireEffect"
             {
-                "EffectName"    "particles/true_random_lod_swap.vpcf"
+                "EffectName"    "particles/true_random_lod/true_random_lod_swap.vpcf"
                 "EffectAttachType"    "follow_origin"
                 "Target"        "CASTER"
             }
