@@ -115,8 +115,7 @@ function RandomInit(keys)
 			-- change values to ascending sequence
 			local i = 1
 			for l,m in pairs(v) do
-				print(ownedSkill[v[l]],v[l])
-				if not ownedSkill[v[l]] then -- do not add already owned skills to possible set
+				if not ownedSkill[l] then -- do not add already owned skills to possible set
 					v[l] = i
 					i = i + 1
 				end
