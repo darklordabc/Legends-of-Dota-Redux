@@ -282,4 +282,9 @@
 			}
 		}
 	}
+	
+	"tusk_walrus_kick"
+	{
+		"RequiredLevel"					"3"
+	}
 }	
