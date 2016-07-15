@@ -11,7 +11,9 @@ function RandomGet(keys)
 		end
 	end
 	local maxLevel = randomAb:GetMaxLevel()
-	
+	PrecacheItemByNameAsync(randomAb:GetName(),function()
+		return randomAb
+	end)
 	-- Leveling filters; 1 is the ultimate type
 	if randomAb:GetAbilityType() ~= 1 then
 		local level = ability:GetLevel()
@@ -23,7 +25,6 @@ function RandomGet(keys)
 		if ability:GetLevel() > math.floor(caster:GetLevel()/5) then clamp = math.floor(caster:GetLevel()/5) end
 		if clamp > maxLevel then clamp = maxLevel end
 		if clamp < 1 then clamp = 1 end
-		print(ability:GetLevel(), math.floor(caster:GetLevel()/5), maxLevel)
 		randomAb:SetLevel(clamp)
 	end
 	if caster.prevAbility then 
@@ -48,6 +49,7 @@ function RandomRemove(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(caster.randomAb)
+	if caster.subAb then randomAb = caster:FindAbilityByName(caster.subAb) end
 	
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
@@ -60,13 +62,19 @@ function RandomRemove(keys)
 		local abName = caster.randomAb
 		if caster.randomKv["safe"][abName] then
 			caster:RemoveAbility(abName)
+			if caster.subList[abName] then caster.subAb = caster.subList[abName] end
 			if caster.subAb then
 			    subAb = caster:RemoveAbility(caster.subAb)
 			end
 		else
 			caster.safeRemoveList[abName] = false
-			local timer = randomAb:GetCooldownTime(-1)
-			if timer < randomAb:GetDuration() then timer = randomAb:GetDuration() end
+			local timer = randomAb:GetDuration()
+			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration", -1) end
+			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("*_duration", -1) end
+			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration_*", -1) end
+			print(GetAbilityCount(caster), timer, randomAb:GetCooldown(-1))
+			if not timer or timer <= 1 then timer = randomAb:GetCooldown(-1) end
+			timer = timer + 2 -- safety duration buffer
 			Timers:CreateTimer(function()
 				caster.safeRemoveList[abName] = true
 	        	return nil
@@ -82,17 +90,11 @@ function RandomRemove(keys)
 
 	local picker = math.random(#caster.randomSelection)
 	caster.randomAb = caster.randomSelection[picker]
-
-	if GetAbilityCount(caster) > caster.initialAb then
+	if 15 < GetAbilityCount(caster) then
 		picker = math.random(#caster.randomSafeSelection)
 		caster.randomAb = caster.randomSafeSelection[picker]
 	end
-
-	if caster.subList[caster.randomAb] then 
-		caster.subAb = caster.subList[caster.randomAb]	
-	else
-		caster.subAb = nil
-	end
+	caster.subAb = caster.subList[caster.randomAb]	
 end
 
 function RandomInit(keys)
@@ -102,14 +104,24 @@ function RandomInit(keys)
 	caster.safeRemoveList = {}
 	caster.random = ability
 	caster.subList = LoadKeyValues('scripts/kv/abilityDeps.kv')
+	-- check currently owned and visible skills to prevent repeats
+	local ownedSkill={}
+	for i = 0, GetAbilityCount(caster)-1 do
+		local exclusion = caster:GetAbilityByIndex(i):GetName()
+		if not caster:FindAbilityByName(exclusion):IsHidden() then
+			ownedSkill[exclusion] = true
+		end
+	end
 	-- find desired flags
 	for k, v in pairs( caster.randomKv ) do
 		if k == keys.value then
 			-- change values to ascending sequence
 			local i = 1
 			for l,m in pairs(v) do
-				v[l] = i
-				i = i + 1
+				if not ownedSkill[v[l]] then -- do not add already owned skills to possible set
+					v[l] = i
+					i = i + 1
+				end
 			end
 			-- invert keys and values to make ability names the value; second step to turning table into array
 			local s={}
@@ -136,5 +148,4 @@ function RandomInit(keys)
 	local picker = math.random(#caster.randomSelection)
 	caster.randomAb = caster.randomSelection[picker]
 	if caster.subList[caster.randomAb] then caster.subAb = caster.subList[caster.randomAb] end
-	caster.initialAb = GetAbilityCount(caster)
 end
