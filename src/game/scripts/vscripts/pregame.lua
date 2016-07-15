@@ -1238,11 +1238,14 @@ function Pregame:processVoteData()
     end
 	if results.balancemode ~= nil then
         if results.balancemode == 1 then
-        	-- Option Voting
-        	self:setOption('lodOptionBalanceMode', 1, true)
-        else
-        	-- No option voting
+        	-- Disable Balance Mode
+        	self:setOption('lodOptionBanning', 3, true) -- banning phase override; balancemode gets checked after banmode
+                self.optionVotingBanning = 1
         	self:setOption('lodOptionBalanceMode', 0, true)
+        else
+        	-- On by default
+        	self:setOption('lodOptionBalanceMode', 1, true)
+        	-- banning mode does not get overridden
         end
     end
 
