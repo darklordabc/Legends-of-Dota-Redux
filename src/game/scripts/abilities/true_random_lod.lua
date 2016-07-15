@@ -1,4 +1,5 @@
 local Timers = require('easytimers')
+local util = require('util')
 
 function RandomGet(keys)
 	local caster = keys.caster
@@ -68,13 +69,9 @@ function RandomRemove(keys)
 			end
 		else
 			caster.safeRemoveList[abName] = false
-			local timer = randomAb:GetDuration()
-			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration", -1) end
-			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("*_duration", -1) end
-			if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration_*", -1) end
-			print(GetAbilityCount(caster), timer, randomAb:GetCooldown(-1))
-			if not timer or timer <= 1 then timer = randomAb:GetCooldown(-1) end
-			timer = timer + 2 -- safety duration buffer
+		    local setdelay = randomAb:GetCooldown(-1)
+		    local buffer = 2
+            local timer = getAbilityDuration(randomAb, setdelay, buffer)
 			Timers:CreateTimer(function()
 				caster.safeRemoveList[abName] = true
 	        	return nil
