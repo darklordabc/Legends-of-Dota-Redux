@@ -1195,8 +1195,8 @@
 .skillCostLarge {
     font-size: 20px;
     font-weight: bold;
-	 margin-right: 0px;
-	 margin-bottom: -6px;
+	margin-right: 0px;
+	margin-bottom: -6px;
     vertical-align: bottom;
     horizontal-align: right;
 }
@@ -1204,38 +1204,48 @@
 .skillCostRecommended {
     font-size: 18px;
     font-weight: bold;
-	 margin-right: 0px;
-	 margin-bottom: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
     vertical-align: bottom;
     horizontal-align: right;
 }
 
 .skillCostSmall {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
-	 margin-right: -2px;
-	 margin-bottom: -4px;
+	margin-right: -2px;
+	margin-bottom: -4px;
     vertical-align: bottom;
     horizontal-align: right;
 }
 
 .tier1 {
-    color: #ffffcc;
-	 text-shadow: 0px 0px 6px 8 #777700ff;
+    color: #ffbbbb;
+	text-shadow: 0px 0px 6px 8 #550000ff;
 }
 
 .tier2 {
-    color: #ffccff;
-	 text-shadow: 0px 0px 6px 8 #770077ff;
+    color: #ffffcc;
+	text-shadow: 0px 0px 6px 8 #777700ff;
 }
 
 .tier3 {
-    color: #ccffcc;
-	 text-shadow: 0px 0px 6px 8 #007700ff;
+    color: #ccffff;
+	text-shadow: 0px 0px 6px 8 #007777ff;
 }
 
 .tier4 {
-	 visibility: collapse;
+    color: #ffccff;
+	text-shadow: 0px 0px 6px 8 #770077ff;
+}
+
+.tier5 {
+    color: #ccffcc;
+	text-shadow: 0px 0px 6px 8 #007700ff;
+}
+
+.tier6 {
+	visibility: collapse;
 }
 
 #toggleShowDraftAblilities {

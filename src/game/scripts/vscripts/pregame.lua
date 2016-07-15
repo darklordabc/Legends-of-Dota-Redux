@@ -412,14 +412,9 @@ function Pregame:onThink()
         local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
         self.spellCosts = {}
         for tier, tierList in pairs(balanceMode) do
-            local price = 0
-            if tier == 'tier_1' then
-                price = 50
-            elseif tier == 'tier_2' then
-                price = 30
-            elseif tier == 'tier_3' then
-                price = 20
-            end
+            local tierNum = tonumber(string.sub(tier, 6))
+            local price = constants.TIER[tierNum]
+            
             for abilityName,nothing in pairs(tierList) do
                 self.spellCosts[abilityName] = price
                 network:sendSpellPrice(abilityName, price)
@@ -1370,8 +1365,8 @@ function Pregame:notEnoughPoints(build)
     print(spent)
     
     -- Check to see if we exceed 100
-    if spent > 100 then
-        return true, spent - 100
+    if spent > constants.BALANCE_MODE_POINTS then
+        return true, spent - constants.BALANCE_MODE_POINTS
     end
 
     return false

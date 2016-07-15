@@ -223,10 +223,12 @@
     "lodOptionGameSpeedRespawnTime60Second"         "60 Second Respawn"
 
     // Balance Mode
-    "balance_mode_tier_1"                           "Best of the Best (50)"
-    "balance_mode_tier_2"                           "Best (30)"
-    "balance_mode_tier_3"                           "Good (20)"
-    "balance_mode_tier_4"                           "Free"
+    "balance_mode_tier_1"                           "Unfair (120)"
+    "balance_mode_tier_2"                           "Overpowered (80)"
+    "balance_mode_tier_3"                           "Best (40)"
+    "balance_mode_tier_4"                           "Very Good (20)"
+    "balance_mode_tier_5"                           "Good (10)"
+    "balance_mode_tier_6"                           "Free"
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"

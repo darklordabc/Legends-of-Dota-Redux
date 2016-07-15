@@ -87,10 +87,9 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
             // Set the label to the cost of the ability
             var abCost = slot.GetChild(0);
             if (abCost) {
-                abCost.SetHasClass('tier1', filterInfo.cost == GameUI.AbilityCosts.TIER_ONE);
-                abCost.SetHasClass('tier2', filterInfo.cost == GameUI.AbilityCosts.TIER_TWO);
-                abCost.SetHasClass('tier3', filterInfo.cost == GameUI.AbilityCosts.TIER_THREE);
-                abCost.SetHasClass('tier4', filterInfo.cost == GameUI.AbilityCosts.TIER_FOUR);
+                for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+                    abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
+                }
                 abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
             }
         }

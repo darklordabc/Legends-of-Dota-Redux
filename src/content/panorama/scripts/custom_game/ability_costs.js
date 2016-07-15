@@ -12,23 +12,27 @@
     assumed to be 0.
 */
 
+var BALANCE_MODE_POINTS = 120;
+
 // Tier cost constants:
 
-var COST_TIER_ONE   = 50;
-var COST_TIER_TWO   = 30;
-var COST_TIER_THREE = 20;
-var COST_TIER_FOUR  = 0;
+var TIER_COUNT = 6;
+
+var COST_TIER_ONE   = 120;
+var COST_TIER_TWO   = 80;
+var COST_TIER_THREE = 40;
+var COST_TIER_FOUR  = 20;
+var COST_TIER_FIVE  = 10;
+var COST_TIER_SIX   = 0;
 var NO_COST = 0;
 
 // Globals for accessing costs outside of this file:
 
 GameUI.AbilityCosts = GameUI.AbilityCosts || {};
-GameUI.AbilityCosts.balanceModeEnabled = false;
 GameUI.AbilityCosts.costList = [];
-GameUI.AbilityCosts.TIER_ONE = COST_TIER_ONE;
-GameUI.AbilityCosts.TIER_TWO = COST_TIER_TWO;
-GameUI.AbilityCosts.TIER_THREE = COST_TIER_THREE;
-GameUI.AbilityCosts.TIER_FOUR = COST_TIER_FOUR;
+GameUI.AbilityCosts.BALANCE_MODE_POINTS = BALANCE_MODE_POINTS;
+GameUI.AbilityCosts.TIER_COUNT = TIER_COUNT;
+GameUI.AbilityCosts.TIER = [COST_TIER_ONE, COST_TIER_TWO, COST_TIER_THREE, COST_TIER_FOUR, COST_TIER_FIVE, COST_TIER_SIX, NO_COST];
 GameUI.AbilityCosts.NO_COST = NO_COST;
 
 function getCost(abilityName) {
