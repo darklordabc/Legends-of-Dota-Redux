@@ -54,9 +54,9 @@ function Ingame:init()
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
 
-	-- Listen if abilities are being used.
-	ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
-	
+    -- Listen if abilities are being used.
+    ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+    
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
@@ -131,6 +131,11 @@ function Ingame:balancePlayer(playerID, newTeam)
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if hero == nil then 
+        local player = PlayerResource:GetPlayer(playerID)
+        player:MakeRandomHeroSelection()
+        hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    end
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
@@ -574,9 +579,9 @@ function Ingame:OnAbilityUsed(event)
         end, timer)
     elseif abilityname == hero.subAb then
         local randomMain = hero.random
+		hero.subActivated = true
         randomMain:OnChannelFinish(true)
         randomMain:OnAbilityPhaseStart()
-        hero.subActivated = true
     end
 end
 
