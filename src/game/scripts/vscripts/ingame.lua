@@ -560,18 +560,18 @@ function Ingame:OnAbilityUsed(event)
         randomMain:OnChannelFinish(true)
         randomMain:OnAbilityPhaseStart()
     elseif abilityname == hero.randomAb and hero.subAb then
-        local timer = randomAb:GetDuration() + 0.1 -- 1s safety buffer
-        if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration", -1) + 0.1 end
-        if timer > 1 then
-            Timers:CreateTimer(function()
-                if not hero.subActivated then
-                    local randomMain = hero.random
-                    randomMain:OnChannelFinish(true)
-                    randomMain:OnAbilityPhaseStart()
-                end
-                return nil
-            end, timer)
-        end
+	    local ability = hero:FindAbilityByName(abilityname)
+		local setdelay = 10
+		local buffer = 0.1
+        local timer = getAbilityDuration(ability, setdelay, buffer)
+        Timers:CreateTimer(function()
+            if not hero.subActivated then
+                local randomMain = hero.random
+                randomMain:OnChannelFinish(true)
+                randomMain:OnAbilityPhaseStart()
+            end
+               return nil
+        end, timer)
     elseif abilityname == hero.subAb then
         local randomMain = hero.random
         randomMain:OnChannelFinish(true)
