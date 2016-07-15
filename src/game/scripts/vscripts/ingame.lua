@@ -552,13 +552,33 @@ end
 function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
-	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-    if abilityname == hero.randomAb then
-	-- look for type of random ability
-		local randomMain = hero.random
-		randomMain:OnChannelFinish(true)
-		randomMain:OnAbilityPhaseStart()
-	end
+    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+    print(abilityname,hero.randomAb,hero.subAb)
+    if abilityname == hero.randomAb and not hero.subAb then
+    -- look for type of random ability
+        local randomMain = hero.random
+        randomMain:OnChannelFinish(true)
+        randomMain:OnAbilityPhaseStart()
+    elseif abilityname == hero.randomAb and hero.subAb then
+        local timer = randomAb:GetDuration() + 0.1 -- 1s safety buffer
+        if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration", -1) + 0.1 end
+        if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("*_duration", -1) + 0.1 end
+        if timer <= 1 then timer = randomAb:GetLevelSpecialValueFor("duration_*", -1) + 0.1 end
+        if not timer or timer <= 1 then timer = 10 end
+        Timers:CreateTimer(function()
+            if not hero.subActivated then
+                local randomMain = hero.random
+                randomMain:OnChannelFinish(true)
+                randomMain:OnAbilityPhaseStart()
+            end
+               return nil
+        end, timer)
+    elseif abilityname == hero.subAb then
+        local randomMain = hero.random
+        randomMain:OnChannelFinish(true)
+        randomMain:OnAbilityPhaseStart()
+        hero.subActivated = true
+    end
 end
 
 -- Return an instance of it
