@@ -4,8 +4,11 @@ function RandomGet(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(caster.randomAb)
-	if not randomAb then
+	if not IsValidEntity(randomAb) then
 		randomAb = caster:AddAbility(caster.randomAb)
+		if caster.subAb then
+		    subAb = caster:AddAbility(caster.subAb)
+		end
 	end
 	local maxLevel = randomAb:GetMaxLevel()
 	
@@ -48,7 +51,7 @@ function RandomRemove(keys)
 	
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
-	if randomAb then
+	if IsValidEntity(randomAb) then
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
 		randomAb:SetHidden(true) -- double check for flyout
 	end
@@ -57,12 +60,17 @@ function RandomRemove(keys)
 		local abName = caster.randomAb
 		if caster.randomKv["safe"][abName] then
 			caster:RemoveAbility(abName)
+			if caster.subAb then
+			    subAb = caster:RemoveAbility(caster.subAb)
+			end
 		else
 			caster.safeRemoveList[abName] = false
+			local timer = randomAb:GetCooldownTime(-1)
+			if timer < randomAb:GetDuration() then timer = randomAb:GetDuration() end
 			Timers:CreateTimer(function()
 				caster.safeRemoveList[abName] = true
 	        	return nil
-	    	end, abName..math.random(99999), 20.0)
+	    	end, abName..math.random(99999), timer)
 		end
 
 		for k,v in pairs(caster.safeRemoveList) do
@@ -75,7 +83,7 @@ function RandomRemove(keys)
 	local picker = math.random(#caster.randomSelection)
 	caster.randomAb = caster.randomSelection[picker]
 
-	if GetAbilityCount(caster) > 9 then
+	if GetAbilityCount(caster) > caster.initialAb then
 		picker = math.random(#caster.randomSafeSelection)
 		caster.randomAb = caster.randomSafeSelection[picker]
 	end
@@ -128,4 +136,5 @@ function RandomInit(keys)
 	local picker = math.random(#caster.randomSelection)
 	caster.randomAb = caster.randomSelection[picker]
 	if caster.subList[caster.randomAb] then caster.subAb = caster.subList[caster.randomAb] end
+	caster.initialAb = GetAbilityCount(caster)
 end
