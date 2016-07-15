@@ -10,6 +10,33 @@
     NO_COST exists so that new tiers can be added easily without requiring
     an inspection of the code for places where the current lowest tier is
     assumed to be 0.
+
+    README:
+    
+    ADDING NEW TIERS:
+    
+    To add a new tier, you will have to change code to both this file, the
+    game_setup.xml file, and constants.lua file. Here's the necessary
+    changes for each file:
+
+    ability_costs.js:
+    1)  Set TIER_COUNT to the new amount of tiers.
+    2)  Add a new "COST_TIER_X" constant in the Tier cost constants
+        section.
+    3)  Then, find the "GameUI.AbilityCosts.TIER" array and add the
+        new constant before the NO_COST index (at the end).
+
+    game_setup.xml:
+    1)  Add another ToggleButton below the rest of the toggles for
+        the filters.
+    2)  Set its text to "#balance_mode_tier_x" where 'x' is the tier.
+        You will need to create the localization texts, too.
+    3)  Set the onactivate function to "toggleShowTier('x')" where
+        'x' is the new tier.
+
+    constants.lua:
+    1)  Find the Constants.TIER array. Add in the new cost value
+        where it needs to be.
 */
 
 var BALANCE_MODE_POINTS = 120;
