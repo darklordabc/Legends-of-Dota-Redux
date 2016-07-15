@@ -5,7 +5,6 @@
 ]]
 
 LinkLuaModifier( "modifier_fury_swipes_bonus_damage", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_fury_swipes_bonus_damage_ranged", "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --[[
 function fury_swipes_preattack_ranged( keys )
@@ -41,10 +40,6 @@ function fury_swipes_check_stacks( keys )
 	local modifierName = "modifier_fury_swipes_target_lod"
 	local modifierNameB = "modifier_fury_swipes_bonus_damage"
 
-	if caster:IsRangedAttacker() then 
-		modifierNameB = "modifier_fury_swipes_bonus_damage_ranged"
-	end
-
 	target.stacks = target:GetModifierStackCount( modifierName, ability )
 	ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
 end
@@ -55,7 +50,6 @@ function fury_swipes_attack( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local modifierName = "modifier_fury_swipes_target_lod"
-	local modifierNameB = "modifier_fury_swipes_bonus_damage"
 	local damageType = ability:GetAbilityDamageType()
 	local exceptionName = "npc_dota_roshan"
 
@@ -65,9 +59,6 @@ function fury_swipes_attack( keys )
 	-- Necessary value from KV
 	local duration = ability:GetLevelSpecialValueFor( "bonus_reset_time", ability:GetLevel() - 1 )
 	-- Modifies damage bonus if ranged attacker
-	if caster:IsRangedAttacker() then 
-		modifierNameB = "modifier_fury_swipes_bonus_damage_ranged"
-	end
 
 	if target:GetName() == exceptionName then   -- Put exception here
 		duration = ability:GetLevelSpecialValueFor( "bonus_reset_time_roshan", ability:GetLevel() - 1 )
@@ -83,7 +74,6 @@ function fury_swipes_attack( keys )
 end
 
 -- FURY SWIPES DAMAGE MODIFIERS
--- Melee
 if modifier_fury_swipes_bonus_damage == nil then
 	modifier_fury_swipes_bonus_damage = class({})
 end
@@ -103,35 +93,16 @@ function modifier_fury_swipes_bonus_damage:IsHidden()
 end
 
 function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Physical(params)
+    local caster = params.attacker
     local target = params.target
-    local nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack", self:GetAbility():GetLevel() - 1))
-    target.stacks = target.stacks + 1
-    return nFurySwipes
-end
-
-
--- RANGED
-if modifier_fury_swipes_bonus_damage_ranged == nil then
-	modifier_fury_swipes_bonus_damage_ranged = class({})
-end
-
-function modifier_fury_swipes_bonus_damage_ranged:DeclareFunctions()
-	return 
-	{ 
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-	}
-end
-
-function modifier_fury_swipes_bonus_damage_ranged:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
-end
-function modifier_fury_swipes_bonus_damage_ranged:IsHidden()
-	return true
-end
-
-function modifier_fury_swipes_bonus_damage_ranged:GetModifierProcAttack_BonusDamage_Physical(params)
-    local target = params.target
-    local nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack_ranged", self:GetAbility():GetLevel() - 1))
+    local nFurySwipes
+    
+    if caster:IsRangedAttacker() then
+        nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack_ranged", self:GetAbility():GetLevel() - 1))
+    else
+    	nFurySwipes = ( target.stacks + 1) * (self:GetAbility():GetLevelSpecialValueFor("damage_per_stack", self:GetAbility():GetLevel() - 1))
+    end
+    
     target.stacks = target.stacks + 1
     return nFurySwipes
 end
