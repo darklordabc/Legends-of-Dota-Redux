@@ -1,3 +1,4 @@
+local Timers = require('easytimers')
 
 function RandomGet(keys)
 	local caster = keys.caster
@@ -30,6 +31,16 @@ function RandomGet(keys)
 	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
 
+function GetAbilityCount(unit) 
+	local count = 0
+	for i=0,16 do
+		if unit:GetAbilityByIndex(i) then
+			count = count + 1
+		end
+	end
+	return count
+end
+
 function RandomRemove(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -37,18 +48,38 @@ function RandomRemove(keys)
 	
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
-	if caster.lastAbility then 
-		caster:RemoveAbility(caster.lastAbility)
-	end
 	if randomAb then
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
 		randomAb:SetHidden(true) -- double check for flyout
 	end
-	caster.lastAbility = caster.penultimateAbility
-	caster.penultimateAbility = caster.prevAbility
-	caster.prevAbility = caster.randomAb
+	if caster.safeRemoveList then 
+		-- caster:RemoveAbility(caster.lastAbility)
+		local abName = caster.randomAb
+		if caster.randomKv["safe"][abName] then
+			caster:RemoveAbility(abName)
+		else
+			caster.safeRemoveList[abName] = false
+			Timers:CreateTimer(function()
+				caster.safeRemoveList[abName] = true
+	        	return nil
+	    	end, abName..math.random(99999), 20.0)
+		end
+
+		for k,v in pairs(caster.safeRemoveList) do
+	    	if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() == true then
+	    		caster:RemoveAbility(k)
+	    	end
+	    end
+	end
+
 	local picker = math.random(#caster.randomSelection)
-	caster.randomAb = caster.randomSelection[picker]	
+	caster.randomAb = caster.randomSelection[picker]
+
+	if GetAbilityCount(caster) > 9 then
+		picker = math.random(#caster.randomSafeSelection)
+		caster.randomAb = caster.randomSafeSelection[picker]
+	end
+
 	if caster.subList[caster.randomAb] then 
 		caster.subAb = caster.subList[caster.randomAb]	
 	else
@@ -57,13 +88,14 @@ function RandomRemove(keys)
 end
 
 function RandomInit(keys)
-	local kv = LoadKeyValues('scripts/kv/randompicker.kv')
 	local ability = keys.ability
 	local caster = keys.caster
+	caster.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
+	caster.safeRemoveList = {}
 	caster.random = ability
 	caster.subList = LoadKeyValues('scripts/kv/abilityDeps.kv')
 	-- find desired flags
-	for k, v in pairs( kv ) do
+	for k, v in pairs( caster.randomKv ) do
 		if k == keys.value then
 			-- change values to ascending sequence
 			local i = 1
@@ -77,6 +109,20 @@ function RandomInit(keys)
 				s[m]=l
 			end
 			caster.randomSelection = s
+		end
+		if k == "safe" then
+			-- change values to ascending sequence
+			local i = 1
+			for l,m in pairs(v) do
+				v[l] = i
+				i = i + 1
+			end
+			-- invert keys and values to make ability names the value; second step to turning table into array
+			local s={}
+			for l,m in pairs(v) do
+				s[m]=l
+			end
+			caster.randomSafeSelection = s
 		end
 	end
 	local picker = math.random(#caster.randomSelection)
