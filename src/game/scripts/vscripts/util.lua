@@ -421,5 +421,14 @@ end
     end
 end)()
 
+function getAbilityDuration(ability, constant, buffer)
+	local duration = ability:GetDuration() + 0.1 -- 1s safety buffer
+    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("*_duration", -1) end
+    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration_*", -1) end
+	if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration", -1) end
+    if not duration or duration <= 1 then duration = constant end
+	if buffer then duration = duration + buffer end
+    return duration
+end
 -- Define the export
 return Util
