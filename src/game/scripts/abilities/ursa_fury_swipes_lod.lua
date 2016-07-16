@@ -39,9 +39,11 @@ function fury_swipes_check_stacks( keys )
 	local ability = keys.ability
 	local modifierName = "modifier_fury_swipes_target_lod"
 	local modifierNameB = "modifier_fury_swipes_bonus_damage"
-
-	target.stacks = target:GetModifierStackCount( modifierName, ability )
-	ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
+	
+	if caster:IsRealHero() then
+		target.stacks = target:GetModifierStackCount( modifierName, ability )
+		ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
+	end
 end
 
 function fury_swipes_attack( keys )
