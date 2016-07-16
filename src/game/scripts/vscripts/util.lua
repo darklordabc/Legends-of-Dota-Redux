@@ -384,7 +384,7 @@ function Util:parseTime(timeString)
 end
 
 function getAbilityDuration(ability, constant, buffer)
-	local duration = ability:GetDuration() + 0.1 -- 1s safety buffer
+    local duration = ability:GetDuration()
     if duration <= 1 then duration = ability:GetLevelSpecialValueFor("*_duration", -1) end
     if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration_*", -1) end
 	if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration", -1) end
