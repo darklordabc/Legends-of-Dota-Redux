@@ -42,28 +42,18 @@ function RandomGet(keys)
 		if clamp < 1 then clamp = 1 end
 		randomAb:SetLevel(clamp)
 	end
-	if caster.prevAbility then 
-		local prevAb = caster:FindAbilityByName(caster.prevAbility)
-		randomAb:StartCooldown(prevAb:GetCooldownTimeRemaining())
+	if caster.cooldown then 
+		randomAb:StartCooldown(caster.cooldown)
 	end
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
 	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
-end
-
-function GetAbilityCount(unit) 
-	local count = 0
-	for i=0,16 do
-		if unit:GetAbilityByIndex(i) then
-			count = count + 1
-		end
-	end
-	return count
 end
 
 function RandomRemove(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(caster.randomAb)
+	caster.cooldown = randomAb:GetCooldownTimeRemaining()
 	-- if caster.subAb and caster.subActivated then randomAb = caster:FindAbilityByName(caster.subAb) end
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
@@ -71,6 +61,7 @@ function RandomRemove(keys)
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
 		randomAb:SetHidden(true) -- double check for flyout
 	end
+	
 	if ability.safeRemoveList then 
 		-- caster:RemoveAbility(caster.lastAbility)
 		local abName = caster.randomAb
@@ -84,7 +75,7 @@ function RandomRemove(keys)
 			ability.safeRemoveList[abName] = false
 		    local setdelay = randomAb:GetCooldown(-1)
 		    local buffer = 3
-            local timer = getAbilityDuration(randomAb, setdelay, buffer)
+            local timer = GetAbilityDuration(randomAb, setdelay, buffer)
 			Timers:CreateTimer(function()
 				ability.safeRemoveList[abName] = true
 				for k,v in pairs(ability.safeRemoveList) do
@@ -169,4 +160,19 @@ function RandomInit(keys)
 	local picker = math.random(#ability.randomSelection)
 	caster.randomAb = ability.randomSelection[picker]
 	-- if ability.subList[caster.randomAb] then caster.subAb = ability.subList[caster.randomAb] end
+end
+
+function Particles(keys)
+	if not keys.caster:FindAbilityByName(keys.caster.randomAb) then return end
+	local caster = keys.caster
+	local ability = keys.ability
+	local randomAb = caster:FindAbilityByName(caster.randomAb)
+	if randomAb:IsCooldownReady() and not ability.proc then
+        particle_swap = ParticleManager:CreateParticle("particles/true_random_lod/true_random_lod_swap.vpcf", PATTACH_ABSORIGIN_FOLLOW  , keys.caster)
+		ParticleManager:SetParticleControl(particle_swap, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_swap, 1, caster:GetAbsOrigin())
+		ability.proc = true
+	elseif not randomAb:IsCooldownReady() then
+		ability.proc = false
+    end
 end
