@@ -227,11 +227,15 @@ function skillManager:RemoveAllSkills(hero)
 
     -- Build the skill list
     self:BuildSkillList(hero)
-
+	local playerID = hero:GetPlayerID()
+	local state = PlayerResource:GetConnectionState(playerID)
+	print(hero:GetName(), state)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
-        if hero:HasAbility(v) then
+        if hero:HasAbility(v) and state == 1 then
             hero:FindAbilityByName(v):SetHidden(true)
+		elseif hero:HasAbility(v) and state ~= 1 then
+		    hero:RemoveAbility(v)
         end
     end
 end
@@ -567,7 +571,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 oldAb:SetHidden(false)
             else
                 hero:AddAbility(multV)
-
                 local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)

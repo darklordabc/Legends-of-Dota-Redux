@@ -383,6 +383,17 @@ function Util:parseTime(timeString)
     }
 end
 
+function getAbilityDuration(ability, constant, buffer)
+	local duration = ability:GetDuration()
+    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("*_duration", -1) end
+    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration_*", -1) end
+	if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration", -1) end
+    if not duration or duration <= 1 then duration = constant end
+	if buffer then duration = duration + buffer end
+	print(duration)
+    return duration
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
