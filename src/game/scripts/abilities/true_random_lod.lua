@@ -46,7 +46,6 @@ function RandomGet(keys)
 		randomAb:StartCooldown(caster.cooldown)
 	end
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
-	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
 
 function RandomRemove(keys)
@@ -168,6 +167,7 @@ function Particles(keys)
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(caster.randomAb)
 	if randomAb:IsCooldownReady() and not ability.proc then
+		StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
         particle_swap = ParticleManager:CreateParticle("particles/true_random_lod/true_random_lod_swap.vpcf", PATTACH_ABSORIGIN_FOLLOW  , keys.caster)
 		ParticleManager:SetParticleControl(particle_swap, 0, caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_swap, 1, caster:GetAbsOrigin())
