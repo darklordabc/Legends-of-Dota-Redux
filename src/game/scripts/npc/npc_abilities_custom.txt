@@ -3404,12 +3404,6 @@
                 "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
-            "FireEffect"
-            {
-                "EffectName"    "particles/true_random_lod/true_random_lod_swap.vpcf"
-                "EffectAttachType"    "follow_origin"
-                "Target"        "CASTER"
-            }
         }
         "OnChannelFinish"
         {
@@ -3435,13 +3429,13 @@
                     }
                 }
                 
-                "ThinkInterval" "1"
+                "ThinkInterval" "0.1"
                 "OnIntervalThink"
                 {
                     "RunScript"
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                        "Function"              "InternalTimer"
+                        "Function"              "Particles"
                     }
                 }
             }
