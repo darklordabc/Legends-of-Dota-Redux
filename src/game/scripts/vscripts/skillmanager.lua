@@ -571,7 +571,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 oldAb:SetHidden(false)
             else
                 hero:AddAbility(multV)
-
                 local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)

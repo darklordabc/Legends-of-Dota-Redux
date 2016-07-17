@@ -131,6 +131,7 @@ function Ingame:balancePlayer(playerID, newTeam)
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
@@ -553,7 +554,6 @@ function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
     local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-    print(abilityname,hero.randomAb,hero.subAb)
     if abilityname == hero.randomAb and not hero.subAb then
     -- look for type of random ability
         local randomMain = hero.random
@@ -561,7 +561,8 @@ function Ingame:OnAbilityUsed(event)
         randomMain:OnAbilityPhaseStart()
     elseif abilityname == hero.subAb then
         local randomMain = hero.random
-	hero.subActivated = true
+		print(abilityname,hero.subAb)
+		hero.subActivated = true
         randomMain:OnChannelFinish(true)
         randomMain:OnAbilityPhaseStart()
     end
