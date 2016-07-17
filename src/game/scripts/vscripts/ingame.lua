@@ -554,17 +554,13 @@ function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
     local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-    if abilityname == hero.randomAb and not hero.subAb then
+    if abilityname == hero.randomAb then
     -- look for type of random ability
         local randomMain = hero.random
+		randomMain.proc = false
         randomMain:OnChannelFinish(true)
         randomMain:OnAbilityPhaseStart()
-    elseif abilityname == hero.subAb then
-        local randomMain = hero.random
-		hero.subActivated = true
-        randomMain:OnChannelFinish(true)
-        randomMain:OnAbilityPhaseStart()
-    end
+	end
 end
 
 -- Return an instance of it

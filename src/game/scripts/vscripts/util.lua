@@ -383,7 +383,7 @@ function Util:parseTime(timeString)
     }
 end
 
-function getAbilityDuration(ability, constant, buffer)
+function GetAbilityDuration(ability, constant, buffer)
 	local duration = ability:GetDuration()
     if duration <= 1 then duration = ability:GetLevelSpecialValueFor("*_duration", -1) end
     if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration_*", -1) end
@@ -392,6 +392,16 @@ function getAbilityDuration(ability, constant, buffer)
 	if buffer then duration = duration + buffer end
 	print(duration)
     return duration
+end
+
+function GetAbilityCount(unit) 
+	local count = 0
+	for i=0,16 do
+		if unit:GetAbilityByIndex(i) then
+			count = count + 1
+		end
+	end
+	return count
 end
 
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
