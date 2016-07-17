@@ -29,11 +29,9 @@ function RandomGet(keys)
 		end
 	end
 	--------- REMOVE ONCE BUG FOUND -------------
-	local maxLevel = randomAb:GetMaxLevel()
-	PrecacheItemByNameAsync(randomAb:GetName(),function()
-		return randomAb
-	end)
+	
 	-- Leveling filters; 1 is the ultimate type
+	local maxLevel = randomAb:GetMaxLevel()
 	if randomAb:GetAbilityType() ~= 1 then
 		local level = ability:GetLevel()
 		if ability:GetLevel() > maxLevel then level = maxLevel end
@@ -144,7 +142,7 @@ function RandomInit(keys)
 	-- find desired flags
 	for k, v in pairs( ability.randomKv ) do
 		local x = {} -- xclusion
-		if k == keys.value then
+		if k == ability.type then
 			-- change values to ascending sequence
 			local i = 1
 			for l,m in pairs(v) do
