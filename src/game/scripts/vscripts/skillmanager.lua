@@ -232,10 +232,10 @@ function skillManager:RemoveAllSkills(hero)
 	print(hero:GetName(), state)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
-        if hero:HasAbility(v) and state == 1 then -- bots use all their skills so do not remove;
+        if hero:HasAbility(v) and state == 1 then
             hero:FindAbilityByName(v):SetHidden(true)
 		else
-		    hero:RemoveAbility(v) 
+		    hero:RemoveAbility(v)
         end
     end
 end
