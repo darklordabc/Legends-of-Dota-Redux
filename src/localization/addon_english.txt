@@ -510,7 +510,7 @@
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
 	
-        "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
+    "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_force_dash_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_shards_of_truesight_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -518,8 +518,10 @@
 	"credit_pudge_flesh_heap_agi"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_silencer_global_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_tinker_rearm_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
-	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
-	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
+    "credit_slark_essence_shift_agility_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_ursa_fury_swipes_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_mirana_starfall_lod"           "<font color=\"#7D7D7D\">Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
 
     
@@ -650,7 +652,7 @@
 
     // Zeus
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance"                                   "Thundergod's Vengeance"
-    "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Description"                       "Strikes %num_targets% enemy units with a bolt of lightning, within a large range around Zeus, prioritized based upon current health.  Thundergod's Vengeance also provides True Sight around each unit struck.  If an enemy unit is invisible, it takes no damage, but the True Sight is still created at that unit's location.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Description"                       "<font color='#70EA72'>Strikes %num_targets% enemy units with a bolt of lightning, within a large range around Zeus, prioritized based upon current health.  Thundergod's Vengeance also provides True Sight around each unit struck.  If an enemy unit is invisible, it takes no damage, but the True Sight is still created at that unit's location.</font>\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Lore"                              "The Lord of Heaven smites all who oppose him, near or far."
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_damage"                            "DAMAGE:"
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_damage_scepter"                    "SCEPTER DAMAGE:"
@@ -883,7 +885,7 @@
 
     // Aftershock
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock LoD"
-    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities."
+    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>Has a cooldown.</font>"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"                              "The earth trembles beneath the mighty footsteps of Raigor."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
@@ -891,17 +893,18 @@
 
     // Rearm
     "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm LoD"
-    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
+    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - <font color='#70EA72'>Removes 30 seconds from the cooldown on most of Tinker's items and abilities.</font>"
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
 
     // Essence Shift
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
-    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus <font color='#70EA72'>Strength. Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note0"						"Attributes cannot be dropped below 1."
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"						"STRENGTH GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"						"DURATION:"
@@ -910,18 +913,33 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift (STR)"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod"                                             "Essence Shift LoD"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Agility. <font color='#70EA72'>Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Note0"						"Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_agi_gain"						"AGILITY GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"						"DURATION:"
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"							"Essence Shift (AGI)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"			"Essence Shift (AGI)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intelligence."
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"						"Attributes cannot be dropped below 1."
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLIGENCE GAINED:"
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift (INT)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift (INT)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"                    "Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus <font color='#70EA72'>Intelligence. Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"                       "With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"                      "Attributes cannot be dropped below 1."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"                      "Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"                       "INTELLIGENCE GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"                  "ALL ATTRIBUTE LOSS:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"                       "DURATION:"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"                           "Essence Shift (INT)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"               "Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"         "Essence Shift (INT)"
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description" "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
@@ -933,13 +951,13 @@
     
     //flesh heap spells
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"<font color='#70EA72'>Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"				"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
@@ -949,7 +967,7 @@
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
     "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
-    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
+    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
     "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
 	
 	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
@@ -996,8 +1014,8 @@
     "DOTA_Tooltip_ability_backdoor_protection_regen_rate"                  "REGENERATION RATE:"
 	
    // Back door (in base) protection
-   "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
-   "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
+    "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
+    "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
    
    //Backstab
     "DOTA_Tooltip_ability_riki_backstab_lod" "Backstab" 
@@ -1007,8 +1025,8 @@
     "DOTA_Tooltip_ability_riki_backstab_lod_Note1" "Bonus damage from Backstab cannot be evaded" 
     "DOTA_Tooltip_ability_riki_backstab_lod_agility_damage" "%AGI DAMAGE MULT:" 
     "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
-    
-    // Wildkin Tornado
+	
+	// Wildkin Tornado
     "DOTA_Tooltip_ability_enraged_wildkin_tornado_cast_range"       "CAST RANGE:"
     
     // Taskmaster Speed Aura
@@ -1016,4 +1034,16 @@
 
 	// Granite Aura
     "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
+
+    //Fury Swipes
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod" "Fury Swipes LoD"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Description" "Ursa's claws dig deeper wounds in the enemy, causing consecutive attacks to the same enemy to deal more damage. If the same target is not attacked after 20 seconds, the bonus damage is lost. <font color='#70EA72'>Half as effective on ranged heroes.</font>"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Lore" "In nature, the wounded rarely survive the attacks of hungry predators."
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Bonus_reset_time" "RESET TIME:"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Bonus_reset_time_roshan" "RESET TIME (ROSHAN):"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Damage_per_stack" "DAMAGE PER ATTACK:"
+    "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Damage_per_stack_ranged" "<font color='#70EA72'>DAMAGE PER ATTACK (RANGED):</font>"
+
+    "DOTA_Tooltip_modifier_fury_swipes_target_lod"  "Fury Swipes"
+    "DOTA_Tooltip_modifier_fury_swipes_target_lod_Description"  "Taking extra damage per stack."
 }
