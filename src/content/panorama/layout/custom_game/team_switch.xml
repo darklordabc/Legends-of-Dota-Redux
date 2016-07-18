@@ -12,7 +12,7 @@
 		                <Label id="TeamSwitch_ButtonTitle" text="Switch Teams" class="TeamSwitchButtonFont"/>
                         </Button>
                 </Panel>
-		<Panel id='TeamSwitch_Panel' class="hidden">
+		<Panel id='TeamSwitch_Panel' class="TeamSwitch_Panel_Hidden">
 			<Label id="TeamSwitchDescription" text="Select a hero to switch teams with"/>
 
 			<Panel id="ListDivider0" class="hidden ListDivider" onactivate="AttemptTeamSwitch(0)">

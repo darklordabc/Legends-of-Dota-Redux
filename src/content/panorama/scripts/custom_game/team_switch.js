@@ -35,12 +35,12 @@ function ShowTeamSwitch() {
     GetTeamInfo();
     if (unbalanced) {
         active = true;
-        $('#TeamSwitch_Panel').RemoveClass('hidden');
+        $('#TeamSwitch_Panel').RemoveClass('TeamSwitch_Panel_Hidden');
     }
 }
 function CloseTeamSwitch() {
     active = false;
-    $('#TeamSwitch_Panel').AddClass('hidden');
+    $('#TeamSwitch_Panel').AddClass('TeamSwitch_Panel_Hidden');
 }
 
 function ReceiveCustomTeamInfo( team_info )
