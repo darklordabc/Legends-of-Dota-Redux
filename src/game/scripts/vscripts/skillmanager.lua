@@ -227,12 +227,12 @@ function skillManager:RemoveAllSkills(hero)
 
     -- Build the skill list
     self:BuildSkillList(hero)
-
+	
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
             hero:FindAbilityByName(v):SetHidden(true)
-        end
+		end
     end
 end
 
@@ -567,7 +567,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 oldAb:SetHidden(false)
             else
                 hero:AddAbility(multV)
-
                 local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)
@@ -581,6 +580,15 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 -- Insert
                 table.insert(abs, v)
             end
+			
+			local checkAb = 0
+			while hero:GetAbilityByIndex(checkAb) do
+				local checkedAb = hero:GetAbilityByIndex(checkAb)
+				if checkedAb:IsHidden() and not checkedAb:GetName() == "attribute_bonus" then
+					hero:RemoveAbility(checkedAb:GetName())
+				end
+				checkAb = checkAb + 1
+			end
 
             -- If it's a tower, level it
             if isTower then

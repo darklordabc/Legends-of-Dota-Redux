@@ -1016,4 +1016,6 @@
 
 	// Granite Aura
     "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
+    "DOTA_Tooltip_ability_true_random_lod" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_Description"  "You will gain a random ability every time you cast the randomly given ability. Does not grant passives."
 }
