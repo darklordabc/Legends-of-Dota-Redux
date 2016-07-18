@@ -21,7 +21,11 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-        this:swapPlayers(args.x, args.y)
+        GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+
+        Timers:CreateTimer(function ()
+            this:swapPlayers(args.x, args.y)
+        end, 'switch_warning', 5)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)

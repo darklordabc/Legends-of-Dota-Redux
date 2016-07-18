@@ -36,6 +36,8 @@ function ShowTeamSwitch() {
     if (unbalanced) {
         active = true;
         $('#TeamSwitch_Panel').RemoveClass('TeamSwitch_Panel_Hidden');
+    } else {
+        $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
     }
 }
 function CloseTeamSwitch() {
