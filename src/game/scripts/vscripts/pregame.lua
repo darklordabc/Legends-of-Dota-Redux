@@ -1872,6 +1872,9 @@ function Pregame:initOptionSelector()
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
+                if GetMapName() == "all_pick_6" then
+                    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
+                end
                 self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
 
                 -- 3 Towers per lane
