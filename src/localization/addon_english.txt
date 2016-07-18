@@ -31,7 +31,7 @@
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
-    "filter_by_value"                                "Filter by value:"
+    "filter_by_value"                               "Filter by price:"
     "presets_lod"                                   "Preset Builds"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
