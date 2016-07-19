@@ -221,6 +221,7 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -1872,9 +1873,6 @@ function Pregame:initOptionSelector()
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
-                if GetMapName() == "all_pick_6" then
-                    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
-                end
                 self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
 
                 -- 3 Towers per lane
