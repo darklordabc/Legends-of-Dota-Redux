@@ -32,12 +32,14 @@ function TeamSwitchButton (){
     }
 }
 function ShowTeamSwitch() {
-    GetTeamInfo();
-    if (unbalanced) {
-        active = true;
-        $('#TeamSwitch_Panel').RemoveClass('TeamSwitch_Panel_Hidden');
-    } else {
-        $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
+    if (disabled == false) {
+        GetTeamInfo();
+        if (unbalanced) {
+            active = true;
+            $('#TeamSwitch_Panel').RemoveClass('TeamSwitch_Panel_Hidden');
+        } else {
+            $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
+        }
     }
 }
 function CloseTeamSwitch() {
