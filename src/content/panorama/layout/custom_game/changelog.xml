@@ -25,7 +25,7 @@
 			</Button>
 		</snippet>
 	</snippets>
-	<Panel class="changelogRoot">
+	<Panel class="changelogRoot" hittest="false">
 		<Panel id="changelogButton">
 			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
 				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>

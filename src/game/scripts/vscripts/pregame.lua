@@ -369,8 +369,8 @@ end
 -- Send the contributors
 function Pregame:sendContributors()
     local sortedContributors = {}
-    for k,v in pairs(util.contributors) do
-        table.insert(sortedContributors, v)
+    for i=0,util:getTableLength(util.contributors) do
+        table.insert(sortedContributors, util.contributors[tostring(i)])
     end
 
     -- Push the contributors

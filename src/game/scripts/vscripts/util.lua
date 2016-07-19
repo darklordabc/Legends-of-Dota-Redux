@@ -142,7 +142,15 @@ end
 -- Returns a player's premium rank
 function Util:getPremiumRank(playerID)
     local steamID = PlayerResource:GetSteamAccountID(playerID)
-    local conData = Util.contributors[tostring(steamID)]
+    local conData
+
+    for k,v in pairs(Util.contributors) do
+        if v.steamID3 == tostring(steamID) then
+            conData = v
+            print("dicks")
+            break
+        end
+    end
 
     -- Default is no premium
     local totalPremium = 0
@@ -381,6 +389,17 @@ function Util:parseTime(timeString)
         minute = minute,
         second = second
     }
+end
+
+function Util:getTableLength(t) 
+  if not t then return nil end
+  local length = 0
+
+  for k,v in pairs(t) do
+    length = length + 1
+  end
+
+  return length
 end
 
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
