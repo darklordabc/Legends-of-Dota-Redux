@@ -58,6 +58,7 @@ function GetTeamInfo() {
 function LeftGame(id) {
     var abandoned = DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == Game.GetPlayerInfo(id).player_connection_state;
     var timedout;
+    var nohero = (Players.GetPlayerSelectedHero( id ) == null);
     for (var dc in dc_timeout) {
         if (dc_timeout[dc] == id) {
             timedout = true;
@@ -65,7 +66,7 @@ function LeftGame(id) {
         }
     }
         
-    return abandoned || timedout;
+    return abandoned || timedout || nohero;
 }
 
 function areAllies(x, y) {

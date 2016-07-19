@@ -114,4 +114,177 @@
 	{
 		"MaxLevel" "1"
 	}
+	
+	"forest_troll_high_priest_heal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"MaxLevel"						"4"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"5 10 15 20"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health"			"15 30 60 100"
+			}
+		}
+	}
+	
+	"satyr_hellcaller_unholy_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"MaxLevel"						"4"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen"		"4 8 12 16"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"900 900 900 900"
+			}
+		}
+	}
+	
+	"satyr_hellcaller_shockwave"
+	{
+		"MaxLevel" "4"
+		"AbilityCastRange"				"700 1700 2000 2300"
+		"AbilityDamage"					"150 190 230 270"
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{						
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1380 1700 2000 2300"
+			}
+		}
+	}
+	
+	"enraged_wildkin_tornado"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5312"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"MaxLevel"						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 1000 2000 4000"
+		"AbilityCastPoint"				"0.75"
+		"AbilityCooldown"				"70.0"
+		"AbilityChannelTime"			"40.0"
+		"AbilityManaCost"				"200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01" // Only for tooltip, redundant with AbilityChannelTime
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			
+			"02" // Only for tooltip, redundant with AbilityChannelTime
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"500 1000 2000 4000"
+			}
+		}
+	}
+	
+	"kobold_taskmaster_speed_aura"
+	{
+		"MaxLevel"				"4"
+		"AbilityCastRange"				"900 950 1000 1100"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"12 14 16 18"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900 950 1000 1100"
+			}
+		}
+	}
+	
+	"granite_golem_hp_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"MaxLevel"						"4"
+		"AbilityCastRange"				"900"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_hp"			"15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"900"
+			}
+		}
+	}
+
+	"enraged_wildkin_toughness_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"MaxLevel"						"4"
+		"AbilityCastRange"				"900"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_armor"		"3 4 5 7"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"900"
+			}
+		}
+	}
+	
+	"tusk_walrus_kick"
+	{
+		"RequiredLevel"					"3"
+	}
 }	
