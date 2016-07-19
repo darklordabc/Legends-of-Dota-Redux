@@ -8,9 +8,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Respawn time in all_pick_6 reduced to 70%
 - Cherub Abiltiites added to the game. 4 of his/her original abilities and 4 standalone sub abilities. 
 
-
-
-
 ## 2016-07-18
 ### Balance
 - Added Balance versions of Fury Swipes and Essence Shift
