@@ -40,6 +40,8 @@ function ShowTeamSwitch() {
         } else {
             $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
         }
+    } else {
+        $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_cooldown");
     }
 }
 function CloseTeamSwitch() {
