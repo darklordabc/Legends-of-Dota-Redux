@@ -287,4 +287,18 @@
 	{
 		"RequiredLevel"					"3"
 	}
+	
+	"lycan_summon_wolves_critical_strike"
+	{
+	"MaxLevel"						"4"
+	"AbilitySpecial"
+		{			
+			
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"maim_damage"				"8 16 24 32"
+			}
+		}
+	}
 }	
