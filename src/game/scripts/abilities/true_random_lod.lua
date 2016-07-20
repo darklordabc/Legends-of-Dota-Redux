@@ -125,8 +125,7 @@ end
 function RandomInit(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	if caster.initialized then return end -- Prevent this from triggering on death
-	caster.initialized = true
+	if ability.randomSelection then return end -- Prevent this from triggering on death
 	ability.abCount = 1
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
