@@ -49,6 +49,9 @@ function RandomGet(keys)
 	ability.abCount = ability.abCount + 1
 	if ability.abCount >= #ability.randomSelection then
 		ShuffleArray(ability.randomSelection)
+		for k,v in pairs(ability.randomSelection) do
+				print(k,v)
+		end
 	end
 	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
@@ -95,17 +98,20 @@ function RandomRemove(keys)
 
 	local picker = ability.abCount
 	caster.randomAb = ability.randomSelection[picker]
+	print("not safe", picker, caster.randomAb, ability.abCount)
 	if 15 < GetAbilityCount(caster) then
 		picker = math.random(#ability.randomSafeSelection)
 		local pickedSkill = ability.randomSafeSelection [picker]
 		if not caster.ownedSkill[pickedSkill] then
 			caster.randomAb = pickedSkill
+			print("safe not owned")
 		else
 			while caster.ownedSkill[pickedSkill] do
 				picker = math.random(#ability.randomSafeSelection)
 				pickedSkill = ability.randomSafeSelection [picker]
 			end
 			caster.randomAb = pickedSkill
+			print("safe owned")
 		end
 	end
 	-- caster.subAb = ability.subList[caster.randomAb]
@@ -157,6 +163,10 @@ function RandomInit(keys)
 				s[m]=l
 			end
 			ability.randomSelection = s
+			ShuffleArray(ability.randomSelection)
+			for k,v in pairs(ability.randomSelection) do
+				print(k,v)
+			end
 		end
 		if k == "safe"..ability.type then
 			-- change values to ascending sequence
@@ -173,7 +183,7 @@ function RandomInit(keys)
 			ability.randomSafeSelection  = s
 		end
 	end
-	local picker = math.random(#ability.randomSelection)
+	local picker = ability.abCount
 	caster.randomAb = ability.randomSelection[picker]
 	-- if ability.subList[caster.randomAb] then caster.subAb = ability.subList[caster.randomAb] end
 end
