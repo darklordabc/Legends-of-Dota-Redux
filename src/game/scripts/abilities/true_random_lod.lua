@@ -93,10 +93,10 @@ function RandomRemove(keys)
 		end
 	end
 
-	local picker = math.random(#ability.randomSelection)
+	local picker = ability.abCount
 	caster.randomAb = ability.randomSelection[picker]
 	if 15 < GetAbilityCount(caster) then
-		picker = ability.abCount
+		picker = math.random(#ability.randomSafeSelection)
 		local pickedSkill = ability.randomSafeSelection [picker]
 		if not caster.ownedSkill[pickedSkill] then
 			caster.randomAb = pickedSkill
@@ -176,4 +176,20 @@ function RandomInit(keys)
 	local picker = math.random(#ability.randomSelection)
 	caster.randomAb = ability.randomSelection[picker]
 	-- if ability.subList[caster.randomAb] then caster.subAb = ability.subList[caster.randomAb] end
+end
+
+function Particles(keys)
+	if not keys.caster:FindAbilityByName(keys.caster.randomAb) then return end
+	local caster = keys.caster
+	local ability = keys.ability
+	local randomAb = caster:FindAbilityByName(caster.randomAb)
+	if randomAb:IsCooldownReady() and not ability.proc then
+		StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
+        particle_swap = ParticleManager:CreateParticle("particles/true_random_lod/true_random_lod_swap.vpcf", PATTACH_ABSORIGIN_FOLLOW  , keys.caster)
+		ParticleManager:SetParticleControl(particle_swap, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_swap, 1, caster:GetAbsOrigin())
+		ability.proc = true
+	elseif not randomAb:IsCooldownReady() then
+		ability.proc = false
+    end
 end
