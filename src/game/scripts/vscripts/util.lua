@@ -383,14 +383,35 @@ function Util:parseTime(timeString)
     }
 end
 
-function GetAbilityDuration(ability, constant, buffer)
-	local duration = ability:GetDuration()
-    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("*_duration", -1) end
-    if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration_*", -1) end
-	if duration <= 1 then duration = ability:GetLevelSpecialValueFor("duration", -1) end
-    if not duration or duration <= 1 then duration = constant end
-	if buffer then duration = duration + buffer end
-	print(duration)
+function GetAbilityDuration(ability, buffer)
+    local kv = ability:GetAbilityKeyValues()
+    local duration = ability:GetDuration()
+    local delay = 0
+    if not duration then duration = 0 end
+    for k,v in pairs(kv) do -- trawl through keyvalues
+        if k == "AbilitySpecial" then
+            for l,m in pairs(v) do
+                for o,p in pairs(m) do
+                    if string.match(o, "duration") then -- look for the highest duration keyvalue
+                        local check = {}
+                        local ic = 1
+                        for value in string.gmatch(p, "%g+") do 
+                            table.insert(check ,tonumber(value))
+                            ic = ic + 1
+                        end
+                        local level = ability:GetLevel() -- get appropiate keyvalue
+                        if level > #check then level = #check end
+                        if check[level] > duration then duration = check[level] end
+                    end
+                    if string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
+                        delay = p
+                    end
+                end
+            end
+        end
+    end
+    duration = duration + delay
+    if buffer then duration = duration + buffer end
     return duration
 end
 
