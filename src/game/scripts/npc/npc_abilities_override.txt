@@ -288,7 +288,7 @@
 		"RequiredLevel"					"3"
 	}
 	
-	centaur_khan_endurance_aura
+	"centaur_khan_endurance_aura"
 	{
 		"MaxLevel"						"4"
 		"AbilitySpecial"
