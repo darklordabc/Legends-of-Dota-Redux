@@ -77,9 +77,8 @@ function RandomRemove(keys)
 			-- end
 		else
 			ability.safeRemoveList[abName] = false
-		    local setdelay = randomAb:GetCooldown(-1)
 		    local buffer = 3
-            local timer = GetAbilityDuration(randomAb, setdelay, buffer)
+            local timer = GetAbilityDuration(randomAb, buffer)
 			Timers:CreateTimer(function()
 				ability.safeRemoveList[abName] = true
 				for k,v in pairs(ability.safeRemoveList) do
