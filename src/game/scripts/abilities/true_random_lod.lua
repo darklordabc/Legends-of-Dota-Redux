@@ -46,6 +46,11 @@ function RandomGet(keys)
 		randomAb:StartCooldown(caster.cooldown)
 	end
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
+	ability.abCount = ability.abCount + 1
+	if ability.abCount >= #ability.randomSelection then
+		ShuffleArray(ability.randomSelection)
+	end
+	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
 
 function RandomRemove(keys)
@@ -91,7 +96,7 @@ function RandomRemove(keys)
 	local picker = math.random(#ability.randomSelection)
 	caster.randomAb = ability.randomSelection[picker]
 	if 15 < GetAbilityCount(caster) then
-		picker = math.random(#ability.randomSafeSelection )
+		picker = ability.abCount
 		local pickedSkill = ability.randomSafeSelection [picker]
 		if not caster.ownedSkill[pickedSkill] then
 			caster.randomAb = pickedSkill
@@ -106,8 +111,20 @@ function RandomRemove(keys)
 	-- caster.subAb = ability.subList[caster.randomAb]
 end
 
+function ShuffleArray(input)
+	local rand = math.random 
+    local iterations = #input
+    local j
+    
+    for i = iterations, 2, -1 do
+        j = rand(i)
+        input[i], input[j] = input[j], input[i]
+    end
+end
+
 function RandomInit(keys)
 	local ability = keys.ability
+	ability.abCount = 1
 	local caster = keys.caster
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
@@ -159,20 +176,4 @@ function RandomInit(keys)
 	local picker = math.random(#ability.randomSelection)
 	caster.randomAb = ability.randomSelection[picker]
 	-- if ability.subList[caster.randomAb] then caster.subAb = ability.subList[caster.randomAb] end
-end
-
-function Particles(keys)
-	if not keys.caster:FindAbilityByName(keys.caster.randomAb) then return end
-	local caster = keys.caster
-	local ability = keys.ability
-	local randomAb = caster:FindAbilityByName(caster.randomAb)
-	if randomAb:IsCooldownReady() and not ability.proc then
-		StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
-        particle_swap = ParticleManager:CreateParticle("particles/true_random_lod/true_random_lod_swap.vpcf", PATTACH_ABSORIGIN_FOLLOW  , keys.caster)
-		ParticleManager:SetParticleControl(particle_swap, 0, caster:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle_swap, 1, caster:GetAbsOrigin())
-		ability.proc = true
-	elseif not randomAb:IsCooldownReady() then
-		ability.proc = false
-    end
 end
