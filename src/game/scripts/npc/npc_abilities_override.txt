@@ -287,4 +287,18 @@
 	{
 		"RequiredLevel"					"3"
 	}
+	
+	"harpy_storm_chain_lightning"
+	{
+		"MaxLevel"						"4"
+		"AbilityManaCost"				"50 70 90 110"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"initial_damage"		"140 210 280 350"
+			}
+		}
+	}
 }	
