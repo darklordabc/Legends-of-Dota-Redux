@@ -287,4 +287,18 @@
 	{
 		"RequiredLevel"					"3"
 	}
+	
+	"dark_troll_warlord_ensnare" 
+	{
+		"MaxLevel"						"4"
+		"AbilityManaCost"				"150 170 190 210"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.75 3.75 5.75 8.0"
+			}
+		}
+	}
 }	
