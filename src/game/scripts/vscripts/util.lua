@@ -388,6 +388,7 @@ function GetAbilityDuration(ability, buffer)
     local duration = ability:GetDuration()
     local delay = 0
     if not duration then duration = 0 end
+    if ability:GetChannelTime() > duration then duration = ability:GetChannelTime() end
     for k,v in pairs(kv) do -- trawl through keyvalues
         if k == "AbilitySpecial" then
             for l,m in pairs(v) do
