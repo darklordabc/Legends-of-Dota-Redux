@@ -118,17 +118,15 @@ function RandomRemove(keys)
 		end
 	end
 	----------- CHECK FOR DOUBLES ----------
-	if caster:FindAbilityByName(ability.randomAb) -- not sure how lua handles while loops, so this is just to make sure it doesn't run it once
-		while caster:FindAbilityByName(ability.randomAb) do
-			ability.abCount = ability.abCount + 1 -- skip entries while they're owned
-			local picker = ability.abCount
-			ability.randomAb = ability.randomSelection[picker]
-			if 15 < GetAbilityCount(caster) then
-				picker = math.random(#ability.randomSafeSelection)
-				local pickedSkill = ability.randomSafeSelection [picker]
-				if not caster.ownedSkill[pickedSkill] then
-					ability.randomAb = pickedSkill
-				end
+	while caster:FindAbilityByName(ability.randomAb) do
+		ability.abCount = ability.abCount + 1 -- skip entries while they're owned
+		local picker = ability.abCount
+		ability.randomAb = ability.randomSelection[picker]
+		if 15 < GetAbilityCount(caster) then
+			picker = math.random(#ability.randomSafeSelection)
+			local pickedSkill = ability.randomSafeSelection [picker]
+			if not caster.ownedSkill[pickedSkill] then
+				ability.randomAb = pickedSkill
 			end
 		end
 	end
