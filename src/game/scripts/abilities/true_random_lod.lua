@@ -14,7 +14,7 @@ function RandomGet(keys)
 		-- end
 	end
 	
-	-- SAFETY MEASURE UNTIL WEIRD NIL BUG IS FOUNF
+	-- SAFETY MEASURE UNTIL WEIRD NIL BUG IS FOUND
 	if not randomAb then
 		local picker = math.random(#ability.randomSelection)
 		ability.randomAb = ability.randomSelection[picker]
