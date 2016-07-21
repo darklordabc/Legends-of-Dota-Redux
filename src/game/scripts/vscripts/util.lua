@@ -393,18 +393,11 @@ function GetAbilityDuration(ability, buffer)
             for l,m in pairs(v) do
                 for o,p in pairs(m) do
                     if string.match(o, "duration") then -- look for the highest duration keyvalue
-                        local check = {}
-                        local ic = 1
-                        for value in string.gmatch(p, "%g+") do 
-                            table.insert(check ,tonumber(value))
-                            ic = ic + 1
-                        end
-                        local level = ability:GetLevel() -- get appropiate keyvalue
-                        if level > #check then level = #check end
-                        if check[level] > duration then duration = check[level] end
-                    end
-                    if string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
-                        delay = p
+                        checkDuration = ability:GetLevelSpecialValueFor(o, -1)
+                        if checkDuration > duration then duration = checkDuration end
+                    elseif string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
+                        checkDelay = ability:GetLevelSpecialValueFor(o, -1)
+                        if checkDelay > duration then delay = checkDelay end
                     end
                 end
             end
