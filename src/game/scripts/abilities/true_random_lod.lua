@@ -78,11 +78,12 @@ function RandomRemove(keys)
 		else
 			ability.safeRemoveList[abName] = false
 		    local buffer = 3
-            local timer = GetAbilityDuration(randomAb, buffer)
+            local timer = GetAbilityLifeTime(randomAb, buffer)
 			Timers:CreateTimer(function()
 				ability.safeRemoveList[abName] = true
 				for k,v in pairs(ability.safeRemoveList) do
 					if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() then
+						print("deleting", k)
 						caster:RemoveAbility(k)
 						-- if ability.subList[k] then caster:RemoveAbility(ability.subList[k]) end
 					end
