@@ -383,7 +383,7 @@ function Util:parseTime(timeString)
     }
 end
 
-function GetAbilityDuration(ability, buffer)
+function GetAbilityLifeTime(ability, buffer)
     local kv = ability:GetAbilityKeyValues()
     local duration = ability:GetDuration()
     local delay = 0
@@ -399,13 +399,35 @@ function GetAbilityDuration(ability, buffer)
                     elseif string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
                         checkDelay = ability:GetLevelSpecialValueFor(o, -1)
                         if checkDelay > duration then delay = checkDelay end
-                    end
+					end
                 end
             end
         end
     end
+	------------------------------ SPECIAL CASES -----------------------------
+	if ability:GetName() == "juggernaut_omni_slash" then
+		local bounces = ability:GetLevelSpecialValueFor("omni_slash_jumps", -1)
+		delay = ability:GetLevelSpecialValueFor("omni_slash_bounce_tick", -1) * bounces
+	elseif ability:GetName() == "medusa_mystic_snake" then
+		local bounces = ability:GetLevelSpecialValueFor("snake_jumps", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "witch_doctor_paralyzing_cask" then
+		local bounces = ability:GetLevelSpecialValueFor("bounces", -1)
+		delay = ability:GetLevelSpecialValueFor("bounce_delay", -1) * bounces
+	elseif ability:GetName() == "zuus_arc_lightning" or ability:GetName() == "leshrac_lightning_storm" then
+		local bounces = ability:GetLevelSpecialValueFor("jump_count", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "furion_wrath_of_nature" then
+		local bounces = ability:GetLevelSpecialValueFor("max_targets_scepter", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "furion_wrath_of_nature" then
+		local distance = ability:GetLevelSpecialValueFor("max_distance", -1) 
+		delay = distance / ability:GetLevelSpecialValueFor("spirit_speed", -1)
+	end
+	--------------------------------------------------------------------------
     duration = duration + delay
     if buffer then duration = duration + buffer end
+	print(duration, ability:GetName())
     return duration
 end
 
