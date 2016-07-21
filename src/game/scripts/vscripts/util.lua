@@ -383,6 +383,64 @@ function Util:parseTime(timeString)
     }
 end
 
+function GetAbilityLifeTime(ability, buffer)
+    local kv = ability:GetAbilityKeyValues()
+    local duration = ability:GetDuration()
+    local delay = 0
+    if not duration then duration = 0 end
+    if ability:GetChannelTime() > duration then duration = ability:GetChannelTime() end
+    for k,v in pairs(kv) do -- trawl through keyvalues
+        if k == "AbilitySpecial" then
+            for l,m in pairs(v) do
+                for o,p in pairs(m) do
+                    if string.match(o, "duration") then -- look for the highest duration keyvalue
+                        checkDuration = ability:GetLevelSpecialValueFor(o, -1)
+                        if checkDuration > duration then duration = checkDuration end
+                    elseif string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
+                        checkDelay = ability:GetLevelSpecialValueFor(o, -1)
+                        if checkDelay > duration then delay = checkDelay end
+					end
+                end
+            end
+        end
+    end
+	------------------------------ SPECIAL CASES -----------------------------
+	if ability:GetName() == "juggernaut_omni_slash" then
+		local bounces = ability:GetLevelSpecialValueFor("omni_slash_jumps", -1)
+		delay = ability:GetLevelSpecialValueFor("omni_slash_bounce_tick", -1) * bounces
+	elseif ability:GetName() == "medusa_mystic_snake" then
+		local bounces = ability:GetLevelSpecialValueFor("snake_jumps", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "witch_doctor_paralyzing_cask" then
+		local bounces = ability:GetLevelSpecialValueFor("bounces", -1)
+		delay = ability:GetLevelSpecialValueFor("bounce_delay", -1) * bounces
+	elseif ability:GetName() == "zuus_arc_lightning" or ability:GetName() == "leshrac_lightning_storm" then
+		local bounces = ability:GetLevelSpecialValueFor("jump_count", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "furion_wrath_of_nature" then
+		local bounces = ability:GetLevelSpecialValueFor("max_targets_scepter", -1)
+		delay = ability:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+	elseif ability:GetName() == "death_prophet_exorcism" then
+		local distance = ability:GetLevelSpecialValueFor("max_distance", -1) + 2000 -- add spirit break distance to be sure
+		delay = distance / ability:GetLevelSpecialValueFor("spirit_speed", -1)
+	end
+	--------------------------------------------------------------------------
+    duration = duration + delay
+    if buffer then duration = duration + buffer end
+	print(duration, ability:GetName())
+    return duration
+end
+
+function GetAbilityCount(unit) 
+    local count = 0
+    for i=0,16 do
+        if unit:GetAbilityByIndex(i) then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
