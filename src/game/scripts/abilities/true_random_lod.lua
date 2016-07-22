@@ -1,6 +1,7 @@
 local Timers = require('easytimers')
 local util = require('util')
 local skillManager = require('skillmanager')
+local pregame = require('pregame')
 
 function RandomGet(keys)
 	local caster = keys.caster
@@ -14,21 +15,8 @@ function RandomGet(keys)
 		-- end
 	end
 	
-	-- SAFETY MEASURE UNTIL WEIRD NIL BUG IS FOUND
-	if not randomAb then
-		local picker = math.random(#ability.randomSelection)
-		ability.randomAb = ability.randomSelection[picker]
-		-- if ability.subList[ability.randomAb] then caster.subAb = ability.subList[ability.randomAb] end
-		local randomAb = caster:FindAbilityByName(ability.randomAb)
-		if not randomAb then
-			randomAb = caster:AddAbility(ability.randomAb)
-			-- if caster.subAb then
-				-- subAb = caster:AddAbility(caster.subAb)
-			-- end
-		end
-	end
 	randomAb.randomRoot = ability:GetName()
-	--------- REMOVE ONCE BUG FOUND -------------
+	
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
 	if randomAb:GetAbilityType() ~= 1 then
@@ -43,14 +31,9 @@ function RandomGet(keys)
 		if clamp < 1 then clamp = 1 end
 		randomAb:SetLevel(clamp)
 	end
-	
-	local cooldown = randomAb:GetCooldown(-1)
-	print("crashcheck1")
-	local octarineMult = 1
-	if caster:HasModifier("modifier_item_octarine_core") then octarineMult = 0.75 end
-	print("crashcheck2")
-	randomAb:StartCooldown(cooldown*octarineMult)
-	print("crashcheck3")
+	print(randomAb:GetCooldownTimeRemaining())
+	local cooldown = GetTrueCooldown(randomAb)
+	randomAb:StartCooldown(cooldown)
 		
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
 	ability.abCount = ability.abCount + 1
@@ -104,7 +87,7 @@ function RandomRemove(keys)
 	-------- STANDARD CHECK ---------
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
-	if 15 < GetAbilityCount(caster) then
+	if 16-caster.randomAbilityCount  < GetAbilityCount(caster) then
 		picker = math.random(#ability.randomSafeSelection)
 		local pickedSkill = ability.randomSafeSelection [picker]
 		if not caster.ownedSkill[pickedSkill] then
@@ -122,7 +105,7 @@ function RandomRemove(keys)
 		ability.abCount = ability.abCount + 1 -- skip entries while they're owned
 		local picker = ability.abCount
 		ability.randomAb = ability.randomSelection[picker]
-		if 15 < GetAbilityCount(caster) then
+		if 15-caster.randomAbilityCount < GetAbilityCount(caster) then
 			picker = math.random(#ability.randomSafeSelection)
 			local pickedSkill = ability.randomSafeSelection [picker]
 			if not caster.ownedSkill[pickedSkill] then
@@ -130,38 +113,41 @@ function RandomRemove(keys)
 			end
 		end
 	end
-	-- caster.subAb = ability.subList[ability.randomAb]
-end
 
-function ShuffleArray(input)
-	local rand = math.random 
-    local iterations = #input
-    local j
-    
-    for i = iterations, 2, -1 do
-        j = rand(i)
-        input[i], input[j] = input[j], input[i]
-    end
+	-- caster.subAb = ability.subList[ability.randomAb]
 end
 
 function RandomInit(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	if not caster.randomAbilityCount then caster.randomAbilityCount = 0 end
+	caster.randomAbilityCount = caster.randomAbilityCount + 1
 	if ability.randomSelection then return end -- Prevent this from triggering on death
 	print("initializing", keys.value)
 	ability.abCount = 1
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
 	ability.safeRemoveList = {}
-	-- ability.subList = LoadKeyValues('scripts/kv/abilityDeps.kv')
+	local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
+	local mainAbilities = {}
+	for l,m in pairs(subAbilities) do
+		mainAbilities[m]=l
+	end
 	-- check currently owned and visible skills to prevent repeats
-	caster.ownedSkill={}
-	for i = 0, GetAbilityCount(caster)-1 do
-		local exclusion = caster:GetAbilityByIndex(i):GetName()
-		if not caster:FindAbilityByName(exclusion):IsHidden() then
-			caster.ownedSkill[exclusion] = true
+	if not caster.ownedSkill then
+		caster.ownedSkill={}
+		for i = 0, GetAbilityCount(caster)-1 do
+			local exclusion = caster:GetAbilityByIndex(i):GetName()
+			local exAb = caster:FindAbilityByName(exclusion)
+			if not exAb:IsHidden() then
+				caster.ownedSkill[exclusion] = true
+			elseif exAb:GetName() ~= "attribute_bonus" and mainAbilities[exclusion] == nil and GetMapName() ~= "custom_bot" then -- do not remove attribute bonus or subabilities (exclude bots for now)
+				caster:RemoveAbility(exclusion)
+				print("check deleted", exclusion)
+			end
 		end
 	end
+	print("check end sort")
 	-- find desired flags
 	for k, v in pairs( ability.randomKv ) do
 		local x = {} -- xclusion
@@ -199,6 +185,7 @@ function RandomInit(keys)
 	end
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
+	print("check end")
 	-- if ability.subList[ability.randomAb] then caster.subAb = ability.subList[ability.randomAb] end
 end
 
