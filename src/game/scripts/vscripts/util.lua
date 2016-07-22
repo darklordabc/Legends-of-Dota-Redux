@@ -441,6 +441,31 @@ function GetAbilityCount(unit)
     return count
 end
 
+function GetTrueCooldown(ability)
+	local cooldown = ability:GetCooldown(-1)
+	local hero = ability:GetCaster()
+	local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
+	if mabWitch then cooldown = cooldown - mabWitch:GetLevel() end
+	if Convars:GetBool('dota_ability_debug') then
+		cooldown = 0
+	end
+	local octarineMult = 1
+	if hero:HasModifier("modifier_item_octarine_core") then octarineMult = 0.75 end
+	cooldown = cooldown * octarineMult
+	return cooldown
+end
+
+function ShuffleArray(input)
+	local rand = math.random 
+    local iterations = #input
+    local j
+    
+    for i = iterations, 2, -1 do
+        j = rand(i)
+        input[i], input[j] = input[j], input[i]
+    end
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
