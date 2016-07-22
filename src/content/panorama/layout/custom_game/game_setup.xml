@@ -211,13 +211,13 @@
                 <Panel id="optionList" />
                 <Panel id="importAndExportRoot">
                     <Panel id="importAndExportCaption">
-                        <Label text="#importAndExport_code" />
+                        <Label text="#importAndExport_code" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )"/>
                         <Panel class="VotingOptionInfo" id="importAndExportTootip" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )">  
                             <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                         </Panel>
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
-                        <TextEntry id="importAndExportEntry" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )"/>
+                        <TextEntry id="importAndExportEntry" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )"/>
                         <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
                             <Label text="#importAndExport_apply" />
                         </Button>
