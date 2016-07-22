@@ -217,7 +217,7 @@
                         </Panel>
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
-                        <TextEntry id="importAndExportEntry"/>
+                        <TextEntry id="importAndExportEntry" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )"/>
                         <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
                             <Label text="#importAndExport_apply" />
                         </Button>

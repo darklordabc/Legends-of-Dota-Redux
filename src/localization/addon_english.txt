@@ -30,6 +30,8 @@
     "importAndExport_code"                          "Settings Code"
     "importAndExport_apply"                         "Apply"
     "importAndExport_tooltip"                       "Description"
+    "importAndExport_empty"                         "Please enter settings code"
+    "importAndExport_error"                         "An error occured during parsing"
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"

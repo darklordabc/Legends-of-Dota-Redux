@@ -2984,6 +2984,7 @@ function setOption(optionName, optionValue) {
 function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
     if(data.length == 0) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportEntry'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
         setOption()
         return;
     }
@@ -2992,6 +2993,7 @@ function onImportAndExportPressed() {
     try {
         decodeData = JSON.parse(data);
     } catch(e) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportEntry'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
         setOption()
         return;
     }
