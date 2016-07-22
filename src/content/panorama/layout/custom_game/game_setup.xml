@@ -209,9 +209,9 @@
             <Panel id="optionSelection">
                 <Panel id="optionCategories" />
                 <Panel id="optionList" />
-                <Panel id="optionInfo">
+<!--                 <Panel id="optionInfo">
                     <Label id="optionInfoLabel" />
-                </Panel>
+                </Panel> -->
                 <Panel id="optionButtons">
                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">

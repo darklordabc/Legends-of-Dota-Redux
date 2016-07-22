@@ -3257,7 +3257,13 @@ function buildOptionsCategories() {
                     infoLabel.AddClass('optionSlotPanelLabel');
 
                     mainSlot.SetPanelEvent('onmouseover', function() {
-                        $('#optionInfoLabel').text = $.Localize(info.about);
+                        // $('#optionInfoLabel').text = $.Localize(info.about);
+                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "Dicks", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                    });
+
+                    mainSlot.SetPanelEvent('onmouseout', function() {
+                        // $('#optionInfoLabel').text = $.Localize(info.about);
+                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', $.GetContextPanel());
                     });
 
                     // Is this a preset?

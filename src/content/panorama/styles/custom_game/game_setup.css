@@ -1962,8 +1962,8 @@
     font-size: 18px;
     color: #FFFFFF;
     padding: 8px;
-    height: 88px;
-    width: 200px;
+/*    height: 88px;
+    width: 200px;*/
     position: 57% 67% 0px;
     background-image: url("file://{images}/custom_game/tooltipBG.png");
     background-size: 100% 100%;
@@ -1975,7 +1975,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 350px;
+    max-width: 400px;
+    max-height: 400px;
     flow-children: down;
     background-image: url("file://{images}/custom_game/tooltipBG.png");
 }
