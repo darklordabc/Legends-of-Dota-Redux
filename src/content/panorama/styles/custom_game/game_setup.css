@@ -2090,7 +2090,9 @@
 }
 
 #importAndExportEntry {
-    width: 200px;
+    width: 180px;
+    font-size: 17px;
+    text-overflow: clip;
 }
 
 #optionButtons {

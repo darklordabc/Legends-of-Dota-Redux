@@ -2976,6 +2976,34 @@ function setOption(optionName, optionValue) {
         k: optionName,
         v: optionValue
     });
+
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+}
+
+// Imports option list
+function onImportAndExportPressed() {
+    var data = $('#importAndExportEntry').text;
+    if(data.length == 0) {
+        setOption()
+        return;
+    }
+
+    var decodeData;
+    try {
+        decodeData = JSON.parse(data);
+    } catch(e) {
+        setOption()
+        return;
+    }
+
+    if(decodeData.lodOptionGamemode) {
+        setOption('lodOptionGamemode', decodeData.lodOptionGamemode);
+    }
+
+    for(var key in decodeData) {
+        if(key == 'lodOptionGamemode') continue;
+        setOption(key, decodeData[key]);
+    }
 }
 
 // Updates our selected hero
@@ -3257,12 +3285,10 @@ function buildOptionsCategories() {
                     infoLabel.AddClass('optionSlotPanelLabel');
 
                     mainSlot.SetPanelEvent('onmouseover', function() {
-                        // $('#optionInfoLabel').text = $.Localize(info.about);
                         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
                     });
 
                     mainSlot.SetPanelEvent('onmouseout', function() {
-                        // $('#optionInfoLabel').text = $.Localize(info.about);
                         $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                     });
 
