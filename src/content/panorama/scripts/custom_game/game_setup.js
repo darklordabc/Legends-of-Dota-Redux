@@ -3258,12 +3258,12 @@ function buildOptionsCategories() {
 
                     mainSlot.SetPanelEvent('onmouseover', function() {
                         // $('#optionInfoLabel').text = $.Localize(info.about);
-                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "Dicks", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
                     });
 
                     mainSlot.SetPanelEvent('onmouseout', function() {
                         // $('#optionInfoLabel').text = $.Localize(info.about);
-                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', $.GetContextPanel());
+                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                     });
 
                     // Is this a preset?
