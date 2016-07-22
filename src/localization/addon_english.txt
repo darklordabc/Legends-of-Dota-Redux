@@ -27,6 +27,9 @@
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
+    "importAndExport_code"                          "Settings Code"
+    "importAndExport_apply"                         "Apply"
+    "importAndExport_tooltip"                       "Description"
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"

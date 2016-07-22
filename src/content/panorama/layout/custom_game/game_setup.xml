@@ -209,9 +209,20 @@
             <Panel id="optionSelection">
                 <Panel id="optionCategories" />
                 <Panel id="optionList" />
-<!--                 <Panel id="optionInfo">
-                    <Label id="optionInfoLabel" />
-                </Panel> -->
+                <Panel id="importAndExportRoot">
+                    <Panel id="importAndExportCaption">
+                        <Label text="#importAndExport_code" />
+                        <Panel class="VotingOptionInfo" id="importAndExportTootip" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
+                    </Panel>
+                    <Panel id="importAndExportEntryRoot">
+                        <TextEntry id="importAndExportEntry"/>
+                        <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
+                            <Label text="#importAndExport_apply" />
+                        </Button>
+                    </Panel>
+                </Panel>
                 <Panel id="optionButtons">
                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">

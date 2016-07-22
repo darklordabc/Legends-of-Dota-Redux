@@ -2065,12 +2065,32 @@
     margin-left: 320px;
 }
 
-#optionInfo {
+#importAndExportRoot {
     vertical-align: bottom;
     horizontal-align: left;
     margin: 8px;
     margin-left: 12px;
     max-width: 600px;
+
+    flow-children: down;
+}
+
+#importAndExportCaption {
+     width: 105px;
+}
+
+#importAndExportApplyButton {
+    width: 55px;
+    height: 30px;
+    margin-top: 3px;
+}
+
+#importAndExportEntryRoot {
+    flow-children: right;
+}
+
+#importAndExportEntry {
+    width: 200px;
 }
 
 #optionButtons {
