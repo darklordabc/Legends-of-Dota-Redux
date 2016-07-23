@@ -4098,6 +4098,8 @@ function OnOptionChanged(table_name, key, data) {
         hideEnemyPicks = data.v == 1;
         calculateHideEnemyPicks();
     }
+
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Recalculates how many abilities / heroes we can ban
