@@ -2983,8 +2983,9 @@ function setOption(optionName, optionValue) {
 // Imports option list
 function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
+
     if(data.length == 0) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportEntry'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
         setOption()
         return;
     }
@@ -2993,7 +2994,7 @@ function onImportAndExportPressed() {
     try {
         decodeData = JSON.parse(data);
     } catch(e) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportEntry'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
         setOption()
         return;
     }
@@ -3002,9 +3003,21 @@ function onImportAndExportPressed() {
         setOption('lodOptionGamemode', decodeData.lodOptionGamemode);
     }
 
+    var changed = false;
+
     for(var key in decodeData) {
         if(key == 'lodOptionGamemode') continue;
         setOption(key, decodeData[key]);
+
+        if (optionValueList[key] != decodeData[key]) {
+            changed = true;
+        }
+    }
+
+    if (!changed) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
+    } else {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
 }
 

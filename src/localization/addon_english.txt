@@ -32,6 +32,8 @@
     "importAndExport_tooltip"                       "Description"
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
+    "importAndExport_success"                       "Your settings were successfully applied!"
+    "importAndExport_no_changes"                    "No changes detected!"
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
