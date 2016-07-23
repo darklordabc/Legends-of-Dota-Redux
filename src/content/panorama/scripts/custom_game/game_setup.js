@@ -3019,6 +3019,9 @@ function onImportAndExportPressed() {
     } else {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
+    $.Schedule(0.1, function () {
+        $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    });
 }
 
 // Updates our selected hero
