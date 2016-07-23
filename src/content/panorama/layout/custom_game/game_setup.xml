@@ -209,15 +209,15 @@
             <Panel id="optionSelection">
                 <Panel id="optionCategories" />
                 <Panel id="optionList" />
-                <Panel id="importAndExportRoot">
+                <Panel id="importAndExportRoot" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )">
                     <Panel id="importAndExportCaption">
-                        <Label text="#importAndExport_code" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )"/>
-                        <Panel class="VotingOptionInfo" id="importAndExportTootip" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )">  
+                        <Label text="#importAndExport_code"/>
+                        <Panel class="VotingOptionInfo" id="importAndExportTootip">  
                             <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                         </Panel>
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
-                        <TextEntry id="importAndExportEntry" onmouseover="UIShowCustomLayoutParametersTooltip( importAndExportTootip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( importAndExportTootip )"/>
+                        <TextEntry id="importAndExportEntry"/>
                         <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
                             <Label text="#importAndExport_apply" />
                         </Button>
