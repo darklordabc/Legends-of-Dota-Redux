@@ -26,5 +26,6 @@
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch_vote.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
     </Panel>
 </root>

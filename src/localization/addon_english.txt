@@ -3,7 +3,28 @@
     // The name of the game
     "ADDON_GAME_NAME"                               "Legends of Dota"
     "addonname"                                     "Legends of Dota"
+    "addonname_description"                         "Based on the official Legends of Dota by Ash47"
     "game_mode_15_desc"                             "Build a fully sick hero"
+
+    // Contributors
+    "76561197988355984" "Ash47"
+    "76561197988355984_Description" "Core coder and designer"
+    "76561198054179075" "darklordabc"
+    "76561198054179075_Description" "Redux project lead"
+    "76561198001376044" "TideSofDarK"
+    "76561198001376044_Description" "UI/Spells contributor" 
+    "76561198301701069" "Myrl"
+    "76561198301701069_Description" "Developer, Spells Contributor"  
+    "76561197996377179" "Yahnich"
+    "76561197996377179_Description" "Developer, Spells Contributor"  
+    "76561198069396606" "SwordBacon"
+    "76561198069396606_Description" "Spells Contributor"  
+    "76561197990480277" "Wouterz90"
+    "76561197990480277_Description" "Spells Contributor"  
+    "76561198059260684" "CarpeSwag"
+    "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
+    "76561198071596545" "『　　』"
+    "76561198071596545_Description" "Tester, Balance Advice"  
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -419,6 +440,14 @@
     "statAbandonLastHour"                           "About {0} minutes ago"
     "statAbandonLessThanDay"                        "About {0} hours ago"
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
+    
+    //CHANGELOG BUTTONS
+    "lodDescriptionButtonText"                      "Description"
+    "lodUpdatesButtonText"                          "Updates"
+    "lodCreditsButtonText"                          "Credits"
+    "lodMainFeatures"                               "Main Features"
+    "lodLeaveComment"                               "Leave a comment for our developers."
+    "GitHubReference"                               "Alternatively submit to our Github."
 
 	//Hero Stats
 
