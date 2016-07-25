@@ -14,8 +14,16 @@ function RandomGet(keys)
 		    -- subAb = caster:AddAbility(caster.subAb)
 		-- end
 	end
-	
+	if not randomAb then
+		local picker = ability.abCount
+		ability.randomAb = ability.randomSelection[picker]
+		randomAb = caster:AddAbility(ability.randomAb)
+	end
+	if not randomAb then 
+		ShowGenericPopupToPlayer(caster:GetOwner(), "No slots available, try again later!","No slots available, try again later!", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
+	end
 	randomAb.randomRoot = ability:GetName()
+	
 	
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
@@ -31,8 +39,7 @@ function RandomGet(keys)
 		if clamp < 1 then clamp = 1 end
 		randomAb:SetLevel(clamp)
 	end
-	print(randomAb:GetCooldownTimeRemaining())
-	local cooldown = GetTrueCooldown(randomAb)
+	local cooldown = ability:GetTrueCooldown()
 	randomAb:StartCooldown(cooldown)
 		
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
@@ -69,13 +76,11 @@ function RandomRemove(keys)
 		else
 			ability.safeRemoveList[abName] = false
 		    local buffer = 3
-            local timer = GetAbilityLifeTime(randomAb, buffer)
-			print(timer)
+            local timer = randomAb:GetAbilityLifeTime(buffer)
 			Timers:CreateTimer(function()
 				ability.safeRemoveList[abName] = true
 				for k,v in pairs(ability.safeRemoveList) do
 					if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() then
-						print("deleting", k)
 						caster:RemoveAbility(k)
 						-- if ability.subList[k] then caster:RemoveAbility(ability.subList[k]) end
 					end
@@ -87,7 +92,7 @@ function RandomRemove(keys)
 	-------- STANDARD CHECK ---------
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
-	if 16-caster.randomAbilityCount  < GetAbilityCount(caster) then
+	if 15 < caster:GetAbilityCount()  then
 		picker = math.random(#ability.randomSafeSelection)
 		local pickedSkill = ability.randomSafeSelection [picker]
 		if not caster.ownedSkill[pickedSkill] then
@@ -105,7 +110,7 @@ function RandomRemove(keys)
 		ability.abCount = ability.abCount + 1 -- skip entries while they're owned
 		local picker = ability.abCount
 		ability.randomAb = ability.randomSelection[picker]
-		if 15-caster.randomAbilityCount < GetAbilityCount(caster) then
+		if 15 < caster:GetAbilityCount()  then
 			picker = math.random(#ability.randomSafeSelection)
 			local pickedSkill = ability.randomSafeSelection [picker]
 			if not caster.ownedSkill[pickedSkill] then
@@ -123,7 +128,6 @@ function RandomInit(keys)
 	if not caster.randomAbilityCount then caster.randomAbilityCount = 0 end
 	caster.randomAbilityCount = caster.randomAbilityCount + 1
 	if ability.randomSelection then return end -- Prevent this from triggering on death
-	print("initializing", keys.value)
 	ability.abCount = 1
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
@@ -136,18 +140,16 @@ function RandomInit(keys)
 	-- check currently owned and visible skills to prevent repeats
 	if not caster.ownedSkill then
 		caster.ownedSkill={}
-		for i = 0, GetAbilityCount(caster)-1 do
+		for i = 0, caster:GetAbilityCount() -1 do
 			local exclusion = caster:GetAbilityByIndex(i):GetName()
 			local exAb = caster:FindAbilityByName(exclusion)
 			if not exAb:IsHidden() then
 				caster.ownedSkill[exclusion] = true
 			elseif exAb:GetName() ~= "attribute_bonus" and mainAbilities[exclusion] == nil and GetMapName() ~= "custom_bot" then -- do not remove attribute bonus or subabilities (exclude bots for now)
 				caster:RemoveAbility(exclusion)
-				print("check deleted", exclusion)
 			end
 		end
 	end
-	print("check end sort")
 	-- find desired flags
 	for k, v in pairs( ability.randomKv ) do
 		local x = {} -- xclusion
@@ -185,7 +187,6 @@ function RandomInit(keys)
 	end
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
-	print("check end")
 	-- if ability.subList[ability.randomAb] then caster.subAb = ability.subList[ability.randomAb] end
 end
 
