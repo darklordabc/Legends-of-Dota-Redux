@@ -452,7 +452,7 @@
     "teamSwitch_select"                             "Select a hero to switch teams with."
     "teamSwitch_disconnected"                       "DISCONNECTED"
     "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
-    "teamSwitch_cooldown"                           "You are not allowed to proceed team switch vote yet."
+    "teamSwitch_cooldown"                           "Team switching is still on cooldown."
 
     /////////////////
     // UNIQUE HERO MECHANICS
