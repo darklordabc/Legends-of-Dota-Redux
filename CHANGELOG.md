@@ -20,7 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-07-19
 ### Balance
 - Respawn time in all_pick_6 reduced to 70%
-- Cherub Abiltiites added to the game. 4 of his/her original abilities and 4 standalone sub abilities 
+- Cherub Abilitites added to the game: 4 of her original abilities and 6 standalone sub abilities from her ultimate  
 
 ## 2016-07-18
 ### Balance
