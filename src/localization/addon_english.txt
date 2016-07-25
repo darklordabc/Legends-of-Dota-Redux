@@ -445,6 +445,15 @@
     "heroStats_visionDay"                           "DAY VISION"
     "heroStats_visionNight"                         "NIGHT VISION"
 
+    // Team switching
+    "teamSwitch_title"                              "Switch Teams"
+    "teamSwitch_warning"                            "Teams have become unbalanced. Press switch to nominate yourself to switch to the enemy side."
+    "teamSwitch_tooltip"                            "Your team must have at least a 2 player advantage before you can nominate to switch."
+    "teamSwitch_select"                             "Select a hero to switch teams with."
+    "teamSwitch_disconnected"                       "DISCONNECTED"
+    "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
+    "teamSwitch_cooldown"                           "Team switching is still on cooldown."
+
     /////////////////
     // UNIQUE HERO MECHANICS
     ////////////////
