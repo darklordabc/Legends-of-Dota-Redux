@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Bug Fixing
 - Improved Visuals of Team Switch Button
+- Added import/export options in custom map.
 
 ## 2016-07-19
 ### Balance
