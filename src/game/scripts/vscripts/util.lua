@@ -416,6 +416,7 @@ end
         furion_teleportation = true,
         life_stealer_consume = true,
         winter_wyvern_arctic_burn = true,
+		life_stealer_control = true,
     }
 
     local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
