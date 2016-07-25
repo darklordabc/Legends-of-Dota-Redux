@@ -539,6 +539,16 @@
 	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_ursa_fury_swipes_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_mirana_starfall_lod"           "<font color=\"#7D7D7D\">Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
+	"credit_cherub_sleep_cloud"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_cherub_synthesis"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_cherub_explosive_spore"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_cherub_flower_garden"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_white_flower_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_red_flower_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_garden_pink_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 
     
 
