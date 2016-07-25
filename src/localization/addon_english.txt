@@ -525,6 +525,7 @@
     "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens.<br><font color=\"#FF4949\">"
+	"warning_life_stealer_control"                 "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Infest.</font>"
 	
 	"credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
