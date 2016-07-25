@@ -426,6 +426,9 @@ function CDOTABaseAbility:GetAbilityLifeTime(buffer)
 	elseif self:GetName() == "necrolyse_death_pulse" then
 		local distance = self:GetLevelSpecialValueFor("area_of_effect", -1) + 2000 -- add blink range + buffer zone to be safe
 		delay = distance / self:GetLevelSpecialValueFor("projectile_speed", -1)
+	elseif self:GetName() == "spirit_breaker_charge_of_darkness" then
+		local distance = math.sqrt(15000*15000*2) -- size diagonal of a 15000x15000 square
+		delay = distance / self:GetLevelSpecialValueFor("movement_speed", -1)
 	end
 	--------------------------------------------------------------------------
     duration = duration + delay
