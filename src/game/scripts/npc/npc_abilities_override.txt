@@ -390,4 +390,44 @@
 			}
 		}
 	}
+	
+	"ogre_magi_frost_armor" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"MaxLevel"						"4"
+		"AbilityCastRange"				"800"
+		"AbilityTextureName"            "ice_armor_lod"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus"			"2 3 4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"45.0 45.0 45.0 45.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_slow"		"-20 -20 -20 -20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackspeed_slow"		"-20 -30 -40 -50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"5.0 5.0 5.0 5.0"
+			}
+		}
+	}
 }	
