@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Buffed Swiftness Aura
 - Buffed Devotion Aura
 - Buffed Troll Warlord Ensare
+- Added Naix Control
 
 ### Bug Fixing
 - Improved Visuals of Team Switch Button
