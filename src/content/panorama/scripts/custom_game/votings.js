@@ -55,7 +55,6 @@ function ReceiveCustomTeamInfo( team_info )
     dc_timeout = team_info.y;
     SetTeamInfo();
 }
-GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
 
 function GetTeamInfo() {
     GameEvents.SendCustomGameEventToServer( 'ask_custom_team_info', {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
@@ -143,3 +142,58 @@ function AttemptTeamSwitch(index) {
     disabled = true;
     $.Schedule(300, function () { disabled = false });
 }
+
+function VotingMenuButton() {
+    $("#VotingDropDownRoot").ToggleClass("VotingMenuHidden");
+}
+
+(function () {
+    // GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
+
+    var votingInfo = GameUI.CustomUIConfig().votingInfo;
+    var i = 0;
+    for (var votingGroupKey in votingInfo) {
+        (function () {
+            var votingGroup = votingInfo[votingGroupKey];
+
+            var groupEntry = $.CreatePanel("Panel", $("#VotingDropDownRoot"), votingGroupKey + "Entry");
+            groupEntry.BLoadLayoutSnippet("VotingMenuEntry");
+
+            groupEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingGroupKey);
+
+            var groupPanel = $.CreatePanel("Panel", $.GetContextPanel(), votingGroupKey + "Panel");
+            groupPanel.AddClass("VotingDropDown");
+            groupPanel.AddClass("VotingMenuHidden");
+            groupPanel.style.marginLeft = "425px;";
+            groupPanel.style.marginTop = ((i * 35) + 50) + "px;";
+
+            groupPanel.SetPanelEvent("onmouseover", (function () {
+                groupPanel.RemoveClass("VotingMenuHidden");
+            }));
+
+            groupPanel.SetPanelEvent("onmouseout", (function () {
+                groupPanel.AddClass("VotingMenuHidden");
+            }));
+
+            groupEntry.SetPanelEvent("onmouseover", (function () {
+                groupPanel.RemoveClass("VotingMenuHidden");
+            }));
+
+            groupEntry.SetPanelEvent("onmouseout", (function () {
+                groupPanel.AddClass("VotingMenuHidden");
+            }));
+
+            for (var votingKey in votingGroup) {
+                var votingEntry = $.CreatePanel("Panel", groupPanel, votingKey + "Entry");
+                votingEntry.BLoadLayoutSnippet("VotingMenuEntry");
+                votingEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingKey);
+
+                votingEntry.SetPanelEvent("onmouseactivate", (function () {
+                    groupPanel.AddClass("VotingMenuHidden");
+                    $("#VotingDropDownRoot").AddClass("VotingMenuHidden");
+                }));
+            }
+        })();
+        i++;
+    }
+})()
