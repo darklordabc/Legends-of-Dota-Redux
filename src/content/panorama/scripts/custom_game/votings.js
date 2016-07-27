@@ -147,8 +147,14 @@ function VotingMenuButton() {
     $("#VotingDropDownRoot").ToggleClass("VotingMenuHidden");
 }
 
-(function () {
-    // GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
+function CreateVotingMenu() {
+    var rootPanel = $("#VotingDropDownRoot");
+    rootPanel.SetPanelEvent("onmouseout", (function () {
+        rootPanel.AddClass("VotingMenuHidden");
+    }));
+    rootPanel.SetPanelEvent("onmouseover", (function () {
+        rootPanel.RemoveClass("VotingMenuHidden");
+    }));
 
     var votingInfo = GameUI.CustomUIConfig().votingInfo;
     var i = 0;
@@ -156,30 +162,36 @@ function VotingMenuButton() {
         (function () {
             var votingGroup = votingInfo[votingGroupKey];
 
-            var groupEntry = $.CreatePanel("Panel", $("#VotingDropDownRoot"), votingGroupKey + "Entry");
+            var groupEntry = $.CreatePanel("Panel", rootPanel, votingGroupKey + "Entry");
             groupEntry.BLoadLayoutSnippet("VotingMenuEntry");
 
             groupEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingGroupKey);
 
             var groupPanel = $.CreatePanel("Panel", $.GetContextPanel(), votingGroupKey + "Panel");
             groupPanel.AddClass("VotingDropDown");
+            groupPanel.AddClass("VotingDropDownSecondaryMargin");
             groupPanel.AddClass("VotingMenuHidden");
-            groupPanel.style.marginLeft = "425px;";
             groupPanel.style.marginTop = ((i * 35) + 50) + "px;";
 
             groupPanel.SetPanelEvent("onmouseover", (function () {
                 groupPanel.RemoveClass("VotingMenuHidden");
+                rootPanel.RemoveClass("VotingMenuHidden");
+                groupEntry.AddClass("hover");
             }));
 
             groupPanel.SetPanelEvent("onmouseout", (function () {
                 groupPanel.AddClass("VotingMenuHidden");
+                rootPanel.AddClass("VotingMenuHidden");
+                groupEntry.RemoveClass("hover");
             }));
 
             groupEntry.SetPanelEvent("onmouseover", (function () {
                 groupPanel.RemoveClass("VotingMenuHidden");
+                groupEntry.AddClass("hover");
             }));
 
             groupEntry.SetPanelEvent("onmouseout", (function () {
+                groupEntry.RemoveClass("hover");
                 groupPanel.AddClass("VotingMenuHidden");
             }));
 
@@ -190,10 +202,16 @@ function VotingMenuButton() {
 
                 votingEntry.SetPanelEvent("onmouseactivate", (function () {
                     groupPanel.AddClass("VotingMenuHidden");
-                    $("#VotingDropDownRoot").AddClass("VotingMenuHidden");
+                    rootPanel.AddClass("VotingMenuHidden");
                 }));
             }
         })();
         i++;
     }
+}
+
+(function () {
+    // GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
+
+    CreateVotingMenu();
 })()

@@ -3,6 +3,10 @@
     margin-left: 225px;
 }
 
+.VotingDropDownSecondaryMargin {
+    margin-left: 425px;
+}
+
 .VotingMenuHidden {
     opacity: 0.0;
     blur: 5.0;
@@ -33,7 +37,9 @@
     height: 35px;
 }
 
-.VotingMenuEntry:hover {
+.VotingMenuEntry:hover,
+.hover
+{
     wash-color: #bbbbbb;
     background-color: #44444444;
 }
