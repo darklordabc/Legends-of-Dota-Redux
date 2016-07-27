@@ -1195,13 +1195,13 @@
     "purple_flower"         "Purple Lotus"
     
     "DOTA_Tooltip_ability_true_random_lod" "True Random" 
-    "DOTA_Tooltip_ability_true_random_lod_Description"  "You will gain a random ability every time you cast the randomly given ability. Does not grant passives."
+    "DOTA_Tooltip_ability_true_random_lod_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_ultimate_random_lod" "Ultimate Random" 
-    "DOTA_Tooltip_ability_ultimate_random_lod_Description"  "You will gain a random ultimate ability every time you cast the randomly given ability. Does not grant passives."
+    "DOTA_Tooltip_ability_ultimate_random_lod_Description"  "You will gain a random active ultimate ability every time you cast the randomly given ability. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_support_random_lod" "Support Random" 
-    "DOTA_Tooltip_ability_support_random_lod_Description"  "You will gain a random support ability every time you cast the randomly given ability. Does not grant passives."
+    "DOTA_Tooltip_ability_support_random_lod_Description"  "You will gain a random active support ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_stun_random_lod" "Stun Random" 
-    "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random disabling ability every time you cast the randomly given ability. Does not grant passives."
+    "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random active disabling ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_mobility_random_lod" "Mobility Random" 
-    "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random mobility ability every time you cast the randomly given ability. Does not grant passives."
+    "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random active mobility ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
 }
