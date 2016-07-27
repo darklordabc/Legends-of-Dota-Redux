@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-07-28
+### Balance
+- Added 5 Random Abilities
+
 ## 2016-07-25
 ### Balance
 - Balanced Neutral Ice Armor, added new icon
