@@ -5,6 +5,7 @@
 -- Load requires
 local OptionManager = require('optionmanager')
 local util = require('util')
+local Network = require('network')
 
 -- Keeps track of what skills a given hero has
 local currentSkillList = {}
@@ -26,6 +27,12 @@ local heroListKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- A list of sub abilities needed to give out when we add an ability
 local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
+
+-- A list of sub abilities to find main abilities connected to them
+local mainAbilities = {}
+for l,m in pairs(subAbilities) do
+	mainAbilities[m]=l
+end
 
 -- List of units that we can precache
 local unitList = LoadKeyValues('scripts/npc/npc_units_custom.txt')
@@ -227,12 +234,12 @@ function skillManager:RemoveAllSkills(hero)
 
     -- Build the skill list
     self:BuildSkillList(hero)
-
+	
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
             hero:FindAbilityByName(v):SetHidden(true)
-        end
+		end
     end
 end
 
@@ -567,7 +574,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 oldAb:SetHidden(false)
             else
                 hero:AddAbility(multV)
-
                 local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)
@@ -581,7 +587,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 -- Insert
                 table.insert(abs, v)
             end
-
             -- If it's a tower, level it
             if isTower then
                 local ab = hero:FindAbilityByName(multV)
@@ -677,7 +682,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
         end
     end
-
     -- Add missing abilities
     for k,v in pairs(extraSkills) do
         -- Do they already have this skill?
