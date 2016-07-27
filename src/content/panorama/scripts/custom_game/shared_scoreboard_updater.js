@@ -75,11 +75,12 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 				(function () {
 					var ability = Entities.GetAbility(heroEntity, i);
 					var abilityName = Abilities.GetAbilityName(ability);
+					var abilityPanelID = "_" + abilityName;
+					var abilityPanel = abilitiesPanel.FindChildTraverse(abilityPanelID);
 
-					if (abilityName && Abilities.IsHidden(ability) == false && abilityName != "attribute_bonus") {
-						var abilityPanelID = "_" + abilityName;
-						if (abilitiesPanel.FindChildInLayoutFile(abilityPanelID) == null) {
-							var abilityPanel = $.CreatePanel("Panel", abilitiesPanel, abilityPanelID);
+					if (abilityName && abilityName != "attribute_bonus") {
+						if (Abilities.IsHidden(ability) == false && !abilityPanel) {
+							abilityPanel = $.CreatePanel("Panel", abilitiesPanel, abilityPanelID);
 							abilityPanel.BLoadLayoutSnippet("HeroAbility");
 							abilityPanel.FindChildTraverse("FlyoutAbilityImage").abilityname = abilityName;
 
@@ -89,6 +90,8 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 							abilityPanel.SetPanelEvent('onmouseout', (function(){
 								$.DispatchEvent( "DOTAHideAbilityTooltip", abilityPanel );
 							}));
+						} else if (Abilities.IsHidden(ability) == true && abilityPanel) {
+							abilityPanel.DeleteAsync(0.0);
 						}
 					}
 				})();

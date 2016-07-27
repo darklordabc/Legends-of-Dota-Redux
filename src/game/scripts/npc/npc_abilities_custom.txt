@@ -5623,4 +5623,310 @@
             }
         }
     }
+    "true_random_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "true_random_lod"
+        
+        "AbilityCooldown"                "40"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "true_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                        "value"                 "all"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"                "particles/true_random_lod/true_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "stun_random_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "stun_random_lod"
+        
+        "AbilityCooldown"                "20"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/stun_random_lod/stun_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "stun_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                        "value"                 "stun"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"                "particles/stun_random_lod/stun_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "mobility_random_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "mobility_random_lod"
+        
+        "AbilityCooldown"                "25"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "mobility_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                        "value"                 "mobility"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"                "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "ultimate_random_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"            "ultimate_random_lod"
+        
+        "AbilityCooldown"                "80"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "ultimate_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                        "value"                 "ultimate"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"                "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "support_random_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "support_random_lod"
+        
+        "AbilityCooldown"                "15"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/support_random_lod/support_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "support_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                        "value"                 "support"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"                "particles/support_random_lod/support_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
 }
