@@ -221,6 +221,7 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end

@@ -4,6 +4,10 @@
     height: 100%;
 }
 
+.TeamSwitch_Panel_Hidden {
+    opacity: 0.0;
+    transform: translateY(-100px);
+}
 .hidden {
     visibility: collapse;
 }
@@ -65,6 +69,10 @@
     margin-top: 45px;
     margin-left: 225px;
     flow-children: down;
+
+    transition-property: transform, opacity;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in;
 }
 
 #TeamSwitchDescription
