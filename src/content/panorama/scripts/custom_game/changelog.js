@@ -35,11 +35,7 @@ function GetDate() {
 	return yyyy * 10000 + mm * 100 + dd;
 }
 
-// TODO: Back-end
 var messages = [];
-/*messages[0] = {"steamid" : 76561198054179075, "message" : "Testing messages"}
-messages[1] = {"steamid" : 76561198054179075, "message" : "Testing messages x2"}
-messages[2] = {"steamid" : 76561198001376044, "message" : "Testing messages x3"}*/
 
 function toggleChangelog(arg){
 	$("#changelogDisplay").SetHasClass("changelogDisplayHidden", !$("#changelogDisplay").BHasClass("changelogDisplayHidden"))
@@ -160,6 +156,11 @@ function sendMessage() {
 	      TimeStamp: GetDate() 
 	  	}
     };
+
+    $( "#submitInput" ).text = "";
+    $("#submitButton").SetFocus();
+    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodButtonTooltip"));
+    Game.EmitSound( "compendium_levelup" );
 
     SendRequest( requestParams, null );
 }

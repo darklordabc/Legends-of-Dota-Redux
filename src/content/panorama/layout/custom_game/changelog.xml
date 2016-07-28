@@ -61,7 +61,7 @@
 <!-- 							<Panel class="submitPanelTxt">
 								<Label class="submitPnlText" text="#lodLeaveComment" />
 							</Panel> -->
-							<TextButton id="submitButton" class="PlayButton" text="Submit" onactivate="sendMessage()">
+							<TextButton id="submitButton" class="PlayButton" text="Submit" onactivate="sendMessage()" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
 							</TextButton>
 						</Panel>
 					</Panel>
