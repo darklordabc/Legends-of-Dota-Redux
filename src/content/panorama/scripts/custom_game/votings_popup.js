@@ -5,18 +5,23 @@ GameEvents.Subscribe("player_accepted", player_accepted);
 
 var handler;
 
-function show_vote_dialog(swap_info) {
-    var swapper_info = Game.GetPlayerInfo(swap_info.swapper);
-    var swappee_info = Game.GetPlayerInfo(swap_info.swappee);
+function show_vote_dialog(vote_info) { // TODO: change voting table structure
+    if (vote_info.name == "switch_team") {
+        var swapper_info = Game.GetPlayerInfo(vote_info.swapper); 
+        var swappee_info = Game.GetPlayerInfo(vote_info.swappee);
 
-    $('#swapper_icon').heroname = swapper_info.player_selected_hero;
-    $('#swapper_name').text = swapper_info.player_name;
+        $('#swapper_icon').heroname = swapper_info.player_selected_hero;
+        $('#swapper_name').text = swapper_info.player_name;
 
-    $('#swappee_icon').heroname = swappee_info.player_selected_hero;
-    $('#swappee_name').text = swappee_info.player_name;
+        $('#swappee_icon').heroname = swappee_info.player_selected_hero;
+        $('#swappee_name').text = swappee_info.player_name;
+    }
 
     $('#vote_dialog').RemoveClass('dialog_hidden');
     $('#choice').RemoveClass('hiddenoccupy')
+
+    var title = $('#vote_dialog').FindChildrenWithClassTraverse('title')[0];
+    title.text = $.Localize("votings_" + vote_info.name);
 
     apply_transition_from_start('#vote_timer', '10s', 'shrink');
     handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('dialog_hidden');
@@ -36,7 +41,7 @@ function decline() {
 function player_declined() {
     var vote_dialog = $('#vote_dialog')
     var title = vote_dialog.FindChildrenWithClassTraverse('title')[0];
-    title.text = 'DECLINED';
+    title.text = $.Localize("votings_declined");
     vote_dialog.AddClass('declined');
 
     $.CancelScheduled(handler);
@@ -46,14 +51,13 @@ function player_declined() {
     })
     $.Schedule(4, function() {
         vote_dialog.RemoveClass('declined');
-        title.text = 'TEAM SWITCH';
     })
 }
 
 function player_accepted() {
     var vote_dialog = $('#vote_dialog')
     var title = vote_dialog.FindChildrenWithClassTraverse('title')[0];
-    title.text = 'ACCEPTED';
+    title.text = $.Localize("votings_accepted");
     vote_dialog.AddClass('accepted');
 
     $.CancelScheduled(handler);
@@ -63,7 +67,6 @@ function player_accepted() {
     })
     $.Schedule(4, function() {
         vote_dialog.RemoveClass('accepted');
-        title.text = 'TEAM SWITCH';
     })
 }
 

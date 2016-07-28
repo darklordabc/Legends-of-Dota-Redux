@@ -481,6 +481,9 @@
     "votings_switch_universal_shop"                 "Switch Universal Shop"
     "votings_switch_all_vision"                     "Switch All Vision"
 
+    "votings_accepted"                              "Accepted"
+    "votings_declined"                              "Declined"
+
     /////////////////
     // UNIQUE HERO MECHANICS
     ////////////////
