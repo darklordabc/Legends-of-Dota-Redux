@@ -5623,6 +5623,842 @@
             }
         }
     }
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Zulf, the Stormhunter   
+    //
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Zulf - Cyclone Trap
+    //=================================================================================================================
+    "zulf_cyclone_trap"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"            "zulf_cyclone_trap"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+        "AbilityCastRange"              "750 1000 1250 1500"
+        "AOERadius"                     "100"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "16 13 10 7"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "55 60 65 70"
+    
+        // Ability Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "cast_range"                        "750 1000 1250 1500"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "100"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "cyclone_delay"                     "2.5"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "cyclone_duration"                  "1.5"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "armor_reduction"                   "-3 -4 -5 -6"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "armor_duration"                    "8"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                          "60"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_juggernaut/juggernaut_ward_create.vpcf"
+            "particle"  "particles/customgames/capturepoints/cp_wind.vpcf"
+            "soundfile" "sounds/items/dota_item_cyclone.vsnd"
+        }
+        "OnSpellStart"
+        {
+            "CreateThinker"
+            {
+                "Modifier"  "modifier_cyclone_thinker"
+                "Target"    "POINT"
+                "Duration"  "%cyclone_delay"
+            }
+    
+            "SpawnUnit"
+            {
+                "UnitName"  "dummy_unit"
+                "UnitCount" "1"
+                "SpawnRadius"   "1"
+                "Duration"  "%duration"
+                "Target"    "POINT"
+                "GrantsGold"    "0"
+                "GrantsXP"  "0"
+    
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_cyclone_trap"
+                        "Target"        "TARGET"
+                        "Duration"      "1.5"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+    
+            "modifier_cyclone_trap"
+            {
+                "IsHidden"  "1"
+                "Passive"   "0"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"      "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_ROOTED"               "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_BLOCK_DISABLED"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_juggernaut/juggernaut_ward_create.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_cyclone_trap_set"
+                        "Target"        "TARGET"
+                    }
+                }
+    
+            }
+            "modifier_cyclone_trap_set"
+            {
+                "IsHidden"  "1"
+                "Passive"   "0"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"      "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_ROOTED"               "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_BLOCK_DISABLED"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_OUT_OF_GAME"          "MODIFIER_STATE_VALUE_ENABLED"
+                    }
+                "ThinkInterval" "0.1"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/customgames/capturepoints/cp_wind.vpcf"
+                        "EffectAttachType"  "follow_overhead"
+                        "Target"            "TARGET"
+    
+                        "ControlPoints"
+                        {
+                            "01"    "%radius 0 0"
+                            "05"    "%radius 0 0"
+                        }
+                    }
+                }
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_cyclone_trap.lua"
+                        "Function"      "CycloneCheck"
+                        "radius"        "%radius"
+                    }
+                }
+            }
+            "modifier_cyclone_immunity"
+            {
+                "Passive"   "0"
+                "IsHidden"  "1"
+                "IsPurgable"    "0"
+                "IsBuff"    "1"
+                "Duration"  "3.0"
+    
+                "OnCreated"
+                {
+                    "DelayedAction"
+                    {
+                        "Delay"     "2.55"
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_cyclone_armor_reduction"
+                                "Target"        "TARGET"
+                                "Duration"      "%armor_duration"
+                            }                       
+                        }
+                    }
+                }
+            }
+            "modifier_cyclone_armor_reduction"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+            
+                "StatusEffectName"      "particle_name"        
+                "StatusEffectPriority"  "10"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armor_reduction"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zulf - Gale Force
+    //=================================================================================================================
+    "zulf_gale_force"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"            "zulf_gale_force"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.1"
+        "AOERadius"                 "350"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "16 14 12 10"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90 80 70 60"
+    
+        // Ability Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                      "4"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "damage_per_agility"            "0.9 1.1 1.3 1.5"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "300 325 350 375"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/zulf_gale_force.vpcf"
+            "particle"  "particles/generic_gameplay/generic_disarm.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"      "modifier_gale_force"
+                "Target"        "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"      "modifier_gale_force_disarm"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Invoker.Tornado.Target"
+                "Target"        "CASTER"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "1.5"
+                "Action"    
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Invoker.Tornado.Target"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_gale_force"
+            {
+                "Aura"              "modifier_gale_force_disarm"
+                "Aura_Radius"       "%radius"
+                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+    
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsBuff"            "1"
+                "Duration"          "%duration"
+    
+                "EffectName"        "particles/zulf_gale_force.vpcf"
+                "EffectAttachType"  "attach_origin" 
+    
+                "ThinkInterval"  "0.2"
+                "OnIntervalThink"
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+                        }
+                        "Action"    
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "scripts/vscripts/../abilities/zulf_gale_force.lua"
+                                "Function"      "ApplyDamageAgility"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_gale_force_disarm"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+    
+                "EffectName"        "particles/generic_gameplay/generic_disarm.vpcf"
+                "EffectAttachType"  "follow_overhead"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zulf - Jet Stream
+    //=================================================================================================================
+    "zulf_jet_stream"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"            "zulf_jet_stream"
+        "AbilityProcsMagicStick"        "1"
+    
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+        "AbilityCastRange"              "1500 1750 2000 2250"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "55 50 45 40"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "140 150 160 170"
+    
+        // Ability Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "length"                    "1500 1750 2000 2250"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "width"                     "250"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                  "20"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "speed_buff"                    "10"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "speed_debuff"                  "-10"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "speed_increase"                "2 3 4 5"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "speed_decrease"                "-2 -3 -4 -5"
+            }
+            "08"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "max_speed"                 "10"
+            }
+        }
+        "precache"
+        {
+            "particle"          "particles/zulf_jet_stream.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "Function"      "JetStreamGetLocation"
+                "Target"        "POINT"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Ability.Focusfire"
+                "Target"        "CASTER"
+            }
+    
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_jet_stream_start"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+    
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"   "0"
+    
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "Function"  "JetStreamEffect"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_jet_stream_start"
+            {
+                "Passive"       "0"
+                "IsHidden"      "1"
+                "ThinkInterval"     "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "Function"      "JetStreamProjectile"
+                        "wave_particle" "particles/zulf_jet_stream.vpcf"
+                    }
+                }
+            }
+            "modifier_jet_stream_buff"
+            {
+                "Passive"   "0"
+                "IsHidden"  "0"
+                "IsBuff"    "1"
+    
+                "Duration"  "1.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%speed_buff"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "ThinkInterval"     "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "Function"      "JetStreamBuff"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_jet_stream_buff_increase"
+                        "Target"        "TARGET"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_jet_stream_buff_flying"
+                        "Target"        "TARGET"
+                    }
+                    "DestroyTrees"
+                    {
+                        "Target"        "TARGET"
+                        "Radius"        "150"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff"
+            {
+                "Passive"   "0"
+                "IsHidden"  "0"
+                "IsDebuff"  "1"
+    
+                "Duration"  "1.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%speed_debuff"
+                }
+    
+                "ThinkInterval"     "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "Function"      "JetStreamDebuff"
+                    }
+                }   
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_jet_stream_debuff_decrease"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_jet_stream_buff_increase"
+            {
+                "Passive"   "0"
+                "IsHidden"  "0"
+                "IsBuff"    "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%speed_increase"
+                }
+                "ThinkInterval"  "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "Function"      "JetStreamCheck"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff_decrease"
+            {
+                "Passive"   "0"
+                "IsHidden"  "0"
+                "IsDebuff"  "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%speed_decrease"
+                }   
+                "ThinkInterval"  "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "Function"      "JetStreamCheck"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff_knockback"
+            {
+                "Passive"   "0"
+                "IsHidden"  "1"
+                "IsDebuff"  "1"
+                "Duration"  "0.1"
+                "OnCreated"
+                {
+                    "Knockback"
+                    {
+                        "Target"            "TARGET"
+                        "Center"            "TARGET"
+                        "Distance"          "100"
+                        "Duration"          "0.1"
+                        "Height"            "30"
+                        "IsFixedDistance"   "1"
+                        "ShouldStun"            "0" 
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zulf - Typhoon
+    //=================================================================================================================
+    "zulf_typhoon"
+    {
+        "BaseClass"                 "ability_datadriven"
+        "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                "zulf_typhoon"
+        "AnimationPlaybackRate"             "0.5"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "1.65"
+        "AOERadius"                 "750 900 1050"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "145 125 105"
+        "AbilityChannelTime"                "3.0 4.0 5.0"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "175 250 325"
+    
+        // Ability Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "cast_delay"                    "1.65"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                  "3 4 5"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "damage"                    "10 15 20"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "slow"                      "-60"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "slow_duration"             "2 2.5 3"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                    "750 900 1050"
+            }
+        }
+        "precache"
+        {
+            "particle"      "particles/zulf_typhoon.vpcf"
+            "particle"      "particles/units/heroes/hero_invoker/invoker_tornado_trail.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_typhoon"
+                "Target"    "CASTER"
+                "Duration"  "%duration"
+            }
+            "DestroyTrees"
+            {
+                "Target"        "CASTER"
+                "Radius"        "%radius"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Invoker.Tornado"
+                "Target"        "CASTER"
+            }
+    
+        }
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_typhoon"
+                "Target"    "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_typhoon"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+    
+    
+                "EffectName"        "particles/zulf_typhoon.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "EffectRadius"      "%radius"
+                "OverrideAnimation"     "ACT_DOTA_FLAIL"
+                "ControlPoints"
+                {
+                    "01"    "%radius %radius %radius"
+                    "02"    "%radius %radius %radius"
+                }
+            
+                "Aura"              "modifier_typhoon_effect"
+                "Aura_Radius"       "%radius"
+                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"        "DOTA_UNIT_TARGET_FLAG_NONE"
+    
+                "ThinkInterval"  "0.03"
+                "OnIntervalThink"
+                {
+                    "Rotate"
+                    {
+                            "Target"            "CASTER"
+                            "PitchYawRoll"      "0 30 0" //x y z values
+                    }
+                }
+    
+            }
+            "modifier_typhoon_effect"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_typhoon.lua"
+                        "Function"      "TyphoonSpinStart"
+                    }
+                }
+            }
+            "modifier_typhoon_stunned"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "0"
+                "OverrideAnimation"     "ACT_DOTA_FLAIL"
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"              "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"      "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_typhoon_slow"
+                        "Target"        "TARGET"
+                        "Duration"      "%slow_duration"
+                    }
+                }
+            }
+            "modifier_typhoon_slow"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow" 
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // RANDOM ABILITIES
+    //=================================================================================================================
     "true_random_lod"
     {
         // General
