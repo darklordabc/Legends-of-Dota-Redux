@@ -48,20 +48,20 @@
 					<RadioButton id="showCreditsButton" class="ProfileContentRightTabOption" text="#lodCreditsButtonText" onactivate="toggleCredits()"/>
 				</Panel>
 				<Panel class="horizontalSeparator"/>
-				<Panel id="currentDisplay" hittest="false">
+				<Panel id="currentDisplay" hittest="false" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
 					<Panel class="displayPanel" id="descriptionDisplay" hittest="false">
 						<Panel class="displayHeader" hittest="false">
 							<Label class="displayText" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
 						</Panel>
 						<Panel class="submitRoot">
 							<Panel class="submitPanel" id="submitInputRoot">
-								<TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" placeholder="Leave your suggestion here..." >
+								<TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" placeholder="#lodMessagePlaceholder" >
 								</TextEntry>
 							</Panel>
 <!-- 							<Panel class="submitPanelTxt">
 								<Label class="submitPnlText" text="#lodLeaveComment" />
 							</Panel> -->
-							<TextButton id="submitButton" class="PlayButton" text="Submit" onactivate="sendMessage()" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
+							<TextButton id="submitButton" class="PlayButton" text="#lodMessageSubmit" onactivate="sendMessage()">
 							</TextButton>
 						</Panel>
 					</Panel>

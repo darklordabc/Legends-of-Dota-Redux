@@ -142,7 +142,13 @@ function setupCredits() {
 
 function sendMessage() {
 	var text = $( "#submitInput" ).text;
-	//GameEvents.SendCustomGameEventToServer( "su_send_message", { message: text } );
+	$.Schedule(6.0, function () {
+		$.DispatchEvent( 'UIHideCustomLayoutTooltip', $("#submitButton"), "SendTooltip");
+	})
+	if (text.length < 6) {
+		$.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageLengthTooltip"));
+		return;
+	}
 	
 	var playerID = Players.GetLocalPlayer();
 	var info =  Game.GetPlayerInfo(Players.GetLocalPlayer());
@@ -157,9 +163,16 @@ function sendMessage() {
 	  	}
     };
 
+    $.Schedule(6.0, function () {
+		$("#submitButton").text = $.Localize("lodMessageSubmit");
+		$("#submitButton").RemoveClass("Sent");
+	})
+
+    $("#submitButton").text = $.Localize("lodMessageSent");
+    $("#submitButton").AddClass("Sent");
     $( "#submitInput" ).text = "";
     $("#submitButton").SetFocus();
-    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodButtonTooltip"));
+    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageButtonTooltip"));
     Game.EmitSound( "compendium_levelup" );
 
     SendRequest( requestParams, null );

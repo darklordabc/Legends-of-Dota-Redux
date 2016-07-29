@@ -442,7 +442,11 @@
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
     
     //CHANGELOG BUTTONS
-    "lodButtonTooltip"                              "Message has been successfully sent! One of the devs will answer you soon."
+    "lodMessagePlaceholder"                         "Leave your suggestion here..."
+    "lodMessageSubmit"                              "Submit"
+    "lodMessageSent"                                "Sent"
+    "lodMessageLengthTooltip"                       "Minimum message length is 6 letters."
+    "lodMessageButtonTooltip"                       "Message has been successfully sent! One of the devs will answer you soon."
     "lodDescriptionButtonText"                      "Description"
     "lodUpdatesButtonText"                          "Updates"
     "lodCreditsButtonText"                          "Credits"

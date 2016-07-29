@@ -299,6 +299,10 @@
     horizontal-align: center;
 }
 
+.Sent {
+    saturation: 0.2;
+}
+
 TextEntry #PlaceholderText {
 	font-size: 18px;
 	line-height: 25px;
