@@ -493,6 +493,32 @@ function ShuffleArray(input)
     end
 end
 
+function PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)		
+     local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
+     local pidx		
+     if pfx == "gold" or pfx == "lumber" then		
+         pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
+     else		
+         pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
+     end		
+ 		
+     local digits = 0		
+     if number ~= nil then		
+         digits = #tostring(number)		
+     end		
+     if presymbol ~= nil then		
+         digits = digits + 1		
+     end		
+     if postsymbol ~= nil then		
+         digits = digits + 1		
+     end		
+ 		
+     ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
+     ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
+     ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
+     ParticleManager:SetParticleControl(pidx, 3, color)		
+ end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
