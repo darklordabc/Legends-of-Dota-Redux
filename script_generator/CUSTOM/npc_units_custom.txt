@@ -1487,6 +1487,9 @@
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+			"particle"        "particles/zulf_jet_stream.vpcf"
+			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+			
 		}
 	}
 
