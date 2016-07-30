@@ -493,7 +493,7 @@ function ShuffleArray(input)
     end
 end
 
-function PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)		
+function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)		
      local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
      local pidx		
      if pfx == "gold" or pfx == "lumber" then		
