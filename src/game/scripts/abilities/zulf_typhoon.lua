@@ -1,4 +1,4 @@
-function TyphoonSpinEffect( keys )
+function TyphoonSpinStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -40,7 +40,7 @@ function TyphoonSpinEffect( keys )
 	ability:CreateVisibilityNode(caster:GetAbsOrigin(), radius, duration)
 	target:EmitSound("n_creep_Wildkin.Tornado")
 
-	Timers:CreateTimer( 0, function()
+	Timers:CreateTimer(function()
 		local ground_position = GetGroundPosition(target:GetAbsOrigin() , target)
 		local height = height + jump
 		local origin = caster:GetAbsOrigin()
@@ -51,7 +51,7 @@ function TyphoonSpinEffect( keys )
 		local rotate_angle = QAngle(0, randomSpeed, 0)
 		local rotate_point = RotatePosition(origin, rotate_angle, rotate_position)
 		local randomDistance = newDistanceLength + increaseSpeed
-
+		
 		if caster:HasModifier("modifier_typhoon") then
 			jump = jump + (gravity / 5)
 			target:SetAbsOrigin(rotate_point + Vector(0,0,jump) )
@@ -108,7 +108,7 @@ function TyphoonSpinEffect( keys )
 			return nil
 		end
 		return 1/30
-	end)
+	end, DoUniqueString('zulf_typhhoon'), 1/30)
 end
 
 function PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
