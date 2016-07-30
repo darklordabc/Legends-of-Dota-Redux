@@ -493,7 +493,20 @@ function ShuffleArray(input)
     end
 end
 
-function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)		
+function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
+     local armor = target:GetPhysicalArmorValue()
+     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
+     number = number - (number * damageReduction)
+     local lens_count = 0
+     for i=0,5 do
+        local item = self:GetItemInSlot(i)
+        if item ~= nil and item:GetName() == "item_aether_lens" then
+            lens_count = lens_count + 1
+        end
+     end
+     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
+
+     number = math.floor(number)
      local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
      local pidx		
      if pfx == "gold" or pfx == "lumber" then		
