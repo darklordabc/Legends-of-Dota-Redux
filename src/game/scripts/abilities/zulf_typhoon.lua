@@ -90,22 +90,7 @@ function TyphoonSpinStart( keys )
 
 			local amount = target.fallDamage
 
-	        local armor = target:GetPhysicalArmorValue()
-	        local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
-	        amount = amount - (amount * damageReduction)
-
-		    local lens_count = 0
-		    for i=0,5 do
-		        local item = caster:GetItemInSlot(i)
-		        if item ~= nil and item:GetName() == "item_aether_lens" then
-		            lens_count = lens_count + 1
-		        end
-		    end
-		    amount = amount * (1 + (.08 * lens_count) + (caster:GetIntellect()/1600))
-
-    		amount = math.floor(amount)
-
-    		PopupNumbers(target, "damage", Vector(255, 26, 26), 2.0, amount, nil, 3)
+    		caster:PopupNumbers(target, "damage", Vector(255, 26, 26), 2.0, amount, nil, 3)
 
 			return nil
 		end
