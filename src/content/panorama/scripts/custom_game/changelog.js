@@ -69,6 +69,8 @@ function toggleCredits(arg){
 function setMessagesNumber() {
 	var messageCount = Object.keys(messages).length;
 
+	$("#changelogNotification").visible = messageCount > 0;
+
 	$("#changelogNotificationLabel").text = messageCount;
 }
 
@@ -192,6 +194,7 @@ function FromServerMsg( args ) {
 (function() {
 	$("#descriptionDisplay").visible = true;
 	$("#showDescriptionButton").checked = true;
+	$("#changelogNotification").visible = false;
 
 	GameEvents.Subscribe( "su_new_messages", newMessages );
 	GameEvents.Subscribe( "su_server_msg", FromServerMsg );
