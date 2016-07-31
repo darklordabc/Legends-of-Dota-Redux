@@ -5761,6 +5761,11 @@
                     "MODIFIER_STATE_BLOCK_DISABLED"       "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION" "400"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "400" 
+                }
                 "OnCreated"
                 {
                     "AttachEffect"
@@ -5796,7 +5801,12 @@
                     "MODIFIER_STATE_LOW_ATTACK_PRIORITY"  "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_BLOCK_DISABLED"       "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_OUT_OF_GAME"          "MODIFIER_STATE_VALUE_ENABLED"
-                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION" "400"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "400" 
+                }
                 "ThinkInterval" "0.1"
                 "OnCreated"
                 {
