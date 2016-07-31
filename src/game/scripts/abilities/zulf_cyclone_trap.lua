@@ -10,7 +10,7 @@ function CycloneCheck( keys )
 	if #units > 0 then
 		for i, individual_unit in ipairs(units) do
 			if not individual_unit:HasModifier("modifier_cyclone_immunity") and not individual_unit:IsMagicImmune() and not individual_unit:HasModifier("modifier_roshan_bash") then
-				individual_unit:EmitSound("DOTA_Item.Cyclone")
+				individual_unit:EmitSound("DOTA_Item.Cyclone.Activate")
 				ability:ApplyDataDrivenModifier(caster, individual_unit, "modifier_cyclone_immunity", {} )
 				ability:ApplyDataDrivenModifier(caster, individual_unit, "modifier_eul_cyclone", {Duration = 2.5} )
 				thinker:ForceKill(true)
