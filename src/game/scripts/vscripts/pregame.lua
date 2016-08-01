@@ -36,7 +36,7 @@ function Pregame:init()
     -- Some default values
     self.fastBansTotalBans = 3
     self.fastHeroBansTotalBans = 1
-    self.fullBansTotalBans = 10
+    self.fullBansTotalBans = 5
     self.fullHeroBansTotalBans = 2
 
     -- Stores which playerIDs we have already spawned
