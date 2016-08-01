@@ -69,33 +69,16 @@
 						<Panel class="displayHeader" hittest="false">
 							<Panel class="updateClipper" id="updateClipper" hittest="false">
 								<Panel class="displayHeader updateEntry" hittest="false">
-									<Label class="updateHeaderText" text="Update 7th July" />
-									<Label class="displayText" text="- Fixed the entire game again." />
-									<Label class="displayText" text="- Fixed the entire game again." />
-									<Label class="displayText" text="- Fixed the entire game again." />
+									<Label class="updateHeaderText" text="#july7_title" />
+									<Label class="displayText" text="#july7_option1" />
+									<Label class="displayText" text="#july7_option1" />
+									<Label class="displayText" text="#july7_option1" />
 								</Panel>
 								<Panel class="horizontalSeparator"/>
 								<Panel class="displayHeader" hittest="false">
-									<Label class="updateHeaderText" text="Update 5th July" />
-									<Label class="displayText" text="- Fixed the entire game." />
-									<Label class="displayText" text="- Fixed the entire game." />
-								</Panel>
-								<Panel class="horizontalSeparator"/>
-								<Panel class="displayHeader" hittest="false">
-									<Label class="updateHeaderText" text="Update 7th July" />
-									<Label class="displayText" text="- Fixed the entire game again." />
-									<Label class="displayText" text="- Fixed the entire game again." />
-									<Label class="displayText" text="- Fixed the entire game again." />
-								</Panel>
-								<Panel class="horizontalSeparator"/>
-								<Panel class="displayHeader" hittest="false">
-									<Label class="updateHeaderText" text="Update 7th July" />
-									<Label class="displayText" text="- Fixed the entire game again." />
-								</Panel>
-								<Panel class="horizontalSeparator"/>
-								<Panel class="displayHeader" hittest="false">
-									<Label class="updateHeaderText" text="Update 7th July" />
-									<Label class="displayText" text="- Fixed the entire game again." />
+									<Label class="updateHeaderText" text="#july7_title" />
+									<Label class="displayText" text="#july7_option1" />
+									<Label class="displayText" text="#july7_option1" />
 								</Panel>
 							</Panel>
 						</Panel>

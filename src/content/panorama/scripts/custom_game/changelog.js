@@ -174,7 +174,7 @@ function sendMessage() {
     $("#submitButton").AddClass("Sent");
     $( "#submitInput" ).text = "";
     $("#submitButton").SetFocus();
-    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageButtonTooltip"));
+    // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageButtonTooltip"));
     Game.EmitSound( "compendium_levelup" );
 
     SendRequest( requestParams, null );
