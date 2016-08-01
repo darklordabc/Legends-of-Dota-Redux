@@ -140,6 +140,7 @@
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
+    "lodOptionDesBalanceMode"                       "Use Balance Mode Ban List (Disables other lists)"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
     "lodOptionLevel1"                               "Level 1"
@@ -258,6 +259,7 @@
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
     "lodOptionAboutBanningUseBanList"               "Ban a predefined list of annoying abilities."
+    "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for balance mode. Disables the other ban lists."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
     "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible."
     "lodOptionAboutGameSpeedStartingLevel"          "The level a player will start at. (1 - 100)\nNote: A player can not start higher than the max hero level."
@@ -400,7 +402,7 @@
 
     "lodBanningPhase"                               "Enable The Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
-    "lodBalanceMode" 				    "Disable Balance Mode"
+    "lodBalanceMode"                                "Disable Balance Mode"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."

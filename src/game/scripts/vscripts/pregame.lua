@@ -222,6 +222,7 @@ function Pregame:init()
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -232,6 +233,7 @@ function Pregame:init()
         self:setOption('lodOptionSlots', 4, true)
         self:setOption('lodOptionCommonMaxUlts', 1, true)
         self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -1564,6 +1566,28 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
+            if value == 1 then
+                -- Enable balance mode bans and disable other lists
+                self:setOption('lodOptionBanningBalanceMode', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                self:setOption('lodOptionBanningBanInvis', 0, true)
+
+                return true
+            elseif value == 0 then
+                -- Disable balance mode bans
+                self:setOption('lodOptionBanningBalanceMode', 0, true)
+                return true
+            end
+
+            return false
+        end,
+        
+        -- Balance Mode ban list
+        lodOptionBanningBalanceMode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
             return value == 0 or value == 1
         end,
 
@@ -1902,6 +1926,9 @@ function Pregame:initOptionSelector()
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
+                
+                -- Balance Mode Ban List disabled by default
+                self:setOption('lodOptionBanningBalanceMode', 0, true)
 
                 -- Set banning
                 self:setOption('lodOptionBanning', 1)
@@ -2643,6 +2670,7 @@ function Pregame:processOptions()
 			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
 			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
                     ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
+                    ['Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
 			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
 			        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
 			        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],

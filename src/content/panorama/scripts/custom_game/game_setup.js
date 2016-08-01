@@ -288,6 +288,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionBanningBalanceMode',
+                des: 'lodOptionDesBanningBalanceMode',
+                about: 'lodOptionAboutBanningBalanceMode',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     },
 
@@ -4155,6 +4171,10 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionBalanceMode') {
         onBalanceModeChanged();
     }
+    
+    if(key == 'lodOptionBanningBalanceMode') {
+        onBalanceModeBanList();
+    }
 }
 
 // Recalculates how many abilities / heroes we can ban
@@ -4346,6 +4366,10 @@ function onBalanceModeChanged() {
     $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", !balanceMode);
     $( "#balanceModePointsSkills" ).SetHasClass("balanceModeDisabled", !balanceMode);
+}
+
+function onBalanceModeBanList() {
+    
 }
 
 // Changes which phase the player currently has selected
