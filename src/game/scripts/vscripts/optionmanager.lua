@@ -74,7 +74,7 @@ OptionManager:SetOption('maxSkills', 6)
 OptionManager:SetOption('maxUlts', 2)
 
 -- Set Balance Mode
-OptionManager:SetOption('balanceMode', true)
+OptionManager:SetOption('balanceMode', false)
 
 -- Should we ban troll combos?
 OptionManager:SetOption('banTrollCombos', true)
