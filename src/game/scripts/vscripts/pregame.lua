@@ -1901,7 +1901,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
                 -- Balance Mode disabled by default
-                self:setOption('lodOptionBalanceMode', 0, true)
+                self:setOption('lodOptionBalanceMode', 0, false)
 
                 -- Set banning
                 self:setOption('lodOptionBanning', 1)
