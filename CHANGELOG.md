@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-01
+### Balance
+- Added Reblanced Version of Permanent Immolation
+- [Zulf's Abilitites](http://dotaconcept.com/hero/70) added to the game: 4 original abilities. 
+
 ## 2016-07-28
 ### Balance
 - Added 5 Random Abilities
