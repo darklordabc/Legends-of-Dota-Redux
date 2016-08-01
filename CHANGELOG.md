@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 - Added Reblanced Version of Permanent Immolation
 - [Zulf's Abilitites](http://dotaconcept.com/hero/70) added to the game: 4 original abilities
+- Default Bans reduced from 10 to 5
 
 ## 2016-07-28
 ### Balance
