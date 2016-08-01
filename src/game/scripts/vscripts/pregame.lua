@@ -2501,6 +2501,9 @@ end
 
 -- Processes options to push around to the rest of the systems
 function Pregame:processOptions()
+    -- Check Map
+    local mapName = GetMapName()
+    
     -- Only process options once
     if self.processedOptions then return end
     self.processedOptions = true
@@ -2538,64 +2541,67 @@ function Pregame:processOptions()
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
 	    this.desiredDire = this.optionStore['lodOptionBotsDire']
         
+        -- Prepare to disable ban lists if necessary
+        local disableBanLists = false
+        
         -- Enable Balance Mode (disables ban lists)
         if this.optionStore['lodOptionBalanceMode'] == 1 then
             -- Load balance mode stats
-            if self.optionStore['lodOptionBalanceMode'] == 1 then
-                local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
-                self.spellCosts = {}
-                for tier, tierList in pairs(balanceMode) do
-                    -- Check whether price list or ban list
-                    local tierNum = tonumber(string.sub(tier, 6))
-                    if tierNum == 0 then
-                        -- Ban List
-                        for abilityName,nothing in pairs(tierList) do
-                            this:banAbility(abilityName)
-                        end
-                    else
-                        -- Spell Shop
-                        local price = constants.TIER[tierNum]
-                        
-                        for abilityName,nothing in pairs(tierList) do
-                            self.spellCosts[abilityName] = price
-                            network:sendSpellPrice(abilityName, price)
-                        end
+            local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+            self.spellCosts = {}
+            for tier, tierList in pairs(balanceMode) do
+                -- Check whether price list or ban list
+                local tierNum = tonumber(string.sub(tier, 6))
+                if tierNum == 0 then
+                    -- Ban List
+                    for abilityName,nothing in pairs(tierList) do
+                        this:banAbility(abilityName)
+                    end
+                else
+                    -- Spell Shop
+                    local price = constants.TIER[tierNum]
+                    
+                    for abilityName,nothing in pairs(tierList) do
+                        self.spellCosts[abilityName] = price
+                        network:sendSpellPrice(abilityName, price)
                     end
                 end
             end
+            
+            disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='all_pick_4'
+        end
+        
+        -- Enable WTF mode
+        if not disableBanLists and this.optionStore['lodOptionCrazyWTF'] == 1 then
+            -- Auto ban powerful abilities
+            for abilityName,v in pairs(this.wtfAutoBan) do
+                this:banAbility(abilityName)
+            end
+
+            -- Enable debug mode
+            Convars:SetBool('dota_ability_debug', true)
+        end
+
+        -- Banning of OP Skills
+        if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
+            for abilityName,v in pairs(this.OPSkillsList) do
+                this:banAbility(abilityName)
+            end
         else
-            -- Enable WTF mode
-            if this.optionStore['lodOptionCrazyWTF'] == 1 then
-                -- Auto ban powerful abilities
-                for abilityName,v in pairs(this.wtfAutoBan) do
-                    this:banAbility(abilityName)
-                end
+            SpellFixes:SetOPMode(true)
+        end
 
-                -- Enable debug mode
-                Convars:SetBool('dota_ability_debug', true)
+        -- Banning invis skills
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] == 1 then
+            for abilityName,v in pairs(this.invisSkills) do
+                this:banAbility(abilityName)
             end
+        end
 
-            -- Banning of OP Skills
-            if this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-                for abilityName,v in pairs(this.OPSkillsList) do
-                    this:banAbility(abilityName)
-                end
-            else
-                SpellFixes:SetOPMode(true)
-            end
-
-            -- Banning invis skills
-            if this.optionStore['lodOptionBanningBanInvis'] == 1 then
-                for abilityName,v in pairs(this.invisSkills) do
-                    this:banAbility(abilityName)
-                end
-            end
-
-            -- LoD ban list
-            if this.optionStore['lodOptionBanningUseBanList'] == 1 then
-                for abilityName,v in pairs(this.lodBanList) do
-                    this:banAbility(abilityName)
-                end
+        -- LoD ban list
+        if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
+            for abilityName,v in pairs(this.lodBanList) do
+                this:banAbility(abilityName)
             end
         end
 
