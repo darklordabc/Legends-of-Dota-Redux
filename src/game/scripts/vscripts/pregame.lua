@@ -221,6 +221,7 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption('lodOptionBalanceMode', 1, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -230,6 +231,7 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 4, true)
         self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionBalanceMode', 1, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
