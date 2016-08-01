@@ -1228,6 +1228,67 @@
     "yellow_flower"         "Yellow Daisy"
     "purple_flower"         "Purple Lotus"
     
+    //-------------------------------------------------------------------
+    // Zulf, the Stormhunter
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"  
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration."
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"           "Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."        
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"     "CAST RANGE:"
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"        "ARMOR REDUCTION:"
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_duration"     "DEBUFF DURATION:"
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Duration"       "TRAP DURATION:"
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_AOERadius"      "TRAP RADIUS:"
+
+
+    "DOTA_Tooltip_Ability_zulf_jet_stream"              "Jet Stream"
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Description"      "Zulf creates a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing towards the stream."
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Lore"         "Higher than can be imagined, at the border of sky and space, are winds so fast that any being can fly in them."
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_buff"       "%MOVESPEED INCREASE/DECREASE:"
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_increase"   "%BONUS MOVESPEED INCREASE/DECREASE PER STACK:"
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Length"           "STREAM LENGTH:"
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Width"            "STREAM WIDTH:" 
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Duration"         "DURATION:"
+
+    "DOTA_Tooltip_Ability_zulf_gale_force"              "Gale Force"    
+    "DOTA_Tooltip_Ability_zulf_gale_force_Description"      "Zulf summons a current of extremely fast air that disarms himself and nearby enemies, dealing damage over time based on Zulf's agility."
+    "DOTA_Tooltip_Ability_zulf_gale_force_Lore"                 "A Stormhunter needs no blade to kill his prey, when the wicked winds at his talontips do just the trick."  
+    "DOTA_Tooltip_Ability_zulf_gale_force_Damage_per_agility"   "DAMAGE PER AGILITY:"   
+    "DOTA_Tooltip_Ability_zulf_gale_force_Radius"               "RADIUS:"
+    "DOTA_Tooltip_Ability_zulf_gale_force_Duration"             "DURATION:" 
+
+    "DOTA_Tooltip_Ability_zulf_typhoon"             "Typhoon"   
+    "DOTA_Tooltip_Ability_zulf_typhoon_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. \nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_Ability_zulf_typhoon_Lore"            "The storm of the century!"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Radius"          "RADIUS:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Damage"          "DAMAGE PER 100 ELEVATION:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Slow"            "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Slow_duration"           "SLOW DURATION:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Aghanim_description"         "Increases lift velocity of Typhoon by 50%d%%, making units spread further, be airborne longer, and take more damage when they land."
+    
+    // Modifiers
+    "DOTA_Tooltip_Modifier_cyclone_armor_reduction"     "Cyclone Fall"
+    "DOTA_Tooltip_Modifier_cyclone_armor_reduction_Description"   "Armor Reduced"
+
+    "DOTA_Tooltip_Modifier_jet_stream_buff"             "Jet Stream"
+    "DOTA_Tooltip_Modifier_jet_stream_buff_increase"        "Bonus Stacks"
+    "DOTA_Tooltip_Modifier_jet_stream_debuff"               "Jet Stream"
+    "DOTA_Tooltip_Modifier_jet_stream_debuff_decrease"      "Bonus Stacks"
+
+    "DOTA_Tooltip_Modifier_gale_force"                          "Disarm"
+    "DOTA_Tooltip_Modifier_gale_force_Description"              "Disarms and damages based on your agility to nearby enemies in a radius around you."
+    "DOTA_Tooltip_Modifier_gale_force_disarm"                   "Disarmed."
+
+    "DOTA_Tooltip_Modifier_typhoon"             "Typhoon"
+    "DOTA_Tooltip_Modifier_typhoon_Description" "Channelling Typhoon"
+    "DOTA_Tooltip_Modifier_typhoon_effect"          "Typhoon Effect"
+    "DOTA_Tooltip_Modifier_typhoon_effect_Description"          "You are being sent up in the air. Enjoy the lift!"
+    "DOTA_Tooltip_Modifier_typhoon_stun"            "Airborne"
+    "DOTA_Tooltip_Modifier_typhoon_stun_Description"            "Stunned until you land"
+    "DOTA_Tooltip_Modifier_typhoon_slow"            "Slowed"
+    
+    
+    // Random abilities
     "DOTA_Tooltip_ability_true_random_lod" "True Random" 
     "DOTA_Tooltip_ability_true_random_lod_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_ultimate_random_lod" "Ultimate Random" 

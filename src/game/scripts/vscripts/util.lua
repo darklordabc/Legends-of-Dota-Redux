@@ -493,6 +493,45 @@ function ShuffleArray(input)
     end
 end
 
+function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
+     local armor = target:GetPhysicalArmorValue()
+     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
+     number = number - (number * damageReduction)
+     local lens_count = 0
+     for i=0,5 do
+        local item = self:GetItemInSlot(i)
+        if item ~= nil and item:GetName() == "item_aether_lens" then
+            lens_count = lens_count + 1
+        end
+     end
+     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
+
+     number = math.floor(number)
+     local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
+     local pidx		
+     if pfx == "gold" or pfx == "lumber" then		
+         pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
+     else		
+         pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
+     end		
+ 		
+     local digits = 0		
+     if number ~= nil then		
+         digits = #tostring(number)		
+     end		
+     if presymbol ~= nil then		
+         digits = digits + 1		
+     end		
+     if postsymbol ~= nil then		
+         digits = digits + 1		
+     end		
+ 		
+     ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
+     ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
+     ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
+     ParticleManager:SetParticleControl(pidx, 3, color)		
+ end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
