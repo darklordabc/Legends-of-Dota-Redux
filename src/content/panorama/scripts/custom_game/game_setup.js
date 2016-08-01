@@ -4026,6 +4026,10 @@ function OnPhaseChanged(table_name, key, data) {
                 $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
             }
         break;
+
+        case 'voting_info':
+            GameUI.CustomUIConfig().votingInfo = data;
+        break;
     }
 
     // Ensure we are hiding the correct enemy picks

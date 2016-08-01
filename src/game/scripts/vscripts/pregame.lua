@@ -11,6 +11,8 @@ local Debug = require('lod_debug')              -- Debug library with helper fun
 local challenge = require('challenge')
 local ingame = require('ingame')
 
+local votingsInfo = LoadKeyValues('scripts/kv/votings.kv')
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -405,6 +407,12 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
+    end
+
+    -- Check for votings info
+    if not self.checkedVotingInfo then
+        self.checkedVotingInfo = true
+        network:setVotingsInfo(votingsInfo)
     end
 
     --[[

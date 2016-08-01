@@ -55,7 +55,6 @@ function ReceiveCustomTeamInfo( team_info )
     dc_timeout = team_info.y;
     SetTeamInfo();
 }
-GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
 
 function GetTeamInfo() {
     GameEvents.SendCustomGameEventToServer( 'ask_custom_team_info', {playerID: parseInt(Game.GetLocalPlayerInfo().player_id)} );
@@ -143,3 +142,76 @@ function AttemptTeamSwitch(index) {
     disabled = true;
     $.Schedule(300, function () { disabled = false });
 }
+
+function VotingMenuButton() {
+    $("#VotingDropDownRoot").ToggleClass("VotingMenuHidden");
+}
+
+function CreateVotingMenu() {
+    var rootPanel = $("#VotingDropDownRoot");
+    rootPanel.SetPanelEvent("onmouseout", (function () {
+        rootPanel.AddClass("VotingMenuHidden");
+    }));
+    rootPanel.SetPanelEvent("onmouseover", (function () {
+        rootPanel.RemoveClass("VotingMenuHidden");
+    }));
+
+    var votingInfo = GameUI.CustomUIConfig().votingInfo;
+    var i = 0;
+    for (var votingGroupKey in votingInfo) {
+        (function () {
+            var votingGroup = votingInfo[votingGroupKey];
+
+            var groupEntry = $.CreatePanel("Panel", rootPanel, votingGroupKey + "Entry");
+            groupEntry.BLoadLayoutSnippet("VotingMenuEntry");
+
+            groupEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingGroupKey);
+
+            var groupPanel = $.CreatePanel("Panel", $.GetContextPanel(), votingGroupKey + "Panel");
+            groupPanel.AddClass("VotingDropDown");
+            groupPanel.AddClass("VotingDropDownSecondaryMargin");
+            groupPanel.AddClass("VotingMenuHidden");
+            groupPanel.style.marginTop = ((i * 35) + 50) + "px;";
+
+            groupPanel.SetPanelEvent("onmouseover", (function () {
+                groupPanel.RemoveClass("VotingMenuHidden");
+                rootPanel.RemoveClass("VotingMenuHidden");
+                groupEntry.AddClass("hover");
+            }));
+
+            groupPanel.SetPanelEvent("onmouseout", (function () {
+                groupPanel.AddClass("VotingMenuHidden");
+                rootPanel.AddClass("VotingMenuHidden");
+                groupEntry.RemoveClass("hover");
+            }));
+
+            groupEntry.SetPanelEvent("onmouseover", (function () {
+                groupPanel.RemoveClass("VotingMenuHidden");
+                groupEntry.AddClass("hover");
+            }));
+
+            groupEntry.SetPanelEvent("onmouseout", (function () {
+                groupEntry.RemoveClass("hover");
+                groupPanel.AddClass("VotingMenuHidden");
+            }));
+
+            for (var votingKey in votingGroup) {
+                var votingEntry = $.CreatePanel("Panel", groupPanel, votingKey + "Entry");
+                votingEntry.BLoadLayoutSnippet("VotingMenuEntry");
+                votingEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingKey);
+
+                votingEntry.SetPanelEvent("onmouseactivate", (function () {
+                    groupPanel.AddClass("VotingMenuHidden");
+                    rootPanel.AddClass("VotingMenuHidden");
+                }));
+            }
+        })();
+        i++;
+    }
+}
+
+(function () {
+    // GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
+
+    CreateVotingMenu();
+})()
