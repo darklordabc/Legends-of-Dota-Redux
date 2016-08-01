@@ -1040,6 +1040,12 @@
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
     "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
     "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Roshan will block one targeted spell every few seconds."
+	
+	// Warlock Permanent Immolation
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation LoD"
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second." 
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_damage"        "DAMAGE PER SECOND:"    
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_radius"        "RADIUS:" 
     
     // Back door protection
     "DOTA_Tooltip_ability_backdoor_protection_radius"                      "RADIUS:"

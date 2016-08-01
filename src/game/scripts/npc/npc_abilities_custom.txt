@@ -3452,6 +3452,39 @@
         "AbilityCooldown"               "70.0 60.0 50.0 35.0"	
     }
 	
+	//=================================================================================================================
+    // Golem: Permanent Immolation
+    //=================================================================================================================
+    "warlock_golem_permanent_immolation_lod"
+    {
+        
+		"BaseClass"                     "brewmaster_fire_permanent_immolation"
+		
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"                      "4"
+		"AbilityTextureName"            "warlock_golem_permanent_immolation_lod"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"15 25 35 50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300 300 300 300"
+			}
+		}
+    }
+	
 	//================================================================================================================= 
     // Riki: Backstab
     //=================================================================================================================
