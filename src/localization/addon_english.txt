@@ -140,7 +140,7 @@
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
-    "lodOptionDesBalanceMode"                       "Use Balance Mode Ban List (Disables other lists)"
+	"lodOptionDesBanningBalanceMode"                "Use Balance Mode Ban List"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
     "lodOptionLevel1"                               "Level 1"
