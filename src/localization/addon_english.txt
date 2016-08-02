@@ -6,10 +6,6 @@
     "addonname_description"                         "Based on the official Legends of Dota by Ash47"
     "game_mode_15_desc"                             "Build a fully sick hero"
 
-    // Changelog
-    "july7_title"       "Update 7th July"
-    "july7_option1"     "- Fixed the entire game again."
-
     // Contributors
     "76561197988355984" "Ash47"
     "76561197988355984_Description" "Core coder and designer"
