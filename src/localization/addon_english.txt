@@ -1334,4 +1334,12 @@
     "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random active disabling ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_mobility_random_lod" "Mobility Random" 
     "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random active mobility ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
+    
+    // Fireball
+    "DOTA_Tooltip_ability_black_dragon_fireball_lod"                             "Fireball"
+    "DOTA_Tooltip_ability_black_dragon_fireball_lod_Description"                 "The Black Dragon hurls a fire blast on the ground, igniting the area for 10 seconds. Enemies caught in the fire will take damage over time."
+	"DOTA_Tooltip_ability_black_dragon_fireball_lod_radius"                      "RADIUS:"
+	"DOTA_Tooltip_ability_black_dragon_fireball_lod_damage"                      "DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_black_dragon_fireball_lod_duration"                     "DURATION:"
+	"DOTA_Tooltip_ability_black_dragon_fireball_lod_burn_interval"                "BURN INTERVAL:"
 }
