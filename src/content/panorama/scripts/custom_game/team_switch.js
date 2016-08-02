@@ -32,15 +32,21 @@ function TeamSwitchButton (){
     }
 }
 function ShowTeamSwitch() {
-    GetTeamInfo();
-    if (unbalanced) {
-        active = true;
-        $('#TeamSwitch_Panel').RemoveClass('hidden');
+    if (disabled == false) {
+        GetTeamInfo();
+        if (unbalanced) {
+            active = true;
+            $('#TeamSwitch_Panel').RemoveClass('TeamSwitch_Panel_Hidden');
+        } else {
+            $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
+        }
+    } else {
+        $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_cooldown");
     }
 }
 function CloseTeamSwitch() {
     active = false;
-    $('#TeamSwitch_Panel').AddClass('hidden');
+    $('#TeamSwitch_Panel').AddClass('TeamSwitch_Panel_Hidden');
 }
 
 function ReceiveCustomTeamInfo( team_info )
@@ -58,6 +64,7 @@ function GetTeamInfo() {
 function LeftGame(id) {
     var abandoned = DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED == Game.GetPlayerInfo(id).player_connection_state;
     var timedout;
+    var nohero = (Players.GetPlayerSelectedHero( id ) == null);
     for (var dc in dc_timeout) {
         if (dc_timeout[dc] == id) {
             timedout = true;
@@ -65,7 +72,7 @@ function LeftGame(id) {
         }
     }
         
-    return abandoned || timedout;
+    return abandoned || timedout || nohero;
 }
 
 function areAllies(x, y) {

@@ -36,7 +36,7 @@ function Pregame:init()
     -- Some default values
     self.fastBansTotalBans = 3
     self.fastHeroBansTotalBans = 1
-    self.fullBansTotalBans = 10
+    self.fullBansTotalBans = 5
     self.fullHeroBansTotalBans = 2
 
     -- Stores which playerIDs we have already spawned
@@ -223,6 +223,7 @@ function Pregame:init()
         self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
+		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -370,6 +371,17 @@ function Pregame:checkForPremiumPlayers()
     network:setPremiumInfo(premiumInfo)
 end
 
+-- Send the contributors
+function Pregame:sendContributors()
+    local sortedContributors = {}
+    for i=0,util:getTableLength(util.contributors) do
+        table.insert(sortedContributors, util.contributors[tostring(i)])
+    end
+
+    -- Push the contributors
+    network:setContributors(sortedContributors)
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -408,6 +420,12 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
+    end
+
+    -- Check for premium players
+    if not self.sentContributors then
+        self.sentContributors = true
+        self:sendContributors()
     end
 
     --[[

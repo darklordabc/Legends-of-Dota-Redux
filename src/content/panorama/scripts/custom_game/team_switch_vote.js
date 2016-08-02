@@ -15,11 +15,11 @@ function show_vote_dialog(swap_info) {
     $('#swappee_icon').heroname = swappee_info.player_selected_hero;
     $('#swappee_name').text = swappee_info.player_name;
 
-    $('#vote_dialog').RemoveClass('hidden');
+    $('#vote_dialog').RemoveClass('dialog_hidden');
     $('#choice').RemoveClass('hiddenoccupy')
 
     apply_transition_from_start('#vote_timer', '10s', 'shrink');
-    handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('hidden');
+    handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('dialog_hidden');
                                           $('#vote_timer').RemoveClass('shrink')
                                         });
 }
@@ -42,8 +42,10 @@ function player_declined() {
     $.CancelScheduled(handler);
     halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
+        vote_dialog.AddClass('dialog_hidden');
+    })
+    $.Schedule(4, function() {
         vote_dialog.RemoveClass('declined');
-        vote_dialog.AddClass('hidden');
         title.text = 'TEAM SWITCH';
     })
 }
@@ -57,8 +59,10 @@ function player_accepted() {
     $.CancelScheduled(handler);
     halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
+        vote_dialog.AddClass('dialog_hidden');
+    })
+    $.Schedule(4, function() {
         vote_dialog.RemoveClass('accepted');
-        vote_dialog.AddClass('hidden');
         title.text = 'TEAM SWITCH';
     })
 }

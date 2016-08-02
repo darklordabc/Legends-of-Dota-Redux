@@ -186,6 +186,7 @@
             "lich_frost_nova"            "1"
             "life_stealer_feast"            "1"
             "life_stealer_infest"            "1"
+            "life_stealer_control"              "1"
             "life_stealer_open_wounds"            "1"
             "life_stealer_rage"            "1"
             "lina_dragon_slave"            "1"
@@ -303,7 +304,7 @@
             "razor_unstable_current"            "1"
             "riki_blink_strike"            "1"
             "riki_smoke_screen"            "1"
-			"riki_backstab_lod"            "1"
+            "riki_backstab_lod"            "1"
             "rubick_fade_bolt"            "1"
             "rubick_null_field"            "1"
             "rubick_telekinesis"            "1"
@@ -340,6 +341,7 @@
             "slardar_sprint"            "1"
             "slark_dark_pact"            "1"
             "slark_pounce"            "1"
+            "slark_essence_shift"            "1"
             "slark_shadow_dance"            "1"
             "sniper_assassinate"            "1"
             "sniper_headshot"            "1"
@@ -406,7 +408,7 @@
             "undying_tombstone"            "1"
             "ursa_earthshock"            "1"
             "ursa_enrage"            "1"
-            "ursa_fury_swipes"            "1"
+            "ursa_fury_swipes"              "1"
             "ursa_overpower"            "1"
             "vengefulspirit_command_aura"            "1"
             "vengefulspirit_magic_missile"            "1"
@@ -489,8 +491,6 @@
             "ogre_magi_multicast"            "1"
             // Aftershock
             "earthshaker_aftershock"            "1"
-            // Essence Shift
-            "slark_essence_shift"            "1"
         }
         // The neutrals skills
         "neutral" {
@@ -509,7 +509,8 @@
             }
             "black_dragon_group" {
                 "black_dragon_splash_attack"                "1"
-                "black_dragon_fireball"                "1"
+                // "black_dragon_fireball"                "1"
+		"black_dragon_fireball_lod"                "1"
                 // "neutral_spell_immunity"                "1"
                 //"black_dragon_dragonhide_aura"                      "1"
             }
@@ -557,6 +558,7 @@
             "warlock_group" {
                 "warlock_golem_flaming_fists"                "1"
                 "warlock_golem_permanent_immolation"                "1"
+				"warlock_golem_permanent_immolation_lod"		"1"
             }
             "misc_neutral_1_group" {
                 "forest_troll_high_priest_heal"                "1"
@@ -586,6 +588,8 @@
         "custom" {
             "slark_essence_shift_strength_lod"            "1"
             "slark_essence_shift_intellect_lod"            "1"
+            "slark_essence_shift_agility_lod"            "1"
+            "ursa_fury_swipes_lod"              "1"
             "pudge_flesh_heap_agi"            "1"
             "pudge_flesh_heap_int"            "1"
             "silencer_global_break"            "1"
@@ -603,11 +607,40 @@
             "zuus_thundergods_vengeance"            "1"
             // Global Break
             "silencer_global_break"            "1"
+            
             "item_abilities" {
                 "aether_range_lod"                "1"
                 "octarine_vampirism_lod"                "1"
                 "force_dash_lod"                "1"
                 "shards_of_truesight_lod"                "1"
+            }
+            "random_abilities" {
+                "true_random_lod"    "1"
+                "stun_random_lod"    "1"
+                "mobility_random_lod"    "1"
+                "support_random_lod"    "1"
+                "ultimate_random_lod"    "1"
+            }
+
+            "cherub_abilities" {
+                "cherub_sleep_cloud"      "1"
+                "cherub_synthesis"      "1"
+                "cherub_explosive_spore"      "1"
+                "cherub_flower_garden"      "1"
+            }
+            "flower_abilities" {
+                "garden_white_flower_base"      "1"
+                "garden_red_flower_base"      "1"
+                "garden_pink_blossom_base"      "1"
+                "garden_blue_blossom_base"      "1"
+                "garden_yellow_daisy_base"      "1"
+                "garden_purple_lotus_base"      "1"
+            }
+            "zulf_abilities" {
+                "zulf_cyclone_trap"      "1"
+                "zulf_jet_stream"      "1"
+                "zulf_gale_force"      "1"
+                "zulf_typhoon"      "1"
             }
         }
     }
@@ -738,7 +771,9 @@
             "Ability3"            "slark_essence_shift"
             "Ability4"            "slark_essence_shift_intellect_lod"
             "Ability5"            "slark_essence_shift_strength_lod"
-            "Ability6"            "slark_shadow_dance"
+            "Ability6"            "slark_essence_shift_agility_lod"
+            "Ability7"            "slark_shadow_dance"
+            
         }
         "npc_dota_hero_pudge" {
             "Ability1"            "pudge_meat_hook"
@@ -761,12 +796,19 @@
             "Ability3"            "abyssal_underlord_firestorm"
             "Ability4"            "abyssal_underlord_pit_of_malice"
         }
-		"npc_dota_hero_riki" {
-                  "Ability1" "riki_smoke_screen"
-                  "Ability2" "riki_blink_strike"
-                  "Ability3" "riki_permanent_invisibility"
-                  "Ability4" "riki_tricks_of_the_trade"
-                  "Ability5" "riki_backstab_lod"
-           }
+	  "npc_dota_hero_riki" {
+            "Ability1"            "riki_smoke_screen"
+            "Ability2"            "riki_blink_strike"
+            "Ability3"            "riki_permanent_invisibility"
+            "Ability4"            "riki_tricks_of_the_trade"
+            "Ability5"            "riki_backstab_lod"
+        }
+        "npc_dota_hero_ursa" {
+            "Ability1"            "ursa_earthshock"
+            "Ability2"            "ursa_overpower"
+            "Ability3"            "ursa_fury_swipes"
+            "Ability4"            "ursa_fury_swipes_lod"
+            "Ability5"            "ursa_enrage"
+        }
     }
 }

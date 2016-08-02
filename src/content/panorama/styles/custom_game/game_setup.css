@@ -2032,6 +2032,7 @@
     font-size: 18px;
     color: #FFFFFF;
     padding: 8px;
+    position: 57% 67% 0px;
     background-image: url("file://{images}/custom_game/tooltipBG.png");
     background-size: 100% 100%;
     border: 1px solid #444444;
@@ -2042,7 +2043,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 350px;
+    max-width: 400px;
+    max-height: 400px;
     flow-children: down;
 }
 
@@ -2125,12 +2127,34 @@
     margin-left: 320px;
 }
 
-#optionInfo {
+#importAndExportRoot {
     vertical-align: bottom;
     horizontal-align: left;
     margin: 8px;
     margin-left: 12px;
     max-width: 600px;
+
+    flow-children: down;
+}
+
+#importAndExportCaption {
+     width: 105px;
+}
+
+#importAndExportApplyButton {
+    width: 55px;
+    height: 30px;
+    margin-top: 3px;
+}
+
+#importAndExportEntryRoot {
+    flow-children: right;
+}
+
+#importAndExportEntry {
+    width: 180px;
+    font-size: 17px;
+    text-overflow: clip;
 }
 
 #optionButtons {

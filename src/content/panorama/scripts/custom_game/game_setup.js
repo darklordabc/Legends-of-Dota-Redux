@@ -3090,6 +3090,52 @@ function setOption(optionName, optionValue) {
         k: optionName,
         v: optionValue
     });
+
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+}
+
+// Imports option list
+function onImportAndExportPressed() {
+    var data = $('#importAndExportEntry').text;
+
+    if(data.length == 0) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
+        setOption()
+        return;
+    }
+
+    var decodeData;
+    try {
+        decodeData = JSON.parse(data);
+    } catch(e) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
+        setOption()
+        return;
+    }
+
+    if(decodeData.lodOptionGamemode) {
+        setOption('lodOptionGamemode', decodeData.lodOptionGamemode);
+    }
+
+    var changed = false;
+
+    for(var key in decodeData) {
+        if(key == 'lodOptionGamemode') continue;
+        setOption(key, decodeData[key]);
+
+        if (optionValueList[key] != decodeData[key]) {
+            changed = true;
+        }
+    }
+
+    if (!changed) {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
+    } else {
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
+    }
+    $.Schedule(0.1, function () {
+        $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    });
 }
 
 // Updates our selected hero
@@ -3371,7 +3417,11 @@ function buildOptionsCategories() {
                     infoLabel.AddClass('optionSlotPanelLabel');
 
                     mainSlot.SetPanelEvent('onmouseover', function() {
-                        $('#optionInfoLabel').text = $.Localize(info.about);
+                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                    });
+
+                    mainSlot.SetPanelEvent('onmouseout', function() {
+                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                     });
 
                     // Is this a preset?
@@ -4095,6 +4145,10 @@ function OnPhaseChanged(table_name, key, data) {
                 $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
             }
         break;
+
+        case 'contributors':
+            GameUI.CustomUIConfig().premiumData = data;
+        break;
     }
 
     // Ensure we are hiding the correct enemy picks
@@ -4175,6 +4229,7 @@ function OnOptionChanged(table_name, key, data) {
     if(key == 'lodOptionBanningBalanceMode') {
         onBalanceModeBanList();
     }
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Recalculates how many abilities / heroes we can ban

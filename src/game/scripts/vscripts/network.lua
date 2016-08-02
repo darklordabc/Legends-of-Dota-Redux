@@ -167,6 +167,11 @@ function Network:setPremiumInfo(info)
     CustomNetTables:SetTableValue('phase_pregame', 'premium_info', info)
 end
 
+-- Shares contributor list
+function Network:setContributors(info)
+    CustomNetTables:SetTableValue('phase_pregame', 'contributors', info)
+end
+
 -- Balance request
 function Network:setTeamBalanceData(info)
     CustomNetTables:SetTableValue('phase_ingame', 'balance_data', info)
