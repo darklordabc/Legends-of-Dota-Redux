@@ -12,6 +12,8 @@ n    lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('
     phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
 }]]
 
+require('lib/StatUploaderFunctions')
+
 -- Precaching
 function Precache(context)
 end
