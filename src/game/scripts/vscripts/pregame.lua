@@ -221,6 +221,8 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBanningBalanceMode', 1, true)
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
@@ -231,6 +233,8 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 4, true)
         self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
         self.noSlotVoting = true
     end
@@ -1159,6 +1163,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 		
 		faststart = function(choice)
             return choice == 1 or choice == 0
+        end,
+		
+		balancemode = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
@@ -1232,6 +1240,16 @@ function Pregame:processVoteData()
         	-- No option voting
             self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 			self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+        end
+    end
+	if results.balancemode ~= nil then
+        if results.balancemode == 1 then
+        	-- Disable Balance Mode
+        	self:setOption('lodOptionBalanceMode', 0, true)
+        else
+        	-- On by default
+        	self:setOption('lodOptionBalanceMode', 1, true)
+        	-- banning mode does not get overridden
         end
     end
 
@@ -1329,6 +1347,33 @@ function Pregame:isTrollCombo(build)
                 end
             end
         end
+    end
+
+    return false
+end
+
+-- Tests a build to see if there's enough spells for 
+function Pregame:notEnoughPoints(build)
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local spent = 0
+    
+    -- Calculate points spent
+    for i=1,maxSlots do
+        local abil = build[i]
+        if abil then
+            local cost = self.spellCosts[abil] 
+            if not cost then
+                cost = 0
+            end
+            spent = spent + cost
+        end
+    end
+    
+    print(spent)
+    
+    -- Check to see if we exceed 100
+    if spent > constants.BALANCE_MODE_POINTS then
+        return true, spent - constants.BALANCE_MODE_POINTS
     end
 
     return false
@@ -1532,6 +1577,36 @@ function Pregame:initOptionSelector()
 
             -- Valid
             return true
+        end,
+
+        -- Common -- Balance Mode
+        lodOptionBalanceMode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            if value == 1 then
+                -- Enable balance mode bans and disable other lists
+                self:setOption('lodOptionBanningBalanceMode', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                self:setOption('lodOptionBanningBanInvis', 0, true)
+
+                return true
+            elseif value == 0 then
+                -- Disable balance mode bans
+                self:setOption('lodOptionBanningBalanceMode', 0, true)
+                return true
+            end
+
+            return false
+        end,
+        
+        -- Balance Mode ban list
+        lodOptionBanningBalanceMode = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
         end,
 
         -- Common block troll combos
@@ -1866,6 +1941,13 @@ function Pregame:initOptionSelector()
 
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
+
+                -- Balance Mode disabled by default
+                self:setOption('lodOptionBalanceMode', 0, true)
+                
+                -- Balance Mode Ban List disabled by default
+                self:setOption('lodOptionBanningBalanceMode', 0, true)
+                self:setOption('lodOptionBalanceMode', 0, false)
 
                 -- Set banning
                 self:setOption('lodOptionBanning', 1)
@@ -2465,6 +2547,9 @@ end
 
 -- Processes options to push around to the rest of the systems
 function Pregame:processOptions()
+    -- Check Map
+    local mapName = GetMapName()
+    
     -- Only process options once
     if self.processedOptions then return end
     self.processedOptions = true
@@ -2501,40 +2586,70 @@ function Pregame:processOptions()
 	    -- Bot options
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
 	    this.desiredDire = this.optionStore['lodOptionBotsDire']
+        
+        -- Prepare to disable ban lists if necessary
+        local disableBanLists = false
+        
+        -- Enable Balance Mode (disables ban lists)
+        if this.optionStore['lodOptionBalanceMode'] == 1 then
+            -- Load balance mode stats
+            local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+            self.spellCosts = {}
+            for tier, tierList in pairs(balanceMode) do
+                -- Check whether price list or ban list
+                local tierNum = tonumber(string.sub(tier, 6))
+                if tierNum == 0 then
+                    -- Ban List
+                    for abilityName,nothing in pairs(tierList) do
+                        this:banAbility(abilityName)
+                    end
+                else
+                    -- Spell Shop
+                    local price = constants.TIER[tierNum]
+                    
+                    for abilityName,nothing in pairs(tierList) do
+                        self.spellCosts[abilityName] = price
+                        network:sendSpellPrice(abilityName, price)
+                    end
+                end
+            end
+            
+            disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='all_pick_4'
+        end
+        
+        -- Enable WTF mode
+        if not disableBanLists and this.optionStore['lodOptionCrazyWTF'] == 1 then
+            -- Auto ban powerful abilities
+            for abilityName,v in pairs(this.wtfAutoBan) do
+                this:banAbility(abilityName)
+            end
 
-	    -- Enable WTF mode
-	    if this.optionStore['lodOptionCrazyWTF'] == 1 then
-	        -- Auto ban powerful abilities
-	        for abilityName,v in pairs(this.wtfAutoBan) do
-	        	this:banAbility(abilityName)
-	        end
+            -- Enable debug mode
+            Convars:SetBool('dota_ability_debug', true)
+        end
 
-	        -- Enable debug mode
-	        Convars:SetBool('dota_ability_debug', true)
-	    end
+        -- Banning of OP Skills
+        if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
+            for abilityName,v in pairs(this.OPSkillsList) do
+                this:banAbility(abilityName)
+            end
+        else
+            SpellFixes:SetOPMode(true)
+        end
 
-	    -- Banning of OP Skills
-	    if this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-	        for abilityName,v in pairs(this.OPSkillsList) do
-	            this:banAbility(abilityName)
-	        end
-	    else
-	    	SpellFixes:SetOPMode(true)
-	    end
+        -- Banning invis skills
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] == 1 then
+            for abilityName,v in pairs(this.invisSkills) do
+                this:banAbility(abilityName)
+            end
+        end
 
-	    -- Banning invis skills
-	    if this.optionStore['lodOptionBanningBanInvis'] == 1 then
-	        for abilityName,v in pairs(this.invisSkills) do
-	            this:banAbility(abilityName)
-	        end
-	    end
-
-	    -- LoD ban list
-	    if this.optionStore['lodOptionBanningUseBanList'] == 1 then
-	        for abilityName,v in pairs(this.lodBanList) do
-	            this:banAbility(abilityName)
-	        end
-	    end
+        -- LoD ban list
+        if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
+            for abilityName,v in pairs(this.lodBanList) do
+                this:banAbility(abilityName)
+            end
+        end
 
 	    -- Enable Universal Shop
 	    if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
@@ -2573,6 +2688,8 @@ function Pregame:processOptions()
 			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
 			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
 			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+                    ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
+                    ['Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
 			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
 			        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
 			        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
@@ -3672,6 +3789,24 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 }
             })
 
+            return
+        end
+    end
+
+   -- Over the Balance Mode point balance
+    if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Validate that the user has enough points
+        local outOfPoints, overflow = self:notEnoughPoints(newBuild)
+        if outOfPoints then
+            -- Invalid ability name
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedBalanceMode',
+                params = {
+                    ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName,
+                    ['points'] = overflow
+                }
+            })
             return
         end
     end

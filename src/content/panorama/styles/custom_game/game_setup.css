@@ -56,7 +56,8 @@
     text-shadow: 0px 0px 2px 4.0 #000000FF;
     opacity: 0.0;
 
-    margin-top: 200px;
+    margin-top: 0px;
+	margin-bottom: 100px;
 
     horizontal-align: center;
     vertical-align: middle;
@@ -1164,6 +1165,91 @@
     border: 0px;
 }
 
+.balanceModeDisabled {
+    visibility: collapse;
+}
+
+#balanceModePointsPreset {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+#balanceModePointsHeroes {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+#balanceModePointsSkills {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-top: -30px;
+    font-size: 16px;
+    horizontal-align: right;
+}
+
+#balanceModeFilter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.skillCostLarge {
+    font-size: 20px;
+    font-weight: bold;
+	margin-right: 0px;
+	margin-bottom: -6px;
+    vertical-align: bottom;
+    horizontal-align: right;
+}
+
+.skillCostRecommended {
+    font-size: 18px;
+    font-weight: bold;
+	margin-right: 0px;
+	margin-bottom: 0px;
+    vertical-align: bottom;
+    horizontal-align: right;
+}
+
+.skillCostSmall {
+    font-size: 14px;
+    font-weight: bold;
+	margin-right: -2px;
+	margin-bottom: -4px;
+    vertical-align: bottom;
+    horizontal-align: right;
+}
+
+.tier1 {
+    color: #ffbbbb;
+	text-shadow: 0px 0px 6px 8 #550000ff;
+}
+
+.tier2 {
+    color: #ffffcc;
+	text-shadow: 0px 0px 6px 8 #777700ff;
+}
+
+.tier3 {
+    color: #ccffff;
+	text-shadow: 0px 0px 6px 8 #007777ff;
+}
+
+.tier4 {
+    color: #ffccff;
+	text-shadow: 0px 0px 6px 8 #770077ff;
+}
+
+.tier5 {
+    color: #ccffcc;
+	text-shadow: 0px 0px 6px 8 #007700ff;
+}
+
+.tier6 {
+	visibility: collapse;
+}
+
 #toggleShowDraftAblilities {
     visibility: collapse;
 }
@@ -1835,7 +1921,7 @@
 #optionVoting {
     width: 98%;
     max-width: 1024px;
-    height: 300px;
+    height: 200px;
     margin-top: 4px;
     border-radius: 8px;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
@@ -1851,7 +1937,7 @@
 
 .veryBasicVoting #optionVoting {
     width: 240px;
-    height: 300px;
+    height: 400px;
 }
 
 .phase_option_voting_selected #optionVoting {
@@ -1907,7 +1993,7 @@
     margin: 0px;
 }
 
-.optionVoteBanningPhase {
+.optionVotePhase {
     flow-children: down;
     horizontal-align: middle;
 
@@ -1918,32 +2004,16 @@
     border-radius: 4px;
 }
 
-.optionVoteBanningOptions {
+.optionVoteOptions {
     flow-children: right;
     horizontal-align: middle;
 }
 
-.optionVoteFastStartPhase {
-    flow-children: down;
-    horizontal-align: middle;
-	
-	width: 220px;
-    margin-top: 16px;
-    padding: 8px;
-    border: 1px solid #444444;
-    border-radius: 8px;
-}
-
-.optionVoteFastStartHeader {
+.optionVoteInfoHeader {
     flow-children: right;
     horizontal-align: middle;
 	
 	margin-left: 23px;
-}
-
-.optionVoteFastStartOptions {
-    flow-children: right;
-    horizontal-align: middle;
 }
 
 .VotingOptionInfo {
@@ -1962,8 +2032,6 @@
     font-size: 18px;
     color: #FFFFFF;
     padding: 8px;
-/*    height: 88px;
-    width: 200px;*/
     position: 57% 67% 0px;
     background-image: url("file://{images}/custom_game/tooltipBG.png");
     background-size: 100% 100%;
@@ -1978,7 +2046,6 @@
     max-width: 400px;
     max-height: 400px;
     flow-children: down;
-    background-image: url("file://{images}/custom_game/tooltipBG.png");
 }
 
 #Contents {
@@ -2005,14 +2072,9 @@
     border-color: #00FF00;
 }
 
-.votingButtonBanning {
+.votingButton {
     flow-children: right;
 }
-
-.votingButtonFastStart {
-    flow-children: right;
-}
-
 
 .voteCountSlots {
     vertical-align: middle;

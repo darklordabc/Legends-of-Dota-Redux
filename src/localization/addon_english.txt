@@ -59,6 +59,7 @@
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
+    "filter_by_value"                               "Filter by price:"
     "presets_lod"                                   "Preset Builds"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
@@ -150,6 +151,8 @@
     "lodOptionCommonUlts11"                         "11 Ultimate Abilities"
     "lodOptionCommonUlts12"                         "12 Ultimate Abilities"
 
+    "lodOptionDesBalanceMode"                       "Balance Mode"
+
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
     "lodOptionDesBanningMaxBans"                    "Max Ability Bans"
@@ -165,6 +168,7 @@
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
+	"lodOptionDesBanningBalanceMode"                "Use Balance Mode Ban List"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
     "lodOptionLevel1"                               "Level 1"
@@ -247,6 +251,15 @@
     "lodOptionGameSpeedRespawnTime30Second"         "30 Second Respawn"
     "lodOptionGameSpeedRespawnTime60Second"         "60 Second Respawn"
 
+    // Balance Mode
+    "balance_mode_tier_1"                           "Unfair (120)"
+    "balance_mode_tier_2"                           "Overpowered (80)"
+    "balance_mode_tier_3"                           "Best (40)"
+    "balance_mode_tier_4"                           "Very Good (20)"
+    "balance_mode_tier_5"                           "Good (10)"
+    "balance_mode_tier_6"                           "Free"
+    "balance_mode_points"                           "Points Remaining: {d:points}"
+
     "acceptHosting"                                 "Ok, I understand"
     "lodHostingMessage"                             "You are the host, you are required to select the options for this match. All options will be recoreded and you may be banned from selecting options if you continue to troll other players.\n\nLock the teams using the buttons at the top center of the screen, and lock the options by pressing the button in the bottom right hand corner."
     "lodPickingMessage"                             "This is the drafting phase, you need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked."
@@ -268,11 +281,13 @@
     "lodOptionAboutCommonMaxSlots"                  "The number of ability slots a hero will have. (4 - 6)"
     "lodOptionAboutCommonMaxSkills"                 "The max number of regular abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutCommonMaxUlts"                   "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
+    "lodOptionAboutBalanceMode"                     "This option will give abilities cost values associated with how strong they are in the meta and limit players to only pick abilities adding up to at most a certain cost. Automatically unticks most bans."
     "lodOptionAboutCommonMirrorHeroes"              "The number of heroes each player will receive to draft from."
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
     "lodOptionAboutBanningUseBanList"               "Ban a predefined list of annoying abilities."
+    "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for balance mode."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
     "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible."
     "lodOptionAboutGameSpeedStartingLevel"          "The level a player will start at. (1 - 100)\nNote: A player can not start higher than the max hero level."
@@ -400,6 +415,7 @@
     "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
+    "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
@@ -414,8 +430,10 @@
 
     "lodBanningPhase"                               "Enable The Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
+    "lodBalanceMode"                                "Disable Balance Mode"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
+    "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
 
     "bots_lod"                                      "Bots"
 

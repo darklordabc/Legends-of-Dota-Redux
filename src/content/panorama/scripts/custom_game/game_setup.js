@@ -164,6 +164,22 @@ var allOptions = {
                 step: 1,
                 default: 20
             },
+            {
+                name: 'lodOptionBalanceMode',
+                des: 'lodOptionDesBalanceMode',
+                about: 'lodOptionAboutBalanceMode',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            }
         ]
     },
 
@@ -260,6 +276,22 @@ var allOptions = {
                 name: 'lodOptionBanningBanInvis',
                 des: 'lodOptionDesBanningBanInvis',
                 about: 'lodOptionAboutBanningBanInvis',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBanningBalanceMode',
+                des: 'lodOptionDesBanningBalanceMode',
+                about: 'lodOptionAboutBanningBalanceMode',
                 sort: 'toggle',
                 values: [
                     {
@@ -1003,6 +1035,11 @@ var isPremiumPlayer = false;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
+// Balance Mode
+var balanceMode = balanceMode = optionValueList['lodOptionBalanceMode'] || false;
+var currentBalance = 0;
+var showTier = {};
+
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -1297,9 +1334,20 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 var ab = $('#lodYourAbility' + i);
                 ab.abilityname = defaultSkill;
                 ab.SetAttributeString('abilityname', defaultSkill);
+                if (balanceMode) {
+                    // Clear the labels
+                    var abCost = ab.GetChild(0);
+                    if (abCost) {
+                        abCost.SetHasClass('tier1', false);
+                        abCost.SetHasClass('tier2', false);
+                        abCost.SetHasClass('tier3', false);
+                        abCost.SetHasClass('tier4', false);
+                        abCost.text = "";
+                    }
+                }
             }
         }
-
+        var balance = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -1307,7 +1355,27 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             if(ab != null) {
                 ab.abilityname = abName;
                 ab.SetAttributeString('abilityname', abName);
+                
+                if (balanceMode) {
+                    // Set the label to the cost of the ability
+                    var filterInfo = getSkillFilterInfo(abName);
+                    var abCost = ab.GetChild(0);
+                    if (abCost) {
+                        for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+                            abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
+                        }
+                        abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                        balance -= filterInfo.cost;
+                    }
+                }
             }
+        }
+        // Update current price
+        currentBalance = balance;
+        if (balanceMode) {            
+            $('#balanceModePointsPreset').SetDialogVariableInt( 'points', currentBalance );
+            $('#balanceModePointsHeroes').SetDialogVariableInt( 'points', currentBalance );
+            $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
         }
     }
 
@@ -1647,8 +1715,11 @@ function setupBuilderTabs() {
     }
 
     for(var i=1;i<=16; ++i) {
-        hookSkillInfo($('#buildingHelperHeroPreviewSkill' + i));
-        makeSkillSelectable($('#buildingHelperHeroPreviewSkill' + i));
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+        hookSkillInfo(abCon);
+        makeSkillSelectable(abCon);
+        var label = $.CreatePanel('Label', abCon, 'buildingHelperSkillTabCost' + i);
+        label.SetHasClass('skillCostLarge', true);
     }
 
     // Hook drag and drop stuff for heroes
@@ -2135,6 +2206,13 @@ function toggleShowDraftSkills() {
     // Update filters
     calculateFilters();
 }
+function toggleShowTier(tier) {
+    var tierNum = parseInt(tier) - 1;
+    showTier[tierNum] = !showTier[tierNum];
+
+    // Update filters
+    calculateFilters();
+}
 
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
@@ -2482,6 +2560,17 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('bannedSkill', filterInfo.banned);
             abCon.SetHasClass('takenSkill', filterInfo.taken);
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
+
+            if (balanceMode) {
+                // Set the label to the cost of the ability
+                var abCost = abCon.GetChild(0);
+                if (abCost) {
+                    for (var j = 0; j < GameUI.AbilityCosts.TIER_COUNT; ++j) {
+                        abCost.SetHasClass('tier' + (j + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[j]);
+                    }
+                    abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                }
+            }
         }
     }
 
@@ -2504,6 +2593,7 @@ function getSkillFilterInfo(abilityName) {
     var banned = false;
     var taken = false;
     var cantDraft = false;
+    var cost = 0;
 
     var cat = (flagDataInverse[abilityName] || {}).category;
 
@@ -2587,13 +2677,26 @@ function getSkillFilterInfo(abilityName) {
             }
         }
     }
+    
+    // Check if Balance Mode and set the skill cost
+    if (balanceMode) {
+        cost = GameUI.AbilityCosts.getCost(abilityName);
+        // Loop over all the tiers and break when found
+        for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+            if (cost == GameUI.AbilityCosts.TIER[i]) {
+                shouldShow = showTier[i] && shouldShow;
+                break;
+            }
+        }
+    }
 
     return {
         shouldShow: shouldShow,
         disallowed: disallowed,
         banned: banned,
         taken: taken,
-        cantDraft: cantDraft
+        cantDraft: cantDraft,
+        cost: cost
     };
 }
 
@@ -2667,6 +2770,15 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('bannedSkill', filterInfo.banned);
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
+
+                    if (balanceMode) {
+                        // Set the label to the cost of the ability
+                        var abCost = ab.GetChild(0);
+                        for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+                            abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
+                        }
+                        abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                    }
 
                     if(filterInfo.shouldShow) {
                         if(useSmartGrouping) {
@@ -2860,10 +2972,12 @@ function OnSkillTabShown(tabName) {
             (function(abName) {
                 // Create the image
                 var abcon = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
+                var label = $.CreatePanel('Label', abcon, 'skillTabCost' + (++unqiueCounter));
                 hookSkillInfo(abcon);
                 abcon.abilityname = abName;
                 abcon.SetAttributeString('abilityname', abName);
                 abcon.SetHasClass('lodMiniAbility', true);
+                label.SetHasClass('skillCostSmall', true);
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
@@ -3998,6 +4112,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Defaults
             data.banning = data.banning || {};
 			data.faststart = data.faststart || {};
+			data.balancemode = data.balancemode || {};
             data.slots = data.slots || {};
 
             // Set vote counts
@@ -4007,9 +4122,13 @@ function OnPhaseChanged(table_name, key, data) {
 			$('#voteCountNoFS').text = '(' + (data.faststart[0] || 0) + ')';
             $('#voteCountYesFS').text = '(' + (data.faststart[1] || 0) + ')';
 			
+			$('#voteCountNoBM').text = '(' + (data.balancemode[0] || 0) + ')';
+            $('#voteCountYesBM').text = '(' + (data.balancemode[1] || 0) + ')';
+			
             // Set vote percentages
-            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')])
-			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')])
+            updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
+			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
+			updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
@@ -4103,6 +4222,13 @@ function OnOptionChanged(table_name, key, data) {
         calculateHideEnemyPicks();
     }
 
+    if(key == 'lodOptionBalanceMode') {
+        onBalanceModeChanged();
+    }
+    
+    if(key == 'lodOptionBanningBalanceMode') {
+        onBalanceModeBanList();
+    }
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
@@ -4284,6 +4410,21 @@ function onAllowedCategoriesChanged() {
     calculateFilters();
     updateHeroPreviewFilters();
     updateRecommendedBuildFilters();
+}
+
+function onBalanceModeChanged() {
+    balanceMode = optionValueList['lodOptionBalanceMode'];
+    $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);    
+    for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+        $( "#buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", !balanceMode);
+    }
+    $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", !balanceMode);
+    $( "#balanceModePointsSkills" ).SetHasClass("balanceModeDisabled", !balanceMode);
+}
+
+function onBalanceModeBanList() {
+    
 }
 
 // Changes which phase the player currently has selected
@@ -4510,53 +4651,44 @@ function onPlayerCastVote(category, choice) {
             }
 
             // Add the selection
-            $('#optionVoteMaxSlots' + choice).AddClass('optionCurrentlySelected');
+            $('#optionVoteMaxSlots' + choice).AddClass('optionCurrentlySelected',choice);
 
             // Send the vote to the server
             castVote(category, choice);
         break;
 
         case 'banning':
-            // Remove glow
-            $('#optionVoteBanningNo').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteBanningNo').RemoveClass('optionCurrentlySelected');
-
-            $('#optionVoteBanningYes').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteBanningYes').RemoveClass('optionCurrentlySelected');
-
-            // Add the selection
-            var answer = 0;
-            if(choice) {
-                $('#optionVoteBanningYes').AddClass('optionCurrentlySelected');
-                answer = 1;
-            } else {
-                $('#optionVoteBanningNo').AddClass('optionCurrentlySelected');
-            }
-
-            castVote(category, answer);
+            buttonGlowHelper(category,choice,$('#optionVoteBanningYes'),$('#optionVoteBanningNo'));
         break;
 		
 		case 'faststart':
-            // Remove glow
-            $('#optionVoteFastStartNo').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteFastStartNo').RemoveClass('optionCurrentlySelected');
-
-            $('#optionVoteFastStartYes').RemoveClass('makeThePlayerNoticeThisButton');
-            $('#optionVoteFastStartYes').RemoveClass('optionCurrentlySelected');
-
-            // Add the selection
-            var answer = 0;
-            if(choice) {
-                $('#optionVoteFastStartYes').AddClass('optionCurrentlySelected');
-                answer = 1;
-            } else {
-                $('#optionVoteFastStartNo').AddClass('optionCurrentlySelected');
-            }
-            castVote(category, answer);
+            buttonGlowHelper(category,choice,$('#optionVoteFastStartYes'),$('#optionVoteFastStartNo'));
+        break;
+		
+		case 'balancemode':
+			buttonGlowHelper(category,choice,$('#optionVoteBalanceModeYes'),$('#optionVoteBalanceModeNo'));
         break;
     }
 }
 
+function buttonGlowHelper(category,choice,yesBtn,noBtn){
+	// Remove glow
+	noBtn.RemoveClass('makeThePlayerNoticeThisButton');
+    noBtn.RemoveClass('optionCurrentlySelected');
+
+    yesBtn.RemoveClass('makeThePlayerNoticeThisButton');
+    yesBtn.RemoveClass('optionCurrentlySelected');
+
+            // Add the selection
+    var answer = 0;
+    if(choice) {
+        yesBtn.AddClass('optionCurrentlySelected');
+        answer = 1;
+    } else {
+        noBtn.AddClass('optionCurrentlySelected');
+    }
+	castVote(category, answer);
+}
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -4661,6 +4793,18 @@ function onPlayerCastVote(category, choice) {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = true;
+
+    // Show all tier values by default
+    for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+        showTier[i] = true;
+        $( "#buttonShowTier" + (i + 1) ).checked = true;
+    }
+
+    // Set Balance Mode points to default
+    currentBalance = GameUI.AbilityCosts.BALANCE_MODE_POINTS
+    $('#balanceModePointsPreset').SetDialogVariableInt( 'points', currentBalance );
+    $('#balanceModePointsHeroes').SetDialogVariableInt( 'points', currentBalance );
+    $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
 
     // Disable clicking on the warning timer
     $('#lodTimerWarning').hittest = false;

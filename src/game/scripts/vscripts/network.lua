@@ -182,5 +182,9 @@ function Network:sharePlayerStats(stats)
     CustomNetTables:SetTableValue('phase_pregame', 'stats', stats)
 end
 
+function Network:sendSpellPrice(ability, price)
+    CustomGameEventManager:Send_ServerToAllClients('balance_mode_price', {abilityName = ability, cost = price })
+end
+
 -- Return an instance of it
 return Network()

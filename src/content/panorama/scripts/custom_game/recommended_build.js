@@ -82,6 +82,17 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
         slot.SetHasClass('bannedSkill', filterInfo.banned);
         slot.SetHasClass('takenSkill', filterInfo.taken);
         slot.SetHasClass('notDraftable', filterInfo.cantDraft);
+
+        if (GameUI.AbilityCosts.balanceModeEnabled) {
+            // Set the label to the cost of the ability
+            var abCost = slot.GetChild(0);
+            if (abCost) {
+                for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+                    abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
+                }
+                abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+            }
+        }
     }
 
     // Update hero
