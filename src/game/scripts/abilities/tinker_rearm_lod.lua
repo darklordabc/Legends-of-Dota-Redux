@@ -14,8 +14,8 @@ function rearm_refresh_cooldown(keys)
         if ability and ability ~= keys.ability then
             local timeLeft = ability:GetCooldownTimeRemaining()
             ability:EndCooldown()
-            if timeLeft > 30 then 
-                ability:StartCooldown(timeLeft - 30) 
+            if timeLeft > 20 then 
+                ability:StartCooldown(timeLeft - 20) 
             end
         end
     end
