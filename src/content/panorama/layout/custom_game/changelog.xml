@@ -69,17 +69,10 @@
 						<Panel class="displayHeader" hittest="false">
 							<Panel class="updateClipper" id="updateClipper" hittest="false">
 								<Panel class="displayHeader updateEntry" hittest="false">
-									<Label class="updateHeaderText" text="#july7_title" />
-									<Label class="displayText" text="#july7_option1" />
-									<Label class="displayText" text="#july7_option1" />
-									<Label class="displayText" text="#july7_option1" />
+									<Label class="updateHeaderText" text="August Update" />
+									<Label class="displayText" text="Balance:\n*Added Reblanced Version of Permanent Immolation \nAdded Zulf's Abilitites: 4 original abilities\n*Default Bans reduced from 10 to 5\n*Added 5 Random AbilitiesBalance\n*Balanced Neutral Ice Armor, added new icon\n*Buffed Harpy Chain Lighting\n*Buffed Cripple\n*Buffed Swiftness Aura\n*Buffed Devotion Aura\n*Buffed Troll Warlord Ensare\n*Added Naix Control\n*Respawn time in all_pick_6 reduced to 70%\n*Cherub Abilitites added to the game: 4 of her original abilities and 6 standalone sub abilities from her ultimate\n*Added Balance versions of Fury Swipes and Essence Shift\n*Made Essence Shift a banned ability by default.\n\nBug Fixes:\n*Improved Visuals of Team Switch Button\n*Added import/export options in custom map\n*Added Credits for Cherub Abilities\n*Standardized use of green text in abilities" />
 								</Panel>
 								<Panel class="horizontalSeparator"/>
-								<Panel class="displayHeader" hittest="false">
-									<Label class="updateHeaderText" text="#july7_title" />
-									<Label class="displayText" text="#july7_option1" />
-									<Label class="displayText" text="#july7_option1" />
-								</Panel>
 							</Panel>
 						</Panel>
 					</Panel>
