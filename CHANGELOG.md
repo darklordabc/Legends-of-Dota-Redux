@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2016-08-01
 ### Balance
+- Nerfed Rearm - Only reduces abilities by 20 seconds, instead of 30.
 - Walrus Punch + Overpower = Troll Combo
 - Added Rebalanced Version of Permanent Immolation
 - Rebalance Fireball
