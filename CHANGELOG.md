@@ -5,9 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2016-08-01
 ### Balance
-- Added Reblanced Version of Permanent Immolation
+- Added Rebalanced Version of Permanent Immolation
+- Rebalance Fireball
 - [Zulf's Abilitites](http://dotaconcept.com/hero/70) added to the game: 4 original abilities
 - Default Bans reduced from 10 to 5
+
+### Bug Fixing
+- Added Information Panel with suggestions to developers. 
 
 ## 2016-07-28
 ### Balance
