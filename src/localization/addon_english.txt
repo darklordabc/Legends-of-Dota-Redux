@@ -470,7 +470,7 @@
     "votings_goldandexp"                            "Gold & Exp"
     "votings_give_gold"                             "Give Gold"
     "votings_give_exp"                              "Give Exp"
-    "votings_change_gold_tickrate"                  "Change Gold tickrate"
+    "votings_change_gold_tickrate"                  "Change Gold Tickrate"
     "votings_change_gold_modifier"                  "Change Gold Modifier"
     "votings_change_exp_modifier"                   "Change Exp Modifier"
     "votings_respawn"                               "Respawn"
@@ -483,6 +483,10 @@
 
     "votings_accepted"                              "Accepted"
     "votings_declined"                              "Declined"
+
+    "votings_accept"                                "Accept"
+
+    "votings_value"                                 "Value"
 
     /////////////////
     // UNIQUE HERO MECHANICS

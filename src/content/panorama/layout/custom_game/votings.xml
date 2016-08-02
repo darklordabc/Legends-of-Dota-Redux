@@ -13,8 +13,8 @@
 		</snippet>
 
 		<snippet name="VotingBoxTeamSwitch">
-			<Panel class="VotingBox">
-				<Label id="TeamSwitchDescription" text="#teamSwitch_select"/>
+			<Panel class="VotingDropDown VotingBoxTeamSwitch Offset">
+				<Label class="VotingBoxLabel" text="#teamSwitch_select"/>
 
 				<Panel id="ListDivider0" class="hidden ListDivider" onactivate="AttemptTeamSwitch(0)">
 					<DOTAHeroImage id="Player0_Icon" class="PlayerIcon" heroname="" heroimagestyle="landscape" />
@@ -50,11 +50,19 @@
 		</snippet>
 
 		<snippet name="VotingBoxOption">
-			<Panel class="VotingBox">
-				<Label id="VotingBoxOptionDescription" />
-				<Button id="VotingBoxSubmitButton">
-					<Label id="VotingBoxSubmitButtonLabel" />
-				</Button>
+			<Panel class="VotingDropDown Offset">
+				<Label class="VotingBoxLabel" id="VotingBoxOptionDescription" />
+				<Panel class="VotingBoxOptionRow">
+					<TextEntry class="VotingBoxTextEntry" id="VotingBoxOptionTextEntry" />
+				</Panel>
+				<Panel class="VotingBoxOptionRow">
+					<Button class="VotingBoxSubmitButton VotingBoxSubmitButtonHover">
+						<Label class="VotingBoxLabel" id="VotingBoxSubmitButtonLabel" text="#votings_accept" />
+					</Button>
+					<Button class="VotingBoxCancelButton VotingBoxSubmitButtonHover">
+						<Label class="VotingBoxLabel" id="VotingBoxSubmitButtonLabel" text="X" />
+					</Button>
+				</Panel>
 			</Panel>
 		</snippet>
 	</snippets>

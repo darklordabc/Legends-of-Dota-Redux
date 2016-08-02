@@ -91,20 +91,26 @@ function SetTeamInfo() {
     var teamDifference = 0;
     var i = 0;
 
-    
+    var boxPanel = $.GetContextPanel().FindChildrenWithClassTraverse("VotingBoxTeamSwitch")[0];
+
     for (var enemyID of enemyIDS) {
         var enemyInfo = Game.GetPlayerInfo(enemyID);
         if (LeftGame(enemyID)) {
-            $('#ListDivider'+i).RemoveClass('hidden');
-            $('#Player'+i+'_Icon').heroname = Players.GetPlayerSelectedHero(enemyID);
+
+            if (boxPanel) {
+                boxPanel.FindChildTraverse('ListDivider'+i).RemoveClass('hidden');
+                boxPanel.FindChildTraverse('Player'+i+'_Icon').heroname = Players.GetPlayerSelectedHero(enemyID);
+            }
 
             i++;
             teamDifference++;
         }
     }
     
-    for (; i <= 5; ++i) {
-        $('#ListDivider'+i).AddClass('hidden');
+    if (boxPanel) { 
+        for (; i <= 5; ++i) {
+            boxPanel.FindChildTraverse('ListDivider'+i).AddClass('hidden');
+        } 
     }
     
     for(var allyID of allyIDS) {
@@ -115,7 +121,7 @@ function SetTeamInfo() {
     
     unbalanced = teamDifference >= 2;
     
-    if(unbalanced && active == false){
+    if(unbalanced && active == false && $("#VotingDropDownRoot").BHasClass("VotingMenuHidden")){
         if (oldtd < teamDifference) {
             $('#BalanceWarning').RemoveClass('hidden')
             $.Schedule(20, function() { $('#BalanceWarning').AddClass('hidden') });
@@ -145,6 +151,7 @@ function AttemptTeamSwitch(index) {
 
 function VotingMenuButton() {
     $("#VotingDropDownRoot").ToggleClass("VotingMenuHidden");
+    $('#BalanceWarning').AddClass('hidden');
 }
 
 function CreateVotingMenu() {
@@ -196,14 +203,26 @@ function CreateVotingMenu() {
             }));
 
             for (var votingKey in votingGroup) {
-                var votingEntry = $.CreatePanel("Panel", groupPanel, votingKey + "Entry");
-                votingEntry.BLoadLayoutSnippet("VotingMenuEntry");
-                votingEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingKey);
+                (function () {
+                    var votingEntry = $.CreatePanel("Panel", groupPanel, votingKey + "Entry");
+                    votingEntry.BLoadLayoutSnippet("VotingMenuEntry");
+                    votingEntry.FindChildTraverse("VotingMenuLabel").text = $.Localize( "votings_" + votingKey);
+                    votingEntry.votingKey = votingKey;
 
-                votingEntry.SetPanelEvent("onmouseactivate", (function () {
-                    groupPanel.AddClass("VotingMenuHidden");
-                    rootPanel.AddClass("VotingMenuHidden");
-                }));
+                    votingEntry.SetPanelEvent("onmouseactivate", (function () {
+                        groupPanel.AddClass("VotingMenuHidden");
+                        rootPanel.AddClass("VotingMenuHidden");
+
+                        var votingBox = $.CreatePanel("Panel", $.GetContextPanel(), "VotingBox");
+
+                        if (votingEntry.votingKey == "switch_team") {
+                            votingBox.BLoadLayoutSnippet("VotingBoxTeamSwitch");
+                        } else {
+                            votingBox.BLoadLayoutSnippet("VotingBoxOption");
+                            votingBox.FindChildTraverse("VotingBoxOptionDescription").text = $.Localize("votings_" + votingEntry.votingKey);
+                        }
+                    }));
+                })();
             }
         })();
         i++;
@@ -211,7 +230,7 @@ function CreateVotingMenu() {
 }
 
 (function () {
-    // GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
+    GameEvents.Subscribe( 'send_custom_team_info', ReceiveCustomTeamInfo);
 
     CreateVotingMenu();
 })()
