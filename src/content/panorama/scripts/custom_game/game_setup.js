@@ -1706,6 +1706,8 @@ function setupBuilderTabs() {
                 var dropSlot = draggedPanel.GetAttributeInt('activeSlot', -1);
                 if(dropSlot != -1 && dropSlot != slotID) {
                     swapSlots(dropSlot, slotID);
+                } else if (dropSlot == -1) {
+                    removeAbility(slotID);
                 }
 
                 // Highlight nothing
@@ -3189,6 +3191,11 @@ function chooseNewAbility(slot, abilityName) {
     });
 }
 
+function removeAbility(slot) {
+    GameEvents.SendCustomGameEventToServer('lodRemoveAbility', {
+        slot: slot
+    });
+}
 // Swaps two slots
 function swapSlots(slot1, slot2) {
     // Push it to the server to validate
