@@ -14,6 +14,12 @@ end
 
 --------------------------------------------------------------------------------
 
+function modifier_flesh_heap_agi:RemoveOnDeath()
+    return false
+end
+
+--------------------------------------------------------------------------------
+
 function modifier_flesh_heap_agi:OnCreated( kv )
 	if not self:GetAbility() then
 		self:GetParent():RemoveModifierByName("modifier_flesh_heap_agi")
