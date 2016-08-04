@@ -378,11 +378,29 @@ function Ingame:handleRespawnModifier()
         if IsValidEntity(hero) then
             if hero:IsHero() then
                 -- Ensure we are not using aegis!
-                if hero:WillReincarnate() then return end
-                if hero:IsReincarnating() then return end
-                if hero:HasItemInInventory('item_aegis') then return end
-
-                -- Only apply respawn modifiers to the main hero
+                print("test1", hero:GetName())
+                if hero:WillReincarnate() then
+                    local reincarnation = hero:FindAbilityByName("skeleton_king_reincarnation")
+                    local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
+                    if reincarnation and reincarnation:GetTrueCooldown() - reincarnation:GetCooldownTimeRemaining() < respawnTime - 1 then
+                        hero:SetTimeUntilRespawn(respawnTime)
+                    else
+                        hero:SetTimeUntilRespawn(5)
+                    end
+                return end
+                if hero:IsReincarnating() then
+                    local reincarnation = hero:FindAbilityByName("skeleton_king_reincarnation")
+                    local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
+                    if reincarnation and reincarnation:GetTrueCooldown() - reincarnation:GetCooldownTimeRemaining() < respawnTime - 1 then
+                        hero:SetTimeUntilRespawn(respawnTime)
+                    else
+                        hero:SetTimeUntilRespawn(5)
+                    end
+                return end
+                if hero:HasItemInInventory('item_aegis') then
+                    hero:SetTimeUntilRespawn(5)
+                    return 
+                end
                 local playerID = hero:GetPlayerID()
                 local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
                 if hero == mainHero then
