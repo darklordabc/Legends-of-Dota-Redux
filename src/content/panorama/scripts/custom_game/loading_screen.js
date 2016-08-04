@@ -66,6 +66,9 @@ function onGetPlayerStats(table_name, key, data) {
         img: 'file://{images}/custom_game/hints/hint_scoreboard.png',
         txt: '#hintScoreboard'
     },{
+        img: 'file://{images}/custom_game/hints/commentButton.png',
+        txt: '#hintComment'
+    },{
         img: 'file://{images}/spellicons/satyr_hellcaller_unholy_aura.png',
         txt: '#hintNeutralBuffs'
     }, {
