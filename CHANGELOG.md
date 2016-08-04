@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-04
 ### Balance
 - Removed Backdoor protection because it is buggy
+- Buffed Cherub's Flowers: Flowers have much more health, and they have 20hp/s regen. 
+Damage plants do +20 damage at all levels. 
+Speed Plant gives 10 more attack speed at all levels. 
+Heal plant gives double health. Maximum 3 heal plants instead of 4. 
+Plants take 25% of the player's health, instead of 10%.
 
 ### Bug Fixing
 - Fixed Pitlord Groupings
