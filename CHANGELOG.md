@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-04
 ### Balance
 - Removed Backdoor protection because it is buggy
+
 ### Bug Fixing
 - Fixed Pitlord Groupings
 
