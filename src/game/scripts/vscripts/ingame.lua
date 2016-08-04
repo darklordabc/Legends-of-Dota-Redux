@@ -380,11 +380,11 @@ function Ingame:handleRespawnModifier()
                 -- Ensure we are not using aegis!
                 if hero:IsReincarnating() then
                     local reincarnation = hero:FindAbilityByName("skeleton_king_reincarnation")
-					if reincarnation then
-						local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
-						if reincarnation:GetTrueCooldown() - reincarnation:GetCooldownTimeRemaining() < respawnTime - 1 then
-							hero:SetTimeUntilRespawn(respawnTime)
-						end
+                    if reincarnation then
+                        local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
+                        if reincarnation:GetTrueCooldown() - reincarnation:GetCooldownTimeRemaining() < respawnTime - 1 then
+                            hero:SetTimeUntilRespawn(respawnTime)
+                        end
                     else
                         hero:SetTimeUntilRespawn(5)
                     end
