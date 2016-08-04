@@ -31,6 +31,8 @@ function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 			if hBuff ~= nil then
 				hBuff:SetStackCount( self.nKills )
 				self:GetCaster():CalculateStatBonus()
+			else
+				self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_int" , {} )
 			end
 
 			local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster() )
