@@ -1,7 +1,7 @@
 function GardenCheck( keys )
     local caster = keys.caster
     local ability = keys.ability
-    local healthCost = caster:GetMaxHealth()/200.0
+    local healthCost = caster:GetMaxHealth()/80.0
     
     if caster:GetHealth() > healthCost then
         caster:ModifyHealth( caster:GetHealth() - healthCost, ability, false, 0 )
@@ -197,7 +197,7 @@ function PlantPink( keys )
     owner.pinkFlowerCount = owner.pinkFlowerCount or 0
     owner.pinkFlowerTable = owner.pinkFlowerTable or {}
     
-    local maxFlowers = 4
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local pinkFlower = CreateUnitByName( "pink_flower", casterLocation, false, owner, owner, owner:GetTeamNumber() )
@@ -225,7 +225,7 @@ function PlantPinkBase( keys )
     owner.pinkFlowerCount = owner.pinkFlowerCount or 0
     owner.pinkFlowerTable = owner.pinkFlowerTable or {}
     
-    local maxFlowers = 4
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local pinkFlower = CreateUnitByName( "pink_flower", point, false, owner, owner, owner:GetTeamNumber() )
