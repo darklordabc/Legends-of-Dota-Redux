@@ -327,6 +327,7 @@
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
+	"hintWarnings"                                  "Many Abilities will have red warnings in the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"

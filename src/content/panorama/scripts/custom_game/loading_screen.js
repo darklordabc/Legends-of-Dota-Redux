@@ -53,6 +53,9 @@ function onGetPlayerStats(table_name, key, data) {
     }, {
         img: 'file://{images}/custom_game/hints/ogre_magi_multicast_lod.png',
         txt: '#hintMulticast'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_warnings.png',
+        txt: '#hintWarnings'
     }, {
         img: 'file://{images}/spellicons/invoker_alacrity.png',
         txt: '#hintInvokerSpells'
@@ -86,7 +89,7 @@ function onGetPlayerStats(table_name, key, data) {
     }];
 
     // How long to wait before we show the next tip
-    var tipDelay = 15;
+    var tipDelay = 1;
 
     // Contains a list of all tip IDs
     var allTips = [];
