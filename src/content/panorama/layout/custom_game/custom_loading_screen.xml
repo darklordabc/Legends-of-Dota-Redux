@@ -9,6 +9,7 @@
 	<Panel class="LoDLoadingRoot">
         <Panel class="LoDDeps">
             <Image src="file://{images}/custom_game/hints/hint_empowering_haste.png" />
+			<Image src="file://{images}/custom_game/hints/ogre_magi_multicast_lod.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">
