@@ -331,6 +331,7 @@
 	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given 4 levels instead of their usual 1."
 	"hintBlink"                              "Its always a good idea to have an escape mechanism."
 	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
+	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
