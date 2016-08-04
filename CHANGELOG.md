@@ -11,6 +11,7 @@ Damage plants do +20 damage at all levels.
 Speed Plant gives 10 more attack speed at all levels. 
 Heal plant gives double health. Maximum 3 heal plants instead of 4. 
 Plants take 25% of the player's health, instead of 10%.
+-Lowered cooldown of Typhoon and improved it's castpoint. 
 
 ### Bug Fixing
 - Fixed Pitlord Groupings
