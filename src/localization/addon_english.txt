@@ -328,7 +328,9 @@
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
 	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
-	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given four levels instead of their usual one."
+	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given 4 levels instead of their usual 1."
+	"hintBlink"                              "Its always a good idea to have an escape mechanism."
+	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
