@@ -831,7 +831,7 @@ function Pregame:networkHeroes()
 
     -- Merge custom heroes
     for heroName,heroValues in pairs(allHeroesCustom) do
-        if not allHeroes[heroValues["override_hero"]] then
+        if not allHeroes[heroValues["override_hero"]] or heroValues["ForceOverride"] == 1 then
             allHeroes[heroValues["override_hero"]] = heroValues
         end
     end
