@@ -378,7 +378,6 @@ function Ingame:handleRespawnModifier()
         if IsValidEntity(hero) then
             if hero:IsHero() then
                 -- Ensure we are not using aegis!
-                print("test1", hero:GetName())
                 if hero:WillReincarnate() then
                     local reincarnation = hero:FindAbilityByName("skeleton_king_reincarnation")
                     local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
