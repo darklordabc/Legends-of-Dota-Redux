@@ -219,7 +219,10 @@ function CreateVotingMenu() {
                             votingBox.BLoadLayoutSnippet("VotingBoxTeamSwitch");
                         } else {
                             votingBox.BLoadLayoutSnippet("VotingBoxOption");
-                            votingBox.FindChildTraverse("VotingBoxOptionDescription").text = $.Localize("votings_" + votingEntry.votingKey);
+                            votingBox.FindChildTraverse("VotingBoxOptionName").text = $.Localize("votings_" + votingEntry.votingKey);
+                            votingBox.FindChildTraverse("VotingBoxOptionDescription").text = $.Localize("votings_" + votingEntry.votingKey + "Description");
+                            votingBox.FindChildTraverse("VotingBoxOptionTextEntry").FindChildTraverse("PlaceholderText").text = "2-20";
+                            
                         }
                     }));
                 })();

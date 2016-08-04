@@ -462,31 +462,65 @@
     "teamSwitch_cooldown"                           "Team switching is still on cooldown."
 
     // Votings
-    "votings_votingMenuButton"                      "Start voting"
-    "votings_balance"                               "Balance"
-    "votings_switch_team"                           "Switch Team"
-    "votings_add_dire_bots"                         "Add Dire Bots"
-    "votings_add_radiant_bots"                      "Add Radiant Bots"
-    "votings_goldandexp"                            "Gold & Exp"
-    "votings_give_gold"                             "Give Gold"
-    "votings_give_exp"                              "Give Exp"
-    "votings_change_gold_tickrate"                  "Change Gold Tickrate"
-    "votings_change_gold_modifier"                  "Change Gold Modifier"
-    "votings_change_exp_modifier"                   "Change Exp Modifier"
-    "votings_respawn"                               "Respawn"
-    "votings_change_respawn_time"                   "Change Respawn Time"
-    "votings_change_additional_respawn_time"        "Change Additional Respawn Time"
-    "votings_change_buyback_cooldown"               "Change Buyback Cooldown"
-    "votings_other"                                 "Other"
-    "votings_switch_universal_shop"                 "Switch Universal Shop"
-    "votings_switch_all_vision"                     "Switch All Vision"
+    "votings_votingMenuButton"                          "Start voting"
 
-    "votings_accepted"                              "Accepted"
-    "votings_declined"                              "Declined"
+    "votings_balance"                                   "Balance"
+    "votings_balanceDescription"                        "Testing testing testing testing testing Testing testing testing testing"
 
-    "votings_accept"                                "Accept"
+    "votings_switch_team"                               "Switch Team"
+    "votings_switch_teamDescription"                    "Testing testing testing testing testing Testing testing testing testing"
 
-    "votings_value"                                 "Value"
+    "votings_add_dire_bots"                             "Add Dire Bots"
+    "votings_add_dire_botsDescription"                  "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_add_radiant_bots"                          "Add Radiant Bots"
+    "votings_add_radiant_botsDescription"               "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_goldandexp"                                "Gold & Exp"
+    "votings_goldandexpDescription"                     "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_give_gold"                                 "Give Gold"
+    "votings_give_goldDescription"                      "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_give_exp"                                  "Give Exp"
+    "votings_give_expDescription"                       "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_gold_tickrate"                      "Change Gold Tickrate"
+    "votings_change_gold_tickrateDescription"           "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_gold_modifier"                      "Change Gold Modifier"
+    "votings_change_gold_modifierDescription"           "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_exp_modifier"                       "Change Exp Modifier"
+    "votings_change_exp_modifierDescription"            "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_respawn"                                   "Respawn"
+    "votings_respawnDescription"                        "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_respawn_time"                       "Change Respawn Time"
+    "votings_change_respawn_timeDescription"            "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_additional_respawn_time"            "Change Additional Respawn Time"
+    "votings_change_additional_respawn_timeDescription" "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_change_buyback_cooldown"                   "Change Buyback Cooldown"
+    "votings_change_buyback_cooldownDescription"        "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_other"                                     "Other"
+
+    "votings_switch_universal_shop"                     "Switch Universal Shop"
+    "votings_switch_universal_shopDescription"          "Testing testing testing testing testing Testing testing testing testing"
+
+    "votings_switch_all_vision"                         "Switch All Vision"
+    "votings_switch_all_visionDescription"              "Testing testing testing testing testing Testing testing testing testing"
+
+
+    "votings_accepted"                                  "Accepted"
+    "votings_declined"                                  "Declined"
+
+    "votings_accept"                                    "Accept"
+
+    "votings_value"                                     "Value"
 
     /////////////////
     // UNIQUE HERO MECHANICS

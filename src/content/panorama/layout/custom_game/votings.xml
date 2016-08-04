@@ -51,9 +51,10 @@
 
 		<snippet name="VotingBoxOption">
 			<Panel class="VotingDropDown Offset">
+				<Label class="VotingBoxLabel" id="VotingBoxOptionName" />
 				<Label class="VotingBoxLabel" id="VotingBoxOptionDescription" />
 				<Panel class="VotingBoxOptionRow">
-					<TextEntry class="VotingBoxTextEntry" id="VotingBoxOptionTextEntry" />
+					<TextEntry class="VotingBoxTextEntry" id="VotingBoxOptionTextEntry" placeholder="1-10" />
 				</Panel>
 				<Panel class="VotingBoxOptionRow">
 					<Button class="VotingBoxSubmitButton VotingBoxSubmitButtonHover">
