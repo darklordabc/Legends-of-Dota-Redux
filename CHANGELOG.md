@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-04
+### Bug Fixing
+- Fixed Pitlord Groupings
+
 ## 2016-08-01
 ### Balance
 - Nerfed Rearm - Only reduces abilities by 20 seconds, instead of 30.
