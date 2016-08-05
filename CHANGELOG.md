@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-06
 
 ### Bug Fixing
+- Global Break now shows duration
+- Fixed Agi and Int Flesh Heaps (Hopefully)
 - Aegis and Reincartion should work now.
 
 ## 2016-08-04
