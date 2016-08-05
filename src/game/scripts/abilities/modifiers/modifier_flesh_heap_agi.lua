@@ -43,6 +43,7 @@ function modifier_flesh_heap_agi:OnRefresh( kv )
 	end
 	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" ) or 0
 	if IsServer() then
+		self:SetStackCount( self:GetAbility():GetFleshHeapKills() )
 		self:GetParent():CalculateStatBonus()
 	end
 end
