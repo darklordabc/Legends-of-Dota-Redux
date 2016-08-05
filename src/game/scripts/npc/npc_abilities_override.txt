@@ -285,7 +285,15 @@
 	
 	"tusk_walrus_kick"
 	{
-		"RequiredLevel"					"3"
+		"MaxLevel"						"4"
+		"AbilitySpecial"
+		{
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100 250 350 450"
+			}
+		}
 	}
 	
 	"dark_troll_warlord_raise_dead"
