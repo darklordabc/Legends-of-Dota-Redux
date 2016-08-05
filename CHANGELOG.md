@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-06
+
+### Bug Fixing
+- Aegis and Reincartion should work now.
+
 ## 2016-08-04
 ### Balance
 - Removed Backdoor protection because it is buggy
