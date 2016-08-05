@@ -3,11 +3,30 @@
 modifier_flesh_heap_agi = class({})
 
 
+--------------------------------------------------------------------------------
+
+function modifier_flesh_heap_agi:IsHidden()
+    if self:GetAbility():GetLevel() == 0 then
+        return true
+    end
+    return false
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_flesh_heap_agi:RemoveOnDeath()
+    return false
+end
 
 --------------------------------------------------------------------------------
 
 function modifier_flesh_heap_agi:OnCreated( kv )
-	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+	if not self:GetAbility() then
+		self:GetParent():RemoveModifierByName("modifier_flesh_heap_agi")
+		self:GetParent():CalculateStatBonus()
+		return
+	end
+	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" ) or 0
 	if IsServer() then
 		self:SetStackCount( self:GetAbility():GetFleshHeapKills() )
 		self:GetParent():CalculateStatBonus()
@@ -17,8 +36,14 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_flesh_heap_agi:OnRefresh( kv )
-	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+	if not self:GetAbility() then
+		self:GetParent():RemoveModifierByName("modifier_flesh_heap_agi")
+		self:GetParent():CalculateStatBonus()
+		return
+	end
+	self.fleshHeapAgilityBuffAmount = self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" ) or 0
 	if IsServer() then
+		self:SetStackCount( self:GetAbility():GetFleshHeapKills() )
 		self:GetParent():CalculateStatBonus()
 	end
 end

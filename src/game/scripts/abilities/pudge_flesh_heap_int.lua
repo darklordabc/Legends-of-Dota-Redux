@@ -19,7 +19,7 @@ function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 	if hVictim:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and self:GetCaster():IsAlive() then
 		self.fleshHeapRange = self:GetSpecialValueFor( "flesh_heap_range" )
 		local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
-		local flDistance = vToCaster:Length2D()
+		local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
 		if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
 			if self.nKills == nil then
 				self.nKills = 0
@@ -31,6 +31,8 @@ function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
 			if hBuff ~= nil then
 				hBuff:SetStackCount( self.nKills )
 				self:GetCaster():CalculateStatBonus()
+			else
+				self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_int" , {} )
 			end
 
 			local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster() )
