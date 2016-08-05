@@ -18,7 +18,7 @@ function pudge_flesh_heap_agi:OnHeroDiedNearby( hVictim, hKiller, kv )
 	end
 
 	if hVictim:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and self:GetCaster():IsAlive() then
-		self.fleshHeapRange = self:GetSpecialValueFor( "flesh_heap_range" )
+		self.fleshHeapRange = self:GetLevelSpecialValueFor( "flesh_heap_range", 0 )
 		local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
 		local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
 		if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
