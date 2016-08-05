@@ -1054,7 +1054,7 @@
     "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
-    "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
+    "DOTA_Tooltip_ability_silencer_global_break_duration"                                      "DURATION:"
 	
 	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
     "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
