@@ -468,12 +468,12 @@
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"stone_duration"					"3.0 5.0 6.0 8.0"
+				"stone_duration"					"5.0"
 			}
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"hp_regen"							"50.0 68.7 87.5 100"
+				"hp_regen"							"20.0 40 60 100"
 			}
 		}
 	}
