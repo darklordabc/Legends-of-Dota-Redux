@@ -1662,7 +1662,7 @@ function setupBuilderTabs() {
             });
 
             $.RegisterEventHandler('DragLeave', con, function(panelID, draggedPanel) {
-                $.Schedule(0.1, function() {
+                $.Schedule(0.01, function() {
                     con.RemoveClass('potential_drop_target');
 
                     if(draggedPanel.deleted == null && draggedPanel.GetAttributeInt('activeSlot', -1) == slotID) {
