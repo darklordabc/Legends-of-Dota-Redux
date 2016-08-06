@@ -473,7 +473,7 @@
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"hp_regen"							"20.0 40 60 100"
+				"hp_regen"							"20.0 40.0 60.0 100.0"
 			}
 		}
 	}
