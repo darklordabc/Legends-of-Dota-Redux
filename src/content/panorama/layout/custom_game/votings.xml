@@ -57,10 +57,10 @@
 					<TextEntry class="VotingBoxTextEntry" id="VotingBoxOptionTextEntry" placeholder="1-10" />
 				</Panel>
 				<Panel class="VotingBoxOptionRow">
-					<Button class="VotingBoxSubmitButton VotingBoxSubmitButtonHover">
+					<Button id="VotingBoxSubmitButton" class="VotingBoxSubmitButton VotingBoxSubmitButtonHover">
 						<Label class="VotingBoxLabel" id="VotingBoxSubmitButtonLabel" text="#votings_accept" />
 					</Button>
-					<Button class="VotingBoxCancelButton VotingBoxSubmitButtonHover">
+					<Button id="VotingBoxCancelButton" class="VotingBoxCancelButton VotingBoxSubmitButtonHover">
 						<Label class="VotingBoxLabel" id="VotingBoxSubmitButtonLabel" text="X" />
 					</Button>
 				</Panel>

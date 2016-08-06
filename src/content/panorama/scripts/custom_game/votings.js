@@ -7,6 +7,8 @@ var disabled = false;
 var oldtd = 0;
 var debounce = false;
 
+var votingBox;
+
 var dc_timeout = [];
 
 var handler;
@@ -152,6 +154,10 @@ function AttemptTeamSwitch(index) {
 function VotingMenuButton() {
     $("#VotingDropDownRoot").ToggleClass("VotingMenuHidden");
     $('#BalanceWarning').AddClass('hidden');
+    if (votingBox) {
+        votingBox.DeleteAsync(0.0);
+        votingBox.RemoveAndDeleteChildren();
+    }
 }
 
 function CreateVotingMenu() {
@@ -213,7 +219,7 @@ function CreateVotingMenu() {
                         groupPanel.AddClass("VotingMenuHidden");
                         rootPanel.AddClass("VotingMenuHidden");
 
-                        var votingBox = $.CreatePanel("Panel", $.GetContextPanel(), "VotingBox");
+                        votingBox = $.CreatePanel("Panel", $.GetContextPanel(), "VotingBox");
 
                         if (votingEntry.votingKey == "switch_team") {
                             votingBox.BLoadLayoutSnippet("VotingBoxTeamSwitch");
@@ -221,8 +227,33 @@ function CreateVotingMenu() {
                             votingBox.BLoadLayoutSnippet("VotingBoxOption");
                             votingBox.FindChildTraverse("VotingBoxOptionName").text = $.Localize("votings_" + votingEntry.votingKey);
                             votingBox.FindChildTraverse("VotingBoxOptionDescription").text = $.Localize("votings_" + votingEntry.votingKey + "Description");
-                            votingBox.FindChildTraverse("VotingBoxOptionTextEntry").FindChildTraverse("PlaceholderText").text = "2-20";
                             
+                            votingBox.min = votingGroup[votingEntry.votingKey]['min'];
+                            votingBox.max = votingGroup[votingEntry.votingKey]['max'];
+
+                            if (votingBox.min && votingBox.max) {
+                                votingBox.FindChildTraverse("VotingBoxOptionTextEntry").FindChildTraverse("PlaceholderText").text = votingBox.min+"-"+votingBox.max;
+                            } else {
+                                votingBox.FindChildTraverse("VotingBoxOptionTextEntry").visible = false;
+                            }
+
+                            votingBox.FindChildTraverse("VotingBoxSubmitButton").SetPanelEvent('onmouseactivate', (function () {
+                                var value = parseInt(votingBox.FindChildTraverse("VotingBoxOptionTextEntry").text);
+
+                                if (value < votingBox.min || value > votingBox.max) {
+                                    return;
+                                }
+
+                                GameEvents.SendCustomGameEventToServer('start_voting', {value: value, option: votingEntry.votingKey})
+
+                                votingBox.DeleteAsync(0.0);
+                                votingBox.RemoveAndDeleteChildren();
+                            }));
+
+                            votingBox.FindChildTraverse("VotingBoxCancelButton").SetPanelEvent('onmouseactivate', (function () {
+                                votingBox.DeleteAsync(0.0);
+                                votingBox.RemoveAndDeleteChildren();
+                            }));
                         }
                     }));
                 })();
