@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Made Cyclone Traps Invisible
 - Added 6 more hints
 - Fixed issues with random abilities and illusions (Hopefully)
+- Added function to remove abilities from slots by draging them away and releasing. 
 
 ### Balance
 - Balanced Eyes in the Forest. Gave 4 levels. 
