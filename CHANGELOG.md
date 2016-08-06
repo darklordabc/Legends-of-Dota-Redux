@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Aegis and Reincartion should work now.
 - Made Cyclone Traps Invisible
 - Added 6 more hints
+- Fixed issues with random abilities and illusions (Hopefully)
 
 ### Balance
 - Balanced Eyes in the Forest. Gave 4 levels. 
