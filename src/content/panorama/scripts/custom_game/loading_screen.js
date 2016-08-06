@@ -104,7 +104,7 @@ function onGetPlayerStats(table_name, key, data) {
     }];
 
     // How long to wait before we show the next tip
-    var tipDelay = 1;
+    var tipDelay = 15;
 
     // Contains a list of all tip IDs
     var allTips = [];
