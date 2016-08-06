@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Global Break now shows duration
 - Fixed Agi and Int Flesh Heaps (Hopefully)
 - Aegis and Reincartion should work now.
+- Made Cyclone Traps Invisible
 
 ### Balance
 - Balanced Eyes in the Forest. Gave 4 levels. 
