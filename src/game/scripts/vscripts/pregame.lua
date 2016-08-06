@@ -139,6 +139,11 @@ function Pregame:init()
         this:onPlayerSelectAttr(eventSourceIndex, args)
     end)
 
+    -- Player wants to remove an ability
+    CustomGameEventManager:RegisterListener('lodRemoveAbility', function(eventSourceIndex, args)
+        this:onPlayerRemoveAbility(eventSourceIndex, args)
+    end)
+
     -- Player wants to change which ability is in a slot
     CustomGameEventManager:RegisterListener('lodChooseAbility', function(eventSourceIndex, args)
         this:onPlayerSelectAbility(eventSourceIndex, args)
@@ -3588,6 +3593,29 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
     end
 end
 
+-- Tries to remove the ability in the giben slot.
+function Pregame:removeSelectedAbility(playerID, slot, dontNetwork)
+    -- Grab the player so we can push messages
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Grab settings
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
+
+    -- Ensure a container for this player exists
+    self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
+
+    local build = self.selectedSkills[playerID]
+    build[slot] = nil
+
+    -- Should we network it
+    if not dontNetwork then
+        -- Network it
+        network:setSelectedAbilities(playerID, build)
+    end
+end
+
 -- Tries to set which ability is in the given slot
 function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     -- Grab the player so we can push messages
@@ -3864,6 +3892,38 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             network:setSelectedAbilities(playerID, build)
         end
     end
+end
+
+-- Player wants to remove an ability
+function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+
+        return
+    end
+
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+
+        return
+    end
+
+    local slot = math.floor(tonumber(args.slot))
+
+    -- Attempt to remove the ability
+    self:removeSelectedAbility(playerID, slot)
 end
 
 -- Player wants to select a new ability
