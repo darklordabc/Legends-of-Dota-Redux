@@ -51,8 +51,26 @@ function onGetPlayerStats(table_name, key, data) {
         img: 'file://{images}/spellicons/death_prophet_witchcraft.png',
         txt: '#hintWitchCraft'
     }, {
-        img: 'file://{images}/spellicons/ogre_magi_multicast.png',
+        img: 'file://{images}/custom_game/hints/ogre_magi_multicast_lod.png',
         txt: '#hintMulticast'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_warnings.png',
+        txt: '#hintWarnings'
+    },{
+        img: 'file://{images}/spellicons/antimage_blink.png',
+        txt: '#hintBlink'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_balancemode.png',
+        txt: '#hintBalanceMode'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_scoreboard.png',
+        txt: '#hintScoreboard'
+    },{
+        img: 'file://{images}/custom_game/hints/commentButton.png',
+        txt: '#hintComment'
+    },{
+        img: 'file://{images}/spellicons/satyr_hellcaller_unholy_aura.png',
+        txt: '#hintNeutralBuffs'
     }, {
         img: 'file://{images}/spellicons/invoker_alacrity.png',
         txt: '#hintInvokerSpells'

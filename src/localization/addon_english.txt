@@ -326,7 +326,13 @@
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
-    "hintReport"                                    "Please report Bugs and Troll Combos so that LoD can continue to improve! Use the Steam Workshop page or the GitHub page to make your reports."
+    "hintReport"                                    "Please report Bugs and Troll Combos so that LoD Redux can continue to improve! Use the Steam Workshop page or use the in-game comment form."
+	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
+	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given 4 levels instead of their usual 1."
+	"hintBlink"                             	    "Its always a good idea to have an escape mechanism."
+	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
+	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
+	"hintComment"                              "You can leave feedback that goes straight to the developers by using the pencil icon at the top of the screen. From here you can also see the changelog and credits. "
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
