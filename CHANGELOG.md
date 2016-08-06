@@ -9,6 +9,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Global Break now shows duration
 - Fixed Agi and Int Flesh Heaps (Hopefully)
 - Aegis and Reincartion should work now.
+- Made Cyclone Traps Invisible
+- Added 6 more hints
+- Fixed issues with random abilities and illusions (Hopefully)
+- Added function to remove abilities from slots by draging them away and releasing. 
+
+### Balance
+- Balanced Eyes in the Forest. Gave 4 levels. 
+- Balanced Stone Form. Fixed to 5 second duration, increased cooldown to 35 seconds, lowered health regen. 
 
 ## 2016-08-04
 ### Balance
