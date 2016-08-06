@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed Agi and Int Flesh Heaps (Hopefully)
 - Aegis and Reincartion should work now.
 - Made Cyclone Traps Invisible
+- Added 6 more hints
 
 ### Balance
 - Balanced Eyes in the Forest. Gave 4 levels. 
