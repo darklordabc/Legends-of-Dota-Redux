@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Balance
 - Balanced Eyes in the Forest. Gave 4 levels. 
-- Balance Stone Form. Fixed to 5 second duration, increased cooldown to 35 seconds, lowered health regen. 
+- Balanced Stone Form. Fixed to 5 second duration, increased cooldown to 35 seconds, lowered health regen. 
 
 ## 2016-08-04
 ### Balance
