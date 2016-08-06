@@ -10,6 +10,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed Agi and Int Flesh Heaps (Hopefully)
 - Aegis and Reincartion should work now.
 
+### Balance
+- Balanced Eyes in the Forest. Gave 4 levels. 
+
 ## 2016-08-04
 ### Balance
 - Removed Backdoor protection because it is buggy
