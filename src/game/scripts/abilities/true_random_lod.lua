@@ -124,6 +124,7 @@ end
 
 function RandomInit(keys)
 	local caster = keys.caster
+	if caster:IsIllusion() then return end
 	local ability = keys.ability
 	if not caster.randomAbilityCount then caster.randomAbilityCount = 0 end
 	caster.randomAbilityCount = caster.randomAbilityCount + 1
