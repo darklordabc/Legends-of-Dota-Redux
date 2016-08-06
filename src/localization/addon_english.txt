@@ -584,6 +584,7 @@
 	"warning_mobility_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
+	"warning_skoros_nexus"    "<font color=\"#FF4949\">LoD Warning:</font> Several abilities may not work correctly with Nexus, and some may even crash the game (needs testing)."
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -608,7 +609,7 @@
 	"credit_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
-
+	"credit_skoros_nexus"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 
     
 
@@ -1280,6 +1281,27 @@
     "blue_flower"           "Blue Blossom"
     "yellow_flower"         "Yellow Daisy"
     "purple_flower"         "Purple Lotus"
+    
+    //-------------------------------------------------------------------
+    // Skoros, the Blindseer
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_skoros_nexus"                                                      "Nexus"
+    "DOTA_Tooltip_ability_skoros_nexus_Description"                                          "Gives an ally a piece of yourself, allowing Skoros to use the ally's location to cast his spells and items. Allies with Nexus will also carry all of his auras and have bonus armor. Spells cast through a Nexus cost an additional 40 mana.\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_skoros_nexus_Note0"                   "Whenever a spell/item is attempted on a targeted location while you are not within range, the nearest Nexus unit will cast the ability if it's within range. When this happens, the hero will stop and spend mana."
+    //"DOTA_Tooltip_ability_skoros_nexus_sight_aoe"                                            "SIGHT AOE:"
+    "DOTA_Tooltip_ability_skoros_nexus_duration"                                             "DURATION:"
+    "DOTA_Tooltip_ability_skoros_nexus_armor_change"                                         "ARMOR CHANGE:"
+    //"DOTA_Tooltip_ability_skoros_nexus_interval"                                             "INTERVAL:"
+    "DOTA_Tooltip_ability_skoros_nexus_Aghanim_Description"                     "When a Nexus expires or dies, it will automatically transfer to the nearest ally within the cast range of the Nexus ability for the remaining duration."
+
+    "DOTA_Tooltip_Nexus_on_ally"                                                      "Nexus"
+    "DOTA_Tooltip_Nexus_on_ally_Description"                                          "A part of Skoros lives within you, increasing armor."
+
+    "DOTA_Tooltip_Nexus_ManaSpent"                                                    "Nexus ManaSpent"
+    "DOTA_Tooltip_Nexus_ManaSpent_Description"                                        ""
+
+    "DOTA_Tooltip_Nexus_on_self"                                                      "Nexus"
+    "DOTA_Tooltip_Nexus_on_self_Description"                                          "A part of Skoros lives within another, reducing armor."
     
     //-------------------------------------------------------------------
     // Zulf, the Stormhunter
