@@ -288,10 +288,15 @@
 		"MaxLevel"						"4"
 		"AbilitySpecial"
 		{
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"push_length"				"300 500 700 900"
+			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 250 350 450"
+				"damage"					"100 200 300 400"
 			}
 		}
 	}
