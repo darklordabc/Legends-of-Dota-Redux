@@ -4723,7 +4723,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"             "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-        "AbilityTextureName"        "furion_teleportation"
+        "AbilityTextureName"        "garden_teleport"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------

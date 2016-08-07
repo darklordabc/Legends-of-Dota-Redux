@@ -1174,7 +1174,7 @@
     "DOTA_Tooltip_ability_cherub_explosive_spore_Spore_movespeed"  "SPORE MOVEMENT SPEED:"
 
     "DOTA_Tooltip_ability_cherub_flower_garden"      "Flower Garden"
-    "DOTA_Tooltip_ability_cherub_flower_garden_Description"    "Cherub fertilizes the ground, creating a garden plot temporarily. Costs 25%d%% of Cherub's Max health. Cherub can plant any one of six different flowers on her garden plots, which have increased stats based on the level of this ability.\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_cherub_flower_garden_Description"    "Cherub fertilizes the ground, creating a garden plot temporarily. Costs 25%d%% of Cherub's Max health. Cherub can plant any one of six different flowers on her garden plots, which have increased stats based on the level of this ability. Flowers have a short-range teleport ability.\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_cherub_flower_garden_Note0"      "Each flower has 0 armor and 0%d%% magic resistance."
     "DOTA_Tooltip_ability_cherub_flower_garden_Duration"      "DURATION:"
     "DOTA_Tooltip_ability_cherub_flower_garden_Flower_health"    "FLOWER HEALTH:"
@@ -1215,43 +1215,43 @@
     
     // Base flowers
     "DOTA_Tooltip_ability_garden_white_flower_base"    "White Flower"
-    "DOTA_Tooltip_ability_garden_white_flower_base_Description"  "Plants a white flower which deals low attack damage from a high range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant."
+    "DOTA_Tooltip_ability_garden_white_flower_base_Description"  "Plants a white flower which deals low attack damage from a high range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability."
     "DOTA_Tooltip_ability_garden_white_flower_base_Range"    "ATTACK RANGE:"
     "DOTA_Tooltip_ability_garden_white_flower_base_White_flower_damage"       "DAMAGE:"
     "DOTA_Tooltip_ability_garden_white_flower_base_Flower_health"    "FLOWER HEALTH:"
 
     "DOTA_Tooltip_ability_garden_red_flower_base"    "Red Flower"
-    "DOTA_Tooltip_ability_garden_red_flower_base_Description"  "Plants a red flower which deals high attack damage from a short range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. "
+    "DOTA_Tooltip_ability_garden_red_flower_base_Description"  "Plants a red flower which deals high attack damage from a short range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability. "
     "DOTA_Tooltip_ability_garden_red_flower_base_Range"      "ATTACK RANGE:"
     "DOTA_Tooltip_ability_garden_red_flower_base_Red_flower_damage"      "DAMAGE:"
     "DOTA_Tooltip_ability_garden_red_flower_base_Flower_health"    "FLOWER HEALTH:"
     
     "DOTA_Tooltip_ability_garden_pink_blossom_base"    "Pink Blossom"
-    "DOTA_Tooltip_ability_garden_pink_blossom_base_Description"  "Plants a pink blossom which heals three random allies every second. Maximum of 3 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant."
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Description"  "Plants a pink blossom which heals three random allies every second. Maximum of 3 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability."
     "DOTA_Tooltip_ability_garden_pink_blossom_base_Radius"    "SEARCH RADIUS:"
     "DOTA_Tooltip_ability_garden_pink_blossom_base_Targets"    "MAX TARGETS:"  
     "DOTA_Tooltip_ability_garden_pink_blossom_base_Heal_amount"  "HEAL AMOUNT:"  
     "DOTA_Tooltip_ability_garden_pink_blossom_base_Flower_health"    "FLOWER HEALTH:"
                                                  
     "DOTA_Tooltip_ability_garden_blue_blossom_base"    "Blue Blossom"
-    "DOTA_Tooltip_ability_garden_blue_blossom_base_Description"  "Plants a blue blossom which restores mana in an area every 5 seconds. Maximum of 4 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant."
+    "DOTA_Tooltip_ability_garden_blue_blossom_base_Description"  "Plants a blue blossom which restores mana in an area every 5 seconds. Maximum of 4 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability."
     "DOTA_Tooltip_ability_garden_blue_blossom_base_Radius"    "RADIUS:"
     "DOTA_Tooltip_ability_garden_blue_blossom_base_Restore_amount"  "RESTORE AMOUNT:"
     "DOTA_Tooltip_ability_garden_blue_blossom_base_Flower_health"  "FLOWER HEALTH:"
                                                  
     "DOTA_Tooltip_ability_garden_yellow_daisy_base"    "Yellow Daisy"
-    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Description"  "Plants a yellow daisy which increases attackspeed for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant."
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Description"  "Plants a yellow daisy which increases attackspeed for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability."
     "DOTA_Tooltip_ability_garden_yellow_daisy_base_Radius"    "AURA RADIUS:"
     "DOTA_Tooltip_ability_garden_yellow_daisy_base_Attackspeed_bonus"    "BONUS ATTACKSPEED:"
     "DOTA_Tooltip_ability_garden_yellow_daisy_base_Flower_health"    "FLOWER HEALTH:"
                                                  
     "DOTA_Tooltip_ability_garden_purple_lotus_base"    "Purple Lotus"
-    "DOTA_Tooltip_ability_garden_purple_lotus_base_Description"  "Plants a purple lotus which increases magic resistance for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant."
+    "DOTA_Tooltip_ability_garden_purple_lotus_base_Description"  "Plants a purple lotus which increases magic resistance for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Flower has a short-range teleport ability."
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Radius"    "AURA RADIUS:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_resistance"  "%MAGIC RESISTANCE:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Flower_health"    "FLOWER HEALTH:"
     
-    "DOTA_Tooltip_ability_garden_teleport"    "Flower Teleportation"
+    "DOTA_Tooltip_ability_garden_teleport"    "Transplant"
     "DOTA_Tooltip_ability_garden_teleport_Description"    "Teleports this flower to any location within 1500 units."
     
     "DOTA_Tooltip_ability_destroy_flower"    "Destroy Flower"
