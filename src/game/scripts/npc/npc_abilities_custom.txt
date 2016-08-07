@@ -4271,7 +4271,7 @@
             "02"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "400 550 700"
             }
             "03"
             {
@@ -4890,7 +4890,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5002,7 +5002,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5121,7 +5121,7 @@
             "04"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5256,7 +5256,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5381,7 +5381,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5510,7 +5510,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
