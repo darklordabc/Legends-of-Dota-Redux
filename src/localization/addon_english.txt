@@ -1251,6 +1251,9 @@
     "DOTA_Tooltip_ability_garden_purple_lotus_base_resistance"  "%MAGIC RESISTANCE:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Flower_health"    "FLOWER HEALTH:"
     
+    "DOTA_Tooltip_ability_garden_teleport"    "Flower Teleportation"
+    "DOTA_Tooltip_ability_garden_teleport_Description"    "Teleports this flower to any location within 1500 units."
+    
     "DOTA_Tooltip_ability_destroy_flower"    "Destroy Flower"
     "DOTA_Tooltip_ability_destroy_flower_Description"    "Destroys this flower if it has not been damaged in the last 3 seconds."
 
