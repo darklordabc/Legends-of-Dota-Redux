@@ -4450,7 +4450,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
-
+		"States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -4477,6 +4480,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
 
                 "OnCreated"
                 {
@@ -4507,6 +4514,7 @@
                 "IsPurgeable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4547,6 +4555,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4593,6 +4602,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4641,6 +4651,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4824,6 +4835,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -4933,6 +4948,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -5061,6 +5080,7 @@
                 "IsPurgeable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5183,6 +5203,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5311,6 +5332,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5440,6 +5462,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
