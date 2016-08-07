@@ -4728,7 +4728,7 @@
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "MaxLevel"                      "1"
-        "AbilityCastRange"              "1500" // ?? global
+        "AbilityCastRange"              "0"
         "AbilityCastPoint"              "3"
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0"
@@ -4740,6 +4740,14 @@
             "particle"  "particles/units/heroes/hero_furion/furion_teleport.vpcf"
             "particle"  "particles/units/heroes/hero_furion/furion_teleport_e.vpcf" //Endcap if canceled
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "range"            "1500"
+            }
         }
 
         "OnAbilityPhaseStart"
@@ -4772,17 +4780,20 @@
                 "EffectName"    "Hero_Furion.Teleport_Disappear"
                 "Target"        "CASTER"
             }
-
             "RunScript"
             {
                 "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
                 "Function"      "Teleport"
                 "Target"        "POINT"
             }
-
             "FireSound"
             {
                 "EffectName"    "Hero_Furion.Teleport_Appear"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Enchantress.EnchantCast"
                 "Target"        "CASTER"
             }
         }
