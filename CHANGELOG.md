@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-08
 
 ### Bug Fixing
--
+- Add new hint about removing abilities. 
 
 ### Balance
 - Balanced Walrus Kick, now has 4 levels. 
