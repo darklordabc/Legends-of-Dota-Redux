@@ -3316,16 +3316,16 @@
             }
         }
     } 
+    
     "shards_of_truesight_lod"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityTextureName"            "shards_of_truesight_lod"
-        "AbilityCooldown"                "30"
-        "AbilityManaCost"                "175 150 125 100"
-        "AbilityCastPoint"                "0.5"
+        "AbilityCooldown"                "30 25 20 15"
+        "AbilityManaCost"                "100"
         "AbilityCastRange"                "%radius"
         
         "precache"
@@ -3342,7 +3342,7 @@
             "01"
             {
                 "var_type"                "FIELD_INTEGER"
-                "ms_boost"                "15"
+                "ms_boost"                "25"
             }            
             "02"
             {
