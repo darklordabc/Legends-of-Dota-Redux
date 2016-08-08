@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 - Balanced Walrus Kick, now has 4 levels. 
 - Gave Plants a short-range teleport ability. Lowered their HP and HP Regen. 
+- Balanced Burrow. Has 4 levels. Lower damage reduction and regen at lower levels. 
 
 ## 2016-08-06
 
