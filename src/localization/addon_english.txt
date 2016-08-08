@@ -1160,8 +1160,8 @@
     "DOTA_Tooltip_ability_cherub_synthesis"                      "Synthesis"  
     "DOTA_Tooltip_ability_cherub_synthesis_Description"      "While Toggled, converts Cherub's mana into health or health into mana, depending on the day/night cycle. During the day, converts her health into mana. During the night, converts her mana into health."  
     "DOTA_Tooltip_ability_cherub_synthesis_Base_conversion_rate"  "BASE CONVERSION RATE:"  
-    "DOTA_Tooltip_ability_cherub_synthesis_mana_to_health"    "%MANA TO HEALTH (night):"  
-    "DOTA_Tooltip_ability_cherub_synthesis_health_to_mana"    "%HEALTH TO MANA (day):"
+    "DOTA_Tooltip_ability_cherub_synthesis_mana_to_health"    "%MANA TO HEALTH (NIGHT):"  
+    "DOTA_Tooltip_ability_cherub_synthesis_health_to_mana"    "%HEALTH TO MANA (DAY):"
 
     "DOTA_Tooltip_ability_cherub_explosive_spore"                "Explosive Spore"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Description"  "Cherub creates a floating spore with flying movement. Spores will explode after 10 seconds or upon dying, dealing magical damage in an area of effect and lifestealing based on damage dealt."
@@ -1169,8 +1169,8 @@
     "DOTA_Tooltip_ability_cherub_explosive_spore_Delay"      "EXPLODE DELAY:"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Radius"    "EXPLODE RADIUS:"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Damage"      "DAMAGE:"
-    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_hero"  "%LIFESTEAL (hero):"
-    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_creep"  "%LIFESTEAL (creep):"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_hero"  "%LIFESTEAL (HERO):"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_creep"  "%LIFESTEAL (CREEP):"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Spore_health"    "SPORE HEALTH:"  
     "DOTA_Tooltip_ability_cherub_explosive_spore_Spore_movespeed"  "SPORE MOVEMENT SPEED:"
 
