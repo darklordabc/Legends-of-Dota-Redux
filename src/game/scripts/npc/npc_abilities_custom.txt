@@ -4271,7 +4271,7 @@
             "02"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "400 550 700"
             }
             "03"
             {
@@ -4450,7 +4450,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
-
+		"States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -4477,6 +4480,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
 
                 "OnCreated"
                 {
@@ -4507,6 +4514,7 @@
                 "IsPurgeable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4547,6 +4555,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4593,6 +4602,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4641,6 +4651,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -4706,6 +4717,119 @@
     //
     //
     //=========================================================================================================
+    "garden_teleport"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityTextureName"        "garden_teleport"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "MaxLevel"                      "1"
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "3"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0"
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_end_team.vpcf"
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport.vpcf"
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_e.vpcf" //Endcap if canceled
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "range"            "1500"
+            }
+        }
+
+        "OnAbilityPhaseStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_teleportation"
+                "Target"        "CASTER"
+                "Duration"      "3"
+            }
+
+            "FireSound"
+            {
+                "EffectName"    "Hero_Furion.Teleport_Grow"
+                "Target"        "CASTER"
+            }
+
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "Function"      "CreateTeleportParticles"
+                "Target"        "POINT"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Furion.Teleport_Disappear"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "Function"      "Teleport"
+                "Target"        "POINT"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Furion.Teleport_Appear"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Enchantress.EnchantCast"
+                "Target"        "CASTER"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_teleportation"
+            {
+                "IsHidden"          "0"
+        
+                "EffectName"        "particles/units/heroes/hero_furion/furion_teleport.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                "OnOrder"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Furion.Teleport_Disappear"
+                        "Target"        "CASTER"
+                    }
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                        "Function"      "EndTeleport"
+                    }
+
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_teleportation"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }
+    }
     "destroy_flower"
     {
         "BaseClass"                "ability_datadriven"
@@ -4766,7 +4890,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -4824,6 +4948,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -4874,7 +5002,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -4933,6 +5061,10 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "RunScript"
@@ -4989,7 +5121,7 @@
             "04"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5061,6 +5193,7 @@
                 "IsPurgeable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5123,7 +5256,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5183,6 +5316,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5247,7 +5381,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5311,6 +5445,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
@@ -5375,7 +5510,7 @@
             "03"
             {
                 "var_type"            "FIELD_INTEGER"
-                "flower_health"            "400 600 800 1000"
+                "flower_health"            "250 400 550 700"
             }
         }
         "precache"
@@ -5440,6 +5575,7 @@
                 "IsPurgable"    "0"
                 "States"
                 {
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_DISARMED"        "MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnCreated"
