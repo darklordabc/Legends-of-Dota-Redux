@@ -6637,6 +6637,203 @@
             }
         }
     }
+     //=================================================================================================================
+    // Skoros - Nexus
+    //=================================================================================================================
+    "skoros_nexus"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "skoros_nexus"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "CastFilterRejectCaster"        "1"
+        "AbilityCooldown"               "30 25 20"
+        "AbilityCastPoint"              "0.3"
+        "AbilityManaCost"               "60"
+        "AbilityCastRange"              "700"
+        "AbilityProcsMagicStick"        "1"
+
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "sight_aoe"         "800"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "25 35 45"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "armor_change"      "4 8 12"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "interval"          "0.1"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "armor_penalty"     "0"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "mana_penalty"      "40"
+            }
+        }
+        "precache"
+        {
+            "model"         "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+            "particle"      "particles/units/heroes/hero_phantom_assasin/phantom_assassin_blur.vpcf"
+            "particle"      "particles/units/heroes/hero_undying/undying_fg_heal.vpcf"
+            "particle"      "particles/econ/courier/courier_faceless_rex/cour_rex_flying.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_skoros.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_nexus_attach"
+                "Target"        "TARGET"
+                "Duration"      "2.0"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "Nexus_on_ally"
+                "Target"        "TARGET"
+                "Duration"      "%duration"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_nexus_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "OnOrder"
+                // Triggers on Move/Casting/Hold/Stop
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/skoros_nexus.lua"
+                        "Function"      "FindAction"
+                        "Target"        "POINT"
+                    }
+                }
+            }
+            "modifier_nexus_attach"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+    
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/skoros/skoros_nexus.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"            "TARGET"
+                        
+                        "ControlPointEntities"
+                        {
+                            "TARGET"    "attach_hitloc"
+                            "CASTER"    "attach_hitloc"
+                        }
+                    }
+                }
+            }
+            "Nexus_on_ally"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "IsBuff"            "1"
+        
+                "EffectName"        "particles/econ/courier/courier_faceless_rex/cour_rex_flying.vpcf"
+                "EffectAttachType"  "follow_overhead"
+                "TextureName"           "skoros_nexus"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_change" 
+                }
+                
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Skoros.Nexus"
+                        "Target"        "TARGET"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "Nexus_on_self"
+                        "Target"        "CASTER"
+                        "Duration"      "%duration"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/skoros_nexus.lua"
+                        "Function"      "CreateSuperIllusion"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/skoros_nexus.lua"
+                        "Function"      "KILLSELF"
+                    }
+                }
+            }
+            "Nexus_on_self"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "1"
+                "TextureName"       "skoros_nexus"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Duration"          "%duration"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_penalty" 
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/skoros_nexus.lua"
+                        "Function"      "finish"
+                    }
+                }
+            }
+            "Nexus_ManaSpent"
+            {
+                "IsHidden"  "1"
+                "OnAbilityExecuted"
+                // Any ability (including items) was used by the unit with this modifier.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/skoros_nexus.lua"
+                        "Function"      "Remove_Caster_Mana"
+                    }
+                }
+            }
+        }
+    }
     //=================================================================================================================
     // RANDOM ABILITIES
     //=================================================================================================================
