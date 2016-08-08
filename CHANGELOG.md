@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Bug Fixing
 - Add new hint about removing abilities. 
+- Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant. Manacost fixed at 100.
 
 ### Balance
 - Balanced Walrus Kick, now has 4 levels. 
