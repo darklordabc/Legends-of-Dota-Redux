@@ -14,6 +14,7 @@
 			<Image src="file://{images}/custom_game/hints/hint_balancemode.png" />
 			<Image src="file://{images}/custom_game/hints/hint_scoreboard.png" />
 			<Image src="file://{images}/custom_game/hints/commentButton.png" />
+			<Image src="file://{images}/custom_game/hints/hint_removeability.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">

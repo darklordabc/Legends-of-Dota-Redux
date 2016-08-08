@@ -333,6 +333,7 @@
 	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
 	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
 	"hintComment"                              "You can leave feedback that goes straight to the developers by using the pencil icon at the top of the screen. From here you can also see the changelog and credits. "
+	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
