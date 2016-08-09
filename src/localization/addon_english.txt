@@ -1370,4 +1370,15 @@
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_damage"                      "DAMAGE PER SECOND:"
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_duration"                     "DURATION:"
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_burn_interval"                "BURN INTERVAL:"
+		
+	//IMBA Degen Aura
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura"									"Degen Aura IMBA"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Description"						"Greatly degenerates the attack capabilities of enemy units that stray too near. \n<font color='#70EA72'>Continuously reduces enemy heroes' damage as long as they stay in Degen Aura's AOE.</font>"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Note0"								"Pierces spell immunity."
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Lore"								"The holy embodiment of Purist Thunderwrath is enough to weaken those of lesser faith."
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_radius"							"AURA RADIUS:"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_stack_reduction_pct"				"%DAMAGE REDUCTION PER SECOND:"
+			
+	"DOTA_Tooltip_modifier_imba_degen_aura_stacks"										"Degen Aura"
+	"DOTA_Tooltip_modifier_imba_degen_aura_stacks_Description"							"Damage progressively reduced"
 }
