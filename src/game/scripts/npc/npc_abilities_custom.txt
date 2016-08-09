@@ -7020,6 +7020,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7121,6 +7122,7 @@
 		"AbilityTextureName"					"sniper_shrapnel_muh_keen_gun"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7171,6 +7173,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7243,6 +7246,7 @@
 		"AbilityTextureName"					"antimage_mana_break"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7291,6 +7295,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7345,6 +7350,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCooldown"						"4 3 2"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7416,6 +7422,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7492,6 +7499,7 @@
 		"AbilityTextureName"					"ursa_fury_swipes"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7556,6 +7564,7 @@
 		"AbilityTextureName"					"gyrocopter_skyhigh_flak_cannon"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7595,6 +7604,7 @@
 		"AbilityTextureName"					"slark_essence_shift"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7730,6 +7740,7 @@
 		"AbilityTextureName"					"troll_warlord_fervor"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7800,6 +7811,7 @@
 		"AbilityTextureName"					"huskar_berserkers_blood"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7871,6 +7883,7 @@
 		"AbilityTextureName"					"tower_thorns"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7934,6 +7947,7 @@
 		"AbilityTextureName"					"windrunner_focusfire"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7983,6 +7997,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"1200"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8057,6 +8072,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"700"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8155,6 +8171,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"1200"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8238,6 +8255,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"1200"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8317,6 +8335,7 @@
 		"AbilityTextureName"					"giant_wolf_critical_strike"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8391,6 +8410,7 @@
 		"AbilityTextureName"					"sniper_assassinate"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8436,6 +8456,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCooldown"						"5 4 3"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8494,6 +8515,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"600 900 1200"
 		"AbilityCooldown"						"10 8 6"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8543,6 +8565,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"600 800 1000"
 		"AbilityCooldown"						"5"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8607,6 +8630,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8702,6 +8726,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"800 1000 1200"
 		"AbilityCooldown"						"10 9 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8776,6 +8801,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"1200"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8836,6 +8862,7 @@
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"1200"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8899,6 +8926,7 @@
 		"AbilitySharedWithTeammates"			"1"
 		"AbilityCastRange"						"600 650 700"
 		"AbilityCooldown"						"12 10 8"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8951,6 +8979,7 @@
 		"AbilityTextureName"					"luna_moon_glaive"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -9015,6 +9044,7 @@
 		"AbilityTextureName"					"gyrocopter_rocket_barrage"
 		"MaxLevel"								"3"
 		"AbilitySharedWithTeammates"			"1"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
