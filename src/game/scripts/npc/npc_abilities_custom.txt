@@ -8927,6 +8927,7 @@
 		"AbilityCastRange"						"600 650 700"
 		"AbilityCooldown"						"12 10 8"
 		"AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
