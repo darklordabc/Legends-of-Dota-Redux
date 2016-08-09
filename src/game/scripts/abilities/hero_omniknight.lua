@@ -1,5 +1,6 @@
 --[[	Author: D2imba
 		Date: 23.05.2015	]]
+require('lib/util_imba')
 
 function Purification( keys )
 	local caster = keys.caster
