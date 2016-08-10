@@ -615,6 +615,8 @@
 	"credit_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_imba_omniknight_degen_aura"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 
 
     
@@ -1370,4 +1372,31 @@
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_damage"                      "DAMAGE PER SECOND:"
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_duration"                     "DURATION:"
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_burn_interval"                "BURN INTERVAL:"
+		
+	//IMBA Degen Aura
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura"									"Degen Aura IMBA"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Description"						"Greatly degenerates the attack capabilities of enemy units that stray too near. \n<font color='#70EA72'>Continuously reduces enemy heroes' damage as long as they stay in Degen Aura's AOE.</font>"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Note0"								"Pierces spell immunity."
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Lore"								"The holy embodiment of Purist Thunderwrath is enough to weaken those of lesser faith."
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_radius"							"AURA RADIUS:"
+	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_stack_reduction_pct"				"%DAMAGE REDUCTION PER SECOND:"
+			
+	"DOTA_Tooltip_modifier_imba_degen_aura_stacks"										"Degen Aura"
+	"DOTA_Tooltip_modifier_imba_degen_aura_stacks_Description"							"Damage progressively reduced"
+	
+	//IMBA Nothl Protection
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave"									"Nothl Protection IMBA"
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Description"						"<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Note0"								"Damage which would not kill the target is not counted for Gravely mistaken."
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Lore"								"Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_duration"					"DURATION:"
+	
+	"DOTA_Tooltip_modifier_imba_shallow_grave"											"Shallow Grave"
+	"DOTA_Tooltip_modifier_imba_shallow_grave_Description"								"Protected from death for the duration"
+
+	"DOTA_Tooltip_modifier_imba_shallow_grave_passive"									"Nothl Protection"
+	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_Description"						"Automatically triggers Shallow Grave if Dazzle is mortally wounded"
+
+	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown"							"Protection cooldown"
+	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown_Description"				"Nothl Protection is recharging"
 }
