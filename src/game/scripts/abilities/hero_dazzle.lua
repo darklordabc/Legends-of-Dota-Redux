@@ -23,20 +23,21 @@ function ShallowGraveDamageCheck( keys )
 	-- If the ability was unlearned, or it's not time to trigger shallow grave, do nothing
 	if not ability or caster:GetHealth() > 2 or caster:HasModifier(modifier_grave) or caster.has_aegis then
 		return nil
+	else
+		ability:OnSpellStart()
 	end
+end
 
-	-- Parameters
+function ShallowGraveDamageTrigger(keys) -- Move passive trigger to spellstart for octarine interaction
+	local ability = keys.ability
+	local caster = keys.caster
+	
 	local ability_level = ability:GetLevel() - 1
 	local modifier_passive = keys.modifier_passive
 	local modifier_cooldown = keys.modifier_cooldown
-	local scepter = HasScepter(caster)
-	local passive_cooldown = ability:GetLevelSpecialValueFor("passive_cooldown", ability_level)
-	local passive_duration = ability:GetLevelSpecialValueFor("passive_duration", ability_level)
 
-	-- Change duration if scepter is present
-	if scepter then
-		passive_cooldown = ability:GetLevelSpecialValueFor("passive_cooldown_scepter", ability_level)
-	end
+	local passive_cooldown = ability:GetCooldownTimeRemaining()
+	local passive_duration = ability:GetLevelSpecialValueFor("passive_duration", ability_level)
 
 	-- Apply Shallow Grave buff
 	ability:ApplyDataDrivenModifier(caster, caster, modifier_grave, {duration = passive_duration})
