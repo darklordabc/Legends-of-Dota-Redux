@@ -114,8 +114,8 @@ function ShallowGraveHeal( keys )
 	end
 
 	-- heal the target after shallow grave ends
-	unit:Heal(unit.grave_damage, caster)
-	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, unit, unit.grave_damage, nil)
+	--unit:Heal(unit.grave_damage, caster)
+	--SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, unit, unit.grave_damage, nil)
 	unit.grave_damage = nil
 end
 
