@@ -7186,6 +7186,15 @@
 				"passive_duration"						"3.0 3.5 4.0 4.5"
 			}
 		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/../abilities/hero_dazzle.lua"
+				"Function"						"ShallowGraveDamageTrigger"
+				"modifier_passive"				"modifier_imba_shallow_grave_passive"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_imba_shallow_grave_passive_check"
@@ -7275,8 +7284,6 @@
 						"Function"						"ShallowGraveDamageCheck"
 
 						"modifier_grave"				"modifier_imba_shallow_grave"
-						"modifier_passive"				"modifier_imba_shallow_grave_passive"
-						"modifier_cooldown"				"modifier_imba_shallow_grave_passive_cooldown"
 					}
 				}
 
