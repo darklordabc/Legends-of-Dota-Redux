@@ -7026,29 +7026,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed_bonus"			"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_bonus_tooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"radius"				"400 500 600 700"
 			}
-			"04"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stack_rate"			"1.0"
 			}
-			"05"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"sticky_time"			"1.1"
 			}
-			"06"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"stack_reduction_pct"	"4 5 6 7"
@@ -7126,12 +7116,6 @@
 						"modifier_stacks"	"modifier_imba_degen_aura_stacks"
 					}
 				}
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_bonus_tooltip"
-				}
 			}
 
 			"modifier_imba_degen_aura_stacks"
@@ -7175,7 +7159,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"								"60 50 40 30"
+		"AbilityCooldown"								"%passive_cooldown"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -7202,24 +7186,6 @@
 				"passive_duration"						"3.0 3.5 4.0 4.5"
 			}
 		}
-
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"							"modifier_imba_shallow_grave"
-				"Target" 								"TARGET"
-
-				"Duration"								"%duration_tooltip"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"							"modifier_imba_shallow_grave_particle"
-				"Target" 								"TARGET"
-			}
-		}
-
 		"Modifiers"
 		{
 			"modifier_imba_shallow_grave_passive_check"
@@ -7239,8 +7205,8 @@
 						"Function"						"ShallowGravePassive"
 						"Target"						"CASTER"
 
-						"modifier_passive"				"modifier_imba_shallow_grave_passive"
-						"modifier_cooldown"				"modifier_imba_shallow_grave_passive_cooldown"
+						"modifier_passive"			"modifier_imba_shallow_grave_passive"
+						"modifier_cooldown"                    "modifier_imba_shallow_grave_passive_cooldown"
 					}
 				}
 
@@ -7255,39 +7221,15 @@
 					}
 				}
 			}
-
-			"modifier_imba_shallow_grave_particle"
-			{
-				"Passive"								"0"
-				"IsBuff"								"1"
-				"IsHidden"								"1"
-				"IsPurgable"							"0"
-
-				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
-				"EffectAttachType"						"follow_origin"
-
-				"Duration"								"%duration_tooltip"
-			}
-
-			"modifier_imba_shallow_grave_particle_short"
-			{
-				"Passive"								"0"
-				"IsBuff"								"1"
-				"IsHidden"								"1"
-				"IsPurgable"							"0"
-
-				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
-				"EffectAttachType"						"follow_origin"
-
-				"Duration"								"%passive_duration"
-			}
-
 			"modifier_imba_shallow_grave"
 			{
 				"Passive"								"0"
 				"IsBuff"								"1"
 				"IsHidden"								"0"
 				"IsPurgable"							"0"
+				
+				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+				"EffectAttachType"						"follow_origin"
 		
 				"Properties"
 				{
@@ -7310,15 +7252,6 @@
 						"ScriptFile"					"scripts/vscripts/../abilities/hero_dazzle.lua"
 						"Function"						"ShallowGraveDamageStorage"
 						"DamageTaken"					"%attack_damage"
-					}
-				}
-
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"					"scripts/vscripts/../abilities/hero_dazzle.lua"
-						"Function"						"ShallowGraveHeal"
 					}
 				}
 			}
