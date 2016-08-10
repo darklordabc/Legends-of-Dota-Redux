@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-11
+
+### Bug Fixing
+- Add new hint about removing abilities. 
+- Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant. Manacost fixed at 100.
+
+### Balance
+- Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
+- Added two abilities from Imba Dota (Balanced): Nothl Protection and Degen Aura (For Damage).
+
 ## 2016-08-08
 
 ### Bug Fixing
