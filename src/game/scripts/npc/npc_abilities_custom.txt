@@ -7277,7 +7277,6 @@
 						"modifier_grave"				"modifier_imba_shallow_grave"
 						"modifier_passive"				"modifier_imba_shallow_grave_passive"
 						"modifier_cooldown"				"modifier_imba_shallow_grave_passive_cooldown"
-						"modifier_particle_short"		"modifier_imba_shallow_grave_particle_short"
 					}
 				}
 
