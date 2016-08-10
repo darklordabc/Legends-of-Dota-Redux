@@ -7095,7 +7095,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"scripts/vscripts/../abilities/util_imba.lua"
+						"ScriptFile"    "lib/util_imba.lua" 
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_degen_aura"
