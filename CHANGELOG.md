@@ -6,8 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-11
 
 ### Bug Fixing
-- Add new hint about removing abilities. 
-- Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant. Manacost fixed at 100.
+
 
 ### Balance
 - Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
