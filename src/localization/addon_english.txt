@@ -615,6 +615,7 @@
 	"credit_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_imba_omniknight_degen_aura"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 
 
     
