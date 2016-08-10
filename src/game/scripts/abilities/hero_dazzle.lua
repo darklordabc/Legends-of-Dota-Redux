@@ -29,7 +29,6 @@ function ShallowGraveDamageCheck( keys )
 	local ability_level = ability:GetLevel() - 1
 	local modifier_passive = keys.modifier_passive
 	local modifier_cooldown = keys.modifier_cooldown
-	local modifier_particle_short = keys.modifier_particle_short
 	local scepter = HasScepter(caster)
 	local passive_cooldown = ability:GetLevelSpecialValueFor("passive_cooldown", ability_level)
 	local passive_duration = ability:GetLevelSpecialValueFor("passive_duration", ability_level)
@@ -41,7 +40,6 @@ function ShallowGraveDamageCheck( keys )
 
 	-- Apply Shallow Grave buff
 	ability:ApplyDataDrivenModifier(caster, caster, modifier_grave, {duration = passive_duration})
-	ability:ApplyDataDrivenModifier(caster, caster, modifier_particle_short, {})
 	ability:ApplyDataDrivenModifier(caster, caster, modifier_cooldown, {duration = passive_cooldown})
 	caster:RemoveModifierByName(modifier_passive)
 end
