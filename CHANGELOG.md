@@ -6,7 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-11
 
 ### Bug Fixing
-
+- Added option in custom games to change Buyback cooldown.
+- Reduced default buyback cooldown by 50% in all_pick maps. 
 
 ### Balance
 - Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
