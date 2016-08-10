@@ -1385,7 +1385,7 @@
 	"DOTA_Tooltip_modifier_imba_degen_aura_stacks_Description"							"Damage progressively reduced"
 	
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave"									"Nothl Protection IMBA"
-	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Description"						"<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically. Nothl Protection needs to cool down for some time after activation. </font>"
+	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Description"						"<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically. No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation. </font>"
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Note0"								"Damage which would not kill the target is not counted for Gravely mistaken."
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Lore"								"Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_duration"					"DURATION:"
