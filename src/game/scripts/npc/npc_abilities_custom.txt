@@ -3420,21 +3420,21 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "lone_druid_spirit_bear_return"
-        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "MaxLevel"                      "3"		
-	"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "MaxLevel"                      "3"        
+    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "250 200 150"	
+        "AbilityCooldown"               "250 200 150"    
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
         "AbilityManaCost"               "300 300 300"
-		
-		
+        
+        
     }
-	
+    
     //=================================================================================================================
     // Roshan: Spell Block
     //=================================================================================================================
@@ -3443,49 +3443,49 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "roshan_spell_block"
-        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "4"
-	"AbilityTextureName"            "roshan_spell_block_lod"
+    "AbilityTextureName"            "roshan_spell_block_lod"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "70.0 60.0 50.0 35.0"	
+        "AbilityCooldown"               "70.0 60.0 50.0 35.0"    
     }
-	
-	//=================================================================================================================
+    
+    //=================================================================================================================
     // Golem: Permanent Immolation
     //=================================================================================================================
     "warlock_golem_permanent_immolation_lod"
     {
         
-		"BaseClass"                     "brewmaster_fire_permanent_immolation"
-		
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"                      "4"
-		"AbilityTextureName"            "warlock_golem_permanent_immolation_lod"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "BaseClass"                     "brewmaster_fire_permanent_immolation"
+        
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                      "4"
+        "AbilityTextureName"            "warlock_golem_permanent_immolation_lod"
+        "AbilityUnitDamageType"            "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                "SPELL_IMMUNITY_ENEMIES_NO"
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"15 25 35 50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300 300 300 300"
-			}
-		}
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                    "FIELD_INTEGER"
+                "damage"                    "15 25 35 50"
+            }
+            "02"
+            {
+                "var_type"                    "FIELD_INTEGER"
+                "radius"                    "300 300 300 300"
+            }
+        }
     }
-	
-	//================================================================================================================= 
+    
+    //================================================================================================================= 
     // Riki: Backstab
     //=================================================================================================================
     "riki_backstab_lod"
@@ -4450,7 +4450,7 @@
             {
                 "IsHidden"    "1"
                 "IsPurgeable"    "0"
-		"States"
+        "States"
                 {
                     "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
                 }
@@ -6971,40 +6971,79 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10"
 
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"300 330 360 400"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"25 50 75 100"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"10.0"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"burn_interval"			"0.5"
-			}
-		}
-	}
-	
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	//	[TOWR]		TOWER ABILITIES
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                "100"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "radius"            "300 330 360 400"
+            }
+            "02"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "damage"            "25 50 75 100"
+            }
+            "03"
+            {
+                "var_type"            "FIELD_FLOAT"
+                "duration"            "10.0"
+            }
+            "04"
+            {
+                "var_type"            "FIELD_FLOAT"
+                "burn_interval"            "0.5"
+            }
+        }
+    }
+    
+    //=================================================================================================================
+    // Omniknight's Degen Aura
+    //=================================================================================================================
+    "imba_omniknight_degen_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_datadriven"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"                "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "imba_omniknight_degen_aura"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                "400 500 600 700"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "radius"                "400 500 600 700"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "stack_rate"            "1.0"
+            }
+            "03"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "sticky_time"            "1.1"
+            }
+            "04"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "stack_reduction_pct"    "4 5 6 7"
+            }
+        }
 
 	//=================================================================================================================
 	// Tower ability: Laser

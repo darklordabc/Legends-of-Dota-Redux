@@ -392,6 +392,16 @@ var allOptions = {
                 default: 0
             },
             {
+                name: 'lodOptionBuybackCooldownTimeConstant',
+                des: 'lodOptionDesBuybackCooldownTimeConstant',
+                about: 'lodOptionAboutBuybackCooldownTimeConstant',
+                sort: 'range',
+                min: 0,
+                max: 420,
+                step: 1,
+                default: 0
+            },
+            {
                 name: 'lodOptionGameSpeedTowersPerLane',
                 des: 'lodOptionDesGameSpeedTowersPerLane',
                 about: 'lodOptionAboutGameSpeedTowersPerLane',

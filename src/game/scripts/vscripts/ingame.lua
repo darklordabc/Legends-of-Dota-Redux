@@ -15,6 +15,7 @@ function Ingame:init()
     -- Init everything
     self:handleRespawnModifier()
     self:initGoldBalancer()
+    self:checkBuybackStatus()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -572,6 +573,30 @@ function Ingame:OnAbilityUsed(event)
 	end
 end
 
+-- Buyback cooldowns
+function Ingame:checkBuybackStatus()
+    ListenToGameEvent('npc_spawned', 
+        function(keys)
+            local hero = EntIndexToHScript(keys.entindex)
+            if IsValidEntity(hero) then
+                if hero:IsHero() then
+                    Timers:CreateTimer(
+                        function()
+                            if IsValidEntity(hero) then
+                                local buyBackLeft = hero:GetBuybackCooldownTime()
+                                if buyBackLeft ~= 0 then
+                                    local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
+                                    
+                                    if buyBackLeft > maxCooldown then
+                                        hero:SetBuybackCooldownTime(maxCooldown)
+                                    end
+                                end
+                            end
+                        end, DoUniqueString('buyback'), 0.1)
+                end
+            end
+        end, nil)
+end
 
 -- Return an instance of it
 return Ingame()

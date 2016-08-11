@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-11
+
+### Bug Fixing
+- Added option in custom games to change Buyback cooldown.
+- Reduced default buyback cooldown by 50% in all_pick maps. 
+
+### Balance
+- Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
+- Added two abilities from Imba Dota (Balanced): Nothl Protection and Degen Aura (For Damage).
+
 ## 2016-08-08
 
 ### Bug Fixing
