@@ -618,7 +618,8 @@
 	"credit_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Credits: Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_imba_omniknight_degen_aura"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_omniknight_degen_aura"         "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_omniknight_purification"        "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 
 
@@ -1376,6 +1377,18 @@
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_duration"                     "DURATION:"
 	"DOTA_Tooltip_ability_black_dragon_fireball_lod_burn_interval"                "BURN INTERVAL:"
 		
+	//IMBA Purification
+	"DOTA_Tooltip_ability_imba_omniknight_purification"					"Omniguard"
+	"DOTA_Tooltip_ability_imba_omniknight_purification_Description"	"\n<font color='#FF7800'>Strength Is Virtue:</font> heals an extra amount equal to %heal_pct%%% of the caster's maximum health.\n<font color='#FF7800'>Virtue Is Strength:</font> damage is equal to %damage_factor%%% of total healing done.\n<font color='#FF7800'>Omniguard:</font> passively heals the caster whenever he takes fatal damage and deals damage around him. Omniguard has a %passive_cooldown% second cooldown."
+	"DOTA_Tooltip_ability_imba_omniknight_purification_Lore"	"Priests of the Omniscience are adept at removing impurities from fellow warriors."
+	"DOTA_Tooltip_ability_imba_omniknight_purification_heal_base"			"BASE HEAL:"
+	"DOTA_Tooltip_ability_imba_omniknight_purification_heal_pct"			"%BONUS HEAL:"
+	"DOTA_Tooltip_ability_imba_omniknight_purification_damage_factor"		"%DAMAGE:"
+	"DOTA_Tooltip_ability_imba_omniknight_purification_radius"			"DAMAGE RADIUS:"
+	
+	"DOTA_Tooltip_modifier_omniguard_display"		"Omniguard"
+	"DOTA_Tooltip_modifier_omniguard_display_Description"	"Automatically healed by Purification when dealt a fatal hit"
+	
 	//IMBA Degen Aura
 	"DOTA_Tooltip_ability_imba_omniknight_degen_aura"									"Degen Aura IMBA"
 	"DOTA_Tooltip_ability_imba_omniknight_degen_aura_Description"						"Greatly degenerates the attack capabilities of enemy units that stray too near. \n<font color='#70EA72'>Continuously reduces enemy heroes' damage as long as they stay in Degen Aura's AOE.</font>"
