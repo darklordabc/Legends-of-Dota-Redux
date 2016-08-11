@@ -231,6 +231,32 @@
                         </Panel>
                     </Panel>
                 </Panel>
+                <Panel class="optionVotePhase">
+                    <Panel class="optionVoteInfoHeader">
+                        <Label class="optionVoteHeader" text="lodStrongTower" />
+                        <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( BalanceModeTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textBMTooltip )" onmouseout="UIHideCustomLayoutTooltip( BalanceModeTooltip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
+                        </Panel>
+                        <Panel class="optionVoteOptions">
+                            <Panel class="optionVoteRoot">
+                                <Button id="optionVoteBalanceModeNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
+                                    <Label text="lodOptionNo" />
+                                    <Label id="voteCountNoBM" class="premiumFeature" />
+                                </Button>
+
+                                <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageBM" />
+                            </Panel>
+
+                            <Panel class="optionVoteRoot">
+                                <Button id="optionVoteBalanceModeYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
+                                    <Label text="lodOptionYes" />
+                                    <Label id="voteCountYesBM" class="premiumFeature" />
+                                </Button>
+                                <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageBM" />
+                            </Panel>
+                        </Panel>
+                    </Panel>
             </Panel>
 
             <Panel id="optionSelection">

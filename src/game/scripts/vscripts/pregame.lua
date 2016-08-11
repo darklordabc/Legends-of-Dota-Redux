@@ -1764,8 +1764,16 @@ function Pregame:initOptionSelector()
             return true
         end,
 
-        -- Game Speed - Scepter Upgraded
+        -- Game Speed - Stronger Towers
         lodOptionGameSpeedUpgradedUlts = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
+        -- Game Speed - Scepter Upgraded
+        lodOptionGameSpeedStrongTowers = function(value)
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 

@@ -402,6 +402,22 @@ var allOptions = {
                 default: 3
             },
             {
+                name: 'lodOptionGameSpeedStrongTowers',
+                des: 'lodOptionDesGameSpeedStrongTowers',
+                about: 'lodOptionAboutGameSpeedStrongTowers',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',

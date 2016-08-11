@@ -219,6 +219,7 @@
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
+    "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
@@ -296,6 +297,7 @@
     "lodOptionAboutGameSpeedRespawnTime"            "How the respawn timer will be modified.\n50%: The respawn time will be 50% of what it normally is.\n10%: The respawn time will be 10% of what it normally is.\n1 - 60: The respawn time will always be the number chosen."
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
+    "lodOptionAboutGameSpeedStrongTowers"           "Enable Stronger Towers"
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
@@ -438,6 +440,7 @@
     "lodBanningPhase"                               "Enable The Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
     "lodBalanceMode"                                "Disable Balance Mode"
+    "lodStrongTower"                                "Enable Stronger Towers"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
