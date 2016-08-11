@@ -1379,7 +1379,7 @@
 		
 	//IMBA Purification
 	"DOTA_Tooltip_ability_imba_omniknight_purification"					"Omniguard"
-	"DOTA_Tooltip_ability_imba_omniknight_purification_Description"	"\n<font color='#FF7800'>Strength Is Virtue:</font> heals an extra amount equal to %heal_pct%%% of the caster's maximum health.\n<font color='#FF7800'>Virtue Is Strength:</font> damage is equal to %damage_factor%%% of total healing done.\n<font color='#FF7800'>Omniguard:</font> passively heals the caster whenever he takes fatal damage and deals damage around him. Omniguard has a %passive_cooldown% second cooldown."
+	"DOTA_Tooltip_ability_imba_omniknight_purification_Description"	"Passively heals the caster whenever he takes fatal damage and deals damage around him. Heals an extra amount equal to %heal_pct%%% of the caster's maximum health. Damage is equal to %damage_factor%%% of total healing done."
 	"DOTA_Tooltip_ability_imba_omniknight_purification_Lore"	"Priests of the Omniscience are adept at removing impurities from fellow warriors."
 	"DOTA_Tooltip_ability_imba_omniknight_purification_heal_base"			"BASE HEAL:"
 	"DOTA_Tooltip_ability_imba_omniknight_purification_heal_pct"			"%BONUS HEAL:"

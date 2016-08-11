@@ -7318,7 +7318,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"omniknight_purification"
+		"AbilityTextureName"			"imba_omniknight_purification"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
