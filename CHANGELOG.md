@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 - Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
 - Added two abilities from Imba Dota (Balanced): Nothl Protection and Degen Aura (For Damage).
+- Added Omniguard. 
 
 ## 2016-08-08
 
