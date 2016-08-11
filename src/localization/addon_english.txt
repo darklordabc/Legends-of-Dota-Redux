@@ -239,6 +239,9 @@
     "lodOptionDesGameSpeedRespawnTimePercentage"    "Respawn Time Percentage (100 = normal)"
     "lodOptionAboutGameSpeedRespawnTimePercentage"  "Makes the default respawn time decrease by the given percentage."
 
+    "lodOptionDesBuybackCooldownTimeConstant"       "Buyback Cooldown (420 = normal)"
+    "lodOptionAboutBuybackCooldownTimeConstant"     "How long before a player can use a buyback again."
+
     "lodOptionDesGameSpeedRespawnTimeConstant"      "Additional Respawn Time"
     "lodOptionAboutGameSpeedRespawnTimeConstant"    "Adds a constant number of seconds onto the default respawn time."
 

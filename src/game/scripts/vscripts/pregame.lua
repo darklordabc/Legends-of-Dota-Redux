@@ -2012,6 +2012,9 @@ function Pregame:initOptionSelector()
                 -- Do not start scepter upgraded
                 self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
 
+                -- Do not make stronger towers
+                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+
                 -- Start with a free courier
                 self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
 
@@ -4243,6 +4246,7 @@ function Pregame:getHostPlayer()
 
 	return 0
 end
+
 
 -- Adds extra towers
 -- Adds extra towers

@@ -240,20 +240,20 @@
                         </Panel>
                         <Panel class="optionVoteOptions">
                             <Panel class="optionVoteRoot">
-                                <Button id="optionVoteBalanceModeNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
+                                <Button id="optionVoteStrongTowersNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
                                     <Label text="lodOptionNo" />
-                                    <Label id="voteCountNoBM" class="premiumFeature" />
+                                    <Label id="voteCountNoST" class="premiumFeature" />
                                 </Button>
 
-                                <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageBM" />
+                                <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageST" />
                             </Panel>
 
                             <Panel class="optionVoteRoot">
-                                <Button id="optionVoteBalanceModeYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
+                                <Button id="optionVoteStrongTowersYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
                                     <Label text="lodOptionYes" />
-                                    <Label id="voteCountYesBM" class="premiumFeature" />
+                                    <Label id="voteCountYesST" class="premiumFeature" />
                                 </Button>
-                                <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageBM" />
+                                <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageST" />
                             </Panel>
                         </Panel>
                     </Panel>

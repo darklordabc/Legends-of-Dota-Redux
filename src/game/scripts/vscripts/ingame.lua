@@ -3,6 +3,7 @@ local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
 local Timers = require('easytimers')
+require('lib/util_imba')
 
 -- Create the class for it
 local Ingame = class({})
@@ -16,6 +17,9 @@ function Ingame:init()
     self:handleRespawnModifier()
     self:initGoldBalancer()
     self:checkBuybackStatus()
+
+    -- Init stronger towers
+    if OptionManager:GetOption('lodOptionGameSpeedStrongTowers') == 1 then self:addStrongTowers() end
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -596,6 +600,46 @@ function Ingame:checkBuybackStatus()
                 end
             end
         end, nil)
+end
+
+
+function Ingame:addStrongTowers()
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        local newState = GameRules:State_Get()
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
+                local towerSkills = {}
+                for skill_name in pairs(oldAbList) do
+                    table.insert(towerSkills, skill_name)
+                end
+                local towers = Entities:FindAllByClassname('npc_dota_tower')
+                for _, tower in pairs(towers) do
+                    local ability_name = RandomFromTable(towerSkills)
+                    tower:AddAbility(ability_name)
+                    local ability = tower:FindAbilityByName(ability_name)
+                    ability:SetLevel(1)
+                end
+        end
+    end, nil)
+    ListenToGameEvent('dota_tower_kill', function (keys)
+            local tower_team = keys.teamnumber
+            local towers = Entities:FindAllByClassname('npc_dota_tower')
+            for _, tower in pairs(towers) do
+                if tower:GetTeamNumber() == tower_team then
+                    UpgradeTower(tower)
+                end
+            end
+
+            -- Display upgrade message and play ominous sound
+            if tower_team == DOTA_TEAM_GOODGUYS then
+                -- add notification
+                -- Notifications:BottomToAll({text = "#tower_abilities_radiant_upgrade", duration = 7, style = {color = "DodgerBlue"}})
+                EmitGlobalSound("powerup_01")
+            else
+                -- Notifications:BottomToAll({text = "#tower_abilities_dire_upgrade", duration = 7, style = {color = "DodgerBlue"}})
+                EmitGlobalSound("powerup_02")
+            end
+    end, nil)
 end
 
 -- Return an instance of it
