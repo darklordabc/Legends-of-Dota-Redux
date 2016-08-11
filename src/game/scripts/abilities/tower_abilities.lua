@@ -582,6 +582,7 @@ function Reality( keys )
 	-- Parameters
 	local reality_aoe = ability:GetLevelSpecialValueFor("reality_aoe", ability_level)
 	local tower_loc = caster:GetAbsOrigin()
+	local stun_radius = ability:GetLevelSpecialValueFor("stun_radius", ability_level)
 
 	-- Find nearby enemies
 	local heroes = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, stun_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
