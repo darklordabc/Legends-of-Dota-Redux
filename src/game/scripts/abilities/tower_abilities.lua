@@ -2,6 +2,8 @@
 		Date: 06.09.2015	]]
 
 require('lib/timers')
+require('lib/util_imba')
+
 		
 function Laser( keys )
 	local caster = keys.caster

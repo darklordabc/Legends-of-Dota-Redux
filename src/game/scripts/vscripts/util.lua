@@ -590,33 +590,5 @@ end
     end
 end)()
 
--- Adds [stack_amount] stacks to a modifier
-function AddStacks(ability, caster, unit, modifier, stack_amount, refresh)
-	if unit:HasModifier(modifier) then
-		if refresh then
-			ability:ApplyDataDrivenModifier(caster, unit, modifier, {})
-		end
-		unit:SetModifierStackCount(modifier, ability, unit:GetModifierStackCount(modifier, nil) + stack_amount)
-	else
-		ability:ApplyDataDrivenModifier(caster, unit, modifier, {})
-		unit:SetModifierStackCount(modifier, ability, stack_amount)
-	end
-end
-
-function HasScepter(hero)
-	if hero:HasModifier("modifier_item_ultimate_scepter_consumed") then
-		return true
-	end
-
-	for i=0,5 do
-		local item = hero:GetItemInSlot(i)
-		if item and item:GetAbilityName() == "item_ultimate_scepter" then
-			return true
-		end
-	end
-	
-	return false
-end
-
 -- Define the export
 return Util
