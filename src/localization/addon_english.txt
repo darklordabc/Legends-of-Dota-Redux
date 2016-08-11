@@ -220,6 +220,7 @@
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
+    "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
@@ -297,6 +298,7 @@
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
+    "lodOptionAboutGameSpeedStrongTowers"           "Enable Stronger Towers"
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
@@ -438,6 +440,7 @@
     "lodBanningPhase"                               "Enable The Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
     "lodBalanceMode"                                "Disable Balance Mode"
+    "lodStrongTower"                                "Enable Stronger Towers"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
