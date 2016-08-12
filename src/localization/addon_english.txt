@@ -1415,4 +1415,12 @@
 
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown"							"Protection cooldown"
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown_Description"				"Nothl Protection is recharging"
+	
+
+	//DOOM BRINGER
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod"							"Devour"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Description"				"Consumes an enemy or neutral creep, acquiring any special abilities that it possessed."
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Lore"						"Lucifer's appetite and greed are never sated."
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_creep_level"				"CREEP LEVEL:"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_bonus_gold"				"BONUS GOLD:"
 }
