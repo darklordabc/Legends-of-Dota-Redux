@@ -8378,7 +8378,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "treant_living_armor"
+        "AbilityTextureName"                    "imba_tower_self_repair"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
