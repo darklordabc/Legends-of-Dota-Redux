@@ -430,9 +430,13 @@
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
 
     // Success Messages
-    "lodSuccessBanAbility"                          "'{abilityName}' was banned."
-    "lodSuccessBanHero"                             "'{heroName}' was banned."
+    "radiantTowersUpgraded"                          "Radiant towers have been upgraded."
+    "direTowersUpgraded"                             "Dire towers have been upgraded."
 
+	// Upgrade Towers Notifications
+	"lodOptionVotingHeader"                         "Vote For Options"
+    "lodHowManySlots"                               "How many slots?"
+	
     // OPTION VOTING
     "lodOptionVotingHeader"                         "Vote For Options"
     "lodHowManySlots"                               "How many slots?"

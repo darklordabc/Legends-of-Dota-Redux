@@ -634,10 +634,10 @@ function Ingame:addStrongTowers()
             -- Display upgrade message and play ominous sound
             if tower_team == DOTA_TEAM_GOODGUYS then
                 -- add notification
-                Say(nil, "Radiant towers are upgraded.", false)
+				GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_01")
             else
-                Say(nil, "Dire towers are upgraded.", false)
+				GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_02")
             end
         end
