@@ -19,7 +19,7 @@ function Ingame:init()
     self:checkBuybackStatus()
 
     -- Init stronger towers
-    if OptionManager:GetOption('lodOptionGameSpeedStrongTowers') == 1 then self:addStrongTowers() end
+    self:addStrongTowers()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
