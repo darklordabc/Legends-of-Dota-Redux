@@ -429,9 +429,9 @@
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
 
-    // Success Messages
-    "radiantTowersUpgraded"                          "Radiant towers have been upgraded."
-    "direTowersUpgraded"                             "Dire towers have been upgraded."
+    // Success Messages		
+    "radiantTowersUpgraded"                          "<font color='#70EA72'>Radiant towers have been upgraded.</font>"
+    "direTowersUpgraded"                             "<font color='#70EA72'>Dire towers have been upgraded.</font>"
 
 	// Upgrade Towers Notifications
 	"lodOptionVotingHeader"                         "Vote For Options"
