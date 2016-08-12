@@ -1262,6 +1262,16 @@ function Pregame:processVoteData()
         	-- banning mode does not get overridden
         end
     end
+    if results.strongtowers ~= nil then
+        if results.strongtowers == 1 then
+            -- Disable Strong Towers
+            self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        else
+            -- On by default
+            self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+            -- banning mode does not get overridden
+        end
+    end
 
     -- Push the counts
     network:voteCounts(counts)
