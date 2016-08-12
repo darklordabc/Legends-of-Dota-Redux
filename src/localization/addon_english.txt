@@ -301,7 +301,7 @@
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
-    "lodOptionAboutGameSpeedStrongTowers"           "Enable Stronger Towers"
+    "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
@@ -451,7 +451,7 @@
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
-    "textSTTooltip"                             "Description for strong towers"
+    "textSTTooltip"                             "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
 
     "bots_lod"                                      "Bots"
 
