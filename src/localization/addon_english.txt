@@ -447,6 +447,7 @@
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
+    "textSTTooltip"                             "Description for strong towers"
 
     "bots_lod"                                      "Bots"
 

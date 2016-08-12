@@ -234,7 +234,7 @@
                 <Panel class="optionVotePhase">
                     <Panel class="optionVoteInfoHeader">
                         <Label class="optionVoteHeader" text="lodStrongTower" />
-                        <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( BalanceModeTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textBMTooltip )" onmouseout="UIHideCustomLayoutTooltip( BalanceModeTooltip )">  
+                        <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( StrongTowersTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textSTTooltip )" onmouseout="UIHideCustomLayoutTooltip( StrongTowersTooltip )">  
                             <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                         </Panel>
                         </Panel>
