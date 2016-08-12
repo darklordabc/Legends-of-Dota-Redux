@@ -516,9 +516,11 @@ function SelfRepairParticle( keys )
 	local particle_regen = keys.particle_regen
 
 	-- Create particle
-	caster.self_regen_pfx = ParticleManager:CreateParticle(particle_regen, PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(caster.self_regen_pfx, 0, caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(caster.self_regen_pfx, 1, caster:GetAbsOrigin())
+	if not caster:IsHero() then
+		caster.self_regen_pfx = ParticleManager:CreateParticle(particle_regen, PATTACH_ABSORIGIN, caster)
+		ParticleManager:SetParticleControl(caster.self_regen_pfx, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(caster.self_regen_pfx, 1, caster:GetAbsOrigin())
+	end
 end
 
 function Spacecow( keys )
