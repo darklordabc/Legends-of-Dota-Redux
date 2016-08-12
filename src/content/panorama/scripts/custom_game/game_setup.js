@@ -443,22 +443,7 @@ var allOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionGameSpeedFreeCourier',
-                des: 'lodOptionDesGameSpeedFreeCourier',
-                about: 'lodOptionAboutGameSpeedFreeCourier',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+
             /*{
                 name: 'lodOptionCrazyEasymode',
                 des: 'lodOptionDesCrazyEasymode',
@@ -586,6 +571,22 @@ var allOptions = {
                 name: 'lodOptionAdvancedSelectPrimaryAttr',
                 des: 'lodOptionDesAdvancedSelectPrimaryAttr',
                 about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGameSpeedFreeCourier',
+                des: 'lodOptionDesGameSpeedFreeCourier',
+                about: 'lodOptionAboutGameSpeedFreeCourier',
                 sort: 'toggle',
                 values: [
                     {
@@ -4706,7 +4707,7 @@ function onPlayerCastVote(category, choice) {
 		case 'balancemode':
 			buttonGlowHelper(category,choice,$('#optionVoteBalanceModeYes'),$('#optionVoteBalanceModeNo'));
         break;
-        
+
         case 'strongtowers':
             buttonGlowHelper(category,choice,$('#optionVoteStrongTowersYes'),$('#optionVoteStrongTowersNo'));
         break;
