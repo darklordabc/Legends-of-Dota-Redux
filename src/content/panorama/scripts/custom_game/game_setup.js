@@ -4706,6 +4706,7 @@ function onPlayerCastVote(category, choice) {
 		case 'balancemode':
 			buttonGlowHelper(category,choice,$('#optionVoteBalanceModeYes'),$('#optionVoteBalanceModeNo'));
         break;
+        
         case 'strongtowers':
             buttonGlowHelper(category,choice,$('#optionVoteStrongTowersYes'),$('#optionVoteStrongTowersNo'));
         break;

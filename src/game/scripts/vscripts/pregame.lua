@@ -1173,6 +1173,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 		
 		balancemode = function(choice)
             return choice == 1 or choice == 0
+        end,
+
+        strongtowers = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
