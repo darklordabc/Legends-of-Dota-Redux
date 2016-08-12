@@ -606,7 +606,7 @@ end
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
-        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('strongTowers') then
                 local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
                 local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
@@ -622,6 +622,7 @@ function Ingame:addStrongTowers()
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
+        if OptionManager:GetOption('strongTowers') then
             local tower_team = keys.teamnumber
             local towers = Entities:FindAllByClassname('npc_dota_tower')
             for _, tower in pairs(towers) do
@@ -639,6 +640,7 @@ function Ingame:addStrongTowers()
                 -- Notifications:BottomToAll({text = "#tower_abilities_dire_upgrade", duration = 7, style = {color = "DodgerBlue"}})
                 EmitGlobalSound("powerup_02")
             end
+        end
     end, nil)
 end
 
