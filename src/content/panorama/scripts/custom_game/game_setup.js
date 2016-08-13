@@ -120,7 +120,7 @@ var allOptions = {
                     {
                         text: 'lodOptionAllRandom',
                         value: 4
-                    }
+                    },
                 ]
             },
             {
@@ -412,22 +412,6 @@ var allOptions = {
                 default: 3
             },
             {
-                name: 'lodOptionGameSpeedStrongTowers',
-                des: 'lodOptionDesGameSpeedStrongTowers',
-                about: 'lodOptionAboutGameSpeedStrongTowers',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
@@ -443,7 +427,22 @@ var allOptions = {
                     }
                 ]
             },
-
+            {
+                name: 'lodOptionGameSpeedFreeCourier',
+                des: 'lodOptionDesGameSpeedFreeCourier',
+                about: 'lodOptionAboutGameSpeedFreeCourier',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
             /*{
                 name: 'lodOptionCrazyEasymode',
                 des: 'lodOptionDesCrazyEasymode',
@@ -571,22 +570,6 @@ var allOptions = {
                 name: 'lodOptionAdvancedSelectPrimaryAttr',
                 des: 'lodOptionDesAdvancedSelectPrimaryAttr',
                 about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionGameSpeedFreeCourier',
-                des: 'lodOptionDesGameSpeedFreeCourier',
-                about: 'lodOptionAboutGameSpeedFreeCourier',
                 sort: 'toggle',
                 values: [
                     {
@@ -3743,14 +3726,6 @@ function onLockOptionsPressed() {
     if(!Game.GetTeamSelectionLocked()) return;
 
     // Lock options
-    if (balanceMode)
-    {
-        showBuilderTab('pickingPhaseSkillTab');
-    }
-    else
-    {
-        showBuilderTab('pickingPhaseMainTab');
-    }
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
 
@@ -4092,8 +4067,8 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_BANNING) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillBanningInfo) {
-                        seenPopupMessages.skillBanningInfo = true;
-                        showPopupMessage('lodBanningMessage');
+                    seenPopupMessages.skillBanningInfo = true;
+                    showPopupMessage('lodBanningMessage');
                 }
             }
 
@@ -4101,13 +4076,8 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_SELECTION) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillDraftingInfo) {
-                    if (balanceMode) {
-                        seenPopupMessages.skillBanningInfo = true;
-                        showPopupMessage('lodBalanceMessage');
-                    } else {
-                        seenPopupMessages.skillDraftingInfo = true;
-                        showPopupMessage('lodPickingMessage');
-                    }
+                    seenPopupMessages.skillDraftingInfo = true;
+                    showPopupMessage('lodPickingMessage');
                 }
             }
 
@@ -4161,7 +4131,6 @@ function OnPhaseChanged(table_name, key, data) {
 			data.faststart = data.faststart || {};
 			data.balancemode = data.balancemode || {};
             data.slots = data.slots || {};
-            data.strongtowers = data.strongtowers || {};
 
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
@@ -4172,15 +4141,11 @@ function OnPhaseChanged(table_name, key, data) {
 			
 			$('#voteCountNoBM').text = '(' + (data.balancemode[0] || 0) + ')';
             $('#voteCountYesBM').text = '(' + (data.balancemode[1] || 0) + ')';
-
-            $('#voteCountNoST').text = '(' + (data.strongtowers[0] || 0) + ')';
-            $('#voteCountYesST').text = '(' + (data.strongtowers[1] || 0) + ')';
 			
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
 			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
-            updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
-			updateVotingPercentage(data.strongtowers, [$('#voteCountNoPercentageST'), $('#voteCountYesPercentageST')]);
+			updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
@@ -4651,13 +4616,6 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
-                    if (balanceMode){
-                        showBuilderTab('pickingPhaseSkillTab');
-                    }
-                    else
-                    {
-                        showBuilderTab('pickingPhaseMainTab');
-                    }
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });
             }
@@ -4726,10 +4684,6 @@ function onPlayerCastVote(category, choice) {
 		
 		case 'balancemode':
 			buttonGlowHelper(category,choice,$('#optionVoteBalanceModeYes'),$('#optionVoteBalanceModeNo'));
-        break;
-
-        case 'strongtowers':
-            buttonGlowHelper(category,choice,$('#optionVoteStrongTowersYes'),$('#optionVoteStrongTowersNo'));
         break;
     }
 }
@@ -4857,10 +4811,23 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Show banned abilities by default
     $('#buttonShowBanned').checked = true;
 
+    var columnSwitch = true;
     // Show all tier values by default
     for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+        var currToggle = $( '#buttonShowTier' + (i + 1) );
+        var column = (i < GameUI.AbilityCosts.TIER_COUNT / 2)? 'Left':'Right';
+        var notColumn = (column === 'Left')? 'Right':'Left';
+        var switchColumns = false
+        if (columnSwitch && column === 'Right') {
+            switchColumns = true;
+            columnSwitch = false;
+        }
+        
         showTier[i] = true;
-        $( "#buttonShowTier" + (i + 1) ).checked = true;
+        currToggle.checked = true;
+        currToggle.SetHasClass('balanceModeFilter' + column, true);
+        currToggle.SetHasClass('balanceModeFilter' + notColumn, false);
+        currToggle.SetHasClass('balanceModeColumnSwitch', switchColumns);
     }
 
     // Set Balance Mode points to default
