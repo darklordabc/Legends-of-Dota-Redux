@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2016-08-12
 
 ### Bug Fixing
+- Drastically lowered cooldown on random abilities, may be OP
 
 ### Balance
 - Added Omniguard. 
