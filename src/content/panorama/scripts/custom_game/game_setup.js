@@ -3743,6 +3743,14 @@ function onLockOptionsPressed() {
     if(!Game.GetTeamSelectionLocked()) return;
 
     // Lock options
+    if (balanceMode)
+    {
+        showBuilderTab('pickingPhaseSkillTab');
+    }
+    else
+    {
+        showBuilderTab('pickingPhaseMainTab');
+    }
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
 
@@ -4638,6 +4646,13 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
+                    if (balanceMode){
+                        showBuilderTab('pickingPhaseSkillTab');
+                    }
+                    else
+                    {
+                        showBuilderTab('pickingPhaseMainTab');
+                    }
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });
             }
