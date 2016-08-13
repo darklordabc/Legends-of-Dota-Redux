@@ -18,7 +18,7 @@
 
         <Panel id="lodPopupMessage">
             <Panel>
-                <Label id="lodPopupMessageLabel" />
+                <Label id="lodPopupMessageLabel" html="true" />
             </Panel>
 
             <Panel class="lodPopupMessageAcceptContainer">
