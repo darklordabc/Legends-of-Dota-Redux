@@ -120,7 +120,7 @@ var allOptions = {
                     {
                         text: 'lodOptionAllRandom',
                         value: 4
-                    },
+                    }
                 ]
             },
             {
@@ -4092,8 +4092,13 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_BANNING) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillBanningInfo) {
-                    seenPopupMessages.skillBanningInfo = true;
-                    showPopupMessage('lodBanningMessage');
+                    if (balanceMode) {
+                        seenPopupMessages.skillBanningInfo = true;
+                        showPopupMessage('lodBalanceMessage');
+                    } else {
+                        seenPopupMessages.skillBanningInfo = true;
+                        showPopupMessage('lodBanningMessage');
+                    }
                 }
             }
 

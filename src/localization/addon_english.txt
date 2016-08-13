@@ -268,6 +268,7 @@
     "lodHostingMessage"                             "You are the host, you are required to select the options for this match. All options will be recoreded and you may be banned from selecting options if you continue to troll other players.\n\nLock the teams using the buttons at the top center of the screen, and lock the options by pressing the button in the bottom right hand corner."
     "lodPickingMessage"                             "This is the drafting phase, you need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked."
     "lodBanningMessage"                             "This is the banning phase. You can ban heroes and abilities to prevent players from selecting them in this match. Once you have finished banning, press the 'Finish Banning' button to continue."
+    "lodBalanceMessage"                             "This is the very test message."
     "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
     "lodOptionVoting"                               "Cast your vote to select the options."
     "lodReviewMessage"                              "Please wait while the game precaches your hero and abilities. You can rearrange your abilities and view other player's builds while you wait."
