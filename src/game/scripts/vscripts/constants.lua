@@ -12,7 +12,7 @@ Constants.PHASE_REVIEW = 8              -- Review Phase
 Constants.PHASE_INGAME = 9              -- Game has started
 
 -- Balance Mode Values
-Constants.TIER = {120, 80, 40, 20, 10, 0}
+Constants.TIER = {120, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0}
 Constants.BALANCE_MODE_POINTS = 120
 
 -- EXP Needed for each level
