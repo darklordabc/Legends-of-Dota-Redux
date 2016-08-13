@@ -1173,6 +1173,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 		
 		balancemode = function(choice)
             return choice == 1 or choice == 0
+        end,
+
+        strongtowers = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
@@ -1256,6 +1260,16 @@ function Pregame:processVoteData()
         	-- On by default
         	self:setOption('lodOptionBalanceMode', 1, true)
         	-- banning mode does not get overridden
+        end
+    end
+    if results.strongtowers ~= nil then
+        if results.strongtowers == 1 then
+            -- Disable Strong Towers
+            self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        else
+            -- On by default
+            self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+            -- banning mode does not get overridden
         end
     end
 
@@ -1787,6 +1801,14 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Game Speed - Stronger Towers
+        lodOptionGameSpeedStrongTowers = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
             -- Ensure gamemode is set to custom
@@ -2003,6 +2025,9 @@ function Pregame:initOptionSelector()
 
                 -- Do not start scepter upgraded
                 self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+                -- Do not make stronger towers
+                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
 
                 -- Start with a free courier
                 self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -2591,6 +2616,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
 	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
+        OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2733,6 +2759,7 @@ function Pregame:processOptions()
 			        ['Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
+                    ['Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
 			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
 			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
@@ -4235,6 +4262,7 @@ function Pregame:getHostPlayer()
 
 	return 0
 end
+
 
 -- Adds extra towers
 -- Adds extra towers
