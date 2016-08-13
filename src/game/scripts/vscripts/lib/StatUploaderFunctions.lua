@@ -108,3 +108,23 @@ function SU:MarkMessageRead( args )
   SU:SendRequest( requestParams, function(obj)
   end)
 end
+
+function SU:SendPlayerBuild( args )
+  local abilities = {}
+
+  for i=1,16 do
+    local v = args[i]
+    if v then
+      abilities[i] = v
+    end
+  end
+  
+  local requestParams = {
+    Command = "SendPlayerBuild",
+    Hero = args.hero
+    Abilities = abilities
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)
+end
