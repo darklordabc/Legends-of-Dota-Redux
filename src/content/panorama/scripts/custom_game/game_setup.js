@@ -4092,13 +4092,8 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_BANNING) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillBanningInfo) {
-                    if (balanceMode) {
-                        seenPopupMessages.skillBanningInfo = true;
-                        showPopupMessage('lodBalanceMessage');
-                    } else {
                         seenPopupMessages.skillBanningInfo = true;
                         showPopupMessage('lodBanningMessage');
-                    }
                 }
             }
 
@@ -4106,8 +4101,13 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_SELECTION) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillDraftingInfo) {
-                    seenPopupMessages.skillDraftingInfo = true;
-                    showPopupMessage('lodPickingMessage');
+                    if (balanceMode) {
+                        seenPopupMessages.skillBanningInfo = true;
+                        showPopupMessage('lodBalanceMessage');
+                    } else {
+                        seenPopupMessages.skillDraftingInfo = true;
+                        showPopupMessage('lodPickingMessage');
+                    }
                 }
             }
 
