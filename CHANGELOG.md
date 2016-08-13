@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2016-08-14
+
+### Bug Fixing
+- In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit.
+- Fixed omniguard. 
+
+### Balance
+- Added new option to enable stronger towers (feature imported from DotA IMBA)
+
 ## 2016-08-12
 
 ### Bug Fixing
