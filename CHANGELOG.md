@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Bug Fixing
 - In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit.
 - Fixed omniguard. 
+- Added more price tiers to balance mode. There is now 12 tiers instead of 6. 
 
 ### Balance
 - Added new option to enable stronger towers (feature imported from DotA IMBA)
