@@ -9,9 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit.
 - Fixed omniguard. 
 - Added more price tiers to balance mode. There is now 12 tiers instead of 6. 
+- Improved text in notifications
 
 ### Balance
 - Added new option to enable stronger towers (feature imported from DotA IMBA)
+- Increased all_pick vote time to 25 seconds to accomdate all the new votes
 
 ## 2016-08-12
 
