@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed omniguard. 
 - Added more price tiers to balance mode. There is now 12 tiers instead of 6. 
 - Improved text in notifications
+- Enabling balance mode in custom games disable player bans. Disabling balance mode automatically enables default bans.
 
 ### Balance
 - Added new option to enable stronger towers (feature imported from DotA IMBA)
