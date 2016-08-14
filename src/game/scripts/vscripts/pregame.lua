@@ -494,6 +494,7 @@ function Pregame:onThink()
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_SELECTION)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+                EmitAnnouncerSound('announcer_announcer_type_ability_draft_01')
             end
         end
 
@@ -1064,6 +1065,7 @@ function Pregame:finishOptionSelection()
         -- There is banning
         self:setPhase(constants.PHASE_BANNING)
         self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
+        EmitAnnouncerSound('announcer_announcer_ban_yr')
 
     else
         -- There is not banning
