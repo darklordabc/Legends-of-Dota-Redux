@@ -1609,12 +1609,17 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-                self:setOption('lodOptionBanningBanInvis', 0, true)
+				self:setOption('lodOptionBanningMaxBans', 0, true)
+				self:setOption('lodOptionBanningMaxHeroBans', 0, true) 
 
                 return true
             elseif value == 0 then
-                -- Disable balance mode bans
+                -- Disable balance mode bans and renable default bans
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
+				self:setOption('lodOptionBanningUseBanList', 1, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+				self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
+				self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true) 
                 return true
             end
 
