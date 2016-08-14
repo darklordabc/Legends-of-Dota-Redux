@@ -1194,6 +1194,19 @@
     margin-bottom: 10px;
 }
 
+.balanceModeFilterLeft {
+    width: 160px;
+}
+
+.balanceModeFilterRight {
+    margin-left: 160px;
+    width: 160px;
+}
+
+.balanceModeColumnSwitch {
+    margin-top: -160px;
+}
+
 .skillCostLarge {
     font-size: 20px;
     font-weight: bold;
@@ -1222,31 +1235,61 @@
 }
 
 .tier1 {
+    color: #bbbbbb;
+	text-shadow: 0px 0px 6px 8 #000000ff;
+}
+
+.tier2 {
     color: #ffbbbb;
 	text-shadow: 0px 0px 6px 8 #550000ff;
 }
 
-.tier2 {
+.tier3 {
+    color: #ffeeff;
+	text-shadow: 0px 0px 6px 8 #993399ff;
+}
+
+.tier4 {
+    color: #ffeeaa;
+	text-shadow: 0px 0px 6px 8 #773311ff;
+}
+
+.tier5 {
     color: #ffffcc;
 	text-shadow: 0px 0px 6px 8 #777700ff;
 }
 
-.tier3 {
-    color: #ccffff;
-	text-shadow: 0px 0px 6px 8 #007777ff;
-}
-
-.tier4 {
-    color: #ffccff;
-	text-shadow: 0px 0px 6px 8 #770077ff;
-}
-
-.tier5 {
+.tier6 {
     color: #ccffcc;
 	text-shadow: 0px 0px 6px 8 #007700ff;
 }
 
-.tier6 {
+.tier7 {
+    color: #cceecc;
+	text-shadow: 0px 0px 6px 8 #004400ff;
+}
+
+.tier8 {
+    color: #ccffff;
+	text-shadow: 0px 0px 6px 8 #117777ff;
+}
+
+.tier9 {
+    color: #ccccff;
+	text-shadow: 0px 0px 6px 8 #003377ff;
+}
+
+.tier10 {
+    color: #ffccff;
+	text-shadow: 0px 0px 6px 8 #770077;
+}
+
+.tier11 {
+    color: #ffdddd;
+	text-shadow: 0px 0px 6px 8 #663333ff;
+}
+
+.tier12 {
 	visibility: collapse;
 }
 

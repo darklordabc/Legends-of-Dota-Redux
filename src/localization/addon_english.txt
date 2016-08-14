@@ -257,11 +257,17 @@
 
     // Balance Mode
     "balance_mode_tier_1"                           "Unfair (120)"
-    "balance_mode_tier_2"                           "Overpowered (80)"
-    "balance_mode_tier_3"                           "Best (40)"
-    "balance_mode_tier_4"                           "Very Good (20)"
-    "balance_mode_tier_5"                           "Good (10)"
-    "balance_mode_tier_6"                           "Free"
+    "balance_mode_tier_2"                           "OP (100)"
+    "balance_mode_tier_3"                           "Bestest (90)"
+    "balance_mode_tier_4"                           "Best (80)"
+    "balance_mode_tier_5"                           "Superb (70)"
+    "balance_mode_tier_6"                           "Fantastic (60)"
+    "balance_mode_tier_7"                           "Great (50)"
+    "balance_mode_tier_8"                           "Very Good (40)"
+    "balance_mode_tier_9"                           "Good (30)"
+    "balance_mode_tier_10"                          "Decent (20)"
+    "balance_mode_tier_11"                          "Ordinary (10)"
+    "balance_mode_tier_12"                          "Free"
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"

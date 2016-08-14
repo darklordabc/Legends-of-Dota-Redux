@@ -583,7 +583,7 @@ var allOptions = {
                     }
                 ]
             },
-            {
+	    {
                 name: 'lodOptionGameSpeedFreeCourier',
                 des: 'lodOptionDesGameSpeedFreeCourier',
                 about: 'lodOptionAboutGameSpeedFreeCourier',
@@ -4179,7 +4179,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
 			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
-            updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
+            		updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			updateVotingPercentage(data.strongtowers, [$('#voteCountNoPercentageST'), $('#voteCountYesPercentageST')]);
 			
 
@@ -4857,10 +4857,23 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Show banned abilities by default
     $('#buttonShowBanned').checked = true;
 
+    var columnSwitch = true;
     // Show all tier values by default
     for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+        var currToggle = $( '#buttonShowTier' + (i + 1) );
+        var column = (i < GameUI.AbilityCosts.TIER_COUNT / 2)? 'Left':'Right';
+        var notColumn = (column === 'Left')? 'Right':'Left';
+        var switchColumns = false
+        if (columnSwitch && column === 'Right') {
+            switchColumns = true;
+            columnSwitch = false;
+        }
+        
         showTier[i] = true;
-        $( "#buttonShowTier" + (i + 1) ).checked = true;
+        currToggle.checked = true;
+        currToggle.SetHasClass('balanceModeFilter' + column, true);
+        currToggle.SetHasClass('balanceModeFilter' + notColumn, false);
+        currToggle.SetHasClass('balanceModeColumnSwitch', switchColumns);
     }
 
     // Set Balance Mode points to default

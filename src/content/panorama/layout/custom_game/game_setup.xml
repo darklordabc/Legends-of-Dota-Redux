@@ -376,6 +376,12 @@
                             <ToggleButton id="buttonShowTier4" text="#balance_mode_tier_4" onactivate="toggleShowTier('4')" />
                             <ToggleButton id="buttonShowTier5" text="#balance_mode_tier_5" onactivate="toggleShowTier('5')" />
                             <ToggleButton id="buttonShowTier6" text="#balance_mode_tier_6" onactivate="toggleShowTier('6')" />
+                            <ToggleButton id="buttonShowTier7" text="#balance_mode_tier_7" onactivate="toggleShowTier('7')" />
+                            <ToggleButton id="buttonShowTier8" text="#balance_mode_tier_8" onactivate="toggleShowTier('8')" />
+                            <ToggleButton id="buttonShowTier9" text="#balance_mode_tier_9" onactivate="toggleShowTier('9')" />
+                            <ToggleButton id="buttonShowTier10" text="#balance_mode_tier_10" onactivate="toggleShowTier('10')" />
+                            <ToggleButton id="buttonShowTier11" text="#balance_mode_tier_11" onactivate="toggleShowTier('11')" />
+                            <ToggleButton id="buttonShowTier12" text="#balance_mode_tier_12" onactivate="toggleShowTier('12')" />
 
                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />
