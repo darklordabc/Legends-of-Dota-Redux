@@ -18,7 +18,7 @@
 
         <Panel id="lodPopupMessage">
             <Panel>
-                <Label id="lodPopupMessageLabel" />
+                <Label id="lodPopupMessageLabel" html="true" />
             </Panel>
 
             <Panel class="lodPopupMessageAcceptContainer">
@@ -231,6 +231,32 @@
                         </Panel>
                     </Panel>
                 </Panel>
+                <Panel class="optionVotePhase">
+                    <Panel class="optionVoteInfoHeader">
+                        <Label class="optionVoteHeader" text="lodStrongTower" />
+                        <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( StrongTowersTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textSTTooltip )" onmouseout="UIHideCustomLayoutTooltip( StrongTowersTooltip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
+                        </Panel>
+                        <Panel class="optionVoteOptions">
+                            <Panel class="optionVoteRoot">
+                                <Button id="optionVoteStrongTowersNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
+                                    <Label text="lodOptionNo" />
+                                    <Label id="voteCountNoST" class="premiumFeature" />
+                                </Button>
+
+                                <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageST" />
+                            </Panel>
+
+                            <Panel class="optionVoteRoot">
+                                <Button id="optionVoteStrongTowersYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
+                                    <Label text="lodOptionYes" />
+                                    <Label id="voteCountYesST" class="premiumFeature" />
+                                </Button>
+                                <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageST" />
+                            </Panel>
+                        </Panel>
+                    </Panel>
             </Panel>
 
             <Panel id="optionSelection">
