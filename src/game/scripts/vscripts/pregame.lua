@@ -3470,6 +3470,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                     sort = 'lodDanger',
                     text = 'lodFailedBanHeroNoBanning'
                 })
+                EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
+
 
                 return
             else
@@ -3482,6 +3484,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                         ['max'] = maxHeroBans
                     }
                 })
+                EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
+
             end
 
 			return
@@ -3494,6 +3498,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            sort = 'lodDanger',
 	            text = 'lodFailedToFindHero'
 	        })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
+
 
 	        return
 	    end
@@ -3525,6 +3531,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['heroName'] = heroName
 	        	}
 	        })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
             return
 		end
@@ -3550,6 +3557,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                     }
                 })
             end
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
+
 
 			return
 		end
@@ -3564,6 +3573,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	                ['abilityName'] = abilityName
 	            }
 	        })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
 	        return
 	    end
@@ -3595,6 +3605,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
 	        	}
 	        })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
             return
 		end
