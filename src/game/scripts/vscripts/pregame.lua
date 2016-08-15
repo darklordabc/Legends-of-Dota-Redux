@@ -494,7 +494,7 @@ function Pregame:onThink()
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_SELECTION)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
-                EmitAnnouncerSound('announcer_announcer_type_ability_draft_01')
+                EmitAnnouncerSound(util:RandomChoice({'announcer_announcer_type_ability_draft_01', 'announcer_ann_custom_draft_01'}))
             end
         end
 
@@ -503,8 +503,40 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
+        -- print("time = ", Time(), "end_phase = ", self:getEndOfPhase(), "is freezed = ", self.freezeTimer)
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
+        end
+
+        --Check if countdown reaches 30 sec remaining
+        if Time() + 30 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_30 then
+            self.Announce_30 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_30')
+        end
+
+        --Check if countdown reaches 15 sec remaining
+        if Time() + 15 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_15 then
+            self.Announce_15 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_15')
+        end
+
+        --Check if countdown reaches 10 sec remaining
+        if Time() + 10 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_10 then
+            self.Announce_10 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_10')
+        end
+
+        if Time() + 6 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Pick_Hero then
+            self.Pick_Hero = true
+            for playerID = 0,23 do
+                local steamID = PlayerResource:GetSteamAccountID(playerID)
+                if steamID ~= 0 then
+                    hero = self.selectedHeroes[playerID]
+                    if hero == nil then
+                        EmitAnnouncerSoundForPlayer('announcer_announcer_choose_hero', playerID)
+                    end
+                end
+            end
         end
 
         -- Pick builds for bots
@@ -3885,6 +3917,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['points'] = overflow
                 }
             })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_generic_alert_05', 'announcer_ann_custom_generic_alert_06'}))
             return
         end
     end

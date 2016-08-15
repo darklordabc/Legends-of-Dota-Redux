@@ -512,6 +512,14 @@ function ShuffleArray(input)
     end
 end
 
+function Util:RandomChoice(input)
+    local temp = {}
+    for k in pairs(input) do
+        table.insert(temp, k)
+    end
+    return input[temp[math.random(#temp)]]
+end
+
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()
      local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
