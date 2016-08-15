@@ -1041,6 +1041,9 @@ var waitingForPrecache = true;
 // Are we a premium player?
 var isPremiumPlayer = false;
 
+// Save code timer
+var saveSCTimer = false;
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -3106,6 +3109,18 @@ function setOption(optionName, optionValue) {
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
+function checkSettingCode() {
+    var data = $('#importAndExportEntry').text;
+
+    var decodeData;
+    try {
+        decodeData = JSON.parse(data);
+    } catch(e) {
+        return false;
+    }
+    return data.length > 0;
+}
+
 // Imports option list
 function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
@@ -3148,6 +3163,28 @@ function onImportAndExportPressed() {
     $.Schedule(0.1, function () {
         $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     });
+}
+
+function onImportAndExportSavePressed() {
+    if (checkSettingCode() && saveSCTimer == false) {
+        saveSCTimer = true;
+        $.Schedule(30.0, function () {
+            saveSCTimer = false;
+        }) 
+        GameEvents.SendCustomGameEventToServer('lodSaveSC', {
+            code:$('#importAndExportEntry').text
+        });
+    }
+}
+
+function onImportAndExportLoadPressed() {
+    GameEvents.SendCustomGameEventToServer('lodLoadSC', {
+    });
+}
+
+function OnSCLoaded(args) {
+    $('#importAndExportEntry').text = args.code;
+    onImportAndExportPressed()
 }
 
 // Updates our selected hero
@@ -4775,6 +4812,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Hook stuff
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
+    hookAndFire('sc_loaded', OnSCLoaded);
     hookAndFire('heroes', OnHeroDataChanged);
     hookAndFire('flags', OnFlagDataChanged);
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);

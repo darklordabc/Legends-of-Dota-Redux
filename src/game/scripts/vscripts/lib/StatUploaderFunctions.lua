@@ -110,11 +110,12 @@ function SU:MarkMessageRead( args )
 end
 
 function SU:RecordPlayerSC( args )
-  
+  local steamID = PlayerResource:GetSteamID(args.PlayerID)
+
   local requestParams = {
     Command = "RecordPlayerSC",
     SettingsCode = args.code,
-    SteamID = args.steam_id
+    SteamID = steamID
   }
   
   SU:SendRequest( requestParams, function(obj)
@@ -122,9 +123,11 @@ function SU:RecordPlayerSC( args )
 end
 
 function SU:LoadPlayerSC( args )
+  local steamID = PlayerResource:GetSteamID(args.PlayerID)
+
   local requestParams = {
     Command = "LoadPlayerSC",
-    SteamID = args.steam_id
+    SteamID = steamID
   }
     
   SU:SendRequest( requestParams, function(obj)

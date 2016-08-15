@@ -242,8 +242,14 @@
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
                         <TextEntry id="importAndExportEntry"/>
-                        <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
+                        <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportPressed()">
                             <Label text="#importAndExport_apply" />
+                        </Button>
+                        <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportSavePressed()">
+                            <Label text="#importAndExport_save" />
+                        </Button>
+                        <Button id="importAndExportLoadButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportLoadPressed()">
+                            <Label text="#importAndExport_load" />
                         </Button>
                     </Panel>
                 </Panel>

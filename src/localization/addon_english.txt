@@ -50,6 +50,8 @@
     "lockTeamsFirst"                                "Lock the teams first"
     "importAndExport_code"                          "Settings Code"
     "importAndExport_apply"                         "Apply"
+    "importAndExport_save"                          "Save"
+    "importAndExport_load"                          "Load"
     "importAndExport_tooltip"                       "Use this to export/import game settings. Everytime you change a setting, the code in the box will be automatically updated.\n To export settings, click the text in the box then press ctrl+A to select all and then ctrl+C to copy the code, then alt-tab to a text program and press ctrl+V to paste the code.\n To import settings, copy the settings code that you saved earlier, click on the text in the box, press ctrl+A to select all the text, and ctrl+V to paste your code, then hit apply."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"

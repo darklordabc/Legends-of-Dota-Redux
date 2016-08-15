@@ -2141,10 +2141,15 @@
      width: 105px;
 }
 
-#importAndExportApplyButton {
+.importAndExportButton {
     width: 55px;
     height: 30px;
     margin-top: 3px;
+    margin-right: 0px;
+}
+
+.importAndExportButton Label {
+    align: center center;
 }
 
 #importAndExportEntryRoot {

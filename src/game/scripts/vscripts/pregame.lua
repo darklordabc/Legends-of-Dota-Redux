@@ -3,6 +3,7 @@ local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
+local SU = require('lib/StatUploaderFunctions')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
 local util = require('util')
@@ -127,6 +128,16 @@ function Pregame:init()
     -- Host wants to set an option
     CustomGameEventManager:RegisterListener('lodOptionSet', function(eventSourceIndex, args)
         this:onOptionChanged(eventSourceIndex, args)
+    end)
+
+    -- Player wants to save SC
+    CustomGameEventManager:RegisterListener('lodSaveSC', function(eventSourceIndex, args)
+        SU:RecordPlayerSC(args)
+    end)
+
+    -- Player wants to load SC
+    CustomGameEventManager:RegisterListener('lodLoadSC', function(eventSourceIndex, args)
+        SU:LoadPlayerSC(args)
     end)
 
     -- Player wants to set their hero
