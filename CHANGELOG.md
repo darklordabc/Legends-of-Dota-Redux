@@ -12,6 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Improved text in notifications
 - Enabling balance mode in custom games disable player bans. Disabling balance mode automatically enables default bans.
 - Fixed Balancing Mode Costs not showing on preset builds
+- Abilities blocked because of troll combos will now have a color tint
+- There is now voice announcers for the start of baning phase, drafting phase, and for when you try to select a disallowed ability. 
 
 ### Balance
 - Added new option to enable stronger towers (feature imported from DotA IMBA)
