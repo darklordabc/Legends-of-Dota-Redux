@@ -3870,7 +3870,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                 }
             })
-
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
             return
         end
     else
@@ -3883,6 +3883,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
             }
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3901,7 +3902,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['ab2'] = 'DOTA_Tooltip_ability_' .. ab2
                 }
             })
-
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
             return
         end
     end
@@ -3942,7 +3943,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                                 ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                             }
                         })
-
+                        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
                         return
                     end
                 end
@@ -3960,7 +3961,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                             ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                         }
                     })
-
+                    EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
                     return
                 end
             end
