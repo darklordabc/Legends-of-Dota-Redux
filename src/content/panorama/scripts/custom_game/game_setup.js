@@ -2617,7 +2617,7 @@ function updateHeroPreviewFilters() {
 }
 
 function isTrollCombo(abilityName, banned) {
-    if (banned) {
+    if (banned || optionValueList['lodOptionBanningBlockTrollCombos'] != 1) {
         return false;
     }
     
@@ -4867,6 +4867,9 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     GameEvents.Subscribe('addTrollCombo', function(data) {
        var ab1 = data.ab1;
        var ab2 = data.ab2;
+	   
+	   // Break if it's the same
+	   if (ab1 == ab2) return;
        
        trollCombos[ab1] = trollCombos[ab1] || {};
        trollCombos[ab2] = trollCombos[ab2] || {};
