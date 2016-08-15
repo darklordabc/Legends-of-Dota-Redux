@@ -62,6 +62,7 @@ var NO_COST = 0;
 // Globals for accessing costs outside of this file:
 
 GameUI.AbilityCosts = GameUI.AbilityCosts || {};
+GameUI.AbilityCosts.balanceModeEnabled = false;
 GameUI.AbilityCosts.costList = [];
 GameUI.AbilityCosts.BALANCE_MODE_POINTS = BALANCE_MODE_POINTS;
 GameUI.AbilityCosts.TIER_COUNT = TIER_COUNT;
