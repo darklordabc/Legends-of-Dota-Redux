@@ -503,6 +503,42 @@ function Pregame:onThink()
             self:buildDraftArrays()
         end
 
+        if not self.Announce_Picking_Phase then
+            self.Announce_Picking_Phase = true
+            EmitAnnouncerSound(util:RandomChoice({'announcer_announcer_type_ability_draft_01', 'announcer_ann_custom_draft_01'}))
+        end
+
+        --Check if countdown reaches 30 sec remaining
+        if Time() + 30 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_30 then
+            self.Announce_30 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_30')
+        end
+
+        --Check if countdown reaches 15 sec remaining
+        if Time() + 15 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_15 then
+            self.Announce_15 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_15')
+        end
+
+        --Check if countdown reaches 10 sec remaining
+        if Time() + 10 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_10 then
+            self.Announce_10 = true
+            EmitAnnouncerSound('announcer_ann_custom_timer_sec_10')
+        end
+
+        if Time() + 6 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Pick_Hero then
+            self.Pick_Hero = true
+            for playerID = 0,23 do
+                local steamID = PlayerResource:GetSteamAccountID(playerID)
+                if steamID ~= 0 then
+                    hero = self.selectedHeroes[playerID]
+                    if hero == nil then
+                        EmitAnnouncerSoundForPlayer('announcer_announcer_choose_hero', playerID)
+                    end
+                end
+            end
+        end
+
         -- Pick builds for bots
         if not self.doneBotStuff then
             self.doneBotStuff = true
@@ -1061,6 +1097,7 @@ function Pregame:finishOptionSelection()
         -- There is banning
         self:setPhase(constants.PHASE_BANNING)
         self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
+        EmitAnnouncerSound('announcer_announcer_ban_yr')
 
     else
         -- There is not banning
@@ -2849,6 +2886,7 @@ function Pregame:setOption(optionName, optionValue, force)
             	['optionName'] = optionName
         	}
         })
+        self:PlayAlert()
 
         return
     end
@@ -2863,6 +2901,7 @@ function Pregame:setOption(optionName, optionValue, force)
             	['optionValue'] = optionValue
         	}
         })
+        self:PlayAlert()
 
         return
     end
@@ -2942,6 +2981,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
             sort = 'lodDanger',
             text = 'lodFailedToFindHero'
         })
+        self:PlayAlert()
 
         return
     end
@@ -2959,6 +2999,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
                     ['heroName'] = heroName
                 }
             })
+            self:PlayAlert()
 
             return
         end
@@ -2975,6 +3016,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
                             ['heroName'] = heroName
                         }
                     })
+                    self:PlayAlert()
 
                     return
                 end
@@ -2997,6 +3039,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
                             ['heroName'] = heroName
                         }
                     })
+                    self:PlayAlert()
 
                     return
                 end
@@ -3038,6 +3081,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
                 sort = 'lodDanger',
                 text = 'lodFailedWrongPhaseSelection'
             })
+            self:PlayAlert()
 
             return
         end
@@ -3051,6 +3095,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3070,6 +3115,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
             sort = 'lodDanger',
             text = 'lodFailedToChangeAttr'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3081,6 +3127,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
             sort = 'lodDanger',
             text = 'lodFailedToChangeAttrInvalid'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3107,6 +3154,7 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3117,6 +3165,7 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3173,6 +3222,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3183,6 +3233,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3231,6 +3282,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedNotAllRandomPhase'
         })
+        self:PlayAlert()
         return
     end
 
@@ -3245,6 +3297,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedAllRandomNoBuilds'
         })
+        self:PlayAlert()
         return
     end
 
@@ -3257,6 +3310,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
                 ['buildID'] = buildID
             }
         })
+        self:PlayAlert()
         return
     end
 
@@ -3403,6 +3457,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseBanning'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3441,6 +3496,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                     sort = 'lodDanger',
                     text = 'lodFailedBanHeroNoBanning'
                 })
+                self:PlayAlert()
+
 
                 return
             else
@@ -3453,6 +3510,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                         ['max'] = maxHeroBans
                     }
                 })
+                self:PlayAlert()
+
             end
 
 			return
@@ -3465,6 +3524,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            sort = 'lodDanger',
 	            text = 'lodFailedToFindHero'
 	        })
+            self:PlayAlert()
+
 
 	        return
 	    end
@@ -3496,6 +3557,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['heroName'] = heroName
 	        	}
 	        })
+            self:PlayAlert()
 
             return
 		end
@@ -3508,6 +3570,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                     sort = 'lodDanger',
                     text = 'lodFailedBanAbilityNoBanning'
                 })
+                self:PlayAlert()
 
                 return
             else
@@ -3520,7 +3583,9 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
                         ['max'] = maxBans
                     }
                 })
+                self:PlayAlert()
             end
+
 
 			return
 		end
@@ -3535,6 +3600,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	                ['abilityName'] = abilityName
 	            }
 	        })
+            self:PlayAlert()
 
 	        return
 	    end
@@ -3566,6 +3632,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
 	        	}
 	        })
+            self:PlayAlert()
 
             return
 		end
@@ -3581,6 +3648,14 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
     end
 end
 
+function Pregame:PlayAlert()
+    EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02',
+                                          'announcer_ann_custom_sports_03',
+                                          'announcer_ann_custom_sports_04',
+                                          'announcer_ann_custom_bad_01'
+                                          }))
+end
+
 -- Player wants to select a random ability
 function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
     -- Grab data
@@ -3593,6 +3668,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseAllRandom'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3603,6 +3679,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3625,6 +3702,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedInvalidSlot'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3638,6 +3716,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedNoValidAbilities'
         })
+        self:PlayAlert()
 
         return
     else
@@ -3697,6 +3776,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             sort = 'lodDanger',
             text = 'lodFailedInvalidSlot'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3711,6 +3791,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['abilityName'] = abilityName
             }
         })
+        self:PlayAlert()
 
         return
     end
@@ -3734,6 +3815,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
                 })
+                self:PlayAlert()
 
                 return
             end
@@ -3749,6 +3831,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
                 })
+                self:PlayAlert()
 
                 return
             end
@@ -3765,6 +3848,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
             }
         })
+        self:PlayAlert()
 
         return
     end
@@ -3781,6 +3865,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['maxUlts'] = maxUlts
             }
         })
+        self:PlayAlert()
 
         return
     end
@@ -3797,6 +3882,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['maxRegulars'] = maxRegulars
             }
         })
+        self:PlayAlert()
 
         return
     end
@@ -3812,6 +3898,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                 }
             })
+            self:PlayAlert()
 
             return
         end
@@ -3841,7 +3928,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                 }
             })
-
+            self:PlayAlert()
             return
         end
     else
@@ -3854,6 +3941,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
             }
         })
+        self:PlayAlert()
 
         return
     end
@@ -3872,7 +3960,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['ab2'] = 'DOTA_Tooltip_ability_' .. ab2
                 }
             })
-
+            self:PlayAlert()
             return
         end
     end
@@ -3891,6 +3979,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['points'] = overflow
                 }
             })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_generic_alert_05', 'announcer_ann_custom_generic_alert_06'}))
             return
         end
     end
@@ -3912,7 +4001,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                                 ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                             }
                         })
-
+                        self:PlayAlert()
                         return
                     end
                 end
@@ -3930,7 +4019,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                             ['ab'] = 'DOTA_Tooltip_ability_' .. abilityName
                         }
                     })
-
+                    self:PlayAlert()
                     return
                 end
             end
@@ -3962,6 +4051,7 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3972,6 +4062,7 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -3994,6 +4085,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
         })
+        self:PlayAlert()
 
         return
     end
@@ -4004,6 +4096,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'
         })
+        self:PlayAlert()
 
         return
     end
@@ -4041,6 +4134,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedSwapSlotSameSlot'
         })
+        self:PlayAlert()
 
         return
     end
@@ -4052,6 +4146,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
             sort = 'lodDanger',
             text = 'lodFailedSwapSlotInvalidSlots'
         })
+        self:PlayAlert()
 
         return
     end
