@@ -1165,6 +1165,13 @@
     border: 0px;
 }
 
+.trollCombo {
+    opacity: .5;
+    saturation: 0.0;
+    wash-color: #FFA500FF;
+    border: 0px;
+}
+
 .balanceModeDisabled {
     visibility: collapse;
 }
@@ -1173,12 +1180,14 @@
     margin-left: 15px;
     margin-top: 10px;
     font-size: 25px;
+    color: #70EA72;
 }
 
 #balanceModePointsHeroes {
     margin-left: 15px;
     margin-top: 10px;
     font-size: 25px;
+    color: #70EA72;
 }
 
 #balanceModePointsSkills {
@@ -1187,6 +1196,7 @@
     margin-top: -30px;
     font-size: 16px;
     horizontal-align: right;
+    color: #70EA72;
 }
 
 #balanceModeFilter {

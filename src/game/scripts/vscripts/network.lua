@@ -190,5 +190,11 @@ function Network:updateFilters()
     CustomGameEventManager:Send_ServerToAllClients('updateFilters', {})
 end
 
+-- Sends Troll Combo data
+function Network:addTrollCombo(a, b)
+    print(a .. " " .. b)
+    CustomGameEventManager:Send_ServerToAllClients('addTrollCombo', {ab1 = a, ab2 = b})
+end
+
 -- Return an instance of it
 return Network()

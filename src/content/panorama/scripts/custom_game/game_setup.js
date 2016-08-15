@@ -1040,6 +1040,7 @@ var useSmartGrouping = true;
 // List of banned abilities
 var bannedAbilities = {};
 var bannedHeroes = {};
+var trollCombos = {};
 
 // List of taken abilities
 var takenAbilities = {};
@@ -1365,10 +1366,9 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                     // Clear the labels
                     var abCost = ab.GetChild(0);
                     if (abCost) {
-                        abCost.SetHasClass('tier1', false);
-                        abCost.SetHasClass('tier2', false);
-                        abCost.SetHasClass('tier3', false);
-                        abCost.SetHasClass('tier4', false);
+                        for (var j = 0; j < GameUI.AbilityCosts.TIER_COUNT; ++j) {
+                            abCost.SetHasClass('tier' + (j+1), false);
+                        }
                         abCost.text = "";
                     }
                 }
@@ -2589,6 +2589,7 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('bannedSkill', filterInfo.banned);
             abCon.SetHasClass('takenSkill', filterInfo.taken);
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
+            abCon.SetHasClass('trollCombo', filterInfo.trollCombo);
 
             if (balanceMode) {
                 // Set the label to the cost of the ability
@@ -2615,6 +2616,27 @@ function updateHeroPreviewFilters() {
     heroImageText.SetHasClass('takenHero', heroFilterInfo.takenHero);
 }
 
+function isTrollCombo(abilityName, banned) {
+    if (banned) {
+        return false;
+    }
+    
+    var playerID = Players.GetLocalPlayer();
+    var ourBuild = selectedSkills[playerID] || {};
+
+    for(var slotID in ourBuild) {
+        var currAbil = selectedSkills[playerID][slotID];
+        if( currAbil != null && trollCombos[currAbil] != null ) {
+            // Check through troll combo lists
+            if ( trollCombos[currAbil][abilityName] != null ) {
+                // Ability should be banned
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 // Gets skill filter info
 function getSkillFilterInfo(abilityName) {
     var shouldShow = true;
@@ -2622,6 +2644,7 @@ function getSkillFilterInfo(abilityName) {
     var banned = false;
     var taken = false;
     var cantDraft = false;
+    var trollCombo = true;
     var cost = 0;
 
     var cat = (flagDataInverse[abilityName] || {}).category;
@@ -2647,6 +2670,9 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
+    // Check for Troll Combo
+    trollCombo = isTrollCombo(abilityName, banned)
+    
     // Mark taken abilities
     if(takenAbilities[abilityName]) {
         if(uniqueSkillsMode == 1 && takenTeamAbilities[abilityName]) {
@@ -2725,6 +2751,7 @@ function getSkillFilterInfo(abilityName) {
         banned: banned,
         taken: taken,
         cantDraft: cantDraft,
+        trollCombo: trollCombo,
         cost: cost
     };
 }
@@ -2799,6 +2826,7 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('bannedSkill', filterInfo.banned);
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
+                    ab.SetHasClass('trollCombo', filterInfo.trollCombo);
 
                     if (balanceMode) {
                         // Set the label to the cost of the ability
@@ -4833,6 +4861,18 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     GameEvents.Subscribe('updateFilters', function(data) {
         updateRecommendedBuildFilters();
         calculateFilters();
+    });
+    
+    // Add Troll Combos
+    GameEvents.Subscribe('addTrollCombo', function(data) {
+       var ab1 = data.ab1;
+       var ab2 = data.ab2;
+       
+       trollCombos[ab1] = trollCombos[ab1] || {};
+       trollCombos[ab2] = trollCombos[ab2] || {};
+       
+       trollCombos[ab1][ab2] = true;
+       trollCombos[ab2][ab1] = true;
     });
 
     // Hook tab changes

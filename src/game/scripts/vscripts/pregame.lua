@@ -101,9 +101,6 @@ function Pregame:init()
         return true
     end, self)
 
-    -- Load troll combos
-    self:loadTrollCombos()
-
     -- Init options
     self:initOptionSelector()
 
@@ -1311,6 +1308,8 @@ function Pregame:loadTrollCombos()
         -- Store the ban
         self.banList[a][b] = true
         self.banList[b][a] = true
+        
+        network:addTrollCombo(a,b)
     end
 
     -- Loop over the banned combinations
@@ -2645,6 +2644,9 @@ function Pregame:processOptions()
         
         -- Prepare to disable ban lists if necessary
         local disableBanLists = false
+        
+        -- Load troll combos
+        self:loadTrollCombos()
         
         -- Enable Balance Mode (disables ban lists)
         if this.optionStore['lodOptionBalanceMode'] == 1 then
