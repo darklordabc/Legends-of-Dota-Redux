@@ -494,7 +494,6 @@ function Pregame:onThink()
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_SELECTION)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
-                EmitAnnouncerSound(util:RandomChoice({'announcer_announcer_type_ability_draft_01', 'announcer_ann_custom_draft_01'}))
             end
         end
 
@@ -503,9 +502,13 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
-        -- print("time = ", Time(), "end_phase = ", self:getEndOfPhase(), "is freezed = ", self.freezeTimer)
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
+        end
+
+        if not self.Announce_Picking_Phase then
+            self.Announce_Picking_Phase = true
+            EmitAnnouncerSound(util:RandomChoice({'announcer_announcer_type_ability_draft_01', 'announcer_ann_custom_draft_01'}))
         end
 
         --Check if countdown reaches 30 sec remaining
