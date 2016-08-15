@@ -1063,7 +1063,7 @@ var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 
 // Balance Mode
-var balanceMode = balanceMode = optionValueList['lodOptionBalanceMode'] || false;
+var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 0;
 var showTier = {};
 
@@ -4461,6 +4461,7 @@ function onAllowedCategoriesChanged() {
 
 function onBalanceModeChanged() {
     balanceMode = optionValueList['lodOptionBalanceMode'];
+    GameUI.AbilityCosts.balanceModeEnabled = optionValueList['lodOptionBalanceMode'];
     $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);    
     for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
         $( "#buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", !balanceMode);
@@ -4826,6 +4827,12 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {
         addNotification(data);
+    });
+    
+    // Update filters
+    GameEvents.Subscribe('updateFilters', function(data) {
+        updateRecommendedBuildFilters();
+        calculateFilters();
     });
 
     // Hook tab changes
