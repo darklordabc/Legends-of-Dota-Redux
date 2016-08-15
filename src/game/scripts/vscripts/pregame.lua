@@ -3726,6 +3726,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             sort = 'lodDanger',
             text = 'lodFailedInvalidSlot'
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3740,6 +3741,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['abilityName'] = abilityName
             }
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3763,6 +3765,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
                 })
+                EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
                 return
             end
@@ -3778,6 +3781,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
                 })
+                EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
                 return
             end
@@ -3794,6 +3798,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
             }
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3810,6 +3815,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['maxUlts'] = maxUlts
             }
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3826,6 +3832,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 ['maxRegulars'] = maxRegulars
             }
         })
+        EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
         return
     end
@@ -3841,6 +3848,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                 }
             })
+            EmitAnnouncerSound(util:RandomChoice({'announcer_ann_custom_sports_02', 'announcer_ann_custom_sports_03', 'announcer_ann_custom_sports_04', 'announcer_ann_custom_bad_01'}))
 
             return
         end
