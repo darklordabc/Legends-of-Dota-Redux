@@ -108,3 +108,32 @@ function SU:MarkMessageRead( args )
   SU:SendRequest( requestParams, function(obj)
   end)
 end
+
+function SU:RecordPlayerSC( args )
+  
+  local requestParams = {
+    Command = "RecordPlayerSC",
+    SettingsCode = args.code,
+    SteamID = args.steam_id
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)
+end
+
+function SU:LoadPlayerSC( args )
+  local requestParams = {
+    Command = "LoadPlayerSC",
+    SteamID = args.steam_id
+  }
+    
+  SU:SendRequest( requestParams, function(obj)
+    if type(obj) == "string" then
+      print(obj)
+      return
+    end
+      
+    local steamID = obj.steam_id
+    local settingsCode = obj.code
+  end)
+end
