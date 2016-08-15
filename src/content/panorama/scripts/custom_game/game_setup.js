@@ -1365,10 +1365,9 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                     // Clear the labels
                     var abCost = ab.GetChild(0);
                     if (abCost) {
-                        abCost.SetHasClass('tier1', false);
-                        abCost.SetHasClass('tier2', false);
-                        abCost.SetHasClass('tier3', false);
-                        abCost.SetHasClass('tier4', false);
+                        for (var j = 0; j < GameUI.AbilityCosts.TIER_COUNT; ++j) {
+                            abCost.SetHasClass('tier' + (j+1), false);
+                        }
                         abCost.text = "";
                     }
                 }
