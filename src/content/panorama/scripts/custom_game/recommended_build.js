@@ -82,6 +82,8 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
         slot.SetHasClass('bannedSkill', filterInfo.banned);
         slot.SetHasClass('takenSkill', filterInfo.taken);
         slot.SetHasClass('notDraftable', filterInfo.cantDraft);
+        slot.SetHasClass('trollCombo', filterInfo.trollCombo);
+
         if (GameUI.AbilityCosts.balanceModeEnabled) {
             // Set the label to the cost of the ability
             var abCost = slot.GetChild(0);
@@ -90,8 +92,6 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
                     abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
                 }
                 abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
-                if (filterInfo.cost != 0)
-                    $.Msg(filterInfo.cost);
             }
         }
     }

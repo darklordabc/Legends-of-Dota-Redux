@@ -1165,6 +1165,13 @@
     border: 0px;
 }
 
+.trollCombo {
+    opacity: .5;
+    saturation: 0.0;
+    wash-color: #FFA500FF;
+    border: 0px;
+}
+
 .balanceModeDisabled {
     visibility: collapse;
 }
