@@ -186,5 +186,9 @@ function Network:sendSpellPrice(ability, price)
     CustomGameEventManager:Send_ServerToAllClients('balance_mode_price', {abilityName = ability, cost = price })
 end
 
+function Network:updateFilters()
+    CustomGameEventManager:Send_ServerToAllClients('updateFilters', {})
+end
+
 -- Return an instance of it
 return Network()

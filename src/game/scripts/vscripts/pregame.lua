@@ -2670,6 +2670,7 @@ function Pregame:processOptions()
                 end
             end
             
+            network:updateFilters()
             disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='all_pick_4'
         end
         
