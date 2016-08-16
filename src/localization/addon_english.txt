@@ -218,6 +218,7 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
+    "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
