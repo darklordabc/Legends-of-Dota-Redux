@@ -1425,8 +1425,6 @@ function Pregame:notEnoughPoints(build)
         end
     end
     
-    print(spent)
-    
     -- Check to see if we exceed 100
     if spent > constants.BALANCE_MODE_POINTS then
         return true, spent - constants.BALANCE_MODE_POINTS
@@ -4197,6 +4195,10 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             shouldAdd = false
         end
 
+        if abilityName == 'sandking_caustic_finale' then
+        	shouldAdd = false
+        end
+
 		-- consider ulty count
 		if shouldAdd and SkillManager:isUlt(abilityName) then
 			if totalUlts >= maxUlts then
@@ -4229,6 +4231,18 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
         end
+
+
+        -- Over the Balance Mode point balance
+        if self.optionStore['lodOptionBalanceMode'] == 1 then
+            -- Validate that the user has enough points
+            local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
+            local outOfPoints, _ = self:notEnoughPoints(newBuild)
+            if outOfPoints then
+                shouldAdd = false
+            end
+        end
+
 
         -- Consider unique skills
         if self.optionStore['lodOptionAdvancedUniqueSkills'] == 1 then
