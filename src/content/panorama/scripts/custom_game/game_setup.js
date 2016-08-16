@@ -402,32 +402,6 @@ var allOptions = {
                 default: 0
             },
             {
-                name: 'lodOptionGameSpeedTowersPerLane',
-                des: 'lodOptionDesGameSpeedTowersPerLane',
-                about: 'lodOptionAboutGameSpeedTowersPerLane',
-                sort: 'range',
-                min: 3,
-                max: 10,
-                step: 1,
-                default: 3
-            },
-            {
-                name: 'lodOptionGameSpeedStrongTowers',
-                des: 'lodOptionDesGameSpeedStrongTowers',
-                about: 'lodOptionAboutGameSpeedStrongTowers',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
@@ -460,6 +434,38 @@ var allOptions = {
                     }
                 ]
             },*/
+        ]
+    },
+
+    towers_creeps: {
+        custom: true,
+        fields: [
+            {
+                name: 'lodOptionGameSpeedTowersPerLane',
+                des: 'lodOptionDesGameSpeedTowersPerLane',
+                about: 'lodOptionAboutGameSpeedTowersPerLane',
+                sort: 'range',
+                min: 3,
+                max: 10,
+                step: 1,
+                default: 3
+            },
+            {
+                name: 'lodOptionGameSpeedStrongTowers',
+                des: 'lodOptionDesGameSpeedStrongTowers',
+                about: 'lodOptionAboutGameSpeedStrongTowers',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     },
 
