@@ -273,13 +273,10 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "necronomicon_warrior_last_will"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 
-        "LevelsBetweenUpgrades"         "3"
-        "RequiredLevel"                 "7"
-        "MaxLevel"                      "7"
+        "MaxLevel"                      "4"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -288,7 +285,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "explosion"             "300 500 700 900 1100 1300 1500"
+                "explosion"             "300 450 600 1000"
             }
         }
     }

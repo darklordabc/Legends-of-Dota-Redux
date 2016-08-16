@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
+- Last Will is now a regular ability, has 4 levels, damage reworked
 
 ## 2016-08-14
 
