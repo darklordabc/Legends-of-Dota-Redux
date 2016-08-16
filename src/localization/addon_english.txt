@@ -219,7 +219,7 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
-    "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
+    "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
@@ -677,7 +677,11 @@
     /////////////////
     // CUSTOM ABILITIES
     ////////////////
-
+	
+	//Scepter Buff Modifer
+	"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
+	"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
+	
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
     "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
