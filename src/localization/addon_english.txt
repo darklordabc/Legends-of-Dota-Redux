@@ -1184,6 +1184,9 @@
     // Taskmaster Speed Aura
     "DOTA_Tooltip_modifier_kobold_taskmaster_speed_aura_bonus_Description"				"Movement speed increased by a percentage."
 
+	//Stone Form
+	"DOTA_Tooltip_ability_visage_summon_familiars_stone_form_Description"		"After a short delay, the Familiar turns into stone and smashes into the ground, stunning and damaging all targets in the area.  The Familiar becomes invulnerable, and will regain its damage charges and health very rapidly.  After 5 seconds, the Familiar will automatically leave Stone Form."
+	
 	// Granite Aura
     "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
 

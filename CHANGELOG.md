@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Bug Fixing
 - Fixed announcer sounds going to all players
 - Replaced number scheme in changelog
+- fixed description on stone form to reflect its updated duration 
 
 ### Balance
 
