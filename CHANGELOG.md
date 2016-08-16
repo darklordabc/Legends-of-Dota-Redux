@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Replaced number scheme in changelog
 - Fixed description on stone form to reflect its updated duration 
 - Added warning on aegis tower to tell players that the health bonus wont apply to them
+- New page in custom maps for towers and creeps settings
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
