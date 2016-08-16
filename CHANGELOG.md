@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added warning on aegis tower to tell players that the health bonus wont apply to them
 
 ### Balance
-
+- Increased Price of Aegis and Self-Repair Tower Abilities
 
 ## 2016-08-14
 
