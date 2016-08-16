@@ -66,6 +66,7 @@
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
+    "towers_creeps_lod"                             "Towers and Creeps"
     "advanced_selection_lod"                        "Advanced Selection"
     "buffs_lod"                                     "Buffs"
     "crazyness_lod"                                 "Other"
