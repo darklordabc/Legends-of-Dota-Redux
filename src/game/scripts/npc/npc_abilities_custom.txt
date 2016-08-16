@@ -7443,14 +7443,19 @@
 		"MaxLevel" 						"4"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 
 		"AbilityCooldown"				"70 60 50 40"
 		"AbilityManaCost"				"60"
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"			"particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+		}
 
 		"AbilitySpecial"
 		{
@@ -7461,11 +7466,38 @@
 			}
 		}
 
-		"OnSpellStart"
+		"OnAbilityPhaseStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"		"scripts/vscripts/../abilities/hero_doom.lua"
+				"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
+				"Function"		"DevourCheck"
+				"modifier"		"modifier_creep_eaten"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_DoomBringer.DevourCast"
+				"Target" 		"TARGET"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+				"EffectAttachType"  "follow_origin"
+				
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"CASTER"	"attach_origin"
+				}
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
 				"Function"		"EatCreep"
 			}
 		}
@@ -7473,15 +7505,13 @@
 		{
 			"modifier_creep_eaten"
 			{
-				"Passive"			"0"
-				"IsHidden"			"0"
 				"IsDebuff"			"1"
 				
 				"OnDestroy"
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"scripts/vscripts/../abilities/hero_doom.lua"
+						"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
 						"Function"		"CreepGold"
 					}
 				}
