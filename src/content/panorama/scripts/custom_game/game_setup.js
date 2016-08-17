@@ -466,6 +466,30 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionCreepPower',
+                des: 'lodOptionDesCreepPower',
+                about: 'lodOptionAboutCreepPower',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoCreepPower',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionNormal',
+                        value: 120
+                    },
+                    {
+                        text: 'lodOptionHigh',
+                        value: 60
+                    },
+                    {
+                        text: 'lodOptionExtreme',
+                        value: 30
+                    }
+                ]
+            },
         ]
     },
 

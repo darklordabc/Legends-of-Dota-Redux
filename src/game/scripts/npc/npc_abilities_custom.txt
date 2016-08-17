@@ -9524,5 +9524,58 @@
             }
         }
     }
-	
+
+    //=================================================================================================================
+    // Creep/Siege power increasing ability
+    //=================================================================================================================
+    "lod_creep_power"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "lod_creep_power"
+        "MaxLevel"                              "1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "coef"                          "0.07"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_lod_creep_power"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "0"
+
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS"        "1"
+                }
+            }
+
+            "modifier_lod_creep_power_hp"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "1"
+                "IsPurgable"                    "0"
+
+                // "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "0.2"
+                }
+            }    
+        }
+    }
 }

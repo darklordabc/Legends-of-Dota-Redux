@@ -202,6 +202,7 @@ function Pregame:init()
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
     self:setOption('lodOptionMirrorHeroes', 20)
+    self:setOption('lodOptionCreepPower', 0)
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -1848,6 +1849,14 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Game Speed - Increase Creep Power
+        lodOptionCreepPower = function(value)
+            -- Ensure gamemode is set to custom
+            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+            print("dicks")
+            return value == 0 or value == 120 or value == 60 or value == 30
+        end,
+
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
             -- Ensure gamemode is set to custom
@@ -2067,6 +2076,9 @@ function Pregame:initOptionSelector()
 
                 -- Do not make stronger towers
                 self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+
+                -- Do not increase creep power
+                self:setOption('lodOptionCreepPower', 0, true)
 
                 -- Start with a free courier
                 self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -2656,6 +2668,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
+        OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2803,6 +2816,7 @@ function Pregame:processOptions()
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
                     ['Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
+                    ['Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
 			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
 			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
@@ -4998,6 +5012,25 @@ function Pregame:fixSpawningIssues()
                     if OptionManager:GetOption('bonusGold') > 0 then
                         PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
                     end
+                end
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+                -- Increasing creep power over time 
+                if this.optionStore['lodOptionCreepPower'] > 0 then
+                    local level = math.floor(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
+                    local ability = spawnedUnit:AddAbility("lod_creep_power")
+                    
+                    ability:UpgradeAbility(false)
+                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power",{})
+                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power",spawnedUnit,level)
+
+                    local coef = ability:GetSpecialValueFor("coef") * level
+
+                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_hp",{})
+                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_hp",spawnedUnit,level)
+                    spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + (spawnedUnit:GetBaseDamageMin() * coef))
+                    spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + (spawnedUnit:GetBaseDamageMax() * coef))
+                    spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
+                    spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
                 end
             end
         end
