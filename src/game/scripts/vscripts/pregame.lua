@@ -1301,9 +1301,11 @@ function Pregame:processVoteData()
         if results.strongtowers == 1 then
             -- Disable Strong Towers
             self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+            self:setOption('lodOptionCreepPower', 120, true)
         else
             -- On by default
             self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+            self:setOption('lodOptionCreepPower', 0, true)
             -- banning mode does not get overridden
         end
     end
@@ -5027,10 +5029,14 @@ function Pregame:fixSpawningIssues()
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_hp",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_hp",spawnedUnit,level)
-                    spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + (spawnedUnit:GetBaseDamageMin() * coef))
-                    spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + (spawnedUnit:GetBaseDamageMax() * coef))
+
+                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
+                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * coef * level))
+
                     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
                     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
+
+                    spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + (spawnedUnit:GetModelScale() * (coef / 100) * level))
                 end
             end
         end

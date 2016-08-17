@@ -9557,10 +9557,10 @@
 
                 "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
 
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS"        "1"
-                }
+                // "Properties"
+                // {
+                //     "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS"        "1"
+                // }
             }
 
             "modifier_lod_creep_power_hp"
@@ -9574,6 +9574,19 @@
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "0.2"
+                }
+            }
+
+            "modifier_lod_creep_power_damage"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"        "1"
                 }
             }    
         }
