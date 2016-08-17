@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Increased Price of Aegis and Self-Repair Tower Abilities
 - Custom abilities that rework original abilities are now counted as normal abilities. Custom abilities tabs are just the completely new ones.
 - Last Will is now a regular ability, has 4 levels, damage reworked
+- In Balance Mode, randomly given abilities will no longer be able to exceed your pont limit.
 
 ## 2016-08-14
 
