@@ -5034,7 +5034,7 @@ function Pregame:fixSpawningIssues()
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * damage_coef * level))
 
-                    spawnedUnit:SetBaseMagicalResistanceValue(coef)
+                    spawnedUnit:SetBaseMagicalResistanceValue(spawnedUnit:GetBaseMagicalResistanceValue() * (1.0+coef))
 
                     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
                     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
