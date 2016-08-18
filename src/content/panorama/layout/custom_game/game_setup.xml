@@ -7,6 +7,7 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
     </scripts>
     <Panel class="lodOptionsInterface">
         <Panel id="lodNotificationArea">
@@ -245,10 +246,10 @@
                         <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportPressed()">
                             <Label text="#importAndExport_apply" />
                         </Button>
-                        <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportSavePressed()">
+                        <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="RecordPlayerSC()">
                             <Label text="#importAndExport_save" />
                         </Button>
-                        <Button id="importAndExportLoadButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportLoadPressed()">
+                        <Button id="importAndExportLoadButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="LoadPlayerSC()">
                             <Label text="#importAndExport_load" />
                         </Button>
                     </Panel>

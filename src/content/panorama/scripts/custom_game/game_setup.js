@@ -3109,18 +3109,6 @@ function setOption(optionName, optionValue) {
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
-function checkSettingCode() {
-    var data = $('#importAndExportEntry').text;
-
-    var decodeData;
-    try {
-        decodeData = JSON.parse(data);
-    } catch(e) {
-        return false;
-    }
-    return data.length > 0;
-}
-
 // Imports option list
 function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
@@ -3162,23 +3150,6 @@ function onImportAndExportPressed() {
     }
     $.Schedule(0.1, function () {
         $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
-    });
-}
-
-function onImportAndExportSavePressed() {
-    if (checkSettingCode() && saveSCTimer == false) {
-        saveSCTimer = true;
-        $.Schedule(30.0, function () {
-            saveSCTimer = false;
-        }) 
-        GameEvents.SendCustomGameEventToServer('lodSaveSC', {
-            code:$('#importAndExportEntry').text
-        });
-    }
-}
-
-function onImportAndExportLoadPressed() {
-    GameEvents.SendCustomGameEventToServer('lodLoadSC', {
     });
 }
 

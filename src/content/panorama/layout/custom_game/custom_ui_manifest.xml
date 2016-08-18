@@ -1,4 +1,8 @@
 <root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/stat_uploader.js" /> 
+    </scripts>
+
     <script>
         GameUI.CustomUIConfig().multiteam_top_scoreboard = {
             shouldSort: false

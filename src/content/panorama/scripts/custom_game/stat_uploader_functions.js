@@ -38,12 +38,61 @@ function SendMessage( text ) {
     var requestParams = {
         Command: "SendPlayerMessage",
         Data: {
-          SteamID: GetSteamID32(),
-          Nickname: info.player_name,
-          Message: text,
-          TimeStamp: GetDate() 
+            SteamID: GetSteamID32(),
+            Nickname: info.player_name,
+            Message: text,
+            TimeStamp: GetDate() 
         }
     };
 
     GameUI.CustomUIConfig().SendRequest( requestParams, null );
+}
+
+function RecordPlayerSC( ) {
+    // var check = (function checkSettingCode() {
+    //     var data = $('#importAndExportEntry').text;
+
+    //     var decodeData;
+    //     try {
+    //         decodeData = JSON.parse(data);
+    //     } catch(e) {
+    //         return false;
+    //     }
+    //     return data.length > 0;
+    // })
+
+    // if (check() && saveSCTimer == false) {
+    //     saveSCTimer = true;
+    //     $.Schedule(30.0, function () {
+    //         saveSCTimer = false;
+    //     }) 
+    // } else {
+    //     return false
+    // }
+
+    var requestParams = {
+        Command : "RecordPlayerSC",
+        Data: {
+            SteamID: GetSteamID32(),
+            SettingsCode : $('#importAndExportEntry').text,
+        }
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj)
+
+    })
+}
+
+function LoadPlayerSC( ) {
+    var requestParams = {
+        Command : "LoadPlayerSC",
+        Data: {
+            SteamID: GetSteamID32()
+        }
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
+        $('#importAndExportEntry').text = obj.code;
+        $.Msg(obj);
+    })
 }

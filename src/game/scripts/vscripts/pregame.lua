@@ -130,16 +130,6 @@ function Pregame:init()
         this:onOptionChanged(eventSourceIndex, args)
     end)
 
-    -- Player wants to save SC
-    CustomGameEventManager:RegisterListener('lodSaveSC', function(eventSourceIndex, args)
-        SU:RecordPlayerSC(args)
-    end)
-
-    -- Player wants to load SC
-    CustomGameEventManager:RegisterListener('lodLoadSC', function(eventSourceIndex, args)
-        SU:LoadPlayerSC(args)
-    end)
-
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
