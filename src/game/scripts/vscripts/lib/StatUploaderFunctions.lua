@@ -36,6 +36,7 @@ function SU:Init()
 
           if state == DOTA_GAMERULES_STATE_PRE_GAME then
             SU:LoadPlayersMessages()
+            SU:SendAuthInfo()
           end
         end, nil)
     else
