@@ -1,24 +1,5 @@
 "use strict";
 
-function GetSteamID32() {
-    var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-
-    var steamID64 = playerInfo.player_steamid,
-        steamIDPart = Number(steamID64.substring(3)),
-        steamID32 = String(steamIDPart - 61197960265728);
-
-    return steamID32;
-}
-
-function GetDate() {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-
-	return yyyy * 10000 + mm * 100 + dd;
-}
-
 var messages = [];
 
 function toggleChangelog(arg){
@@ -155,15 +136,10 @@ function newMessages( newMessages ) {
 	setupCredits();
 }
 
-function FromServerMsg( args ) {
-	$.Msg(args.str)
-}
-
 (function() {
 	$("#descriptionDisplay").visible = true;
 	$("#showDescriptionButton").checked = true;
 	$("#changelogNotification").visible = false;
 
 	GameEvents.Subscribe( "su_new_messages", newMessages );
-	GameEvents.Subscribe( "su_server_msg", FromServerMsg );
 })();

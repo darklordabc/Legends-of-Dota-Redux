@@ -65,7 +65,7 @@ function RecordPlayerSC( ) {
     //     saveSCTimer = true;
     //     $.Schedule(30.0, function () {
     //         saveSCTimer = false;
-    //     }) 
+    //     })
     // } else {
     //     return false
     // }
@@ -78,17 +78,14 @@ function RecordPlayerSC( ) {
         }
     }
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj)
-
+    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
     })
 }
 
 function LoadPlayerSC( ) {
     var requestParams = {
         Command : "LoadPlayerSC",
-        Data: {
-            SteamID: GetSteamID32()
-        }
+        SteamID: GetSteamID32()
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {

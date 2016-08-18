@@ -19,8 +19,7 @@ function SendRequest( requestParams, successCallback )
             data: { 
             	CommandParams: JSON.stringify(requestParams) 
             },
-            success: function (data) {
-            }
+            success: successCallback
         });
 }
 
