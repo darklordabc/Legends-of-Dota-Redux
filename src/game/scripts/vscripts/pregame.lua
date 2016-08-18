@@ -1280,30 +1280,35 @@ function Pregame:processVoteData()
         	-- Option Voting
 			self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
 			self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+            self.optionVotingFastStart = 1
         else
         	-- No option voting
             self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 			self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+            self.optionVotingFastStart = 0
         end
     end
 	if results.balancemode ~= nil then
         if results.balancemode == 1 then
         	-- Disable Balance Mode
         	self:setOption('lodOptionBalanceMode', 0, true)
+            self.optionVotingBalanceMode = 1
         else
         	-- On by default
         	self:setOption('lodOptionBalanceMode', 1, true)
+            self.optionVotingBalanceMode = 0
         	-- banning mode does not get overridden
         end
     end
     if results.strongtowers ~= nil then
         if results.strongtowers == 1 then
-            -- Disable Strong Towers
+            -- Enable Strong Towers
             self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+            self.optionVotingStrongTowers = 1
         else
             -- On by default
             self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-            -- banning mode does not get overridden
+            self.optionVotingStrongTowers = 0
         end
     end
 
@@ -2769,7 +2774,10 @@ function Pregame:processOptions()
 	    	if this.optionVotingBanning ~= nil then
 	    		-- Someone actually voted
 	    		statCollection:setFlags({
-			        ['Voting Banning Enabled'] = this.optionVotingBanning
+			        ['Voting Banning Enabled'] = this.optionVotingBanning,
+                    ['Voting Fast Start Enabled'] = this.optionVotingFastStart,
+                    ['Voting Disabled Balance'] = this.optionVotingBalanceMode,
+                    ['Voting Stronger Towers'] = this.optionVotingStrongTowers
 			    })
 	    	end
 	    else

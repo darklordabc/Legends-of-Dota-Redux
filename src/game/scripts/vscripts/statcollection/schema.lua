@@ -47,16 +47,17 @@ function BuildGameArray()
     return game
 end
 
+
+
 -- Returns a table containing data for every player in the game
 function BuildPlayersArray()
     local players = {}
     for playerID = 0, DOTA_MAX_PLAYERS do
         if PlayerResource:IsValidPlayerID(playerID) then
             if not PlayerResource:IsBroadcaster(playerID) then
-
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-                table.insert(players, PlayerResource:getPlayerStats(playerID))
+                if PlayerResource:GetSteamAccountID(playerID) ~= 0 then
+                    table.insert(players, PlayerResource:getPlayerStats(playerID))
+                end
             end
         end
     end
