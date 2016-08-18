@@ -545,7 +545,6 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_meepo"                         "Aghanim's Scepter<br> will give this hero a free clone."
     "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision."
     "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner."
     "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision."
