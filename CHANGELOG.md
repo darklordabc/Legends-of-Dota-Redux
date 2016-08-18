@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - New page in custom maps for towers and creeps settings
 - Renamed option to "Free Aghanim's Scepter" and changed the wording on the ingame buff modifier 
 - Removed unique mechanic warning for Meepo, no longer applies
+- Banned Abiliites are now hidden by default
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities

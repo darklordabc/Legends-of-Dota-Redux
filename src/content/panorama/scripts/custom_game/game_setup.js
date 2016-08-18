@@ -1037,7 +1037,7 @@ var optionValueList = {};
 var allowedCategories = {};
 
 // Should we show banned / disallowed skills?
-var showBannedSkills = true;
+var showBannedSkills = false;
 var showDisallowedSkills = false;
 var showTakenSkills = true;
 var showNonDraftSkills = false;
@@ -4902,7 +4902,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     $('#buttonHeroGrouping').checked = true;
 
     // Show banned abilities by default
-    $('#buttonShowBanned').checked = true;
+    $('#buttonShowBanned').checked = false;
 
     var columnSwitch = true;
     // Show all tier values by default
