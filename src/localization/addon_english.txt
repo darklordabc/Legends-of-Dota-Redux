@@ -227,7 +227,7 @@
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
-    "lodOptionDesCreepPower"                        "Increase Creep Power Over Time"
+    "lodOptionDesCreepPower"                        "Increase Lane Creep Power Over Time"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
@@ -1159,7 +1159,7 @@
     
     // Increasing Creep Power
     "DOTA_Tooltip_ability_lod_creep_power" "Creep Power"
-    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep power every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage, armour and magic resistance every specified time interval."
 
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
@@ -1332,8 +1332,8 @@
 
 
     // Modifiers
-    "DOTA_Tooltip_modifier_lod_creep_power"      "Armor Increased"
-    "DOTA_Tooltip_modifier_lod_creep_power_Description"      "Armor and damage has been increased"
+    "DOTA_Tooltip_modifier_lod_creep_power"      "Creep Power"
+    "DOTA_Tooltip_modifier_lod_creep_power_Description"      "Damage, armor and magic resistance increased."
 
     "DOTA_Tooltip_Modifier_sleep_cloud_aura"      "Sleep Aura"
     "DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"    "Affected units will fall asleep if they stay within the cloud for 4 seconds."
