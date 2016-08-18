@@ -4957,13 +4957,15 @@ function Pregame:fixSpawningIssues()
                 -- Handle the free courier stuff
                 --handleFreeCourier(spawnedUnit)
 
-                -- Handle free scepter stuff
+                -- Handle free scepter stuff, Gyro will not benefit
                 if OptionManager:GetOption('freeScepter') then
-                    spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                        bonus_all_stats = 0,
-                        bonus_health = 0,
-                        bonus_mana = 0
-                    })
+					if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+						spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+							bonus_all_stats = 0,
+							bonus_health = 0,
+							bonus_mana = 0
+						})
+					end
                 end
 
                if OptionManager:GetOption('freeCourier') then
