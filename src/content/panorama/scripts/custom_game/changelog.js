@@ -1,21 +1,5 @@
 "use strict";
 
-function SendRequest( requestParams, successCallback )
-{
-    requestParams.AuthKey = "3mzyNGkbMUvWugUyNMV9";
-
-    $.AsyncWebRequest('http://ec2-52-59-238-84.eu-central-1.compute.amazonaws.com/commander.php',
-        {
-            type: 'POST',
-            data: { 
-            	CommandParams: JSON.stringify(requestParams) 
-            },
-            success: function (data) {
-                $.Msg('GDS Reply: ', data)
-            }
-        });
-}
-
 function GetSteamID32() {
     var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
 
