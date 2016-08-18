@@ -307,7 +307,7 @@
     "lodOptionAboutGameSpeedStartingGold"           "How much additional gold each player will start with. (25 - 100,000)"
     "lodOptionAboutGameSpeedRespawnTime"            "How the respawn timer will be modified.\n50%: The respawn time will be 50% of what it normally is.\n10%: The respawn time will be 10% of what it normally is.\n1 - 60: The respawn time will always be the number chosen."
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
-    "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
+    "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities. Gyrocopter, Keeper of the Light and Night Stalker will not benefit from this."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
@@ -545,9 +545,9 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision."
-    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner."
-    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision."
+    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
+    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
+    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
