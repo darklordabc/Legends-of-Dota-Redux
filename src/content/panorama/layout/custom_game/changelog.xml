@@ -6,8 +6,8 @@
 		<include src="file://{resources}/styles/custom_game/changelog.css" />
 	</styles>
 	<scripts>
+		<include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
 	    <include src="file://{resources}/scripts/custom_game/changelog.js" /> 
-	    <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
 	</scripts>
 	<snippets>
 		<snippet name="userPic">
