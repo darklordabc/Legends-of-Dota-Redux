@@ -9546,6 +9546,11 @@
                 "var_type"                      "FIELD_FLOAT"
                 "coef"                          "0.07"
             }
+            "02"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "damage_coef"                          "0.03"
+            }
         }
 
         "Modifiers"

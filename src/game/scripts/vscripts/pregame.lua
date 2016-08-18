@@ -5026,12 +5026,13 @@ function Pregame:fixSpawningIssues()
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power",spawnedUnit,level)
 
                     local coef = ability:GetSpecialValueFor("coef") * level
+                    local damage_coef  = ability:GetSpecialValueFor("damage_coef") * level
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_hp",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_hp",spawnedUnit,level)
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
-                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * coef * level))
+                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * damage_coef * level))
 
                     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
                     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
