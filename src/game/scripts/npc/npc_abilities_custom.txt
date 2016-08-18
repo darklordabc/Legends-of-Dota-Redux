@@ -9543,13 +9543,23 @@
         {
             "01"
             {
-                "var_type"                      "FIELD_FLOAT"
-                "coef"                          "0.07"
+                "var_type"                      "FIELD_INTEGER"
+                "coef"                          "7"
             }
             "02"
             {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_coef"                          "3"
+            }
+            "03"
+            {
                 "var_type"                      "FIELD_FLOAT"
-                "damage_coef"                          "0.03"
+                "armor_per_level"                          "0.2"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "resist_per_level"                          "0.7"
             }
         }
 
@@ -9578,7 +9588,7 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "0.2"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%armor_per_level"
                 }
             }
 

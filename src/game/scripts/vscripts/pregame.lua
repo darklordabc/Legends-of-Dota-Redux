@@ -5025,8 +5025,9 @@ function Pregame:fixSpawningIssues()
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power",spawnedUnit,level)
 
-                    local coef = ability:GetSpecialValueFor("coef") * level
-                    local damage_coef  = ability:GetSpecialValueFor("damage_coef") * level
+                    local coef = ability:GetSpecialValueFor("coef") * level / 100
+                    local damage_coef  = ability:GetSpecialValueFor("damage_coef") * level / 100
+                    local resist = ability:GetSpecialValueFor("resist_per_level") * level
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_armor",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_armor",spawnedUnit,level)
@@ -5034,7 +5035,7 @@ function Pregame:fixSpawningIssues()
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * damage_coef * level))
 
-                    spawnedUnit:SetBaseMagicalResistanceValue(spawnedUnit:GetBaseMagicalResistanceValue() * (1.0+coef))
+                    spawnedUnit:SetBaseMagicalResistanceValue(math.ceil(spawnedUnit:GetBaseMagicalResistanceValue() + resist))
 
                     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
                     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
