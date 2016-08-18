@@ -9568,7 +9568,7 @@
                 // }
             }
 
-            "modifier_lod_creep_power_hp"
+            "modifier_lod_creep_power_armor"
             {
                 "Passive"                       "0"
                 "IsHidden"                      "1"
