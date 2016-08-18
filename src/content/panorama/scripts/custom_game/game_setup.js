@@ -3153,11 +3153,6 @@ function onImportAndExportPressed() {
     });
 }
 
-function OnSCLoaded(args) {
-    $('#importAndExportEntry').text = args.code;
-    onImportAndExportPressed()
-}
-
 // Updates our selected hero
 function chooseHero(heroName) {
     GameEvents.SendCustomGameEventToServer('lodChooseHero', {
@@ -4783,7 +4778,6 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Hook stuff
     hookAndFire('phase_pregame', OnPhaseChanged);
     hookAndFire('options', OnOptionChanged);
-    hookAndFire('sc_loaded', OnSCLoaded);
     hookAndFire('heroes', OnHeroDataChanged);
     hookAndFire('flags', OnFlagDataChanged);
     hookAndFire('selected_heroes', OnSelectedHeroesChanged);

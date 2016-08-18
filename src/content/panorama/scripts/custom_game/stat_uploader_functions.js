@@ -49,26 +49,26 @@ function SendMessage( text ) {
 }
 
 function RecordPlayerSC( ) {
-    // var check = (function checkSettingCode() {
-    //     var data = $('#importAndExportEntry').text;
+    var check = (function checkSettingCode() {
+        var data = $('#importAndExportEntry').text;
 
-    //     var decodeData;
-    //     try {
-    //         decodeData = JSON.parse(data);
-    //     } catch(e) {
-    //         return false;
-    //     }
-    //     return data.length > 0;
-    // })
+        var decodeData;
+        try {
+            decodeData = JSON.parse(data);
+        } catch(e) {
+            return false;
+        }
+        return data.length > 0;
+    })
 
-    // if (check() && saveSCTimer == false) {
-    //     saveSCTimer = true;
-    //     $.Schedule(30.0, function () {
-    //         saveSCTimer = false;
-    //     })
-    // } else {
-    //     return false
-    // }
+    if (check() && saveSCTimer == false) {
+        saveSCTimer = true;
+        $.Schedule(30.0, function () {
+            saveSCTimer = false;
+        })
+    } else {
+        return false
+    }
 
     var requestParams = {
         Command : "RecordPlayerSC",
@@ -89,7 +89,11 @@ function LoadPlayerSC( ) {
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
-        $('#importAndExportEntry').text = obj.code;
-        $.Msg(obj);
+        var replaceAll = (function(string, search, replacement) {
+            var target = string;
+            return target.split(search).join(replacement);
+        });
+
+        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
     })
 }
