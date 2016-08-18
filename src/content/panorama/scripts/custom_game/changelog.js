@@ -120,7 +120,7 @@ function setupCredits() {
 						    };
 
 					    	$.Msg(requestParams);
-						    SendRequest( requestParams, null );
+						    GameUI.CustomUIConfig().SendRequest( requestParams, null );
 
 							//GameEvents.SendCustomGameEventToServer( "su_mark_message_read", { message_id: msg.ID } );
 						});
@@ -177,7 +177,7 @@ function sendMessage() {
     // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageButtonTooltip"));
     Game.EmitSound( "compendium_levelup" );
 
-    SendRequest( requestParams, null );
+    GameUI.CustomUIConfig().SendRequest( requestParams, null );
 }
 
 function newMessages( newMessages ) {
