@@ -275,6 +275,8 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator4.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator5.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator6.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator7.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator8.png"></Image>
                 </Panel>
                 <Panel id="importAndExportRoot" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">

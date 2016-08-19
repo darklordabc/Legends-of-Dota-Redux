@@ -39,74 +39,78 @@ var allOptions = {
                 ],
                 mutators: [
                     {
-                        text: 'lodOptionDesBanningBanInvis'
+                        name: 'lodOptionBanningBanInvis',
+                        about: 'lodMutatorBanningBanInvis'
                     },
                     {
-                        text: 'lodFastStart'
+                        about: 'lodMutatorFastBuybackCooldown',
+                        values: {
+                            enabled: {
+                                'lodOptionBuybackCooldownTimeConstant': 105,
+                                'lodOptionGameSpeedRespawnTimePercentage': 25
+                            },
+                            disabled: {
+                                'lodOptionBuybackCooldownTimeConstant': 420,
+                                'lodOptionGameSpeedRespawnTimePercentage': 100
+                            }
+                        }
                     },
                     {
-                        text: 'lodOptionBalancedMirrorDraft'
+                        name: 'lodOptionGameSpeedUpgradedUlts',
+                        about: 'lodMutatorUpgradedUlts'
                     },
                     {
-                        text: 'lodOptionGameSpeedStrongTowers'
+                        about: 'lodMutatorFastStart',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStartingGold': 1000,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStartingGold': 0,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 1
+                            }
+                        }
                     },
                     {
-                        text: 'lodOptionBalancedAllPickFast'
+                        name: 'lodOptionGameSpeedStrongTowers',
+                        about: 'lodMutatorStrongTowers'
                     },
                     {
-                        text: 'lodOptionBalancedMirrorDraft'
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
                     },
                     {
-                        text: 'lodOptionBalancedAllRandom'
+                        name: 'lodOptionBanningHostBanning',
+                        about: 'lodMutatorUnlimitedBans'
+                    },
+                    {
+                        name: 'lodOptionBanningBalanceMode',
+                        about: 'lodMutatorBalanceMode'
+                    },
+                    {
+                        about: 'lodMutatorPlayerBans',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningMaxHeroBans': 1,
+                                'lodOptionBanningMaxBans': 3
+                            },
+                            disabled: {
+                                'lodOptionBanningMaxHeroBans': 2,
+                                'lodOptionBanningMaxBans': 5
+                            }
+                        }
                     }
                 ]
-            },
-            {
-                preset: true,
-                name: 'lodOptionBanning',
-                des: 'lodOptionsPresetBanning',
-                about: 'lodOptionAboutPresetBanning',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionManualBalancedBan',
-                        value: 3
-                    },
-                    {
-                        text: 'lodOptionManualBan',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionBalancedBan',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionNoBans',
-                        value: 4
-                    }
-                ]
-            },
-            {
-                preset: true,
-                name: 'lodOptionSlots',
-                des: 'lodOptionsPresetSlots',
-                about: 'lodOptionAboutPresetSlots',
-                sort: 'range',
-                min: 4,
-                max: 6,
-                step: 1,
-                default: 6
-            },
-            {
-                preset: true,
-                name: 'lodOptionUlts',
-                des: 'lodOptionsPresetUlts',
-                about: 'lodOptionAboutPresetUlts',
-                sort: 'range',
-                min: 0,
-                max: 6,
-                step: 1,
-                default: 2
             },
             {
                 preset: true,
@@ -3505,6 +3509,7 @@ function buildOptionsCategories() {
                     var values = info.values;
 
                     if(fieldData[i].name === "lodOptionGamemode") {
+                        var length = fieldData[i].values.length;
                         fieldData[i].values.forEach(function(item, i) {
                             var optionMode = $.CreatePanel('Panel', optionPanel, 'option_' + i);
                             optionMode.SetAttributeInt('fieldValue', item.value);
@@ -3536,7 +3541,7 @@ function buildOptionsCategories() {
                             optionModeImage.AddClass('optionImage');
                             optionModeImage.SetImage('file://{images}/custom_game/options/option' + i + '.png');
 
-                            if(i+1 === fieldData.length) {
+                            if(i === length - 1) {
                                 optionMode.AddClass('active');
                             }
                         });
@@ -3555,10 +3560,24 @@ function buildOptionsCategories() {
                             optionMutator.SetPanelEvent('onactivate', function(e) {
                                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
 
-                                if(optionMutator.BHasClass('active')) {
-                                    setOption(item.name, 1);
+                                if (item.values !== undefined) {
+                                    var state;
+                                    if(optionMutator.BHasClass('active')) {
+                                        state = 'disabled';
+                                    } else {
+                                        state = 'enabled';
+                                    }
+
+                                    for (var option in item.values[state]) {
+                                        var value = item.values[state][option];
+                                        setOption(option, value)
+                                    }
                                 } else {
-                                    setOption(item.name, 0);
+                                    if(optionMutator.BHasClass('active')) {
+                                        setOption(item.name, 0);
+                                    } else {
+                                        setOption(item.name, 1);
+                                    }
                                 }
 
                                 optionMutator.ToggleClass('active');
@@ -3566,7 +3585,7 @@ function buildOptionsCategories() {
 
                             var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
                             infoLabel.AddClass('mutatorLabel');
-                            infoLabel.text = $.Localize(item.text);
+                            infoLabel.text = $.Localize(item.about);
                         });
                     } else {
                         // Create the info
@@ -3755,7 +3774,6 @@ function buildOptionsCategories() {
                                     // Check if it is checked or not
                                     if(hostPanel.checked) {
                                         setOption(fieldName, 1);
-                                        $.Msg(fieldName);
                                         hostPanel.text = values[1].text;
                                         slavePanel.text = $.Localize(values[1].text);
                                     } else {

@@ -2190,7 +2190,7 @@
     border-radius: 5px;
     border: 5px solid #FFFFFF;
     width: 32%;
-    height: 150px;
+    height: 170px;
     margin: 4px;
     text-align: center;
 }
@@ -2202,7 +2202,7 @@
 }
 
 #optionList .optionDescription {
-    text-shadow: 0px 1px 5px 5.0 #00000040;
+    text-shadow: 0 1px 5px 5.0 #00000040;
     opacity: 0;
     transition: opacity .3s ease-in-out 0.0s;
     font-size: 20px;
@@ -2215,11 +2215,11 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 110px;
+    margin-top: 130px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
-    text-shadow: 0px 1px 5px 5.0 #00000040;
+    text-shadow: 0 1px 5px 5.0 #00000040;
     padding: 0 15px;
     transition: opacity .2s ease-in-out 0.0s;
 }
@@ -2242,12 +2242,16 @@
 }
 
 #optionList .mutator {
-    width: 13.5%;
-    height: 70px;
-    margin: 2px 2px 20px;
+    width: 16%;
+    height: 80px;
+    margin: 1px;
     background-color: #000000;
     border-radius: 5px;
     border: 3px solid #FFFFFF;
+}
+
+#optionList .mutator:hover {
+    opacity: .7;
 }
 
 #optionList #optionMutatorTitle {
@@ -2260,7 +2264,8 @@
 }
 
 #optionList .mutatorLabel {
-    padding: 40px 10px 0;
+    text-shadow: 0 0 4px 3.0 #000000;
+    padding: 54px 0 0 6px;
 }
 
 #importAndExportRoot {
