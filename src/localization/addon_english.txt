@@ -316,7 +316,7 @@
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability. Ticking this automatically sets Lane Creep Power to 'Normal'"
-	"lodOptionAboutCreepPower"           			"Increases lane creeps damage, armor, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
+	"lodOptionAboutCreepPower"           			"Increases lane creep's damage, armor, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
