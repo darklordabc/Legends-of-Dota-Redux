@@ -66,6 +66,7 @@
     "common_selection_lod"                          "Common Selection"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
+    "towers_creeps_lod"                             "Towers and Creeps"
     "advanced_selection_lod"                        "Advanced Selection"
     "buffs_lod"                                     "Buffs"
     "crazyness_lod"                                 "Other"
@@ -225,7 +226,7 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
-    "lodOptionDesGameSpeedUpgradedUlts"             "Start with Upgraded Ultimates"
+    "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
@@ -313,7 +314,7 @@
     "lodOptionAboutGameSpeedStartingGold"           "How much additional gold each player will start with. (25 - 100,000)"
     "lodOptionAboutGameSpeedRespawnTime"            "How the respawn timer will be modified.\n50%: The respawn time will be 50% of what it normally is.\n10%: The respawn time will be 10% of what it normally is.\n1 - 60: The respawn time will always be the number chosen."
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
-    "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities."
+    "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities. Gyrocopter, Keeper of the Light and Night Stalker will not benefit from this."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
@@ -551,10 +552,9 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_meepo"                         "Aghanim's Scepter<br> will give this hero a free clone."
-    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision."
-    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner."
-    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision."
+    "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give this hero unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
+    "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give this hero a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
+    "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give this hero unobstructed day<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
@@ -599,7 +599,6 @@
     "warning_invoker_tornado_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
     "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>, unless you also have it."
-    "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
 	"warning_shredder_chakram" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Second Chakram</font> as an extra ability.</font>"
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
@@ -617,6 +616,7 @@
 	"warning_mobility_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
+	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -682,7 +682,11 @@
     /////////////////
     // CUSTOM ABILITIES
     ////////////////
-
+	
+	//Scepter Buff Modifer
+	"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
+	"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
+	
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
     "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
@@ -1191,6 +1195,9 @@
     // Taskmaster Speed Aura
     "DOTA_Tooltip_modifier_kobold_taskmaster_speed_aura_bonus_Description"				"Movement speed increased by a percentage."
 
+	//Stone Form
+	"DOTA_Tooltip_ability_visage_summon_familiars_stone_form_Description"		"After a short delay, the Familiar turns into stone and smashes into the ground, stunning and damaging all targets in the area.  The Familiar becomes invulnerable, and will regain its damage charges and health very rapidly.  After 5 seconds, the Familiar will automatically leave Stone Form."
+	
 	// Granite Aura
     "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
 

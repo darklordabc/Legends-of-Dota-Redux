@@ -429,32 +429,6 @@ var allOptions = {
                 default: 0
             },
             {
-                name: 'lodOptionGameSpeedTowersPerLane',
-                des: 'lodOptionDesGameSpeedTowersPerLane',
-                about: 'lodOptionAboutGameSpeedTowersPerLane',
-                sort: 'range',
-                min: 3,
-                max: 10,
-                step: 1,
-                default: 3
-            },
-            {
-                name: 'lodOptionGameSpeedStrongTowers',
-                des: 'lodOptionDesGameSpeedStrongTowers',
-                about: 'lodOptionAboutGameSpeedStrongTowers',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
@@ -487,6 +461,38 @@ var allOptions = {
                     }
                 ]
             },*/
+        ]
+    },
+
+    towers_creeps: {
+        custom: true,
+        fields: [
+            {
+                name: 'lodOptionGameSpeedTowersPerLane',
+                des: 'lodOptionDesGameSpeedTowersPerLane',
+                about: 'lodOptionAboutGameSpeedTowersPerLane',
+                sort: 'range',
+                min: 3,
+                max: 10,
+                step: 1,
+                default: 3
+            },
+            {
+                name: 'lodOptionGameSpeedStrongTowers',
+                des: 'lodOptionDesGameSpeedStrongTowers',
+                about: 'lodOptionAboutGameSpeedStrongTowers',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     },
 
@@ -1058,7 +1064,7 @@ var optionValueList = {};
 var allowedCategories = {};
 
 // Should we show banned / disallowed skills?
-var showBannedSkills = true;
+var showBannedSkills = false;
 var showDisallowedSkills = false;
 var showTakenSkills = true;
 var showNonDraftSkills = false;
@@ -4990,7 +4996,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     $('#buttonHeroGrouping').checked = true;
 
     // Show banned abilities by default
-    $('#buttonShowBanned').checked = true;
+    $('#buttonShowBanned').checked = false;
 
     var columnSwitch = true;
     // Show all tier values by default

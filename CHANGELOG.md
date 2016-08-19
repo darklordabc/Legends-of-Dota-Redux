@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0
+
+### Bug Fixing
+- Fixed announcer sounds going to all players
+- Replaced number scheme in changelog
+- Fixed description on stone form to reflect its updated duration 
+- Added warning on aegis tower to tell players that the health bonus wont apply to them
+- New page in custom maps for towers and creeps settings
+- Renamed option to "Free Aghanim's Scepter" and changed the wording on the ingame buff modifier 
+- Removed unique mechanic warning for Meepo, no longer applies
+- Banned Abiliites are now hidden by default
+
+### Balance
+- Increased Price of Aegis and Self-Repair Tower Abilities
+- Custom abilities that rework original abilities are now counted as normal abilities. Custom abilities tabs are just the completely new ones.
+- Last Will is now a regular ability, has 4 levels, damage reworked
+- In Balance Mode, randomly given abilities will no longer be able to exceed your point limit
+- Gyro, Kotl and Night Stalker will not benefit from the "Free Scepter" upgrade anymore
+
 ## 2016-08-14
 
 ### Bug Fixing
