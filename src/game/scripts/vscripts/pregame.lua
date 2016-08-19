@@ -5026,14 +5026,14 @@ function Pregame:fixSpawningIssues()
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power",spawnedUnit,level)
 
                     local coef = ability:GetSpecialValueFor("coef") * level / 100
-                    local damage_coef  = ability:GetSpecialValueFor("damage_coef") * level / 100
+                    local damage_per_level  = ability:GetSpecialValueFor("damage_per_level") * level 
                     local resist = ability:GetSpecialValueFor("resist_per_level") * level
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_armor",{})
                     spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_armor",spawnedUnit,level)
 
                     ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
-                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(((spawnedUnit:GetBaseDamageMin() + spawnedUnit:GetBaseDamageMax())/2) * damage_coef * level))
+                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(damage_per_level ))
 
                     spawnedUnit:SetBaseMagicalResistanceValue(math.ceil(spawnedUnit:GetBaseMagicalResistanceValue() + resist))
 

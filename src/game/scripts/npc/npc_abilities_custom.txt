@@ -9549,12 +9549,12 @@
             "02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "damage_coef"                          "3"
+                "damage_per_level"                          "5"
             }
             "03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "armor_per_level"                          "0.2"
+                "armor_per_level"                          "0.8"
             }
             "04"
             {
