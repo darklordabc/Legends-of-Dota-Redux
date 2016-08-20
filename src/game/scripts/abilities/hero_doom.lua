@@ -12,11 +12,24 @@ end
 
 function CreepGold ( keys )
 	local caster = keys.caster
+	local target = keys.unit
+	local player = PlayerResource:GetPlayer( caster:GetPlayerID() )
 	local ability = keys.ability
 	local gold = ability:GetLevelSpecialValueFor("devour_gold", ability:GetLevel()) - 1
 
 	if caster:IsAlive() then
-	caster:ModifyGold(gold, false, 0)
+	    caster:ModifyGold(gold, false, 0)
+	
+	    local value = gold
+	    local symbol = 1 -- + Symbol
+	    local color = Vector(255, 200, 33) -- Gold
+	    local lifetime = 2.0
+	    local digits = string.len(value) + 1
+	    local particleName = "particles/msg_fx/msg_gold.vpcf"
+	    local particle = ParticleManager:CreateParticleForPlayer( particleName, PATTACH_ABSORIGIN, target, player )
+	    ParticleManager:SetParticleControl( particle, 1, Vector( symbol, value, 0) )
+	    ParticleManager:SetParticleControl( particle, 2, Vector( lifetime, digits, 0) )
+	    ParticleManager:SetParticleControl( particle, 3, color )
 	end 
 end
 
