@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Renamed option to "Free Aghanim's Scepter" and changed the wording on the ingame buff modifier 
 - Removed unique mechanic warning for Meepo, no longer applies
 - Banned Abiliites are now hidden by default
+- Added more announcer voices (map load and when battle is starting)
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities

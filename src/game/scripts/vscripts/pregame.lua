@@ -197,6 +197,7 @@ function Pregame:init()
 
     -- Setup default option related stuff
     network:setActiveOptionsTab('presets')
+
     self:setOption('lodOptionBanning', 1)
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
@@ -435,6 +436,23 @@ function Pregame:onThink()
         OPTION SELECTION PHASE
     ]]
     if ourPhase == constants.PHASE_OPTION_SELECTION then
+
+        --Run once
+        if not self.Announce_option_selection then
+            self.Announce_option_selection = true
+            for playerID = 0,23 do
+                local steamID = PlayerResource:GetSteamAccountID(playerID)
+                if steamID ~= 0 then
+                    local player = PlayerResource:GetPlayer(playerID)
+                    -- If it is a host
+                    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+                        EmitAnnouncerSoundForPlayer('announcer_ann_custom_mode_05', playerID)
+                    else
+                        EmitAnnouncerSoundForPlayer('announcer_announcer_intl2012_usher_03', playerID)
+                    end
+                end
+            end
+        end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
@@ -3394,6 +3412,15 @@ function Pregame:checkForReady()
     -- If we are in the review phase
     if self:getPhase() == constants.PHASE_REVIEW then
         maxTime = OptionManager:GetOption('reviewTime')
+
+        if not self.Announce_review then
+            self.Announce_review = true
+            EmitAnnouncerSound(util:RandomChoice({
+                'announcer_announcer_battle_prepare_01',
+                'announcer_announcer_welcome_08'
+                }))
+        end
+
 
         -- Caching must complete first!
         if not donePrecaching then return end
