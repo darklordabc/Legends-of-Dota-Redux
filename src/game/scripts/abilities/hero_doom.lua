@@ -12,7 +12,8 @@ end
 
 function CreepGold ( keys )
 	local caster = keys.caster
-	local player = PlayerResource:GetPlayer( caster:GetPlayerID() )
+	local pID = caster:GetPlayerID()
+	local player = PlayerResource:GetPlayer( pID )
 	local ability = keys.ability
 	local gold = ability:GetLevelSpecialValueFor("devour_gold", ability:GetLevel()) - 1
 
@@ -46,14 +47,14 @@ end
 function DevourCheck( keys )
 	local caster = keys.caster
 	local modifier = keys.modifier
-	local player = caster:GetPlayerOwner()
-	local pID = caster:GetPlayerOwnerID()
+	local pID = caster:GetPlayerID()
+	local player = PlayerResource:GetPlayer( pID )
 
 	if caster:HasModifier(modifier) then
 		caster:Interrupt()
 
 		-- Play Error Sound
 		EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
-		FireGameEvent('custom_error_show', {player_ID = keys.caster:GetPlayerID(), _error = "You can't eat with your mouth full"})
+		FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
 	end
 end
