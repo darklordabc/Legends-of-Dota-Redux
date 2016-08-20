@@ -19,6 +19,8 @@ function CreepGold ( keys )
 	if caster:IsAlive() then
 	    caster:ModifyGold(gold, false, 0)
 	    
+	    EmitSoundOnClient("General.Coins", player)
+	    
 	    local particleName = "particles/generic_gameplay/lasthit_coins.vpcf"		
 	    local particle = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster)
 	    ParticleManager:SetParticleControl( particle, 0, caster:GetAbsOrigin() )
