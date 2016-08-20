@@ -3416,7 +3416,6 @@ function Pregame:checkForReady()
         if not self.Announce_review then
             self.Announce_review = true
             EmitAnnouncerSound(util:RandomChoice({
-                'announcer_announcer_intl2012_usher_03',
                 'announcer_announcer_battle_prepare_01',
                 'announcer_announcer_welcome_08'
                 }))
