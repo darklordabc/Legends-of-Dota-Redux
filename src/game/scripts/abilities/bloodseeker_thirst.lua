@@ -119,13 +119,3 @@ function RemoveThirst(keys)
 		target.stacks = new_stacks
 	end
 end
-
---[[Author: YOLOSPAGHETTI
-	Date: February 13, 2016
-	Gives a 10 unit radius circle of vision around the target for the caster's team]]
-function GiveVision(keys)
-	caster = keys.caster
-	target = keys.target
-	
-	AddFOWViewer(caster:GetTeam(), target:GetAbsOrigin(), 10, 0.01, false)
-end

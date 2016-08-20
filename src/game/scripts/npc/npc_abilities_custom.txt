@@ -275,20 +275,14 @@
                 "EffectName" "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
                 "EffectAttachType" "follow_origin"
                     
-                "ThinkInterval" "0.03"
-                "OnIntervalThink"
-                    
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile" "scripts/vscripts/../abilities/bloodseeker_thirst.lua"
-                        "Function" "GiveVision"
-                    }
-                }
-                    
                 "States"
                 {
                     "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_DISABLED"
+                }
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
                 }
             }
         }
