@@ -1848,6 +1848,10 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
 
+            if self.optionStore['lodOptionCreepPower'] == 0 then 
+                self.optionStore['lodOptionCreepPower'] = 120
+            end
+
             return value == 0 or value == 1
         end,
 
@@ -1855,7 +1859,7 @@ function Pregame:initOptionSelector()
         lodOptionCreepPower = function(value)
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-            print("dicks")
+
             return value == 0 or value == 120 or value == 60 or value == 30
         end,
 
@@ -5018,7 +5022,7 @@ function Pregame:fixSpawningIssues()
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 -- Increasing creep power over time 
                 if this.optionStore['lodOptionCreepPower'] > 0 then
-                    local level = math.floor(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
+                    local level = math.ceil(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
 
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)

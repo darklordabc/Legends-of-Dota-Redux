@@ -24,7 +24,7 @@ function modifier_creep_power:OnIntervalThink()
 		parent:SetMinimumGoldBounty(parent:GetMinimumGoldBounty() + (parent:GetMinimumGoldBounty() * self.bounty_scaling))
 		parent:SetMaximumGoldBounty(parent:GetMaximumGoldBounty() + (parent:GetMaximumGoldBounty() * self.bounty_scaling))
 
-		parent:SetModelScale(parent:GetModelScale() + (parent:GetModelScale() * 0.02 * self.level))
+		parent:SetModelScale(parent:GetModelScale() + (parent:GetModelScale() * 0.02 * math.min(12, self.level)))
 
 		self:StartIntervalThink(-1)
 	end
