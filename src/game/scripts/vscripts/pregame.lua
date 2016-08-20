@@ -4704,7 +4704,7 @@ function Pregame:generateBotBuilds()
         ursa_fury_swipes = true,
         slark_essence_shift = true,
         skeleton_king_reincarnation = true,
-        bloodseeker_thirst = true,
+        bloodseeker_thirst_lod = true,
         slark_shadow_dance = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,

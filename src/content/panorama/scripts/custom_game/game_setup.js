@@ -798,7 +798,7 @@ var recommendedBuilds = [
             2: 'holdout_arcane_aura',
             3: 'ancient_apparition_ice_blast',
             4: 'silencer_glaives_of_wisdom',
-            5: 'bloodseeker_thirst',
+            5: 'bloodseeker_thirst_lod',
             6: 'zuus_thundergods_wrath',
         },
     },
