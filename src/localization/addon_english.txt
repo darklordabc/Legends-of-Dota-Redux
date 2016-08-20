@@ -85,14 +85,14 @@
 
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorBanningBanInvis"                     "No Invisible"
-    "lodMutatorFastBuybackCooldown"                 "Fast Buyback"
-    "lodMutatorUpgradedUlts"                        "Free Aghanim"
+    "lodMutatorFastBuybackCooldown"                 "Fast Respawn"
+    "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Double Towers"
-    "lodMutatorUnlimitedBans"                       "Unlimited Bans"
+    "lodMutatorUnlimitedBans"                       "Host Bans"
     "lodMutatorBalanceMode"                         "Balance Mode"
-    "lodMutatorPlayerBans"                          "Limited Bans"
+    "lodMutatorPlayerBans"                          "Player Bans"
 
     "lodOptionAboutBalancedAllPick"                 "Pick from every available skill."
     "lodOptionAboutBalancedAllPickFast"             "Fast Start and pick from every available skill."
