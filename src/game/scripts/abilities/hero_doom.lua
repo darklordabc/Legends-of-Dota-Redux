@@ -18,6 +18,11 @@ function CreepGold ( keys )
 
 	if caster:IsAlive() then
 	    caster:ModifyGold(gold, false, 0)
+	    
+	    local particleName = "particles/generic_gameplay/lasthit_coins.vpcf"		
+	    local particle = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster)
+	    ParticleManager:SetParticleControl( particle, 0, caster:GetAbsOrigin() )
+	    ParticleManager:SetParticleControl( particle, 1, caster:GetAbsOrigin() )
 	
 	    local value = gold
 	    local symbol = 1 -- + Symbol
