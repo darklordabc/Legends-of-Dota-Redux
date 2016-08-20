@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Last Will is now a regular ability, has 4 levels, damage reworked
 - In Balance Mode, randomly given abilities will no longer be able to exceed your point limit
 - Gyro, Kotl and Night Stalker will not benefit from the "Free Scepter" upgrade anymore
+- IMBA Thorns Tower Ability is now unbanned and free
 
 ## 2016-08-14
 
