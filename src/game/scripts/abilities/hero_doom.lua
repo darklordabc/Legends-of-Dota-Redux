@@ -2,8 +2,6 @@ function EatCreep ( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	-- "Not yet" sound
-	caster.notYet = 1
 
 	if IsValidEntity(target) then
 		local health = target:GetHealth()
@@ -56,13 +54,7 @@ function DevourCheck( keys )
 		caster:Interrupt()
 
 		-- Play Error Sound
-		EmitSoundOnClient("doom_bringer_doom_notyet_0"..caster.notYet, player)
-		if caster.notYet < 9 then
-		    caster.notYet = caster.notYet + 1
-	        else 
-		    caster.notYet = 1
-		end
-		-- FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
-		
+		EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
+		FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
 	end
 end
