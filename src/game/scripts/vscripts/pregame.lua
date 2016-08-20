@@ -5019,28 +5019,11 @@ function Pregame:fixSpawningIssues()
                 -- Increasing creep power over time 
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.floor(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
+
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
-                    
                     ability:UpgradeAbility(false)
-                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power",{})
-                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power",spawnedUnit,level)
 
-                    local coef = ability:GetSpecialValueFor("coef") * level / 100
-                    local damage_per_level  = ability:GetSpecialValueFor("damage_per_level") * level 
-                    local resist = ability:GetSpecialValueFor("resist_per_level") * level
-
-                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_armor",{})
-                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_armor",spawnedUnit,level)
-
-                    ability:ApplyDataDrivenModifier(spawnedUnit,spawnedUnit,"modifier_lod_creep_power_damage",{})
-                    spawnedUnit:SetModifierStackCount("modifier_lod_creep_power_damage",spawnedUnit,math.ceil(damage_per_level ))
-
-                    spawnedUnit:SetBaseMagicalResistanceValue(math.ceil(spawnedUnit:GetBaseMagicalResistanceValue() + resist))
-
-                    spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + (spawnedUnit:GetMinimumGoldBounty() * coef))
-                    spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + (spawnedUnit:GetMaximumGoldBounty() * coef))
-
-                    spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + (spawnedUnit:GetModelScale() * (coef / 100) * level))
+                    spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
                 end
             end
         end

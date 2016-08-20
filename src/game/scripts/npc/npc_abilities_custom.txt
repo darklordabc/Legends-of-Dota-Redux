@@ -9532,10 +9532,10 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                             "ability_datadriven"
-        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "lod_creep_power"
-        "MaxLevel"                              "1"
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "lod_creep_power"
+        "ScriptFile"                    "scripts/vscripts/../abilities/lod_creep_power.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9553,57 +9553,14 @@
             }
             "03"
             {
-                "var_type"                      "FIELD_FLOAT"
-                "armor_per_level"                          "0.8"
+                "var_type"                      "FIELD_INTEGER"
+                "health_per_level"                          "25"
             }
             "04"
             {
                 "var_type"                      "FIELD_FLOAT"
                 "resist_per_level"                          "0.7"
             }
-        }
-
-        "Modifiers"
-        {
-            "modifier_lod_creep_power"
-            {
-                "Passive"                       "1"
-                "IsHidden"                      "0"
-
-                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
-
-                // "Properties"
-                // {
-                //     "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS"        "1"
-                // }
-            }
-
-            "modifier_lod_creep_power_armor"
-            {
-                "Passive"                       "0"
-                "IsHidden"                      "1"
-                "IsPurgable"                    "0"
-
-                // "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
-
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%armor_per_level"
-                }
-            }
-
-            "modifier_lod_creep_power_damage"
-            {
-                "Passive"                       "1"
-                "IsHidden"                      "1"
-
-                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
-
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"        "1"
-                }
-            }    
         }
     }
 }
