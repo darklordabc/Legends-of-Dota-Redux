@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Gyro, Kotl and Night Stalker will not benefit from the "Free Scepter" upgrade anymore
 - IMBA Thorns Tower Ability is now unbanned and free
 - Removed chance of getting artic burn from random abilities because it becomes bugged with aghs
+- Added Doom's Devour
 
 ## 2016-08-14
 
