@@ -7,6 +7,8 @@ function AddThirst(keys)
 	local target = keys.unit
 	local caster = keys.caster
 	local ability = keys.ability
+	-- Prevent stacks from illusion
+	if target:IsIllusion() then return end
 	local sight_modifier = "modifier_thirst_debuff_datadriven"
 	local buff_modifier = "modifier_thirst_buff"
 	local buff_visual = "modifier_thirst_visual"
@@ -69,6 +71,8 @@ function RemoveThirst(keys)
 	local target = keys.unit -- Target
 	local caster = keys.caster -- Hero
 	local ability = keys.ability
+	-- Prevent stacks from illusion
+	if target:IsIllusion() then return end
 	local sight_modifier = "modifier_thirst_debuff_datadriven"
 	local buff_modifier = "modifier_thirst_buff"
 	local buff_visual = "modifier_thirst_visual"
