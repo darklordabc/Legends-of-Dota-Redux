@@ -17,16 +17,6 @@ function RandomGet(keys)
 		randomAb = caster:AddAbility(ability.randomAb)
 		if ability.randomAb then caster.ownedSkill[ability.randomAb] = true end
 	end
-	-- if not randomAb then
-	-- 	picker = math.random(#ability.randomSafeSelection)
-	-- 	local pickedSkill = ability.randomSafeSelection[picker]
-	-- 	while caster.ownedSkill[pickedSkill] or pickedSkill == nil do
-	-- 		picker = math.random(#ability.randomSafeSelection)
-	-- 		pickedSkill = ability.randomSafeSelection[picker]
-	-- 	end
-	-- 	randomAb = caster:AddAbility(pickedSkill)
-	-- 	caster.ownedSkill[pickedSkill] = true
-	-- end
 	if not randomAb then 
 		ShowGenericPopupToPlayer(caster:GetOwner(), "No slots available, try again later!","No slots available, try again later!", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
 	end
@@ -84,7 +74,6 @@ function RandomRemove(keys)
 			    -- subAb = caster:RemoveAbility(caster.subAb)
 			-- end
 		else
-			caster.randomPool = caster.randomPool + 1
 			ability.safeRemoveList[abName] = false
 		    local buffer = 3
             local timer = randomAb:GetAbilityLifeTime(buffer)
@@ -94,7 +83,6 @@ function RandomRemove(keys)
 					if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() then
 						caster:RemoveAbility(k)
 						caster.ownedSkill[k] = nil
-						caster.randomPool = caster.randomPool - 1
 						-- if ability.subList[k] then caster:RemoveAbility(ability.subList[k]) end
 					end
 				end
@@ -135,7 +123,6 @@ function RandomInit(keys)
 	local ability = keys.ability
 	if ability.randomSelection then return end -- Prevent this from triggering on death
 	caster.randomAbilityCount = caster.randomAbilityCount and caster.randomAbilityCount + 1 or 0
-	caster.randomPool = caster.randomPool and caster.randomPool + 1 or 0
 	ability.abCount = 1
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
