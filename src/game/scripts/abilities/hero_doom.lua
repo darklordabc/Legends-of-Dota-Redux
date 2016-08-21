@@ -55,6 +55,6 @@ function DevourCheck( keys )
 
 		-- Play Error Sound
 		EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
-		FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
+		--FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
 	end
 end
