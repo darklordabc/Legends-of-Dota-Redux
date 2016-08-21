@@ -610,6 +610,7 @@
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
+	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -1422,6 +1423,17 @@
     "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random active disabling ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_mobility_random_lod" "Mobility Random" 
     "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random active mobility ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
+    
+    // Doom Devour
+	"DOTA_Tooltip_modifier_creep_eaten"                                               "Devour"
+	"DOTA_Tooltip_modifier_creep_eaten_Description"                                   "Still digesting that delicious creep."
+
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod"                                            "Devour"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Description"                                "Consumes an enemy or neutral creep, acquiring any special abilities that it possessed"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_devour_gold"                                "BONUS GOLD:"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Lore"										  "Lucifer's appetite and greed are never sated"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note0"									  "Gives Doom the original bounty of the creep, along with the bonus gold."
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note1"									  "The amount of time it takes to Devour depends on the current HP of the unit."
     
     // Fireball
     "DOTA_Tooltip_ability_black_dragon_fireball_lod"                             "Fireball"

@@ -588,4 +588,11 @@
     {
         "hostID"       "byte"  // The ID of the player who is the host
     }
+    
+    //Allows the display of custom error messages to players
+    "custom_error_show"
+    {
+      "player_ID"		"short"
+      "_error"		"string"
+    }
 }
