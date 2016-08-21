@@ -6692,7 +6692,7 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/true_random_lod/true_random_lod_swap.vpcf"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
                 }
             }
@@ -6753,7 +6753,7 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/stun_random_lod/stun_random_lod_swap.vpcf"
+                        "particle"              "particles/stun_random_lod/stun_random_lod_swap.vpcf"
                     }
                 }
             }
@@ -6814,7 +6814,7 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
+                        "particle"              "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
                     }
                 }
             }
@@ -6876,7 +6876,7 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
+                        "particle"              "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
                     }
                 }
             }

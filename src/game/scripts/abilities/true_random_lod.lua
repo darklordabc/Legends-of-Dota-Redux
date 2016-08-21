@@ -1,7 +1,6 @@
 local Timers = require('easytimers')
 local util = require('util')
 local skillManager = require('skillmanager')
-local pregame = require('pregame')
 
 function RandomGet(keys)
 	local caster = keys.caster
@@ -10,15 +9,24 @@ function RandomGet(keys)
 	local randomAb = caster:FindAbilityByName(ability.randomAb)
 	if not randomAb then
 		randomAb = caster:AddAbility(ability.randomAb)
-		-- if caster.subAb then
-		    -- subAb = caster:AddAbility(caster.subAb)
-		-- end
+		if ability.randomAb then caster.ownedSkill[ability.randomAb] = true end
 	end
 	if not randomAb then
 		local picker = ability.abCount
 		ability.randomAb = ability.randomSelection[picker]
 		randomAb = caster:AddAbility(ability.randomAb)
+		if ability.randomAb then caster.ownedSkill[ability.randomAb] = true end
 	end
+	-- if not randomAb then
+	-- 	picker = math.random(#ability.randomSafeSelection)
+	-- 	local pickedSkill = ability.randomSafeSelection[picker]
+	-- 	while caster.ownedSkill[pickedSkill] or pickedSkill == nil do
+	-- 		picker = math.random(#ability.randomSafeSelection)
+	-- 		pickedSkill = ability.randomSafeSelection[picker]
+	-- 	end
+	-- 	randomAb = caster:AddAbility(pickedSkill)
+	-- 	caster.ownedSkill[pickedSkill] = true
+	-- end
 	if not randomAb then 
 		ShowGenericPopupToPlayer(caster:GetOwner(), "No slots available, try again later!","No slots available, try again later!", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
 	end
@@ -69,11 +77,14 @@ function RandomRemove(keys)
 		local abName = ability.randomAb
 		if ability.randomKv[ability.type.."Safe"][abName] then
 			caster:RemoveAbility(abName)
+			caster.ownedSkill[abName] = nil
+
 			-- if ability.subList[abName] then caster.subAb = ability.subList[abName] end
 			-- if caster.subAb then
 			    -- subAb = caster:RemoveAbility(caster.subAb)
 			-- end
 		else
+			caster.randomPool = caster.randomPool + 1
 			ability.safeRemoveList[abName] = false
 		    local buffer = 3
             local timer = randomAb:GetAbilityLifeTime(buffer)
@@ -82,6 +93,8 @@ function RandomRemove(keys)
 				for k,v in pairs(ability.safeRemoveList) do
 					if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() then
 						caster:RemoveAbility(k)
+						caster.ownedSkill[k] = nil
+						caster.randomPool = caster.randomPool - 1
 						-- if ability.subList[k] then caster:RemoveAbility(ability.subList[k]) end
 					end
 				end
@@ -92,43 +105,37 @@ function RandomRemove(keys)
 	-------- STANDARD CHECK ---------
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
-	if 15 < caster:GetAbilityCount()  then
+	if 15 - caster.randomAbilityCount < caster:GetAbilityCount()  then
 		picker = math.random(#ability.randomSafeSelection)
-		local pickedSkill = ability.randomSafeSelection [picker]
-		if not caster.ownedSkill[pickedSkill] then
-			ability.randomAb = pickedSkill
-		else
-			while caster.ownedSkill[pickedSkill] do
-				picker = math.random(#ability.randomSafeSelection)
-				pickedSkill = ability.randomSafeSelection [picker]
-			end
-			ability.randomAb = pickedSkill
+		local pickedSkill = ability.randomSafeSelection[picker]
+		while caster.ownedSkill[pickedSkill] do
+			picker = math.random(#ability.randomSafeSelection)
+			pickedSkill = ability.randomSafeSelection[picker]
 		end
+		ability.randomAb = pickedSkill
 	end
 	----------- CHECK FOR DOUBLES ----------
 	while caster:FindAbilityByName(ability.randomAb) do
 		ability.abCount = ability.abCount + 1 -- skip entries while they're owned
 		local picker = ability.abCount
 		ability.randomAb = ability.randomSelection[picker]
-		if 15 < caster:GetAbilityCount()  then
+		if 15 - caster.randomAbilityCount < caster:GetAbilityCount()  then
 			picker = math.random(#ability.randomSafeSelection)
-			local pickedSkill = ability.randomSafeSelection [picker]
+			local pickedSkill = ability.randomSafeSelection[picker]
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
 			end
 		end
 	end
-
-	-- caster.subAb = ability.subList[ability.randomAb]
 end
 
 function RandomInit(keys)
 	local caster = keys.caster
 	if caster:IsIllusion() then return end
 	local ability = keys.ability
-	if not caster.randomAbilityCount then caster.randomAbilityCount = 0 end
-	caster.randomAbilityCount = caster.randomAbilityCount + 1
 	if ability.randomSelection then return end -- Prevent this from triggering on death
+	caster.randomAbilityCount = caster.randomAbilityCount and caster.randomAbilityCount + 1 or 0
+	caster.randomPool = caster.randomPool and caster.randomPool + 1 or 0
 	ability.abCount = 1
 	ability.type = keys.value
 	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
@@ -188,7 +195,6 @@ function RandomInit(keys)
 	end
 	local picker = ability.abCount
 	ability.randomAb = ability.randomSelection[picker]
-	-- if ability.subList[ability.randomAb] then caster.subAb = ability.subList[ability.randomAb] end
 end
 
 function Particles(keys)
