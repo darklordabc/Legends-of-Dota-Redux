@@ -26,6 +26,12 @@ function modifier_creep_power:OnIntervalThink()
 
 		parent:SetModelScale(parent:GetModelScale() + (parent:GetModelScale() * 0.02 * math.min(12, self.level)))
 
+		parent:AddAbility("lod_creep_power_hp")
+		
+		for i=1,math.ceil(self.level/3) do
+			parent:FindAbilityByName("lod_creep_power_hp"):UpgradeAbility(false)
+		end
+
 		self:StartIntervalThink(-1)
 	end
 end
@@ -39,7 +45,7 @@ function modifier_creep_power:OnCreated()
 end
  
 function modifier_creep_power:GetModifierExtraHealthBonus(params)
-	return self.hp_scaling
+	return 0 --self.hp_scaling
 end
 
 function modifier_creep_power:GetModifierPreAttack_BonusDamage(params)

@@ -1164,7 +1164,10 @@
     "DOTA_Tooltip_ability_lod_creep_power_coef" "%BOUNTY INCREASE:"
     "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
     "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
-    "DOTA_Tooltip_ability_lod_creep_power_health_per_level" "HEALTH INCREASE:"
+
+    "DOTA_Tooltip_ability_lod_creep_power_hp" "Creep Power HP"
+    "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
 
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
