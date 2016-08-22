@@ -1412,16 +1412,18 @@
     
     
     // Random abilities
-    "DOTA_Tooltip_ability_true_random_lod" "True Random" 
-    "DOTA_Tooltip_ability_true_random_lod_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
-    "DOTA_Tooltip_ability_ultimate_random_lod" "Ultimate Random" 
-    "DOTA_Tooltip_ability_ultimate_random_lod_Description"  "You will gain a random active ultimate ability every time you cast the randomly given ability. All random abilities have the same cooldown."
-    "DOTA_Tooltip_ability_support_random_lod" "Support Random" 
-    "DOTA_Tooltip_ability_support_random_lod_Description"  "You will gain a random active support ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
-    "DOTA_Tooltip_ability_stun_random_lod" "Stun Random" 
-    "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random active disabling ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
-    "DOTA_Tooltip_ability_mobility_random_lod" "Mobility Random" 
-    "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random active mobility ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_1" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_1_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_2" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_2_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_3" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_3_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_4" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_4_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_5" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_5_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    "DOTA_Tooltip_ability_true_random_lod_6" "True Random" 
+    "DOTA_Tooltip_ability_true_random_lod_6_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
     
     // Fireball
     "DOTA_Tooltip_ability_black_dragon_fireball_lod"                             "Fireball"

@@ -452,7 +452,6 @@ function CDOTABaseAbility:GetAbilityLifeTime(buffer)
 	--------------------------------------------------------------------------
     duration = duration + delay
     if buffer then duration = duration + buffer end
-	print(duration, self:GetName())
     return duration
 end
 
@@ -487,6 +486,23 @@ function CDOTA_BaseNPC:GetAbilityCount()
     return count
 end
 
+
+function CDOTA_BaseNPC:GetUnsafeAbilitiesCount()
+    local count = 0
+    local randomKv = self.randomKv
+    for i=0,16 do
+        if self:GetAbilityByIndex(i) then
+            local ability = self:GetAbilityByIndex(i)
+            local name = ability:GetName()
+            if not randomKv["Safe"][name] and name ~= "attribute_bonus" and not self.ownedSkill[name] then
+                count = count + 1
+            end
+        end
+    end
+    return count
+end
+
+
 function CDOTABaseAbility:GetTrueCooldown()
 	local cooldown = self:GetCooldown(-1)
 	local hero = self:GetCaster()
@@ -510,6 +526,12 @@ function ShuffleArray(input)
         j = rand(i)
         input[i], input[j] = input[j], input[i]
     end
+end
+
+function Util:MoveArray(input, index)
+    index = index or 1
+    local temp = table.remove(input, index)
+    table.insert(input, temp)
 end
 
 function Util:RandomChoice(input)
