@@ -66,7 +66,7 @@ function RecordPlayerSC( ) {
         $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
         $.Schedule(30.0, function () {
             saveSCTimer = false;
-            $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
+            $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", false);
         })
     } else {
         return false
