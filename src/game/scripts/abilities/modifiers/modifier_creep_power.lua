@@ -28,7 +28,7 @@ function modifier_creep_power:OnIntervalThink()
 
 		parent:AddAbility("lod_creep_power_hp")
 		
-		for i=1,math.ceil(self.level/3) do
+		for i=1,math.floor(self.level/3) do
 			parent:FindAbilityByName("lod_creep_power_hp"):UpgradeAbility(false)
 		end
 
