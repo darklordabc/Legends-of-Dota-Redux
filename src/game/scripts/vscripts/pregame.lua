@@ -5026,7 +5026,7 @@ function Pregame:fixSpawningIssues()
 
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)
-                    print(spawnedUnit:IsIdle())
+
                     spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
                 end
             end
