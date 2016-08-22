@@ -81,6 +81,6 @@ function RecordPlayerSC( ) {
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportSaveButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success_save"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success_save"));
     })
 }
