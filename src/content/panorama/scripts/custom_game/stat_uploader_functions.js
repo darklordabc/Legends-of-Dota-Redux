@@ -63,8 +63,10 @@ function RecordPlayerSC( ) {
 
     if (check() && saveSCTimer == false) {
         saveSCTimer = true;
+        $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
         $.Schedule(30.0, function () {
             saveSCTimer = false;
+            $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
         })
     } else {
         return false
@@ -79,5 +81,6 @@ function RecordPlayerSC( ) {
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportSaveButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success_save"));
     })
 }

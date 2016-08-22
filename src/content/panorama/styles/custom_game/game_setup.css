@@ -1743,6 +1743,12 @@
     wash-color: #FFFFFFFF;
 }
 
+.disableButtonHalf {
+    opacity: 0.5;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
 .disableButton {
     opacity: 0.0;
     transition-property: opacity;
