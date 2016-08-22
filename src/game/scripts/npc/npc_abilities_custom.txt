@@ -9564,8 +9564,10 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "granite_golem_hp_aura"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "20"
         "AbilityCastRange"              "1"
+		"AbilityTextureName"            "creep_health_buff"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9574,7 +9576,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_hp"          "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 19 10 20"
+                "bonus_hp"          "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
             }
             "02"
             {

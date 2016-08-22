@@ -1165,7 +1165,7 @@
     "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
     "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
 
-    "DOTA_Tooltip_ability_lod_creep_power_hp" "Creep Power HP"
+    "DOTA_Tooltip_ability_lod_creep_power_hp" "Granite Creep"
     "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
     "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
 
