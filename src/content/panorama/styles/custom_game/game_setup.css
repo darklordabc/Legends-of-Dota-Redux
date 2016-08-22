@@ -2188,17 +2188,18 @@
 #optionList .option {
     background-color: #000000;
     border-radius: 5px;
-    border: 5px solid #FFFFFF;
+    border: 5px solid #626262;
     width: 32%;
     height: 170px;
     margin: 4px;
     text-align: center;
+    opacity: .5;
 }
 
 #optionList .option.active,
 #optionList .mutator.active {
-    opacity: .3;
-    border-color: #626262;
+    opacity: 1;
+    border-color: #FFFFFF;
 }
 
 #optionList .optionDescription {
@@ -2245,9 +2246,9 @@
     width: 16%;
     height: 80px;
     margin: 1px;
-    background-color: #000000;
     border-radius: 5px;
-    border: 3px solid #FFFFFF;
+    border: 3px solid #626262;
+    opacity: .5;
 }
 
 #optionList .mutator:hover {

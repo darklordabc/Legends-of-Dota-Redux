@@ -111,17 +111,6 @@ var allOptions = {
                         }
                     }
                 ]
-            },
-            {
-                preset: true,
-                name: 'lodOptionMirrorHeroes',
-                des: 'lodOptionsPresetMirrorHeroes',
-                about: 'lodOptionAboutPresetMirrorHeroes',
-                sort: 'range',
-                min: 1,
-                max: 50,
-                step: 1,
-                default: 20
             }
         ]
     },
@@ -3446,6 +3435,7 @@ function buildOptionsCategories() {
     // Grab the main container for option categories
     var catContainer = $('#optionCategories');
     var optionContainer = $('#optionList');
+    var mutatorList = {};
 
     // Reset option links
     allOptionLinks = {};
@@ -3508,7 +3498,7 @@ function buildOptionsCategories() {
                     var sort = info.sort;
                     var values = info.values;
 
-                    if(fieldData[i].name === "lodOptionGamemode") {
+                    if(fieldData[i].name === 'lodOptionGamemode') {
                         var length = fieldData[i].values.length;
                         fieldData[i].values.forEach(function(item, i) {
                             var optionMode = $.CreatePanel('Panel', optionPanel, 'option_' + i);
@@ -3550,7 +3540,7 @@ function buildOptionsCategories() {
                         infoLabel.text = $.Localize('lodOptionPresetMutators');
 
                         fieldData[i].mutators.forEach(function(item, i) {
-                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + i);
+                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + item.name);
                             optionMutator.AddClass('mutator');
 
                             var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i); 
@@ -3586,6 +3576,10 @@ function buildOptionsCategories() {
                             var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
                             infoLabel.AddClass('mutatorLabel');
                             infoLabel.text = $.Localize(item.about);
+
+                            if(item.name) {
+                                mutatorList[item.name] = optionMutator;
+                            }
                         });
                     } else {
                         // Create the info
@@ -3796,6 +3790,14 @@ function buildOptionsCategories() {
                                     } else {
                                         hostPanel.text = $.Localize(values[0].text);
                                         slavePanel.text = $.Localize(values[0].text);
+                                    }
+
+                                    if(mutatorList[fieldName]) {
+                                        if (hostPanel.checked) {
+                                            mutatorList[fieldName].AddClass('active');
+                                        } else {
+                                            mutatorList[fieldName].RemoveClass('active');
+                                        }
                                     }
                                 }
 
@@ -4365,14 +4367,6 @@ function OnOptionChanged(table_name, key, data) {
         allowCustomSettings = data.v == -1;
         $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
         $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);
-    }
-
-    if(key == 'lodOptionCommonGamemode') {
-        // Mirror draft options
-        var showMirrorDraftOptions = data.v == 3 || data.v == 5;
-
-        $('#option_panel_main_lodOptionMirrorHeroes').SetHasClass('showThis', showMirrorDraftOptions);
-        $('#option_panel_main_lodOptionCommonMirrorHeroes').visible = showMirrorDraftOptions;
     }
 
     // Check for allowed categories changing

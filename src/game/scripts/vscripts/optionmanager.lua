@@ -22,7 +22,7 @@ end
 ]]
 
 -- Max time for picking options
-OptionManager:SetOption('maxOptionSelectionTime', 60 * 3)
+OptionManager:SetOption('maxOptionSelectionTime', 600 * 3)
 
 -- Max time for voting for options
 OptionManager:SetOption('maxOptionVotingTime', 25)

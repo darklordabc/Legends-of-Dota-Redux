@@ -80,7 +80,7 @@
     "lodOptionBalancedAllPickFast"                  "Fast All Pick"
     "lodOptionBalancedSingleDraft"                  "Balanced Single Draft"
     "lodOptionBalancedMirrorDraft"                  "Balanced Mirror Draft"
-    "lodOptionBalancedAllRandom"                    "Balanced All Random"
+    "lodOptionBalancedAllRandom"                    "All Random"
     "lodOptionBalancedCustom"                       "Custom Settings"
 
     "lodOptionPresetMutators"                       "Optional Mutators"
