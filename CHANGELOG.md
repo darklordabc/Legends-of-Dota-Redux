@@ -25,6 +25,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - IMBA Thorns Tower Ability is now unbanned and free
 - Removed chance of getting artic burn from random abilities because it becomes bugged with aghs
 - Added Doom's Devour
+- Fixed flashing bug with Thirst
 
 ## 2016-08-14
 
