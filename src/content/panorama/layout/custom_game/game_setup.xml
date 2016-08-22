@@ -237,9 +237,12 @@
             <Panel id="optionSelection">
                 <Panel id="optionCategories" />
                 <Panel id="optionList" />
-                <Panel id="importAndExportRoot" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
+                <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">
                         <Label text="#importAndExport_code"/>
+                        <Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
                         <TextEntry id="importAndExportEntry"/>
