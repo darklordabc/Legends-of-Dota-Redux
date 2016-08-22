@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - In Balance Mode, randomly given abilities will no longer be able to exceed your point limit
 - Gyro, Kotl and Night Stalker will not benefit from the "Free Scepter" upgrade anymore
 - IMBA Thorns Tower Ability is now unbanned and free
+- Fixed flashing bug with Thirst
 
 ## 2016-08-14
 
