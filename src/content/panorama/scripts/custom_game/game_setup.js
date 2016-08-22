@@ -1065,6 +1065,9 @@ var waitingForPrecache = true;
 // Are we a premium player?
 var isPremiumPlayer = false;
 
+// Save code timer
+var saveSCTimer = false;
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -3162,7 +3165,7 @@ function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
 
     if(data.length == 0) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
         setOption()
         return;
     }
@@ -3171,7 +3174,7 @@ function onImportAndExportPressed() {
     try {
         decodeData = JSON.parse(data);
     } catch(e) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
         setOption()
         return;
     }
@@ -3192,13 +3195,30 @@ function onImportAndExportPressed() {
     }
 
     if (!changed) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
     } else {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
     $.Schedule(0.1, function () {
         $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     });
+}
+
+function LoadPlayerSC( ) {
+    var requestParams = {
+        Command : "LoadPlayerSC",
+        SteamID: GetSteamID32()
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
+        var replaceAll = (function(string, search, replacement) {
+            var target = string;
+            return target.split(search).join(replacement);
+        });
+
+        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
+        onImportAndExportPressed()
+    })
 }
 
 // Updates our selected hero

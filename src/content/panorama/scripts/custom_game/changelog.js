@@ -1,40 +1,5 @@
 "use strict";
 
-function SendRequest( requestParams, successCallback )
-{
-    requestParams.AuthKey = "3mzyNGkbMUvWugUyNMV9";
-
-    $.AsyncWebRequest('http://ec2-52-59-238-84.eu-central-1.compute.amazonaws.com/commander.php',
-        {
-            type: 'POST',
-            data: { 
-            	CommandParams: JSON.stringify(requestParams) 
-            },
-            success: function (data) {
-                $.Msg('GDS Reply: ', data)
-            }
-        });
-}
-
-function GetSteamID32() {
-    var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-
-    var steamID64 = playerInfo.player_steamid,
-        steamIDPart = Number(steamID64.substring(3)),
-        steamID32 = String(steamIDPart - 61197960265728);
-
-    return steamID32;
-}
-
-function GetDate() {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-
-	return yyyy * 10000 + mm * 100 + dd;
-}
-
 var messages = [];
 
 function toggleChangelog(arg){
@@ -114,13 +79,7 @@ function setupCredits() {
 							var playerID = Players.GetLocalPlayer();
 							var info =  Game.GetPlayerInfo(Players.GetLocalPlayer());
 
-						    var requestParams = {
-						        Command: "MarkMessageRead",
-								MessageID: msg.ID
-						    };
-
-					    	$.Msg(requestParams);
-						    SendRequest( requestParams, null );
+						    MarkMessageAsRead( msg.ID )
 
 							//GameEvents.SendCustomGameEventToServer( "su_mark_message_read", { message_id: msg.ID } );
 						});
@@ -155,16 +114,6 @@ function sendMessage() {
 	var playerID = Players.GetLocalPlayer();
 	var info =  Game.GetPlayerInfo(Players.GetLocalPlayer());
 
-    var requestParams = {
-        Command: "SendPlayerMessage",
-        Data: {
-	      SteamID: GetSteamID32(),
-	      Nickname: info.player_name,
-	      Message: $( "#submitInput" ).text,
-	      TimeStamp: GetDate() 
-	  	}
-    };
-
     $.Schedule(6.0, function () {
 		$("#submitButton").text = $.Localize("lodMessageSubmit");
 		$("#submitButton").RemoveClass("Sent");
@@ -177,7 +126,7 @@ function sendMessage() {
     // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $("#submitButton"), "SendTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("lodMessageButtonTooltip"));
     Game.EmitSound( "compendium_levelup" );
 
-    SendRequest( requestParams, null );
+    SendMessage( text )
 }
 
 function newMessages( newMessages ) {
@@ -187,15 +136,10 @@ function newMessages( newMessages ) {
 	setupCredits();
 }
 
-function FromServerMsg( args ) {
-	$.Msg(args.str)
-}
-
 (function() {
 	$("#descriptionDisplay").visible = true;
 	$("#showDescriptionButton").checked = true;
 	$("#changelogNotification").visible = false;
 
 	GameEvents.Subscribe( "su_new_messages", newMessages );
-	GameEvents.Subscribe( "su_server_msg", FromServerMsg );
 })();
