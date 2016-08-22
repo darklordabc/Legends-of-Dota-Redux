@@ -81,19 +81,3 @@ function RecordPlayerSC( ) {
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
     })
 }
-
-function LoadPlayerSC( ) {
-    var requestParams = {
-        Command : "LoadPlayerSC",
-        SteamID: GetSteamID32()
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
-        var replaceAll = (function(string, search, replacement) {
-            var target = string;
-            return target.split(search).join(replacement);
-        });
-
-        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
-    })
-}
