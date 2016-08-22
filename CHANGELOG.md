@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed unique mechanic warning for Meepo, no longer applies
 - Banned Abiliites are now hidden by default
 - Added more announcer voices (map load and when battle is starting)
+- Added function to save/load game settings to/from the online Cloud 
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
