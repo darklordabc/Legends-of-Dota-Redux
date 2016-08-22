@@ -757,6 +757,7 @@
     "DOTA_Tooltip_modifier_thirst_visual"                                               "Thirst Speed"
     "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "You sense an injured enemy. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
     "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
+	"DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "You are visible to the enemy! Gain health to remove debuff"
 
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
