@@ -26,6 +26,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed chance of getting artic burn from random abilities because it becomes bugged with aghs
 - Added Doom's Devour
 - Fixed flashing bug with Thirst
+- Added Beast Master's Hawk
 
 ## 2016-08-14
 
