@@ -63,6 +63,9 @@ function onGetPlayerStats(table_name, key, data) {
         img: 'file://{images}/custom_game/hints/hint_balancemode.png',
         txt: '#hintBalanceMode'
     },{
+        img: 'file://{images}/custom_game/hints/hint_saveload.png',
+        txt: '#hintSaveLoad'
+    },{
         img: 'file://{images}/custom_game/hints/hint_scoreboard.png',
         txt: '#hintScoreboard'
     },{
@@ -104,6 +107,9 @@ function onGetPlayerStats(table_name, key, data) {
     }, {
         img: 'file://{images}/spellicons/weaver_the_swarm.png',
         txt: '#hintReport'
+    }, {
+        img: 'file://{images}/spellicons/axe_counter_helix.png',
+        txt: '#hintJungle'
     }];
 
     // How long to wait before we show the next tip
