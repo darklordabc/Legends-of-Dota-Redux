@@ -29,6 +29,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added Doom's Devour
 - Fixed flashing bug with Thirst
 - Added Beast Master's Hawk
+- Enabled Pitlord Hero and Pitlord Abilities now have graphics
 
 ## 2016-08-14
 
