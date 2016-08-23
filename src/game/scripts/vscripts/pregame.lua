@@ -1666,9 +1666,16 @@ function Pregame:initOptionSelector()
                 -- Enable balance mode bans and disable other lists
                 self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
-                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
 				self:setOption('lodOptionBanningMaxBans', 0, true)
-				self:setOption('lodOptionBanningMaxHeroBans', 0, true) 
+				self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+                self:setOption('lodOptionBalanceMode', 1, true)
+
+                return true
+            elseif value == 2 then
+                self:setOption('lodOptionBanningBalanceMode', 0, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+                self:setOption('lodOptionBalanceMode', 0, true)
 
                 return true
             elseif value == 0 then
@@ -2047,21 +2054,14 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Balance Mode disabled by default
-                self:setOption('lodOptionBalanceMode', 0, true)
-                
-                -- Balance Mode Ban List disabled by default
-                self:setOption('lodOptionBanningBalanceMode', 0, true)
+                self:setOption('lodOptionBanningBalanceMode', 0, false)
                 self:setOption('lodOptionBalanceMode', 0, false)
 
                 -- Set banning
                 self:setOption('lodOptionBanning', 1)
 
-                -- Block troll combos is always on
-                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-
-                -- Default, we don't ban all invisiblity
-                self:setOption('lodOptionBanningBanInvis', 0, true)
+                self:setOption('lodOptionBanningBlockTrollCombos', self.optionStore['lodOptionBanningBlockTrollCombos'], true)
+                self:setOption('lodOptionBanningBanInvis', self.optionStore['lodOptionBanningBanInvis'], true)
 
                 -- Starting level is lvl 1
                 self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
@@ -2113,7 +2113,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionAdvancedCustomSkills', 1, true)
 
                 -- Disable OP abilities
-                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+                self:setOption('lodOptionAdvancedOPAbilities', self.optionStore['lodOptionAdvancedOPAbilities'], true)
 
                 -- Hide enemy picks
                 self:setOption('lodOptionAdvancedHidePicks', 1, true)
@@ -2142,26 +2142,21 @@ function Pregame:initOptionSelector()
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
 
-                -- Fast All Pick Mode
+                -- Traditional All Pick Mode
                 if optionValue == 2 then
                     -- Set gamemode to all pick
                     self:setOption('lodOptionCommonGamemode', 1, true)
-
-                    -- Set respawn to 10%
-                    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 10, true)
-                    self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
-
-                    -- Starting level is lvl 6
-                    self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
 
                     -- Turn easy mode on
                     --self:setOption('lodOptionCrazyEasymode', 1, true)
+                end
 
-                    -- Start with 2500 bonus gold
-                    self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
-                    self:setOption('lodOptionGameSpeedGoldTickRate', 5, true)
-                    self:setOption('lodOptionGameSpeedGoldModifier', 250, true)
-                    self:setOption('lodOptionGameSpeedEXPModifier', 250, true)
+                if optionValue == 5 then
+                    self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                 end
             end
         end,
@@ -2175,11 +2170,15 @@ function Pregame:initOptionSelector()
                 -- Balanced Bans
                 self:setOption('lodOptionBanningMaxBans', 0, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                self:setOption('lodOptionBanningUseBanList', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionBanningBalanceMode', 1, true)
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+                self:setOption('lodOptionBalanceMode', 1, true)
             elseif self.optionStore['lodOptionBanning'] == 2 then
                 -- Fast Banning Phase
-                self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
-                self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
+                self:setOption('lodOptionBanningMaxBans', 0, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
             elseif self.optionStore['lodOptionBanning'] == 3 then
                 -- Full Banning Phase

@@ -2253,12 +2253,16 @@
     height: 80px;
     margin: 1px;
     border-radius: 5px;
-    border: 3px solid #626262;
+    border: 2px solid #626262;
     opacity: .5;
 }
 
 #optionList .mutator:hover {
     opacity: .7;
+}
+
+#optionList .mutator.active:hover {
+    opacity: 1;
 }
 
 #optionList #optionMutatorTitle {
@@ -2271,8 +2275,8 @@
 }
 
 #optionList .mutatorLabel {
-    text-shadow: 0 0 4px 3.0 #000000;
-    padding: 54px 0 0 6px;
+    text-shadow: 0 0 3px 4.5 #000000;
+    padding: 55px 0 0 5px;
 }
 
 #importAndExportRoot {

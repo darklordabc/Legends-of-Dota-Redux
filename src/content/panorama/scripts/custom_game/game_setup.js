@@ -17,18 +17,23 @@ var allOptions = {
                         value: 1
                     },
                     {
-                        text: 'lodOptionBalancedAllPickFast',
-                        about: 'lodOptionAboutBalancedAllPickFast',
+                        text: 'lodOptionTraditionalAllPick',
+                        about: 'lodOptionAboutTraditionalAllPick',
                         value: 2
                     },
                     {
-                        text: 'lodOptionBalancedMirrorDraft',
-                        about: 'lodOptionAboutBalancedMirrorDraft',
+                        text: 'lodOptionSingleDraft',
+                        about: 'lodOptionAboutSingleDraft',
+                        value: 5
+                    },
+                    {
+                        text: 'lodOptionMirrorDraft',
+                        about: 'lodOptionAboutMirrorDraft',
                         value: 3
                     },
                     {
-                        text: 'lodOptionBalancedAllRandom',
-                        about: 'lodOptionAboutBalancedAllRandom',
+                        text: 'lodOptionAllRandom',
+                        about: 'lodOptionAboutAllRandom',
                         value: 4
                     },
                     {
@@ -94,8 +99,17 @@ var allOptions = {
                         about: 'lodMutatorUnlimitedBans'
                     },
                     {
-                        name: 'lodOptionBanningBalanceMode',
-                        about: 'lodMutatorBalanceMode'
+                        about: 'lodMutatorBalanceMode',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningBalanceMode': 1,
+                                'lodOptionBalanceMode': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningBalanceMode': 0,
+                                'lodOptionBalanceMode': 0
+                            }
+                        }
                     },
                     {
                         about: 'lodMutatorPlayerBans',
@@ -131,6 +145,17 @@ var allOptions = {
                             },
                             disabled: {
                                 'lodOptionCommonMaxUlts': 2
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorStrongCreeps',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStrongTowers': 1
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStrongTowers': 0
                             }
                         }
                     }
