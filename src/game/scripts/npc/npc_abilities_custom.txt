@@ -6643,7 +6643,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_1"
         
         "AbilityCooldown"                "10"
         
@@ -6703,7 +6703,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_2"
         
         "AbilityCooldown"                "10"
         
@@ -6763,7 +6763,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_3"
         
         "AbilityCooldown"                "10"
         
@@ -6823,7 +6823,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_4"
         
         "AbilityCooldown"                "10"
         
@@ -6883,7 +6883,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_5"
         
         "AbilityCooldown"                "10"
         
@@ -6943,7 +6943,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_6"
         
         "AbilityCooldown"                "10"
         
