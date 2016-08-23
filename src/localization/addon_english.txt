@@ -50,10 +50,13 @@
     "lockTeamsFirst"                                "Lock the teams first"
     "importAndExport_code"                          "Settings Code"
     "importAndExport_apply"                         "Apply"
-    "importAndExport_tooltip"                       "Use this to export/import game settings. Everytime you change a setting, the code in the box will be automatically updated.\n To export settings, click the text in the box then press ctrl+A to select all and then ctrl+C to copy the code, then alt-tab to a text program and press ctrl+V to paste the code.\n To import settings, copy the settings code that you saved earlier, click on the text in the box, press ctrl+A to select all the text, and ctrl+V to paste your code, then hit apply."
+    "importAndExport_save"                          "Save"
+    "importAndExport_load"                          "Load"
+    "importAndExport_tooltip"                       "Export/import game settings.\n Use the Save button to save settings to the cloud, and press load to retrieve them in future games.\n Alternatively you can select the code (ctrl+a), and copy (ctrl+c) it to a text document elsewhere, and then later import the code by selecting the current code and pasting your saved code over it (ctrl+v), and then hitting apply."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
     "importAndExport_success"                       "Your settings were successfully applied!"
+    "importAndExport_success_save"                  "Your settings were successfully saved!"
     "importAndExport_no_changes"                    "No changes detected!"
 
     // Categories for option selection
@@ -354,18 +357,21 @@
     "hintRoshanSpells"                              "Roshan's abilities can be selected by enabling the OP Skills option."
     "hintUltimates"                                 "Many abilities that would normally require a scepter can be selected and skilled like a normal ability."
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
-    "hintInfestHacks"                               "Many spells such as Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
+    "hintInfestHacks"                               "Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
-    "hintInnateAbilities"                           "Night Stalker, Gyrocopter, Keeper of the Light and Meepo will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
+    "hintInnateAbilities"                           "Night Stalker, Gyrocopter and Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD Redux can continue to improve! Use the Steam Workshop page or use the in-game comment form."
 	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
-	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given 4 levels instead of their usual 1."
-	"hintBlink"                             	    "Its always a good idea to have an escape mechanism."
+	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
+	"hintBlink"                             	    "Its always a good idea to have an escape plan."
 	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
 	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
 	"hintComment"                              "You can leave feedback that goes straight to the developers by using the pencil icon at the top of the screen. From here you can also see the changelog and credits. "
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
+	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
+	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
+	
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -629,6 +635,7 @@
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
+	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -685,7 +692,6 @@
 	"credit_imba_tower_split"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_thorns"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_vicious"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-        "credit_imba_omniknight_degen_aura"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 
 
@@ -763,6 +769,20 @@
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note0"                        "Riki won't auto attack enemies while invisible."
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note1"                        "Silence disables this ability."
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_fade_delay"                   "FADE DELAY:"
+	
+	// Thirst
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod"										"Thirst"
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"							"Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero."
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"									"Strygwyr becomes frenzied when blood is spilled."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_damage"                          "MAX THIRST DAMAGE:"
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_visibility_threshold_pct"				"%VISIBILITY HEALTH THRESHOLD:"
+    "DOTA_Tooltip_modifier_thirst_visual"                                               "Thirst Speed"
+    "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "You sense an injured enemy. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
+    "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
+	"DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "You are visible to the enemy! Gain health to remove debuff"
 
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
@@ -1441,6 +1461,17 @@
     "DOTA_Tooltip_ability_stun_random_lod_Description"  "You will gain a random active disabling ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_mobility_random_lod" "Mobility Random" 
     "DOTA_Tooltip_ability_mobility_random_lod_Description"  "You will gain a random active mobility ability every time you cast the randomly given ability. Does not grant ultimates. All random abilities have the same cooldown."
+    
+    // Doom Devour
+	"DOTA_Tooltip_modifier_creep_eaten"                                               "Devour"
+	"DOTA_Tooltip_modifier_creep_eaten_Description"                                   "Still digesting that delicious creep."
+
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod"                                            "Devour"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Description"                                "Consumes an enemy or neutral creep, acquiring any special abilities that it possessed"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_devour_gold"                                "BONUS GOLD:"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Lore"										  "Lucifer's appetite and greed are never sated"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note0"									  "Gives Doom the original bounty of the creep, along with the bonus gold."
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note1"									  "The amount of time it takes to Devour depends on the current HP of the unit."
     
     // Fireball
     "DOTA_Tooltip_ability_black_dragon_fireball_lod"                             "Fireball"
