@@ -109,6 +109,30 @@ var allOptions = {
                                 'lodOptionBanningMaxBans': 5
                             }
                         }
+                    },
+                    {
+                        about: 'lodMutatorOPAbilities',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningUseBanList': 1,
+                                'lodOptionAdvancedOPAbilities': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningUseBanList': 0,
+                                'lodOptionAdvancedOPAbilities': 0
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorUlts',
+                        values: {
+                            enabled: {
+                                'lodOptionCommonMaxUlts': 6
+                            },
+                            disabled: {
+                                'lodOptionCommonMaxUlts': 2
+                            }
+                        }
                     }
                 ]
             }
@@ -3440,6 +3464,34 @@ function buildOptionsCategories() {
     // Reset option links
     allOptionLinks = {};
 
+    var checkMutators = function(field, hostPanel) {
+        if(mutatorList[field]) {
+            if(mutatorList[field].optionList) {
+                var options = mutatorList[field].optionList;
+                var found = true;
+
+                for(var value in options) {
+                    if(optionValueList[value] != options[value]) {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if(found) {
+                    mutatorList[field].AddClass('active');
+                } else {
+                    mutatorList[field].RemoveClass('active');
+                }
+            } else {
+                if(optionValueList[field]) {
+                    mutatorList[field].AddClass('active');
+                } else {
+                    mutatorList[field].RemoveClass('active');
+                }
+            }
+        }
+    }
+
     // Loop over all the option labels
     for(var optionLabelText in allOptions) {
         // Create a new scope
@@ -3510,7 +3562,7 @@ function buildOptionsCategories() {
                                 var fieldValue = optionMode.GetAttributeInt('fieldValue', -1);
 
                                 $.Each(optionPanel.Children(), function(elem) {
-                                    if(elem.BHasClass('active')) {
+                                    if(elem.BHasClass('active') && !elem.BHasClass('mutator')) {
                                         elem.RemoveClass('active');
                                     }
                                 });
@@ -3569,8 +3621,6 @@ function buildOptionsCategories() {
                                         setOption(item.name, 1);
                                     }
                                 }
-
-                                optionMutator.ToggleClass('active');
                             });
 
                             var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
@@ -3579,6 +3629,12 @@ function buildOptionsCategories() {
 
                             if(item.name) {
                                 mutatorList[item.name] = optionMutator;
+                            } else {
+                                for(var value in item.values.enabled) {
+                                    optionMutator.SetAttributeString('optionList', '');
+                                    optionMutator.optionList = item.values.enabled;
+                                    mutatorList[value] = optionMutator;
+                                }
                             }
                         });
                     } else {
@@ -3659,6 +3715,8 @@ function buildOptionsCategories() {
                                             }
                                         }
                                     }
+
+                                    checkMutators(fieldName, hostPanel);
                                 }
 
                                 // When the data changes
@@ -3754,6 +3812,7 @@ function buildOptionsCategories() {
 
                                 optionFieldMap[fieldName] = function(newValue) {
                                     onGetNewSliderValue(newValue, false);
+                                    checkMutators(fieldName, hostPanel);
                                 }
                             break;
 
@@ -3792,13 +3851,7 @@ function buildOptionsCategories() {
                                         slavePanel.text = $.Localize(values[0].text);
                                     }
 
-                                    if(mutatorList[fieldName]) {
-                                        if (hostPanel.checked) {
-                                            mutatorList[fieldName].AddClass('active');
-                                        } else {
-                                            mutatorList[fieldName].RemoveClass('active');
-                                        }
-                                    }
+                                    checkMutators(fieldName, hostPanel);
                                 }
 
                                 // When the main slot is pressed

@@ -93,6 +93,8 @@
     "lodMutatorUnlimitedBans"                       "Host Bans"
     "lodMutatorBalanceMode"                         "Balance Mode"
     "lodMutatorPlayerBans"                          "Player Bans"
+    "lodMutatorOPAbilities"                         "Ban OP Abilities"
+    "lodMutatorUlts"                                "6 Ultimates"
 
     "lodOptionAboutBalancedAllPick"                 "Pick from every available skill."
     "lodOptionAboutBalancedAllPickFast"             "Fast Start and pick from every available skill."
