@@ -2024,6 +2024,9 @@ function Pregame:initOptionSelector()
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
+                    self:setOption('lodOptionBanningHostBanning', 0, true)
+                    self:setOption('lodOptionBanningMaxBans', 0, true)
+                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
