@@ -87,7 +87,7 @@ var allOptions = {
                         about: 'lodMutatorDoubleTowers',
                         values: {
                             enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 6
+                                'lodOptionGameSpeedTowersPerLane': 5
                             },
                             disabled: {
                                 'lodOptionGameSpeedTowersPerLane': 3
@@ -119,8 +119,8 @@ var allOptions = {
                                 'lodOptionBanningMaxBans': 3
                             },
                             disabled: {
-                                'lodOptionBanningMaxHeroBans': 2,
-                                'lodOptionBanningMaxBans': 5
+                                'lodOptionBanningMaxHeroBans': 0,
+                                'lodOptionBanningMaxBans': 0
                             }
                         }
                     },

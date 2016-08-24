@@ -203,7 +203,7 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionMirrorHeroes', 20)
+    self:setOption('lodOptionMirrorHeroes', 25)
     self:setOption('lodOptionCreepPower', 0)
 
     -- Map enforcements
