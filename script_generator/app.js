@@ -161,8 +161,6 @@ function generatePrecacheData(next) {
                     AbilityLayout: 6,
                     Enabled: data.Enabled
                 }
-                if (name == 'npc_dota_hero_abyssal_underlord')
-                    newKV[name+'_lod'].ForceOverride = 1;
 
                 if(data.BotImplemented != 1) {
                     newKV[name+'_lod'].Ability1 = 'attribute_bonus';
