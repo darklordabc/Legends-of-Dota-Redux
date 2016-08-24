@@ -259,7 +259,7 @@ function Pregame:init()
 
     -- Custom -- set preset
     if mapName == 'custom' or mapName == 'custom_bot' or mapName == '10_vs_10' then
-        self:setOption('lodOptionGamemode', -1)
+        self:setOption('lodOptionGamemode', 1)
     end
 
     -- Challenge Mode

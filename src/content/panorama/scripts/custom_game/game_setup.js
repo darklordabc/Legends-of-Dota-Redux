@@ -3649,10 +3649,6 @@ function buildOptionsCategories() {
                             optionModeImage.AddClass('optionImage');
                             optionModeImage.SetImage('file://{images}/custom_game/options/option' + i + '.png');
 
-                            if(i === length - 1) {
-                                optionMode.AddClass('active');
-                            }
-
                             gamemodeList[item.value] = optionMode;
 
                             optionFieldMap[fieldName] = function(newValue) {
