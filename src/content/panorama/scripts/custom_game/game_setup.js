@@ -119,8 +119,8 @@ var allOptions = {
                                 'lodOptionBanningMaxBans': 3
                             },
                             disabled: {
-                                'lodOptionBanningMaxHeroBans': 2,
-                                'lodOptionBanningMaxBans': 5
+                                'lodOptionBanningMaxHeroBans': 0,
+                                'lodOptionBanningMaxBans': 0
                             }
                         }
                     },
