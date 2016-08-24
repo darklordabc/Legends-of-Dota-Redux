@@ -1645,11 +1645,10 @@ function Pregame:initOptionSelector()
             -- Ensure gamemode is set to custom
             if self.optionStore['lodOptionGamemode'] == 1 then return false end
 
-            print('lodOptionBanningUseBanList', value)
-
             if value == 1 then
                 -- Enable balance mode bans and disable other lists
-                self:setOption('lodOptionBanningBalanceMode', 1, true)
+                self:setOption('lodOptionBalanceMode', 1, true)
+				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 				self:setOption('lodOptionBanningMaxBans', 0, true)
@@ -2079,8 +2078,6 @@ function Pregame:initOptionSelector()
         lodOptionBanning = function(optionName, optionValue)
             -- No host banning phase
             self:setOption('lodOptionBanningHostBanning', 0, true)
-
-            print('lodOptionBanning: ' .. optionValue)
 
             if self.optionStore['lodOptionBanning'] == 1 then
                 -- Balanced Bans

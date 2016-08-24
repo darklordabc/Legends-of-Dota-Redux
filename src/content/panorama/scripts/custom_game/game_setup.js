@@ -3656,8 +3656,6 @@ function buildOptionsCategories() {
                             gamemodeList[item.value] = optionMode;
 
                             optionFieldMap[fieldName] = function(newValue) {
-                                var fieldValue = optionMode.GetAttributeInt('fieldValue', -1);
-
                                 $.Each(optionPanel.Children(), function(elem) {
                                     if(elem.BHasClass('active') && !elem.BHasClass('mutator')) {
                                         elem.RemoveClass('active');
