@@ -3529,9 +3529,14 @@ function buildOptionsCategories() {
     var catContainer = $('#optionCategories');
     var optionContainer = $('#optionList');
     var mutatorList = {};
+    var gamemodeList = {};
 
     // Reset option links
     allOptionLinks = {};
+
+    var changeGamemode = function(value) {
+
+    }
 
     var checkMutators = function(field, hostPanel) {
         if(mutatorList[field]) {
@@ -3629,14 +3634,6 @@ function buildOptionsCategories() {
                             // When the mode changes
                             optionMode.SetPanelEvent('onactivate', function() {
                                 var fieldValue = optionMode.GetAttributeInt('fieldValue', -1);
-
-                                $.Each(optionPanel.Children(), function(elem) {
-                                    if(elem.BHasClass('active') && !elem.BHasClass('mutator')) {
-                                        elem.RemoveClass('active');
-                                    }
-                                });
-
-                                optionMode.AddClass('active');
                                 setOption(fieldName, fieldValue);
                             });
 
@@ -3654,6 +3651,21 @@ function buildOptionsCategories() {
 
                             if(i === length - 1) {
                                 optionMode.AddClass('active');
+                            }
+
+                            gamemodeList[item.value] = optionMode;
+
+                            optionFieldMap[fieldName] = function(newValue) {
+                                var fieldValue = optionMode.GetAttributeInt('fieldValue', -1);
+
+                                $.Each(optionPanel.Children(), function(elem) {
+                                    if(elem.BHasClass('active') && !elem.BHasClass('mutator')) {
+                                        elem.RemoveClass('active');
+                                    }
+                                });
+
+                                gamemodeList[newValue].AddClass('active');
+                                setOption(fieldName, newValue);
                             }
                         });
 
