@@ -1808,7 +1808,7 @@ function Pregame:initOptionSelector()
         -- Game Speed - Stronger Towers
         lodOptionGameSpeedStrongTowers = function(value)
             if self.optionStore['lodOptionCreepPower'] == 0 then 
-                self.optionStore['lodOptionCreepPower'] = 120
+                self:setOption('lodOptionCreepPower', 120, true)
             end
 
             return value == 0 or value == 1
