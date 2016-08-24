@@ -152,10 +152,10 @@ var allOptions = {
                         about: 'lodMutatorStrongCreeps',
                         values: {
                             enabled: {
-                                'lodOptionGameSpeedStrongTowers': 1
+                                '': 1
                             },
                             disabled: {
-                                'lodOptionGameSpeedStrongTowers': 0
+                                '': 0
                             }
                         }
                     }
