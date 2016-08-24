@@ -1648,6 +1648,7 @@ function Pregame:initOptionSelector()
             if value == 1 then
                 -- Enable balance mode bans and disable other lists
                 self:setOption('lodOptionBalanceMode', 1, true)
+				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 				self:setOption('lodOptionBanningMaxBans', 0, true)
