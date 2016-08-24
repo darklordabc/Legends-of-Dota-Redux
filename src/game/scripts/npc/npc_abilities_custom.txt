@@ -9756,5 +9756,66 @@
 				}
 			}
 		}
-	}	
+	}
+    
+    //=================================================================================================================
+    // Creep/Siege power increasing ability
+    //=================================================================================================================
+    "lod_creep_power"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "lod_creep_power"
+        "ScriptFile"                    "scripts/vscripts/../abilities/lod_creep_power.lua"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "coef"                          "7"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_per_level"                          "5"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "resist_per_level"                          "0.7"
+            }
+        }
+    }
+
+    "lod_creep_power_hp" 
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "granite_golem_hp_aura"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                      "20"
+        "AbilityCastRange"              "1"
+		"AbilityTextureName"            "creep_health_buff"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_hp"          "40 80 120 160 200 240 280 320 360 400 440 480 520 560 600 640 680 720 760 800"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "1"
+            }
+        }
+    }	
 }

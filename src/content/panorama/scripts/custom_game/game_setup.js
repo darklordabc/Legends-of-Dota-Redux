@@ -152,10 +152,10 @@ var allOptions = {
                         about: 'lodMutatorStrongCreeps',
                         values: {
                             enabled: {
-                                '': 1
+                                'lodOptionCreepPower': 120
                             },
                             disabled: {
-                                '': 0
+                                'lodOptionCreepPower': 0
                             }
                         }
                     }
@@ -532,6 +532,30 @@ var allOptions = {
                     {
                         text: 'lodOptionYes',
                         value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionCreepPower',
+                des: 'lodOptionDesCreepPower',
+                about: 'lodOptionAboutCreepPower',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoCreepPower',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionNormal',
+                        value: 120
+                    },
+                    {
+                        text: 'lodOptionHigh',
+                        value: 60
+                    },
+                    {
+                        text: 'lodOptionExtreme',
+                        value: 30
                     }
                 ]
             },

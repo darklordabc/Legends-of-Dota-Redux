@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added more announcer voices (map load and when battle is starting)
 - Added function to save/load game settings to/from the online Cloud
 - Added 2 more hints. Save/Loading and Jungling 
+- Added Option to periodically increase the power of lane creeps, to help counterbalance strong towers
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
@@ -30,6 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed flashing bug with Thirst
 - Added Beast Master's Hawk
 - Enabled Pitlord Hero and Pitlord Abilities now have graphics
+- Creeps automatically get lvl 1 power level if stronger towers are voted for
 
 ## 2016-08-14
 
