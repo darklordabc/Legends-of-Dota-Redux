@@ -93,7 +93,7 @@
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
-    "lodMutatorDoubleTowers"                        "Double Towers"
+    "lodMutatorDoubleTowers"                        "Extra Towers"
     "lodMutatorUnlimitedBans"                       "Host Bans"
     "lodMutatorBalanceMode"                         "Balance Mode"
     "lodMutatorPlayerBans"                          "Player Bans"

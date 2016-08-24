@@ -87,7 +87,7 @@ var allOptions = {
                         about: 'lodMutatorDoubleTowers',
                         values: {
                             enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 6
+                                'lodOptionGameSpeedTowersPerLane': 5
                             },
                             disabled: {
                                 'lodOptionGameSpeedTowersPerLane': 3
