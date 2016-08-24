@@ -2180,10 +2180,103 @@
 }
 
 #optionList {
-    padding: 8px;
     width: fill-parent-flow(1.0);
     height: 670px;
     margin-left: 320px;
+    flow-children: right-wrap;
+    padding: 15px 10px 0 0;
+}
+
+#optionList > .OptionPanel {
+    flow-children: right-wrap;
+}
+
+#optionList .option {
+    background-color: #000000;
+    border-radius: 5px;
+    border: 5px solid #626262;
+    width: 32%;
+    height: 170px;
+    margin: 4px;
+    text-align: center;
+    opacity: .5;
+}
+
+#optionList .option.active,
+#optionList .mutator.active {
+    opacity: 1;
+    border-color: #FFFFFF;
+}
+
+#optionList .optionDescription {
+    text-shadow: 0 1px 5px 5.0 #00000040;
+    opacity: 0;
+    transition: opacity .3s ease-in-out 0.0s;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+#optionList .option:hover .optionDescription {
+    opacity: 1;
+    z-index: 1;
+}
+
+#optionList .optionLabel {
+    margin-top: 130px;
+    font-size: 20px;
+    z-index: 2;
+    opacity: 1;
+    text-shadow: 0 1px 5px 5.0 #00000040;
+    padding: 0 15px;
+    transition: opacity .2s ease-in-out 0.0s;
+}
+
+#optionList .option:hover .optionLabel {
+    opacity: 0;
+}
+
+#optionList  .optionImage {
+    transition: opacity .2s ease-in-out 0.0s, blur .2s ease-in-out 0.0s;
+}
+
+#optionList .option:hover .optionImage {
+    opacity: .1;
+    blur: gaussian(5);
+}
+
+.optionImageCached {
+    visibility: collapse;
+}
+
+#optionList .mutator {
+    width: 16%;
+    height: 80px;
+    margin: 1px;
+    border-radius: 5px;
+    border: 2px solid #626262;
+    opacity: .5;
+}
+
+#optionList .mutator:hover {
+    opacity: .7;
+}
+
+#optionList .mutator.active:hover {
+    opacity: 1;
+}
+
+#optionList #optionMutatorTitle {
+    text-align: center;
+    display: block;
+    margin:  auto;
+    width: 100%;
+    font-size: 26px;
+    padding: 15px 0 10px;
+}
+
+#optionList .mutatorLabel {
+    text-shadow: 0 0 3px 4.5 #000000;
+    padding: 55px 0 0 5px;
 }
 
 #importAndExportRoot {
