@@ -3663,7 +3663,6 @@ function buildOptionsCategories() {
                                 });
 
                                 gamemodeList[newValue].AddClass('active');
-                                setOption(fieldName, newValue);
                             }
                         });
 
