@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added function to save/load game settings to/from the online Cloud
 - Added 2 more hints. Save/Loading and Jungling 
 - Added Option to periodically increase the power of lane creeps, to help counterbalance strong towers
+- Add new graphical interface for custom games. Added Mutators. 
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
