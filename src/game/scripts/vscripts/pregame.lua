@@ -199,7 +199,6 @@ function Pregame:init()
     -- Setup default option related stuff
     network:setActiveOptionsTab('presets')
 
-    self:setOption('lodOptionBanning', 1)
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
@@ -266,9 +265,6 @@ function Pregame:init()
     if mapName == 'challenge' then
         self.challengeMode = true
     end
-
-    -- Default banning
-    self:setOption('lodOptionBanning', 3)
 
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
@@ -1283,18 +1279,6 @@ function Pregame:processVoteData()
         end
     end
 
-    -- Do we have a choice for banning phase?
-    if results.banning ~= nil then
-        if results.banning == 1 then
-        	-- Option Voting
-            self:setOption('lodOptionBanning', 3, true)
-            self.optionVotingBanning = 1
-        else
-        	-- No option voting
-            self:setOption('lodOptionBanning', 1, true)
-            self.optionVotingBanning = 0
-        end
-    end
 	if results.faststart ~= nil then
         if results.faststart == 1 then
         	-- Option Voting
@@ -1950,9 +1934,6 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
 
-                -- Set banning
-                self:setOption('lodOptionBanning', 1)
-
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
 
@@ -2043,7 +2024,11 @@ function Pregame:initOptionSelector()
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
+                    self:setOption('lodOptionBanningBalanceMode', 1, true)
+                    self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+                    self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
                 -- Traditional All Pick Mode
@@ -2071,37 +2056,6 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
-            end
-        end,
-
-        -- Fast Banning
-        lodOptionBanning = function(optionName, optionValue)
-            -- No host banning phase
-            self:setOption('lodOptionBanningHostBanning', 0, true)
-
-            if self.optionStore['lodOptionBanning'] == 1 then
-                -- Balanced Bans
-                self:setOption('lodOptionBanningMaxBans', 0, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
-                self:setOption('lodOptionBanningBalanceMode', 1, true)
-                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-                self:setOption('lodOptionBalanceMode', 1, true)
-            elseif self.optionStore['lodOptionBanning'] == 2 then
-                -- Fast Banning Phase
-                self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
-                self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
-            elseif self.optionStore['lodOptionBanning'] == 3 then
-                -- Full Banning Phase
-                self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
-                self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true)
-                self:setOption('lodOptionBanningUseBanList', 1, true)
-            else
-                -- No Banning
-                self:setOption('lodOptionBanningMaxBans', 0, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
             end
         end,
 
@@ -2763,7 +2717,6 @@ function Pregame:processOptions()
 				-- Store presets
 				statCollection:setFlags({
 			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
-			        ['Preset Banning'] = this.optionStore['lodOptionBanning'],
 			        ['Preset Max Slots'] = this.optionStore['lodOptionSlots'],
 			        ['Preset Max Ults'] = this.optionStore['lodOptionUlts'],
 			    })
