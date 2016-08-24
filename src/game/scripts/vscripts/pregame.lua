@@ -1324,6 +1324,7 @@ function Pregame:processVoteData()
         if results.strongtowers == 1 then
             -- Enable Strong Towers
             self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+			self:setOption('lodOptionCreepPower', 120, true)
             self.optionVotingStrongTowers = 1
         else
             -- On by default
