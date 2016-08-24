@@ -101,10 +101,10 @@
     "lodMutatorUlts"                                "6 Ultimates"
     "lodMutatorStrongCreeps"                        "Strong Creeps"
 
-    "lodOptionAboutBalancedAllPick"                 "Pick from every available skill."
-    "lodOptionAboutTraditionalAllPick"              "Fast Start and pick from every available skill."
-    "lodOptionAboutSingleDraft"                     "Pick from a limited number of heroes."
-    "lodOptionAboutMirrorDraft"                     "Pick from a limited number of heroes."
+    "lodOptionAboutBalancedAllPick"                 "Pick from every available skill using limited points."
+    "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."
+    "lodOptionAboutSingleDraft"                     "Pick skills from a random draft of heroes."
+    "lodOptionAboutMirrorDraft"                     "Pick skills from a random draft of heroes."
     "lodOptionAboutAllRandom"                       "Pick from a random set of builds."
     "lodOptionAboutBalancedCustom"                  "Build a custom gamemode."
 
