@@ -28,7 +28,7 @@ function MarkMessageAsRead( msgID ) {
         MessageID: msgID
     };
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, null );    
+    GameUI.CustomUIConfig().SendRequest( requestParams, (function () {}) );    
 }
 
 function SendMessage( text ) {
