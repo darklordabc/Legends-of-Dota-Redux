@@ -48,7 +48,7 @@
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
-    "importAndExport_code"                          "Settings Code"
+    "importAndExport_code"                          "Settings"
     "importAndExport_apply"                         "Apply"
     "importAndExport_save"                          "Save"
     "importAndExport_load"                          "Load"
