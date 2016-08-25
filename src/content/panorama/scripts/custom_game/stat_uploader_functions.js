@@ -45,7 +45,7 @@ function SendMessage( text ) {
         }
     };
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, null );
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function () {}) );
 }
 
 function RecordPlayerSC( ) {
