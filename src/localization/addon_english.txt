@@ -63,7 +63,7 @@
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
     "filter_by_value"                               "Filter by price:"
-    "presets_lod"                                   "Preset Gamemodes"
+    "presets_lod"                                   "Presets"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
