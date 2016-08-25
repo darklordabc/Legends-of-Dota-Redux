@@ -4905,7 +4905,7 @@ function Pregame:fixSpawningIssues()
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 -- Increasing creep power over time 
                 if this.optionStore['lodOptionCreepPower'] > 0 then
-                    local level = math.ceil(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
+                    local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
 
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)
@@ -4916,6 +4916,18 @@ function Pregame:fixSpawningIssues()
         end
     end, nil)
 end
+
+ListenToGameEvent('game_rules_state_change', function(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        WAVE = 0
+
+        Timers:CreateTimer(function()
+            WAVE = WAVE + 1
+            return 30.0
+        end, 'waves', 0.0)
+    end
+end, nil)
 
 -- Return an instance of it
 return Pregame()
