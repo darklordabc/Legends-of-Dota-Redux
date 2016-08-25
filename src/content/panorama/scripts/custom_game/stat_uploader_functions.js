@@ -39,8 +39,8 @@ function SendMessage( text ) {
         Command: "SendPlayerMessage",
         Data: {
             SteamID: GetSteamID32(),
-            Nickname: info.player_name,
-            Message: text,
+            Nickname: encodeURIComponent(info.player_name),
+            Message: encodeURIComponent(text),
             TimeStamp: GetDate() 
         }
     };
