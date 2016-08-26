@@ -14,6 +14,15 @@ function RandomGet(keys)
 	if not randomAb then
 		ability.randomAb = GetNextAbility(caster.randomSelection)
 		randomAb = caster:AddAbility(ability.randomAb)
+		if not randomAb then
+			if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
+			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
+			while caster.ownedSkill[pickedSkill] do
+				pickedSkill = GetNextAbility(caster.randomSafeSelection)
+			end
+		randomAb = caster:AddAbility(pickedSkill)
+	end
+		end
 	end
 	randomAb.randomRoot = ability:GetName()
 	
@@ -76,7 +85,8 @@ function RandomRemove(keys)
 	-------- STANDARD CHECK ---------
 	ability.randomAb = GetNextAbility(caster.randomSelection)
 	print("ability count = ", caster:GetAbilityCount())
-	if 3 < caster:GetUnsafeAbilitiesCount()  then
+	print("unsafe ability = ", caster:GetUnsafeAbilitiesCount())
+	if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
 		local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 		while caster.ownedSkill[pickedSkill] do
 			pickedSkill = GetNextAbility(caster.randomSafeSelection)
@@ -86,7 +96,7 @@ function RandomRemove(keys)
 	----------- CHECK FOR DOUBLES ----------
 	while caster:FindAbilityByName(ability.randomAb) do
 		ability.randomAb = GetNextAbility(caster.randomSelection)
-		if 3 < caster:GetUnsafeAbilitiesCount()  then
+		if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
 			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
@@ -97,7 +107,6 @@ end
 
 function GetNextAbility(input)
 	local nextAbName = input[1]
-	print(nextAbName)
 	util:MoveArray(input)
 	return nextAbName
 end
