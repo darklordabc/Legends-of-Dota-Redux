@@ -223,7 +223,6 @@ var allOptions = {
                 default: 2
             },
             {
-                preset: true,
                 name: 'lodOptionCommonMirrorHeroes',
                 des: 'lodOptionsCommonMirrorHeroes',
                 about: 'lodOptionAboutCommonMirrorHeroes',
@@ -3726,11 +3725,6 @@ function buildOptionsCategories() {
                         mainSlot.SetPanelEvent('onmouseout', function() {
                             $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                         });
-
-                        // Is this a preset?
-                        if(info.preset) {
-                            mainSlot.AddClass('optionSlotPanelNoCustom');
-                        }
 
                         var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
                         floatRightContiner.AddClass('optionsSlotPanelContainer');

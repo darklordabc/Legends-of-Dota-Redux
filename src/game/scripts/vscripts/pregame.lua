@@ -1943,6 +1943,9 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
+                -- Set Draft Heroes to 25
+                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
                 
