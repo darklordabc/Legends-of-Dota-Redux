@@ -6,27 +6,29 @@ local pregame = require('pregame')
 function RandomGet(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	
 	skillManager:precacheSkill(ability.randomAb, function() return 1 end) -- dynamic caching
+	
 	local randomAb = caster:FindAbilityByName(ability.randomAb)
+	
 	if not randomAb then
 		randomAb = caster:AddAbility(ability.randomAb)
 	end
+	
 	if not randomAb then
 		ability.randomAb = GetNextAbility(caster.randomSelection)
 		randomAb = caster:AddAbility(ability.randomAb)
 		if not randomAb then
-			if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
-			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
-			while caster.ownedSkill[pickedSkill] do
-				pickedSkill = GetNextAbility(caster.randomSafeSelection)
+			if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
+				local pickedSkill = GetNextAbility(caster.randomSafeSelection)
+				while caster.ownedSkill[pickedSkill] do
+					pickedSkill = GetNextAbility(caster.randomSafeSelection)
+				end
+			randomAb = caster:AddAbility(pickedSkill)
 			end
-		randomAb = caster:AddAbility(pickedSkill)
-	end
 		end
 	end
 	randomAb.randomRoot = ability:GetName()
-	
-	
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
 	if randomAb:GetAbilityType() ~= 1 then
@@ -43,9 +45,9 @@ function RandomGet(keys)
 	end
 	local cooldown = ability:GetTrueCooldown()
 	randomAb:StartCooldown(cooldown)
-		
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
-	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
+	-- StopSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
+	-- StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
 
 function RandomRemove(keys)
@@ -56,9 +58,13 @@ function RandomRemove(keys)
 	-- if caster.subAb and caster.subActivated then randomAb = caster:FindAbilityByName(caster.subAb) end
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
+	
 	if IsValidEntity(randomAb) then
+		
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
+		
 		randomAb:SetHidden(true) -- double check for flyout
+		
 	end
 	
 	if caster.safeRemoveList then 
@@ -84,9 +90,10 @@ function RandomRemove(keys)
 	end
 	-------- STANDARD CHECK ---------
 	ability.randomAb = GetNextAbility(caster.randomSelection)
-	print("ability count = ", caster:GetAbilityCount())
-	print("unsafe ability = ", caster:GetUnsafeAbilitiesCount())
-	if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
+	
+	
+	
+	if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() >= 13  then
 		local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 		while caster.ownedSkill[pickedSkill] do
 			pickedSkill = GetNextAbility(caster.randomSafeSelection)
@@ -96,10 +103,12 @@ function RandomRemove(keys)
 	----------- CHECK FOR DOUBLES ----------
 	while caster:FindAbilityByName(ability.randomAb) do
 		ability.randomAb = GetNextAbility(caster.randomSelection)
-		if 3 < caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 14  then
+		if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
+			
 			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
+				
 			end
 		end
 	end
@@ -179,7 +188,7 @@ function RandomInit(keys)
 	ability.isCreated = true
 	while caster:FindAbilityByName(ability.randomAb) do
 		ability.randomAb = GetNextAbility(caster.randomSelection)
-		if 3 < caster:GetUnsafeAbilitiesCount()  then
+		if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
 			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
