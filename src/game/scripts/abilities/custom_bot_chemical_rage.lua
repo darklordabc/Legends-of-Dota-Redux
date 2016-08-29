@@ -10,7 +10,7 @@ function ChemicalRageActivate( event )
 	local cooldown = ability:GetCooldown( ability:GetLevel() )
 
 	-- Cast the spell
-	if caster:GetHealthPercent() < 90 and ability:GetCooldownTimeRemaining() == 0 then
+	if caster:GetHealthPercent() < 90 and ability:GetCooldownTimeRemaining() == 0 and caster:GetMana() > ability:GetManaCost(ability:GetLevel() - 1) then
 		caster:CastAbilityImmediately(ability, caster:GetPlayerOwnerID())
 		ability:StartCooldown( cooldown )
 		caster:Stop()
