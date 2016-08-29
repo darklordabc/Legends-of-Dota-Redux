@@ -1271,8 +1271,8 @@
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_lore"                   "The hidden Thirteenth is a slippery foe."
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_bonus_movement_speed"   "%BONUS MOVEMENT SPEED:"
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_bonus_regen_pct"        "%HEALTH GAINED PER SECOND:"
-    "DOTA_Tooltip_ability_modifier_shadow_dance_bonus"      "Hidden from sight"
-    "DOTA_Tooltip_ability_modifier_shadow_dance"            "Shadow Dance"
+    "DOTA_Tooltip_modifier_shadow_dance_bonus"      "Hidden from sight"
+    "DOTA_Tooltip_modifier_shadow_dance"            "Shadow Dance"
 
     // Chemical Rage
     "DOTA_Tooltip_ability_custom_bot_chemical_rage"      "Chemical Rage"
