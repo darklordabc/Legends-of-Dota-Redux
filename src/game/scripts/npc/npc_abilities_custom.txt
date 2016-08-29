@@ -3794,7 +3794,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"             "ability_datadriven"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
         "FightRecapLevel"               "2"
         "AbilityTextureName"            "slark_shadow_dance"
 
@@ -3804,7 +3804,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "0"       
+        "AbilityManaCost"               "120 120 120"       
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3847,6 +3847,39 @@
                 "hp_threshold"              "400 400 400"
             }
         }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"    "modifier_shadow_dance"
+                "Target"         "CASTER"
+                "Duration"        "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Slark.ShadowDance"
+                "Target"         "CASTER"
+            }
+            "SpawnUnit"
+            {
+                "UnitName"        "dummy_unit"
+                "Target"         "CASTER"
+                "Duration"        "%duration"
+                "UnitCount"        "1"
+                "UnitLimit"        "1"
+                "GrantsGold"    "0"
+                "GrantsXP"        "0"
+                "SpawnRadius"    "1"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"    "modifier_shadow_dance_dummy"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+        }
         "Modifiers"
         {
             "modifier_shadow_dance_passive"
@@ -3887,15 +3920,25 @@
                     "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%bonus_regen_pct" 
                 }
             }
-            "modifier_shadow_dance"
+            "modifier_shadow_dance_dummy"
             {
                 "Passive"            "0"
-                "IsHidden"           "0"
-                "IsBuff"             "1"
-
-                "StatusEffectName"       "particles/status_fx/status_effect_slark_shadow_dance.vpcf"
-                "StatusEffectPriority"   "20"
-
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"      "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_ROOTED"               "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_OUT_OF_GAME"          "MODIFIER_STATE_VALUE_ENABLED"
+                }
                 "OnCreated"
                 {
                     "AttachEffect"
@@ -3911,6 +3954,24 @@
                         }
                     }
                 }
+                "ThinkInterval"  "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/custom_bot_shadow_dance.lua"
+                        "Function"        "DummyMove"
+                    }
+                }
+            }
+            "modifier_shadow_dance"
+            {
+                "Passive"            "0"
+                "IsHidden"           "0"
+                "IsBuff"             "1"
+
+                "StatusEffectName"       "particles/status_fx/status_effect_slark_shadow_dance.vpcf"
+                "StatusEffectPriority"   "20"
             
                 "States"
                 {
