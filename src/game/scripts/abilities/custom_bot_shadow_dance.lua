@@ -32,11 +32,18 @@ function ShadowDanceActivate( event )
 	local dur = ability:GetLevelSpecialValueFor( "duration" , ability:GetLevel() - 1  )
 
 	-- Apply the modifier
-	if caster:GetHealth() < 400 and ability:GetCooldownTimeRemaining() == 0 then
+	if caster:GetHealth() < 400 and ability:GetCooldownTimeRemaining() == 0  and caster:GetMana() >= ability:GetManaCost(ability:GetLevel() - 1) then
 
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_shadow_dance", { duration = dur })
+		caster:CastAbilityImmediately(ability, caster:GetPlayerOwnerID())
 		ability:StartCooldown( cooldown )
 		caster:Stop()
 		caster:EmitSound("Hero_Slark.ShadowDance")
 	end
+end
+
+function DummyMove( keys )
+	local caster = keys.caster
+	local target = keys.target
+
+	target:SetAbsOrigin(caster:GetAbsOrigin())
 end
