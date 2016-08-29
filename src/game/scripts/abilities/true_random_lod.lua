@@ -4,6 +4,7 @@ local skillManager = require('skillmanager')
 local pregame = require('pregame')
 
 function RandomGet(keys)
+	print('get')
 	local caster = keys.caster
 	local ability = keys.ability
 	
@@ -20,15 +21,21 @@ function RandomGet(keys)
 		randomAb = caster:AddAbility(ability.randomAb)
 		if not randomAb then
 			if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
-				local pickedSkill = GetNextAbility(caster.randomSafeSelection)
-				while caster.ownedSkill[pickedSkill] do
-					pickedSkill = GetNextAbility(caster.randomSafeSelection)
+				ability.randomAb = GetNextAbility(caster.randomSafeSelection)
+				while caster.ownedSkill[ability.randomAb] do
+					ability.randomAb = GetNextAbility(caster.randomSafeSelection)
 				end
-			randomAb = caster:AddAbility(pickedSkill)
+			randomAb = caster:AddAbility(ability.randomAb)
 			end
 		end
 	end
-	randomAb.randomRoot = ability:GetName()
+
+	if randomAb then
+		randomAb.randomRoot = ability:GetName()
+	else
+		return
+	end
+
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
 	if randomAb:GetAbilityType() ~= 1 then
@@ -51,6 +58,7 @@ function RandomGet(keys)
 end
 
 function RandomRemove(keys)
+	print('remove')
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(ability.randomAb)
@@ -104,11 +112,9 @@ function RandomRemove(keys)
 	while caster:FindAbilityByName(ability.randomAb) do
 		ability.randomAb = GetNextAbility(caster.randomSelection)
 		if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
-			
 			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
-				
 			end
 		end
 	end
