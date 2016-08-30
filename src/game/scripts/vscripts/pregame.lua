@@ -12,6 +12,11 @@ local Debug = require('lod_debug')              -- Debug library with helper fun
 local challenge = require('challenge')
 local ingame = require('ingame')
 
+-- Custom AI script modifiers
+LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -2809,19 +2814,6 @@ function Pregame:banAbility(abilityName)
     if not self.bannedAbilities[abilityName] then
         -- Do the ban
         self.bannedAbilities[abilityName] = true
-        if abilityName == "alchemist_chemical_rage" then
-            self.bannedAbilities["custom_bot_chemical_rage"] = true
-            network:banAbility("custom_bot_chemical_rage")
-        elseif abilityName == "slark_shadow_dance" then
-            self.bannedAbilities["custom_bot_shadow_dance"] = true
-            network:banAbility("custom_bot_shadow_dance")
-        elseif abilityName == "custom_bot_chemical_rage" then
-            self.bannedAbilities["alchemist_chemical_rage"] = true
-            network:banAbility("alchemist_chemical_rage")
-        elseif abilityName == "custom_bot_shadow_dance" then
-            self.bannedAbilities["slark_shadow_dance"] = true
-            network:banAbility("slark_shadow_dance")
-        end
         network:banAbility(abilityName)
 
         return true
@@ -4580,15 +4572,16 @@ function Pregame:generateBotBuilds()
     -- High priority bot skills
     local bestSkills = {
         abaddon_borrowed_time = true,
-        ursa_fury_swipes = true,
+        ursa_fury_swipes_lod = true,
         slark_essence_shift = true,
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
-        custom_bot_shadow_dance = true,
-        custom_bot_chemical_rage = true,
+        slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
         life_stealer_feast = true,
+        alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
         tiny_grow_lod = true,
@@ -4761,6 +4754,11 @@ function Pregame:fixSpawningIssues()
     	necronomicon_warrior_last_will_lod = true
 	}
 
+    local botAIModifier = {
+        slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
+    }
+
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -4832,11 +4830,15 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                --[[if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Apply build!
-                    local build = this.selectedSkills[playerID] or {}
-                    SkillManager:ApplyBuild(spawnedUnit, build)
-                end]]
+                if PlayerResource:GetConnectionState(playerID) == 1 then
+                    -- Find custom abilities to add AI modifiers
+                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                        if botAIModifier[abilityName] then
+                            abModifierName = "modifier_" .. abilityName .. "_ai"
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                        end
+                    end
+                end
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
