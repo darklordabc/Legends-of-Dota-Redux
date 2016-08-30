@@ -708,7 +708,9 @@ function Pregame:actualSpawnPlayer()
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-                        SU:SendPlayerBuild( build, playerID )
+                        if hero:IsOwnedByAnyPlayer() then 
+                            SU:SendPlayerBuild( build, playerID )
+                        end
 
                         -- Do they have a custom attribute set?
                         if self.selectedPlayerAttr[playerID] ~= nil then
