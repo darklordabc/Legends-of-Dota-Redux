@@ -2809,6 +2809,19 @@ function Pregame:banAbility(abilityName)
     if not self.bannedAbilities[abilityName] then
         -- Do the ban
         self.bannedAbilities[abilityName] = true
+        if abilityName == "alchemist_chemical_rage" then
+            self.bannedAbilities["custom_bot_chemical_rage"] = true
+            network:banAbility("custom_bot_chemical_rage")
+        elseif abilityName == "slark_shadow_dance" then
+            self.bannedAbilities["custom_bot_shadow_dance"] = true
+            network:banAbility("custom_bot_shadow_dance")
+        elseif abilityName == "custom_bot_chemical_rage" then
+            self.bannedAbilities["alchemist_chemical_rage"] = true
+            network:banAbility("alchemist_chemical_rage")
+        elseif abilityName == "custom_bot_shadow_dance" then
+            self.bannedAbilities["slark_shadow_dance"] = true
+            network:banAbility("slark_shadow_dance")
+        end
         network:banAbility(abilityName)
 
         return true
