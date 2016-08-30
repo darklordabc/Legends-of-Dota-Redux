@@ -3,6 +3,7 @@ local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
+local SU = require('lib/StatUploaderFunctions')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
 local util = require('util')
@@ -198,11 +199,11 @@ function Pregame:init()
     -- Setup default option related stuff
     network:setActiveOptionsTab('presets')
 
-    self:setOption('lodOptionBanning', 1)
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionMirrorHeroes', 20)
+    self:setOption('lodOptionMirrorHeroes', 25)
+    self:setOption('lodOptionCreepPower', 0)
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -257,16 +258,13 @@ function Pregame:init()
 
     -- Custom -- set preset
     if mapName == 'custom' or mapName == 'custom_bot' or mapName == '10_vs_10' then
-        self:setOption('lodOptionGamemode', -1)
+        self:setOption('lodOptionGamemode', 1)
     end
 
     -- Challenge Mode
     if mapName == 'challenge' then
         self.challengeMode = true
     end
-
-    -- Default banning
-    self:setOption('lodOptionBanning', 3)
 
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
@@ -1281,18 +1279,6 @@ function Pregame:processVoteData()
         end
     end
 
-    -- Do we have a choice for banning phase?
-    if results.banning ~= nil then
-        if results.banning == 1 then
-        	-- Option Voting
-            self:setOption('lodOptionBanning', 3, true)
-            self.optionVotingBanning = 1
-        else
-        	-- No option voting
-            self:setOption('lodOptionBanning', 1, true)
-            self.optionVotingBanning = 0
-        end
-    end
 	if results.faststart ~= nil then
         if results.faststart == 1 then
         	-- Option Voting
@@ -1322,6 +1308,7 @@ function Pregame:processVoteData()
         if results.strongtowers == 1 then
             -- Enable Strong Towers
             self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+			self:setOption('lodOptionCreepPower', 120, true)
             self.optionVotingStrongTowers = 1
         else
             -- On by default
@@ -1501,6 +1488,11 @@ function Pregame:initOptionSelector()
                 return value == 4
             end
 
+            -- Single Draft only
+            if mapName == 'single_draft' then
+                return value == 5
+            end
+
             -- Not in a forced map, allow any preset gamemode
 
             local validGamemodes = {
@@ -1508,7 +1500,8 @@ function Pregame:initOptionSelector()
                 [1] = true,
                 [2] = true,
                 [3] = true,
-                [4] = true
+                [4] = true,
+                [5] = true
             }
 
             -- Ensure it is one of the above gamemodes
@@ -1558,17 +1551,11 @@ function Pregame:initOptionSelector()
 
         -- Common gamemode
         lodOptionCommonGamemode = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 1 or value == 3 or value == 4 or value == 5
         end,
 
         -- Common max slots
         lodOptionCommonMaxSlots = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1580,9 +1567,6 @@ function Pregame:initOptionSelector()
 
         -- Common max skills
         lodOptionCommonMaxSkills = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1594,9 +1578,6 @@ function Pregame:initOptionSelector()
 
         -- Common max ults
         lodOptionCommonMaxUlts = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1608,17 +1589,11 @@ function Pregame:initOptionSelector()
 
         -- Common host banning
         lodOptionBanningHostBanning = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Common max bans
         lodOptionBanningMaxBans = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1630,9 +1605,6 @@ function Pregame:initOptionSelector()
 
         -- Common max hero bans
         lodOptionBanningMaxHeroBans = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1644,9 +1616,6 @@ function Pregame:initOptionSelector()
 
         -- Common mirror draft hero selection
         lodOptionCommonMirrorHeroes = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1659,15 +1628,16 @@ function Pregame:initOptionSelector()
         -- Common -- Balance Mode
         lodOptionBalanceMode = function(value)
             -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+            if self.optionStore['lodOptionGamemode'] == 1 then return false end
 
             if value == 1 then
                 -- Enable balance mode bans and disable other lists
-                self:setOption('lodOptionBanningBalanceMode', 1, true)
+                self:setOption('lodOptionBalanceMode', 1, true)
+				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 				self:setOption('lodOptionBanningMaxBans', 0, true)
-				self:setOption('lodOptionBanningMaxHeroBans', 0, true) 
+				self:setOption('lodOptionBanningMaxHeroBans', 0, true)
 
                 return true
             elseif value == 0 then
@@ -1682,44 +1652,31 @@ function Pregame:initOptionSelector()
 
             return false
         end,
-        
+
         -- Balance Mode ban list
         lodOptionBanningBalanceMode = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+            if self.optionStore['lodOptionGamemode'] == 1 then return value == 1 end
 
             return value == 0 or value == 1
         end,
 
         -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Common ban all invis
         lodOptionBanningBanInvis = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Game Speed -- Starting Level
         lodOptionGameSpeedStartingLevel = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1731,9 +1688,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Max Level
         lodOptionGameSpeedMaxLevel = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1745,9 +1699,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Starting Gold
         lodOptionGameSpeedStartingGold = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1759,9 +1710,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Gold per interval
         lodOptionGameSpeedGoldTickRate = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1773,9 +1721,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Gold Modifier
         lodOptionGameSpeedGoldModifier = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1787,9 +1732,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- EXP Modifier
         lodOptionGameSpeedEXPModifier = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1801,9 +1743,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Respawn time percentage
         lodOptionGameSpeedRespawnTimePercentage = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1815,9 +1754,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Buyback cooldown constant
         lodOptionBuybackCooldownTimeConstant = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1829,9 +1765,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Respawn time constant
         lodOptionGameSpeedRespawnTimeConstant = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1843,9 +1776,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Towers per lane
         lodOptionGameSpeedTowersPerLane = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1857,33 +1787,30 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Game Speed - Stronger Towers
         lodOptionGameSpeedStrongTowers = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
+            if self.optionStore['lodOptionCreepPower'] == 0 then 
+                self:setOption('lodOptionCreepPower', 120, true)
+            end
 
             return value == 0 or value == 1
         end,
 
+        -- Game Speed - Increase Creep Power
+        lodOptionCreepPower = function(value)
+            return value == 0 or value == 120 or value == 60 or value == 30
+        end,
+
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Bots -- Desired number of radiant players
         lodOptionBotsRadiant = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1895,9 +1822,6 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1909,9 +1833,6 @@ function Pregame:initOptionSelector()
 
         -- Bots - Unfair EXP balancing
         lodOptionBotsUnfairBalance = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
@@ -1925,105 +1846,66 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable OP Abilities
         lodOptionAdvancedOPAbilities = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Hide enemy picks
         lodOptionAdvancedHidePicks = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Unique Skills
         lodOptionAdvancedUniqueSkills = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1 or value == 2
         end,
 
         -- Advanced -- Unique Heroes
         lodOptionAdvancedUniqueHeroes = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Allow picking primary attr
         lodOptionAdvancedSelectPrimaryAttr = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Other -- No Fountain Camping
         lodOptionCrazyNoCamping = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Other -- Universal Shop
         lodOptionCrazyUniversalShop = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Other -- All Vision
         lodOptionCrazyAllVision = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Other -- Multicast Madness
         lodOptionCrazyMulticast = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
 
         -- Other -- WTF Mode
         lodOptionCrazyWTF = function(value)
-            -- Ensure gamemode is set to custom
-            if self.optionStore['lodOptionGamemode'] ~= -1 then return false end
-
             return value == 0 or value == 1
         end,
     }
@@ -2052,9 +1934,6 @@ function Pregame:initOptionSelector()
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
-
-                -- Set banning
-                self:setOption('lodOptionBanning', 1)
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
@@ -2090,6 +1969,9 @@ function Pregame:initOptionSelector()
 
                 -- Do not make stronger towers
                 self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+
+                -- Do not increase creep power
+                self:setOption('lodOptionCreepPower', 0, true)
 
                 -- Start with a free courier
                 self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -2141,55 +2023,43 @@ function Pregame:initOptionSelector()
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
 
-                -- Fast All Pick Mode
+                -- Balanced All Pick Mode
+                if optionValue == 1 then
+                    self:setOption('lodOptionBanningHostBanning', 0, true)
+                    self:setOption('lodOptionBanningMaxBans', 0, true)
+                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 1, true)
+                    self:setOption('lodOptionBanningUseBanList', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+                    self:setOption('lodOptionBalanceMode', 1, true)
+                end
+
+                -- Traditional All Pick Mode
                 if optionValue == 2 then
                     -- Set gamemode to all pick
                     self:setOption('lodOptionCommonGamemode', 1, true)
-
-                    -- Set respawn to 10%
-                    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 10, true)
-                    self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
-
-                    -- Starting level is lvl 6
-                    self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
 
                     -- Turn easy mode on
                     --self:setOption('lodOptionCrazyEasymode', 1, true)
-
-                    -- Start with 2500 bonus gold
-                    self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
-                    self:setOption('lodOptionGameSpeedGoldTickRate', 5, true)
-                    self:setOption('lodOptionGameSpeedGoldModifier', 250, true)
-                    self:setOption('lodOptionGameSpeedEXPModifier', 250, true)
                 end
-            end
-        end,
 
-        -- Fast Banning
-        lodOptionBanning = function(optionName, optionValue)
-            -- No host banning phase
-            self:setOption('lodOptionBanningHostBanning', 0, true)
+                -- Mirror Draft Pick Mode
+                if optionValue == 3 then
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
 
-            if self.optionStore['lodOptionBanning'] == 1 then
-                -- Balanced Bans
-                self:setOption('lodOptionBanningMaxBans', 0, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                self:setOption('lodOptionBanningUseBanList', 1, true)
-            elseif self.optionStore['lodOptionBanning'] == 2 then
-                -- Fast Banning Phase
-                self:setOption('lodOptionBanningMaxBans', self.fastBansTotalBans, true)
-                self:setOption('lodOptionBanningMaxHeroBans', self.fastHeroBansTotalBans, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
-            elseif self.optionStore['lodOptionBanning'] == 3 then
-                -- Full Banning Phase
-                self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
-                self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true)
-                self:setOption('lodOptionBanningUseBanList', 1, true)
-            else
-                -- No Banning
-                self:setOption('lodOptionBanningMaxBans', 0, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
+                -- Single Draft Pick Mode
+                if optionValue == 5 then
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
             end
         end,
 
@@ -2197,11 +2067,6 @@ function Pregame:initOptionSelector()
         lodOptionSlots = function(optionName, optionValue)
             -- Copy max slots in
             self:setOption('lodOptionCommonMaxSlots', self.optionStore['lodOptionSlots'], true)
-        end,
-
-        -- Fast max ults
-        lodOptionUlts = function(optionName, optionValue)
-            self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
         end,
 
         -- Fast mirror draft
@@ -2679,6 +2544,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
+        OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2829,6 +2695,7 @@ function Pregame:processOptions()
 			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
                     ['Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
+                    ['Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
 			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
 			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
@@ -2854,7 +2721,6 @@ function Pregame:processOptions()
 				-- Store presets
 				statCollection:setFlags({
 			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
-			        ['Preset Banning'] = this.optionStore['lodOptionBanning'],
 			        ['Preset Max Slots'] = this.optionStore['lodOptionSlots'],
 			        ['Preset Max Ults'] = this.optionStore['lodOptionUlts'],
 			    })
@@ -4704,7 +4570,7 @@ function Pregame:generateBotBuilds()
         ursa_fury_swipes = true,
         slark_essence_shift = true,
         skeleton_king_reincarnation = true,
-        bloodseeker_thirst = true,
+        bloodseeker_thirst_lod = true,
         slark_shadow_dance = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
@@ -5036,10 +4902,32 @@ function Pregame:fixSpawningIssues()
                         PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
                     end
                 end
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+                -- Increasing creep power over time 
+                if this.optionStore['lodOptionCreepPower'] > 0 then
+                    local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
+
+                    local ability = spawnedUnit:AddAbility("lod_creep_power")
+                    ability:UpgradeAbility(false)
+
+                    spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                end
             end
         end
     end, nil)
 end
+
+ListenToGameEvent('game_rules_state_change', function(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        WAVE = 0
+
+        Timers:CreateTimer(function()
+            WAVE = WAVE + 1
+            return 30.0
+        end, 'waves', 0.0)
+    end
+end, nil)
 
 -- Return an instance of it
 return Pregame()

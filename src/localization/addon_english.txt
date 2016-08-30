@@ -48,19 +48,22 @@
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
-    "importAndExport_code"                          "Settings Code"
+    "importAndExport_code"                          "Settings"
     "importAndExport_apply"                         "Apply"
-    "importAndExport_tooltip"                       "Use this to export/import game settings. Everytime you change a setting, the code in the box will be automatically updated.\n To export settings, click the text in the box then press ctrl+A to select all and then ctrl+C to copy the code, then alt-tab to a text program and press ctrl+V to paste the code.\n To import settings, copy the settings code that you saved earlier, click on the text in the box, press ctrl+A to select all the text, and ctrl+V to paste your code, then hit apply."
+    "importAndExport_save"                          "Save"
+    "importAndExport_load"                          "Load"
+    "importAndExport_tooltip"                       "Use the Save button to save current settings to the cloud. Press load to retrieve them in future games."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
     "importAndExport_success"                       "Your settings were successfully applied!"
+    "importAndExport_success_save"                  "Your settings were successfully saved!"
     "importAndExport_no_changes"                    "No changes detected!"
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
     "filter_by_value"                               "Filter by price:"
-    "presets_lod"                                   "Preset Builds"
+    "presets_lod"                                   "Presets"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
@@ -77,11 +80,33 @@
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
     "lodOptionBalancedAllPick"                      "Balanced All Pick"
-    "lodOptionBalancedAllPickFast"                  "Fast All Pick"
+    "lodOptionTraditionalAllPick"                   "Traditional All Pick"
     "lodOptionBalancedSingleDraft"                  "Balanced Single Draft"
-    "lodOptionBalancedMirrorDraft"                  "Balanced Mirror Draft"
-    "lodOptionBalancedAllRandom"                    "Balanced All Random"
+    "lodOptionSingleDraft"                          "Single Draft"
+    "lodOptionMirrorDraft"                          "Mirror Draft"
+    "lodOptionBalancedAllRandom"                    "All Random"
     "lodOptionBalancedCustom"                       "Custom Settings"
+
+    "lodOptionPresetMutators"                       "Optional Mutators"
+    "lodMutatorBanningBanInvis"                     "No Invisible"
+    "lodMutatorFastBuybackCooldown"                 "Fast Respawn"
+    "lodMutatorUpgradedUlts"                        "Free Scepter"
+    "lodMutatorFastStart"                           "Fast Start"
+    "lodMutatorStrongTowers"                        "Strong Towers"
+    "lodMutatorDoubleTowers"                        "Extra Towers"
+    "lodMutatorUnlimitedBans"                       "Host Bans"
+    "lodMutatorBalanceMode"                         "Balance Mode"
+    "lodMutatorPlayerBans"                          "Player Bans"
+    "lodMutatorOPAbilities"                         "Ban OP Abils"
+    "lodMutatorUlts"                                "6 Ultimates"
+    "lodMutatorStrongCreeps"                        "Strong Creeps"
+
+    "lodOptionAboutBalancedAllPick"                 "Pick from every available skill using limited points."
+    "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."
+    "lodOptionAboutSingleDraft"                     "Pick skills from a random draft of heroes."
+    "lodOptionAboutMirrorDraft"                     "Pick skills from a random draft of heroes."
+    "lodOptionAboutAllRandom"                       "Pick from a random set of builds."
+    "lodOptionAboutBalancedCustom"                  "Build a custom gamemode."
 
     "lodOptionsPresetBanning"                       "Preset Banning"
     "lodOptionBalancedBan"                          "Balanced Bans"
@@ -214,6 +239,11 @@
     "lodOptionTower9"                               "9 Towers"
     "lodOptionTower10"                              "10 Towers"
 
+    "lodOptionNoCreepPower"                         "Don't Increase"
+    "lodOptionNormal"                               "Normal - Every 2 Minutes"
+    "lodOptionHigh"                                 "High - Every Minute"
+    "lodOptionExtreme"                              "Extreme - Every 30 Seconds"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -222,6 +252,7 @@
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
+    "lodOptionDesCreepPower"                        "Increase Lane Creep Power Over Time"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
@@ -309,7 +340,8 @@
     "lodOptionAboutGameSpeedTowersPerLane"          "The amount of towers that will be placed in a lane. (3 - 10)"
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities. Gyrocopter, Keeper of the Light and Night Stalker will not benefit from this."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
-    "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
+    "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability. Ticking this automatically sets Lane Creep Power to 'Normal'"
+	"lodOptionAboutCreepPower"           			"Increases lane creep's damage, armor, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
@@ -341,12 +373,15 @@
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter and Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Please report Bugs and Troll Combos so that LoD Redux can continue to improve! Use the Steam Workshop page or use the in-game comment form."
 	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
-	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have also been given 4 levels instead of their usual 1."
-	"hintBlink"                             	    "Its always a good idea to have an escape mechanism."
+	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
+	"hintBlink"                             	    "Its always a good idea to have an escape plan."
 	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
 	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
 	"hintComment"                              "You can leave feedback that goes straight to the developers by using the pencil icon at the top of the screen. From here you can also see the changelog and credits. "
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
+	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
+	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
+	
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -576,10 +611,6 @@
     "warning_furion_wrath_of_nature"            "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\"#70EA72\">Nature's Call.</font>"
     "warning_gyrocopter_call_down"          "<font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
     "warning_tusk_walrus_punch"         "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Walrus Kick.</font>"
-    "warning_abyssal_underlord_atrophy_aura"            "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
-    "warning_abyssal_underlord_dark_rift"           "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
-    "warning_abyssal_underlord_firestorm"           "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
-    "warning_abyssal_underlord_pit_of_malice"           "<font color=\"#FF4949\">LoD Warning:</font> Pitlord's abilities have no in-game graphics."
     "warning_meepo_divided_we_stand"            "<font color=\"#FF4949\">LoD Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
     "warning_invoker_alacrity_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
@@ -610,6 +641,7 @@
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
+	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -666,7 +698,6 @@
 	"credit_imba_tower_split"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_thorns"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_vicious"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-        "credit_imba_omniknight_degen_aura"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 
 
@@ -744,6 +775,20 @@
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note0"                        "Riki won't auto attack enemies while invisible."
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note1"                        "Silence disables this ability."
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_fade_delay"                   "FADE DELAY:"
+	
+	// Thirst
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod"										"Thirst"
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"							"Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero."
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"									"Strygwyr becomes frenzied when blood is spilled."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_damage"                          "MAX THIRST DAMAGE:"
+	"DOTA_Tooltip_ability_bloodseeker_thirst_lod_visibility_threshold_pct"				"%VISIBILITY HEALTH THRESHOLD:"
+    "DOTA_Tooltip_modifier_thirst_visual"                                               "Thirst Speed"
+    "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "You sense an injured enemy. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
+    "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
+	"DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "You are visible to the enemy! Gain health to remove debuff"
 
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
@@ -1149,6 +1194,17 @@
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
     "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
     
+    // Increasing Creep Power
+    "DOTA_Tooltip_ability_lod_creep_power" "Creep Power"
+    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage, armour and magic resistance every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_coef" "%BOUNTY INCREASE:"
+    "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
+    "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
+
+    "DOTA_Tooltip_ability_lod_creep_power_hp" "Granite Creep"
+    "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
+
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the mouse cursor. "
@@ -1320,6 +1376,9 @@
 
 
     // Modifiers
+    "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, armor and magic resistance increased."
+
     "DOTA_Tooltip_Modifier_sleep_cloud_aura"      "Sleep Aura"
     "DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"    "Affected units will fall asleep if they stay within the cloud for 4 seconds."
     "DOTA_Tooltip_Modifier_sleep_cloud_effect"      "Sleep Effect"  
@@ -1424,6 +1483,17 @@
     "DOTA_Tooltip_ability_true_random_lod_5_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
     "DOTA_Tooltip_ability_true_random_lod_6" "True Random" 
     "DOTA_Tooltip_ability_true_random_lod_6_Description"  "You will gain a random active ability every time you cast the randomly given ability. Does grant ultimates. All random abilities have the same cooldown."
+    
+    // Doom Devour
+	"DOTA_Tooltip_modifier_creep_eaten"                                               "Devour"
+	"DOTA_Tooltip_modifier_creep_eaten_Description"                                   "Still digesting that delicious creep."
+
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod"                                            "Devour"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Description"                                "Consumes an enemy or neutral creep, acquiring any special abilities that it possessed"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_devour_gold"                                "BONUS GOLD:"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Lore"										  "Lucifer's appetite and greed are never sated"
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note0"									  "Gives Doom the original bounty of the creep, along with the bonus gold."
+	"DOTA_Tooltip_ability_doom_bringer_devour_lod_Note1"									  "The amount of time it takes to Devour depends on the current HP of the unit."
     
     // Fireball
     "DOTA_Tooltip_ability_black_dragon_fireball_lod"                             "Fireball"

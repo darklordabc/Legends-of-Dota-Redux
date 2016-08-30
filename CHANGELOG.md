@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1
+
+### Bug Fixing
+- Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
+
+### Balance
+
 ## 1.0
 
 ### Bug Fixing
@@ -15,6 +22,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed unique mechanic warning for Meepo, no longer applies
 - Banned Abiliites are now hidden by default
 - Added more announcer voices (map load and when battle is starting)
+- Added function to save/load game settings to/from the online Cloud
+- Added 2 more hints. Save/Loading and Jungling 
+- Added Option to periodically increase the power of lane creeps, to help counterbalance strong towers
+- Add new graphical interface for custom games. Added Mutators. 
 
 ### Balance
 - Increased Price of Aegis and Self-Repair Tower Abilities
@@ -24,18 +35,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Gyro, Kotl and Night Stalker will not benefit from the "Free Scepter" upgrade anymore
 - IMBA Thorns Tower Ability is now unbanned and free
 - Removed chance of getting artic burn from random abilities because it becomes bugged with aghs
+- Added Doom's Devour
+- Fixed flashing bug with Thirst
+- Added Beast Master's Hawk
+- Enabled Pitlord Hero and Pitlord Abilities now have graphics
+- Creeps automatically get lvl 1 power level if stronger towers are voted for
 
 ## 2016-08-14
 
 ### Bug Fixing
-- In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit.
+- In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit
 - Fixed omniguard. 
-- Added more price tiers to balance mode. There is now 12 tiers instead of 6. 
+- Added more price tiers to balance mode. There is now 12 tiers instead of 6 
 - Improved text in notifications
-- Enabling balance mode in custom games disable player bans. Disabling balance mode automatically enables default bans.
+- Enabling balance mode in custom games disable player bans. Disabling balance mode automatically enables default bans
 - Fixed Balancing Mode Costs not showing on preset builds
 - Abilities blocked because of troll combos will now have a color tint
-- There is now voice announcers for the start of baning phase, drafting phase, and for when you try to select a disallowed ability. 
+- There is now voice announcers for the start of baning phase, drafting phase, and for when you try to select a disallowed ability 
 
 ### Balance
 - Added new option to enable stronger towers (feature imported from DotA IMBA)
@@ -47,54 +63,54 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Drastically lowered cooldown on random abilities, may be OP
 
 ### Balance
-- Added Omniguard. 
+- Added Omniguard
 
 ## 2016-08-11
 
 ### Bug Fixing
-- Added option in custom games to change Buyback cooldown.
-- Reduced default buyback cooldown by 50% in all_pick maps. 
+- Added option in custom games to change Buyback cooldown
+- Reduced default buyback cooldown by 50% in all_pick maps
 
 ### Balance
-- Balanced Unrefined Fireblast, added 4 levels, increased cooldown.
-- Added two abilities from Imba Dota (Balanced): Nothl Protection and Degen Aura (For Damage).
-- Added Omniguard. 
+- Balanced Unrefined Fireblast, added 4 levels, increased cooldown
+- Added two abilities from Imba Dota (Balanced): Nothl Protection and Degen Aura (For Damage)
+- Added Omniguard
 
 ## 2016-08-08
 
 ### Bug Fixing
-- Add new hint about removing abilities. 
-- Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant. Manacost fixed at 100.
+- Add new hint about removing abilities 
+- Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant Manacost fixed at 100
 
 ### Balance
-- Balanced Walrus Kick, now has 4 levels. 
-- Gave Plants a short-range teleport ability. Lowered their HP and HP Regen. 
-- Balanced Burrow. Has 4 levels. Lower damage reduction and regen at lower levels. 
+- Balanced Walrus Kick, now has 4 levels 
+- Gave Plants a short-range teleport ability. Lowered their HP and HP Regen
+- Balanced Burrow. Has 4 levels. Lower damage reduction and regen at lower levels
 
 ## 2016-08-06
 
 ### Bug Fixing
 - Global Break now shows duration
 - Fixed Agi and Int Flesh Heaps (Hopefully)
-- Aegis and Reincartion should work now.
+- Aegis and Reincartion should work now
 - Made Cyclone Traps Invisible
 - Added 6 more hints
 - Fixed issues with random abilities and illusions (Hopefully)
-- Added function to remove abilities from slots by draging them away and releasing. 
+- Added function to remove abilities from slots by draging them away and releasing 
 
 ### Balance
-- Balanced Eyes in the Forest. Gave 4 levels. 
-- Balanced Stone Form. Fixed to 5 second duration, increased cooldown to 35 seconds, lowered health regen. 
+- Balanced Eyes in the Forest. Gave 4 levels 
+- Balanced Stone Form. Fixed to 5 second duration, increased cooldown to 35 seconds, lowered health regen 
 
 ## 2016-08-04
 ### Balance
 - Removed Backdoor protection because it is buggy
-- Buffed Cherub's Flowers: Flowers have much more health, and they have 20hp/s regen. 
-Damage plants do +20 damage at all levels. 
-Speed Plant gives 10 more attack speed at all levels. 
-Heal plant gives double health. Maximum 3 heal plants instead of 4. 
-Plants take 25% of the player's health, instead of 10%.
-- Lowered cooldown of Typhoon and improved it's castpoint. 
+- Buffed Cherub's Flowers: Flowers have much more health, and they have 20hp/s regen
+Damage plants do +20 damage at all levels
+Speed Plant gives 10 more attack speed at all levels
+Heal plant gives double health. Maximum 3 heal plants instead of 4
+Plants take 25% of the player's health, instead of 10%
+- Lowered cooldown of Typhoon and improved it's castpoint 
 
 ### Bug Fixing
 - Fixed Pitlord Groupings
@@ -109,7 +125,7 @@ Plants take 25% of the player's health, instead of 10%.
 - Default Bans reduced from 10 to 5
 
 ### Bug Fixing
-- Added Information Panel with suggestions to developers. 
+- Added Information Panel with suggestions to developers 
 
 ## 2016-07-28
 ### Balance
@@ -138,7 +154,7 @@ Plants take 25% of the player's health, instead of 10%.
 ## 2016-07-18
 ### Balance
 - Added Balance versions of Fury Swipes and Essence Shift
-- Made Essence Shift a banned ability by default. 
+- Made Essence Shift a banned ability by default
 
 ### Bug Fixing
 - Standardized use of green text in abilities

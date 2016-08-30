@@ -10,87 +10,156 @@ var allOptions = {
                 name: 'lodOptionGamemode',
                 des: 'lodOptionsPresetGamemode',
                 about: 'lodOptionAboutPresetGamemode',
-                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionBalancedAllPick',
+                        about: 'lodOptionAboutBalancedAllPick',
                         value: 1
                     },
                     {
-                        text: 'lodOptionBalancedAllPickFast',
+                        text: 'lodOptionTraditionalAllPick',
+                        about: 'lodOptionAboutTraditionalAllPick',
                         value: 2
                     },
                     {
-                        text: 'lodOptionBalancedMirrorDraft',
+                        text: 'lodOptionSingleDraft',
+                        about: 'lodOptionAboutSingleDraft',
+                        value: 5
+                    },
+                    {
+                        text: 'lodOptionMirrorDraft',
+                        about: 'lodOptionAboutMirrorDraft',
                         value: 3
                     },
                     {
-                        text: 'lodOptionBalancedAllRandom',
+                        text: 'lodOptionAllRandom',
+                        about: 'lodOptionAboutAllRandom',
                         value: 4
                     },
                     {
                         text: 'lodOptionBalancedCustom',
+                        about: 'lodOptionAboutBalancedCustom',
                         value: -1
                     }
-                ]
-            },
-            {
-                preset: true,
-                name: 'lodOptionBanning',
-                des: 'lodOptionsPresetBanning',
-                about: 'lodOptionAboutPresetBanning',
-                sort: 'dropdown',
-                values: [
+                ],
+                mutators: [
                     {
-                        text: 'lodOptionManualBalancedBan',
-                        value: 3
+                        name: 'lodOptionBanningBanInvis',
+                        about: 'lodMutatorBanningBanInvis'
                     },
                     {
-                        text: 'lodOptionManualBan',
-                        value: 2
+                        about: 'lodMutatorFastBuybackCooldown',
+                        values: {
+                            enabled: {
+                                'lodOptionBuybackCooldownTimeConstant': 105,
+                                'lodOptionGameSpeedRespawnTimePercentage': 25
+                            },
+                            disabled: {
+                                'lodOptionBuybackCooldownTimeConstant': 420,
+                                'lodOptionGameSpeedRespawnTimePercentage': 100
+                            }
+                        }
                     },
                     {
-                        text: 'lodOptionBalancedBan',
-                        value: 1
+                        name: 'lodOptionGameSpeedUpgradedUlts',
+                        about: 'lodMutatorUpgradedUlts'
                     },
                     {
-                        text: 'lodOptionNoBans',
-                        value: 4
+                        about: 'lodMutatorFastStart',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStartingGold': 1000,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStartingGold': 0,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 1
+                            }
+                        }
+                    },
+                    {
+                        name: 'lodOptionGameSpeedStrongTowers',
+                        about: 'lodMutatorStrongTowers'
+                    },
+                    {
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 5
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
+                    },
+                    {
+                        name: 'lodOptionBanningHostBanning',
+                        about: 'lodMutatorUnlimitedBans'
+                    },
+                    {
+                        about: 'lodMutatorBalanceMode',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningBalanceMode': 1,
+                                'lodOptionBalanceMode': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningBalanceMode': 0,
+                                'lodOptionBalanceMode': 0
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorPlayerBans',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningMaxHeroBans': 1,
+                                'lodOptionBanningMaxBans': 3
+                            },
+                            disabled: {
+                                'lodOptionBanningMaxHeroBans': 0,
+                                'lodOptionBanningMaxBans': 0
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorOPAbilities',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningUseBanList': 1,
+                                'lodOptionAdvancedOPAbilities': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningUseBanList': 0,
+                                'lodOptionAdvancedOPAbilities': 0
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorUlts',
+                        values: {
+                            enabled: {
+                                'lodOptionCommonMaxUlts': 6
+                            },
+                            disabled: {
+                                'lodOptionCommonMaxUlts': 2
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorStrongCreeps',
+                        values: {
+                            enabled: {
+                                'lodOptionCreepPower': 120
+                            },
+                            disabled: {
+                                'lodOptionCreepPower': 0
+                            }
+                        }
                     }
                 ]
-            },
-            {
-                preset: true,
-                name: 'lodOptionSlots',
-                des: 'lodOptionsPresetSlots',
-                about: 'lodOptionAboutPresetSlots',
-                sort: 'range',
-                min: 4,
-                max: 6,
-                step: 1,
-                default: 6
-            },
-            {
-                preset: true,
-                name: 'lodOptionUlts',
-                des: 'lodOptionsPresetUlts',
-                about: 'lodOptionAboutPresetUlts',
-                sort: 'range',
-                min: 0,
-                max: 6,
-                step: 1,
-                default: 2
-            },
-            {
-                preset: true,
-                name: 'lodOptionMirrorHeroes',
-                des: 'lodOptionsPresetMirrorHeroes',
-                about: 'lodOptionAboutPresetMirrorHeroes',
-                sort: 'range',
-                min: 1,
-                max: 50,
-                step: 1,
-                default: 20
             }
         ]
     },
@@ -466,6 +535,30 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionCreepPower',
+                des: 'lodOptionDesCreepPower',
+                about: 'lodOptionAboutCreepPower',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoCreepPower',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionNormal',
+                        value: 120
+                    },
+                    {
+                        text: 'lodOptionHigh',
+                        value: 60
+                    },
+                    {
+                        text: 'lodOptionExtreme',
+                        value: 30
+                    }
+                ]
+            },
         ]
     },
 
@@ -798,7 +891,7 @@ var recommendedBuilds = [
             2: 'holdout_arcane_aura',
             3: 'ancient_apparition_ice_blast',
             4: 'silencer_glaives_of_wisdom',
-            5: 'bloodseeker_thirst',
+            5: 'bloodseeker_thirst_lod',
             6: 'zuus_thundergods_wrath',
         },
     },
@@ -1064,6 +1157,9 @@ var waitingForPrecache = true;
 
 // Are we a premium player?
 var isPremiumPlayer = false;
+
+// Save code timer
+var saveSCTimer = false;
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -3162,7 +3258,7 @@ function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
 
     if(data.length == 0) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
         setOption()
         return;
     }
@@ -3171,7 +3267,7 @@ function onImportAndExportPressed() {
     try {
         decodeData = JSON.parse(data);
     } catch(e) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
         setOption()
         return;
     }
@@ -3192,13 +3288,34 @@ function onImportAndExportPressed() {
     }
 
     if (!changed) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
     } else {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportApplyButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
+        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
     $.Schedule(0.1, function () {
         $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     });
+}
+
+function LoadPlayerSC( ) {
+    var requestParams = {
+        Command : "LoadPlayerSC",
+        SteamID: GetSteamID32()
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
+        var replaceAll = (function(string, search, replacement) {
+            var target = string;
+            return target.split(search).join(replacement);
+        });
+
+        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
+        onImportAndExportPressed()
+
+        $.Schedule(3.0, function () {
+            $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip");
+        });
+    })
 }
 
 // Updates our selected hero
@@ -3415,9 +3532,43 @@ function buildOptionsCategories() {
     // Grab the main container for option categories
     var catContainer = $('#optionCategories');
     var optionContainer = $('#optionList');
+    var mutatorList = {};
+    var gamemodeList = {};
 
     // Reset option links
     allOptionLinks = {};
+
+    var changeGamemode = function(value) {
+
+    }
+
+    var checkMutators = function(field, hostPanel) {
+        if(mutatorList[field]) {
+            if(mutatorList[field].optionList) {
+                var options = mutatorList[field].optionList;
+                var found = true;
+
+                for(var value in options) {
+                    if(optionValueList[value] != options[value]) {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if(found) {
+                    mutatorList[field].AddClass('active');
+                } else {
+                    mutatorList[field].RemoveClass('active');
+                }
+            } else {
+                if(optionValueList[field]) {
+                    mutatorList[field].AddClass('active');
+                } else {
+                    mutatorList[field].RemoveClass('active');
+                }
+            }
+        }
+    }
 
     // Loop over all the option labels
     for(var optionLabelText in allOptions) {
@@ -3477,225 +3628,319 @@ function buildOptionsCategories() {
                     var sort = info.sort;
                     var values = info.values;
 
-                    // Create the info
-                    var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
-                    mainSlot.AddClass('optionSlotPanel');
-                    var infoLabel = $.CreatePanel('Label', mainSlot, 'option_panel_main_' + fieldName);
-                    infoLabel.text = $.Localize(info.des);
-                    infoLabel.AddClass('optionSlotPanelLabel');
+                    if(fieldData[i].name === 'lodOptionGamemode') {
+                        var length = fieldData[i].values.length;
+                        fieldData[i].values.forEach(function(item, i) {
+                            var optionMode = $.CreatePanel('Panel', optionPanel, 'option_' + i);
+                            optionMode.SetAttributeInt('fieldValue', item.value);
+                            optionMode.AddClass('option');
 
-                    mainSlot.SetPanelEvent('onmouseover', function() {
-                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
-                    });
+                            // When the mode changes
+                            optionMode.SetPanelEvent('onactivate', function() {
+                                var fieldValue = optionMode.GetAttributeInt('fieldValue', -1);
+                                setOption(fieldName, fieldValue);
+                            });
 
-                    mainSlot.SetPanelEvent('onmouseout', function() {
-                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
-                    });
+                            var optionModeLabel = $.CreatePanel('Label', optionMode, 'optionModeLabel_' + i);
+                            optionModeLabel.AddClass('optionLabel');
+                            optionModeLabel.text = $.Localize(item.text);
 
-                    // Is this a preset?
-                    if(info.preset) {
-                        mainSlot.AddClass('optionSlotPanelNoCustom');
-                    }
+                            var optionModeDescription = $.CreatePanel('Label', optionMode, 'optionModeDescription_' + i);
+                            optionModeDescription.AddClass('optionDescription');
+                            optionModeDescription.text = $.Localize(item.about);
 
-                    var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
-                    floatRightContiner.AddClass('optionsSlotPanelContainer');
+                            var optionModeImage = $.CreatePanel('Image', optionMode, 'optionModeImage_' + i);
+                            optionModeImage.AddClass('optionImage');
+                            optionModeImage.SetImage('file://{images}/custom_game/options/option' + i + '.png');
 
-                    // Create stores for the newly created items
-                    var hostPanel;
-                    var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
-                    slavePanel.AddClass('optionsSlotPanelSlave');
-                    slavePanel.AddClass('optionSlotPanelLabel');
-                    slavePanel.text = 'Unknown';
+                            gamemodeList[item.value] = optionMode;
 
-                    switch(sort) {
-                        case 'dropdown':
-                            // Create the drop down
-                            hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
-                            hostPanel.AddClass('optionsSlotPanelHost');
+                            optionFieldMap[fieldName] = function(newValue) {
+                                $.Each(optionPanel.Children(), function(elem) {
+                                    if(elem.BHasClass('active') && !elem.BHasClass('mutator')) {
+                                        elem.RemoveClass('active');
+                                    }
+                                });
 
-                            // Maps values to panels
-                            var valueToPanel = {};
+                                gamemodeList[newValue].AddClass('active');
+                            }
+                        });
 
-                            for(var j=0; j<values.length; ++j) {
-                                var valueInfo = values[j];
-                                var fieldText = valueInfo.text;
-                                var fieldValue = valueInfo.value;
+                        var infoLabel = $.CreatePanel('Label', optionPanel, 'optionMutatorTitle');
+                        infoLabel.text = $.Localize('lodOptionPresetMutators');
 
-                                var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
-                                subPanel.text = $.Localize(fieldText);
-                                //subPanel.SetAttributeString('fieldText', fieldText);
-                                subPanel.SetAttributeInt('fieldValue', fieldValue);
-                                hostPanel.AddOption(subPanel);
+                        fieldData[i].mutators.forEach(function(item, i) {
+                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + item.name);
+                            optionMutator.AddClass('mutator');
 
-                                // Store the map
-                                valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
+                            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i); 
+                            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator' + i + '.png');
 
-                                if(j == values.length-1) {
-                                    hostPanel.SetSelected(valueToPanel[fieldValue]);
+                            // When the mutators changes
+                            optionMutator.SetPanelEvent('onactivate', function(e) {
+                                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+
+                                if (item.values !== undefined) {
+                                    var state;
+                                    if(optionMutator.BHasClass('active')) {
+                                        state = 'disabled';
+                                    } else {
+                                        state = 'enabled';
+                                    }
+
+                                    for (var option in item.values[state]) {
+                                        var value = item.values[state][option];
+                                        setOption(option, value)
+                                    }
+                                } else {
+                                    if(optionMutator.BHasClass('active')) {
+                                        setOption(item.name, 0);
+                                    } else {
+                                        setOption(item.name, 1);
+                                    }
+                                }
+                            });
+
+                            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
+                            infoLabel.AddClass('mutatorLabel');
+                            infoLabel.text = $.Localize(item.about);
+
+                            if(item.name) {
+                                mutatorList[item.name] = optionMutator;
+                            } else {
+                                for(var value in item.values.enabled) {
+                                    optionMutator.SetAttributeString('optionList', '');
+                                    optionMutator.optionList = item.values.enabled;
+                                    mutatorList[value] = optionMutator;
                                 }
                             }
+                        });
+                    } else {
+                        // Create the info
+                        var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
+                        mainSlot.AddClass('optionSlotPanel');
+                        var infoLabel = $.CreatePanel('Label', mainSlot, 'option_panel_main_' + fieldName);
+                        infoLabel.text = $.Localize(info.des);
+                        infoLabel.AddClass('optionSlotPanelLabel');
 
-                            // Mapping function
-                            optionFieldMap[fieldName] = function(newValue) {
-                                for(var i=0; i<values.length; ++i) {
-                                    var valueInfo = values[i];
+                        mainSlot.SetPanelEvent('onmouseover', function() {
+                            $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                        });
+
+                        mainSlot.SetPanelEvent('onmouseout', function() {
+                            $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
+                        });
+
+                        // Is this a preset?
+                        if(info.preset) {
+                            mainSlot.AddClass('optionSlotPanelNoCustom');
+                        }
+
+                        var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
+                        floatRightContiner.AddClass('optionsSlotPanelContainer');
+
+                        // Create stores for the newly created items
+                        var hostPanel;
+                        var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
+                        slavePanel.AddClass('optionsSlotPanelSlave');
+                        slavePanel.AddClass('optionSlotPanelLabel');
+                        slavePanel.text = 'Unknown';
+
+                        switch(sort) {
+                            case 'dropdown':
+                                // Create the drop down
+                                hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
+                                hostPanel.AddClass('optionsSlotPanelHost');
+
+                                // Maps values to panels
+                                var valueToPanel = {};
+
+                                for(var j=0; j<values.length; ++j) {
+                                    var valueInfo = values[j];
                                     var fieldText = valueInfo.text;
                                     var fieldValue = valueInfo.value;
 
-                                    if(fieldValue == newValue) {
-                                        var thePanel = valueToPanel[fieldValue];
-                                        if(thePanel) {
-                                            // Select that panel
-                                            hostPanel.SetSelected(thePanel);
+                                    var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
+                                    subPanel.text = $.Localize(fieldText);
+                                    //subPanel.SetAttributeString('fieldText', fieldText);
+                                    subPanel.SetAttributeInt('fieldValue', fieldValue);
+                                    hostPanel.AddOption(subPanel);
 
-                                            // Update text
-                                            slavePanel.text = $.Localize(fieldText);
-                                            break;
-                                        }
+                                    // Store the map
+                                    valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
+
+                                    if(j == values.length-1) {
+                                        hostPanel.SetSelected(valueToPanel[fieldValue]);
                                     }
                                 }
-                            }
 
-                            // When the data changes
-                            hostPanel.SetPanelEvent('oninputsubmit', function() {
-                                // Grab the selected one
-                                var selected = hostPanel.GetSelected();
-                                //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+                                // Mapping function
+                                optionFieldMap[fieldName] = function(newValue) {
+                                    for(var i=0; i<values.length; ++i) {
+                                        var valueInfo = values[i];
+                                        var fieldText = valueInfo.text;
+                                        var fieldValue = valueInfo.value;
 
-                                // Sets an option
-                                setOption(fieldName, fieldValue);
-                            });
-                        break;
+                                        if(fieldValue == newValue) {
+                                            var thePanel = valueToPanel[fieldValue];
+                                            if(thePanel) {
+                                                // Select that panel
+                                                hostPanel.SetSelected(thePanel);
 
-                        case 'range':
-                            // Create the Container
-                            hostPanel = $.CreatePanel('Panel', floatRightContiner, 'option_panel_field_' + fieldName);
-                            hostPanel.BLoadLayout('file://{resources}/layout/custom_game/slider.xml', false, false);
-                            hostPanel.AddClass('optionsSlotPanelHost');
+                                                // Update text
+                                                slavePanel.text = $.Localize(fieldText);
+                                                break;
+                                            }
+                                        }
+                                    }
 
-                            var sliderStep = info.step;
-                            var sliderMin = info.min;
-                            var sliderMax = info.max;
-                            var sliderDefault = info.default;
-
-                            var sliderPanel = hostPanel.FindChildInLayoutFile('slider');
-                            sliderPanel.min = sliderMin;
-                            sliderPanel.max = sliderMax;
-                            sliderPanel.increment = sliderStep;
-                            sliderPanel.value = sliderDefault;
-                            sliderPanel.SetShowDefaultValue(true);
-
-                            var onGetNewSliderValue = function(newValue, shouldNetwork, ignoreSlider, ignoreText) {
-                                // Validate the new value
-                                newValue = Math.floor(newValue / sliderStep) * sliderStep;
-
-                                if(newValue < sliderMin) {
-                                    newValue = sliderMin;
+                                    checkMutators(fieldName, hostPanel);
                                 }
 
-                                if(newValue > sliderMax) {
-                                    newValue = sliderMax;
+                                // When the data changes
+                                hostPanel.SetPanelEvent('oninputsubmit', function() {
+                                    // Grab the selected one
+                                    var selected = hostPanel.GetSelected();
+                                    //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                    var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                    // Sets an option
+                                    setOption(fieldName, fieldValue);
+                                });
+                            break;
+
+                            case 'range':
+                                // Create the Container
+                                hostPanel = $.CreatePanel('Panel', floatRightContiner, 'option_panel_field_' + fieldName);
+                                hostPanel.BLoadLayout('file://{resources}/layout/custom_game/slider.xml', false, false);
+                                hostPanel.AddClass('optionsSlotPanelHost');
+
+                                var sliderStep = info.step;
+                                var sliderMin = info.min;
+                                var sliderMax = info.max;
+                                var sliderDefault = info.default;
+
+                                var sliderPanel = hostPanel.FindChildInLayoutFile('slider');
+                                sliderPanel.min = sliderMin;
+                                sliderPanel.max = sliderMax;
+                                sliderPanel.increment = sliderStep;
+                                sliderPanel.value = sliderDefault;
+                                sliderPanel.SetShowDefaultValue(true);
+
+                                var onGetNewSliderValue = function(newValue, shouldNetwork, ignoreSlider, ignoreText) {
+                                    // Validate the new value
+                                    newValue = Math.floor(newValue / sliderStep) * sliderStep;
+
+                                    if(newValue < sliderMin) {
+                                        newValue = sliderMin;
+                                    }
+
+                                    if(newValue > sliderMax) {
+                                        newValue = sliderMax;
+                                    }
+
+                                    // Update Slider Position
+                                    if(!ignoreSlider) {
+                                        sliderPanel.value = newValue;
+                                    }
+
+                                    // Update text value
+                                    if(!ignoreText) {
+                                        inputValuePanel.text = newValue;
+                                    }
+
+                                    // Update slave text
+                                    slavePanel.text = newValue;
+
+                                    // Should we network it?
+                                    if(shouldNetwork) {
+                                        // Set it
+                                        setOption(fieldName, newValue);
+                                    }
                                 }
 
-                                // Update Slider Position
-                                if(!ignoreSlider) {
-                                    sliderPanel.value = newValue;
+                                hookSliderChange(sliderPanel, function(panel, newValue) {
+                                    onGetNewSliderValue(newValue, false, true, false);
+                                }, function(panel, newValue) {
+                                    onGetNewSliderValue(newValue, true, true, false);
+                                });
+
+                                var inputValuePanel = hostPanel.FindChildInLayoutFile('entry');
+                                inputValuePanel.text = sliderDefault;
+
+                                addInputChangedEvent(inputValuePanel, function(panel, newValue) {
+                                    newValue = parseInt(newValue);
+                                    if(isNaN(newValue)) {
+                                        newValue = sliderMin;
+                                    }
+
+                                    onGetNewSliderValue(newValue, false, false, true);
+                                });
+
+                                inputValuePanel.SetPanelEvent('onblur', function() {
+                                    var newValue = inputValuePanel.text;
+
+                                    newValue = parseInt(newValue);
+                                    if(isNaN(newValue)) {
+                                        newValue = sliderMin;
+                                    }
+
+                                    onGetNewSliderValue(newValue, true);
+                                });
+
+                                optionFieldMap[fieldName] = function(newValue) {
+                                    onGetNewSliderValue(newValue, false);
+                                    checkMutators(fieldName, hostPanel);
+                                }
+                            break;
+
+                            case 'toggle':
+                                // Create the toggle box
+                                hostPanel = $.CreatePanel('ToggleButton', floatRightContiner, 'option_panel_field_' + fieldName);
+                                hostPanel.AddClass('optionsSlotPanelHost');
+                                hostPanel.AddClass('optionsHostToggleSelector');
+
+                                // When the checkbox has been toggled
+                                var checkboxToggled = function() {
+                                    // Check if it is checked or not
+                                    if(hostPanel.checked) {
+                                        setOption(fieldName, 1);
+                                        hostPanel.text = values[1].text;
+                                        slavePanel.text = $.Localize(values[1].text);
+                                    } else {
+                                        setOption(fieldName, 0);
+                                        hostPanel.text = values[0].text;
+                                        slavePanel.text = $.Localize(values[0].text);
+                                    }
                                 }
 
-                                // Update text value
-                                if(!ignoreText) {
-                                    inputValuePanel.text = newValue;
+                                // When the data changes
+                                hostPanel.SetPanelEvent('onactivate', checkboxToggled);
+
+                                // Mapping function
+                                optionFieldMap[fieldName] = function(newValue) {
+                                    hostPanel.checked = newValue == 1;
+
+                                    if(hostPanel.checked) {
+                                        hostPanel.text = $.Localize(values[1].text);
+                                        slavePanel.text = $.Localize(values[1].text);
+                                    } else {
+                                        hostPanel.text = $.Localize(values[0].text);
+                                        slavePanel.text = $.Localize(values[0].text);
+                                    }
+
+                                    checkMutators(fieldName, hostPanel);
                                 }
 
-                                // Update slave text
-                                slavePanel.text = newValue;
+                                // When the main slot is pressed
+                                mainSlot.SetPanelEvent('onactivate', function() {
+                                    if(!hostPanel.visible) return;
 
-                                // Should we network it?
-                                if(shouldNetwork) {
-                                    // Set it
-                                    setOption(fieldName, newValue);
-                                }
-                            }
-
-                            hookSliderChange(sliderPanel, function(panel, newValue) {
-                                onGetNewSliderValue(newValue, false, true, false);
-                            }, function(panel, newValue) {
-                                onGetNewSliderValue(newValue, true, true, false);
-                            });
-
-                            var inputValuePanel = hostPanel.FindChildInLayoutFile('entry');
-                            inputValuePanel.text = sliderDefault;
-
-                            addInputChangedEvent(inputValuePanel, function(panel, newValue) {
-                                newValue = parseInt(newValue);
-                                if(isNaN(newValue)) {
-                                    newValue = sliderMin;
-                                }
-
-                                onGetNewSliderValue(newValue, false, false, true);
-                            });
-
-                            inputValuePanel.SetPanelEvent('onblur', function() {
-                                var newValue = inputValuePanel.text;
-
-                                newValue = parseInt(newValue);
-                                if(isNaN(newValue)) {
-                                    newValue = sliderMin;
-                                }
-
-                                onGetNewSliderValue(newValue, true);
-                            });
-
-                            optionFieldMap[fieldName] = function(newValue) {
-                                onGetNewSliderValue(newValue, false);
-                            }
-                        break;
-
-                        case 'toggle':
-                            // Create the toggle box
-                            hostPanel = $.CreatePanel('ToggleButton', floatRightContiner, 'option_panel_field_' + fieldName);
-                            hostPanel.AddClass('optionsSlotPanelHost');
-                            hostPanel.AddClass('optionsHostToggleSelector');
-
-                            // When the checkbox has been toggled
-                            var checkboxToggled = function() {
-                                // Check if it is checked or not
-                                if(hostPanel.checked) {
-                                    setOption(fieldName, 1);
-                                    hostPanel.text = values[1].text;
-                                    slavePanel.text = $.Localize(values[1].text);
-                                } else {
-                                    setOption(fieldName, 0);
-                                    hostPanel.text = values[0].text;
-                                    slavePanel.text = $.Localize(values[0].text);
-                                }
-                            }
-
-                            // When the data changes
-                            hostPanel.SetPanelEvent('onactivate', checkboxToggled);
-
-                            // Mapping function
-                            optionFieldMap[fieldName] = function(newValue) {
-                                hostPanel.checked = newValue == 1;
-
-                                if(hostPanel.checked) {
-                                    hostPanel.text = $.Localize(values[1].text);
-                                    slavePanel.text = $.Localize(values[1].text);
-                                } else {
-                                    hostPanel.text = $.Localize(values[0].text);
-                                    slavePanel.text = $.Localize(values[0].text);
-                                }
-                            }
-
-                            // When the main slot is pressed
-                            mainSlot.SetPanelEvent('onactivate', function() {
-                                if(!hostPanel.visible) return;
-
-                                hostPanel.checked = !hostPanel.checked;
-                                checkboxToggled();
-                            });
-                        break;
+                                    hostPanel.checked = !hostPanel.checked;
+                                    checkboxToggled();
+                                });
+                            break;
+                        }
                     }
                 })();
             }
@@ -4253,14 +4498,6 @@ function OnOptionChanged(table_name, key, data) {
         allowCustomSettings = data.v == -1;
         $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
         $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);
-    }
-
-    if(key == 'lodOptionCommonGamemode') {
-        // Mirror draft options
-        var showMirrorDraftOptions = data.v == 3 || data.v == 5;
-
-        $('#option_panel_main_lodOptionMirrorHeroes').SetHasClass('showThis', showMirrorDraftOptions);
-        $('#option_panel_main_lodOptionCommonMirrorHeroes').visible = showMirrorDraftOptions;
     }
 
     // Check for allowed categories changing

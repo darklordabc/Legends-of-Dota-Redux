@@ -43,6 +43,10 @@ function SU:SendRequest( requestParams, successCallback )
   end)
 end
 
+function SU:SendAuthInfo()
+  CustomGameEventManager:Send_ServerToAllClients("su_auth_params", { URL = SU.StatSettings.Host, AuthKey = SU.StatSettings.AuthKey } )
+end
+
 -------------------------------------------------------------------------------
 -- Testing functions
 -------------------------------------------------------------------------------

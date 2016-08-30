@@ -7,6 +7,7 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
     </scripts>
     <Panel class="lodOptionsInterface">
         <Panel id="lodNotificationArea">
@@ -261,15 +262,41 @@
 
             <Panel id="optionSelection">
                 <Panel id="optionCategories" />
-                <Panel id="optionList" />
-                <Panel id="importAndExportRoot" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
+                <Panel id="optionList">
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option4.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator0.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator4.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator5.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator6.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator7.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator8.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator9.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator10.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator11.png"></Image>
+                </Panel>
+                <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">
                         <Label text="#importAndExport_code"/>
+                        <Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
                         <TextEntry id="importAndExportEntry"/>
-                        <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall" onactivate="onImportAndExportPressed()">
-                            <Label text="#importAndExport_apply" />
+                        <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="RecordPlayerSC()">
+                            <Label text="#importAndExport_save" />
+                        </Button>
+                        <Button id="importAndExportLoadButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="LoadPlayerSC()">
+                            <Label text="#importAndExport_load" />
                         </Button>
                     </Panel>
                 </Panel>
