@@ -9,8 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
 
 ### Balance
-- Reworked Random Abilities. Now only True Random, and you can have 6 of them.
-- Bots can now get Chemical Rage and Shadow Dance. Special passive bot versions of this ability.
+- Reworked Random Abilities. Now only True Random, and you can have 6 of them
+- Bots can now get Chemical Rage and Shadow Dance. Special passive bot versions
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
 
