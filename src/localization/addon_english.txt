@@ -1266,7 +1266,7 @@
     // CUSTOM BOT ABILITIES
     ////////////////////////
     // Shadow Dance
-    "DOTA_Tooltip_ability_custom_bot_shadow_dance"      "Shadow Dance"
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance"      "Shadow Dance Passive"
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_description"           "When used, Slark hides himself in a cloud of shadows, becoming immune to detection. Attacking, casting spells, and using items will not reveal Slark. Passively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration. <font color='#70EA72'>Automatically triggers the ability when the owner fall below 400 health.</font>"
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_lore"                   "The hidden Thirteenth is a slippery foe."
     "DOTA_Tooltip_ability_custom_bot_shadow_dance_bonus_movement_speed"   "%BONUS MOVEMENT SPEED:"
@@ -1275,7 +1275,7 @@
     "DOTA_Tooltip_modifier_shadow_dance"            "Shadow Dance"
 
     // Chemical Rage
-    "DOTA_Tooltip_ability_custom_bot_chemical_rage"      "Chemical Rage"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage"      "Chemical Rage Passive"
     "DOTA_Tooltip_ability_custom_bot_chemical_rage_description"      "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Automatically triggers the ability whenever the owner is below 90% of their maximum health.</font>"
     "DOTA_Tooltip_ability_custom_bot_chemical_rage_lore"             "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
     "DOTA_Tooltip_ability_custom_bot_chemical_rage_duration"             "DURATION:"
