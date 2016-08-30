@@ -109,7 +109,7 @@ function SU:MarkMessageRead( args )
   end)
 end
 
-function SU:SendPlayerBuild( args )
+function SU:SendPlayerBuild( args, pID )
   local abilities = {}
 
   for i=1,16 do
@@ -121,8 +121,8 @@ function SU:SendPlayerBuild( args )
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    Hero = args.hero
-    Abilities = abilities
+    Abilities = abilities,
+    SteamID = PlayerResource:GetSteamAccountID(pID)
   }
   
   SU:SendRequest( requestParams, function(obj)
