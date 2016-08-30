@@ -4589,7 +4589,6 @@ function Pregame:generateBotBuilds()
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
         life_stealer_feast = true,
-        alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
         tiny_grow_lod = true,
