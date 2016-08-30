@@ -4594,9 +4594,10 @@ function Pregame:generateBotBuilds()
         tiny_grow_lod = true,
         riki_permanent_invisibility = true
     }
+    local botSkills = LoadKeyValues('scripts/kv/bot_skills.kv')
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
-    	-- Grab a hero
+        -- Grab a hero
         local heroName = 'npc_dota_hero_pudge'
         if #possibleHeroes > 0 then
             heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
@@ -4605,9 +4606,9 @@ function Pregame:generateBotBuilds()
         -- Generate build
         local build = {}
         local skillID = 1
-        local defaultSkills = self.botHeroes[heroName]
+        local defaultSkills = botSkills[heroName]
         if defaultSkills then
-            for k,abilityName in pairs(defaultSkills) do
+            for abilityName in pairs(defaultSkills) do
                 if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] then
                     build[skillID] = abilityName
                     skillID = skillID + 1
