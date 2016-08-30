@@ -1261,8 +1261,33 @@
 
     "DOTA_Tooltip_modifier_fury_swipes_target_lod"  "Fury Swipes"
     "DOTA_Tooltip_modifier_fury_swipes_target_lod_Description"  "Taking extra damage per stack."
+    
+    ////////////////////////
+    // CUSTOM BOT ABILITIES
+    ////////////////////////
+    // Shadow Dance
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance"      "Shadow Dance Passive"
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance_description"           "When used, Slark hides himself in a cloud of shadows, becoming immune to detection. Attacking, casting spells, and using items will not reveal Slark. Passively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration. <font color='#70EA72'>Automatically triggers the ability when the owner fall below 400 health.</font>"
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance_lore"                   "The hidden Thirteenth is a slippery foe."
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance_bonus_movement_speed"   "%BONUS MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_custom_bot_shadow_dance_bonus_regen_pct"        "%HEALTH GAINED PER SECOND:"
+    "DOTA_Tooltip_modifier_shadow_dance_bonus"      "Hidden from sight"
+    "DOTA_Tooltip_modifier_shadow_dance"            "Shadow Dance"
 
-        // HERO CONCEPTS (from The Next Generation)
+    // Chemical Rage
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage"      "Chemical Rage Passive"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_description"      "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Automatically triggers the ability whenever the owner is below 90% of their maximum health.</font>"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_lore"             "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_duration"             "DURATION:"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_base_attack_time"      "BASE ATTACK TIME:"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_bonus_health_regen"    "BONUS HEALTH REGEN:"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_bonus_mana_regen"      "BONUS MANA REGEN:"
+    "DOTA_Tooltip_ability_custom_bot_chemical_rage_bonus_movespeed"       "BONUS MOVE SPEED:"
+    "DOTA_Tooltip_modifier_chemical_rage"       "Frenzied"
+    
+    ///////////////////////////////////////
+    // HERO CONCEPTS (The Next Generation)
+    ///////////////////////////////////////
     //-------------------------------------------------------------------
     // Cherub, the Dancing Flower
     //-------------------------------------------------------------------

@@ -2809,6 +2809,19 @@ function Pregame:banAbility(abilityName)
     if not self.bannedAbilities[abilityName] then
         -- Do the ban
         self.bannedAbilities[abilityName] = true
+        if abilityName == "alchemist_chemical_rage" then
+            self.bannedAbilities["custom_bot_chemical_rage"] = true
+            network:banAbility("custom_bot_chemical_rage")
+        elseif abilityName == "slark_shadow_dance" then
+            self.bannedAbilities["custom_bot_shadow_dance"] = true
+            network:banAbility("custom_bot_shadow_dance")
+        elseif abilityName == "custom_bot_chemical_rage" then
+            self.bannedAbilities["alchemist_chemical_rage"] = true
+            network:banAbility("alchemist_chemical_rage")
+        elseif abilityName == "custom_bot_shadow_dance" then
+            self.bannedAbilities["slark_shadow_dance"] = true
+            network:banAbility("slark_shadow_dance")
+        end
         network:banAbility(abilityName)
 
         return true
@@ -4571,11 +4584,11 @@ function Pregame:generateBotBuilds()
         slark_essence_shift = true,
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
-        slark_shadow_dance = true,
+        custom_bot_shadow_dance = true,
+        custom_bot_chemical_rage = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
         life_stealer_feast = true,
-        alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
         tiny_grow_lod = true,
