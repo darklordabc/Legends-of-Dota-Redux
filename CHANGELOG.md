@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
 
 ### Balance
+- Reworked Random Abilities. Now only True Random, and you can have 6 of them.
 
 ## 1.0
 
