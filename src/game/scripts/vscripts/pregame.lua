@@ -4609,7 +4609,7 @@ function Pregame:generateBotBuilds()
         local defaultSkills = botSkills[heroName]
         if defaultSkills then
             for abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] and skillID < 7 then
+                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] and skillID <= maxSlots then
                     build[skillID] = abilityName
                     skillID = skillID + 1
                 end
