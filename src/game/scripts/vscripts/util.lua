@@ -174,7 +174,7 @@ function Util:GetActivePlayerCountForTeam(team)
     local number = 0
     for x=0,DOTA_DEFAULT_MAX_TEAM do
         local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
-        if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetConnectionState(pID) ~= DOTA_CONNECTION_STATE_ABANDONED then
+        if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetConnectionState(pID) == DOTA_CONNECTION_STATE_CONNECTED then
             number = number + 1
         end
     end
