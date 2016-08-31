@@ -3529,12 +3529,68 @@ function buildOptionsCategories() {
     var optionContainer = $('#optionList');
     var mutatorList = {};
     var gamemodeList = {};
+    var mutators;
 
     // Reset option links
     allOptionLinks = {};
 
     var changeGamemode = function(value) {
 
+    }
+
+    var addMutators = function(destionationPanel) {
+        mutatorList = {};
+        mutators.forEach(function(item, i) {
+            var optionMutator = $.CreatePanel('Panel', destionationPanel, 'mutator_' + i);
+            optionMutator.AddClass('mutator');
+
+            if (item.states !== undefined) {
+                for (var firstState in item.states) break;
+                optionMutator.SetAttributeString('mutatorState', firstState);
+            }
+
+            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
+            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator' + i + '.png');
+
+            // When the mutators changes
+            optionMutator.SetPanelEvent('onactivate', function(e) {
+                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+
+                if (item.values !== undefined) {
+                    var state;
+                    if(optionMutator.BHasClass('active')) {
+                        state = 'disabled';
+                    } else {
+                        state = 'enabled';
+                    }
+
+                    for (var option in item.values[state]) {
+                        var value = item.values[state][option];
+                        setOption(option, value)
+                    }
+                } else {
+                    if(optionMutator.BHasClass('active')) {
+                        setOption(item.name, 0);
+                    } else {
+                        setOption(item.name, 1);
+                    }
+                }
+            });
+
+            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
+            infoLabel.AddClass('mutatorLabel');
+            infoLabel.text = $.Localize(item.about);
+
+            if(item.name) {
+                mutatorList[item.name] = optionMutator;
+            } else {
+                for(var value in item.values.enabled) {
+                    optionMutator.SetAttributeString('optionList', '');
+                    optionMutator.optionList = item.values.enabled;
+                    mutatorList[value] = optionMutator;
+                }
+            }
+        });
     }
 
     var checkMutators = function(field, hostPanel) {
@@ -3661,55 +3717,7 @@ function buildOptionsCategories() {
                             }
                         });
 
-                        var infoLabel = $.CreatePanel('Label', optionPanel, 'optionMutatorTitle');
-                        infoLabel.text = $.Localize('lodOptionPresetMutators');
-
-                        fieldData[i].mutators.forEach(function(item, i) {
-                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + item.name);
-                            optionMutator.AddClass('mutator');
-
-                            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i); 
-                            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator' + i + '.png');
-
-                            // When the mutators changes
-                            optionMutator.SetPanelEvent('onactivate', function(e) {
-                                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
-
-                                if (item.values !== undefined) {
-                                    var state;
-                                    if(optionMutator.BHasClass('active')) {
-                                        state = 'disabled';
-                                    } else {
-                                        state = 'enabled';
-                                    }
-
-                                    for (var option in item.values[state]) {
-                                        var value = item.values[state][option];
-                                        setOption(option, value)
-                                    }
-                                } else {
-                                    if(optionMutator.BHasClass('active')) {
-                                        setOption(item.name, 0);
-                                    } else {
-                                        setOption(item.name, 1);
-                                    }
-                                }
-                            });
-
-                            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
-                            infoLabel.AddClass('mutatorLabel');
-                            infoLabel.text = $.Localize(item.about);
-
-                            if(item.name) {
-                                mutatorList[item.name] = optionMutator;
-                            } else {
-                                for(var value in item.values.enabled) {
-                                    optionMutator.SetAttributeString('optionList', '');
-                                    optionMutator.optionList = item.values.enabled;
-                                    mutatorList[value] = optionMutator;
-                                }
-                            }
-                        });
+                        mutators = fieldData[i].mutators;
                     } else {
                         // Create the info
                         var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
@@ -3973,6 +3981,12 @@ function buildOptionsCategories() {
             }
         })(optionLabelText, allOptions[optionLabelText]);
     }
+
+    var mutatorPanel = $.CreatePanel('Panel', optionContainer, 'mutatorPanel');
+    var infoLabel = $.CreatePanel('Label', mutatorPanel, 'optionMutatorTitle');
+    infoLabel.text = $.Localize('lodOptionPresetMutators');
+
+    addMutators(mutatorPanel);
 }
 
 // Player presses auto assign
