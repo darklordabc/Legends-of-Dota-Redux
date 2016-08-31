@@ -4572,7 +4572,7 @@ function Pregame:generateBotBuilds()
     -- High priority bot skills
     local bestSkills = {
         abaddon_borrowed_time = true,
-        ursa_fury_swipes_lod = true,
+        ursa_fury_swipes = true,
         slark_essence_shift = true,
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
@@ -4581,7 +4581,6 @@ function Pregame:generateBotBuilds()
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
         life_stealer_feast = true,
-        alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
         tiny_grow_lod = true,
