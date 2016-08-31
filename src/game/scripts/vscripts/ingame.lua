@@ -442,6 +442,7 @@ function Ingame:initGoldBalancer()
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
     GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
+    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
 
     local this = self
 
@@ -555,6 +556,45 @@ function Ingame:FilterModifyExperience(filterTable)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
+    end
+
+    local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+
+    if OptionManager:GetOption('sharedXP') == 1 then
+        if filterTable.reason_const ~= 0 then
+            for i=0,DOTA_DEFAULT_MAX_TEAM do
+                local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+                if PlayerResource:IsValidPlayerID(pID) then
+                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                    otherHero:AddExperience(math.ceil(filterTable.experience / PlayerResource:GetPlayerCountForTeam(team)),0,false,false)
+                end
+            end
+
+            return false
+        else
+            return true
+        end
+    else
+        return true
+    end
+end
+
+function Ingame:BountyRunePickupFilter(filterTable)
+    if OptionManager:GetOption('sharedXP') == 1 then
+        local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+
+        for i=0,DOTA_DEFAULT_MAX_TEAM do
+            local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+            if PlayerResource:IsValidPlayerID(pID) then
+                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / PlayerResource:GetPlayerCountForTeam(team)),0,false,false)
+                otherHero.expSkip = true
+            end
+        end
+
+        filterTable["xp_bounty"] = 0
     end
 
     return true
