@@ -4489,7 +4489,9 @@ function Pregame:addBotPlayers()
     self.botPlayers = {
     	radiant = {},
     	dire = {},
-    	all = {}
+    	all = {},
+        [DOTA_TEAM_GOODGUYS] = {},
+        [DOTA_TEAM_BADGUYS] = {}
 	}
 
     local playerID
@@ -4595,6 +4597,7 @@ function Pregame:generateBotBuilds()
         riki_permanent_invisibility = true
     }
     local botSkills = LoadKeyValues('scripts/kv/bot_skills.kv')
+    local uniqueSkills = LoadKeyValues('scripts/kv/unique_skills.kv')
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
         -- Grab a hero
@@ -4609,7 +4612,8 @@ function Pregame:generateBotBuilds()
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
             for _, abilityName in pairs(defaultSkills) do
-                build[skillID] = abilityName
+                local newAb = uniqueSkills['replaced_skills'][abilityName] and uniqueSkills['replaced_skills'][abilityName] or abilityName
+                build[skillID] = newAb
                 skillID = skillID + 1
             end
         end
@@ -4620,8 +4624,14 @@ function Pregame:generateBotBuilds()
             for abilityName in pairs(defaultSkills) do
                 if skillID <= maxSlots then
                     if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
-                        build[skillID] = abilityName
-                        skillID = skillID + 1
+                        local team = PlayerResource:GetTeam(playerID)
+                        if not self.botPlayers[team][abilityName] then
+                            build[skillID] = abilityName
+                            skillID = skillID + 1
+                            if uniqueSkills['unique_skills'][abilityName] then
+                                self.botPlayers[team][abilityName] = true
+                            end
+                        end
                     end
                 else
                     break
