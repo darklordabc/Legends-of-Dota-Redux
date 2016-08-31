@@ -4609,28 +4609,26 @@ function Pregame:generateBotBuilds()
         local defaultSkills = botSkills[heroName]
         if defaultSkills then
             for abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] and skillID <= maxSlots then
+                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
                     build[skillID] = abilityName
                     skillID = skillID + 1
                 end
             end
         end
 
+
+        local maxPassive = 2
         -- Allocate more abilities
         while skillID <= maxSlots do
             -- Attempt to pick a high priority skill, otherwise pick any passive, otherwise pick any
-            local newAb = self:findRandomSkill(build, skillID, playerID, function(abilityName)
-                return bestSkills[abilityName] ~= nil
-            end) or self:findRandomSkill(build, skillID, playerID, function(abilityName)
-                return SkillManager:isPassive(abilityName)
-            end) or self:findRandomSkill(build, skillID, playerID)
+            local newAb = self:findRandomSkill(build, skillID, playerID)
 
-            if newAb ~= nil then
+            if (newAb ~= nil) and not (SkillManager:isPassive(newAb) and self:getPassiveCounts(build) + 1 >= maxPassive) then
                 build[skillID] = newAb
+                -- Move onto next slot
+                skillID = skillID + 1
             end
 
-            -- Move onto next slot
-            skillID = skillID + 1
         end
 
         -- Shuffle their build to make it look like a random set
@@ -4664,6 +4662,146 @@ function Pregame:generateBotBuilds()
         network:setSelectedAbilities(playerID, build)
     end
 end
+
+
+function Pregame:getPassiveCounts( build )
+    -- Ensure we have a valid build
+    build = build or {}
+
+    local totalPassive = 0
+
+    for _,abilityName in pairs(build) do
+        if SkillManager:isPassive(abilityName) then
+            totalPassive = totalPassive + 1
+        end
+    end
+
+    return totalPassive
+end
+
+
+
+function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
+    local team = PlayerResource:GetTeam(playerID)
+
+    -- Ensure we have a valid build
+    build = build or {}
+
+    -- Grab the limits
+    local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
+    -- Max passive counts
+    local maxPassive = 2
+
+    -- Count how many ults
+    local totalUlts = 0
+    local totalNormal = 0
+    local totalPassive = 0
+
+    for _,theAbility in pairs(build) do
+        if SkillManager:isUlt(theAbility) then
+            totalUlts = totalUlts + 1
+        elseif SkillManager:isPassive(theAbility) then
+            totalPassive = totalPassive + 1
+        else
+            totalNormal = totalNormal + 1
+        end
+    end
+
+    -- Prevent certain skills from being randomed
+    if self.doNotRandom[abilityName] then
+        return false
+    end
+
+    -- consider ulty count
+    if SkillManager:isUlt(abilityName) then
+        if totalUlts >= maxUlts then
+            return false
+        end
+    elseif SkillManager:isPassive(abilityName) then
+        if totalPassive >= maxPassive then
+            return false
+        end
+    else
+        if totalNormal >= maxRegulars then
+            return false
+        end
+    end
+
+    -- Check draft array
+    if self.useDraftArrays then
+        local draftID = self:getDraftID(playerID)
+        local draftArray = self.draftArrays[draftID] or {}
+        local heroDraft = draftArray.heroDraft or {}
+        local abilityDraft = draftArray.abilityDraft or {}
+
+        if self.maxDraftHeroes > 0 then
+            local heroName = self.abilityHeroOwner[abilityName]
+
+            if not heroDraft[heroName] then
+                return false
+            end
+        end
+
+        if self.maxDraftSkills > 0 then
+            if not abilityDraft[abilityName] then
+                return false
+            end
+        end
+    end
+
+
+    -- Over the Balance Mode point balance
+    if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Validate that the user has enough points
+        local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
+        local outOfPoints, _ = self:notEnoughPoints(newBuild)
+        if outOfPoints then
+            return false
+        end
+    end
+
+
+    -- Consider unique skills
+    if self.optionStore['lodOptionAdvancedUniqueSkills'] == 1 then
+        for playerID,theBuild in pairs(self.selectedSkills) do
+            -- Ensure the team matches up
+            if team == PlayerResource:GetTeam(playerID) then
+                for theSlot,theAbility in pairs(theBuild) do
+                    if theAbility == abilityName then
+                        return false
+                    end
+                end
+            end
+        end
+    elseif self.optionStore['lodOptionAdvancedUniqueSkills'] == 2 then
+        for playerID,theBuild in pairs(self.selectedSkills) do
+            for theSlot,theAbility in pairs(theBuild) do
+                if theAbility == abilityName then
+                    return false
+                end
+            end
+        end
+    end
+
+    -- check bans
+    if self.bannedAbilities[abilityName] then
+        return false
+    end
+
+    for slotNumber,abilityInSlot in pairs(build) do
+        if abilityName == abilityInSlot then
+            return false
+        end
+
+        if self.banList[abilityName] and self.banList[abilityName][abilityInSlot] then
+            return false
+        end
+    end
+
+    return true
+end
+
 
 -- Spawns bots
 function Pregame:hookBotStuff()
