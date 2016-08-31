@@ -4606,29 +4606,48 @@ function Pregame:generateBotBuilds()
         -- Generate build
         local build = {}
         local skillID = 1
-        local defaultSkills = botSkills[heroName]
+        local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
-            for abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
+            for _, abilityName in pairs(defaultSkills) do
+                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] then
                     build[skillID] = abilityName
                     skillID = skillID + 1
                 end
             end
         end
 
-
+        defaultSkills = botSkills[heroName]
         local maxPassive = 2
+
+        if defaultSkills then
+            for abilityName in pairs(defaultSkills) do
+                if skillID <= maxSlots then
+                    if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
+                        build[skillID] = abilityName
+                        skillID = skillID + 1
+                    end
+                else
+                    break
+                end
+            end
+        end
+
+
         -- Allocate more abilities
         while skillID <= maxSlots do
             -- Attempt to pick a high priority skill, otherwise pick any passive, otherwise pick any
-            local newAb = self:findRandomSkill(build, skillID, playerID)
+            local newAb = self:findRandomSkill(build, skillID, playerID, function(abilityName)
+                return bestSkills[abilityName] ~= nil
+            end) or self:findRandomSkill(build, skillID, playerID, function(abilityName)
+                return SkillManager:isPassive(abilityName)
+            end) or self:findRandomSkill(build, skillID, playerID)
 
-            if (newAb ~= nil) and not (SkillManager:isPassive(newAb) and self:getPassiveCounts(build) + 1 >= maxPassive) then
+            if newAb ~= nil then
                 build[skillID] = newAb
-                -- Move onto next slot
-                skillID = skillID + 1
             end
 
+            -- Move onto next slot
+            skillID = skillID + 1
         end
 
         -- Shuffle their build to make it look like a random set
