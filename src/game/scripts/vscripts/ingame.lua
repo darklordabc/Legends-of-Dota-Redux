@@ -66,7 +66,7 @@ function Ingame:init()
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
 
-    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerGotItem'), self)
+    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -86,7 +86,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
                     if PlayerResource:IsValidPlayerID(pID) then
                         local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                        otherHero:AddExperience(85,0,false,false)
+                        otherHero:AddExperience(math.ceil(425 / util:GetActivePlayerCountForTeam(hero:GetTeamNumber())),0,false,false)
                     end
                 end
 
@@ -593,7 +593,7 @@ function Ingame:FilterModifyExperience(filterTable)
                 if PlayerResource:IsValidPlayerID(pID) then
                     local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                    otherHero:AddExperience(math.ceil(filterTable.experience / PlayerResource:GetPlayerCountForTeam(team)),0,false,false)
+                    otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
                 end
             end
 
@@ -615,7 +615,7 @@ function Ingame:BountyRunePickupFilter(filterTable)
             if PlayerResource:IsValidPlayerID(pID) then
                 local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / PlayerResource:GetPlayerCountForTeam(team)),0,false,false)
+                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
                 otherHero.expSkip = true
             end
         end
