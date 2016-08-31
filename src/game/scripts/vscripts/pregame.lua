@@ -4617,7 +4617,6 @@ function Pregame:generateBotBuilds()
         end
 
         defaultSkills = botSkills[heroName]
-        local maxPassive = 2
 
         if defaultSkills then
             for abilityName in pairs(defaultSkills) do
