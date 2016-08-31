@@ -4691,19 +4691,14 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     -- Grab the limits
     local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
     local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
-    -- Max passive counts
-    local maxPassive = 2
 
     -- Count how many ults
     local totalUlts = 0
     local totalNormal = 0
-    local totalPassive = 0
 
     for _,theAbility in pairs(build) do
         if SkillManager:isUlt(theAbility) then
             totalUlts = totalUlts + 1
-        elseif SkillManager:isPassive(theAbility) then
-            totalPassive = totalPassive + 1
         else
             totalNormal = totalNormal + 1
         end
@@ -4717,10 +4712,6 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     -- consider ulty count
     if SkillManager:isUlt(abilityName) then
         if totalUlts >= maxUlts then
-            return false
-        end
-    elseif SkillManager:isPassive(abilityName) then
-        if totalPassive >= maxPassive then
             return false
         end
     else
