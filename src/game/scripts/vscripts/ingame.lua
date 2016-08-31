@@ -65,9 +65,35 @@ function Ingame:init()
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+
+    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerGotItem'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame:OnPlayerPurchasedItem(keys)
+    local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+
+    if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then
+        for i=0,11 do
+            local item = hero:GetItemInSlot(i)
+            if item:GetName() == "item_tome_of_knowledge" then
+                hero:RemoveItem(item)
+
+                for x=0,DOTA_DEFAULT_MAX_TEAM do
+                    local pID = PlayerResource:GetNthPlayerIDOnTeam(hero:GetTeamNumber(),x)
+                    if PlayerResource:IsValidPlayerID(pID) then
+                        local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                        otherHero:AddExperience(85,0,false,false)
+                    end
+                end
+
+                break
+            end
+        end  
+    end
 end
 
 function Ingame:FilterExecuteOrder(filterTable)
