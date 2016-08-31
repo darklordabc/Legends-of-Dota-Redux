@@ -4682,23 +4682,6 @@ function Pregame:generateBotBuilds()
 end
 
 
-function Pregame:getPassiveCounts( build )
-    -- Ensure we have a valid build
-    build = build or {}
-
-    local totalPassive = 0
-
-    for _,abilityName in pairs(build) do
-        if SkillManager:isPassive(abilityName) then
-            totalPassive = totalPassive + 1
-        end
-    end
-
-    return totalPassive
-end
-
-
-
 function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     local team = PlayerResource:GetTeam(playerID)
 
