@@ -2196,8 +2196,7 @@
 
 #optionList .OptionPanel {
     flow-children: right-wrap;
-    width: 61%;
-    align: left;
+    width: 60%;
 }
 
 #optionList .option {
@@ -2206,7 +2205,7 @@
     border: 5px solid #626262;
     width: 230px;
     height: 170px;
-    margin: 4px;
+    margin: 3px;
     text-align: center;
     opacity: .5;
 }
