@@ -1957,6 +1957,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
                 self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
                 self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+                self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
