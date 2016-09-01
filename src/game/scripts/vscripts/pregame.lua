@@ -4596,7 +4596,7 @@ function Pregame:generateBotBuilds()
         tiny_grow_lod = true,
         riki_permanent_invisibility = true
     }
-    local botSkills = LoadKeyValues('scripts/kv/bot_skills.kv')
+    local botSkills = util:sortTable(LoadKeyValues('scripts/kv/bot_skills.kv'))
     local uniqueSkills = LoadKeyValues('scripts/kv/unique_skills.kv')
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
@@ -4621,7 +4621,7 @@ function Pregame:generateBotBuilds()
         defaultSkills = botSkills[heroName]
 
         if defaultSkills then
-            for abilityName in pairs(defaultSkills) do
+            for _, abilityName in pairs(defaultSkills) do
                 if skillID <= maxSlots then
                     if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
                         local team = PlayerResource:GetTeam(playerID)
