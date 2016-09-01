@@ -229,8 +229,8 @@
     "lodOptionDesGameSpeedEXPModifier"              "XP Gain Modifier Percentage (100 = normal)"
     "lodOptionAboutGameSpeedEXPModifier"            "Multiples the amount of experience that is gained when killing creeps / heroes / roshan."
 
-    "lodOptionDesGameSpeedSharedEXP"                "Shared XP"
-    "lodOptionAboutGameSpeedSharedEXP"              "Shares all XP you get with your teammates."
+    "lodOptionDesGameSpeedSharedEXP"                "Shared Team XP"
+    "lodOptionAboutGameSpeedSharedEXP"              "Allies share all experience points"
 
     "lodOptionDesGameSpeedTowersPerLane"            "Towers Per Lane"
     "lodOptionTower3"                               "3 Towers"
