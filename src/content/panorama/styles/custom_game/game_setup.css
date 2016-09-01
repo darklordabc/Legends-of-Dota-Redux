@@ -2290,6 +2290,25 @@
     padding: 55px 0 0 5px;
 }
 
+#optionList .mutator .circleWrapper {
+    flow-children: right;
+    z-index: 10;
+    margin: 5px;
+    align: right;
+}
+
+#optionList .mutator .circle {
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    margin: 3px;
+}
+
+#optionList .mutator .circle.active {
+    background-color: #ffffff;
+}
+
 #importAndExportRoot {
     vertical-align: bottom;
     horizontal-align: left;
