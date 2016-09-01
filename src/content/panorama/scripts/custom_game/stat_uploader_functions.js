@@ -28,7 +28,7 @@ function MarkMessageAsRead( msgID ) {
         MessageID: msgID
     };
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, null );    
+    GameUI.CustomUIConfig().SendRequest( requestParams, (function () {}) );    
 }
 
 function SendMessage( text ) {
@@ -39,13 +39,13 @@ function SendMessage( text ) {
         Command: "SendPlayerMessage",
         Data: {
             SteamID: GetSteamID32(),
-            Nickname: info.player_name,
-            Message: text,
+            Nickname: encodeURIComponent(info.player_name),
+            Message: encodeURIComponent(text),
             TimeStamp: GetDate() 
         }
     };
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, null );
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function () {}) );
 }
 
 function RecordPlayerSC( ) {
@@ -82,5 +82,9 @@ function RecordPlayerSC( ) {
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success_save"));
+    
+        $.Schedule(3.0, function () {
+            $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip");
+        });
     })
 }

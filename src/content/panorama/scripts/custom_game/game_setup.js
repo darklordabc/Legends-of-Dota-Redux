@@ -3374,6 +3374,10 @@ function LoadPlayerSC( ) {
 
         $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
         onImportAndExportPressed()
+
+        $.Schedule(3.0, function () {
+            $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip");
+        });
     })
 }
 

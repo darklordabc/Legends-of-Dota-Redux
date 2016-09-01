@@ -4,27 +4,38 @@ local skillManager = require('skillmanager')
 local pregame = require('pregame')
 
 function RandomGet(keys)
+	print('get')
 	local caster = keys.caster
 	local ability = keys.ability
+	
 	skillManager:precacheSkill(ability.randomAb, function() return 1 end) -- dynamic caching
+	
 	local randomAb = caster:FindAbilityByName(ability.randomAb)
+	
 	if not randomAb then
 		randomAb = caster:AddAbility(ability.randomAb)
-		-- if caster.subAb then
-		    -- subAb = caster:AddAbility(caster.subAb)
-		-- end
 	end
+	
 	if not randomAb then
-		local picker = ability.abCount
-		ability.randomAb = ability.randomSelection[picker]
+		ability.randomAb = GetNextAbility(caster.randomSelection)
 		randomAb = caster:AddAbility(ability.randomAb)
+		if not randomAb then
+			if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
+				ability.randomAb = GetNextAbility(caster.randomSafeSelection)
+				while caster.ownedSkill[ability.randomAb] do
+					ability.randomAb = GetNextAbility(caster.randomSafeSelection)
+				end
+			randomAb = caster:AddAbility(ability.randomAb)
+			end
+		end
 	end
-	if not randomAb then 
-		ShowGenericPopupToPlayer(caster:GetOwner(), "No slots available, try again later!","No slots available, try again later!", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
+
+	if randomAb then
+		randomAb.randomRoot = ability:GetName()
+	else
+		return
 	end
-	randomAb.randomRoot = ability:GetName()
-	
-	
+
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
 	if randomAb:GetAbilityType() ~= 1 then
@@ -41,17 +52,13 @@ function RandomGet(keys)
 	end
 	local cooldown = ability:GetTrueCooldown()
 	randomAb:StartCooldown(cooldown)
-		
 	caster:SwapAbilities(randomAb:GetName(), ability:GetName(), true, false)
-	ability.abCount = ability.abCount + 1
-	if ability.abCount >= #ability.randomSelection then
-		ShuffleArray(ability.randomSelection)
-		ability.abCount = 1
-	end
-	StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
+	-- StopSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
+	-- StartSoundEvent("Hero_VengefulSpirit.ProjectileImpact", caster)
 end
 
 function RandomRemove(keys)
+	print('remove')
 	local caster = keys.caster
 	local ability = keys.ability
 	local randomAb = caster:FindAbilityByName(ability.randomAb)
@@ -59,27 +66,27 @@ function RandomRemove(keys)
 	-- if caster.subAb and caster.subActivated then randomAb = caster:FindAbilityByName(caster.subAb) end
 	-- Level main ability if random ability is leveled
 	if randomAb:GetLevel() > ability:GetLevel() then ability:SetLevel(randomAb:GetLevel()) end
+	
 	if IsValidEntity(randomAb) then
+		
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
+		
 		randomAb:SetHidden(true) -- double check for flyout
+		
 	end
 	
-	if ability.safeRemoveList then 
+	if caster.safeRemoveList then 
 		-- caster:RemoveAbility(caster.lastAbility)
 		local abName = ability.randomAb
-		if ability.randomKv[ability.type.."Safe"][abName] then
+		if caster.randomKv["Safe"][abName] then
 			caster:RemoveAbility(abName)
-			-- if ability.subList[abName] then caster.subAb = ability.subList[abName] end
-			-- if caster.subAb then
-			    -- subAb = caster:RemoveAbility(caster.subAb)
-			-- end
 		else
-			ability.safeRemoveList[abName] = false
+			caster.safeRemoveList[abName] = false
 		    local buffer = 3
             local timer = randomAb:GetAbilityLifeTime(buffer)
 			Timers:CreateTimer(function()
-				ability.safeRemoveList[abName] = true
-				for k,v in pairs(ability.safeRemoveList) do
+				caster.safeRemoveList[abName] = true
+				for k,v in pairs(caster.safeRemoveList) do
 					if v == true and caster:FindAbilityByName(k) and caster:FindAbilityByName(k):IsHidden() then
 						caster:RemoveAbility(k)
 						-- if ability.subList[k] then caster:RemoveAbility(ability.subList[k]) end
@@ -90,49 +97,44 @@ function RandomRemove(keys)
 		end
 	end
 	-------- STANDARD CHECK ---------
-	local picker = ability.abCount
-	ability.randomAb = ability.randomSelection[picker]
-	if 15 < caster:GetAbilityCount()  then
-		picker = math.random(#ability.randomSafeSelection)
-		local pickedSkill = ability.randomSafeSelection [picker]
-		if not caster.ownedSkill[pickedSkill] then
-			ability.randomAb = pickedSkill
-		else
-			while caster.ownedSkill[pickedSkill] do
-				picker = math.random(#ability.randomSafeSelection)
-				pickedSkill = ability.randomSafeSelection [picker]
-			end
-			ability.randomAb = pickedSkill
+	ability.randomAb = GetNextAbility(caster.randomSelection)
+	
+	
+	
+	if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() >= 13  then
+		local pickedSkill = GetNextAbility(caster.randomSafeSelection)
+		while caster.ownedSkill[pickedSkill] do
+			pickedSkill = GetNextAbility(caster.randomSafeSelection)
 		end
+		ability.randomAb = pickedSkill
 	end
 	----------- CHECK FOR DOUBLES ----------
 	while caster:FindAbilityByName(ability.randomAb) do
-		ability.abCount = ability.abCount + 1 -- skip entries while they're owned
-		local picker = ability.abCount
-		ability.randomAb = ability.randomSelection[picker]
-		if 15 < caster:GetAbilityCount()  then
-			picker = math.random(#ability.randomSafeSelection)
-			local pickedSkill = ability.randomSafeSelection [picker]
+		ability.randomAb = GetNextAbility(caster.randomSelection)
+		if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
+			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
 			if not caster.ownedSkill[pickedSkill] then
 				ability.randomAb = pickedSkill
 			end
 		end
 	end
+end
 
-	-- caster.subAb = ability.subList[ability.randomAb]
+function GetNextAbility(input)
+	local nextAbName = input[1]
+	util:MoveArray(input)
+	return nextAbName
 end
 
 function RandomInit(keys)
 	local caster = keys.caster
 	if caster:IsIllusion() then return end
 	local ability = keys.ability
-	if not caster.randomAbilityCount then caster.randomAbilityCount = 0 end
-	caster.randomAbilityCount = caster.randomAbilityCount + 1
-	if ability.randomSelection then return end -- Prevent this from triggering on death
-	ability.abCount = 1
-	ability.type = keys.value
-	ability.randomKv = LoadKeyValues('scripts/kv/randompicker.kv')
-	ability.safeRemoveList = {}
+	if ability.isCreated then return end -- Prevent this from triggering on death
+	caster.randomAbilityCount = caster.randomAbilityCount and caster.randomAbilityCount + 1 or 0
+	-- ability.abCount = 1
+	caster.randomKv = caster.randomKv or LoadKeyValues('scripts/kv/randompicker.kv')
+	caster.safeRemoveList = caster.safeRemoveList or {}
 	local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
 	local mainAbilities = {}
 	for l,m in pairs(subAbilities) do
@@ -151,44 +153,54 @@ function RandomInit(keys)
 			end
 		end
 	end
-	-- find desired flags
-	for k, v in pairs( ability.randomKv ) do
-		local x = {} -- xclusion
-		if k == keys.value then
-			-- change values to ascending sequence
-			local i = 1
-			for l,m in pairs(v) do
-				if not caster.ownedSkill[l] then -- do not add already owned skills to possible set
-					x[l] = i
+	if not caster.randomSelection then
+		for k, v in pairs( caster.randomKv ) do
+			local x = {} -- xclusion
+			if k == "All" then
+				-- change values to ascending sequence
+				local i = 1
+				for l,m in pairs(v) do
+					if not caster.ownedSkill[l] then -- do not add already owned skills to possible set
+						x[l] = i
+						i = i + 1
+					end
+				end
+				-- invert keys and values to make ability names the value; second step to turning table into array
+				local s={}
+				for l,m in pairs(x) do
+					s[m]=l
+				end
+				caster.randomSelection = s
+				ShuffleArray(caster.randomSelection)
+			end
+			if k == "Safe" then
+				-- change values to ascending sequence
+				local i = 1
+				for l,m in pairs(v) do
+					v[l] = i
 					i = i + 1
 				end
+				-- invert keys and values to make ability names the value; second step to turning table into array
+				local s={}
+				for l,m in pairs(v) do
+					s[m]=l
+				end
+				caster.randomSafeSelection = s
+				ShuffleArray(caster.randomSafeSelection)
 			end
-			-- invert keys and values to make ability names the value; second step to turning table into array
-			local s={}
-			for l,m in pairs(x) do
-				s[m]=l
-			end
-			ability.randomSelection = s
-			ShuffleArray(ability.randomSelection)
-		end
-		if k == ability.type.."Safe" then
-			-- change values to ascending sequence
-			local i = 1
-			for l,m in pairs(v) do
-				v[l] = i
-				i = i + 1
-			end
-			-- invert keys and values to make ability names the value; second step to turning table into array
-			local s={}
-			for l,m in pairs(v) do
-				s[m]=l
-			end
-			ability.randomSafeSelection  = s
 		end
 	end
-	local picker = ability.abCount
-	ability.randomAb = ability.randomSelection[picker]
-	-- if ability.subList[ability.randomAb] then caster.subAb = ability.subList[ability.randomAb] end
+	ability.randomAb = GetNextAbility(caster.randomSelection)
+	ability.isCreated = true
+	while caster:FindAbilityByName(ability.randomAb) do
+		ability.randomAb = GetNextAbility(caster.randomSelection)
+		if 3 <= caster:GetUnsafeAbilitiesCount() or caster:GetAbilityCount() > 13  then
+			local pickedSkill = GetNextAbility(caster.randomSafeSelection)
+			if not caster.ownedSkill[pickedSkill] then
+				ability.randomAb = pickedSkill
+			end
+		end
+	end
 end
 
 function Particles(keys)

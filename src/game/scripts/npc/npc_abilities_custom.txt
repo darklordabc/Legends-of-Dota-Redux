@@ -3787,6 +3787,11 @@
     }
     //=================================================================================================================
     //
+    //                                          HERO CONCEPTS (The Next Generation)
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    //
     //
     //
     //
@@ -6783,13 +6788,13 @@
     //=================================================================================================================
     // RANDOM ABILITIES
     //=================================================================================================================
-    "true_random_lod"
+    "true_random_lod_1"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "true_random_lod"
+        "AbilityTextureName"            "true_random_lod_1"
         
         "AbilityCooldown"                "10"
         
@@ -6827,7 +6832,6 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
-                        "value"                 "all"
                     }
                 }
                 
@@ -6838,26 +6842,26 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/true_random_lod/true_random_lod_swap.vpcf"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
                 }
             }
         }
     }
-    "stun_random_lod"
+    "true_random_lod_2"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "stun_random_lod"
+        "AbilityTextureName"            "true_random_lod_2"
         
         "AbilityCooldown"                "10"
         
         "precache"
         {
             "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/stun_random_lod/stun_random_lod_swap.vpcf"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
         }
         
         "OnAbilityPhaseStart"
@@ -6878,7 +6882,7 @@
         }
         "Modifiers"
         {
-            "stun_random_modifier_lod"
+            "true_random_modifier_lod"
             {
                 "Passive"    "1"
                 "IsHidden"    "1"
@@ -6888,7 +6892,6 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
-                        "value"                 "stun"
                     }
                 }
                 
@@ -6899,26 +6902,26 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/stun_random_lod/stun_random_lod_swap.vpcf"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
                 }
             }
         }
     }
-    "mobility_random_lod"
+    "true_random_lod_3"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "mobility_random_lod"
+        "AbilityTextureName"            "true_random_lod_3"
         
         "AbilityCooldown"                "10"
         
         "precache"
         {
             "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
         }
         
         "OnAbilityPhaseStart"
@@ -6939,7 +6942,7 @@
         }
         "Modifiers"
         {
-            "mobility_random_modifier_lod"
+            "true_random_modifier_lod"
             {
                 "Passive"    "1"
                 "IsHidden"    "1"
@@ -6949,7 +6952,6 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
-                        "value"                 "mobility"
                     }
                 }
                 
@@ -6960,88 +6962,26 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/mobility_random_lod/mobility_random_lod_swap.vpcf"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
                 }
             }
         }
     }
-    "ultimate_random_lod"
+    "true_random_lod_4"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityTextureName"            "ultimate_random_lod"
-        
-        "AbilityCooldown"                "20"
-        
-        "precache"
-        {
-            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
-        }
-        
-        "OnAbilityPhaseStart"
-        {
-            "RunScript"
-            {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                "Function"              "RandomGet"
-            }
-        }
-        "OnChannelFinish"
-        {
-            "RunScript"
-            {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                "Function"              "RandomRemove"
-            }
-        }
-        "Modifiers"
-        {
-            "ultimate_random_modifier_lod"
-            {
-                "Passive"    "1"
-                "IsHidden"    "1"
-                "OnCreated"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                        "Function"              "RandomInit"
-                        "value"                 "ultimate"
-                    }
-                }
-                
-                "ThinkInterval" "0.5"
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
-                        "Function"              "Particles"
-                        "particle"                "particles/ultimate_random_lod/ultimate_random_lod_swap.vpcf"
-                    }
-                }
-            }
-        }
-    }
-    "support_random_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityTextureName"            "support_random_lod"
+        "AbilityTextureName"            "true_random_lod_4"
         
         "AbilityCooldown"                "10"
         
         "precache"
         {
             "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/support_random_lod/support_random_lod_swap.vpcf"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
         }
         
         "OnAbilityPhaseStart"
@@ -7062,7 +7002,7 @@
         }
         "Modifiers"
         {
-            "support_random_modifier_lod"
+            "true_random_modifier_lod"
             {
                 "Passive"    "1"
                 "IsHidden"    "1"
@@ -7072,7 +7012,6 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
-                        "value"                 "support"
                     }
                 }
                 
@@ -7083,7 +7022,127 @@
                     {
                         "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
                         "Function"              "Particles"
-                        "particle"                "particles/support_random_lod/support_random_lod_swap.vpcf"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "true_random_lod_5"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "true_random_lod_5"
+        
+        "AbilityCooldown"                "10"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "true_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+    }
+    "true_random_lod_6"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "true_random_lod_6"
+        
+        "AbilityCooldown"                "10"
+        
+        "precache"
+        {
+            "soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "Function"              "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "true_random_modifier_lod"
+            {
+                "Passive"    "1"
+                "IsHidden"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "RandomInit"
+                    }
+                }
+                
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "Function"              "Particles"
+                        "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
                 }
             }

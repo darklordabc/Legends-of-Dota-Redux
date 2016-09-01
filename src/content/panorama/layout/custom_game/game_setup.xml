@@ -300,9 +300,6 @@
                     </Panel>
                     <Panel id="importAndExportEntryRoot">
                         <TextEntry id="importAndExportEntry"/>
-                        <Button id="importAndExportApplyButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="onImportAndExportPressed()">
-                            <Label text="#importAndExport_apply" />
-                        </Button>
                         <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="RecordPlayerSC()">
                             <Label text="#importAndExport_save" />
                         </Button>

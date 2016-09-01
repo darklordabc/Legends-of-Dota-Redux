@@ -12,6 +12,11 @@ local Debug = require('lod_debug')              -- Debug library with helper fun
 local challenge = require('challenge')
 local ingame = require('ingame')
 
+-- Custom AI script modifiers
+LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -1324,6 +1329,7 @@ function Pregame:processVoteData()
         if results.strongtowers == 1 then
             -- Enable Strong Towers
             self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+			self:setOption('lodOptionCreepPower', 120, true)
             self.optionVotingStrongTowers = 1
         else
             -- On by default
@@ -4594,10 +4600,10 @@ function Pregame:generateBotBuilds()
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
         slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
         life_stealer_feast = true,
-        alchemist_goblins_greed = true,
         sniper_take_aim = true,
         troll_warlord_fervor = true,
         tiny_grow_lod = true,
@@ -4770,6 +4776,11 @@ function Pregame:fixSpawningIssues()
     	necronomicon_warrior_last_will_lod = true
 	}
 
+    local botAIModifier = {
+        slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
+    }
+
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -4841,11 +4852,15 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                --[[if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Apply build!
-                    local build = this.selectedSkills[playerID] or {}
-                    SkillManager:ApplyBuild(spawnedUnit, build)
-                end]]
+                if PlayerResource:GetConnectionState(playerID) == 1 then
+                    -- Find custom abilities to add AI modifiers
+                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                        if botAIModifier[abilityName] then
+                            abModifierName = "modifier_" .. abilityName .. "_ai"
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                        end
+                    end
+                end
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
@@ -4927,7 +4942,7 @@ function Pregame:fixSpawningIssues()
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 -- Increasing creep power over time 
                 if this.optionStore['lodOptionCreepPower'] > 0 then
-                    local level = math.ceil(GameRules:GetDOTATime(false,false) / this.optionStore['lodOptionCreepPower']) + 1
+                    local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
 
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)
@@ -4938,6 +4953,18 @@ function Pregame:fixSpawningIssues()
         end
     end, nil)
 end
+
+ListenToGameEvent('game_rules_state_change', function(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        WAVE = 0
+
+        Timers:CreateTimer(function()
+            WAVE = WAVE + 1
+            return 30.0
+        end, 'waves', 0.0)
+    end
+end, nil)
 
 -- Return an instance of it
 return Pregame()

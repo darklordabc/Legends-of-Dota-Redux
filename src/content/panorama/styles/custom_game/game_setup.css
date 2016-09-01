@@ -2320,7 +2320,7 @@
 }
 
 #importAndExportCaption {
-     width: 105px;
+     width: 71px;
 }
 
 .importAndExportButton {
@@ -2328,6 +2328,7 @@
     height: 30px;
     margin-top: 3px;
     margin-right: 0px;
+    /*margin-left: 3px;*/
 }
 
 .importAndExportButton Label {
@@ -2336,12 +2337,14 @@
 
 #importAndExportEntryRoot {
     flow-children: right;
+    margin-left: -10px;
 }
 
 #importAndExportEntry {
     width: 180px;
     font-size: 17px;
     text-overflow: clip;
+    visibility: collapse;
 }
 
 #optionButtons {
