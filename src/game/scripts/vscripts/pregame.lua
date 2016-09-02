@@ -4612,9 +4612,11 @@ function Pregame:generateBotBuilds()
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
             for _, abilityName in pairs(defaultSkills) do
-                local newAb = uniqueSkills['replaced_skills'][abilityName] and uniqueSkills['replaced_skills'][abilityName] or abilityName
-                build[skillID] = newAb
-                skillID = skillID + 1
+                if self.flagsInverse[abilityName] or uniqueSkills['replaced_skills'][abilityName] then
+                    local newAb = uniqueSkills['replaced_skills'][abilityName] and uniqueSkills['replaced_skills'][abilityName] or abilityName
+                    build[skillID] = newAb
+                    skillID = skillID + 1
+                end
             end
         end
 
