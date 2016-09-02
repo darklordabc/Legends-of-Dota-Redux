@@ -57,6 +57,9 @@ mklink /D /J "dota\game\resource\overviews" "src\game\resource\overviews"
 mklink /H "dota\game\resource\addon_english.txt" "script_generator\BIN\addon_english_token.txt"
 mklink /H "dota\game\panorama\localization\addon_english.txt" "script_generator\BIN\addon_english.txt"
 
+mklink /H "dota\game\resource\addon_russian.txt" "script_generator\BIN\addon_russian_token.txt"
+mklink /H "dota\game\panorama\localization\addon_russian.txt" "script_generator\BIN\addon_russian.txt"
+
 mklink /H "dota\game\resource\addon_schinese.txt" "script_generator\BIN\addon_schinese_token.txt"
 mklink /H "dota\game\panorama\localization\addon_schinese.txt" "script_generator\BIN\addon_schinese.txt"
 

@@ -29,7 +29,7 @@ var abilities = {};
     Prepare language files
 */
 
-var langs = ['english', 'schinese'];
+var langs = ['english', 'schinese', 'russian'];
 var langIn = {};
 var langOut = {};
 var specialChar;    // Special character needed for doto encoding
@@ -97,6 +97,8 @@ function prepareLanguageFiles(next) {
         if(fs.existsSync(langDir + 'addon_' + lang + '.txt')) {
             var ourData
             if(lang == 'english') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'russian') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
