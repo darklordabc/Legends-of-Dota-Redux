@@ -147,8 +147,10 @@ var allOptions = {
                     },
                     {
                         name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodOptionCommonMaxUlts1': 2
+                        },
                         states: {
-                            'lodOptionCommonMaxUlts1': 2,
                             'lodOptionCommonMaxUlts2': 3,
                             'lodOptionCommonMaxUlts3': 4,
                             'lodOptionCommonMaxUlts4': 6
