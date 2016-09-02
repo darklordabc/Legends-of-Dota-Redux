@@ -1884,6 +1884,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Bots -- Unique Skills
+        lodOptionBotsUniqueSkills = function(value)
+            return value == 0 or value == 1 or value == 2
+        end,
+
         -- Other -- No Fountain Camping
         lodOptionCrazyNoCamping = function(value)
             return value == 0 or value == 1
@@ -1995,6 +2000,9 @@ function Pregame:initOptionSelector()
 
                 -- Disable OP abilities
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+
+                -- Unique Skills default
+                self:setOption('lodOptionBotsUniqueSkills', 0, true)
 
                 -- Hide enemy picks
                 self:setOption('lodOptionAdvancedHidePicks', 1, true)
@@ -4491,7 +4499,8 @@ function Pregame:addBotPlayers()
     	dire = {},
     	all = {},
         [DOTA_TEAM_GOODGUYS] = {},
-        [DOTA_TEAM_BADGUYS] = {}
+        [DOTA_TEAM_BADGUYS] = {},
+        global = {}
 	}
 
     local playerID
@@ -4627,11 +4636,28 @@ function Pregame:generateBotBuilds()
                 if skillID <= maxSlots then
                     if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
                         local team = PlayerResource:GetTeam(playerID)
-                        if not self.botPlayers[team][abilityName] then
-                            build[skillID] = abilityName
-                            skillID = skillID + 1
-                            if uniqueSkills['unique_skills'][abilityName] then
+                        -- Default
+                        if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
+                            if not self.botPlayers[team][abilityName] then
+                                build[skillID] = abilityName
+                                skillID = skillID + 1
+                                if uniqueSkills['unique_skills'][abilityName] then
+                                    self.botPlayers[team][abilityName] = true
+                                end
+                            end
+                        -- Team
+                        elseif self.optionStore['lodOptionBotsUniqueSkills'] == 1 then
+                            if not self.botPlayers[team][abilityName] then
+                                build[skillID] = abilityName
+                                skillID = skillID + 1
                                 self.botPlayers[team][abilityName] = true
+                            end
+                        -- Global
+                        elseif self.optionStore['lodOptionBotsUniqueSkills'] == 2 then
+                            if not self.botPlayers.global[abilityName] then
+                                build[skillID] = abilityName
+                                skillID = skillID + 1
+                                self.botPlayers.global[abilityName] = true
                             end
                         end
                     end

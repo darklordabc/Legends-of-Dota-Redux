@@ -505,6 +505,12 @@
     "lodOptionDesBotsDire"                          "Desired Dire Players"
     "lodOptionAboutBotDire"                         "Bots will be added to dire if there is less than this number of players on dire."
 
+    "lodOptionDesBotsUniqueSkills"                  "Unique Skills (Bots)"
+    "lodOptionAboutBotsUniqueSkills"                "This is a test description"
+    "lodOptionUniqueDefault"                        "Use Main Setting"
+    "lodOptionUniqueTeam"                           "Unique Team Skills"
+    "lodOptionUniqueGlobal"                         "Unique Global Skills"
+
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."
 

@@ -734,6 +734,26 @@ var allOptions = {
                 step: 1,
                 default: 5
             },
+            {
+                name: 'lodOptionBotsUniqueSkills',
+                des: 'lodOptionDesBotsUniqueSkills',
+                about: 'lodOptionAboutBotsUniqueSkills',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionUniqueDefault',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionUniqueTeam',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionUniqueGlobal',
+                        value: 2
+                    }
+                ]
+            },
             /*{
                 name: 'lodOptionBotsUnfairBalance',
                 des: 'lodOptionDesBotsUnfairBalance',
@@ -2862,6 +2882,7 @@ function getSkillFilterInfo(abilityName) {
 function prepareFilterInfo() {
     // Check on unique skills mode
     uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
+    uniqueBotsSkillsMode = optionValueList['lodOptionBotsUniqueSkills'] || 0;
 
     // Grab what to search for
     searchParts = searchText.split(/\s/g);
@@ -2873,6 +2894,7 @@ var searchText = '';
 var searchCategory = '';
 var activeTabs = {};
 var uniqueSkillsMode = 0;
+var uniqueBotsSkillsMode = 1;
 var searchParts = [];
 function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
