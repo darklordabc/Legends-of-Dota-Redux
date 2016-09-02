@@ -2274,12 +2274,12 @@
 }
 
 #optionList #optionMutatorTitle {
-    display: block;
     margin:  auto;
-    width: 100%;
+    width: 220px;
+    height: 80px;
+    line-height: 60px;
     font-size: 26px;
-    padding: 20px 20px 15px;
-    margin: 5px 0 10px;
+    margin: 0 5px 5px 0;
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
     text-align: center;
     border-radius: 5px;
