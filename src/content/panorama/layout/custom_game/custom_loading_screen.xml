@@ -7,6 +7,13 @@
     </scripts>
 
 	<Panel class="LoDLoadingRoot">
+		<Panel id="CustomBackground">
+			<Image id="BackgroundImage" />
+			<Panel class="creditContainer">
+				<Label hittest="false" id="BackgroundCredit"/>
+			</Panel>
+		</Panel>
+
         <Panel class="LoDDeps">
             <Image src="file://{images}/custom_game/hints/hint_empowering_haste.png" />
 			<Image src="file://{images}/custom_game/hints/ogre_magi_multicast_lod.png" />
