@@ -48,17 +48,17 @@ var allOptions = {
                         about: 'lodMutatorBanningBanInvis'
                     },
                     {
-                        name: 'lodMutatorFastBuybackCooldown',
+                        about: 'lodMutatorFastBuybackCooldown1',
                         default: {
                             'lodOptionBuybackCooldownTimeConstant': 420,
                             'lodOptionGameSpeedRespawnTimePercentage': 100
                         },
                         states: {
-                            'lodMutatorFastBuybackCooldown1': {
+                            'lodMutatorFastBuybackCooldown2': {
                                 'lodOptionBuybackCooldownTimeConstant': 210,
                                 'lodOptionGameSpeedRespawnTimePercentage': 25
                             },
-                            'lodMutatorFastBuybackCooldown2': {
+                            'lodMutatorFastBuybackCooldown3': {
                                 'lodOptionBuybackCooldownTimeConstant': 0,
                                 'lodOptionGameSpeedRespawnTimePercentage': 0
                             }
@@ -152,17 +152,17 @@ var allOptions = {
                     {
                         name: 'lodOptionCommonMaxUlts',
                         default: {
-                            'lodOptionCommonMaxUlts1': 2
+                            'lodMutatorMaxUlts1': 2
                         },
                         states: {
-                            'lodOptionCommonMaxUlts2': 3,
-                            'lodOptionCommonMaxUlts3': 4,
-                            'lodOptionCommonMaxUlts4': 6
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
                         }
                     },
                     {
                         name: 'lodOptionAdvancedCustomSkills',
-                        about: 'lodMutatorCustomSkill'
+                        about: 'lodMutatorCustomSkills'
                     },
                     {
                         name: 'lodOptionCrazyAllVision',
@@ -185,11 +185,11 @@ var allOptions = {
                     {
                         name: 'lodOptionGameSpeedGoldTickRate',
                         default: {
-                            'lodOptionGameSpeedGoldTickRate1': 1
+                            'lodMutatorGoldTickRate1': 1
                         },
                         states: {
-                            'lodOptionGameSpeedGoldTickRate2': 2,
-                            'lodOptionGameSpeedGoldTickRate3': 3
+                            'lodMutatorGoldTickRate2': 2,
+                            'lodMutatorGoldTickRate3': 3
                         }
                     },
                     {
@@ -205,11 +205,11 @@ var allOptions = {
                     {
                         name: 'lodOptionGameSpeedEXPModifier',
                         default: {
-                            'lodOptionGameSpeedEXPModifier1': 100
+                            'lodMutatorEXPModifier1': 100
                         },
                         states: {
-                            'lodOptionGameSpeedEXPModifier2': 150,
-                            'lodOptionGameSpeedEXPModifier3': 300
+                            'lodMutatorEXPModifier2': 150,
+                            'lodMutatorEXPModifier3': 300
                         }
                     },
                     {
@@ -225,11 +225,11 @@ var allOptions = {
                     {
                         name: 'lodOptionBotsDire',
                         default: {
-                            'lodOptionBotsDire1': 1
+                            'lodMutatorBotsDire1': 1
                         },
                         states: {
-                            'lodOptionBotsDire2': 5,
-                            'lodOptionBotsDire3': 10
+                            'lodMutatorBotsDire2': 5,
+                            'lodMutatorBotsDire3': 10
                         }
                     },
                     {
@@ -3772,6 +3772,10 @@ function buildOptionsCategories() {
                 }
 
                 if(item.default) {
+                    if(item.about) {
+                        optionMutator.about = item.about;
+                    }
+
                     optionMutator.default = item.default;
                 }
 
@@ -3811,8 +3815,8 @@ function buildOptionsCategories() {
                 if(mutatorList[field].default !== undefined) {
                     if(Object.keys(mutatorList[field].default).length > 1) {
                         var match;
-                        for (var state in mutatorList[field].default) {
-                            if(mutatorList[field].default[state] === optionValueList[state]) {
+                        for (var option in mutatorList[field].default) {
+                            if(mutatorList[field].default[option] === optionValueList[option]) {
                                 match = true;
                             } else {
                                 match = false;
@@ -3821,7 +3825,7 @@ function buildOptionsCategories() {
                         }
 
                         if(match) {
-                            setMutator(field, state);
+                            setMutator(field, mutatorList[field].about);
                             found = false;
                         }
                     } else {
