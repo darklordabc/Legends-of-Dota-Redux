@@ -131,9 +131,9 @@ var allOptions = {
                     {
                         name: 'lodOptionGameSpeedMaxLevel',
                         states: {
-                            'lodOptionGameSpeedMaxLevel1': 25,
-                            'lodOptionGameSpeedMaxLevel2': 50,
-                            'lodOptionGameSpeedMaxLevel3': 100
+                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel2': 50,
+                            'lodMutatorMaxLevel3': 100
                         }
                     },
                     {
@@ -175,11 +175,11 @@ var allOptions = {
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
                         default: {
-                            'lodUniqueSkillsOff': 0
+                            'lodMutatorUniqueSkillsOff': 0
                         },
                         states: {
-                            'lodUniqueSkillsTeam': 1,
-                            'lodUniqueSkillsGlobal': 2
+                            'lodMutatorUniqueSkillsTeam': 1,
+                            'lodMutatorUniqueSkillsGlobal': 2
                         }
                     },
                     {
@@ -195,11 +195,11 @@ var allOptions = {
                     {
                         name: 'lodOptionGameSpeedGoldModifier',
                         default: {
-                            'lodOptionGameSpeedGoldModifier1': 100
+                            'lodMutatorGoldModifier1': 100
                         },
                         states: {
-                            'lodOptionGameSpeedGoldModifier2': 150,
-                            'lodOptionGameSpeedGoldModifier3': 300
+                            'lodMutatorGoldModifier2': 150,
+                            'lodMutatorGoldModifier3': 300
                         }
                     },
                     {
@@ -215,11 +215,11 @@ var allOptions = {
                     {
                         name: 'lodOptionBotsRadiant',
                         default: {
-                            'lodOptionBotsRadiant1': 1
+                            'lodMutatorBotsRadiant1': 1
                         },
                         states: {
-                            'lodOptionBotsRadiant2': 5,
-                            'lodOptionBotsRadiant3': 10
+                            'lodMutatorBotsRadiant2': 5,
+                            'lodMutatorBotsRadiant3': 10
                         }
                     },
                     {

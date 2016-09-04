@@ -89,7 +89,6 @@
 
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorBanningBanInvis"                     "No Invisible"
-    "lodMutatorFastBuybackCooldown"                 "Fast Respawn"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
@@ -98,16 +97,51 @@
     "lodMutatorBalanceMode"                         "Balance Mode"
     "lodMutatorPlayerBans"                          "Player Bans"
     "lodMutatorOPAbilities"                         "Ban OP Abils"
-    "lodMutatorUlts"                                "6 Ultimates"
+    "lodMutatorCustomSkills"                        "Custom Skills"
+    "lodMutatorAllVision"                           "All Vision"
+    "lodMutatorWTF"                                 "Crazy WTF"
+
+    "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
+    "lodMutatorFastBuybackCooldown2"                "Fastest Respawn"
+    "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
+
+    "lodMutatorMaxUlts1"                            "2 Ultimates"
+    "lodMutatorMaxUlts2"                            "3 Ultimates"
+    "lodMutatorMaxUlts3"                            "4 Ultimates"
+    "lodMutatorMaxUlts4"                            "6 Ultimates"
+
+    "lodMutatorUniqueSkillsOff"                     "No Unique Skills"
+    "lodMutatorUniqueSkillsTeam"                    "Team Unique Skills"
+    "lodMutatorUniqueSkillsGlobal"                  "Global Unique Skills"
+
+    "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
+    "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
+    "lodMutatorGoldTickRate3"                       "3 Gold Per Tick"
+
+    "lodMutatorGoldModifier1"                       "100% Gold"
+    "lodMutatorGoldModifier2"                       "150% Gold"
+    "lodMutatorGoldModifier3"                       "300% Gold"
+
+    "lodMutatorEXPModifier1"                        "100% Exp"
+    "lodMutatorEXPModifier2"                        "150% Exp"
+    "lodMutatorEXPModifier3"                        "300% Exp"
+
+    "lodMutatorBotsRadiant1"                        "1 Radian Bot"
+    "lodMutatorBotsRadiant2"                        "5 Radian Bot"
+    "lodMutatorBotsRadiant3"                        "10 Radian Bot"
+
+    "lodMutatorBotsDire1"                           "1 Dire Bot"
+    "lodMutatorBotsDire1"                           "5 Dire Bot"
+    "lodMutatorBotsDire1"                           "10 Dire Bot"
 
     "lodMutatorCreepNoPower"                        "Regular Creeps"
     "lodMutatorCreepPowerNormal"                    "Normal Creeps"
     "lodMutatorCreepPowerHigh"                      "High Creeps"
     "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
 
-    "lodOptionGameSpeedMaxLevel1"                   "Max Level 25"
-    "lodOptionGameSpeedMaxLevel2"                   "Max Level 50"
-    "lodOptionGameSpeedMaxLevel3"                   "Max Level 100"
+    "lodMutatorMaxLevel1"                           "Max Level 25"
+    "lodMutatorMaxLevel2"                           "Max Level 50"
+    "lodMutatorMaxLevel3"                           "Max Level 100"
 
     "lodOptionAboutBalancedAllPick"                 "Pick from every available skill using limited points."
     "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."

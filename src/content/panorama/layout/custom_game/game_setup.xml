@@ -286,23 +286,23 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerHigh.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerExtreme.png"></Image>
 
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedMaxLevel1.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedMaxLevel2.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedMaxLevel3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel3.png"></Image>
 
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWTF.png"></Image>
 
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodUniqueSkillsOff.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodUniqueSkillsGlobal.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodUniqueSkillsTeam.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsOff.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsGlobal.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsTeam.png"></Image>
 
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedGoldModifier1.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedGoldModifier2.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionGameSpeedGoldModifier3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier3.png"></Image>
 
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionBotsRadiant1.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionBotsRadiant2.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionBotsRadiant3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant3.png"></Image>
 
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts1.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts2.png"></Image>
