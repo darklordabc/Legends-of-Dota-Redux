@@ -48,17 +48,17 @@ var allOptions = {
                         about: 'lodMutatorBanningBanInvis'
                     },
                     {
-                        about: 'lodMutatorFastBuybackCooldown',
+                        name: 'lodMutatorFastBuybackCooldown',
+                        default: {
+                            'lodOptionBuybackCooldownTimeConstant': 420,
+                            'lodOptionGameSpeedRespawnTimePercentage': 100
+                        },
                         states: {
                             'lodMutatorFastBuybackCooldown1': {
-                                'lodOptionBuybackCooldownTimeConstant': 420,
-                                'lodOptionGameSpeedRespawnTimePercentage': 100
-                            },
-                            'lodMutatorFastBuybackCooldown2': {
                                 'lodOptionBuybackCooldownTimeConstant': 210,
                                 'lodOptionGameSpeedRespawnTimePercentage': 25
                             },
-                            'lodMutatorFastBuybackCooldown3': {
+                            'lodMutatorFastBuybackCooldown2': {
                                 'lodOptionBuybackCooldownTimeConstant': 0,
                                 'lodOptionGameSpeedRespawnTimePercentage': 0
                             }
@@ -3693,6 +3693,12 @@ function buildOptionsCategories() {
                                 if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
                                     nextItem = item.states[Object.keys(item.states)[i+1]];
                                     break;
+                                } else {
+                                    if(item.default !== undefined) {
+                                        nextItem = item.default;
+                                    } else {
+                                        nextItem = item.states[Object.keys(item.states)[0]];
+                                    }
                                 }
                             } else {
                                 nextItem = item.states[Object.keys(item.states)[0]];
@@ -3756,8 +3762,8 @@ function buildOptionsCategories() {
                 optionMutator.states = {};
                 for(var state in item.states) {
                     if(typeof item.states[state] === 'object') {
+                        optionMutator.states[state] = item.states[state];
                         for(var option in item.states[state]) {
-                            optionMutator.states[state] = item.states[state];
                             mutatorList[option] = optionMutator;
                         }
                     } else {
@@ -3774,6 +3780,11 @@ function buildOptionsCategories() {
                 mutatorList[item.name] = optionMutator;
             }
         });
+    }
+
+    var setMutator = function(field, state) {
+        mutatorList[field].label.text = $.Localize(state);
+        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
     }
 
     var checkMutators = function(field, hostPanel) {
@@ -3798,11 +3809,27 @@ function buildOptionsCategories() {
                 mutatorList[field].RemoveClass('active');
 
                 if(mutatorList[field].default !== undefined) {
-                    for (var defaultState in mutatorList[field].default) break;
-                    if(mutatorList[field].default[defaultState] === optionValueList[field]) {
-                        mutatorList[field].label.text = $.Localize(defaultState);
-                        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + defaultState + '.png');
-                        found = false;
+                    if(Object.keys(mutatorList[field].default).length > 1) {
+                        var match;
+                        for (var state in mutatorList[field].default) {
+                            if(mutatorList[field].default[state] === optionValueList[state]) {
+                                match = true;
+                            } else {
+                                match = false;
+                                break;
+                            }
+                        }
+
+                        if(match) {
+                            setMutator(field, state);
+                            found = false;
+                        }
+                    } else {
+                        for (var defaultState in mutatorList[field].default) break;
+                        if(mutatorList[field].default[defaultState] === optionValueList[field]) {
+                            setMutator(field, defaultState);
+                            found = false;
+                        }
                     }
                 }
 
@@ -3811,11 +3838,23 @@ function buildOptionsCategories() {
                     found = true;
                     for(var state in mutatorList[field].states) {
                         if(typeof mutatorList[field].states[state] === 'object') {
+                            var matches = 0;
                             for(var option in mutatorList[field].states[state]) {
-                                if(mutatorList[field].states[state][option] === optionValueList[field]) {
-                                    stateName = state;
-                                    break;
+                                if(mutatorList[field].states[state][option] === optionValueList[option]) {
+                                    matches++;
                                 }
+
+                                if(matches === Object.keys(mutatorList[field].states[state]).length) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
+                                }
+                            }
+
+                            if(found) {
+                                stateName = state;
+                                break;
                             }
                         } else if(mutatorList[field].states[state] === optionValueList[field]) {
                             stateName = Object.keys(mutatorList[field].states).filter(function(key) {return mutatorList[field].states[key] === optionValueList[field]
@@ -3830,8 +3869,7 @@ function buildOptionsCategories() {
                 }
 
                 if(found) {
-                    mutatorList[field].label.text = $.Localize(stateName);
-                    mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + stateName + '.png');
+                    setMutator(field, stateName);
                     mutatorList[field].AddClass('active');
                 }
 
