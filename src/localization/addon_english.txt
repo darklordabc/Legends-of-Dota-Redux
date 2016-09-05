@@ -99,10 +99,11 @@
     "lodMutatorOPAbilities"                         "Ban OP Abils"
     "lodMutatorCustomSkills"                        "Custom Skills"
     "lodMutatorAllVision"                           "All Vision"
+	"lodMutatorHidePicks"                           "Hide Skill Picks"
     "lodMutatorWTF"                                 "Crazy WTF"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
-    "lodMutatorFastBuybackCooldown2"                "Fastest Respawn"
+    "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
 
     "lodMutatorMaxUlts1"                            "2 Ultimates"
@@ -111,8 +112,8 @@
     "lodMutatorMaxUlts4"                            "6 Ultimates"
 
     "lodMutatorUniqueSkillsOff"                     "No Unique Skills"
-    "lodMutatorUniqueSkillsTeam"                    "Team Unique Skills"
-    "lodMutatorUniqueSkillsGlobal"                  "Global Unique Skills"
+    "lodMutatorUniqueSkillsTeam"                    "Team Skills"
+    "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
 
     "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
     "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
@@ -126,16 +127,16 @@
     "lodMutatorEXPModifier2"                        "150% Exp"
     "lodMutatorEXPModifier3"                        "300% Exp"
 
-    "lodMutatorBotsRadiant1"                        "1 Radian Bot"
-    "lodMutatorBotsRadiant2"                        "5 Radian Bot"
-    "lodMutatorBotsRadiant3"                        "10 Radian Bot"
+    "lodMutatorBotsRadiant1"                        "1 Radiant Bot"
+    "lodMutatorBotsRadiant2"                        "5 Radiant Bots"
+    "lodMutatorBotsRadiant3"                        "10 Radiant Bots"
 
     "lodMutatorBotsDire1"                           "1 Dire Bot"
-    "lodMutatorBotsDire1"                           "5 Dire Bot"
-    "lodMutatorBotsDire1"                           "10 Dire Bot"
+    "lodMutatorBotsDire2"                           "5 Dire Bots"
+    "lodMutatorBotsDire3"                           "10 Dire Bots"
 
-    "lodMutatorCreepNoPower"                        "Regular Creeps"
-    "lodMutatorCreepPowerNormal"                    "Normal Creeps"
+    "lodMutatorCreepNoPower"                        "Normal Creeps"
+    "lodMutatorCreepPowerNormal"                    "Strong Creeps"
     "lodMutatorCreepPowerHigh"                      "High Creeps"
     "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
 

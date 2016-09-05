@@ -42,12 +42,47 @@ var allOptions = {
                         value: -1
                     }
                 ],
-                mutators: [
+                mutators: [                   
+					{
+                        about: 'lodMutatorBalanceMode',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningBalanceMode': 1,
+                                'lodOptionBalanceMode': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningBalanceMode': 0,
+                                'lodOptionBalanceMode': 0
+                            }
+                        }
+                    },{
+                        name: 'lodOptionGameSpeedMaxLevel',
+                        states: {
+                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel2': 50,
+                            'lodMutatorMaxLevel3': 100
+                        }
+                    },                   
                     {
-                        name: 'lodOptionBanningBanInvis',
-                        about: 'lodMutatorBanningBanInvis'
+                        name: 'lodOptionGameSpeedUpgradedUlts',
+                        about: 'lodMutatorUpgradedUlts'
                     },
-                    {
+					{
+                        about: 'lodMutatorFastStart',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStartingGold': 1000,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStartingGold': 0,
+                                'lodOptionGameSpeedMaxLevel': 25,
+                                'lodOptionGameSpeedStartingLevel': 1
+                            }
+                        }
+                    },
+					{
                         about: 'lodMutatorFastBuybackCooldown1',
                         default: {
                             'lodOptionBuybackCooldownTimeConstant': 420,
@@ -64,28 +99,31 @@ var allOptions = {
                             }
                         }
                     },
-                    {
-                        name: 'lodOptionGameSpeedUpgradedUlts',
-                        about: 'lodMutatorUpgradedUlts'
-                    },
-                    {
-                        about: 'lodMutatorFastStart',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedStartingGold': 1000,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 6
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedStartingGold': 0,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 1
-                            }
+					{
+                        name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodMutatorMaxUlts1': 2
+                        },
+                        states: {
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
                         }
-                    },
+                    },					
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
+                    },
+					{
+                        name: 'lodOptionCreepPower',
+                        default: {
+                            'lodMutatorCreepNoPower': 0
+                        },
+                        states: {
+                            'lodMutatorCreepPowerNormal': 120,
+                            'lodMutatorCreepPowerHigh': 60,
+                            'lodMutatorCreepPowerExtreme': 30
+                        }
                     },
                     {
                         about: 'lodMutatorDoubleTowers',
@@ -97,45 +135,11 @@ var allOptions = {
                                 'lodOptionGameSpeedTowersPerLane': 3
                             }
                         }
-                    },
+                    },                    
                     {
-                        name: 'lodOptionBanningHostBanning',
-                        about: 'lodMutatorUnlimitedBans'
-                    },
-                    {
-                        about: 'lodMutatorBalanceMode',
-                        values: {
-                            enabled: {
-                                'lodOptionBanningBalanceMode': 1,
-                                'lodOptionBalanceMode': 1
-                            },
-                            disabled: {
-                                'lodOptionBanningBalanceMode': 0,
-                                'lodOptionBalanceMode': 0
-                            }
-                        }
-                    },
-                    {
-                        about: 'lodMutatorPlayerBans',
-                        values: {
-                            enabled: {
-                                'lodOptionBanningMaxHeroBans': 1,
-                                'lodOptionBanningMaxBans': 3
-                            },
-                            disabled: {
-                                'lodOptionBanningMaxHeroBans': 0,
-                                'lodOptionBanningMaxBans': 0
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionGameSpeedMaxLevel',
-                        states: {
-                            'lodMutatorMaxLevel1': 25,
-                            'lodMutatorMaxLevel2': 50,
-                            'lodMutatorMaxLevel3': 100
-                        }
-                    },
+                        name: 'lodOptionAdvancedCustomSkills',
+                        about: 'lodMutatorCustomSkills'
+                    },                    
                     {
                         about: 'lodMutatorOPAbilities',
                         values: {
@@ -148,38 +152,25 @@ var allOptions = {
                                 'lodOptionAdvancedOPAbilities': 0
                             }
                         }
+                    },{
+                        name: 'lodOptionBanningBanInvis',
+                        about: 'lodMutatorBanningBanInvis'
                     },
                     {
-                        name: 'lodOptionCommonMaxUlts',
-                        default: {
-                            'lodMutatorMaxUlts1': 2
-                        },
-                        states: {
-                            'lodMutatorMaxUlts2': 3,
-                            'lodMutatorMaxUlts3': 4,
-                            'lodMutatorMaxUlts4': 6
-                        }
+                        name: 'lodOptionBanningHostBanning',
+                        about: 'lodMutatorUnlimitedBans'
                     },
                     {
-                        name: 'lodOptionAdvancedCustomSkills',
-                        about: 'lodMutatorCustomSkills'
-                    },
-                    {
-                        name: 'lodOptionCrazyAllVision',
-                        about: 'lodMutatorAllVision'
-                    },
-                    {
-                        name: 'lodOptionCrazyWTF',
-                        about: 'lodMutatorWTF'
-                    },
-                    {
-                        name: 'lodOptionAdvancedUniqueSkills',
-                        default: {
-                            'lodMutatorUniqueSkillsOff': 0
-                        },
-                        states: {
-                            'lodMutatorUniqueSkillsTeam': 1,
-                            'lodMutatorUniqueSkillsGlobal': 2
+                        about: 'lodMutatorPlayerBans',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningMaxHeroBans': 1,
+                                'lodOptionBanningMaxBans': 3
+                            },
+                            disabled: {
+                                'lodOptionBanningMaxHeroBans': 0,
+                                'lodOptionBanningMaxBans': 0
+                            }
                         }
                     },
                     {
@@ -213,6 +204,16 @@ var allOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionAdvancedUniqueSkills',
+                        default: {
+                            'lodMutatorUniqueSkillsOff': 0
+                        },
+                        states: {
+                            'lodMutatorUniqueSkillsTeam': 1,
+                            'lodMutatorUniqueSkillsGlobal': 2
+                        }
+                    },
+                    {
                         name: 'lodOptionBotsRadiant',
                         default: {
                             'lodMutatorBotsRadiant1': 1
@@ -232,17 +233,18 @@ var allOptions = {
                             'lodMutatorBotsDire3': 10
                         }
                     },
-                    {
-                        name: 'lodOptionCreepPower',
-                        default: {
-                            'lodMutatorCreepNoPower': 0
-                        },
-                        states: {
-                            'lodMutatorCreepPowerExtreme': 30,
-                            'lodMutatorCreepPowerHigh': 60,
-                            'lodMutatorCreepPowerNormal': 120
-                        }
+					{
+                        name: 'lodOptionAdvancedHidePicks',
+                        about: 'lodMutatorHidePicks'
                     },
+                    {
+                        name: 'lodOptionCrazyAllVision',
+                        about: 'lodMutatorAllVision'
+                    },
+                    {
+                        name: 'lodOptionCrazyWTF',
+                        about: 'lodMutatorWTF'
+                    },                   
                 ]
             }
         ]

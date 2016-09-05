@@ -328,6 +328,7 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire3.png"></Image>
 
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
                 </Panel>
                 <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">
