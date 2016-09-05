@@ -708,8 +708,15 @@ function Pregame:actualSpawnPlayer()
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-                        if hero:IsOwnedByAnyPlayer() then 
-                            SU:SendPlayerBuild( build, playerID )
+                        if hero:IsOwnedByAnyPlayer() then
+                            local info = build
+                            info.InvisibilityBan = this.optionStore['lodOptionBanningBanInvis'] == 1
+                            info.MaxPlayerBans = this.optionStore['lodOptionBanningMaxBans']
+                            info.BalanceMode = this.optionStore['lodOptionBalanceMode'] == 1
+                            info.Gamemode = self.optionStore['lodOptionCommonGamemode']
+                            info.HostBans = self.optionStore['lodOptionBanningHostBanning'] == 1
+                            info.Hero = heroName
+                            SU:SendPlayerBuild( info, playerID )
                         end
 
                         -- Do they have a custom attribute set?
