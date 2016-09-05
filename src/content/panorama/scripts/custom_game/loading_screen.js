@@ -45,25 +45,6 @@ function onGetPlayerStats(table_name, key, data) {
     $.GetContextPanel().SetHasClass('statsFullyLoaded', true);
 }
 
-function setBackground()
-{
-    var backgroundPath = "file://{images}/custom_game/loading_screens/";
-    var backgroundPanel = $( "#CustomBackground" );
-
-    var backList = [
-        { img: "venomancer.jpg", author: "BigGreenPepper", url: "http://biggreenpepper.deviantart.com" },
-        { img: "crystal_maiden.png", author: "eric geusz", url: "http://entroz.deviantart.com" },
-        { img: "doom.jpg", author: "eric geusz", url: " http://entroz.deviantart.com" },
-    ];
-
-    var backNum = Math.floor(Math.random() * backList.length);
-    $('#BackgroundImage').SetImage(backgroundPath + backList[backNum].img);
-    $('#BackgroundCredit').text = 'by ' + backList[backNum].author; 
-    $('#BackgroundCredit').GetParent().SetPanelEvent('onactivate', function(){ 
-        $.DispatchEvent( 'BrowserGoToURL', $.GetContextPanel(), backList[backNum].url);
-    });
-}
-
 (function() {
     // The tips we can show
     var tips = [{
@@ -200,6 +181,4 @@ function setBackground()
         // Hook getting player data
         hookAndFire('phase_pregame', onGetPlayerStats);
     });
-
-    setBackground();
 })();
