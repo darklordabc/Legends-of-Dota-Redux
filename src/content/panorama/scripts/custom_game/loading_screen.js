@@ -45,6 +45,31 @@ function onGetPlayerStats(table_name, key, data) {
     $.GetContextPanel().SetHasClass('statsFullyLoaded', true);
 }
 
+function onGameSetup(table_name, key, data) {
+    if (key != 'phase')
+        return;
+
+    $('#CustomBackground').visible = data < 1;
+}
+
+function setBackground() {
+    var backgroundPath = "file://{images}/custom_game/loading_screens/";
+    var backgroundPanel = $( "#CustomBackground" );
+
+    var backNum = Math.floor(Math.random() * backList.length);
+    $('#BackgroundImage').SetImage(backgroundPath + backList[backNum].img);
+    $('#BackgroundTitle').text = backList[backNum].title ? backList[backNum].title : '';
+    $('#BackgroundCredit').text = backList[backNum].author;
+
+    if (backList[backNum].url != '')
+    {
+        $('#BackgroundCredit').GetParent().SetPanelEvent('onactivate', function(){ 
+            $.DispatchEvent( 'BrowserGoToURL', $.GetContextPanel(), backList[backNum].url);
+        });
+        $('#BackgroundCredit').AddClass('url');
+    }
+}
+
 (function() {
     // The tips we can show
     var tips = [{
@@ -180,5 +205,9 @@ function onGetPlayerStats(table_name, key, data) {
     $.Schedule(0.1, function() {
         // Hook getting player data
         hookAndFire('phase_pregame', onGetPlayerStats);
+        // Hide background after loading
+        hookAndFire('phase_pregame', onGameSetup);
     });
+
+    setBackground();
 })();

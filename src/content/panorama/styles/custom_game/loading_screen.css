@@ -5,6 +5,38 @@
     overflow: clip;
 }
 
+#CustomBackground {
+    width: 100%;
+    height: 100%;
+}
+
+#BackgroundImage {
+    width: 100%;
+    height: 100%;   
+}
+
+.creditContainer {
+    vertical-align: bottom;
+    horizontal-align: center;
+
+    margin-bottom: 30px;
+
+    flow-children: down;
+}
+
+.creditContainer Panel, Label {
+   horizontal-align: center; 
+}
+
+.creditText {
+    font-size: 20px;
+    color: #ffffff80;
+}
+
+.url {
+    text-decoration: underline;
+}
+
 .LoDDeps {
     visibility: collapse;
     width: 0px;
