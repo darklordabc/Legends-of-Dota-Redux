@@ -54,7 +54,6 @@ function setBackground()
         { img: "venomancer.jpg", author: "BigGreenPepper", url: "http://biggreenpepper.deviantart.com" },
         { img: "crystal_maiden.png", author: "eric geusz", url: "http://entroz.deviantart.com" },
         { img: "doom.jpg", author: "eric geusz", url: " http://entroz.deviantart.com" },
-		{ img: "rubick_headshot.jpg", author: "C-HaoArt", url: " http://c-haoart.deviantart.com/" },
 		{ img: "bristle.jpg", author: "BigGreenPepper", url: "http://biggreenpepper.deviantart.com" },
 		{ img: "ck.jpg", author: "BigGreenPepper", url: "http://biggreenpepper.deviantart.com" },
 		{ img: "clink.jpg", author: "BigGreenPepper", url: "http://biggreenpepper.deviantart.com" },
@@ -93,7 +92,17 @@ function setBackground()
 		{ img: "radiantancient.jpg", author: "Valve", url: "" },
 		{ img: "roshan.jpg", author: "Valve", url: "" },
 		{ img: "rubick.jpg", author: "Valve", url: "" },
-
+		{  img: "tidehunter.jpg", author: "Valve", url: "" },
+		//title for below: The Calm Before the Horn
+		{  img: "calmbeforehorn.jpg", author: "Eran Fowler", url: "http://eranfolio.deviantart.com/" },
+		{  img: "huskarfire.jpg", author: "Valve", url: "" },
+		{  img: "pa.jpg", author: "Valve", url: "" },
+		{  img: "abaddon.jpg", author: "Valve", url: "" },
+		{  img: "drow.jpg", author: "Valve", url: "" },
+		{  img: "ursa.jpg", author: "Valve", url: "" },
+		{  img: "dragonknight.jpg", author: "Valve", url: "" },
+		{  img: "luna.jpg", author: "Valve", url: "" },
+		{  img: "ta.jpg", author: "Valve", url: "" },
     ];
 
     var backNum = Math.floor(Math.random() * backList.length);
