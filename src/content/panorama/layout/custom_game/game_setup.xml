@@ -283,6 +283,63 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator10.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator11.png"></Image>
                 </Panel>
+				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
+				<!--<Panel id="loadscreen"> 
+					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
+			     	<Image src="file://{images}/custom_game/loading_screens/crystal_maiden.png" />
+					<Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ck.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/clink.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/clockwerk.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/crystal_maiden.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dirge.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/doom2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ember.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/es.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/jugg.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/jugg2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/kotl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/medusa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/np.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/nyx.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/od.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/puck.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/razor.jpg" />		
+					<Image src="file://{images}/custom_game/loading_screens/sd.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sf.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/silencer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sky.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/slardar.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sven.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/vs.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/warlock.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/bladeandbow.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/direancient.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/io.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/midlane.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/np2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pureskill.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/radiantancient.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/roshan.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/rubick.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/tidehunter.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/calmbeforehorn.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/huskarfire.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/abaddon.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/drow.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ursa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dragonknight.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/luna.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ta.jpg" />
+					</Panel>-->
+					
                 <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">
                         <Label text="#importAndExport_code"/>
