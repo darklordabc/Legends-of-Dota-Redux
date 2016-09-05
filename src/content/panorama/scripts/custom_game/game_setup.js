@@ -72,12 +72,10 @@ var allOptions = {
                         values: {
                             enabled: {
                                 'lodOptionGameSpeedStartingGold': 1000,
-                                'lodOptionGameSpeedMaxLevel': 25,
                                 'lodOptionGameSpeedStartingLevel': 6
                             },
                             disabled: {
                                 'lodOptionGameSpeedStartingGold': 0,
-                                'lodOptionGameSpeedMaxLevel': 25,
                                 'lodOptionGameSpeedStartingLevel': 1
                             }
                         }
