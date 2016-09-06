@@ -286,7 +286,6 @@
 				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
 				<!--<Panel id="loadscreen"> 
 					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
-			     	<Image src="file://{images}/custom_game/loading_screens/crystal_maiden.png" />
 					<Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
 					<Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" /> 
 					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
@@ -338,6 +337,16 @@
 					<Image src="file://{images}/custom_game/loading_screens/dragonknight.jpg" />
 					<Image src="file://{images}/custom_game/loading_screens/luna.jpg" />
 					<Image src="file://{images}/custom_game/loading_screens/ta.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/bane_elemental.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Broodmother.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dark_seer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/leshrac.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Lich.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/night_stalker.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Remembering_Skeleton_King.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/visage.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/rikimaru.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/tiny.jpg" />
 					</Panel>-->
 					
                 <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
