@@ -1,4 +1,6 @@
 "use strict";
+var screenListener = null;
+
 
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
@@ -45,19 +47,35 @@ function onGetPlayerStats(table_name, key, data) {
     $.GetContextPanel().SetHasClass('statsFullyLoaded', true);
 }
 
-function onGameSetup(table_name, key, data) {
+function onHideScreen(table_name, key, data) {
     if (key != 'phase')
         return;
 
-    $('#CustomBackground').visible = data < 1;
+    // Show screen when voting only on all pick maps
+    var mapName = Game.GetMapInfo().map_display_name;
+    if (mapName.match( /all_pick/i ) && data.v < 3 || data.v < 2)
+        return;
+
+    $('#CustomBackground').visible = false;
+    CustomNetTables.UnsubscribeNetTableListener(screenListener);
 }
 
 function setBackground() {
+    screenListener = CustomNetTables.SubscribeNetTableListener("phase_pregame", onHideScreen);
+
     var backgroundPath = "file://{images}/custom_game/loading_screens/";
     var backgroundPanel = $( "#CustomBackground" );
 
     var backNum = Math.floor(Math.random() * backList.length);
     $('#BackgroundImage').SetImage(backgroundPath + backList[backNum].img);
+
+    // Hide credits if author is empty
+    if (!backList[backNum].author)
+    {
+        $('#BackgroundTitle').GetParent().visible = false;
+        return;
+    }
+
     $('#BackgroundTitle').text = backList[backNum].title ? backList[backNum].title : '';
     $('#BackgroundCredit').text = backList[backNum].author;
 
@@ -205,8 +223,6 @@ function setBackground() {
     $.Schedule(0.1, function() {
         // Hook getting player data
         hookAndFire('phase_pregame', onGetPlayerStats);
-        // Hide background after loading
-        hookAndFire('phase_pregame', onGameSetup);
     });
 
     setBackground();
