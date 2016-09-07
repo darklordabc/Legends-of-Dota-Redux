@@ -3642,16 +3642,6 @@ function buildOptionsCategories() {
             if (item.states !== undefined) {
                 var circleWrapper = $.CreatePanel('Panel', optionMutator, 'circleWrapper_' + i);
                 circleWrapper.AddClass('circleWrapper');
-
-                optionMutator.circles = [];
-
-                for(i=0; i<Object.keys(item.states).length; i++) {
-                    var circle = $.CreatePanel('Panel', circleWrapper, 'circle_' + i);
-                    circle.SetAttributeString('option', Object.keys(item.states)[i]);
-                    circle.AddClass('circle');
-
-                    optionMutator.circles.push(circle);
-                }
             }
 
             var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
@@ -3875,18 +3865,6 @@ function buildOptionsCategories() {
                 if(found) {
                     setMutator(field, stateName);
                     mutatorList[field].AddClass('active');
-                }
-
-                for(var i=0; i<mutatorList[field].circles.length; i++) {
-                    var option = mutatorList[field].circles[i].GetAttributeString('option', '');
-
-                    if(mutatorList[field].circles[i].BHasClass('active')) {
-                        mutatorList[field].circles[i].RemoveClass('active');
-                    }
-
-                    if(option === stateName) {
-                        mutatorList[field].circles[i].AddClass('active');
-                    }
                 }
             } else {
                 if(optionValueList[field]) {
