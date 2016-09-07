@@ -214,7 +214,7 @@ var allOptions = {
                     {
                         name: 'lodOptionBotsRadiant',
                         default: {
-                            'lodMutatorBotsRadiant1': 1
+                            'lodMutatorBotsRadiant1': 0
                         },
                         states: {
                             'lodMutatorBotsRadiant2': 5,
@@ -224,7 +224,7 @@ var allOptions = {
                     {
                         name: 'lodOptionBotsDire',
                         default: {
-                            'lodMutatorBotsDire1': 1
+                            'lodMutatorBotsDire1': 0
                         },
                         states: {
                             'lodMutatorBotsDire2': 5,
@@ -802,7 +802,7 @@ var allOptions = {
                 des: 'lodOptionDesBotsRadiant',
                 about: 'lodOptionAboutBotRadiant',
                 sort: 'range',
-                min: 1,
+                min: 0,
                 max: 10,
                 step: 1,
                 default: 5
@@ -812,7 +812,7 @@ var allOptions = {
                 des: 'lodOptionDesBotsDire',
                 about: 'lodOptionAboutBotDire',
                 sort: 'range',
-                min: 1,
+                min: 0,
                 max: 10,
                 step: 1,
                 default: 5
