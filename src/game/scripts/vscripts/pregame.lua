@@ -42,8 +42,6 @@ function Pregame:init()
     -- Some default values
     self.fastBansTotalBans = 3
     self.fastHeroBansTotalBans = 1
-    self.fullBansTotalBans = 5
-    self.fullHeroBansTotalBans = 2
 
     -- Stores which playerIDs we have already spawned
     self.spawnedHeroesFor = {}
@@ -273,6 +271,8 @@ function Pregame:init()
 
     -- Default banning
     self:setOption('lodOptionBanning', 3)
+    self:setOption('lodOptionBanningMaxBans', 0)
+    self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
@@ -1657,8 +1657,6 @@ function Pregame:initOptionSelector()
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-				self:setOption('lodOptionBanningMaxBans', 0, true)
-				self:setOption('lodOptionBanningMaxHeroBans', 0, true)
 
                 return true
             elseif value == 0 then
@@ -1666,8 +1664,6 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
 				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-				self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
-				self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true) 
                 return true
             end
 
@@ -2053,8 +2049,6 @@ function Pregame:initOptionSelector()
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
-                    self:setOption('lodOptionBanningMaxBans', 0, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
