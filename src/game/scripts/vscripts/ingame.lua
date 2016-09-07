@@ -81,7 +81,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
             if item:GetName() == "item_tome_of_knowledge" then
                 hero:RemoveItem(item)
 
-                for x=0,DOTA_DEFAULT_MAX_TEAM do
+                for x=0,DOTA_MAX_TEAM do
                     local pID = PlayerResource:GetNthPlayerIDOnTeam(hero:GetTeamNumber(),x)
                     if PlayerResource:IsValidPlayerID(pID) then
                         local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
@@ -588,7 +588,7 @@ function Ingame:FilterModifyExperience(filterTable)
 
     if OptionManager:GetOption('sharedXP') == 1 then
         if filterTable.reason_const ~= 0 then
-            for i=0,DOTA_DEFAULT_MAX_TEAM do
+            for i=0,DOTA_MAX_TEAM do
                 local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
                 if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
                     local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
@@ -610,7 +610,7 @@ function Ingame:BountyRunePickupFilter(filterTable)
     if OptionManager:GetOption('sharedXP') == 1 then
         local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
 
-        for i=0,DOTA_DEFAULT_MAX_TEAM do
+        for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
             if PlayerResource:IsValidPlayerID(pID) then
                 local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
