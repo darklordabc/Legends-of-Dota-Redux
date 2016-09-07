@@ -153,6 +153,9 @@ function setBackground() {
     }, {
         img: 'file://{images}/spellicons/axe_counter_helix.png',
         txt: '#hintJungle'
+    }, {
+        img: 'file://{images}/items/tome_of_knowledge.png',
+        txt: '#hintShareEXP'
     }];
 
     // How long to wait before we show the next tip
