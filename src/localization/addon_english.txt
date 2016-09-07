@@ -384,7 +384,7 @@
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
-	"hintShareEXP"                         "You can enable Team Sharing of Experience so that all teammates pool their EXP and level up at the same time."
+	"hintShareEXP"                         "You can enable team sharing of experience so that all teammates pool their EXP and level up at the same time."
 	
 
     // Hero builder
