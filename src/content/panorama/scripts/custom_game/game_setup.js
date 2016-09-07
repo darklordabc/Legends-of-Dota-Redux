@@ -441,22 +441,6 @@ var allOptions = {
                 default: 0
             },
             {
-                name: 'lodOptionGameSpeedSharedEXP',
-                des: 'lodOptionDesGameSpeedSharedEXP',
-                about: 'lodOptionAboutGameSpeedSharedEXP',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionGameSpeedRespawnTimePercentage',
                 des: 'lodOptionDesGameSpeedRespawnTimePercentage',
                 about: 'lodOptionAboutGameSpeedRespawnTimePercentage',
@@ -490,6 +474,22 @@ var allOptions = {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGameSpeedSharedEXP',
+                des: 'lodOptionDesGameSpeedSharedEXP',
+                about: 'lodOptionAboutGameSpeedSharedEXP',
                 sort: 'toggle',
                 values: [
                     {
