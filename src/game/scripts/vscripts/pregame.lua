@@ -4621,28 +4621,54 @@ function Pregame:generateBotBuilds()
         botInfo.skillID = skillID
         botInfo.build = build
     end
-
-    while true do
-        for i,botInfo in pairs(self.botPlayers.dire) do
-            if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_GOODGUYS]) then
-                self:getSkillforBot(botInfo, botSkills)
-                lastTeam = botInfo.team
-                local temp = table.remove(self.botPlayers.dire, i)
-                table.insert(self.botPlayers.dire, temp)
+    local choice = util:RandomChoice({"dire", "radiant"})
+    if choice == "dire" then
+        while true do
+            for i,botInfo in pairs(self.botPlayers.dire) do
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_GOODGUYS]) then
+                    self:getSkillforBot(botInfo, botSkills)
+                    lastTeam = botInfo.team
+                    local temp = table.remove(self.botPlayers.dire, i)
+                    table.insert(self.botPlayers.dire, temp)
+                    break
+                end
+            end
+            for i,botInfo in pairs(self.botPlayers.radiant) do
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_BADGUYS]) then
+                    self:getSkillforBot(botInfo, botSkills)
+                    lastTeam = botInfo.team
+                    local temp = table.remove(self.botPlayers.radiant, i)
+                    table.insert(self.botPlayers.radiant, temp)
+                    break
+                end
+            end
+            if self:isTeamBotReady(DOTA_TEAM_GOODGUYS) and self:isTeamBotReady(DOTA_TEAM_BADGUYS) then
                 break
             end
         end
-        for i,botInfo in pairs(self.botPlayers.radiant) do
-            if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_BADGUYS]) then
-                self:getSkillforBot(botInfo, botSkills)
-                lastTeam = botInfo.team
-                local temp = table.remove(self.botPlayers.radiant, i)
-                table.insert(self.botPlayers.radiant, temp)
+    else
+        while true do
+            for i,botInfo in pairs(self.botPlayers.radiant) do
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_BADGUYS]) then
+                    self:getSkillforBot(botInfo, botSkills)
+                    lastTeam = botInfo.team
+                    local temp = table.remove(self.botPlayers.radiant, i)
+                    table.insert(self.botPlayers.radiant, temp)
+                    break
+                end
+            end
+            for i,botInfo in pairs(self.botPlayers.dire) do
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[DOTA_TEAM_GOODGUYS]) then
+                    self:getSkillforBot(botInfo, botSkills)
+                    lastTeam = botInfo.team
+                    local temp = table.remove(self.botPlayers.dire, i)
+                    table.insert(self.botPlayers.dire, temp)
+                    break
+                end
+            end
+            if self:isTeamBotReady(DOTA_TEAM_GOODGUYS) and self:isTeamBotReady(DOTA_TEAM_BADGUYS) then
                 break
             end
-        end
-        if self:isTeamBotReady(DOTA_TEAM_GOODGUYS) and self:isTeamBotReady(DOTA_TEAM_BADGUYS) then
-            break
         end
     end
 end
