@@ -949,7 +949,7 @@ var recommendedBuilds = [
     {
         title: 'Long Dagger Harassment',
         heroName: 'npc_dota_hero_ogre_magi',
-        attr: 'str',
+        attr: 'int',
         build: {
             1: 'phantom_assassin_stifling_dagger',
             2: 'weaver_geminate_attack',
