@@ -4337,8 +4337,16 @@ function OnPhaseChanged(table_name, key, data) {
             masterRoot.SetHasClass('phase_review', currentPhase == PHASE_REVIEW);
             masterRoot.SetHasClass('phase_ingame', currentPhase == PHASE_INGAME);
 
-            // Progrss to the new phase
+            // Progress to the new phase
             SetSelectedPhase(currentPhase, true);
+
+            // Hide middle buttons on all pick maps
+            if (currentPhase == PHASE_OPTION_VOTING)
+            {
+                var mapName = Game.GetMapInfo().map_display_name;
+                if (mapName.match( /all_pick/i ))
+					$('#middleButtons').visible = false;
+            }
 
             // Message for hosters
             if(currentPhase == PHASE_OPTION_SELECTION) {

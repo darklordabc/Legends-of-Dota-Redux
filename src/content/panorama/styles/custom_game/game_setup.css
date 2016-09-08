@@ -391,6 +391,7 @@
     padding: 4px;
 }
 
+
 .player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
 }
@@ -566,6 +567,10 @@
 #stageSelection {
     flow-children: right;
     horizontal-align: center;
+}
+
+.phase_option_voting #stageSelection {
+    visibility: collapse;
 }
 
 #lodOptionSelectionTimeRemaining {
