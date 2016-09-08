@@ -1581,7 +1581,7 @@
 	  //----------------------------------------------------------------
 	  "MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" // Type of locomotion - ground, air
 	  "MovementSpeed" "420" // Speed
-	  "MovementTurnRate" "0.013" // Turning rate.
+	  "MovementTurnRate" "0.5" // Turning rate.
 	  "FollowRange" "250" // Distance to keep when following
 	  // Status
 	  //----------------------------------------------------------------
@@ -1597,8 +1597,8 @@
 	  "UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	  // Vision
 	  //----------------------------------------------------------------
-	  "VisionDaytimeRange" "0" // Range of vision during day light.
-	  "VisionNighttimeRange" "0" // Range of vision at night time.
+	  "VisionDaytimeRange" "600" // Range of vision during day light.
+	  "VisionNighttimeRange" "600" // Range of vision at night time.
 	  // Bots
 	  //----------------------------------------------------------------
 	  "AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
