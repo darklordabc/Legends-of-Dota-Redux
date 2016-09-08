@@ -5,7 +5,8 @@ function spawnHealingWard (keys)
   local point = keys.target_points[1]
   local ward = CreateUnitByName('npc_dota_healing_ward', point, false, caster, caster, caster:GetTeamNumber())
   ward:SetControllableByPlayer(caster:GetPlayerID(), false)
-  ability:ApplyDataDrivenModifier(caster,ward,"modifier_healing_ward_mana_aura",{duration = duration})
+  ability:ApplyDataDrivenModifier(ward,ward,"modifier_healing_ward_mana_aura",{duration = duration})
+  ward:AddNewModifier(ward,ability,"modifier_kill",{duration = duration})
   ward:MoveToNPC(caster)
 
   local radius = ability:GetSpecialValueFor("healing_ward_aura_radius")
@@ -15,9 +16,6 @@ function spawnHealingWard (keys)
   ward:FindModifierByName("modifier_healing_ward_mana_aura"):AddParticle(particle, false, false, 1, false, false)
 end
 
-function destroyHealingWard(keys)
-  keys.target:RemoveSelf()
-end
 
 function healingWardMana(keys)
   local ability = keys.ability
