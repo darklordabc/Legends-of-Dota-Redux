@@ -9882,6 +9882,7 @@
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"       "ability_datadriven"
+	"AbilityTextureName"			"healing_ward_icon"
 	"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 	
 	// Casting
