@@ -6,6 +6,7 @@ function spawnHealingWard (keys)
   local ward = CreateUnitByName('npc_dota_healing_ward', point, false, caster, caster, caster:GetTeamNumber())
   ward:SetControllableByPlayer(caster:GetPlayerID(), false)
   ability:ApplyDataDrivenModifier(caster,ward,"modifier_healing_ward_mana_aura",{duration = duration})
+  ward:MoveToNPC(caster)
 
   local radius = ability:GetSpecialValueFor("healing_ward_aura_radius")
   local particle = ParticleManager:CreateParticle("particles/juggernaut_healing_wardmana.vpcf", PATTACH_ABSORIGIN_FOLLOW, ward)
