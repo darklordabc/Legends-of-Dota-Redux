@@ -100,6 +100,7 @@
     "lodMutatorCustomSkills"                        "Custom Skills"
     "lodMutatorAllVision"                           "All Vision"
 	"lodMutatorHidePicks"                           "Hide Skill Picks"
+	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
