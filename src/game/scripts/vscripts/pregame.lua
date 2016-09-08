@@ -1758,6 +1758,11 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Common host banning
+        lodOptionGameSpeedSharedEXP = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed -- Respawn time percentage
         lodOptionGameSpeedRespawnTimePercentage = function(value)
             -- It needs to be a whole number between a certain range
@@ -1975,6 +1980,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
                 self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
                 self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+                self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
@@ -2582,6 +2588,7 @@ function Pregame:processOptions()
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
 	    OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
 	    OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
+        OptionManager:SetOption('sharedXP', this.optionStore['lodOptionGameSpeedSharedEXP'])
 
 	    -- Bot options
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
@@ -2710,6 +2717,7 @@ function Pregame:processOptions()
 			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
 			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
 			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
+                    ['Shared XP'] = this.optionStore['lodOptionGameSpeedSharedEXP'],
 		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
                     ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
 			        ['Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],

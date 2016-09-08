@@ -47,7 +47,7 @@
                     </Panel>
                 </Panel>
 
-                <Panel id="middleButtons">
+                <Panel class="votingBackground" id="middleButtons">
                     <Button onactivate="onAutoAssignPressed()">
                         <Label text="autoAssignTeams" />
                     </Button>
@@ -63,12 +63,12 @@
                 </Panel>
             </Panel>
 
-            <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
+            <Panel class="votingBackground" id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
                 <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
                 <Label id="unassignedTeamLabel" text="theUnassigned" />
             </Panel>
 
-            <Panel id="stageSelection">
+            <Panel class="votingBackground" id="stageSelection">
                 <Button id="stageButtonOptionSelection" class="lodStageButton" onactivate="SetSelectedPhase(PHASE_OPTION_SELECTION)">
                     <Label text="lodStageButtonOptionSelection" />
                     <Label text="" id="lodOptionSelectionTimeRemaining" />
@@ -104,7 +104,7 @@
                 </Button>
             </Panel>
 
-            <Panel id="optionVoting">
+            <Panel class="votingBackground" id="optionVoting">
                 <Label class="optionVoteMainHeader" text="lodOptionVotingHeader" />
 
                 <Panel id="maxSlotsVotingContainer" class="optionVoteMaxSlots">
@@ -330,6 +330,183 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
                 </Panel>
+				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
+				<!--<Panel id="loadscreen"> 
+					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ck.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/clink.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/clockwerk.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/crystal_maiden.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dirge.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/doom2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ember.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/es.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/jugg.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/jugg2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/kotl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/medusa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/np.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/nyx.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/od.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/puck.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/razor.jpg" />		
+					<Image src="file://{images}/custom_game/loading_screens/sd.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sf.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/silencer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sky.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/slardar.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/sven.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/venomancer2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/vs.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/warlock.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/bladeandbow.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/direancient.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/io.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/midlane.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/np2.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pureskill.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/radiantancient.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/roshan.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/rubick.jpg" /> 
+					<Image src="file://{images}/custom_game/loading_screens/tidehunter.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/calmbeforehorn.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/huskarfire.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/pa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/abaddon.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/drow.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ursa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dragonknight.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/luna.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ta.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/bane_elemental.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Broodmother.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dark_seer.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/leshrac.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Lich.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/night_stalker.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Remembering_Skeleton_King.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/visage.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/rikimaru.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/tiny.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/direteam.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/radiantteam.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/01vNZZh.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/0w5fIvW.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/10EpFKt.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/18wahBc.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/1iDvdyl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/1uuO1Ne.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/2dADonb.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/2kq4mRt.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/2qHTqxv.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/37HkAJ7.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/3F2cNfH.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/3T3eBT1.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/3U4qJBL.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/48KDDrm.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/4aDEK0S.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/4gbsXmL.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/66BzmL4.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/69VHpcR.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/6gLmLwA.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/6ifDsFY.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/6IwGhpk.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/7b8DsDX.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/8gnJQEO.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/a3hPCA5.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Ab12Qjq.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/aClD7hl.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/AtOJ2eb.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/bCw4j0I.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/BDifwi8.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/bnyI5LA.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/bsoGxxW.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/caecNCK.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/CiI0XKj.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/cTSfTjY.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/CuVjJEY.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/D4VD8iC.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/d65DpOz.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dkwEzik.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/dv8I5qK.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ECHLfTL.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/EiR7Qmk.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/fiC1NK4.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/fKb5Xp6.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/fL1VUqa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/g4FLSnB.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/G6pqQhz.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/hgunBT9.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/hRjoUPK.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/HvxnzqD.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/HYxfOqq.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ifjccyj.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ik300X0.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/iReOLOQ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/iusIdmx.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/jCYlSyZ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/KDE96QY.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/kFvNmfz.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/kN4405O.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/KwAlKip.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/l1kqsKO.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/l8ScUAs.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/lzVZ52z.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/MChCjtr.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/MDoojh5.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/mKj682e.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/o39GFMj.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/oAGtTH7.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/oamIgBc.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/OhYnpwS.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ozMgrbt.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/qdWoJki.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/qTlCw4p.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/r9z3Hax.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/RHPN6AF.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/RIMXelb.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/roLjhNM.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/RpBXJeG.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ruuUQfE.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/RVqbv5M.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/s7iAIeB.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/S9H8WfR.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/SIkVU6w.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/SyFqypt.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/TBuwrFJ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/THvsvOd.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/TnvrLOp.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/TrXWgsb.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/uLoTf74.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Uv6XNJa.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/v7aroXO.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Vec1ZOF.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/vgZ5hSn.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/VKPozqg.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/W0S1DKS.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/waeDOb0.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/wAzIPzQ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/WkZiBaV.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/woCc0EE.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/WXqsXbU.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/x9CE3ex.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/XIfjupN.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/xKkoNpQ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/xOaUZPY.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/XV0wYZW.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/xylKoQG.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ZHrAZAZ.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/Znjx4Ls.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ZRzGl3b.jpg" />
+					<Image src="file://{images}/custom_game/loading_screens/ZyegbCE.jpg" />
+					</Panel>-->
+					
                 <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                     <Panel id="importAndExportCaption">
                         <Label text="#importAndExport_code"/>

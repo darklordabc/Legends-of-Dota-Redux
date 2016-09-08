@@ -569,6 +569,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionGameSpeedSharedEXP',
+                des: 'lodOptionDesGameSpeedSharedEXP',
+                about: 'lodOptionAboutGameSpeedSharedEXP',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
 
             /*{
                 name: 'lodOptionCrazyEasymode',
