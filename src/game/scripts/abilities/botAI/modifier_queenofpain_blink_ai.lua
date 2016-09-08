@@ -38,13 +38,6 @@ function modifier_queenofpain_blink_ai:OnIntervalThink()
 				shouldBlinkAggressive = true
 				--print("aggresive blink")
 			end
-		-- blinks automatically if health and mana are high enough
-		elseif caster:GetHealthPercent() > 80 and caster:GetManaPercent() > 80 and not target then
-			local random = math.random(1, 100)
-			if random <= 3 then
-				--print("auto blink")
-				shouldBlink = true
-			end
 		-- Bots will retreat at low health, prioritizing blink
 		elseif caster:GetHealthPercent() < 30 and not target and not caster:HasModifier("modifier_bloodseeker_rupture") then
 			shouldBlink = true
