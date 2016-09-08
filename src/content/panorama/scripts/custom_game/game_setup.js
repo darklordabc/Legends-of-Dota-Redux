@@ -42,63 +42,8 @@ var allOptions = {
                         value: -1
                     }
                 ],
-                mutators: [
-                    {
-                        name: 'lodOptionBanningBanInvis',
-                        about: 'lodMutatorBanningBanInvis'
-                    },
-                    {
-                        about: 'lodMutatorFastBuybackCooldown',
-                        values: {
-                            enabled: {
-                                'lodOptionBuybackCooldownTimeConstant': 105,
-                                'lodOptionGameSpeedRespawnTimePercentage': 25
-                            },
-                            disabled: {
-                                'lodOptionBuybackCooldownTimeConstant': 420,
-                                'lodOptionGameSpeedRespawnTimePercentage': 100
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionGameSpeedUpgradedUlts',
-                        about: 'lodMutatorUpgradedUlts'
-                    },
-                    {
-                        about: 'lodMutatorFastStart',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedStartingGold': 1000,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 6
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedStartingGold': 0,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 1
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionGameSpeedStrongTowers',
-                        about: 'lodMutatorStrongTowers'
-                    },
-                    {
-                        about: 'lodMutatorDoubleTowers',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 5
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedTowersPerLane': 3
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionBanningHostBanning',
-                        about: 'lodMutatorUnlimitedBans'
-                    },
-                    {
+                mutators: [                   
+					{
                         about: 'lodMutatorBalanceMode',
                         values: {
                             enabled: {
@@ -110,6 +55,108 @@ var allOptions = {
                                 'lodOptionBalanceMode': 0
                             }
                         }
+                    },{
+                        name: 'lodOptionGameSpeedMaxLevel',
+                        states: {
+                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel2': 50,
+                            'lodMutatorMaxLevel3': 100
+                        }
+                    },                   
+                    {
+                        name: 'lodOptionGameSpeedUpgradedUlts',
+                        about: 'lodMutatorUpgradedUlts'
+                    },
+					{
+                        about: 'lodMutatorFastStart',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStartingGold': 1000,
+                                'lodOptionGameSpeedStartingLevel': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStartingGold': 0,
+                                'lodOptionGameSpeedStartingLevel': 1
+                            }
+                        }
+                    },
+					{
+                        about: 'lodMutatorFastBuybackCooldown1',
+                        default: {
+                            'lodOptionBuybackCooldownTimeConstant': 420,
+                            'lodOptionGameSpeedRespawnTimePercentage': 100
+                        },
+                        states: {
+                            'lodMutatorFastBuybackCooldown2': {
+                                'lodOptionBuybackCooldownTimeConstant': 210,
+                                'lodOptionGameSpeedRespawnTimePercentage': 25
+                            },
+                            'lodMutatorFastBuybackCooldown3': {
+                                'lodOptionBuybackCooldownTimeConstant': 0,
+                                'lodOptionGameSpeedRespawnTimePercentage': 0
+                            }
+                        }
+                    },
+					{
+                        name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodMutatorMaxUlts1': 2
+                        },
+                        states: {
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
+                        }
+                    },					
+                    {
+                        name: 'lodOptionGameSpeedStrongTowers',
+                        about: 'lodMutatorStrongTowers'
+                    },
+					{
+                        name: 'lodOptionCreepPower',
+                        default: {
+                            'lodMutatorCreepNoPower': 0
+                        },
+                        states: {
+                            'lodMutatorCreepPowerNormal': 120,
+                            'lodMutatorCreepPowerHigh': 60,
+                            'lodMutatorCreepPowerExtreme': 30
+                        }
+                    },
+                    {
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 5
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
+                    },                    
+                    {
+                        name: 'lodOptionAdvancedCustomSkills',
+                        about: 'lodMutatorCustomSkills'
+                    },                    
+                    {
+                        about: 'lodMutatorOPAbilities',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningUseBanList': 1,
+                                'lodOptionAdvancedOPAbilities': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningUseBanList': 0,
+                                'lodOptionAdvancedOPAbilities': 0
+                            }
+                        }
+                    },{
+                        name: 'lodOptionBanningBanInvis',
+                        about: 'lodMutatorBanningBanInvis'
+                    },
+                    {
+                        name: 'lodOptionBanningHostBanning',
+                        about: 'lodMutatorUnlimitedBans'
                     },
                     {
                         about: 'lodMutatorPlayerBans',
@@ -125,40 +172,77 @@ var allOptions = {
                         }
                     },
                     {
-                        about: 'lodMutatorOPAbilities',
-                        values: {
-                            enabled: {
-                                'lodOptionBanningUseBanList': 1,
-                                'lodOptionAdvancedOPAbilities': 1
-                            },
-                            disabled: {
-                                'lodOptionBanningUseBanList': 0,
-                                'lodOptionAdvancedOPAbilities': 0
-                            }
+                        name: 'lodOptionGameSpeedGoldTickRate',
+                        default: {
+                            'lodMutatorGoldTickRate1': 1
+                        },
+                        states: {
+                            'lodMutatorGoldTickRate2': 2,
+                            'lodMutatorGoldTickRate3': 3
                         }
                     },
                     {
-                        about: 'lodMutatorUlts',
-                        values: {
-                            enabled: {
-                                'lodOptionCommonMaxUlts': 6
-                            },
-                            disabled: {
-                                'lodOptionCommonMaxUlts': 2
-                            }
+                        name: 'lodOptionGameSpeedGoldModifier',
+                        default: {
+                            'lodMutatorGoldModifier1': 100
+                        },
+                        states: {
+                            'lodMutatorGoldModifier2': 150,
+                            'lodMutatorGoldModifier3': 300
                         }
                     },
                     {
-                        about: 'lodMutatorStrongCreeps',
-                        values: {
-                            enabled: {
-                                'lodOptionCreepPower': 120
-                            },
-                            disabled: {
-                                'lodOptionCreepPower': 0
-                            }
+                        name: 'lodOptionGameSpeedEXPModifier',
+                        default: {
+                            'lodMutatorEXPModifier1': 100
+                        },
+                        states: {
+                            'lodMutatorEXPModifier2': 150,
+                            'lodMutatorEXPModifier3': 300
                         }
-                    }
+                    },
+                    {
+                        name: 'lodOptionAdvancedUniqueSkills',
+                        default: {
+                            'lodMutatorUniqueSkillsOff': 0
+                        },
+                        states: {
+                            'lodMutatorUniqueSkillsTeam': 1,
+                            'lodMutatorUniqueSkillsGlobal': 2
+                        }
+                    },
+                    {
+                        name: 'lodOptionBotsRadiant',
+                        default: {
+                            'lodMutatorBotsRadiant1': 1
+                        },
+                        states: {
+                            'lodMutatorBotsRadiant2': 5,
+                            'lodMutatorBotsRadiant3': 10
+                        }
+                    },
+                    {
+                        name: 'lodOptionBotsDire',
+                        default: {
+                            'lodMutatorBotsDire1': 1
+                        },
+                        states: {
+                            'lodMutatorBotsDire2': 5,
+                            'lodMutatorBotsDire3': 10
+                        }
+                    },
+					{
+                        name: 'lodOptionAdvancedHidePicks',
+                        about: 'lodMutatorHidePicks'
+                    },
+                    {
+                        name: 'lodOptionCrazyAllVision',
+                        about: 'lodMutatorAllVision'
+                    },
+                    {
+                        name: 'lodOptionCrazyWTF',
+                        about: 'lodMutatorWTF'
+                    },                   
                 ]
             }
         ]
@@ -223,7 +307,6 @@ var allOptions = {
                 default: 2
             },
             {
-                preset: true,
                 name: 'lodOptionCommonMirrorHeroes',
                 des: 'lodOptionsCommonMirrorHeroes',
                 about: 'lodOptionAboutCommonMirrorHeroes',
@@ -3550,6 +3633,7 @@ function buildOptionsCategories() {
     var optionContainer = $('#optionList');
     var mutatorList = {};
     var gamemodeList = {};
+    var mutators;
 
     // Reset option links
     allOptionLinks = {};
@@ -3558,11 +3642,166 @@ function buildOptionsCategories() {
 
     }
 
+    var addMutators = function(destionationPanel) {
+        mutatorList = {};
+        mutators.forEach(function(item, i) {
+            var name;
+            if(item.about) {
+                name = item.about;
+            } else {
+                name = Object.keys(item.states)[0];
+            }
+
+            var optionMutator = $.CreatePanel('Panel', destionationPanel, 'mutator_' + name);
+            optionMutator.AddClass('mutator');
+
+            if (item.states !== undefined) {
+                var circleWrapper = $.CreatePanel('Panel', optionMutator, 'circleWrapper_' + i);
+                circleWrapper.AddClass('circleWrapper');
+            }
+
+            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
+            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator_' + name + '.png');
+
+            // When the mutators changes
+            optionMutator.SetPanelEvent('onactivate', function(e) {
+                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+
+                if (item.values !== undefined) {
+                    var state;
+                    if(optionMutator.BHasClass('active')) {
+                        state = 'disabled';
+                    } else {
+                        state = 'enabled';
+                    }
+
+                    for (var option in item.values[state]) {
+                        var value = item.values[state][option];
+                        setOption(option, value)
+                    }
+                } else if (item.states !== undefined) {
+                    var nextItem;
+                    var found = false;
+                    var i = 0;
+
+                    for(var state in item.states) {
+                        if(typeof item.states[state] === 'object') {
+                            for(var option in item.states[state]) {
+                                if(item.states[state][option] === optionValueList[option]) {
+                                    found = true;
+                                } else {
+                                    found = false;
+                                    break;
+                                }
+                            }
+
+                            if(found) {
+                                if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                                    nextItem = item.states[Object.keys(item.states)[i+1]];
+                                    break;
+                                } else {
+                                    if(item.default !== undefined) {
+                                        nextItem = item.default;
+                                    } else {
+                                        nextItem = item.states[Object.keys(item.states)[0]];
+                                    }
+                                }
+                            } else {
+                                nextItem = item.states[Object.keys(item.states)[0]];
+                            }
+                         } else if(item.states[state] === optionValueList[item.name]) {
+                            if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                                nextItem = item.states[Object.keys(item.states)[i+1]];
+                            } else {
+                                if(item.default !== undefined) {
+                                    nextItem = item.default[Object.keys(item.default)[0]];
+                                } else {
+                                    nextItem = item.states[Object.keys(item.states)[0]];
+                                }
+                            }
+
+                            break;
+                        } 
+
+                        i++;
+                    }
+
+                    if(nextItem === undefined) {
+                        nextItem = item.states[Object.keys(item.states)[0]];
+                    }
+
+                    if(typeof nextItem === 'object') {
+                        for(var option in nextItem) {
+                            setOption(option, nextItem[option]);
+                        }
+                    } else {
+                        setOption(item.name, nextItem);
+                    }
+                } else {
+                    if(optionMutator.BHasClass('active')) {
+                        setOption(item.name, 0);
+                    } else {
+                        setOption(item.name, 1);
+                    }
+                }
+            });
+
+            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
+            infoLabel.AddClass('mutatorLabel');
+
+            if(item.states) {
+                infoLabel.text = $.Localize(Object.keys(item.states)[0]);
+            } else  {
+                infoLabel.text = $.Localize(item.about);
+            }
+
+            if(item.values) {
+                for(var value in item.values.enabled) {
+                    optionMutator.SetAttributeString('optionList', '');
+                    optionMutator.optionList = item.values.enabled;
+                    mutatorList[value] = optionMutator;
+                }
+            } else if (item.states) {
+                optionMutator.SetAttributeString('states', '');
+                optionMutator.image = optionMutatorImage;
+                optionMutator.label = infoLabel;
+                optionMutator.states = {};
+                for(var state in item.states) {
+                    if(typeof item.states[state] === 'object') {
+                        optionMutator.states[state] = item.states[state];
+                        for(var option in item.states[state]) {
+                            mutatorList[option] = optionMutator;
+                        }
+                    } else {
+                        optionMutator.states[state] = item.states[state];
+                    }
+                }
+
+                if(item.default) {
+                    if(item.about) {
+                        optionMutator.about = item.about;
+                    }
+
+                    optionMutator.default = item.default;
+                }
+
+                mutatorList[item.name] = optionMutator;
+            } else {
+                mutatorList[item.name] = optionMutator;
+            }
+        });
+    }
+
+    var setMutator = function(field, state) {
+        mutatorList[field].label.text = $.Localize(state);
+        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
+    }
+
     var checkMutators = function(field, hostPanel) {
         if(mutatorList[field]) {
+            var found = true;
             if(mutatorList[field].optionList) {
                 var options = mutatorList[field].optionList;
-                var found = true;
 
                 for(var value in options) {
                     if(optionValueList[value] != options[value]) {
@@ -3575,6 +3814,73 @@ function buildOptionsCategories() {
                     mutatorList[field].AddClass('active');
                 } else {
                     mutatorList[field].RemoveClass('active');
+                }
+            } else if (mutatorList[field].states) {
+                mutatorList[field].RemoveClass('active');
+
+                if(mutatorList[field].default !== undefined) {
+                    if(Object.keys(mutatorList[field].default).length > 1) {
+                        var match;
+                        for (var option in mutatorList[field].default) {
+                            if(mutatorList[field].default[option] === optionValueList[option]) {
+                                match = true;
+                            } else {
+                                match = false;
+                                break;
+                            }
+                        }
+
+                        if(match) {
+                            setMutator(field, mutatorList[field].about);
+                            found = false;
+                        }
+                    } else {
+                        for (var defaultState in mutatorList[field].default) break;
+                        if(mutatorList[field].default[defaultState] === optionValueList[field]) {
+                            setMutator(field, defaultState);
+                            found = false;
+                        }
+                    }
+                }
+
+                if(found) {
+                    var stateName;
+                    found = true;
+                    for(var state in mutatorList[field].states) {
+                        if(typeof mutatorList[field].states[state] === 'object') {
+                            var matches = 0;
+                            for(var option in mutatorList[field].states[state]) {
+                                if(mutatorList[field].states[state][option] === optionValueList[option]) {
+                                    matches++;
+                                }
+
+                                if(matches === Object.keys(mutatorList[field].states[state]).length) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
+                                }
+                            }
+
+                            if(found) {
+                                stateName = state;
+                                break;
+                            }
+                        } else if(mutatorList[field].states[state] === optionValueList[field]) {
+                            stateName = Object.keys(mutatorList[field].states).filter(function(key) {return mutatorList[field].states[key] === optionValueList[field]
+                            })[0];
+
+                            found = true;
+                            break;
+                        } else {
+                            found = false;
+                        }
+                    }
+                }
+
+                if(found) {
+                    setMutator(field, stateName);
+                    mutatorList[field].AddClass('active');
                 }
             } else {
                 if(optionValueList[field]) {
@@ -3682,55 +3988,7 @@ function buildOptionsCategories() {
                             }
                         });
 
-                        var infoLabel = $.CreatePanel('Label', optionPanel, 'optionMutatorTitle');
-                        infoLabel.text = $.Localize('lodOptionPresetMutators');
-
-                        fieldData[i].mutators.forEach(function(item, i) {
-                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + item.name);
-                            optionMutator.AddClass('mutator');
-
-                            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i); 
-                            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator' + i + '.png');
-
-                            // When the mutators changes
-                            optionMutator.SetPanelEvent('onactivate', function(e) {
-                                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
-
-                                if (item.values !== undefined) {
-                                    var state;
-                                    if(optionMutator.BHasClass('active')) {
-                                        state = 'disabled';
-                                    } else {
-                                        state = 'enabled';
-                                    }
-
-                                    for (var option in item.values[state]) {
-                                        var value = item.values[state][option];
-                                        setOption(option, value)
-                                    }
-                                } else {
-                                    if(optionMutator.BHasClass('active')) {
-                                        setOption(item.name, 0);
-                                    } else {
-                                        setOption(item.name, 1);
-                                    }
-                                }
-                            });
-
-                            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
-                            infoLabel.AddClass('mutatorLabel');
-                            infoLabel.text = $.Localize(item.about);
-
-                            if(item.name) {
-                                mutatorList[item.name] = optionMutator;
-                            } else {
-                                for(var value in item.values.enabled) {
-                                    optionMutator.SetAttributeString('optionList', '');
-                                    optionMutator.optionList = item.values.enabled;
-                                    mutatorList[value] = optionMutator;
-                                }
-                            }
-                        });
+                        mutators = fieldData[i].mutators;
                     } else {
                         // Create the info
                         var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
@@ -3746,11 +4004,6 @@ function buildOptionsCategories() {
                         mainSlot.SetPanelEvent('onmouseout', function() {
                             $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                         });
-
-                        // Is this a preset?
-                        if(info.preset) {
-                            mainSlot.AddClass('optionSlotPanelNoCustom');
-                        }
 
                         var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
                         floatRightContiner.AddClass('optionsSlotPanelContainer');
@@ -3999,6 +4252,12 @@ function buildOptionsCategories() {
             }
         })(optionLabelText, allOptions[optionLabelText]);
     }
+
+    var mutatorPanel = $.CreatePanel('Panel', optionContainer, 'mutatorPanel');
+    var infoLabel = $.CreatePanel('Label', mutatorPanel, 'optionMutatorTitle');
+    infoLabel.text = $.Localize('lodOptionPresetMutators');
+
+    addMutators(mutatorPanel);
 }
 
 // Player presses auto assign

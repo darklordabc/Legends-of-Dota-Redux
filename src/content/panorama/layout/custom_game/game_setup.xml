@@ -270,18 +270,65 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option4.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
 
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator0.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator1.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator2.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator3.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator4.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator5.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator6.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator7.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator8.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator9.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator10.png"></Image>
-                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator11.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastStart.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorStrongTowers.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleTowers.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUnlimitedBans.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBalanceMode.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPlayerBans.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOPAbilities.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUlts.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepNoPower.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerNormal.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerHigh.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerExtreme.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWTF.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsOff.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsGlobal.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsTeam.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldModifier3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts3.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts4.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastBuybackCooldown1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastBuybackCooldown2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastBuybackCooldown3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCustomSkills.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire1.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire2.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire3.png"></Image>
+
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
                 </Panel>
 				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
 				<!--<Panel id="loadscreen"> 
