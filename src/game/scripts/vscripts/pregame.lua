@@ -4586,6 +4586,7 @@ function Pregame:generateBotBuilds()
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
         slark_shadow_dance = true,
+        antimage_blink = true,
         alchemist_chemical_rage = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
