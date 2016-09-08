@@ -49,7 +49,7 @@ function modifier_antimage_blink_ai:OnIntervalThink()
 		elseif caster:GetHealthPercent() < 30 and not target then
 			shouldBlink = true
 			--print("blink retreat")
-		elseif GridNav:IsBlocked(caster:GetAbsOrigin()) then
+		elseif GridNav:IsTraversable(caster:GetAbsOrigin()) then
 			shouldBlink = true
 			--print("blocked!")
 		end
