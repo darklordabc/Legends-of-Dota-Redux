@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
 - Added load screens
 - Added option for players to share EXP. Added new hint advertising sharing of exp. 
+- Reworked Preset Gamemode and Mutators display. Added more mutators. 
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
