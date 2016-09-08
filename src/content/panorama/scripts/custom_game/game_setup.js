@@ -1044,9 +1044,9 @@ var recommendedBuilds = [
         build: {
             1: 'sven_storm_bolt',
             2: 'vengefulspirit_magic_missile',
-            3: 'antimage_blink',
+            3: 'holdout_arcane_aura',
             4: 'furion_teleportation',
-            5: 'holdout_arcane_aura',
+            5: 'antimage_blink',
             6: 'tinker_rearm_lod',
         },
     },
@@ -1109,9 +1109,9 @@ var recommendedBuilds = [
         build: {
             1: 'sandking_burrowstrike',
             2: 'medusa_mana_shield',
-            3: 'medusa_split_shot',
+            3: 'alchemist_goblins_greed',
             4: 'life_stealer_feast',
-            5: 'alchemist_goblins_greed',
+            5: 'medusa_split_shot',
             6: 'furion_teleportation',
         },
     },
