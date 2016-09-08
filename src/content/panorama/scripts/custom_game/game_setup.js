@@ -201,16 +201,10 @@ var allOptions = {
                             'lodMutatorEXPModifier3': 300
                         }
                     },
-                    {
-                        name: 'lodOptionAdvancedUniqueSkills',
-                        default: {
-                            'lodMutatorUniqueSkillsOff': 0
-                        },
-                        states: {
-                            'lodMutatorUniqueSkillsTeam': 1,
-                            'lodMutatorUniqueSkillsGlobal': 2
-                        }
-                    },
+					{
+                        name: 'lodOptionGameSpeedSharedEXP',
+                        about: 'lodMutatorShareEXP'
+                    },                   
                     {
                         name: 'lodOptionBotsRadiant',
                         default: {
@@ -229,6 +223,16 @@ var allOptions = {
                         states: {
                             'lodMutatorBotsDire2': 5,
                             'lodMutatorBotsDire3': 10
+                        }
+                    },
+					{
+                        name: 'lodOptionAdvancedUniqueSkills',
+                        default: {
+                            'lodMutatorUniqueSkillsOff': 0
+                        },
+                        states: {
+                            'lodMutatorUniqueSkillsTeam': 1,
+                            'lodMutatorUniqueSkillsGlobal': 2
                         }
                     },
 					{
