@@ -25,6 +25,14 @@
     "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"  
+	"76561197996730911" "K1llMan"
+    "76561197996730911_Description" "Developer, Server Tools"
+	"76561198016015988" "Mentos"
+    "76561198016015988_Description" "Developer"
+	"76561197996788368" "Kernel-picnic"
+    "76561197996788368_Description" "Developer, Panorama"
+	"76561198061842355" "Only biscuit"
+    "76561198061842355_Description" "Tester, Community Relations"
 
     // Teams
     "theRadiant"                                    "The Radiant"
