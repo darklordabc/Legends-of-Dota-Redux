@@ -1831,7 +1831,7 @@ function Pregame:initOptionSelector()
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
-            if value < 0 or value > 10 then return false end
+            if value < 1 or value > 10 then return false end
 
             -- Valid
             return true
@@ -1842,7 +1842,7 @@ function Pregame:initOptionSelector()
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
-            if value < 0 or value > 10 then return false end
+            if value < 1 or value > 10 then return false end
 
             -- Valid
             return true

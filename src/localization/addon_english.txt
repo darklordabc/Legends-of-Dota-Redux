@@ -127,11 +127,11 @@
     "lodMutatorEXPModifier2"                        "150% Exp"
     "lodMutatorEXPModifier3"                        "300% Exp"
 
-    "lodMutatorBotsRadiant1"                        "0 Radiant Bot"
+    "lodMutatorBotsRadiant1"                        "1 Radiant Bot"
     "lodMutatorBotsRadiant2"                        "5 Radiant Bots"
     "lodMutatorBotsRadiant3"                        "10 Radiant Bots"
 
-    "lodMutatorBotsDire1"                           "0 Dire Bot"
+    "lodMutatorBotsDire1"                           "1 Dire Bot"
     "lodMutatorBotsDire2"                           "5 Dire Bots"
     "lodMutatorBotsDire3"                           "10 Dire Bots"
 
