@@ -15,6 +15,7 @@ local ingame = require('ingame')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_antimage_blink_ai", "scripts/vscripts/../abilities/botAI/modifier_antimage_blink_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 --[[
@@ -4764,6 +4765,7 @@ function Pregame:fixSpawningIssues()
     local botAIModifier = {
         slark_shadow_dance = true,
         alchemist_chemical_rage = true,
+        antimage_blink = true,
     }
 
     ListenToGameEvent('npc_spawned', function(keys)
