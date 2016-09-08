@@ -947,6 +947,18 @@ var allOptions = {
 // Hard Coded Recommended Builds
 var recommendedBuilds = [
     {
+        title: 'Long Dagger Harassment',
+        heroName: 'npc_dota_hero_ogre_magi',
+        attr: 'str',
+        build: {
+            1: 'phantom_assassin_stifling_dagger',
+            2: 'weaver_geminate_attack',
+            3: 'treant_eyes_in_the_forest',
+            4: 'lone_druid_spirit_bear_entangle',
+            5: 'abaddon_frostmourne',
+            6: 'crystal_maiden_brilliance_aura',
+        },
+    },{
         title: 'Hunter in the night',
         heroName: 'npc_dota_hero_night_stalker',
         attr: 'str',
