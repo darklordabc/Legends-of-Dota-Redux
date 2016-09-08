@@ -963,13 +963,11 @@
     "DOTA_Tooltip_ability_holdout_omnislash_bonus_damage"                       "BONUS DAMAGE:"
     
     
-    "npc_dota_healing_ward"                                                           "Mana Restoring Ward"
+    "npc_dota_healing_ward"                                                           "Mana Ward"
 
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Juggernaut Mana Restoring Ward"
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a mana restoring ward which restores mana of all nearby allied units, based on their max mana. The Healing Ward moves at 420 movement speed after being summoned. Lasts 25 seconds."
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "RESTORING WARD MANA RESTORE PCT:"
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_aura_radius"      "RESTORING WARD AURA RADIUS:"
-
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Mana  Ward"
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward moves at 420 movement speed after being summoned. Lasts 25 seconds."
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "%MAX MANA PER SECOND:"
 
 
     "DOTA_Tooltip_modifier_healing_ward_mana_aura"                                    "Mana Restoring Ward Aura"
