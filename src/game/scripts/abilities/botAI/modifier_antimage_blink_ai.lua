@@ -38,7 +38,7 @@ function modifier_antimage_blink_ai:OnIntervalThink()
 				shouldBlinkAggressive = true
 				--print("aggresive blink")
 			end
-		-- blinks automatically if health and mana are high enough
+		-- blinks occasionally if health and mana are high enough
 		elseif caster:GetHealthPercent() > 80 and caster:GetManaPercent() > 80 and not target then
 			local random = math.random(1, 100)
 			if random <= 5 then
@@ -61,7 +61,8 @@ function modifier_antimage_blink_ai:OnIntervalThink()
 		local origin = caster:GetAbsOrigin()
 		local vector = caster:GetForwardVector()
 		local range = ability:GetLevelSpecialValueFor("blink_range", ability:GetLevel() - 1)
-
+		
+		-- blinks behind an enemy if within range. 
 		if shouldBlinkAggressive == true then
 			vector = (target:GetAbsOrigin() - origin):Normalized()
 			aggroRange = (origin - target:GetAbsOrigin()):Length2D() + 200
@@ -75,9 +76,9 @@ function modifier_antimage_blink_ai:OnIntervalThink()
 		local preorder = 
 		{
 			UnitIndex = caster:GetEntityIndex(), 
-            OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
-            Position = location, 
-            Queue = true
+			OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+			Position = location, 
+			Queue = true
 		}
 		local order =
 		{
