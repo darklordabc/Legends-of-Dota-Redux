@@ -1,0 +1,53 @@
+{
+	"makeDirs" : [
+		"dota",
+		"dota/game",
+		"dota/content",
+		"dota/game/resource",
+		"dota/game/scripts",
+		"dota/game/scripts/npc",
+
+		"dota/game/panorama",
+ 		"dota/game/panorama/localization"
+	],
+
+	"linkDirs" : [
+		{ "link": "../dota/game/maps", "dir": "../src/game/maps" },
+
+		{ "link": "../dota/game/addoninfo.txt", "dir": "../src/game/addoninfo.txt" },
+
+		{ "link": "../dota/game/scripts/custom_events.txt", "dir": "../src/game/scripts/custom_events.txt" },
+		{ "link": "../dota/game/scripts/stat_collection.kv", "dir": "../src/game/scripts/stat_collection.kv" },
+		{ "link": "../dota/game/scripts/custom_net_tables.txt", "dir": "../src/game/scripts/custom_net_tables.txt" },
+
+		{ "link": "../dota/content/panorama", "dir": "../src/content/panorama" },
+
+		{ "link": "../dota/game/scripts/npc/activelist.txt", "dir": "../src/game/scripts/npc/activelist.txt" },
+		{ "link": "../dota/game/scripts/npc/herolist.txt", "dir": "../src/game/scripts/npc/herolist.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_units_custom.txt", "dir": "../script_generator/BIN/npc_units_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_items_custom.txt", "dir": "../src/game/scripts/npc/npc_items_custom.txt" },
+
+		{ "link": "../dota/game/scripts/vscripts", "dir": "../src/game/scripts/vscripts/" },
+		{ "link": "../dota/game/scripts/kv", "dir": "../src/game/scripts/kv" },
+		{ "link": "../dota/game/scripts/abilities", "dir": "../src/game/scripts/abilities" },
+		{ "link": "../dota/game/scripts/game_sounds", "dir": "../src/game/scripts/game_sounds" },
+
+		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
+		{ "link": "../dota/content/particles", "dir": "../src/content/particles" },
+
+		{ "link": "../dota/game/resource/flash3", "dir": "../src/game/resource/flash3" },
+		{ "link": "../dota/game/resource/overviews", "dir": "../src/game/resource/overviews" },
+
+		{ "link": "../dota/game/resource/addon_english.txt", "dir": "../script_generator/BIN/addon_english_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_english.txt", "dir": "../script_generator/BIN/addon_english.txt" },
+
+		{ "link": "../dota/game/resource/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese.txt" },
+
+		{ "link": "../dota/game/scripts/npc/npc_abilities_override.txt", "dir": "../src/game/scripts/npc/npc_abilities_override.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },
+
+		{ "link": "../dota/game/materials", "dir": "../src/game/materials" }
+	]
+}
