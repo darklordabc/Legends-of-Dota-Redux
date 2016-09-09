@@ -31,6 +31,11 @@
 
 
         <Panel id="mainSelectionRoot">
+            <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
+                <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
+                <Label id="unassignedTeamLabel" text="theUnassigned" />
+            </Panel>
+
             <Panel id="mainTeamContainer">
                 <Panel id="theRadiant" class="theTeamTopLevel" onactivate="onJoinRadiantPressed()">
                     <Label class="radiantGlow" text="theRadiant" />
@@ -61,11 +66,6 @@
                         <Label text="unlockTeams" />
                     </Button>
                 </Panel>
-            </Panel>
-
-            <Panel class="votingBackground" id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
-                <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
-                <Label id="unassignedTeamLabel" text="theUnassigned" />
             </Panel>
 
             <Panel class="votingBackground" id="stageSelection">
