@@ -506,7 +506,7 @@
     "lodOptionAboutBotDire"                         "Bots will be added to dire if there is less than this number of players on dire."
 
     "lodOptionDesBotsUniqueSkills"                  "Unique Skills (Bots)"
-    "lodOptionAboutBotsUniqueSkills"                "This is a test description"
+    "lodOptionAboutBotsUniqueSkills"                "This option prevents two bots from selecting the same abilities.\nUnique Team Skills: Bots from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one Bot can have each ability."
     "lodOptionUniqueDefault"                        "Use Main Setting"
     "lodOptionUniqueTeam"                           "Unique Team Skills"
     "lodOptionUniqueGlobal"                         "Unique Global Skills"
