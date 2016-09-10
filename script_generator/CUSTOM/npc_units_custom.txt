@@ -1490,6 +1490,8 @@
 			"particle"        "particles/zulf_jet_stream.vpcf"
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
 			"soundfile"       "sounds/items/dota_item_cyclone.vsnd"
+			"particle"  	  "particles/juggernaut_ward_mana.vpcf"
+                        "particle"  	  "particles/juggernaut_healing_wardmana.vpcf"
 		}
 	}
 
