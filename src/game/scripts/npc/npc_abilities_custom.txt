@@ -9981,7 +9981,7 @@
                 "IsHidden"      "0"
                 "IsDebuff"      "0"
               
-                "EffectName"    "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_hero_heal.vpcf"
+                "EffectName"    "particles/juggernaut_ward_mana.vpcf"
                 "EffectAttachType"  "follow_origin"
             
                 "ThinkInterval"     "0.04"
