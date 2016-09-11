@@ -22,14 +22,14 @@ Legends of Dota
 
  - Unzip the file, and go to \script_generator folder and open 'settings_example.json', the 'dotaDir' is not needed to be filled in because the script finds your dota folder via registry entries. The "addonName" is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE, if there is a folder existing the compiling will fail. 
  - Once you have set an addonName, use compile.bat, and it should compile all the necessary files into a "dota" folder, these files will also be mklinked to the steam folder counterparts. 
- - These two folders should now exist in steam 'SteamApps\common\dota 2 beta\game\dota_addons\your_folder_name' and 'SteamApps\common\dota 2 beta\content\dota_addons\your_folder_name'
+ - These two folders should now exist in steam 'SteamApps\common\dota 2 beta\game\dota_addons\<addonName>' and 'SteamApps\common\dota 2 beta\content\dota_addons\<addonName>'
 
 ###Running Legends of Dota###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
  
  ![Mod Tools](http://i.imgur.com/0EsjTMO.png)
 
- - Start a map by opening the console and running `dota_launch_custom_game <my_addon_name> <mapname>`, replacing <my_addon_name> with the name of your addon and <mapname> with a valid map name.
+ - Start a map by opening the console and running `dota_launch_custom_game <addonName> <mapname>`, replacing <addonName> with the name of your addon and <mapname> with a valid map name.
  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
