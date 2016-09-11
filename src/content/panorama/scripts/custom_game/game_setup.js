@@ -4800,7 +4800,7 @@ function OnOptionChanged(table_name, key, data) {
     }
 
     // Check for allowed categories changing
-    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities') {
+    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities' || key == 'lodOptionAdvancedCustomSkills') {
         onAllowedCategoriesChanged();
     }
 
