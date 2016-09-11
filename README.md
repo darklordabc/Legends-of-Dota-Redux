@@ -20,8 +20,8 @@ Legends of Dota
  
 ![Manual Method](http://i.imgur.com/wUGrQRg.png)
 
- - Unzip the file, and go to `\script_generator folder` and open `settings_example.json`, the `dotaDir` is not needed to be filled in because the script finds your dota folder via registry entries. The "addonName" is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE, if there is a folder existing the compiling will fail. 
- - Once you have set an addonName, use compile.bat, and it should compile all the necessary files into a "dota" folder, these files will also be mklinked to the steam folder counterparts. 
+ - Unzip the file, and go to `\script_generator folder` and open `settings_example.json`. The `dotaDir` setting is not necesarry to be filled out because the script finds your dota folder via registry entries. The `addonName` is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE ALREADY, if there is a folder existing the compiling will fail. 
+ - Once you have set an `addonName`, use `compile.bat`, and it should compile all the necessary files into a dota folder, these files will also be mklinked to the steam folder counterparts. 
  - These two folders should now exist in steam `SteamApps\common\dota 2 beta\game\dota_addons\<addonName>` and `SteamApps\common\dota 2 beta\content\dota_addons\<addonName>`
 
 ###Running Legends of Dota###
