@@ -15,35 +15,22 @@ Legends of Dota
  - Dota 2 Workshop Tools
  - Nodejs
 
-###How to use this?###
- - Compile
- - Stage
- - Run
+###How to extract from Github to Steam###
+ - Download the Git repository from either using the manual option from website or from using Source (recommended method)
+ 
+![Manual Method](http://i.imgur.com/wUGrQRg.png)
 
-###Compiling Legends of Dota###
- - Copy `script_generator/settings_example.json` to `script_generator/settings.json` and fill in the `dotaDir` location, this is the path to your `dota 2 beta`, ending in a slash (/) -- Do not use backslashes
- - Run `compile.bat` to perform the compile
-
-###Staging Legends of Dota###
- - Once compiled, you need to stage the project, this can be done by running stage.bat in the root directory of the project.
- - Staging the project creates two directories "dota/content" and "dota/game".
- - Launch the Dota 2 workshop tools and create a new addon (e.g. lod) that you will use to place LoD into. (You should not use any spaces.)
- - The contents of `<lod>/dota/content` needs to be placed into `Steam\steamapps\common\dota 2 beta\content\dota_addons\<addonname>`
- - The contents of `<lod>/dota/game` needs to be placed into `Steam\steamapps\common\dota 2 beta\game\dota_addons\<addonname>`
- - The contents can be simply copied, or a directory junction can be used to mount the folders directly into place. See documention for help, there are directory junctions created in stage.bat
-  - Ensure dota 2 is closed while doing any staging, or while modifiying directory junctions
-  - Run an admin level command prompt, navigate to the "Legends of Dota" root folder (the one with stage.bat in it):
-    - `cd "C:\path\to\cloned\repo\Legends of Dota"`
-  - Create two directory junctions, one for content, one for game:
-    - Note: You will need to delete the actual mod folders (<modfolder>) if they already exist
-    - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota_addons\<modfolder>" "dota\game"`
-    - `mklink /D /J "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\content\dota_addons\<modfolder>" "dota\content"`
- - If successfully setup, the following file should exist `Steam\steamapps\common\dota 2 beta\game\dota_addons\lod\scripts\npc\npc_heroes_custom.txt`
+ - Unzip the file, and go to \script_generator folder and open 'settings_example.json', the 'dotaDir' is not needed to be filled in because the script finds your dota folder via registry entries. The "addonName" is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE, if there is a folder existing the compiling will fail. 
+ - Once you have set an addonName, use compile.bat, and it should compile all the necessary files into a "dota" folder, these files will also be mklinked to the steam folder counterparts. 
+ - These two folders should now exist in steam 'SteamApps\common\dota 2 beta\game\dota_addons\your_folder_name' and 'SteamApps\common\dota 2 beta\content\dota_addons\your_folder_name'
 
 ###Running Legends of Dota###
- - Launch your Legends of Dota addon.
- - Start a map by running `dota_launch_custom_game <my_addon_name> <mapname>`, replacing <my_addon_name> with the name of your addon and <mapname> with a valid map name.
-  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
+ - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
+ 
+ ![Mod Tools](http://i.imgur.com/0EsjTMO.png)
+
+ - Start a map by opening the console and running `dota_launch_custom_game <my_addon_name> <mapname>`, replacing <my_addon_name> with the name of your addon and <mapname> with a valid map name.
+ - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
  - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
 
 ###Can I contribute code?###
