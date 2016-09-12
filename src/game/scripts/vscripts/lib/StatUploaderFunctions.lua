@@ -121,23 +121,7 @@ function SU:SendPlayerBuild( args, pID )
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    Name = "",
-    Favourite = false,
-    Ability1 = abilities[1],
-    Ability2 = abilities[2],
-    Ability3 = abilities[3],
-    Ability4 = abilities[4],
-    Ability5 = abilities[5],
-    Ability6 = abilities[6],
-    Hero = args.Hero,
-    Gamemode = args.Gamemode,
-    BalanceMode = args.BalanceMode,
-    DraftAmount = 0,
-    OPBans = 0,
-    LODBans = 0,
-    InvisibilityBan = args.InvisibilityBan,
-    HostBans = args.HostBans,
-    MaxPlayerBans = args.MaxPlayerBans,
+    AbilityString = json.encode(abilities),
     SteamID = PlayerResource:GetSteamAccountID(pID)
   }
   
