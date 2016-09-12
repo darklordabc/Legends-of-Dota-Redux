@@ -9936,6 +9936,12 @@
       "var_type"      "FIELD_INTEGER"
       "shot_vision"   "400"
     }
+    "06
+    {
+      "var_type"      "FIELD_INTEGER"
+      "movement_speed_pct"  "-30 -35 -40 -45"
+    
+    }
   }
   
   // Data driven
