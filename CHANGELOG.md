@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
 - Bots will now pick the best available abilities for their specific hero. E.g. BristleBack and Axe will pick tank skills before DPS skills
+- Added Mana Ward (Alt Verison of Jugg's Healing Ward)
 
 
 ## 1.0
