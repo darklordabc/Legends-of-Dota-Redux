@@ -9884,7 +9884,7 @@
   "BaseClass"       "ability_datadriven"
   "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
-  "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+  
   "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
 
   "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
