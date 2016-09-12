@@ -1906,6 +1906,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Bots -- Unique Skills
+        lodOptionBotsUniqueSkills = function(value)
+            return value == 0 or value == 1 or value == 2
+        end,
+
         -- Other -- No Fountain Camping
         lodOptionCrazyNoCamping = function(value)
             return value == 0 or value == 1
@@ -2024,6 +2029,9 @@ function Pregame:initOptionSelector()
 
                 -- Disable OP abilities
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+
+                -- Unique Skills default
+                self:setOption('lodOptionBotsUniqueSkills', 0, true)
 
                 -- Hide enemy picks
                 self:setOption('lodOptionAdvancedHidePicks', 1, true)
@@ -4164,8 +4172,8 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
         end
 
 
-        -- Over the Balance Mode point balance
-        if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Over the Balance Mode point balance. If bot then skipping
+        if self.optionStore['lodOptionBalanceMode'] == 1 and not self.botPlayers.all[playerID] then
             -- Validate that the user has enough points
             local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
             local outOfPoints, _ = self:notEnoughPoints(newBuild)
@@ -4506,7 +4514,12 @@ function Pregame:addBotPlayers()
     self.botPlayers = {
     	radiant = {},
     	dire = {},
-    	all = {}
+    	all = {},
+        -- Unique skills for teams
+        [DOTA_TEAM_GOODGUYS] = {},
+        [DOTA_TEAM_BADGUYS] = {},
+        -- Unique global skills
+        global = {}
 	}
 
     local playerID
@@ -4521,7 +4534,8 @@ function Pregame:addBotPlayers()
 		if ply then
 			local store = {
 				ply = ply,
-				team = DOTA_TEAM_GOODGUYS
+				team = DOTA_TEAM_GOODGUYS,
+                ID = playerID
 			}
 
 			-- Store this bot player
@@ -4543,7 +4557,8 @@ function Pregame:addBotPlayers()
 		if ply then
 			local store = {
 				ply = ply,
-				team = DOTA_TEAM_BADGUYS
+				team = DOTA_TEAM_BADGUYS,
+                ID = playerID
 			}
 
 			-- Store this bot player
@@ -4563,6 +4578,9 @@ function Pregame:generateBotBuilds()
 
     -- Ensure we have bot players allocated
     if not self.botPlayers.all then return end
+    if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
+        self.optionStore['lodOptionBotsUniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills']
+    end
 
     -- Create a table to store bot builds
     --self.botBuilds = {}
@@ -4594,26 +4612,17 @@ function Pregame:generateBotBuilds()
     -- Max number of slots to aim for
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
-    -- High priority bot skills
-    local bestSkills = {
-        abaddon_borrowed_time = true,
-        ursa_fury_swipes = true,
-        slark_essence_shift = true,
-        skeleton_king_reincarnation = true,
-        bloodseeker_thirst_lod = true,
-        slark_shadow_dance = true,
-        alchemist_chemical_rage = true,
-        huskar_berserkers_blood = true,
-        phantom_assassin_coup_de_grace = true,
-        life_stealer_feast = true,
-        sniper_take_aim = true,
-        troll_warlord_fervor = true,
-        tiny_grow_lod = true,
-        riki_permanent_invisibility = true
+    local botSkills = util:sortTable(LoadKeyValues('scripts/kv/bot_skills.kv'))
+    self.uniqueSkills = LoadKeyValues('scripts/kv/unique_skills.kv')
+    local lastTeam = nil
+    self.isTeamReady = {
+        DOTA_TEAM_BADGUYS = false,
+        DOTA_TEAM_GOODGUYS = false
     }
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
-    	-- Grab a hero
+        local build = {}
+        local skillID = 1
         local heroName = 'npc_dota_hero_pudge'
         if #possibleHeroes > 0 then
             heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
@@ -4624,62 +4633,248 @@ function Pregame:generateBotBuilds()
         local skillID = 1
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
-            for k,abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] and not self.bannedAbilities[abilityName] then
-                    build[skillID] = abilityName
+            for _, abilityName in pairs(defaultSkills) do
+                if self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName] then
+                    local newAb = self.uniqueSkills['replaced_skills'][abilityName] and self.uniqueSkills['replaced_skills'][abilityName] or abilityName
+                    build[skillID] = newAb
                     skillID = skillID + 1
                 end
             end
         end
-
-        -- Allocate more abilities
-        while skillID <= maxSlots do
-            -- Attempt to pick a high priority skill, otherwise pick any passive, otherwise pick any
-            local newAb = self:findRandomSkill(build, skillID, playerID, function(abilityName)
-                return bestSkills[abilityName] ~= nil
-            end) or self:findRandomSkill(build, skillID, playerID, function(abilityName)
-                return SkillManager:isPassive(abilityName)
-            end) or self:findRandomSkill(build, skillID, playerID)
-
-            if newAb ~= nil then
-                build[skillID] = newAb
+        botInfo.heroName = heroName
+        botInfo.skillID = skillID
+        botInfo.build = build
+    end
+    local teams = {self.botPlayers.radiant, self.botPlayers.dire}
+    ShuffleArray(teams)
+    while true do
+        for _, botTeam in pairs(teams) do
+            for i,botInfo in pairs(botTeam) do
+                local oppositeTeam = botInfo.team == DOTA_TEAM_BADGUYS and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[oppositeTeam] or self:isTeamBotReady(oppositeTeam)) then
+                    self:getSkillforBot(botInfo, botSkills)
+                    lastTeam = botInfo.team
+                    local temp = table.remove(botTeam, i)
+                    table.insert(botTeam, temp)
+                    break
+                end
             end
+        end
+        if self:isTeamBotReady(DOTA_TEAM_GOODGUYS) and self:isTeamBotReady(DOTA_TEAM_BADGUYS) then
+            break
+        end
+    end
+end
 
-            -- Move onto next slot
+function Pregame:getSkillforBot( botInfo, botSkills )
+    local playerID = botInfo.ID
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local build = botInfo.build or {}
+    local skillID = botInfo.skillID or 1
+    local heroName = botInfo.heroName
+    local skills = botSkills[heroName]
+    local isAdded
+    if skills then
+        for k, abilityName in pairs(skills) do
+            if skillID > maxSlots then break end
+            if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
+                local team = PlayerResource:GetTeam(playerID)
+                -- Default
+                if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
+                    build[skillID] = abilityName
+                    skillID = skillID + 1
+                    isAdded = true
+                -- Team
+                elseif self.optionStore['lodOptionBotsUniqueSkills'] == 1 and not self.botPlayers[team][abilityName] then
+                    build[skillID] = abilityName
+                    skillID = skillID + 1
+                    self.botPlayers[team][abilityName] = true
+                    isAdded = true
+                -- Global
+                elseif self.optionStore['lodOptionBotsUniqueSkills'] == 2 and not self.botPlayers.global[abilityName] then
+                    build[skillID] = abilityName
+                    skillID = skillID + 1
+                    self.botPlayers.global[abilityName] = true
+                    isAdded = true
+                end
+                table.remove(botSkills[heroName], k)
+                if isAdded then
+                    botInfo.build = build
+                    botInfo.skillID = skillID
+                    return true
+                end
+            end
+        end
+    end
+    -- Allocate more abilities
+    while skillID <= maxSlots do
+        -- Attempt to pick a high priority skill, otherwise pick any passive, otherwise pick any
+        local newAb = self:findRandomSkill(build, skillID, playerID, function(abilityName)
+            return SkillManager:isPassive(abilityName)
+        end) or self:findRandomSkill(build, skillID, playerID)
+
+        if newAb ~= nil then
+            build[skillID] = newAb
             skillID = skillID + 1
         end
-
+    end
+    if not botInfo.isDone then
         -- Shuffle their build to make it look like a random set
-        for i = maxSlots, 2, -1 do
-            local j = math.random (i)
-            build[i], build[j] = build[j], build[i]
-        end
+        ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then
-        	if botInfo.team == DOTA_TEAM_BADGUYS and self.premadeBotBuilds.dire and #self.premadeBotBuilds.dire > 0 then
-        		local info = table.remove(self.premadeBotBuilds.dire, 1)
-        		build = info.build
-        		heroName = info.heroName
-        	end
+            if botInfo.team == DOTA_TEAM_BADGUYS and self.premadeBotBuilds.dire and #self.premadeBotBuilds.dire > 0 then
+                local info = table.remove(self.premadeBotBuilds.dire, 1)
+                build = info.build
+                heroName = info.heroName
+            end
 
-        	if botInfo.team == DOTA_TEAM_GOODGUYS and self.premadeBotBuilds.radiant and #self.premadeBotBuilds.radiant > 0 then
-        		local info = table.remove(self.premadeBotBuilds.radiant, 1)
-        		build = info.build
-        		heroName = info.heroName
-        	end
+            if botInfo.team == DOTA_TEAM_GOODGUYS and self.premadeBotBuilds.radiant and #self.premadeBotBuilds.radiant > 0 then
+                local info = table.remove(self.premadeBotBuilds.radiant, 1)
+                build = info.build
+                heroName = info.heroName
+            end
         end
 
         -- Store the info
         botInfo.build = build
         botInfo.heroName = heroName
+        botInfo.isDone = true
+        self.isTeamReady[botInfo.team] = self:isTeamBotReady(botInfo.team)
 
         -- Network their build
         self:setSelectedHero(playerID, heroName, true)
         self.selectedSkills[playerID] = build
         network:setSelectedAbilities(playerID, build)
+        return true
     end
 end
+
+
+function Pregame:isTeamBotReady( team )
+    local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+    local array = team == DOTA_TEAM_GOODGUYS and self.botPlayers.radiant or team == DOTA_TEAM_BADGUYS and self.botPlayers.dire
+    if #array == 0 then return true end
+    if array then
+        for _,botInfo in pairs(array) do
+            if not botInfo.isDone then
+                return false
+            end
+        end
+        return true
+    end
+    return false
+end
+
+
+function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
+    local team = PlayerResource:GetTeam(playerID)
+
+    -- Ensure we have a valid build
+    build = build or {}
+
+    -- Grab the limits
+    local maxRegulars = self.optionStore['lodOptionCommonMaxSkills']
+    local maxUlts = self.optionStore['lodOptionCommonMaxUlts']
+
+    -- Count how many ults
+    local totalUlts = 0
+    local totalNormal = 0
+
+    for _,theAbility in pairs(build) do
+        if SkillManager:isUlt(theAbility) then
+            totalUlts = totalUlts + 1
+        else
+            totalNormal = totalNormal + 1
+        end
+    end
+
+    -- consider ulty count
+    if SkillManager:isUlt(abilityName) then
+        if totalUlts >= maxUlts then
+            return false
+        end
+    else
+        if totalNormal >= maxRegulars then
+            return false
+        end
+    end
+
+    -- Check draft array
+    if self.useDraftArrays then
+        local draftID = self:getDraftID(playerID)
+        local draftArray = self.draftArrays[draftID] or {}
+        local heroDraft = draftArray.heroDraft or {}
+        local abilityDraft = draftArray.abilityDraft or {}
+
+        if self.maxDraftHeroes > 0 then
+            local heroName = self.abilityHeroOwner[abilityName]
+
+            if not heroDraft[heroName] then
+                return false
+            end
+        end
+
+        if self.maxDraftSkills > 0 then
+            if not abilityDraft[abilityName] then
+                return false
+            end
+        end
+    end
+
+
+    -- Over the Balance Mode point balance
+    if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Validate that the user has enough points
+        local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
+        local outOfPoints, _ = self:notEnoughPoints(newBuild)
+        if outOfPoints then
+            return false
+        end
+    end
+
+
+    -- Consider unique skills
+    if self.optionStore['lodOptionAdvancedUniqueSkills'] == 1 then
+        for playerID,theBuild in pairs(self.selectedSkills) do
+            -- Ensure the team matches up
+            if team == PlayerResource:GetTeam(playerID) then
+                for theSlot,theAbility in pairs(theBuild) do
+                    if theAbility == abilityName then
+                        return false
+                    end
+                end
+            end
+        end
+    elseif self.optionStore['lodOptionAdvancedUniqueSkills'] == 2 then
+        for playerID,theBuild in pairs(self.selectedSkills) do
+            for theSlot,theAbility in pairs(theBuild) do
+                if theAbility == abilityName then
+                    return false
+                end
+            end
+        end
+    end
+
+    -- check bans
+    if self.bannedAbilities[abilityName] then
+        return false
+    end
+
+    for slotNumber,abilityInSlot in pairs(build) do
+        if abilityName == abilityInSlot then
+            return false
+        end
+
+        if self.banList[abilityName] and self.banList[abilityName][abilityInSlot] then
+            return false
+        end
+    end
+
+    return true
+end
+
 
 -- Spawns bots
 function Pregame:hookBotStuff()

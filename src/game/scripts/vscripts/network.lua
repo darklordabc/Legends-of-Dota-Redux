@@ -192,7 +192,6 @@ end
 
 -- Sends Troll Combo data
 function Network:addTrollCombo(a, b)
-    print(a .. " " .. b)
     CustomGameEventManager:Send_ServerToAllClients('addTrollCombo', {ab1 = a, ab2 = b})
 end
 

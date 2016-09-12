@@ -133,6 +133,23 @@ function Util:pickRandomRune()
     return validRunes[math.random(#validRunes)]
 end
 
+
+function Util:sortTable(input)
+    local array = {}
+    for heroName in pairs(input) do 
+        array[heroName] = {}
+        while #array[heroName] ~= self:getTableLength(input[heroName]) do
+            for abilityName, position in pairs(input[heroName]) do
+                if self:getTableLength(array[heroName])+1 == tonumber(position) then
+                    table.insert(array[heroName], abilityName)
+                end
+            end
+        end
+    end
+    return array
+end
+
+
 -- Returns true if a player is premium
 function Util:playerIsPremium(playerID)
     -- Check our premium rank
