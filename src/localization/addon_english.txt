@@ -25,6 +25,14 @@
     "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"  
+	"76561197996730911" "K1llMan"
+    "76561197996730911_Description" "Developer, Server Tools"
+	"76561198016015988" "Mentos"
+    "76561198016015988_Description" "Developer"
+	"76561197996788368" "Kernel-picnic"
+    "76561197996788368_Description" "Developer, Panorama"
+	"76561198061842355" "Only biscuit"
+    "76561198061842355_Description" "Tester, Community Relations"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -89,7 +97,6 @@
 
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorBanningBanInvis"                     "No Invisible"
-    "lodMutatorFastBuybackCooldown"                 "Fast Respawn"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
@@ -98,8 +105,53 @@
     "lodMutatorBalanceMode"                         "Balance Mode"
     "lodMutatorPlayerBans"                          "Player Bans"
     "lodMutatorOPAbilities"                         "Ban OP Abils"
-    "lodMutatorUlts"                                "6 Ultimates"
-    "lodMutatorStrongCreeps"                        "Strong Creeps"
+    "lodMutatorCustomSkills"                        "Custom Skills"
+    "lodMutatorAllVision"                           "All Vision"
+	"lodMutatorHidePicks"                           "Hide Skill Picks"
+	"lodMutatorShareEXP"                            "Team Shared EXP"
+    "lodMutatorWTF"                                 "Crazy WTF"
+
+    "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
+    "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
+    "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
+
+    "lodMutatorMaxUlts1"                            "2 Ultimates"
+    "lodMutatorMaxUlts2"                            "3 Ultimates"
+    "lodMutatorMaxUlts3"                            "4 Ultimates"
+    "lodMutatorMaxUlts4"                            "6 Ultimates"
+
+    "lodMutatorUniqueSkillsOff"                     "No Unique Skills"
+    "lodMutatorUniqueSkillsTeam"                    "Team Skills"
+    "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
+
+    "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
+    "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
+    "lodMutatorGoldTickRate3"                       "3 Gold Per Tick"
+
+    "lodMutatorGoldModifier1"                       "100% Gold"
+    "lodMutatorGoldModifier2"                       "150% Gold"
+    "lodMutatorGoldModifier3"                       "300% Gold"
+
+    "lodMutatorEXPModifier1"                        "100% Exp"
+    "lodMutatorEXPModifier2"                        "150% Exp"
+    "lodMutatorEXPModifier3"                        "300% Exp"
+
+    "lodMutatorBotsRadiant1"                        "1 Radiant Bot"
+    "lodMutatorBotsRadiant2"                        "5 Radiant Bots"
+    "lodMutatorBotsRadiant3"                        "10 Radiant Bots"
+
+    "lodMutatorBotsDire1"                           "1 Dire Bot"
+    "lodMutatorBotsDire2"                           "5 Dire Bots"
+    "lodMutatorBotsDire3"                           "10 Dire Bots"
+
+    "lodMutatorCreepNoPower"                        "Normal Creeps"
+    "lodMutatorCreepPowerNormal"                    "Strong Creeps"
+    "lodMutatorCreepPowerHigh"                      "High Creeps"
+    "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
+
+    "lodMutatorMaxLevel1"                           "Max Level 25"
+    "lodMutatorMaxLevel2"                           "Max Level 50"
+    "lodMutatorMaxLevel3"                           "Max Level 100"
 
     "lodOptionAboutBalancedAllPick"                 "Pick from every available skill using limited points."
     "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."

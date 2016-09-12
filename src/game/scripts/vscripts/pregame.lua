@@ -44,8 +44,6 @@ function Pregame:init()
     -- Some default values
     self.fastBansTotalBans = 3
     self.fastHeroBansTotalBans = 1
-    self.fullBansTotalBans = 5
-    self.fullHeroBansTotalBans = 2
 
     -- Stores which playerIDs we have already spawned
     self.spawnedHeroesFor = {}
@@ -272,6 +270,11 @@ function Pregame:init()
     if mapName == 'challenge' then
         self.challengeMode = true
     end
+
+    -- Default banning
+    self:setOption('lodOptionBanning', 3)
+    self:setOption('lodOptionBanningMaxBans', 0)
+    self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
@@ -1286,6 +1289,19 @@ function Pregame:processVoteData()
         end
     end
 
+    -- Do we have a choice for banning phase?
+    if results.banning ~= nil then
+        if results.banning == 1 then
+          -- Option Voting
+            self:setOption('lodOptionBanning', 3, true)
+            self.optionVotingBanning = 1
+        else
+          -- No option voting
+            self:setOption('lodOptionBanning', 1, true)
+            self.optionVotingBanning = 0
+        end
+    end
+
 	if results.faststart ~= nil then
         if results.faststart == 1 then
         	-- Option Voting
@@ -1643,8 +1659,6 @@ function Pregame:initOptionSelector()
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-				self:setOption('lodOptionBanningMaxBans', 0, true)
-				self:setOption('lodOptionBanningMaxHeroBans', 0, true)
 
                 return true
             elseif value == 0 then
@@ -1652,8 +1666,6 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
 				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-				self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
-				self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true) 
                 return true
             end
 
@@ -1940,12 +1952,18 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
+                -- Set Draft Heroes to 25
+                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
                 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
+
+                -- Set banning
+                self:setOption('lodOptionBanning', 1)
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
@@ -2039,8 +2057,6 @@ function Pregame:initOptionSelector()
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
-                    self:setOption('lodOptionBanningMaxBans', 0, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
@@ -2736,6 +2752,7 @@ function Pregame:processOptions()
 				-- Store presets
 				statCollection:setFlags({
 			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
+                    ['Preset Banning'] = this.optionStore['lodOptionBanning'],
 			        ['Preset Max Slots'] = this.optionStore['lodOptionSlots'],
 			        ['Preset Max Ults'] = this.optionStore['lodOptionUlts'],
 			    })

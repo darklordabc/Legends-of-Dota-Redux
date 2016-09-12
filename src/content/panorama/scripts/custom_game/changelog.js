@@ -93,7 +93,7 @@ function setupCredits() {
 
 			userPic.FindChildTraverse("userPicName").github = GameUI.CustomUIConfig().premiumData[contributor]["github"];
 
-			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID64.toString()) + " (github)";
+			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID64.toString());
 			userPic.FindChildTraverse("userPicName").SetPanelEvent('onactivate', function(){
 				$.DispatchEvent( 'BrowserGoToURL', $.GetContextPanel(), "https://github.com/"+userPic.FindChildTraverse("userPicName").github);
 			});
