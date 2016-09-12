@@ -9979,6 +9979,7 @@
     {
       "Target"    "TARGET"
       "ModifierName"  "modifier_concussive_break_break_datadriven"
+       "Duration" "%duration"
     }    
   
     "ActOnTargets"
@@ -10005,6 +10006,7 @@
         {
           "Target"    "TARGET"
           "ModifierName"  "modifier_concussive_break_slow_datadriven"
+           "Duration" "%duration"
         }
       }
     }
