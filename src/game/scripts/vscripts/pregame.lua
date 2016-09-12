@@ -15,6 +15,8 @@ local ingame = require('ingame')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_antimage_blink_ai", "scripts/vscripts/../abilities/botAI/modifier_antimage_blink_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_queenofpain_blink_ai", "scripts/vscripts/../abilities/botAI/modifier_queenofpain_blink_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 --[[
@@ -4602,6 +4604,8 @@ function Pregame:generateBotBuilds()
         skeleton_king_reincarnation = true,
         bloodseeker_thirst_lod = true,
         slark_shadow_dance = true,
+        antimage_blink = true,
+        queenofpain_blink = true,
         alchemist_chemical_rage = true,
         huskar_berserkers_blood = true,
         phantom_assassin_coup_de_grace = true,
@@ -4781,6 +4785,8 @@ function Pregame:fixSpawningIssues()
     local botAIModifier = {
         slark_shadow_dance = true,
         alchemist_chemical_rage = true,
+        antimage_blink = true,
+        queenofpain_blink = true,
     }
 
     ListenToGameEvent('npc_spawned', function(keys)
