@@ -124,6 +124,7 @@
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_breakprojectile_warmup_b.vpcf"
+			m_bDisableChild = true
 		},
 	]
 	m_ConstantColor = [ 255, 0, 0, 255 ]
