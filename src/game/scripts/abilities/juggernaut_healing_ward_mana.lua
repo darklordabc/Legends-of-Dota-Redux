@@ -29,6 +29,7 @@ function onHealingWardSpawn(keys)
     target:Interrupt()
     Timers:CreateTimer(function()
         target:MoveToNPC(caster)
+        return
     end, DoUniqueString('move_ward'), 1/30)
 end
 
