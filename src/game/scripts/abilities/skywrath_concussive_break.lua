@@ -11,7 +11,7 @@ function concussive_shot_seek_target( keys )
   local particle_name = "particles/concussive_break/skywrath_mage_concussive_breakshot.vpcf"
   local radius = ability:GetLevelSpecialValueFor( "launch_radius", ability:GetLevel() - 1 )
   local speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
-  local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
+  local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
   local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_HERO
   local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
 
