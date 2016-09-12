@@ -19,7 +19,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Bots can now get Chemical Rage and Shadow Dance and will cast them under specific conditions.
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
-- Added Mana Ward (Alt Verison of Jugg's Healing Ward)
 
 ## 1.0
 
