@@ -1600,11 +1600,11 @@
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown"							"Protection cooldown"
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown_Description"				"Nothl Protection is recharging"
 	
-	"DOTA_Tooltip_modifier_concussive_break_slow_datadriven"                          "Concussive Break Slow Datadriven"
-    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven_Description"              "You are being slowed"
+	"DOTA_Tooltip_modifier_concussive_break_slow_datadriven"                          "Movement Speed Slowed"
+    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven_Description"              "Slowed by Concussive Break"
 
-    "DOTA_Tooltip_modifier_concussive_break_break_datadriven"                         "Concussive Break Break Datadriven"
-    "DOTA_Tooltip_modifier_concussive_break_break_datadriven_Description"             "Your passives are disabled"
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven"                         "Passives Disabled"
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven_Description"             "Your passives are currently disabled"
 
 
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
