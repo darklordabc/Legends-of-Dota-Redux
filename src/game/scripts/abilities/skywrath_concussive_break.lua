@@ -35,8 +35,9 @@ function concussive_shot_seek_target( keys )
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
       }
       ProjectileManager:CreateTrackingProjectile( projTable )
+      break
       end
-    break
+    
   end
 end
 
