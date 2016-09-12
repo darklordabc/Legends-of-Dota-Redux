@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added Dagger Recommended Build
 - Updated in-game credits
 - Custom Abilities no longer appear when they are disabled
+- Tusk Snowball can no longer multicast due to bugginess
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
