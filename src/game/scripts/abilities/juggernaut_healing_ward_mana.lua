@@ -26,9 +26,15 @@ function onHealingWardSpawn(keys)
     ParticleManager:SetParticleControl(particle, 1, Vector(radius, 0, 0))
     ParticleManager:SetParticleControlEnt(particle, 2, target, PATTACH_POINT_FOLLOW, "flame_attachment", target:GetAbsOrigin(), true)
     target:FindModifierByName("modifier_healing_ward_mana_aura"):AddParticle(particle, false, false, 1, false, false)
-    target:MoveToNPC(caster)
     target:Interrupt()
-    target:MoveToNPC(caster)
+    local order = 
+    {
+        UnitIndex = target:GetEntityIndex(), 
+        OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+        Position = caster:GetAbsOrigin(), 
+        Queue = true
+    }
+    ExecuteOrderFromTable(order)
 end
 
 
