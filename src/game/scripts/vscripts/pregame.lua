@@ -4578,6 +4578,9 @@ function Pregame:generateBotBuilds()
 
     -- Ensure we have bot players allocated
     if not self.botPlayers.all then return end
+    if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
+        self.optionStore['lodOptionBotsUniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills']
+    end
 
     -- Create a table to store bot builds
     --self.botBuilds = {}
@@ -4677,12 +4680,9 @@ function Pregame:getSkillforBot( botInfo, botSkills )
             if self.flagsInverse[abilityName] and self:isValidSkill(build, playerID, abilityName, skillID) then
                 local team = PlayerResource:GetTeam(playerID)
                 -- Default
-                if self.optionStore['lodOptionBotsUniqueSkills'] == 0 and not self.botPlayers[team][abilityName] then
+                if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
                     build[skillID] = abilityName
                     skillID = skillID + 1
-                    if self.uniqueSkills['unique_skills'][abilityName] then
-                        self.botPlayers[team][abilityName] = true
-                    end
                     isAdded = true
                 -- Team
                 elseif self.optionStore['lodOptionBotsUniqueSkills'] == 1 and not self.botPlayers[team][abilityName] then
