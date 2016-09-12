@@ -20,7 +20,7 @@ function concussive_shot_seek_target( keys )
 
   -- Seek out target
   for k, v in pairs( units ) do
-    if v:CanEntityBeSeenByMyTeam(caster) then
+    if caster:CanEntityBeSeenByMyTeam(v) then
       local projTable = {
         EffectName = particle_name,
         Ability = ability,
