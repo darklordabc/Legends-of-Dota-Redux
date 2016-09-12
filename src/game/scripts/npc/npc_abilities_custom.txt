@@ -9899,7 +9899,7 @@
   
   // Time   
   //-------------------------------------------------------------------------------------------------------------
-  "AbilityCooldown"       "20.0 18.0 16.0 14.0"
+  "AbilityCooldown"       "18.0 16.0 14.0 12.0"
 
 
   // Cost
@@ -9919,7 +9919,7 @@
     "02"
     {
       "var_type"      "FIELD_INTEGER"
-      "slow_radius"   "200"
+      "slow_radius"   "250"
     }
     "03"
     {
@@ -9936,7 +9936,7 @@
       "var_type"      "FIELD_INTEGER"
       "shot_vision"   "400"
     }
-    "06
+    "06"
     {
       "var_type"      "FIELD_INTEGER"
       "movement_speed_pct"  "-30 -35 -40 -45"

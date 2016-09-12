@@ -1608,12 +1608,19 @@
 
 
 
-    "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Skywrath Mage Concussive Break"
-    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "kywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it deals damage and slows in an area of effect."
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it deals damage and slows in an area of effect."
+
+	//"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Lore"			"Those who serve the court of the Ghastly Eyrie are ever locked in covert war. One must always know where danger lurks nearest."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note0"			"Does not work when no heroes are in range or heroes are in fog."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note1"			"Damages creeps around the impact area."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note2"			"Provides 400 vision around the projectile, and reveals the target area for 3.34 seconds upon impact."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note3"			"Concussive Shot cannot be disjointed."
+
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_launch_radius"               "SHOT RANGE:"
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
-	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"	"%SLOW:"
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"		  "%SLOW:"
 	
 	//Tower Stuff
 	"DOTA_Tooltip_modifier_imba_tower_laser_blind"										"Laser"
