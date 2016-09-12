@@ -26,7 +26,7 @@ function concussive_shot_seek_target( keys )
       Ability = ability,
       Target = v,
       Source = caster,
-      bDodgeable = true,
+      bDodgeable = false,
       bProvidesVision = true,
       vSpawnOrigin = caster:GetAbsOrigin(),
       iMoveSpeed = speed,
