@@ -65,9 +65,35 @@ function Ingame:init()
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+
+    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame:OnPlayerPurchasedItem(keys)
+    local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+
+    if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then
+        for i=0,11 do
+            local item = hero:GetItemInSlot(i)
+            if item:GetName() == "item_tome_of_knowledge" then
+                hero:RemoveItem(item)
+
+                for x=0,DOTA_MAX_TEAM do
+                    local pID = PlayerResource:GetNthPlayerIDOnTeam(hero:GetTeamNumber(),x)
+                    if PlayerResource:IsValidPlayerID(pID) then
+                        local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                        otherHero:AddExperience(math.ceil(425 / util:GetActivePlayerCountForTeam(hero:GetTeamNumber())),0,false,false)
+                    end
+                end
+
+                break
+            end
+        end  
+    end
 end
 
 function Ingame:FilterExecuteOrder(filterTable)
@@ -442,6 +468,7 @@ function Ingame:initGoldBalancer()
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
     GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
+    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
 
     local this = self
 
@@ -555,6 +582,45 @@ function Ingame:FilterModifyExperience(filterTable)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
+    end
+
+    local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+
+    if OptionManager:GetOption('sharedXP') == 1 then
+        if filterTable.reason_const ~= 0 then
+            for i=0,DOTA_MAX_TEAM do
+                local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                    otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                end
+            end
+
+            return false
+        else
+            return true
+        end
+    else
+        return true
+    end
+end
+
+function Ingame:BountyRunePickupFilter(filterTable)
+    if OptionManager:GetOption('sharedXP') == 1 then
+        local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+
+        for i=0,DOTA_MAX_TEAM do
+            local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+            if PlayerResource:IsValidPlayerID(pID) then
+                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                otherHero.expSkip = true
+            end
+        end
+
+        filterTable["xp_bounty"] = 0
     end
 
     return true

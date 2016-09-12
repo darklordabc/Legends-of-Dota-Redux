@@ -391,6 +391,7 @@
     padding: 4px;
 }
 
+
 .player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
 }
@@ -566,6 +567,10 @@
 #stageSelection {
     flow-children: right;
     horizontal-align: center;
+}
+
+.phase_option_voting #stageSelection {
+    visibility: collapse;
 }
 
 #lodOptionSelectionTimeRemaining {
@@ -1977,14 +1982,17 @@
     margin-left: 4px;
 }
 
+.votingBackground {
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    box-shadow: black -4px -4px 8px 8px;    
+}
+
 #optionVoting {
     width: 98%;
     max-width: 1024px;
     height: 200px;
     margin-top: 4px;
     border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
     visibility: collapse;
     horizontal-align: middle;
 
@@ -2154,8 +2162,9 @@
 */
 
 #optionSelection {
-    width: 98%;
-    max-width: 1024px;
+    width: 100%;
+    max-width: 1520px;
+    margin-right: 42px;
     height: 720px;
     margin-top: 4px;
     border-radius: 8px;
@@ -2184,20 +2193,27 @@
     height: 670px;
     margin-left: 320px;
     flow-children: right-wrap;
-    padding: 15px 10px 0 0;
+    padding: 15px 15px 0 0;
 }
 
-#optionList > .OptionPanel {
+#mutatorPanel {
+    width: 38%;
     flow-children: right-wrap;
+    align: right;
+}
+
+#optionList .OptionPanel {
+    flow-children: right-wrap;
+    width: 60%;
 }
 
 #optionList .option {
     background-color: #000000;
     border-radius: 5px;
     border: 5px solid #626262;
-    width: 32%;
+    width: 230px;
     height: 170px;
-    margin: 4px;
+    margin: 3px;
     text-align: center;
     opacity: .5;
 }
@@ -2249,7 +2265,7 @@
 }
 
 #optionList .mutator {
-    width: 16%;
+    width: 110px;
     height: 80px;
     margin: 1px;
     border-radius: 5px;
@@ -2266,17 +2282,39 @@
 }
 
 #optionList #optionMutatorTitle {
-    text-align: center;
-    display: block;
     margin:  auto;
-    width: 100%;
+    width: 223px;
+    height: 80px;
+    line-height: 60px;
     font-size: 26px;
-    padding: 15px 0 10px;
+    margin: 0 3px 3px 0;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
+    text-align: center;
+    border-radius: 5px;
 }
 
 #optionList .mutatorLabel {
     text-shadow: 0 0 3px 4.5 #000000;
-    padding: 55px 0 0 5px;
+    padding: 5px 7px 0 7px;
+}
+
+#optionList .mutator .circleWrapper {
+    flow-children: right;
+    z-index: 10;
+    margin: 5px;
+    align: right;
+}
+
+#optionList .mutator .circle {
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    margin: 3px;
+}
+
+#optionList .mutator .circle.active {
+    background-color: #ffffff;
 }
 
 #importAndExportRoot {

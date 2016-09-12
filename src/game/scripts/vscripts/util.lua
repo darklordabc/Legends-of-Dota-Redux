@@ -187,6 +187,17 @@ function Util:getPremiumRank(playerID)
     return totalPremium
 end
 
+function Util:GetActivePlayerCountForTeam(team)
+    local number = 0
+    for x=0,DOTA_MAX_TEAM do
+        local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
+        if PlayerResource:IsValidPlayerID(pID) and (PlayerResource:GetConnectionState(pID) == 1 or PlayerResource:GetConnectionState(pID) == 2) then
+            number = number + 1
+        end
+    end
+    return number
+end
+
 -- Returns if a player is a time burger
 function Util:isTimeBurgler(playerID)
     local allTimeBurglers = Util.bannedKV.timeburglers

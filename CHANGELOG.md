@@ -7,10 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Bug Fixing
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
+- Added load screens
+- Added option for players to share EXP. Added new hint advertising sharing of exp. 
+- Reworked Preset Gamemode and Mutators display. Added more mutators. 
+- Preset Builds have been adjusted so that they are affordable in Balance mode (they have been nerfed). 
+- Added Dagger Recommended Build
+- Updated in-game credits
+- Custom Abilities no longer appear when they are disabled
+- Tusk Snowball can no longer multicast due to bugginess
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
-- Bots can now get Chemical Rage and Shadow Dance. Special passive bot versions
+- Bots can now get Chemical Rage and Shadow Dance and will cast them under specific conditions.
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
 

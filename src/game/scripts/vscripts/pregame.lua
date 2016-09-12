@@ -12,6 +12,11 @@ local Debug = require('lod_debug')              -- Debug library with helper fun
 local challenge = require('challenge')
 local ingame = require('ingame')
 
+-- Custom AI script modifiers
+LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -37,8 +42,6 @@ function Pregame:init()
     -- Some default values
     self.fastBansTotalBans = 3
     self.fastHeroBansTotalBans = 1
-    self.fullBansTotalBans = 5
-    self.fullHeroBansTotalBans = 2
 
     -- Stores which playerIDs we have already spawned
     self.spawnedHeroesFor = {}
@@ -265,6 +268,11 @@ function Pregame:init()
     if mapName == 'challenge' then
         self.challengeMode = true
     end
+
+    -- Default banning
+    self:setOption('lodOptionBanning', 3)
+    self:setOption('lodOptionBanningMaxBans', 0)
+    self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
@@ -1279,6 +1287,19 @@ function Pregame:processVoteData()
         end
     end
 
+    -- Do we have a choice for banning phase?
+    if results.banning ~= nil then
+        if results.banning == 1 then
+          -- Option Voting
+            self:setOption('lodOptionBanning', 3, true)
+            self.optionVotingBanning = 1
+        else
+          -- No option voting
+            self:setOption('lodOptionBanning', 1, true)
+            self.optionVotingBanning = 0
+        end
+    end
+
 	if results.faststart ~= nil then
         if results.faststart == 1 then
         	-- Option Voting
@@ -1636,8 +1657,6 @@ function Pregame:initOptionSelector()
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
                 self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-				self:setOption('lodOptionBanningMaxBans', 0, true)
-				self:setOption('lodOptionBanningMaxHeroBans', 0, true)
 
                 return true
             elseif value == 0 then
@@ -1645,8 +1664,6 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
 				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-				self:setOption('lodOptionBanningMaxBans', self.fullBansTotalBans, true)
-				self:setOption('lodOptionBanningMaxHeroBans', self.fullHeroBansTotalBans, true) 
                 return true
             end
 
@@ -1739,6 +1756,11 @@ function Pregame:initOptionSelector()
 
             -- Valid
             return true
+        end,
+
+        -- Common host banning
+        lodOptionGameSpeedSharedEXP = function(value)
+            return value == 0 or value == 1
         end,
 
         -- Game Speed -- Respawn time percentage
@@ -1933,12 +1955,18 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
+                -- Set Draft Heroes to 25
+                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
                 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
+
+                -- Set banning
+                self:setOption('lodOptionBanning', 1)
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
@@ -1957,6 +1985,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
                 self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
                 self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+                self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
 
                 -- Default respawn time
                 self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
@@ -2034,8 +2063,6 @@ function Pregame:initOptionSelector()
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
-                    self:setOption('lodOptionBanningMaxBans', 0, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
@@ -2569,6 +2596,7 @@ function Pregame:processOptions()
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
 	    OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
 	    OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
+        OptionManager:SetOption('sharedXP', this.optionStore['lodOptionGameSpeedSharedEXP'])
 
 	    -- Bot options
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
@@ -2697,6 +2725,7 @@ function Pregame:processOptions()
 			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
 			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
 			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
+                    ['Shared XP'] = this.optionStore['lodOptionGameSpeedSharedEXP'],
 		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
                     ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
 			        ['Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
@@ -2729,6 +2758,7 @@ function Pregame:processOptions()
 				-- Store presets
 				statCollection:setFlags({
 			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
+                    ['Preset Banning'] = this.optionStore['lodOptionBanning'],
 			        ['Preset Max Slots'] = this.optionStore['lodOptionSlots'],
 			        ['Preset Max Ults'] = this.optionStore['lodOptionUlts'],
 			    })
@@ -2817,19 +2847,6 @@ function Pregame:banAbility(abilityName)
     if not self.bannedAbilities[abilityName] then
         -- Do the ban
         self.bannedAbilities[abilityName] = true
-        if abilityName == "alchemist_chemical_rage" then
-            self.bannedAbilities["custom_bot_chemical_rage"] = true
-            network:banAbility("custom_bot_chemical_rage")
-        elseif abilityName == "slark_shadow_dance" then
-            self.bannedAbilities["custom_bot_shadow_dance"] = true
-            network:banAbility("custom_bot_shadow_dance")
-        elseif abilityName == "custom_bot_chemical_rage" then
-            self.bannedAbilities["alchemist_chemical_rage"] = true
-            network:banAbility("alchemist_chemical_rage")
-        elseif abilityName == "custom_bot_shadow_dance" then
-            self.bannedAbilities["slark_shadow_dance"] = true
-            network:banAbility("slark_shadow_dance")
-        end
         network:banAbility(abilityName)
 
         return true
@@ -4607,6 +4624,10 @@ function Pregame:generateBotBuilds()
         if #possibleHeroes > 0 then
             heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
         end
+
+        -- Generate build
+        local build = {}
+        local skillID = 1
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
             for _, abilityName in pairs(defaultSkills) do
@@ -4952,6 +4973,11 @@ function Pregame:fixSpawningIssues()
     	necronomicon_warrior_last_will_lod = true
 	}
 
+    local botAIModifier = {
+        slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
+    }
+
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
@@ -5023,11 +5049,15 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                --[[if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Apply build!
-                    local build = this.selectedSkills[playerID] or {}
-                    SkillManager:ApplyBuild(spawnedUnit, build)
-                end]]
+                if PlayerResource:GetConnectionState(playerID) == 1 then
+                    -- Find custom abilities to add AI modifiers
+                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                        if botAIModifier[abilityName] then
+                            abModifierName = "modifier_" .. abilityName .. "_ai"
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                        end
+                    end
+                end
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
