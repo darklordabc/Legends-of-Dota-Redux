@@ -4155,8 +4155,8 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
         end
 
 
-        -- Over the Balance Mode point balance
-        if self.optionStore['lodOptionBalanceMode'] == 1 then
+        -- Over the Balance Mode point balance. If bot then skipping
+        if self.optionStore['lodOptionBalanceMode'] == 1 and not self.botPlayers.all[playerID] then
             -- Validate that the user has enough points
             local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
             local outOfPoints, _ = self:notEnoughPoints(newBuild)
@@ -4627,7 +4627,7 @@ function Pregame:generateBotBuilds()
         for _, botTeam in pairs(teams) do
             for i,botInfo in pairs(botTeam) do
                 local oppositeTeam = botInfo.team == DOTA_TEAM_BADGUYS and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS
-                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[oppositeTeam]) then
+                if not botInfo.isDone and (not lastTeam or botInfo.team ~= lastTeam or self.isTeamReady[oppositeTeam] or self:isTeamBotReady(oppositeTeam)) then
                     self:getSkillforBot(botInfo, botSkills)
                     lastTeam = botInfo.team
                     local temp = table.remove(botTeam, i)
@@ -4647,7 +4647,7 @@ function Pregame:getSkillforBot( botInfo, botSkills )
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
     local build = botInfo.build or {}
     local skillID = botInfo.skillID or 1
-    local heroName = botInfo.heroName or nil
+    local heroName = botInfo.heroName
     local skills = botSkills[heroName]
     local isAdded
     if skills then
@@ -4696,14 +4696,10 @@ function Pregame:getSkillforBot( botInfo, botSkills )
             build[skillID] = newAb
             skillID = skillID + 1
         end
-
     end
     if not botInfo.isDone then
         -- Shuffle their build to make it look like a random set
-        for i = maxSlots, 2, -1 do
-            local j = math.random (i)
-            build[i], build[j] = build[j], build[i]
-        end
+        ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then
@@ -4738,8 +4734,9 @@ end
 function Pregame:isTeamBotReady( team )
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
     local array = team == DOTA_TEAM_GOODGUYS and self.botPlayers.radiant or team == DOTA_TEAM_BADGUYS and self.botPlayers.dire
+    if #array == 0 then return true end
     if array then
-        for playerID,botInfo in pairs(array) do
+        for _,botInfo in pairs(array) do
             if not botInfo.isDone then
                 return false
             end
@@ -4770,11 +4767,6 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
         else
             totalNormal = totalNormal + 1
         end
-    end
-
-    -- Prevent certain skills from being randomed
-    if self.doNotRandom[abilityName] then
-        return false
     end
 
     -- consider ulty count
