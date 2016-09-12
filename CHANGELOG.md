@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Custom Abilities no longer appear when they are disabled
 - Tusk Snowball can no longer multicast due to bugginess
 - Added setting to Bot page to override unique skill settings specifically for bots only
+- Fixed Hash collisions
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
