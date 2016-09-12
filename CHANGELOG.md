@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Preset Builds have been adjusted so that they are affordable in Balance mode (they have been nerfed). 
 - Added Dagger Recommended Build
 - Updated in-game credits
+- Custom Abilities no longer appear when they are disabled
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
