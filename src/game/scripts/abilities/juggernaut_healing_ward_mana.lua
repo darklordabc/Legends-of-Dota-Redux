@@ -32,7 +32,7 @@ function onHealingWardSpawn(keys)
     Timers:CreateTimer(function()
         target:MoveToNPC(caster)
         return
-    end, DoUniqueString('move_ward'), 1/30)
+    end, DoUniqueString('move_ward'), 0.1)
 end
 
 
