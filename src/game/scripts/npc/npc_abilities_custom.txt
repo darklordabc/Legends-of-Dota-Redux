@@ -9957,7 +9957,7 @@
   
     "RunScript"
     {
-      "ScriptFile"  "scripts/vscripts/../abilities/concussive_break.lua"
+      "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
       "Function"    "concussive_shot_seek_target"
     }
   }
@@ -9966,7 +9966,7 @@
   {
     "RunScript"
     {
-      "ScriptFile"  "scripts/vscripts/../abilities/concussive_break.lua"
+      "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
       "Function"    "concussive_shot_post_vision"
     }
     
