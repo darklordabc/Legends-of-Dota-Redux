@@ -1836,5 +1836,20 @@
 	"DOTA_Tooltip_ability_imba_tower_salvo_Lore"										"Uses a special grenade launcher, gifted by Clockwerk. What kind of favor it performed in order to receive that gift, this tower will never tell."
 	"DOTA_Tooltip_ability_imba_tower_salvo_as_slow"										"ATTACK SPEED PENALTY:"
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_dmg"									"BONUS DAMAGE:"
-	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" 
+	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe"
+	
+	
+    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven"                          "Concussive Break Slow Datadriven"
+    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven_Description"              "You are being slowed"
+
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven"                         "Concussive Break Break Datadriven"
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven_Description"             "Your passives are disabled"
+
+
+
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Skywrath Mage Concussive Break"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Shoots a projectile at the nearest unit, breaking their passive. Also slows the target and nearby units"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_launch_radius"               "LAUNCH RADIUS:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
 }
