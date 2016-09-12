@@ -4173,12 +4173,14 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
 
 
         -- Over the Balance Mode point balance. If bot then skipping
-        if self.optionStore['lodOptionBalanceMode'] == 1 and not self.botPlayers.all[playerID] then
-            -- Validate that the user has enough points
-            local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
-            local outOfPoints, _ = self:notEnoughPoints(newBuild)
-            if outOfPoints then
-                shouldAdd = false
+        if self.optionStore['lodOptionBalanceMode'] == 1 then
+            if (self.botPlayers and not self.botPlayers.all[playerID]) or not self.botPlayers then
+                -- Validate that the user has enough points
+                local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
+                local outOfPoints, _ = self:notEnoughPoints(newBuild)
+                if outOfPoints then
+                    shouldAdd = false
+                end
             end
         end
 
