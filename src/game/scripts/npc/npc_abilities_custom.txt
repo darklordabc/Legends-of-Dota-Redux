@@ -9944,7 +9944,7 @@
                     {
                         "ModifierName"    "modifier_healing_ward_mana_aura"
                         "Target"         "TARGET"
-                        "Duration"      "%duration"
+                        "Duration"      "%AbilityDuration"
                     }
                     "RunScript"
                     {
