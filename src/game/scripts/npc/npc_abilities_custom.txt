@@ -9994,7 +9994,7 @@
       {
         "Center"      "TARGET"
         "Radius"      "%slow_radius"
-        "Teams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        
         "Flags"       "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "Types"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
       }
