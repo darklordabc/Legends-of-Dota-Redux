@@ -27,6 +27,8 @@ function onHealingWardSpawn(keys)
     ParticleManager:SetParticleControlEnt(particle, 2, target, PATTACH_POINT_FOLLOW, "flame_attachment", target:GetAbsOrigin(), true)
     target:FindModifierByName("modifier_healing_ward_mana_aura"):AddParticle(particle, false, false, 1, false, false)
     target:MoveToNPC(caster)
+    target:Interrupt()
+    target:MoveToNPC(caster)
 end
 
 
