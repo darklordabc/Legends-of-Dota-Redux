@@ -226,7 +226,7 @@ var allOptions = {
                         }
                     },
 					{
-                        name: 'lodOptionBotsUniqueSkills',
+                        name: 'lodOptionAdvancedUniqueSkills',
                         default: {
                             'lodMutatorUniqueSkillsOff': 0
                         },
