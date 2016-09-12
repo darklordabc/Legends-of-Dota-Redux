@@ -9890,7 +9890,7 @@
   "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
   "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
   "FightRecapLevel"       "1"
-  "AbilityTextureName"      "skywrath_mage_concussive_shot"
+  "AbilityTextureName"      "skywrath_mage_concussive_break"
 
   // Casting
   //-------------------------------------------------------------------------------------------------------------
