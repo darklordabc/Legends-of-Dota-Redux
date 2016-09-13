@@ -972,7 +972,7 @@
     "npc_dota_healing_ward"                                                           "Mana Ward"
 
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Mana  Ward"
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward moves at 420 movement speed after being summoned. Lasts 25 seconds."
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a <font color='#70EA72'>Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward</font> moves at 420 movement speed after being summoned. Lasts 25 seconds."
 	"DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Lore"                   "For the more flexible practitioners of voodoo magic, a second ritual is known, one that allows quicker-than-natural regeneration of magic."
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "%MAX MANA PER SECOND:"
 
