@@ -641,6 +641,14 @@ function Ingame:OnAbilityUsed(event)
 			randomMain:OnAbilityPhaseStart()
 		end
 	end
+	-- Perk for bloodseeker
+	local hero_name = hero:GetUnitName()
+        if hero_name and event.abilityname then
+              	if hero_name == npc_dota_hero_bloodseeker and ability_name = bloodseeker_rupture then
+                	ability:RefundManaCost()
+                end
+	end
+	
 end
 
 -- Buyback cooldowns
