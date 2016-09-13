@@ -7338,135 +7338,135 @@
 	
     //=================================================================================================================
     // Omniknight's Omniguard
-    //=================================================================================================================	
-	"imba_omniknight_purification"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"imba_omniknight_purification"
+    //================================================================================================================= 
+    "imba_omniknight_purification"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "imba_omniknight_purification"
 
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"%radius"
-		"AbilityCastPoint"				"0.25"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "%radius"
+        "AbilityCastPoint"              "0.25"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "25"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
 
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle"					"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-			"particle"					"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-			"particle"					"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-		}
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "particle"                  "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+            "particle"                  "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+            "particle"                  "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+        }
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_base"				"90 180 270 360"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_pct"				"12"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_factor"			"70"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_imba_purification_passive"
-			{
-				"Passive"					"1"
-				"IsHidden"					"1"
-				"IsBuff"					"1"
-				"IsPurgable"				"0"
-		
-				"Attributes"				"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_base"             "90 180 270 360"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_pct"              "12"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_factor"         "70"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "300"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_purification_passive"
+            {
+                "Passive"                   "1"
+                "IsHidden"                  "1"
+                "IsBuff"                    "1"
+                "IsPurgable"                "0"
+        
+                "Attributes"                "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lib/util_imba.lua"
-						"Function"			"IllusionPassiveRemover"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "lib/util_imba.lua"
+                        "Function"          "IllusionPassiveRemover"
 
-						"modifier"			"modifier_imba_purification_passive"
-					}
-					"RunScript"
-					{
-						"ScriptFile"		"scripts/vscripts/../abilities/hero_omniknight.lua"
-						"Function"			"DisplayManager"
+                        "modifier"          "modifier_imba_purification_passive"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "Function"          "DisplayManager"
 
-						"modifier_display"	"modifier_omniguard_display"
-					}
-				}
-				"ThinkInterval"	"0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"scripts/vscripts/../abilities/hero_omniknight.lua"
-						"Function"			"DisplayManager"
+                        "modifier_display"  "modifier_omniguard_display"
+                    }
+                }
+                "ThinkInterval" "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "Function"          "DisplayManager"
 
-						"modifier_display"	"modifier_omniguard_display"
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"scripts/vscripts/../abilities/hero_omniknight.lua"
-						"Function"			"PurificationDeath"
+                        "modifier_display"  "modifier_omniguard_display"
+                    }
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "Function"          "PurificationDeath"
 
-						"cast_sound"		"Hero_Omniknight.Purification"
-						"aoe_particle"		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-						"cast_particle"		"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-						"hit_particle"		"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-						"cooldown_modifier"	"modifier_imba_purification_passive_cooldown"
-					}
-				}
-			}
-			"modifier_omniguard_display"
-			{
-				"IsBuff" "1"
-				"OnDestroy"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Omniknight.Purification"
-						"Target"		"CASTER"
-					}
-				}
-			}
-		}
-	}
-	
+                        "cast_sound"        "Hero_Omniknight.Purification"
+                        "aoe_particle"      "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+                        "cast_particle"     "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+                        "hit_particle"      "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+                        "cooldown_modifier" "modifier_imba_purification_passive_cooldown"
+                    }
+                }
+            }
+            "modifier_omniguard_display"
+            {
+                "IsBuff" "1"
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Omniknight.Purification"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }
+    }
+    
     //=================================================================================================================
     // DAZZLE's Shallow Grave 
     //=================================================================================================================
@@ -7641,7 +7641,7 @@
             }
         }
     }
-	
+    
     //=================================================================================================================
     // Tower ability: Laser
     //=================================================================================================================
@@ -9877,176 +9877,298 @@
             }
         }
     }
-    "skywrath_mage_concussive_break"
-{
-  // General
-  //-------------------------------------------------------------------------------------------------------------
-  "BaseClass"       "ability_datadriven"
-  "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
-  
-  "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-
-  "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
-  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
-  "FightRecapLevel"       "1"
-  "AbilityTextureName"      "skywrath_mage_concussive_break"
-
-  // Casting
-  //-------------------------------------------------------------------------------------------------------------
-  "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
-  "AbilityCastRange"        "1600"
-  
-  // Time   
-  //-------------------------------------------------------------------------------------------------------------
-  "AbilityCooldown"       "18.0 16.0 14.0 12.0"
-
-
-  // Cost
-  //-------------------------------------------------------------------------------------------------------------
-  "AbilityManaCost"       "95 95 95 95" 
-
-
-  // Special
-  //-------------------------------------------------------------------------------------------------------------
-  "AbilitySpecial"
-  { 
-    "01"
+    "juggernaut_healing_ward_mana"
     {
-      "var_type"      "FIELD_INTEGER"
-      "launch_radius"   "1600"
-    }
-    "02"
-    {
-      "var_type"      "FIELD_INTEGER"
-      "slow_radius"   "250"
-    }
-    "03"
-    {
-      "var_type"      "FIELD_INTEGER"
-      "speed"       "800 800 800 800"
-    }
-    "04"
-    {
-      "var_type"      "FIELD_FLOAT"
-      "duration"   "4.0"
-    }
-    "05"
-    {
-      "var_type"      "FIELD_INTEGER"
-      "shot_vision"   "400"
-    }
-    "06"
-    {
-      "var_type"      "FIELD_INTEGER"
-      "movement_speed_pct"  "-30 -35 -40 -45"
-    
-    }
-  }
-  
-  // Data driven
-  //------------------------------------------------------------------------------------------------------------- 
-  "precache"
-  {
-    "soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-    "particle"      "particles/concussive_break/skywrath_mage_concussive_breakshot.vpcf"
-    "particle"      "particles/items3_fx/silver_edge_slow.vpcf"
-  }
-  
-  "OnSpellStart"
-  {
-    "FireSound"
-    {
-      "Target"    "CASTER"
-      "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Cast"
-    }
-  
-    "RunScript"
-    {
-      "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
-      "Function"    "concussive_shot_seek_target"
-    }
-  }
-  
-  "OnProjectileHitUnit"
-  {
-    "RunScript"
-    {
-      "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
-      "Function"    "concussive_shot_post_vision"
-    }
-    
-    "FireSound"
-    {
-      "Target"    "CASTER"
-      "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Target"
-    }
-    "ApplyModifier"
-    {
-      "Target"    "TARGET"
-      "ModifierName"  "modifier_concussive_break_break_datadriven"
-       "Duration" "%duration"
-    }    
-  
-    "ActOnTargets"
-    {
-      "Target"
-      {
-        "Center"      "TARGET"
-        "Radius"      "%slow_radius"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"       "ability_datadriven"
+        "AbilityTextureName"            "healing_ward_icon"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+        "AoERadius"               "500"
         
-        "Flags"       "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        "Types"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-      }
-      
-      "Action"
-      {
-        "Damage"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"        "350"
+        "AbilityCastPoint"        "0.3 0.3 0.3 0.3"
+        
+        // Time   
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"       "60.0 60.0 60.0 60.0"
+        "AbilityDuration"       "25.0 25.0 25.0 25.0"
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"       "120 125 130 135"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
         {
-          "Target"    "TARGET"
-          "Damage"    "%damage"
-          "Type"      "DAMAGE_TYPE_MAGICAL"
+            "particle"  "particles/juggernaut_ward_mana.vpcf"
+            "particle"  "particles/juggernaut_healing_wardmana.vpcf"   
         }
         
-        "ApplyModifier"
+        "AbilitySpecial"
         {
-          "Target"    "TARGET"
-          "ModifierName"  "modifier_concussive_break_slow_datadriven"
-           "Duration" "%duration"
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "healing_ward_mana_restore_pct"  "2 3 4 5"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"  "500"
+            }
         }
-      }
+        
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"        "npc_dota_juggernaut_healing_ward"
+                "Target"         "POINT"
+                "Duration"        "%AbilityDuration"
+                "UnitCount"        "1"
+                "UnitLimit"        "0"
+                "GrantsGold"    "1"
+                "GrantsXP"        "1"
+                "SpawnRadius"    "1"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"    "modifier_phased"
+                        "Target"        "TARGET"
+                        "Duration"        "0.03"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"    "modifier_healing_ward_mana_aura"
+                        "Target"         "TARGET"
+                        "Duration"      "%AbilityDuration"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                        "Function"    "onHealingWardSpawn"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_healing_ward_mana_aura"
+            {
+                "Passive"      "0"
+                "IsHidden"      "0"
+                "IsDebuff"      "0"
+            
+                "Aura"            "modifier_healing_ward_mana_aura_effect"
+                "Aura_Radius"     "%radius"
+                "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"      "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"      "DOTA_UNIT_TARGET_FLAG_NONE"
+                "Aura_ApplyToCaster" "1"
+              
+                "States"
+                {
+                  "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+                  "MODIFIER_STATE_MAGIC_IMMUNE"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_healing_ward_mana_aura_effect"
+            {
+                "Passive"      "0"
+                "IsHidden"      "0"
+                "IsDebuff"      "0"
+              
+                "EffectName"    "particles/juggernaut_ward_mana.vpcf"
+                "EffectAttachType"  "follow_origin"
+            
+                "ThinkInterval"     "0.04"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                      "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                      "Function"    "healingWardMana"
+                    }
+                }  
+            }
+        }
     }
-  }
-  
-  "Modifiers"
-  {
-    "modifier_concussive_break_slow_datadriven"
-    {
-      "IsHidden"        "0"
-      "IsDebuff"        "1"
-      
-      "Duration"        "%slow_duration"
-      
-      "Properties"
-      {
-        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_pct"
 
-      }
-    }
-    "modifier_concussive_break_break_datadriven"
-    {
-      "Passive"      "0"
-      "IsHidden"      "0"
-      "IsDebuff"      "1"
-    
-      "EffectName"    "particles/items3_fx/silver_edge_slow.vpcf"
-      "EffectAttachType"  "follow_origin"
-    
-      "States"
-      {
-        "MODIFIER_STATE_PASSIVES_DISABLED"    "MODIFIER_STATE_VALUE_ENABLED"
-      }
-    }
-  }
-}
+
+	"skywrath_mage_concussive_break"
+		{
+		  // General
+		  //-------------------------------------------------------------------------------------------------------------
+		  "BaseClass"       "ability_datadriven"
+		  "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		  
+		  "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+
+		  "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+		  "FightRecapLevel"       "1"
+		  "AbilityTextureName"      "skywrath_mage_concussive_break"
+
+		  // Casting
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+		  "AbilityCastRange"        "1600"
+		  
+		  // Time   
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCooldown"       "18.0 16.0 14.0 12.0"
+
+
+		  // Cost
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityManaCost"       "95 95 95 95" 
+
+
+		  // Special
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilitySpecial"
+		  { 
+			"01"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "launch_radius"   "1600"
+			}
+			"02"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "slow_radius"   "250"
+			}
+			"03"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "speed"       "800 800 800 800"
+			}
+			"04"
+			{
+			  "var_type"      "FIELD_FLOAT"
+			  "duration"   "4.0"
+			}
+			"05"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "shot_vision"   "400"
+			}
+			"06"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "movement_speed_pct"  "-30 -35 -40 -45"
+			
+			}
+		  }
+		  
+		  // Data driven
+		  //------------------------------------------------------------------------------------------------------------- 
+		  "precache"
+		  {
+			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"      "particles/concussive_break/skywrath_mage_concussive_breakshot.vpcf"
+			"particle"      "particles/items3_fx/silver_edge_slow.vpcf"
+		  }
+		  
+		  "OnSpellStart"
+		  {
+			"FireSound"
+			{
+			  "Target"    "CASTER"
+			  "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Cast"
+			}
+		  
+			"RunScript"
+			{
+			  "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
+			  "Function"    "concussive_shot_seek_target"
+			}
+		  }
+		  
+		  "OnProjectileHitUnit"
+		  {
+			"RunScript"
+			{
+			  "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
+			  "Function"    "concussive_shot_post_vision"
+			}
+			
+			"FireSound"
+			{
+			  "Target"    "CASTER"
+			  "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Target"
+			}
+			"ApplyModifier"
+			{
+			  "Target"    "TARGET"
+			  "ModifierName"  "modifier_concussive_break_break_datadriven"
+			   "Duration" "%duration"
+			}    
+		  
+			"ActOnTargets"
+			{
+			  "Target"
+			  {
+				"Center"      "TARGET"
+				"Radius"      "%slow_radius"
+				
+				"Flags"       "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Types"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			  }
+			  
+			  "Action"
+			  {
+				"Damage"
+				{
+				  "Target"    "TARGET"
+				  "Damage"    "%damage"
+				  "Type"      "DAMAGE_TYPE_MAGICAL"
+				}
+				
+				"ApplyModifier"
+				{
+				  "Target"    "TARGET"
+				  "ModifierName"  "modifier_concussive_break_slow_datadriven"
+				   "Duration" "%duration"
+				}
+			  }
+			}
+		  }
+		  
+		  "Modifiers"
+		  {
+			"modifier_concussive_break_slow_datadriven"
+			{
+			  "IsHidden"        "0"
+			  "IsDebuff"        "1"
+			  
+			  "Duration"        "%slow_duration"
+			  
+			  "Properties"
+			  {
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_pct"
+
+			  }
+			}
+			"modifier_concussive_break_break_datadriven"
+			{
+			  "Passive"      "0"
+			  "IsHidden"      "0"
+			  "IsDebuff"      "1"
+			
+			  "EffectName"    "particles/items3_fx/silver_edge_slow.vpcf"
+			  "EffectAttachType"  "follow_origin"
+			
+			  "States"
+			  {
+				"MODIFIER_STATE_PASSIVES_DISABLED"    "MODIFIER_STATE_VALUE_ENABLED"
+			  }
+			}
+		  }
+		}
 }

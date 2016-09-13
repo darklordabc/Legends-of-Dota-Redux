@@ -26,7 +26,6 @@ end
 
 function SU:Init()
   steamIDs = SU:BuildSteamIDArray()
-  DeepPrintTable(steamIDs)
   
   if SU.StatSettings ~= nil then
     if isTest or (not GameRules:IsCheatMode()) then
