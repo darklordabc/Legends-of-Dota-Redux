@@ -651,6 +651,7 @@
     "unique_mechanic_spirit_breaker"                "Skull Basher and <br> Abyssal Blade will not proc for this hero."
     "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
 	"unique_mechanic_bloodseeker"               	"When this hero casts<br> <font color=\"#25EC28\">Rupture</font>, 100% of the mana cost will be<br> refunded and cooldown reduced by 20%."
+	"unique_mechanic_life_stealer"               	"When this hero casts<br> <font color=\"#25EC28\">Infest</font>, its cooldown will be drastically<br> reduced to 30 seconds."
 
     /////////////////
     // Skill Warnings

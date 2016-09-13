@@ -648,6 +648,11 @@ function Ingame:OnAbilityUsed(event)
                 	ability:RefundManaCost()
 					ability:EndCooldown()
                 	ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
+				elseif hero_name == "npc_dota_hero_life_stealer" and abilityname == "life_stealer_infest" then
+					ability:EndCooldown()
+                	ability:StartCooldown(30)
+				elseif hero_name == "npc_dota_hero_legion_commander" and abilityname == "legion_commander_duel" then
+					hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
                 end
 	end
 	
