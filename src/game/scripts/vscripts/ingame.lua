@@ -644,7 +644,7 @@ function Ingame:OnAbilityUsed(event)
 	-- Perk for bloodseeker
 	local hero_name = hero:GetUnitName()
         if hero_name and event.abilityname then
-              	if hero_name == npc_dota_hero_bloodseeker and ability_name = bloodseeker_rupture then
+              	if hero_name == npc_dota_hero_bloodseeker and ability_name == bloodseeker_rupture then
                 	ability:RefundManaCost()
                 end
 	end
