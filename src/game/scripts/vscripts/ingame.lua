@@ -647,7 +647,7 @@ function Ingame:OnAbilityUsed(event)
               	if hero_name == "npc_dota_hero_bloodseeker" and abilityname == "bloodseeker_rupture" then
                 	ability:RefundManaCost()
 					ability:EndCooldown()
-                	ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+                	ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
                 end
 	end
 	

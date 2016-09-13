@@ -650,6 +650,7 @@
     "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
     "unique_mechanic_spirit_breaker"                "Skull Basher and <br> Abyssal Blade will not proc for this hero."
     "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
+	"unique_mechanic_bloodseeker"               	"When this hero casts<br> <font color=\"#25EC28\">Rupture</font>, 100% of the mana cost will be<br> refunded and cooldown reduced by 20%."
 
     /////////////////
     // Skill Warnings

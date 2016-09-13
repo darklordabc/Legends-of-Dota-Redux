@@ -1058,7 +1058,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Rapture',
-        heroName: 'npc_dota_hero_pugna',
+        heroName: 'npc_dota_hero_bloodseeker',
         attr: 'int',
         build: {
             1: 'pudge_meat_hook',
