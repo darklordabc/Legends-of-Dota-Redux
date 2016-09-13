@@ -650,9 +650,9 @@ function Ingame:OnAbilityUsed(event)
 end
 
 function Ingame:OnEntityKilled(event)
-    local killedUnit = EntIndexToHScript( keys.entindex_killed )
-    if keys.entindex_attacker ~= nil then
-      killerEntity = EntIndexToHScript( keys.entindex_attacker )
+    local killedUnit = EntIndexToHScript( event.entindex_killed )
+    if event.entindex_attacker ~= nil then
+      killerEntity = EntIndexToHScript( event.entindex_attacker )
     end
     onHeroKilledHeroPerks(event)
 end
@@ -722,14 +722,15 @@ function Ingame:addStrongTowers()
             end
         end
     end, nil)
+	
 end
 
 -- Return an instance of it
-return Ingame()
+
 function onHeroKilledHeroPerks(event)
-  local killedUnit = EntIndexToHScript( keys.entindex_killed )
-  if keys.entindex_attacker ~= nil then
-    killerEntity = EntIndexToHScript( keys.entindex_attacker )
+  local killedUnit = EntIndexToHScript( event.entindex_killed )
+  if event.entindex_attacker ~= nil then
+    killerEntity = EntIndexToHScript( event.entindex_attacker )
   end
   if killedUnit:GetUnitName() == "npc_dota_hero_tidehunter" and killedUnit:HasAbility("tidehunter_ravage") then
     killedUnit:FindAbilityByName("tidehunter_ravage"):EndCooldown()
@@ -748,14 +749,19 @@ function onHeroCastAbilityHeroPerks(event)
   local hero_name = hero:GetUnitName()
   if hero_name and abilityname then
     	if hero_name == "npc_dota_hero_bloodseeker" and abilityname == "bloodseeker_rupture" then
-               	ability:RefundManaCost()
-		ability:EndCooldown()
-               	ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
+			ability:RefundManaCost()
+			ability:EndCooldown()
+			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
 	elseif hero_name == "npc_dota_hero_life_stealer" and abilityname == "life_stealer_infest" then
-		ability:EndCooldown()
-               	ability:StartCooldown(30)
+			ability:EndCooldown()
+            ability:StartCooldown(30)
 	elseif hero_name == "npc_dota_hero_legion_commander" and abilityname == "legion_commander_duel" then
-		hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
+			hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
+	elseif hero_name == "npc_dota_hero_furion" and abilityname == "furion_teleportation" then
+			ability:EndCooldown()
+			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
         end
   end
+ end
 
+return Ingame()

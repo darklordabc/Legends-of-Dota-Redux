@@ -1084,7 +1084,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Bring the team fight',
-        heroName: 'npc_dota_hero_silencer',
+        heroName: 'npc_dota_hero_enigma',
         attr: 'int',
         build: {
             1: 'enigma_midnight_pulse',
@@ -1135,12 +1135,12 @@ var recommendedBuilds = [
         },
     },
     {
-        title: 'No ulty, can\'t war',
-        heroName: 'npc_dota_hero_windrunner',
+        title: 'Disregard Team, Acquire Currency',
+        heroName: 'npc_dota_hero_furion',
         attr: 'int',
         build: {
             1: 'sandking_burrowstrike',
-            2: 'medusa_mana_shield',
+            2: 'doom_bringer_devour_lod',
             3: 'alchemist_goblins_greed',
             4: 'life_stealer_feast',
             5: 'medusa_split_shot',
