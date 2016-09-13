@@ -1006,7 +1006,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Infest Support',
-        heroName: 'npc_dota_hero_night_stalker',
+        heroName: 'npc_dota_hero_life_stealer',
         attr: 'str',
         build: {
             1: 'pudge_rot',
@@ -1097,7 +1097,7 @@ var recommendedBuilds = [
     },
     {
         title: 'The Duelist',
-        heroName: 'npc_dota_hero_juggernaut',
+        heroName: 'npc_dota_hero_legion_commander',
         attr: 'agi',
         build: {
             1: 'viper_nethertoxin',
