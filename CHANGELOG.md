@@ -14,12 +14,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added Dagger Recommended Build
 - Updated in-game credits
 - Custom Abilities no longer appear when they are disabled
+- Tusk Snowball can no longer multicast due to bugginess
+- Added setting to Bot page to override unique skill settings specifically for bots only
+- Fixed Hash collisions
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
 - Bots can now get Chemical Rage and Shadow Dance and will cast them under specific conditions.
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
+- Bots will now pick the best available abilities for their specific hero. E.g. BristleBack and Axe will pick tank skills before DPS skills
+- Added Mana Ward (Alt Verison of Jugg's Healing Ward)
+
 
 ## 1.0
 
