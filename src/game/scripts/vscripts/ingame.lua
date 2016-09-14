@@ -788,7 +788,40 @@ local PlayerID = event.PlayerID
                     end
                 end
             end, 'wait_till_unit_is_owned', 1/30)    
-
+	elseif hero_name == "npc_dota_hero_chen" and abilityname == "chen_test_of_faith_teleport" then
+            if not randomPassiveAbilityTable then
+                randomPassiveAbilityTable = {
+                    "ursa_fury_swipes",
+                    "omniknight_degen_aura",
+                    "slardar_bash",
+                    "razor_unstable_current",
+                    "visage_gravekeepers_cloak",
+                    "weaver_geminate_attack",
+                    "tiny_craggy_exterior",
+                    "antimage_mana_break",
+                }
+            end    
+            Timers:CreateTimer(function ()
+                local units = FindUnitsInRadius(hero:GetTeam(), hero:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE,
+                    DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+                for _,unit in pairs (units) do
+                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit --[[and unit:HasModifier("fountain_aura")]] then
+                        if unit:FindAbilityByName(unit.extraAbility):GetLevel() < 3 then
+                            unit:FindAbilityByName(unit.extraAbility):UpgradeAbility(true)
+                        else
+                            local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                            local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                            while unit:HasAbility(unit:FindAbilityByName(randomAbilityTemp)) do
+                                local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                                local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                            end
+                            unit:AddAbility(randomAbilityTemp)
+                            unit:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
+                            unit.extraAbility = randomAbilityTemp
+                        end
+                    end
+                end
+            end, 'wait_till_unit_is_in_fountain', 1)
         end
     end
 end
