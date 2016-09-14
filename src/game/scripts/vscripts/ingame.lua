@@ -740,28 +740,55 @@ function onHeroKilledHeroPerks(event)
 end
 
 function onHeroCastAbilityHeroPerks(event)
-  local PlayerID = event.PlayerID
-  local abilityname = event.abilityname
-  local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-  local ability = hero:FindAbilityByName(abilityname)
-  if not ability then return end
+local PlayerID = event.PlayerID
+    local abilityname = event.abilityname
+    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+    local ability = hero:FindAbilityByName(abilityname)
+    if not ability then return end
   
-  local hero_name = hero:GetUnitName()
-  if hero_name and abilityname then
-    	if hero_name == "npc_dota_hero_bloodseeker" and abilityname == "bloodseeker_rupture" then
-			ability:RefundManaCost()
-			ability:EndCooldown()
-			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
-	elseif hero_name == "npc_dota_hero_life_stealer" and abilityname == "life_stealer_infest" then
-			ability:EndCooldown()
+    local hero_name = hero:GetUnitName()
+    if hero_name and abilityname then
+        if hero_name == "npc_dota_hero_bloodseeker" and abilityname == "bloodseeker_rupture" then
+            ability:RefundManaCost()
+            ability:EndCooldown()
+            ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
+        elseif hero_name == "npc_dota_hero_life_stealer" and abilityname == "life_stealer_infest" then
+            ability:EndCooldown()
             ability:StartCooldown(30)
-	elseif hero_name == "npc_dota_hero_legion_commander" and abilityname == "legion_commander_duel" then
-			hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
-	elseif hero_name == "npc_dota_hero_furion" and abilityname == "furion_teleportation" then
-			ability:EndCooldown()
-			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+        elseif hero_name == "npc_dota_hero_legion_commander" and abilityname == "legion_commander_duel" then
+            hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
+        elseif hero_name == "npc_dota_hero_furion" and abilityname == "furion_teleportation" then
+            ability:EndCooldown()
+            ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+        elseif hero_name == "npc_dota_hero_chen" and abilityname == "chen_holy_persuasion" then
+            if not randomPassiveAbilityTable then
+                randomPassiveAbilityTable = {
+                    "ursa_fury_swipes",
+                    "omniknight_degen_aura",
+                    "slardar_bash",
+                    "razor_unstable_current",
+                    "visage_gravekeepers_cloak",
+                    "weaver_geminate_attack",
+                    "tiny_craggy_exterior",
+                    "antimage_mana_break",
+                }
+            end
+            Timers:CreateTimer(function ()
+                local units = FindUnitsInRadius(hero:GetTeam(), hero:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE,
+                    DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+                for _,unit in pairs (units) do
+                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit and not unit.hasExtraAbility then
+                        local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                        local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                        unit:AddAbility(randomAbilityTemp)
+                        unit:FindAbilityByName(randomAbilityTemp):SetLevel(ability:GetLevel())
+                        unit.hasExtraAbility = true
+                    end
+                end
+            end, 'wait_till_unit_is_owned', 1/30)    
+
         end
-  end
- end
+    end
+end
 
 return Ingame()
