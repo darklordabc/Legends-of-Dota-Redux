@@ -5351,7 +5351,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     }
 
     // Are we on a map that allocates slots for us?
-    if(mapName == 'all_pick_4' || mapName == 'all_pick_6') {
+    if(mapName == '3_vs_3' || mapName == 'all_pick_6') {
         // Disable max slots voting
         $.GetContextPanel().SetHasClass('veryBasicVoting', true);
         useOptionVoting = true;
