@@ -771,6 +771,8 @@ local PlayerID = event.PlayerID
                     "weaver_geminate_attack",
                     "tiny_craggy_exterior",
                     "antimage_mana_break",
+                    "axe_counter_helix",
+                    "legion_commander_moment_of_courage",
                 }
             end
             Timers:CreateTimer(function ()
@@ -781,7 +783,7 @@ local PlayerID = event.PlayerID
                         local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
                         local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
                         unit:AddAbility(randomAbilityTemp)
-                        unit:FindAbilityByName(randomAbilityTemp):SetLevel(ability:GetLevel())
+                        unit:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
                         unit.hasExtraAbility = true
                     end
                 end
