@@ -779,12 +779,12 @@ local PlayerID = event.PlayerID
                 local units = FindUnitsInRadius(hero:GetTeam(), hero:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE,
                     DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
                 for _,unit in pairs (units) do
-                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit and not unit.hasExtraAbility then
+                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit and not unit.extraAbility then
                         local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
                         local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
                         unit:AddAbility(randomAbilityTemp)
                         unit:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
-                        unit.hasExtraAbility = true
+                        unit.extraAbility = randomAbilityTemp
                     end
                 end
             end, 'wait_till_unit_is_owned', 1/30)    
