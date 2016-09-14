@@ -967,6 +967,18 @@ var allOptions = {
 // Hard Coded Recommended Builds
 var recommendedBuilds = [
     {
+        title: 'Neutral Creep Builder',
+        heroName: 'npc_dota_hero_chen',
+        attr: 'int',
+        build: {
+            1: 'chen_holy_persuasion',
+            2: 'chen_test_of_faith',
+            3: '',
+            4: '',
+            5: '',
+            6: '',
+        },
+    },{
         title: 'Long Dagger Harassment',
         heroName: 'npc_dota_hero_ogre_magi',
         attr: 'int',
