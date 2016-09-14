@@ -973,10 +973,10 @@ var recommendedBuilds = [
         build: {
             1: 'chen_holy_persuasion',
             2: 'chen_test_of_faith',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
+            3: 'satyr_hellcaller_unholy_aura',
+            4: 'lycan_howl',
+            5: 'alpha_wolf_command_aura',
+            6: 'granite_golem_hp_aura',
         },
     },{
         title: 'Long Dagger Harassment',
