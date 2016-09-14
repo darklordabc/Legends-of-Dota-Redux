@@ -26,8 +26,8 @@ Legends of Dota
 
 ###Running Legends of Dota###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
- 
- ![Mod Tools](http://i.imgur.com/0EsjTMO.png)
+
+![Mod Tools](http://i.imgur.com/0EsjTMO.png)
 
  - Start a map by opening the console and running `dota_launch_custom_game <addonName> <mapname>`, replacing <addonName> with the name of your addon and <mapname> with a valid map name.
  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
