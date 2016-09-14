@@ -121,8 +121,10 @@ function SU:SendPlayerBuild( args, pID )
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    AbilityString = json.encode(abilities),
-    SteamID = PlayerResource:GetSteamAccountID(pID)
+    Data = {
+      AbilityString = json.encode(abilities),
+      SteamID = PlayerResource:GetSteamAccountID(pID)
+    }
   }
   
   SU:SendRequest( requestParams, function(obj)
