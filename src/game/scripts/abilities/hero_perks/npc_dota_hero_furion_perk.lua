@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: furion
---		Perk: 
+--		Hero: Nature's Prophet
+--		Perk: Teleportation's cooldown is reduce by 50% for this hero.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_furion_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_furion_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

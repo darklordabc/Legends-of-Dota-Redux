@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: legion_commander
---		Perk: 
+--		Hero: Legion Commander
+--		Perk: When this hero casts Duel, it will gain spell immunity for the duration of the duel.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_legion_commander_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_legion_commander_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
