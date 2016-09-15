@@ -34,24 +34,18 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
+    
+    local teleportSpells = {
+    	furion_teleportation = true,
+    	wisp_relocate = true,
+    	abyssal_underlord_dark_rift = true,
+    	item_tpscroll = true,
+    	item_travel_boots = true,
+    	item_travel_boots_2 = true
+    	}
 
 
-    if ability:GetName() == "furion_teleportation" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
-    elseif ability:GetName() == "wisp_relocate" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
-    elseif ability:GetName() == "abyssal_underlord_dark_rift" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
-    elseif ability:GetName() == "item_tpscroll" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
-    elseif ability:GetName() == "item_travel_boots" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
-    elseif ability:GetName() == "item_travel_boots_2" then
+    if teleportSpells[ability] then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     end
