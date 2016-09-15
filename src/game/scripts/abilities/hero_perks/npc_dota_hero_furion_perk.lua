@@ -24,12 +24,12 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_furion_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_START,
+    MODIFIER_EVENT_ON_ABILITY_EXECUTED,
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
+function modifier_npc_dota_hero_furion_perk:OnAbilityExecuted(keys)
   if IsServer() then
     local hero = self:GetCaster()
     local target = keys.target
@@ -47,7 +47,7 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
     	}
 
 
-    if teleportSpells[ability] then
+    if ability and teleportSpells[ability:GetName()] then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     end
