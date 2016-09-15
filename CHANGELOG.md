@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Balance
 - Changed the hero for many of the preset builds
+- Added Chen preset build
 
 ## 1.1
 
