@@ -1,29 +1,5 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: chen
---		Perk: 
---
---------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_chen_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_chen_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
---------------------------------------------------------------------------------------------------------
-if npc_dota_hero_chen_perk == nil then npc_dota_hero_chen_perk = class({}) end
---------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_chen_perk				
---------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_chen_perk == nil then modifier_npc_dota_hero_chen_perk = class({}) end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_chen_perk:IsPassive()
-	return true
-end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_chen_perk:IsHidden()
-	return true
-end
---------------------------------------------------------------------------------------------------------
--- Add additional functions
---------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------
---
 --    Hero: chen
 --    Perk: 
 --
@@ -68,6 +44,11 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
         "weaver_geminate_attack",
         "tiny_craggy_exterior",
         "antimage_mana_break",
+        "abaddon_frostmourne",
+        "viper_corrosive_skin",
+        "meepo_geostrike",
+        "spectre_dispersion",
+
       }
     end
 
@@ -81,20 +62,20 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
       if target:FindAbilityByName(target.extraAbility):GetLevel() < 4 then
         target:FindAbilityByName(target.extraAbility):UpgradeAbility(true)
       else
-        if target:GetAbilityCount() < 4 then -- 6 seems to crash the 2nd unit
-          local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
-          local randomAbilityTemp = hero.randomPassiveAbilityTable[randomAbilityNumber]
-          while target:HasAbility(randomAbilityTemp) do
-            local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
-            local randomAbilityTemp = hero.randomPassiveAbilityTable[randomAbilityNumber]
+        if target:GetAbilityCount() < 6 then
+          hero.randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
+          hero.randomAbilityTemp = hero.randomPassiveAbilityTable[hero.randomAbilityNumber]
+          while target:HasAbility(hero.randomAbilityTemp) do
+            print(hero.randomAbilityNumber..hero.randomAbilityTemp)
+            hero.randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
+            hero.randomAbilityTemp = hero.randomPassiveAbilityTable[hero.randomAbilityNumber]
           end
-          target:AddAbility(randomAbilityTemp)
-          target:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
-          target.extraAbility = randomAbilityTemp
+          target:AddAbility(hero.randomAbilityTemp)
+          target:FindAbilityByName(hero.randomAbilityTemp):UpgradeAbility(true)
+          target.extraAbility = hero.randomAbilityTemp
         end
       end
     end
   end
 end                    
-
 
