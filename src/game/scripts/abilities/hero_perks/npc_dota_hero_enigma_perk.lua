@@ -22,4 +22,19 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_enigma_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_DEATH,
+  }
+  return funcs
+end
+
+function modifier_npc_dota_hero_enigma_perk:OnDeath()
+  if IsServer() then
+    local caster = self:GetParent()
+    if caster:HasAbility("enigma_black_hole") then
+      caster:FindAbilityByName("enigma_black_hole"):EndCooldown() 
+    end
+  end
+end
 
