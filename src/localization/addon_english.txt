@@ -655,8 +655,8 @@
 	"unique_mechanic_legion_commander"              "When this hero casts<br> <font color=\"#25EC28\">Duel</font>, it will gain spell immunity<br> for the duration of the duel."
 	"unique_mechanic_enigma"            			"When this hero dies,<br> <font color=\"#25EC28\">Black Hole's</font> cooldown will be refreshed."
 	"unique_mechanic_tidehunter"            		"When this hero dies,<br> <font color=\"#25EC28\">Ravage's</font> cooldown will be refreshed."
-	"unique_mechanic_furion"            			"<font color=\"#25EC28\">Teleportation's</font><br> cooldown is reduce by 50% for this hero."
-	"unique_mechanic_lina"            				"Increases Lina's<br> intelligence by 3 for each level put in<br> fire-type spells."
+	"unique_mechanic_furion"            			"Reduces the cooldown<br> of all <font color=\"#25EC28\">Teleportation</font> abilities by 50%."
+	"unique_mechanic_lina"            				"Increases Lina's<br> intelligence by 3 for each level put in<br> <font color=\"#25EC28\">Fire</font> abilities."
 	
 
     /////////////////
