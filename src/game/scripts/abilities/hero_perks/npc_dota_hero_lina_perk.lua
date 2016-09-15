@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Lina
---		Perk: Increases intelligence by 3 for each level in fire-type spells.
+--		Perk: Increases Lina's intelligence by 3 for each level put in fire-type spells.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_lina_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lina_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -47,6 +47,10 @@ function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params
 		ember_spirit_searing_chains = true,
 		ogre_magi_fireblast = true,
 		ogre_magi_ignite = true,
+		phoenix_icarus_dive = true,
+		phoenix_fire_spirits = true,
+		phoenix_sun_ray = true,
+		phoenix_supernova = true,
 		doom_bringer_scorched_earth = true,
 		doom_bringer_doom = true,
 		doom_bringer_infernal_blade = true,
