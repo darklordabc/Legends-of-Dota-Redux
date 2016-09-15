@@ -37,8 +37,7 @@ function modifier_npc_dota_hero_legion_commander_perk:OnAbilityStart(keys)
 
 
     if ability:GetName() == "legion_commander_duel" then
-      ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+      hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
     end
   end
 end
