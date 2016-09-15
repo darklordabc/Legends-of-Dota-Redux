@@ -22,4 +22,22 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_life_stealer_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_ABILITY_START,
+  }
+  return funcs
+end
 
+function modifier_npc_dota_hero_life_stealer_perk:OnAbilityStart(keys)
+  if IsServer() then
+    local hero = self:GetCaster()
+    local target = keys.target
+    local ability = keys.ability
+
+    if ability:GetName() == "life_stealer_infest" then
+      ability:EndCooldown()
+      ability:StartCooldown(30)
+    end
+  end
+end
