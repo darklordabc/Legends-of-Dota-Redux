@@ -22,4 +22,23 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_legion_commander_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_ABILITY_START,
+  }
+  return funcs
+end
 
+function modifier_npc_dota_hero_legion_commander_perk:OnAbilityStart(keys)
+  if IsServer() then
+    local hero = self:GetCaster()
+    local target = keys.target
+    local ability = keys.ability
+
+
+    if ability:GetName() == "legion_commander_duel" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    end
+  end
+end
