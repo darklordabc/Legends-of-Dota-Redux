@@ -39,6 +39,12 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
     if ability:GetName() == "furion_teleportation" then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    elseif ability:GetName() == "wisp_relocate" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    elseif ability:GetName() == "abyssal_underlord_dark_rift" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     elseif ability:GetName() == "item_tpscroll" then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
