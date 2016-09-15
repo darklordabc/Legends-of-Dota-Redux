@@ -58,7 +58,7 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
       target:AddAbility(randomAbilityTemp)                    
       target:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)                    
       target.extraAbility = randomAbilityTemp
-    elseif ability:GetAbilityName() == "chen_test_of_faith_teleport" and hero ~= target and target:GetPlayerOwnerID() == hero:GetPlayerOwnerID() then
+    elseif ability:GetAbilityName() == "chen_test_of_faith_teleport" and target:IsCreep() then
       if target:FindAbilityByName(target.extraAbility):GetLevel() < 4 then
         target:FindAbilityByName(target.extraAbility):UpgradeAbility(true)
       else
