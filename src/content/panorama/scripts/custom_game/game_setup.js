@@ -972,7 +972,7 @@ var recommendedBuilds = [
         attr: 'int',
         build: {
             1: 'chen_holy_persuasion',
-            2: 'chen_test_of_faith',
+            2: 'chen_test_of_faith_teleport',
             3: 'satyr_hellcaller_unholy_aura',
             4: 'lycan_howl',
             5: 'alpha_wolf_command_aura',
