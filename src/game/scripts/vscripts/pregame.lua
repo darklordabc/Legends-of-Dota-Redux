@@ -5046,6 +5046,17 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
+                 -- Add hero perks
+                Timers:CreateTimer(function()
+                    if IsValidEntity(spawnedUnit) then
+                       local perkName = spawnedUnit:GetName() .. "_perk"
+                       local perk = spawnedUnit:AddAbility(perkName)
+                       local perkModifier = "modifier_" .. perkName
+                       if perk then perk:SetLevel(1) end
+                       spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+                    end
+                end, DoUniqueString('addPerk'), 0.1)
+
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
                 handled[spawnedUnit] = true
