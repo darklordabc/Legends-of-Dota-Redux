@@ -70,7 +70,7 @@ function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params
 		warlock_golem_permanent_immolation_lod = true
 	}
 
-	for i = 0, 5 do
+	for i = 0, 15 do
 		local ability = caster:GetAbilityByIndex(i)
 		if ability and fireSpells[ability:GetName()] then
 			local level = ability:GetLevel()
