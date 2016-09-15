@@ -39,6 +39,15 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
     if ability:GetName() == "furion_teleportation" then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    elseif ability:GetName() == "item_tpscroll" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    elseif ability:GetName() == "item_travel_boots" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+    elseif ability:GetName() == "item_travel_boots_2" then
+      ability:EndCooldown()
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     end
   end
 end
