@@ -65,7 +65,7 @@ function Ingame:init()
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
-
+    ListenToGameEvent('entity_killed', Dynamic_Wrap(Ingame, 'OnEntityKilled'), self)
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
     -- Set it to no team balance
@@ -630,7 +630,7 @@ function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
     local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-	local ability = hero:FindAbilityByName(abilityname)
+    local ability = hero:FindAbilityByName(abilityname)
 	if not ability then return end
 	if ability.randomRoot then
 		local randomMain = hero:FindAbilityByName(ability.randomRoot)
@@ -641,6 +641,20 @@ function Ingame:OnAbilityUsed(event)
 			randomMain:OnAbilityPhaseStart()
 		end
 	end
+	-- Perk for bloodseeker
+	local hero_name = hero:GetUnitName()
+        if hero_name and event.abilityname then
+              	onHeroCastAbilityHeroPerks(event)
+	end
+	
+end
+
+function Ingame:OnEntityKilled(event)
+    local killedUnit = EntIndexToHScript( event.entindex_killed )
+    if event.entindex_attacker ~= nil then
+      killerEntity = EntIndexToHScript( event.entindex_attacker )
+    end
+    onHeroKilledHeroPerks(event)
 end
 
 -- Buyback cooldowns
@@ -708,7 +722,108 @@ function Ingame:addStrongTowers()
             end
         end
     end, nil)
+	
 end
 
 -- Return an instance of it
+
+function onHeroKilledHeroPerks(event)
+  local killedUnit = EntIndexToHScript( event.entindex_killed )
+  if event.entindex_attacker ~= nil then
+    killerEntity = EntIndexToHScript( event.entindex_attacker )
+  end
+  if killedUnit:GetUnitName() == "npc_dota_hero_tidehunter" and killedUnit:HasAbility("tidehunter_ravage") then
+    killedUnit:FindAbilityByName("tidehunter_ravage"):EndCooldown()
+  elseif killedUnit:GetUnitName() == "npc_dota_hero_enigma" and killedUnit:HasAbility("enigma_black_hole") then
+    killedUnit:FindAbilityByName("enigma_black_hole"):EndCooldown()
+  end
+end
+
+function onHeroCastAbilityHeroPerks(event)
+local PlayerID = event.PlayerID
+    local abilityname = event.abilityname
+    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+    local ability = hero:FindAbilityByName(abilityname)
+    if not ability then return end
+  
+    local hero_name = hero:GetUnitName()
+    if hero_name and abilityname then
+        if hero_name == "npc_dota_hero_bloodseeker" and abilityname == "bloodseeker_rupture" then
+            ability:RefundManaCost()
+            ability:EndCooldown()
+            ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
+        elseif hero_name == "npc_dota_hero_life_stealer" and abilityname == "life_stealer_infest" then
+            ability:EndCooldown()
+            ability:StartCooldown(30)
+        elseif hero_name == "npc_dota_hero_legion_commander" and abilityname == "legion_commander_duel" then
+            hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
+        elseif hero_name == "npc_dota_hero_furion" and abilityname == "furion_teleportation" then
+            ability:EndCooldown()
+            ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+        elseif hero_name == "npc_dota_hero_chen" and abilityname == "chen_holy_persuasion" then
+            if not randomPassiveAbilityTable then
+                randomPassiveAbilityTable = {
+                    "ursa_fury_swipes",
+                    "omniknight_degen_aura",
+                    "slardar_bash",
+                    "razor_unstable_current",
+                    "visage_gravekeepers_cloak",
+                    "weaver_geminate_attack",
+                    "tiny_craggy_exterior",
+                    "antimage_mana_break",
+                    "axe_counter_helix",
+                    "legion_commander_moment_of_courage",
+                }
+            end
+            Timers:CreateTimer(function ()
+                local units = FindUnitsInRadius(hero:GetTeam(), hero:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE,
+                    DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+                for _,unit in pairs (units) do
+                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit and not unit.extraAbility then
+                        local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                        local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                        unit:AddAbility(randomAbilityTemp)
+                        unit:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
+                        unit.extraAbility = randomAbilityTemp
+                    end
+                end
+            end, 'wait_till_unit_is_owned', 1/30)    
+	elseif hero_name == "npc_dota_hero_chen" and abilityname == "chen_test_of_faith_teleport" then
+            if not randomPassiveAbilityTable then
+                randomPassiveAbilityTable = {
+                    "ursa_fury_swipes",
+                    "omniknight_degen_aura",
+                    "slardar_bash",
+                    "razor_unstable_current",
+                    "visage_gravekeepers_cloak",
+                    "weaver_geminate_attack",
+                    "tiny_craggy_exterior",
+                    "antimage_mana_break",
+                }
+            end    
+            Timers:CreateTimer(function ()
+                local units = FindUnitsInRadius(hero:GetTeam(), hero:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE,
+                    DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+                for _,unit in pairs (units) do
+                    if unit:GetPlayerOwnerID() == hero:GetPlayerOwnerID() and hero ~= unit --[[and unit:HasModifier("fountain_aura")]] then
+                        if unit:FindAbilityByName(unit.extraAbility):GetLevel() < 3 then
+                            unit:FindAbilityByName(unit.extraAbility):UpgradeAbility(true)
+                        else
+                            local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                            local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                            while unit:HasAbility(unit:FindAbilityByName(randomAbilityTemp)) do
+                                local randomAbilityNumber = RandomInt(1,#randomPassiveAbilityTable)
+                                local randomAbilityTemp = randomPassiveAbilityTable[randomAbilityNumber]
+                            end
+                            unit:AddAbility(randomAbilityTemp)
+                            unit:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)
+                            unit.extraAbility = randomAbilityTemp
+                        end
+                    end
+                end
+            end, 'wait_till_unit_is_in_fountain', 1)
+        end
+    end
+end
+
 return Ingame()
