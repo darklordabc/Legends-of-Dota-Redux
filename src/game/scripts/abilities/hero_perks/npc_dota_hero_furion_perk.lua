@@ -39,6 +39,7 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityStart(keys)
     	furion_teleportation = true,
     	wisp_relocate = true,
     	chen_test_of_faith_teleport = true,
+    	keeper_of_the_light_recall = true,
     	abyssal_underlord_dark_rift = true,
     	item_tpscroll = true,
     	item_travel_boots = true,
