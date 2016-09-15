@@ -656,6 +656,7 @@
 	"unique_mechanic_enigma"            			"When this hero dies,<br> <font color=\"#25EC28\">Black Hole's</font> cooldown will be refreshed."
 	"unique_mechanic_tidehunter"            		"When this hero dies,<br> <font color=\"#25EC28\">Ravage's</font> cooldown will be refreshed."
 	"unique_mechanic_furion"            			"<font color=\"#25EC28\">Teleportation's</font><br> cooldown is reduce by 50% for this hero."
+	"unique_mechanic_lina"            				"Increases Lina's<br> intelligence by 3 for each level put in<br> fire-type spells."
 	
 
     /////////////////
