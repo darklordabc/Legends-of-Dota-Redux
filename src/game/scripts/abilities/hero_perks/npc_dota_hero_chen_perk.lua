@@ -53,12 +53,17 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
     end
 
     if ability:GetAbilityName() == "chen_holy_persuasion" then
-      local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
+      --[[local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
       local randomAbilityTemp = hero.randomPassiveAbilityTable[randomAbilityNumber]                    
       target:AddAbility(randomAbilityTemp)                    
       target:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)                    
-      target.extraAbility = randomAbilityTemp
+      target.extraAbility = randomAbilityTemp]]
     elseif ability:GetAbilityName() == "chen_test_of_faith_teleport" and target:IsCreep() then
+      if not  target.extraAbility then
+        local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
+        local randomAbilityTemp = hero.randomPassiveAbilityTable[randomAbilityNumber]                                 
+        target.extraAbility = randomAbilityTemp
+      end
       if target:FindAbilityByName(target.extraAbility):GetLevel() < 4 then
         target:FindAbilityByName(target.extraAbility):UpgradeAbility(true)
       else
