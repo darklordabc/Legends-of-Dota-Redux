@@ -59,19 +59,19 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
       target:FindAbilityByName(randomAbilityTemp):UpgradeAbility(true)                    
       target.extraAbility = randomAbilityTemp]]
     elseif ability:GetAbilityName() == "chen_test_of_faith_teleport" and target:IsCreep() then
-      if not  target.extraAbility then
-        local randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
-        local randomAbilityTemp = hero.randomPassiveAbilityTable[randomAbilityNumber]                                 
-        target.extraAbility = randomAbilityTemp
+      if not target.extraAbility then
+        hero.randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
+        hero.randomAbilityTemp = hero.randomPassiveAbilityTable[hero.randomAbilityNumber]                                 
+        target.extraAbility = hero.randomAbilityTemp
       end
-      if target:FindAbilityByName(target.extraAbility):GetLevel() < 4 then
+      if target:FindAbilityByName(target.extraAbility) and target:FindAbilityByName(target.extraAbility):GetLevel() < 4 then
         target:FindAbilityByName(target.extraAbility):UpgradeAbility(true)
       else
         if target:GetAbilityCount() < 6 then
           hero.randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
           hero.randomAbilityTemp = hero.randomPassiveAbilityTable[hero.randomAbilityNumber]
           while target:HasAbility(hero.randomAbilityTemp) do
-            print(hero.randomAbilityNumber..hero.randomAbilityTemp)
+            --print(hero.randomAbilityNumber..hero.randomAbilityTemp)
             hero.randomAbilityNumber = RandomInt(1,#hero.randomPassiveAbilityTable)
             hero.randomAbilityTemp = hero.randomPassiveAbilityTable[hero.randomAbilityNumber]
           end
