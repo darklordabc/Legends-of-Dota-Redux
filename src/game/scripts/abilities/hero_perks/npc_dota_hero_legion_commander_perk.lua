@@ -38,6 +38,13 @@ function modifier_npc_dota_hero_legion_commander_perk:OnAbilityStart(keys)
 
     if ability:GetName() == "legion_commander_duel" then
       hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})
+      Timers:CreateTimer(function ()
+        if not hero:HasModifier("modifier_legion_commander_duel") and hero:HasModifier("modifier_black_king_bar_immune") then
+      	  hero:RemoveModifierByName("modifier_black_king_bar_immune")
+      	else
+      	  return 0.5
+      	end
+      end, 'check_if_duel_is_going_on', 0.5)
     end
   end
 end
