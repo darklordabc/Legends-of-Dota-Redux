@@ -10731,6 +10731,13 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
+    "npc_dota_hero_winter_wyvern_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
     "npc_dota_hero_wisp_perk"
     {
         "BaseClass"             "ability_lua"
