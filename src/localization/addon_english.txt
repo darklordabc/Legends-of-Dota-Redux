@@ -658,8 +658,8 @@
 	"unique_mechanic_furion"            			"Reduces the cooldown<br> of all <font color=\"#25EC28\">Teleportation</font> abilities by 50%."
 	"unique_mechanic_lina"            				"Increases Lina's<br> intelligence by 3 for each level put in<br> <font color=\"#25EC28\">Fire</font> abilities."
 	"unique_mechanic_shredder"            				"Timbersaw gains health, <br> mana, and experience points whenever a<br> nearby tree is cut down. "
-	"unique_mechanic_morphling"                                      "Increases Morphling's<br> movement speed by 50% in water." 
-	
+	"unique_mechanic_morphling"                              "Increases Morphling's<br> movement speed by 50% in water." 
+	"unique_mechanic_ursa" 					 "Increases all damage done to neutrals by 15%."
 
     /////////////////
     // Skill Warnings
