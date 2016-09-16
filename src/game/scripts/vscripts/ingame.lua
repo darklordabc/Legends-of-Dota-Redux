@@ -61,7 +61,8 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self) 
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -709,6 +710,27 @@ function Ingame:addStrongTowers()
         end
     end, nil)
 end
+
+function Ingame:FilterProjectiles(projectile)
+    --DeepPrintTable(projectile)
+    local targetIndex = projectile["entindex_target_const"]
+    local target = EntIndexToHScript(targetIndex)
+    local targetname = target:GetUnitName()
+    local casterIndex = projectile["entindex_source_const"]
+    local caster = EntIndexToHScript(casterIndex)
+    local castername = caster:GetUnitName()
+    local abilityIndex = projectile["entindex_ability_const"]
+    local ability = EntIndexToHScript(abilityIndex)
+    if ability then
+      local abilityname = ability:GetAbilityName()
+
+      local puckPerk = require('scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua')
+      PerkPuckReflectSpell(caster,target,ability)
+
+    end
+    return true    
+  end
+
 
 -- Return an instance of it
 return Ingame()
