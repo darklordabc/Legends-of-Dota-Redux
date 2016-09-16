@@ -32,7 +32,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ursa_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
 	local target = keys.target
-	if target and target:IsNeutralUnitType() then
+	if target and target:GetTeam() == DOTA_TEAM_NEUTRALS then
 		return 15
 	else 
 		return 0
