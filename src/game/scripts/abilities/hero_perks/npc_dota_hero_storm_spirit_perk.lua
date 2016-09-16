@@ -27,7 +27,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()
 end
 
 function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
-  local manaGiven = (1/25)
+  local divideDistanceBy = 25
   local maxRange = 3000
 
   if IsServer() then
@@ -41,7 +41,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
     else
       self.distanceMoved =  (self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D()
     end
-    self:GetCaster():GiveMana(self.distanceMoved/manaGiven)
+    self:GetCaster():GiveMana(self.distanceMoved/divideDistanceBy)
     for t, pos in pairs(self:GetCaster().position) do
       if (currTime-t) > 1 then
         self:GetCaster().position[t] = nil
