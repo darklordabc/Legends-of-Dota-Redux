@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_puck_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_puck_perk:IsHidden()
-  return false
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
