@@ -19,7 +19,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/tiny_grow_lod.lua"
+                "ScriptFile"            "abilities/tiny_grow_lod.lua"
                 "Function"              "onTinyGrowUpgrade"
             }
         }
@@ -28,7 +28,7 @@
         {
             "RunScript"    
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/tiny_grow_lod.lua"
+                "ScriptFile"            "abilities/tiny_grow_lod.lua"
                 "Function"              "onTinyGrowUpgrade"
             }
         }
@@ -236,7 +236,7 @@
                 {
                     "RunScript"
                     {                             
-                        "ScriptFile"        "scripts/vscripts/../abilities/bloodseeker_thirst.lua"
+                        "ScriptFile"        "abilities/bloodseeker_thirst.lua"
                         "Function"          "AddThirst"
                        }
                 }
@@ -245,7 +245,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/bloodseeker_thirst.lua"
+                        "ScriptFile"        "abilities/bloodseeker_thirst.lua"
                         "Function"          "RemoveThirst"
                     }
                 }
@@ -1646,7 +1646,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/mirana_starfall_lod.lua"
+                        "ScriptFile"    "abilities/mirana_starfall_lod.lua"
                         "Function"      "ScepterStarfallCheck"
                     }
                 }
@@ -2543,7 +2543,7 @@
                         {
                             "RunScript"
                             {
-                                "ScriptFile"    "scripts/vscripts/../abilities/obsidian_destroyer_essence_aura_lod.lua"
+                                "ScriptFile"    "abilities/obsidian_destroyer_essence_aura_lod.lua"
                                 "Function"      "RestoreMana"
                                 "Target"        "UNIT"
                             }
@@ -2617,7 +2617,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/earthshaker_aftershock_lod.lua"
+                        "ScriptFile"    "abilities/earthshaker_aftershock_lod.lua"
                         "Function"      "TryAftershock"
                         "Target"        "UNIT"
                     }
@@ -2672,7 +2672,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2716,7 +2716,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_buff_on_destroy"
                     }
                 }
@@ -2732,7 +2732,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy"
                     }
                 }
@@ -2790,7 +2790,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2838,7 +2838,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_buff_on_destroy"
                     }
                 }
@@ -2854,7 +2854,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_debuff_on_destroy"
                     }
                 }
@@ -2912,7 +2912,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2960,7 +2960,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_buff_on_destroy"
                     }
                 }
@@ -2976,7 +2976,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_debuff_on_destroy"
                     }
                 }
@@ -3047,7 +3047,7 @@
         
             "RunScript"
             {
-                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "ScriptFile"        "abilities/tinker_rearm_lod.lua"
                 "Function"            "rearm_start"
             }
         }
@@ -3077,7 +3077,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "ScriptFile"        "abilities/tinker_rearm_lod.lua"
                 "Function"            "rearm_refresh_cooldown"
             }
         }
@@ -3154,7 +3154,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                "flesh_heap_agi"
-        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_agi.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -3187,7 +3187,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                    "flesh_heap_int"
-        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_int.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -3321,7 +3321,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
+                "ScriptFile"    "abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
@@ -3329,7 +3329,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
+                "ScriptFile"    "abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
@@ -3342,7 +3342,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityTextureName"            "octarine_vampirism_lod"
-        "ScriptFile"                    "scripts/vscripts/../abilities/octarine_vampirism_lod.lua"
+        "ScriptFile"                    "abilities/octarine_vampirism_lod.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3410,7 +3410,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/force_dash_lod.lua"
+                "ScriptFile"    "abilities/force_dash_lod.lua"
                 "Function"        "ForceDash"
                 "modifier"        "modifier_force_dash"
             }
@@ -3438,7 +3438,7 @@
                             "Center"    "TARGET"
                             "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
                         }
-                        "ScriptFile"    "scripts/vscripts/../abilities/force_dash_lod.lua"
+                        "ScriptFile"    "abilities/force_dash_lod.lua"
                         "HorizontalControlFunction" "ForceMotion"
                     }
                     "DestroyTrees"
@@ -3681,7 +3681,7 @@
 
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/riki_backstab_lod.lua"
+                        "ScriptFile"        "abilities/riki_backstab_lod.lua"
                         "Function"          "CheckBackstab"
                         "particle"          "particles/units/heroes/hero_riki/riki_backstab.vpcf"
                         "sound"             "Hero_Riki.Backstab"
@@ -3750,7 +3750,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua"
+                        "ScriptFile"            "abilities/ursa_fury_swipes_lod.lua"
                         "Function"              "fury_swipes_check_stacks"
                     }
                 }
@@ -3758,7 +3758,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua"
+                        "ScriptFile"            "abilities/ursa_fury_swipes_lod.lua"
                         "Function"              "fury_swipes_attack"
                     }
                 }
@@ -3973,7 +3973,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"        "SleepAuraCheck"
                     }
                 }
@@ -3981,7 +3981,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"    "SleepDamageRemove"
                     }
                 }
@@ -3989,7 +3989,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"        "SleepDamageCheck"
                         "DamageTaken"    "%attack_damage"
                     }
@@ -4059,7 +4059,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisCreate"
                     }
                 }
@@ -4069,7 +4069,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisCheck"
                     }
                 }
@@ -4105,7 +4105,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisDay"
                     }
                     "FireEffect"
@@ -4135,7 +4135,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisNight"
                     }
                     "FireEffect"
@@ -4241,7 +4241,7 @@
                     "Center"    "CASTER"
                     "ScriptSelectPoints"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_explosive_spore.lua"
+                        "ScriptFile"    "abilities/cherub_explosive_spore.lua"
                         "Function"    "GetSummonPoints"
                         "Target"    "CASTER"
                         "Count"        "1"
@@ -4263,7 +4263,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_explosive_spore.lua"
+                        "ScriptFile"    "abilities/cherub_explosive_spore.lua"
                         "Function"    "SetForwardVector"
                     }
     
@@ -4533,7 +4533,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "SetAbilityLevel"
                     }
                 }
@@ -4565,7 +4565,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -4606,7 +4606,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4619,7 +4619,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyWhite"
                     }
                 }
@@ -4637,7 +4637,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4651,7 +4651,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyRed"
                     }
                 }
@@ -4669,7 +4669,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4683,7 +4683,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "HealUnits"
                         "projectile"     "particles/cherub_pink_flower_heal_projectile.vpcf"
                     }
@@ -4692,7 +4692,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPink"
                     }
                 }
@@ -4710,7 +4710,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4724,7 +4724,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "BlueFlowerRestoreMana"
                         "ReplenishRadius"        "700"
                         "ReplenishAmount"        "%blue_flower_restore"
@@ -4735,7 +4735,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyBlue"
                     }
                 }
@@ -4757,7 +4757,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4770,7 +4770,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyYellow"
                     }
                 }
@@ -4806,7 +4806,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4819,7 +4819,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPurple"
                     }
                 }
@@ -4915,7 +4915,7 @@
 
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "ScriptFile"    "abilities/garden_teleport.lua"
                 "Function"      "CreateTeleportParticles"
                 "Target"        "POINT"
             }
@@ -4930,7 +4930,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "ScriptFile"    "abilities/garden_teleport.lua"
                 "Function"      "Teleport"
                 "Target"        "POINT"
             }
@@ -4965,7 +4965,7 @@
 
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                        "ScriptFile"    "abilities/garden_teleport.lua"
                         "Function"      "EndTeleport"
                     }
 
@@ -4987,7 +4987,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "DestroyGarden"
             }
         }
@@ -5004,7 +5004,7 @@
                 {
                      "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "DamageCooldown"
                     }
                 }
@@ -5071,7 +5071,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantWhiteBase"
                 "Target"        "POINT"
             }
@@ -5087,7 +5087,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5104,7 +5104,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5117,7 +5117,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyWhite"
                     }
                 }
@@ -5183,7 +5183,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantRedBase"
                 "Target"        "POINT"
             }
@@ -5199,7 +5199,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5217,7 +5217,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5231,7 +5231,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyRed"
                     }
                 }
@@ -5302,7 +5302,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantPinkBase"
                 "Target"        "POINT"
             }
@@ -5330,7 +5330,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5348,7 +5348,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5362,7 +5362,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "HealUnits"
                         "projectile"     "particles/cherub_pink_flower_heal_projectile.vpcf"
                     }
@@ -5371,7 +5371,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPink"
                     }
                 }
@@ -5437,7 +5437,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantBlueBase"
                 "Target"        "POINT"
             }
@@ -5453,7 +5453,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "GardenCheck"
                     }
                 }
@@ -5471,7 +5471,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5485,7 +5485,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "BlueFlowerRestoreMana"
                         "ReplenishRadius"        "700"
                         "ReplenishAmount"        "%restore_amount"
@@ -5496,7 +5496,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyBlue"
                     }
                 }
@@ -5562,7 +5562,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantYellowBase"
                 "Target"        "POINT"
             }
@@ -5578,7 +5578,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5600,7 +5600,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5613,7 +5613,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyYellow"
                     }
                 }
@@ -5691,7 +5691,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantPurpleBase"
                 "Target"        "POINT"
             }
@@ -5707,7 +5707,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5730,7 +5730,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5743,7 +5743,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPurple"
                     }
                 }
@@ -5785,7 +5785,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantBlue"
             }
         }
@@ -5819,7 +5819,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantPink"
             }
         }
@@ -5848,7 +5848,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantPurple"
             }
         }
@@ -5877,7 +5877,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantRed"
             }
         }
@@ -5906,7 +5906,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantWhite"
             }
         }
@@ -5935,7 +5935,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantYellow"
             }
         }
@@ -6146,7 +6146,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_cyclone_trap.lua"
+                        "ScriptFile"    "abilities/zulf_cyclone_trap.lua"
                         "Function"      "CycloneCheck"
                         "radius"        "%radius"
                     }
@@ -6314,7 +6314,7 @@
                         {
                             "RunScript"
                             {
-                                "ScriptFile"    "scripts/vscripts/../abilities/zulf_gale_force.lua"
+                                "ScriptFile"    "abilities/zulf_gale_force.lua"
                                 "Function"      "ApplyDamageAgility"
                             }
                         }
@@ -6418,7 +6418,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "ScriptFile"    "abilities/zulf_jet_stream.lua"
                 "Function"      "JetStreamGetLocation"
                 "Target"        "POINT"
             }
@@ -6442,7 +6442,7 @@
     
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "ScriptFile"    "abilities/zulf_jet_stream.lua"
                 "Function"  "JetStreamEffect"
             }
         }
@@ -6457,7 +6457,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamProjectile"
                         "wave_particle" "particles/zulf_jet_stream.vpcf"
                     }
@@ -6483,7 +6483,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamBuff"
                     }
                 }
@@ -6523,7 +6523,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamDebuff"
                     }
                 }   
@@ -6550,7 +6550,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamCheck"
                     }
                 }
@@ -6569,7 +6569,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamCheck"
                     }
                 }
@@ -6739,7 +6739,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_typhoon.lua"
+                        "ScriptFile"    "abilities/zulf_typhoon.lua"
                         "Function"      "TyphoonSpinStart"
                     }
                 }
@@ -6808,7 +6808,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6816,7 +6816,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6830,7 +6830,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6840,7 +6840,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6868,7 +6868,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6876,7 +6876,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6890,7 +6890,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6900,7 +6900,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6928,7 +6928,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6936,7 +6936,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6950,7 +6950,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6960,7 +6960,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6988,7 +6988,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6996,7 +6996,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7010,7 +7010,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7020,7 +7020,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7048,7 +7048,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -7056,7 +7056,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7070,7 +7070,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7080,7 +7080,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7108,7 +7108,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -7116,7 +7116,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7130,7 +7130,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7140,7 +7140,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7312,7 +7312,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"            "DegenAura"
 
                         "modifier_stacks"    "modifier_imba_degen_aura_stacks"
@@ -7420,7 +7420,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "DisplayManager"
 
                         "modifier_display"  "modifier_omniguard_display"
@@ -7431,7 +7431,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "DisplayManager"
 
                         "modifier_display"  "modifier_omniguard_display"
@@ -7441,7 +7441,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "PurificationDeath"
 
                         "cast_sound"        "Hero_Omniknight.Purification"
@@ -7518,7 +7518,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                "ScriptFile"                    "abilities/hero_dazzle.lua"
                 "Function"                        "ShallowGraveDamageTrigger"
                 "modifier_passive"                "modifier_imba_shallow_grave_passive"
                 "modifier_grave"                "modifier_imba_shallow_grave"
@@ -7539,7 +7539,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGravePassive"
                         "Target"                        "CASTER"
 
@@ -7587,7 +7587,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGraveDamageStorage"
                         "DamageTaken"                    "%attack_damage"
                     }
@@ -7609,7 +7609,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGraveDamageCheck"
                         "modifier_grave"                "modifier_imba_shallow_grave"
                     }
@@ -7695,7 +7695,7 @@
 
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "LaserHit"
 
                 "modifier_blind"                "modifier_imba_tower_laser_blind"
@@ -7717,7 +7717,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Laser"
 
                         "projectile_laser"      "particles/units/heroes/hero_tinker/tinker_base_attack.vpcf"
@@ -7782,7 +7782,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Multishot"
                     }
                 }
@@ -7845,7 +7845,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "HexAura"
 
                         "modifier_slow"         "modifier_imba_tower_hex_aura_slow"
@@ -7906,7 +7906,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "ManaBurn"
 
                         "particle_burn"         "particles/generic_gameplay/generic_manaburn.vpcf"
@@ -7962,7 +7962,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "ManaFlare"
 
                         "particle_burn"         "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
@@ -8015,7 +8015,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"    "abilities/tower_abilities.lua"
                         "Function"      "Permabash"
 
                         "sound_bash"    "Hero_FacelessVoid.TimeLockImpact"
@@ -8094,7 +8094,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Chronotower"
 
                         "sound_stun"            "Hero_FacelessVoid.Chronosphere"
@@ -8164,7 +8164,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "GrievousWounds"
 
                         "modifier_debuff"       "modifier_imba_tower_grievous_wounds_debuff"
@@ -8289,7 +8289,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "EssenceDrain"
 
                         "modifier_str"          "modifier_imba_tower_essence_drain_str_stacks"
@@ -8410,7 +8410,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Fervor"
 
                         "modifier_fervor"       "modifier_imba_tower_fervor_buff"
@@ -8483,7 +8483,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Berserk"
 
                         "modifier_berserk"      "modifier_imba_tower_berserk_buff"
@@ -8612,7 +8612,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Multihit"
                     }
                 }
@@ -8758,7 +8758,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "PlagueParticle"
 
                         "particle_plague"       "particles/units/heroes/hero_pudge/pudge_rot_radius.vpcf"
@@ -8839,7 +8839,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "AegisUpdate"
             }
         }
@@ -8931,7 +8931,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "SelfRepairParticle"
 
                         "particle_regen"        "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
@@ -9126,7 +9126,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Spacecow"
 
                         "sound_creep"           "Hero_Spirit_Breaker.GreaterBash.Creep"
@@ -9177,7 +9177,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Reality"
 
                         "sound_reality"         "DOTA_Item.DiffusalBlade.Activate"
@@ -9242,7 +9242,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Force"
 
                         "sound_force"           "DOTA_Item.ForceStaff.Activate"
@@ -9307,7 +9307,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Nature"
 
                         "sound_root"            "Hero_Treant.Overgrowth.Cast"
@@ -9393,7 +9393,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Mindblast"
 
                         "sound_silence"         "DOTA_Item.Orchid.Activate"
@@ -9594,7 +9594,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Forest"
 
                         "sound_tree"            "Tree.GrowBack"
@@ -9645,7 +9645,7 @@
             
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "SplitHit"
             }
         }
@@ -9661,7 +9661,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Split"
                     }
                 }
@@ -9715,7 +9715,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Cannon"
 
                         "particle_explosion"    "particles/ambient/tower_salvo_explosion.vpcf"
@@ -9768,7 +9768,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                "ScriptFile"    "abilities/hero_doom.lua"
                 "Function"      "DevourCheck"
                 "modifier"      "modifier_creep_eaten"
             }
@@ -9795,7 +9795,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                "ScriptFile"    "abilities/hero_doom.lua"
                 "Function"      "EatCreep"
             }
         }
@@ -9809,7 +9809,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                        "ScriptFile"    "abilities/hero_doom.lua"
                         "Function"      "CreepGold"
                     }
                 }
@@ -9827,7 +9827,7 @@
         "BaseClass"                     "ability_lua"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"            "lod_creep_power"
-        "ScriptFile"                    "scripts/vscripts/../abilities/lod_creep_power.lua"
+        "ScriptFile"                    "abilities/lod_creep_power.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9948,7 +9948,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                        "ScriptFile"  "abilities/juggernaut_healing_ward_mana.lua"
                         "Function"    "onHealingWardSpawn"
                     }
                 }
@@ -9989,7 +9989,7 @@
                 {
                     "RunScript"
                     {
-                      "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                      "ScriptFile"  "abilities/juggernaut_healing_ward_mana.lua"
                       "Function"    "healingWardMana"
                     }
                 }  
@@ -10004,308 +10004,308 @@
     "npc_dota_hero_abaddon_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_abaddon_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abaddon_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_abyssal_underlord_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_abyssal_underlord_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abyssal_underlord_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_alchemist_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_alchemist_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_alchemist_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_ancient_apparition_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_antimage_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_antimage_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_antimage_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_arc_warden_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_axe_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_axe_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_axe_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_bane_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_bane_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bane_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_batrider_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_batrider_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_batrider_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_beastmaster_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_beastmaster_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_beastmaster_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_bloodseeker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_bounty_hunter_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_brewmaster_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_brewmaster_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_brewmaster_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_bristleback_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_bristleback_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bristleback_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_broodmother_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_broodmother_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_broodmother_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_centaur_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_centaur_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_centaur_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_chaos_knight_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_chaos_knight_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chaos_knight_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_chen_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_chen_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chen_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_clinkz_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_clinkz_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_clinkz_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_crystal_maiden_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_crystal_maiden_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_crystal_maiden_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_dark_seer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_dark_seer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dark_seer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_dazzle_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_dazzle_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dazzle_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_death_prophet_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_disruptor_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_disruptor_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_disruptor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_doom_bringer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_earth_spirit_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_earth_spirit_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earth_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_earthshaker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_earthshaker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earthshaker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_elder_titan_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_elder_titan_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_elder_titan_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_ember_spirit_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_ember_spirit_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ember_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_enchantress_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_enchantress_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enchantress_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_enigma_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_enigma_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enigma_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_faceless_void_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_faceless_void_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_faceless_void_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_furion_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_furion_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_furion_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_gyrocopter_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_gyrocopter_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_gyrocopter_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_huskar_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_huskar_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_huskar_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_invoker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_invoker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_invoker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_jakiro_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_jakiro_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_jakiro_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_juggernaut_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_juggernaut_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_juggernaut_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_keeper_of_the_light_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_keeper_of_the_light_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_keeper_of_the_light_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_kunkka_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_kunkka_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_kunkka_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_legion_commander_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_legion_commander_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_legion_commander_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_leshrac_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_leshrac_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_leshrac_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_lich_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lich_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lich_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_life_stealer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_life_stealer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_life_stealer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10314,448 +10314,448 @@
     "npc_dota_hero_lina_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lina_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lina_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_lion_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lion_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lion_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_lone_druid_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lion_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lion_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_luna_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_luna_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_luna_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_lycan_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_lycan_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lycan_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_magnataur_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_magnataur_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_magnataur_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_medusa_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_medusa_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_medusa_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_meepo_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_meepo_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_meepo_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_mirana_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_mirana_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_mirana_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_morphling_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_morphling_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_morphling_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_necrolyte_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_nevermore_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_nevermore_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nevermore_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_naga_siren_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_naga_siren_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_naga_siren_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_night_stalker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_night_stalker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_night_stalker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_nyx_assassin_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_nyx_assassin_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nyx_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_omniknight_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_omniknight_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_omniknight_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_obsidian_destroyer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_ogre_magi_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_ogre_magi_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ogre_magi_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_phoenix_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_phoenix_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_puck_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_puck_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_pugna_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_pugna_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pugna_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_pudge_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_pudge_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pudge_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_phantom_assassin_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_phantom_assassin_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_phantom_lancer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_queenofpain_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_queenofpain_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_queenofpain_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_rattletrap_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_rattletrap_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rattletrap_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_razor_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_razor_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_razor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_riki_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_riki_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_riki_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_rubick_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_rubick_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rubick_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_shredder_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_shredder_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shredder_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_silencer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_silencer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_silencer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_slardar_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_slardar_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slardar_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_slark_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_slark_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slark_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_sniper_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_sniper_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sniper_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_spectre_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_spectre_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spectre_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_sven_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_sven_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sven_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_sand_king_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_sand_king_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sand_king_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_shadow_demon_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_shadow_shaman_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_skeleton_king_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_skeleton_king_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skeleton_king_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_skywrath_mage_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_skywrath_mage_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skywrath_mage_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_spirit_breaker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_storm_spirit_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_terrorblade_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_terrorblade_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_terrorblade_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_tidehunter_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_tidehunter_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tidehunter_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_tinker_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_tinker_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tinker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_tiny_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_tiny_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tiny_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_treant_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_treant_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_treant_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_tusk_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_templar_assassin_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_troll_warlord_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_troll_warlord_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_troll_warlord_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_undying_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_undying_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_undying_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_ursa_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_ursa_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ursa_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_vengefulspirit_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_venomancer_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_venomancer_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_venomancer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_viper_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_viper_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_viper_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_visage_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_visage_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_visage_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_warlock_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_warlock_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_warlock_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_weaver_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_weaver_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_weaver_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_windrunner_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_windrunner_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_windrunner_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_winter_wyvern_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_wisp_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_wisp_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_wisp_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_witch_doctor_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_witch_doctor_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_witch_doctor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
     "npc_dota_hero_zuus_perk"
     {
         "BaseClass"             "ability_lua"
-        "ScriptFile"            "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_zuus_perk.lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_zuus_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
