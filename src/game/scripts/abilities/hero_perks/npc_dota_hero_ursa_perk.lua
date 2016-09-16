@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Ursa
---		Perk: Increases all damage done to neutrals by 10%
+--		Perk: Increases all damage done to neutrals by 15%
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_ursa_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_ursa_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -27,15 +27,17 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ursa_perk:DeclareFunctions()
-	return { MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }
+	return { MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE }
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_ursa_perk:GetModifierDamageOutgoing_Percentage(keys)
+function modifier_npc_dota_hero_ursa_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
 	local target = keys.target
 	if target and target:IsNeutralUnitType() then
-		return 10
+		return 15
 	else 
 		return 0
 	end
 end
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
