@@ -4,7 +4,7 @@
 --    Perk: Gives 1 mana everytime the OnUnitMoved event triggers
 --
 --------------------------------------------------------------------------------------------------------
---LinkLuaModifier( "modifier_npc_dota_hero_storm_spirit_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_storm_spirit_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_storm_spirit_perk == nil then npc_dota_hero_storm_spirit_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
