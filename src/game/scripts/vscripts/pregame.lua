@@ -13,8 +13,8 @@ local challenge = require('challenge')
 local ingame = require('ingame')
 
 -- Custom AI script modifiers
-LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 --[[
