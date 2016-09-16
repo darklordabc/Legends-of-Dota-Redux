@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: storm
---    Perk: Gives 1 mana everytime the OnUnitMoved event triggers
+--    Perk: Gives mana based on the difference measured between the old and new position in one second intervals
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_storm_spirit_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,20 +17,36 @@ function modifier_npc_dota_hero_storm_spirit_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_storm_spirit_perk:IsHidden()
-  return false
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_storm_spirit_perk:DeclareFunctions()
-    local funcs = {
-        MODIFIER_EVENT_ON_UNIT_MOVED,
-    }
-    return funcs
+function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()
+  self:StartIntervalThink(1)
 end
 
-function modifier_npc_dota_hero_storm_spirit_perk:OnUnitMoved(keys)
-  if keys.unit == self:GetCaster() then
-    self:GetParent():GiveMana(1/3)
+function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
+  if IsServer() then
+    local currTime = GameRules:GetGameTime()
+    if not self:GetCaster().position then self:GetCaster().position = {} end
+    if not self:GetCaster().position[math.floor(currTime)-1] then self:GetCaster().position[math.floor(currTime)-1] = self:GetCaster():GetAbsOrigin() end
+    self:GetCaster().position[math.floor(currTime)] = self:GetCaster():GetAbsOrigin()
+
+    if (self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D() > 2000 then
+      self.distanceMoved = 0
+    else
+      self.distanceMoved =  (self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D()
+    end
+    self:GetCaster():GiveMana(self.distanceMoved/25)
+    for t, pos in pairs(self:GetCaster().position) do
+      if (currTime-t) > 1 then
+        self:GetCaster().position[t] = nil
+      else
+        break
+      end
+    end
   end
 end
+
+
