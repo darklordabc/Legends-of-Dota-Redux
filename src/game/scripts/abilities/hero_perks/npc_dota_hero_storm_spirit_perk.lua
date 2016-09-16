@@ -27,7 +27,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()
 end
 
 function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
-  local manaGiven = (1/100)
+  local manaGiven = (1/10)
   local maxRange = 400
   local startPenalty = 50
 
