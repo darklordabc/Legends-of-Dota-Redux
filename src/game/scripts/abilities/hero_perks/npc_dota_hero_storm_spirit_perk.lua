@@ -23,12 +23,13 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()
-  self:StartIntervalThink(1)
+  self:StartIntervalThink(0.1)
 end
 
 function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
-  local divideDistanceBy = 25
-  local maxRange = 3000
+  local manaGiven = (1/100)
+  local maxRange = 400
+  local startPenalty = 50
 
   if IsServer() then
     local currTime = GameRules:GetGameTime()
@@ -39,9 +40,12 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
     if (self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D() > maxRange then
       self.distanceMoved = 0
     else
-      self.distanceMoved =  (self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D()
+      self.distanceMoved =  ((self:GetCaster().position[math.floor(currTime)] - self:GetCaster().position[math.floor(currTime)-1]):Length2D() -startPenalty)
     end
-    self:GetCaster():GiveMana(self.distanceMoved/divideDistanceBy)
+    if self.distanceMoved < 0 then
+      self.distanceMoved = 0
+    end
+    self:GetCaster():GiveMana(self.distanceMoved/manaGiven)
     for t, pos in pairs(self:GetCaster().position) do
       if (currTime-t) > 1 then
         self:GetCaster().position[t] = nil
