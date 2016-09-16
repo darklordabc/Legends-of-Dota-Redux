@@ -16,6 +16,10 @@ function modifier_npc_dota_hero_shredder_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shredder_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shredder_perk:IsHidden()
 	return true
 end
