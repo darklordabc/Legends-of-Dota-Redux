@@ -19,7 +19,6 @@ function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
     -- Precache sounds
     for soundPath,_ in pairs(soundList["precache_sounds"]) do
-        print(soundPath)
         PrecacheResource("soundfile", soundPath, context)
     end
 end

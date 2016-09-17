@@ -3199,7 +3199,6 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
     if self.soundList[build_id] then
         local sounds = util:swapTable(self.soundList[build_id])
         local sound = util:RandomChoice(sounds)
-        print(sound)
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
         
