@@ -4860,15 +4860,17 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Find custom abilities to add AI modifiers
-                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
-                        if botAIModifier[abilityName] then
-                            abModifierName = "modifier_" .. abilityName .. "_ai"
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                Timers:CreateTimer(function()
+                    if PlayerResource:GetConnectionState(playerID) == 1 then
+                        -- Find custom abilities to add AI modifiers
+                        for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                            if botAIModifier[abilityName] then
+                                abModifierName = "modifier_" .. abilityName .. "_ai"
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                            end
                         end
                     end
-                end
+                end, DoUniqueString('checkBots'), 0.1)
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
