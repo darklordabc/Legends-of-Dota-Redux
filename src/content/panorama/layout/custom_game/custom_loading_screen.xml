@@ -26,9 +26,21 @@
 			<Image src="file://{images}/custom_game/hints/hint_warnings.png" />
 			<Image src="file://{images}/custom_game/hints/hint_balancemode.png" />
 			<Image src="file://{images}/custom_game/hints/hint_scoreboard.png" />
+			<Image src="file://{images}/custom_game/hints/hint_saveload.png" />
 			<Image src="file://{images}/custom_game/hints/commentButton.png" />
 			<Image src="file://{images}/custom_game/hints/hint_removeability.png" />
-			<Image src="file://{images}/custom_game/hints/hint_saveload.png" />
+			<Image src="file://{images}/custom_game/hints/hint_timbersaw.png" />
+			<Image src="file://{images}/custom_game/hints/hint_morphling.png" />
+			<Image src="file://{images}/custom_game/hints/hint_storm_spirit.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ursa.png" />
+			<Image src="file://{images}/custom_game/hints/hint_chen.png" />
+			<Image src="file://{images}/custom_game/hints/hint_furion.png" />
+			<Image src="file://{images}/custom_game/hints/hint_enigma.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lina.png" />
+			<Image src="file://{images}/custom_game/hints/hint_life_stealer.png" />			
+			<Image src="file://{images}/custom_game/hints/hint_tide_hunter.png" />
+			<Image src="file://{images}/custom_game/hints/hint_legion_commander.png" />
+			<Image src="file://{images}/custom_game/hints/hint_blood_seeker.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">
