@@ -149,6 +149,14 @@ function Util:sortTable(input)
     return array
 end
 
+function Util:swapTable(input)
+    local array = {}
+    for k,v in pairs(input) do
+        table.insert(array, k)
+    end
+    return array
+end
+
 
 -- Returns true if a player is premium
 function Util:playerIsPremium(playerID)
