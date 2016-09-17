@@ -672,13 +672,14 @@
 	"unique_mechanic_lina"            				"Lina's<br> intelligence increases by 3 for each level put in<br> <font color=\"#25EC28\">Fire</font> abilities."
 	"unique_mechanic_shredder"            				"Timbersaw gains 2 health, <br> mana, and experience points whenever a<br> nearby tree is cut down."
 	"unique_mechanic_morphling"                              "Morphling gains 50%<br> bonus movement speed in water." 
-	"unique_mechanic_storm_spirit"                              "Storm gains mana based on distance when moving at high speed." 
-	"unique_mechanic_ursa" 					 "Ursa does 15% extra damage to neutrals, including Roshan." 
-	"unique_mechanic_shadow_shaman" 			"Shadow Shaman gets Hex mana costs refunded and gets 20% cooldown reduction on them." 
+	"unique_mechanic_storm_spirit"                              "Storm gains mana based on<br> distance when moving at high speeds." 
+	"unique_mechanic_ursa" 					 "Ursa does 15% extra damage<br> to neutrals, including Roshan." 
+	"unique_mechanic_shadow_shaman" 			"Shadow Shaman refunds the<br> manacost of Hex spells and reduces their cooldowns by 20%." 
 	"unique_mechanic_storm_spirit" 				 "TBA" 
 	"unique_mechanic_chen" 					 "TBA" 
-	"unique_mechanic_batrider" 				"Increases Batrider's movement speed by 20% while <b>Flying</b>."
-	"unique_mechanic_riki"					"Increases Riki's health regeneration by 4 while invisible."
+	"unique_mechanic_batrider" 				"Increases Batrider's movement speed<br> by 20% while <b>Flying</b>."
+	"unique_mechanic_riki"					"Increases Riki's health regeneration<br> by 4 while invisible."
+	"unique_mechanic_brewmaster"				"Brewmaster gains +100% regen benefits<br> from Salve, Bottle and Clarity."
 
     /////////////////
     // Skill Warnings
