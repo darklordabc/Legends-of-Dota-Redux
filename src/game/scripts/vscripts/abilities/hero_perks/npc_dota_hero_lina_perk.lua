@@ -8,7 +8,7 @@ LinkLuaModifier( "modifier_npc_dota_hero_lina_perk", "abilities/hero_perks/npc_d
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_lina_perk == nil then npc_dota_hero_lina_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_lina_perk
+--		Modifier: modifier_lina_perk				
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_lina_perk == nil then modifier_npc_dota_hero_lina_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
