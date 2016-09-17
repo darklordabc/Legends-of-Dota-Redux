@@ -725,10 +725,8 @@ function Ingame:FilterProjectiles(projectile)
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
     if ability then
-        print(ability:GetName())
         local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
         if targetPerk and targetPerks[targetPerk:GetName()] then
-            print(targetPerk:GetName())
             target.perkTarget = caster
             target.perkAbility = ability
         end
