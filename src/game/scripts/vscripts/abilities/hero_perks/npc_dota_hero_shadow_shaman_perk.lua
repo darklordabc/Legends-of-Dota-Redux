@@ -4,7 +4,7 @@
 --    Perk: All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%
 --
 --------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_shadow_shaman_perk", "abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_shadow_shaman_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_shadow_shaman_perk == nil then npc_dota_hero_shadow_shaman_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
