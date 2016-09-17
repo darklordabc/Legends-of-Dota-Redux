@@ -4,7 +4,7 @@
 --		Perk: When this hero casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%.
 --
 --------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_bloodseeker_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_bloodseeker_perk", "abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_bloodseeker_perk == nil then npc_dota_hero_bloodseeker_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
