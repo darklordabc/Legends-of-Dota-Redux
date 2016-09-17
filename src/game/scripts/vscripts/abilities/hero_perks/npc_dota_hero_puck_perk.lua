@@ -34,8 +34,8 @@ function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
   if IsServer() then
     if keys.ranged_attack == false then
       local random = RandomInt(1,2) 
-      if random == 1 then
-        local hCaster = self:GetParent()
+      local hCaster = self:GetParent()
+      if random == 1 and hCaster.perkAbility then
         if hCaster:HasAbility(hCaster.perkAbility:GetAbilityName()) then
           hCaster:RemoveAbility(hCaster.perkAbility:GetAbilityName())
         end
@@ -51,13 +51,3 @@ function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
     end
   end
 end 
---------------------------------------------------------------------------------------------------------
--- This function gets called in the TrackingProjectileFilter, to be found in the ingame.lua file
---------------------------------------------------------------------------------------------------------
-
-function PerkPuckReflectSpell(hCaster,hTarget,hAbility) -- hCaster = the caster of the spell, not the dodging unit that is hTarget
-  if hTarget:HasModifier("modifier_npc_dota_hero_puck_perk") then
-    hTarget.perkTarget = hCaster
-    hTarget.perkAbility = hAbility
-  end
-end
