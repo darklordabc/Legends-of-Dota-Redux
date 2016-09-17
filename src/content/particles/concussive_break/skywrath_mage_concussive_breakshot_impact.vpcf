@@ -5,7 +5,7 @@
 	m_nMaxParticles = 96
 	m_flConstantRadius = 0.3
 	m_flConstantLifespan = 0.35
-	m_ConstantColor = [ 131, 247, 255, 255 ]
+	m_ConstantColor = [ 171, 52, 255, 255 ]
 	m_Renderers = 
 	[
 		{
@@ -14,6 +14,7 @@
 			m_bAdditive = true
 			m_bDisableZBuffering = true
 			m_hTexture = resource:"materials/particle/particle_flares/aircraft_white.vtex"
+			m_flAddSelfAmount = 1.0
 		},
 	]
 	m_Operators = 
@@ -35,6 +36,7 @@
 			_class = "C_OP_ColorInterpolate"
 			m_flFadeStartTime = 1.0
 			m_flFadeEndTime = 0.0
+			m_ColorFade = [ 255, 0, 4, 255 ]
 		},
 		{
 			_class = "C_OP_PositionLock"
@@ -63,10 +65,10 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_breakshot_impact_d.vpcf"
+			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_impact_d.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_breakshot_impact_sparks.vpcf"
+			m_ChildRef = resource:"particles/concussive_break/skywrath_mage_concussive_breakshot_impact_sparks.vpcf"
 		},
 	]
 }

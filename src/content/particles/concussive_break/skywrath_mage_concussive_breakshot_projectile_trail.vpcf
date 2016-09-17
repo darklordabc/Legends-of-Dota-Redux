@@ -5,7 +5,7 @@
 	m_nMaxParticles = 256
 	m_nInitialParticles = 4
 	m_flConstantLifespan = 0.4
-	m_ConstantColor = [ 170, 199, 212, 100 ]
+	m_ConstantColor = [ 166, 126, 212, 100 ]
 	m_Renderers = 
 	[
 		{

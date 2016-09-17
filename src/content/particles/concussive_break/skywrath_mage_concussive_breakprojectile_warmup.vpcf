@@ -28,7 +28,8 @@
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 255, 0, 0, 255 ]
+			m_ColorFade = [ 97, 246, 255, 255 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_VectorNoise"
@@ -82,8 +83,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 255, 0, 0, 255 ]
-			m_ColorMin = [ 170, 0, 0, 50 ]
+			m_ColorMax = [ 251, 78, 211, 255 ]
+			m_ColorMin = [ 255, 121, 164, 50 ]
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
@@ -123,9 +124,7 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_breakprojectile_warmup_b.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_projectile_warmup_b.vpcf"
 		},
 	]
-	m_ConstantColor = [ 255, 0, 0, 255 ]
 }
