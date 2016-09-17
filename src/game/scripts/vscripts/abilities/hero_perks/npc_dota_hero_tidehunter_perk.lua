@@ -22,4 +22,19 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tidehunter_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_DEATH,
+  }
+  return funcs
+end
+
+function modifier_npc_dota_hero_tidehunter_perk:OnDeath()
+  if IsServer() then
+    local caster = self:GetParent()
+    if caster:HasAbility("tidehunter_ravage") then
+      caster:FindAbilityByName("tidehunter_ravage"):EndCooldown()
+    end
+  end
+end
 
