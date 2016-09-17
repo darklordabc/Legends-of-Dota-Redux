@@ -55,6 +55,8 @@ function Pregame:init()
     -- Stores the total bans for each player
     self.usedBans = {}
 
+    self.soundList = LoadKeyValues('scripts/kv/sounds.kv')
+
     -- Who is ready?
     self.isReady = {}
 
@@ -3168,6 +3170,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
     local hero = args.hero
     local attr = args.attr
     local build = args.build
+    local build_id = args.id
 
     -- Do we need to change our hero?
     if self.selectedHeroes ~= hero then
@@ -3193,6 +3196,13 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
         end
     end
 
+    if self.soundList[build_id] then
+        local sounds = util:swapTable(self.soundList[build_id])
+        local sound = util:RandomChoice(sounds)
+        print(sound)
+        EmitAnnouncerSoundForPlayer(sound, playerID)
+    end
+        
     -- Perform the networking
     network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
 end
