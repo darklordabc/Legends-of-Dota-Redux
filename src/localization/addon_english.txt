@@ -675,8 +675,9 @@
 	"unique_mechanic_storm_spirit"                              "Storm gains mana based on distance when moving at high speed." 
 	"unique_mechanic_ursa" 					 "Ursa does 15% extra damage to neutrals, including Roshan." 
 	"unique_mechanic_shadow_shaman" 			"Shadow Shaman gets Hex mana costs refunded and gets 20% cooldown reduction on them." 
-	"unique_mechanic_storm_spirit" 					 "TBA" 
+	"unique_mechanic_storm_spirit" 				 "TBA" 
 	"unique_mechanic_chen" 					 "TBA" 
+	"Unique_mechanic_batrider" 				"Increases Batrider's movement speed by 20% while <b>Flying</b>."
 
     /////////////////
     // Skill Warnings
