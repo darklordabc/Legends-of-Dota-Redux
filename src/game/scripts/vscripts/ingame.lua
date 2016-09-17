@@ -711,6 +711,10 @@ function Ingame:addStrongTowers()
     end, nil)
 end
 
+targetPerks = {
+    npc_dota_hero_puck_perk = true,
+}
+
 function Ingame:FilterProjectiles(projectile)
     --DeepPrintTable(projectile)
     local targetIndex = projectile["entindex_target_const"]
@@ -721,12 +725,15 @@ function Ingame:FilterProjectiles(projectile)
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
     if ability then
-      local puckPerk = require('abilities/hero_perks/npc_dota_hero_puck_perk')
-      PerkPuckReflectSpell(caster,target,ability)
+        print(ability:GetName())
+        local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
+        if targetPerk and targetPerks[targetPerk:GetName()] then
+            print(targetPerk:GetName())
+            target.perkTarget = caster
+            target.perkAbility = ability
+        end
     end
     return true    
   end
-
-
 -- Return an instance of it
 return Ingame()
