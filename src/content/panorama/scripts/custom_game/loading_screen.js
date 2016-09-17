@@ -90,7 +90,7 @@ function setBackground() {
 
 (function() {
     // The tips we can show
-    var tips = [/*{
+    var tips = [{
         img: 'file://{images}/spellicons/death_prophet_witchcraft.png',
         txt: '#hintWitchCraft'
     }, {
@@ -153,7 +153,7 @@ function setBackground() {
     }, {
         img: 'file://{images}/spellicons/axe_counter_helix.png',
         txt: '#hintJungle'
-    },*/ {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
