@@ -672,7 +672,9 @@
 	"unique_mechanic_lina"            				"Lina's<br> intelligence increases by 3 for each level put in<br> <font color=\"#25EC28\">Fire</font> abilities."
 	"unique_mechanic_shredder"            				"Timbersaw gains 2 health, <br> mana, and experience points whenever a<br> nearby tree is cut down."
 	"unique_mechanic_morphling"                              "Morphling gains 50%<br> bonus movement speed in water." 
+	"unique_mechanic_storm_spirit"                              "Storm gains mana based on distance when moving at high speed." 
 	"unique_mechanic_ursa" 					 "Ursa does 15% extra damage to neutrals, including Roshan." 
+	"unique_mechanic_shadow_shaman" 			"Shadow Shaman gets Hex mana costs refunded and gets 20% cooldown reduction on them." 
 	"unique_mechanic_storm_spirit" 					 "TBA" 
 	"unique_mechanic_chen" 					 "TBA" 
 
