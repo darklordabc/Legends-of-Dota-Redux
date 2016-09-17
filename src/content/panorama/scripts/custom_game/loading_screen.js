@@ -154,8 +154,41 @@ function setBackground() {
         img: 'file://{images}/spellicons/axe_counter_helix.png',
         txt: '#hintJungle'
     }, {
-        img: 'file://{images}/items/tome_of_knowledge.png',
-        txt: '#hintShareEXP'
+        img: 'file://{images}/custom_game/hints/hint_lina.png',
+        txt: '#hintLina'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_life_stealer.png',
+        txt: '#hintLifeStealer'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_tide_hunter.png',
+        txt: '#hintTideHunter'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_enigma.png',
+        txt: '#hintEnigma'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_legion_commander.png',
+        txt: '#hintLegionCommander'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_furion.png',
+        txt: '#hintFurion'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_chen.png',
+        txt: '#hintChen'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_ursa.png',
+        txt: '#hintUrsa'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_storm_spirit.png',
+        txt: '#hintStormSpirit'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_morphling.png',
+        txt: '#hintMorphling'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_timbersaw.png',
+        txt: '#hintTimbersaw'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_blood_seeker.png',
+        txt: '#hintBloodSeeker'
     }];
 
     // How long to wait before we show the next tip
