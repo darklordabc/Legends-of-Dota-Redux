@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------------------------------
 --
---    Hero: storm
---    Perk: Compares position every 0.1 second between the previous position, after the initial 50 units the unit will get its unit moved/10 mana
+--    Hero: Storm Spirit
+--    Perk: Restores mana when Storm Spirit travels at high speeds. 
+--    Function: Compares position every 0.1 second between the previous position, after the initial 50 units the unit will get its unit moved/10 mana
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_storm_spirit_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
