@@ -969,6 +969,7 @@ var recommendedBuilds = [
     {
         title: 'Long Dagger Harassment',
         heroName: 'npc_dota_hero_ogre_magi',
+        id: 'build_dagger_harrasment',
         attr: 'int',
         build: {
             1: 'phantom_assassin_stifling_dagger',
@@ -981,6 +982,7 @@ var recommendedBuilds = [
     },{
         title: 'Hunter in the night',
         heroName: 'npc_dota_hero_night_stalker',
+        id: 'build_hunter_in_the_night',
         attr: 'str',
         build: {
             1: 'magnataur_empower',
@@ -994,6 +996,7 @@ var recommendedBuilds = [
     {
         title: 'Generic Tank',
         heroName: 'npc_dota_hero_centaur',
+        id: 'build_generic_tank',
         attr: 'str',
         build: {
             1: 'tidehunter_kraken_shell',
@@ -1007,6 +1010,7 @@ var recommendedBuilds = [
     {
         title: 'Infest Support',
         heroName: 'npc_dota_hero_night_stalker',
+        id: 'build_infest_support',
         attr: 'str',
         build: {
             1: 'pudge_rot',
@@ -1020,6 +1024,7 @@ var recommendedBuilds = [
     {
         title: 'Global Caster',
         heroName: 'npc_dota_hero_pugna',
+        id: 'build_global_caster',
         attr: 'int',
         build: {
             1: 'treant_living_armor',
@@ -1033,6 +1038,7 @@ var recommendedBuilds = [
     {
         title: 'Magic Be Dashed!',
         heroName: 'npc_dota_hero_mirana',
+        id: 'build_magic_be_dashed',
         attr: 'agi',
         build: {
             1: 'medusa_split_shot',
@@ -1046,6 +1052,7 @@ var recommendedBuilds = [
     {
         title: 'All your attributes are belong to me',
         heroName: 'npc_dota_hero_windrunner',
+        id: 'build_attributes',
         attr: 'int',
         build: {
             1: 'obsidian_destroyer_arcane_orb',
@@ -1059,6 +1066,7 @@ var recommendedBuilds = [
     {
         title: 'Rapture',
         heroName: 'npc_dota_hero_pugna',
+        id: 'build_rapture',
         attr: 'int',
         build: {
             1: 'pudge_meat_hook',
@@ -1072,6 +1080,7 @@ var recommendedBuilds = [
     {
         title: 'Global Stunner',
         heroName: 'npc_dota_hero_pugna',
+        id: 'build_stunner',
         attr: 'int',
         build: {
             1: 'sven_storm_bolt',
@@ -1085,6 +1094,7 @@ var recommendedBuilds = [
     {
         title: 'Bring the team fight',
         heroName: 'npc_dota_hero_silencer',
+        id: 'build_team_fight',
         attr: 'int',
         build: {
             1: 'enigma_midnight_pulse',
@@ -1098,6 +1108,7 @@ var recommendedBuilds = [
     {
         title: 'The Duelist',
         heroName: 'npc_dota_hero_juggernaut',
+        id: 'build_duelist',
         attr: 'agi',
         build: {
             1: 'viper_nethertoxin',
@@ -1111,6 +1122,7 @@ var recommendedBuilds = [
     {
         title: 'The Anti-Tank',
         heroName: 'npc_dota_hero_mirana',
+        id: 'build_anti_tank',
         attr: 'agi',
         build: {
             1: 'force_dash_lod',
@@ -1124,6 +1136,7 @@ var recommendedBuilds = [
     {
         title: 'Glass Cannon',
         heroName: 'npc_dota_hero_sniper',
+        id: 'build_cannon',
         attr: 'agi',
         build: {
             1: 'chaos_knight_chaos_strike',
@@ -1137,6 +1150,7 @@ var recommendedBuilds = [
     {
         title: 'No ulty, can\'t war',
         heroName: 'npc_dota_hero_windrunner',
+        id: 'build_no_ulty',
         attr: 'int',
         build: {
             1: 'sandking_burrowstrike',
@@ -1176,6 +1190,7 @@ var recommendedBuilds = [
     {
         title: 'MEDIC!',
         heroName: 'npc_dota_hero_wisp',
+        id: 'build_medic',
         attr: 'str',
         build: {
             1: 'wisp_tether',
@@ -2771,7 +2786,8 @@ function OnMainSelectionTabShown() {
                 build.heroName,
                 build.build,
                 build.attr,
-                build.title
+                build.title,
+                build.id
             );
         }
     }
@@ -2780,10 +2796,10 @@ function OnMainSelectionTabShown() {
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
 var recommenedBuildContainerList = [];
-function addRecommendedBuild(con, hero, build, attr, title) {
+function addRecommendedBuild(con, hero, build, attr, title, id) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
-    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
 
     // Store the container
@@ -4335,7 +4351,7 @@ function onLockOptionsPressed() {
     if(!Game.GetTeamSelectionLocked()) return;
 
     // Lock options
-    var showTab = 'pickingPhase' + ((balanceMode)? 'Skill': 'Main') + 'Tab';
+    var showTab = 'pickingPhaseMainTab';
     showBuilderTab(showTab);
     
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
@@ -5239,7 +5255,7 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
-                    var showTab = 'pickingPhase' + ((balanceMode)? 'Skill': 'Main') + 'Tab';
+                    var showTab = 'pickingPhaseMainTab';
                     showBuilderTab(showTab);
                     
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
