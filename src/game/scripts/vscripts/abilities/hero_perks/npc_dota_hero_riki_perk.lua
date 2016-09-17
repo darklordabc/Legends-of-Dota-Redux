@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: riki
---		Perk: 
+--		Hero: Riki
+--		Perk: Increases Riki's health regeneration by 4 while invisible. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_riki_perk", "abilities/hero_perks/npc_dota_hero_riki_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -20,6 +20,21 @@ function modifier_npc_dota_hero_riki_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_riki_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_riki_perk:DeclareFunctions()
+	return { MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT }
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_riki_perk:GetModifierConstantHealthRegen()
+	if self:GetCaster():IsInvisible() then
+ 		return 4
+	else 
+		return 0
+	end
+end
