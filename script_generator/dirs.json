@@ -29,6 +29,7 @@
 
 		{ "link": "../dota/game/scripts/vscripts", "dir": "../src/game/scripts/vscripts/" },
 		{ "link": "../dota/game/scripts/kv", "dir": "../src/game/scripts/kv" },
+		{ "link": "../dota/game/scripts/abilities", "dir": "../src/game/scripts/abilities" },
 		{ "link": "../dota/game/scripts/game_sounds", "dir": "../src/game/scripts/game_sounds" },
 
 		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
