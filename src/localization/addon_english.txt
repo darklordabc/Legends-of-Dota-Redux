@@ -652,7 +652,7 @@
     "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
 	"unique_mechanic_bloodseeker"               	"When Blood Seeker casts<br> <font color=\"#25EC28\">Rupture</font>, 100% of the mana cost will be<br> refunded and cooldown reduced by 20%."
 	"unique_mechanic_life_stealer"               	"When Life Stealer casts<br> <font color=\"#25EC28\">Infest</font>, its cooldown will be reduced<br> to 30 seconds."
-	"unique_mechanic_legion_commander"              "When Legion Commander casts<br> <font color=\"#25EC28\">Duel</font>, it will gain spell immunity<br> for the duration of the duel."
+	"unique_mechanic_legion_commander"              "When Legion Commander casts<br> <font color=\"#25EC28\">Duel</font>, she will gain spell immunity<br> for the duration of the duel."
 	"unique_mechanic_enigma"            			"When Enigma dies,<br> <font color=\"#25EC28\">Black Hole's</font> cooldown will be refreshed."
 	"unique_mechanic_tidehunter"            		"When Tidehunter dies,<br> <font color=\"#25EC28\">Ravage's</font> cooldown will be refreshed."
 	"unique_mechanic_furion"            			"The cooldowns<br> of all <font color=\"#25EC28\">Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
