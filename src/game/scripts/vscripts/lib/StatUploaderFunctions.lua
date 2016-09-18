@@ -33,10 +33,10 @@ function SU:Init()
       ListenToGameEvent('game_rules_state_change', 
         function(keys)
           local state = GameRules:State_Get()
--          if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
--            SU:SendAuthInfo()
--          elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
-             SU:LoadPlayersMessages()
+          if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+            SU:SendAuthInfo()
+          elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+            SU:LoadPlayersMessages()
           end
         end, nil)
     else
@@ -112,11 +112,12 @@ end
 
 function SU:SendPlayerBuild( args, pID )
   local abilities = {}
-
+  print("asdasd")
   for i=1,16 do
     local v = args[i]
     if v then
       abilities[i] = v
+      print(v)
     end
   end
   
