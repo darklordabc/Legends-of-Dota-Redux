@@ -7,7 +7,7 @@ function heroPerksDamageFilter(filterTable)
   local ability = EntIndexToHScript(abilityIndex)
   
   -- Perk for Puck
-  local puckPerk = require('scripts/vscripts/abilities/hero_perks/npc_dota_hero_puck_perk')
+  local puckPerk = require('abilities/hero_perks/npc_dota_hero_puck_perk')
   PerkPuckReflectSpell(caster,target,ability)
   
   local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
@@ -29,11 +29,12 @@ function heroPerksModifierFilter(filterTable)
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
-  
   -- Perk for Dragon Knight
-  local puckDragonKnight = require('scripts/vscripts/abilities/hero_perks/npc_dota_hero_puck_dragon_knight')
+  local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
   PerkDragonKnight(filterTable)
-  
+  -- Perk for Ancient Apparition
+  local perkForAncientApparition = require('abilities/hero_perks/npc_dota_hero_ancient_apparition_perk')
+  perkAncientApparition(filterTable)
   -- Returning the filterTable
   return filterTable
 end
