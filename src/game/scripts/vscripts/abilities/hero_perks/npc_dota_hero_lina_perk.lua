@@ -20,19 +20,8 @@ function modifier_npc_dota_hero_lina_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_lina_perk:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-	}
-end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params)
-	local caster = self:GetCaster()
-
-	local intellect_value = 3
-
-	local bonusIntellect = 0
-	local fireSpells = {
+function modifier_npc_dota_hero_lina_perk:OnCreated()
+	self.fireSpells = {
 		lina_dragon_slave = true,
 		lina_fiery_soul = true,
 		lina_light_strike_array = true,
@@ -69,10 +58,24 @@ function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params
 		warlock_golem_permanent_immolation = true,
 		warlock_golem_permanent_immolation_lod = true
 	}
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lina_perk:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	}
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params)
+	local caster = self:GetCaster()
+
+	local intellect_value = 3
+	local bonusIntellect = 0
 
 	for i = 0, 15 do
 		local ability = caster:GetAbilityByIndex(i)
-		if ability and fireSpells[ability:GetName()] then
+		if ability and self.fireSpells[ability:GetName()] then
 			local level = ability:GetLevel()
 			bonusIntellect = bonusIntellect + (level * intellect_value)	
 		end
