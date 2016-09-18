@@ -5,31 +5,45 @@
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phantom_lancer_perk", "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_phantom_lancer_cooldown", "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_phantom_lancer_perk == nil then npc_dota_hero_phantom_lancer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_phantom_lancer_perk				
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_phantom_lancer_perk == nil then modifier_npc_dota_hero_phantom_lancer_perk = class({}) end
+
+if modifier_npc_dota_hero_phantom_lancer_cooldown == nil then modifier_npc_dota_hero_phantom_lancer_cooldown = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phantom_lancer_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phantom_lancer_perk:IsHidden()
-	return self.freeRush
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
-function modifier_npc_dota_hero_phantom_lancer_perk:OnCreated(params)
+function modifier_npc_dota_hero_phantom_lancer_perk:OnCreated()
 	self:PhantomRushCheck(params)
 end
 
-function modifier_npc_dota_hero_phantom_lancer_perk:PhantomRushCheck(params)
-	local caster = self:GetCaster()
+function modifier_npc_dota_hero_phantom_lancer_perk:OnIntervalThink()
+	if not self.rush:IsCooldownReady() and not self.cd then
+		local cd = self.rush:GetCooldownTimeRemaining()
+		self:GetParent():AddNewModifier(self:GetParent(), self.rush, "modifier_npc_dota_hero_phantom_lancer_cooldown", {duration = cd})
+		self.cd = true
+		print("true?", cd)
+	elseif self.rush:IsCooldownReady() and self.cd then
+		self.cd = false
+	end
+end
 
+function modifier_npc_dota_hero_phantom_lancer_perk:PhantomRushCheck()
+	local caster = self:GetCaster()
 	local rush = caster:FindAbilityByName("phantom_lancer_phantom_edge") or nil
 
 	if rush then
@@ -40,5 +54,7 @@ function modifier_npc_dota_hero_phantom_lancer_perk:PhantomRushCheck(params)
 		rush = caster:AddAbility("phantom_lancer_phantom_edge")
 		rush:SetHidden(true)
 		rush:SetLevel(1)
+		self.rush = rush
+		self:StartIntervalThink(0.1)
 	end
 end
