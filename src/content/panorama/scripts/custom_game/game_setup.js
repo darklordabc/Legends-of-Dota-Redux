@@ -969,6 +969,7 @@ var recommendedBuilds = [
     {
         title: 'Neutral Creep Builder',
         heroName: 'npc_dota_hero_chen',
+	id: 'build_creep_builder',
         attr: 'int',
         build: {
             1: 'chen_holy_persuasion',
