@@ -570,6 +570,14 @@ function Util:RandomChoice(input)
     return input[temp[math.random(#temp)]]
 end
 
+function CDOTABaseAbility:HasAbilityFlag(flag)
+    if GameRules.flags[flag][self:GetName()] then
+        return true
+    else
+        return false
+    end
+end
+
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()
      local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
