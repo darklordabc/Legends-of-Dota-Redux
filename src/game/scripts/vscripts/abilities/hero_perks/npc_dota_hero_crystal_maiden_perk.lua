@@ -22,7 +22,6 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-GameRules.flags = LoadKeyValues('scripts/kv/flags.kv')
 
 function modifier_npc_dota_hero_crystal_maiden_perk:DeclareFunctions()
 	local funcs = {
@@ -42,9 +41,9 @@ end
 function modifier_npc_dota_hero_crystal_maiden_perk:OnIntervalThink()
 	if IsServer() then
 		local maiden = self:GetParent()
-		for k,v in pairs(GameRules.flags["support"]) do
-			if maiden:FindAbilityByName(k) then
-				local skill = maiden:FindAbilityByName(k)
+		for i=0, maiden:GetAbilityCount() do
+			local skill = maiden:GetAbilityByIndex(i)
+			if skill and skill:HasAbilityFlag("support") then
 				if not skill.maidenPerkLvl then skill.maidenPerkLvl = skill:GetLevel() end
 				if skill:GetLevel() > skill.maidenPerkLvl then
 					local increase = (skill:GetLevel() - skill.maidenPerkLvl)
