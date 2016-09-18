@@ -680,6 +680,7 @@
 	"unique_mechanic_batrider" 				"Increases Batrider's movement speed<br> by 20% while <b>Flying</b>."
 	"unique_mechanic_riki"					"Increases Riki's health regeneration<br> by 4 while invisible."
 	"unique_mechanic_brewmaster"				"Brewmaster gains +100% regen benefits<br> from Salve, Bottle and Clarity."
+	"unique_mechanic_nevermore"				"At the start of the game, <br>Shadow Fiend gains a free level of Necromastery, <br>whether he has it or not."
 
     /////////////////
     // Skill Warnings
