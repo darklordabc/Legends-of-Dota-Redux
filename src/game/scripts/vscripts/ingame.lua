@@ -715,25 +715,22 @@ targetPerks_projectile = {
     npc_dota_hero_puck_perk = true,
 }
 
-function Ingame:FilterProjectiles(projectile)
+function Ingame:FilterProjectiles(filterTable)
     --DeepPrintTable(projectile)
-    local targetIndex = projectile["entindex_target_const"]
+    local targetIndex = filterTable["entindex_target_const"]
     local target = EntIndexToHScript(targetIndex)
-    local casterIndex = projectile["entindex_source_const"]
+    local casterIndex = filterTable["entindex_source_const"]
     local caster = EntIndexToHScript(casterIndex)
-    local abilityIndex = projectile["entindex_ability_const"]
+    local abilityIndex = filterTable["entindex_ability_const"]
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
     if ability then
-        local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
-        if targetPerk and targetPerks_projectile[targetPerk:GetName()] then
-            target.perkTarget = caster
-            target.perkAbility = ability
-        end
+    	local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    	filterTable = heroPerksDamageFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true    
   end
--- Return an instance of it
+
 
 targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
@@ -741,34 +738,20 @@ targetPerks_modifier = {
 
 
 function Ingame:FilterModifiers( filterTable )
-	local parent_index = filterTable["entindex_parent_const"]
+    local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
-	local ability_index = filterTable["entindex_ability_const"]
+    local ability_index = filterTable["entindex_ability_const"]
     if not parent_index or not caster_index or not ability_index then
         return true
     end
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
-	local ability = EntIndexToHScript( ability_index )
-	if ability then
-        local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-        if targetPerk and targetPerks_modifier[targetPerk:GetName()] then
-			if targetPerk:GetName() == "npc_dota_hero_dragon_knight_perk" then
-				local dragonblood = caster:FindAbilityByName("dragon_knight_elder_dragon_form")
-				if dragonblood and dragonblood ~= ability then
-					if caster:HasModifier("modifier_dragon_knight_corrosive_breath") then
-						local duration = dragonblood:GetSpecialValueFor("corrosive_breath_duration")
-						parent:AddNewModifier(caster, dragonblood, "modifier_dragon_knight_corrosive_breath_dot", {duration = duration})
-					end
-					if caster:HasModifier("modifier_dragon_knight_frost_breath") then
-						local duration = dragonblood:GetSpecialValueFor("frost_duration")
-						parent:AddNewModifier(caster, dragonblood, "modifier_dragon_knight_frost_breath_slow", {duration = duration})
-					end
-				end
-			end
-        end
-    end
-	return true
+    local ability = EntIndexToHScript( ability_index )
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksModifierFilter(filterTable)
+    
+    return true
 end
 -- Return an instance of it
 return Ingame()
