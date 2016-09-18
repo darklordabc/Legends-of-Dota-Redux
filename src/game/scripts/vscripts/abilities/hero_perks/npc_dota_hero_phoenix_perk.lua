@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: phoenix
+--		Hero: centaur
 --		Perk: 
 --
 --------------------------------------------------------------------------------------------------------
@@ -19,7 +19,25 @@ end
 function modifier_npc_dota_hero_phoenix_perk:IsHidden()
 	return true
 end
+
+function modifier_npc_dota_hero_phoenix_perk:RemoveOnDeath()
+	return false
+end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_phoenix_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+	}
+	return funcs
+end
 
+function modifier_npc_dota_hero_phoenix_perk:OnTakeDamage(params)
+	if params.unit == self:GetParent() then
+		local egg = self:GetParent():FindAbilityByName("phoenix_supernova")
+		if params.damage > self:GetParent():GetHealth() and egg and egg:IsCooldownReady() then
+			self:GetParent():CastAbilityNoTarget(egg, self:GetParent():GetPlayerID())
+		end
+	end
+end
