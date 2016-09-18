@@ -696,6 +696,7 @@
 	"unique_mechanic_doom_bringer"			"Doom applies Break<br>when casting Doom."
 	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting Sacrifice."
 	"unique_mechanic_spectre"			"Spectre gains phased<br>movement when casting abilities."
+	"unique_mechanic_spectre"			"Phantom Lancer gets<br>Lv.1 Phantom Rush for free, whether he has<br>the ability or not."
 	
     /////////////////
     // Skill Warnings
@@ -1916,4 +1917,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Spectre Perk Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"You have phased movement."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
 }
