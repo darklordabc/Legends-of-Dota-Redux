@@ -198,6 +198,9 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_brewmaster.png',
         txt: '#hintBrewmaster'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_shadowfiend.png',
+        txt: '#hintShadowfiend'
     }];
 
     // How long to wait before we show the next tip

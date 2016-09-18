@@ -452,6 +452,8 @@
 	"hintRiki"                         "Riki's health regeneration is increased by 4 while invisible."
 	"hintBatrider"                         "Batrider has 20% bonus movement speed while flying."
 	"hintBrewmaster"                         "Brewmaster gains +100% regen benefits from Salve, Bottle and Clarity."
+	"hintShadowfiend"                         "At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
+	
 	
 	
 
