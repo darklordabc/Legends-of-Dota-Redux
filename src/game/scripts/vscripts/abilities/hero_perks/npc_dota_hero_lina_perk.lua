@@ -36,6 +36,7 @@ function modifier_npc_dota_hero_lina_perk:OnCreated()
 		ember_spirit_searing_chains = true,
 		ogre_magi_fireblast = true,
 		ogre_magi_ignite = true,
+		ogre_magi_unrefined_fireblast = true,
 		phoenix_icarus_dive = true,
 		phoenix_fire_spirits = true,
 		phoenix_sun_ray = true,
@@ -56,7 +57,9 @@ function modifier_npc_dota_hero_lina_perk:OnCreated()
 		black_dragon_fireball = true,
 		warlock_golem_flaming_fists = true,
 		warlock_golem_permanent_immolation = true,
-		warlock_golem_permanent_immolation_lod = true
+		warlock_golem_permanent_immolation_lod = true,
+		skeleton_king_hellfire_blast = true,
+		brewmaster_fire_permanent_immolation = true
 	}
 	return true
 end
