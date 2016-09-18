@@ -25,13 +25,19 @@ end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_EXECUTED
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
 
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityExecuted(keys)
+hexSpells = {
+  shadow_shaman_voodoo = true,
+  lion_voodoo = true,
+  item_sheepstick = true,
+}
+
+function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityFullyCast(keys)
   local cooldownPercentReduction = 20
   local cooldownPercentReduction = 1-(cooldownPercentReduction / 100)
 
@@ -39,11 +45,10 @@ function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityExecuted(keys)
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    print(ability:GetAbilityName())
-    if ability:GetName() == "shadow_shaman_voodoo" or ability:GetName() == "lion_voodoo" or ability:GetName() == "item_sheepstick" then
+    if ability and hexSpells[ability:GetAbilityName()] then
       ability:RefundManaCost()
       ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*cooldownPercentReduction)
+      ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1)*cooldownPercentReduction)
     end
   end
 end
