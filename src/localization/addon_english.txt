@@ -687,6 +687,8 @@
 	"unique_mechanic_brewmaster"				"Brewmaster gains<br> +100% regen benefits from Salve, Bottle<br> and Clarity."
 	"unique_mechanic_nevermore"				"At the start of the game, <br>Shadow Fiend gains a free level of Necromastery, <br>whether he has it or not."
 	"unique_mechanic_dragon_knight"				"While in Dragon Form, Dragon Knight applies Corrosive <br> and Frost Breath when he hits enemies with spells."
+	"unique_mechanic_abaddon"				"Abaddon receives<br>2 charges of Aphotic Shield<br>and will heal from Death Coil."
+	"unique_mechanic_dark_seer"				"Dark Seer self-casts<br>Surge and Ion Shell when casting them on allies."
 
     /////////////////
     // Skill Warnings
