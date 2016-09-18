@@ -23,3 +23,27 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_winter_wyvern_perk:OnCreated()
+	self:StartIntervalThink(0.05)
+	self.flying = false
+end
+
+
+
+
+function modifier_npc_dota_hero_winter_wyvern_perk:CheckState()
+	local hpCheck = false
+	if self:GetParent():GetHealthPercent() < 10 then
+		hpCheck = true
+	end
+	local state = {
+	[MODIFIER_STATE_FLYING] = hpCheck,
+	}
+	if self.flying and self:GetParent():GetHealthPercent() >= 10 then
+		GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), 300, true)
+		self.flying = false
+	elseif not self.flying and self:GetParent():GetHealthPercent() < 10 then
+		self.flying = true
+	end
+	return state
+end
