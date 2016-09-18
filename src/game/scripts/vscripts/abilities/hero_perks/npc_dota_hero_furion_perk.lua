@@ -22,6 +22,21 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_furion_perk:OnCreated()
+    self.teleportSpells = {
+        furion_teleportation = true,
+        wisp_relocate = true,
+        chen_test_of_faith_teleport = true,
+        keeper_of_the_light_recall = true,
+        abyssal_underlord_dark_rift = true,
+        item_tpscroll = true,
+        item_travel_boots = true,
+        item_travel_boots_2 = true
+    }
+
+  return true
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_furion_perk:DeclareFunctions()
   local funcs = {
     MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -34,20 +49,8 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityFullyCast(keys)
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    
-    local teleportSpells = {
-    	furion_teleportation = true,
-    	wisp_relocate = true,
-    	chen_test_of_faith_teleport = true,
-    	keeper_of_the_light_recall = true,
-    	abyssal_underlord_dark_rift = true,
-    	item_tpscroll = true,
-    	item_travel_boots = true,
-    	item_travel_boots_2 = true
-    	}
 
-
-    if ability and teleportSpells[ability:GetName()] then
+    if ability and self.teleportSpells[ability:GetName()] then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     end
