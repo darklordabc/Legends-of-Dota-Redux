@@ -34,9 +34,7 @@ function SU:Init()
         function(keys)
           local state = GameRules:State_Get()
 
-          if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-            SU:SendAuthInfo()
-          elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+          if state == DOTA_GAMERULES_STATE_PRE_GAME then
             SU:LoadPlayersMessages()
           end
         end, nil)
@@ -73,4 +71,81 @@ function SU:LoadPlayersMessages()
       end
     end 
   end)
+end
+
+-- Send message event
+CustomGameEventManager:RegisterListener( "su_send_message", Dynamic_Wrap(SU, 'SendPlayerMessage'))
+
+function SU:SendPlayerMessage( args )
+  local playerID = args.PlayerID
+  local steamID = PlayerResource:GetSteamAccountID(playerID)
+  local month, day, year = string.match(GetSystemDate(), '(%d+)[/](%d+)[/](%d+)')  
+  
+  local requestParams = {
+    Command = "SendPlayerMessage",
+    Data = {
+      SteamID = steamID,
+      Nickname = PlayerResource:GetPlayerName(playerID),
+      Message = args.message,
+      TimeStamp = string.format("20%s%s%s", year, month, day)
+    }
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)
+end
+
+-- Send message event
+CustomGameEventManager:RegisterListener( "su_mark_message_read", Dynamic_Wrap(SU, 'MarkMessageRead'))
+
+function SU:MarkMessageRead( args )
+  
+  local requestParams = {
+    Command = "MarkMessageRead",
+    MessageID = args.message_id
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)
+end
+
+function SU:SendPlayerBuild( args, pID )
+  local abilities = {}
+
+  for i=1,16 do
+    local v = args[i]
+    if v then
+      abilities[i] = v
+    end
+  end
+  
+  local requestParams = {
+    Command = "SendPlayerBuild",
+    Data = {
+      AbilityString = json.encode(abilities),
+      SteamID = PlayerResource:GetSteamAccountID(pID)
+    }
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)
+end
+
+function SU:LoadPlayerAbilities( pID )
+  local requestParams = {
+    Command = "LoadPlayerAbilities",
+    SteamID = PlayerResource:GetSteamAccountID(pID)
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)  
+end
+
+function SU:LoadGlobalAbilitiesStat()
+  local requestParams = {
+    Command = "LoadGlobalAbilitiesStat",
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)  
 end
