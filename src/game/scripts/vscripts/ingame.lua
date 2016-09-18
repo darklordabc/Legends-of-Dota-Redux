@@ -62,7 +62,8 @@ function Ingame:init()
     end)
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self) 
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
