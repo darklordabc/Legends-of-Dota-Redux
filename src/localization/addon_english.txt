@@ -1896,4 +1896,5 @@
 	"DOTA_Tooltip_ability_imba_tower_salvo_as_slow"										"ATTACK SPEED PENALTY:"
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_dmg"									"BONUS DAMAGE:"
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" 
+	
 }
