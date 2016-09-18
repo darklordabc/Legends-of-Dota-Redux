@@ -689,6 +689,8 @@
 	"unique_mechanic_dragon_knight"				"While in Dragon Form, Dragon Knight applies Corrosive <br> and Frost Breath when he hits enemies with spells."
 	"unique_mechanic_abaddon"				"Abaddon receives<br>2 charges of Aphotic Shield<br>and will heal from Death Coil."
 	"unique_mechanic_dark_seer"				"Dark Seer self-casts<br>Surge and Ion Shell when casting them on allies."
+	"unique_mechanic_centaur"				"Centaur Warrunners<br>takes 75% damage from  <b>Self-Damaging</b> spells."
+	"unique_mechanic_winter_wyvern"			"Winter Wyvern receives<br>flying movement while under 10% health."
 
     /////////////////
     // Skill Warnings
