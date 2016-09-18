@@ -25,13 +25,13 @@ end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_START
+    MODIFIER_EVENT_ON_ABILITY_EXECUTED
 
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityStart(keys)
+function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityExecuted(keys)
   local cooldownPercentReduction = 20
   local cooldownPercentReduction = 1-(cooldownPercentReduction / 100)
 
