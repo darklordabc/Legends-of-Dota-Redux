@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: phantom_lancer
---		Perk: 
+--		Perk: Free Lv.1 Phantom Rush
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phantom_lancer_perk", "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_phantom_lancer_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phantom_lancer_perk:IsHidden()
-	return false
+	return self.freeRush
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -33,8 +33,10 @@ function modifier_npc_dota_hero_phantom_lancer_perk:PhantomRushCheck(params)
 	local rush = caster:FindAbilityByName("phantom_lancer_phantom_edge") or nil
 
 	if rush then
+		self.freeRush = false
 		rush:UpgradeAbility(false)
 	else 
+		self.freeRush = true
 		rush = caster:AddAbility("phantom_lancer_phantom_edge")
 		rush:SetHidden(true)
 		rush:SetLevel(1)
