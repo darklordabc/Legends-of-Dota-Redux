@@ -691,6 +691,7 @@
 	"unique_mechanic_dark_seer"				"Dark Seer self-casts<br>Surge and Ion Shell when casting them on allies."
 	"unique_mechanic_centaur"				"Centaur Warrunners<br>takes 75% damage from  <b>Self-Damaging</b> spells."
 	"unique_mechanic_winter_wyvern"			"Winter Wyvern receives<br>flying movement while under 10% health."
+	"unique_mechanic_phoenix"			"Phoenix passively triggers<br>Supernova when taking lethal damage."
 
     /////////////////
     // Skill Warnings
