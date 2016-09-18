@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------------------------------
 --
---    Hero: Puck
---    Perk: 50% chance to reflect disjointed spells. 
+--    Hero: puck
+--    Perk: 
 --
 --------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_puck_perk", "abilities/hero_perks/npc_dota_hero_puck_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+--LinkLuaModifier( "modifier_npc_dota_hero_puck_perk", "scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_puck_perk == nil then npc_dota_hero_puck_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -33,9 +33,9 @@ end
 function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
   if IsServer() then
     if keys.ranged_attack == false then
-      local random = RandomInt(1,2) 
-      local hCaster = self:GetParent()
-      if random == 1 and hCaster.perkAbility then
+      local random = RandomInt(1,4) 
+      if random == 1 then
+        local hCaster = self:GetParent()
         if hCaster:HasAbility(hCaster.perkAbility:GetAbilityName()) then
           hCaster:RemoveAbility(hCaster.perkAbility:GetAbilityName())
         end
@@ -51,3 +51,34 @@ function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
     end
   end
 end 
+--------------------------------------------------------------------------------------------------------
+-- This function gets called in the TrackingProjectileFilter, to be found in the ingame.lua file
+--------------------------------------------------------------------------------------------------------
+
+function PerkPuckReflectSpell(hCaster,hTarget,hAbility) -- hCaster = the caster of the spell, not the dodging unit that is hTarget
+  if hTarget:HasModifier("modifier_npc_dota_hero_puck_perk") then
+    hTarget.perkTarget = hCaster
+    hTarget.perkAbility = hAbility
+  end
+end
+
+
+  function PerkPuckReflectSpell(filterTable)
+    --DeepPrintTable(projectile)
+    local targetIndex = filterTable["entindex_target_const"]
+    local target = EntIndexToHScript(targetIndex)
+    local targetname = target:GetUnitName()
+    local casterIndex = filterTable["entindex_source_const"]
+    local caster = EntIndexToHScript(casterIndex)
+    local castername = caster:GetUnitName()
+    local abilityIndex = filterTable["entindex_ability_const"]
+    local ability = EntIndexToHScript(abilityIndex)
+    if ability then
+      local abilityname = ability:GetAbilityName()
+
+      local puckPerk = require('scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua')
+      PerkPuckReflectSpell(caster,target,ability)
+
+    end
+    return true    
+  end
