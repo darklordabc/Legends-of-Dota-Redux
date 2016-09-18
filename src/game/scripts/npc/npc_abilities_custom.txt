@@ -10176,6 +10176,13 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
+    "npc_dota_hero_dragon_knight_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dragon_knight_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
     "npc_dota_hero_earth_spirit_perk"
     {
         "BaseClass"             "ability_lua"
