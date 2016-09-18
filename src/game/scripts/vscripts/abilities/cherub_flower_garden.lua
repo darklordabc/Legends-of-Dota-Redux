@@ -3,7 +3,7 @@ function GardenCheck( keys )
     local ability = keys.ability
     local healthCost = caster:GetMaxHealth()/80.0
     
-    if not caster:HasModifier("modifier_npc_dota_hero_enchantress_perk")
+    if not caster:HasModifier("modifier_npc_dota_hero_enchantress_perk") then
         if caster:GetHealth() > healthCost then
             caster:ModifyHealth( caster:GetHealth() - healthCost, ability, false, 0 )
         else 
