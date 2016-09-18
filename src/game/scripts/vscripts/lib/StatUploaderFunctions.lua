@@ -33,9 +33,10 @@ function SU:Init()
       ListenToGameEvent('game_rules_state_change', 
         function(keys)
           local state = GameRules:State_Get()
-
-          if state == DOTA_GAMERULES_STATE_PRE_GAME then
-            SU:LoadPlayersMessages()
+-          if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+-            SU:SendAuthInfo()
+-          elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+             SU:LoadPlayersMessages()
           end
         end, nil)
     else
