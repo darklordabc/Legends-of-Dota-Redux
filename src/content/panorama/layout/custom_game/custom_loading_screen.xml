@@ -41,6 +41,8 @@
 			<Image src="file://{images}/custom_game/hints/hint_tide_hunter.png" />
 			<Image src="file://{images}/custom_game/hints/hint_legion_commander.png" />
 			<Image src="file://{images}/custom_game/hints/hint_blood_seeker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_riki.png" />
+			<Image src="file://{images}/custom_game/hints/hint_batrider.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">

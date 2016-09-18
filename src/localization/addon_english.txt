@@ -449,6 +449,8 @@
 	"hintTimbersaw"                         "Timbersaw gains 2 health, mana, and experience points whenever a nearby tree is cut down."
 	"hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
 	"hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
+	"hintRiki"                         "Riki's health regeneration is increased by 4 while invisible."
+	"hintBatrider"                         "Batrider has 20% bonus movement speed while flying."
 	
 	
 

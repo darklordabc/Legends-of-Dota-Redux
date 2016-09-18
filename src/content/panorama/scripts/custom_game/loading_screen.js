@@ -189,7 +189,13 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_blood_seeker.png',
         txt: '#hintBloodSeeker'
-    }];
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_riki.png',
+        txt: '#hintRiki'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_batrider.png',
+        txt: '#hintBatrider'
+    },];
 
     // How long to wait before we show the next tip
     var tipDelay = 15;
