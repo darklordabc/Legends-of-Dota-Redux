@@ -38,17 +38,21 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
     if not self:GetCaster().position[(math.floor(currTime*10)/10)-0.1] then self:GetCaster().position[(math.floor(currTime*10)/10)-0.1] = self:GetCaster():GetAbsOrigin() end
     
     self:GetCaster().position[math.floor(currTime*10)/10] = self:GetCaster():GetAbsOrigin()
-    
-    if (self:GetCaster().position[math.floor(currTime*10)/10] - self:GetCaster().position[(math.floor(currTime*10)/10)-0.1]):Length2D() > maxRange then
+    --print("OldPosition")
+    --print(self:GetCaster().position[(math.floor(currTime*10)/10)-0.1])
+    --print("NewPosition")
+    --print(self:GetCaster():GetAbsOrigin())
+    if (self:GetCaster():GetAbsOrigin() - self:GetCaster().position[(math.floor(currTime*10)/10)-0.1]):Length2D() > maxRange then
       self.distanceMoved = 0
     else
-      self.distanceMoved =  ((self:GetCaster().position[math.floor(currTime*10)/10] - self:GetCaster().position[(math.floor(currTime*10)/10)-0.1]):Length2D() -startPenalty)
+      self.distanceMoved =  ((self:GetCaster():GetAbsOrigin() - self:GetCaster().position[(math.floor(currTime*10)/10)-0.1]):Length2D() -startPenalty)
     end
 
     if self.distanceMoved < 0 then
       self.distanceMoved = 0
     end
     self:GetCaster():GiveMana(self.distanceMoved/manaGiven)
+
     --print(self.distanceMoved.." "..(self.distanceMoved/manaGiven))
     for t, pos in pairs(self:GetCaster().position) do
       if (currTime-t) > 1 then
