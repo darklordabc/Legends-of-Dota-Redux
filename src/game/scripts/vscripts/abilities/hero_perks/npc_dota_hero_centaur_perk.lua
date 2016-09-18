@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: centaur
---		Perk: 
+--		Hero: Centaur
+--		Perk: Centaur Warrunner takes 75% damage from Self-Damaging spells.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_centaur_perk", "abilities/hero_perks/npc_dota_hero_centaur_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
