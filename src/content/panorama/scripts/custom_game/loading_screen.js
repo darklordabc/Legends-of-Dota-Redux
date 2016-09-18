@@ -201,6 +201,42 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_shadowfiend.png',
         txt: '#hintShadowfiend'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_puck.png',
+        txt: '#hintPuck'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_abaddon.png',
+        txt: '#hintAbaddon'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_winter_wyvern.png',
+        txt: '#hintWinterWyvern'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_dragon_knight.png',
+        txt: '#hintDragonKnight'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_centaur.png',
+        txt: '#hintCentaur'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_phoenix.png',
+        txt: '#hintPhoenix'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
+        txt: '#hintAncientApparition'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
+        txt: '#hintShadowShaman'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_doom.png',
+        txt: '#hintDoom'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_lich.png',
+        txt: '#hintLich'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_spectre.png',
+        txt: '#hintSpectre'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_dark_seer.png',
+        txt: '#hintDarkSeer'
     }];
 
     // How long to wait before we show the next tip

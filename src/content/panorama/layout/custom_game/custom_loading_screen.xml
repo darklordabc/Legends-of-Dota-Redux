@@ -45,6 +45,18 @@
 			<Image src="file://{images}/custom_game/hints/hint_batrider.png" />
 			<Image src="file://{images}/custom_game/hints/hint_brewmaster.png" />
 			<Image src="file://{images}/custom_game/hints/hint_shadowfiend.png" />
+			<Image src="file://{images}/custom_game/hints/hint_puck.png" />
+			<Image src="file://{images}/custom_game/hints/hint_abaddon.png" />
+			<Image src="file://{images}/custom_game/hints/hint_winter_wyvern.png" />
+			<Image src="file://{images}/custom_game/hints/hint_dragon_knight.png" />
+			<Image src="file://{images}/custom_game/hints/hint_centaur.png" />
+			<Image src="file://{images}/custom_game/hints/hint_phoenix.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ancient_apparition.png" />
+			<Image src="file://{images}/custom_game/hints/hint_shadow_shaman.png" />
+			<Image src="file://{images}/custom_game/hints/hint_doom.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lich.png" />
+			<Image src="file://{images}/custom_game/hints/hint_spectre.png" />
+			<Image src="file://{images}/custom_game/hints/hint_dark_seer.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">
