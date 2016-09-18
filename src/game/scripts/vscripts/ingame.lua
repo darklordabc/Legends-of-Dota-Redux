@@ -584,25 +584,27 @@ function Ingame:FilterModifyExperience(filterTable)
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 
-    local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+    if PlayerResource:GetPlayer(filterTable.player_id_const) then
+        local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
 
-    if OptionManager:GetOption('sharedXP') == 1 then
-        if filterTable.reason_const ~= 0 then
-            for i=0,DOTA_MAX_TEAM do
-                local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
-                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
-                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+        if OptionManager:GetOption('sharedXP') == 1 then
+            if filterTable.reason_const ~= 0 then
+                for i=0,DOTA_MAX_TEAM do
+                    local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+                    if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+                        local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                    otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                        otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    end
                 end
-            end
 
-            return false
+                return false
+            else
+                return true
+            end
         else
             return true
         end
-    else
-        return true
     end
 end
 
