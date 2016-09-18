@@ -967,6 +967,18 @@ var allOptions = {
 // Hard Coded Recommended Builds
 var recommendedBuilds = [
     {
+        title: 'Neutral Creep Builder',
+        heroName: 'npc_dota_hero_chen',
+        attr: 'int',
+        build: {
+            1: 'chen_holy_persuasion',
+            2: 'chen_test_of_faith_teleport',
+            3: 'satyr_hellcaller_unholy_aura',
+            4: 'lycan_howl',
+            5: 'alpha_wolf_command_aura',
+            6: 'granite_golem_hp_aura',
+        },
+    },{
         title: 'Long Dagger Harassment',
         heroName: 'npc_dota_hero_ogre_magi',
         id: 'build_dagger_harrasment',
@@ -1009,7 +1021,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Infest Support',
-        heroName: 'npc_dota_hero_night_stalker',
+        heroName: 'npc_dota_hero_life_stealer',
         id: 'build_infest_support',
         attr: 'str',
         build: {
@@ -1065,7 +1077,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Rapture',
-        heroName: 'npc_dota_hero_pugna',
+        heroName: 'npc_dota_hero_bloodseeker',
         id: 'build_rapture',
         attr: 'int',
         build: {
@@ -1093,7 +1105,7 @@ var recommendedBuilds = [
     },
     {
         title: 'Bring the team fight',
-        heroName: 'npc_dota_hero_silencer',
+        heroName: 'npc_dota_hero_enigma',
         id: 'build_team_fight',
         attr: 'int',
         build: {
@@ -1107,7 +1119,7 @@ var recommendedBuilds = [
     },
     {
         title: 'The Duelist',
-        heroName: 'npc_dota_hero_juggernaut',
+        heroName: 'npc_dota_hero_legion_commander',
         id: 'build_duelist',
         attr: 'agi',
         build: {
@@ -1148,13 +1160,13 @@ var recommendedBuilds = [
         },
     },
     {
-        title: 'No ulty, can\'t war',
-        heroName: 'npc_dota_hero_windrunner',
+        title: 'Disregard Team, Acquire Currency',
+        heroName: 'npc_dota_hero_furion',
         id: 'build_no_ulty',
         attr: 'int',
         build: {
             1: 'sandking_burrowstrike',
-            2: 'medusa_mana_shield',
+            2: 'doom_bringer_devour_lod',
             3: 'alchemist_goblins_greed',
             4: 'life_stealer_feast',
             5: 'medusa_split_shot',

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2
+
+### Bug Fixing
+- Added sounds for when you select a build
+
+### Balance
+- Changed the hero for many of the preset builds
+- Added Chen preset build
+
 ## 1.1
 
 ### Bug Fixing
