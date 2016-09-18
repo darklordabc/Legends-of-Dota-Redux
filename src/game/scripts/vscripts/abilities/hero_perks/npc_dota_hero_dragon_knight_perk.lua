@@ -56,3 +56,33 @@ function modifier_npc_dota_hero_dragon_knight_perk:OnTakeDamage(params)
 		end
 	end
 end
+
+function PerkDragonKnight(filterTable)
+	local parent_index = filterTable["entindex_parent_const"]
+  	local caster_index = filterTable["entindex_caster_const"]
+  	local ability_index = filterTable["entindex_ability_const"]
+  	if not parent_index or not caster_index or not ability_index then
+      		return true
+  	end
+  	local parent = EntIndexToHScript( parent_index )
+  	local caster = EntIndexToHScript( caster_index )
+  	local ability = EntIndexToHScript( ability_index )
+	if ability then
+    		local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
+	 	if targetPerk and targetPerks_modifier[targetPerk:GetName()] then
+	    		if targetPerk:GetName() == "npc_dota_hero_dragon_knight_perk" then
+		    		local dragonblood = caster:FindAbilityByName("dragon_knight_elder_dragon_form")
+		    		if dragonblood and dragonblood ~= ability then
+			    		if caster:HasModifier("modifier_dragon_knight_corrosive_breath") then
+				  		local duration = dragonblood:GetSpecialValueFor("corrosive_breath_duration")
+				  		parent:AddNewModifier(caster, dragonblood, "modifier_dragon_knight_corrosive_breath_dot", {duration = duration})
+			    		end
+			    		if caster:HasModifier("modifier_dragon_knight_frost_breath") then
+				    		local duration = dragonblood:GetSpecialValueFor("frost_duration")
+				    		parent:AddNewModifier(caster, dragonblood, "modifier_dragon_knight_frost_breath_slow", {duration = duration})
+			    		end
+		    		end
+    			end
+    		end
+    	end
+  end
