@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: ancient_apparition
---		Perk: Freezes health of targets when a freezing debuff is applied
+--		Perk: Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_ancient_apparition_perk", "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua", LUA_MODIFIER_MOTION_NONE )
