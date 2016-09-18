@@ -451,6 +451,7 @@
 	"hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
 	"hintRiki"                         "Riki's health regeneration is increased by 4 while invisible."
 	"hintBatrider"                         "Batrider has 20% bonus movement speed while flying."
+	"hintBrewmaster"                         "Brewmaster gains +100% regen benefits from Salve, Bottle and Clarity."
 	
 	
 
@@ -672,7 +673,7 @@
 	"unique_mechanic_tidehunter"            		"When Tidehunter dies,<br> <font color=\"#25EC28\">Ravage's</font> cooldown will be refreshed."
 	"unique_mechanic_furion"            			"The cooldowns<br> of all <font color=\"#25EC28\">Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
 	"unique_mechanic_lina"            				"Lina's<br> intelligence increases by 3 for each level put in<br> <font color=\"#25EC28\">Fire</font> abilities."
-	"unique_mechanic_shredder"            				"Timbersaw gains 2 health, <br> mana, and experience points whenever a<br> nearby tree is cut down."
+	"unique_mechanic_shredder"            				"Timbersaw gains 2<br> health, mana, and experience points<br> whenever a nearby tree is cut down."
 	"unique_mechanic_morphling"                              "Morphling gains 50%<br> bonus movement speed in water." 
 	"unique_mechanic_storm_spirit"                              "Storm gains mana based on<br> distance when moving at high speeds." 
 	"unique_mechanic_ursa" 					 "Ursa does 15% extra damage<br> to neutrals, including Roshan." 
@@ -681,7 +682,7 @@
 	"unique_mechanic_chen" 					 "TBA" 
 	"unique_mechanic_batrider" 				"Increases Batrider's movement speed<br> by 20% while <b>Flying</b>."
 	"unique_mechanic_riki"					"Increases Riki's health regeneration<br> by 4 while invisible."
-	"unique_mechanic_brewmaster"				"Brewmaster gains +100% regen benefits<br> from Salve, Bottle and Clarity."
+	"unique_mechanic_brewmaster"				"Brewmaster gains<br> +100% regen benefits from Salve, Bottle<br> and Clarity."
 	"unique_mechanic_nevermore"				"At the start of the game, <br>Shadow Fiend gains a free level of Necromastery, <br>whether he has it or not."
 	"unique_mechanic_dragon_knight"				"While in Dragon Form, Dragon Knight applies Corrosive <br> and Frost Breath when he hits enemies with spells."
 

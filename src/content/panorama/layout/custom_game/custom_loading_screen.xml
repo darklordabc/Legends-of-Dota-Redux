@@ -43,6 +43,7 @@
 			<Image src="file://{images}/custom_game/hints/hint_blood_seeker.png" />
 			<Image src="file://{images}/custom_game/hints/hint_riki.png" />
 			<Image src="file://{images}/custom_game/hints/hint_batrider.png" />
+			<Image src="file://{images}/custom_game/hints/hint_brewmaster.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">
