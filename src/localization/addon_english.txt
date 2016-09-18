@@ -694,6 +694,9 @@
 	"unique_mechanic_phoenix"			"Phoenix passively triggers<br>Supernova when taking lethal damage."
 	"unique_mechanic_ancient_apparition"			"Ancient Apparition freezes health when giving a frosty debuff."
 	"unique_mechanic_doom_bringer"			"Doom applies Break<br>when casting Doom."
+	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting Sacrifice."
+	"unique_mechanic_spectre"			"Spectre gains phased<br>movement when casting abilities."
+	
     /////////////////
     // Skill Warnings
     ////////////////
@@ -1910,4 +1913,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"	"Doom Perk Break"
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Your passives are disabled."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Spectre Perk Phased"
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"You have phased movement."
 }
