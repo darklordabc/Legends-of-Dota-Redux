@@ -692,7 +692,8 @@
 	"unique_mechanic_centaur"				"Centaur Warrunners<br>takes 75% damage from  <b>Self-Damaging</b> spells."
 	"unique_mechanic_winter_wyvern"			"Winter Wyvern receives<br>flying movement while under 10% health."
 	"unique_mechanic_phoenix"			"Phoenix passively triggers<br>Supernova when taking lethal damage."
-	"unique_mechanic_ancient_apparition"			"Ancient Apparition freezes health when giving a frosty debuff"
+	"unique_mechanic_ancient_apparition"			"Ancient Apparition freezes health when giving a frosty debuff."
+	"unique_mechanic_doom_bringer"			"Doom applies Break<br>when casting Doom."
     /////////////////
     // Skill Warnings
     ////////////////
@@ -1904,4 +1905,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze" "Ancient Apparition Perk HP freeze"
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description" "Ancient Apparition used an ice spell on you, your hp is frozen for the duration"
+	"DOTA_Tooltip_modifier_charges"		"Skill Charges"
+	"DOTA_Tooltip_modifier_charges_Description"	"Amount of charges left."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"	"Doom Perk Break"
+	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Your passives are disabled."
 }
