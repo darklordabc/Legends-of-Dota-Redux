@@ -710,6 +710,7 @@
 	"unique_mechanic_puck"			"Puck has a 50%<br> chance to reflect disjointed spells."
 	"unique_mechanic_abaddon"			"For Abaddon, <font color=\"#25EC28\">Mist <br>Coil</font> self-heals instead of damages and<br> <font color=\"#25EC28\">Aphotic Shield</font> receives 2 charges."
 	"unique_mechanic_phantom_lancer"			"Phantom Lancer gets<br>Lv.1 Phantom Rush for free, whether he has<br>the ability or not."
+	"unique_mechanic_crystal_maiden"	"Crystal Maiden gains<br>+2 movement speed for every level in <b>Support</b> skills she has."
 	
     /////////////////
     // Skill Warnings
@@ -1930,4 +1931,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Spectre Perk Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"You have phased movement."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"	"Crystal Maiden Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"You gain bonus movement speed per level in support skills."
 }
