@@ -24,12 +24,12 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_furion_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_furion_perk:OnAbilityExecuted(keys)
+function modifier_npc_dota_hero_furion_perk:OnAbilityFullyCast(keys)
   if IsServer() then
     local hero = self:GetCaster()
     local target = keys.target
