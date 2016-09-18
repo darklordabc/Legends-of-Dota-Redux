@@ -5,6 +5,7 @@
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_spectre_perk", "abilities/hero_perks/npc_dota_hero_spectre_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_spectre_phased", "abilities/hero_perks/npc_dota_hero_spectre_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_spectre_perk == nil then npc_dota_hero_spectre_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -22,4 +23,29 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_spectre_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+	}
+	return funcs
+end
 
+function modifier_npc_dota_hero_spectre_perk:OnAbilityExecuted(params)
+	if params.unit == self:GetParent() then
+		local phase = params.ability -- For modifier icon
+		self:GetParent():AddNewModifier(self:GetParent(), phase, "modifier_npc_dota_hero_spectre_phased", {duration = 4})
+	end
+end
+
+--------------------------------------------------------------------------------------------------------
+--		Phase Modifier: 	modifier_npc_dota_hero_spectre_phased		
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_spectre_phased == nil then modifier_npc_dota_hero_spectre_phased = class({}) end
+--------------------------------------------------------------------------------------------------------
+
+function modifier_npc_dota_hero_spectre_phased:CheckState()
+	local state = {
+	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+	return state
+end

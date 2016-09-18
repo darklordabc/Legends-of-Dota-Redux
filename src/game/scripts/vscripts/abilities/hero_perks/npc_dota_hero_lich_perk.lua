@@ -22,4 +22,20 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lich_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+	}
+	return funcs
+end
+
+function modifier_npc_dota_hero_lich_perk:OnAbilityExecuted(params)
+	if params.unit == self:GetParent() and params.ability:GetName() == "lich_dark_ritual" then
+		local sacrifice = params.ability
+		local hTarget = params.target
+		local hp = hTarget:GetHealth() * sacrifice:GetSpecialValueFor("health_conversion") / 100
+		self:GetParent():Heal(hp, self:GetParent())
+		SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_HEAL, self:GetParent(), hp, self:GetParent())
+	end
+end
 
