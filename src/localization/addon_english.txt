@@ -1932,6 +1932,12 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Spectre Perk Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"You have phased movement."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
+ 	
+ 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Phantom Rush Perk Cooldown"
+ 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"	"Phantom Rush is on cooldown."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"	"Crystal Maiden Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"You gain bonus movement speed per level in support skills."
 }
