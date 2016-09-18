@@ -3,11 +3,13 @@ function GardenCheck( keys )
     local ability = keys.ability
     local healthCost = caster:GetMaxHealth()/80.0
     
-    if caster:GetHealth() > healthCost then
-        caster:ModifyHealth( caster:GetHealth() - healthCost, ability, false, 0 )
-    else 
-        caster:Stop()
-        caster:RemoveModifierByName("modifier_garden_channel")
+    if not caster:HasModifier("modifier_npc_dota_hero_enchantress_perk")
+        if caster:GetHealth() > healthCost then
+            caster:ModifyHealth( caster:GetHealth() - healthCost, ability, false, 0 )
+        else 
+            caster:Stop()
+            caster:RemoveModifierByName("modifier_garden_channel")
+        end
     end
 end
 
