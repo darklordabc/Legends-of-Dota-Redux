@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: wisp
---		Perk: On spells that target a position wisp targets that same spell on another position
+--		Hero: Wisp
+--		Perk: On spells that target a position wisp targets that same spell on another position.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_wisp_perk", "abilities/hero_perks/npc_dota_hero_wisp_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
