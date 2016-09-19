@@ -1959,5 +1959,8 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per spell cast."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Anti-Mage Perk Silence"
-	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silenc_Description"	"Silenced because Anti-Mage blinked within 300 radius."
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Silenced because Anti-Mage blinked within 300 radius."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Winter Wyvern Perk Near-Death Flight"
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "You have flying movement while health is under 10%."
 }
