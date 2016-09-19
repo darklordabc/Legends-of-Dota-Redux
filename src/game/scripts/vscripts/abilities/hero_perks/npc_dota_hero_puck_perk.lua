@@ -33,7 +33,7 @@ end
 function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
   if IsServer() then
     if keys.ranged_attack == false then
-      local random = RandomInt(1,4) 
+      local random = RandomInt(1,2) 
       if random == 1 then
         local hCaster = self:GetParent()
         if hCaster:HasAbility(hCaster.perkAbility:GetAbilityName()) then
@@ -62,23 +62,3 @@ function PerkPuckReflectSpell(hCaster,hTarget,hAbility) -- hCaster = the caster 
   end
 end
 
-
-  function PerkPuckReflectSpell(filterTable)
-    --DeepPrintTable(projectile)
-    local targetIndex = filterTable["entindex_target_const"]
-    local target = EntIndexToHScript(targetIndex)
-    local targetname = target:GetUnitName()
-    local casterIndex = filterTable["entindex_source_const"]
-    local caster = EntIndexToHScript(casterIndex)
-    local castername = caster:GetUnitName()
-    local abilityIndex = filterTable["entindex_ability_const"]
-    local ability = EntIndexToHScript(abilityIndex)
-    if ability then
-      local abilityname = ability:GetAbilityName()
-
-      local puckPerk = require('scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua')
-      PerkPuckReflectSpell(caster,target,ability)
-
-    end
-    return true    
-  end

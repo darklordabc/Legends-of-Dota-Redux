@@ -724,6 +724,7 @@
 	"unique_mechanic_invoker"           "Invoker gains +5 <br>intelligence each time he uses a different <br>ability, resetting when an ability has been <br>used twice."
 	"unique_mechanic_enchantress"           "Enchantress can grow <br>plants without the health penalty."
 	"unique_mechanic_wisp"           "On spells that target <br>a position Wisp targets that same spell on <br>another position."
+	"unique_mechanic_antimage"           "Anti-Mage silences all<br>enemy heroes when he blinks within 300 radius of them."
 	
     /////////////////
     // Skill Warnings
@@ -1956,4 +1957,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per spell cast."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Anti-Mage Perk Silence"
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silenc_Description"	"Silenced because Anti-Mage blinked within 300 radius."
 }
