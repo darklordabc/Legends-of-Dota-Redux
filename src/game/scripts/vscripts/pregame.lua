@@ -236,17 +236,6 @@ function Pregame:init()
         self.noSlotVoting = true
     end
 
-    -- All pick with 4 slots
-    if mapName == 'all_pick_4' then
-        self:setOption('lodOptionGamemode', 1)
-        self:setOption('lodOptionSlots', 4, true)
-        self:setOption('lodOptionCommonMaxUlts', 1, true)
-        self:setOption('lodOptionBalanceMode', 1, true)
-        self:setOption('lodOptionBanningBalanceMode', 1, true)
-        self.useOptionVoting = true
-        self.noSlotVoting = true
-    end
-
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
         self:setOption('lodOptionGamemode', 3)
@@ -277,6 +266,23 @@ function Pregame:init()
     -- Bot match
     if mapName == 'custom_bot' or mapName == '10_vs_10' then
         self.enabledBots = true
+    end
+
+    -- 3 VS 3
+    if mapName == '3_vs_3' then
+        self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionSlots', 4, true)
+        self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBanningBalanceMode', 1, true)
+        self.useOptionVoting = true
+        self.noSlotVoting = true
+
+        GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 3)
+        GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 3)
+
+        self:setOption('lodOptionBotsRadiant', 3, true)
+        self:setOption('lodOptionBotsDire', 3, true)
     end
 
     -- 10 VS 10
@@ -1489,8 +1495,8 @@ function Pregame:initOptionSelector()
                 return value == 2
             end
 
-            -- All Pick 4 slots
-            if mapName == 'all_pick_4' then
+            -- 3 VS 3
+            if mapName == '3_vs_3' then
                 return value == 1
             end
 
@@ -2633,7 +2639,7 @@ function Pregame:processOptions()
             end
             
             network:updateFilters()
-            disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='all_pick_4'
+            disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='3_vs_3'
         end
         
         -- Enable WTF mode
