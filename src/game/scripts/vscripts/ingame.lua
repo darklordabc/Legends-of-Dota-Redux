@@ -734,9 +734,7 @@ function Ingame:FilterProjectiles(filterTable)
   end
 
 
-targetPerks_modifier = {
-    npc_dota_hero_dragon_knight_perk = true,
-}
+
 
 
 function Ingame:FilterModifiers( filterTable )
