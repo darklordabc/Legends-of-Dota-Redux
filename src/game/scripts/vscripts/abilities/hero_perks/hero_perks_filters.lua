@@ -44,3 +44,23 @@ function heroPerksModifierFilter(filterTable)
   -- Returning the filterTable
   return filterTable
 end
+
+function heroPerksDamageFilter(filterTable)
+	local victim_index = filterTable["entindex_victim_const"]
+    local attacker_index = filterTable["entindex_attacker_const"]
+    local ability_index = filterTable["entindex_inflictor_const"]
+    if not victim_index or not attacker_index then
+        return true
+    end
+    local parent = EntIndexToHScript( victim_index )
+    local caster = EntIndexToHScript( attacker_index )
+	print("passed")
+  
+  targetPerks_damage = {
+    npc_dota_hero_abaddon_perk = true,
+  }
+  -- Perk for Dragon Knight
+  local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+  PerkAbaddon(filterTable)
+  return filterTable
+end
