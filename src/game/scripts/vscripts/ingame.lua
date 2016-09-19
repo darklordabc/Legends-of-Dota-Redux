@@ -728,7 +728,7 @@ function Ingame:FilterProjectiles(filterTable)
     -- Hero perks
     if ability then
     	local perkFilters = require('abilities/hero_perks/hero_perks_filters')
-    	filterTable = heroPerksDamageFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
+    	filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true    
   end
