@@ -65,6 +65,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
+	GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -734,7 +735,20 @@ function Ingame:FilterProjectiles(filterTable)
   end
 
 
-
+function Ingame:FilterDamage( filterTable )
+    local victim_index = filterTable["entindex_victim_const"]
+    local attacker_index = filterTable["entindex_attacker_const"]
+    local ability_index = filterTable["entindex_inflictor_const"]
+    if not victim_index or not attacker_index then
+        return true
+    end
+	print("init")
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksDamageFilter(filterTable)
+    
+    return true
+end
 
 
 function Ingame:FilterModifiers( filterTable )
