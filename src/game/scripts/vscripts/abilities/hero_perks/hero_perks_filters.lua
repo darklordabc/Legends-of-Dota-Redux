@@ -1,4 +1,4 @@
-function heroPerksDamageFilter(filterTable)
+function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
   local target = EntIndexToHScript(targetIndex)
   local casterIndex = filterTable["entindex_source_const"]
@@ -29,6 +29,12 @@ function heroPerksModifierFilter(filterTable)
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
+  
+  targetPerks_modifier = {
+    npc_dota_hero_dragon_knight_perk = true,
+    npc_dota_hero_ancient_apparition_perk = true,
+    
+  }
   -- Perk for Dragon Knight
   local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
   PerkDragonKnight(filterTable)
