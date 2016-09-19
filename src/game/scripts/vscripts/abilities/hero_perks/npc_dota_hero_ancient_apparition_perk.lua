@@ -50,28 +50,8 @@ function perkAncientApparition(filterTable)
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
   if ability then
-    local abilityname = ability:GetAbilityName()
     if caster:HasModifier("modifier_npc_dota_hero_ancient_apparition_perk") then
-      local iceSpells = {
-        tusk_snowball = true,
-        drow_ranger_frost_arrows= true,
-        crystal_maiden_crystal_nova= true,
-        crystal_maiden_frostbite= true,
-        crystal_maiden_freezing_field= true,
-        jakiro_dual_breath= true,
-        jakiro_ice_path= true,
-        lich_frost_armor= true,
-        lich_frost_nova= true,
-        lich_chain_frost= true,
-        ancient_apparition_ice_vortex= true,
-        ancient_apparition_cold_feet= true,
-        invoker_cold_snap= true,
-        invoker_ice_wall = true,
-        winter_wyvern_arctic_burn= true,
-        winter_wyvern_winters_curse= true,
-      }
-
-      if iceSpells[abilityname] then
+      if ability:HasAbilityFlag("ice) then
         local modifierDuration = filterTable["duration"]
         parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
       end
