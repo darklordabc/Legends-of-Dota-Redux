@@ -675,7 +675,7 @@
     "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give Night Stalker unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give Gyrocopter a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
     "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give KOTL unobstructed day<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
-    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters."
+    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters, also has higher <br> passive gold, even more when <br> stat upgrades are skilled"
     "unique_mechanic_faceless_void"                 "This hero can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "Skull Basher and <br> Abyssal Blade will not proc for this hero."
     "unique_mechanic_spirit_breaker"                "Skull Basher and <br> Abyssal Blade will not proc for this hero."
