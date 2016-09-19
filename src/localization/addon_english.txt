@@ -691,7 +691,8 @@
 	"unique_mechanic_morphling"                              "Morphling gains 50%<br> bonus movement speed in water." 
 	"unique_mechanic_storm_spirit"                              "Storm gains mana based on<br> distance when moving at high speeds." 
 	"unique_mechanic_ursa" 					 "Ursa does 15% extra<br> damage to neutrals, including Roshan." 
-	"unique_mechanic_shadow_shaman" 			"Shadow Shaman <br>refunds the manacost of <font color=\"#25EC28\">Hex</font> spells and <br>reduces their cooldowns by 20%." 
+	"unique_mechanic_shadow_shaman" 			"Shadow Shaman <br>refunds the manacost of <font color=\"#25EC28\">Hex</font> spells and <br>reduces their cooldowns by 20%."
+	"unique_mechanic_wisp" "Wisp fires a second  instance <br> of every <font color=\"#25EC28\">Ground targetted </font><br> spell in a random direction
 	"unique_mechanic_storm_spirit" 				 "TBA" 
 	"unique_mechanic_chen" 					 "TBA" 
 	"unique_mechanic_batrider" 				"Batrider has 20% <br>bonus movement speed while flying."
