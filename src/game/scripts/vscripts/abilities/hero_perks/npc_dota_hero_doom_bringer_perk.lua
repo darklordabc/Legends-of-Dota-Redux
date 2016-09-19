@@ -51,3 +51,11 @@ function modifier_npc_dota_hero_doom_bringer_doom_break:CheckState()
 	}
 	return state
 end
+
+function modifier_npc_dota_hero_doom_bringer_doom_break:GetEffectName()
+	return "particles/items3_fx/silver_edge_slow.vpcf"
+end
+
+function modifier_npc_dota_hero_doom_bringer_doom_break:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
