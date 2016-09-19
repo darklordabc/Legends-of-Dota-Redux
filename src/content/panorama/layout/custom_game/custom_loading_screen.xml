@@ -57,6 +57,13 @@
 			<Image src="file://{images}/custom_game/hints/hint_lich.png" />
 			<Image src="file://{images}/custom_game/hints/hint_spectre.png" />
 			<Image src="file://{images}/custom_game/hints/hint_dark_seer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_enchantress.png" />
+			<Image src="file://{images}/custom_game/hints/hint_invoker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_qop.png" />
+			<Image src="file://{images}/custom_game/hints/hint_wisp.png" />
+			<Image src="file://{images}/custom_game/hints/hint_meepo.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pl.png" />
+			<Image src="file://{images}/custom_game/hints/hint_cm.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">

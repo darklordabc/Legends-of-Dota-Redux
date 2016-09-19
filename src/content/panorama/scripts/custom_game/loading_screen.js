@@ -90,7 +90,7 @@ function setBackground() {
 
 (function() {
     // The tips we can show
-    var tips = [{
+    var tips = [/*{
         img: 'file://{images}/spellicons/death_prophet_witchcraft.png',
         txt: '#hintWitchCraft'
     }, {
@@ -237,10 +237,38 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_dark_seer.png',
         txt: '#hintDarkSeer'
+    }
+	, */{
+        img: 'file://{images}/custom_game/hints/hint_enchantress.png',
+        txt: '#hintEnchantress'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_invoker.png',
+        txt: '#hintInvoker'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_qop.png',
+        txt: '#hintQOP'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_wisp.png',
+        txt: '#hintWisp'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_meepo.png',
+        txt: '#hintMeepo'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_pl.png',
+        txt: '#hintPL'
+    }
+	, {
+        img: 'file://{images}/custom_game/hints/hint_cm.png',
+        txt: '#hintCM'
     }];
 
     // How long to wait before we show the next tip
-    var tipDelay = 15;
+    var tipDelay = 5;
 
     // Contains a list of all tip IDs
     var allTips = [];
