@@ -33,7 +33,7 @@ end
 function modifier_npc_dota_hero_puck_perk:OnProjectileDodge(keys)
   if IsServer() then
     if keys.ranged_attack == false then
-      local random = RandomInt(1,4) 
+      local random = RandomInt(1,2) 
       if random == 1 then
         local hCaster = self:GetParent()
         if hCaster:HasAbility(hCaster.perkAbility:GetAbilityName()) then
