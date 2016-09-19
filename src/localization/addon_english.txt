@@ -715,6 +715,7 @@
 	"unique_mechanic_meepo"                 "Increases all damage dealt <br>by 5% for every other Meepo on your team.<br> Takes 25% max health as damage whenever<br> a Meepo dies."
 	"unique_mechanic_queenofpain"           "Queen of Pain deals 10%<br> more damage to male heroes, but recieves<br> 10% more damage from female heroes."
 	"unique_mechanic_invoker"           "Invoker gains +5<br>intelligence for every spell cast. Casting a spell that already<br>gaves a bonus will reset the stacks."
+	"unique_mechanic_antimage"           "Anti-Mage silences all<br>enemy heroes when he blinks within 300 radius of them."
 	
     /////////////////
     // Skill Warnings
@@ -1947,4 +1948,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per spell cast."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Anti-Mage Perk Silence"
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silenc_Description"	"Silenced because Anti-Mage blinked within 300 radius."
 }
