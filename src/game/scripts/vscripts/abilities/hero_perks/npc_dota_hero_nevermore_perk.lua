@@ -23,18 +23,17 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_nevermore_perk:OnCreated(keys)
-	local caster = self:GetCaster()
+	if IsServer() then
+		local caster = self:GetCaster()
+		local necromastery = caster:FindAbilityByName("nevermore_necromastery")
 
-	local necromastery = caster:FindAbilityByName("nevermore_necromastery") or nil
-
-	if necromastery then
-		necromastery:UpgradeAbility(false)
-	else 
-		necromastery = caster:AddAbility("nevermore_necromastery")
-		necromastery:SetHidden(true)
-		necromastery:SetLevel(1)
+		if necromastery then
+			necromastery:UpgradeAbility(false)
+		else 
+			necromastery = caster:AddAbility("nevermore_necromastery")
+			necromastery:SetHidden(true)
+			necromastery:SetLevel(1)
+		end
 	end
-
-	return keys
 end
 --------------------------------------------------------------------------------------------------------
