@@ -42,6 +42,7 @@ function modifier_npc_dota_hero_invoker_perk:OnAbilityExecuted(params)
 		for k,v in pairs(self.abilityTable) do
 			if v == params.ability then
 				castAbility = true
+				break
 			end
 		end
 		if params.unit == self:GetParent() and not castAbility and not (params.ability:IsItem() or params.ability:IsToggle()) then
