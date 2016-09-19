@@ -1,11 +1,16 @@
 "AddonInfo"
 {
-	maps			"all_pick_6 all_pick_4 custom custom_bot 10_vs_10"
+	maps			"3_vs_3 all_pick_6 custom custom_bot 10_vs_10"
 	"IsPlayable"	"1"
     "version"       "3.1.2"
 
+    "3_vs_3"
+    {
+    	"MaxPlayers"                    "6"
+    }
+
     "10_vs_10"
     {
-                    "MaxPlayers"                    "20"
+    	"MaxPlayers"                    "20"
     }
 }
