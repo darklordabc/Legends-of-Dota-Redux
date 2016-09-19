@@ -1,8 +1,8 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: enchantress
---		Perk: 
---
+--		Hero: Enchantress
+--		Perk: Enchantress can creates plants without the health penalty. 
+--		Note: Perk code is located in the Cherub's abilities, like Flower Garden, code. 
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_enchantress_perk", "abilities/hero_perks/npc_dota_hero_enchantress_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
