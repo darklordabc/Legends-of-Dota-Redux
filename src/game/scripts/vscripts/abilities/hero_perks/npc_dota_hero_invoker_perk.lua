@@ -17,9 +17,43 @@ function modifier_npc_dota_hero_invoker_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_invoker_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_invoker_perk:OnCreated()
+	self.abilityTable = {}
+	self.intPerAbility = 5
+end
 
+function modifier_npc_dota_hero_invoker_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		
+	}
+	return funcs
+end
+
+function modifier_npc_dota_hero_invoker_perk:OnAbilityExecuted(params)
+	if IsServer() then
+		local castAbility = false
+		for k,v in pairs(self.abilityTable) do
+			if v == params.ability then
+				castAbility = true
+			end
+		end
+		if params.unit == self:GetParent() and not castAbility and not (params.ability:IsItem() or params.ability:IsToggle()) then
+			table.insert(self.abilityTable, params.ability)
+			self:SetStackCount(self:GetStackCount() + self.intPerAbility)
+		elseif castAbility then
+			self.abilityTable = {}
+			self:SetStackCount(0)
+		end
+	end
+end
+
+function modifier_npc_dota_hero_invoker_perk:GetModifierBonusStats_Intellect(params)
+	return self:GetStackCount()
+end
