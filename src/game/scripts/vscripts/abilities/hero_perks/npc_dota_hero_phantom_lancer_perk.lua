@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: Phantom Lancer
+--		Hero: phantom_lancer
 --		Perk: Free Lv.1 Phantom Rush
 --
 --------------------------------------------------------------------------------------------------------
@@ -28,7 +28,9 @@ end
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_phantom_lancer_perk:OnCreated()
-	self:PhantomRushCheck(params)
+	if IsServer() then
+		self:PhantomRushCheck(params)
+	end
 end
 
 function modifier_npc_dota_hero_phantom_lancer_perk:OnIntervalThink()
@@ -36,7 +38,6 @@ function modifier_npc_dota_hero_phantom_lancer_perk:OnIntervalThink()
 		local cd = self.rush:GetCooldownTimeRemaining()
 		self:GetParent():AddNewModifier(self:GetParent(), self.rush, "modifier_npc_dota_hero_phantom_lancer_cooldown", {duration = cd})
 		self.cd = true
-		print("true?", cd)
 	elseif self.rush:IsCooldownReady() and self.cd then
 		self.cd = false
 	end

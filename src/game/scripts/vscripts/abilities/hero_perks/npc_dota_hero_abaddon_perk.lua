@@ -39,7 +39,9 @@ function modifier_npc_dota_hero_abaddon_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_abaddon_perk:OnCreated()
-	self:StartIntervalThink(0.1)
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
 end
 
 function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
@@ -78,13 +80,15 @@ function modifier_npc_dota_hero_abaddon_perk:OnAbilityExecuted(params)
 		if params.ability:GetName() == "abaddon_aphotic_shield" then
 			local shield = params.ability
 			local stacks = self:GetParent():GetModifierStackCount("modifier_charges", self:GetParent())
-			self:GetParent():AddNewModifier(self:GetParent(), shield, "modifier_charges",
-					{
-						max_count = 2,
-						start_count = stacks - 1,
-						replenish_time = shield:GetCooldown(-1)
-					}
-				)
+			if not self:GetParent():HasModifier("modifier_charges") then
+				self:GetParent():AddNewModifier(self:GetParent(), shield, "modifier_charges",
+						{
+							max_count = 2,
+							start_count = 1,
+							replenish_time = shield:GetCooldown(-1)
+						}
+					)
+			end
 			if stacks < 1 then
 				shield:StartCooldown(shield:GetTrueCooldown())
 			end
