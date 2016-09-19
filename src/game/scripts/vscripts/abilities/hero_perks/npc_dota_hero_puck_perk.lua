@@ -55,30 +55,10 @@ end
 -- This function gets called in the TrackingProjectileFilter, to be found in the ingame.lua file
 --------------------------------------------------------------------------------------------------------
 
-function PerkPuckReflectSpellStore(hCaster,hTarget,hAbility) -- hCaster = the caster of the spell, not the dodging unit that is hTarget
+function PerkPuckReflectSpell(hCaster,hTarget,hAbility) -- hCaster = the caster of the spell, not the dodging unit that is hTarget
   if hTarget:HasModifier("modifier_npc_dota_hero_puck_perk") then
     hTarget.perkTarget = hCaster
     hTarget.perkAbility = hAbility
   end
 end
 
-
-  function PerkPuckReflectSpell(filterTable)
-    --DeepPrintTable(projectile)
-    local targetIndex = filterTable["entindex_target_const"]
-    local target = EntIndexToHScript(targetIndex)
-    local targetname = target:GetUnitName()
-    local casterIndex = filterTable["entindex_source_const"]
-    local caster = EntIndexToHScript(casterIndex)
-    local castername = caster:GetUnitName()
-    local abilityIndex = filterTable["entindex_ability_const"]
-    local ability = EntIndexToHScript(abilityIndex)
-    if ability then
-      local abilityname = ability:GetAbilityName()
-
-      local puckPerk = require('scripts/vscripts/../abilities/hero_perks/npc_dota_hero_puck_perk.lua')
-      PerkPuckReflectSpellStore(caster,target,ability)
-
-    end
-    return true    
-  end
