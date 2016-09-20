@@ -4669,7 +4669,7 @@ function OnPhaseChanged(table_name, key, data) {
             if (currentPhase == PHASE_OPTION_VOTING)
             {
                 var mapName = Game.GetMapInfo().map_display_name;
-                if (mapName.match( /all_pick/i ))
+                if (mapName.match( /all_pick/i ) || mapName.match( "3_vs_3" ))
 					$('#middleButtons').visible = false;
             }
 
