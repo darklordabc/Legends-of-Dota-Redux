@@ -35,7 +35,7 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityFullyCast(keys)
     local target = keys.target
     local ability = keys.ability
 
-    if ability and ability:HasAbilityFlag("teleport") then
+    if hero == keys.unit and ability and ability:HasAbilityFlag("teleport") then
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
     end
