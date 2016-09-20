@@ -742,7 +742,6 @@ function Ingame:FilterDamage( filterTable )
     if not victim_index or not attacker_index then
         return true
     end
-	print("init")
      -- Hero perks
     local perkFilters = require('abilities/hero_perks/hero_perks_filters')
     filterTable = heroPerksDamageFilter(filterTable)
