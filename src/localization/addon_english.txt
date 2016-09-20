@@ -1963,4 +1963,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Winter Wyvern Perk Near-Death Flight"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "You have flying movement while health is under 10%."
+	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Invisible"
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin's Perk. Remain invisible while standing in place."
 }
