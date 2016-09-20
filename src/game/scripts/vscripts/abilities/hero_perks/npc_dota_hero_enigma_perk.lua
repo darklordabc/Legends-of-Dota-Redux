@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: enigma
---		Perk: 
+--		Hero: Enigma
+--		Perk: Refreshes Black Hole when Enigma dies. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_enigma_perk", "abilities/hero_perks/npc_dota_hero_enigma_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -29,10 +29,10 @@ function modifier_npc_dota_hero_enigma_perk:DeclareFunctions()
   return funcs
 end
 
-function modifier_npc_dota_hero_enigma_perk:OnDeath()
+function modifier_npc_dota_hero_enigma_perk:OnDeath(keys)
   if IsServer() then
     local caster = self:GetParent()
-    if caster:HasAbility("enigma_black_hole") then
+    if caster == keys.unit and caster:HasAbility("enigma_black_hole") then
       caster:FindAbilityByName("enigma_black_hole"):EndCooldown() 
     end
   end
