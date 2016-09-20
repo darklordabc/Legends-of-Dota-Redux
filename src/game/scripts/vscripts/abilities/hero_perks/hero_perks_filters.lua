@@ -54,7 +54,6 @@ function heroPerksDamageFilter(filterTable)
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
-	print("passed")
   
   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
