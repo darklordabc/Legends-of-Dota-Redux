@@ -967,6 +967,19 @@ var allOptions = {
 // Hard Coded Recommended Builds
 var recommendedBuilds = [
     {
+        title: 'Cherub',
+        heroName: 'npc_dota_hero_enchantress',
+		id: 'build_cherub',
+        attr: 'int',
+        build: {
+            1: 'cherub_sleep_cloud',
+            2: 'cherub_synthesis',
+            3: 'cherub_explosive_spore',
+            4: 'cherub_flower_garden',
+            5: 'garden_pink_blossom_base',
+            6: 'garden_blue_blossom_base',
+        },
+    },{
         title: 'Neutral Creep Builder',
         heroName: 'npc_dota_hero_chen',
 	id: 'build_creep_builder',
