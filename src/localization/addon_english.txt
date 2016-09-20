@@ -1956,7 +1956,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"You gain bonus movement speed per level in support skills."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per spell cast."
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per unique spell cast."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Anti-Mage Perk Silence"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Silenced because Anti-Mage blinked within 300 radius."
