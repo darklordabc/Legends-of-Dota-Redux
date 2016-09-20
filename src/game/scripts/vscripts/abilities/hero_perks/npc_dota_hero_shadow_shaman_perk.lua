@@ -32,14 +32,13 @@ function modifier_npc_dota_hero_shadow_shaman_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityFullyCast(keys)
-  local cooldownPercentReduction = 20
-  local cooldownPercentReduction = 1-(cooldownPercentReduction / 100)
-
   if IsServer() then
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    if ability and ability:HasAbilityFlag("hex") then
+    if hero == keys.unit and ability and ability:HasAbilityFlag("hex") then
+      local cooldownPercentReduction = 20
+      local cooldownPercentReduction = 1-(cooldownPercentReduction / 100)
       ability:RefundManaCost()
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1)*cooldownPercentReduction)
