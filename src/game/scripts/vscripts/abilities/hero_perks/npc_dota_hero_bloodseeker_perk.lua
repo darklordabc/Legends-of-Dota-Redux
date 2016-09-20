@@ -24,19 +24,19 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bloodseeker_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_START,
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_bloodseeker_perk:OnAbilityStart(keys)
+function modifier_npc_dota_hero_bloodseeker_perk:OnAbilityFullyCast(keys)
   if IsServer() then
     local hero = self:GetCaster()
-    local target = keys.target
+    local unit = keys.unit
     local ability = keys.ability
 
 
-    if ability:GetName() == "bloodseeker_rupture" then
+    if hero == unit and ability:GetName() == "bloodseeker_rupture" then
       ability:RefundManaCost()
       ability:EndCooldown()
       ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
