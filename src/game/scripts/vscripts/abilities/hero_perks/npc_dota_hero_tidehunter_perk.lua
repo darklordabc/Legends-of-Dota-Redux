@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: tidehunter
---		Perk: 
+--		Hero: Tidehunter
+--		Perk: Refreshes Ravage when Tidehunter dies. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_tidehunter_perk", "abilities/hero_perks/npc_dota_hero_tidehunter_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -29,10 +29,10 @@ function modifier_npc_dota_hero_tidehunter_perk:DeclareFunctions()
   return funcs
 end
 
-function modifier_npc_dota_hero_tidehunter_perk:OnDeath()
+function modifier_npc_dota_hero_tidehunter_perk:OnDeath(keys)
   if IsServer() then
     local caster = self:GetParent()
-    if caster:HasAbility("tidehunter_ravage") then
+    if caster == keys.unit and caster:HasAbility("tidehunter_ravage") then
       caster:FindAbilityByName("tidehunter_ravage"):EndCooldown()
     end
   end
