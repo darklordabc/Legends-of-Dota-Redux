@@ -37,10 +37,11 @@ function modifier_npc_dota_hero_storm_spirit_perk:DeclareFunctions()
   return funcs
 end
 
+
 function modifier_npc_dota_hero_storm_spirit_perk:OnAbilityStart(keys)
   if IsServer() then
     if not keys.ability:HasAbilityFlag("teleport") then
-      print(keys.ability:GetAbilityName())
+      --print(keys.ability:GetAbilityName())
       self.oldLocation  = self:GetParent():GetAbsOrigin()
     end
   end
@@ -57,8 +58,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
   local caster = self:GetParent()
 
   if IsServer() then
-    local currTime = math.floor(GameRules:GetGameTime()*100)/100 -- We can't be comparing floats but we don't want whole numbers either.
-
+    local currTime = math.floor(GameRules:GetGameTime()*10)/10 -- We can't be comparing floats but we don't want whole numbers either.
     caster.position[currTime] = caster:GetAbsOrigin() -- Storing the location for the next interval
     if self.oldLocation then -- oldLocation gets stored whenever an ability get's started and should overwrite the values because blink like spells may happen between the intervals
       caster.position[currTime-0.1] = self.oldLocation
@@ -66,7 +66,6 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
       self.blink = true
       self.oldLocation = nil -- Resetting the location stored from the ability because we don't want it to get reused.
     end
-
 
     if not caster.position[currTime-0.1] then -- If this is empty, which seems to happen we use the position before, if that is nil we are starting and use the current position
       caster.position[currTime-0.1] = caster.position[currTime-0.2]
@@ -86,7 +85,6 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
       caster:GiveMana(distanceMovedMinusPenalty*self.manaGiven)
       if (distanceMovedMinusPenalty*self.manaGiven) ~= 0 then
         SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, distanceMovedMinusPenalty*self.manaGiven, nil)
-        print(distanceMovedMinusPenalty*self.manaGiven)
         if self.blink == true then
           self.manaGiven = 0 -- To prevent double amounts of mana given out due to missing vectors/wrong time rounding
         end
@@ -98,8 +96,8 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
     for t, pos in pairs(caster.position) do -- Clearing the position values we no longer use
       if (currTime-t) > 0.5 then
        caster.position[t] = nil
-      else
-        break
+      --else
+        --break
       end
     end
   end
