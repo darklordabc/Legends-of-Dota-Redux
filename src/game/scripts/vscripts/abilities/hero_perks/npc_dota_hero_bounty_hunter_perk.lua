@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: bounty_hunter
---		Perk: 
+--		Hero: Bounty Hunter
+--		Perk: Bounty Hunter deals 10% more damage to Tracked enemies. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_bounty_hunter_perk", "abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -22,4 +22,18 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
+function modifier_npc_dota_hero_bounty_hunter_perk:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE
+    }
+    -- body
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_bounty_hunter_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
+    if keys.target and keys.target:HasModifier("modifier_bounty_hunter_track") then
+        return 10
+    else 
+        return 0
+    end
+end
+--------------------------------------------------------------------------------------------------------
