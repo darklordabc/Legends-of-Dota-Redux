@@ -1,10 +1,11 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Winter Wyvern
---		Perk: When Winter Wyvern's health is below 10% she gains flying status.
+--		Perk: When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_perk", "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_flight_delay", "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_flying", "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_winter_wyvern_perk == nil then npc_dota_hero_winter_wyvern_perk = class({}) end
@@ -23,31 +24,63 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
 function modifier_npc_dota_hero_winter_wyvern_perk:OnCreated()
-	self.flying = false
+	if not IsServer() then return end
+
+	self:GetCaster().flying = false
+	self.flightDelay = 5
+	self:StartIntervalThink(0.1)
+
+	return true
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_perk:OnIntervalThink()
+	if not IsServer() then return end
+	local caster = self:GetParent()
+	local check = caster:GetHealthPercent() > 90 and caster:GetManaPercent() > 90
 
+	if not check then self:GetCaster().flying = false end
 
-
-
-function modifier_npc_dota_hero_winter_wyvern_perk:CheckState()
-	local hpCheck = false
-	if self:GetParent():GetHealthPercent() < 10 then
-		hpCheck = true
-		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_npc_dota_hero_winter_wyvern_flying", {})
+	if caster:HasModifier("modifier_npc_dota_hero_winter_wyvern_flying") and not check then
+		GridNav:DestroyTreesAroundPoint(caster:GetAbsOrigin(), 300, true)
+		caster:RemoveModifierByName("modifier_npc_dota_hero_winter_wyvern_flying")
+	elseif caster:HasModifier("modifier_npc_dota_hero_winter_wyvern_flight_delay") and not check then
+		caster:RemoveModifierByName("modifier_npc_dota_hero_winter_wyvern_flight_delay")
+	elseif not self:GetCaster().flying and check then
+		caster:AddNewModifier(caster, self, "modifier_npc_dota_hero_winter_wyvern_flight_delay", {Duration = self.flightDelay})
+		self:GetCaster().flying = true
 	end
-	local state = {
-	[MODIFIER_STATE_FLYING] = hpCheck,
-	}
-	if self.flying and self:GetParent():GetHealthPercent() >= 10 then
-		GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), 300, true)
-		self.flying = false
-		self:GetParent():RemoveModifierByName("modifier_npc_dota_hero_winter_wyvern_flying")
-	elseif not self.flying and self:GetParent():GetHealthPercent() < 10 then
-		self.flying = true
-	end
-	return state
+
+	return true
 end
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_winter_wyvern_flight_delay == nil then modifier_npc_dota_hero_winter_wyvern_flight_delay = class({}) end
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_flight_delay:IsHidden()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_winter_wyvern_flight_delay:OnDestroy()
+	if not IsServer() then return end
+	local caster = self:GetCaster()
+	if self:GetCaster().flying then
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_npc_dota_hero_winter_wyvern_flying", {})
+	end 
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_winter_wyvern_flying == nil then modifier_npc_dota_hero_winter_wyvern_flying = class({}) end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_flight_delay:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_flying:CheckState()
+	local states = {
+		[MODIFIER_STATE_FLYING] = true ,
+	}
+	return states
+end
+--------------------------------------------------------------------------------------------------------
