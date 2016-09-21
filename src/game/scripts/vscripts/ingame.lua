@@ -576,6 +576,8 @@ function Ingame:FilterModifyGold(filterTable)
 
         filterTable.gold = math.ceil(filterTable.gold * ratio)
     end
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksGoldFilter(filterTable)
 
     return true
 end
