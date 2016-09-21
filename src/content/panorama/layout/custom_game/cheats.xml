@@ -1,0 +1,16 @@
+<root>
+	<Panel class="cheatsRoot">
+		<Panel id="changelogButton">
+			<Button id="showChangelogButton" onactivate='toggleCheats()'>
+				<Image id="cheatsIcon" src="file://{images}/custom_game/changelog.png"/>
+			</Button>
+		</Panel>
+		<Button id="cheatsNotification" onactivate='toggleCheats(toggleCredits)'>
+			<Label id="cheatsNotificationLabel" text="1" />
+		</Button>
+		</Panel>
+		<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
+		</Panel>
+	</Panel>
+	
+</root>
