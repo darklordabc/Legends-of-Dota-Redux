@@ -22,4 +22,13 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_luna_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_FIXED_NIGHT_VISION
+  }
+end
 
+function modifier_npc_dota_hero_luna_perk:GetNightTimeVisionRange()
+  local nightVision = 1800
+  return nightVision
+end
