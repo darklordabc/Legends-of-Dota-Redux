@@ -472,6 +472,11 @@
 	"hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
 	"hintPL"                         "At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
 	"hintCM"                         "Crystal Maiden gains +2 movement speed for every level in Support skills she has."
+	"hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
+	"hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
+	"hintLion"                         "For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%."
+	"hintTusk"                         "Walrus Kick and Walrus Punch will refund their manacost when used by Tusk."
+	"hintWD"                         "Healing abilities have 25% extra effectiveness when used by Witch Doctor."
 	
 	
 	
@@ -724,7 +729,11 @@
 	"unique_mechanic_invoker"           "Invoker gains +5 <br>intelligence each time he uses a different <br>ability, resetting when an ability has been <br>used twice."
 	"unique_mechanic_enchantress"           "Enchantress can grow <br>plants without the health penalty."
 	"unique_mechanic_wisp"           "On spells that target <br>a position Wisp targets that same spell on <br>another position."
-	"unique_mechanic_antimage"           "Anti-Mage silences all<br>enemy heroes when he blinks within 300 radius of them."
+	"unique_mechanic_antimage"           "After Anti-Mage <br>blinks he will silence enemies within 200 <br>radius for 2 seconds."
+	"unique_mechanic_elder_titan"           "Elder Titan gains 3% <br>bonus movement speed for every aura he <br>is carrying."
+	"unique_mechanic_lion"           "For Lion, killing a <br>hero with a spell refunds the mana cost of <br>that spell and lowers its cooldown by 75%."
+	"unique_mechanic_tusk"           "<font color=\"#25EC28\">Walrus Kick</font> and <br><font color=\"#25EC28\">Walrus Punch</font> will refund their manacost <br>when used by Tusk."
+	"unique_mechanic_witch_doctor"           "<font color=\"#25EC28\">Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor."
 	
     /////////////////
     // Skill Warnings

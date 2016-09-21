@@ -64,6 +64,11 @@
 			<Image src="file://{images}/custom_game/hints/hint_meepo.png" />
 			<Image src="file://{images}/custom_game/hints/hint_pl.png" />
 			<Image src="file://{images}/custom_game/hints/hint_cm.png" />
+			<Image src="file://{images}/custom_game/hints/hint_anti_mage.png" />
+			<Image src="file://{images}/custom_game/hints/hint_elder_titan.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lion.png" />
+			<Image src="file://{images}/custom_game/hints/hint_tusk.png" />
+			<Image src="file://{images}/custom_game/hints/hint_WD.png" />
         </Panel>
         
         <Panel id="LoDLoadingTip">

@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Antimage
---		Perk: 
+--		Perk: After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_antimage_perk", "abilities/hero_perks/npc_dota_hero_antimage_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

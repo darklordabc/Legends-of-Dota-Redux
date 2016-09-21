@@ -265,6 +265,21 @@ function setBackground() {
 	, {
         img: 'file://{images}/custom_game/hints/hint_cm.png',
         txt: '#hintCM'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_anti_mage.png',
+        txt: '#hintAntiMage'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_elder_titan.png',
+        txt: '#hintElderTitan'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_lion.png',
+        txt: '#hintLion'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_tusk.png',
+        txt: '#hintTusk'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_WD.png',
+        txt: '#hintWD'
     }];
 
     // How long to wait before we show the next tip
