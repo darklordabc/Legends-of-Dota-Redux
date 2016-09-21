@@ -24,18 +24,73 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:OnCreated()
-  self:StartIntervalThink(1)
+  local passiveGoldGainPercent = 20 -- In this case 20% means once every 5 goldtick intervals this triggers
+  local amountOfTicksPerInterval = 100/passiveGoldGainPercent
+  local goldTickTime = GetGoldTickTime or 0.6 -- Standard, the first option isn't used for now.
+  self:StartIntervalThink(amountOfTicksPerInterval*goldTickTime)
 end
+
+function modifier_npc_dota_hero_alchemist_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+    MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+  }
+  return funcs
+end
+
+function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Strength()
+  local caster = self:GetParent()
+  local stats = caster:FindAbilityByName("attribute_bonus")
+  if stats then
+    local statsLevel = stats:GetLevel()
+    return statsLevel
+  else 
+    return 0
+  end
+end
+
+function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Agility()
+  local caster = self:GetParent()
+  local stats = caster:FindAbilityByName("attribute_bonus")
+  if stats then
+    local statsLevel = stats:GetLevel()
+    return statsLevel
+  else 
+    return 0
+  end
+end
+
+function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Intellect()
+  local caster = self:GetParent()
+  local stats = caster:FindAbilityByName("attribute_bonus")
+  if stats then
+    local statsLevel = stats:GetLevel()
+    return statsLevel
+  else 
+    return 0
+  end
+end
+
+
 
 function modifier_npc_dota_hero_alchemist_perk:OnIntervalThink()
+  local OptionManager = require('optionmanager')
   local caster = self:GetParent()
-  --if caster:IsAlive() then
-    local stats = caster:FindAbilityByName("attribute_bonus")
-    local statsLevel = stats:GetLevel()
-    local basicGoldGain = 1
-    local goldGain = 1 + statsLevel
-    caster:ModifyGold(goldGain,true,DOTA_ModifyGold_GameTick)
-  --end
+  local goldGain = caster.goldPerTick 
+  print("GetGoldPerTick "..goldGain)
+  caster:ModifyGold(goldGain,true,DOTA_ModifyGold_GameTick)
 end
 
 
+function alchemistPerkGoldFilter(filterTable)
+  local playerID = filterTable["player_id_const"]
+  local player =  PlayerResource:GetPlayer(playerID)
+  local hero =  player:GetAssignedHero()
+
+  if hero:HasModifier("modifier_npc_dota_hero_alchemist_perk") then
+    if not hero.goldPerTick and filterTable.reason_const == DOTA_ModifyGold_GameTick then
+      hero.goldPerTick = filterTable.gold
+    end
+  end
+end
