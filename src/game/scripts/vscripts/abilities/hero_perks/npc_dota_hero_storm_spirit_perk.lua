@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_storm_spirit_perk:IsHidden()
-  return true
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -41,7 +41,7 @@ end
 function modifier_npc_dota_hero_storm_spirit_perk:OnAbilityStart(keys)
   if IsServer() then
     if not keys.ability:HasAbilityFlag("teleport") then
-      --print(keys.ability:GetAbilityName())
+      print(keys.ability:GetAbilityName())
       self.oldLocation  = self:GetParent():GetAbsOrigin()
     end
   end
@@ -64,9 +64,8 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
       caster.position[currTime-0.1] = self.oldLocation
       caster.position[currTime-0.2] = self.oldLocation
       self.blink = true
-      self.oldLocation = nil -- Resetting the location stored from the ability because we don't want it to get reused.
     end
-
+    self.oldLocation = nil -- Resetting the location stored from the ability because we don't want it to get reused.
     if not caster.position[currTime-0.1] then -- If this is empty, which seems to happen we use the position before, if that is nil we are starting and use the current position
       caster.position[currTime-0.1] = caster.position[currTime-0.2]
       if not caster.position[currTime-0.1] then
@@ -76,7 +75,7 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
 
     local distanceMoved = (caster.position[currTime-0.1] - caster:GetAbsOrigin()):Length2D()
     local distanceMovedMinusPenalty = distanceMoved - startPenalty
-
+    
     if distanceMovedMinusPenalty < 1 then 
       distanceMovedMinusPenalty = 0
       self.manaGiven = distanceFactor
@@ -87,11 +86,10 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnIntervalThink()
         SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, distanceMovedMinusPenalty*self.manaGiven, nil)
         if self.blink == true then
           self.manaGiven = 0 -- To prevent double amounts of mana given out due to missing vectors/wrong time rounding
+          self.blink = false
         end
       end
     end
-    
-    
     
     for t, pos in pairs(caster.position) do -- Clearing the position values we no longer use
       if (currTime-t) > 0.5 then
