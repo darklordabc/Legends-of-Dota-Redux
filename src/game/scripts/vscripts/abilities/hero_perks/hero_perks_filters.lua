@@ -63,3 +63,12 @@ function heroPerksDamageFilter(filterTable)
   PerkAbaddon(filterTable)
   return filterTable
 end
+
+function heroPerksGoldFilter(filterTable)
+  
+  local perkForAlchemist = require('abilities/hero_perks/npc_dota_hero_alchemist_perk')
+  alchemistPerkGoldFilter(filterTable)
+  
+  return filterTable
+end
+
