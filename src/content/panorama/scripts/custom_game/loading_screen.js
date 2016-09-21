@@ -53,7 +53,7 @@ function onHideScreen(table_name, key, data) {
 
     // Show screen when voting only on all pick maps
     var mapName = Game.GetMapInfo().map_display_name;
-    if (mapName.match( /all_pick/i ) || mapName.match( "3_vs_3" ) && data.v < 3 || data.v < 2)
+    if ((mapName.match( /all_pick/i ) || mapName.match( "3_vs_3" )) && data.v < 3 || data.v < 2)
         return;
 
     $('#CustomBackground').visible = false;

@@ -271,7 +271,7 @@ function Pregame:init()
     -- 3 VS 3
     if mapName == '3_vs_3' then
         self:setOption('lodOptionGamemode', 1)
-        self:setOption('lodOptionSlots', 4, true)
+        self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 1, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
