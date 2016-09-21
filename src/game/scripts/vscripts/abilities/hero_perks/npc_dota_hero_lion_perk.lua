@@ -40,7 +40,11 @@ function modifier_npc_dota_hero_lion_perk:OnTakeDamage(keys)
 		local target = keys.target
 		local attacker = keys.attacker
 		if attacker == caster then
-			if ability then self.ability = ability end
+			if ability then 
+				self.ability = ability 
+			else
+				self.ability = nil
+			end
 		end
 	end
 	return true
