@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.2
 
 ### Bug Fixing
+- Added sounds for when you select a build
 
 ### Balance
 - Changed the hero for many of the preset builds
