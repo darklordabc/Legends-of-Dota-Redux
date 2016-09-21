@@ -55,6 +55,8 @@ function modifier_npc_dota_hero_lion_perk:OnHeroKilled(keys)
 		if attacker == caster and self.ability then
 			local ability = caster:FindAbilityByName(self.ability:GetName())
 			if ability then
+				local prt = ParticleManager:CreateParticle('particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf', PATTACH_ABSORIGIN_FOLLOW, caster)
+				ParticleManager:ReleaseParticleIndex(prt)
 				-- Refunds manacost
 				ability:RefundManaCost()
 				-- Reduces remaining cooldown by 75%
