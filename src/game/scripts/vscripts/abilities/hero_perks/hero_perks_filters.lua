@@ -42,7 +42,7 @@ function heroPerksModifierFilter(filterTable)
   local perkForAncientApparition = require('abilities/hero_perks/npc_dota_hero_ancient_apparition_perk')
   perkAncientApparition(filterTable)
    -- Perk for Drow Ranger
-  local perkForAncientApparition = require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
+  local perkForDrowRanger = require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
   perkDrowRanger(filterTable)
   -- Returning the filterTable
   return filterTable
