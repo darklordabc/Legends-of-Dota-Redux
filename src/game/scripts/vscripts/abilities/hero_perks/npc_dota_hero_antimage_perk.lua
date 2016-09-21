@@ -37,7 +37,8 @@ end
 
 function modifier_npc_dota_hero_antimage_perk:OnAbilityExecuted(params)
 	if IsServer() then
-		if params.unit == self:GetParent() and ( params.ability:HasAbilityFlag("blink") or params.ability:GetName() == "item_blink" ) then
+		if params.unit ~= self:GetParent() then return end
+		if params.ability:HasAbilityFlag("blink") then
 			local silence = params.ability -- For modifier icon
 			local cursorPos = params.ability:GetCursorPosition()
 			local targets = FindUnitsInRadius(self:GetParent():GetTeamNumber(), cursorPos, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_DAMAGE_FLAG_NONE, FIND_ANY_ORDER, false)
@@ -49,7 +50,7 @@ function modifier_npc_dota_hero_antimage_perk:OnAbilityExecuted(params)
 end
 
 --------------------------------------------------------------------------------------------------------
---		Phase Modifier: 	modifier_npc_dota_hero_spectre_phased		
+--		Phase Modifier: 	modifier_npc_dota_hero_antimage_silence		
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_antimage_silence == nil then modifier_npc_dota_hero_antimage_silence = class({}) end
 --------------------------------------------------------------------------------------------------------
