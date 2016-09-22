@@ -41,7 +41,7 @@ function modifier_npc_dota_hero_antimage_perk:OnAbilityExecuted(params)
 		if params.ability:HasAbilityFlag("blink") then
 			local silence = params.ability -- For modifier icon
 			local cursorPos = params.ability:GetCursorPosition()
-			local targets = FindUnitsInRadius(self:GetParent():GetTeamNumber(), cursorPos, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_DAMAGE_FLAG_NONE, FIND_ANY_ORDER, false)
+			local targets = FindUnitsInRadius(self:GetParent():GetTeamNumber(), cursorPos, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_DAMAGE_FLAG_NONE, FIND_ANY_ORDER, false)
 			for _,target in pairs(targets) do
 				target:AddNewModifier(self:GetParent(), silence, "modifier_npc_dota_hero_antimage_silence", {duration = self.duration})
 			end
