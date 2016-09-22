@@ -41,7 +41,6 @@ function modifier_npc_dota_hero_ogre_magi_perk:OnAbilityFullyCast(keys)
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:GetCooldown(-1) > 0 then
 	  local random = math.random(100)
-	  print(random)
 	  if random <= self.refundChance then
 		hero:EmitSound("DOTA_Item.Refresher.Activate")
 		local particle = ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
