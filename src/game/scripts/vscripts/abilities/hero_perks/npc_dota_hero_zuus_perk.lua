@@ -41,7 +41,7 @@ function modifier_npc_dota_hero_zuus_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:HasAbilityFlag("lightning") then
-	  hero:GiveMana(ability:GetManaCost(ability:GetLevel()) * self.manaReduction)
+	  hero:GiveMana(ability:GetManaCost(-1) * self.manaReduction)
 	end
   end
 end
