@@ -96,28 +96,28 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/ogre_magi_multicast_lod.png',
         txt: '#hintMulticast'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/hint_warnings.png',
         txt: '#hintWarnings'
-    },{
+    }, {
         img: 'file://{images}/spellicons/antimage_blink.png',
         txt: '#hintBlink'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/hint_balancemode.png',
         txt: '#hintBalanceMode'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/hint_saveload.png',
         txt: '#hintSaveLoad'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/hint_scoreboard.png',
         txt: '#hintScoreboard'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/commentButton.png',
         txt: '#hintComment'
-    },{
+    }, {
         img: 'file://{images}/custom_game/hints/hint_removeability.png',
         txt: '#hintRemoveAbility'
-    },{
+    }, {
         img: 'file://{images}/spellicons/satyr_hellcaller_unholy_aura.png',
         txt: '#hintNeutralBuffs'
     }, {
@@ -237,32 +237,25 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_dark_seer.png',
         txt: '#hintDarkSeer'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_enchantress.png',
         txt: '#hintEnchantress'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_invoker.png',
         txt: '#hintInvoker'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_qop.png',
         txt: '#hintQOP'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_wisp.png',
         txt: '#hintWisp'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_meepo.png',
         txt: '#hintMeepo'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_pl.png',
         txt: '#hintPL'
-    }
-	, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_cm.png',
         txt: '#hintCM'
     }, {
@@ -280,10 +273,227 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_WD.png',
         txt: '#hintWD'
-    }];
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_clinkz.png',
+        txt: '#hintClinkz'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_ogre_magi.png',
+        txt: '#hintOgreMagi'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_vs.png',
+        txt: '#hintVS'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_visage.png',
+        txt: '#hintVisage'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_naga.png',
+        txt: '#hintNaga'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_BH.png',
+        txt: '#hintBH'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_drow.png',
+        txt: '#hintDrow'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_nyx.png',
+        txt: '#hintNyx'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_slark.png',
+        txt: '#hintSlark'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_luna.png',
+        txt: '#hintLuna'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_alchemist.png',
+        txt: '#hintAlchemist'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_arc_warden.png',
+        txt: '#hintArcWarden'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_axe.png',
+        txt: '#hintAxe'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_bane.png',
+        txt: '#hintBane'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_beast_master.png',
+        txt: '#hintBeastMaster'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_earth_spirit.png',
+        txt: '#hintEarthSpirit'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_ember_spirit.png',
+        txt: '#hintEmberSpirit'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_faceless_void.png',
+        txt: '#hintFacelessVoid'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_huskar.png',
+        txt: '#hintHuskar'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_jakiro.png',
+        txt: '#hintJakiro'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_juggernaut.png',
+        txt: '#hintJuggernaut'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_kotl.png',
+        txt: '#hintKOTL'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_kunkka.png',
+        txt: '#hintKunkka'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_leshrac.png',
+        txt: '#hintLeshrac'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_lone_druid.png',
+        txt: '#hintLoneDruid'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_lycan.png',
+        txt: '#hintLycan'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_magnus.png',
+        txt: '#hintMagnus'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_medusa.png',
+        txt: '#hintMedusa'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_mirana.png',
+        txt: '#hintMirana'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_necrophos.png',
+        txt: '#hintNecrophos'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_omniknight.png',
+        txt: '#hintOmniknight'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_oracle.png',
+        txt: '#hintOracle'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_OD.png',
+        txt: '#hintOD'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_PA.png',
+        txt: '#hintPA'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_pudge.png',
+        txt: '#hintPudge'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_pugna.png',
+        txt: '#hintPugna'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_razor.png',
+        txt: '#hintRazor'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_rubick.png',
+        txt: '#hintRubick'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_sand_king.png',
+        txt: '#hintSandKing'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_shadow_demon.png',
+        txt: '#hintShadowDemon'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_silencer.png',
+        txt: '#hintSilencer'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_skywrath.png',
+        txt: '#hintSkywrath'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_slardar.png',
+        txt: '#hintSlardar'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_sniper.png',
+        txt: '#hintSniper'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_spirit_breaker.png',
+        txt: '#hintSpiritBreaker'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_sven.png',
+        txt: '#hintSven'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_techies.png',
+        txt: '#hintTechies'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_ta.png',
+        txt: '#hintTA'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_terrorblade.png',
+        txt: '#hintTerrorblade'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_tinker.png',
+        txt: '#hintTinker'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_tiny.png',
+        txt: '#hintTiny'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_treant.png',
+        txt: '#hintTreant'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_troll_warlord.png',
+        txt: '#hintTrollWarlord'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_underlord.png',
+        txt: '#hintUnderlord'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_undying.png',
+        txt: '#hintUndying'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_venomancer.png',
+        txt: '#hintVenomancer'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_viper.png',
+        txt: '#hintViper'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_warlock.png',
+        txt: '#hintWarlock'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_weaver.png',
+        txt: '#hintWeaver'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_windranger.png',
+        txt: '#hintWindranger'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_WK.png',
+        txt: '#hintWK'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_zuus.png',
+        txt: '#hintZuus'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_BM.png',
+        txt: '#hintBM'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_NS.png',
+        txt: '#hintNS'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_earth_shaker.png',
+        txt: '#hintEarthShaker'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_gyro.png',
+        txt: '#hintGyro'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_bristle_back.png',
+        txt: '#hintBristleBack'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_CK.png',
+        txt: '#hintCK'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_clockwerk.png',
+        txt: '#hintClockwerk'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_dazzle.png',
+        txt: '#hintDazzle'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_disruptor.png',
+        txt: '#hintDisruptor'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_DP.png',
+        txt: '#hintDP'
+    },
+	];
 
     // How long to wait before we show the next tip
-    var tipDelay = 15;
+    var tipDelay = .5;
 
     // Contains a list of all tip IDs
     var allTips = [];
