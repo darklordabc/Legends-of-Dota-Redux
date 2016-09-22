@@ -44,6 +44,9 @@ function heroPerksModifierFilter(filterTable)
    -- Perk for Drow Ranger
   local perkForDrowRanger = require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
   perkDrowRanger(filterTable)
+  -- Perk for Death Prophet
+  local perkForDeathProphet = require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
+  perkDeathProphet(filterTable)
   -- Returning the filterTable
   return filterTable
 end
