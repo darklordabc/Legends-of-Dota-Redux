@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Zeus
---		Perk: Reduces the manacost of all Lightning spells by 20%. 
+--		Perk: Refunds 20% of the manacost of Lightning spells. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_zuus_perk", "abilities/hero_perks/npc_dota_hero_zuus_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -21,8 +21,8 @@ function modifier_npc_dota_hero_zuus_perk:IsHidden()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:OnCreated(keys)
-	self.cooldownPercentReduction = 20
-	self.cooldownReduction = 1-(self.cooldownPercentReduction / 100)
+	self.manaPercentReduction = 20
+	self.manaReduction = self.cooldownPercentReduction / 100
 	return true
 end
 --------------------------------------------------------------------------------------------------------
@@ -41,8 +41,7 @@ function modifier_npc_dota_hero_zuus_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:HasAbilityFlag("lightning") then
-	  ability:EndCooldown()
-	  ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1) * self.cooldownReduction)
+	  caster:GiveMana(ability:GetManaCost(ability:GetLevel()) * self.manaReduction)
 	end
   end
 end
