@@ -43,7 +43,7 @@ function modifier_npc_dota_hero_phantom_assassin_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:HasAbilityFlag("dagger") then
-	  hero:GiveMana(ability:GetManaCost(ability:GetLevel()) * self.manaReduction)
+	  hero:GiveMana(ability:GetManaCost(-1) * self.manaReduction)
 	  if ability:GetCooldownTimeRemaining() > 1.05 then
 		ability:EndCooldown()
 		ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1) - self.cooldownBaseReduction)
