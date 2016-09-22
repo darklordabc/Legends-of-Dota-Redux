@@ -828,7 +828,7 @@
 	//"unique_mechanic_lycan"                        ""
 	//"unique_mechanic_magnataur"                        ""
 	//"unique_mechanic_medusa"                        ""
-	//"unique_mechanic_mirana"                        ""
+	//"unique_mechanic_mirana"                        "<font color=\"#25EC28\">Skillshots</font>" refund 50% of <br> their manacosts and  reduce  <br> 20% of their cooldown.
 	//"unique_mechanic_naga_siren"                        ""
 	//"unique_mechanic_necrolyte"                        ""
 	//"unique_mechanic_nyx_assassin"                        ""
