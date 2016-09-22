@@ -2080,35 +2080,35 @@
 	"DOTA_Tooltip_modifier_charges"		"Skill Charges"
 	"DOTA_Tooltip_modifier_charges_Description"	"Amount of charges left."
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"	"Doom Perk Break"
-	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Your passives are disabled."
+	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"	"Break"
+	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Doom's Perk. Your passives are disabled while doomed."
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Spectre Perk Phased"
-	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"You have phased movement."
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
  	
- 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Phantom Rush Perk Cooldown"
+ 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Recharging"
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"	"Phantom Rush is on cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"	"Crystal Maiden Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"You gain bonus movement speed per level in support skills."
+	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"Gaining bonus movement speed per level in support skills."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per unique spell cast."
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Anti-Mage Perk Silence"
-	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Silenced because Anti-Mage blinked within 300 radius."
+	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Silenced"
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Anti-Mage's Perk. Silenced because Anti-Mage blinked within 300 radius."
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Winter Wyvern Perk Near-Death Flight"
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "You have flying movement while health is under 10%."
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "Winter Wyvern's perk. Winter Wyvern has flying movement when over 90%d%% health and mana."
 	
   	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin's Perk. Remain invisible while standing in place."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 60 seconds to use again."
-	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Arc Warden Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 60 seconds to recharge."
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Recharging"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "Recharging Arc Warden's perk over 60 seconds."
 }
