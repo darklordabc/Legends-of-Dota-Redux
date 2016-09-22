@@ -493,7 +493,7 @@ function setBackground() {
 	];
 
     // How long to wait before we show the next tip
-    var tipDelay = .5;
+    var tipDelay = 15;
 
     // Contains a list of all tip IDs
     var allTips = [];
