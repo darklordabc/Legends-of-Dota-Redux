@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
+- Replaced all_pick_4 with 3_vs_3
+- Renamed all_pick_6 to 5_vs_5
 
 ## 1.1
 

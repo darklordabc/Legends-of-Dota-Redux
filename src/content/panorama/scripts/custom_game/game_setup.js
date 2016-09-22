@@ -4699,7 +4699,7 @@ function OnPhaseChanged(table_name, key, data) {
             if (currentPhase == PHASE_OPTION_VOTING)
             {
                 var mapName = Game.GetMapInfo().map_display_name;
-                if (mapName.match( /all_pick/i ))
+                if (mapName.match( /5_vs_5/i ) || mapName.match( "3_vs_3" ))
 					$('#middleButtons').visible = false;
             }
 
@@ -5415,7 +5415,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     }
 
     // Are we on a map that allocates slots for us?
-    if(mapName == 'all_pick_4' || mapName == 'all_pick_6') {
+    if(mapName == '3_vs_3' || mapName == '5_vs_5') {
         // Disable max slots voting
         $.GetContextPanel().SetHasClass('veryBasicVoting', true);
         useOptionVoting = true;
