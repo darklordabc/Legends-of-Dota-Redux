@@ -652,6 +652,26 @@
     "unique_mechanic_slardar"               	    "Skull Basher and <br> Abyssal Blade will not proc for this hero."
 
     /////////////////
+    // Cheats
+    /////////////////
+
+    "com_lvl_up_1_Description" "Get 1 level"
+    "com_lvl_bots_1_Description" "Get 1 bots level"
+    "com_lvl_max_Description" "Lvl up max"
+    "com_gold_max_Description" "Get gold"
+    "com_refresh_Description" "Refresh all"
+    "com_respawn_Description" "Respawn"
+    "com_start_game_Description" "Start game"
+    "com_spawn_neutrals_Description" "Spawn neutrals"
+    "com_wtf_unwtf_Description" "WTF/UNWTF"
+    "com_vision_Description" "Vision"
+    "com_teleport_Description" "Teleport"
+    "com_item_1_Description" "Get boots of travel"
+    "com_item_2_Description" "Get heart"
+    "com_item_3_Description" "Get Radiance"
+    "com_item_4_Description" "Get blink"
+
+    /////////////////
     // Skill Warnings
     ////////////////
 

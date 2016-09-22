@@ -1,67 +1,109 @@
 "use strict";
 var cheat_list = [
 	{
-		name = 'com_lvl_up_1',
-		command = '-lvlup 1',
+		name: 'com_lvl_up_1',
+		command: 'dota_hero_level 1',
 	},
 	{
-		name = 'com_lvl_bots_1',
-		command = '-levelbots 1',
+		name: 'com_lvl_bots_1',
+		command: 'dota_bot_give_level 1',
 	},
 	{
-		name = 'com_lvl_max',
-		command = '-lvlmax',
+		name: 'com_lvl_max',
+		command: 'dota_hero_level 100',
 	},
 	{
-		name = 'com_gold_max',
-		command = '-gold 999999',
+		name: 'com_gold_max',
+		command: 'dota_give_gold 999999',
 	},
 	{
-		name = 'com_refresh',
-		command = '-refresh',
+		name: 'com_refresh',
+		command: 'dota_hero_refresh',
 	},
 	{
-		name = 'com_respawn',
-		command = '-respawn',
+		name: 'com_respawn',
+		command: 'dota_hero_respawn',
 	},
 	{
-		name = 'com_start_game',
-		command = '-startgame',
+		name: 'com_start_game',
+		command: 'dota_start_game',
 	},
 	{
-		name = 'com_spawn_neutrals',
-		command = '-spawnneutrals',
+		name: 'com_spawn_neutrals',
+		command: 'dota_spawn_neutrals',
 	},
 	{
-		name = 'com_wtf_unwtf',
-		command = ['-wtf', '-unwtf'],
+		name: 'com_wtf_unwtf',
+		command: 'dota_ability_debug',
+		value: true,
 	},
 	{
-		name = 'com_vision',
-		command = ['-allvision', '-normalvision'],
+		name: 'com_vision',
+		command: 'dota_all_vision',
+		value: true,
+	},
+	// {
+	// 	name: 'com_teleport',
+	// 	command: '-teleport',
+	// 	type: 'int',
+	// 	value: '1',
+	// },
+	{
+		name: 'com_item_1',
+		command: 'dota_create_item item_travel_boots_1',
 	},
 	{
-		name = 'com_teleport',
-		command = '-teleport',
+		name: 'com_item_2',
+		command: 'dota_create_item item_heart',
 	},
 	{
-		name = 'com_item_1',
-		command = '-item item_travel_boots_1',
+		name: 'com_item_3',
+		command: 'dota_create_item item_radiance',
 	},
 	{
-		name = 'com_item_2',
-		command = '-item item_heart',
-	},
-	{
-		name = 'com_item_3',
-		command = '-item item_radiance',
-	},
-	{
-		name = 'com_item_4',
-		command = '-item item_blink',
+		name: 'com_item_4',
+		command: 'dota_create_item item_blink',
 	},
 ];
 
-function toggleCheats(args){
+var isCreated = false
 
+function toggleCheats(){
+	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 }
+
+
+function onClick(id){
+	var cheatButton = $('#'+id)
+	var command = cheatButton.GetAttributeString('command', '');
+	var value = cheatButton.GetAttributeString('value', '');
+	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
+		command: command,
+		value: value,
+	});
+	if(value != ''){
+		value = (value !== 'true');
+		cheatButton.SetAttributeString('value', value.toString());
+	}
+}
+
+
+
+(function (){
+	for (var cheat in cheat_list) {
+		var cheatButton = $.CreatePanel('TextButton', $('#cheatsDisplay'), cheat_list[cheat].name);
+		cheatButton.AddClass('PlayButton');
+		cheatButton.text = $.Localize(cheat_list[cheat].name+"_Description");
+		cheatButton.SetAttributeString('command', cheat_list[cheat].command);
+		cheatButton.SetPanelEvent('onactivate', function (){
+			$.Msg(cheatButton.GetAttributeString('command', ''))
+			onClick(cheatButton.id)
+		});
+		var value = cheat_list[cheat].value;
+		if(value !== undefined) {
+			cheatButton.SetAttributeString('value', value.toString());
+			// cheatButton.SetAttributeString('type', typeof(value))
+		}
+	}
+
+})();

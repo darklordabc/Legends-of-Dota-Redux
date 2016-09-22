@@ -37,7 +37,7 @@ function Ingame:init()
         this:declined(eventSourceIndex)
     end)
 
-    CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
+    CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
 
@@ -74,7 +74,6 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
-
     if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
@@ -118,6 +117,10 @@ function Ingame:onStart()
     ListenToGameEvent('player_disconnect', function(keys)
         this:checkBalanceTeamsNextTick()
     end, nil)
+
+    CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
+        this:onPlayerCheat(eventSourceIndex, args)
+    end)
 
     -- Listen for players connecting
     ListenToGameEvent('player_connect', function(keys)
@@ -351,6 +354,18 @@ function Ingame:checkBalanceTeamsNextTick()
     Timers:CreateTimer(function()
         this:checkBalanceTeams()
     end, DoUniqueString('balanceChecker'), 0)
+end
+
+function Ingame:onPlayerCheat(eventSourceIndex, args)
+    local command = args.command
+    local value = args.value
+    print(command, value)
+    if value ~= '' then
+        value = value == 'true' and true or false
+        Convars:SetBool(command, value)
+    else
+        SendToServerConsole(command)
+    end
 end
 
 -- Called to check if teams need to be balanced
