@@ -812,7 +812,7 @@
 	//"unique_mechanic_chaos_knight"                        ""
 	//"unique_mechanic_clinkz"                        ""
 	//"unique_mechanic_dazzle"                        ""
-	//"unique_mechanic_death_prophet"                        ""
+	//"unique_mechanic_death_prophet"                        "Any <font color=\"#25EC28\">Silence</font> applied by <br> Death Prophet will also <br> <font color=\"#25EC28\">Mute</font> the target  "
 	//"unique_mechanic_disruptor"                        ""
 	//"unique_mechanic_drow_ranger"                        ""
 	//"unique_mechanic_earth_spirit"                        ""
