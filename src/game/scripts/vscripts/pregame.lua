@@ -224,7 +224,7 @@ function Pregame:init()
     end
 
     -- All pick with 6 slots
-    if mapName == 'all_pick_6' then
+    if mapName == '5_vs_5' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
@@ -1501,7 +1501,7 @@ function Pregame:initOptionSelector()
             end
 
             -- All Pick 6 slots
-            if mapName == 'all_pick_6' then
+            if mapName == '5_vs_5' then
                 return value == 1
             end
 
@@ -2639,7 +2639,7 @@ function Pregame:processOptions()
             end
             
             network:updateFilters()
-            disableBanLists = disableBanLists or mapName == 'all_pick_6' or mapName =='3_vs_3'
+            disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
         end
         
         -- Enable WTF mode
