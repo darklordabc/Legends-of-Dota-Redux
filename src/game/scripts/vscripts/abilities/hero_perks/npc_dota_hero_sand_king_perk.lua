@@ -41,7 +41,7 @@ function modifier_npc_dota_hero_sand_king_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:HasAbilityFlag("channeled") then
-	  caster:GiveMana(ability:GetManaCost(ability:GetLevel()) * self.manaReduction)
+	  hero:GiveMana(ability:GetManaCost(ability:GetLevel()) * self.manaReduction)
 	end
   end
 end
