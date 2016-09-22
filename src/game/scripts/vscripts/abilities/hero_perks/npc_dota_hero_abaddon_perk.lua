@@ -69,7 +69,7 @@ function PerkAbaddon(filterTable)
     if not victim_index or not attacker_index or not ability_index then
         return true
     end
-	print("perk")
+    
     local attacker = EntIndexToHScript( victim_index )
     local victim = EntIndexToHScript( attacker_index )
     local ability = EntIndexToHScript( ability_index )
