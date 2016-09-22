@@ -2106,4 +2106,9 @@
 	
   	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin's Perk. Remain invisible while standing in place."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 60 seconds to use again."
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Arc Warden Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "Recharging Arc Warden's perk over 60 seconds."
 }
