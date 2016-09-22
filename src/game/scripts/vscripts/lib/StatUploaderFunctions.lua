@@ -151,3 +151,5 @@ function SU:LoadGlobalAbilitiesStat()
   SU:SendRequest( requestParams, function(obj)
   end)  
 end
+
+return SU
