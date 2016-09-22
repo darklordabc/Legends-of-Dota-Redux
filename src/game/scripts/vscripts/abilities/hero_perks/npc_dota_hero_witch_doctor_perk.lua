@@ -45,7 +45,6 @@ function modifier_npc_dota_hero_witch_doctor_perk:OnHealReceived(keys)
 		local amount = keys.gain -- Amount healed
 
 		if inflictor and inflictor ~= self:GetAbility() then
-			-- vscript error occurs saying this is nil, but it is not
 			local healer = inflictor:GetCaster()
 			if healer then
 				if healer == caster then
