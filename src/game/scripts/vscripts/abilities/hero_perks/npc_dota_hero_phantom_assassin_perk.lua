@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Phantom Assassin
---		Perk: Dagger spells will have 50% of their manacost refunded, and their cooldown reduced by 1 second. 
+--		Perk: Dagger spells will have 50% of their manacost refunded, and their cooldown reduced by 2 second. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phantom_assassin_perk", "abilities/hero_perks/npc_dota_hero_phantom_assassin_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -21,7 +21,7 @@ function modifier_npc_dota_hero_phantom_assassin_perk:IsHidden()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phantom_assassin_perk:OnCreated(keys)
-	self.cooldownBaseReduction = 1
+	self.cooldownBaseReduction = 2
 	self.manaPercentReduction = 50
 
 	self.manaReduction = 1 - (self.manaPercentReduction / 100)
