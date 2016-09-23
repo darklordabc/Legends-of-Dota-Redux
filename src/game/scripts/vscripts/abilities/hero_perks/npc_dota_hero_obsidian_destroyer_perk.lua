@@ -1,10 +1,14 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: obsidian_destroyer
---		Perk: 
+--		Hero: Outworld Devourer
+--		Perk: Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer.
 --
 --------------------------------------------------------------------------------------------------------
+local Timers = require('easytimers')
+
 LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk_debuff", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_obsidian_destroyer_perk == nil then npc_dota_hero_obsidian_destroyer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -20,6 +24,81 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk:OnCreated(keys)
+	self:GetCaster().intelligenceSteal = 7
+	self.duration = 60
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
+function modifier_npc_dota_hero_obsidian_destroyer_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+  }
+  return funcs
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk:OnAbilityFullyCast(keys)
+  if IsServer() then
+    local caster = self:GetCaster()
+    local target = keys.target
+    local ability = keys.ability
+    if caster == keys.unit and target and target:GetTeam() ~= caster:GetTeam() and ability and ability:GetName() == "obsidian_destroyer_astral_imprisonment" then
+      caster:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", {Duration = self.duration})
+      -- Debuff cannot be applied while target is invulnerable, so this must be done. 
+      Timers:CreateTimer(function() 
+      	print("apply int steal")
+      	target:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_debuff", {Duration = self.duration - 4.1})
+      	return
+      end, DoUniqueString("applyIntSteal"), 4.1)
+    end
+  end
+end
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_obsidian_destroyer_perk_buff == nil then modifier_npc_dota_hero_obsidian_destroyer_perk_buff = class({}) end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
+  }
+  return funcs
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:IsPurgable()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:GetModifierBonusStats_Intellect()
+	return self:GetCaster().intelligenceSteal
+end
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_obsidian_destroyer_perk_debuff == nil then modifier_npc_dota_hero_obsidian_destroyer_perk_debuff = class({}) end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
+  }
+  return funcs
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:IsDebuff()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:IsPurgable()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:GetModifierBonusStats_Intellect()
+	return - self:GetCaster().intelligenceSteal
+end
+--------------------------------------------------------------------------------------------------------
