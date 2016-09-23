@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: ancient_apparition
+--		Hero: Ancient Apparition
 --		Perk: Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.
 --
 --------------------------------------------------------------------------------------------------------
@@ -34,11 +34,15 @@ function modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze:DeclareFunct
   }
   return funcs
 end
-
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze:GetTexture()
+  return "ancient_apparition_ice_blast"
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze:GetDisableHealing(keys)
   return 1
 end
-
+--------------------------------------------------------------------------------------------------------
 function perkAncientApparition(filterTable)
   local parent_index = filterTable["entindex_parent_const"]
   local caster_index = filterTable["entindex_caster_const"]
