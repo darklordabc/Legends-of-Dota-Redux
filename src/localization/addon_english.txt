@@ -839,7 +839,7 @@
 	//"unique_mechanic_omniknight"                        ""
 	//"unique_mechanic_oracle"                        ""
 	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\"#25EC28\">Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
-	//"unique_mechanic_pudge"                        ""
+	//"unique_mechanic_pudge"                        "Pudge receives 2 charges of Meat Hook.<br>When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook<br>from dealing damage."
 	//"unique_mechanic_pugna"                        ""
 	//"unique_mechanic_rattletrap"                        ""
 	//"unique_mechanic_razor"                        ""
@@ -2116,9 +2116,12 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff"     "Intelligence Steal"
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."
-	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_deuff"    "Intelligence Steal"
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_debuff"    "Intelligence Steal"
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_debuff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk"               "Shadow Demon Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
+	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 }
