@@ -17,9 +17,55 @@ function modifier_npc_dota_hero_shadow_demon_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:IsHidden()
+	return false 
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:OnCreated(keys)
+	-- Hard-coded due to being used in a listener for items purchased. 
+	self.limitedItems = {
+		item_ward_observer = true,
+		item_smoke_of_deceit = true,
+		item_tome_of_knowledge = true,
+		item_gem = true,
+		item_courier = true,
+		item_flying_courier = true,
+		item_infused_raindrop = true
+	}
+
+	ListenToGameEvent("dota_item_purchased", function(keys)
+		local caster = self:GetCaster()
+		local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+		if hero == caster and self.limitedItems[keys.itemname] then
+			print("Shadow demon is supporting hard!")
+			local modifierName = self:GetName()
+			local stacks = self:GetStackCount()
+			self:SetStackCount(stacks + 1)
+		end
+	end, nil)
 	return true
 end
 --------------------------------------------------------------------------------------------------------
--- Add additional functions
+function modifier_npc_dota_hero_shadow_demon_perk:DeclareFunctions()
+	return { 
+	MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS  
+	}
+end
 --------------------------------------------------------------------------------------------------------
-
+function modifier_npc_dota_hero_shadow_demon_perk:GetModifierBonusStats_Intellect(params)
+	return self:GetStackCount()
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:GetModifierBonusStats_Agility(params)
+	return self:GetStackCount()
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:GetModifierBonusStats_Strength(params)
+	return self:GetStackCount()
+end
+--------------------------------------------------------------------------------------------------------
