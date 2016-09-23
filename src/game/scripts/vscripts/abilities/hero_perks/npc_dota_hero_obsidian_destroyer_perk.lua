@@ -44,11 +44,10 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk:OnAbilityFullyCast(keys)
     local caster = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    if caster == keys.unit and target and target:GetTeam() ~= caster:GetTeam() and ability and ability:GetName() == "obsidian_destroyer_astral_imprisonment" then
+    if caster == keys.unit and target and target:GetTeam() ~= caster:GetTeam() and target:IsHero() and ability and ability:GetName() == "obsidian_destroyer_astral_imprisonment" then
       caster:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", {Duration = self.duration})
       -- Debuff cannot be applied while target is invulnerable, so this must be done. 
       Timers:CreateTimer(function() 
-      	print("apply int steal")
       	target:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_debuff", {Duration = self.duration - 4.1})
       	return
       end, DoUniqueString("applyIntSteal"), 4.1)
@@ -102,3 +101,26 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:GetModifierBonusS
 	return - self:GetCaster().intelligenceSteal
 end
 --------------------------------------------------------------------------------------------------------
+function perkOD(filterTable)
+  local parent_index = filterTable["entindex_parent_const"]
+  local caster_index = filterTable["entindex_caster_const"]
+  local ability_index = filterTable["entindex_ability_const"]
+  if not parent_index or not caster_index or not ability_index then
+    return true
+  end
+  local parent = EntIndexToHScript( parent_index )
+  local caster = EntIndexToHScript( caster_index )
+  local ability = EntIndexToHScript( ability_index )
+  if ability then
+    if caster:HasModifier("modifier_npc_dota_hero_obsidian_destroyer_perk") then
+      if ability:GetName() == "obsidian_destroyer_sanity_eclipse" and caster:HasScepter() then
+        caster:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", {Duration = self.duration})
+        -- Debuff cannot be applied while target is invulnerable, so this must be done. 
+        Timers:CreateTimer(function() 
+      	  parent:AddNewModifier(caster, ability, "modifier_npc_dota_hero_obsidian_destroyer_perk_debuff", {Duration = self.duration - 4.1})
+      	  return
+        end, DoUniqueString("applyIntSteal"), 4.1)
+      end
+    end  
+  end
+end
