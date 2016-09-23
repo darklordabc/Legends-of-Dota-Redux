@@ -855,7 +855,7 @@
 	//"unique_mechanic_techies"                        ""
 	//"unique_mechanic_templar_assassin"                        ""
 	//"unique_mechanic_terrorblade"                        ""
-	//"unique_mechanic_tinker"                        ""
+	//"unique_mechanic_tinker"                        "Tinker has 7% chance<br>to instantly refresh <font color=\"#00FFFF\">Scientific</font> spells."
 	//"unique_mechanic_tiny"                        ""
 	//"unique_mechanic_treant"                        ""
 	//"unique_mechanic_undying"                        ""
