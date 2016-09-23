@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_shadow_demon_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:GetTexture()
+	return "shadow_demon_disruption"
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:OnCreated(keys)
 	-- Hard-coded due to being used in a listener for items purchased. 
 	self.limitedItems = {
