@@ -66,7 +66,11 @@ var cheat_list = [
 	},
 ];
 
-var isCreated = false
+var isCreated = false;
+
+function showCheatPanel(data){
+	$('cheatsRoot').SetAttributeString('hidden', 'false')
+}
 
 function toggleCheats(){
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
@@ -74,7 +78,7 @@ function toggleCheats(){
 
 
 function onClick(id){
-	var cheatButton = $('#'+id)
+	var cheatButton = $('#'+id);
 	var command = cheatButton.GetAttributeString('command', '');
 	var value = cheatButton.GetAttributeString('value', '');
 	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
@@ -90,19 +94,20 @@ function onClick(id){
 
 
 (function (){
+		GameEvents.Subscribe('lodShowCheatPanel', function(data) {
+	        showCheatPanel(data);
+	    });
 	for (var cheat in cheat_list) {
 		var cheatButton = $.CreatePanel('TextButton', $('#cheatsDisplay'), cheat_list[cheat].name);
 		cheatButton.AddClass('PlayButton');
 		cheatButton.text = $.Localize(cheat_list[cheat].name+"_Description");
 		cheatButton.SetAttributeString('command', cheat_list[cheat].command);
 		cheatButton.SetPanelEvent('onactivate', function (){
-			$.Msg(cheatButton.GetAttributeString('command', ''))
-			onClick(cheatButton.id)
+			onClick(cheat_list[cheat].name)
 		});
 		var value = cheat_list[cheat].value;
 		if(value !== undefined) {
 			cheatButton.SetAttributeString('value', value.toString());
-			// cheatButton.SetAttributeString('type', typeof(value))
 		}
 	}
 

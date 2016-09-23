@@ -7,7 +7,7 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/cheats.js" /> 
 	</scripts>
-	<Panel class="cheatsRoot" hittest="false">
+	<Panel class="cheatsRoot" hittest="false" hidden="true">
 		<Panel id="cheatsButton">
 			<Button id="showCheatsButton" onactivate='toggleCheats()'>
 				<Image id="cheatsIcon" src="file://{images}/custom_game/changelog.png"/>
