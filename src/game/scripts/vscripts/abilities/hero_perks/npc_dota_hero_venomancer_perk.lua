@@ -4,7 +4,6 @@
 --		Perk: Increases the duration of all Poison effects Venomancer applies by 25%. 
 --
 --------------------------------------------------------------------------------------------------------
-local Timers = require('easytimers')
 LinkLuaModifier( "modifier_npc_dota_hero_venomancer_perk", "abilities/hero_perks/npc_dota_hero_venomancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_venomancer_perk == nil then npc_dota_hero_venomancer_perk = class({}) end
@@ -47,16 +46,7 @@ function perkVenomancer(filterTable)
       if ability:HasAbilityFlag("poison") and ability ~= caster.lastPoisonAbility then
         local modifierDuration = filterTable["duration"]
         local bonusDuration = modifierDuration + (modifierDuration * caster.poisonDurationBonus)
-        local modifierName = filterTable["name_const"]
-        print(modifierName)
-        print(bonusDuration)
-        -- stops recursion
-        caster.lastPoisonAbility = ability
-        parent:RemoveModifierByName(modifierName)
-        parent:AddNewModifier(caster,ability,modifierName,{duration = bonusDuration})
-        Timers:CreateTimer(function() 
-        	caster.lastPoisonAbility = nil
-        end, DoUniqueString("poisonLast"), 0.1)
+        filterTable["duration"] = bonusDuration
       end
     end  
   end
