@@ -20,8 +20,17 @@ function modifier_npc_dota_hero_bloodseeker_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_bloodseeker_perk:OnCreated()
+  if IsServer() then
+    local cooldownReductionPercent = 20
+    self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
+  end
+  return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+
 function modifier_npc_dota_hero_bloodseeker_perk:DeclareFunctions()
   local funcs = {
     MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -37,9 +46,10 @@ function modifier_npc_dota_hero_bloodseeker_perk:OnAbilityFullyCast(keys)
 
 
     if hero == unit and ability:GetName() == "bloodseeker_rupture" then
+      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       ability:RefundManaCost()
       ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.8)
+      ability:StartCooldown(cooldown)
     end
   end
 end
