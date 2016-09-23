@@ -45,8 +45,9 @@ function modifier_npc_dota_hero_naga_siren_perk:OnAbilityFullyCast(keys)
     local ability = keys.ability
     if hero == keys.unit and ability and ability:HasAbilityFlag("illusion") then
       hero:GiveMana(ability:GetManaCost(ability:GetLevel() - 1) * self.manaReduction)
+      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1) * self.cooldownReduction)
+      ability:StartCooldown(cooldown)
     end
   end
 end
