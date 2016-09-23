@@ -33,7 +33,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 	}
 	return funcs
 end
@@ -55,8 +55,8 @@ function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
 					replenish_time = shield:GetCooldown(-1)
 				}
 			)
+			self.activated = true
 		end
-		self.activated = true
 	end
 end
 
@@ -69,7 +69,6 @@ function PerkAbaddon(filterTable)
     if not victim_index or not attacker_index or not ability_index then
         return true
     end
-    
     local attacker = EntIndexToHScript( victim_index )
     local victim = EntIndexToHScript( attacker_index )
     local ability = EntIndexToHScript( ability_index )
@@ -82,31 +81,13 @@ function PerkAbaddon(filterTable)
 	end
  end
 
-function modifier_npc_dota_hero_abaddon_perk:OnAbilityExecuted(params)
+function modifier_npc_dota_hero_abaddon_perk:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() then
 		if params.ability:GetName() == "abaddon_aphotic_shield" then
 			local shield = params.ability
-			local stacks = self:GetParent():GetModifierStackCount("modifier_charges", self:GetParent())
-			if not self:GetParent():HasModifier("modifier_charges") then
-				self:GetParent():AddNewModifier(self:GetParent(), shield, "modifier_charges",
-						{
-							max_count = 2,
-							start_count = 1,
-							replenish_time = shield:GetCooldown(-1)
-						}
-					)
-			end
-			if stacks < 1 then
-				shield:StartCooldown(shield:GetTrueCooldown())
-			end
-			if stacks > 1 then
-				 Timers:CreateTimer(function()
-					if not shield:IsCooldownReady() then
-						shield:EndCooldown()
-					else
-						return 0.01
-					end
-				end, DoUniqueString('abbadonShield'), 0.01)
+			local modifier = self:GetParent():FindModifierByName("modifier_charges")
+			if modifier and modifier.kv.replenish_time ~= shield:GetCooldown(-1) then
+				modifier.kv.replenish_time = shield:GetCooldown(-1)
 			end
 		end
 	end
