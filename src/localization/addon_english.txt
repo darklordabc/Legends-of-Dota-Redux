@@ -2111,4 +2111,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 60 seconds to recharge."
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Recharging"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "Recharging Arc Warden's perk over 60 seconds."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff"     "Intelligence Steal"
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_deuff"    "Intelligence Steal"
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_debuff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."
 }
