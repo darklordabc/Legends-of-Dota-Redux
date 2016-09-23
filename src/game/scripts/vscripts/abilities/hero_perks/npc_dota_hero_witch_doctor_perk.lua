@@ -50,7 +50,8 @@ function modifier_npc_dota_hero_witch_doctor_perk:OnHealReceived(keys)
 				if healer == caster then
 					amount = amount * (self.bonusHealPercent / 100)
 					if unit:GetHealthPercent() < 100 then
-						unit:PopupNumbers(unit, "heal", Vector(10, 255, 10), 3.0, math.floor(amount), 0, nil)
+						SendOverheadEventMessage( unit, OVERHEAD_ALERT_HEAL , unit, amount, nil )
+						-- unit:PopupNumbers(unit, "heal", Vector(10, 255, 10), 3.0, math.floor(amount), 0, nil)
 					end
 					unit:Heal(amount, self:GetAbility())
 				end
