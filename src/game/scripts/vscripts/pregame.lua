@@ -55,7 +55,7 @@ function Pregame:init()
     -- Stores the total bans for each player
     self.usedBans = {}
 
-    self.soundList = LoadKeyValues('scripts/kv/sounds.kv')
+    self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
     -- Who is ready?
     self.isReady = {}
@@ -460,9 +460,11 @@ function Pregame:onThink()
                     local player = PlayerResource:GetPlayer(playerID)
                     -- If it is a host
                     if GameRules:PlayerHasCustomGameHostPrivileges(player) then
-                        EmitAnnouncerSoundForPlayer('announcer_ann_custom_mode_05', playerID)
+                        local sound = self:getRandomSound('game_option_host')
+                        EmitAnnouncerSoundForPlayer(sound, playerID)
                     else
-                        EmitAnnouncerSoundForPlayer('announcer_announcer_intl2012_usher_03', playerID)
+                        local sound = self:getRandomSound('game_option_player')
+                        EmitAnnouncerSoundForPlayer(sound, playerID)
                     end
                 end
             end
@@ -537,25 +539,29 @@ function Pregame:onThink()
 
         if not self.Announce_Picking_Phase then
             self.Announce_Picking_Phase = true
-            EmitAnnouncerSound(util:RandomChoice({'announcer_announcer_type_ability_draft_01', 'announcer_ann_custom_draft_01'}))
+            local sound = self:getRandomSound('game_picking_phase')
+            EmitAnnouncerSound(sound)
         end
 
         --Check if countdown reaches 30 sec remaining
         if Time() + 30 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_30 then
             self.Announce_30 = true
-            EmitAnnouncerSound('announcer_ann_custom_timer_sec_30')
+            local sound = self:getRandomSound('game_30_sec_remaining')
+            EmitAnnouncerSound(sound)
         end
 
         --Check if countdown reaches 15 sec remaining
         if Time() + 15 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_15 then
             self.Announce_15 = true
-            EmitAnnouncerSound('announcer_ann_custom_timer_sec_15')
+            local sound = self:getRandomSound('game_15_sec_remaining')
+            EmitAnnouncerSound(sound)
         end
 
         --Check if countdown reaches 10 sec remaining
         if Time() + 10 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Announce_10 then
             self.Announce_10 = true
-            EmitAnnouncerSound('announcer_ann_custom_timer_sec_10')
+            local sound = self:getRandomSound('game_10_sec_remaining')
+            EmitAnnouncerSound(sound)
         end
 
         if Time() + 6 >= self:getEndOfPhase() and Time() + 3 <= self:getEndOfPhase() and self.freezeTimer == nil and not self.Pick_Hero then
@@ -565,7 +571,8 @@ function Pregame:onThink()
                 if steamID ~= 0 then
                     hero = self.selectedHeroes[playerID]
                     if hero == nil then
-                        EmitAnnouncerSoundForPlayer('announcer_announcer_choose_hero', playerID)
+                        local sound = self:getRandomSound('game_6_sec_remaining')
+                        EmitAnnouncerSoundForPlayer(sound, playerID)
                     end
                 end
             end
@@ -1129,7 +1136,8 @@ function Pregame:finishOptionSelection()
         -- There is banning
         self:setPhase(constants.PHASE_BANNING)
         self:setEndOfPhase(Time() + OptionManager:GetOption('banningTime'), OptionManager:GetOption('banningTime'))
-        EmitAnnouncerSound('announcer_announcer_ban_yr')
+        local sound = self:getRandomSound("game_ban_started")
+        EmitAnnouncerSound(sound)
 
     else
         -- There is not banning
@@ -3203,14 +3211,19 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
     end
 
     if self.soundList[build_id] then
-        local sounds = util:swapTable(self.soundList[build_id])
-        local sound = util:RandomChoice(sounds)
+        local sound = self:getRandomSound(build_id)
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
         
     -- Perform the networking
     network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
 end
+
+
+function Pregame:getRandomSound(sound_id)
+    return util:RandomChoice(self.soundList[sound_id])
+end
+
 
 -- Player wants to select an all random build
 function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
@@ -3334,10 +3347,8 @@ function Pregame:checkForReady()
 
         if not self.Announce_review then
             self.Announce_review = true
-            EmitAnnouncerSound(util:RandomChoice({
-                'announcer_announcer_battle_prepare_01',
-                'announcer_announcer_welcome_08'
-                }))
+            local sound = self:getRandomSound("game_review_phase")
+            EmitAnnouncerSound(sound)
         end
 
 
@@ -3599,11 +3610,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 end
 
 function Pregame:PlayAlert(playerID)
-    EmitAnnouncerSoundForPlayer(util:RandomChoice({'announcer_ann_custom_sports_02',
-                                          'announcer_ann_custom_sports_03',
-                                          'announcer_ann_custom_sports_04',
-                                          'announcer_ann_custom_bad_01'
-                                          }), playerID)
+    local sound = self:getRandomSound("game_error_alert")
+    EmitAnnouncerSoundForPlayer(sound, playerID)
 end
 
 -- Player wants to select a random ability
@@ -3929,7 +3937,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     ['points'] = overflow
                 }
             })
-            EmitAnnouncerSoundForPlayer(util:RandomChoice({'announcer_ann_custom_generic_alert_05', 'announcer_ann_custom_generic_alert_06'}), playerID)
+            local sound = self:getRandomSound("game_out_of_points")
+            EmitAnnouncerSoundForPlayer(sound, playerID)
             return
         end
     end
