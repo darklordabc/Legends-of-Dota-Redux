@@ -33,7 +33,9 @@ function heroPerksModifierFilter(filterTable)
   targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
     npc_dota_hero_ancient_apparition_perk = true,
-    npc_dota_hero_drow_ranger = true
+    npc_dota_hero_drow_ranger = true, 
+    npc_dota_hero_death_prophet = true,
+    npc_dota_hero_obsidian_destroyer = true
   }
   -- Perk for Dragon Knight
   local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
@@ -47,6 +49,9 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Death Prophet
   local perkForDeathProphet = require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
   perkDeathProphet(filterTable)
+   -- Perk for Outworld Devourer
+  local perkforOD = require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
+  perkOD(filterTable)
   -- Returning the filterTable
   return filterTable
 end
