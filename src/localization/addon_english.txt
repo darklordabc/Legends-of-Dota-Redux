@@ -2124,4 +2124,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze"		"Healing Disabled"
+	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an ice debuff."
 }
