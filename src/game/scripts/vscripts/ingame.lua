@@ -117,7 +117,7 @@ function Ingame:onStart()
     if isCheatsEnabled then
         local maxPlayers = 24
         local count = 0
-        for playerID=1,(maxPlayers-1) do
+        for playerID=0,(maxPlayers-1) do
             local player = PlayerResource:GetPlayer(playerID)
             if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
                 count = count + 1
@@ -374,8 +374,8 @@ end
 function Ingame:onPlayerCheat(eventSourceIndex, args)
     local command = args.command
     local value = args.value
-    if value ~= '' then
-        value = value == 'true' and true or false
+    if type(value) ~= 'table' then
+        value = tonumber(value) == 1 and true or false
         Convars:SetBool(command, value)
     else
         SendToServerConsole(command)

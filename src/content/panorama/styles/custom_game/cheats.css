@@ -4,6 +4,18 @@
     height: 100%;
 }
 
+#cheatsContainer
+{
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+#cheatsContainer.visible
+{
+    visibility: visible;
+}
+
 .cheatsDisplayHidden
 {
     transform: translate3d( 105%, 0px, 0px );

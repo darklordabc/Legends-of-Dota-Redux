@@ -50,7 +50,7 @@ var cheat_list = [
 	// },
 	{
 		name: 'com_item_1',
-		command: 'dota_create_item item_travel_boots_1',
+		command: 'dota_create_item item_travel_boots',
 	},
 	{
 		name: 'com_item_2',
@@ -66,47 +66,42 @@ var cheat_list = [
 	},
 ];
 
-var isCreated = false;
-
-function showCheatPanel(data){
-	$('cheatsRoot').SetAttributeString('hidden', 'false')
-}
-
 function toggleCheats(){
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 }
 
 
-function onClick(id){
-	var cheatButton = $('#'+id);
-	var command = cheatButton.GetAttributeString('command', '');
-	var value = cheatButton.GetAttributeString('value', '');
+function onActivate(id){
+	var cheatID = null;
+	for (var i in cheat_list) {
+		if (cheat_list[i].name == id)
+		{
+			cheatID = i;
+			break;
+		}
+	}
+	var command = cheat_list[cheatID].command;
+	var value = cheat_list[cheatID].value;
 	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
 		command: command,
 		value: value,
 	});
-	if(value != ''){
-		value = (value !== 'true');
-		cheatButton.SetAttributeString('value', value.toString());
+	if(value !== undefined){
+		cheat_list[cheatID].value = !value;
 	}
 }
 
-
-
-(function (){
-	GameEvents.Subscribe('lodShowCheatPanel', showCheatPanel);
+function setupCheats(data){
 	for (var cheat in cheat_list) {
-		var cheatButton = $.CreatePanel('TextButton', $('#cheatsDisplay'), cheat_list[cheat].name);
-		cheatButton.AddClass('PlayButton');
+		var cheatButton = $("#"+cheat_list[cheat].name);
 		cheatButton.text = $.Localize(cheat_list[cheat].name+"_Description");
-		cheatButton.SetAttributeString('command', cheat_list[cheat].command);
-		cheatButton.SetPanelEvent('onactivate', function (){
-			onClick(cheat_list[cheat].name)
-		});
 		var value = cheat_list[cheat].value;
 		if(value !== undefined) {
 			cheatButton.SetAttributeString('value', value.toString());
 		}
 	}
+	$('#cheatsContainer').AddClass('visible');
+}
 
-})();
+
+GameEvents.Subscribe('lodShowCheatPanel', setupCheats);
