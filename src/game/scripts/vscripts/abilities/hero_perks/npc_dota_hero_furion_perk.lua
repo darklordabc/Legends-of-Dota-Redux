@@ -20,6 +20,14 @@ function modifier_npc_dota_hero_furion_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_furion_perk:OnCreated()
+  if IsServer() then
+    local cooldownReductionPercent = 50
+    self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
+  end
+  return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_furion_perk:DeclareFunctions()
@@ -36,8 +44,9 @@ function modifier_npc_dota_hero_furion_perk:OnAbilityFullyCast(keys)
     local ability = keys.ability
 
     if hero == keys.unit and ability and ability:HasAbilityFlag("teleport") then
+      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1)*0.5)
+      ability:StartCooldown(cooldown)
     end
   end
 end
