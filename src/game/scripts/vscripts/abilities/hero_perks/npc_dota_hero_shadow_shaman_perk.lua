@@ -20,13 +20,20 @@ function modifier_npc_dota_hero_shadow_shaman_perk:IsHidden()
   return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_shaman_perk:OnCreated()
+  if IsServer() then
+    local cooldownPercentReduction = 20
+    self.cooldownReduction = 1 - (cooldownPercentReduction / 100)
+  end
+  return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_shadow_shaman_perk:DeclareFunctions()
   local funcs = {
     MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
-
   }
   return funcs
 end
@@ -37,11 +44,10 @@ function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityFullyCast(keys)
     local target = keys.target
     local ability = keys.ability
     if hero == keys.unit and ability and ability:HasAbilityFlag("hex") then
-      local cooldownPercentReduction = 20
-      local cooldownPercentReduction = 1-(cooldownPercentReduction / 100)
+      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       ability:RefundManaCost()
       ability:EndCooldown()
-      ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1)*cooldownPercentReduction)
+      ability:StartCooldown(cooldown)
     end
   end
 end
