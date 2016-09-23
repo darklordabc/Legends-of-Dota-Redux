@@ -43,7 +43,7 @@ function perkVenomancer(filterTable)
   local ability = EntIndexToHScript( ability_index )
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_venomancer_perk") then
-      if ability:HasAbilityFlag("poison") and ability ~= caster.lastPoisonAbility then
+      if ability:HasAbilityFlag("poison") then
         local modifierDuration = filterTable["duration"]
         local bonusDuration = modifierDuration + (modifierDuration * caster.poisonDurationBonus)
         filterTable["duration"] = bonusDuration
