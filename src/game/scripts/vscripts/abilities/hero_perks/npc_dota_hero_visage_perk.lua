@@ -41,9 +41,10 @@ function modifier_npc_dota_hero_visage_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability:GetName() == "visage_summon_familiars" then
+	  local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
 	  ability:RefundManaCost()
 	  ability:EndCooldown()
-	  ability:StartCooldown(ability:GetCooldown(ability:GetLevel() - 1) * self.cooldownReduction)
+	  ability:StartCooldown(cooldown)
 	end
   end
 end
