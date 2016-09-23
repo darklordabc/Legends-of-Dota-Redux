@@ -802,6 +802,7 @@
 	"unique_mechanic_lion"           "For Lion, killing a <br>hero with a spell refunds the mana cost of <br>that spell and lowers its cooldown by 75%."
 	"unique_mechanic_tusk"           "<font color=\"#25EC28\">Walrus Kick</font> and <br><font color=\"#25EC28\">Walrus Punch</font> will refund their manacost <br>when used by Tusk."
 	"unique_mechanic_witch_doctor"           "<font color=\"#25EC28\">Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor."
+	"unique_mechanic_arc_warden"                        "Arc Warden may use a <br>consumable item on himself every 90 <br>seconds without consuming the item. "
 	//"unique_mechanic_abyssal_underlord"                        ""
 	//"unique_mechanic_axe"                        ""
 	//"unique_mechanic_bane"                        ""
