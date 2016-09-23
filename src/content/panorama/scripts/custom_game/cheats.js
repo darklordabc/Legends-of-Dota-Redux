@@ -94,9 +94,7 @@ function onClick(id){
 
 
 (function (){
-		GameEvents.Subscribe('lodShowCheatPanel', function(data) {
-	        showCheatPanel(data);
-	    });
+	GameEvents.Subscribe('lodShowCheatPanel', showCheatPanel);
 	for (var cheat in cheat_list) {
 		var cheatButton = $.CreatePanel('TextButton', $('#cheatsDisplay'), cheat_list[cheat].name);
 		cheatButton.AddClass('PlayButton');
