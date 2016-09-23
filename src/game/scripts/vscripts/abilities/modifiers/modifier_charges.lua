@@ -3,9 +3,20 @@ modifier_charges = class({})
 if IsServer() then
     function modifier_charges:Update()
         if self:GetDuration() == -1 then
-            self:SetDuration(self.kv.replenish_time, true)
-            self:StartIntervalThink(self.kv.replenish_time)
+			local octarine = 1
+			if self:GetParent():HasModifier("modifier_item_octarine_core") then
+				octarine = 0.75
+			end
+            self:SetDuration(self.kv.replenish_time*octarine, true)
+            self:StartIntervalThink(self.kv.replenish_time*octarine)
         end
+		
+		if self:GetStackCount() == self.kv.max_count then
+			self:SetDuration(-1, true)
+		elseif self:GetStackCount() > self.kv.max_count then
+			self:SetDuration(-1, true)
+			self:SetStackCount(self.kv.max_count)
+		end
 
         if self:GetStackCount() == 0 then
             self:GetAbility():StartCooldown(self:GetRemainingTime())
@@ -23,18 +34,21 @@ if IsServer() then
 
     function modifier_charges:DeclareFunctions()
         local funcs = {
-            MODIFIER_EVENT_ON_ABILITY_EXECUTED
+            MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
         }
 
         return funcs
     end
 
-    function modifier_charges:OnAbilityExecuted(params)
+    function modifier_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
             local ability = params.ability
-			print(self:GetAbility():GetName())
             if params.ability == self:GetAbility() then
                 self:DecrementStackCount()
+				ability:EndCooldown()
+                self:Update()
+			elseif params.ability:GetName() == "item_refresher" and self:GetStackCount() < self.kv.max_count then
+                self:IncrementStackCount()
                 self:Update()
             end
         end
@@ -44,9 +58,13 @@ if IsServer() then
 
     function modifier_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
+		local octarine = 1
+		if self:GetParent():HasModifier("modifier_item_octarine_core") then
+			octarine = 0.75
+		end
 
         if stacks < self.kv.max_count then
-            self:SetDuration(self.kv.replenish_time, true)
+            self:SetDuration(self.kv.replenish_time*octarine, true)
             self:IncrementStackCount()
 
             if stacks == self.kv.max_count - 1 then
