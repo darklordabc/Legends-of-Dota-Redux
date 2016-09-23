@@ -53,7 +53,7 @@ end
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_vengefulspirit_perk_debuff == nil then modifier_npc_dota_hero_vengefulspirit_perk_debuff = class({}) end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_vengefulspirit_perk_buff:RemoveOnDeath()
+function modifier_npc_dota_hero_vengefulspirit_perk_debuff:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
