@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: shadow_demon
---		Perk: 
+--		Hero: Shadow Demon
+--		Perk: When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_shadow_demon_perk", "abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
