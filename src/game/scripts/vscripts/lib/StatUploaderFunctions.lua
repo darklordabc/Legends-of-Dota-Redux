@@ -112,7 +112,7 @@ end
 
 function SU:SendPlayerBuild( args, pID )
   local abilities = {}
-  print("asdasd")
+
   for i=1,16 do
     local v = args[i]
     if v then
