@@ -113,19 +113,19 @@ function Ingame:onStart()
     local this = self
 
     local isCheatsEnabled = Convars:GetBool("sv_cheats")
-    if isCheatsEnabled then
-        local maxPlayers = 24
-        local count = 0
-        for playerID=0,(maxPlayers-1) do
-            local player = PlayerResource:GetPlayer(playerID)
-            if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
-                count = count + 1
-            end
+    local maxPlayers = 24
+    local count = 0
+    for playerID=0,(maxPlayers-1) do
+        local player = PlayerResource:GetPlayer(playerID)
+        if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
+            count = count + 1
         end
-        if count == 1 then
-            network:showCheatPanel()
-        end
-     end
+    end
+    local options = {
+        players = count,
+        cheats = isCheatsEnabled
+    }
+    network:showCheatPanel(options)
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
@@ -133,11 +133,11 @@ function Ingame:onStart()
     end, nil)
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        this:onPlayerCheat(eventSourceIndex, args)
-		if (isCheatsEnabled) then
-		GameRules:SendCustomMessage("#cheat_activated", 0, 0)
-		else
-		GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+        if args.status == 'ok' then
+            GameRules:SendCustomMessage("#cheat_activated", 0, 0)
+            this:onPlayerCheat(eventSourceIndex, args)
+		elseif args.status == 'error' then
+            GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
 		end
     end)
 

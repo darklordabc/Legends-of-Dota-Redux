@@ -90,14 +90,23 @@ var cheat_list = [
 	},
 ];
 
+var playersCount;
+var isCheatsEnabled;
+
 function toggleCheats(){
+	if (!isCheatsEnabled){
+		GameEvents.SendCustomGameEventToServer('lodOnCheats', {
+		status: 'error',
+		});
+		return false;
+	}
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 }
 
 
 function onActivate(id){
 	var cheatID = null;
-	for (var i in cheat_list) {
+	for (var i in cheat_list){
 		if (cheat_list[i].name == id)
 		{
 			cheatID = i;
@@ -109,6 +118,7 @@ function onActivate(id){
 	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
 		command: command,
 		value: value,
+		status: 'ok',
 	});
 	if(value !== undefined){
 		cheat_list[cheatID].value = !value;
@@ -116,14 +126,20 @@ function onActivate(id){
 }
 
 function setupCheats(data){
-	for (var cheat in cheat_list) {
-		var cheatButton = $("#"+cheat_list[cheat].name);
-		var value = cheat_list[cheat].value;
-		if(value !== undefined) {
-			cheatButton.SetAttributeString('value', value.toString());
+	playersCount = data.players;
+	isCheatsEnabled = (data.cheats == 1) ? true : false;
+	if (isCheatsEnabled){
+		for (var cheat in cheat_list){
+			var cheatButton = $("#"+cheat_list[cheat].name);
+			var value = cheat_list[cheat].value;
+			if(value !== undefined) {
+				cheatButton.SetAttributeString('value', value.toString());
+			}
 		}
 	}
-	$('#cheatsContainer').AddClass('visible');
+	if (playersCount == 1 || isCheatsEnabled){
+		$('#cheatsContainer').AddClass('visible');
+	}
 }
 
 
