@@ -6,6 +6,7 @@ local storedNames = {}
 -- Create list of spells with certain attributes
 local chanelledSpells = {}
 local targetSpells = {}
+local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 
 -- Grab contributors file
 Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
@@ -580,6 +581,14 @@ end
 
 function CDOTABaseAbility:HasAbilityFlag(flag)
     if GameRules.perks[flag][self:GetAbilityName()] then
+        return true
+    else
+        return false
+    end
+end
+
+function CDOTABaseAbility:IsCustomAbility()
+    if not regularSpells[self:GetAbilityName()] then
         return true
     else
         return false
