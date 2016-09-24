@@ -2129,4 +2129,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze"		"Healing Disabled"
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an ice debuff."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
+	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
 }
