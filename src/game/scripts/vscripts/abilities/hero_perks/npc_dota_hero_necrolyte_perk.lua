@@ -17,9 +17,27 @@ function modifier_npc_dota_hero_necrolyte_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_necrolyte_perk:IsHidden()
-	return true
+	return false
+end
+
+function modifier_npc_dota_hero_necrolyte_perk:GetTexture()
+	return "necrolyte_sadist"
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_necrolyte_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
+        local sadist = caster:FindAbilityByName("necrolyte_sadist")
+
+        if sadist then
+            sadist:UpgradeAbility(false)
+        else 
+            sadist = caster:AddAbility("necrolyte_sadist")
+            sadist:SetHidden(true)
+            sadist:SetLevel(1)
+        end
+    end
+end
