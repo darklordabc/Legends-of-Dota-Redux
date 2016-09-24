@@ -824,7 +824,7 @@
 	//"unique_mechanic_jakiro"                        ""
 	//"unique_mechanic_juggernaut"                        ""
 	//"unique_mechanic_kunkka"                        ""
-	//"unique_mechanic_leshrac"                        ""
+	//"unique_mechanic_leshrac"                        "At the start of the <br>game, Leshrac gains a free level of <br><font color=\"#25EC28\">Octarine Vampirism</font>, whether he has it or not."
 	//"unique_mechanic_lone_druid"                        ""
 	//"unique_mechanic_luna"                        ""
 	//"unique_mechanic_lycan"                        ""
@@ -832,7 +832,7 @@
 	//"unique_mechanic_medusa"                        ""
 	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#25EC28\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
 	"unique_mechanic_naga_siren"                        "<font color=\"#25EC28\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
-	//"unique_mechanic_necrolyte"                        ""
+	//"unique_mechanic_necrolyte"                        "At the start of the <br>game, Necrophos gains a free level of <br><font color=\"#25EC28\">Sadist</font>, whether he has it or not."
 	//"unique_mechanic_nyx_assassin"                        ""
 	"unique_mechanic_obsidian_destroyer"                        "<font color=\"#25EC28\">Astral Imprisonment</font> <br>steals 7 intelligence for 60 seconds when cast <br>by Outworld Devourer."
 	"unique_mechanic_ogre_magi"                        "When Ogre Magi casts <br>a spell, there is a 2% chance to refund the <br>manacost of that spell and refresh its <br>cooldown."
@@ -851,7 +851,7 @@
 	//"unique_mechanic_skywrath_mage"                        ""
 	"unique_mechanic_slark"                        "Slark gains +3 agility <br>for each level put in an <font color=\"#25EC28\">mobility/escape</font> skill."
 	//"unique_mechanic_sniper"                        ""
-	//"unique_mechanic_sven"                        ""
+	//"unique_mechanic_sven"                        "At the start of the <br>game, Sven gains a free level of <br><font color=\"#25EC28\">Great Cleave</font>, whether he has it or not."
 	//"unique_mechanic_techies"                        ""
 	//"unique_mechanic_templar_assassin"                        ""
 	//"unique_mechanic_terrorblade"                        ""
@@ -2123,6 +2123,15 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk"               "Shadow Demon Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk"               "Sven Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"   "Gained a free level of Great Cleave."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk"               "Leshrac Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk_Description"   "Gained a free level of Octarine Vampirism."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
