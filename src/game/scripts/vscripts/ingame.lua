@@ -26,7 +26,7 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-    GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+		GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
         end, 'switch_warning', 5)
@@ -135,7 +135,7 @@ function Ingame:onStart()
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
         this:onPlayerCheat(eventSourceIndex, args)
 		if (isCheatsEnabled) then
-		GameRules:SendCustomMessage('#cheat_activated', 0, 0)
+		GameRules:SendCustomMessage("#cheat_activated", 0, 0)
 		else
 		GameRules:SendCustomMessage('Sorry, cheats are disabled. To play with cheats, quit this lobby, host a custom lobby with a password and tick ENABLE CHEATS', 0, 0)
 		end
