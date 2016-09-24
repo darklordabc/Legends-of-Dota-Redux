@@ -70,12 +70,17 @@ function heroPerksDamageFilter(filterTable)
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
   
-  targetPerks_damage = {
+   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
+	npc_dota_hero_pudge_perk = true,
   }
-  -- Perk for Dragon Knight
+  -- Perk for Abaddon
   local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
   PerkAbaddon(filterTable)
+   -- Perk for Pudge
+  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+  PerkPudge(filterTable)
+  
   return filterTable
 end
 
