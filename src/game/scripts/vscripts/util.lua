@@ -152,7 +152,11 @@ end
 function Util:swapTable(input)
     local array = {}
     for k,v in pairs(input) do
-        table.insert(array, k)
+        if type(v) == 'table' then
+            array[k] = self:swapTable(v)
+        else
+            table.insert(array, k)
+        end
     end
     return array
 end
