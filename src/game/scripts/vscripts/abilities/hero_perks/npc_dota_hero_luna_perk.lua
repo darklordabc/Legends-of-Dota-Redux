@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: luna
---		Perk: 
+--		Hero: Luna
+--		Perk: Luna gains 1 free level of Lunar Blessing, whether she has it or not. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_luna_perk", "abilities/hero_perks/npc_dota_hero_luna_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,18 +17,24 @@ function modifier_npc_dota_hero_luna_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_luna_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_luna_perk:DeclareFunctions()
-  local funcs = {
-    MODIFIER_PROPERTY_FIXED_NIGHT_VISION
-  }
-end
+function modifier_npc_dota_hero_luna_perk:OnCreated(keys)
+	
+    if IsServer() then
+        local caster = self:GetCaster()
+        local blessing = caster:FindAbilityByName("luna_lunar_blessing")
 
-function modifier_npc_dota_hero_luna_perk:GetNightTimeVisionRange()
-  local nightVision = 1800
-  return nightVision
+        if blessing then
+            blessing:UpgradeAbility(false)
+        else 
+            blessing = caster:AddAbility("luna_lunar_blessing")
+            blessing:SetHidden(true)
+            blessing:SetLevel(1)
+        end
+    end
 end
+--------------------------------------------------------------------------------------------------------
