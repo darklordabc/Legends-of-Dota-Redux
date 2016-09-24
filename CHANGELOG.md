@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Replaced all_pick_4 with 3_vs_3
 - Renamed all_pick_6 to 5_vs_5
 - Updated map to latest reborn map
+- Added back-end ability stats tracking
 
 ### Balance
 - Changed the hero for many of the preset builds
