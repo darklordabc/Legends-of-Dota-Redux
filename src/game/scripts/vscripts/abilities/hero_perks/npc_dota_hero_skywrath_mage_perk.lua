@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: skywrath_mage
---		Perk: 
+--		Hero: Skywrath Mage
+--		Perk: Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_skywrath_mage_perk", "abilities/hero_perks/npc_dota_hero_skywrath_mage_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
