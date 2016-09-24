@@ -2141,4 +2141,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay"               "Clockwerk Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds."
 }
