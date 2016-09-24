@@ -168,6 +168,11 @@ function Util:playerIsPremium(playerID)
     return self:getPremiumRank(playerID) > 0
 end
 
+-- Returns true if a player is bot
+function Util:playerIsBot(playerID)
+    return PlayerResource:GetSteamAccountID(playerID) > 0
+end
+
 -- Returns a player's premium rank
 function Util:getPremiumRank(playerID)
     local steamID = PlayerResource:GetSteamAccountID(playerID)
