@@ -137,7 +137,7 @@ function Ingame:onStart()
 		if (isCheatsEnabled) then
 		GameRules:SendCustomMessage("#cheat_activated", 0, 0)
 		else
-		GameRules:SendCustomMessage('Sorry, cheats are disabled. To play with cheats, quit this lobby, host a custom lobby with a password and tick ENABLE CHEATS', 0, 0)
+		GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
 		end
     end)
 

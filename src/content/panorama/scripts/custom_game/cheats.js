@@ -80,6 +80,14 @@ var cheat_list = [
 		name: 'com_gold_bots',
 		command: 'dota_bot_give_gold 1000',
 	},
+	{
+		name: 'com_host_scale_normal',
+		command: 'host_timescale 1',
+	},
+	{
+		name: 'com_host_scale_5',
+		command: 'host_timescale 5',
+	},
 ];
 
 function toggleCheats(){

@@ -74,6 +74,13 @@
 				<TextButton id="com_vision" class="cheatButton cheatButtonOther" text="#com_vision_Description" onactivate="onActivate('com_vision')">
 					<Label/>
 				</TextButton>
+				<TextButton id="com_host_scale_normal" class="cheatButton cheatButtonOther" text="#com_host_scale_normal_Description" onactivate="onActivate('com_host_scale_normal')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_host_scale_5" class="cheatButton cheatButtonOther" text="#com_host_scale_5_Description" onactivate="onActivate('com_host_scale_5')">
+					<Label/>
+				</TextButton>
+				
 			</Panel>
 		</Panel>
 	</Panel>
