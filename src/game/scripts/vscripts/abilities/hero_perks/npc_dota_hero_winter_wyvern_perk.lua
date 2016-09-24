@@ -58,7 +58,11 @@ if modifier_npc_dota_hero_winter_wyvern_flight_delay == nil then modifier_npc_do
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_flight_delay:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_flight_delay:GetTexture()
+	return "winter_wyvern_arctic_burn"
 end
 --------------------------------------------------------------------------------------------------------
 
@@ -73,6 +77,10 @@ end
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_winter_wyvern_flying == nil then modifier_npc_dota_hero_winter_wyvern_flying = class({}) end
 --------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_flying:GetTexture()
+	return "winter_wyvern_arctic_burn"
+end
 function modifier_npc_dota_hero_winter_wyvern_flying:CheckState()
 	local states = {
 		[MODIFIER_STATE_FLYING] = true ,
