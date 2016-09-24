@@ -48,7 +48,7 @@ function modifier_npc_dota_hero_abyssal_underlord_perk:GetModifierBonusStats_Int
 
 	for i = 0, 15 do
 		local ability = caster:GetAbilityByIndex(i)
-		if ability and ability:HasAbilityFlag("custom") then
+		if ability and ability:GetName() ~= "modifier_npc_dota_hero_abyssal_underlord_perk" and ability:IsCustomAbility()  then
 			local level = ability:GetLevel()
 			bonusIntellect = bonusIntellect + (level * self.bonusPerLevel)	
 		end
