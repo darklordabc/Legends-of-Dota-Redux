@@ -110,7 +110,6 @@ function onActivate(id){
 function setupCheats(data){
 	for (var cheat in cheat_list) {
 		var cheatButton = $("#"+cheat_list[cheat].name);
-		cheatButton.text = $.Localize(cheat_list[cheat].name+"_Description");
 		var value = cheat_list[cheat].value;
 		if(value !== undefined) {
 			cheatButton.SetAttributeString('value', value.toString());
