@@ -31,7 +31,7 @@ function modifier_npc_dota_hero_queenofpain_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_queenofpain_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
-    if keys.target and keys.target:HasUnitFlag("male") then
+    if keys.target and keys.target:IsHero() and keys.target:HasUnitFlag("male") then
         return 10
     else 
         return 0
@@ -39,7 +39,7 @@ function modifier_npc_dota_hero_queenofpain_perk:GetModifierTotalDamageOutgoing_
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_queenofpain_perk:GetModifierIncomingDamage_Percentage(keys)
-    if keys.attacker and keys.attacker:HasUnitFlag("female") then
+    if keys.attacker and keys.attacker:IsHero() and keys.attacker:HasUnitFlag("female") then
         return 10
     else 
         return 0
