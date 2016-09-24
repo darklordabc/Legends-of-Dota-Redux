@@ -36,7 +36,7 @@ function modifier_npc_dota_hero_earthshaker_perk:OnAbilityFullyCast(keys)
   if IsServer() then
     if keys.unit == self:GetParent() then
       if keys.ability:HasAbilityFlag("earth") then
-        keys.unit:Heal(keys.caster:GetMaxHealth() * healPercent ,keys.unit)
+        keys.unit:Heal(self:GetParent():GetMaxHealth() * healPercent ,keys.ability)
       end
     end
   end
