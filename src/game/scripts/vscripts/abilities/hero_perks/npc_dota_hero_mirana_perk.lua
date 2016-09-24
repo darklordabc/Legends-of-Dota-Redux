@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: mirana
---    Perk: 
+--    Perk: When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_mirana_perk", "abilities/hero_perks/npc_dota_hero_mirana_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

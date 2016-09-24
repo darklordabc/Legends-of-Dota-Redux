@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Naga Siren
---		Perk: Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%
+--		Perk: Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_naga_siren_perk", "abilities/hero_perks/npc_dota_hero_naga_siren_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
