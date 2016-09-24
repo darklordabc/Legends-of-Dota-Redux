@@ -4,16 +4,50 @@
     height: 100%;
 }
 
-.testButton {
-    background-color: #4CAF50; /* Green */
+.titlelabel {
+	background-color: rgba(26,235,26, 0);
     border: none;
     color: white;
-    padding: 5px 15px 5px 10px;
-    text-align: left;
+	width: 190px;
+    padding: 5px 10px;
+    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin: 2px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
+
+.cheatButton {
+	background-color: rgba(50,205,50, 20);
+    border: none;
+    color: white;
+	width: 190px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.cheatButtonItem {
+    background-color: rgba(255,255,0, 20);
+}
+
+.cheatButtonBotsandSpawning {
+    background-color: rgba(205,50,50, 20);
+}
+
+.cheatButtonOther {
+    background-color: rgba(205,50,205, 20);
+}
+
 
 
 #cheatsContainer
@@ -42,12 +76,14 @@
     vertical-align: top;
     margin-top: 50px;
     horizontal-align: right;
-    margin-right: 0px;
+    margin-right: -10px;
     height: 700px;
-    width: 140px;
+    width: 210px;
 
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
 
     transition-timing-function: ease-in-out;
     transition-property: transform;

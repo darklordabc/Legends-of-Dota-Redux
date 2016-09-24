@@ -654,22 +654,27 @@
     /////////////////
     // Cheats
     /////////////////
-
-    "com_lvl_up_1_Description" "Get 1 level"
-    "com_lvl_bots_1_Description" "Get 1 bots level"
-    "com_lvl_max_Description" "Lvl up max"
-    "com_gold_max_Description" "Get gold"
-    "com_refresh_Description" "Refresh all"
+	
+	"cheat_activated" "Cheat Activated"
+    "com_lvl_up_1_Description" "Level up Hero by 1"
+    "com_lvl_bots_1_Description" "Level up Bots by 1"
+    "com_lvl_max_Description" "Level up Hero to max"
+    "com_gold_max_Description" "Give Max Gold"
+	"com_gold_bots_Description" "Give Bots 1000 Gold"
+    "com_refresh_Description" "Refresh all abilities"
     "com_respawn_Description" "Respawn"
     "com_start_game_Description" "Start game"
-    "com_spawn_neutrals_Description" "Spawn neutrals"
+    "com_spawn_neutrals_Description" "Spawn Neutrals"
     "com_wtf_unwtf_Description" "WTF/UNWTF"
-    "com_vision_Description" "Vision"
-    "com_teleport_Description" "Teleport"
-    "com_item_1_Description" "Get boots of travel"
-    "com_item_2_Description" "Get heart"
-    "com_item_3_Description" "Get Radiance"
-    "com_item_4_Description" "Get blink"
+    "com_vision_Description" "Enable/Disable All Vision"
+    //"com_teleport_Description" "Teleport"
+    "com_item_1_Description" "Give Boots of Travel"
+    "com_item_2_Description" "Give Heart of Tarrasque"
+    "com_item_3_Description" "Give Radiance"
+    "com_item_4_Description" "Give Blink Dagger"
+	"com_spawn_enemy_Description" "Spawn Enemy Axe"
+	"com_spawn_friendly_Description" "Spawn Friendly Axe"
+	"com_spawn_roshan_Description" "Spawn Roshan"
 
     /////////////////
     // Skill Warnings

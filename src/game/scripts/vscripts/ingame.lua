@@ -26,7 +26,7 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-        GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+        GameRules:SendCustomMessage("#cheat_activated", 0, 0)
 
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
@@ -135,6 +135,7 @@ function Ingame:onStart()
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
         this:onPlayerCheat(eventSourceIndex, args)
+		GameRules:SendCustomMessage('Cheat activated', 0, 0)
     end)
 
     -- Listen for players connecting

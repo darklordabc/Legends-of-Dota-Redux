@@ -10,7 +10,7 @@ var cheat_list = [
 	},
 	{
 		name: 'com_lvl_max',
-		command: 'dota_hero_level 100',
+		command: 'dota_dev hero_maxlevel',
 	},
 	{
 		name: 'com_gold_max',
@@ -63,6 +63,22 @@ var cheat_list = [
 	{
 		name: 'com_item_4',
 		command: 'dota_create_item item_blink',
+	},
+	{
+		name: 'com_spawn_enemy',
+		command: 'dota_create_unit axe enemy',
+	},
+	{
+		name: 'com_spawn_roshan',
+		command: 'dota_create_unit npc_dota_roshan',
+	},
+	{
+		name: 'com_spawn_friendly',
+		command: 'dota_create_unit axe friendly',
+	},
+	{
+		name: 'com_gold_bots',
+		command: 'dota_bot_give_gold 1000',
 	},
 ];
 
