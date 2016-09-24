@@ -78,7 +78,7 @@ function heroPerksDamageFilter(filterTable)
   local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
   PerkAbaddon(filterTable)
    -- Perk for Pudge
-  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_pudge_perk')
   PerkPudge(filterTable)
   
   return filterTable
