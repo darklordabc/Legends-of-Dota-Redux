@@ -762,7 +762,7 @@ function Pregame:actualSpawnPlayer()
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
                         
-                        if hero:IsOwnedByAnyPlayer() and PlayerResource:GetConnectionState(playerID) ~= 1 then
+                        if hero:IsOwnedByAnyPlayer() and util:playerIsBot(playerID) then
                             SU:SendPlayerBuild( build, playerID )
                         end
 
