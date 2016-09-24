@@ -22,4 +22,24 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
+if IsServer() then
+	function modifier_npc_dota_hero_razor_perk:OnCreated()
+		self.reduction = 25
+	end
+	function modifier_npc_dota_hero_razor_perk:DeclareFunctions()
+		local funcs = {
+			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+		}
+		return funcs
+	end
+	--------------------------------------------------------------------------------------------------------
+	function modifier_npc_dota_hero_razor_perk:OnAbilityFullyCast(params)
+		if params.unit == self:GetParent() and self:GetParent():HasModifier("modifier_razor_static_link") then
+			local cooldown = params.ability:GetCooldownTimeRemaining() * (100 - self.reduction)/100
+			params.ability:EndCooldown()
+			params.ability:StartCooldown(cooldown)
+			local cost = params.ability:GetManaCost(-1) * (self.reduction)/100
+			self:GetParent():GiveMana(cost)
+		end
+	end
+end
