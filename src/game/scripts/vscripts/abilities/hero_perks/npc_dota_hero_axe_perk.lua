@@ -70,7 +70,6 @@ function modifier_npc_dota_hero_axe_perk:OnHeroKilled(keys)
 				for i = 0, 15 do 
 					local ability = caster:GetAbilityByIndex(i)
 					if ability and not ability:IsCooldownReady() then
-						print(ability:GetName())
 						local cooldown = ability:GetCooldownTimeRemaining() * cooldownReduction
 						ability:EndCooldown()
 						ability:StartCooldown(cooldown)
