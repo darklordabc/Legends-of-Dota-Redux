@@ -32,7 +32,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk:DeclareFunctions()
 	return { 
-	MODIFIER_EVENT_ON_HERO_KILLED  
+	MODIFIER_EVENT_ON_HERO_KILLED
 	}
 end
 --------------------------------------------------------------------------------------------------------
@@ -63,6 +63,10 @@ function modifier_npc_dota_hero_vengefulspirit_perk_debuff:DeclareFunctions()
 	MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS  
 	}
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk_debuff:GetTexture()
+	return "vengefulspirit_command_aura"
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk_debuff:GetModifierBonusStats_Intellect(params)
