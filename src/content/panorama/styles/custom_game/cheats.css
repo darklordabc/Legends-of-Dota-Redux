@@ -4,6 +4,18 @@
     height: 100%;
 }
 
+.testButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px 5px 10px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
 #cheatsContainer
 {
     width: 100%;
@@ -32,7 +44,7 @@
     horizontal-align: right;
     margin-right: 0px;
     height: 700px;
-    width: 400px;
+    width: 140px;
 
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
@@ -41,8 +53,7 @@
     transition-property: transform;
     transition-duration: 0.3s;
     
-    visibility: visible;
-    flow-children: down;
+    visibility: visible;    
     overflow: clip scroll;
 }
 

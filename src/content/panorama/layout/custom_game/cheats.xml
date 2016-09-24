@@ -7,54 +7,55 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/cheats.js" /> 
 	</scripts>
+	
 	<Panel class="cheatsRoot" hittest="false">
 		<Panel id="cheatsContainer" hittest="false">
 			<Panel id="cheatsButton">
 				<Button id="showCheatsButton" onactivate="toggleCheats()">
-					<Image id="cheatsIcon" src="file://{images}/custom_game/changelog.png"/>
+					<Image id="cheatsIcon" src="file://{images}/custom_game/cheats.png"/>
 				</Button>
 			</Panel>
 			<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
-				<TextButton id="com_lvl_up_1" class="PlayButton" onactivate="onActivate('com_lvl_up_1')">
+				<TextButton id="com_lvl_up_1" class="testButton" onactivate="onActivate('com_lvl_up_1')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_lvl_bots_1" class="PlayButton" onactivate="onActivate('com_lvl_bots_1')">
+				<TextButton id="com_lvl_bots_1" class="testButton" onactivate="onActivate('com_lvl_bots_1')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_lvl_max" class="PlayButton" onactivate="onActivate('com_lvl_max')">
+				<TextButton id="com_lvl_max" class="testButton" onactivate="onActivate('com_lvl_max')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_gold_max" class="PlayButton" onactivate="onActivate('com_gold_max')">
+				<TextButton id="com_gold_max" class="testButton" onactivate="onActivate('com_gold_max')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_refresh" class="PlayButton" onactivate="onActivate('com_refresh')">
+				<TextButton id="com_refresh" class="testButton" onactivate="onActivate('com_refresh')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_respawn" class="PlayButton" onactivate="onActivate('com_respawn')">
+				<TextButton id="com_respawn" class="testButton" onactivate="onActivate('com_respawn')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_start_game" class="PlayButton" onactivate="onActivate('com_start_game')">
+				<TextButton id="com_start_game" class="testButton" onactivate="onActivate('com_start_game')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_spawn_neutrals" class="PlayButton" onactivate="onActivate('com_spawn_neutrals')">
+				<TextButton id="com_spawn_neutrals" class="testButton" onactivate="onActivate('com_spawn_neutrals')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_wtf_unwtf" class="PlayButton" onactivate="onActivate('com_wtf_unwtf')">
+				<TextButton id="com_wtf_unwtf" class="testButton" onactivate="onActivate('com_wtf_unwtf')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_vision" class="PlayButton" onactivate="onActivate('com_vision')">
+				<TextButton id="com_vision" class="testButton" onactivate="onActivate('com_vision')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_item_1" class="PlayButton" onactivate="onActivate('com_item_1')">
+				<TextButton id="com_item_1" class="testButton" onactivate="onActivate('com_item_1')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_item_2" class="PlayButton" onactivate="onActivate('com_item_2')">
+				<TextButton id="com_item_2" class="testButton" onactivate="onActivate('com_item_2')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_item_3" class="PlayButton" onactivate="onActivate('com_item_3')">
+				<TextButton id="com_item_3" class="testButton" onactivate="onActivate('com_item_3')">
 					<Label/>
 				</TextButton>
-				<TextButton id="com_item_4" class="PlayButton" onactivate="onActivate('com_item_4')">
+				<TextButton id="com_item_4" class="testButton" onactivate="onActivate('com_item_4')">
 					<Label/>
 				</TextButton>
 			</Panel>
