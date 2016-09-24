@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
+- Moved the pencil icon to the right side of the screen
+- Added a cheat menu icon to the top right of the screen
 
 ## 1.1
 
