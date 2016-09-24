@@ -53,10 +53,11 @@ function onHideScreen(table_name, key, data) {
 
     // Show screen when voting only on all pick maps
     var mapName = Game.GetMapInfo().map_display_name;
-    if (mapName.match( /all_pick/i ) && data.v < 3 || data.v < 2)
+    if ((mapName.match( /5_vs_5/i ) || mapName.match( "3_vs_3" )) && data.v < 3 || data.v < 2)
         return;
 
     $('#CustomBackground').visible = false;
+
     CustomNetTables.UnsubscribeNetTableListener(screenListener);
 }
 
@@ -153,6 +154,9 @@ function setBackground() {
     }, {
         img: 'file://{images}/spellicons/axe_counter_helix.png',
         txt: '#hintJungle'
+    }, {
+        img: 'file://{images}/items/tome_of_knowledge.png',
+        txt: '#hintShareEXP'
     }];
 
     // How long to wait before we show the next tip

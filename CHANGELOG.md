@@ -3,17 +3,43 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2
+
+### Bug Fixing
+- Added sounds for when you select a build
+- Replaced all_pick_4 with 3_vs_3
+- Renamed all_pick_6 to 5_vs_5
+- Updated map to latest reborn map
+- Added back-end ability stats tracking
+
+### Balance
+- Changed the hero for many of the preset builds
+- Added Chen preset build
+
+
 ## 1.1
 
 ### Bug Fixing
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
 - Added load screens
+- Added option for players to share EXP. Added new hint advertising sharing of exp. 
+- Reworked Preset Gamemode and Mutators display. Added more mutators. 
+- Preset Builds have been adjusted so that they are affordable in Balance mode (they have been nerfed). 
+- Added Dagger Recommended Build
+- Updated in-game credits
+- Custom Abilities no longer appear when they are disabled
+- Tusk Snowball can no longer multicast due to bugginess
+- Added setting to Bot page to override unique skill settings specifically for bots only
+- Fixed Hash collisions
 
 ### Balance
 - Reworked Random Abilities. Now only True Random, and you can have 6 of them
 - Bots can now get Chemical Rage and Shadow Dance and will cast them under specific conditions.
 - Bots can now get high powered OP abiliites, if OP abilities are enabled
 - You can no longer random a few very unpopular netural abilities
+- Bots will now pick the best available abilities for their specific hero. E.g. BristleBack and Axe will pick tank skills before DPS skills
+- Added Mana Ward (Alt Verison of Jugg's Healing Ward)
+
 
 ## 1.0
 

@@ -16,6 +16,11 @@ require('lib/StatUploaderFunctions')
 
 -- Precaching
 function Precache(context)
+    local soundList = LoadKeyValues('scripts/kv/sounds.kv')
+    -- Precache sounds
+    for soundPath,_ in pairs(soundList["precache_sounds"]) do
+        PrecacheResource("soundfile", soundPath, context)
+    end
 end
 
 -- Create the game mode when we activate

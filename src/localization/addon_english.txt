@@ -25,6 +25,14 @@
     "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"  
+	"76561197996730911" "K1llMan"
+    "76561197996730911_Description" "Developer, Server Tools"
+	"76561198016015988" "Mentos"
+    "76561198016015988_Description" "Developer"
+	"76561197996788368" "Kernel-picnic"
+    "76561197996788368_Description" "Developer, Panorama"
+	"76561198061842355" "Only biscuit"
+    "76561198061842355_Description" "Tester, Community Relations"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -89,7 +97,6 @@
 
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorBanningBanInvis"                     "No Invisible"
-    "lodMutatorFastBuybackCooldown"                 "Fast Respawn"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
@@ -98,8 +105,53 @@
     "lodMutatorBalanceMode"                         "Balance Mode"
     "lodMutatorPlayerBans"                          "Player Bans"
     "lodMutatorOPAbilities"                         "Ban OP Abils"
-    "lodMutatorUlts"                                "6 Ultimates"
-    "lodMutatorStrongCreeps"                        "Strong Creeps"
+    "lodMutatorCustomSkills"                        "Custom Skills"
+    "lodMutatorAllVision"                           "All Vision"
+	"lodMutatorHidePicks"                           "Hide Skill Picks"
+	"lodMutatorShareEXP"                            "Team Shared EXP"
+    "lodMutatorWTF"                                 "Crazy WTF"
+
+    "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
+    "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
+    "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
+
+    "lodMutatorMaxUlts1"                            "2 Ultimates"
+    "lodMutatorMaxUlts2"                            "3 Ultimates"
+    "lodMutatorMaxUlts3"                            "4 Ultimates"
+    "lodMutatorMaxUlts4"                            "6 Ultimates"
+
+    "lodMutatorUniqueSkillsOff"                     "No Unique Skills"
+    "lodMutatorUniqueSkillsTeam"                    "Team Skills"
+    "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
+
+    "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
+    "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
+    "lodMutatorGoldTickRate3"                       "3 Gold Per Tick"
+
+    "lodMutatorGoldModifier1"                       "100% Gold"
+    "lodMutatorGoldModifier2"                       "150% Gold"
+    "lodMutatorGoldModifier3"                       "300% Gold"
+
+    "lodMutatorEXPModifier1"                        "100% Exp"
+    "lodMutatorEXPModifier2"                        "150% Exp"
+    "lodMutatorEXPModifier3"                        "300% Exp"
+
+    "lodMutatorBotsRadiant1"                        "1 Radiant Bot"
+    "lodMutatorBotsRadiant2"                        "5 Radiant Bots"
+    "lodMutatorBotsRadiant3"                        "10 Radiant Bots"
+
+    "lodMutatorBotsDire1"                           "1 Dire Bot"
+    "lodMutatorBotsDire2"                           "5 Dire Bots"
+    "lodMutatorBotsDire3"                           "10 Dire Bots"
+
+    "lodMutatorCreepNoPower"                        "Normal Creeps"
+    "lodMutatorCreepPowerNormal"                    "Strong Creeps"
+    "lodMutatorCreepPowerHigh"                      "High Creeps"
+    "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
+
+    "lodMutatorMaxLevel1"                           "Max Level 25"
+    "lodMutatorMaxLevel2"                           "Max Level 50"
+    "lodMutatorMaxLevel3"                           "Max Level 100"
 
     "lodOptionAboutBalancedAllPick"                 "Pick from every available skill using limited points."
     "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."
@@ -228,6 +280,9 @@
 
     "lodOptionDesGameSpeedEXPModifier"              "XP Gain Modifier Percentage (100 = normal)"
     "lodOptionAboutGameSpeedEXPModifier"            "Multiples the amount of experience that is gained when killing creeps / heroes / roshan."
+
+    "lodOptionDesGameSpeedSharedEXP"                "Shared Team XP"
+    "lodOptionAboutGameSpeedSharedEXP"              "Allies share all experience points"
 
     "lodOptionDesGameSpeedTowersPerLane"            "Towers Per Lane"
     "lodOptionTower3"                               "3 Towers"
@@ -381,6 +436,7 @@
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
+	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
 	
 
     // Hero builder
@@ -504,6 +560,12 @@
 
     "lodOptionDesBotsDire"                          "Desired Dire Players"
     "lodOptionAboutBotDire"                         "Bots will be added to dire if there is less than this number of players on dire."
+
+    "lodOptionDesBotsUniqueSkills"                  "Unique Skills (Bots)"
+    "lodOptionAboutBotsUniqueSkills"                "This option prevents two bots from selecting the same abilities.\nUnique Team Skills: Bots from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one Bot can have each ability."
+    "lodOptionUniqueDefault"                        "Use Main Setting"
+    "lodOptionUniqueTeam"                           "Unique Team Skills"
+    "lodOptionUniqueGlobal"                         "Unique Global Skills"
 
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."
@@ -698,7 +760,7 @@
 	"credit_imba_tower_split"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_thorns"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_vicious"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Credits: Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_juggernaut_healing_ward_mana"           "<font color=\"#7D7D7D\">Credits: Wouterz90 and SwordBacon</font>"
 
 
     
@@ -905,6 +967,22 @@
     "DOTA_Tooltip_ability_holdout_omnislash_image_radius"                       "RADIUS:"
     "DOTA_Tooltip_ability_holdout_omnislash_range"                              "RANGE:"
     "DOTA_Tooltip_ability_holdout_omnislash_bonus_damage"                       "BONUS DAMAGE:"
+    
+    
+    "npc_dota_healing_ward"                                                           "Mana Ward"
+
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Mana  Ward"
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a <font color='#70EA72'>Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward</font> moves at 420 movement speed after being summoned. Lasts 25 seconds."
+	"DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Lore"                   "For the more flexible practitioners of voodoo magic, a second ritual is known, one that allows quicker-than-natural regeneration of magic."
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "%MAX MANA PER SECOND:"
+
+
+    "DOTA_Tooltip_modifier_healing_ward_mana_aura"                                    "Mana Restoring Ward Aura"
+    "DOTA_Tooltip_modifier_healing_ward_mana_aura_Description"                        ""
+
+    "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect"                             "Mana Restoring Ward"
+    "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect_Description"                 "Restores mana"
+
 
     // Sven
     "DOTA_Tooltip_ability_holdout_gods_strength"                                "God's Strength"

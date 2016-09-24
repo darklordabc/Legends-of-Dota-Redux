@@ -72,6 +72,7 @@ function RemoveThirst(keys)
 	local caster = keys.caster -- Hero
 	local ability = keys.ability
 	-- Prevent stacks from illusion
+	if not ability then return end
 	if target:IsIllusion() then return end
 	local sight_modifier = "modifier_thirst_debuff_datadriven"
 	local buff_modifier = "modifier_thirst_buff"

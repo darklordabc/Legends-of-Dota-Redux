@@ -1,0 +1,125 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_nInitialParticles = 1
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 7
+	m_nConstantSequenceNumber1 = 7
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_flOverbrightFactor = 4.0
+			m_flAddSelfAmount = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_hTexture = resource:"materials/particle/juggernaut/juggernaut_blade_fury.vtex"
+			m_nOrientationType = 2
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 171, 150, 113, 255 ]
+			m_flFadeEndTime = 0.6
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.65
+			m_flEndTime = 0.2
+			m_flStartScale = 0.8
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_bEaseInAndOut = false
+			m_bProportional = false
+			m_flFadeOutTimeMax = 1.0
+			m_flFadeOutTimeMin = 0.8
+		},
+		{
+			_class = "C_OP_RampScalarSplineSimple"
+			m_bEaseOut = true
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.2
+			m_flEndScale = 0.0
+			m_flBias = 0.25
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.5
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 0, 170, 255, 255 ]
+			m_ColorMax = [ 0, 170, 255, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 1.3
+			m_flRadiusMin = 0.8
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 3
+			m_nAlphaMin = 2
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 4.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 4.0 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_bScaleInitialRange = true
+			m_flOutputMax = 10000.0
+			m_flInputMax = 10000.0
+			m_nCPInput = 1
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bDisableOperator = true
+			m_flOpFadeOscillatePeriod = 1.0
+			m_flOpEndFadeOutTime = 0.1
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeInTime = 0.1
+		},
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 8.0
+		},
+	]
+}

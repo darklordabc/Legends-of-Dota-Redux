@@ -42,63 +42,8 @@ var allOptions = {
                         value: -1
                     }
                 ],
-                mutators: [
-                    {
-                        name: 'lodOptionBanningBanInvis',
-                        about: 'lodMutatorBanningBanInvis'
-                    },
-                    {
-                        about: 'lodMutatorFastBuybackCooldown',
-                        values: {
-                            enabled: {
-                                'lodOptionBuybackCooldownTimeConstant': 105,
-                                'lodOptionGameSpeedRespawnTimePercentage': 25
-                            },
-                            disabled: {
-                                'lodOptionBuybackCooldownTimeConstant': 420,
-                                'lodOptionGameSpeedRespawnTimePercentage': 100
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionGameSpeedUpgradedUlts',
-                        about: 'lodMutatorUpgradedUlts'
-                    },
-                    {
-                        about: 'lodMutatorFastStart',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedStartingGold': 1000,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 6
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedStartingGold': 0,
-                                'lodOptionGameSpeedMaxLevel': 25,
-                                'lodOptionGameSpeedStartingLevel': 1
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionGameSpeedStrongTowers',
-                        about: 'lodMutatorStrongTowers'
-                    },
-                    {
-                        about: 'lodMutatorDoubleTowers',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 5
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedTowersPerLane': 3
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionBanningHostBanning',
-                        about: 'lodMutatorUnlimitedBans'
-                    },
-                    {
+                mutators: [                   
+					{
                         about: 'lodMutatorBalanceMode',
                         values: {
                             enabled: {
@@ -110,6 +55,108 @@ var allOptions = {
                                 'lodOptionBalanceMode': 0
                             }
                         }
+                    },{
+                        name: 'lodOptionGameSpeedMaxLevel',
+                        states: {
+                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel2': 50,
+                            'lodMutatorMaxLevel3': 100
+                        }
+                    },                   
+                    {
+                        name: 'lodOptionGameSpeedUpgradedUlts',
+                        about: 'lodMutatorUpgradedUlts'
+                    },
+					{
+                        about: 'lodMutatorFastStart',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedStartingGold': 1000,
+                                'lodOptionGameSpeedStartingLevel': 6
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedStartingGold': 0,
+                                'lodOptionGameSpeedStartingLevel': 1
+                            }
+                        }
+                    },
+					{
+                        about: 'lodMutatorFastBuybackCooldown1',
+                        default: {
+                            'lodOptionBuybackCooldownTimeConstant': 420,
+                            'lodOptionGameSpeedRespawnTimePercentage': 100
+                        },
+                        states: {
+                            'lodMutatorFastBuybackCooldown2': {
+                                'lodOptionBuybackCooldownTimeConstant': 210,
+                                'lodOptionGameSpeedRespawnTimePercentage': 25
+                            },
+                            'lodMutatorFastBuybackCooldown3': {
+                                'lodOptionBuybackCooldownTimeConstant': 0,
+                                'lodOptionGameSpeedRespawnTimePercentage': 0
+                            }
+                        }
+                    },
+					{
+                        name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodMutatorMaxUlts1': 2
+                        },
+                        states: {
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
+                        }
+                    },					
+                    {
+                        name: 'lodOptionGameSpeedStrongTowers',
+                        about: 'lodMutatorStrongTowers'
+                    },
+					{
+                        name: 'lodOptionCreepPower',
+                        default: {
+                            'lodMutatorCreepNoPower': 0
+                        },
+                        states: {
+                            'lodMutatorCreepPowerNormal': 120,
+                            'lodMutatorCreepPowerHigh': 60,
+                            'lodMutatorCreepPowerExtreme': 30
+                        }
+                    },
+                    {
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 5
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
+                    },                    
+                    {
+                        name: 'lodOptionAdvancedCustomSkills',
+                        about: 'lodMutatorCustomSkills'
+                    },                    
+                    {
+                        about: 'lodMutatorOPAbilities',
+                        values: {
+                            enabled: {
+                                'lodOptionBanningUseBanList': 1,
+                                'lodOptionAdvancedOPAbilities': 1
+                            },
+                            disabled: {
+                                'lodOptionBanningUseBanList': 0,
+                                'lodOptionAdvancedOPAbilities': 0
+                            }
+                        }
+                    },{
+                        name: 'lodOptionBanningBanInvis',
+                        about: 'lodMutatorBanningBanInvis'
+                    },
+                    {
+                        name: 'lodOptionBanningHostBanning',
+                        about: 'lodMutatorUnlimitedBans'
                     },
                     {
                         about: 'lodMutatorPlayerBans',
@@ -125,40 +172,81 @@ var allOptions = {
                         }
                     },
                     {
-                        about: 'lodMutatorOPAbilities',
-                        values: {
-                            enabled: {
-                                'lodOptionBanningUseBanList': 1,
-                                'lodOptionAdvancedOPAbilities': 1
-                            },
-                            disabled: {
-                                'lodOptionBanningUseBanList': 0,
-                                'lodOptionAdvancedOPAbilities': 0
-                            }
+                        name: 'lodOptionGameSpeedGoldTickRate',
+                        default: {
+                            'lodMutatorGoldTickRate1': 1
+                        },
+                        states: {
+                            'lodMutatorGoldTickRate2': 2,
+                            'lodMutatorGoldTickRate3': 3
                         }
                     },
                     {
-                        about: 'lodMutatorUlts',
-                        values: {
-                            enabled: {
-                                'lodOptionCommonMaxUlts': 6
-                            },
-                            disabled: {
-                                'lodOptionCommonMaxUlts': 2
-                            }
+                        name: 'lodOptionGameSpeedGoldModifier',
+                        default: {
+                            'lodMutatorGoldModifier1': 100
+                        },
+                        states: {
+                            'lodMutatorGoldModifier2': 150,
+                            'lodMutatorGoldModifier3': 300
                         }
                     },
                     {
-                        about: 'lodMutatorStrongCreeps',
-                        values: {
-                            enabled: {
-                                'lodOptionCreepPower': 120
-                            },
-                            disabled: {
-                                'lodOptionCreepPower': 0
-                            }
+                        name: 'lodOptionGameSpeedEXPModifier',
+                        default: {
+                            'lodMutatorEXPModifier1': 100
+                        },
+                        states: {
+                            'lodMutatorEXPModifier2': 150,
+                            'lodMutatorEXPModifier3': 300
                         }
-                    }
+                    },
+					{
+                        name: 'lodOptionGameSpeedSharedEXP',
+                        about: 'lodMutatorShareEXP'
+                    },                   
+                    {
+                        name: 'lodOptionBotsRadiant',
+                        default: {
+                            'lodMutatorBotsRadiant1': 1
+                        },
+                        states: {
+                            'lodMutatorBotsRadiant2': 5,
+                            'lodMutatorBotsRadiant3': 10
+                        }
+                    },
+                    {
+                        name: 'lodOptionBotsDire',
+                        default: {
+                            'lodMutatorBotsDire1': 1
+                        },
+                        states: {
+                            'lodMutatorBotsDire2': 5,
+                            'lodMutatorBotsDire3': 10
+                        }
+                    },
+					{
+                        name: 'lodOptionAdvancedUniqueSkills',
+                        default: {
+                            'lodMutatorUniqueSkillsOff': 0
+                        },
+                        states: {
+                            'lodMutatorUniqueSkillsTeam': 1,
+                            'lodMutatorUniqueSkillsGlobal': 2
+                        }
+                    },
+					{
+                        name: 'lodOptionAdvancedHidePicks',
+                        about: 'lodMutatorHidePicks'
+                    },
+                    {
+                        name: 'lodOptionCrazyAllVision',
+                        about: 'lodMutatorAllVision'
+                    },
+                    {
+                        name: 'lodOptionCrazyWTF',
+                        about: 'lodMutatorWTF'
+                    },                   
                 ]
             }
         ]
@@ -223,7 +311,6 @@ var allOptions = {
                 default: 2
             },
             {
-                preset: true,
                 name: 'lodOptionCommonMirrorHeroes',
                 des: 'lodOptionsCommonMirrorHeroes',
                 about: 'lodOptionAboutCommonMirrorHeroes',
@@ -486,6 +573,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionGameSpeedSharedEXP',
+                des: 'lodOptionDesGameSpeedSharedEXP',
+                about: 'lodOptionAboutGameSpeedSharedEXP',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
 
             /*{
                 name: 'lodOptionCrazyEasymode',
@@ -734,6 +837,26 @@ var allOptions = {
                 step: 1,
                 default: 5
             },
+            {
+                name: 'lodOptionBotsUniqueSkills',
+                des: 'lodOptionDesBotsUniqueSkills',
+                about: 'lodOptionAboutBotsUniqueSkills',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionUniqueDefault',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionUniqueTeam',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionUniqueGlobal',
+                        value: 2
+                    }
+                ]
+            },
             /*{
                 name: 'lodOptionBotsUnfairBalance',
                 des: 'lodOptionDesBotsUnfairBalance',
@@ -844,8 +967,48 @@ var allOptions = {
 // Hard Coded Recommended Builds
 var recommendedBuilds = [
     {
+        title: 'Cherub',
+        heroName: 'npc_dota_hero_enchantress',
+		id: 'build_cherub',
+        attr: 'int',
+        build: {
+            1: 'cherub_sleep_cloud',
+            2: 'cherub_synthesis',
+            3: 'cherub_explosive_spore',
+            4: 'cherub_flower_garden',
+            5: 'garden_pink_blossom_base',
+            6: 'garden_blue_blossom_base',
+        },
+    },{
+        title: 'Neutral Creep Builder',
+        heroName: 'npc_dota_hero_chen',
+	id: 'build_creep_builder',
+        attr: 'int',
+        build: {
+            1: 'chen_holy_persuasion',
+            2: 'chen_test_of_faith_teleport',
+            3: 'satyr_hellcaller_unholy_aura',
+            4: 'lycan_howl',
+            5: 'alpha_wolf_command_aura',
+            6: 'granite_golem_hp_aura',
+        },
+    },{
+        title: 'Long Dagger Harassment',
+        heroName: 'npc_dota_hero_ogre_magi',
+        id: 'build_dagger_harrasment',
+        attr: 'int',
+        build: {
+            1: 'phantom_assassin_stifling_dagger',
+            2: 'weaver_geminate_attack',
+            3: 'treant_eyes_in_the_forest',
+            4: 'lone_druid_spirit_bear_entangle',
+            5: 'abaddon_frostmourne',
+            6: 'crystal_maiden_brilliance_aura',
+        },
+    },{
         title: 'Hunter in the night',
         heroName: 'npc_dota_hero_night_stalker',
+        id: 'build_hunter_in_the_night',
         attr: 'str',
         build: {
             1: 'magnataur_empower',
@@ -859,19 +1022,21 @@ var recommendedBuilds = [
     {
         title: 'Generic Tank',
         heroName: 'npc_dota_hero_centaur',
+        id: 'build_generic_tank',
         attr: 'str',
         build: {
-            1: 'huskar_berserkers_blood',
+            1: 'tidehunter_kraken_shell',
             2: 'dragon_knight_dragon_blood',
-            3: 'spectre_dispersion',
-            4: 'viper_corrosive_skin',
-            5: 'shredder_reactive_armor',
+            3: 'viper_corrosive_skin',
+            4: 'medusa_mana_shield',
+            5: 'granite_golem_hp_aura',
             6: 'alchemist_chemical_rage',
         },
     },
     {
         title: 'Infest Support',
-        heroName: 'npc_dota_hero_night_stalker',
+        heroName: 'npc_dota_hero_life_stealer',
+        id: 'build_infest_support',
         attr: 'str',
         build: {
             1: 'pudge_rot',
@@ -885,6 +1050,7 @@ var recommendedBuilds = [
     {
         title: 'Global Caster',
         heroName: 'npc_dota_hero_pugna',
+        id: 'build_global_caster',
         attr: 'int',
         build: {
             1: 'treant_living_armor',
@@ -898,6 +1064,7 @@ var recommendedBuilds = [
     {
         title: 'Magic Be Dashed!',
         heroName: 'npc_dota_hero_mirana',
+        id: 'build_magic_be_dashed',
         attr: 'agi',
         build: {
             1: 'medusa_split_shot',
@@ -911,45 +1078,49 @@ var recommendedBuilds = [
     {
         title: 'All your attributes are belong to me',
         heroName: 'npc_dota_hero_windrunner',
+        id: 'build_attributes',
         attr: 'int',
         build: {
             1: 'obsidian_destroyer_arcane_orb',
             2: 'obsidian_destroyer_essence_aura_lod',
-            3: 'slark_essence_shift',
+            3: 'skeleton_king_reincarnation',
             4: 'pudge_flesh_heap',
-            5: 'silencer_glaives_of_wisdom',
-            6: 'windrunner_focusfire',
+            5: 'pudge_flesh_heap_agi',
+            6: 'pudge_flesh_heap_int',
         },
     },
     {
         title: 'Rapture',
-        heroName: 'npc_dota_hero_pugna',
+        heroName: 'npc_dota_hero_bloodseeker',
+        id: 'build_rapture',
         attr: 'int',
         build: {
             1: 'pudge_meat_hook',
-            2: 'lone_druid_savage_roar',
-            3: 'vengefulspirit_nether_swap',
-            4: 'earth_spirit_boulder_smash',
-            5: 'magnataur_skewer',
+            2: 'tusk_walrus_kick',
+            3: 'lone_druid_savage_roar',
+            4: 'phoenix_icarus_dive',
+            5: 'batrider_flaming_lasso',
             6: 'bloodseeker_rupture',
         },
     },
     {
         title: 'Global Stunner',
         heroName: 'npc_dota_hero_pugna',
+        id: 'build_stunner',
         attr: 'int',
         build: {
             1: 'sven_storm_bolt',
             2: 'vengefulspirit_magic_missile',
-            3: 'antimage_blink',
+            3: 'holdout_arcane_aura',
             4: 'furion_teleportation',
-            5: 'holdout_arcane_aura',
-            6: 'magnataur_reverse_polarity',
+            5: 'antimage_blink',
+            6: 'tinker_rearm_lod',
         },
     },
     {
         title: 'Bring the team fight',
-        heroName: 'npc_dota_hero_silencer',
+        heroName: 'npc_dota_hero_enigma',
+        id: 'build_team_fight',
         attr: 'int',
         build: {
             1: 'enigma_midnight_pulse',
@@ -962,53 +1133,57 @@ var recommendedBuilds = [
     },
     {
         title: 'The Duelist',
-        heroName: 'npc_dota_hero_juggernaut',
+        heroName: 'npc_dota_hero_legion_commander',
+        id: 'build_duelist',
         attr: 'agi',
         build: {
-            1: 'phantom_assassin_phantom_strike',
-            2: 'slardar_bash',
-            3: 'windrunner_focusfire',
-            4: 'slark_essence_shift',
-            5: 'troll_warlord_fervor',
+            1: 'viper_nethertoxin',
+            2: 'skeleton_king_mortal_strike',
+            3: 'antimage_mana_break',
+            4: 'slark_essence_shift_agility_lod',
+            5: 'phantom_assassin_phantom_strike',
             6: 'legion_commander_duel',
         },
     },
     {
         title: 'The Anti-Tank',
         heroName: 'npc_dota_hero_mirana',
+        id: 'build_anti_tank',
         attr: 'agi',
         build: {
-            1: 'antimage_blink',
+            1: 'force_dash_lod',
             2: 'ancient_apparition_ice_blast',
             3: 'life_stealer_feast',
-            4: 'slark_essence_shift',
-            5: 'troll_warlord_fervor',
-            6: 'beastmaster_primal_roar',
+            4: 'slark_essence_shift_strength_lod',
+            5: 'slark_essence_shift_intellect_lod',
+            6: 'ursa_enrage',
         },
     },
     {
         title: 'Glass Cannon',
         heroName: 'npc_dota_hero_sniper',
+        id: 'build_cannon',
         attr: 'agi',
         build: {
-            1: 'phantom_assassin_coup_de_grace',
+            1: 'chaos_knight_chaos_strike',
             2: 'slardar_bash',
-            3: 'drow_ranger_trueshot',
-            4: 'slark_essence_shift',
+            3: 'sniper_headshot',
+            4: 'abaddon_frostmourne',
             5: 'alpha_wolf_command_aura',
             6: 'drow_ranger_marksmanship',
         },
     },
     {
-        title: 'No ulty, can\'t war',
-        heroName: 'npc_dota_hero_windrunner',
+        title: 'Disregard Team, Acquire Currency',
+        heroName: 'npc_dota_hero_furion',
+        id: 'build_no_ulty',
         attr: 'int',
         build: {
-            1: 'antimage_blink',
-            2: 'medusa_mana_shield',
-            3: 'medusa_split_shot',
+            1: 'sandking_burrowstrike',
+            2: 'doom_bringer_devour_lod',
+            3: 'alchemist_goblins_greed',
             4: 'life_stealer_feast',
-            5: 'alchemist_goblins_greed',
+            5: 'medusa_split_shot',
             6: 'furion_teleportation',
         },
     },
@@ -1041,11 +1216,12 @@ var recommendedBuilds = [
     {
         title: 'MEDIC!',
         heroName: 'npc_dota_hero_wisp',
+        id: 'build_medic',
         attr: 'str',
         build: {
             1: 'wisp_tether',
             2: 'wisp_overcharge',
-            3: 'clinkz_wind_walk',
+            3: 'invoker_ghost_walk_lod',
             4: 'dragon_knight_dragon_blood',
             5: 'holdout_arcane_aura',
             6: 'alchemist_chemical_rage',
@@ -2636,7 +2812,8 @@ function OnMainSelectionTabShown() {
                 build.heroName,
                 build.build,
                 build.attr,
-                build.title
+                build.title,
+                build.id
             );
         }
     }
@@ -2645,10 +2822,10 @@ function OnMainSelectionTabShown() {
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
 var recommenedBuildContainerList = [];
-function addRecommendedBuild(con, hero, build, attr, title) {
+function addRecommendedBuild(con, hero, build, attr, title, id) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
-    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title);
+    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
 
     // Store the container
@@ -2862,6 +3039,7 @@ function getSkillFilterInfo(abilityName) {
 function prepareFilterInfo() {
     // Check on unique skills mode
     uniqueSkillsMode = optionValueList['lodOptionAdvancedUniqueSkills'] || 0;
+    uniqueBotsSkillsMode = optionValueList['lodOptionBotsUniqueSkills'] || 0;
 
     // Grab what to search for
     searchParts = searchText.split(/\s/g);
@@ -2873,6 +3051,7 @@ var searchText = '';
 var searchCategory = '';
 var activeTabs = {};
 var uniqueSkillsMode = 0;
+var uniqueBotsSkillsMode = 1;
 var searchParts = [];
 function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
@@ -3534,6 +3713,7 @@ function buildOptionsCategories() {
     var optionContainer = $('#optionList');
     var mutatorList = {};
     var gamemodeList = {};
+    var mutators;
 
     // Reset option links
     allOptionLinks = {};
@@ -3542,11 +3722,166 @@ function buildOptionsCategories() {
 
     }
 
+    var addMutators = function(destionationPanel) {
+        mutatorList = {};
+        mutators.forEach(function(item, i) {
+            var name;
+            if(item.about) {
+                name = item.about;
+            } else {
+                name = Object.keys(item.states)[0];
+            }
+
+            var optionMutator = $.CreatePanel('Panel', destionationPanel, 'mutator_' + name);
+            optionMutator.AddClass('mutator');
+
+            if (item.states !== undefined) {
+                var circleWrapper = $.CreatePanel('Panel', optionMutator, 'circleWrapper_' + i);
+                circleWrapper.AddClass('circleWrapper');
+            }
+
+            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
+            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator_' + name + '.png');
+
+            // When the mutators changes
+            optionMutator.SetPanelEvent('onactivate', function(e) {
+                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+
+                if (item.values !== undefined) {
+                    var state;
+                    if(optionMutator.BHasClass('active')) {
+                        state = 'disabled';
+                    } else {
+                        state = 'enabled';
+                    }
+
+                    for (var option in item.values[state]) {
+                        var value = item.values[state][option];
+                        setOption(option, value)
+                    }
+                } else if (item.states !== undefined) {
+                    var nextItem;
+                    var found = false;
+                    var i = 0;
+
+                    for(var state in item.states) {
+                        if(typeof item.states[state] === 'object') {
+                            for(var option in item.states[state]) {
+                                if(item.states[state][option] === optionValueList[option]) {
+                                    found = true;
+                                } else {
+                                    found = false;
+                                    break;
+                                }
+                            }
+
+                            if(found) {
+                                if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                                    nextItem = item.states[Object.keys(item.states)[i+1]];
+                                    break;
+                                } else {
+                                    if(item.default !== undefined) {
+                                        nextItem = item.default;
+                                    } else {
+                                        nextItem = item.states[Object.keys(item.states)[0]];
+                                    }
+                                }
+                            } else {
+                                nextItem = item.states[Object.keys(item.states)[0]];
+                            }
+                         } else if(item.states[state] === optionValueList[item.name]) {
+                            if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                                nextItem = item.states[Object.keys(item.states)[i+1]];
+                            } else {
+                                if(item.default !== undefined) {
+                                    nextItem = item.default[Object.keys(item.default)[0]];
+                                } else {
+                                    nextItem = item.states[Object.keys(item.states)[0]];
+                                }
+                            }
+
+                            break;
+                        } 
+
+                        i++;
+                    }
+
+                    if(nextItem === undefined) {
+                        nextItem = item.states[Object.keys(item.states)[0]];
+                    }
+
+                    if(typeof nextItem === 'object') {
+                        for(var option in nextItem) {
+                            setOption(option, nextItem[option]);
+                        }
+                    } else {
+                        setOption(item.name, nextItem);
+                    }
+                } else {
+                    if(optionMutator.BHasClass('active')) {
+                        setOption(item.name, 0);
+                    } else {
+                        setOption(item.name, 1);
+                    }
+                }
+            });
+
+            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
+            infoLabel.AddClass('mutatorLabel');
+
+            if(item.states) {
+                infoLabel.text = $.Localize(Object.keys(item.states)[0]);
+            } else  {
+                infoLabel.text = $.Localize(item.about);
+            }
+
+            if(item.values) {
+                for(var value in item.values.enabled) {
+                    optionMutator.SetAttributeString('optionList', '');
+                    optionMutator.optionList = item.values.enabled;
+                    mutatorList[value] = optionMutator;
+                }
+            } else if (item.states) {
+                optionMutator.SetAttributeString('states', '');
+                optionMutator.image = optionMutatorImage;
+                optionMutator.label = infoLabel;
+                optionMutator.states = {};
+                for(var state in item.states) {
+                    if(typeof item.states[state] === 'object') {
+                        optionMutator.states[state] = item.states[state];
+                        for(var option in item.states[state]) {
+                            mutatorList[option] = optionMutator;
+                        }
+                    } else {
+                        optionMutator.states[state] = item.states[state];
+                    }
+                }
+
+                if(item.default) {
+                    if(item.about) {
+                        optionMutator.about = item.about;
+                    }
+
+                    optionMutator.default = item.default;
+                }
+
+                mutatorList[item.name] = optionMutator;
+            } else {
+                mutatorList[item.name] = optionMutator;
+            }
+        });
+    }
+
+    var setMutator = function(field, state) {
+        mutatorList[field].label.text = $.Localize(state);
+        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
+    }
+
     var checkMutators = function(field, hostPanel) {
         if(mutatorList[field]) {
+            var found = true;
             if(mutatorList[field].optionList) {
                 var options = mutatorList[field].optionList;
-                var found = true;
 
                 for(var value in options) {
                     if(optionValueList[value] != options[value]) {
@@ -3559,6 +3894,73 @@ function buildOptionsCategories() {
                     mutatorList[field].AddClass('active');
                 } else {
                     mutatorList[field].RemoveClass('active');
+                }
+            } else if (mutatorList[field].states) {
+                mutatorList[field].RemoveClass('active');
+
+                if(mutatorList[field].default !== undefined) {
+                    if(Object.keys(mutatorList[field].default).length > 1) {
+                        var match;
+                        for (var option in mutatorList[field].default) {
+                            if(mutatorList[field].default[option] === optionValueList[option]) {
+                                match = true;
+                            } else {
+                                match = false;
+                                break;
+                            }
+                        }
+
+                        if(match) {
+                            setMutator(field, mutatorList[field].about);
+                            found = false;
+                        }
+                    } else {
+                        for (var defaultState in mutatorList[field].default) break;
+                        if(mutatorList[field].default[defaultState] === optionValueList[field]) {
+                            setMutator(field, defaultState);
+                            found = false;
+                        }
+                    }
+                }
+
+                if(found) {
+                    var stateName;
+                    found = true;
+                    for(var state in mutatorList[field].states) {
+                        if(typeof mutatorList[field].states[state] === 'object') {
+                            var matches = 0;
+                            for(var option in mutatorList[field].states[state]) {
+                                if(mutatorList[field].states[state][option] === optionValueList[option]) {
+                                    matches++;
+                                }
+
+                                if(matches === Object.keys(mutatorList[field].states[state]).length) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
+                                }
+                            }
+
+                            if(found) {
+                                stateName = state;
+                                break;
+                            }
+                        } else if(mutatorList[field].states[state] === optionValueList[field]) {
+                            stateName = Object.keys(mutatorList[field].states).filter(function(key) {return mutatorList[field].states[key] === optionValueList[field]
+                            })[0];
+
+                            found = true;
+                            break;
+                        } else {
+                            found = false;
+                        }
+                    }
+                }
+
+                if(found) {
+                    setMutator(field, stateName);
+                    mutatorList[field].AddClass('active');
                 }
             } else {
                 if(optionValueList[field]) {
@@ -3666,55 +4068,7 @@ function buildOptionsCategories() {
                             }
                         });
 
-                        var infoLabel = $.CreatePanel('Label', optionPanel, 'optionMutatorTitle');
-                        infoLabel.text = $.Localize('lodOptionPresetMutators');
-
-                        fieldData[i].mutators.forEach(function(item, i) {
-                            var optionMutator = $.CreatePanel('Panel', optionPanel, 'mutator_' + item.name);
-                            optionMutator.AddClass('mutator');
-
-                            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i); 
-                            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator' + i + '.png');
-
-                            // When the mutators changes
-                            optionMutator.SetPanelEvent('onactivate', function(e) {
-                                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
-
-                                if (item.values !== undefined) {
-                                    var state;
-                                    if(optionMutator.BHasClass('active')) {
-                                        state = 'disabled';
-                                    } else {
-                                        state = 'enabled';
-                                    }
-
-                                    for (var option in item.values[state]) {
-                                        var value = item.values[state][option];
-                                        setOption(option, value)
-                                    }
-                                } else {
-                                    if(optionMutator.BHasClass('active')) {
-                                        setOption(item.name, 0);
-                                    } else {
-                                        setOption(item.name, 1);
-                                    }
-                                }
-                            });
-
-                            var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
-                            infoLabel.AddClass('mutatorLabel');
-                            infoLabel.text = $.Localize(item.about);
-
-                            if(item.name) {
-                                mutatorList[item.name] = optionMutator;
-                            } else {
-                                for(var value in item.values.enabled) {
-                                    optionMutator.SetAttributeString('optionList', '');
-                                    optionMutator.optionList = item.values.enabled;
-                                    mutatorList[value] = optionMutator;
-                                }
-                            }
-                        });
+                        mutators = fieldData[i].mutators;
                     } else {
                         // Create the info
                         var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
@@ -3730,11 +4084,6 @@ function buildOptionsCategories() {
                         mainSlot.SetPanelEvent('onmouseout', function() {
                             $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
                         });
-
-                        // Is this a preset?
-                        if(info.preset) {
-                            mainSlot.AddClass('optionSlotPanelNoCustom');
-                        }
 
                         var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
                         floatRightContiner.AddClass('optionsSlotPanelContainer');
@@ -3983,6 +4332,12 @@ function buildOptionsCategories() {
             }
         })(optionLabelText, allOptions[optionLabelText]);
     }
+
+    var mutatorPanel = $.CreatePanel('Panel', optionContainer, 'mutatorPanel');
+    var infoLabel = $.CreatePanel('Label', mutatorPanel, 'optionMutatorTitle');
+    infoLabel.text = $.Localize('lodOptionPresetMutators');
+
+    addMutators(mutatorPanel);
 }
 
 // Player presses auto assign
@@ -4022,7 +4377,7 @@ function onLockOptionsPressed() {
     if(!Game.GetTeamSelectionLocked()) return;
 
     // Lock options
-    var showTab = 'pickingPhase' + ((balanceMode)? 'Skill': 'Main') + 'Tab';
+    var showTab = 'pickingPhaseMainTab';
     showBuilderTab(showTab);
     
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
@@ -4344,7 +4699,7 @@ function OnPhaseChanged(table_name, key, data) {
             if (currentPhase == PHASE_OPTION_VOTING)
             {
                 var mapName = Game.GetMapInfo().map_display_name;
-                if (mapName.match( /all_pick/i ))
+                if (mapName.match( /5_vs_5/i ) || mapName.match( "3_vs_3" ))
 					$('#middleButtons').visible = false;
             }
 
@@ -4509,7 +4864,7 @@ function OnOptionChanged(table_name, key, data) {
     }
 
     // Check for allowed categories changing
-    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities') {
+    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities' || key == 'lodOptionAdvancedCustomSkills') {
         onAllowedCategoriesChanged();
     }
 
@@ -4926,7 +5281,7 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
-                    var showTab = 'pickingPhase' + ((balanceMode)? 'Skill': 'Main') + 'Tab';
+                    var showTab = 'pickingPhaseMainTab';
                     showBuilderTab(showTab);
                     
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
@@ -5060,7 +5415,7 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     }
 
     // Are we on a map that allocates slots for us?
-    if(mapName == 'all_pick_4' || mapName == 'all_pick_6') {
+    if(mapName == '3_vs_3' || mapName == '5_vs_5') {
         // Disable max slots voting
         $.GetContextPanel().SetHasClass('veryBasicVoting', true);
         useOptionVoting = true;

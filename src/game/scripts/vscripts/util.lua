@@ -133,6 +133,35 @@ function Util:pickRandomRune()
     return validRunes[math.random(#validRunes)]
 end
 
+
+function Util:sortTable(input)
+    local array = {}
+    for heroName in pairs(input) do 
+        array[heroName] = {}
+        while #array[heroName] ~= self:getTableLength(input[heroName]) do
+            for abilityName, position in pairs(input[heroName]) do
+                if self:getTableLength(array[heroName])+1 == tonumber(position) then
+                    table.insert(array[heroName], abilityName)
+                end
+            end
+        end
+    end
+    return array
+end
+
+function Util:swapTable(input)
+    local array = {}
+    for k,v in pairs(input) do
+        if type(v) == 'table' then
+            array[k] = self:swapTable(v)
+        else
+            table.insert(array, k)
+        end
+    end
+    return array
+end
+
+
 -- Returns true if a player is premium
 function Util:playerIsPremium(playerID)
     -- Check our premium rank
@@ -173,6 +202,17 @@ function Util:getPremiumRank(playerID)
 
     -- They are not
     return totalPremium
+end
+
+function Util:GetActivePlayerCountForTeam(team)
+    local number = 0
+    for x=0,DOTA_MAX_TEAM do
+        local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
+        if PlayerResource:IsValidPlayerID(pID) and (PlayerResource:GetConnectionState(pID) == 1 or PlayerResource:GetConnectionState(pID) == 2) then
+            number = number + 1
+        end
+    end
+    return number
 end
 
 -- Returns if a player is a time burger
