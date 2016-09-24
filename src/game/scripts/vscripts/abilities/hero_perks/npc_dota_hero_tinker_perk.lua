@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: tinker
---		Perk: 
+--		Perk: When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_tinker_perk", "abilities/hero_perks/npc_dota_hero_tinker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
