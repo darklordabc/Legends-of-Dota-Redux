@@ -2103,6 +2103,8 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"	"Silenced"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Anti-Mage's Perk. Silenced because Anti-Mage blinked within 300 radius."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"	"Flight Delay"
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "Winter Wyvern's perk. Winter Wyvern has flying movement when over 90%d%% health and mana."
 	
