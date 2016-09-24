@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Axe
---		Perk: Culling Blade kills will chop Axe's remaining cooldown times for his abilities in half. 
+--		Perk: Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_axe_perk", "abilities/hero_perks/npc_dota_hero_axe_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
