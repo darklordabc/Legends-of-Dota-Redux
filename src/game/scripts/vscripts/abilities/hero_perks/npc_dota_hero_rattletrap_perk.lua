@@ -28,7 +28,7 @@ function modifier_npc_dota_hero_rattletrap_perk:OnCreated(keys)
         self.flare = caster:AddAbility("rattletrap_rocket_flare_perk")
         self.flare:SetHidden(true)
         self.flare:UpgradeAbility(false)
-        self:StartIntervalThink(5)
+        self:StartIntervalThink(15)
     end
 end
 --------------------------------------------------------------------------------------------------------
@@ -52,7 +52,6 @@ function modifier_npc_dota_hero_rattletrap_perk:OnIntervalThink(keys)
 	        	flare:EndCooldown()
 	        	caster:CastAbilityOnPosition(vector, flare, caster:GetPlayerID())
 	        	findFowLocation = true
-	        	print(caster:GetAbsOrigin())
 	        end
         end
         return true
