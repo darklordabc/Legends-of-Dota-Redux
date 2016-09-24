@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: lich
---		Perk: 
+--		Hero: Lich
+--		Perk: Sacrifice also restores Lich's health. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_lich_perk", "abilities/hero_perks/npc_dota_hero_lich_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -34,7 +34,7 @@ function modifier_npc_dota_hero_lich_perk:OnAbilityExecuted(params)
 		local sacrifice = params.ability
 		local hTarget = params.target
 		local hp = hTarget:GetHealth() * sacrifice:GetSpecialValueFor("health_conversion") / 100
-		self:GetParent():Heal(hp, self:GetParent())
+		self:GetParent():Heal(hp, self:GetAbility())
 		SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_HEAL, self:GetParent(), hp, self:GetParent())
 	end
 end
