@@ -36,7 +36,8 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_drow_ranger = true, 
     npc_dota_hero_death_prophet = true,
     npc_dota_hero_obsidian_destroyer = true,
-    npc_dota_hero_venomancer = true
+    npc_dota_hero_venomancer = true,
+    npc_dota_hero_silencer = true
   }
   -- Perk for Dragon Knight
   local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
@@ -56,6 +57,9 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Venomancer
   local perkforVenomancer = require('abilities/hero_perks/npc_dota_hero_venomancer_perk')
   perkVenomancer(filterTable)
+  -- Perk for Silencer
+  local perkforSilencer = require('abilities/hero_perks/npc_dota_hero_silencer_perk')
+  perkSilencer(filterTable)
   -- Returning the filterTable
   return filterTable
 end
