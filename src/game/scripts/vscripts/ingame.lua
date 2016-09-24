@@ -26,8 +26,7 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-        GameRules:SendCustomMessage("#cheat_activated", 0, 0)
-
+    GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
         end, 'switch_warning', 5)
@@ -126,7 +125,7 @@ function Ingame:onStart()
         if count == 1 then
             network:showCheatPanel()
         end
-    end
+     end
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
@@ -135,7 +134,11 @@ function Ingame:onStart()
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
         this:onPlayerCheat(eventSourceIndex, args)
-		GameRules:SendCustomMessage('Cheat activated', 0, 0)
+		if (isCheatsEnabled) then
+		GameRules:SendCustomMessage('#cheat_activated', 0, 0)
+		else
+		GameRules:SendCustomMessage('Sorry, cheats are disabled. To play with cheats, quit this lobby, host a custom lobby with a password and tick ENABLE CHEATS', 0, 0)
+		end
     end)
 
     -- Listen for players connecting
