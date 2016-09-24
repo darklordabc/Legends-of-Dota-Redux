@@ -505,7 +505,7 @@
 	"hintLycan"                         "TO BE DECIDED"
 	"hintMagnus"                         "TO BE DECIDED"
 	"hintMedusa"                         "TO BE DECIDED"
-	"hintMirana"                         "TO BE DECIDED"
+	"hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
 	"hintNecrophos"                         "TO BE DECIDED"
 	"hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
 	"hintOracle"                         "TO BE DECIDED"
@@ -830,7 +830,7 @@
 	//"unique_mechanic_lycan"                        ""
 	//"unique_mechanic_magnataur"                        ""
 	//"unique_mechanic_medusa"                        ""
-	//"unique_mechanic_mirana"                        "<font color=\"#25EC28\">Skillshots</font>" refund 50% of <br> their manacosts and  reduce  <br> 20% of their cooldown.
+	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#25EC28\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
 	"unique_mechanic_naga_siren"                        "<font color=\"#25EC28\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
 	//"unique_mechanic_necrolyte"                        ""
 	//"unique_mechanic_nyx_assassin"                        ""
