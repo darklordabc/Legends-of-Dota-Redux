@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Axe
---		Perk: Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half. 
+--		Perk: Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_axe_perk", "abilities/hero_perks/npc_dota_hero_axe_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -71,6 +71,7 @@ function modifier_npc_dota_hero_axe_perk:OnHeroKilled(keys)
 					local ability = caster:GetAbilityByIndex(i)
 					if ability and not ability:IsCooldownReady() then
 						local cooldown = ability:GetCooldownTimeRemaining() * cooldownReduction
+						if cooldown > 30 then cooldown = ability:GetCooldownTimeRemaining() - 30 end
 						ability:EndCooldown()
 						ability:StartCooldown(cooldown)
 					end
