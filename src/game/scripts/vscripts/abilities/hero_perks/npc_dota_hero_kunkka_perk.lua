@@ -17,9 +17,36 @@ function modifier_npc_dota_hero_kunkka_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_kunkka_perk:IsHidden()
-	return true
+	return false
 end
+
+function modifier_npc_dota_hero_kunkka_perk:GetTexture()
+	return "kunkka_tidebringer"
+end
+
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_kunkka_perk:OnCreated()
+	self.chance = 50
+	self.increase = 1
+end
 
+function modifier_npc_dota_hero_kunkka_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+	}
+	return funcs
+end
+
+
+function modifier_npc_dota_hero_kunkka_perk:OnAbilityExecuted(params)
+	if params.unit == self:GetParent() and IsServer() then
+		if params.ability:HasAbilityFlag("water") and RollPercentage(self.chance) then
+			local bottle = self:GetParent():FindItemByName("item_bottle")
+			if bottle and bottle:GetCurrentCharges() < bottle:GetInitialCharges() then
+				bottle:SetCurrentCharges(bottle:GetCurrentCharges()+self.increase)
+			end
+		end
+	end
+end

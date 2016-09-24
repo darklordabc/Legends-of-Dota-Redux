@@ -23,3 +23,17 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_pugna_perk:DeclareFunctions()
+  local funcs = {
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+  }
+  return funcs
+end
+
+function modifier_npc_dota_hero_pugna_perk:OnAbilityFullyCast(params)
+	if IsServer() and params.unit == self:GetParent() then
+		if params.ability:HasAbilityFlag("drain") then
+			params.ability:RefundManaCost()
+		end
+	end
+end

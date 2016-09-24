@@ -17,9 +17,49 @@ function modifier_npc_dota_hero_earth_spirit_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_earth_spirit_perk:IsHidden()
-	return true
+	return false
+end
+
+function modifier_npc_dota_hero_earth_spirit_perk:GetTexture()
+	return "earth_spirit_stone_caller"
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+
+function modifier_npc_dota_hero_earth_spirit_perk:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	}
+	return funcs
+end
+
+function modifier_npc_dota_hero_earth_spirit_perk:OnCreated()
+	self.baseDamage = 3
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
+end
+
+function modifier_npc_dota_hero_earth_spirit_perk:OnIntervalThink()
+	if IsServer() then
+		local spirit = self:GetParent()
+		for i=0, spirit:GetAbilityCount() do
+			local skill = spirit:GetAbilityByIndex(i)
+			if skill and skill:HasAbilityFlag("earth") then
+				skill.spiritPerkLvl = skill.spiritPerkLvl or skill:GetLevel()
+				if skill:GetLevel() > skill.spiritPerkLvl then
+					local increase = (skill:GetLevel() - skill.spiritPerkLvl)
+					local stacks = self:GetStackCount()
+					self:SetStackCount(stacks + increase*self.baseDamage)
+					skill.spiritPerkLvl = skill:GetLevel()
+				end
+			end
+		end
+	end
+end
+
+function modifier_npc_dota_hero_earth_spirit_perk:GetModifierPreAttack_BonusDamage()
+	return self:GetStackCount()
+end
