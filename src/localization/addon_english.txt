@@ -481,7 +481,7 @@
 	"hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
 	"hintVS"                         "TO BE DECIDED"
 	"hintVisage"                         "Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
-	"hintNaga"                         "TO BE DECIDED"
+	"hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
 	"hintBH"                         "TO BE DECIDED"
 	"hintDrow"                         "TO BE DECIDED"
 	"hintNyx"                         "TO BE DECIDED"
@@ -831,7 +831,7 @@
 	//"unique_mechanic_magnataur"                        ""
 	//"unique_mechanic_medusa"                        ""
 	//"unique_mechanic_mirana"                        "<font color=\"#25EC28\">Skillshots</font>" refund 50% of <br> their manacosts and  reduce  <br> 20% of their cooldown.
-	//"unique_mechanic_naga_siren"                        ""
+	"unique_mechanic_naga_siren"                        "<font color=\"#25EC28\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
 	//"unique_mechanic_necrolyte"                        ""
 	//"unique_mechanic_nyx_assassin"                        ""
 	//"unique_mechanic_obsidian_destroyer"                        ""
