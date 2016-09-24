@@ -536,7 +536,7 @@
 	"hintViper"                         "TO BE DECIDED"
 	"hintWarlock"                         "TO BE DECIDED"
 	"hintWeaver"                         "TO BE DECIDED"
-	"hintWindranger"                         "TO BE DECIDED"
+	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
 	"hintWK"                         "TO BE DECIDED"
 	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts. "
 	"hintSilencer"                         "TO BE DECIDED"
@@ -865,7 +865,7 @@
 	"unique_mechanic_visage"                        "Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
 	//"unique_mechanic_warlock"                        ""
 	//"unique_mechanic_weaver"                        ""
-	//"unique_mechanic_windrunner"                        ""
+	"unique_mechanic_windrunner"                        "If Windranger has no <br>passives, all her active spells will refund <br>20% mana and have 20% reduced <br>cooldowns."
 	"unique_mechanic_zuus"                        "Refunds 20% of the <br>manacost of <font color=\"#25EC28\">Lightning</font> spells. "
 	
     /////////////////
