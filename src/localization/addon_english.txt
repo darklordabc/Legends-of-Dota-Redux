@@ -840,7 +840,7 @@
 	//"unique_mechanic_oracle"                        ""
 	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\"#25EC28\">Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
 	"unique_mechanic_pudge"                        "Pudge receives 2 <br>charges of <font color=\"#25EC28\">Meat Hook</font>. When Meat Hook <br>deals damage, Pudge receives a debuff which <br>prevents Meat Hook from dealing damage."
-	"unique_mechanic_pugna"                        "<font color=\"#25EC28\">Drain</font> spells will have <br>100% mana refunded."
+	"unique_mechanic_pugna"                        "<font color=\"#25EC28\">Drain</font> spells will have <br>50% mana refunded and have 25% reduced <br>cooldowns when cast by Pugna."
 	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\"#25EC28\">Rocket Flare</font>."
 	"unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. "
 	//"unique_mechanic_rubick"                        ""
