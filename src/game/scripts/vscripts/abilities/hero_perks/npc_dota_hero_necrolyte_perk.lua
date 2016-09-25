@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: necrolyte
---		Perk: 
+--		Hero: Necrolyte
+--		Perk: At the start of the game, Necrophos gains a free level of Sadist, whether he has it or not.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_necrolyte_perk", "abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
