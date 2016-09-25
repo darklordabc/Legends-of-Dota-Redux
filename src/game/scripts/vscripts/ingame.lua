@@ -111,7 +111,8 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
-
+	--Attempt to enable cheats
+	Convars:SetBool("sv_cheats", true)
     local isCheatsEnabled = Convars:GetBool("sv_cheats")
     local maxPlayers = 24
     local count = 0
