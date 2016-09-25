@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: juggernaut
---		Perk: 
+--		Hero: Juggernaut
+--		Perk: Healing/Mana Ward will have 100% of their mana cost refunded.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_juggernaut_perk", "abilities/hero_perks/npc_dota_hero_juggernaut_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

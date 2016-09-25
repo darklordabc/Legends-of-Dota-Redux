@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: pugna
---		Perk: 
+--		Hero: Pugna
+--		Perk: Drain spells will have 100% mana refunded.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_pugna_perk", "abilities/hero_perks/npc_dota_hero_pugna_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
