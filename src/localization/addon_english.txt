@@ -2174,4 +2174,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute"               "Muted"
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Bonus Damage"
+	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities. "
 }
