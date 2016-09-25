@@ -31,14 +31,10 @@ function modifier_npc_dota_hero_nyx_assassin_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_nyx_assassin_perk:GetModifierMoveSpeedBonus_Percentage()
-  if IsServer() then
     local caster = self:GetParent()
-    local bonusMovementSpeed = 10
-
     if caster:IsInvisible() then
-      return bonusMovementSpeed
+      return 10
     else
       return 0
     end
-  end
 end
