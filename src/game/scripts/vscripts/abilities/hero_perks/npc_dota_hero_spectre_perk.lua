@@ -49,7 +49,7 @@ function modifier_npc_dota_hero_spectre_phased:CheckState()
 	return state
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_spectre_perk:GetTexture()
+function modifier_npc_dota_hero_spectre_phased:GetTexture()
 	return "spectre_reality"
 end
 --------------------------------------------------------------------------------------------------------
