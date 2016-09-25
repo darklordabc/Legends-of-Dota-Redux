@@ -56,7 +56,7 @@ function perkDeathProphet(filterTable)  --ModifierGainedFilter
   local ability = EntIndexToHScript( ability_index )
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_death_prophet_perk") then
-      if ability:HasAbilityFlag("silencing") then
+      if ability:HasAbilityFlag("silence") then
         local modifierDuration = filterTable["duration"]
         parent:AddNewModifier(caster,nil,"function modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
       end
