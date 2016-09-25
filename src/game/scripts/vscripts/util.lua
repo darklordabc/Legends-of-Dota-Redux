@@ -169,8 +169,8 @@ function Util:playerIsPremium(playerID)
 end
 
 -- Returns true if a player is bot
-function Util:playerIsBot(playerID)
-    return PlayerResource:GetSteamAccountID(playerID) > 0
+function Util:isPlayerBot(playerID)
+    return PlayerResource:GetSteamAccountID(playerID) == 0
 end
 
 -- Returns a player's premium rank
@@ -586,6 +586,19 @@ function Util:RandomChoice(input)
     end
     return input[temp[math.random(#temp)]]
 end
+
+
+function Util:isSinglePlayerMode()
+    local maxPlayerID = 24
+    local count = 0
+    for playerID=0,(maxPlayerID-1) do
+        if not self:isPlayerBot(playerID) then
+            count = count + 1
+        end
+    end
+    return count == 1
+end
+
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()

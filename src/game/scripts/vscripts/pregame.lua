@@ -427,15 +427,7 @@ function Pregame:onThink()
             else
                 -- Option selection
                 if self.shouldFreezeHostTime == nil then
-                    local maxPlayerID = 24
-                    local count = 0
-                    for playerID=0,(maxPlayerID-1) do
-                        local player = PlayerResource:GetPlayer(playerID)
-                        if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
-                            count = count + 1
-                        end
-                    end
-                    self.shouldFreezeHostTime = count == 1 and true or false
+                    self.shouldFreezeHostTime = util:isSinglePlayerMode()
                 end
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
                 if self.shouldFreezeHostTime == true then
@@ -796,7 +788,7 @@ function Pregame:actualSpawnPlayer()
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
                         
-                        if hero:IsOwnedByAnyPlayer() and util:playerIsBot(playerID) then
+                        if hero:IsOwnedByAnyPlayer() and not util:isPlayerBot(playerID) then
                             SU:SendPlayerBuild( build, playerID )
                         end
 
