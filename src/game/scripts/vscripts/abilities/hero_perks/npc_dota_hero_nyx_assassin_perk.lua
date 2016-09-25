@@ -27,6 +27,7 @@ function modifier_npc_dota_hero_nyx_assassin_perk:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
   }
+  return funcs
 end
 
 function modifier_npc_dota_hero_nyx_assassin_perk:GetModifierMoveSpeedBonus_Percentage()
