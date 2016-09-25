@@ -59,7 +59,7 @@ function Pregame:init()
 
     -- Who is ready?
     self.isReady = {}
-    self.shouldFreeze = nil
+    self.shouldFreezeHostTime = nil
 
     -- Fetch player data
     self:preparePlayerDataFetch()
@@ -426,7 +426,7 @@ function Pregame:onThink()
                 self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionVotingTime'))
             else
                 -- Option selection
-                if self.shouldFreeze == nil then
+                if self.shouldFreezeHostTime == nil then
                     local maxPlayerID = 24
                     local count = 0
                     for playerID=0,(maxPlayerID-1) do
@@ -435,10 +435,10 @@ function Pregame:onThink()
                             count = count + 1
                         end
                     end
-                    self.shouldFreeze = count == 1 and true or false
+                    self.shouldFreezeHostTime = count == 1 and true or false
                 end
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
-                if self.shouldFreeze == true then
+                if self.shouldFreezeHostTime == true then
                     self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'), OptionManager:GetOption('maxOptionSelectionTime'))
                 else
                     self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
