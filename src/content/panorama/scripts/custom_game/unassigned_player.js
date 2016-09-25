@@ -2,6 +2,15 @@
 
 // When player details are changed
 function OnPlayerDetailsChanged() {
+    if (GameUI.CustomUIConfig().hostID == undefined) {
+        for (var i=0; i<24; ++i){
+            var playerInfo = Game.GetPlayerInfo(i);
+            if (playerInfo == null) continue;
+            if (playerInfo.player_has_host_privileges) {
+                GameUI.CustomUIConfig().hostID = playerInfo.player_id;
+            }
+        }
+    }
     var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
     var playerInfo = Game.GetPlayerInfo(playerID);
     if (!playerInfo) return;
@@ -11,7 +20,6 @@ function OnPlayerDetailsChanged() {
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
     $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
-    $.Msg(playerID === GameUI.CustomUIConfig().hostID, 4);
 }
 
 // When this panel loads

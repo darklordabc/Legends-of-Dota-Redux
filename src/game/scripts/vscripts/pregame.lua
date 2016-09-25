@@ -1283,6 +1283,11 @@ end
 function Pregame:onGameChangeHost(eventSourceIndex, args)
     local oldHost = PlayerResource:GetPlayer(args.oldHost)
     local newHost = PlayerResource:GetPlayer(args.newHost)
+    local showPopup = args.popup
+    if showPopup then
+        network:showPopup(oldHost, {oldHost = args.oldHost, newHost = args.newHost})
+        return
+    end
     if isPlayerHost(oldHost) then
         setPlayerHost(oldHost, newHost)
         network:setNewHost(args.newHost)

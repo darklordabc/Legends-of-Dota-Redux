@@ -3418,7 +3418,7 @@ function helperSort(a,b){
 // Are we the host?
 function isHost() {
     var playerID = Players.GetLocalPlayer();
-    $.Msg(playerID === GameUI.CustomUIConfig().hostID)
+    $.Msg(playerID, GameUI.CustomUIConfig().hostID)
     return playerID === GameUI.CustomUIConfig().hostID;
 }
 
@@ -4499,10 +4499,12 @@ function doActualTeamUpdate() {
     calculateHideEnemyPicks();
 
     // Set host privledges
-    var playerID = Players.GetLocalPlayer();
+    var playerInfo = Game.GetLocalPlayerInfo();
+    if (!playerInfo) return;
+    var playerID = playerInfo.player_id
 
     $.GetContextPanel().SetHasClass('player_has_host_privileges', playerID === GameUI.CustomUIConfig().hostID);
-    $.Msg(playerID === GameUI.CustomUIConfig().hostID, 1);
+    $.Msg(playerID, GameUI.CustomUIConfig().hostID, 1);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4848,7 +4850,9 @@ function OnPhaseChanged(table_name, key, data) {
 
         case 'host':
             GameUI.CustomUIConfig().hostID = data.v;
-            $.Msg('New host = ' + GameUI.CustomUIConfig().hostID);
+            if (GameUI.CustomUIConfig().hostID === Players.GetLocalPlayer()){
+                showPopupMessage('You are a new host.');
+            }
             OnTeamPlayerListChanged();
         break;
     }
@@ -5326,6 +5330,24 @@ function showPopupMessage(msg) {
     $('#lodPopupMessage').visible = true;
 }
 
+function showQuestionMessage(data) {
+    $.Msg(data);
+    var oldHost = data.oldHost;
+    var newHost = data.newHost;
+    var playerInfo = Game.GetPlayerInfo(newHost);
+    $('#lodPopupQuestionLabel').text = 'Are you sure want to make player ' + playerInfo.player_name + ' the host of the game?'
+    $('#lodPopupQuestion').visible = true
+    $('#questionYes').SetPanelEvent('onactivate',function(){
+        GameEvents.SendCustomGameEventToServer('lodChangeHost', {
+            oldHost: oldHost,
+            newHost: newHost});
+        $('#lodPopupQuestion').visible = false;
+    });
+    $('#questionNo').SetPanelEvent('onactivate', function(){
+        $('#lodPopupQuestion').visible = false;
+    });
+}
+
 // Cast a vote
 function castVote(optionName, optionValue) {
     // Tell the server we clicked it
@@ -5474,6 +5496,10 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {
         addNotification(data);
+    });
+
+    GameEvents.Subscribe('lodShowPopup', function(data) {
+        showQuestionMessage(data);
     });
     
     // Update filters

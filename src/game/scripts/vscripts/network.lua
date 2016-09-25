@@ -34,6 +34,14 @@ function Network:setNewHost(newHost)
     CustomNetTables:SetTableValue('phase_pregame', 'host', {v = newHost})
 end
 
+-- Sets the active tab
+function Network:showPopup(player, options)
+    if not IsValidEntity(player) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(player, 'lodShowPopup', options)
+end
+
 -- Set an option
 function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue})

@@ -15,6 +15,28 @@
     Notifications
 */
 
+#lodPopupQuestion {
+    z-index: 10000;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 16px;
+    width: 400px;
+    height: 200px;
+    flow-children: down;
+    vertical-align: middle;
+    horizontal-align: center;
+    visibility: collapse;
+}
+
+#questionYes {
+    position: -25%;
+}
+
+#questionNo {
+    position: 25%;
+}
+
 #lodPopupMessage {
     z-index: 10000;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );

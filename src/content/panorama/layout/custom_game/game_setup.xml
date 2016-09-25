@@ -28,6 +28,20 @@
                 </Button>
             </Panel>
         </Panel>
+        <Panel id="lodPopupQuestion">
+            <Panel>
+                <Label id="lodPopupQuestionLabel" html="true" />
+            </Panel>
+
+            <Panel class="lodPopupMessageAcceptContainer">
+                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" id="questionYes">
+                    <Label text="lodOptionYes" />
+                </Button>
+                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" id="questionNo">
+                    <Label text="lodOptionNo" />
+                </Button>
+            </Panel>
+        </Panel>
 
 
         <Panel id="mainSelectionRoot">
