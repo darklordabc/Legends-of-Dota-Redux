@@ -546,7 +546,7 @@
 	"hintBM"							"TO BE DECIDED"	
 	"hintBristleBack"							"TO BE DECIDED"	
 	"hintCK"							"TO BE DECIDED"	
-	"hintClockwerk"							"TO BE DECIDED"	
+	"hintClockwerk"							"Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."	
 	"hintDazzle"							"TO BE DECIDED"	
 	"hintDP"							"TO BE DECIDED"	
 
@@ -841,7 +841,7 @@
 	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\"#25EC28\">Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
 	"unique_mechanic_pudge"                        "Pudge receives 2 charges of Meat Hook.<br>When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook<br>from dealing damage."
 	"unique_mechanic_pugna"                        "Drain spells will have 100% mana refunded."
-	//"unique_mechanic_rattletrap"                        ""
+	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\"#25EC28\">Rocket Flare</font>."
 	"unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. "
 	//"unique_mechanic_rubick"                        ""
 	"unique_mechanic_sand_king"                        "Refund 30% of the <br>manacost of <font color=\"#25EC28\">Channeled</font> abilities. "
