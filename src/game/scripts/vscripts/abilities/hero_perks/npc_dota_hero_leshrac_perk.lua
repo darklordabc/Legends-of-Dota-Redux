@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_leshrac_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_leshrac_perk:IsHidden()
-	if GameRules:GetGameTime() < 180 then
+	if GameRules:GetGameTime() - self.created < 180 then
 		return false
 	else return true end
 end
@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_leshrac_perk:OnCreated(keys)
-	
+	self.created = GameRules:GetGameTime()
     if IsServer() then
         local caster = self:GetCaster()
         local octarine = caster:FindAbilityByName("octarine_vampirism_lod")
