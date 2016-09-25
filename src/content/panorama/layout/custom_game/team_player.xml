@@ -24,7 +24,7 @@
             <DOTAAbilityImage id="playerSkill5" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(5)" />
             <DOTAAbilityImage id="playerSkill6" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(6)" />
         </Panel>
-        <Panel class="playerNameContainer">
+        <Panel class="playerNameContainer"  onactivate="isContributor()">
             <Label id="playerIsHostPanel" />
             <Label id="playerName" text="PLAYER_NAME" />
         </Panel>

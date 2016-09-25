@@ -70,6 +70,7 @@ function Pregame:init()
     -- Setup phase stuff
     GameRules:SetCustomGameSetupTimeout(-1)
     GameRules:EnableCustomGameSetupAutoLaunch(false)
+    self:sendContributors()
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
@@ -446,12 +447,6 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
-    end
-
-    -- Check for premium players
-    if not self.sentContributors then
-        self.sentContributors = true
-        self:sendContributors()
     end
 
     --[[
