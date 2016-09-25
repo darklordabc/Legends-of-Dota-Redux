@@ -194,6 +194,10 @@ function Pregame:init()
         this:onPlayerCastVote(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodChangeHost', function(eventSourceIndex, args)
+        this:onGameChangeHost(eventSourceIndex, args)
+    end)
+
     -- Init debug
     Debug:init()
 
@@ -429,6 +433,8 @@ function Pregame:onThink()
                 -- Option selection
                 if self.shouldFreezeHostTime == nil then
                     self.shouldFreezeHostTime = util:isSinglePlayerMode()
+                    local hostPlayer = Pregame:getHostPlayer()
+                    hostPlayer.isHost = true
                 end
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
                 if self.shouldFreezeHostTime == true then
@@ -462,7 +468,7 @@ function Pregame:onThink()
                 if steamID ~= 0 then
                     local player = PlayerResource:GetPlayer(playerID)
                     -- If it is a host
-                    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+                    if isPlayerHost(player) then
                         local sound = self:getRandomSound('game_option_host')
                         EmitAnnouncerSoundForPlayer(sound, playerID)
                     else
@@ -1181,7 +1187,7 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Finish the option selection
         self:finishOptionSelection()
     end
@@ -1197,7 +1203,7 @@ function Pregame:onOptionsMenuChanged(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Grab and set which tab is active
         local newActiveTab = args.v
         network:setActiveOptionsTab(newActiveTab)
@@ -1214,7 +1220,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Grab options
         local optionName = args.k
         local optionValue = args.v
@@ -1272,6 +1278,15 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 
     -- Process / update the vote data
     self:processVoteData()
+end
+
+function Pregame:onGameChangeHost(eventSourceIndex, args)
+    local oldHost = PlayerResource:GetPlayer(args.oldHost)
+    local newHost = PlayerResource:GetPlayer(args.newHost)
+    if isPlayerHost(oldHost) then
+        setPlayerHost(oldHost, newHost)
+        network:setNewHost(args.newHost)
+    end
 end
 
 -- Processes Vote Data
@@ -3446,7 +3461,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	local maxHeroBans = self.optionStore['lodOptionBanningMaxHeroBans']
 
     local unlimitedBans = false
-    if self.optionStore['lodOptionBanningHostBanning'] == 1 and GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if self.optionStore['lodOptionBanningHostBanning'] == 1 and isPlayerHost(player) then
         unlimitedBans = true
     end
 

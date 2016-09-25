@@ -1346,6 +1346,13 @@ var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 0;
 var showTier = {};
 
+(function() {
+    var playerInfo = Game.GetLocalPlayerInfo();
+    if (playerInfo.player_has_host_privileges){
+        GameUI.CustomUIConfig().hostID = Players.GetLocalPlayer();
+    }
+})();
+
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -3410,9 +3417,9 @@ function helperSort(a,b){
 
 // Are we the host?
 function isHost() {
-    var playerInfo = Game.GetLocalPlayerInfo();
-    if (!playerInfo) return false;
-    return playerInfo.player_has_host_privileges;
+    var playerID = Players.GetLocalPlayer();
+    $.Msg(playerID === GameUI.CustomUIConfig().hostID)
+    return playerID === GameUI.CustomUIConfig().hostID;
 }
 
 // Sets an option to a value
@@ -4492,10 +4499,10 @@ function doActualTeamUpdate() {
     calculateHideEnemyPicks();
 
     // Set host privledges
-    var playerInfo = Game.GetLocalPlayerInfo();
-    if (!playerInfo) return;
+    var playerID = Players.GetLocalPlayer();
 
-    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerID === GameUI.CustomUIConfig().hostID);
+    $.Msg(playerID === GameUI.CustomUIConfig().hostID, 1);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4837,6 +4844,12 @@ function OnPhaseChanged(table_name, key, data) {
 
         case 'contributors':
             GameUI.CustomUIConfig().premiumData = data;
+        break;
+
+        case 'host':
+            GameUI.CustomUIConfig().hostID = data.v;
+            $.Msg('New host = ' + GameUI.CustomUIConfig().hostID);
+            OnTeamPlayerListChanged();
         break;
     }
 

@@ -204,6 +204,22 @@ function Util:getPremiumRank(playerID)
     return totalPremium
 end
 
+
+function isPlayerHost(player)
+    if type(player) == 'number' then
+        player = PlayerResource:GetPlayer(player)
+    end
+    return player.isHost
+end
+
+function setPlayerHost(oldHost, newHost)
+    if isPlayerHost(oldHost) then
+        oldHost.isHost = nil
+        newHost.isHost = true
+    end
+end
+
+
 function Util:GetActivePlayerCountForTeam(team)
     local number = 0
     for x=0,DOTA_MAX_TEAM do

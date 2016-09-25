@@ -10,7 +10,8 @@ function OnPlayerDetailsChanged() {
     $("#playerAvatar").steamid = playerInfo.player_steamid;
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
-    $.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
+    $.Msg(playerID === GameUI.CustomUIConfig().hostID, 4);
 }
 
 // When this panel loads

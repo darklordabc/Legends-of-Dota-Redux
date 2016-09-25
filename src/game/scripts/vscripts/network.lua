@@ -29,6 +29,11 @@ function Network:setActiveOptionsTab(newActiveTab)
     CustomNetTables:SetTableValue('phase_pregame', 'activeTab', {v = newActiveTab})
 end
 
+-- Sets the active tab
+function Network:setNewHost(newHost)
+    CustomNetTables:SetTableValue('phase_pregame', 'host', {v = newHost})
+end
+
 -- Set an option
 function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue})
@@ -109,7 +114,6 @@ function Network:sendNotification(ply, options)
     -- Push it
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
 end
-
 
 function Network:showCheatPanel(options)
     -- Ensure we have an options table
