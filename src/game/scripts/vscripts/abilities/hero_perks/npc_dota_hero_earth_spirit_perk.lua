@@ -23,6 +23,10 @@ end
 function modifier_npc_dota_hero_earth_spirit_perk:GetTexture()
 	return "earth_spirit_stone_caller"
 end
+
+function modifier_npc_dota_hero_earth_spirit_perk:RemoveOnDeath()
+	return false
+end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------

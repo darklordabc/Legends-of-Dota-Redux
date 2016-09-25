@@ -17,7 +17,9 @@ function modifier_npc_dota_hero_leshrac_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_leshrac_perk:IsHidden()
-	return false
+	if GameRules:GetGameTime() < 180 then
+		return false
+	else return true end
 end
 
 function modifier_npc_dota_hero_leshrac_perk:GetTexture()
