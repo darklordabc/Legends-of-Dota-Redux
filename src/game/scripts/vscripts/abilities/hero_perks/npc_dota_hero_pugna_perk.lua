@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Pugna
---		Perk: Drain spells will have 100% mana refunded.
+--		Perk: Drain spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_pugna_perk", "abilities/hero_perks/npc_dota_hero_pugna_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -20,6 +20,15 @@ function modifier_npc_dota_hero_pugna_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_pugna_perk:OnCreated()
+	self.cooldownPercentReduction = 20
+	self.manaPercentReduction = 50
+
+	self.cooldownReduction = 1-(self.cooldownPercentReduction / 100)
+	self.manaReduction = 1-(self.manaPercentReduction / 100)
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
@@ -33,7 +42,10 @@ end
 function modifier_npc_dota_hero_pugna_perk:OnAbilityFullyCast(params)
 	if IsServer() and params.unit == self:GetParent() then
 		if params.ability:HasAbilityFlag("drain") then
-			params.ability:RefundManaCost()
+			local cooldown = params.ability:GetCooldownTimeRemaining() * self.cooldownReduction
+			self:GetCaster():GiveMana(params.ability:GetManaCost(-1) * self.manaReduction)
+			params.ability:EndCooldown()
+			params.ability:StartCooldown(cooldown)
 		end
 	end
 end
