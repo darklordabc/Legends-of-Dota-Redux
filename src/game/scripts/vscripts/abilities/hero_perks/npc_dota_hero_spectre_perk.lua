@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: spectre
---		Perk: 
+--		Hero: Spectre
+--		Perk: Spectre gains phased movement for 4 seconds every time she uses an ability.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_spectre_perk", "abilities/hero_perks/npc_dota_hero_spectre_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -33,7 +33,7 @@ end
 function modifier_npc_dota_hero_spectre_perk:OnAbilityExecuted(params)
 	if params.unit == self:GetParent() then
 		local phase = params.ability -- For modifier icon
-		self:GetParent():AddNewModifier(self:GetParent(), phase, "modifier_npc_dota_hero_spectre_phased", {duration = 4})
+		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_npc_dota_hero_spectre_phased", {duration = 4})
 	end
 end
 
@@ -42,10 +42,14 @@ end
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_spectre_phased == nil then modifier_npc_dota_hero_spectre_phased = class({}) end
 --------------------------------------------------------------------------------------------------------
-
 function modifier_npc_dota_hero_spectre_phased:CheckState()
 	local state = {
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
 	return state
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_spectre_perk:GetTexture()
+	return "spectre_reality"
+end
+--------------------------------------------------------------------------------------------------------
