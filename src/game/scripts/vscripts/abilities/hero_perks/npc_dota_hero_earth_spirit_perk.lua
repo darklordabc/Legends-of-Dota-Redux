@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: earth_spirit
---		Perk: 
+--		Hero: Earth Spirit
+--		Perk: Earth Spirit gains 3+ damage for each point in Earth Abilities.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_earth_spirit_perk", "abilities/hero_perks/npc_dota_hero_earth_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
