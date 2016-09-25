@@ -511,7 +511,7 @@
 	"hintOracle"                         "TO BE DECIDED"
 	"hintOD"                         "Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
 	"hintPA"                         "When Phantom Assassin uses Dagger abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
-	"hintPudge"                         "TO BE DECIDED"
+	"hintPudge"                         "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
 	"hintPugna"                         "Drain spells will have 100% mana refunded."
 	"hintRazor"                         "TO BE DECIDED"
 	"hintRubick"                         "TO BE DECIDED"
