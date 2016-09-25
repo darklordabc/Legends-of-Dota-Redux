@@ -153,7 +153,11 @@ end
 function Util:swapTable(input)
     local array = {}
     for k,v in pairs(input) do
-        table.insert(array, k)
+        if type(v) == 'table' then
+            array[k] = self:swapTable(v)
+        else
+            table.insert(array, k)
+        end
     end
     return array
 end
@@ -163,6 +167,11 @@ end
 function Util:playerIsPremium(playerID)
     -- Check our premium rank
     return self:getPremiumRank(playerID) > 0
+end
+
+-- Returns true if a player is bot
+function Util:playerIsBot(playerID)
+    return PlayerResource:GetSteamAccountID(playerID) > 0
 end
 
 -- Returns a player's premium rank

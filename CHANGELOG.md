@@ -3,16 +3,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3
+
+### Bug Fixing
+- Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 
+
+### Balance
+
+
 ## 1.2
 
 ### Bug Fixing
 - Added sounds for when you select a build
+- Replaced all_pick_4 with 3_vs_3
+- Renamed all_pick_6 to 5_vs_5
+- Updated map to latest reborn map
+- Added back-end ability stats tracking
 
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
-- Replaced all_pick_4 with 3_vs_3
-- Renamed all_pick_6 to 5_vs_5
+- Moved the pencil icon to the right side of the screen
+- Added a cheat menu icon to the top right of the screen
+
 
 ## 1.1
 
