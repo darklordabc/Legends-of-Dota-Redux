@@ -24,6 +24,13 @@ function _ScoreboardUpdater_SetTextSafe( panel, childName, textValue )
 
 //=============================================================================
 //=============================================================================
+function GetPlayerColor( PlayerID )
+{
+	var color = Players.GetPlayerColor( PlayerID ).toString(16);
+	color = color.substring(6, 8) + color.substring(4, 6) + color.substring(2, 4) + color.substring(0, 2);
+	return "#" + color;
+}
+
 function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContainer, enemyPlayersContainer, playerId, localPlayerTeamId, teamId )
 {
 	var playerPanelName = "_dynamic_player_" + playerId;
@@ -147,19 +154,8 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 		var playerColorBar = playerPanel.FindChildInLayoutFile( "PlayerColorBar" );
 		if ( playerColorBar !== null )
 		{
-			if ( GameUI.CustomUIConfig().team_colors )
-			{
-				var teamColor = GameUI.CustomUIConfig().team_colors[ playerInfo.player_team_id ];
-				if ( teamColor )
-				{
-					playerColorBar.style.backgroundColor = teamColor;
-				}
-			}
-			else
-			{
-				var playerColor = "#000000";
-				playerColorBar.style.backgroundColor = playerColor;
-			}
+			var color = GetPlayerColor( playerId );
+			playerColorBar.style.backgroundColor = 'gradient( linear, 0% 100%, 100% 100%, from( #000000 ), color-stop( 0.4, ' + color + ' ), color-stop( 0.6, ' + color + ' ), to( #000000 ) );';
 		}
 	}
 	
