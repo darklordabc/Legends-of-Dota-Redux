@@ -612,6 +612,16 @@ function CDOTA_BaseNPC:HasUnitFlag(flag)
     end
 end
 
+function CDOTA_BaseNPC:FindItemByName(item_name)
+    for i=0,5 do
+        local item = self:GetItemInSlot(i)
+        if item and item:GetAbilityName() == item_name then
+            return item
+        end
+    end
+    return nil
+end
+
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()
      local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
