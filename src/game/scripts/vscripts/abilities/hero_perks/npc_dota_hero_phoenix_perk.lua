@@ -40,7 +40,7 @@ if IsServer() then
 	
 	function modifier_npc_dota_hero_phoenix_perk:OnTakeDamage(params)
 		if params.unit == self:GetParent() then
-			if params.damage > self:GetParent():GetHealth() and self.egg and self.egg:IsCooldownReady() and self.egg:GetLevel() > 0 then
+			if params.damage > self:GetParent():GetHealth() and self.egg and self.egg:IsCooldownReady() and self.egg:GetLevel() > 0 then then
 				self:GetParent():CastAbilityNoTarget(self.egg, self:GetParent():GetPlayerID())
 			end
 		end
