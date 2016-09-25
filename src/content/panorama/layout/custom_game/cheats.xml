@@ -1,0 +1,87 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/cheats.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/cheats.js" /> 
+	</scripts>
+	
+	<Panel class="cheatsRoot" hittest="false">
+		<Panel id="cheatsContainer" hittest="false">
+			<Panel id="cheatsButton">
+				<Button id="showCheatsButton" onactivate="toggleCheats()">
+					<Image id="cheatsIcon" src="file://{images}/custom_game/cheats.png"/>
+				</Button>
+			</Panel>
+			<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
+				<Label class="titlelabel" text="Cheat/Debuging Menu" />
+				<TextButton id="com_start_game" class="cheatButton" text="#com_start_game_Description"  onactivate="onActivate('com_start_game')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_spawn_neutrals" class="cheatButton" text="#com_spawn_neutrals_Description"  onactivate="onActivate('com_spawn_neutrals')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_lvl_up_1" class="cheatButton" text="#com_lvl_up_1_Description"  onactivate="onActivate('com_lvl_up_1')">
+					<Label/>
+				</TextButton>
+				
+				<TextButton id="com_lvl_max" class="cheatButton" text="#com_lvl_max_Description" onactivate="onActivate('com_lvl_max')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_gold_max" class="cheatButton" text="#com_gold_max_Description" onactivate="onActivate('com_gold_max')">
+					<Label/>
+				</TextButton>
+				
+				<TextButton id="com_refresh" class="cheatButton" text="#com_refresh_Description" onactivate="onActivate('com_refresh')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_respawn" class="cheatButton" text="#com_respawn_Description" onactivate="onActivate('com_respawn')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_item_1" class="cheatButton cheatButtonItem" text="#com_item_1_Description" onactivate="onActivate('com_item_1')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_item_2" class="cheatButton cheatButtonItem" text="#com_item_2_Description" onactivate="onActivate('com_item_2')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_item_3" class="cheatButton cheatButtonItem" text="#com_item_3_Description" onactivate="onActivate('com_item_3')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_item_4" class="cheatButton cheatButtonItem" text="#com_item_4_Description" onactivate="onActivate('com_item_4')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_lvl_bots_1" class="cheatButton cheatButtonBotsandSpawning" text="#com_lvl_bots_1_Description" onactivate="onActivate('com_lvl_bots_1')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_gold_bots" class="cheatButton cheatButtonBotsandSpawning" text="#com_gold_bots_Description" onactivate="onActivate('com_gold_bots')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_spawn_roshan" class="cheatButton cheatButtonBotsandSpawning" text="#com_spawn_roshan_Description" onactivate="onActivate('com_spawn_roshan')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_spawn_enemy" class="cheatButton cheatButtonBotsandSpawning" text="#com_spawn_enemy_Description" onactivate="onActivate('com_spawn_enemy')">
+					<Label/>
+				</TextButton>
+			    <TextButton id="com_spawn_friendly" class="cheatButton cheatButtonBotsandSpawning" text="#com_spawn_friendly_Description" onactivate="onActivate('com_spawn_friendly')">
+					<Label/>
+				</TextButton>	
+				
+				<TextButton id="com_wtf_unwtf" class="cheatButton cheatButtonOther" text="#com_wtf_unwtf_Description" onactivate="onActivate('com_wtf_unwtf')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_vision" class="cheatButton cheatButtonOther" text="#com_vision_Description" onactivate="onActivate('com_vision')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_host_scale_normal" class="cheatButton cheatButtonOther" text="#com_host_scale_normal_Description" onactivate="onActivate('com_host_scale_normal')">
+					<Label/>
+				</TextButton>
+				<TextButton id="com_host_scale_5" class="cheatButton cheatButtonOther" text="#com_host_scale_5_Description" onactivate="onActivate('com_host_scale_5')">
+					<Label/>
+				</TextButton>
+				
+			</Panel>
+		</Panel>
+	</Panel>
+</root>
