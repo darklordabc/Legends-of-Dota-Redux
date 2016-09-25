@@ -10674,6 +10674,20 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
+    "npc_dota_hero_techies_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_techies_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+    "npc_dota_hero_templar_assassin_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
     "npc_dota_hero_terrorblade_perk"
     {
         "BaseClass"             "ability_lua"
@@ -10709,24 +10723,17 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
-    "npc_dota_hero_tusk_perk"
-    {
-        "BaseClass"             "ability_lua"
-        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
-        "MaxLevel"              "1"
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    }
-    "npc_dota_hero_templar_assassin_perk"
-    {
-        "BaseClass"             "ability_lua"
-        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
-        "MaxLevel"              "1"
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    }
     "npc_dota_hero_troll_warlord_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_troll_warlord_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+    "npc_dota_hero_tusk_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
