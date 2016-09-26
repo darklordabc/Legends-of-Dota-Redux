@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: razor
---		Perk: 
+--		Hero: Razor
+--		Perk: Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_razor_perk", "abilities/hero_perks/npc_dota_hero_razor_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
