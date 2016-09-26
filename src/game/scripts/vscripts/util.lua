@@ -597,7 +597,8 @@ function CDOTABaseAbility:HasAbilityFlag(flag)
 end
 
 function CDOTABaseAbility:IsCustomAbility()
-    if not regularSpells[self:GetAbilityName()] then
+    local spell = self:GetAbilityName():gsub("_lod", "")
+    if not regularSpells[spell] then
         return true
     else
         return false
