@@ -8,6 +8,7 @@ function OnPlayerDetailsChanged() {
             if (playerInfo == null) continue;
             if (playerInfo.player_has_host_privileges) {
                 GameUI.CustomUIConfig().hostID = playerInfo.player_id;
+                GameUI.CustomUIConfig().mainHost = playerInfo.player_id;
             }
         }
     }

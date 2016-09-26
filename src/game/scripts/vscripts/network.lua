@@ -45,6 +45,13 @@ function Network:changeHost(options)
     CustomGameEventManager:Send_ServerToAllClients('lodOnHostChanged', options)
 end
 
+function Network:changeLock(player, options)
+    if not IsValidEntity(player) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(player, 'lodChangeLock', options)
+end
+
 -- Set an option
 function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue})

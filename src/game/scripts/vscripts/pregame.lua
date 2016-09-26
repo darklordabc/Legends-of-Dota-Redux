@@ -198,6 +198,10 @@ function Pregame:init()
         this:onGameChangeHost(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodOnChangeLock', function(eventSourceIndex, args)
+        this:onGameChangeLock(eventSourceIndex, args)
+    end)
+
     -- Init debug
     Debug:init()
 
@@ -433,6 +437,7 @@ function Pregame:onThink()
                 -- Option selection
                 if self.shouldFreezeHostTime == nil then
                     self.shouldFreezeHostTime = util:isSinglePlayerMode()
+                    self.mainHost = Pregame:getHostPlayer():GetPlayerID()
                     local hostPlayer = Pregame:getHostPlayer()
                     hostPlayer.isHost = true
                 end
@@ -1292,6 +1297,13 @@ function Pregame:onGameChangeHost(eventSourceIndex, args)
         setPlayerHost(oldHost, newHost)
         network:changeHost({newHost = args.newHost})
     end
+end
+
+function Pregame:onGameChangeLock(eventSourceIndex, args)
+    local command = args.command
+    if not command then return end
+    local mainHost = PlayerResource:GetPlayer(self.mainHost)
+    network:changeLock(mainHost, {command = command})
 end
 
 -- Processes Vote Data

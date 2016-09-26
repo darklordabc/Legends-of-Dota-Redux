@@ -29,7 +29,7 @@ function OnPlayerDetailsChanged() {
     } else {
         $("#playerName").RemoveClass('contributor');
     }
-    $("#playerName").SetPanelEvent('ondblclick', function() {
+    $("#playerName").SetPanelEvent('onactivate', function() {
 		var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
 		var playerInfo = Game.GetPlayerInfo(playerID);
 		if (!playerInfo || playerInfo.player_connection_state == 1 || Players.GetLocalPlayer()===playerID) return;
