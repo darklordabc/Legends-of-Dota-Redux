@@ -512,7 +512,7 @@
 	"hintOD"                         "Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
 	"hintPA"                         "When Phantom Assassin uses Dagger abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
 	"hintPudge"                         "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
-	"hintPugna"                         "Drain spells will have 100% mana refunded."
+	"hintPugna"                         "Drain spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
 	"hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
 	"hintRubick"                         "TO BE DECIDED"
 	"hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
