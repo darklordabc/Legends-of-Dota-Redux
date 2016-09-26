@@ -1290,7 +1290,7 @@ function Pregame:onGameChangeHost(eventSourceIndex, args)
     end
     if isPlayerHost(oldHost) then
         setPlayerHost(oldHost, newHost)
-        network:setNewHost(args.newHost)
+        network:changeHost({newHost = args.newHost})
     end
 end
 

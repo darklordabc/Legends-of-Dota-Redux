@@ -5,7 +5,7 @@ function OnClientCheckIn(args) {
     var playerInfo = Game.GetLocalPlayerInfo();
     var hostInfo = 0
     if ( playerInfo )
-        hostInfo = playerInfo.player_has_host_privileges
+        hostInfo = playerInfo.player_id === GameUI.CustomUIConfig().hostID
 
     var payload = {
         modIdentifier: args.modID,

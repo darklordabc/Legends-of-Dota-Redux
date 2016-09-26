@@ -22,9 +22,17 @@ function OnPlayerDetailsChanged() {
     $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
 }
 
+function OnHostChanged(data) {
+    GameUI.CustomUIConfig().hostID = data.newHost;
+    OnPlayerDetailsChanged();
+}
+
 // When this panel loads
 (function()
 {
     OnPlayerDetailsChanged();
     $.RegisterForUnhandledEvent('DOTAGame_PlayerDetailsChanged', OnPlayerDetailsChanged);
+        GameEvents.Subscribe('lodOnHostChanged', function(data) {
+        OnHostChanged(data);
+    });
 })();

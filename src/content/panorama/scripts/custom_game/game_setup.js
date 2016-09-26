@@ -3418,7 +3418,6 @@ function helperSort(a,b){
 // Are we the host?
 function isHost() {
     var playerID = Players.GetLocalPlayer();
-    $.Msg(playerID, GameUI.CustomUIConfig().hostID)
     return playerID === GameUI.CustomUIConfig().hostID;
 }
 
@@ -4504,7 +4503,6 @@ function doActualTeamUpdate() {
     var playerID = playerInfo.player_id
 
     $.GetContextPanel().SetHasClass('player_has_host_privileges', playerID === GameUI.CustomUIConfig().hostID);
-    $.Msg(playerID, GameUI.CustomUIConfig().hostID, 1);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4847,20 +4845,19 @@ function OnPhaseChanged(table_name, key, data) {
         case 'contributors':
             GameUI.CustomUIConfig().premiumData = data;
         break;
-
-        case 'host':
-            GameUI.CustomUIConfig().hostID = data.v;
-            if (GameUI.CustomUIConfig().hostID === Players.GetLocalPlayer()){
-                showPopupMessage('You are a new host.');
-            }
-            OnTeamPlayerListChanged();
-        break;
     }
 
     // Ensure we are hiding the correct enemy picks
     calculateHideEnemyPicks();
 }
 
+function OnHostChanged(data) {
+    GameUI.CustomUIConfig().hostID = data.newHost;
+    if (GameUI.CustomUIConfig().hostID === Players.GetLocalPlayer()){
+        showPopupMessage('You are a new host.');
+    }
+    OnTeamPlayerListChanged();
+}
 // An option just changed
 function OnOptionChanged(table_name, key, data) {
     // Store new value
@@ -5331,7 +5328,6 @@ function showPopupMessage(msg) {
 }
 
 function showQuestionMessage(data) {
-    $.Msg(data);
     var oldHost = data.oldHost;
     var newHost = data.newHost;
     var playerInfo = Game.GetPlayerInfo(newHost);
@@ -5500,6 +5496,10 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
 
     GameEvents.Subscribe('lodShowPopup', function(data) {
         showQuestionMessage(data);
+    });
+
+    GameEvents.Subscribe('lodOnHostChanged', function(data) {
+        OnHostChanged(data);
     });
     
     // Update filters

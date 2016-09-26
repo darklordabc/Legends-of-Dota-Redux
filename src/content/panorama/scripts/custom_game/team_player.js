@@ -45,7 +45,11 @@ function OnPlayerDetailsChanged() {
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
     $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
-    $.Msg(playerID, GameUI.CustomUIConfig().hostID, 2);
+}
+
+function OnHostChanged(data) {
+    GameUI.CustomUIConfig().hostID = data.newHost;
+    OnPlayerDetailsChanged();
 }
 
 
@@ -118,10 +122,6 @@ function hookStuff(hookSkillInfo, makeSkillSelectable, makeHeroSelectable) {
 	//setSelectedHelperHero = setSelectedHelperHeroReplace;
 }
 
-function onContextMenu(){
-	$.Msg(data)
-}
-
 function OnGetNewAttribute(newAttr) {
 	var attr = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
 	if(newAttr == 'agi') {
@@ -170,4 +170,7 @@ function setReadyState(newState) {
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
+        GameEvents.Subscribe('lodOnHostChanged', function(data) {
+        OnHostChanged(data);
+    });
 })();

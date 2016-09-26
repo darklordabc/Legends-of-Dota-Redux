@@ -42,7 +42,6 @@ function OnPlayerDetailsChanged() {
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
     $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
-    $.Msg(playerID, GameUI.CustomUIConfig().hostID, 3);
 }
 
 
