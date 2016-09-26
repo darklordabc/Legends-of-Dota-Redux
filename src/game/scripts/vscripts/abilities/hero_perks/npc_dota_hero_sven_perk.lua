@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: sven
---		Perk: 
+--		Hero: Sven
+--		Perk: At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_sven_perk", "abilities/hero_perks/npc_dota_hero_sven_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
