@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: leshrac
---		Perk: 
+--		Hero: Leshrac
+--		Perk: At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_leshrac_perk", "abilities/hero_perks/npc_dota_hero_leshrac_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
