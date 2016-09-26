@@ -29,10 +29,10 @@ function OnPlayerDetailsChanged() {
     } else {
         $("#playerName").RemoveClass('contributor');
     }
-    $("#playerName").SetPanelEvent('onactivate', function() {
+    $("#playerName").SetPanelEvent('ondblclick', function() {
 		var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
 		var playerInfo = Game.GetPlayerInfo(playerID);
-		if (!playerInfo || playerInfo.player_connection_state == 1) return;
+		if (!playerInfo || playerInfo.player_connection_state == 1 || Players.GetLocalPlayer()===playerID) return;
 		GameEvents.SendCustomGameEventToServer('lodChangeHost', {
 			oldHost: Players.GetLocalPlayer(),
 			newHost: playerID,

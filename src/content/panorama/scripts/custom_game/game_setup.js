@@ -5333,7 +5333,7 @@ function showQuestionMessage(data) {
     var playerInfo = Game.GetPlayerInfo(newHost);
     $('#lodPopupQuestionLabel').text = 'Are you sure want to make player ' + playerInfo.player_name + ' the host of the game?'
     $('#lodPopupQuestion').visible = true
-    $('#questionYes').SetPanelEvent('onactivate',function(){
+    $('#questionYes').SetPanelEvent('onactivate', function(){
         GameEvents.SendCustomGameEventToServer('lodChangeHost', {
             oldHost: oldHost,
             newHost: newHost});
