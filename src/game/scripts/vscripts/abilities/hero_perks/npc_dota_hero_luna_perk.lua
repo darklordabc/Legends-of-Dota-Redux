@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_luna_perk:IsHidden()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_luna_perk:RemoveOnDeath()
+    return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_luna_perk:OnCreated(keys)
