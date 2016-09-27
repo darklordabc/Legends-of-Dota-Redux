@@ -21,7 +21,11 @@ function modifier_npc_dota_hero_leshrac_perk:IsHidden()
 		return false
 	else return true end
 end
-
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_leshrac_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_leshrac_perk:GetTexture()
 	return "octarine_vampirism_lod"
 end
