@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Silencer
---		Perk: Silence effects applied by Silencer last 20% longer. 
+--		Perk: Silence effects applied by Silencer last 25% longer. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_silencer_perk", "abilities/hero_perks/npc_dota_hero_silencer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
