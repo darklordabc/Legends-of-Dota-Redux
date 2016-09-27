@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: dark_seer
---		Perk: 
+--		Hero: Dark Seer
+--		Perk: Dark Seer self-casts Surge and Ion Shell when casting them on allies.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_dark_seer_perk", "abilities/hero_perks/npc_dota_hero_dark_seer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
