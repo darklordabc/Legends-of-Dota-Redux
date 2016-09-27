@@ -549,6 +549,7 @@
 	"hintClockwerk"							"Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."	
 	"hintDazzle"							"TO BE DECIDED"	
 	"hintDP"							"Any Silence from Death Prophet is also a mute."	
+	"hintDisruptor"							"When Disruptor casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -814,7 +815,7 @@
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
 	//"unique_mechanic_dazzle"                        ""
 	"unique_mechanic_death_prophet"                        "Any <font color=\"#ffd966\">Silence</font> from Death <br>Prophet is also a mute."
-	//"unique_mechanic_disruptor"                        ""
+	"unique_mechanic_disruptor"                        "When Disruptor casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
 	"unique_mechanic_drow_ranger"                        "<font color=\"#ffd966\">Gust</font> also disarms <br>enemies when cast by Drow Ranger."
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
 	//"unique_mechanic_earthshaker"                        ""
