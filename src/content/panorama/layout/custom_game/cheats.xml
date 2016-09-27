@@ -52,6 +52,9 @@
 				<TextButton id="com_item_4" class="cheatButton cheatButtonItem" text="#com_item_4_Description" onactivate="onActivate('com_item_4')">
 					<Label/>
 				</TextButton>
+				<TextButton id="com_item_5" class="cheatButton cheatButtonItem" text="#com_item_5_Description" onactivate="onActivate('com_item_5')">
+					<Label/>
+				</TextButton>
 				<TextButton id="com_lvl_bots_1" class="cheatButton cheatButtonBotsandSpawning" text="#com_lvl_bots_1_Description" onactivate="onActivate('com_lvl_bots_1')">
 					<Label/>
 				</TextButton>
