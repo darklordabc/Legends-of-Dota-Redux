@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Death Prophet
---		Perk: Any silence from Death Prophet is also a mute
+--		Perk: Any silence from Death Prophet is also a mute.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_death_prophet_perk", "abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
