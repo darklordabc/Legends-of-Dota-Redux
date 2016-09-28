@@ -2214,4 +2214,7 @@
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk"  "Medusa Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect."
 }
