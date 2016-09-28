@@ -37,6 +37,9 @@ function modifier_npc_dota_hero_earthshaker_perk:OnAbilityFullyCast(keys)
     if keys.unit == self:GetParent() then
       if keys.ability:HasAbilityFlag("earth") then
         keys.unit:Heal(self:GetParent():GetMaxHealth() * healPercent ,keys.ability)
+	SendOverheadEventMessage(keys.unit,OVERHEAD_ALERT_HEAL,keys.unit,keys.unit:GetMaxHealth() * healPercent,nil)
+        local healParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.unit)
+        ParticleManager:SetParticleControl(healParticle, 1, Vector(radius, radius, radius))
       end
     end
   end

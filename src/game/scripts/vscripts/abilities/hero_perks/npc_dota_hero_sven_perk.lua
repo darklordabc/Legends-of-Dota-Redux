@@ -19,7 +19,11 @@ end
 function modifier_npc_dota_hero_sven_perk:IsHidden()
 	return false
 end
-
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_sven_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_sven_perk:GetTexture()
 	return "sven_great_cleave"
 end

@@ -19,7 +19,11 @@ end
 function modifier_npc_dota_hero_necrolyte_perk:IsHidden()
 	return false
 end
-
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_necrolyte_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_necrolyte_perk:GetTexture()
 	return "necrolyte_sadist"
 end
