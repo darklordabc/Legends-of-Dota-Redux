@@ -21,7 +21,7 @@ function modifier_npc_dota_hero_abyssal_underlord_perk:IsHidden()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -35,34 +35,42 @@ function modifier_npc_dota_hero_abyssal_underlord_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:OnCreated()
+	self.bonusPerLevel = 1
+	self.bonusAmount = 1
 	if IsServer() then
-		self.bonusPerLevel = 1
-		self.bonusAmount = 0
+		self:StartIntervalThink(0.1)
 	end
-	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_abyssal_underlord_perk:OnIntervalThink()
+	if IsServer() then
+		local caster = self:GetParent()
+		for i=0, caster:GetAbilityCount() do
+			local skill = caster:GetAbilityByIndex(i)
+			if skill and skill:IsCustomAbility() and skill:GetName() ~= "npc_dota_hero_abyssal_underlord_perk" then
+				if not skill.perkLevel then skill.perkLevel = skill:GetLevel() end
+				if skill:GetLevel() > skill.perkLevel then
+					local increase = (skill:GetLevel()  - skill.perkLevel)
+					increase = increase * self.bonusPerLevel
+					local stacks = self:GetStackCount()
+					self:SetStackCount(stacks + increase)
+					skill.perkLevel = skill:GetLevel()
+				end
+			end
+		end
+	end
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:GetModifierBonusStats_Intellect(params)
-	local caster = self:GetCaster()
-	local bonusIntellect = 0
-
-	for i = 0, 15 do
-		local ability = caster:GetAbilityByIndex(i)
-		if ability and ability:GetName() ~= "npc_dota_hero_abyssal_underlord_perk" and ability:IsCustomAbility()  then
-			local level = ability:GetLevel()
-			bonusIntellect = bonusIntellect + (level * self.bonusPerLevel)	
-		end
-	end
-	self.bonusAmount = bonusIntellect
-	return self.bonusAmount
+	return self.bonusAmount * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:GetModifierBonusStats_Agility(params)
-	return self.bonusAmount
+	return self.bonusAmount * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:GetModifierBonusStats_Strength(params)
-	return self.bonusAmount
+	return self.bonusAmount * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 
