@@ -2114,19 +2114,49 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Doom's Perk. Your passives are disabled while doomed."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
-	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."	
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
+	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"	"Ancient Apparition Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_Description"	"Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk"	"Antimage Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk_Description"	"After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk"	"Axe Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk_Description"	"Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk"	"Batrider Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20 percent while Flying."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk"               "Beastmaster Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk_Description"   "Gaining bonus strength per level in neutral skills."
+	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk_Description"   "Increases Beastmaster's Strength by 3 for every level put in Neutral abilities."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_bloodseeker_perk"	"Bloodseeker Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_bloodseeker_perk_Description"	"When Bloodseeker casts Rupture, 100 percent of the mana cost will be refunded and cooldown reduced by 20 percent."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk"	"Bounty Hunter Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10 percent more damage to Tracked enemies."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75 percent damage from Self-Damaging spells."	
  	
- 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Recharging"
+ 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Recharging"
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"	"Phantom Rush is on cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"	"Crystal Maiden Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"Gaining bonus movement speed per level in support skills."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk"	"Brewmaster Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100% regen from Salve, Bottle and Clarity."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk"	"Vengeful Spirit Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"	"When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa does 15 percent extra damage to neutrals, including Roshan."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per unique spell cast."
@@ -2145,7 +2175,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge."
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Recharging"
-	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "Recharging Arc Warden's perk over 90 seconds."
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime_Description"   "Recharging Arc Warden's perk over 90 seconds."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff"     "Intelligence Steal"
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."

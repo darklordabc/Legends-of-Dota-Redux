@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Ursa
---		Perk: Increases all damage done to neutrals by 15%
+--		Perk: Ursa does 15% extra damage to neutrals, including Roshan.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_ursa_perk", "abilities/hero_perks/npc_dota_hero_ursa_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_ursa_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ursa_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ursa_perk:RemoveOnDeath()

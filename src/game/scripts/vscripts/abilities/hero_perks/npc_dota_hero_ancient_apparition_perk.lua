@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_ancient_apparition_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions

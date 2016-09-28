@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_vengefulspirit_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk:RemoveOnDeath()

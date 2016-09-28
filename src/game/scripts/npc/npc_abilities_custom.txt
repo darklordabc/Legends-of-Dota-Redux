@@ -10026,6 +10026,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_ancient_apparition_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10033,6 +10034,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_antimage_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_antimage_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10047,6 +10049,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_axe_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_axe_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10061,6 +10064,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_batrider_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_batrider_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10068,7 +10072,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_beastmaster_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
+		"AbilityTextureName"    "npc_dota_hero_beastmaster_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10076,6 +10080,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_bloodseeker_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10083,6 +10088,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_bounty_hunter_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10090,6 +10096,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_brewmaster_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10111,6 +10118,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_centaur_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_centaur_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10749,6 +10757,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ursa_perk.lua"
+		"AbilityTextureName"	"npc_dota_hero_ursa_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -10756,6 +10765,7 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua"
+		"AbilityTextureName"	"npc_dota_hero_vengefulspirit_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
