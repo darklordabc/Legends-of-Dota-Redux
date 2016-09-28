@@ -2165,7 +2165,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze"		"Healing Disabled"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an ice debuff."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an Ice debuff."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
@@ -2177,5 +2177,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Bonus Damage"
-	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities. "
+	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities."
+	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Molten Armor"
+	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
 }
