@@ -2217,4 +2217,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk"  "Medusa Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms."
 }
