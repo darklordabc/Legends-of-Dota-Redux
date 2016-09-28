@@ -1649,6 +1649,26 @@
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown"							"Protection cooldown"
 	"DOTA_Tooltip_modifier_imba_shallow_grave_passive_cooldown_Description"				"Nothl Protection is recharging"
 	
+	"DOTA_Tooltip_modifier_concussive_break_slow_datadriven"                          "Movement Speed Slowed"
+    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven_Description"              "Slowed by Concussive Break"
+
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven"                         "Passives Disabled"
+    "DOTA_Tooltip_modifier_concussive_break_break_datadriven_Description"             "Your passives are currently disabled"
+
+
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect."
+
+	//"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Lore"			"Those who serve the court of the Ghastly Eyrie are ever locked in covert war. One must always know where danger lurks nearest."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note0"			"Does not work when no heroes are in range or heroes are in fog."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note1"			"Provides 400 vision around the projectile, and reveals the target area for 3.34 seconds upon impact."
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note2"			"Concussive Shot cannot be disjointed."
+
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_launch_radius"               "SHOT RANGE:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
+	"DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"		  "%SLOW:"
+	
 	//Tower Stuff
 	"DOTA_Tooltip_modifier_imba_tower_laser_blind"										"Laser"
 	"DOTA_Tooltip_modifier_imba_tower_laser_blind_Description"							"Blinded, with a chance to miss attacks"
@@ -1885,5 +1905,6 @@
 	"DOTA_Tooltip_ability_imba_tower_salvo_Lore"										"Uses a special grenade launcher, gifted by Clockwerk. What kind of favor it performed in order to receive that gift, this tower will never tell."
 	"DOTA_Tooltip_ability_imba_tower_salvo_as_slow"										"ATTACK SPEED PENALTY:"
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_dmg"									"BONUS DAMAGE:"
-	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" 
+	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe"
+	
 }

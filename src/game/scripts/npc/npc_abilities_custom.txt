@@ -7335,7 +7335,7 @@
             }
         }
     }
-    
+	
     //=================================================================================================================
     // Omniknight's Omniguard
     //================================================================================================================= 
@@ -9729,93 +9729,93 @@
             }
         }
     }
-    
+	
     //=================================================================================================================
     // Doom Devour
     //=================================================================================================================
    
-    "doom_bringer_devour_lod"
-    {
-        "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "doom_bringer_devour"
-        "MaxLevel"                      "4"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_CREEP"
-        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+	"doom_bringer_devour_lod"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"doom_bringer_devour"
+		"MaxLevel" 						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 
-        "AbilityCooldown"               "70 60 50 40"
-        "AbilityManaCost"               "60"
-        "AbilityCastRange"              "300"
-        "AbilityCastPoint"              "0.3"
+		"AbilityCooldown"				"70 60 50 40"
+		"AbilityManaCost"				"60"
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.3"
 
-        "precache"
-        {
-            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
-            "particle"          "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
-        }
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"			"particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+		}
 
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "devour_gold"       "25 50 75 100"
-            }
-        }
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"devour_gold"		"25 50 75 100"
+			}
+		}
 
-        "OnAbilityPhaseStart"
-        {
-            "RunScript"
-            {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
-                "Function"      "DevourCheck"
-                "modifier"      "modifier_creep_eaten"
-            }
-        }
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
+				"Function"		"DevourCheck"
+				"modifier"		"modifier_creep_eaten"
+			}
+		}
 
-        "OnSpellStart"
-        {
-            "FireSound"
-            {
-                "EffectName"    "Hero_DoomBringer.DevourCast"
-                "Target"        "TARGET"
-            }
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_DoomBringer.DevourCast"
+				"Target" 		"TARGET"
+			}
 
-            "FireEffect"
-            {
-                "EffectName"        "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
-                "EffectAttachType"  "follow_origin"
-                
-                "ControlPointEntities"
-                {
-                    "TARGET"    "attach_origin"
-                    "CASTER"    "attach_origin"
-                }
-            }
-            "RunScript"
-            {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
-                "Function"      "EatCreep"
-            }
-        }
-        "Modifiers"
-        {
-            "modifier_creep_eaten"
-            {
-                "IsDebuff"          "1"
-                
-                "OnDestroy"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
-                        "Function"      "CreepGold"
-                    }
-                }
-            }
-        }
-    }
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+				"EffectAttachType"  "follow_origin"
+				
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"CASTER"	"attach_origin"
+				}
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
+				"Function"		"EatCreep"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_creep_eaten"
+			{
+				"IsDebuff"			"1"
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/../abilities/hero_doom.lua"
+						"Function"		"CreepGold"
+					}
+				}
+			}
+		}
+	}
     
     //=================================================================================================================
     // Creep/Siege power increasing ability
@@ -9856,10 +9856,10 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "granite_golem_hp_aura"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "20"
         "AbilityCastRange"              "1"
-        "AbilityTextureName"            "creep_health_buff"
+		"AbilityTextureName"            "creep_health_buff"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9877,6 +9877,7 @@
             }
         }
     }
+
     "juggernaut_healing_ward_mana"
     {
         // General
@@ -9996,4 +9997,178 @@
             }
         }
     }
+
+
+	"skywrath_mage_concussive_break"
+		{
+		  // General
+		  //-------------------------------------------------------------------------------------------------------------
+		  "BaseClass"       "ability_datadriven"
+		  "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		  
+		  "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+
+		  "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+		  "FightRecapLevel"       "1"
+		  "AbilityTextureName"      "skywrath_mage_concussive_break"
+
+		  // Casting
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+		  "AbilityCastRange"        "1600"
+		  
+		  // Time   
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCooldown"       "18.0 16.0 14.0 12.0"
+
+
+		  // Cost
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityManaCost"       "95 95 95 95" 
+
+
+		  // Special
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilitySpecial"
+		  { 
+			"01"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "launch_radius"   "1600"
+			}
+			"02"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "slow_radius"   "250"
+			}
+			"03"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "speed"       "800 800 800 800"
+			}
+			"04"
+			{
+			  "var_type"      "FIELD_FLOAT"
+			  "duration"   "4.0"
+			}
+			"05"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "shot_vision"   "400"
+			}
+			"06"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "movement_speed_pct"  "-30 -35 -40 -45"
+			
+			}
+		  }
+		  
+		  // Data driven
+		  //------------------------------------------------------------------------------------------------------------- 
+		  "precache"
+		  {
+			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"      "particles/concussive_break/skywrath_mage_concussive_breakshot.vpcf"
+			"particle"      "particles/items3_fx/silver_edge_slow.vpcf"
+		  }
+		  
+		  "OnSpellStart"
+		  {
+			"FireSound"
+			{
+			  "Target"    "CASTER"
+			  "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Cast"
+			}
+		  
+			"RunScript"
+			{
+			  "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
+			  "Function"    "concussive_shot_seek_target"
+			}
+		  }
+		  
+		  "OnProjectileHitUnit"
+		  {
+			"RunScript"
+			{
+			  "ScriptFile"  "scripts/vscripts/../abilities/skywrath_concussive_break.lua"
+			  "Function"    "concussive_shot_post_vision"
+			}
+			
+			"FireSound"
+			{
+			  "Target"    "CASTER"
+			  "EffectName"    "Hero_SkywrathMage.ConcussiveShot.Target"
+			}
+			"ApplyModifier"
+			{
+			  "Target"    "TARGET"
+			  "ModifierName"  "modifier_concussive_break_break_datadriven"
+			   "Duration" "%duration"
+			}    
+		  
+			"ActOnTargets"
+			{
+			  "Target"
+			  {
+				"Center"      "TARGET"
+				"Radius"      "%slow_radius"
+				
+				"Flags"       "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Types"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			  }
+			  
+			  "Action"
+			  {
+				"Damage"
+				{
+				  "Target"    "TARGET"
+				  "Damage"    "%damage"
+				  "Type"      "DAMAGE_TYPE_MAGICAL"
+				}
+				
+				"ApplyModifier"
+				{
+				  "Target"    "TARGET"
+				  "ModifierName"  "modifier_concussive_break_slow_datadriven"
+				   "Duration" "%duration"
+				}
+			  }
+			}
+		  }
+		  
+		  "Modifiers"
+		  {
+			"modifier_concussive_break_slow_datadriven"
+			{
+			  "IsHidden"        "0"
+			  "IsDebuff"        "1"
+			  
+			  "Duration"        "%slow_duration"
+			  
+			  "Properties"
+			  {
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_pct"
+
+			  }
+			}
+			"modifier_concussive_break_break_datadriven"
+			{
+			  "Passive"      "0"
+			  "IsHidden"      "0"
+			  "IsDebuff"      "1"
+			
+			  "EffectName"    "particles/items3_fx/silver_edge_slow.vpcf"
+			  "EffectAttachType"  "follow_origin"
+			
+			  "States"
+			  {
+				"MODIFIER_STATE_PASSIVES_DISABLED"    "MODIFIER_STATE_VALUE_ENABLED"
+			  }
+			}
+		  }
+		}
 }
