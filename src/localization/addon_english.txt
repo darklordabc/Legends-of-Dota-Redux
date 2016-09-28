@@ -2220,4 +2220,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk"  "Undying Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 }
