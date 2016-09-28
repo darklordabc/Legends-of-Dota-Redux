@@ -2212,6 +2212,6 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Bonus Damage"
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities."
 
-	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Armor Reduction"
+	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
 }
