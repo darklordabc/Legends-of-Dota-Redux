@@ -65,7 +65,7 @@ function heroPerksModifierFilter(filterTable)
   local perkforSilencer = require('abilities/hero_perks/npc_dota_hero_silencer_perk')
   perkSilencer(filterTable)
   -- Perk for Viper
-  local perkforViper = require('abilities/hero_perks/npc_dota_hero_venomancer_perk')
+  local perkforViper = require('abilities/hero_perks/npc_dota_hero_viper_perk')
   perkViper(filterTable)
   -- Returning the filterTable
   return filterTable
