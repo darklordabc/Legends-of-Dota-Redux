@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_lina_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lina_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lina_perk:DeclareFunctions()
@@ -26,20 +26,35 @@ function modifier_npc_dota_hero_lina_perk:DeclareFunctions()
 	}
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params)
-	local caster = self:GetCaster()
-
-	local intellect_value = 3
-	local bonusIntellect = 0
-
-	for i = 0, 15 do
-		local ability = caster:GetAbilityByIndex(i)
-		if ability and ability:HasAbilityFlag("fire") then
-			local level = ability:GetLevel()
-			bonusIntellect = bonusIntellect + (level * intellect_value)	
+function modifier_npc_dota_hero_lina_perk:OnCreated()
+	self.bonusPerLevel = 1
+	self.bonusAmount = 1
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lina_perk:OnIntervalThink()
+	if IsServer() then
+		local caster = self:GetParent()
+		for i=0, caster:GetAbilityCount() do
+			local skill = caster:GetAbilityByIndex(i)
+			if skill and skill:HasAbilityFlag("fire") then
+				if not skill.perkLevel then skill.perkLevel = skill:GetLevel() end
+				if skill:GetLevel() > skill.perkLevel then
+					local increase = (skill:GetLevel()  - skill.perkLevel)
+					increase = increase * self.bonusPerLevel
+					local stacks = self:GetStackCount()
+					self:SetStackCount(stacks + increase)
+					skill.perkLevel = skill:GetLevel()
+				end
+			end
 		end
 	end
-	return bonusIntellect
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lina_perk:GetModifierBonusStats_Intellect(params)
+	return self.bonusAmount * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 

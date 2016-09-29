@@ -504,7 +504,7 @@
 	"hintLoneDruid"                         "TO BE DECIDED"
 	"hintLycan"                         "TO BE DECIDED"
 	"hintMagnus"                         "TO BE DECIDED"
-	"hintMedusa"                         "TO BE DECIDED"
+	"hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect. "
 	"hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
 	"hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Sadist, whether he has it or not."
 	"hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
@@ -545,7 +545,7 @@
 	"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."	
 	"hintBM"							"TO BE DECIDED"	
 	"hintBristleBack"							"TO BE DECIDED"	
-	"hintCK"							"TO BE DECIDED"	
+	"hintCK"							"Chaos Knight gains 200 extra gold for each ability he randoms."	
 	"hintClockwerk"							"Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."	
 	"hintDazzle"							"TO BE DECIDED"	
 	"hintDP"							"Any Silence from Death Prophet is also a mute."	
@@ -811,7 +811,7 @@
 	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\"#ffd966\">Tracked</font> enemies. "
 	//"unique_mechanic_bristleback"                        ""
 	//"unique_mechanic_broodmother"                        ""
-	//"unique_mechanic_chaos_knight"                        ""
+	"unique_mechanic_chaos_knight"                        "Chaos Knight gains <br>200 extra gold for each ability he randoms. "
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
 	//"unique_mechanic_dazzle"                        ""
 	"unique_mechanic_death_prophet"                        "Any <font color=\"#ffd966\">Silence</font> from Death <br>Prophet is also a mute."
@@ -829,7 +829,7 @@
 	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\"#ffd966\">Lunar Blessing</font>, whether she has it or not."
 	//"unique_mechanic_lycan"                        ""
 	//"unique_mechanic_magnataur"                        ""
-	//"unique_mechanic_medusa"                        ""
+	"unique_mechanic_medusa"                        "Medusa gains +0.5 mana <br>regeneration per active <font color=\"#ffd966\">Toggle</font> effect. "
 	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#ffd966\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
 	"unique_mechanic_naga_siren"                        "<font color=\"#ffd966\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
 	"unique_mechanic_necrolyte"                        "At the start of the <br>game, Necrophos gains a free level of <br><font color=\"#ffd966\">Sadist</font>, whether he has it or not."
@@ -2211,6 +2211,19 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Bonus Damage"
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities."
-	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Molten Armor"
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk"  "Medusa Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk"  "Undying Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one."
 }

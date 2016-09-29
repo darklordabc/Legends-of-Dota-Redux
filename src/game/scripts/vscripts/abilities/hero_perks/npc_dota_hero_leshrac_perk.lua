@@ -17,17 +17,11 @@ function modifier_npc_dota_hero_leshrac_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_leshrac_perk:IsHidden()
-	if GameRules:GetGameTime() - self.created < 180 then
-		return false
-	else return true end
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_leshrac_perk:RemoveOnDeath()
 	return false
-end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_leshrac_perk:GetTexture()
-	return "octarine_vampirism_lod"
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions

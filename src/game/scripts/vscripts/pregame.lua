@@ -4271,6 +4271,13 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
 		return nil
 	end
 
+    -- Keep track of how many abilities the player randoms
+    local ply = PlayerResource:GetPlayer(playerID)
+    if ply then 
+        if not ply.random then ply.random = 0 end
+        ply.random = ply.random + 1
+    end
+
 	-- Pick a random skill to return
 	return possibleSkills[math.random(#possibleSkills)]
 end
