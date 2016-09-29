@@ -26,16 +26,8 @@ function modifier_npc_dota_hero_lone_druid_perk:IsHidden()
 				self.bear = netTable.bear
 			end
 			self.check = true
-			if self.bear then
-				return false
-			else
-				return true
-			end
-		elseif self.bear and self.check then
-			return false
-		elseif not self.bear and self.check then
-			return true
 		end
+		return (not self.bear)
 	end
 end
 --------------------------------------------------------------------------------------------------------
@@ -62,13 +54,10 @@ if IsServer() then
 
 	function modifier_npc_dota_hero_lone_druid_perk:OnTakeDamage(params)
 		if params.unit == self:GetParent() then
-			print(self.bear)
 			if params.inflictor and self.suicide[params.inflictor:GetName()] then return end
 			if self.bear then
 				for _,bear in pairs ( Entities:FindAllByName( "npc_dota_lone_druid_bear*")) do
-					print("foundbear", bear:GetName())
 					if bear:GetOwnerEntity() == self:GetParent() and bear:IsAlive() then
-						print("redirecting")
 						self:GetParent():SetHealth( self:GetParent():GetHealth() + params.damage*self.damageTaken )
 						bear:SetHealth( bear:GetHealth() - params.damage*self.damageRedirect )
 					end
