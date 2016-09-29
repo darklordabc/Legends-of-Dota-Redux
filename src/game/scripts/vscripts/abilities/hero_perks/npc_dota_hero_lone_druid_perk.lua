@@ -59,7 +59,7 @@ if IsServer() then
 			if self.bear then
 				for _,bear in pairs ( Entities:FindAllByName( "npc_dota_lone_druid_bear*")) do
 					if bear:GetOwnerEntity() == self:GetParent() and bear:IsAlive() then
-						local distance = (bear:GetAbsOrigin() - self:GetParent()):Length2D()
+						local distance = (bear:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D()
 						if distance < self.leash then
 							local damage = params.damage
 							if damage > self:GetParent():GetHealth() then damage = self:GetParent():GetHealth() end -- cap overkill damage
