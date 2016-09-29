@@ -487,7 +487,7 @@
 	"hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
 	"hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
 	"hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
-	"hintAlchemist"                         "This hero can gift Aghanim's Scepters, also has higher passive gold, even more when stat upgrades are skilled"
+	"hintAlchemist"                         "Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters."
 	"hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item."
 	"hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
 	"hintBane"                         "TO BE DECIDED"
@@ -757,7 +757,7 @@
     "unique_mechanic_night_stalker"                 "Aghanim's Scepter<br> will give Night Stalker unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_gyrocopter"                    "Aghanim's Scepter<br> will give Gyrocopter a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
     "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give KOTL unobstructed day<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
-    "unique_mechanic_alchemist"                     "This hero can gift<br> Aghanim's Scepters, also gains 2 gold <br> every 10 seconds, also benefits 50% <br> more from every skillpoint in stats"
+    "unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. Alchemist <br>can also gift Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
     "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
@@ -2113,6 +2113,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"	"Alchemist Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"	"Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."	
