@@ -33,47 +33,6 @@ function modifier_npc_dota_hero_alchemist_perk:OnCreated()
   self:StartIntervalThink(intervalTime)
 end
 
-function modifier_npc_dota_hero_alchemist_perk:DeclareFunctions()
-  local funcs = {
-    MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-    MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-  }
-  return funcs
-end
-
-function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Strength()
-  local caster = self:GetParent()
-  local stats = caster:FindAbilityByName("attribute_bonus")
-  if stats then
-    local statsLevel = stats:GetLevel()
-    return statsLevel
-  else 
-    return 0
-  end
-end
-
-function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Agility()
-  local caster = self:GetParent()
-  local stats = caster:FindAbilityByName("attribute_bonus")
-  if stats then
-    local statsLevel = stats:GetLevel()
-    return statsLevel
-  else 
-    return 0
-  end
-end
-
-function modifier_npc_dota_hero_alchemist_perk:GetModifierBonusStats_Intellect()
-  local caster = self:GetParent()
-  local stats = caster:FindAbilityByName("attribute_bonus")
-  if stats then
-    local statsLevel = stats:GetLevel()
-    return statsLevel
-  else 
-    return 0
-  end
-end
 
 
 
