@@ -60,7 +60,9 @@ function modifier_npc_dota_hero_undying_perk:IsHidden()
 end
 
 function modifier_npc_dota_hero_undying_perk:IsAura()
-	return true
+	if self:GetCaster():IsRealHero then
+		return true
+	else return false end
 end
 
 function modifier_npc_dota_hero_undying_perk:DeclareFunctions()
@@ -83,7 +85,7 @@ function modifier_npc_dota_hero_undying_perk:GetAuraRadius()
 end
 
 function modifier_npc_dota_hero_undying_perk:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
 end
 
 function modifier_npc_dota_hero_undying_perk:GetAuraSearchTeam()
@@ -121,9 +123,9 @@ end
 
 function modifier_npc_dota_hero_undying_perk_aura:OnDeath(params)
 	if IsServer() and params.unit:HasModifier("modifier_npc_dota_hero_undying_perk_aura") and params.unit == self:GetParent() then
-		local trigger = self:GetAbility().creepStr 
+		local trigger = 1
 		if params.unit:IsRealHero() then
-			local trigger = self:GetAbility().heroStr
+			trigger = 4
 		end
 		for i = 1, trigger do
 			local modifier = self:GetCaster():FindModifierByName("modifier_npc_dota_hero_undying_perk")

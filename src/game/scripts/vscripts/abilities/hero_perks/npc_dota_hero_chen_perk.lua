@@ -34,8 +34,6 @@ function modifier_npc_dota_hero_chen_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
-  
-function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
   if IsServer() then
     local hero = self:GetCaster()
     local target = keys.target
