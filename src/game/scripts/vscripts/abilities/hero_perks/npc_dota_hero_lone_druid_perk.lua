@@ -43,6 +43,7 @@ if IsServer() then
 		self.damageRedirect = 1 - self.damageTaken
 		self.suicide = {item_bloodstone = true,
 						techies_suicide = true}
+		self.leash = 1100
 	end
 
 	function modifier_npc_dota_hero_lone_druid_perk:DeclareFunctions()
@@ -58,8 +59,16 @@ if IsServer() then
 			if self.bear then
 				for _,bear in pairs ( Entities:FindAllByName( "npc_dota_lone_druid_bear*")) do
 					if bear:GetOwnerEntity() == self:GetParent() and bear:IsAlive() then
-						self:GetParent():SetHealth( self:GetParent():GetHealth() + params.damage*self.damageTaken )
-						bear:SetHealth( bear:GetHealth() - params.damage*self.damageRedirect )
+						local distance = (bear:GetAbsOrigin() - self:GetParent()):Length2D()
+						if distance < self.leash then
+							if bear:GetHealth() > params.damage*self.damageRedirect then
+								self:GetParent():SetHealth( self:GetParent():GetHealth() + params.damage*self.damageTaken )
+								bear:SetHealth( bear:GetHealth() - params.damage*self.damageRedirect )
+							else
+								self:GetParent():SetHealth( self:GetParent():GetHealth() + bear:GetHealth() - 1 )
+								bear:SetHealth(1)
+							end
+						end
 					end
 				end
 			end
