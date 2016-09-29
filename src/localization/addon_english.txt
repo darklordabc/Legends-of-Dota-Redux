@@ -533,7 +533,7 @@
 	"hintUnderlord"                         "Underlord gains +1 to all stats for each level put in a custom ability."
 	"hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 	"hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
-	"hintViper"                         "TO BE DECIDED"
+	"hintViper"                         "Poison effects applied <br>by Viper also lower the target's armor by 2."
 	"hintWarlock"                         "Warlock starts the game with 2 free Observer Wards."
 	"hintWeaver"                         "TO BE DECIDED"
 	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
@@ -541,7 +541,7 @@
 	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
 	"hintSilencer"                         "TO BE DECIDED"
 	"hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
-	"hintEarthShaker"                         "TO BE DECIDED"
+	"hintEarthShaker"                         "Earth abilities Earthshaker uses heal him for 2% of his health."
 	"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."	
 	"hintBM"							"TO BE DECIDED"	
 	"hintBristleBack"							"TO BE DECIDED"	
@@ -818,7 +818,7 @@
 	"unique_mechanic_disruptor"                        "When Disruptor casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
 	"unique_mechanic_drow_ranger"                        "<font color=\"#ffd966\">Gust</font> also disarms <br>enemies when cast by Drow Ranger."
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
-	//"unique_mechanic_earthshaker"                        ""
+	"unique_mechanic_earthshaker"                        "<font color=\"#ffd966\">Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
 	//"unique_mechanic_ember_spirit"                        ""
 	//"unique_mechanic_huskar"                        ""
 	//"unique_mechanic_jakiro"                        ""
@@ -2166,7 +2166,10 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3%d% for every aura Elder Titan is carrying."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk"	"Earthshaker Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2% of his health."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded."
@@ -2302,6 +2305,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk"	"Viper Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"	"Poison effects applied by Viper also lower the target's armor by 2."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Recharging"
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"	"Phantom Rush is on cooldown."

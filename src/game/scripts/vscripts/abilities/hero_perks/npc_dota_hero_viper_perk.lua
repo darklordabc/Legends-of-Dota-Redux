@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Viper
---		Perk: 
+--		Perk: Poison effects applied by Viper also lower the target's armor by 2. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_viper_perk", "abilities/hero_perks/npc_dota_hero_viper_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -18,6 +18,10 @@ function modifier_npc_dota_hero_viper_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_viper_perk:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_viper_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------

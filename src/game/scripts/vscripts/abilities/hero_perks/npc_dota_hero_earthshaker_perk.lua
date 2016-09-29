@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: earthshaker
---		Perk: Heals for (2)% of earthshakers max hp when using an earth spell
+--		Hero: Earthshaker
+--		Perk: Earth abilities Earthshaker uses heal him for 2% of his health.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_earthshaker_perk", "abilities/hero_perks/npc_dota_hero_earthshaker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,11 @@ function modifier_npc_dota_hero_earthshaker_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_earthshaker_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_earthshaker_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -34,6 +38,7 @@ function modifier_npc_dota_hero_earthshaker_perk:OnAbilityFullyCast(keys)
   healPercent = 0.01 * healPercent
 
   if IsServer() then
+	if self:GetParent():GetHealth() == self:GetParent():GetMaxHealth() then return end
     if keys.unit == self:GetParent() then
       if keys.ability:HasAbilityFlag("earth") then
         keys.unit:Heal(self:GetParent():GetMaxHealth() * healPercent ,keys.ability)
