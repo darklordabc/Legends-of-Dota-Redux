@@ -501,7 +501,7 @@
 	"hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
 	"hintKunkka"                         "When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
 	"hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
-	"hintLoneDruid"                         "TO BE DECIDED"
+	"hintLoneDruid"                         "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range."
 	"hintLycan"                         "TO BE DECIDED"
 	"hintMagnus"                         "TO BE DECIDED"
 	"hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect. "
@@ -825,7 +825,7 @@
 	"unique_mechanic_juggernaut"                        "<font color=\"#ffd966\">Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
 	"unique_mechanic_kunkka"                        "When Kunkka casts a <br>Water spell he has a 50% chance to refill his <br>bottle."
 	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\"#ffd966\">Octarine <br>Vampirism</font>, whether he has it or not."
-	//"unique_mechanic_lone_druid"                        ""
+	"unique_mechanic_lone_druid"                        "Lone Druid transfers <br>50% of damage taken to his <font color=\"#ffd966\">Spirit Bear</font> if he <br>has one and its within 1100 range."
 	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\"#ffd966\">Lunar Blessing</font>, whether she has it or not."
 	//"unique_mechanic_lycan"                        ""
 	//"unique_mechanic_magnataur"                        ""
@@ -2394,5 +2394,5 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one."
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range."
 }

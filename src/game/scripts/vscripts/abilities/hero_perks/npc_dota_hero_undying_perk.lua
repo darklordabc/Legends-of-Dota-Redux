@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: undying
---		Perk: gains strength when units die nearby, +1 for non-heroes, +4 for heroes
+--		Hero: Undying
+--		Perk: Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_undying_perk", "abilities/hero_perks/npc_dota_hero_undying_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

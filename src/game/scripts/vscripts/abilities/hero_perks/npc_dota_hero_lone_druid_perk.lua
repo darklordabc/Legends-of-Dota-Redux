@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Lone Druid
---		Perk: Damage is redirected to Bear if available
+--		Perk: Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_lone_druid_perk", "abilities/hero_perks/npc_dota_hero_lone_druid_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
