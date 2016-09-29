@@ -61,9 +61,11 @@ if IsServer() then
 					if bear:GetOwnerEntity() == self:GetParent() and bear:IsAlive() then
 						local distance = (bear:GetAbsOrigin() - self:GetParent()):Length2D()
 						if distance < self.leash then
-							if bear:GetHealth() > params.damage*self.damageRedirect then
-								self:GetParent():SetHealth( self:GetParent():GetHealth() + params.damage*self.damageTaken )
-								bear:SetHealth( bear:GetHealth() - params.damage*self.damageRedirect )
+							local damage = params.damage
+							if damage > self:GetParent():GetHealth() then damage = self:GetParent():GetHealth() end -- cap overkill damage
+							if bear:GetHealth() > damage*self.damageRedirect then
+								self:GetParent():SetHealth( self:GetParent():GetHealth() + damage*self.damageTaken )
+								bear:SetHealth( bear:GetHealth() - damage*self.damageRedirect )
 							else
 								self:GetParent():SetHealth( self:GetParent():GetHealth() + bear:GetHealth() - 1 )
 								bear:SetHealth(1)
