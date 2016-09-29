@@ -3329,7 +3329,7 @@ function Pregame:checkForReady()
 
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
-    local minTime = 3
+    local minTime = .5
 
     local canFinishBanning = false
 
