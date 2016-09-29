@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: pudge
---		Perk: 
+--		Hero: Pudge
+--		Perk: Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_pudge_perk", "abilities/hero_perks/npc_dota_hero_pudge_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -19,7 +19,11 @@ function modifier_npc_dota_hero_pudge_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_pudge_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_pudge_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions

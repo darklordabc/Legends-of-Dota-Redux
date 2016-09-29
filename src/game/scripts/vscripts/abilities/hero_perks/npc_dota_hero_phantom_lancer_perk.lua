@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: phantom_lancer
---		Perk: Free Lv.1 Phantom Rush
+--		Hero: Phantom Lancer
+--		Perk: At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phantom_lancer_perk", "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

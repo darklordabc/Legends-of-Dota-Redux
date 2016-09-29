@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Morphling
---		Perk: Increases Morphling's movement speed by 50% in water.
+--		Perk: Morphling gains 50% bonus movement speed in water.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_morphling_perk", "abilities/hero_perks/npc_dota_hero_morphling_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_morphling_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_morphling_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_morphling_perk:RemoveOnDeath()

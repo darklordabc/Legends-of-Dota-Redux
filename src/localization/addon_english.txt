@@ -468,7 +468,7 @@
 	"hintEnchantress"                         "Enchantress can grow plants without the health penalty."
 	"hintInvoker"                         "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
 	"hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
-	"hintWisp"                         "Any spell IO casts on a Tethered Hero also gets cast on him."
+	"hintWisp"                         "Any spell IO casts on a Tethered Hero also gets cast on IO."
 	"hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
 	"hintPL"                         "At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
 	"hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
@@ -510,7 +510,7 @@
 	"hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
 	"hintOracle"                         "TO BE DECIDED"
 	"hintOD"                         "Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
-	"hintPA"                         "When Phantom Assassin uses Dagger abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
+	"hintPA"                         "When Phantom Assassin uses Dagger abilities they will have 50% of their manacost refunded, and their cooldowns reduced by 2 seconds."
 	"hintPudge"                         "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
 	"hintPugna"                         "Drain spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
 	"hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
@@ -2192,8 +2192,44 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50 percent mana refunded and cooldowns reduced by 20 percent."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"	"Morphling Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50% bonus movement speed in water."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk"	"Naga Siren Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"	"Illusion creating abilities will have 50 percent of their mana refunded and cooldowns reduced by 20 percent."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk"	"Nyx Assassin Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10 percent Bonus movement speed when invisible."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk"	"Outworld Devourer"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_Description"	"Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk"	"Ogre Magi Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"	"When Ogre Magi casts a spell, there is a 2 percent chance to refund the manacost of that spell and refresh its cooldown."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk"	"Omniknight Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk_Description"	"Light spells refund 40 percent of their mana cost when cast by Omniknight."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk"	"Phantom Assassin Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50 percent of their manacost refunded, and their cooldowns reduced by 2 seconds."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"	"Phoenix Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk"	"Nature's Prophet Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50 percent. "
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk"	"IO Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell IO casts on a Tethered Hero also gets cast on him."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell IO casts on a Tethered Hero also gets cast on IO."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."

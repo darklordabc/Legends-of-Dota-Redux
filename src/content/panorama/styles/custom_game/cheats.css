@@ -10,7 +10,7 @@
     color: white;
 	width: 190px;
     padding: 5px 10px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -21,9 +21,7 @@
 }
 
 .cheatButton {
-	background-color: rgba(50,205,50, 20);
-    border: none;
-    color: white;
+    border: none;    
 	width: 190px;
     padding: 5px 10px;
     text-align: center;
@@ -34,21 +32,18 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
+	color: red;
 }
 
-.cheatButtonItem {
-    background-color: rgba(255,255,0, 20);
+.cheatButton:hover {
+  background-color: rgba(112,234,114, 50);
 }
 
-.cheatButtonBotsandSpawning {
-    background-color: rgba(205,50,50, 20);
+.cheatButton:active {
+  box-shadow: 0 1px #66;
+  transform: translateY(1px);
+  background-color: rgba(50,205,50, 20);
 }
-
-.cheatButtonOther {
-    background-color: rgba(205,50,205, 20);
-}
-
-
 
 #cheatsContainer
 {
@@ -78,7 +73,7 @@
     horizontal-align: right;
     margin-right: -10px;
     height: 770px;
-    width: 210px;
+    width: 180px;
 
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;

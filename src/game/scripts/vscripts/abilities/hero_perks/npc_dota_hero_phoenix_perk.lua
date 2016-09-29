@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --        Hero: Phoenix
---        Perk: Auto-casts Supernova when taking lethal damage
+--        Perk: Phoenix auto-casts Supernova when taking lethal damage.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,9 +17,9 @@ function modifier_npc_dota_hero_phoenix_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk:IsHidden()
-    return true
+    return false
 end
-
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk:RemoveOnDeath()
     return false
 end

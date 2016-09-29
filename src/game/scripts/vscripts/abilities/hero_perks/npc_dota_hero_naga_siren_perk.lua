@@ -17,7 +17,11 @@ function modifier_npc_dota_hero_naga_siren_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_naga_siren_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_naga_siren_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_naga_siren_perk:OnCreated(keys)
