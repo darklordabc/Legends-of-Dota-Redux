@@ -28,10 +28,9 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:OnCreated()
-  local passiveGoldGainPercent = 20 -- In this case 20% means once every 5 goldtick intervals this triggers
-  local amountOfTicksPerInterval = 100/passiveGoldGainPercent
-  local goldTickTime = GetGoldTickTime or 0.6 -- Standard, the first option isn't used for now.
-  self:StartIntervalThink(amountOfTicksPerInterval*goldTickTime)
+  local intervalTime = 10
+  self.goldAmount = 2
+  self:StartIntervalThink(intervalTime)
 end
 
 function modifier_npc_dota_hero_alchemist_perk:DeclareFunctions()
@@ -79,11 +78,9 @@ end
 
 
 function modifier_npc_dota_hero_alchemist_perk:OnIntervalThink()
-  local OptionManager = require('optionmanager')
   local caster = self:GetParent()
-  local goldGain = caster.goldPerTick 
-  print("GetGoldPerTick "..goldGain)
-  caster:ModifyGold(goldGain,true,DOTA_ModifyGold_GameTick)
+  SendOverheadEventMessage( caster, OVERHEAD_ALERT_GOLD  , caster, self.goldAmount, nil )
+  caster:ModifyGold(self.goldAmount,true,DOTA_ModifyGold_GameTick)
 end
 
 

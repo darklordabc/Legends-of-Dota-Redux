@@ -54,6 +54,10 @@ function modifier_npc_dota_hero_viper_armor_debuff:OnCreated()
 end
 
 function modifier_npc_dota_hero_viper_armor_debuff:IsHidden()
+	return false
+end
+
+function modifier_npc_dota_hero_viper_armor_debuff:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	}
