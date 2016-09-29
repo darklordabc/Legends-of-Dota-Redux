@@ -10926,7 +10926,6 @@
         "AbilityTextureName"    "winter_wyvern_arctic_burn"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_winter_wyvern_perk"
     }
     "npc_dota_hero_wisp_perk"
     {

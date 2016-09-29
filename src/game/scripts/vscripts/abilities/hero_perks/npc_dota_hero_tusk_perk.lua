@@ -20,7 +20,7 @@ function modifier_npc_dota_hero_tusk_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()
+function modifier_npc_dota_hero_tusk_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_warlock_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_warlock_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_warlock_perk:RemoveOnDeath()

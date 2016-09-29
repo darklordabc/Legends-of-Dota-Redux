@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Zeus
---		Perk: Refunds 20% of the manacost of Lightning spells. 
+--		Perk: Zeus refunds 20% of the manacost of any Lightning spells he casts.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_zuus_perk", "abilities/hero_perks/npc_dota_hero_zuus_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,11 @@ function modifier_npc_dota_hero_zuus_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_zuus_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:OnCreated(keys)

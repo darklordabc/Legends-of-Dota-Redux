@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: tinker
+--		Hero: Tinker
 --		Perk: When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed.
 --
 --------------------------------------------------------------------------------------------------------
@@ -17,7 +17,11 @@ function modifier_npc_dota_hero_tinker_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tinker_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tinker_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions

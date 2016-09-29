@@ -480,7 +480,7 @@
 	"hintClinkz"                         "Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game."
 	"hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
 	"hintVS"                         "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
-	"hintVisage"                         "Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
+	"hintVisage"                         "For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
 	"hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
 	"hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
 	"hintDrow"                         "Gust also disarms enemies when cast by Drow Ranger."
@@ -538,7 +538,7 @@
 	"hintWeaver"                         "TO BE DECIDED"
 	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
 	"hintWK"                         "Wraith King starts the game with an Aegis of the Immortal."
-	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts. "
+	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
 	"hintSilencer"                         "TO BE DECIDED"
 	"hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
 	"hintEarthShaker"                         "TO BE DECIDED"
@@ -2127,19 +2127,19 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk_Description"	"Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk"	"Batrider Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20 percent while Flying."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20%d% while Flying."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk"               "Beastmaster Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk_Description"   "Increases Beastmaster's Strength by 3 for every level put in Neutral abilities."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_bloodseeker_perk"	"Bloodseeker Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_bloodseeker_perk_Description"	"When Bloodseeker casts Rupture, 100 percent of the mana cost will be refunded and cooldown reduced by 20 percent."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_bloodseeker_perk_Description"	"When Bloodseeker casts Rupture, 100%d% of the mana cost will be refunded and cooldown reduced by 20%d%."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk"	"Bounty Hunter Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10 percent more damage to Tracked enemies."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10%d% more damage to Tracked enemies."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75 percent damage from Self-Damaging spells."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75%d% damage from Self-Damaging spells."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"	"Clinkz Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk_Description"	"Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game."	
@@ -2148,7 +2148,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"When Disruptor casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"When Disruptor casts Enemy Moving abilities, they will have 25%d% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom."	
@@ -2163,16 +2163,16 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger."	
 		
 	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk"	"Elder Titan Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3% for every aura Elder Titan is carrying."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3%d% for every aura Elder Titan is carrying."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100% of their mana cost refunded."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk"	"Lich Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health."
@@ -2187,34 +2187,34 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk_Description"	"Increases Lina's intelligence by 3 for each level put in fire-type spells."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk"	"Lion Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75 percent."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%d%."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50 percent mana refunded and cooldowns reduced by 20 percent."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"	"Morphling Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50% bonus movement speed in water."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50%d% bonus movement speed in water."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk"	"Naga Siren Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"	"Illusion creating abilities will have 50 percent of their mana refunded and cooldowns reduced by 20 percent."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"	"Illusion creating abilities will have 50%d% of their mana refunded and cooldowns reduced by 20%d%."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk"	"Nyx Assassin Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10 percent Bonus movement speed when invisible."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk"	"Outworld Devourer"
   	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_Description"	"Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk"	"Ogre Magi Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"	"When Ogre Magi casts a spell, there is a 2 percent chance to refund the manacost of that spell and refresh its cooldown."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"	"When Ogre Magi casts a spell, there is a 2%d% chance to refund the manacost of that spell and refresh its cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk"	"Omniknight Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk_Description"	"Light spells refund 40 percent of their mana cost when cast by Omniknight."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk_Description"	"Light spells refund 40%d% of their mana cost when cast by Omniknight."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk"	"Phantom Assassin Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50 percent of their manacost refunded, and their cooldowns reduced by 2 seconds."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50%d% of their manacost refunded, and their cooldowns reduced by 2 seconds."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
@@ -2226,10 +2226,79 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk"	"Nature's Prophet Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50 percent. "
+  	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50%d%. "
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk"	"IO Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell IO casts on a Tethered Hero also gets cast on IO."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk"	"Pugna Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk_Description"	"Drain spells will have 50%d% mana refunded and have 25%d% reduced cooldowns when cast by Pugna."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk"	"Queen of Pain Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk_Description"	"QOP will deal 10%d% extra damage to males but receive extra damage from females."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk"	"Razor Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"	"Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk"	"Riki Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk_Description"	"Increases Riki's health regeneration by 4 while invisible. "
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk"	"Rubick Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk_Description"	"Rubick gains 1 free level of Null Field, whether he has it or not."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk"	"Sand King Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk_Description"	"Channeling abilities refund 30%d% of their manacost when cast by Sand King."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk"	"Shadow Shaman"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"	"All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk"	"Timbersaw Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk"	"Silencer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk_Description"	"Silence effects applied by Silencer last 25%d% longer."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"	"Wraith King Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"	"Wraith King starts the game with an Aegis of the Immortal."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk"	"Skywrath Mage Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk_Description"	"Skywrath Mage refunds 15%d% of the manacost of spells with a cooldown of 7 seconds or less."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"	"Slark Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"	"Slark gains +3 agility for each level put in an mobility/escape skill."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"	"Spectre Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"	"Spectre gains phased movement for 4 seconds every time she uses an ability."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk"	"Sven Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"	"At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk"	"Techies Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk_Description"	"Traps and Explosives will have 50%d% of their mana refunded and cooldowns reduced by 50%d%."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk"	"Tidehunter Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes Ravage when Tidehunter dies. "
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"	"Tinker Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"	"Treant Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"	"Treant self-casts Living Armor and Nature's Guise when casting them on allies."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk"	"Venomancer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk_Description"	"Increases the duration of all Poison effects Venomancer applies by 25%d%."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk"	"Warlock Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"	"Warlock starts the game with 2 free Observer Wards."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk"	"Windranger Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk_Description"	"If Windranger has no passives, all her active spells will refund 20%d% mana and have 20%d% reduced cooldowns."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk"	"Underlord Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"	"Underlord gains +1 to all stats for each level put in a custom ability."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"	"Shadow Fiend Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk_Description"	"At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."
@@ -2241,13 +2310,16 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"	"Gaining bonus movement speed per level in support skills."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk"	"Brewmaster Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100% regen from Salve, Bottle and Clarity."
+	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100%d% regen from Salve, Bottle and Clarity."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk"	"Vengeful Spirit Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"	"When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa does 15 percent extra damage to neutrals, including Roshan."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa does 15%d% extra damage to neutrals, including Roshan."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk"	"Zeus Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk_Description"	"Zeus refunds 20%d% of the manacost of any Lightning spells he casts."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining intelligence per unique spell cast."
@@ -2258,7 +2330,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"	"Flight Delay"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "Winter Wyvern's perk. Winter Wyvern has flying movement when over 90%d%% health and mana."
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "Winter Wyvern's perk. Winter Wyvern has flying movement when over 90%d% health and mana."
 	
   	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin's Perk. Remain invisible while standing in place."
@@ -2285,6 +2357,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_visage_perk"               "Visage Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_visage_perk_Description"   "Summon Familiars will refund 100%d% of manacost and have its cooldown reduced by 50%d%."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 	
@@ -2297,12 +2372,15 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay"               "Clockwerk Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk"				"Tusk Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk_Description"		"Walrus Kick and Walrus Punch will refund their manacost when used by Tusk."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute"               "Muted"
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Bonus Damage"
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Earth Spirit's perk. Gain +3 damage for each point in Earth abilities."
-
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
 	
@@ -2316,5 +2394,5 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one."
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one."
 }

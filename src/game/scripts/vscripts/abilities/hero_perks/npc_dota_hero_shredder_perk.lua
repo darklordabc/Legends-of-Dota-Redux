@@ -21,9 +21,9 @@ function modifier_npc_dota_hero_shredder_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shredder_perk:IsHidden()
-	return true
+	return false
 end
-
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shredder_perk:OnCreated(keys)
 	ListenToGameEvent("tree_cut", function(keys) 
 		local caster = self:GetCaster()

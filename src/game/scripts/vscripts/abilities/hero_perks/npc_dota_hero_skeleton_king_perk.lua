@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_skeleton_king_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_skeleton_king_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_skeleton_king_perk:RemoveOnDeath()

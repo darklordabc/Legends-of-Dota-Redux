@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --      Hero: Visage
---      Perk: Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%.
+--      Perk: For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_visage_perk", "abilities/hero_perks/npc_dota_hero_visage_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
