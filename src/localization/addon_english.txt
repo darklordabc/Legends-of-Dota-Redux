@@ -2174,11 +2174,29 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk"	"Lich Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk"	"Life Stealer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
+ 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk"	"LC Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel."
  	
- 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
+ 	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk"	"Lina Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk_Description"	"Increases Lina's intelligence by 3 for each level put in fire-type spells."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk"	"Lion Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75 percent."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk"	"IO Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell IO casts on a Tethered Hero also gets cast on him."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"	"Recharging"
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"	"Phantom Rush is on cooldown."
