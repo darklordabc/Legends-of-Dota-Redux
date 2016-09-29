@@ -10215,6 +10215,14 @@
 			"particle" "particles/items3_fx/silver_edge_slow.vpcf"
 		}
     }
+	"npc_dota_hero_drow_ranger_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_drow_ranger_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_drow_ranger_perk"
+    }
     "npc_dota_hero_dragon_knight_perk"
     {
         "BaseClass"             "ability_lua"
@@ -10229,7 +10237,6 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earth_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_earth_spirit_perk"
     }
     "npc_dota_hero_earthshaker_perk"
     {
@@ -10583,7 +10590,6 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rattletrap_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_rattletrap_perk"
     }
     "rattletrap_rocket_flare_perk" 
     {

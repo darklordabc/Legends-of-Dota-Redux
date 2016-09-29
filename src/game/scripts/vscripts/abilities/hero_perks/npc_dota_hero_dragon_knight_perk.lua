@@ -18,14 +18,14 @@ function modifier_npc_dota_hero_dragon_knight_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dragon_knight_perk:IsHidden()
-	return true
+	return false
 end
-
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dragon_knight_perk:OnCreated()
 	-- self.dragonform = self:GetParent():FindAbilityByName("dragon_knight_elder_dragon_form")
 	print(self:GetParent():GetUnitName())
 end
-
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dragon_knight_perk:RemoveOnDeath()
 	return false
 end

@@ -2105,8 +2105,6 @@
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_dmg"									"BONUS DAMAGE:"
 	"DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" "DAMAGE RADIUS:"
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze" "Ancient Apparition Perk HP freeze"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description" "Ancient Apparition used an ice spell on you, your hp is frozen for the duration"
 	"DOTA_Tooltip_modifier_charges"		"Skill Charges"
 	"DOTA_Tooltip_modifier_charges_Description"	"Amount of charges left."
 	
@@ -2119,7 +2117,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."	
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"	"Ancient Apparition Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"	"AA Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_Description"	"Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk"	"Antimage Perk"
@@ -2142,6 +2140,33 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75 percent damage from Self-Damaging spells."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"	"Clinkz Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk_Description"	"Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk"	"Dark Seer Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"When Disruptor casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk"	"Death Prophet Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_Description"	"Any silence from Death Prophet is also a mute."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"	"Dragon Knight Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk"	"Drow Ranger Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger."	
+		
+	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk"	"Elder Titan Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3% for every aura Elder Titan is carrying."	
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."	
  	
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"

@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_elder_titan_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:IsHidden()
-    return true
+    return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:RemoveOnDeath()

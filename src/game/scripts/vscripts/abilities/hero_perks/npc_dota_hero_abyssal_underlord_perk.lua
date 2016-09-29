@@ -17,13 +17,12 @@ function modifier_npc_dota_hero_abyssal_underlord_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:IsHidden()
-	return true
-end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_abyssal_underlord_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_abyssal_underlord_perk:RemoveOnDeath()
+	return false
+end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:DeclareFunctions()
