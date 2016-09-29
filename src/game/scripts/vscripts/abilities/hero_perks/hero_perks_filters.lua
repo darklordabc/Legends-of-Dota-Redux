@@ -33,15 +33,16 @@ function heroPerksModifierFilter(filterTable)
   targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
     npc_dota_hero_ancient_apparition_perk = true,
-    npc_dota_hero_drow_ranger = true, 
-    npc_dota_hero_death_prophet = true,
-    npc_dota_hero_obsidian_destroyer = true,
-    npc_dota_hero_venomancer = true,
-    npc_dota_hero_silencer = true,
-    npc_dota_hero_viper = true
+    npc_dota_hero_drow_ranger_perk = true, 
+    npc_dota_hero_death_prophet_perk = true,
+    npc_dota_hero_obsidian_destroyer_perk = true,
+    npc_dota_hero_venomancer_perk = true,
+    npc_dota_hero_silencer_perk = true,
+    npc_dota_hero_viper_perk = true
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
+  if not targetPerks_modifier[targetPerk:GetName()] then return true end
   -- Perk for Dragon Knight
   local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
   PerkDragonKnight(filterTable)
@@ -86,6 +87,7 @@ function heroPerksDamageFilter(filterTable)
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
+  if not targetPerks_damage[targetPerk:GetName()] then return true end
   -- Perk for Abaddon
   local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
   PerkAbaddon(filterTable)
