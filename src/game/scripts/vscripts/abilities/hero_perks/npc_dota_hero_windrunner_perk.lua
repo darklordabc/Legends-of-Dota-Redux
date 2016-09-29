@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_windrunner_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_windrunner_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_windrunner_perk:RemoveOnDeath()

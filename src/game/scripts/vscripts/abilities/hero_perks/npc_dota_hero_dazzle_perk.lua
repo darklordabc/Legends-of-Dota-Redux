@@ -17,9 +17,13 @@ function modifier_npc_dota_hero_dazzle_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dazzle_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dazzle_perk:RemoveOnDeath()
+	return false
+end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 

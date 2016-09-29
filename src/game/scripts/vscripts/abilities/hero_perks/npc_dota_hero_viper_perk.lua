@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: viper
+--		Hero: Viper
 --		Perk: 
 --
 --------------------------------------------------------------------------------------------------------
@@ -14,11 +14,11 @@ if npc_dota_hero_viper_perk == nil then npc_dota_hero_viper_perk = class({}) end
 if modifier_npc_dota_hero_viper_perk == nil then modifier_npc_dota_hero_viper_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_viper_perk:IsPassive()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_viper_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions

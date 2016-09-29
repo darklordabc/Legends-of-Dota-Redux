@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_venomancer_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_venomancer_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_venomancer_perk:OnCreated()
@@ -27,6 +27,10 @@ function modifier_npc_dota_hero_venomancer_perk:OnCreated()
 		self:GetCaster().lastPoisonAbility = nil
 	end
 	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
