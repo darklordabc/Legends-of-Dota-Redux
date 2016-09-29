@@ -123,7 +123,7 @@ function modifier_npc_dota_hero_undying_perk_aura:OnDeath(params)
 	if IsServer() and params.unit:HasModifier("modifier_npc_dota_hero_undying_perk_aura") and params.unit == self:GetParent() then
 		local trigger = self:GetAbility().creepStr 
 		if params.unit:IsRealHero() then
-			local trigger = self:GetAbility().heroStr
+			trigger = self:GetAbility().heroStr
 		end
 		for i = 1, trigger do
 			local modifier = self:GetCaster():FindModifierByName("modifier_npc_dota_hero_undying_perk")
