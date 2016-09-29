@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Abaddon
---		Perk: 
+--		Perk: For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_abaddon_perk", "abilities/hero_perks/npc_dota_hero_abaddon_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -22,7 +22,7 @@ function modifier_npc_dota_hero_abaddon_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:IsHidden()
-	return true
+	return false
 end
 
 function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()

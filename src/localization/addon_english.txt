@@ -2113,6 +2113,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"	"Break"
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"	"Doom's Perk. Your passives are disabled while doomed."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."	
 	
