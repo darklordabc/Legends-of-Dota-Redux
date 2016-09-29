@@ -60,7 +60,9 @@ function modifier_npc_dota_hero_undying_perk:IsHidden()
 end
 
 function modifier_npc_dota_hero_undying_perk:IsAura()
-	return true
+	if self:GetCaster():IsRealHero then
+		return true
+	else return false end
 end
 
 function modifier_npc_dota_hero_undying_perk:DeclareFunctions()
