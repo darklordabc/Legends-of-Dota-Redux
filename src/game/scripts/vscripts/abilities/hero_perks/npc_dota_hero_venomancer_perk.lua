@@ -29,7 +29,7 @@ function modifier_npc_dota_hero_venomancer_perk:OnCreated()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()
+function modifier_npc_dota_hero_venomancer_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------

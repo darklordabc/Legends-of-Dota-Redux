@@ -2173,6 +2173,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk"	"LC Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel."
  	
  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"You have have Lv.1 Phantom Rush"
