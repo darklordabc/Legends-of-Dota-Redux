@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: kunkka
---		Perk: 
+--		Hero: Kunkka
+--		Perk: When Kunkka casts a Water spell he has a 50 percent chance to refill his bottle.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_kunkka_perk", "abilities/hero_perks/npc_dota_hero_kunkka_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
