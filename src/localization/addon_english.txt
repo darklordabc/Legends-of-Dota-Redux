@@ -2264,6 +2264,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"	"Wraith King Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"	"Wraith King starts the game with an Aegis of the Immortal."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk"	"Witch Doctor Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk_Description"	"Healing abilities have 25%d% extra effectiveness when used by Witch Doctor."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk"	"Skywrath Mage Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk_Description"	"Skywrath Mage refunds 15%d% of the manacost of spells with a cooldown of 7 seconds or less."
 	

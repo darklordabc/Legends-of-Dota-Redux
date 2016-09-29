@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Witch Doctor
---		Perk: Increases Witch Doctor's healing effectiveness by 25%. 
+--		Perk: Healing abilities have 25% extra effectiveness when used by Witch Doctor.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_witch_doctor_perk", "abilities/hero_perks/npc_dota_hero_witch_doctor_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_witch_doctor_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_witch_doctor_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_witch_doctor_perk:RemoveOnDeath()
