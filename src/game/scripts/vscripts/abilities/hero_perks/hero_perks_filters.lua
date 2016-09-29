@@ -42,7 +42,6 @@ function heroPerksModifierFilter(filterTable)
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
-  if not targetPerks_modifier[targetPerk:GetName()] then return true end
   -- Perk for Dragon Knight
   local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
   PerkDragonKnight(filterTable)
@@ -72,7 +71,7 @@ function heroPerksModifierFilter(filterTable)
 end
 
 function heroPerksDamageFilter(filterTable)
-	local victim_index = filterTable["entindex_victim_const"]
+    local victim_index = filterTable["entindex_victim_const"]
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
     if not victim_index or not attacker_index then
@@ -87,7 +86,6 @@ function heroPerksDamageFilter(filterTable)
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
-  if not targetPerks_damage[targetPerk:GetName()] then return true end
   -- Perk for Abaddon
   local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
   PerkAbaddon(filterTable)
