@@ -35,10 +35,10 @@ end
 
 
 function modifier_npc_dota_hero_alchemist_perk:OnIntervalThink()
-  local caster = self:GetParent()
-  if caster then
-	  SendOverheadEventMessage( nil, OVERHEAD_ALERT_GOLD, caster, self.goldAmount, nil )
-	  caster:ModifyGold(self.goldAmount,true,DOTA_ModifyGold_GameTick)
+  if IsServer() then
+    local caster = self:GetParent()
+    SendOverheadEventMessage( nil, OVERHEAD_ALERT_GOLD  , caster, self.goldAmount, nil )
+    caster:ModifyGold(self.goldAmount,true,DOTA_ModifyGold_GameTick)
   end
 end
 
