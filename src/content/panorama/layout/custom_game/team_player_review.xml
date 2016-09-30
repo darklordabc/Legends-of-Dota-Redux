@@ -8,6 +8,11 @@
     <Panel class="reviewPlayerContainer">
         <Panel>
             <DOTAAvatarImage id="reviewPhasePlayerAvatarBig" />
+            <Panel id="reviewPhaseHeroImageContainer">
+                <Panel id="reviewPhaseHeroImageContainer" class="avatarScene">
+                    <DOTAScenePanel id="scene_panel" />
+                </Panel>
+            </Panel>
             <Panel id="reviewPhaseHeroImageContainer" />
             <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="reviewPhasePlayerAttribute doNotShow" />
             <Label class="lodPlayerReadyText" text="Ready" />
