@@ -495,7 +495,7 @@
 	"hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
 	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
 	"hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
-	"hintHuskar"                         "TO BE DECIDED"
+	"hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
 	"hintJakiro"                         "TO BE DECIDED"
 	"hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded."
 	"hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
@@ -820,7 +820,7 @@
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
 	"unique_mechanic_earthshaker"                        "<font color=\"#ffd966\">Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
 	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\"#ffd966\">Fire <br>Remnant</font> and <font color=\"#ffd966\">Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
-	//"unique_mechanic_huskar"                        ""
+	"unique_mechanic_huskar"                        "Huskar regenerates <br>1hp/s for every 10% of health he is missing."
 	//"unique_mechanic_jakiro"                        ""
 	"unique_mechanic_juggernaut"                        "<font color=\"#ffd966\">Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
 	"unique_mechanic_kunkka"                        "When Kunkka casts a <br>Water spell he has a 50% chance to refill his <br>bottle."
@@ -2182,6 +2182,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"	"Huskar Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"	"Huskar regenerates 1hp/s for every 10% of health he is missing"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk"	"Lich Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health."

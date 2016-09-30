@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: huskar
---		Perk: Regenerates 1hp/s for every 10% of health he is missing
+--		Hero: Huskar
+--		Perk: Huskar regenerates 1hp/s for every 10% of health he is missing.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_huskar_perk", "abilities/hero_perks/npc_dota_hero_huskar_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -50,6 +50,10 @@ function modifier_npc_dota_hero_huskar_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_huskar_perk:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_huskar_perk:RemoveOnDeath()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
