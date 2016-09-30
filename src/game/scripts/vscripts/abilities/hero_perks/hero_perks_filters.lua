@@ -38,7 +38,8 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_obsidian_destroyer_perk = true,
     npc_dota_hero_venomancer_perk = true,
     npc_dota_hero_silencer_perk = true,
-    npc_dota_hero_viper_perk = true
+    npc_dota_hero_viper_perk = true,
+    npc_dota_hero_slardar_perk = true,
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
@@ -67,6 +68,9 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Viper
   local perkforViper = require('abilities/hero_perks/npc_dota_hero_viper_perk')
   perkViper(filterTable)
+  -- Perk for Slardar
+  local perkForSlardar = require('abilities/hero_perks/npc_dota_hero_slardar_perk')
+  perkSlardar(filterTable)
   -- Returning the filterTable
   return filterTable
 end
