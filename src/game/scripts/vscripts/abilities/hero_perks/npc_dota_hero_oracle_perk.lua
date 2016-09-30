@@ -40,8 +40,6 @@ function modifier_npc_dota_hero_oracle_perk:OnCreated()
       item_pipe = true,
       item_guardian_greaves = true
     }
-
-    print("asdasd")
   end
   return true
 end
