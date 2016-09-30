@@ -493,7 +493,7 @@
 	"hintBane"                         "TO BE DECIDED"
 	"hintBeastMaster"                         "Beastmaster gains 3 Strength for every level put in Neutral abilities."
 	"hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
-	"hintEmberSpirit"                         "TO BE DECIDED"
+	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
 	"hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
 	"hintHuskar"                         "TO BE DECIDED"
 	"hintJakiro"                         "TO BE DECIDED"
@@ -819,7 +819,7 @@
 	"unique_mechanic_drow_ranger"                        "<font color=\"#ffd966\">Gust</font> also disarms <br>enemies when cast by Drow Ranger."
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
 	"unique_mechanic_earthshaker"                        "<font color=\"#ffd966\">Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
-	//"unique_mechanic_ember_spirit"                        ""
+	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\"#ffd966\">Fire <br>Remnant</font> and <font color=\"#ffd966\">Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
 	//"unique_mechanic_huskar"                        ""
 	//"unique_mechanic_jakiro"                        ""
 	"unique_mechanic_juggernaut"                        "<font color=\"#ffd966\">Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
@@ -861,7 +861,7 @@
 	"unique_mechanic_undying"                        "Undying gains +1 <br>strength per creep death or +4 strength per <br>hero death in a 900 radius for 30 seconds."
 	"unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is <br>slain by an enemy hero, she permanently <br>reduces the hero's attributes by 2."
 	"unique_mechanic_venomancer"                        "Increases the duration <br>of all <font color=\"#ffd966\">Poison</font> effects Venomancer applies by <br>25%."
-	//"unique_mechanic_viper"                        ""
+	"unique_mechanic_viper"                        "<font color=\"#ffd966\">Poison</font> effects applied <br>by Viper also lower the target's armor by 2."
 	"unique_mechanic_visage"                        "<font color=\"#ffd966\">Summon Familiars</font> will <br>refund 100% of manacost and have its <br>cooldown reduced by 50%."
 	"unique_mechanic_warlock"                        "Warlock starts the <br>game with 2 free <font color=\"#ffd966\">Observer Wards</font>."
 	//"unique_mechanic_weaver"                        ""
@@ -2170,9 +2170,12 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk"	"Ember Spirit Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk_Description"	"If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50%d% Mana Refunded."
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk"	"Earthshaker Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2% of his health."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded."
