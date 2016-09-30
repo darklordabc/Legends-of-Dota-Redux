@@ -761,7 +761,7 @@
     "unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
     "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
-    "unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
+    "unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br> Any other bash will grant <br> <font color=\"#ffd966\">Slardar </font> 1 gold.
 	"unique_mechanic_bloodseeker"               	"When Blood Seeker <br>casts <font color=\"#ffd966\">Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
 	"unique_mechanic_life_stealer"               	"When Life Stealer<br> casts <font color=\"#ffd966\">Infest</font>, its cooldown will be reduced <br>to 30 seconds."
 	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\"#ffd966\">Duel</font>, she will gain spell <br>immunity for the duration of the duel."
