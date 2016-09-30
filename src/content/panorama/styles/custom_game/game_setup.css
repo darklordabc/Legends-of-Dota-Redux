@@ -9,6 +9,7 @@
 
 .lodOptionsInterface {
     width: 100%;
+    height: 100%;
 }
 
 /*
@@ -289,6 +290,8 @@
     flow-children: right;
     height: 24px;
     color: #FFFFFF;
+
+    margin-top: 10px;
 }
 
 .playerNameContainer #playerIsHostPanel {
@@ -900,6 +903,14 @@
     border: 1px solid #AAFFAA;
 }
 
+.phase_review #mainTeamContainer {
+    visibility: collapse;
+}
+
+.phase_review #mainSelectionRoot {
+    vertical-align: middle;
+}
+
 .reviewPhaseTeam {
     flow-children: right;
     horizontal-align: center;
@@ -918,6 +929,11 @@
     horizontal-align: center;
 }
 
+#reviewTeams {
+    width: 100%;
+    flow-children: right;
+}
+
 #reviewRadiantTeam {
     vertical-align: top;
 }
@@ -927,19 +943,37 @@
 }
 
 .reviewPlayerContainer {
-    flow-children: down;
-    margin: 4px;
-    width: 256px;
+    margin: 0px 8px 0px 8px;
+    width: 150px;
+
+    height: 680px;
+}
+
+.playerBackground {
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+#reviewRadiantTeam .playerBackground
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #70A87A00 ), color-stop( 0.4, #B4FAB6ee ), to( #70A87A99 ) );
+}
+
+#reviewDireTeam .playerBackground
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #9B513600 ), color-stop( 0.4, #C66756ee), to( #9B513699 ) );
 }
 
 .tooManyPlayers.reviewPlayerContainer {
-    border: 1px solid #444444;
-    border-radius: 4px;
+    height: 340px;
 }
 
 #reviewPhaseVS {
+    width: fill-parent-flow( 1 );
     vertical-align: middle;
-    horizontal-align: center;
+
+    text-align: center;
     font-size: 24px;
 }
 
@@ -962,10 +996,28 @@
 }
 
 #reviewPhasePlayerSkillContainer {
-    flow-children: right;
-    horizontal-align: center;
+    flow-children: down;
+    vertical-align: bottom;
     margin-top: 4px;
 }
+
+#reviewRadiantTeam {
+    horizontal-align: left;
+}
+
+#reviewRadiantTeam #reviewPhasePlayerSkillContainer{
+    margin-right: -20px;
+    horizontal-align: right;
+ }
+
+#reviewDireTeam {
+    horizontal-align: right;
+}
+
+#reviewDireTeam #reviewPhasePlayerSkillContainer{
+    horizontal-align: left;
+    margin-left: -20px;
+ }
 
 #reviewPhasePlayerSkillContainer DOTAAbilityImage {
     border: 1px solid #444444;
@@ -986,8 +1038,9 @@
 }
 
 .reviewButtons {
-    horizontal-align: right;
+    horizontal-align: center;
     vertical-align: bottom;
+    margin-top: 8px;
     margin-bottom: 8px;
 }
 
@@ -1008,8 +1061,9 @@
     visibility: collapse;
 }
 
-.tooManyPlayers #reviewPhaseHeroImageContainer {
-    margin-left: 86px;
+.avatarScene {
+    width: 158px;
+    height: 700px;
 }
 
 .hide_picks #playerAttribute {
@@ -1020,18 +1074,20 @@
     visibility: collapse;
 }
 
+.reviewPlayerAvatarContainer {
+    width: 100%;
+    height: 100%; 
+}
+
 #reviewPhasePlayerAvatarBig {
     visibility: collapse;
     width: 128px;
     height: 128px;
-    margin-top: 36px;
-    margin-bottom: 8px;
-    margin-left: 64px;
     horizontal-align: center;
+    vertical-align: center;
 }
 
 .tooManyPlayers #reviewPhasePlayerAvatarBig {
-    margin-left: 96px;
     width: 64px;
     height: 64px;
 }
