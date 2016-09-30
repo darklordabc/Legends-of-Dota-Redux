@@ -26,4 +26,13 @@ function modifier_npc_dota_hero_dazzle_perk:RemoveOnDeath()
 end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dazzle_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
 
+        if caster:HasAbility("dazzle_shallow_grave") then
+	        self.grave = caster:AddAbility("dazzle_shallow_grave_perk")
+	        caster:SwapAbilities("dazzle_shallow_grave","dazzle_shallow_grave_perk",false,true)
+        end
+    end
+end
