@@ -10511,6 +10511,14 @@
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName"    "npc_dota_hero_omniknight_perk"
     }
+    "npc_dota_hero_oracle_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_oracle_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_oracle_perk"
+    }
     "npc_dota_hero_obsidian_destroyer_perk"
     {
         "BaseClass"             "ability_lua"
