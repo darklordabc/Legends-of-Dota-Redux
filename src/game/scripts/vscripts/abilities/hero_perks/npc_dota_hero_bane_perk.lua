@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_bane_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bane_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bane_perk:RemoveOnDeath()
