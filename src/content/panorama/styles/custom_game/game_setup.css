@@ -9,34 +9,11 @@
 
 .lodOptionsInterface {
     width: 100%;
-    height: 100%;
 }
 
 /*
     Notifications
 */
-
-#lodPopupQuestion {
-    z-index: 10000;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 16px;
-    width: 400px;
-    height: 200px;
-    flow-children: down;
-    vertical-align: middle;
-    horizontal-align: center;
-    visibility: collapse;
-}
-
-#questionYes {
-    position: -25%;
-}
-
-#questionNo {
-    position: 25%;
-}
 
 #lodPopupMessage {
     z-index: 10000;
@@ -45,7 +22,7 @@
     border-radius: 8px;
     padding: 16px;
     width: 600px;
-    height: 250px;
+    height: 200px;
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
@@ -92,7 +69,7 @@
 }
 
 .phase_option_voting_selected #lodTimerWarningLabel {
-    margin-top: -220px; 
+    margin-top: -120px;
 }
 
 @keyframes 'lodTimerWarningLoop' {
@@ -312,8 +289,6 @@
     flow-children: right;
     height: 24px;
     color: #FFFFFF;
-
-    margin-top: 10px;
 }
 
 .playerNameContainer #playerIsHostPanel {
@@ -720,6 +695,10 @@
 
 /* Selection */
 
+#VerticalScrollBar {
+    margin-left:  10px;
+}
+
 #stageButtonSelection {
     flow-children: right;
 }
@@ -925,19 +904,9 @@
     border: 1px solid #AAFFAA;
 }
 
-.phase_review #mainTeamContainer {
-    visibility: collapse;
-}
-
-.phase_review #mainSelectionRoot {
-    vertical-align: middle;
-}
-
 .reviewPhaseTeam {
     flow-children: right;
     horizontal-align: center;
-
-    width: 47%;
     min-height: 324px;
 }
 
@@ -951,16 +920,6 @@
 
 .subReviewContainer {
     horizontal-align: center;
-    width: 100%;
-}
-
-.reviewTeamsOverlay {
-    width: 100%;
-}
-
-#reviewTeams {
-    width: 100%;
-    flow-children: right;
 }
 
 #reviewRadiantTeam {
@@ -972,84 +931,20 @@
 }
 
 .reviewPlayerContainer {
-    padding: 0px 4px 0px 4px;
-    
-    width: 20%;
-    height: 680px;
-}
-
-#reviewRadiantTeam .reviewPlayerContainer {
-    horizontal-align: right;
-}
-
-.playerBackground {
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-}
-
-#reviewRadiantTeam .playerBackground
-{
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #70A87A00 ), color-stop( 0.4, #B4FAB6ee ), to( #70A87A99 ) );
-}
-
-#reviewDireTeam .playerBackground
-{
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #9B513600 ), color-stop( 0.4, #C66756ee), to( #9B513699 ) );
+    flow-children: down;
+    margin: 4px;
+    width: 256px;
 }
 
 .tooManyPlayers.reviewPlayerContainer {
-    height: 340px;
+    border: 1px solid #444444;
+    border-radius: 4px;
 }
 
 #reviewPhaseVS {
-    visibility: collapse;
-
-    horizontal-align: middle;
     vertical-align: middle;
-
-    width: 300px;
-    z-index: 2;
-}
-
-#reviewPhaseVS.show {
-    visibility: visible;
-
-    animation-name: vsShow;
-    animation-duration: 1.0s;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes 'vsShow' {
-    0% {
-        transform: scale3d( 0.5, 0.5, 1); 
-    }
-    70% {
-        transform: scale3d( 1.3, 1.3, 1); 
-    }
-    100% {
-        transform: scale3d( 1, 1, 1);
-    }
-}
-
-#reviewPhaseVS Image {
-    width: 100px;
-    height: 100px;
-
-    horizontal-align: middle;
-    vertical-align: middle;
-    z-index: 1;
-}
-
-#reviewPhaseVS DOTAScenePanel {
-    z-index: 0;
-
-    width: 200px;
-    height: 200px;
-
-    horizontal-align: middle;
-    vertical-align: middle;
-    opacity: 0.8;
+    horizontal-align: center;
+    font-size: 24px;
 }
 
 .reviewPhasePlayerAttribute {
@@ -1071,48 +966,10 @@
 }
 
 #reviewPhasePlayerSkillContainer {
-    visibility: collapse;
-
-    flow-children: down;
-    vertical-align: bottom;
+    flow-children: right;
+    horizontal-align: center;
     margin-top: 4px;
-
-    z-index: 5;
 }
-
-#reviewPhasePlayerSkillContainer.show{
-    visibility: visible;
-    animation-name: skillContainerShow;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes 'skillContainerShow' {
-    0% {
-        opacity: 0.1; 
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-#reviewRadiantTeam {
-    horizontal-align: left;
-}
-
-#reviewRadiantTeam #reviewPhasePlayerSkillContainer{
-    margin-right: -20px;
-    horizontal-align: right;
- }
-
-#reviewDireTeam {
-    horizontal-align: right;
-}
-
-#reviewDireTeam #reviewPhasePlayerSkillContainer{
-    horizontal-align: left;
-    margin-left: -20px;
- }
 
 #reviewPhasePlayerSkillContainer DOTAAbilityImage {
     border: 1px solid #444444;
@@ -1133,9 +990,8 @@
 }
 
 .reviewButtons {
-    horizontal-align: center;
+    horizontal-align: right;
     vertical-align: bottom;
-    margin-top: 8px;
     margin-bottom: 8px;
 }
 
@@ -1156,9 +1012,8 @@
     visibility: collapse;
 }
 
-.avatarScene {
-    width: 158px;
-    height: 700px;
+.tooManyPlayers #reviewPhaseHeroImageContainer {
+    margin-left: 86px;
 }
 
 .hide_picks #playerAttribute {
@@ -1169,20 +1024,18 @@
     visibility: collapse;
 }
 
-.reviewPlayerAvatarContainer {
-    width: 100%;
-    height: 100%; 
-}
-
 #reviewPhasePlayerAvatarBig {
     visibility: collapse;
     width: 128px;
     height: 128px;
+    margin-top: 36px;
+    margin-bottom: 8px;
+    margin-left: 64px;
     horizontal-align: center;
-    vertical-align: center;
 }
 
 .tooManyPlayers #reviewPhasePlayerAvatarBig {
+    margin-left: 96px;
     width: 64px;
     height: 64px;
 }
@@ -1383,10 +1236,10 @@
 }
 
 .skillCostRecommended {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
-	margin-right: 0px;
-	margin-bottom: 0px;
+	margin-right: 3px;
+	margin-bottom: 3px;
     vertical-align: bottom;
     horizontal-align: right;
 }
@@ -1916,17 +1769,14 @@
 }
 
 .heroBuildMenuButton {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    border: 1px solid #000000;
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
-    margin-top: 8px;
     width: 100%;
+    height: 30px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 8px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 .heroBuildMenuButton:hover {
@@ -2010,7 +1860,7 @@
 
 .buildCategoryLabel {
     font-size: 24px;
-    margin: 8px;
+    margin: 10px;
 }
 
 #pickingPhaseRecommendedBuildContainer {
@@ -2019,27 +1869,38 @@
     flow-children: right-wrap;
     height: 100%;
     overflow: squish scroll;
+    padding-right: 20px;
 }
 
 .recommendedBuild {
     flow-children: down;
-    border: 1px solid #444444;
-    border-radius: 4px;
-    padding: 4px;
-    margin-right: 8px;
-    margin-bottom: 8px;
+    background-color: #181b1f;
+    border-radius: 10px;
+    padding-top: 15px;
+    margin: 4px;
+}
+
+.recommendedBuildContainer {
+    flow-children: right;
+}
+
+.recommendedBuildLeftSide {
+    flow-children: down;
+    width: 55px;
+}
+
+.recommendedBuildRightSide {
+    flow-children: down;
 }
 
 .recommendedHeroImageCon {
-    padding: 4px;
-    border: 1px solid #444444;
-    border-radius: 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0.3px #00000050;
 }
 
 #recommendedHeroImage {
-    width: 85px;
-    height: 48px;
-    border-radius: 4px;
+    width: 87px;
+    height: 50px;
 }
 
 #recommendedSkillContainer {
@@ -2047,48 +1908,137 @@
 }
 
 #recommendedSkillContainer DOTAAbilityImage {
-    width: 48px;
-    height: 48px;
-    margin-left: 2px;
-    margin-top: 2px;
-    border: 1px solid #444444;
-    border-radius: 4px;
-}
-
-.recommendedBuildBottomRow {
-    flow-children: right;
-    width: 100%;
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0.3px #00000030;
 }
 
 #recommendedSelectButton {
-    width: 96px;
-    horizontal-align: right;
-    margin: 0px;
+    width: 100%;
+    height: 30px;
 }
 
 #recommendedSelectButton Label {
-    color: #FFFFFF;
+    color: #FFFFFF30;
+    font-size: 15px;
     horizontal-align: center;
+}
+
+#recommendedSelectButton:hover Label {
+    color: #FFFFFF;
+}
+
+.recommendedBuildRating #buildRating {
+    horizontal-align: center;
+}
+
+.recommendedBuildRating {
+    flow-children: down;
+    color: #d9d9d9;
+    font-size: 14px;
+    horizontal-align: center;
+}
+
+.recommendedBuildVote {
+    background-size: 100% 100%;
+    width: 17px;
+    height: 11px;
+    margin: 4px 10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #626262;
+}
+
+.recommendedBuildVote.up:hover {
+    border-bottom: 10px solid #2fb053;
+}
+
+.recommendedBuildVote.down {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #626262;
+    border-bottom: 0px;
+}
+
+.recommendedBuildVote.down:hover {
+    border-top: 10px solid #b02f2f;
+}
+
+.recommendedBuildActions {
+    flow-children: down;
+    horizontal-align: center;
+}
+
+.recommendedBuildActions Button {
+    margin-top: 15px;
+}
+
+#recommendedBuildFavourite {
+    background-image: url("file://{images}/custom_game/build.png");
+    width: 17px;
+    height: 17px;
+}
+
+#recommendedBuildFavourite:hover {
+    background-position: 17px 0;
+}
+
+#recommendedBuildSettings {
+    background-image: url("file://{images}/custom_game/build.png");
+    background-position: 0 17px;
+    width: 17px;
+    height: 17px;
+}
+
+#recommendedBuildSettings:hover {
+    background-position: 17px 17px;
 }
 
 .recommendedBuildHolder {
     flow-children: right;
+    padding-right: 15px;
 }
 
 #recommendedAttribute {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px 0;
     background-color: #000000;
-    border-radius: 16px;
-    border: 1px solid #000000;
+    border-radius: 50%;
     horizontal-align: right;
 }
 
+.recommendedBuildBottomRow {
+    flow-children: down;
+    width: 100%;
+    padding: 12px 15px 15px 0;
+}
+
+.recommendedBuildTitle {
+    flow-children: right;
+    padding-bottom: 5px;
+}
+
 #buildName {
-    font-size: 18px;
-    color: #FFFFFF;
-    margin-left: 4px;
+    color: #d9d9d9;
+    font-size: 16px;
     vertical-align: middle;
+}
+
+#buildAuthor {
+    color: #767676;
+    font-size: 16px;
+    text-decoration: underline;
+    padding-left: 5px;
+}
+
+#buildDesc {
+    color: #9c9c9c;
+    font-size: 15px;
+    line-height: 18px;
+    height: 40px;
 }
 
 /*
@@ -2236,8 +2186,9 @@
 
 .VotingOptionInfo {
     flow-children: right;
-
-	margin-left: 10px;
+    horizontal-align: right;
+	
+	margin-left: 5px;
 	width: 18px;
 	height: 18px;
 }
@@ -2260,8 +2211,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 600px;
+    max-height: 600px;
     flow-children: down;
 }
 
@@ -2342,18 +2293,19 @@
     width: fill-parent-flow(1.0);
     height: 670px;
     margin-left: 320px;
-    flow-children: right;
+    flow-children: right-wrap;
     padding: 15px 15px 0 0;
 }
 
 #mutatorPanel {
-    width: 458px;
+    width: 38%;
     flow-children: right-wrap;
+    align: right;
 }
 
 #optionList .OptionPanel {
     flow-children: right-wrap;
-    width: fill-parent-flow(1.0);
+    width: 60%;
 }
 
 #optionList .option {
@@ -2387,7 +2339,7 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 10px;
+    margin-top: 130px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
@@ -2431,6 +2383,7 @@
 }
 
 #optionList #optionMutatorTitle {
+    margin:  auto;
     width: 223px;
     height: 80px;
     line-height: 60px;
@@ -2450,7 +2403,7 @@
     flow-children: right;
     z-index: 10;
     margin: 5px;
-    horizontal-align: right;
+    align: right;
 }
 
 #optionList .mutator .circle {
@@ -2476,10 +2429,11 @@
 }
 
 #importAndExportCaption {
-    flow-children: right;
+     width: auto;
 }
 
 .importAndExportButton {
+    width: 55px;
     height: 30px;
     margin-top: 3px;
     margin-right: 0px;
@@ -2491,7 +2445,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: left;
+    flow-children: right;
     margin-left: -10px;
 }
 
@@ -2743,7 +2697,7 @@
 }
 
 /* Adds a glow to the author's name */
-.contributor {
+.theRealAsh47 {
     color: #000000;
     text-shadow: 0px 0px 2px 2.0 #FFFF00FF;
     font-weight: bold;
@@ -2765,6 +2719,6 @@
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton Label {
-    horizontal-align: center;
-    vertical-align: middle;
-}    
+    color: #626567;
+    font-size: 14px;
+}
