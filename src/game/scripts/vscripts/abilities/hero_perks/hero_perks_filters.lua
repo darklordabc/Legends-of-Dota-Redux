@@ -40,7 +40,9 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_silencer_perk = true,
     npc_dota_hero_viper_perk = true,
     npc_dota_hero_slardar_perk = true,
+    npc_dota_hero_spirit_breaker_perk = true,
   }
+  
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
   if not targetPerks_modifier[targetPerk:GetName()] then return true end
@@ -71,6 +73,9 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Slardar
   local perkForSlardar = require('abilities/hero_perks/npc_dota_hero_slardar_perk')
   perkSlardar(filterTable)
+  -- Perk for Spirit Breaker
+  local perkForSpaceCow = require('abilities/hero_perks/npc_dota_hero_spirit_breaker_perk')
+  perkSpaceCow(filterTable)
   -- Returning the filterTable
   return filterTable
 end
@@ -102,7 +107,7 @@ function heroPerksDamageFilter(filterTable)
    -- Perk for Bane
   local perkForBane = require('abilities/hero_perks/npc_dota_hero_bane_perk')
   PerkBane(filterTable)
-  
+
   return filterTable
 end
 
