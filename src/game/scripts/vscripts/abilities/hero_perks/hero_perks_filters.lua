@@ -87,7 +87,8 @@ function heroPerksDamageFilter(filterTable)
   
   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
-	npc_dota_hero_pudge_perk = true,
+    npc_dota_hero_pudge_perk = true,
+    npc_dota_hero_bane_perk = true
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
@@ -98,11 +99,14 @@ function heroPerksDamageFilter(filterTable)
    -- Perk for Pudge
   local perkForPudge = require('abilities/hero_perks/npc_dota_hero_pudge_perk')
   PerkPudge(filterTable)
+   -- Perk for Bane
+  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_bane_perk')
+  PerkBane(filterTable)
   
   return filterTable
 end
 
 function heroPerksAbilityTuningValueFilter(filterTable)
-	return filterTable
+  return filterTable
 end
 
