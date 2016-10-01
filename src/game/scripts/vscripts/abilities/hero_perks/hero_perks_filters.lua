@@ -100,7 +100,7 @@ function heroPerksDamageFilter(filterTable)
   local perkForPudge = require('abilities/hero_perks/npc_dota_hero_pudge_perk')
   PerkPudge(filterTable)
    -- Perk for Bane
-  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_bane_perk')
+  local perkForBane = require('abilities/hero_perks/npc_dota_hero_bane_perk')
   PerkBane(filterTable)
   
   return filterTable
