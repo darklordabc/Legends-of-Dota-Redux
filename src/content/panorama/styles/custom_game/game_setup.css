@@ -914,6 +914,8 @@
 .reviewPhaseTeam {
     flow-children: right;
     horizontal-align: center;
+
+    width: 47%;
     min-height: 324px;
 }
 
@@ -927,6 +929,7 @@
 
 .subReviewContainer {
     horizontal-align: center;
+    width: 100%;
 }
 
 #reviewTeams {
@@ -943,10 +946,14 @@
 }
 
 .reviewPlayerContainer {
-    margin: 0px 8px 0px 8px;
-    width: 150px;
-
+    padding: 0px 4px 0px 4px;
+    
+    width: 20%;
     height: 680px;
+}
+
+#reviewRadiantTeam .reviewPlayerContainer {
+    horizontal-align: right;
 }
 
 .playerBackground {
@@ -970,11 +977,16 @@
 }
 
 #reviewPhaseVS {
-    width: fill-parent-flow( 1 );
+    width: 6%;
+    height: 15%;
     vertical-align: middle;
+}
 
-    text-align: center;
-    font-size: 24px;
+#reviewPhaseVS Image {
+    width: 100px;
+    height: 100px;
+
+    horizontal-align: middle;
 }
 
 .reviewPhasePlayerAttribute {
@@ -999,6 +1011,8 @@
     flow-children: down;
     vertical-align: bottom;
     margin-top: 4px;
+
+    z-index: 5;
 }
 
 #reviewRadiantTeam {

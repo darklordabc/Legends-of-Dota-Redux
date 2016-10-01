@@ -759,7 +759,10 @@
                         <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
                         <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
                     </Panel>
-                    <Label id="reviewPhaseVS" text="VS" />
+
+                    <Panel id="reviewPhaseVS">
+                        <Image hittest="false" src="file://{images}/custom_game/vs.png" />
+                    </Panel>
                     <Panel id="reviewDireTeam" class="reviewPhaseTeam">
                         <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
                         <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />

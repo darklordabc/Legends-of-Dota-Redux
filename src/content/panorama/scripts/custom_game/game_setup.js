@@ -3664,6 +3664,10 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
         newPlayerPanel.SetAttributeInt('playerID', playerID);
         newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
         newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
+        
+        // Update z-index to fix skills hiding
+        if ( /radiant/i.test(reviewContainer.id) )
+            newPlayerPanel.style.zIndex = 20 - playerID;
     } else {
         newPlayerPanel.SetParent(reviewContainer);
         newPlayerPanel.visible = true;
@@ -4445,6 +4449,10 @@ function doActualTeamUpdate() {
     radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
     reviewRadiantContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
 
+    // Fix align when tooManyPlayers
+    reviewRadiantTopContainer.visible = radiantPlayers.length > 5;
+    reviewRadiantBotContainer.visible = radiantPlayers.length > 5;
+
     var direTopContainer = $('#theDireContainer');
     var direTopContainerTop = $('#theDireContainerTop');
     var direTopContainerBot = $('#theDireContainerBot');
@@ -4476,6 +4484,10 @@ function doActualTeamUpdate() {
     // Do we have more than 5 players on radiant?
     direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
     reviewDireContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
+
+    // Fix align when tooManyPlayers
+    reviewDireTopContainer.visible = direPlayers.length > 5;
+    reviewDireBotContainer.visible = direPlayers.length > 5;
 
     // Update all of the team panels moving the player panels for the
     // players assigned to each team to the corresponding team panel.
