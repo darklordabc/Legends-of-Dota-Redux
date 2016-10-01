@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Bane
---		Perk: Bane lifesteals 100% of all spell damage he deals to sleeping enemies. 
+--		Perk: Bane lifesteals 100% of all spell damage he deals to sleeping units. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_bane_perk", "abilities/hero_perks/npc_dota_hero_bane_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
