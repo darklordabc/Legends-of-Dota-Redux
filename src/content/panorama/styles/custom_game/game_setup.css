@@ -1765,17 +1765,14 @@
 }
 
 .heroBuildMenuButton {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    border: 1px solid #000000;
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
-    margin-top: 8px;
     width: 100%;
+    height: 30px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 8px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 .heroBuildMenuButton:hover {
@@ -1871,12 +1868,11 @@
 }
 
 .recommendedBuild {
-    flow-children: down;
-    border: 1px solid #444444;
-    border-radius: 4px;
-    padding: 4px;
-    margin-right: 8px;
-    margin-bottom: 8px;
+    flow-children: right;
+    background-color: #181b1f;
+    border-radius: 10px;
+    padding-top: 15px;
+    margin: 10px;
 }
 
 .recommendedHeroImageCon {
@@ -1904,15 +1900,18 @@
     border-radius: 4px;
 }
 
-.recommendedBuildBottomRow {
-    flow-children: right;
+.recommendedBuildDescription {
+    flow-children: down;
     width: 100%;
+    padding: 15px;
+}
+
+.recommendedBuildBottomRow {
+   width: 100%;
 }
 
 #recommendedSelectButton {
-    width: 96px;
-    horizontal-align: right;
-    margin: 0px;
+    width: 100%;
 }
 
 #recommendedSelectButton Label {
@@ -1920,8 +1919,35 @@
     horizontal-align: center;
 }
 
+.recommendedBuildLeftSide {
+    flow-children: down;
+    width: 50px;
+}
+
+.recommendedBuildRating {
+    color: #d9d9d9;
+    font-size: 14px;
+    horizontal-align: center;
+}
+
+.recommendedBuildVote {
+    background-image: url("file://{images}/custom_game/vote.png");
+    background-size: 100% 100%;
+    width: 17px;
+    height: 11px;
+}
+
+#recommendedBuildDownVote {
+    background-size: 100% -100%;
+}
+
+.recommendedBuildRightSide {
+    flow-children: down;
+}
+
 .recommendedBuildHolder {
     flow-children: right;
+    padding: 0 15px;
 }
 
 #recommendedAttribute {
@@ -1934,11 +1960,23 @@
 }
 
 #buildName {
-    font-size: 18px;
-    color: #FFFFFF;
-    margin-left: 4px;
+    color: #d9d9d9;
+    font-size: 15px;
     vertical-align: middle;
 }
+
+#buildAuthor {
+    color: #767676;
+    font-size: 15px;
+    text-decoration: underline;
+    vertical-align: middle;
+}
+
+#buildDesc {
+    color: #9c9c9c;
+    font-size: 14px;
+    line-height: 18px;
+    }
 
 /*
     BANNING INTERFACE
@@ -2110,8 +2148,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 600px;
+    max-height: 600px;
     flow-children: down;
 }
 
@@ -2328,7 +2366,7 @@
 }
 
 #importAndExportCaption {
-     width: 71px;
+     width: auto;
 }
 
 .importAndExportButton {
@@ -2618,6 +2656,6 @@
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton Label {
-    horizontal-align: center;
-    vertical-align: middle;
-}    
+    color: #626567;
+    font-size: 14px;
+}
