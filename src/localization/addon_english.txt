@@ -2350,8 +2350,10 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "Winter Wyvern's perk. Winter Wyvern has flying movement when over 90%d% health and mana."
 	
-  	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Invisible"
-	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin's Perk. Remain invisible while standing in place."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Templar Assassin Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin turns invisible for 10 seconds when not moving for 5 seconds. Breaks upon moving or attacking."
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis"         "Invisible"
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_Description"         "Remain invisible while standing in place."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge."
