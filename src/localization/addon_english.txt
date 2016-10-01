@@ -490,7 +490,7 @@
 	"hintAlchemist"                         "Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters."
 	"hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item."
 	"hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
-	"hintBane"                         "TO BE DECIDED"
+	"hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
 	"hintBeastMaster"                         "Beastmaster gains 3 Strength for every level put in Neutral abilities."
 	"hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
 	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
@@ -806,7 +806,7 @@
 	"unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to <br>all stats for each level put in a custom ability."
 	"unique_mechanic_arc_warden"                        "Arc Warden may use a <br>consumable item on himself every 90 <br>seconds without consuming the item."
 	"unique_mechanic_axe"                        "<font color=\"#ffd966\">Culling Blade</font> kills will <br>chop the remaining cooldown times of Axe's <br>abilities in half, or by 30 seconds if the <br>remaining cooldown exceeds 1 minute."
-	//"unique_mechanic_bane"                        ""
+	"unique_mechanic_bane"                        "Bane lifesteals 100% <br>of all spell damage he deals to sleeping units. "
 	"unique_mechanic_beastmaster"                        "Beastmaster gains 3 <br>Strength for every level put in <font color=\"#ffd966\">Neutral</font> <br>abilities."
 	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\"#ffd966\">Tracked</font> enemies. "
 	//"unique_mechanic_bristleback"                        ""
@@ -2415,4 +2415,7 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk"  "Bane Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
 }
