@@ -613,6 +613,18 @@ function CDOTA_BaseNPC:HasUnitFlag(flag)
     end
 end
 
+function CDOTA_BaseNPC:IsSleeping()
+    if self:HasModifier("modifier_bane_nightmare") then 
+        return true
+    elseif self:HasModifier("modifier_elder_titan_echo_stomp") then 
+        return true
+    elseif self:HasModifier("modifier_sleep_cloud_effect") then 
+        return true
+    else
+        return false
+    end
+end
+
 function CDOTA_BaseNPC:FindItemByName(item_name)
     for i=0,5 do
         local item = self:GetItemInSlot(i)
