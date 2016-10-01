@@ -695,6 +695,10 @@
 
 /* Selection */
 
+#VerticalScrollBar {
+    margin-left:  10px;
+}
+
 #stageButtonSelection {
     flow-children: right;
 }
@@ -1232,10 +1236,10 @@
 }
 
 .skillCostRecommended {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
-	margin-right: 0px;
-	margin-bottom: 0px;
+	margin-right: 3px;
+	margin-bottom: 3px;
     vertical-align: bottom;
     horizontal-align: right;
 }
@@ -1856,7 +1860,7 @@
 
 .buildCategoryLabel {
     font-size: 24px;
-    margin: 8px;
+    margin: 10px;
 }
 
 #pickingPhaseRecommendedBuildContainer {
@@ -1865,26 +1869,38 @@
     flow-children: right-wrap;
     height: 100%;
     overflow: squish scroll;
+    padding-right: 20px;
 }
 
 .recommendedBuild {
-    flow-children: right;
+    flow-children: down;
     background-color: #181b1f;
     border-radius: 10px;
     padding-top: 15px;
-    margin: 10px;
+    margin: 4px;
+}
+
+.recommendedBuildContainer {
+    flow-children: right;
+}
+
+.recommendedBuildLeftSide {
+    flow-children: down;
+    width: 55px;
+}
+
+.recommendedBuildRightSide {
+    flow-children: down;
 }
 
 .recommendedHeroImageCon {
-    padding: 4px;
-    border: 1px solid #444444;
-    border-radius: 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0.3px #00000050;
 }
 
 #recommendedHeroImage {
-    width: 85px;
-    height: 48px;
-    border-radius: 4px;
+    width: 87px;
+    height: 50px;
 }
 
 #recommendedSkillContainer {
@@ -1892,91 +1908,138 @@
 }
 
 #recommendedSkillContainer DOTAAbilityImage {
-    width: 48px;
-    height: 48px;
-    margin-left: 2px;
-    margin-top: 2px;
-    border: 1px solid #444444;
-    border-radius: 4px;
-}
-
-.recommendedBuildDescription {
-    flow-children: down;
-    width: 100%;
-    padding: 15px;
-}
-
-.recommendedBuildBottomRow {
-   width: 100%;
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0.3px #00000030;
 }
 
 #recommendedSelectButton {
     width: 100%;
+    height: 30px;
 }
 
 #recommendedSelectButton Label {
-    color: #FFFFFF;
+    color: #FFFFFF30;
+    font-size: 15px;
     horizontal-align: center;
 }
 
-.recommendedBuildLeftSide {
-    flow-children: down;
-    width: 50px;
+#recommendedSelectButton:hover Label {
+    color: #FFFFFF;
+}
+
+.recommendedBuildRating #buildRating {
+    horizontal-align: center;
 }
 
 .recommendedBuildRating {
+    flow-children: down;
     color: #d9d9d9;
     font-size: 14px;
     horizontal-align: center;
 }
 
 .recommendedBuildVote {
-    background-image: url("file://{images}/custom_game/vote.png");
     background-size: 100% 100%;
     width: 17px;
     height: 11px;
+    margin: 4px 10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #626262;
 }
 
-#recommendedBuildDownVote {
-    background-size: 100% -100%;
+.recommendedBuildVote.up:hover {
+    border-bottom: 10px solid #2fb053;
 }
 
-.recommendedBuildRightSide {
+.recommendedBuildVote.down {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #626262;
+    border-bottom: 0px;
+}
+
+.recommendedBuildVote.down:hover {
+    border-top: 10px solid #b02f2f;
+}
+
+.recommendedBuildActions {
     flow-children: down;
+    horizontal-align: center;
+}
+
+.recommendedBuildActions Button {
+    margin-top: 15px;
+}
+
+#recommendedBuildFavourite {
+    background-image: url("file://{images}/custom_game/build.png");
+    width: 17px;
+    height: 17px;
+}
+
+#recommendedBuildFavourite:hover {
+    background-position: 17px 0;
+}
+
+#recommendedBuildSettings {
+    background-image: url("file://{images}/custom_game/build.png");
+    background-position: 0 17px;
+    width: 17px;
+    height: 17px;
+}
+
+#recommendedBuildSettings:hover {
+    background-position: 17px 17px;
 }
 
 .recommendedBuildHolder {
     flow-children: right;
-    padding: 0 15px;
+    padding-right: 15px;
 }
 
 #recommendedAttribute {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px 0;
     background-color: #000000;
-    border-radius: 16px;
-    border: 1px solid #000000;
+    border-radius: 50%;
     horizontal-align: right;
+}
+
+.recommendedBuildBottomRow {
+    flow-children: down;
+    width: 100%;
+    padding: 12px 15px 15px 0;
+}
+
+.recommendedBuildTitle {
+    flow-children: right;
+    padding-bottom: 5px;
 }
 
 #buildName {
     color: #d9d9d9;
-    font-size: 15px;
+    font-size: 16px;
     vertical-align: middle;
 }
 
 #buildAuthor {
     color: #767676;
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: underline;
-    vertical-align: middle;
+    padding-left: 5px;
 }
 
 #buildDesc {
     color: #9c9c9c;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 18px;
-    }
+    height: 40px;
+}
 
 /*
     BANNING INTERFACE
