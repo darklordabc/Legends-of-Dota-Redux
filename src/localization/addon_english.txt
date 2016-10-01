@@ -519,9 +519,9 @@
 	"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
 	"hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
 	"hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-	"hintSlardar"                         "TO BE DECIDED"
+	"hintSlardar"                         "When Slardar bashes, he gains 1 gold."
 	"hintSniper"                         "TO BE DECIDED"
-	"hintSpiritBreaker"                         "TO BE DECIDED"
+	"hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
 	"hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
 	"hintTechies"                         "Traps and Explosives will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
 	"hintTA"                         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
@@ -588,8 +588,8 @@
     "lod_cat_tank"                                  "Tank"
     "lod_cat_mobility"                              "Mobility and Escape"
     "lod_cat_invis"                                 "Invisibility"
-    "lod_cat_bash"                 		    "Bash"
-    "lod_cat_crit"                  		    "Critical Strike"
+    "lod_cat_bash"                                  "Bash"
+    "lod_cat_crit"                                  "Critical Strike"
     "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
     "lod_cat_attack_modifier"                       "All Attack Modifiers"
     "lod_cat_stun"                                  "Stuns, Shackles and Roots"
@@ -760,8 +760,8 @@
     "unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. Alchemist <br>can also gift Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
-    "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
-    "unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br> Any other bash will grant <br> <font color=\"#ffd966\">Slardar </font> 1 gold.
+    "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>When Spirit Breaker bashes, <br>he also applies <font color=\"#ffd966\">Break</font>."
+    "unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>Any other bash will grant <br> <font color=\"#ffd966\">Slardar </font> 1 gold.
 	"unique_mechanic_bloodseeker"               	"When Blood Seeker <br>casts <font color=\"#ffd966\">Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
 	"unique_mechanic_life_stealer"               	"When Life Stealer<br> casts <font color=\"#ffd966\">Infest</font>, its cooldown will be reduced <br>to 30 seconds."
 	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\"#ffd966\">Duel</font>, she will gain spell <br>immunity for the duration of the duel."
@@ -2418,4 +2418,10 @@
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk"  "Bane Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk"  "Space Cow Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_Description"  "When Spirit Breaker bashes, he also applies Break."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break"  "Break"
+	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
 }
