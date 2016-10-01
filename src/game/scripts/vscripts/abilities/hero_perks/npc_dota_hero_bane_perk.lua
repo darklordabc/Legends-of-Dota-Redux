@@ -29,7 +29,7 @@ end
 local Timers = require('easytimers')
 
 function PerkBane(filterTable)
-	local victim_index = filterTable["entindex_victim_const"]
+    local victim_index = filterTable["entindex_victim_const"]
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
     if not victim_index or not attacker_index or not ability_index then
