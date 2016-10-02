@@ -5004,9 +5004,7 @@ function calculateHideEnemyPicks() {
     }
 
     $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
-    $('#reviewRadiantTeam').SetHasClass('hide_picks', hideRadiantPicks);
     $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
-    $('#reviewDireTeam').SetHasClass('hide_picks', hideDirePicks);
 }
 
 // The gamemode has changed
