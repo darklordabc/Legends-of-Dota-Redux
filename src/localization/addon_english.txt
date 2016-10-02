@@ -2229,7 +2229,11 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell Io casts on a Tethered Hero also gets cast on Io."
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk"	"Jakiro Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"	"<b>Fire</b> and <b>Ice</b> spells cast sequentially will refund 40% mana and have 20% reduced cooldowns."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_Description"	"Fire and Ice spells cast sequentially will refund 40%d% mana and have 20%d% reduced cooldowns."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_fire"	"Fire"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_fire_Description"	"The next Ice spell cast will refund 40%d% mana and have a 20%d% reduced cooldown."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_ice"	"Ice"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_ice_Description"	"The next Fire spell cast will refund 40%d% mana and have a 20%d% reduced cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle."
