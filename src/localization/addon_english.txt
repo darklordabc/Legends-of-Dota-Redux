@@ -503,7 +503,7 @@
 	"hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
 	"hintLoneDruid"                         "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range."
 	"hintLycan"                         "TO BE DECIDED"
-	"hintMagnus"                         "TO BE DECIDED"
+	"hintMagnus"                         "When Magnus casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
 	"hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect."
 	"hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
 	"hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Sadist, whether he has it or not."
@@ -549,7 +549,7 @@
 	"hintClockwerk"							"Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."	
 	"hintDazzle"							"TO BE DECIDED"	
 	"hintDP"							"Any Silence from Death Prophet is also a mute."	
-	"hintDisruptor"							"When Disruptor casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
+	"hintDisruptor"							"TO BE DECIDED"	
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -815,7 +815,7 @@
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
 	//"unique_mechanic_dazzle"                        ""
 	"unique_mechanic_death_prophet"                        "Any <font color=\"#ffd966\">Silence</font> from Death <br>Prophet is also a mute."
-	"unique_mechanic_disruptor"                        "When Disruptor casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
+	//"unique_mechanic_disruptor"                        ""
 	"unique_mechanic_drow_ranger"                        "<font color=\"#ffd966\">Gust</font> also disarms <br>enemies when cast by Drow Ranger."
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
 	"unique_mechanic_earthshaker"                        "<font color=\"#ffd966\">Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
@@ -828,7 +828,7 @@
 	"unique_mechanic_lone_druid"                        "Lone Druid transfers <br>50% of damage taken to his <font color=\"#ffd966\">Spirit Bear</font> if he <br>has one and its within 1100 range."
 	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\"#ffd966\">Lunar Blessing</font>, whether she has it or not."
 	//"unique_mechanic_lycan"                        ""
-	//"unique_mechanic_magnataur"                        ""
+	"unique_mechanic_magnataur"                        "When Magnus casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
 	"unique_mechanic_medusa"                        "Medusa gains +0.5 <br>mana regeneration per active <font color=\"#ffd966\">Toggle</font> effect."
 	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#ffd966\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
 	"unique_mechanic_naga_siren"                        "<font color=\"#ffd966\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
@@ -2151,7 +2151,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"When Disruptor casts Enemy Moving abilities, they will have 25%d% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"TBD"		
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom."	
@@ -2203,6 +2203,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_magnataur_perk"	"Magnus Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_magnataur_perk_Description"	"When Magnus casts Enemy Moving abilities, they will have 25%d% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%."
