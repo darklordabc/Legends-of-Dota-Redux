@@ -932,6 +932,10 @@
     width: 100%;
 }
 
+.reviewTeamsOverlay {
+    width: 100%;
+}
+
 #reviewTeams {
     width: 100%;
     flow-children: right;
@@ -977,9 +981,11 @@
 }
 
 #reviewPhaseVS {
-    width: 6%;
-    height: 15%;
+    horizontal-align: middle;
     vertical-align: middle;
+
+    width: 300px;
+    z-index: 2;
 }
 
 #reviewPhaseVS Image {
@@ -987,6 +993,19 @@
     height: 100px;
 
     horizontal-align: middle;
+    vertical-align: middle;
+    z-index: 1;
+}
+
+#reviewPhaseVS DOTAScenePanel {
+    z-index: 0;
+
+    width: 200px;
+    height: 200px;
+
+    horizontal-align: middle;
+    vertical-align: middle;
+    opacity: 0.8;
 }
 
 .reviewPhasePlayerAttribute {

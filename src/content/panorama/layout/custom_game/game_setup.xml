@@ -754,18 +754,20 @@
             </Panel>
 
             <Panel id="reviewPhase">
-                <Panel id="reviewTeams">
-                    <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
-                        <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
-                        <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
-                    </Panel>
-
+                <Panel class="reviewTeamsOverlay">
                     <Panel id="reviewPhaseVS">
                         <Image hittest="false" src="file://{images}/custom_game/vs.png" />
-                    </Panel>
-                    <Panel id="reviewDireTeam" class="reviewPhaseTeam">
-                        <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
-                        <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />
+                        <DOTAScenePanel map="ui/explosion_ui"/>
+                    </Panel>                    
+                    <Panel id="reviewTeams">
+                        <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
+                            <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
+                            <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
+                        </Panel>
+                        <Panel id="reviewDireTeam" class="reviewPhaseTeam">
+                            <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
+                            <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />
+                        </Panel>
                     </Panel>
                 </Panel>
                 <Panel class="reviewButtons">
