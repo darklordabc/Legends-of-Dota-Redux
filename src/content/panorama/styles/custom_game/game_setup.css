@@ -695,10 +695,6 @@
 
 /* Selection */
 
-#VerticalScrollBar {
-    margin-left:  10px;
-}
-
 #stageButtonSelection {
     flow-children: right;
 }
@@ -1864,19 +1860,19 @@
 }
 
 #pickingPhaseRecommendedBuildContainer {
-    horizontal-align: center;
+    horizontal-align: left;
     width: fit-children;
     flow-children: right-wrap;
     height: 100%;
     overflow: squish scroll;
-    padding-right: 20px;
+    padding-right: 15px;
 }
 
 .recommendedBuild {
     flow-children: down;
     background-color: #181b1f;
     border-radius: 10px;
-    padding-top: 15px;
+    padding-top: 12px;
     margin: 4px;
 }
 
@@ -1886,7 +1882,7 @@
 
 .recommendedBuildLeftSide {
     flow-children: down;
-    width: 55px;
+    width: 45px;
 }
 
 .recommendedBuildRightSide {
@@ -1895,7 +1891,7 @@
 
 .recommendedHeroImageCon {
     border-radius: 5px;
-    box-shadow: 0 0 5px 0.3px #00000050;
+    box-shadow: 0 0 5px 0 #000000;
 }
 
 #recommendedHeroImage {
@@ -1910,9 +1906,9 @@
 #recommendedSkillContainer DOTAAbilityImage {
     width: 50px;
     height: 50px;
-    margin-left: 5px;
+    margin-left: 2px;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0.3px #00000030;
+    box-shadow: 0 0 5px 0 #000000;
 }
 
 #recommendedSelectButton {
@@ -1932,6 +1928,7 @@
 
 .recommendedBuildRating #buildRating {
     horizontal-align: center;
+    text-align: center;
 }
 
 .recommendedBuildRating {
@@ -1942,28 +1939,26 @@
 }
 
 .recommendedBuildVote {
-    background-size: 100% 100%;
+    background-image: url("file://{images}/custom_game/build.png") no-repeat;
     width: 17px;
     height: 11px;
-    margin: 4px 10px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 10px solid #626262;
+    margin: 3px 0;
+}
+
+.recommendedBuildVote.up {
+    background-position: -5px 0;
 }
 
 .recommendedBuildVote.up:hover {
-    border-bottom: 10px solid #2fb053;
+    background-position: -27px 0;
 }
 
 .recommendedBuildVote.down {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid #626262;
-    border-bottom: 0px;
+    background-position: -49px 0;
 }
 
 .recommendedBuildVote.down:hover {
-    border-top: 10px solid #b02f2f;
+    background-position: -71px 0;
 }
 
 .recommendedBuildActions {
@@ -1971,34 +1966,32 @@
     horizontal-align: center;
 }
 
-.recommendedBuildActions Button {
-    margin-top: 15px;
-}
-
 #recommendedBuildFavourite {
     background-image: url("file://{images}/custom_game/build.png");
+    background-position: -93px 0;
     width: 17px;
     height: 17px;
+    margin: 13px 0 15px;
 }
 
 #recommendedBuildFavourite:hover {
-    background-position: 17px 0;
+    background-position: -115px 0;
 }
 
 #recommendedBuildSettings {
     background-image: url("file://{images}/custom_game/build.png");
-    background-position: 0 17px;
+    background-position: -137px 0;
     width: 17px;
     height: 17px;
 }
 
 #recommendedBuildSettings:hover {
-    background-position: 17px 17px;
+    background-position: -159px 0;
 }
 
 .recommendedBuildHolder {
     flow-children: right;
-    padding-right: 15px;
+    padding-right: 12px;
 }
 
 #recommendedAttribute {
@@ -2013,12 +2006,12 @@
 .recommendedBuildBottomRow {
     flow-children: down;
     width: 100%;
-    padding: 12px 15px 15px 0;
+    padding: 12px 12px 15px 0;
 }
 
 .recommendedBuildTitle {
     flow-children: right;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
 }
 
 #buildName {
@@ -2038,7 +2031,7 @@
     color: #9c9c9c;
     font-size: 15px;
     line-height: 18px;
-    height: 40px;
+    height: 34px;
 }
 
 /*
