@@ -70,7 +70,7 @@
 }
 
 .phase_option_voting_selected #lodTimerWarningLabel {
-    margin-top: -120px;
+    margin-top: -220px; 
 }
 
 @keyframes 'lodTimerWarningLoop' {
