@@ -529,7 +529,7 @@
 	"hintTinker"                         "When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed."
 	"hintTiny"                         "TO BE DECIDED"
 	"hintTreant"                         "Treant self-casts Living Armor and Nature's Guise when casting them on allies."
-	"hintTrollWarlord"                         "TO BE DECIDED"
+	"hintTrollWarlord"                         "Increases the duration of all Rage effects on Troll Warlord by 20%."
 	"hintUnderlord"                         "Underlord gains +1 to all stats for each level put in a custom ability."
 	"hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 	"hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
@@ -759,7 +759,7 @@
     "unique_mechanic_keeper_of_the_light"           "Aghanim's Scepter<br> will give KOTL unobstructed day<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. Alchemist <br>can also gift Aghanim's Scepters."
     "unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
-    "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero."
+    "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero. <br>Increases the duration of all <br><font color=\"#ffd966\">Rage</font> effects on Troll Warlord by 20%."
     "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>When Spirit Breaker bashes, <br>he also applies <font color=\"#ffd966\">Break</font>."
     "unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>Any other bash will grant <br> <font color=\"#ffd966\">Slardar </font> 1 gold.
 	"unique_mechanic_bloodseeker"               	"When Blood Seeker <br>casts <font color=\"#ffd966\">Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
@@ -2421,7 +2421,9 @@
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk"  "Space Cow Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_Description"  "When Spirit Breaker bashes, he also applies Break."
-
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break"  "Break"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk"  "Troll Warlord Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk_Description"  "Increases the duration of all Rage effects on Troll Warlord by 20%."
 }
