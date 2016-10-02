@@ -5302,7 +5302,18 @@ function UpdateTimer() {
             $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
         }
         else if (currentPhase == PHASE_REVIEW) {
-            $("#reviewPhaseVS").AddClass("show");
+            // Show vs
+            $("#reviewPhaseVS").AddClass('show');
+
+            // Show abilities
+            var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
+            for(var i = 0; i < radiantPlayers.length; ++i)
+                $("#reviewPlayer" + radiantPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            // Show abilities
+            var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
+            for(var i = 0; i < direPlayers.length; ++i)
+                $("#reviewPlayer" + direPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
         }
     }
 
