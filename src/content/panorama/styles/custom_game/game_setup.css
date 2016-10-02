@@ -1870,8 +1870,8 @@
 
 .recommendedBuild {
     flow-children: down;
-    background-color: #181b1f;
-    border-radius: 10px;
+    background-color: #1d2024;
+    border-radius: 5px;
     padding-top: 12px;
     margin: 4px;
 }
@@ -1892,6 +1892,7 @@
 .recommendedHeroImageCon {
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #000000;
+    border: 1px solid #303030;
 }
 
 #recommendedHeroImage {
@@ -1909,6 +1910,7 @@
     margin-left: 2px;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #000000;
+    border: 1px solid #303030;
 }
 
 #recommendedSelectButton {
