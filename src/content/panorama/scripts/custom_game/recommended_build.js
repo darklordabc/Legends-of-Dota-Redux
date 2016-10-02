@@ -1,7 +1,7 @@
 // Store build data to send to the server
 var buildData = null;
 
-function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title) {
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id) {
     // Push skills
     for(var slotID=1; slotID<=6; ++slotID) {
         var slot = $('#recommendedSkill' + slotID);
@@ -48,7 +48,8 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
     buildData = {
         hero: hero,
         attr: attr,
-        build: build
+        build: build,
+        id: id
     };
 }
 

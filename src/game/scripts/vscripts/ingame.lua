@@ -26,8 +26,7 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-        GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
-
+		GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
         end, 'switch_warning', 5)
@@ -37,7 +36,7 @@ function Ingame:init()
         this:declined(eventSourceIndex)
     end)
 
-    CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
+    CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
 
@@ -74,7 +73,6 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
-
     if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
@@ -113,11 +111,36 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+	--Attempt to enable cheats
+	Convars:SetBool("sv_cheats", true)
+    local isCheatsEnabled = Convars:GetBool("sv_cheats")
+    local maxPlayers = 24
+    local count = 0
+    for playerID=0,(maxPlayers-1) do
+        local player = PlayerResource:GetPlayer(playerID)
+        if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
+            count = count + 1
+        end
+    end
+    local options = {
+        players = count,
+        cheats = isCheatsEnabled
+    }
+    network:showCheatPanel(options)
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
         this:checkBalanceTeamsNextTick()
     end, nil)
+
+    CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
+        if args.status == 'ok' then
+            GameRules:SendCustomMessage("#cheat_activated", 0, 0)
+            this:onPlayerCheat(eventSourceIndex, args)
+		elseif args.status == 'error' then
+            GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+		end
+    end)
 
     -- Listen for players connecting
     ListenToGameEvent('player_connect', function(keys)
@@ -353,6 +376,17 @@ function Ingame:checkBalanceTeamsNextTick()
     end, DoUniqueString('balanceChecker'), 0)
 end
 
+function Ingame:onPlayerCheat(eventSourceIndex, args)
+    local command = args.command
+    local value = args.value
+    if type(value) ~= 'table' then
+        value = tonumber(value) == 1 and true or false
+        Convars:SetBool(command, value)
+    else
+        SendToServerConsole(command)
+    end
+end
+
 -- Called to check if teams need to be balanced
 function Ingame:checkBalanceTeams()
     local maxPlayers = 24
@@ -584,25 +618,27 @@ function Ingame:FilterModifyExperience(filterTable)
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 
-    local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
+    if PlayerResource:GetPlayer(filterTable.player_id_const) then
+        local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
 
-    if OptionManager:GetOption('sharedXP') == 1 then
-        if filterTable.reason_const ~= 0 then
-            for i=0,DOTA_MAX_TEAM do
-                local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
-                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
-                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+        if OptionManager:GetOption('sharedXP') == 1 then
+            if filterTable.reason_const ~= 0 then
+                for i=0,DOTA_MAX_TEAM do
+                    local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+                    if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+                        local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                    otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                        otherHero:AddExperience(math.ceil(filterTable.experience / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    end
                 end
-            end
 
-            return false
+                return false
+            else
+                return true
+            end
         else
             return true
         end
-    else
-        return true
     end
 end
 
