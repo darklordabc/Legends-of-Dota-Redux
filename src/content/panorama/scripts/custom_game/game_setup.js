@@ -5294,7 +5294,10 @@ function UpdateTimer() {
         }
 
         // Show the text
-        $('#lodTimerWarningLabel').text = theTimerText;
+        $('#lodTimerWarningLabel').text = 
+            currentPhase == PHASE_REVIEW 
+                ? ""        // Hide review timer
+                : theTimerText;
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
