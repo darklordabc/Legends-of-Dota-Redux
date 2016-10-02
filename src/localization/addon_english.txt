@@ -2138,7 +2138,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk_Description"	"Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk"  "Bane Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
+	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100%d% of all spell damage he deals to sleeping units. "
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk"	"Batrider Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20%d% while Flying."
@@ -2151,6 +2151,12 @@
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk"	"Brewmaster Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100%d% regen from Salve, Bottle and Clarity."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_bristleback_perk"	"Bristleback Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_bristleback_perk_Description"	"Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%d%."
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk"	"Broodmother Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk_Description"	"Non-ultimate Summon abilities will have 20%d% mana cost refunded and 20%d% cooldown reduction. "
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk"	"Bounty Hunter Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10%d% more damage to Tracked enemies."
@@ -2332,9 +2338,6 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"	"Shadow Fiend Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk_Description"	"At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
 	
-	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk"	"Timbersaw Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
-	
 	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk"	"Silencer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk_Description"	"Silence effects applied by Silencer last 25%d% longer."
 	
@@ -2367,12 +2370,21 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_Description"         "Remain invisible while standing in place. Breaks upon moving or attacking"
+
+	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk"	"Terrorblade Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk_Description"	"Terrorblade Illusions deal 15%d% more damage, but also take 15%d% more damage. "
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk"	"Tidehunter Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes the cooldown of Ravage when Tidehunter dies. "
+
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk"	"Timbersaw Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"	"Tinker Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed."
+
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk"	"Tiny Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description"	"Increases damage done to buildings by 10%d%."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"	"Treant Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"	"Treant self-casts Living Armor and Nature's Guise when casting them on allies."
@@ -2387,7 +2399,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa does 15%d% extra damage to neutrals, including Roshan."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk"	"Venomancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk_Description"	"Increases the duration of all Poison effects Venomancer applies by 25%d%."
