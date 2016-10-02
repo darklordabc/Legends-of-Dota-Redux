@@ -41,8 +41,9 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_viper_perk = true,
     npc_dota_hero_slardar_perk = true,
     npc_dota_hero_spirit_breaker_perk = true,
+    npc_dota_hero_troll_warlord_perk = true,
   }
-  
+
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
   if not targetPerks_modifier[targetPerk:GetName()] then return true end
@@ -76,6 +77,9 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Spirit Breaker
   local perkForSpaceCow = require('abilities/hero_perks/npc_dota_hero_spirit_breaker_perk')
   perkSpaceCow(filterTable)
+  -- Perk for Troll Warlord
+  local perkForTrollWarlord = require('abilities/hero_perks/npc_dota_hero_troll_warlord_perk')
+  perkTrollWarlord(filterTable)
   -- Returning the filterTable
   return filterTable
 end
