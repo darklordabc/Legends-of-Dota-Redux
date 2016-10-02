@@ -445,6 +445,7 @@
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
     "continueFast"                                  "Ready"
+    "loading"                                       "Loading..."
     "selectBuild"                                   "Select Build"
     "selectHero"                                    "Select Hero"
     "banHero"                                       "Ban Hero"

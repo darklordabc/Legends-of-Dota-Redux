@@ -772,7 +772,7 @@
                 </Panel>
                 <Panel class="reviewButtons">
                     <Button id="reviewReadyButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                        <Label text="continueFast" />
+                        <Label text="#loading" />
                     </Button>
                 </Panel>
             </Panel>

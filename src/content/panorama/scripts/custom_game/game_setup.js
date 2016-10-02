@@ -5298,8 +5298,7 @@ function UpdateTimer() {
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
-            $('#lodTimerWarningLabel').text = $.Localize('lodPrecaching');
-            $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
+            $("#reviewReadyButton").enabled = false;
         }
         else if (currentPhase == PHASE_REVIEW) {
             // Show vs
@@ -5314,6 +5313,9 @@ function UpdateTimer() {
             var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
             for(var i = 0; i < direPlayers.length; ++i)
                 $("#reviewPlayer" + direPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            $("#reviewReadyButton").GetChild(0).text = $.Localize('continueFast');
+            $("#reviewReadyButton").enabled = true;
         }
     }
 

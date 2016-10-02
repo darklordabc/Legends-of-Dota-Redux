@@ -361,6 +361,7 @@
 "lockBuild" "Заблокировать Билд"
 "moreTime" "Ещё Времени"
 "continueFast" "Готово"
+"loading" "Загрузка..."
 "selectBuild" "Выбрать Билд"
 "selectHero" "Выбрать Героя"
 "banHero" "Забанить героя"
