@@ -4762,12 +4762,6 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_REVIEW) {
-                // Should we show the host message popup?
-                if(!seenPopupMessages.skillReviewInfo) {
-                    seenPopupMessages.skillReviewInfo = true;
-                    showPopupMessage('lodReviewMessage');
-                }
-
                 // Load all hero images
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();

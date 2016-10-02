@@ -2281,19 +2281,19 @@
     width: fill-parent-flow(1.0);
     height: 670px;
     margin-left: 320px;
-    flow-children: right-wrap;
+    flow-children: right;
     padding: 15px 15px 0 0;
 }
 
 #mutatorPanel {
-    width: 38%;
+    width: 458px;
     flow-children: right-wrap;
     align: right;
 }
 
 #optionList .OptionPanel {
     flow-children: right-wrap;
-    width: 60%;
+    width: fill-parent-flow(1.0);
 }
 
 #optionList .option {
