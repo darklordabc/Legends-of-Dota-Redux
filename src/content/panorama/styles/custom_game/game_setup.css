@@ -981,11 +981,33 @@
 }
 
 #reviewPhaseVS {
+    visibility: collapse;
+
     horizontal-align: middle;
     vertical-align: middle;
 
     width: 300px;
     z-index: 2;
+}
+
+#reviewPhaseVS.show {
+    visibility: visible;
+
+    animation-name: vsShow;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes 'vsShow' {
+    0% {
+        transform: scale3d( 0.5, 0.5, 1); 
+    }
+    70% {
+        transform: scale3d( 1.1, 1.1, 1); 
+    }
+    100% {
+        transform: scale3d( 1, 1, 1);
+    }
 }
 
 #reviewPhaseVS Image {

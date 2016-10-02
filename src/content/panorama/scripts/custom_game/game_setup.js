@@ -5301,6 +5301,9 @@ function UpdateTimer() {
             $('#lodTimerWarningLabel').text = $.Localize('lodPrecaching');
             $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
         }
+        else if (currentPhase == PHASE_REVIEW) {
+            $("#reviewPhaseVS").AddClass("show");
+        }
     }
 
     $.Schedule(0.1, UpdateTimer);
