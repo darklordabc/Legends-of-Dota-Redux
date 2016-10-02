@@ -45,7 +45,7 @@ function modifier_npc_dota_hero_bristleback_perk:OnAbilityFullyCast(keys)
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    if hero == keys.unit and ability and ability:GetManaCost() < self.manaThreshold then
+    if hero == keys.unit and ability and ability:GetManaCost(-1) < self.manaThreshold then
       local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       ability:EndCooldown()
       ability:StartCooldown(cooldown)
