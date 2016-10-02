@@ -221,3 +221,4 @@ script_generator/settings.json
 script_generator/BIN/
 
 lod_game/resource/flash3/images/workshop/
+*.vpcf_c
