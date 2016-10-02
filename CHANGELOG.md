@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Bug Fixing
 - Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 
 - Added Color Bars to the top panel of heros
+- Fixed broken mutators display on 4:3 aspect ratio
 
 ### Balance
 
