@@ -142,7 +142,7 @@ function Ingame:onStart()
             GameRules:SendCustomMessage("#cheat_activated", 0, 0)
             this:onPlayerCheat(eventSourceIndex, args)
 		elseif args.status == 'error' then
-            GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+            --GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
 		end
     end)
 

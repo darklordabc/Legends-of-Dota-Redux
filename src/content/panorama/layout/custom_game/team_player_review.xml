@@ -6,8 +6,9 @@
         <include src="file://{resources}/scripts/custom_game/team_player_review.js" />
     </scripts>
     <Panel class="reviewPlayerContainer">
-        <Panel>
+        <Panel class="reviewPlayerAvatarContainer">
             <DOTAAvatarImage id="reviewPhasePlayerAvatarBig" />
+            <Panel class="playerBackground"/>
             <Panel id="reviewPhaseHeroImageContainer" />
             <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="reviewPhasePlayerAttribute doNotShow" />
             <Label class="lodPlayerReadyText" text="Ready" />

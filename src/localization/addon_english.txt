@@ -364,7 +364,6 @@
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Balance Mode is on.</font> In Balance Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
     "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
     "lodOptionVoting"                               "Cast your vote to select the options."
-    "lodReviewMessage"                              "Please wait while the game precaches your hero and abilities. You can rearrange your abilities and view other player's builds while you wait."
 
     "lodPickAHero"  "PICK A HERO!"
 
@@ -410,9 +409,6 @@
     "lodOptionAboutCrazyAllVision"                  "Teams will shared vision."
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
-
-    // Game is currently precaching abilities / heroes, please wait!
-    "lodPrecaching"    "Setting the game up..."
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
@@ -557,6 +553,7 @@
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
     "continueFast"                                  "Ready"
+    "loading"                                       "Loading..."
     "selectBuild"                                   "Select Build"
     "selectHero"                                    "Select Hero"
     "banHero"                                       "Ban Hero"
