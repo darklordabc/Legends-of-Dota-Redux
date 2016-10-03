@@ -805,7 +805,7 @@
 	"unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to <br>all stats for each level put in a <font color=\"#ffd966\">Custom</font> ability."
 	"unique_mechanic_arc_warden"                        "Arc Warden may use a <br>consumable item on himself every 90 <br>seconds without consuming the item."
 	"unique_mechanic_axe"                        "<font color=\"#ffd966\">Culling Blade</font> kills will <br>chop the remaining cooldown times of Axe's <br>abilities in half, or by 30 seconds if the <br>remaining cooldown exceeds 1 minute."
-	"unique_mechanic_bane"                        "Bane lifesteals 100% <br>of all spell damage he deals to <br>sleeping units. "
+	"unique_mechanic_bane"                        "Bane lifesteals 100% <br>of all spell damage he deals to sleeping <br>units. "
 	"unique_mechanic_beastmaster"                        "Beastmaster gains 3 <br>Strength for every level put in <font color=\"#ffd966\">Neutral</font> <br>abilities."
 	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\"#ffd966\">Tracked</font> enemies. "
 	"unique_mechanic_bristleback"                        "Bristleback reduces <br>the cooldown of all spells which cost less <br>than 50 mana by 15%."
