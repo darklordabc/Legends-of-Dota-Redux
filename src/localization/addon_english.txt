@@ -8,11 +8,11 @@
 
     // Contributors
     "76561197988355984" "Ash47"
-    "76561197988355984_Description" "Core coder and designer"
+    "76561197988355984_Description" "Core Coder and Designer"
     "76561198054179075" "darklordabc"
     "76561198054179075_Description" "Redux Project Lead"
     "76561198001376044" "TideSofDarK"
-    "76561198001376044_Description" "UI/Spells/Perks contributor" 
+    "76561198001376044_Description" "UI/Spells/Perks Contributor" 
     "76561198301701069" "Myrl"
     "76561198301701069_Description" "Developer, Spells Contributor"  
     "76561197996377179" "Yahnich"
