@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: slardar
+--		Hero: Slardar
 --		Perk: Slardar gets 1 gold whenever he bashes a unit.
 --
 --------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_slardar_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_slardar_perk:IsHidden()
-	return true
+	return false
 end
 
 function modifier_npc_dota_hero_slardar_perk:RemoveOnDeath()

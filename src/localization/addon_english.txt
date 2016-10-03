@@ -2110,6 +2110,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
 	
+	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"	"Slardar Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk"	"Oracle Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"	"Support items used by Oracle will have their cooldowns reduced by 20%."
 
