@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Balance
 
 
-## 1.3
+## 1.3 (Steam Version)
 
 ### Bug Fixing
 - Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 
