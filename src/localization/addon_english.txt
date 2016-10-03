@@ -2109,6 +2109,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk"	"Oracle Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"	"Support items used by Oracle will have their cooldowns reduced by 20%."
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk"	"Underlord Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"	"Underlord gains +1 to all stats for each level put in a custom ability."

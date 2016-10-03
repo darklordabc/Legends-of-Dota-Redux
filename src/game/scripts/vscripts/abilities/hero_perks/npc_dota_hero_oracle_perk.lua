@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Oracle
---    Perk: All support items have their cooldowns decreased by 20%
+--    Perk: Support items used by Oracle will have their cooldowns reduced by 20%.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_oracle_perk", "abilities/hero_perks/npc_dota_hero_oracle_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -28,10 +28,10 @@ function modifier_npc_dota_hero_oracle_perk:OnCreated()
   if IsServer() then
     local cooldownPercentReduction = 20
     self.cooldownReduction = 1 - (cooldownPercentReduction / 100)
-
+	-- Hard-coded due to being used in a listener for items purchased. 
     self.limitedItems = {
       item_buckler = true,
-      item_headdress = true,
+	  item_iron_talon = true,
       item_urn_of_shadows = true,
       item_medallion_of_courage = true,
       item_arcane_boots = true,
