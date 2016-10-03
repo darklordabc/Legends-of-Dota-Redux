@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: tiny
---		Perk: 
+--		Hero: Tiny
+--		Perk: Increases damage done to buildings by 10%. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_tiny_perk", "abilities/hero_perks/npc_dota_hero_tiny_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,9 +17,25 @@ function modifier_npc_dota_hero_tiny_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tiny_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tiny_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
+function modifier_npc_dota_hero_tiny_perk:DeclareFunctions()
+	return { MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE }
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tiny_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
+	local target = keys.target
+	if target:IsBuilding() then
+		return 10
+	else 
+		return 0
+	end
+end
+--------------------------------------------------------------------------------------------------------
