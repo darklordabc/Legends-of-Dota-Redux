@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.4
+
+### Bug Fixing/New Features
+- Added chinese localization (might not be in-game yet)
+
+### Balance
+
+
 ## 1.3
 
 ### Bug Fixing
