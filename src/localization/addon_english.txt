@@ -2108,7 +2108,7 @@
 	"DOTA_Tooltip_modifier_charges_Description"	"Amount of charges left."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
+	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges. <br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"	"Slardar Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit."
@@ -2136,7 +2136,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an Ice debuff."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk"	"Antimage Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk_Description"	"After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk_Description"	"After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"  "Silenced"
     "DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Anti-Mage's Perk. Silenced because Anti-Mage blinked within 300 radius."
 	
@@ -2168,7 +2168,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10%d% more damage to Tracked enemies."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75%d% damage from Self-Damaging spells."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75%d% damage from Self-Damaging spells.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"	
 
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms."
@@ -2180,16 +2180,16 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds."
 
     "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"   "Crystal Maiden Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Gaining bonus movement speed per level in support skills."
+    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Gaining bonus movement speed per level in support skills.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk"	"Dark Seer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"TBD"	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"	
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"   "Break"
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"   "Doom's Perk. Your passives are disabled while doomed."
 	
@@ -2199,7 +2199,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"	"Dragon Knight Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"	
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk"	"Drow Ranger Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger."	
@@ -2208,7 +2208,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health."	
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Earth Spirit perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Gain +3 damage for each point in Earth abilities."
+	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Gain +3 damage for each point in Earth abilities.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 		
 	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk"	"Elder Titan Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3%d% for every aura Elder Titan is carrying."	
@@ -2223,16 +2223,16 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"	"Huskar Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"	"Huskar regenerates 1hp/s for every 10% of health he is missing."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining 5 intelligence per unique spell cast."
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining 5 intelligence per unique spell cast.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk"	"Io Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell Io casts on a Tethered Hero also gets cast on Io."
+	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell Io casts on a Tethered Hero also gets cast on Io.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk"	"Jakiro Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_Description"	"Fire and Ice spells cast sequentially will refund 40%d% mana and have 20%d% reduced cooldowns."
@@ -2242,13 +2242,13 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_ice_Description"	"The next Ice spell cast will refund 40%d% mana and have a 20%d% reduced cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk"               "Leshrac Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk_Description"   "Gained a free level of Octarine Vampirism."
+	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk_Description"   "Gained a free level of Octarine Vampirism.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk"	"Lich Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk"	"Lifestealer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
@@ -2263,7 +2263,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%d%."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range."
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
@@ -2287,7 +2287,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50%d%. "
 
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist."
+    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk"	"Nyx Assassin Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible."
@@ -2309,26 +2309,26 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50%d% of their manacost refunded, and their cooldowns reduced by 2 seconds."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"	"Phoenix Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk"	"Pugna Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk_Description"	"Drain spells will have 50%d% mana refunded and have 25%d% reduced cooldowns when cast by Pugna."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk_Description"	"Drain spells will have 50%d% mana refunded and have 25%d% reduced cooldowns when cast by Pugna.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk"	"Queen of Pain Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk_Description"	"QOP will deal 10%d% extra damage to males but receive extra damage from females."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk"	"Razor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"	"Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"	"Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk"	"Riki Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk_Description"	"Increases Riki's health regeneration by 4 while invisible. "
@@ -2361,7 +2361,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"	"Slark gains +3 agility for each level put in an mobility/escape skill."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"	"Spectre Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"	"Spectre gains phased movement for 4 seconds every time she uses an ability."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"	"Spectre gains phased movement for 4 seconds every time she uses an ability.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."
 
@@ -2371,7 +2371,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk"	"Sven Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"	"At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"	"At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk"	"Techies Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk_Description"	"Traps and Explosives will have 50%d% of their mana refunded and cooldowns reduced by 50%d%."
@@ -2392,7 +2392,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"	"Tinker Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk"	"Tiny Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description"	"Increases damage done to buildings by 10%d%."
@@ -2407,7 +2407,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk_Description"		"Walrus Kick and Walrus Punch will refund their manacost when used by Tusk."
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk"  "Undying Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan."
@@ -2421,7 +2421,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk"	"Viper Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"	"Poison effects applied by Viper also lower the target's armor by 2."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"	"Poison effects applied by Viper also lower the target's armor by 2.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
 
@@ -2434,11 +2434,10 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk"	"Windranger Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk_Description"	"If Windranger has no passives, all her active spells will refund 20%d% mana and have 20%d% reduced cooldowns."	
 
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_perk"	"Wyvern Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_perk_Description"    "When Winter Wyvern's health and mana are above 90% she gains flying status after 5 seconds."
   	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"	"Flight Delay"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 90%d% she gains flying status after 5 seconds.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk"	"Witch Doctor Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk_Description"	"Healing abilities have 25%d% extra effectiveness when used by Witch Doctor."
