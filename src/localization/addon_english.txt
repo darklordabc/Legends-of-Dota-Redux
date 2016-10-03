@@ -853,7 +853,7 @@
 	"unique_mechanic_sven"                        "At the start of the game, <br>Sven gains a free level of <font color=\"#ffd966\">Great Cleave</font>, <br>whether he has it or not."
 	"unique_mechanic_techies"                        "<font color=\"#ffd966\">Traps</font> and <font color=\"#ffd966\">Explosives</font> <br>will have 50% of their mana refunded and <br>cooldowns reduced by 50% when used <br>by Techies."
 	"unique_mechanic_templar_assassin"          "Templar Assassin turns <br>invisible for 10 seconds after not moving for <br>5 seconds. Invisibility breaks upon moving <br>or attacking."
-	"unique_mechanic_terrorblade"                        "Terrorblade Illusions deal <br>15% more damage, but also take 15% more damage. "
+	"unique_mechanic_terrorblade"                        "Terrorblade Illusions <br>deal 15% more damage, but also take 15% <br>more damage."
 	"unique_mechanic_tinker"                        "When Tinker uses <br><font color=\"#ffd966\">Scientific</font> spells, there is a 7% chance for <br>them to be instantly refreshed."
 	"unique_mechanic_tiny"                        "Tiny deals 10% more <br>damage to buildings."
 	"unique_mechanic_treant"                        "Treant self-casts <br><font color=\"#ffd966\">Living Armor</font> and <font color=\"#ffd966\">Nature's Guise</font> when <br>casting them on allies."
