@@ -19,6 +19,9 @@ function modifier_npc_dota_hero_jakiro_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk:IsHidden()
+	local caster = self:GetCaster()
+	if caster:HasModifier(self.icePerk) then return true end
+	if caster:HasModifier(self.firePerk) then return true end
 	return false
 end
 --------------------------------------------------------------------------------------------------------
@@ -27,6 +30,7 @@ function modifier_npc_dota_hero_jakiro_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk:OnCreated(keys)
+	self.timeToCast = 13
 	self.cooldownPercentReduction = 20
 	self.manaPercentReduction = 40
 
@@ -61,7 +65,7 @@ function modifier_npc_dota_hero_jakiro_perk:OnAbilityFullyCast(keys)
 					ability:StartCooldown(cooldown)
 					caster:RemoveModifierByName(self.firePerk)
 				end
-				caster:AddNewModifier(caster,nil,self.icePerk,{})
+				caster:AddNewModifier(caster,nil,self.icePerk,{Duration = self.timeToCast})
 			elseif ability:HasAbilityFlag("ice") then
 				if caster:HasModifier(self.icePerk) then
 					caster:GiveMana(ability:GetManaCost(ability:GetLevel() - 1) * self.manaReduction)
@@ -70,7 +74,7 @@ function modifier_npc_dota_hero_jakiro_perk:OnAbilityFullyCast(keys)
 					ability:StartCooldown(cooldown)
 					caster:RemoveModifierByName(self.icePerk)
 				end
-				caster:AddNewModifier(caster,nil,self.firePerk,{})
+				caster:AddNewModifier(caster,nil,self.firePerk,{Duration = self.timeToCast})
 			end
 		end
 	end
@@ -81,7 +85,7 @@ end
 if modifier_npc_dota_hero_jakiro_perk_fire == nil then modifier_npc_dota_hero_jakiro_perk_fire = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk_fire:RemoveOnDeath()
-	return false
+	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk_fire:GetTexture()
@@ -93,7 +97,7 @@ end
 if modifier_npc_dota_hero_jakiro_perk_ice == nil then modifier_npc_dota_hero_jakiro_perk_ice = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk_ice:RemoveOnDeath()
-	return false
+	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk_ice:GetTexture()
