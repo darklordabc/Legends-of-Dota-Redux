@@ -2370,8 +2370,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk"	"Techies Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk_Description"	"Traps and Explosives will have 50%d% of their mana refunded and cooldowns reduced by 50%d%."
 
-  	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk"         "Templar Assassin Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_perk_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break"         "Templar Assassin Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
+	
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_Description"         "Remain invisible while standing in place. Breaks upon moving or attacking"
 

@@ -19,7 +19,7 @@ function modifier_npc_dota_hero_templar_assassin_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:IsHidden()
-    return false
+    return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:OnCreated(keys)
@@ -64,7 +64,7 @@ end
 if modifier_npc_dota_hero_templar_assassin_invis_break == nil then modifier_npc_dota_hero_templar_assassin_invis_break = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_invis_break:IsHidden()
-    return true
+    return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_invis_break:OnDestroy()
