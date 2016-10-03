@@ -3372,7 +3372,7 @@ function Pregame:checkForReady()
     if self:getPhase() == constants.PHASE_BANNING then
         maxTime = OptionManager:GetOption('banningTime')
 
-        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[Pregame:getHostPlayer():GetPlayerID()] == 1)
+        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[self.mainHost] == 1)
     end
 
     -- If we are in the random phase
