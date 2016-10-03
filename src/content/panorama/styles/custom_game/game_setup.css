@@ -22,7 +22,7 @@
     border-radius: 8px;
     padding: 16px;
     width: 600px;
-    height: 200px;
+    height: 250px;
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
@@ -2085,9 +2085,8 @@
 
 .VotingOptionInfo {
     flow-children: right;
-    horizontal-align: right;
-	
-	margin-left: 5px;
+
+	margin-left: 10px;
 	width: 18px;
 	height: 18px;
 }
@@ -2238,7 +2237,7 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 130px;
+    margin-top: 10px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
@@ -2328,7 +2327,7 @@
 }
 
 #importAndExportCaption {
-     width: 71px;
+    flow-children: right;
 }
 
 .importAndExportButton {
@@ -2344,7 +2343,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: right;
+    flow-children: left;
     margin-left: -10px;
 }
 

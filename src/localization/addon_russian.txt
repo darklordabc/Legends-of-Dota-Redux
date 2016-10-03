@@ -46,7 +46,7 @@
 "lodStageButtonReview" "Обзор"
 
 // The options menu
-"lockOptions" "Заблокировать Опции"
+"lockOptions" "Заблокировать"
 "lockTeamsFirst" "Перед Продолжением Заблокируйте Команды"
 "importAndExport_code" "Настройки Кода"
 "importAndExport_apply" "Применить"
@@ -60,19 +60,19 @@
 "filter_by_category" "Фильтровать по категории:"
 "filter_by_name" "Фильтровать по имени:"
 "filter_by_value" "Фильтровать по цене:"
-"presets_lod" "Настройки Билдов"
+"presets_lod" "Билды"
 "heroes_lod" "Герои"
 "skills_lod" "Скилы"
 "common_selection_lod" "Обычные настройки"
 "banning_lod" "Настройки Банов"
 "game_speed_lod" "Скорость игры"
 "towers_creeps_lod" "Башни и Крипы"
-"advanced_selection_lod" "Дополнительные Настройки"
+"advanced_selection_lod" "Доп. Настройки"
 "buffs_lod" "Бафы"
 "crazyness_lod" "Прочее"
 
-"lodOptionYes" "За"
-"lodOptionNo" "Против"
+"lodOptionYes" "Да"
+"lodOptionNo" "Нет"
 
 // Option text
 "lodOptionsPresetGamemode" "Задание Мода Игры"
@@ -198,10 +198,10 @@
 "lodOptionDesGameSpeedGoldTickRate" "Золота за Тик"
 "lodOptionAboutGameSpeedGoldTickRate" "количество золота, которое прибывает каждый интервал. По умолчанию в доте это 1 золото за интервал."
 
-"lodOptionDesGameSpeedGoldModifier" "Модификатор Получения Золота в Процентах (100 = обычный)"
+"lodOptionDesGameSpeedGoldModifier" "Модификатор Золота в % (100 по умолчанию)"
 "lodOptionAboutGameSpeedGoldModifier" "Множитель количества золота, получаемого за убийства крипов/ героев/ рошана"
 
-"lodOptionDesGameSpeedEXPModifier" "Модификатор Получения Опыта в Процентах (100 = обычный)"
+"lodOptionDesGameSpeedEXPModifier" "Модификатор Опыта в % (100 по умолчанию)"
 "lodOptionAboutGameSpeedEXPModifier" "Множитель количества опыта, получаемого за убийства крипов/ героев/ рошана"
 
 "lodOptionDesGameSpeedTowersPerLane" "Число Башен На Линии"
@@ -222,12 +222,12 @@
 "lodOptionDesAdvancedHeroAbilities" "Разрешить Способности Героев"
 "lodOptionDesAdvancedNeutralAbilities" "Разрешить Способности Нейтралов"
 "lodOptionDesAdvancedCustomSkills" "Разрешить Новые способности"
-"lodOptionDesAdvancedOPAbilities" "Запретить Чрезмерно Сильные Способности"
+"lodOptionDesAdvancedOPAbilities" "Запретить Сверхсильные Способности"
 "lodOptionDesCrazyWTF" "Включить WTF мод"
 "lodOptionDesGameSpeedUpgradedUlts" "Бесплатный Стартовый Эффект Аганима"
 "lodOptionDesGameSpeedFreeCourier" "Бесплатный курьер в начале"
 "lodOptionDesGameSpeedStrongTowers" "Разрешить Усиленные Башни"
-"lodOptionDesCreepPower" "Увеличить прирост силы линейных крипов со временем"
+"lodOptionDesCreepPower" "Прирост силы линейных крипов со временем"
 "lodOptionDesCrazyNoCamping" "Предотвратить Кемперство Фонтана"
 "lodOptionDesCrazyUniversalShop" "Универсальный Магазин"
 "lodOptionDesCrazyAllVision" "Вся Карта Видна"
@@ -243,13 +243,13 @@
 "lodUniqueSkillsTeam" "Уникальные спосбности в команде"
 "lodUniqueSkillsGlobal" "Глобальные Уникальные Способности"
 
-"lodOptionDesGameSpeedRespawnTimePercentage" "Проценты Времени Возрождения Героя (100 = normal)"
+"lodOptionDesGameSpeedRespawnTimePercentage" "Время Возрождения Героя в % (100 по умолчанию)"
 "lodOptionAboutGameSpeedRespawnTimePercentage" "Уменьшает обычное время возрождения до выбранного процента."
 
 "lodOptionDesGameSpeedRespawnTimeConstant" "Дополнительное Время Возрождения Героя"
 "lodOptionAboutGameSpeedRespawnTimeConstant" "Добавляет постоянное количество секунд к обычному времени возрождения героя"
 
-"lodOptionDesBuybackCooldownTimeConstant" "Buyback Cooldown (420 = обычный)"
+"lodOptionDesBuybackCooldownTimeConstant" "Buyback Cooldown (420 по умолчанию)"
 "lodOptionAboutBuybackCooldownTimeConstant" "Время перезарядки выкупа героя."
 
 "lodOptionDesGameSpeedRespawnTime" "Время Возрождения"
@@ -264,15 +264,15 @@
 
 // Balance Mode
 "balance_mode_tier_1" "Бесчестные (120)"
-"balance_mode_tier_2" "Чрезмерно Сильные (100)"
-"balance_mode_tier_3" "Наилучшайшие (90)"
+"balance_mode_tier_2" "Великие (100)"
+"balance_mode_tier_3" "Наилучшие (90)"
 "balance_mode_tier_4" "Лучшие (80)"
-"balance_mode_tier_5" "Превосходные (70)"
-"balance_mode_tier_6" "Фантастические (60)"
-"balance_mode_tier_7" "Великолепные (50)"
-"balance_mode_tier_8" "Очень Хорошие (40)"
-"balance_mode_tier_9" "Хорошие (30)"
-"balance_mode_tier_10" "Достойные (20)"
+"balance_mode_tier_5" "Потрясные (70)"
+"balance_mode_tier_6" "Фантастика (60)"
+"balance_mode_tier_7" "Прекрасные (50)"
+"balance_mode_tier_8" "Хорошие (40)"
+"balance_mode_tier_9" "Достойные (30)"
+"balance_mode_tier_10" "Средние (20)"
 "balance_mode_tier_11" "Обычные (10)"
 "balance_mode_tier_12" "Бесплатные"
 "balance_mode_points" "Очков Осталось: {d:points}"
@@ -290,7 +290,7 @@
 
 // Info
 "lodOptionAboutPresetGamemode" "Выберите из предопределённых игровых модов.\nЭту опцию можно изменить, только если вы играете на 'custom' карте.\n\nAll Pick: Выбор из всех доступных способностей.\nMirror Draft: Выбор из ограниченного числа героев. одному из оппонентов достанется идентичный набор для выбора.\nAll Random: Выберите из случайного набора билдов.\nCustom: Создайте пользовательский мод игры."
-"lodOptionAboutPresetBanning" "Используйте предопределённый мод банов.\n\nBalanced bans: Набор раздражающих способностей будет забанен.\nFast Ban Phase: Чрезмерно Сильные способности будут забанены, а также игроки смогут забанить по 1 герою и 3 способности.\nFull Ban Phase: Balanced bans будут использованы, а также игроки смогут забанить до 10 способностей и 2 героев каждый.\nNo Bans: Чрезмерно Сильные способности будут забанены, а игроки не смогут забанить что-либо ещё"
+"lodOptionAboutPresetBanning" "Используйте предопределённый мод банов.\n\nBalanced bans: Набор раздражающих способностей будет забанен.\nFast Ban Phase: Сверхсильные способности будут забанены, а также игроки смогут забанить по 1 герою и 3 способности.\nFull Ban Phase: Balanced bans будут использованы, а также игроки смогут забанить до 10 способностей и 2 героев каждый.\nNo Bans: Сверхсильные способности будут забанены, а игроки не смогут забанить что-либо ещё"
 "lodOptionAboutPresetSlots" "Число слотов способностей героя будет. (4 - 6)"
 "lodOptionAboutPresetUlts" "Максимальное число ультимативных способностей разрешённое игрокам. (0 - 6)"
 "lodOptionAboutPresetMirrorHeroes" "Число героев, получаемое игроками для проекта."
@@ -402,7 +402,7 @@
 // Categories
 "lodCategory_main" "Способности Героев"
 "lodCategory_neutral" "Способности Нейтралов"
-"lodCategory_OP" "Чрезмерно Сильные Способности"
+"lodCategory_OP" "Сверхсильные Способности"
 "lodCategory_custom" "Пользовательские способности"
 
 // Error messages
