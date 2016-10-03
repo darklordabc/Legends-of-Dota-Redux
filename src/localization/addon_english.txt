@@ -485,7 +485,7 @@
 	"hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
 	"hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
 	"hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
-	"hintAlchemist"                         "Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters."
+	"hintAlchemist"                         "Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters."
 	"hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item."
 	"hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
 	"hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
@@ -756,7 +756,7 @@
     "unique_mechanic_night_stalker"                 "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give Night Stalker unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_gyrocopter"                    "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give Gyrocopter a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
     "unique_mechanic_keeper_of_the_light"           "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give KOTL unobstructed day vision. <br>If 'Free Scepter' option is enabled, this hero <br>will not benefit from it."
-    "unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. Alchemist <br>can also gift <font color=\"#ffd966\">Aghanim's Scepter</font> to allies."
+    "unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. He can also <br>gift <font color=\"#ffd966\">Aghanim's Scepter</font> to allies."
     "unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
     "unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero. <br><font color=\"#ffd966\">Rage</font> effects on Troll Warlord have 20% <br>longer duration."
     "unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>When Spirit Breaker bashes, he also applies <br><font color=\"#ffd966\">Break</font>."
@@ -2111,7 +2111,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges. <br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"	"Slardar Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit."
+	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk"	"Lycan Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk_Description"	"Shapeshift lasts 20 seconds longer during the night when cast by Lycan."
@@ -2123,7 +2123,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"	"Underlord gains +1 to all stats for each level put in a custom ability."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"	"Alchemist Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"	"Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters."
+	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"	"Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge."
@@ -2194,7 +2194,7 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"   "Doom's Perk. Your passives are disabled while doomed."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk"	"Death Prophet Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_Description"	"Any silence applied by Death Prophet also applies mute."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_Description"	"Any silence applied by Death Prophet also applies mute.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute"               "Muted"
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."	
 	
@@ -2205,7 +2205,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger."	
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk"	"Earthshaker Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health."	
+	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"	
 
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Earth Spirit perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Gain +3 damage for each point in Earth abilities.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -2220,7 +2220,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty."
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed."
+	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -2251,10 +2251,10 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk"	"Lifestealer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
  	
 	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk"	"LC Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
  	
  	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk"	"Lina Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk_Description"	"Increases Lina's intelligence by 3 for each level put in fire-type spells."
@@ -2266,7 +2266,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 
     "DOTA_Tooltip_modifier_npc_dota_hero_magnataur_perk"    "Magnus Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_magnataur_perk_Description"    "When Magnus casts Enemy Moving abilities, they will have 25%d% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted." 
@@ -2275,7 +2275,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"	"Morphling Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50%d% bonus movement speed in water."
@@ -2290,7 +2290,7 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk"	"Nyx Assassin Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk"	"Outworld Devourer"
   	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_Description"	"Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
@@ -2343,7 +2343,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk"	"Shadow Shaman"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"	"All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%."
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"	"All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"	"Shadow Fiend Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk_Description"	"At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
@@ -2386,7 +2386,7 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk_Description"	"Terrorblade Illusions deal 15%d% more damage, but also take 15%d% more damage. "
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk"	"Tidehunter Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes the cooldown of Ravage when Tidehunter dies. "
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes the cooldown of Ravage when Tidehunter dies. <br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk"	"Timbersaw Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
@@ -2410,7 +2410,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds.<br><br><font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 
   	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk"	"Venomancer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk_Description"	"Increases the duration of all Poison effects Venomancer applies by 25%d%."
