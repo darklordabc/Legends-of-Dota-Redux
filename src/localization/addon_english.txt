@@ -808,7 +808,7 @@
 	"unique_mechanic_bane"                        "Bane lifesteals 100% <br>of all spell damage he deals to <br>sleeping units. "
 	"unique_mechanic_beastmaster"                        "Beastmaster gains 3 <br>Strength for every level put in <font color=\"#ffd966\">Neutral</font> <br>abilities."
 	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\"#ffd966\">Tracked</font> enemies. "
-	"unique_mechanic_bristleback"                        "Bristleback reduces <br>the cooldown of all spells which cost less than 50 <br>mana by 15%. "
+	"unique_mechanic_bristleback"                        "Bristleback reduces <br>the cooldown of all spells which cost less <br>than 50 mana by 15%."
 	"unique_mechanic_broodmother"                        "Non-ultimate <font color=\"#ffd966\">Summon</font> <br>abilities will have 20% mana cost refunded <br>and 20% reduced cooldown. "
 	"unique_mechanic_chaos_knight"                        "Chaos Knight gains <br>200 extra gold for each ability he randoms. "
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
