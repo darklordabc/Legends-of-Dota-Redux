@@ -500,7 +500,7 @@
 	"hintKunkka"                         "When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
 	"hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
 	"hintLoneDruid"                         "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range."
-	"hintLycan"                         "<b>Shapeshift</b> lasts 20 seconds longer during the night when cast by Lycan. "
+	"hintLycan"                         "Shapeshift lasts 20 seconds longer during the night when cast by Lycan."
 	"hintMagnus"                         "When Magnus casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
 	"hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect."
 	"hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
@@ -826,7 +826,7 @@
 	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\"#ffd966\">Octarine <br>Vampirism</font>, whether he has it or not."
 	"unique_mechanic_lone_druid"                        "Lone Druid transfers <br>50% of damage taken to his <font color=\"#ffd966\">Spirit Bear</font> if he <br>has one and its within 1100 range."
 	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\"#ffd966\">Lunar Blessing</font>, whether she has it or not."
-	"unique_mechanic_lycan"                        "<font color=\"#ffd966\">Shapeshift</font> lasts 20 seconds <br>longer during the night when cast by Lycan. "
+	"unique_mechanic_lycan"                        "<font color=\"#ffd966\">Shapeshift</font> lasts 20 <br>seconds longer during the night when cast <br>by Lycan."
 	"unique_mechanic_magnataur"                        "When Magnus casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
 	"unique_mechanic_medusa"                        "Medusa gains +0.5 <br>mana regeneration per active <font color=\"#ffd966\">Toggle</font> effect."
 	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#ffd966\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
@@ -2112,6 +2112,9 @@
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"	"Slardar Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit."
+	
+	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk"	"Lycan Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk_Description"	"Shapeshift lasts 20 seconds longer during the night when cast by Lycan."
 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk"	"Oracle Perk"
 	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"	"Support items used by Oracle will have their cooldowns reduced by 20%."
