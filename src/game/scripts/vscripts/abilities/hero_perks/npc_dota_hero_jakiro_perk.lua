@@ -54,15 +54,6 @@ function modifier_npc_dota_hero_jakiro_perk:OnAbilityFullyCast(keys)
 		local ability = keys.ability
 		if caster == keys.unit and ability then
 			if ability:HasAbilityFlag("fire") then
-				if caster:HasModifier(self.icePerk) then
-					caster:GiveMana(ability:GetManaCost(ability:GetLevel() - 1) * self.manaReduction)
-					local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
-					ability:EndCooldown()
-					ability:StartCooldown(cooldown)
-					caster:RemoveModifierByName(self.icePerk)
-				end
-				caster:AddNewModifier(caster,nil,self.firePerk,{})
-			elseif ability:HasAbilityFlag("ice") then
 				if caster:HasModifier(self.firePerk) then
 					caster:GiveMana(ability:GetManaCost(ability:GetLevel() - 1) * self.manaReduction)
 					local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
@@ -71,6 +62,15 @@ function modifier_npc_dota_hero_jakiro_perk:OnAbilityFullyCast(keys)
 					caster:RemoveModifierByName(self.firePerk)
 				end
 				caster:AddNewModifier(caster,nil,self.icePerk,{})
+			elseif ability:HasAbilityFlag("ice") then
+				if caster:HasModifier(self.icePerk) then
+					caster:GiveMana(ability:GetManaCost(ability:GetLevel() - 1) * self.manaReduction)
+					local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
+					ability:EndCooldown()
+					ability:StartCooldown(cooldown)
+					caster:RemoveModifierByName(self.icePerk)
+				end
+				caster:AddNewModifier(caster,nil,self.firePerk,{})
 			end
 		end
 	end
