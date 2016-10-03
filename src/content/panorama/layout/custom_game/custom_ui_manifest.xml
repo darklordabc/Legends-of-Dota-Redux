@@ -32,5 +32,8 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/cheats.xml" />
+        <!-- Textures compiling stuff
+            <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
+        -->
     </Panel>
 </root>
