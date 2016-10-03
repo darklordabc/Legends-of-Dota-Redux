@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Bug Fixing/New Features
 - Added chinese localization (might not be in-game yet)
+- Added flags to the credits page
 
 ### Balance
 
