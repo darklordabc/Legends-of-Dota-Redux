@@ -150,6 +150,35 @@ function Ingame:onStart()
     ListenToGameEvent('player_connect_full', function(keys)
         this:checkBalanceTeamsNextTick()
     end, nil)
+	
+	-- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
+	if OptionManager:GetOption('useFatOMeter') > 0 and OptionManager:GetOption('useFatOMeter') <= 3 then
+		local maxPlayers = 24
+		this.fatData = {}
+
+		for playerID = 0, (maxPlayers-1) do
+			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+			if hero and IsValidEntity(hero) then
+				this.fatData[playerID] = {
+					defaultModelScale = hero:GetModelScale() --not 1 for every hero, used to make sure size is expressed as a percentage
+					modelScaleDiifference = 0.0 --mainly scaled by this value so as not to intefere with other possible scale changers
+					maxScaleMultiple = 4.0 --placeholder, will scale per-hero from a lookup. using a relatively sane value for now
+					scaleNextInterval = 0.0 --per-timer proc scale update
+					fatness = 0.0 -- 0-100, with 100 being maxScaleMultiple times default and 0 being default.
+				}
+			end
+		end
+	end
+end
+
+--General Fat-O-Meter thinker. Runs infrequently.
+function Ingame:FatOMeterThinker()
+
+end
+
+--Does intermediate size updates for Fat-O-Meter. Called often, don't do anything crazy in here.
+function Ingame:FatOMeterTimer()
+
 end
 
 function Ingame:returnCustomTeams(eventSourceIndex, args)

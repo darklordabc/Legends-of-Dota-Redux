@@ -1955,6 +1955,11 @@ function Pregame:initOptionSelector()
         lodOptionCrazyWTF = function(value)
             return value == 0 or value == 1
         end,
+		
+		-- Other -- Fat-O-Meter
+        lodOptionCrazyFatOMeter = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end,
     }
 
     -- Callbacks
@@ -2079,6 +2084,10 @@ function Pregame:initOptionSelector()
 
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
+				
+				-- Disable Fat-O-Meter
+				self:setOption("lodOptionCrazyFatOMeter", 0)
+
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2600,6 +2609,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
+		OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2766,6 +2776,7 @@ function Pregame:processOptions()
 			        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
 			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
 			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
+					['Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
 			    })
 
 				-- Draft arrays
