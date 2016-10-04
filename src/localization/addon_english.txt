@@ -33,6 +33,8 @@
     "76561197996788368_Description" "Developer, UI"
 	"76561198061842355" "Only biscuit"
     "76561198061842355_Description" "Tester, Moral Support"
+	"76561197990183779" "Cool Robbit"
+    "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
 
     // Teams
     "theRadiant"                                    "The Radiant"
