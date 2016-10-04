@@ -2551,7 +2551,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk"	"Warlock Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"	"Warlock starts the game with 2 free Observer Wards."
 	
-	/// MISSING WEAVER PERK
+	/// WEAVER​
+	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk"  "Weaver Perk"
+	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_Description"   "Automatically casts Time Lapse upon taking fatal damage." 
 	
 	/// WINDRANGER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk"	"Windranger Perk"
