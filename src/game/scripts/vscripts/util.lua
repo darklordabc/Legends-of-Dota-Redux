@@ -620,6 +620,8 @@ function CDOTA_BaseNPC:IsSleeping()
         return true
     elseif self:HasModifier("modifier_sleep_cloud_effect") then 
         return true
+    elseif self:HasModifier("modifier_naga_siren_song_of_the_siren") then 
+        return true
     else
         return false
     end
