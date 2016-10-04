@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Weaver
---		Perk: Automatically casts Time Lapse upon taking fatal damage. 
+--		Perk: If Weaver has Time Lapse, he will automatically cast it upon taking fatal damage. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_weaver_perk", "abilities/hero_perks/npc_dota_hero_weaver_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
