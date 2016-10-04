@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added new Mutator: Fat-O-Meter
 
 ### Balance
+- Some Tower abilities that are extremely OP now require minium levels to learn. They are still not recommended for play.
 
 
 ## 1.3 - Steam Version
