@@ -41,10 +41,16 @@ if IsServer() then
     function modifier_npc_dota_hero_weaver_perk:OnTakeDamage(params)
         if params.unit == self:GetParent() then
             if params.damage > self:GetParent():GetHealth() and self.lapse and self.lapse:IsCooldownReady() and self.lapse:GetLevel() > 0 then
-                --self:GetParent():CastAbilityNoTarget(self.lapse, self:GetParent():GetPlayerID())
-                self.lapse:OnSpellStart()
-                self.lapse:StartCooldown(self.lapse:GetTrueCooldown())
-                self:GetParent():SpendMana(self.lapse:GetManaCost(-1),self.lapse)
+                if self:GetParent():HasScepter() then
+                    self:GetParent():SetCursorCastTarget(self:GetParent())
+                    self.lapse:OnSpellStart()
+                    self.lapse:StartCooldown(self.lapse:GetTrueCooldown())
+                    self:GetParent():SpendMana(self.lapse:GetManaCost(-1),self.lapse)
+                else
+                    self.lapse:OnSpellStart()
+                    self.lapse:StartCooldown(self.lapse:GetTrueCooldown())
+                    self:GetParent():SpendMana(self.lapse:GetManaCost(-1),self.lapse)
+                end
             end
         end
     end
