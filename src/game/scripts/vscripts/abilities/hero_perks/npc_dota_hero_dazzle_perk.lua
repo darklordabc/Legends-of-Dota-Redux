@@ -1,4 +1,3 @@
-local util = require('util')
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: dazzle
@@ -31,7 +30,7 @@ function modifier_npc_dota_hero_dazzle_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
 
-        if caster:HasAbility("dazzle_shallow_grave") and util:playerIsBot(caster:GetPlayerOwnerID()) == false then
+        if caster:HasAbility("dazzle_shallow_grave") and (not caster.GetPlayerOwnerID or PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) <= 0) then
 	        self.grave = caster:AddAbility("dazzle_shallow_grave_perk")
 	        caster:SwapAbilities("dazzle_shallow_grave","dazzle_shallow_grave_perk",false,true)
         end
