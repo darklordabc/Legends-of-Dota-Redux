@@ -11,9 +11,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Changed Icons for top right buttons
 - Bot abilities are no longer shuffled
 - Added new Mutator: Fat-O-Meter
+- Fixed bots not moving at start
 
 ### Balance
-- Some Tower abilities that are extremely OP now require minium levels to learn. They are still not recommended for play.
+- Some Tower abilities that are extremely OP now require minium levels to learn. They are still not recommended for play
+- Enemy abilities are now in scoreboard from start
 
 
 ## 1.3 
