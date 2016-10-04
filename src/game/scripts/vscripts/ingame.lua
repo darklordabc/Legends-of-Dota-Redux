@@ -111,6 +111,16 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+	
+	--- Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
+	Timers:CreateTimer(function ()
+           Convars:SetBool("dota_all_vision", true)
+        end, 'enable_all_vision_fix', 1)
+		
+	Timers:CreateTimer(function ()
+           Convars:SetBool("dota_all_vision", false)
+        end, 'disable_all_vision_fix', 1.2)
+		
 	--Attempt to enable cheats
 	Convars:SetBool("sv_cheats", true)
     local isCheatsEnabled = Convars:GetBool("sv_cheats")
@@ -138,7 +148,7 @@ function Ingame:onStart()
             GameRules:SendCustomMessage("#cheat_activated", 0, 0)
             this:onPlayerCheat(eventSourceIndex, args)
 		elseif args.status == 'error' then
-            GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+            --GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
 		end
     end)
 
