@@ -157,6 +157,9 @@ function setBackground() {
     }, {
         img: 'file://{images}/items/tome_of_knowledge.png',
         txt: '#hintShareEXP'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_fatOMeter.png',
+        txt: '#hintFatOMeter'
     }];
 
     // How long to wait before we show the next tip
