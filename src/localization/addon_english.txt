@@ -821,7 +821,7 @@
 	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\"#ffd966\">Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
 	"unique_mechanic_phantom_lancer"			"At the start of the <br>game, Phantom Lancer gains a free level of <br><font color=\"#ffd966\">Phantom Rush</font>, whether he has it or not."
 	"unique_mechanic_phoenix"			"Phoenix passively <br>triggers <font color=\"#ffd966\">Supernova</font> when taking lethal <br>damage."
-	"unique_mechanic_puck"			"Puck has a 50%<br> chance to reflect disjointed spells.<br><br><font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"unique_mechanic_puck"			"Puck has a 50%<br> chance to reflect disjointed spells."
 	"unique_mechanic_pudge"                        "Pudge receives 2 <br>charges of <font color=\"#ffd966\">Meat Hook</font>. When Meat Hook <br>deals damage, Pudge receives a debuff which <br>prevents Meat Hook from dealing damage."
 	"unique_mechanic_pugna"                        "<font color=\"#ffd966\">Drain</font> spells will have <br>50% mana refunded and have 25% reduced <br>cooldowns when cast by Pugna."
 	"unique_mechanic_queenofpain"           "Queen of Pain deals <br>10% more damage to <font color=\"#ffd966\">Male</font> heroes, but <br>recieves 10% more damage from <font color=\"#ffd966\">Female</font> <br>heroes."
