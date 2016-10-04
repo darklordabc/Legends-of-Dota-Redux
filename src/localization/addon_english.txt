@@ -33,6 +33,8 @@
     "76561197996788368_Description" "Developer, UI"
 	"76561198061842355" "Only biscuit"
     "76561198061842355_Description" "Tester, Moral Support"
+	"76561197990183779" "Cool Robbit"
+    "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -318,7 +320,16 @@
     "lodOptionDesAdvancedUniqueHeroes"              "Unique Heroes"
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
-
+	
+	"lodOptionDesCrazyFatOMeter"					"Enable Fat-O-Meter"		
+	"lodOptionNoFatOMeter"							"Disabled"
+	"lodOptionFarmFatOMeter"						"Networth"
+	"lodOptionKDAFatOMeter"							"KDA"	
+	"lodOptionAboutCrazyFatOMeter"					"This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
+	"lodMutatorNoFatOMeter"							"Fat-O-Meter"
+	"lodMutatorFarmFatOMeter"						"Fat-O-Meter Networth"
+	"lodMutatorKDAFatOMeter"						"Fat-O-Meter KDA "
+		
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
@@ -433,7 +444,7 @@
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
-	
+	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
