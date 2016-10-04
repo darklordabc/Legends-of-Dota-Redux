@@ -33,12 +33,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Renamed all_pick_6 to 5_vs_5
 - Updated map to latest reborn map
 - Added back-end ability stats tracking
+- Bots no longer stay in base if they havent seen a player.  
+
 
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
 - Moved the pencil icon to the right side of the screen
 - Added a cheat menu icon to the top right of the screen
+- Abilities show in the scoreboard at the start of the game now
 
 
 ## 1.1
