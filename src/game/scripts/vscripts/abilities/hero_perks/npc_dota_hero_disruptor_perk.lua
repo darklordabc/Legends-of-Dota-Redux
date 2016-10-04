@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Disruptor
---    Perk: When Disruptor casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted.
+--    Perk: Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_disruptor_perk", "abilities/hero_perks/npc_dota_hero_disruptor_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -23,6 +23,11 @@ end
 function modifier_npc_dota_hero_disruptor_perk:RemoveOnDeath()
 	return false
 end
+function modifier_npc_dota_hero_disruptor_perk:OnCreated()
+  local cooldownReduction = 30
+
+  self.cooldownReduction = 1 - (cooldownReduction * 0.01)
+end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
@@ -35,17 +40,9 @@ end
 
 function modifier_npc_dota_hero_disruptor_perk:OnAbilityFullyCast(keys)
   if IsServer() then
-
-    local manaRefund = 25
-    local cooldownReduction = 25
-
-    manaRefund = manaRefund * 0.01
-    cooldownReduction = 1 - (cooldownReduction * 0.01)
-
-    if keys.ability:HasAbilityFlag("enemyMoving") and keys.unit == self:GetParent() then
+    if keys.ability:HasAbilityFlag("blocking") and keys.unit == self:GetParent() then
       keys.ability:EndCooldown()
-      keys.ability:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()-1)*cooldownReduction)
-      self:GetParent():GiveMana(keys.ability:GetManaCost(keys.ability:GetLevel()-1)*manaRefund)
+      keys.ability:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()-1)*self.cooldownReduction)
     end
   end
 end
