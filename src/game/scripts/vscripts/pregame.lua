@@ -4749,8 +4749,8 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         end
     end
     if not botInfo.isDone then
-        -- Shuffle their build to make it look like a random set
-        ShuffleArray(build)
+        -- Shuffle their build to make it look like a random set. Currently disabled, uncomment below to renable it.
+        -- ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then
