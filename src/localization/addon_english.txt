@@ -2211,7 +2211,7 @@
 	
 	/// DISRUPTOR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"TBD"	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"	
 	
 	/// DOOM​
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
