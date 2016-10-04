@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: dazzle
---		Perk: 
+--		Hero: Dazzle
+--		Perk: Shallow Grave has double cast range and 50% cooldown reduction when picked by Dazzle.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_dazzle_perk", "abilities/hero_perks/npc_dota_hero_dazzle_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
