@@ -274,7 +274,7 @@ function Pregame:init()
     if mapName == '3_vs_3' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
-        self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
@@ -4756,8 +4756,8 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         end
     end
     if not botInfo.isDone then
-        -- Shuffle their build to make it look like a random set
-        ShuffleArray(build)
+        -- Shuffle their build to make it look like a random set. Currently disabled, uncomment below to renable it.
+        -- ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then

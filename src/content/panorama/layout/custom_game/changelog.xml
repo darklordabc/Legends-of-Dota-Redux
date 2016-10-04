@@ -9,12 +9,16 @@
 		<include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
 	    <include src="file://{resources}/scripts/custom_game/changelog.js" /> 
 	</scripts>
+
 	<snippets>
 		<snippet name="userPic">
 			<Panel class="userPicRoot">
 				<DOTAAvatarImage class="userPic" id="avatar"/>
 				<Panel class="userPicInfo">
-					<Label id="userPicName" class="userPicName" text="Nickname" />
+					<Panel class="userPicNameFlag">
+						<Label id="userPicName" class="userPicName" text="Nickname" />
+						<Image id="userPicFlag" />
+					</Panel>
 					<Label id="userPicDescription" class="userPicDescription" text="Info" />
 				</Panel>
 				<Panel class="userPicMessages" id="userPicMessages"/>
@@ -26,6 +30,7 @@
 			</Button>
 		</snippet>
 	</snippets>
+
 	<Panel class="changelogRoot" hittest="false">
 		<Panel id="changelogButton">
 			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
@@ -51,7 +56,7 @@
 				<Panel class="horizontalSeparator"/>
 				<Panel id="currentDisplay" hittest="false" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
 					<Panel class="displayPanel" id="descriptionDisplay" hittest="false">
-						<Panel class="displayHeader" hittest="false">
+						<Panel class="descriptionTextPanel" hittest="false">
 							<Label class="displayText" html="true" text="#lodDescriptionText" />
 						</Panel>
 						<Panel class="submitRoot">
