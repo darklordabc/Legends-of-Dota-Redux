@@ -219,6 +219,17 @@ function setPlayerHost(oldHost, newHost)
     end
 end
 
+function getPlayerHost()
+    for i=0,DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(i) then
+            local player = PlayerResource:GetPlayer(i)
+            if player and player.isHost then
+                return player
+            end
+        end
+    end
+end
+
 
 function Util:GetActivePlayerCountForTeam(team)
     local number = 0

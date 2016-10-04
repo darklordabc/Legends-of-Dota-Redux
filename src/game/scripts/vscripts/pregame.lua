@@ -437,9 +437,16 @@ function Pregame:onThink()
                 -- Option selection
                 if self.shouldFreezeHostTime == nil then
                     self.shouldFreezeHostTime = util:isSinglePlayerMode()
-                    self.mainHost = Pregame:getHostPlayer():GetPlayerID()
-                    local hostPlayer = Pregame:getHostPlayer()
-                    hostPlayer.isHost = true
+                    for i=0,DOTA_MAX_PLAYERS do
+                        if PlayerResource:IsValidPlayer(i) then
+                            local player = PlayerResource:GetPlayer(i)
+                            if player and GameRules:PlayerHasCustomGameHostPrivileges(player) then
+                                self.mainHost = player:GetPlayerID()
+                                player.isHost = true
+                                break
+                            end
+                        end
+                    end
                 end
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
                 if self.shouldFreezeHostTime == true then
@@ -3372,7 +3379,7 @@ function Pregame:checkForReady()
     if self:getPhase() == constants.PHASE_BANNING then
         maxTime = OptionManager:GetOption('banningTime')
 
-        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[self.mainHost] == 1)
+        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[getPlayerHost():GetPlayerID()] == 1)
     end
 
     -- If we are in the random phase
@@ -4366,20 +4373,6 @@ function Pregame:getActivePlayers()
     end
 
     return total
-end
-
--- Get host player
-function Pregame:getHostPlayer()
-	for i=0,DOTA_MAX_PLAYERS do
-		if PlayerResource:IsValidPlayer(i) then
-			local ply = PlayerResource:GetPlayer(i)
-			if ply and GameRules:PlayerHasCustomGameHostPrivileges(ply) then
-				return ply
-			end
-		end
-	end
-
-	return 0
 end
 
 
