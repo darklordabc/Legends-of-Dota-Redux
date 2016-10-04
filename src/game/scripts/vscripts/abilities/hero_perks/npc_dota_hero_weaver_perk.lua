@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Weaver
---		Perk: 
+--		Perk: Automatically casts Time Lapse upon taking fatal damage. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_weaver_perk", "abilities/hero_perks/npc_dota_hero_weaver_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -41,7 +41,10 @@ if IsServer() then
     function modifier_npc_dota_hero_weaver_perk:OnTakeDamage(params)
         if params.unit == self:GetParent() then
             if params.damage > self:GetParent():GetHealth() and self.lapse and self.lapse:IsCooldownReady() and self.lapse:GetLevel() > 0 then
-                self:GetParent():CastAbilityNoTarget(self.lapse, self:GetParent():GetPlayerID())
+                --self:GetParent():CastAbilityNoTarget(self.lapse, self:GetParent():GetPlayerID())
+                self.lapse:OnSpellStart()
+                self.lapse:StartCooldown(self.lapse:GetTrueCooldown())
+                self:GetParent():SpendMana(self.lapse:GetManaCost(-1),self.lapse)
             end
         end
     end
