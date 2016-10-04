@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added flags to the credits page
 - Changed Icons for top right buttons
 - Bot abilities are no longer shuffled
+- Added new Mutator: Fat-O-Meter
 
 ### Balance
 
