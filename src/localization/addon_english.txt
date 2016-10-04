@@ -442,7 +442,7 @@
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
-	
+	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
