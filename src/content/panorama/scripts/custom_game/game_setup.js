@@ -254,8 +254,7 @@ var allOptions = {
                         },
                         states: {
                             'lodMutatorFarmFatOMeter': 1,
-							'lodMutatorKDAFatOMeter': 2,
-							'lodMutatorLevelFatOMeter': 3
+							'lodMutatorKDAFatOMeter': 2
                         }
 					},
                 ]
@@ -988,10 +987,6 @@ var allOptions = {
 					{
 						text: 'lodOptionKDAFatOMeter',
 						value: 2
-					},
-					{
-						text: 'lodOptionLevelFatOMeter',
-						value: 3
 					},
 				]
 			},

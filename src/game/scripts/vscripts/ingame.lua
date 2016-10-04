@@ -152,7 +152,7 @@ function Ingame:onStart()
     end, nil)
 	
 	-- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
-	if OptionManager:GetOption('useFatOMeter') > 0 and OptionManager:GetOption('useFatOMeter') <= 3 then
+	if OptionManager:GetOption('useFatOMeter') > 0 and OptionManager:GetOption('useFatOMeter') <= 2 then
 		print("Starting Fat-O-Meter.")
 		local maxPlayers = 24
 		fatData = {}
@@ -161,13 +161,13 @@ function Ingame:onStart()
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 			if hero and IsValidEntity(hero) then
 				fatData[playerID] = {
-					defaultModelScale = hero:GetModelScale(), --default is NOT 1 for most heroes, used to make sure size is expressed as a percentage
+					defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
 					modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
 					targetScaleDifference = 0.0,
-					maxScalePercent = 4.0, --placeholder, will scale per-hero from a lookup. using a relatively sane value for now
+					maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.2,
 					scaleNextInterval = 0.0, --scale per second, i.e. the animation of growth
-					lastNetWorth = 0,
-					netWorthChange = 0, --stored for faster calculations
+					lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
+					netWorthChange = 0, --stored for faster calculations on gold and levels
 					fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
 				}
 			end
@@ -179,18 +179,17 @@ function Ingame:onStart()
 			if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 				print("Starting Fat Timers.")
 				Timers:CreateTimer(function()
-					--print("Fat calculation timer procced.")
 					if lastFatThink == nil then
-						lastFatThink = -30
+						lastFatThink = -60
 					end
 					if lastFatAnimate == nil then
 						lastFatAnimate = -1.0
 					end
 					local dotaTime = GameRules:GetDOTATime(false, false)
 					
-					while (dotaTime - lastFatThink) > 30 do
-						Ingame:FatOMeterThinker(30)
-						lastFatThink = lastFatThink + 30
+					while (dotaTime - lastFatThink) > 60 do
+						Ingame:FatOMeterThinker(60)
+						lastFatThink = lastFatThink + 60
 					end
 					while (dotaTime - lastFatAnimate) > 1.0 do
 						Ingame:FatOMeterAnimate(1.0)
@@ -206,28 +205,17 @@ end
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
 function Ingame:FatOMeterThinker(dt)
 	local this = self
-	if not OptionManager:GetOption('useFatOMeter') then return end
-
-	print("Dreaming of large women at time "..(GameRules:GetDOTATime(false, false))..":")
+	if OptionManager:GetOption('useFatOMeter') == 0 then return end
 	local maxPlayers = 24
-	--farm
+	
+	--FAT-O-METER GOLD MODE--
 	if OptionManager:GetOption('useFatOMeter') == 1 then
-		local lowestGainPlayerID = -1
-		local lowestGain = 999999
+		local lowestGain = 100000
 		for playerID = 0, (maxPlayers-1) do
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 			if fatData[playerID] then
 				if hero and IsValidEntity(hero) then
-					local netWorth = PlayerResource:GetGold(playerID)
-					
-					--Net worth includes gold value of held items as well as actual gold, of course.
-					for itemNo = 0, 11 do
-						
-						local item = hero:GetItemInSlot(itemNo)
-						if item and IsValidEntity(item) then
-							netWorth = netWorth + item:GetCost()
-						end
-					end
+					local netWorth = PlayerResource:GetTotalEarnedGold(playerID)
 					
 					--Subtract previous net worth to get the intended value.
 					local netWorthChange = netWorth - (fatData[playerID].lastNetWorth or 0)
@@ -235,14 +223,11 @@ function Ingame:FatOMeterThinker(dt)
 					--Track lowest gain player.
 					if netWorthChange < lowestGain then 
 						lowestGain = netWorthChange
-						lowestGainPlayerID = playerID
 					end
 					
 					--Store discovered data to do scaling calculations. Only netWorthChange is used directly, but both are necessary to function properly.
 					fatData[playerID].lastNetWorth = netWorth
-					--print(" Player "..playerID.." Net Worth:"..netWorth)
 					fatData[playerID].netWorthChange = netWorthChange
-					--print(" Player "..playerID.." NWChange:"..netWorthChange)
 				end
 			end
 		end
@@ -254,21 +239,42 @@ function Ingame:FatOMeterThinker(dt)
 			
 			--Net loss is fine, as long as the final value is clamped 0-100
 			fatData[playerID].fatness = math.max( math.min((fatData[playerID].fatness or 0) + weightGain, 100), 0)
-			
-			print("  Player "..playerID..": Change of "..weightGain.."fatness, new total is "..fatData[playerID].fatness..".")
+		end
+		
+	--FAT-O-METER KILLS MODE--
+	elseif OptionManager:GetOption('useFatOMeter') == 2 then
+		for playerID = 0, (maxPlayers-1) do
+			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+			if fatData[playerID] then
+				if hero and IsValidEntity(hero) then
+					local kills = PlayerResource:GetKills(playerID)
+					local deaths = PlayerResource:GetDeaths(playerID)
+					local assists = PlayerResource:GetAssists(playerID)
+					
+					--Assists are weighted as quarter kills and deaths as negative quarter kills
+					fatData[playerID].lastNetWorth = 4*kills + assists - deaths
+				end
+			end
+		end
+		
+		--Iterate back through calculated data to set up scaling.
+		for playerID in pairs(fatData) do
+			--No need for delta, just straight-up use the score
+			fatData[playerID].fatness = math.max(math.min(fatData[playerID].lastNetWorth, 100), 0)
 		end
 	end
 	
-	--all fat modes
+	--ALL FAT-O-METER MODES--
+	--Interpolate the model's actual scale between default and an arbitrary constant times its normal size. Fatness is the percent to interpolate.
 	for playerID in pairs(fatData) do
 		local fatness = fatData[playerID].fatness
 		local default = fatData[playerID].defaultModelScale or 1
-		local maxPct = fatData[playerID].maxScalePercent or 4
+		local maxPct = fatData[playerID].maxScalePercent or 3.2 --Assume normal humanoid scale if not specified
 		
-		--Interpolate the model's actual scale between default and an arbitrary constant times its normal size. Fatness is the percent to interpolate.
-		fatData[playerID].targetScaleDifference = default * (maxPct -1)*((fatness/10)*(fatness/10))/100
+		--This looks intimidating, but it's simply an arbitrary power scaling to diminish the effect of early growth while still ultimately reaching max at 100.
+		fatData[playerID].targetScaleDifference = default*(maxPct -1)*(math.pow(.17162*fatness, 1.62)/100)
 		--fatData[playerID].targetScaleDifference = default * (maxPct -1)*(fatness)/100
-		fatData[playerID].scaleNextInterval = (fatData[playerID].targetScaleDifference - (fatData[playerID].modelScaleDifference or fatData[playerID].targetScaleDifference))/5d
+		fatData[playerID].scaleNextInterval = (fatData[playerID].targetScaleDifference - (fatData[playerID].modelScaleDifference or fatData[playerID].targetScaleDifference))/50
 	end
 	
 end
@@ -279,6 +285,7 @@ function Ingame:FatOMeterAnimate(dt)
 	if not OptionManager:GetOption('useFatOMeter') then return end
 
 	for playerID in pairs(fatData) do
+		local default = fatData[playerID].defaultModelScale or 0
 		local diff = fatData[playerID].modelScaleDifference or 0
 		local grow = fatData[playerID].scaleNextInterval or 0
 		local targetDiff = fatData[playerID].targetScaleDifference or 0
@@ -299,7 +306,7 @@ function Ingame:FatOMeterAnimate(dt)
 		--Actually do the scaling. Also check for any existing hero clones and modify them.
 		local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 		if hero and IsValidEntity(hero) then
-			hero:SetModelScale(hero:GetModelScale() - diff + scaleDiff)
+			hero:SetModelScale(default + scaleDiff)
 		
 			--Meepo/Arc Warden ult checker
 			if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') then
@@ -307,7 +314,7 @@ function Ingame:FatOMeterAnimate(dt)
 
 				for k,heroClone in pairs(clones) do
 					if heroClone:IsClone() and playerID == heroClone:GetPlayerID() then
-						hero:SetModelScale(hero:GetModelScale() - diff + scaleDiff)
+						hero:SetModelScale(default + scaleDiff)
 					end
 				end
 			end
