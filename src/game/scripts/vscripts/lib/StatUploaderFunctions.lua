@@ -115,7 +115,7 @@ function SU:SendPlayerBuild( args )
 
   for pID = 0, DOTA_MAX_PLAYERS do
     if PlayerResource:IsValidPlayerID(pID) then
-      if not PlayerResource:IsBroadcaster(pID) then --and not util:playerIsBot(pID) 
+      if not PlayerResource:IsBroadcaster(pID) and not util:playerIsBot(pID) then
         local abilities = {}
         for i=1,16 do
           if args[pID] then
@@ -125,7 +125,7 @@ function SU:SendPlayerBuild( args )
             end
           end
         end
-        Data[pID] = {
+        Data[PlayerResource:GetSteamAccountID(pID)] = {
           AbilityString = json.encode(abilities),
           Hero = PlayerResource:GetPlayer(pID):GetAssignedHero():GetUnitName()
         }
