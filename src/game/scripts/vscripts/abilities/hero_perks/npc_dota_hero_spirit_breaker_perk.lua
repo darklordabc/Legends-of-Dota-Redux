@@ -60,7 +60,9 @@ function perkSpaceCow(filterTable)  --ModifierGainedFilter
     if caster:HasModifier("modifier_npc_dota_hero_spirit_breaker_perk") then
       if ability:HasAbilityFlag("bash") and parent ~= caster then
         local modifierDuration = filterTable["duration"]
-        parent:AddNewModifier(caster, nil,"modifier_npc_dota_hero_spirit_breaker_perk_break",{duration = modifierDuration})
+        local modifier = parent:AddNewModifier(caster, nil,"modifier_npc_dota_hero_spirit_breaker_perk_break",{duration = modifierDuration})
+        local breakParticle = ParticleManager:CreateParticle("particles/items3_fx/silver_edge.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
+        modifier:AddParticle(breakParticle, false, false, 1, false, false)
       end
     end  
   end  
