@@ -125,7 +125,7 @@ function SU:SendPlayerBuild( args )
             end
           end
         end
-        Data[pID] = {
+        Data[PlayerResource:GetSteamAccountID(pID)] = {
           AbilityString = json.encode(abilities),
           Hero = PlayerResource:GetPlayer(pID):GetAssignedHero():GetUnitName()
         }
