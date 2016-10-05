@@ -247,6 +247,16 @@ var allOptions = {
                         name: 'lodOptionCrazyWTF',
                         about: 'lodMutatorWTF'
                     },                   
+					{
+						name: 'lodOptionCrazyFatOMeter',
+						default: {
+                            'lodMutatorNoFatOMeter': 0
+                        },
+                        states: {
+                            'lodMutatorFarmFatOMeter': 1,
+							'lodMutatorKDAFatOMeter': 2
+                        }
+					},
                 ]
             }
         ]
@@ -960,6 +970,26 @@ var allOptions = {
                     }
                 ]
             },
+			{
+				name: 'lodOptionCrazyFatOMeter',
+				des: 'lodOptionDesCrazyFatOMeter',
+                about: 'lodOptionAboutCrazyFatOMeter',
+                sort: 'dropdown',
+				values: [
+					{
+						text: 'lodOptionNoFatOMeter',
+						value: 0
+					},
+					{
+						text: 'lodOptionFarmFatOMeter',
+						value: 1
+					},
+					{
+						text: 'lodOptionKDAFatOMeter',
+						value: 2
+					},
+				]
+			},
         ]
     }
 }

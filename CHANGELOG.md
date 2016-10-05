@@ -3,18 +3,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.4
+## 1.4 - Steam Version
 
 ### Bug Fixing/New Features
 - Added chinese localization (might not be in-game yet)
 - Added flags to the credits page
 - Changed Icons for top right buttons
 - Bot abilities are no longer shuffled
+- Added new Mutator: Fat-O-Meter
+- Fixed bots not moving at start
 
 ### Balance
+- Some Tower abilities that are extremely OP now require minium levels to learn. They are still not recommended for play
+- Enemy abilities are now in scoreboard from start
 
 
-## 1.3 - Steam Version
+## 1.3 
 
 ### Bug Fixing
 - Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 

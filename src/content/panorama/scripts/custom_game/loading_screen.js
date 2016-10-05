@@ -155,6 +155,9 @@ function setBackground() {
         img: 'file://{images}/spellicons/axe_counter_helix.png',
         txt: '#hintJungle'
     }, {
+        img: 'file://{images}/custom_game/hints/hint_fatOMeter.png',
+        txt: '#hintFatOMeter'
+    }, {
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
