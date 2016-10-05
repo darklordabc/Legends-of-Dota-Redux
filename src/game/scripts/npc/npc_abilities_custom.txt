@@ -10187,6 +10187,86 @@
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName"    "npc_dota_hero_dazzle_perk"
     }
+    "sniper_shrapnel_perk"
+    {
+        "BaseClass"             "sniper_shrapnel"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                    "5154"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"            "sniper_shrapnel"
+        "FightRecapLevel"               "1"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1800"
+        "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
+        "AOERadius"                     "1000"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "15 35 55 75"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.25"  // primarily about damage
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "slow_movement_speed"   "-15 -20 -25 -30"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "1000"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "building_damage"       "0"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "10.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_delay"          "1.2"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "slow_duration"         "2.0 2.0 2.0 2.0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_charges"           "3"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "charge_restore_time"   "55"
+            }
+        }
+    }
     "dazzle_shallow_grave_perk"
     {
         "BaseClass"             "dazzle_shallow_grave"

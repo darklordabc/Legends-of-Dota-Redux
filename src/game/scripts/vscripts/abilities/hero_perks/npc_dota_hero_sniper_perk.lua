@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: sniper
---		Perk: 
+--		Perk: swaps shrapnel with better one
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_sniper_perk", "abilities/hero_perks/npc_dota_hero_sniper_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -22,4 +22,13 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_sniper_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
 
+        if caster:HasAbility("sniper_shrapnel") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 then
+	        self.grave = caster:AddAbility("sniper_shrapnel_perk")
+	        caster:SwapAbilities("sniper_shrapnel","sniper_shrapnel_perk",false,true)
+        end
+    end
+end

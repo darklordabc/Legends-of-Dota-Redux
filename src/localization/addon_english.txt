@@ -1038,6 +1038,17 @@
     "DOTA_Tooltip_tiny_grow_lod_scepter"                    "Tiny Grow Scepter"
     "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% bonus range and cleave damage."
 
+    //SNIPER
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Shrapnel"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Description"                              "Consumes a charge to launch a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area. Shrapnel charges restore every %charge_restore_time% seconds."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Lore"                                     "Kardel's modular rifle also fires incendiary rounds, useful for assaulting entrenched locations."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note0"                                    "Damage is dealt 11 times, immediately at spell effect then every second."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note1"                                    "Does not damage buildings."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note2"                                    "Provides vision in the targeted area."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_slow_movement_speed"                      "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_radius"                                   "RADIUS:"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_duration"                                 "DURATION:"
+
     // Dazzle
     "DOTA_Tooltip_ability_dazzle_shallow_grave_perk"                                     "Shallow Grave"
     "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Description"                         "An ally blessed with Shallow Grave, no matter how close to death, cannot die while under its protection."
