@@ -107,6 +107,8 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
+    perksFilter = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksOrderFilter(filterTable)
     return true
 end    
 
