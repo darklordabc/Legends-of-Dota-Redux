@@ -47,7 +47,7 @@ function modifier_npc_dota_hero_broodmother_perk:OnAbilityFullyCast(keys)
     local unit = keys.unit
     local ability = keys.ability
 
-    if hero == unit and (ability:GetName() == "broodmother_spawn_spiderlings" or string.match(ability:GetName(),"necronomicon")) then
+    if hero == unit and ability:HasAbilityFlag("summon") then
       local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
       hero:GiveMana(ability:GetManaCost(ability:GetLevel()-1) * 0.2)
       ability:EndCooldown()
