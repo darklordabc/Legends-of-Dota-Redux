@@ -69,8 +69,7 @@ function perkShadowDemon(filterTable)
 
     if abilityIndex then
 	    if order_type == DOTA_UNIT_ORDER_SELL_ITEM then
-			local seller = EntIndexToHScript(units["0"])
-	        print(seller:GetUnitName().." order item sell")
+	        local seller = EntIndexToHScript(units["0"])
 	        if ability:HasAbilityFlag("limited") then 
 	        	local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
 	        	if modifier then
