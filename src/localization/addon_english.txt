@@ -537,11 +537,10 @@
 	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
 	"hintWK"                         "Wraith King starts the game with an Aegis of the Immortal."
 	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
-	"hintSilencer"                         "Silence effects applied by Silencer last 20% longer. "
 	"hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
 	"hintEarthShaker"                         "Earth abilities Earthshaker uses heal him for 2% of his health."
 	"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."	
-	"hintBM"							"Beastmaster's Strength is increased by 3 for every level put in Neutral abilities. "	
+	"hintBM"							"Non-ultimate Summon abilities used by Broodmother will have 20% mana cost refunded and 20% cooldown reduction."	
 	"hintBristleBack"							"Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%. "	
 	"hintCK"							"Chaos Knight gains 200 extra gold for each ability he randoms."	
 	"hintClockwerk"							"Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."	
@@ -2190,7 +2189,7 @@
 
 	/// BROODMOTHER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk"	"Broodmother Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk_Description"	"Non-ultimate Summon abilities will have 20%d% mana cost refunded and 20%d% cooldown reduction. "
+	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk_Description"	"Non-ultimate Summon abilities used by Broodmother will have 20%d% mana cost refunded and 20%d% cooldown reduction.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
 			
 	/// CENTAUR WARRUNNER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
