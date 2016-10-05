@@ -10196,6 +10196,7 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+        "AbilityTextureName"            "dazzle_shallow_grave"
         "FightRecapLevel"               "1"
 
         // Casting
@@ -10225,7 +10226,7 @@
             "02"
             {   
                 "var_type"          "FIELD_INTEGER"
-                "range_tooltip"     "550 700 850 1000"
+                "range_tooltip"     "1000 1400 1700 2000"
             }
         }
     }
