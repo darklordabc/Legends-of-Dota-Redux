@@ -9,7 +9,7 @@ Legends of Dota
  - Create unique and creative heros to dominate your opponent.
 
 ###Steam Workshop###
- - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=296590332) to view Legends of Dota on the steam workshop.
+ - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Legends of Dota: Redux on the steam workshop.
 
 ###Requirements to Compile and Run###
  - Dota 2 Workshop Tools

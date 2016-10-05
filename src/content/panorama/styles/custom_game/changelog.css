@@ -78,7 +78,6 @@
 	background-position: -35px -75px;
     vertical-align: top;
     margin-top: 50px;
-    margin-left: -10px;
     height: 700px;
 	width: 400px;
 
@@ -104,7 +103,7 @@
 #Title
 {
     flow-children: down;
-	margin-top: -2px;
+	padding: 10px 0 10px 0;
 }
 
 #TitleIcon
@@ -118,8 +117,6 @@
 {
     color: #ffffff;
     font-size: 36px;
-    margin-top: 8px;
-	margin-left: 7px;
     text-transform: uppercase;
 	font-family: Goudy Trajan Medium;
 	text-align: center;
@@ -172,6 +169,7 @@
 
 #currentDisplay
 {
+	padding: 0px 20px 0 20px;
 	flow-children: down;
 }
 
@@ -179,8 +177,6 @@
 .displayPanel
 {
 	flow-children: down;
-    margin-top: 5px;
-	margin-left: 40px;
     height: fill-parent-flow(1.0);
 	width: fill-parent-flow(1.0);
 	visibility: collapse;
@@ -195,12 +191,14 @@
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
 	font-family: Radiance;
+
+	text-align: justify;
 }
 
 .displayHeader
 {
 	flow-children: down;
-	margin-right: 45px;
+
 }
 
 .displayBody
@@ -210,6 +208,9 @@
 	height: fill-parent-flow(1.0);
 }
 
+.descriptionTextPanel {
+	padding: 0 20px 0 20px;
+}
 
 .HeaderText
 {
@@ -226,16 +227,15 @@
 {
 	flow-children: down;
 	margin-top: -10px;
-	margin-left: -30px;
 
 	width: 100%;
+	height:	fill-parent-flow(1.0);
 }
 
 .submitPanel {
     flow-children: right;
     background-color: transparent;
-	width: 275px;
-	margin-right: 35px;
+
 	vertical-align: bottom;
 	horizontal-align: middle;
 
@@ -247,13 +247,13 @@
 }
 */
 #submitInputRoot {
-	height: 220px;
+	height: 240px;
 	margin: 0px;
 }
 
 .submitText {
-    width: 275px;
-	max-height: 300px;
+    //width: 275px;
+	max-height: 350px;
 	/*overflow: clip scroll;*/
 	text-overflow: shrink;
     opacity: 0.5;
@@ -293,10 +293,10 @@
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #599e5e ), to( #406d55 ) );
 
     margin: 0px;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-bottom: 10px;
 
     horizontal-align: center;
+    vertical-align: bottom;
 }
 
 .Sent {
@@ -328,10 +328,7 @@ TextEntry #PlaceholderText {
 .updateClipper
 {
 	flow-children: down;
-    margin-top: 5px;
-	margin-left: 25px;
-    height: 450px;
-	width: fill-parent-flow(1.0);
+	padding-left: 20px;
 	overflow: clip scroll;
 }
 
@@ -339,6 +336,8 @@ TextEntry #PlaceholderText {
 	flow-children: down;
 	width: 100%;
 	height: 100%;
+
+	padding-left: 20px;
 	overflow: clip scroll;
 }
 
@@ -357,7 +356,7 @@ TextEntry #PlaceholderText {
 	width: 100%;
 	height: 52px;
 
-	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .userPicInfo {
@@ -366,10 +365,19 @@ TextEntry #PlaceholderText {
 	flow-children: down;
 }
 
+.userPicNameFlag {
+	flow-children: right;
+}
+
 .userPicName {
 	font-size: 18px;
 
 	color: #ffffff88;
+}
+
+#userPicFlag {
+	width: 20px;
+	height: 20px;
 }
 
 .userPicName:hover {
