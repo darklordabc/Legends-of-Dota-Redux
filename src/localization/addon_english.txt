@@ -518,7 +518,7 @@
 	"hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
 	"hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
 	"hintSlardar"                         "When Slardar bashes, he gains 1 gold."
-	"hintSniper"                         "If Sniper has Shrapnel, the cast range will be Global"
+	"hintSniper"                         "When Sniper uses Shrapnel it will have a global cast range."
 	"hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
 	"hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
 	"hintTechies"                         "Traps and Explosives will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
@@ -2472,7 +2472,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"	"Slark Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"	"Slark gains +3 agility for each level put in an mobility/escape skill.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
 	
-	/// MISSING SNIPER PERK
+	/// SNIPER				
+	"DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk"	"Sniper Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk_Description"	"When Sniper uses Shrapnel it will have a global cast range.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
 	
 	/// SPECTRE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"	"Spectre Perk"
