@@ -1,4 +1,5 @@
 require('lib/StatUploader')
+local util = require('util')
 local isTest = true
 local steamIDs;
 
@@ -109,23 +110,32 @@ function SU:MarkMessageRead( args )
   end)
 end
 
-function SU:SendPlayerBuild( args, pID )
-  local abilities = {}
-  
-  for i=1,16 do
-    local v = args[i]
-    if v then
-      abilities[i] = v
-      print(v)
+function SU:SendPlayerBuild( args )
+  local Data = {}
+
+  for pID = 0, DOTA_MAX_PLAYERS do
+    if PlayerResource:IsValidPlayerID(pID) then
+      if not PlayerResource:IsBroadcaster(pID) then --and not util:playerIsBot(pID) 
+        local abilities = {}
+        for i=1,16 do
+          if args[pID] then
+            local v = args[pID][i]
+            if v then
+              abilities[i] = v
+            end
+          end
+        end
+        Data[pID] = {
+          AbilityString = json.encode(abilities),
+          Hero = PlayerResource:GetPlayer(pID):GetAssignedHero():GetUnitName()
+        }
+      end
     end
   end
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    Data = {
-      AbilityString = json.encode(abilities),
-      SteamID = PlayerResource:GetSteamAccountID(pID)
-    }
+    Data = Data
   }
   
   SU:SendRequest( requestParams, function(obj)

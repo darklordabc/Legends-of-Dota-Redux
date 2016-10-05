@@ -22,6 +22,7 @@ LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abi
 ]]
 
 local Pregame = class({})
+local buildBackups = {}
 
 -- Init pregame stuff
 function Pregame:init()
@@ -779,10 +780,7 @@ function Pregame:actualSpawnPlayer()
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-                        
-                        if hero:IsOwnedByAnyPlayer() and util:playerIsBot(playerID) then
-                            SU:SendPlayerBuild( build, playerID )
-                        end
+                        buildBackups[playerID] = build
 
                         -- Do they have a custom attribute set?
                         if self.selectedPlayerAttr[playerID] ~= nil then
@@ -5190,6 +5188,8 @@ end
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        SU:SendPlayerBuild( buildBackups )
+        
         WAVE = 0
 
         Timers:CreateTimer(function()
