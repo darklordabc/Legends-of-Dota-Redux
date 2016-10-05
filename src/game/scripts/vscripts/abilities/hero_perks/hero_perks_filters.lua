@@ -19,6 +19,30 @@ function heroPerksProjectileFilter(filterTable)
   return filterTable
 end
 
+function heroPerksOrderFilter(filterTable)
+  local units = filterTable["units"]
+  local order_type = filterTable["order_type"]
+  local issuer = filterTable["issuer_player_id_const"]
+  local abilityIndex = filterTable["entindex_ability"]
+  local targetIndex = filterTable["entindex_target"]
+
+  local caster = EntIndexToHScript(units["0"])
+  if not caster then return true end
+
+  targetPerks_order = {
+    npc_dota_hero_shadow_demon_perk = true,
+  }
+  
+  local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
+  if not targetPerk then return true end
+  if not targetPerks_order[targetPerk:GetName()] then return true end
+
+    -- Perk for Shadow Demon
+  local perkforSD = require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
+  perkShadowDemon(filterTable)
+
+end
+
 function heroPerksModifierFilter(filterTable)
   local parent_index = filterTable["entindex_parent_const"]
   local caster_index = filterTable["entindex_caster_const"]
