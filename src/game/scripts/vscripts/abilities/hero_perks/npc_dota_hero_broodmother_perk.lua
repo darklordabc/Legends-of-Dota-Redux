@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: broodmother
---		Perk: non-ultimate Summon abilities will have 20% mana cost refunded and 20% cooldown reduction
+--		Hero: Broodmother
+--		Perk: Non-ultimate Summon abilities will have 20% mana cost refunded and 20% cooldown reduction
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_broodmother_perk", "abilities/hero_perks/npc_dota_hero_broodmother_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,7 +17,11 @@ function modifier_npc_dota_hero_broodmother_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_broodmother_perk:IsHidden()
-	return true
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_broodmother_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_broodmother_perk:OnCreated()
