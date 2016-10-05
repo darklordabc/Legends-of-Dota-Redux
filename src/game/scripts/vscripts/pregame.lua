@@ -22,6 +22,7 @@ LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abi
 ]]
 
 local Pregame = class({})
+local buildBackups = {}
 
 -- Init pregame stuff
 function Pregame:init()
@@ -779,10 +780,7 @@ function Pregame:actualSpawnPlayer()
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-                        
-                        if hero:IsOwnedByAnyPlayer() and util:playerIsBot(playerID) then
-                            SU:SendPlayerBuild( build, playerID )
-                        end
+                        buildBackups[playerID] = build
 
                         -- Do they have a custom attribute set?
                         if self.selectedPlayerAttr[playerID] ~= nil then
@@ -2642,7 +2640,9 @@ function Pregame:processOptions()
         if this.optionStore['lodOptionBalanceMode'] == 1 then
             -- Load balance mode stats
             local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+            
             self.spellCosts = {}
+            
             for tier, tierList in pairs(balanceMode) do
                 -- Check whether price list or ban list
                 local tierNum = tonumber(string.sub(tier, 6))
@@ -2651,16 +2651,20 @@ function Pregame:processOptions()
                     for abilityName,nothing in pairs(tierList) do
                         this:banAbility(abilityName)
                     end
-                else
+                --[[else
                     -- Spell Shop
-                    local price = constants.TIER[tierNum]
+                    local price = constants.TIER[12] --tierNum]
                     
                     for abilityName,nothing in pairs(tierList) do
                         self.spellCosts[abilityName] = price
                         network:sendSpellPrice(abilityName, price)
                     end
+                ]]
                 end
             end
+            
+            -- Set spell costs by tracked stats
+            SU:LoadGlobalAbilitiesStat(constants.TIER)
             
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
@@ -5195,6 +5199,8 @@ end
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        SU:SendPlayerBuild( buildBackups )
+        
         WAVE = 0
 
         Timers:CreateTimer(function()
