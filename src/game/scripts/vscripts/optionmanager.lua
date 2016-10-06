@@ -94,6 +94,9 @@ OptionManager:SetOption('allowedToPick', true)
 -- Should we force random heroes?
 OptionManager:SetOption('forceRandomHero', false)
 
+-- Should we disable perks?
+OptionManager:SetOption('disablePerks', false)
+
 -- Enable WTF Mode?
 OptionManager:SetOption('wtfMode', false)
 
