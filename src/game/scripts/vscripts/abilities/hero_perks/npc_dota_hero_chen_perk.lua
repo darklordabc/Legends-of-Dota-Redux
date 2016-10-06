@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Chen
---    Perk: 
+--    Perk: Units sent home to the fountain with test of faith get an extra ability.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_chen_perk", "abilities/hero_perks/npc_dota_hero_chen_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -19,9 +19,9 @@ end
 function modifier_npc_dota_hero_chen_perk:IsHidden()
   return false
 end
---------------------------------------------------------------------------------------------------------
+
 function modifier_npc_dota_hero_chen_perk:RemoveOnDeath()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -38,69 +38,51 @@ function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
     local hero = self:GetCaster()
     local target = keys.target
     local ability = keys.ability
-    if not chen_abilities then
-      chen_abilities = {
-		"enchantress_untouchable",
-		"faceless_void_time_lock",
-		"furion_teleportation",
-		"huskar_berserkers_blood",
-		"kunkka_tidebringer",
-		"life_stealer_feast",
-		"luna_lunar_blessing",
-		 "luna_moon_glaive",
-		 "lycan_feral_impulse",
-		 "meepo_geostrike",
-		 "necrolyte_heartstopper_aura",
-		 "necrolyte_sadist",
-		 "nevermore_dark_lord",
-		 "night_stalker_hunter_in_the_night",
-		 "omniknight_degen_aura",
-		 "phantom_assassin_coup_de_grace",
-		 "razor_unstable_current",
-		 "shredder_reactive_armor",
-		 "skeleton_king_vampiric_aura",
-		 "slardar_bash",
-		 "slark_essence_shift",
-		 "slark_shadow_dance",
-		 "sniper_headshot",
-		 "sniper_take_aim",
-		 "spectre_dispersion",
-		 "spirit_breaker_charge_of_darkness",
-		 "spirit_breaker_greater_bash",
-		 "sven_great_cleave",
-		 "techies_suicide",
-		 "tiny_craggy_exterior",
-		 "troll_warlord_fervor",
-		 "ursa_fury_swipes",
-		 "vengefulspirit_command_aura",
-		 "viper_corrosive_skin",
-		 "viper_nethertoxin",
-		 "weaver_geminate_attack",
-		 "riki_permanent_invisibility",
-		 "beastmaster_boar_poison",
-		 "beastmaster_greater_boar_poison",
-		 "lone_druid_spirit_bear_entangle",
-		 "roshan_slam",
-		 "warlock_golem_flaming_fists",
-		 "warlock_golem_permanent_immolation_lod",
-		 "visage_summon_familiars_stone_form",
-		 "imba_dazzle_shallow_grave",
-		 "holdout_arcane_aura",
-		 "ursa_enrage",
-      }
-    end
-
+    
+        
     if ability:GetAbilityName() == "chen_test_of_faith_teleport" and target:IsCreep() then
-      -- Setting the table value one further
-      if not chen_abilities_count then chen_abilities_count = 1 else chen_abilities_count =  chen_abilities_count + 1 end
+      local boolMana = false -- To check mana costs
+      local boolAllowActive = false -- To check if we should allow an active
+      if not target.chenAbilityCount then target.chenAbilityCount = 0 end
+      if not target.chenAbilityTable then target.chenAbilityTable = {} end
 
-      if chen_abilities_count > 1 then 
-        target:RemoveAbility(chen_abilities[chen_abilities_count -1])
+      if target:GetAbilityCount() == 1 or (target.chenAbilityCount ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
+        target.chenAbilityCount = target.chenAbilityCount +1
+        while boolMana == false and boolAllowActive == false do
+          ::LoopAgain::
+          local randomability = GetRandomAbilityFromListForPerk("chen_creep_abilities")
+
+          if target:HasAbility(randomability) then
+            goto LoopAgain
+          end 
+          target.chenAbilityTable[target.chenAbilityCount] = target:AddAbility(randomability)
+          target.chenAbilityTable[target.chenAbilityCount]:UpgradeAbility(true)
+          
+          local manaCost = target.chenAbilityTable[target.chenAbilityCount]:GetManaCost(target.chenAbilityTable[target.chenAbilityCount]:GetMaxLevel()-1) or 0
+          
+          if  manaCost <= target:GetMaxMana() then
+            boolMana = true
+          else
+            target:RemoveAbility(target.chenAbilityTable[target.chenAbilityCount]:GetAbilityName())
+            goto LoopAgain
+          end
+
+          if target.chenAbilityTable[target.chenAbilityCount]:IsPassive() or target:GetPlayerOwnerID() ~= -1 then 
+            boolAllowActive = true
+          else
+            target:RemoveAbility(target.chenAbilityTable[target.chenAbilityCount]:GetAbilityName())
+          end  
+          
+        end
+      else -- Pick a random ability to upgrade
+        local random = RandomInt(1,target.chenAbilityCount)
+        local tempAbility = target.chenAbilityTable[random]
+        while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() do
+          local random = RandomInt(1,target.chenAbilityCount)
+        end
+        tempAbility:UpgradeAbility(true)
       end
-
-      target:AddAbility(chen_abilities[chen_abilities_count])
-      target:FindAbilityByName(chen_abilities[chen_abilities_count]):UpgradeAbility(true)
     end
   end
-end                          
-
+end
+  
