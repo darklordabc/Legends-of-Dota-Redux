@@ -284,7 +284,7 @@ function Pregame:init()
     if mapName == '3_vs_3' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
-        self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
@@ -1997,6 +1997,11 @@ function Pregame:initOptionSelector()
         lodOptionCrazyWTF = function(value)
             return value == 0 or value == 1
         end,
+		
+		-- Other -- Fat-O-Meter
+        lodOptionCrazyFatOMeter = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end,
     }
 
     -- Callbacks
@@ -2121,6 +2126,10 @@ function Pregame:initOptionSelector()
 
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
+				
+				-- Disable Fat-O-Meter
+				self:setOption("lodOptionCrazyFatOMeter", 0)
+
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2642,6 +2651,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
+		OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2808,6 +2818,7 @@ function Pregame:processOptions()
 			        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
 			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
 			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
+					['Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
 			    })
 
 				-- Draft arrays
@@ -4777,8 +4788,8 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         end
     end
     if not botInfo.isDone then
-        -- Shuffle their build to make it look like a random set
-        ShuffleArray(build)
+        -- Shuffle their build to make it look like a random set. Currently disabled, uncomment below to renable it.
+        -- ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then

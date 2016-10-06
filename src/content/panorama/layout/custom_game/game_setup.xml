@@ -344,6 +344,10 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShareEXP.png"></Image>
+					
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorKDAFatOMeter.png"></Image>
                 </Panel>
 				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
 				<!--<Panel id="loadscreen"> 
@@ -768,19 +772,25 @@
             </Panel>
 
             <Panel id="reviewPhase">
-                <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
-                    <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
-                    <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
+                <Panel class="reviewTeamsOverlay">
+                    <Panel id="reviewPhaseVS">
+                        <Image hittest="false" src="file://{images}/custom_game/vs.png" />
+                        <DOTAScenePanel map="ui/explosion_ui"/>
+                    </Panel>                    
+                    <Panel id="reviewTeams">
+                        <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
+                            <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
+                            <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
+                        </Panel>
+                        <Panel id="reviewDireTeam" class="reviewPhaseTeam">
+                            <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
+                            <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />
+                        </Panel>
+                    </Panel>
                 </Panel>
-                <Label id="reviewPhaseVS" text="VS" />
-                <Panel id="reviewDireTeam" class="reviewPhaseTeam">
-                    <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
-                    <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />
-                </Panel>
-
                 <Panel class="reviewButtons">
                     <Button id="reviewReadyButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                        <Label text="continueFast" />
+                        <Label text="#loading" />
                     </Button>
                 </Panel>
             </Panel>

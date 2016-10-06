@@ -50,6 +50,8 @@ function decrementLabelNumber(panel) {
 }
 
 function setupCredits() {
+	var flagsPath = 'file://{images}/custom_game/flags/';
+	
 	var panel = $("#creditsPanel");
 
 	for (var contributor in GameUI.CustomUIConfig().premiumData) {
@@ -80,8 +82,6 @@ function setupCredits() {
 							var info =  Game.GetPlayerInfo(Players.GetLocalPlayer());
 
 						    MarkMessageAsRead( msg.ID )
-
-							//GameEvents.SendCustomGameEventToServer( "su_mark_message_read", { message_id: msg.ID } );
 						});
 					}
 				})( messages[message], steamID32);
@@ -92,6 +92,7 @@ function setupCredits() {
 			userPic.FindChildTraverse("userPicDescription").text = $.Localize(steamID64.toString()+ "_Description");
 
 			userPic.FindChildTraverse("userPicName").github = GameUI.CustomUIConfig().premiumData[contributor]["github"];
+			userPic.FindChildTraverse("userPicFlag").SetImage(flagsPath + GameUI.CustomUIConfig().premiumData[contributor]["country"] + '.png' );
 
 			userPic.FindChildTraverse("userPicName").text = $.Localize(steamID64.toString());
 			userPic.FindChildTraverse("userPicName").SetPanelEvent('onactivate', function(){

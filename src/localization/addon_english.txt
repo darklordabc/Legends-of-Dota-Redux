@@ -8,31 +8,33 @@
 
     // Contributors
     "76561197988355984" "Ash47"
-    "76561197988355984_Description" "Core coder and designer"
+    "76561197988355984_Description" "Core Coder and Designer"
     "76561198054179075" "darklordabc"
-    "76561198054179075_Description" "Redux project lead"
+    "76561198054179075_Description" "Redux Project Lead"
     "76561198001376044" "TideSofDarK"
-    "76561198001376044_Description" "UI/Spells contributor" 
+    "76561198001376044_Description" "UI/Spells/Perks Contributor" 
     "76561198301701069" "Myrl"
     "76561198301701069_Description" "Developer, Spells Contributor"  
     "76561197996377179" "Yahnich"
-    "76561197996377179_Description" "Developer, Spells Contributor"  
+    "76561197996377179_Description" "Developer, Spells and Perks Contributor"  
     "76561198069396606" "SwordBacon"
-    "76561198069396606_Description" "Spells Contributor"  
+    "76561198069396606_Description" "Spells Contributor and Lead Perks Developer"  
     "76561197990480277" "Wouterz90"
-    "76561197990480277_Description" "Spells Contributor"  
+    "76561197990480277_Description" "Spells and Perks Contributor"  
     "76561198059260684" "CarpeSwag"
     "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"  
 	"76561197996730911" "K1llMan"
-    "76561197996730911_Description" "Developer, Server Tools"
+    "76561197996730911_Description" "Developer, Server Architecture"
 	"76561198016015988" "Mentos"
-    "76561198016015988_Description" "Developer"
+    "76561198016015988_Description" "Developer, UI"
 	"76561197996788368" "Kernel-picnic"
-    "76561197996788368_Description" "Developer, Panorama"
+    "76561197996788368_Description" "Developer, UI"
 	"76561198061842355" "Only biscuit"
-    "76561198061842355_Description" "Tester, Community Relations"
+    "76561198061842355_Description" "Tester, Moral Support"
+	"76561197990183779" "Cool Robbit"
+    "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -318,7 +320,16 @@
     "lodOptionDesAdvancedUniqueHeroes"              "Unique Heroes"
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
-
+	
+	"lodOptionDesCrazyFatOMeter"					"Enable Fat-O-Meter"		
+	"lodOptionNoFatOMeter"							"Disabled"
+	"lodOptionFarmFatOMeter"						"Networth"
+	"lodOptionKDAFatOMeter"							"KDA"	
+	"lodOptionAboutCrazyFatOMeter"					"This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
+	"lodMutatorNoFatOMeter"							"Fat-O-Meter"
+	"lodMutatorFarmFatOMeter"						"Fat-O-Meter Networth"
+	"lodMutatorKDAFatOMeter"						"Fat-O-Meter KDA "
+		
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
@@ -364,7 +375,6 @@
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Balance Mode is on.</font> In Balance Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
     "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
     "lodOptionVoting"                               "Cast your vote to select the options."
-    "lodReviewMessage"                              "Please wait while the game precaches your hero and abilities. You can rearrange your abilities and view other player's builds while you wait."
 
     "lodPickAHero"  "PICK A HERO!"
 
@@ -411,9 +421,6 @@
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
 
-    // Game is currently precaching abilities / heroes, please wait!
-    "lodPrecaching"    "Setting the game up..."
-
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
     "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second."
@@ -431,13 +438,13 @@
 	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
 	"hintBlink"                             	    "Its always a good idea to have an escape plan."
 	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
-	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard. Enemy abilities will only be revealed once they have been spotted."
+	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard."
 	"hintComment"                              "You can leave feedback that goes straight to the developers by using the pencil icon at the top of the screen. From here you can also see the changelog and credits. "
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
-	
+	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -445,6 +452,7 @@
     "lockBuild"                                     "Lock Build"
     "moreTime"                                      "More Time"
     "continueFast"                                  "Ready"
+    "loading"                                       "Loading..."
     "selectBuild"                                   "Select Build"
     "selectHero"                                    "Select Hero"
     "banHero"                                       "Ban Hero"
@@ -730,6 +738,10 @@
 	"warning_support_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing.  If not working, just wait until reusing."
 	"warning_ultimate_random_lod"    "<font color=\"#FF4949\">LoD Warning:</font> This ability might bug out with multiple random abilities. If not working, just wait until reusing."
 	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
+	"warning_imba_tower_essence_drain"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_grievous_wounds"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_sniper"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_multihit"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"

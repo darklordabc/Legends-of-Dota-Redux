@@ -8136,6 +8136,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -8241,6 +8242,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -8584,6 +8586,8 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "15"
+		
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9047,6 +9051,8 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "10"
+		
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
