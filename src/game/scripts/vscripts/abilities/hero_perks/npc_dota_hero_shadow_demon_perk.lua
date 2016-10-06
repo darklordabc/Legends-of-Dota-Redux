@@ -59,28 +59,46 @@ end
 --------------------------------------------------------------------------------------------------------
 function perkShadowDemon(filterTable)
 	local units = filterTable["units"]
-    local order_type = filterTable["order_type"]
-    local issuer = filterTable["issuer_player_id_const"]
-    local abilityIndex = filterTable["entindex_ability"]
-    local targetIndex = filterTable["entindex_target"]
+	local order_type = filterTable["order_type"]
+	local issuer = filterTable["issuer_player_id_const"]
+	local abilityIndex = filterTable["entindex_ability"]
+	local targetIndex = filterTable["entindex_target"]
 
-    local ability = EntIndexToHScript(abilityIndex)
-    local target = EntIndexToHScript(targetIndex)
+	local ability = EntIndexToHScript(abilityIndex)
+	local target = EntIndexToHScript(targetIndex)
 
-    if abilityIndex then
-	    if order_type == DOTA_UNIT_ORDER_SELL_ITEM then
-	        local seller = EntIndexToHScript(units["0"])
-	        if ability:HasAbilityFlag("limited") then 
-	        	local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
-	        	if modifier then
-	        		local stacks = modifier:GetStackCount()
-	        		local charges = ability:GetCurrentCharges()
-	        		if charges == 0 then charges = 1 end
-	        		seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
-	        	end
-	        end
+	if abilityIndex then
+		if order_type == DOTA_UNIT_ORDER_SELL_ITEM then
+			local seller = EntIndexToHScript(units["0"])
+			if ability:GetAbilityName() == "item_ward_dispenser" then
+				seller:DisassembleItem(ability)
+				print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+			elseif ability:HasAbilityFlag("limited") then 
+				local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
+				if modifier then
+					local stacks = modifier:GetStackCount()
+					local charges = ability:GetCurrentCharges()
+					if charges == 0 then charges = 1 end
+					seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+				end
+			end
+		elseif order_type == DOTA_UNIT_ORDER_GIVE_ITEM and not target:HasInventory() then
+			local seller = EntIndexToHScript(units["0"])
+			if ability:GetAbilityName() == "item_ward_dispenser" then
+				seller:DisassembleItem(ability)
+				print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+			elseif ability:HasAbilityFlag("limited") then
+				local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
+				if modifier then
+					local stacks = modifier:GetStackCount()
+					local charges = ability:GetCurrentCharges()
+					if charges == 0 then charges = 1 end
+					seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+				end
+			end
 		end
 	end
+	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:GetModifierBonusStats_Intellect(params)
