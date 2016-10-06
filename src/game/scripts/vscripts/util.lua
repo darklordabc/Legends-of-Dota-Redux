@@ -623,6 +623,25 @@ function CDOTA_BaseNPC:HasUnitFlag(flag)
     end
 end
 
+function GetRandomAbilityFromListForPerk(flag)
+    numberOfValues = 0
+    local localTable = {}
+
+    -- Getting the number of abilities and recreating the table
+     for k,v in pairs(GameRules.perks[flag]) do
+        if not k then
+            break
+        else
+
+            numberOfValues = numberOfValues + 1
+            localTable[numberOfValues] = v
+        end
+    end
+    
+    local random = RandomInt(1,numberOfValues)
+    return localTable[random]
+end
+
 function CDOTA_BaseNPC:IsSleeping()
     if self:HasModifier("modifier_bane_nightmare") then 
         return true
