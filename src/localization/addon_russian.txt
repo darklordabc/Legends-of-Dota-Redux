@@ -25,6 +25,17 @@
 "76561198059260684_Description" "Разработчик Баланс Мода, Создание Способностей" 
 "76561198071596545" "『　　』"
 "76561198071596545_Description" "Тестер, Советы по балансу" 
+"76561197996730911" "K1llMan"
+"76561197996730911_Description" "Developer, Server Architecture"
+"76561198016015988" "Mentos"
+"76561198016015988_Description" "Developer, UI"
+"76561197996788368" "Kernel-picnic"
+"76561197996788368_Description" "Developer, UI"
+"76561198061842355" "Only biscuit"
+"76561198061842355_Description" "Tester, Moral Support"
+"76561197990183779" "Cool Robbit"
+"76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
+
 
 // Teams
 "theRadiant" "Силы Света"
@@ -49,11 +60,15 @@
 "lockOptions" "Заблокировать"
 "lockTeamsFirst" "Перед Продолжением Заблокируйте Команды"
 "importAndExport_code" "Настройки Кода"
-"importAndExport_apply" "Применить"
-"importAndExport_tooltip" "Используй это, чтоб сохранять/загружать игровые настройки. Каждый раз когда меняются настройки,код в коробке автоматически обновляется.\n Чтоб извлечь код настроек, кликните на текст в коробке, потом нажми ctrl+A чтоб выбрать весь текст кода, потом ctrl+C чтоб скопировать код, потом alt-tab в текстовую программу и нажми ctrl+V чтобы вставить код.\n Чтоб ввести сохранённые настройки, скопируйте код настроек сохранённый ранее, кликните на код в коробке, нажмите ctrl+A чтоб выбрать весь текст, и ctrl+V чтобы заменить своим кодом, потом нажмите применить."
+//"importAndExport_apply" "Применить"
+"importAndExport_save"                          "Save"
+"importAndExport_load"                          "Load"
+"importAndExport_tooltip"                       "Use the Save button to save current settings to the cloud. Press load to retrieve them in future games."
+// This is old "importAndExport_tooltip" "Используй это, чтоб сохранять/загружать игровые настройки. Каждый раз когда меняются настройки,код в коробке автоматически обновляется.\n Чтоб извлечь код настроек, кликните на текст в коробке, потом нажми ctrl+A чтоб выбрать весь текст кода, потом ctrl+C чтоб скопировать код, потом alt-tab в текстовую программу и нажми ctrl+V чтобы вставить код.\n Чтоб ввести сохранённые настройки, скопируйте код настроек сохранённый ранее, кликните на код в коробке, нажмите ctrl+A чтоб выбрать весь текст, и ctrl+V чтобы заменить своим кодом, потом нажмите применить."
 "importAndExport_empty" "Пожалуйста введите код настроек"
 "importAndExport_error" "При применении кода возникла ошибка"
 "importAndExport_success" "Ваши настройки были удачно применены!"
+"importAndExport_success_save"                  "Your settings were successfully saved!"
 "importAndExport_no_changes" "Изменении не обнаружено!"
 
 // Categories for option selection
@@ -75,13 +90,80 @@
 "lodOptionNo" "Нет"
 
 // Option text
+
 "lodOptionsPresetGamemode" "Задание Мода Игры"
 "lodOptionBalancedAllPick" "Сбалансированный All Pick"
-"lodOptionBalancedAllPickFast" "Быстрый All Pick"
+"lodOptionTraditionalAllPick" "Быстрый All Pick"
 "lodOptionBalancedSingleDraft" "Сбалансированный Single Draft"
-"lodOptionBalancedMirrorDraft" "Сбалансированный Mirror Draft"
+"lodOptionSingleDraft"                          "FIX|Single Draft"
+"lodOptionMirrorDraft" "Сбалансированный Mirror Draft"
 "lodOptionBalancedAllRandom" "Сбалансированный All Random"
 "lodOptionBalancedCustom" "Пользовательские настройки"
+
+    "lodOptionPresetMutators"                       "F|Optional Mutators"
+    "lodMutatorBanningBanInvis"                     "F|No Invisible"
+    "lodMutatorUpgradedUlts"                        "F|Free Scepter"
+    "lodMutatorFastStart"                           "F|Fast Start"
+    "lodMutatorStrongTowers"                        "F|Strong Towers"
+    "lodMutatorDoubleTowers"                        "F|Extra Towers"
+    "lodMutatorUnlimitedBans"                       "F|Host Bans"
+    "lodMutatorBalanceMode"                         "F|Balance Mode"
+    "lodMutatorPlayerBans"                          "F|Player Bans"
+    "lodMutatorOPAbilities"                         "F|Ban OP Abils"
+    "lodMutatorCustomSkills"                        "F|Custom Skills"
+    "lodMutatorAllVision"                           "F|All Vision"
+    "lodMutatorHidePicks"                           "F|Hide Skill Picks"
+	"lodMutatorShareEXP"                            "F|Team Shared EXP"
+    "lodMutatorWTF"                                 "F|Crazy WTF"
+
+    "lodMutatorFastBuybackCooldown1"                "F|Fast Respawn"
+    "lodMutatorFastBuybackCooldown2"                "F|Faster Respawn"
+    "lodMutatorFastBuybackCooldown3"                "F|Instant Respawn"
+
+    "lodMutatorMaxUlts1"                            "F|2 Ultimates"
+    "lodMutatorMaxUlts2"                            "F|3 Ultimates"
+    "lodMutatorMaxUlts3"                            "F|4 Ultimates"
+    "lodMutatorMaxUlts4"                            "F|6 Ultimates"
+
+    "lodMutatorUniqueSkillsOff"                     "F|No Unique Skills"
+    "lodMutatorUniqueSkillsTeam"                    "F|Team Skills"
+    "lodMutatorUniqueSkillsGlobal"                  "F|Global Skills"
+
+    "lodMutatorGoldTickRate1"                       "F|1 Gold Per Tick"
+    "lodMutatorGoldTickRate2"                       "F|2 Gold Per Tick"
+    "lodMutatorGoldTickRate3"                       "F|3 Gold Per Tick"
+
+    "lodMutatorGoldModifier1"                       "F|100% Gold"
+    "lodMutatorGoldModifier2"                       "F|150% Gold"
+    "lodMutatorGoldModifier3"                       "F|300% Gold"
+
+    "lodMutatorEXPModifier1"                        "F|100% Exp"
+    "lodMutatorEXPModifier2"                        "F|150% Exp"
+    "lodMutatorEXPModifier3"                        "F|300% Exp"
+
+    "lodMutatorBotsRadiant1"                        "F|1 Radiant Bot"
+    "lodMutatorBotsRadiant2"                        "F|5 Radiant Bots"
+    "lodMutatorBotsRadiant3"                        "F|10 Radiant Bots"
+
+    "lodMutatorBotsDire1"                           "F|1 Dire Bot"
+    "lodMutatorBotsDire2"                           "F|5 Dire Bots"
+    "lodMutatorBotsDire3"                           "F|10 Dire Bots"
+
+    "lodMutatorCreepNoPower"                        "F|Normal Creeps"
+    "lodMutatorCreepPowerNormal"                    "F|Strong Creeps"
+    "lodMutatorCreepPowerHigh"                      "F|High Creeps"
+    "lodMutatorCreepPowerExtreme"                   "F|Extreme Creeps"
+
+    "lodMutatorMaxLevel1"                           "F|Max Level 25"
+    "lodMutatorMaxLevel2"                           "F|Max Level 50"
+    "lodMutatorMaxLevel3"                           "F|Max Level 100"
+	
+    "lodOptionAboutBalancedAllPick"                 "F|Pick from every available skill using limited points."
+    "lodOptionAboutTraditionalAllPick"              "F|Pick from every available skill."
+    "lodOptionAboutSingleDraft"                     "F|Pick skills from a random draft of heroes."
+    "lodOptionAboutMirrorDraft"                     "F|Pick skills from a random draft of heroes."
+    "lodOptionAboutAllRandom"                       "F|Pick from a random set of builds."
+    "lodOptionAboutBalancedCustom"                  "F|Build a custom gamemode."
 
 "lodOptionsPresetBanning" "Выбор Банов"
 "lodOptionBalancedBan" "Сбалансированные Баны"
@@ -112,10 +194,10 @@
 "lodOptionMirrorHeroes50" "50 Героев"
 
 "lodOptionDesCommonGamemode" "Мод Игры"
-"lodOptionAllPick" "All Pick"
-"lodOptionSingleDraft" "Single Draft"
-"lodOptionMirrorDraft" "Mirror Draft"
-"lodOptionAllRandom" "All Random"
+"lodOptionAllPick" "F|All Pick"
+"lodOptionSingleDraft" "SF|ingle Draft"
+"lodOptionMirrorDraft" "F|Mirror Draft"
+"lodOptionAllRandom" "F|All Random"
 
 "lodOptionDesCommonMaxSlots" "Максимум Слотов"
 "lodOptionCommonSlots4" "4 Слота"
@@ -204,6 +286,9 @@
 "lodOptionDesGameSpeedEXPModifier" "Модификатор Опыта в % (100 по умолчанию)"
 "lodOptionAboutGameSpeedEXPModifier" "Множитель количества опыта, получаемого за убийства крипов/ героев/ рошана"
 
+"lodOptionDesGameSpeedSharedEXP"                "F|Shared Team XP"
+"lodOptionAboutGameSpeedSharedEXP"              "F|Allies share all experience points"
+
 "lodOptionDesGameSpeedTowersPerLane" "Число Башен На Линии"
 "lodOptionTower3" "3 Башни"
 "lodOptionTower4" "4 Башни"
@@ -212,7 +297,7 @@
 "lodOptionTower7" "7 Башен"
 "lodOptionTower8" "8 Башен"
 "lodOptionTower9" "9 Башен"
-"lodOptionTower10" "10 Towers"
+"lodOptionTower10" "F|10 Towers"
 
 "lodOptionNoCreepPower" "Не Возрастает"
 "lodOptionNormal" "Обычная - Каждые 2 Минуты"
@@ -238,6 +323,15 @@
 "lodOptionDesAdvancedUniqueHeroes" "Уникальные Герои"
 "lodOptionDesAdvancedSelectPrimaryAttr" "Разрешить выбор основного атрибута героя"
 "lodOptionDesBanningMaxHeroBans" "Максимум Банов Героев"
+
+	"lodOptionDesCrazyFatOMeter"					"F|Enable Fat-O-Meter"		
+	"lodOptionNoFatOMeter"							"Disabled"
+	"lodOptionFarmFatOMeter"						"F|Networth"
+	"lodOptionKDAFatOMeter"							"KDA"	
+	"lodOptionAboutCrazyFatOMeter"					"F|This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
+	"lodMutatorNoFatOMeter"							"F|Fat-O-Meter"
+	"lodMutatorFarmFatOMeter"						"Fat-O-Meter Networth"
+	"lodMutatorKDAFatOMeter"						"F|Fat-O-Meter KDA "
 
 "lodUniqueSkillsOff" "Выключено"
 "lodUniqueSkillsTeam" "Уникальные спосбности в команде"
@@ -350,6 +444,10 @@
 "hintScoreboard" "Вы можете посмотреть способности союзников или врагов на таблице очков. Способности врагов будут открыты после обнаружения героя."
 "hintComment" "Вы можете отправить отзыв напрямую разработчикам используя иконку карандаша сверху экрана. Также там вы можете найти список изменений и титры. "
 "hintRemoveAbility" "Используйте хватай-и-выкидывай для удаления способностей из слота. Альтернативно можно просто притащить новую способность вместо той, которую нужно заменить."
+"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
+"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
+"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
+"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 
 // Hero builder
 "finishBanning" "Завершить Баны"
@@ -473,6 +571,12 @@
 
 "lodOptionDesBotsDire" "Желаемое число игроков сил тьмы"
 "lodOptionAboutBotDire" "Боты будут добавлены силам тьмы если игроков сил тьмы меньше этого числа."
+
+"lodOptionDesBotsUniqueSkills"                  "Unique Skills (Bots)"
+"lodOptionAboutBotsUniqueSkills"                "This option prevents two bots from selecting the same abilities.\nUnique Team Skills: Bots from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one Bot can have each ability."
+"lodOptionUniqueDefault"                        "Use Main Setting"
+"lodOptionUniqueTeam"                           "Unique Team Skills"
+"lodOptionUniqueGlobal"                         "Unique Global Skills"
 
 "lodOptionDesBotsUnfairBalance" "Преимущество Ботов в опыте"
 "lodOptionAboutUnfairBalance" "Bots will gain XP to match the person with the highest level in the match."
