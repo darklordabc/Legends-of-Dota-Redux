@@ -5094,7 +5094,7 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
-                    if IsValidEntity(spawnedUnit) then
+                    if IsValidEntity(spawnedUnit) and OptionManager:GetOption('disablePerks') == false then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
                        local perkModifier = "modifier_" .. perkName
