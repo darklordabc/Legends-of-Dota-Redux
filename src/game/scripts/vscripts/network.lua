@@ -29,6 +29,29 @@ function Network:setActiveOptionsTab(newActiveTab)
     CustomNetTables:SetTableValue('phase_pregame', 'activeTab', {v = newActiveTab})
 end
 
+-- Sets the active tab
+function Network:showPopup(player, options)
+    if not IsValidEntity(player) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(player, 'lodShowPopup', options)
+end
+
+function Network:changeHost(options)
+    -- Ensure we have an options table
+    options = options or {}
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToAllClients('lodOnHostChanged', options)
+end
+
+function Network:changeLock(player, options)
+    if not IsValidEntity(player) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(player, 'lodChangeLock', options)
+end
+
 -- Set an option
 function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue})
@@ -109,7 +132,6 @@ function Network:sendNotification(ply, options)
     -- Push it
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
 end
-
 
 function Network:showCheatPanel(options)
     -- Ensure we have an options table

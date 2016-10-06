@@ -22,22 +22,45 @@ function OnPlayerDetailsChanged() {
     	$("#playerAvatar").steamid = playerInfo.player_steamid;
     }
 
-    // Is it the real Ash47?
+    // Is it a contributor?
     var playerName = playerInfo.player_name;
-    if(playerInfo.player_steamid == 76561197988355984) {
-        $("#playerName").AddClass('theRealAsh47');
+    if(isContributor(playerInfo.player_steamid)) {
+        $("#playerName").AddClass('contributor');
     } else {
-        // No one can steal my name
-        playerName = playerName.replace(/ash47/ig, 'some noob');
-        playerName = playerName.replace(/47/ig, '48');
-        $("#playerName").RemoveClass('theRealAsh47');
+        $("#playerName").RemoveClass('contributor');
     }
+    $("#playerName").SetPanelEvent('onactivate', function() {
+		var playerID = $.GetContextPanel().GetAttributeInt('playerID', -1);
+		var playerInfo = Game.GetPlayerInfo(playerID);
+		if (!playerInfo || playerInfo.player_connection_state == 1 || Players.GetLocalPlayer() === playerID || GameUI.CustomUIConfig().hostID != Players.GetLocalPlayer()) return;
+		GameEvents.SendCustomGameEventToServer('lodChangeHost', {
+			oldHost: Players.GetLocalPlayer(),
+			newHost: playerID,
+			popup: true});
+	});
 
     // Set Name
     $("#playerName").text = playerName;
+    $("#playerName").SetAttributeInt('playerID', playerID);
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
-    $.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
+}
+
+function OnHostChanged(data) {
+    GameUI.CustomUIConfig().hostID = data.newHost;
+    OnPlayerDetailsChanged();
+}
+
+
+function isContributor(steamID) {
+	var premiumData = GameUI.CustomUIConfig().premiumData;
+	for (var i in premiumData){
+		if (steamID === premiumData[i].steamID64){
+			return true;
+		}
+	}
+	return false;
 }
 
 // When we get hero data
@@ -147,4 +170,7 @@ function setReadyState(newState) {
     mainPanel.OnGetNewAttribute = OnGetNewAttribute;
     mainPanel.hookStuff = hookStuff;
     mainPanel.setReadyState = setReadyState;
+        GameEvents.Subscribe('lodOnHostChanged', function(data) {
+        OnHostChanged(data);
+    });
 })();
