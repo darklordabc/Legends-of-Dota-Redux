@@ -109,6 +109,9 @@ OptionManager:SetOption('allVision', false)
 -- Multicast Madness
 OptionManager:SetOption('multicastMadness', false)
 
+-- Fat-O-Meter
+OptionManager:SetOption("useFatOMeter", 0)
+
 -- Max level
 OptionManager:SetOption('maxHeroLevel', 25)
 

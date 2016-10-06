@@ -59,6 +59,7 @@ function Pregame:init()
 
     -- Who is ready?
     self.isReady = {}
+    self.shouldFreezeHostTime = nil
 
     -- Fetch player data
     self:preparePlayerDataFetch()
@@ -69,6 +70,7 @@ function Pregame:init()
     -- Setup phase stuff
     GameRules:SetCustomGameSetupTimeout(-1)
     GameRules:EnableCustomGameSetupAutoLaunch(false)
+    self:sendContributors()
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
@@ -192,6 +194,14 @@ function Pregame:init()
         this:onPlayerCastVote(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodChangeHost', function(eventSourceIndex, args)
+        this:onGameChangeHost(eventSourceIndex, args)
+    end)
+
+    CustomGameEventManager:RegisterListener('lodOnChangeLock', function(eventSourceIndex, args)
+        this:onGameChangeLock(eventSourceIndex, args)
+    end)
+
     -- Init debug
     Debug:init()
 
@@ -274,7 +284,7 @@ function Pregame:init()
     if mapName == '3_vs_3' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionSlots', 6, true)
-        self:setOption('lodOptionCommonMaxUlts', 1, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
@@ -425,8 +435,25 @@ function Pregame:onThink()
                 self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionVotingTime'))
             else
                 -- Option selection
+                if self.shouldFreezeHostTime == nil then
+                    self.shouldFreezeHostTime = util:isSinglePlayerMode()
+                    for i=0,DOTA_MAX_PLAYERS do
+                        if PlayerResource:IsValidPlayer(i) then
+                            local player = PlayerResource:GetPlayer(i)
+                            if player and GameRules:PlayerHasCustomGameHostPrivileges(player) then
+                                self.mainHost = player:GetPlayerID()
+                                player.isHost = true
+                                break
+                            end
+                        end
+                    end
+                end
                 self:setPhase(constants.PHASE_OPTION_SELECTION)
-                self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
+                if self.shouldFreezeHostTime == true then
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'), OptionManager:GetOption('maxOptionSelectionTime'))
+                else
+                    self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionSelectionTime'))
+                end
             end
         end
 
@@ -438,12 +465,6 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
-    end
-
-    -- Check for premium players
-    if not self.sentContributors then
-        self.sentContributors = true
-        self:sendContributors()
     end
 
     --[[
@@ -459,7 +480,7 @@ function Pregame:onThink()
                 if steamID ~= 0 then
                     local player = PlayerResource:GetPlayer(playerID)
                     -- If it is a host
-                    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+                    if isPlayerHost(player) then
                         local sound = self:getRandomSound('game_option_host')
                         EmitAnnouncerSoundForPlayer(sound, playerID)
                     else
@@ -780,7 +801,7 @@ function Pregame:actualSpawnPlayer()
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
                         
-                        if hero:IsOwnedByAnyPlayer() and util:playerIsBot(playerID) then
+                        if hero:IsOwnedByAnyPlayer() and not util:isPlayerBot(playerID) then
                             SU:SendPlayerBuild( build, playerID )
                         end
 
@@ -1178,7 +1199,7 @@ function Pregame:onOptionsLocked(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Finish the option selection
         self:finishOptionSelection()
     end
@@ -1194,7 +1215,7 @@ function Pregame:onOptionsMenuChanged(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Grab and set which tab is active
         local newActiveTab = args.v
         network:setActiveOptionsTab(newActiveTab)
@@ -1211,7 +1232,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure they have hosting privileges
-    if GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if isPlayerHost(player) then
         -- Grab options
         local optionName = args.k
         local optionValue = args.v
@@ -1269,6 +1290,27 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 
     -- Process / update the vote data
     self:processVoteData()
+end
+
+function Pregame:onGameChangeHost(eventSourceIndex, args)
+    local oldHost = PlayerResource:GetPlayer(args.oldHost)
+    local newHost = PlayerResource:GetPlayer(args.newHost)
+    local showPopup = args.popup
+    if showPopup then
+        network:showPopup(oldHost, {oldHost = args.oldHost, newHost = args.newHost})
+        return
+    end
+    if isPlayerHost(oldHost) then
+        setPlayerHost(oldHost, newHost)
+        network:changeHost({newHost = args.newHost})
+    end
+end
+
+function Pregame:onGameChangeLock(eventSourceIndex, args)
+    local command = args.command
+    if not command then return end
+    local mainHost = PlayerResource:GetPlayer(self.mainHost)
+    network:changeLock(mainHost, {command = command})
 end
 
 -- Processes Vote Data
@@ -1955,6 +1997,11 @@ function Pregame:initOptionSelector()
         lodOptionCrazyWTF = function(value)
             return value == 0 or value == 1
         end,
+		
+		-- Other -- Fat-O-Meter
+        lodOptionCrazyFatOMeter = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end,
     }
 
     -- Callbacks
@@ -2079,6 +2126,10 @@ function Pregame:initOptionSelector()
 
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
+				
+				-- Disable Fat-O-Meter
+				self:setOption("lodOptionCrazyFatOMeter", 0)
+
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2600,6 +2651,7 @@ function Pregame:processOptions()
 	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
+		OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
 
 	    -- Enforce max level
 	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2766,6 +2818,7 @@ function Pregame:processOptions()
 			        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
 			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
 			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
+					['Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
 			    })
 
 				-- Draft arrays
@@ -3337,7 +3390,7 @@ function Pregame:checkForReady()
     if self:getPhase() == constants.PHASE_BANNING then
         maxTime = OptionManager:GetOption('banningTime')
 
-        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[Pregame:getHostPlayer():GetPlayerID()] == 1)
+        canFinishBanning = (self.optionStore['lodOptionBanningHostBanning'] == 1 and self.isReady[getPlayerHost():GetPlayerID()] == 1)
     end
 
     -- If we are in the random phase
@@ -3443,7 +3496,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	local maxHeroBans = self.optionStore['lodOptionBanningMaxHeroBans']
 
     local unlimitedBans = false
-    if self.optionStore['lodOptionBanningHostBanning'] == 1 and GameRules:PlayerHasCustomGameHostPrivileges(player) then
+    if self.optionStore['lodOptionBanningHostBanning'] == 1 and isPlayerHost(player) then
         unlimitedBans = true
     end
 
@@ -4333,20 +4386,6 @@ function Pregame:getActivePlayers()
     return total
 end
 
--- Get host player
-function Pregame:getHostPlayer()
-	for i=0,DOTA_MAX_PLAYERS do
-		if PlayerResource:IsValidPlayer(i) then
-			local ply = PlayerResource:GetPlayer(i)
-			if ply and GameRules:PlayerHasCustomGameHostPrivileges(ply) then
-				return ply
-			end
-		end
-	end
-
-	return 0
-end
-
 
 -- Adds extra towers
 -- Adds extra towers
@@ -4749,8 +4788,8 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         end
     end
     if not botInfo.isDone then
-        -- Shuffle their build to make it look like a random set
-        ShuffleArray(build)
+        -- Shuffle their build to make it look like a random set. Currently disabled, uncomment below to renable it.
+        -- ShuffleArray(build)
 
         -- Are there any premade builds?
         if self.premadeBotBuilds then

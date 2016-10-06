@@ -247,6 +247,16 @@ var allOptions = {
                         name: 'lodOptionCrazyWTF',
                         about: 'lodMutatorWTF'
                     },                   
+					{
+						name: 'lodOptionCrazyFatOMeter',
+						default: {
+                            'lodMutatorNoFatOMeter': 0
+                        },
+                        states: {
+                            'lodMutatorFarmFatOMeter': 1,
+							'lodMutatorKDAFatOMeter': 2
+                        }
+					},
                 ]
             }
         ]
@@ -960,6 +970,26 @@ var allOptions = {
                     }
                 ]
             },
+			{
+				name: 'lodOptionCrazyFatOMeter',
+				des: 'lodOptionDesCrazyFatOMeter',
+                about: 'lodOptionAboutCrazyFatOMeter',
+                sort: 'dropdown',
+				values: [
+					{
+						text: 'lodOptionNoFatOMeter',
+						value: 0
+					},
+					{
+						text: 'lodOptionFarmFatOMeter',
+						value: 1
+					},
+					{
+						text: 'lodOptionKDAFatOMeter',
+						value: 2
+					},
+				]
+			},
         ]
     }
 }
@@ -1345,6 +1375,14 @@ var calculateHeroFilters = function(){};
 var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 0;
 var showTier = {};
+
+(function() {
+    var playerInfo = Game.GetLocalPlayerInfo();
+    if (playerInfo.player_has_host_privileges){
+        GameUI.CustomUIConfig().hostID = Players.GetLocalPlayer();
+        GameUI.CustomUIConfig().mainHost = Players.GetLocalPlayer();
+    }
+})();
 
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
@@ -3410,9 +3448,8 @@ function helperSort(a,b){
 
 // Are we the host?
 function isHost() {
-    var playerInfo = Game.GetLocalPlayerInfo();
-    if (!playerInfo) return false;
-    return playerInfo.player_has_host_privileges;
+    var playerID = Players.GetLocalPlayer();
+    return playerID === GameUI.CustomUIConfig().hostID;
 }
 
 // Sets an option to a value
@@ -3664,6 +3701,10 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
         newPlayerPanel.SetAttributeInt('playerID', playerID);
         newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
         newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
+        
+        // Update z-index to fix skills hiding
+        if ( /radiant/i.test(reviewContainer.id) )
+            newPlayerPanel.style.zIndex = 20 - playerID;
     } else {
         newPlayerPanel.SetParent(reviewContainer);
         newPlayerPanel.visible = true;
@@ -4342,17 +4383,27 @@ function buildOptionsCategories() {
 
 // Player presses auto assign
 function onAutoAssignPressed() {
-    // Auto assign teams
-    Game.AutoAssignPlayersToTeams();
+    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost) {
+        // Auto assign teams
+        Game.AutoAssignPlayersToTeams();
 
-    // Lock teams
-    Game.SetTeamSelectionLocked(true);
+        // Lock teams
+        Game.SetTeamSelectionLocked(true);
+    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
+        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
+            command: 'assign'});
+    }
 }
 
 // Player presses shuffle
 function onShufflePressed() {
-    // Shuffle teams
-    Game.ShufflePlayerTeamAssignments();
+    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost) {
+        // Shuffle teams
+        Game.ShufflePlayerTeamAssignments();
+    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
+        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
+            command: 'shuffle'});
+    }
 }
 
 // Player presses lock teams
@@ -4360,15 +4411,26 @@ function onLockPressed() {
     // Don't allow a forced start if there are unassigned players
     if (Game.GetUnassignedPlayerIDs().length > 0)
         return;
-
-    // Lock the team selection so that no more team changes can be made
-    Game.SetTeamSelectionLocked(true);
+    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost)
+    {
+        // Lock the team selection so that no more team changes can be made
+        Game.SetTeamSelectionLocked(true);
+    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
+        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
+            command: 'lock'});
+    }
 }
 
 // Player presses unlock teams
 function onUnlockPressed() {
-    // Unlock Teams
-    Game.SetTeamSelectionLocked(false);
+    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost)
+    {
+        // Unlock Teams
+        Game.SetTeamSelectionLocked(false);
+    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
+        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
+            command: 'unlock'});
+    }
 }
 
 // Lock options pressed
@@ -4445,6 +4507,10 @@ function doActualTeamUpdate() {
     radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
     reviewRadiantContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
 
+    // Fix align when tooManyPlayers
+    reviewRadiantTopContainer.visible = radiantPlayers.length > 5;
+    reviewRadiantBotContainer.visible = radiantPlayers.length > 5;
+
     var direTopContainer = $('#theDireContainer');
     var direTopContainerTop = $('#theDireContainerTop');
     var direTopContainerBot = $('#theDireContainerBot');
@@ -4477,6 +4543,10 @@ function doActualTeamUpdate() {
     direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
     reviewDireContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
 
+    // Fix align when tooManyPlayers
+    reviewDireTopContainer.visible = direPlayers.length > 5;
+    reviewDireBotContainer.visible = direPlayers.length > 5;
+
     // Update all of the team panels moving the player panels for the
     // players assigned to each team to the corresponding team panel.
     /*for ( var i = 0; i < g_TeamPanels.length; ++i )
@@ -4494,8 +4564,9 @@ function doActualTeamUpdate() {
     // Set host privledges
     var playerInfo = Game.GetLocalPlayerInfo();
     if (!playerInfo) return;
+    var playerID = playerInfo.player_id
 
-    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerID === GameUI.CustomUIConfig().hostID);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4750,12 +4821,6 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_REVIEW) {
-                // Should we show the host message popup?
-                if(!seenPopupMessages.skillReviewInfo) {
-                    seenPopupMessages.skillReviewInfo = true;
-                    showPopupMessage('lodReviewMessage');
-                }
-
                 // Load all hero images
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
@@ -4844,6 +4909,13 @@ function OnPhaseChanged(table_name, key, data) {
     calculateHideEnemyPicks();
 }
 
+function OnHostChanged(data) {
+    GameUI.CustomUIConfig().hostID = data.newHost;
+    if (GameUI.CustomUIConfig().hostID === Players.GetLocalPlayer()){
+        showPopupMessage('You are a new host.');
+    }
+    OnTeamPlayerListChanged();
+}
 // An option just changed
 function OnOptionChanged(table_name, key, data) {
     // Store new value
@@ -4992,9 +5064,7 @@ function calculateHideEnemyPicks() {
     }
 
     $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
-    $('#reviewRadiantTeam').SetHasClass('hide_picks', hideRadiantPicks);
     $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
-    $('#reviewDireTeam').SetHasClass('hide_picks', hideDirePicks);
 }
 
 // The gamemode has changed
@@ -5290,12 +5360,31 @@ function UpdateTimer() {
         }
 
         // Show the text
-        $('#lodTimerWarningLabel').text = theTimerText;
+        $('#lodTimerWarningLabel').text = 
+            currentPhase == PHASE_REVIEW 
+                ? ""        // Hide review timer
+                : theTimerText;
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
-            $('#lodTimerWarningLabel').text = $.Localize('lodPrecaching');
-            $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
+            $("#reviewReadyButton").enabled = false;
+        }
+        else if (currentPhase == PHASE_REVIEW) {
+            // Show vs
+            $("#reviewPhaseVS").AddClass('show');
+
+            // Show abilities
+            var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
+            for(var i = 0; i < radiantPlayers.length; ++i)
+                $("#reviewPlayer" + radiantPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            // Show abilities
+            var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
+            for(var i = 0; i < direPlayers.length; ++i)
+                $("#reviewPlayer" + direPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            $("#reviewReadyButton").GetChild(0).text = $.Localize('continueFast');
+            $("#reviewReadyButton").enabled = true;
         }
     }
 
@@ -5312,6 +5401,42 @@ function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
     $('#lodPopupMessage').visible = true;
 }
+
+function showQuestionMessage(data) {
+    var oldHost = data.oldHost;
+    var newHost = data.newHost;
+    var playerInfo = Game.GetPlayerInfo(newHost);
+    $('#lodPopupQuestionLabel').text = 'Are you sure want to make player ' + playerInfo.player_name + ' the host of the game?'
+    $('#lodPopupQuestion').visible = true
+    $('#questionYes').SetPanelEvent('onactivate', function(){
+        GameEvents.SendCustomGameEventToServer('lodChangeHost', {
+            oldHost: oldHost,
+            newHost: newHost});
+        $('#lodPopupQuestion').visible = false;
+    });
+    $('#questionNo').SetPanelEvent('onactivate', function(){
+        $('#lodPopupQuestion').visible = false;
+    });
+}
+
+function OnChangeLock(data) {
+    var command = data.command;
+    switch (command) {
+        case 'assign':
+            onAutoAssignPressed();
+        break;
+        case 'shuffle':
+            onShufflePressed();
+        break
+        case 'lock':
+            onLockPressed();
+        break;
+        case 'unlock':
+            onUnlockPressed();
+        break;
+    }
+}
+
 
 // Cast a vote
 function castVote(optionName, optionValue) {
@@ -5461,6 +5586,18 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {
         addNotification(data);
+    });
+
+    GameEvents.Subscribe('lodShowPopup', function(data) {
+        showQuestionMessage(data);
+    });
+
+    GameEvents.Subscribe('lodChangeLock', function(data) {
+        OnChangeLock(data);
+    });
+
+    GameEvents.Subscribe('lodOnHostChanged', function(data) {
+        OnHostChanged(data);
     });
     
     // Update filters

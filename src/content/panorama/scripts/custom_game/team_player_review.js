@@ -29,23 +29,32 @@ function OnPlayerDetailsChanged() {
         $("#reviewPhasePlayerAvatarBig").steamid = playerInfo.player_steamid;
     }
 
-    // Is it the real Ash47?
+    // Is it a contributor?
     var playerName = playerInfo.player_name;
-    if(playerInfo.player_steamid == 76561197988355984) {
-        $("#playerName").AddClass('theRealAsh47');
+    if(isContributor(playerInfo.player_steamid)) {
+        $("#playerName").AddClass('contributor');
     } else {
-        // No one can steal my name
-        playerName = playerName.replace(/ash47/ig, 'some noob');
-        playerName = playerName.replace(/47/ig, '48');
-        $("#playerName").RemoveClass('theRealAsh47');
+        $("#playerName").RemoveClass('contributor');
     }
 
     // Set Name
     $("#playerName").text = playerName;
 
     $.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
-    $.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
+    $.GetContextPanel().SetHasClass("player_has_host_privileges", GameUI.CustomUIConfig().hostID === playerID);
 }
+
+
+function isContributor(steamID) {
+    var premiumData = GameUI.CustomUIConfig().premiumData;
+    for (var i in premiumData){
+        if (steamID === premiumData[i].steamID64){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 // When we get hero data
 function OnGetHeroData(heroName) {
@@ -65,14 +74,10 @@ function OnReviewPhaseStart() {
 
         // Put the hero image in place
         var con = $('#reviewPhaseHeroImageContainer');
-
-        var size = 256;
-        if(shouldMakeSmall) {
-            size = 84;
-        }
-
         var heroImage = $.CreatePanel('Panel', con, 'reviewPhaseHeroImageLoader');
-        heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: ' + size + 'px; height: ' + size + 'px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + ourHeroName + '"/></Panel></root>', false, false);
+
+        heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + ourHeroName + '"/></Panel></root>', false, false);
+        heroImage.AddClass("avatarScene");
     }
 }
 
