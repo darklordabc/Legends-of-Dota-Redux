@@ -17,14 +17,10 @@ function modifier_npc_dota_hero_meepo_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_meepo_perk:IsHidden()
-	return true
-end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_meepo_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_meepo_perk:AllowIllusionDuplicate()
+function modifier_npc_dota_hero_meepo_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
@@ -61,10 +57,10 @@ function modifier_npc_dota_hero_meepo_perk:OnHeroKilled(keys)
 	local heroes = HeroList:GetAllHeroes()
 
 	-- returns if killed hero doesnt have meepo perk or is illusion
-	if not IsServer() or not keys.target:HasModifier("modifier_npc_dota_hero_meepo_perk") or keys.target:IsIllusion() then return false end
+	if not IsServer() or not keys.target:HasModifier("modifier_npc_dota_hero_meepo_perk") or keys.target:IsIllusion() then return true end
 	
 	-- if Meepo is alive and on the same team as killed Meepo, take 25% max health as damage
-	if caster:IsAlive() and caster:IsRealHero() and caster:GetTeam() == keys.target:GetTeam() then
+	if caster:IsAlive() and caster:IsRealHero() and caster:GetTeamNumber() == keys.target:GetTeamNumber() then
 		local damage = {
 			victim = caster,
 			attacker = keys.attacker,
@@ -73,6 +69,7 @@ function modifier_npc_dota_hero_meepo_perk:OnHeroKilled(keys)
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 			ability = self:GetAbility()
 		}
+		print(keys.attacker:GetName())
 		ApplyDamage( damage )
 	end
 	return true
