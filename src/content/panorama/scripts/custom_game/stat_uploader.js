@@ -23,6 +23,14 @@ function SendRequest( requestParams, successCallback )
         });
 }
 
+function SendCustomRequest(data, requestParams, successCallback) {
+	$.AsyncWebRequest(data.url,
+	{
+		type: data.type,
+		success: successCallback
+	});
+}
+
 
 function SetAuthParams( args )
 {
@@ -33,5 +41,6 @@ function SetAuthParams( args )
 
 (function() {
 	GameUI.CustomUIConfig().SendRequest = SendRequest;
+	GameUI.CustomUIConfig().SendCustomRequest = SendCustomRequest;
 	GameEvents.Subscribe( "su_auth_params", SetAuthParams );
 })();

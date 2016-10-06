@@ -994,270 +994,271 @@ var allOptions = {
     }
 }
 
+var recommendedBuilds
 // Hard Coded Recommended Builds
-var recommendedBuilds = [
-    {
-        title: 'Cherub',
-        heroName: 'npc_dota_hero_enchantress',
-		id: 'build_cherub',
-        attr: 'int',
-        build: {
-            1: 'cherub_sleep_cloud',
-            2: 'cherub_synthesis',
-            3: 'cherub_explosive_spore',
-            4: 'cherub_flower_garden',
-            5: 'garden_pink_blossom_base',
-            6: 'garden_blue_blossom_base',
-        },
-    },{
-        title: 'Neutral Creep Builder',
-        heroName: 'npc_dota_hero_chen',
-	id: 'build_creep_builder',
-        attr: 'int',
-        build: {
-            1: 'chen_holy_persuasion',
-            2: 'chen_test_of_faith_teleport',
-            3: 'satyr_hellcaller_unholy_aura',
-            4: 'lycan_howl',
-            5: 'alpha_wolf_command_aura',
-            6: 'granite_golem_hp_aura',
-        },
-    },{
-        title: 'Long Dagger Harassment',
-        heroName: 'npc_dota_hero_ogre_magi',
-        id: 'build_dagger_harrasment',
-        attr: 'int',
-        build: {
-            1: 'phantom_assassin_stifling_dagger',
-            2: 'weaver_geminate_attack',
-            3: 'treant_eyes_in_the_forest',
-            4: 'lone_druid_spirit_bear_entangle',
-            5: 'abaddon_frostmourne',
-            6: 'crystal_maiden_brilliance_aura',
-        },
-    },{
-        title: 'Hunter in the night',
-        heroName: 'npc_dota_hero_night_stalker',
-        id: 'build_hunter_in_the_night',
-        attr: 'str',
-        build: {
-            1: 'magnataur_empower',
-            2: 'antimage_blink',
-            3: 'lycan_shapeshift',
-            4: 'luna_lunar_blessing',
-            5: 'night_stalker_hunter_in_the_night',
-            6: 'night_stalker_darkness',
-        },
-    },
-    {
-        title: 'Generic Tank',
-        heroName: 'npc_dota_hero_centaur',
-        id: 'build_generic_tank',
-        attr: 'str',
-        build: {
-            1: 'tidehunter_kraken_shell',
-            2: 'dragon_knight_dragon_blood',
-            3: 'viper_corrosive_skin',
-            4: 'medusa_mana_shield',
-            5: 'granite_golem_hp_aura',
-            6: 'alchemist_chemical_rage',
-        },
-    },
-    {
-        title: 'Infest Support',
-        heroName: 'npc_dota_hero_life_stealer',
-        id: 'build_infest_support',
-        attr: 'str',
-        build: {
-            1: 'pudge_rot',
-            2: 'witch_doctor_voodoo_restoration',
-            3: 'magnataur_empower',
-            4: 'alpha_wolf_command_aura',
-            5: 'omniknight_degen_aura',
-            6: 'life_stealer_infest',
-        },
-    },
-    {
-        title: 'Global Caster',
-        heroName: 'npc_dota_hero_pugna',
-        id: 'build_global_caster',
-        attr: 'int',
-        build: {
-            1: 'treant_living_armor',
-            2: 'holdout_arcane_aura',
-            3: 'ancient_apparition_ice_blast',
-            4: 'silencer_glaives_of_wisdom',
-            5: 'bloodseeker_thirst_lod',
-            6: 'zuus_thundergods_wrath',
-        },
-    },
-    {
-        title: 'Magic Be Dashed!',
-        heroName: 'npc_dota_hero_mirana',
-        id: 'build_magic_be_dashed',
-        attr: 'agi',
-        build: {
-            1: 'medusa_split_shot',
-            2: 'sniper_take_aim',
-            3: 'spectre_desolate',
-            4: 'meepo_geostrike',
-            5: 'necronomicon_warrior_mana_burn_lod',
-            6: 'phantom_lancer_juxtapose',
-        },
-    },
-    {
-        title: 'All your attributes are belong to me',
-        heroName: 'npc_dota_hero_windrunner',
-        id: 'build_attributes',
-        attr: 'int',
-        build: {
-            1: 'obsidian_destroyer_arcane_orb',
-            2: 'obsidian_destroyer_essence_aura_lod',
-            3: 'skeleton_king_reincarnation',
-            4: 'pudge_flesh_heap',
-            5: 'pudge_flesh_heap_agi',
-            6: 'pudge_flesh_heap_int',
-        },
-    },
-    {
-        title: 'Rapture',
-        heroName: 'npc_dota_hero_bloodseeker',
-        id: 'build_rapture',
-        attr: 'int',
-        build: {
-            1: 'pudge_meat_hook',
-            2: 'tusk_walrus_kick',
-            3: 'lone_druid_savage_roar',
-            4: 'phoenix_icarus_dive',
-            5: 'batrider_flaming_lasso',
-            6: 'bloodseeker_rupture',
-        },
-    },
-    {
-        title: 'Global Stunner',
-        heroName: 'npc_dota_hero_pugna',
-        id: 'build_stunner',
-        attr: 'int',
-        build: {
-            1: 'sven_storm_bolt',
-            2: 'vengefulspirit_magic_missile',
-            3: 'holdout_arcane_aura',
-            4: 'furion_teleportation',
-            5: 'antimage_blink',
-            6: 'tinker_rearm_lod',
-        },
-    },
-    {
-        title: 'Bring the team fight',
-        heroName: 'npc_dota_hero_enigma',
-        id: 'build_team_fight',
-        attr: 'int',
-        build: {
-            1: 'enigma_midnight_pulse',
-            2: 'necrolyte_heartstopper_aura',
-            3: 'warlock_rain_of_chaos',
-            4: 'magnataur_empower',
-            5: 'skeleton_king_vampiric_aura',
-            6: 'enigma_black_hole',
-        },
-    },
-    {
-        title: 'The Duelist',
-        heroName: 'npc_dota_hero_legion_commander',
-        id: 'build_duelist',
-        attr: 'agi',
-        build: {
-            1: 'viper_nethertoxin',
-            2: 'skeleton_king_mortal_strike',
-            3: 'antimage_mana_break',
-            4: 'slark_essence_shift_agility_lod',
-            5: 'phantom_assassin_phantom_strike',
-            6: 'legion_commander_duel',
-        },
-    },
-    {
-        title: 'The Anti-Tank',
-        heroName: 'npc_dota_hero_mirana',
-        id: 'build_anti_tank',
-        attr: 'agi',
-        build: {
-            1: 'force_dash_lod',
-            2: 'ancient_apparition_ice_blast',
-            3: 'life_stealer_feast',
-            4: 'slark_essence_shift_strength_lod',
-            5: 'slark_essence_shift_intellect_lod',
-            6: 'ursa_enrage',
-        },
-    },
-    {
-        title: 'Glass Cannon',
-        heroName: 'npc_dota_hero_sniper',
-        id: 'build_cannon',
-        attr: 'agi',
-        build: {
-            1: 'chaos_knight_chaos_strike',
-            2: 'slardar_bash',
-            3: 'sniper_headshot',
-            4: 'abaddon_frostmourne',
-            5: 'alpha_wolf_command_aura',
-            6: 'drow_ranger_marksmanship',
-        },
-    },
-    {
-        title: 'Disregard Team, Acquire Currency',
-        heroName: 'npc_dota_hero_furion',
-        id: 'build_no_ulty',
-        attr: 'int',
-        build: {
-            1: 'sandking_burrowstrike',
-            2: 'doom_bringer_devour_lod',
-            3: 'alchemist_goblins_greed',
-            4: 'life_stealer_feast',
-            5: 'medusa_split_shot',
-            6: 'furion_teleportation',
-        },
-    },
-    /*{
-        title: 'The Brew Trow',
-        heroName: 'npc_dota_hero_brewmaster',
-        attr: 'str',
-        build: {
-            1: 'windrunner_windrun',
-            2: 'silencer_curse_of_the_silent',
-            3: 'spectre_dispersion',
-            4: 'huskar_berserkers_blood',
-            5: 'tiny_grow_lod',
-            6: 'drow_ranger_marksmanship',
-        },
-    },
-    {
-        title: 'Ranged Death',
-        heroName: 'npc_dota_hero_windrunner',
-        attr: 'agi',
-        build: {
-            1: 'clinkz_wind_walk',
-            2: 'ursa_overpower',
-            3: 'medusa_split_shot',
-            4: 'life_stealer_feast',
-            5: 'phantom_assassin_coup_de_grace',
-            6: 'tiny_grow_lod',
-        },
-    },*/
-    {
-        title: 'MEDIC!',
-        heroName: 'npc_dota_hero_wisp',
-        id: 'build_medic',
-        attr: 'str',
-        build: {
-            1: 'wisp_tether',
-            2: 'wisp_overcharge',
-            3: 'invoker_ghost_walk_lod',
-            4: 'dragon_knight_dragon_blood',
-            5: 'holdout_arcane_aura',
-            6: 'alchemist_chemical_rage',
-        },
-    },
-];
+// var recommendedBuilds = [
+//     {
+//         title: 'Cherub',
+//         heroName: 'npc_dota_hero_enchantress',
+// 		id: 'build_cherub',
+//         attr: 'int',
+//         build: {
+//             1: 'cherub_sleep_cloud',
+//             2: 'cherub_synthesis',
+//             3: 'cherub_explosive_spore',
+//             4: 'cherub_flower_garden',
+//             5: 'garden_pink_blossom_base',
+//             6: 'garden_blue_blossom_base',
+//         },
+//     },{
+//         title: 'Neutral Creep Builder',
+//         heroName: 'npc_dota_hero_chen',
+// 	id: 'build_creep_builder',
+//         attr: 'int',
+//         build: {
+//             1: 'chen_holy_persuasion',
+//             2: 'chen_test_of_faith_teleport',
+//             3: 'satyr_hellcaller_unholy_aura',
+//             4: 'lycan_howl',
+//             5: 'alpha_wolf_command_aura',
+//             6: 'granite_golem_hp_aura',
+//         },
+//     },{
+//         title: 'Long Dagger Harassment',
+//         heroName: 'npc_dota_hero_ogre_magi',
+//         id: 'build_dagger_harrasment',
+//         attr: 'int',
+//         build: {
+//             1: 'phantom_assassin_stifling_dagger',
+//             2: 'weaver_geminate_attack',
+//             3: 'treant_eyes_in_the_forest',
+//             4: 'lone_druid_spirit_bear_entangle',
+//             5: 'abaddon_frostmourne',
+//             6: 'crystal_maiden_brilliance_aura',
+//         },
+//     },{
+//         title: 'Hunter in the night',
+//         heroName: 'npc_dota_hero_night_stalker',
+//         id: 'build_hunter_in_the_night',
+//         attr: 'str',
+//         build: {
+//             1: 'magnataur_empower',
+//             2: 'antimage_blink',
+//             3: 'lycan_shapeshift',
+//             4: 'luna_lunar_blessing',
+//             5: 'night_stalker_hunter_in_the_night',
+//             6: 'night_stalker_darkness',
+//         },
+//     },
+//     {
+//         title: 'Generic Tank',
+//         heroName: 'npc_dota_hero_centaur',
+//         id: 'build_generic_tank',
+//         attr: 'str',
+//         build: {
+//             1: 'tidehunter_kraken_shell',
+//             2: 'dragon_knight_dragon_blood',
+//             3: 'viper_corrosive_skin',
+//             4: 'medusa_mana_shield',
+//             5: 'granite_golem_hp_aura',
+//             6: 'alchemist_chemical_rage',
+//         },
+//     },
+//     {
+//         title: 'Infest Support',
+//         heroName: 'npc_dota_hero_life_stealer',
+//         id: 'build_infest_support',
+//         attr: 'str',
+//         build: {
+//             1: 'pudge_rot',
+//             2: 'witch_doctor_voodoo_restoration',
+//             3: 'magnataur_empower',
+//             4: 'alpha_wolf_command_aura',
+//             5: 'omniknight_degen_aura',
+//             6: 'life_stealer_infest',
+//         },
+//     },
+//     {
+//         title: 'Global Caster',
+//         heroName: 'npc_dota_hero_pugna',
+//         id: 'build_global_caster',
+//         attr: 'int',
+//         build: {
+//             1: 'treant_living_armor',
+//             2: 'holdout_arcane_aura',
+//             3: 'ancient_apparition_ice_blast',
+//             4: 'silencer_glaives_of_wisdom',
+//             5: 'bloodseeker_thirst_lod',
+//             6: 'zuus_thundergods_wrath',
+//         },
+//     },
+//     {
+//         title: 'Magic Be Dashed!',
+//         heroName: 'npc_dota_hero_mirana',
+//         id: 'build_magic_be_dashed',
+//         attr: 'agi',
+//         build: {
+//             1: 'medusa_split_shot',
+//             2: 'sniper_take_aim',
+//             3: 'spectre_desolate',
+//             4: 'meepo_geostrike',
+//             5: 'necronomicon_warrior_mana_burn_lod',
+//             6: 'phantom_lancer_juxtapose',
+//         },
+//     },
+//     {
+//         title: 'All your attributes are belong to me',
+//         heroName: 'npc_dota_hero_windrunner',
+//         id: 'build_attributes',
+//         attr: 'int',
+//         build: {
+//             1: 'obsidian_destroyer_arcane_orb',
+//             2: 'obsidian_destroyer_essence_aura_lod',
+//             3: 'skeleton_king_reincarnation',
+//             4: 'pudge_flesh_heap',
+//             5: 'pudge_flesh_heap_agi',
+//             6: 'pudge_flesh_heap_int',
+//         },
+//     },
+//     {
+//         title: 'Rapture',
+//         heroName: 'npc_dota_hero_bloodseeker',
+//         id: 'build_rapture',
+//         attr: 'int',
+//         build: {
+//             1: 'pudge_meat_hook',
+//             2: 'tusk_walrus_kick',
+//             3: 'lone_druid_savage_roar',
+//             4: 'phoenix_icarus_dive',
+//             5: 'batrider_flaming_lasso',
+//             6: 'bloodseeker_rupture',
+//         },
+//     },
+//     {
+//         title: 'Global Stunner',
+//         heroName: 'npc_dota_hero_pugna',
+//         id: 'build_stunner',
+//         attr: 'int',
+//         build: {
+//             1: 'sven_storm_bolt',
+//             2: 'vengefulspirit_magic_missile',
+//             3: 'holdout_arcane_aura',
+//             4: 'furion_teleportation',
+//             5: 'antimage_blink',
+//             6: 'tinker_rearm_lod',
+//         },
+//     },
+//     {
+//         title: 'Bring the team fight',
+//         heroName: 'npc_dota_hero_enigma',
+//         id: 'build_team_fight',
+//         attr: 'int',
+//         build: {
+//             1: 'enigma_midnight_pulse',
+//             2: 'necrolyte_heartstopper_aura',
+//             3: 'warlock_rain_of_chaos',
+//             4: 'magnataur_empower',
+//             5: 'skeleton_king_vampiric_aura',
+//             6: 'enigma_black_hole',
+//         },
+//     },
+//     {
+//         title: 'The Duelist',
+//         heroName: 'npc_dota_hero_legion_commander',
+//         id: 'build_duelist',
+//         attr: 'agi',
+//         build: {
+//             1: 'viper_nethertoxin',
+//             2: 'skeleton_king_mortal_strike',
+//             3: 'antimage_mana_break',
+//             4: 'slark_essence_shift_agility_lod',
+//             5: 'phantom_assassin_phantom_strike',
+//             6: 'legion_commander_duel',
+//         },
+//     },
+//     {
+//         title: 'The Anti-Tank',
+//         heroName: 'npc_dota_hero_mirana',
+//         id: 'build_anti_tank',
+//         attr: 'agi',
+//         build: {
+//             1: 'force_dash_lod',
+//             2: 'ancient_apparition_ice_blast',
+//             3: 'life_stealer_feast',
+//             4: 'slark_essence_shift_strength_lod',
+//             5: 'slark_essence_shift_intellect_lod',
+//             6: 'ursa_enrage',
+//         },
+//     },
+//     {
+//         title: 'Glass Cannon',
+//         heroName: 'npc_dota_hero_sniper',
+//         id: 'build_cannon',
+//         attr: 'agi',
+//         build: {
+//             1: 'chaos_knight_chaos_strike',
+//             2: 'slardar_bash',
+//             3: 'sniper_headshot',
+//             4: 'abaddon_frostmourne',
+//             5: 'alpha_wolf_command_aura',
+//             6: 'drow_ranger_marksmanship',
+//         },
+//     },
+//     {
+//         title: 'Disregard Team, Acquire Currency',
+//         heroName: 'npc_dota_hero_furion',
+//         id: 'build_no_ulty',
+//         attr: 'int',
+//         build: {
+//             1: 'sandking_burrowstrike',
+//             2: 'doom_bringer_devour_lod',
+//             3: 'alchemist_goblins_greed',
+//             4: 'life_stealer_feast',
+//             5: 'medusa_split_shot',
+//             6: 'furion_teleportation',
+//         },
+//     },
+//     /*{
+//         title: 'The Brew Trow',
+//         heroName: 'npc_dota_hero_brewmaster',
+//         attr: 'str',
+//         build: {
+//             1: 'windrunner_windrun',
+//             2: 'silencer_curse_of_the_silent',
+//             3: 'spectre_dispersion',
+//             4: 'huskar_berserkers_blood',
+//             5: 'tiny_grow_lod',
+//             6: 'drow_ranger_marksmanship',
+//         },
+//     },
+//     {
+//         title: 'Ranged Death',
+//         heroName: 'npc_dota_hero_windrunner',
+//         attr: 'agi',
+//         build: {
+//             1: 'clinkz_wind_walk',
+//             2: 'ursa_overpower',
+//             3: 'medusa_split_shot',
+//             4: 'life_stealer_feast',
+//             5: 'phantom_assassin_coup_de_grace',
+//             6: 'tiny_grow_lod',
+//         },
+//     },*/
+//     {
+//         title: 'MEDIC!',
+//         heroName: 'npc_dota_hero_wisp',
+//         id: 'build_medic',
+//         attr: 'str',
+//         build: {
+//             1: 'wisp_tether',
+//             2: 'wisp_overcharge',
+//             3: 'invoker_ghost_walk_lod',
+//             4: 'dragon_knight_dragon_blood',
+//             5: 'holdout_arcane_aura',
+//             6: 'alchemist_chemical_rage',
+//         },
+//     },
+// ];
 
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
@@ -2833,11 +2834,18 @@ function onHeroFilterPressed(filterName) {
 }
 
 // When the main selection tab is shown
-var firstBuildTabCall = true;
+GameUI.CustomUIConfig().SendCustomRequest({
+            url: 'http://195.123.209.51/default.json',
+            type: 'GET',
+        }, null, function(data){
+            recommendedBuilds = data;
+        });
+var isBuildCreated = true;
 function OnMainSelectionTabShown() {
-    if(firstBuildTabCall) {
+    if (isBuildCreated) {
         // Only do this once
-        firstBuildTabCall = false;
+        isBuildCreated = false;
+        recommendedBuilds = (balanceMode) ? recommendedBuilds.balance : recommendedBuilds.default;
 
         // The  container to work with
         var con = $('#pickingPhaseRecommendedBuildContainer');
@@ -4440,6 +4448,7 @@ function onLockOptionsPressed() {
 
     // Lock options
     var showTab = 'pickingPhaseMainTab';
+    OnMainSelectionTabShown();
     showBuilderTab(showTab);
     
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
@@ -5352,6 +5361,7 @@ function UpdateTimer() {
 
                     //$('#lodTimerWarningLabel').visible = false;
                     var showTab = 'pickingPhaseMainTab';
+                    OnMainSelectionTabShown();
                     showBuilderTab(showTab);
                     
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
@@ -5624,7 +5634,6 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Hook tab changes
     hookTabChange('pickingPhaseHeroTab', OnHeroTabShown);
     hookTabChange('pickingPhaseSkillTab', OnSkillTabShown);
-    hookTabChange('pickingPhaseMainTab', OnMainSelectionTabShown);
 
     // Setup the tabs
     setupBuilderTabs();
