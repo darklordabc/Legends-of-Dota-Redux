@@ -21,9 +21,9 @@ end
 function modifier_npc_dota_hero_lone_druid_perk:IsHidden()
 	if IsClient() then
 		if not self.bear and not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
+			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk"..self:GetParent():GetPlayerID() )
 			if netTable then
-				self.bear = netTable.bear
+				self.bear = netTable.hasValidAbility
 			end
 			self.check = true
 		end
@@ -36,9 +36,9 @@ end
 if IsServer() then
 	function modifier_npc_dota_hero_lone_druid_perk:OnCreated()
 		self.bear = self:GetCaster():FindAbilityByName("lone_druid_spirit_bear")
-		if self.bear then 
-			CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { bear = self.bear } )
-		end
+		
+		CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk"..self:GetParent():GetPlayerID(), { hasValidAbility = self.bear or false} )
+		
 		self.damageTaken = 0.5
 		self.damageRedirect = 1 - self.damageTaken
 		self.suicide = {item_bloodstone = true,
