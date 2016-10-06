@@ -247,6 +247,16 @@ var allOptions = {
                         name: 'lodOptionCrazyWTF',
                         about: 'lodMutatorWTF'
                     },                   
+					{
+						name: 'lodOptionCrazyFatOMeter',
+						default: {
+                            'lodMutatorNoFatOMeter': 0
+                        },
+                        states: {
+                            'lodMutatorFarmFatOMeter': 1,
+							'lodMutatorKDAFatOMeter': 2
+                        }
+					},
                 ]
             }
         ]
@@ -960,6 +970,26 @@ var allOptions = {
                     }
                 ]
             },
+			{
+				name: 'lodOptionCrazyFatOMeter',
+				des: 'lodOptionDesCrazyFatOMeter',
+                about: 'lodOptionAboutCrazyFatOMeter',
+                sort: 'dropdown',
+				values: [
+					{
+						text: 'lodOptionNoFatOMeter',
+						value: 0
+					},
+					{
+						text: 'lodOptionFarmFatOMeter',
+						value: 1
+					},
+					{
+						text: 'lodOptionKDAFatOMeter',
+						value: 2
+					},
+				]
+			},
         ]
     }
 }
@@ -3664,6 +3694,10 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
         newPlayerPanel.SetAttributeInt('playerID', playerID);
         newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
         newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
+        
+        // Update z-index to fix skills hiding
+        if ( /radiant/i.test(reviewContainer.id) )
+            newPlayerPanel.style.zIndex = 20 - playerID;
     } else {
         newPlayerPanel.SetParent(reviewContainer);
         newPlayerPanel.visible = true;
@@ -4445,6 +4479,10 @@ function doActualTeamUpdate() {
     radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
     reviewRadiantContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
 
+    // Fix align when tooManyPlayers
+    reviewRadiantTopContainer.visible = radiantPlayers.length > 5;
+    reviewRadiantBotContainer.visible = radiantPlayers.length > 5;
+
     var direTopContainer = $('#theDireContainer');
     var direTopContainerTop = $('#theDireContainerTop');
     var direTopContainerBot = $('#theDireContainerBot');
@@ -4476,6 +4514,10 @@ function doActualTeamUpdate() {
     // Do we have more than 5 players on radiant?
     direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
     reviewDireContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
+
+    // Fix align when tooManyPlayers
+    reviewDireTopContainer.visible = direPlayers.length > 5;
+    reviewDireBotContainer.visible = direPlayers.length > 5;
 
     // Update all of the team panels moving the player panels for the
     // players assigned to each team to the corresponding team panel.
@@ -4750,12 +4792,6 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_REVIEW) {
-                // Should we show the host message popup?
-                if(!seenPopupMessages.skillReviewInfo) {
-                    seenPopupMessages.skillReviewInfo = true;
-                    showPopupMessage('lodReviewMessage');
-                }
-
                 // Load all hero images
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
@@ -4992,9 +5028,7 @@ function calculateHideEnemyPicks() {
     }
 
     $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
-    $('#reviewRadiantTeam').SetHasClass('hide_picks', hideRadiantPicks);
     $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
-    $('#reviewDireTeam').SetHasClass('hide_picks', hideDirePicks);
 }
 
 // The gamemode has changed
@@ -5290,12 +5324,31 @@ function UpdateTimer() {
         }
 
         // Show the text
-        $('#lodTimerWarningLabel').text = theTimerText;
+        $('#lodTimerWarningLabel').text = 
+            currentPhase == PHASE_REVIEW 
+                ? ""        // Hide review timer
+                : theTimerText;
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
-            $('#lodTimerWarningLabel').text = $.Localize('lodPrecaching');
-            $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
+            $("#reviewReadyButton").enabled = false;
+        }
+        else if (currentPhase == PHASE_REVIEW) {
+            // Show vs
+            $("#reviewPhaseVS").AddClass('show');
+
+            // Show abilities
+            var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
+            for(var i = 0; i < radiantPlayers.length; ++i)
+                $("#reviewPlayer" + radiantPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            // Show abilities
+            var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
+            for(var i = 0; i < direPlayers.length; ++i)
+                $("#reviewPlayer" + direPlayers[i]).FindChild("reviewPhasePlayerSkillContainer").AddClass('show');
+
+            $("#reviewReadyButton").GetChild(0).text = $.Localize('continueFast');
+            $("#reviewReadyButton").enabled = true;
         }
     }
 

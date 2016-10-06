@@ -3,15 +3,31 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.3
+## 1.4 - Steam Version
+
+### Bug Fixing/New Features
+- Added chinese localization (might not be in-game yet)
+- Added flags to the credits page
+- Changed Icons for top right buttons
+- Bot abilities are no longer shuffled
+- Added new Mutator: Fat-O-Meter
+- Fixed bots not moving at start
+
+### Balance
+- Some Tower abilities that are extremely OP now require minium levels to learn. They are still not recommended for play
+- Enemy abilities are now in scoreboard from start
+
+
+## 1.3 
 
 ### Bug Fixing
 - Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 
-- Added Color Bars to the top panel of heros
+- Added color Bars to the top panel of heros
 - Fixed broken mutators display on 4:3 aspect ratio
+- Redesigned Review Screen
 
 ### Balance
-
+- Enemy abilities are now revealed during the review stage
 
 ## 1.2
 
@@ -21,12 +37,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Renamed all_pick_6 to 5_vs_5
 - Updated map to latest reborn map
 - Added back-end ability stats tracking
+- Bots no longer stay in base if they havent seen a player.  
+
 
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
 - Moved the pencil icon to the right side of the screen
 - Added a cheat menu icon to the top right of the screen
+- Abilities show in the scoreboard at the start of the game now
 
 
 ## 1.1
