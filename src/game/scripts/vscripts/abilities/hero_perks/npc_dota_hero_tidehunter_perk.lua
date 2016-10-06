@@ -17,7 +17,16 @@ function modifier_npc_dota_hero_tidehunter_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tidehunter_perk:IsHidden()
-	return false
+	if IsClient() then
+		if not self.check then
+			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
+			if netTable then
+				self.hasValidAbility = netTable.hasValidAbility
+			end
+			self.check = true
+		end
+	end
+	return (not self.hasValidAbility)
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tidehunter_perk:RemoveOnDeath()
@@ -25,6 +34,20 @@ function modifier_npc_dota_hero_tidehunter_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tidehunter_perk:OnCreated()
+	if IsServer() then
+	
+		self.validAbility = self:GetParent():FindAbilityByName("tidehunter_ravage") 
+
+		if self.validAbility then self.hasValidAbility = (not self.validAbility:IsHidden()) end
+			
+		if self.hasValidAbility then 
+		   CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = true } )
+		end
+		
+	end
+end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tidehunter_perk:DeclareFunctions()
   local funcs = {
