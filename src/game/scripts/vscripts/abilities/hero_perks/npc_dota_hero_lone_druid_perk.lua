@@ -27,7 +27,8 @@ function modifier_npc_dota_hero_lone_druid_perk:IsHidden()
 			end
 			self.check = true
 		end
-		return (not self.bear)
+
+		if self.bear == 0 then return true else return false end
 	end
 end
 --------------------------------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ if IsServer() then
 	function modifier_npc_dota_hero_lone_druid_perk:OnCreated()
 		self.bear = self:GetCaster():FindAbilityByName("lone_druid_spirit_bear")
 		
-		CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk"..self:GetParent():GetPlayerID(), { hasValidAbility = self.bear} )
+		CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk"..self:GetParent():GetPlayerID(), { hasValidAbility = self.bear or false} )
 		
 		self.damageTaken = 0.5
 		self.damageRedirect = 1 - self.damageTaken
