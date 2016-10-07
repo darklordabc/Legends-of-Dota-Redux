@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.5 
+
+### Bug Fixing/New Features
+- Host timer will not count-down if the game is single player.
+- Players can now give host powers to other players by clicking on their name
+- Contributors to the mod, including developers, will have their names highlighted in gold
+
+### Balance
+
+
 ## 1.4 - Steam Version
 
 ### Bug Fixing/New Features
