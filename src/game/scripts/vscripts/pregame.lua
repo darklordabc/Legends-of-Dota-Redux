@@ -2651,20 +2651,19 @@ function Pregame:processOptions()
                     for abilityName,nothing in pairs(tierList) do
                         this:banAbility(abilityName)
                     end
-                --[[else
+                else
                     -- Spell Shop
-                    local price = constants.TIER[12] --tierNum]
+                    local price = constants.TIER[tierNum]
                     
                     for abilityName,nothing in pairs(tierList) do
                         self.spellCosts[abilityName] = price
                         network:sendSpellPrice(abilityName, price)
                     end
-                ]]
                 end
             end
             
             -- Set spell costs by tracked stats
-            SU:LoadGlobalAbilitiesStat(constants.TIER)
+            -- SU:LoadGlobalAbilitiesStat(constants.TIER)
             
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
