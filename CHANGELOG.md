@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added Support for Russian Language, for the menu at least
 
 ### Balance
+- Bots now either have chemical rage or shadow dance as their top priority skill to learn. Before only chemical rage was top pick. You will see more variety now.
 
 
 ## 1.4 - Steam Version
