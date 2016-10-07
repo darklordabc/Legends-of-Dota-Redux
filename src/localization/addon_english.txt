@@ -112,6 +112,7 @@
 	"lodMutatorHidePicks"                           "Hide Skill Picks"
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
+    "lodMutatorDisablePerks"                        "Disable Perks"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -320,6 +321,8 @@
     "lodOptionDesAdvancedUniqueHeroes"              "Unique Heroes"
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
+    "lodOptionDesDisablePerks"                      "Disable Perks"
+
 	
 	"lodOptionDesCrazyFatOMeter"					"Enable Fat-O-Meter"		
 	"lodOptionNoFatOMeter"							"Disabled"
@@ -420,6 +423,7 @@
     "lodOptionAboutCrazyAllVision"                  "Teams will shared vision."
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
+    "lodOptionAboutDisablePerks"  					"Hero Perks will not be assigned to heroes."
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
