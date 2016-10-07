@@ -2367,7 +2367,7 @@
 	
 	/// MEEPO
 	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk"  "Meepo Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk_Description"  "Increases all damage by 5% for every other Meepo on your team. Takes 25% max health as damage whenever a Meepo dies. <br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk_Description"  "Increases all damage by 5%d% for every other Meepo on your team. Takes 25%d% max health as damage whenever a Meepo dies. <br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
 	
 	/// MIRANA​
 	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
