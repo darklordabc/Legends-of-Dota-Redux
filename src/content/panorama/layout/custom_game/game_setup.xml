@@ -580,9 +580,9 @@
                                 <Panel id="pickingHeroListFilters">
                                     <Label class="pickingHeroListFilterHeading" text="#filter_by_category" />
                                     <Panel class="pickingHeroListFilterGroup">
-                                        <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="Melee" onactivate="onHeroFilterPressed('melee')" />
-                                        <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="Ranged" onactivate="onHeroFilterPressed('ranged')" />
-                                        <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="Clear Filters" onactivate="onHeroFilterPressed('clear')" />
+                                        <Label id="heroPickingFiltersMelee" class="heroBuildMenuButtonSmall" text="melee" onactivate="onHeroFilterPressed('melee')" />
+                                        <Label id="heroPickingFiltersRanged" class="heroBuildMenuButtonSmall" text="ranged" onactivate="onHeroFilterPressed('ranged')" />
+                                        <Label id="heroPickingFiltersClear" class="heroBuildMenuButtonSmall" text="clearFilters" onactivate="onHeroFilterPressed('clear')" />
                                     </Panel>
                                 </Panel>
                                 <Label id="balanceModePointsHeroes" text="#balance_mode_points" />
@@ -633,9 +633,9 @@
                             </Panel>
                             <Label text="#filter_by_category" class="buildingHelperInfoText" />
                             <DropDown id="lodSkillCategoryHolder" />
-                            <ToggleButton id="buttonHeroGrouping" text="Group Hero Abilities" onactivate="toggleHeroGrouping()" />
-                            <ToggleButton id="buttonShowBanned" text="Show Banned Skills" onactivate="toggleShowBanned()" />
-                            <ToggleButton text="Show Disallowed Skills" onactivate="toggleShowDisallowed()" />
+                            <ToggleButton id="buttonHeroGrouping" text="groupHeroAbilities" onactivate="toggleHeroGrouping()" />
+                            <ToggleButton id="buttonShowBanned" text="showBannedSkills" onactivate="toggleShowBanned()" />
+                            <ToggleButton text="showDisallowedSkills" onactivate="toggleShowDisallowed()" />
                             
                             <Label id="balanceModeFilter" text="#filter_by_value" class="buildingHelperInfoText" /> 
                             <Label id="balanceModePointsSkills" text="#balance_mode_points" />

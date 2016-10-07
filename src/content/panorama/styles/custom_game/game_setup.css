@@ -45,7 +45,7 @@
     border-radius: 8px;
     padding: 16px;
     width: 600px;
-    height: 200px;
+    height: 250px;
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
@@ -2236,9 +2236,8 @@
 
 .VotingOptionInfo {
     flow-children: right;
-    horizontal-align: right;
-	
-	margin-left: 5px;
+
+	margin-left: 10px;
 	width: 18px;
 	height: 18px;
 }
@@ -2350,7 +2349,6 @@
 #mutatorPanel {
     width: 458px;
     flow-children: right-wrap;
-    align: right;
 }
 
 #optionList .OptionPanel {
@@ -2389,7 +2387,7 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 130px;
+    margin-top: 10px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
@@ -2433,7 +2431,6 @@
 }
 
 #optionList #optionMutatorTitle {
-    margin:  auto;
     width: 223px;
     height: 80px;
     line-height: 60px;
@@ -2453,7 +2450,7 @@
     flow-children: right;
     z-index: 10;
     margin: 5px;
-    align: right;
+    horizontal-align: right;
 }
 
 #optionList .mutator .circle {
@@ -2479,11 +2476,10 @@
 }
 
 #importAndExportCaption {
-     width: 71px;
+    flow-children: right;
 }
 
 .importAndExportButton {
-    width: 55px;
     height: 30px;
     margin-top: 3px;
     margin-right: 0px;
@@ -2495,7 +2491,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: right;
+    flow-children: left;
     margin-left: -10px;
 }
 

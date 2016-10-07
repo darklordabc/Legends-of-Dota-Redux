@@ -458,6 +458,12 @@
     "banHero"                                       "Ban Hero"
     "banAbility"                                    "Ban Ability"
     "lodBanningSection"                             "Banning"
+    "melee"                                         "Melee"
+    "ranged"                                        "Ranged"
+    "clearFilters"                                  "Clear Filters"
+    "groupHeroAbilities"                            "Group Hero Abilities"
+    "showBannedSkills"                              "Show Banned Skills"
+    "showDisallowedSkills"                          "Show Disallowed Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 
