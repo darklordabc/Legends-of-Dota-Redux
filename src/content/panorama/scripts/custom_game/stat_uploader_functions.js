@@ -88,37 +88,3 @@ function RecordPlayerSC( ) {
         });
     })
 }
-
-function SaveFavBuilds( builds ){
-    var requestParams = {
-        Command : "SaveFavBuilds",
-        Data: {
-            SteamID: GetSteamID32(),
-            Builds : JSON.stringify(builds),
-        }
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams,  (function () {}) );
-}
-
-function LoadFavBuilds( ){
-    var requestParams = {
-        Command : "LoadFavBuilds",
-        SteamID: GetSteamID32(),
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-    	$.Msg(data);
-    }) );
-}
-
-function LoadBuilds( filter ){
-    var requestParams = {
-        Command : "LoadBuilds",
-        Filter: filter,
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-    	$.Msg(data);
-    }) );
-}
