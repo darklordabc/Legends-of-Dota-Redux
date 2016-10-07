@@ -329,7 +329,7 @@
     "lodOptionDesBanningMaxHeroBans"                "Максимум Банов Героев"
 
     "lodOptionDesCrazyFatOMeter"                    "Включить Fat-O-Meter"
-    "lodOptionNoFatOMeter"                          "Отключен"
+    "lodOptionNoFatOMeter"                          "Выключено"
     "lodOptionFarmFatOMeter"                        "По Общей Ценности"
     "lodOptionKDAFatOMeter"                         "По KDA"
     "lodOptionAboutCrazyFatOMeter"                  "Эта опция позволит игрокам увеличиваться в размерах и становиться мощнее\По Общей Ценности: Игроки увеличиваются в размерах по мере того как они становятся богаче\nПо KDA: Игроки увеличиваются в размерах, убивая вражеских героев и изменяя их KDA\n\nСоздано Cool Robbit."
