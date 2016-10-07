@@ -722,6 +722,7 @@
     "lodMainFeatures"                               "Main Features"
     "lodLeaveComment"                               "Leave a comment for our developers."
     "GitHubReference"                               "Alternatively submit to our Github."
+	"msgFromDev"									"Message from a developer"
 
 	//Hero Stats
 

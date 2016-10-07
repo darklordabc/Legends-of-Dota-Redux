@@ -14,7 +14,7 @@
 	</script>
 
 	<PopupCustomLayout class="PopupPanel Hidden" popupbackground="dim" oncancel="UIPopupButtonClicked()" onload="SetupPopup()">
-		<Label class="PopupTitle" text="Message from a developer" />
+		<Label class="PopupTitle" text="#msgFromDev" />
 
 		<Label class="PopupMessage" text="{s:popupvalue}" />	
 
