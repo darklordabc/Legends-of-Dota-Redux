@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Host timer will not count-down if the game is single player.
 - Players can now give host powers to other players by clicking on their name
 - Contributors to the mod, including developers, will have their names highlighted in gold
-
+- Added information about Witchcraft mana refunding to its tooltip and hint
 ### Balance
 
 
