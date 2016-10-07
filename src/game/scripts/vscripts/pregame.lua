@@ -1911,6 +1911,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Advanced -- Disable Perks
+        lodOptionDisablePerks = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Advanced -- Unique Skills
         lodOptionAdvancedUniqueSkills = function(value)
             return value == 0 or value == 1 or value == 2
@@ -2087,7 +2092,6 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2768,6 +2772,7 @@ function Pregame:processOptions()
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
 			        ['Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
 			        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
+			        ['Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
 			        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
 			        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
 			        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
@@ -5094,6 +5099,7 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
+                    print(OptionManager:GetOption('disablePerks')) 
                     if IsValidEntity(spawnedUnit) and OptionManager:GetOption('disablePerks') == false then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
