@@ -240,6 +240,10 @@ var allOptions = {
                         about: 'lodMutatorHidePicks'
                     },
                     {
+                        name: 'lodOptionDisablePerks',
+                        about: 'lodMutatorDisablePerks'
+                    },
+                    {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
@@ -744,6 +748,22 @@ var allOptions = {
                 ]
             },
             {
+                name: 'lodOptionDisablePerks',
+                des: 'lodOptionDesDisablePerks',
+                about: 'lodOptionAboutDisablePerks',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionAdvancedUniqueSkills',
                 des: 'lodOptionDesAdvancedUniqueSkills',
                 about: 'lodOptionAboutAdvancedUniqueSkills',
@@ -795,7 +815,7 @@ var allOptions = {
                     }
                 ]
             },
-	    {
+	        {
                 name: 'lodOptionGameSpeedFreeCourier',
                 des: 'lodOptionDesGameSpeedFreeCourier',
                 about: 'lodOptionAboutGameSpeedFreeCourier',
