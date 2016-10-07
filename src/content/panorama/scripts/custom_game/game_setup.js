@@ -1376,14 +1376,6 @@ var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 0;
 var showTier = {};
 
-(function() {
-    var playerInfo = Game.GetLocalPlayerInfo();
-    if (playerInfo.player_has_host_privileges){
-        GameUI.CustomUIConfig().hostID = Players.GetLocalPlayer();
-        GameUI.CustomUIConfig().mainHost = Players.GetLocalPlayer();
-    }
-})();
-
 // Hooks an events and fires for all the keys
 function hookAndFire(tableName, callback) {
     // Listen for phase changing information
@@ -3448,8 +3440,9 @@ function helperSort(a,b){
 
 // Are we the host?
 function isHost() {
-    var playerID = Players.GetLocalPlayer();
-    return playerID === GameUI.CustomUIConfig().hostID;
+    var playerInfo = Game.GetLocalPlayerInfo();
+    if (!playerInfo) return false;
+    return playerInfo.player_has_host_privileges;
 }
 
 // Sets an option to a value
@@ -4383,27 +4376,17 @@ function buildOptionsCategories() {
 
 // Player presses auto assign
 function onAutoAssignPressed() {
-    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost) {
-        // Auto assign teams
-        Game.AutoAssignPlayersToTeams();
+    // Auto assign teams
+    Game.AutoAssignPlayersToTeams();
 
-        // Lock teams
-        Game.SetTeamSelectionLocked(true);
-    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
-        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
-            command: 'assign'});
-    }
+    // Lock teams
+    Game.SetTeamSelectionLocked(true);
 }
 
 // Player presses shuffle
 function onShufflePressed() {
-    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost) {
-        // Shuffle teams
-        Game.ShufflePlayerTeamAssignments();
-    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
-        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
-            command: 'shuffle'});
-    }
+    // Shuffle teams
+    Game.ShufflePlayerTeamAssignments();
 }
 
 // Player presses lock teams
@@ -4411,26 +4394,15 @@ function onLockPressed() {
     // Don't allow a forced start if there are unassigned players
     if (Game.GetUnassignedPlayerIDs().length > 0)
         return;
-    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost)
-    {
-        // Lock the team selection so that no more team changes can be made
-        Game.SetTeamSelectionLocked(true);
-    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
-        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
-            command: 'lock'});
-    }
+
+    // Lock the team selection so that no more team changes can be made
+    Game.SetTeamSelectionLocked(true);
 }
 
 // Player presses unlock teams
 function onUnlockPressed() {
-    if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().mainHost)
-    {
-        // Unlock Teams
-        Game.SetTeamSelectionLocked(false);
-    } else if (Game.GetLocalPlayerID() === GameUI.CustomUIConfig().hostID) {
-        GameEvents.SendCustomGameEventToServer('lodOnChangeLock', {
-            command: 'unlock'});
-    }
+    // Unlock Teams
+    Game.SetTeamSelectionLocked(false);
 }
 
 // Lock options pressed
@@ -4564,9 +4536,8 @@ function doActualTeamUpdate() {
     // Set host privledges
     var playerInfo = Game.GetLocalPlayerInfo();
     if (!playerInfo) return;
-    var playerID = playerInfo.player_id
 
-    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerID === GameUI.CustomUIConfig().hostID);
+    $.GetContextPanel().SetHasClass('player_has_host_privileges', playerInfo.player_has_host_privileges);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4909,13 +4880,6 @@ function OnPhaseChanged(table_name, key, data) {
     calculateHideEnemyPicks();
 }
 
-function OnHostChanged(data) {
-    GameUI.CustomUIConfig().hostID = data.newHost;
-    if (GameUI.CustomUIConfig().hostID === Players.GetLocalPlayer()){
-        showPopupMessage('You are a new host.');
-    }
-    OnTeamPlayerListChanged();
-}
 // An option just changed
 function OnOptionChanged(table_name, key, data) {
     // Store new value
@@ -5402,42 +5366,6 @@ function showPopupMessage(msg) {
     $('#lodPopupMessage').visible = true;
 }
 
-function showQuestionMessage(data) {
-    var oldHost = data.oldHost;
-    var newHost = data.newHost;
-    var playerInfo = Game.GetPlayerInfo(newHost);
-    $('#lodPopupQuestionLabel').text = 'Are you sure want to make player ' + playerInfo.player_name + ' the host of the game?'
-    $('#lodPopupQuestion').visible = true
-    $('#questionYes').SetPanelEvent('onactivate', function(){
-        GameEvents.SendCustomGameEventToServer('lodChangeHost', {
-            oldHost: oldHost,
-            newHost: newHost});
-        $('#lodPopupQuestion').visible = false;
-    });
-    $('#questionNo').SetPanelEvent('onactivate', function(){
-        $('#lodPopupQuestion').visible = false;
-    });
-}
-
-function OnChangeLock(data) {
-    var command = data.command;
-    switch (command) {
-        case 'assign':
-            onAutoAssignPressed();
-        break;
-        case 'shuffle':
-            onShufflePressed();
-        break
-        case 'lock':
-            onLockPressed();
-        break;
-        case 'unlock':
-            onUnlockPressed();
-        break;
-    }
-}
-
-
 // Cast a vote
 function castVote(optionName, optionValue) {
     // Tell the server we clicked it
@@ -5586,18 +5514,6 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {
         addNotification(data);
-    });
-
-    GameEvents.Subscribe('lodShowPopup', function(data) {
-        showQuestionMessage(data);
-    });
-
-    GameEvents.Subscribe('lodChangeLock', function(data) {
-        OnChangeLock(data);
-    });
-
-    GameEvents.Subscribe('lodOnHostChanged', function(data) {
-        OnHostChanged(data);
     });
     
     // Update filters

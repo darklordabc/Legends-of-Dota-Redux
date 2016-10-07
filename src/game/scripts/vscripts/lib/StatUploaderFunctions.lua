@@ -1,4 +1,5 @@
 require('lib/StatUploader')
+local util = require('util')
 local isTest = true
 local steamIDs;
 
@@ -109,23 +110,32 @@ function SU:MarkMessageRead( args )
   end)
 end
 
-function SU:SendPlayerBuild( args, pID )
-  local abilities = {}
-  
-  for i=1,16 do
-    local v = args[i]
-    if v then
-      abilities[i] = v
-      print(v)
+function SU:SendPlayerBuild( args )
+  local Data = {}
+
+  for pID = 0, DOTA_MAX_PLAYERS do
+    if PlayerResource:IsValidPlayerID(pID) then
+      if not PlayerResource:IsBroadcaster(pID) and not util:playerIsBot(pID) then
+        local abilities = {}
+        for i=1,16 do
+          if args[pID] then
+            local v = args[pID][i]
+            if v then
+              abilities[i] = v
+            end
+          end
+        end
+        Data[PlayerResource:GetSteamAccountID(pID)] = {
+          AbilityString = json.encode(abilities),
+          Hero = PlayerResource:GetPlayer(pID):GetAssignedHero():GetUnitName()
+        }
+      end
     end
   end
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    Data = {
-      AbilityString = json.encode(abilities),
-      SteamID = PlayerResource:GetSteamAccountID(pID)
-    }
+    Data = Data
   }
   
   SU:SendRequest( requestParams, function(obj)
@@ -142,13 +152,34 @@ function SU:LoadPlayerAbilities( pID )
   end)  
 end
 
-function SU:LoadGlobalAbilitiesStat()
+function SU:LoadGlobalAbilitiesStat( spellCosts )
   local requestParams = {
     Command = "LoadGlobalAbilitiesStat",
   }
   
   SU:SendRequest( requestParams, function(obj)
-  end)  
+      local count = #obj
+      
+      -- Funct - x^2
+      local slices = {}
+      for i=1, 12 do
+        slices[12 - i] = { min = (i - 1) * (i - 1), max = i * i }        
+      end
+
+      -- mult = max(x^2) / obj[0].PickCount
+      local mult = 12 * 12 / obj[1].PickCount
+      
+      -- Check ability pick count and set cost
+      for _, v in pairs(obj) do
+        for i=0,11 do
+          local value = v.PickCount * mult
+          if value > slices[i].min and value <= slices[i].max then
+            CustomGameEventManager:Send_ServerToAllClients('balance_mode_price', {abilityName = v.Name, cost = spellCosts[i + 1] })
+          end
+        end
+      end
+      
+  end)
 end
 
 return SU
