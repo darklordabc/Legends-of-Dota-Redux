@@ -474,6 +474,22 @@ var allOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionDisablePerks',
+                des: 'lodOptionDesDisablePerks',
+                about: 'lodOptionAboutDisablePerks',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     },
 
@@ -735,22 +751,6 @@ var allOptions = {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
                 about: 'lodOptionAboutAdvancedHidePicks',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionDisablePerks',
-                des: 'lodOptionDesDisablePerks',
-                about: 'lodOptionAboutDisablePerks',
                 sort: 'toggle',
                 values: [
                     {
