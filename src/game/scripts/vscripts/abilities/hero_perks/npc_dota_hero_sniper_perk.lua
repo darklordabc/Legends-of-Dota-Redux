@@ -17,16 +17,7 @@ function modifier_npc_dota_hero_sniper_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_sniper_perk:IsHidden()
-	if IsClient() then
-		if not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
-			if netTable then
-				self.hasValidAbility = netTable.hasValidAbility
-			end
-			self.check = true
-		end
-	end
-	return (not self.hasValidAbility)
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_sniper_perk:RemoveOnDeath()
@@ -36,21 +27,12 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_sniper_perk:OnCreated(keys)
-	if IsServer() then	   
-	
-		self.validAbility = self:GetParent():FindAbilityByName("sniper_shrapnel") 
-
-		if self.validAbility then self.hasValidAbility = (not self.validAbility:IsHidden()) end
-			
-		if self.hasValidAbility then 
-		   CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = true } )
-		end
-		
+    if IsServer() then
         local caster = self:GetCaster()
+
         if caster:HasAbility("sniper_shrapnel") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 then
 	        self.grave = caster:AddAbility("sniper_shrapnel_perk")
 	        caster:SwapAbilities("sniper_shrapnel","sniper_shrapnel_perk",false,true)
         end
-				
     end
 end

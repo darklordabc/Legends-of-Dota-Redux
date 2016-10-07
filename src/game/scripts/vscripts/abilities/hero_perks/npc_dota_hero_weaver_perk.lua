@@ -17,16 +17,7 @@ function modifier_npc_dota_hero_weaver_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_weaver_perk:IsHidden()
-	if IsClient() then
-		if not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
-			if netTable then
-				self.hasValidAbility = netTable.hasValidAbility
-			end
-			self.check = true
-		end
-	end
-	return (not self.hasValidAbility)
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_weaver_perk:RemoveOnDeath()
@@ -45,10 +36,6 @@ end
 if IsServer() then
     function modifier_npc_dota_hero_weaver_perk:OnCreated()
         self.lapse = self:GetParent():FindAbilityByName("weaver_time_lapse")
-		self.hasValidAbility = self.lapse
-		if self.hasValidAbility then 
-			CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = self.hasValidAbility } )
-		end
     end
     
     function modifier_npc_dota_hero_weaver_perk:OnTakeDamage(params)

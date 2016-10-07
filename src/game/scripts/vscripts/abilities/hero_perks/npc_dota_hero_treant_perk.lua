@@ -17,16 +17,7 @@ function modifier_npc_dota_hero_treant_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_treant_perk:IsHidden()
-	if IsClient() then
-		if not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
-			if netTable then
-				self.hasValidAbility = netTable.hasValidAbility
-			end
-			self.check = true
-		end
-	end
-	return (not self.hasValidAbility)
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_treant_perk:RemoveOnDeath()
@@ -35,30 +26,14 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_treant_perk:OnCreated()
-	if IsServer() then
-	
-		self.validAbility = self:GetParent():FindAbilityByName("treant_living_armor") 
-		if self.validAbility then self.hasValidAbility = (not self.validAbility:IsHidden()) end
-		
-		self.validAbility2 = self:GetParent():FindAbilityByName("treant_natures_guise") 
-		if self.validAbility2 then self.hasValidAbility = (not self.validAbility2:IsHidden()) end
-			
-		if self.hasValidAbility or self.validAbility2 then 
-		   CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = true } )
-		end
-	
-	end
 
-end
---------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_treant_perk:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 	}
 	return funcs
 end
---------------------------------------------------------------------------------------------------------
+
 local Timers = require('easytimers')
 
 function modifier_npc_dota_hero_treant_perk:OnAbilityExecuted(params)

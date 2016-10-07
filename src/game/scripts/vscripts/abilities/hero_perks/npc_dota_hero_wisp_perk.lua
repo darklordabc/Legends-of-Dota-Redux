@@ -17,16 +17,7 @@ function modifier_npc_dota_hero_wisp_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_wisp_perk:IsHidden()
-		if IsClient() then
-		if not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
-			if netTable then
-				self.hasValidAbility = netTable.hasValidAbility
-			end
-			self.check = true
-		end
-	end
-	return (not self.hasValidAbility)
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_wisp_perk:RemoveOnDeath()
@@ -40,19 +31,7 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_wisp_perk:OnCreated()
-	if IsServer() then
-	
-		self.validAbility = self:GetParent():FindAbilityByName("wisp_tether") 
-
-		if self.validAbility then self.hasValidAbility = (not self.validAbility:IsHidden()) end
-			
-		if self.hasValidAbility then 
-		   CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = true } )
-		end
-		
-	end
-	
-	self.exceptionList = {lich_dark_ritual = true,
+  self.exceptionList = {lich_dark_ritual = true,
 						clinkz_death_pact = true,
 						enchantress_enchant = true,
 						chen_holy_persuasion = true}

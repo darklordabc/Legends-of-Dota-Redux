@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Zeus
---		Perk: Refunds 20% of the manacost of Lightning spells. 
+--		Perk: Zeus refunds 20% of the manacost of any Lightning spells he casts.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_zuus_perk", "abilities/hero_perks/npc_dota_hero_zuus_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -17,28 +17,16 @@ function modifier_npc_dota_hero_zuus_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:IsHidden()
-	if IsClient() then
-		if not self.check then
-			local netTable = CustomNetTables:GetTableValue( "heroes", self:GetParent():GetName().."_perk" )
-			if netTable then
-				self.hasValidAbility = netTable.hasValidAbility
-			end
-			self.check = true
-		end
-	end
-	return (not self.hasValidAbility)
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_zuus_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:OnCreated(keys)
 	self.manaPercentReduction = 20
 	self.manaReduction = self.manaPercentReduction / 100
-	self.abilityFlag = "lightning"
-	if IsServer() then
-		self.hasValidAbility = self:GetParent():HasAbilityWithFlag(self.abilityFlag)
-		if self.hasValidAbility then 
-			CustomNetTables:SetTableValue( "heroes", self:GetParent():GetName().."_perk", { hasValidAbility = self.hasValidAbility } )
-		end
-	end
 	return true
 end
 --------------------------------------------------------------------------------------------------------
@@ -56,7 +44,7 @@ function modifier_npc_dota_hero_zuus_perk:OnAbilityFullyCast(keys)
 	local hero = self:GetCaster()
 	local target = keys.target
 	local ability = keys.ability
-	if hero == keys.unit and ability and ability:HasAbilityFlag(self.abilityFlag) then
+	if hero == keys.unit and ability and ability:HasAbilityFlag("lightning") then
 	  hero:GiveMana(ability:GetManaCost(-1) * self.manaReduction)
 	end
   end
