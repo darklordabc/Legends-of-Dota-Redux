@@ -1712,6 +1712,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Common -- Disable Perks
+        lodOptionDisablePerks = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed -- Starting Level
         lodOptionGameSpeedStartingLevel = function(value)
             -- It needs to be a whole number between a certain range
@@ -1908,11 +1913,6 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Hide enemy picks
         lodOptionAdvancedHidePicks = function(value)
-            return value == 0 or value == 1
-        end,
-
-        -- Advanced -- Disable Perks
-        lodOptionDisablePerks = function(value)
             return value == 0 or value == 1
         end,
 
@@ -2697,6 +2697,12 @@ function Pregame:processOptions()
             end
         end
 
+        -- Disabling Hero Perks
+        if this.optionStore['lodOptionDisablePerks'] == 1 then
+            this.perksDisabled = true
+        end
+
+
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
             for abilityName,v in pairs(this.lodBanList) do
@@ -2753,6 +2759,7 @@ function Pregame:processOptions()
 			        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
 			        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
 			        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
+			        ['Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
 			        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
 			        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
 			        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
@@ -2772,7 +2779,6 @@ function Pregame:processOptions()
 			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
 			        ['Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
 			        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
-			        ['Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
 			        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
 			        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
 			        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
@@ -5099,8 +5105,8 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
-                    print(OptionManager:GetOption('disablePerks')) 
-                    if IsValidEntity(spawnedUnit) and OptionManager:GetOption('disablePerks') == false then
+                    print(self.perksDisabled) 
+                    if IsValidEntity(spawnedUnit) and not self.perksDisabled then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
                        local perkModifier = "modifier_" .. perkName
