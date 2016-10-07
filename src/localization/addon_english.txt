@@ -2237,7 +2237,7 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk"	"Dark Seer Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"	
 	
-	///DAZZLE 	
+	/// DAZZLE 	
 	"DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk"	"Dazzle Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"	"Shallow Grave has double cast range and 50%d% cooldown reduction when picked by Dazzle.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"	
 	
@@ -2249,7 +2249,7 @@
 	
 	/// DISRUPTOR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
 	
 	/// DOOM​
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
@@ -2260,8 +2260,6 @@
 	/// DRAGON KNIGHT​
 	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"	"Dragon Knight Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
-	
-	///DISRUPTOR MISSING HERE	
 	
 	/// DROW RANGER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk"	"Drow Ranger Perk"
@@ -2433,7 +2431,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"	"Phoenix Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
 	
-	/// MISSING PUCK PERK HERE
+	/// PUCK
+	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Puck Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Puck has a 50% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
 	
 	/// PUDGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
