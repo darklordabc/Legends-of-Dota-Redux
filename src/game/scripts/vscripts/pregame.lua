@@ -2640,9 +2640,7 @@ function Pregame:processOptions()
         if this.optionStore['lodOptionBalanceMode'] == 1 then
             -- Load balance mode stats
             local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
-            
             self.spellCosts = {}
-            
             for tier, tierList in pairs(balanceMode) do
                 -- Check whether price list or ban list
                 local tierNum = tonumber(string.sub(tier, 6))
@@ -2651,20 +2649,16 @@ function Pregame:processOptions()
                     for abilityName,nothing in pairs(tierList) do
                         this:banAbility(abilityName)
                     end
-                --[[else
+                else
                     -- Spell Shop
-                    local price = constants.TIER[12] --tierNum]
+                    local price = constants.TIER[tierNum]
                     
                     for abilityName,nothing in pairs(tierList) do
                         self.spellCosts[abilityName] = price
                         network:sendSpellPrice(abilityName, price)
                     end
-                ]]
                 end
             end
-            
-            -- Set spell costs by tracked stats
-            SU:LoadGlobalAbilitiesStat(constants.TIER)
             
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'

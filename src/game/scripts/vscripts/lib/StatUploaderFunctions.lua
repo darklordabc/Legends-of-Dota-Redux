@@ -152,34 +152,13 @@ function SU:LoadPlayerAbilities( pID )
   end)  
 end
 
-function SU:LoadGlobalAbilitiesStat( spellCosts )
+function SU:LoadGlobalAbilitiesStat()
   local requestParams = {
     Command = "LoadGlobalAbilitiesStat",
   }
   
   SU:SendRequest( requestParams, function(obj)
-      local count = #obj
-      
-      -- Funct - x^2
-      local slices = {}
-      for i=1, 12 do
-        slices[12 - i] = { min = (i - 1) * (i - 1), max = i * i }        
-      end
-
-      -- mult = max(x^2) / obj[0].PickCount
-      local mult = 12 * 12 / obj[1].PickCount
-      
-      -- Check ability pick count and set cost
-      for _, v in pairs(obj) do
-        for i=0,11 do
-          local value = v.PickCount * mult
-          if value > slices[i].min and value <= slices[i].max then
-            CustomGameEventManager:Send_ServerToAllClients('balance_mode_price', {abilityName = v.Name, cost = spellCosts[i + 1] })
-          end
-        end
-      end
-      
-  end)
+  end)  
 end
 
 return SU
