@@ -2327,7 +2327,6 @@
 #mutatorPanel {
     width: 458px;
     flow-children: right-wrap;
-    align: right;
 }
 
 #optionList .OptionPanel {
@@ -2410,7 +2409,6 @@
 }
 
 #optionList #optionMutatorTitle {
-    margin:  auto;
     width: 223px;
     height: 80px;
     line-height: 60px;
@@ -2430,7 +2428,7 @@
     flow-children: right;
     z-index: 10;
     margin: 5px;
-    align: right;
+    horizontal-align: right;
 }
 
 #optionList .mutator .circle {
