@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Players can now give host powers to other players by clicking on their name
 - Contributors to the mod, including developers, will have their names highlighted in gold
 - Added information about Witchcraft mana refunding to its tooltip and hint
+- Added Support for Russian Language, for the menu at least
+
 ### Balance
 
 
