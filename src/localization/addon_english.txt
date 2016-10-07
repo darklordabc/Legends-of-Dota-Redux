@@ -35,8 +35,6 @@
     "76561198061842355_Description" "Tester, Moral Support"
 	"76561197990183779" "Cool Robbit"
     "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
-	"76561198096463858" "jhqz103"
-    "76561198096463858_Description" "Chinese Translator"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -425,7 +423,7 @@
 
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
-    "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second. Will refund 10 mana per level of Witchcraft"
+    "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second."
     "hintMulticast"                                 "Multicast can be used with all active abilties, allowing you to cast a spell up to 4 times almost instantly."
     "hintInvokerSpells"                             "Invoker's invokable spells can be selected as stand-alone abilities."
     "hintRoshanSpells"                              "Roshan's abilities can be selected by enabling the OP Skills option."
@@ -460,12 +458,6 @@
     "banHero"                                       "Ban Hero"
     "banAbility"                                    "Ban Ability"
     "lodBanningSection"                             "Banning"
-    "melee"                                         "Melee"
-    "ranged"                                        "Ranged"
-    "clearFilters"                                  "Clear Filters"
-    "groupHeroAbilities"                            "Group Hero Abilities"
-    "showBannedSkills"                              "Show Banned Skills"
-    "showDisallowedSkills"                          "Show Disallowed Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 
@@ -1262,7 +1254,7 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description" "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
-    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction. Will refund 10 mana per level of Witchcraft"
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
     "DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"

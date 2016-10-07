@@ -25,16 +25,19 @@ function onGetRowData(playerID, data) {
             'lastAbandon'
         ];
 
-        // Is it a contributor?
+        // Is it the real Ash47?
         var playerName = playerInfo.player_name;
         if(playerInfo.player_steamid == 76561197988355984) {
             for(var i=0; i<allElements.length; ++i) {
-                $('#' + allElements[i]).AddClass('contributor');
+                $('#' + allElements[i]).AddClass('theRealAsh47');
             }
         } else {
+            // No one can steal my name
+            playerName = playerName.replace(/ash47/ig, 'some noob');
+            playerName = playerName.replace(/47/ig, '48');
 
             for(var i=0; i<allElements.length; ++i) {
-                $('#' + allElements[i]).RemoveClass('contributor');
+                $('#' + allElements[i]).RemoveClass('theRealAsh47');
             }
         }
 
