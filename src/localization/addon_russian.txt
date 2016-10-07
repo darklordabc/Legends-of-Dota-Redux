@@ -103,13 +103,18 @@
     "lodMutatorUpgradedUlts"                        "Бесплатный Аганим"
     "lodMutatorFastStart"                           "Быстрый Старт"
     "lodMutatorStrongTowers"                        "Сильные Башни"
-    "lodMutatorDoubleTowers"                        "Дополнительные Башни"
+    "lodMutatorDoubleTowers"                        "Доп. Башни"
     "lodMutatorUnlimitedBans"                       "Бесконечные баны"
-    "lodMutatorBalanceMode"                         "Сбалансированый Мод"
+    "lodMutatorBalanceMode"                         "Баланс Мод"
     "lodMutatorPlayerBans"                          "Баны"
     "lodMutatorOPAbilities"                         "Бан Имба Способностей"
+    "lodMutatorCustomSkills"                        "Кастомные Навыки"
     "lodMutatorUlts"                                "6 Ультимейтов"
     "lodMutatorStrongCreeps"                        "Сильные Крипы"
+    "lodMutatorShareEXP"                            "Общий Опыт"
+    "lodMutatorWTF"                                 "WTF Мод"
+    "lodMutatorHidePicks"                           "Скрыть Пики Оппонентов"
+    "lodMutatorAllVision"                           "Открытая Карта"
 
     "lodMutatorFastBuybackCooldown1"                "Быстрый Респаун"
     "lodMutatorFastBuybackCooldown2"                "Очень Быстрый Респаун"
@@ -136,11 +141,11 @@
     "lodMutatorEXPModifier2"                        "150% Опыта"
     "lodMutatorEXPModifier3"                        "300% Опыта"
 
-    "lodMutatorBotsRadiant1"                        "1 Ботов Сил Света"
+    "lodMutatorBotsRadiant1"                        "1 Бот Сил Света"
     "lodMutatorBotsRadiant2"                        "5 Ботов Сил Света"
     "lodMutatorBotsRadiant3"                        "10 Ботов Сил Света"
 
-    "lodMutatorBotsDire1"                           "1 Ботов Сил Тьмы"
+    "lodMutatorBotsDire1"                           "1 Бот Сил Тьмы"
     "lodMutatorBotsDire2"                           "5 Ботов Сил Тьмы"
     "lodMutatorBotsDire3"                           "10 Ботов Сил Тьмы"
 
@@ -152,6 +157,10 @@
     "lodMutatorMaxLevel1"                           "Максимальный Уровень 25"
     "lodMutatorMaxLevel2"                           "Максимальный Уровень 50"
     "lodMutatorMaxLevel3"                           "Максимальный Уровень 100"
+
+    "lodMutatorNoFatOMeter"                         "F|Fat-O-Meter"
+    "lodMutatorFarmFatOMeter"                       "Fat-O-Meter Networth"
+    "lodMutatorKDAFatOMeter"                        "F|Fat-O-Meter KDA "
 
     "lodOptionAboutBalancedAllPick"                 "За Выбор Способностей Отнимаются Очки."
     "lodOptionAboutTraditionalAllPick"              "Выбирайте Из Всех Доступных Способностей."
@@ -281,8 +290,8 @@
     "lodOptionDesGameSpeedEXPModifier" "Модификатор Опыта в % (100 по умолчанию)"
     "lodOptionAboutGameSpeedEXPModifier" "Множитель опыта, получаемого за убийства крипов/ героев/ рошана"
 
-    "lodOptionDesGameSpeedSharedEXP"                "F|Shared Team XP"
-    "lodOptionAboutGameSpeedSharedEXP"              "F|Allies share all experience points"
+    "lodOptionDesGameSpeedSharedEXP"                "Общий Опыт На Команду"
+    "lodOptionAboutGameSpeedSharedEXP"              "Союзники делят полученный опыт на всю команду"
 
     "lodOptionDesGameSpeedTowersPerLane" "Число Башен На Линии"
     "lodOptionTower3" "3 Башни"
@@ -324,9 +333,6 @@
     "lodOptionFarmFatOMeter"                        "F|Networth"
     "lodOptionKDAFatOMeter"                         "KDA"   
     "lodOptionAboutCrazyFatOMeter"                  "F|This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
-    "lodMutatorNoFatOMeter"                         "F|Fat-O-Meter"
-    "lodMutatorFarmFatOMeter"                       "Fat-O-Meter Networth"
-    "lodMutatorKDAFatOMeter"                        "F|Fat-O-Meter KDA "
 
     "lodUniqueSkillsOff" "Выключено"
     "lodUniqueSkillsTeam" "Уникальные спосбности в команде"
@@ -459,6 +465,12 @@
     "banHero" "Забанить героя"
     "banAbility" "Забанить способность"
     "lodBanningSection" "Баны"
+    "melee" "Ближний Бой"
+    "ranged" "Дальний Бой"
+    "clearFilters"                                  "Сброс"
+    "groupHeroAbilities"                            "Группировать Навыки Героев"
+    "showBannedSkills"                              "Показывать Забаненные Навыки"
+    "showDisallowedSkills"                          "Показывать Запрещённые Навыки"
 
     "txtRecommendedBuilds" "Рекомендованные Билды:"
 
@@ -570,11 +582,11 @@
     "lodOptionDesBotsDire" "Желаемое число игроков сил тьмы"
     "lodOptionAboutBotDire" "Боты будут добавлены силам тьмы если игроков сил тьмы меньше этого числа."
 
-    "lodOptionDesBotsUniqueSkills"                  "Unique Skills (Bots)"
-    "lodOptionAboutBotsUniqueSkills"                "This option prevents two bots from selecting the same abilities.\nUnique Team Skills: Bots from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one Bot can have each ability."
-    "lodOptionUniqueDefault"                        "Use Main Setting"
-    "lodOptionUniqueTeam"                           "Unique Team Skills"
-    "lodOptionUniqueGlobal"                         "Unique Global Skills"
+    "lodOptionDesBotsUniqueSkills"                  "Уникальные Навыки (Боты)"
+    "lodOptionAboutBotsUniqueSkills"                "Эта опция позволяет предотвратить выбора одинаковых способностей для ботов.\nУникальные Навыки в Команде:. Боты из той же команды не могут выбрать одни и те же способности\nГлобальные Уникальные Навыки: Только один бот может иметь такую способность."
+    "lodOptionUniqueDefault"                        "Выключено"
+    "lodOptionUniqueTeam"                           "Уникальные Навыки в Команде"
+    "lodOptionUniqueGlobal"                         "Глобальные Уникальные Навыки"
 
     "lodOptionDesBotsUnfairBalance" "Преимущество Ботов в опыте"
     "lodOptionAboutUnfairBalance" "Bots will gain XP to match the person with the highest level in the match."
