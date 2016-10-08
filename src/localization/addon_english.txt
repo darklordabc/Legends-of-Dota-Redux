@@ -35,6 +35,8 @@
     "76561198061842355_Description" "Tester, Moral Support"
 	"76561197990183779" "Cool Robbit"
     "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
+	"76561198096463858" "jhqz103"
+    "76561198096463858_Description" "Chinese Translator"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -576,6 +578,12 @@
     "banHero"                                       "Ban Hero"
     "banAbility"                                    "Ban Ability"
     "lodBanningSection"                             "Banning"
+    "melee"                                         "Melee"
+    "ranged"                                        "Ranged"
+    "clearFilters"                                  "Clear Filters"
+    "groupHeroAbilities"                            "Group Hero Abilities"
+    "showBannedSkills"                              "Show Banned Skills"
+    "showDisallowedSkills"                          "Show Disallowed Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 

@@ -133,8 +133,7 @@ function Ingame:onStart()
     local maxPlayers = 24
     local count = 0
     for playerID=0,(maxPlayers-1) do
-        local player = PlayerResource:GetPlayer(playerID)
-        if player and PlayerResource:GetSteamAccountID(playerID) ~= 0 then
+        if not util:isPlayerBot(playerID) then
             count = count + 1
         end
     end

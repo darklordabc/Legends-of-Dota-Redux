@@ -16,6 +16,28 @@
     Notifications
 */
 
+#lodPopupQuestion {
+    z-index: 10000;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 16px;
+    width: 400px;
+    height: 200px;
+    flow-children: down;
+    vertical-align: middle;
+    horizontal-align: center;
+    visibility: collapse;
+}
+
+#questionYes {
+    position: -25%;
+}
+
+#questionNo {
+    position: 25%;
+}
+
 #lodPopupMessage {
     z-index: 10000;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
@@ -23,7 +45,7 @@
     border-radius: 8px;
     padding: 16px;
     width: 600px;
-    height: 200px;
+    height: 250px;
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
@@ -2214,9 +2236,8 @@
 
 .VotingOptionInfo {
     flow-children: right;
-    horizontal-align: right;
-	
-	margin-left: 5px;
+
+	margin-left: 10px;
 	width: 18px;
 	height: 18px;
 }
@@ -2328,7 +2349,6 @@
 #mutatorPanel {
     width: 458px;
     flow-children: right-wrap;
-    align: right;
 }
 
 #optionList .OptionPanel {
@@ -2367,7 +2387,7 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 130px;
+    margin-top: 10px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
@@ -2411,7 +2431,6 @@
 }
 
 #optionList #optionMutatorTitle {
-    margin:  auto;
     width: 223px;
     height: 80px;
     line-height: 60px;
@@ -2431,7 +2450,7 @@
     flow-children: right;
     z-index: 10;
     margin: 5px;
-    align: right;
+    horizontal-align: right;
 }
 
 #optionList .mutator .circle {
@@ -2457,11 +2476,10 @@
 }
 
 #importAndExportCaption {
-     width: 71px;
+    flow-children: right;
 }
 
 .importAndExportButton {
-    width: 55px;
     height: 30px;
     margin-top: 3px;
     margin-right: 0px;
@@ -2473,7 +2491,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: right;
+    flow-children: left;
     margin-left: -10px;
 }
 
@@ -2725,7 +2743,7 @@
 }
 
 /* Adds a glow to the author's name */
-.theRealAsh47 {
+.contributor {
     color: #000000;
     text-shadow: 0px 0px 2px 2.0 #FFFF00FF;
     font-weight: bold;

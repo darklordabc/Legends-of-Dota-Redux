@@ -170,8 +170,8 @@ function Util:playerIsPremium(playerID)
 end
 
 -- Returns true if a player is bot
-function Util:playerIsBot(playerID)
-    return PlayerResource:GetSteamAccountID(playerID) > 0
+function Util:isPlayerBot(playerID)
+    return PlayerResource:GetSteamAccountID(playerID) == 0
 end
 
 -- Returns a player's premium rank
@@ -204,6 +204,33 @@ function Util:getPremiumRank(playerID)
     -- They are not
     return totalPremium
 end
+
+
+function isPlayerHost(player)
+    if type(player) == 'number' then
+        player = PlayerResource:GetPlayer(player)
+    end
+    return player.isHost
+end
+
+function setPlayerHost(oldHost, newHost)
+    if isPlayerHost(oldHost) then
+        oldHost.isHost = nil
+        newHost.isHost = true
+    end
+end
+
+function getPlayerHost()
+    for i=0,DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(i) then
+            local player = PlayerResource:GetPlayer(i)
+            if player and player.isHost then
+                return player
+            end
+        end
+    end
+end
+
 
 function Util:GetActivePlayerCountForTeam(team)
     local number = 0
@@ -594,6 +621,17 @@ function CDOTABaseAbility:HasAbilityFlag(flag)
     else
         return false
     end
+end
+
+function Util:isSinglePlayerMode()
+    local maxPlayerID = 24
+    local count = 0
+    for playerID=0,(maxPlayerID-1) do
+        if not self:isPlayerBot(playerID) then
+            count = count + 1
+        end
+    end
+    return count == 1
 end
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
