@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.5 
+## 1.5 - Steam Version
 
 ### Bug Fixing/New Features
 - Host timer will not count-down if the game is single player.
@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - In Balance Mode, bots no longer obey points limit. This was screwing up Earth Shaker and Drow and a few others. 
 - Minor tweaks to bot skills priority
 
-## 1.4 - Steam Version
+## 1.4 
 
 ### Bug Fixing/New Features
 - Added chinese localization (might not be in-game yet)
