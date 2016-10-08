@@ -9,6 +9,7 @@ require('lib/util_imba')
 local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
+GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
@@ -60,7 +61,10 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
+	GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -103,6 +107,8 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
+    perksFilter = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksOrderFilter(filterTable)
     return true
 end    
 
@@ -370,7 +376,7 @@ function Ingame:balancePlayer(playerID, newTeam)
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	
+    
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
@@ -847,17 +853,17 @@ function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
     local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-	local ability = hero:FindAbilityByName(abilityname)
-	if not ability then return end
-	if ability.randomRoot then
-		local randomMain = hero:FindAbilityByName(ability.randomRoot)
-		print(ability.randomRoot)
-		if not randomMain then return end
-		if abilityname == randomMain.randomAb then
-			randomMain:OnChannelFinish(true)
-			randomMain:OnAbilityPhaseStart()
-		end
-	end
+    local ability = hero:FindAbilityByName(abilityname)
+    if not ability then return end
+    if ability.randomRoot then
+        local randomMain = hero:FindAbilityByName(ability.randomRoot)
+        print(ability.randomRoot)
+        if not randomMain then return end
+        if abilityname == randomMain.randomAb then
+            randomMain:OnChannelFinish(true)
+            randomMain:OnAbilityPhaseStart()
+        end
+    end
 end
 
 -- Buyback cooldowns
@@ -917,15 +923,67 @@ function Ingame:addStrongTowers()
             -- Display upgrade message and play ominous sound
             if tower_team == DOTA_TEAM_GOODGUYS then
                 -- add notification
-				GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
+                GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_01")
             else
-				GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
+                GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_02")
             end
         end
     end, nil)
 end
 
+targetPerks_projectile = {
+    npc_dota_hero_puck_perk = true,
+}
+
+function Ingame:FilterProjectiles(filterTable)
+    --DeepPrintTable(projectile)
+    local targetIndex = filterTable["entindex_target_const"]
+    local target = EntIndexToHScript(targetIndex)
+    local casterIndex = filterTable["entindex_source_const"]
+    local caster = EntIndexToHScript(casterIndex)
+    local abilityIndex = filterTable["entindex_ability_const"]
+    local ability = EntIndexToHScript(abilityIndex)
+    -- Hero perks
+    if ability then
+    	local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    	filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
+    end
+    return true    
+  end
+
+
+function Ingame:FilterDamage( filterTable )
+    local victim_index = filterTable["entindex_victim_const"]
+    local attacker_index = filterTable["entindex_attacker_const"]
+    local ability_index = filterTable["entindex_inflictor_const"]
+    if not victim_index or not attacker_index then
+        return true
+    end
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksDamageFilter(filterTable)
+    
+    return true
+end
+
+
+function Ingame:FilterModifiers( filterTable )
+    local parent_index = filterTable["entindex_parent_const"]
+    local caster_index = filterTable["entindex_caster_const"]
+    local ability_index = filterTable["entindex_ability_const"]
+    if not parent_index or not caster_index or not ability_index then
+        return true
+    end
+    local parent = EntIndexToHScript( parent_index )
+    local caster = EntIndexToHScript( caster_index )
+    local ability = EntIndexToHScript( ability_index )
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksModifierFilter(filterTable)
+    
+    return true
+end
 -- Return an instance of it
 return Ingame()

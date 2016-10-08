@@ -295,6 +295,7 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOPAbilities.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUlts.png"></Image>
 
+
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepNoPower.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerNormal.png"></Image>
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerHigh.png"></Image>
@@ -344,6 +345,7 @@
                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShareEXP.png"></Image>
+                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDisablePerks.png"></Image>
 					
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
