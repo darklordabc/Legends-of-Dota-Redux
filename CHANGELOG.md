@@ -14,7 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Balance
 - Bots now either have chemical rage or shadow dance as their top priority skill to learn. Before only chemical rage was top pick. You will see more variety now.
-
+- In Balance Mode, bots no longer obey points limit. This was screwing up Earth Shaker and Drow and a few others. 
+- Minor tweaks to bot skills priority
 
 ## 1.4 - Steam Version
 

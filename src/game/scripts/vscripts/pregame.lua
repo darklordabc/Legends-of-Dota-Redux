@@ -4894,14 +4894,15 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
 
 
     -- Over the Balance Mode point balance
-    if self.optionStore['lodOptionBalanceMode'] == 1 then
+	-- Commented out so bots do not obey balance mode rules
+   --[[ if self.optionStore['lodOptionBalanceMode'] == 1 then
         -- Validate that the user has enough points
         local newBuild = SkillManager:grabNewBuild(build, slotNumber, abilityName)
         local outOfPoints, _ = self:notEnoughPoints(newBuild)
         if outOfPoints then
             return false
         end
-    end
+    end]]--
 
 
     -- Consider unique skills
