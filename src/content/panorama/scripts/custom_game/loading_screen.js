@@ -175,16 +175,16 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_furion.png',
         txt: '#hintFurion'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_chen.png',
         txt: '#hintChen'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_ursa.png',
         txt: '#hintUrsa'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_storm_spirit.png',
         txt: '#hintStormSpirit'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_morphling.png',
         txt: '#hintMorphling'
     }, {
@@ -250,13 +250,13 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_qop.png',
         txt: '#hintQOP'
-    }, {
+    },/* {
         img: 'file://{images}/custom_game/hints/hint_wisp.png',
         txt: '#hintWisp'
     }, {
         img: 'file://{images}/custom_game/hints/hint_meepo.png',
         txt: '#hintMeepo'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_pl.png',
         txt: '#hintPL'
     }, {
@@ -487,10 +487,10 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_dazzle.png',
         txt: '#hintDazzle'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_disruptor.png',
         txt: '#hintDisruptor'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_DP.png',
         txt: '#hintDP'
     },
