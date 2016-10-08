@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.6
+
+### Bug Fixing/New Features
+- Fix Lina's perk not giving 3 int
+
+### Balance
+- 
+
 ## 1.5 - Steam Version
 
 ### Bug Fixing/New Features
