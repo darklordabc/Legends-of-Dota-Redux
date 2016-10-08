@@ -240,6 +240,10 @@ var allOptions = {
                         about: 'lodMutatorHidePicks'
                     },
                     {
+                        name: 'lodOptionDisablePerks',
+                        about: 'lodMutatorDisablePerks'
+                    },
+                    {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
@@ -458,6 +462,22 @@ var allOptions = {
                 name: 'lodOptionBanningBalanceMode',
                 des: 'lodOptionDesBanningBalanceMode',
                 about: 'lodOptionAboutBanningBalanceMode',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionDisablePerks',
+                des: 'lodOptionDesDisablePerks',
+                about: 'lodOptionAboutDisablePerks',
                 sort: 'toggle',
                 values: [
                     {
@@ -795,7 +815,7 @@ var allOptions = {
                     }
                 ]
             },
-	    {
+	        {
                 name: 'lodOptionGameSpeedFreeCourier',
                 des: 'lodOptionDesGameSpeedFreeCourier',
                 about: 'lodOptionAboutGameSpeedFreeCourier',
@@ -2138,6 +2158,7 @@ function setupBuilderTabs() {
 
 // Builds the hero list
 function buildHeroList() {
+	Game.SetTeamSelectionLocked(true);
     var strHeroes = [];
     var agiHeroes = [];
     var intHeroes = [];
@@ -5327,7 +5348,7 @@ function UpdateTimer() {
             // Should we show the timer?
             if(shouldShowTimer) {
                 // Work out how long to show for
-                var showDuration = 3;
+                var showDuration = .5;
 
                 // Calculate when the next show should occur
                 if(timeLeft <= 30) {
@@ -5399,7 +5420,7 @@ function onAcceptPopup() {
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
-    $('#lodPopupMessage').visible = true;
+    //$('#lodPopupMessage').visible = true;
 }
 
 function showQuestionMessage(data) {

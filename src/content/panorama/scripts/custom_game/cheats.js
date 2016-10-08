@@ -65,6 +65,10 @@ var cheat_list = [
 		command: 'dota_create_item item_blink',
 	},
 	{
+		name: 'com_item_5',
+		command: 'dota_create_item item_bloodstone',
+	},
+	{
 		name: 'com_spawn_enemy',
 		command: 'dota_create_unit axe enemy',
 	},

@@ -13,8 +13,8 @@ local challenge = require('challenge')
 local ingame = require('ingame')
 
 -- Custom AI script modifiers
-LinkLuaModifier( "modifier_slark_shadow_dance_ai", "scripts/vscripts/../abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "scripts/vscripts/../abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 --[[
@@ -1754,6 +1754,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Common -- Disable Perks
+        lodOptionDisablePerks = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed -- Starting Level
         lodOptionGameSpeedStartingLevel = function(value)
             -- It needs to be a whole number between a certain range
@@ -2129,7 +2134,6 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2735,6 +2739,12 @@ function Pregame:processOptions()
             end
         end
 
+        -- Disabling Hero Perks
+        if this.optionStore['lodOptionDisablePerks'] == 1 then
+            this.perksDisabled = true
+        end
+
+
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
             for abilityName,v in pairs(this.lodBanList) do
@@ -2791,6 +2801,7 @@ function Pregame:processOptions()
 			        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
 			        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
 			        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
+			        ['Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
 			        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
 			        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
 			        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
@@ -3382,7 +3393,7 @@ function Pregame:checkForReady()
 
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
-    local minTime = 3
+    local minTime = .5
 
     local canFinishBanning = false
 
@@ -4324,6 +4335,13 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
 		return nil
 	end
 
+    -- Keep track of how many abilities the player randoms
+    local ply = PlayerResource:GetPlayer(playerID)
+    if ply then 
+        if not ply.random then ply.random = 0 end
+        ply.random = ply.random + 1
+    end
+
 	-- Pick a random skill to return
 	return possibleSkills[math.random(#possibleSkills)]
 end
@@ -5113,6 +5131,19 @@ function Pregame:fixSpawningIssues()
                         end
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
+
+                 -- Add hero perks			
+                Timers:CreateTimer(function()
+                    --print(self.perksDisabled) 
+					local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and nameTest ~= "npc_dota_hero_chen" and nameTest ~= "npc_dota_hero_storm_spirit" and nameTest ~= "npc_dota_hero_meepo" and nameTest ~= "npc_dota_hero_wisp" and nameTest ~= "npc_dota_hero_disruptor" then
+                       local perkName = spawnedUnit:GetName() .. "_perk"
+                       local perk = spawnedUnit:AddAbility(perkName)
+                       local perkModifier = "modifier_" .. perkName
+                       if perk then perk:SetLevel(1) end
+                       spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+                    end
+                end, DoUniqueString('addPerk'), 0.1)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
