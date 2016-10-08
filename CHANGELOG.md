@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Contributors to the mod, including developers, will have their names highlighted in gold
 - Added information about Witchcraft mana refunding to its tooltip and hint
 - Added Support for Russian Language, for the menu at least
+- Added more unique hero mechanics for most the heros
 
 ### Balance
 - Bots now either have chemical rage or shadow dance as their top priority skill to learn. Before only chemical rage was top pick. You will see more variety now.
