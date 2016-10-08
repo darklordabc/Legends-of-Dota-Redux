@@ -1,7 +1,7 @@
   --------------------------------------------------------------------------------------------------------
   --
   --    Hero: Chen
-  --    Perk: Units sent home to the fountain with test of faith get an extra ability.
+  --    Perk: When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.
   --
   --------------------------------------------------------------------------------------------------------
   LinkLuaModifier( "modifier_npc_dota_hero_chen_perk", "abilities/hero_perks/npc_dota_hero_chen_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

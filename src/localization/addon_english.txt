@@ -456,7 +456,7 @@
 	"hintEnigma"                         "When Enigma dies, Black Hole's cooldown will be refreshed."
 	"hintLegionCommander"                         "When Legion Commander casts Duel, she will gain spell immunity for the duration of the Duel."
 	"hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
-	"hintChen"                         "Casting Test of Faith (Teleport) on an allied creep gives them a random ability. (WIP)"
+	"hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
 	"hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
 	"hintStormSpirit"                         "Storm Spirit restores mana when Storm Spirit travels at high speeds. (WIP) "
 	"hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
@@ -785,7 +785,7 @@
 	"unique_mechanic_broodmother"                        "Non-ultimate <font color=\"#ffd966\">Summon</font> <br>abilities will have 20% mana cost refunded <br>and 20% reduced cooldown. "
 	"unique_mechanic_centaur"				"Centaur Warrunner<br>takes 75% damage from  <font color=\"#ffd966\">Self-Damaging</font> <br>spells."
 	"unique_mechanic_chaos_knight"                        "Chaos Knight gains <br>200 extra gold for each ability he randoms. "
-	"unique_mechanic_chen" 					 "TBA" 
+	"unique_mechanic_chen" 					 "When Chen sends creeps <br>home to the fountain by casting <font color=\"#ffd966\">Test of Faith <br>(Teleport)</font> they will receive an extra ability." 
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
 	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\"#ffd966\">Rocket Flare</font>."
 	"unique_mechanic_crystal_maiden"	"Crystal Maiden gains <br>+2 movement speed for each level put in <br><font color=\"#ffd966\">Support</font> abilities."
@@ -2221,6 +2221,8 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
 	
 	///CHEN MISSING HERE
+	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk"	"Chen Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description"	"When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"	
 	
 	/// CLINKZ​
 	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"	"Clinkz Perk"
