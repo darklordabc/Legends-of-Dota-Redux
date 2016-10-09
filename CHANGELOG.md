@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Fix Lina's perk not giving 3 int
+- Fixed Bots getting stuck sometimes near runespots at 0:00 mark
 
 ### Balance
 - 
