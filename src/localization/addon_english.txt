@@ -451,6 +451,7 @@
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
 	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
+	"hintHost"                         "You can give your host powers to another player by clicking on their name."
 	
     // Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"

@@ -118,14 +118,32 @@ dc_table = {};
 function Ingame:onStart()
     local this = self
 	
-	--- Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
-	Timers:CreateTimer(function ()
-           Convars:SetBool("dota_all_vision", true)
-        end, 'enable_all_vision_fix', 1)
+	---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
+	if Convars:GetBool("dota_all_vision") == false then
+	
+		Timers:CreateTimer(function ()
+			   Convars:SetBool("dota_all_vision", true)
+			end, 'enable_all_vision_fix', 1)
+			
+		Timers:CreateTimer(function ()
+			   Convars:SetBool("dota_all_vision", false)
+			end, 'disable_all_vision_fix', 1.2)
+			
+	end
 		
-	Timers:CreateTimer(function ()
-           Convars:SetBool("dota_all_vision", false)
-        end, 'disable_all_vision_fix', 1.2)
+	---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
+	
+	Timers:CreateTimer(function ()	
+		local maxPlayerID = 24
+		for playerID=0,maxPlayerID-1 do			
+			if util:isPlayerBot(playerID) then
+				local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+				if hero then
+					hero:MoveToPositionAggressive(Vector(0, 0, 0))
+				end
+			end
+		end		
+        end, 'unstick_bots', 96.0)
 		
 	--Attempt to enable cheats
 	Convars:SetBool("sv_cheats", true)
