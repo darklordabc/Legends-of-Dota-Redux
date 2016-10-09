@@ -1,4 +1,5 @@
 require('lib/StatUploader')
+local util = require('util')
 local isTest = true
 local steamIDs;
 
@@ -51,7 +52,7 @@ function SU:LoadPlayersMessages()
     Command = "LoadPlayersMessages",
     SteamIDs = steamIDs
   }
-    
+
   SU:SendRequest( requestParams, function(obj)
     if type(obj) == "string" then
       print(obj)
@@ -73,61 +74,37 @@ function SU:LoadPlayersMessages()
   end)
 end
 
--- Send message event
-CustomGameEventManager:RegisterListener( "su_send_message", Dynamic_Wrap(SU, 'SendPlayerMessage'))
-
-function SU:SendPlayerMessage( args )
-  local playerID = args.PlayerID
-  local steamID = PlayerResource:GetSteamAccountID(playerID)
-  local month, day, year = string.match(GetSystemDate(), '(%d+)[/](%d+)[/](%d+)')  
-  
-  local requestParams = {
-    Command = "SendPlayerMessage",
-    Data = {
-      SteamID = steamID,
-      Nickname = PlayerResource:GetPlayerName(playerID),
-      Message = args.message,
-      TimeStamp = string.format("20%s%s%s", year, month, day)
-    }
-  }
-  
-  SU:SendRequest( requestParams, function(obj)
-  end)
-end
-
--- Send message event
-CustomGameEventManager:RegisterListener( "su_mark_message_read", Dynamic_Wrap(SU, 'MarkMessageRead'))
-
-function SU:MarkMessageRead( args )
-  
-  local requestParams = {
-    Command = "MarkMessageRead",
-    MessageID = args.message_id
-  }
-  
-  SU:SendRequest( requestParams, function(obj)
-  end)
-end
-
-function SU:SendPlayerBuild( args, pID )
-  local abilities = {}
-  
-  for i=1,16 do
-    local v = args[i]
-    if v then
-      abilities[i] = v
-      print(v)
+-- Send player build
+function SU:SendPlayerBuild( args )
+  local Data = {}
+ 
+  for pID = 0, DOTA_MAX_PLAYERS do
+    if PlayerResource:IsValidPlayerID(pID) then
+      if not PlayerResource:IsBroadcaster(pID) and not util:isPlayerBot(pID) then
+        local abilities = {}
+        for i=1,16 do
+          if args[pID] then
+            local v = args[pID][i]
+            if v then
+              abilities[i] = v
+            end
+          end
+        end
+        
+        Data[PlayerResource:GetSteamAccountID(pID)] = {
+          AbilityString = json.encode(abilities),
+          Hero = PlayerResource:GetPlayer(pID):GetAssignedHero():GetUnitName()
+        }
+        
+      end
     end
   end
   
   local requestParams = {
     Command = "SendPlayerBuild",
-    Data = {
-      AbilityString = json.encode(abilities),
-      SteamID = PlayerResource:GetSteamAccountID(pID)
-    }
+    Data = Data
   }
-  
+
   SU:SendRequest( requestParams, function(obj)
   end)
 end
