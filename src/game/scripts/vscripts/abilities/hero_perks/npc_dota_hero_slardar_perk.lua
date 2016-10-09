@@ -43,7 +43,8 @@ function perkSlardar(filterTable)
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_slardar_perk") then
       if ability:HasAbilityFlag("bash") and parent ~= caster then
-        SendOverheadEventMessage( nil, OVERHEAD_ALERT_GOLD  , caster, caster.bashGold, nil )
+        --SendOverheadEventMessage( nil, OVERHEAD_ALERT_GOLD  , caster, caster.bashGold, nil )
+        caster:PopupNumbers(caster, "gold", Vector(255, 215, 0), 2.0, caster.bashGold, nil, nil)
         caster:ModifyGold(caster.bashGold,true,DOTA_ModifyGold_Unspecified)
       end
     end  
