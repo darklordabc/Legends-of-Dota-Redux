@@ -889,7 +889,7 @@ function Ingame:checkBuybackStatus()
     ListenToGameEvent('npc_spawned', 
         function(keys)
             local hero = EntIndexToHScript(keys.entindex)
-            if IsValidEntity(hero) then
+            if IsValidEntity(hero) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                 if hero:IsHero() then
                     Timers:CreateTimer(
                         function()
