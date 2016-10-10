@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
+- Added 19 abilities from Angel Arena Reborn
 
 ## 1.6 - Steam Version
 
