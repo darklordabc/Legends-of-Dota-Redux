@@ -1920,7 +1920,7 @@
     height: 30px;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
     border-radius: 0px 0px 5px 5px;
-    padding-top: 8px;
+    padding-top: 7px;
 
     transition-property: opacity;
     transition-duration: 0.25s;
@@ -2012,19 +2012,18 @@
 
 #pickingPhaseRecommendedBuildContainer {
     horizontal-align: left;
-    width: fit-children;
+    width: 100%;
     flow-children: right-wrap;
     height: 100%;
     overflow: squish scroll;
-    padding-right: 15px;
 }
 
 .recommendedBuild {
     flow-children: down;
     background-color: #1d2024;
     border-radius: 5px;
-    padding-top: 12px;
-    margin: 4px;
+    padding-top: 10px;
+    margin: 3px;
 }
 
 .recommendedBuildContainer {
@@ -2033,7 +2032,7 @@
 
 .recommendedBuildLeftSide {
     flow-children: down;
-    width: 45px;
+    width: 44px;
 }
 
 .recommendedBuildRightSide {
@@ -2044,11 +2043,8 @@
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #000000;
     border: 1px solid #303030;
-}
-
-#recommendedHeroImage {
-    width: 87px;
-    height: 50px;
+    width: 80px;
+    height: 46px;
 }
 
 #recommendedSkillContainer {
@@ -2056,8 +2052,8 @@
 }
 
 #recommendedSkillContainer DOTAAbilityImage {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     margin-left: 2px;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #000000;
@@ -2092,10 +2088,11 @@
 }
 
 .recommendedBuildVote {
-    background-image: url("file://{images}/custom_game/build.png") no-repeat;
+    background-image: url("file://{images}/custom_game/build.png");
+    background-repeat: no-repeat;
     width: 17px;
     height: 11px;
-    margin: 3px 0;
+    margin: 2px 0;
 }
 
 .recommendedBuildVote.up {
@@ -2124,7 +2121,7 @@
     background-position: -93px 0;
     width: 17px;
     height: 17px;
-    margin: 13px 0 15px;
+    margin: 7px 0 11px;
 }
 
 #recommendedBuildFavourite:hover {
@@ -2144,7 +2141,7 @@
 
 .recommendedBuildHolder {
     flow-children: right;
-    padding-right: 12px;
+    padding-right: 10px;
 }
 
 #recommendedAttribute {
@@ -2159,7 +2156,7 @@
 .recommendedBuildBottomRow {
     flow-children: down;
     width: 100%;
-    padding: 12px 12px 15px 0;
+    padding: 8px 10px 10px 0;
 }
 
 .recommendedBuildTitle {
@@ -2184,7 +2181,7 @@
     color: #9c9c9c;
     font-size: 15px;
     line-height: 18px;
-    height: 34px;
+    height: 36px;
 }
 
 /*
