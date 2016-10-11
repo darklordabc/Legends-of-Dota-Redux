@@ -1,3 +1,4 @@
+require('abilities/life_in_arena/utils')
 function illusions( event )
 	local caster = event.caster
 	local ability = event.ability
@@ -27,7 +28,7 @@ function illusions( event )
 	local creep = CreateIllusion(attacker,caster,origin,duration,outgoingDamage,incomingDamage)
 	--
 	local ability3 = caster:FindAbilityByName('illusionist_whiff_of_deception')
-	if ability3:GetLevel() > 0 then
+	if ability3 and ability3:GetLevel() > 0 then
 		caster.count_ill = caster.count_ill +1
 		-- отнимание коунтера по смерти иллюзии
 		ability3:ApplyDataDrivenModifier(caster, creep, "modifier_illusionist_whiff_of_deception", {})
@@ -39,7 +40,7 @@ function illusions( event )
 	--
 	-- дадим ловкость Антаро за каждую вызванную иллюзию: повесим модификатор, где будем все делать
 	local ability2 = caster:FindAbilityByName('illusionist_agility_paws')
-	if ability2:GetLevel() > 0 then
+	if ability2 and ability2:GetLevel() > 0 then
 		local bonus_agi = ability2:GetLevelSpecialValueFor( "bonus_agility", ability2:GetLevel() - 1 )
 		local max_bonus = ability2:GetLevelSpecialValueFor( "max_bonus", ability2:GetLevel() - 1 )
 		--local modifier = FindModifierByName()

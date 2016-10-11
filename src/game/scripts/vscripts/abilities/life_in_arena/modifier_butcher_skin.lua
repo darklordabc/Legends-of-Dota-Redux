@@ -1,5 +1,5 @@
 modifier_butcher_skin = class ({})
-local require('abilities/life_in_arena/utils')
+require('abilities/life_in_arena/utils')
 
 function modifier_butcher_skin:IsHidden()
 	return true

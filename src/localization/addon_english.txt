@@ -3043,6 +3043,11 @@
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_time"	"ILLUSION LIFETIME:"
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+		
+		"DOTA_Tooltip_ability_illusionist_whiff_of_deception"	"Whiff of Deception"
+		"DOTA_Tooltip_ability_illusionist_whiff_of_deception_Description"	"Illusionist deals damage to nearby enemies. This damage is equal to a certain part of the hero's agilitiy multiplied by the number of his illusions. If there are no illusions, damage will be dealt for one illusion."
+		"DOTA_Tooltip_ability_illusionist_whiff_of_deception_radius"	"RADIUS:"
+		"DOTA_Tooltip_ability_illusionist_whiff_of_deception_value_p"	"AGILITY MULTIPLIER:"	
 
 		"DOTA_Tooltip_ability_illusionist_agility_paws"	"Sleight of Paws"
 		"DOTA_Tooltip_ability_illusionist_agility_paws_Description"	"Illusionist gains agility for his illusion. There is a 10%% chance that this agility will remain after the illusion's death. The hero can gain up to 200 agility from this ability."
