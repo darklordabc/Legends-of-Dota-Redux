@@ -54,7 +54,7 @@
                 </Panel>
             </Panel>
         </Panel>
-        <Button id="recommendedSelectButton" class="heroBuildMenuButton" onactivate="onSelectBuildPressed()">
+        <Button id="recommendedSelectButton" class="heroBuildMenuButtonChoose" onactivate="onSelectBuildPressed()">
             <Label text="selectBuild" />
         </Button>
     </Panel>

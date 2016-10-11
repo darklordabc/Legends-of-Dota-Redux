@@ -45,7 +45,7 @@
     border-radius: 8px;
     padding: 16px;
     width: 600px;
-    height: 200px;
+    height: 250px;
     flow-children: down;
     vertical-align: middle;
     horizontal-align: center;
@@ -1383,10 +1383,10 @@
 }
 
 .skillCostRecommended {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
-	margin-right: 3px;
-	margin-bottom: 3px;
+	margin-right: 0px;
+	margin-bottom: 0px;
     vertical-align: bottom;
     horizontal-align: right;
 }
@@ -1916,18 +1916,17 @@
 }
 
 .heroBuildMenuButton {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
+    border: 1px solid #000000;
+    border-radius: 4px;
+    wash-color: #cccccc;
+    padding: 4px;
+    padding-left: 8px;
+    horizontal-align: left;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
     width: 100%;
-    height: 30px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
-    border-radius: 0px 0px 5px 5px;
-    padding-top: 7px;
-
-    transition-property: opacity;
-    transition-duration: 0.25s;
-}
-
-.heroBuildMenuButton:hover {
-    wash-color: #FFFFFFFF;
 }
 
 .heroBuildMenuButtonSmall {
@@ -1945,7 +1944,20 @@
     transition-duration: 0.25s;
 }
 
-.heroBuildMenuButtonSmall:hover {
+.heroBuildMenuButtonChoose {
+    width: 100%;
+    height: 30px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 7px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.heroBuildMenuButton:hover,
+.heroBuildMenuButtonSmall:hover,
+.heroBuildMenuButtonChoose:hover {
     wash-color: #FFFFFFFF;
 }
 
@@ -2007,11 +2019,11 @@
 
 .buildCategoryLabel {
     font-size: 24px;
-    margin: 10px;
+    margin: 8px;
 }
 
 #pickingPhaseRecommendedBuildContainer {
-    horizontal-align: left;
+    horizontal-align: center;
     width: 100%;
     flow-children: right-wrap;
     height: 100%;
@@ -2329,9 +2341,8 @@
 
 .VotingOptionInfo {
     flow-children: right;
-    horizontal-align: right;
-	
-	margin-left: 5px;
+
+	margin-left: 10px;
 	width: 18px;
 	height: 18px;
 }
@@ -2354,8 +2365,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 600px;
-    max-height: 600px;
+    max-width: 400px;
+    max-height: 400px;
     flow-children: down;
 }
 
@@ -2443,7 +2454,6 @@
 #mutatorPanel {
     width: 458px;
     flow-children: right-wrap;
-    align: right;
 }
 
 #optionList .OptionPanel {
@@ -2482,7 +2492,7 @@
 }
 
 #optionList .optionLabel {
-    margin-top: 130px;
+    margin-top: 10px;
     font-size: 20px;
     z-index: 2;
     opacity: 1;
@@ -2526,7 +2536,6 @@
 }
 
 #optionList #optionMutatorTitle {
-    margin:  auto;
     width: 223px;
     height: 80px;
     line-height: 60px;
@@ -2546,7 +2555,7 @@
     flow-children: right;
     z-index: 10;
     margin: 5px;
-    align: right;
+    horizontal-align: right;
 }
 
 #optionList .mutator .circle {
@@ -2572,11 +2581,10 @@
 }
 
 #importAndExportCaption {
-     width: auto;
+    flow-children: right;
 }
 
 .importAndExportButton {
-    width: 55px;
     height: 30px;
     margin-top: 3px;
     margin-right: 0px;
@@ -2588,7 +2596,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: right;
+    flow-children: left;
     margin-left: -10px;
 }
 
@@ -2862,6 +2870,6 @@
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton Label {
-    color: #626567;
-    font-size: 14px;
-}
+    horizontal-align: center;
+    vertical-align: middle;
+}    
