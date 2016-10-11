@@ -3096,4 +3096,25 @@
 		"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
 		"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
 		
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield"	"Lightning Shield"
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_damage_per_second"	"DAMAGE PER SECOND:"			
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_duration"	"DURATION:"	
+		"DOTA_Tooltip_ability_lord_of_lightning_chain_lightning_Note0"	"Can be upgraded by Spherical Staff. Increases damage."
+
+		"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield"	"Lightning Shield"
+		"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Противники Владыки Молний, находящиеся вокруг этого воина, получают урон."
+
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff"	"Lightning Shield"
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_damage_per_second"	"DAMAGE PER SECOND:"			
+		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_duration"	"DURATION:"
+		
+		"DOTA_Tooltip_ability_dark_knight_dark_forces"	"Dark Forces"
+		"DOTA_Tooltip_ability_dark_knight_dark_forces_Description"	"Spawns flows of darkness every 0.5 seconds at random places in a 150 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
+		"DOTA_Tooltip_ability_dark_knight_dark_forces_mana_percentage"	"%MANA INTO DAMAGE:"
+		"DOTA_Tooltip_ability_dark_knight_dark_forces_duration"	"DURATION:"
+
+		"DOTA_Tooltip_modifier_dark_knight_dark_forces"	"Dark Forces"
+		
 }
