@@ -131,19 +131,19 @@ function Ingame:onStart()
 			
 	end
 		
-	---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
+	-- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
 	
-	Timers:CreateTimer(function ()	
-		local maxPlayerID = 24
-		for playerID=0,maxPlayerID-1 do			
-			if util:isPlayerBot(playerID) then
-				local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-				if hero then
-					hero:MoveToPositionAggressive(Vector(0, 0, 0))
-				end
-			end
-		end		
-        end, 'unstick_bots', 96.0)
+	-- Timers:CreateTimer(function ()	
+	-- 	local maxPlayerID = 24
+	-- 	for playerID=0,maxPlayerID-1 do			
+	-- 		if util:isPlayerBot(playerID) then
+	-- 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+	-- 			if hero then
+	-- 				hero:MoveToPositionAggressive(Vector(0, 0, 0))
+	-- 			end
+	-- 		end
+	-- 	end		
+ --        end, 'unstick_bots', 96.0)
 		
 	--Attempt to enable cheats
 	Convars:SetBool("sv_cheats", true)
@@ -210,6 +210,14 @@ function Ingame:onStart()
 			local newState = GameRules:State_Get()
 			
 			if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+				Timers:CreateTimer(function()
+					for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
+						local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+						if hero and util:isPlayerBot(playerID) then
+							hero:MoveToPositionAggressive(Vector(0, 0, 0))
+						end
+					end
+				end, "botRune", 10)
 				print("Starting Fat Timers.")
 				Timers:CreateTimer(function()
 					if lastFatThink == nil then
