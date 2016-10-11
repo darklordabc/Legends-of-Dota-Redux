@@ -21,6 +21,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+    self:fixRuneBug()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -210,14 +211,6 @@ function Ingame:onStart()
 			local newState = GameRules:State_Get()
 			
 			if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-				Timers:CreateTimer(function()
-					for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
-						local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-						if hero and util:isPlayerBot(playerID) then
-							hero:MoveToPositionAggressive(Vector(0, 0, 0))
-						end
-					end
-				end, "botRune", 10)
 				print("Starting Fat Timers.")
 				Timers:CreateTimer(function()
 					if lastFatThink == nil then
@@ -241,6 +234,24 @@ function Ingame:onStart()
 			end
 		end, nil)
 	end
+end
+
+function Ingame:fixRuneBug()
+	ListenToGameEvent('game_rules_state_change', function(keys)
+		local newState = GameRules:State_Get()
+		
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+			Timers:CreateTimer(function()
+				for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
+					local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+					if hero and util:isPlayerBot(playerID) then
+						hero:MoveToPositionAggressive(Vector(0, 0, 0))
+					end
+				end
+			end, "botRune", 10)
+		end
+	end, nil)
+
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
