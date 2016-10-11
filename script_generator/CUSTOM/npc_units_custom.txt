@@ -3,6 +3,274 @@
 {
 	"Version"	"1"
 	
+	"fire_trap_unit"
+	{										
+		// General
+		"BaseClass"					"npc_dota_ward_base_truesight"
+		//"Model"						""
+		"SoundSet"					""
+		"Level"						"0"
+		"ModelScale"					"1"
+	//	"MinimapIcon"					"minimap_ward_invis"
+	//	"MinimapIconSize"				"300"
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		"HealthBarOffset"			"140"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO" 
+		"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"AttackType"    "pierce"
+		"ArmorType"     "unarmored"
+	
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"400"
+		"VisionNighttimeRange"		"400"
+	}
+	
+	"butcher_zombie_1" 
+	{
+	
+	
+	"BaseClass" "npc_dota_creature" 
+	"Model" "models/heroes/undying/undying_minion.vmdl" 
+	"SoundSet" "Undying_Zombie" 
+	"ModelScale" "0.7" 
+	"Level" "1" 
+	
+	
+	"Ability1" "butcher_skin"
+	"Ability2" "" 
+	"Ability3" "" 
+	"Ability4" "" 
+	"Ability5" "" 
+	"Ability6" "" 
+	"Ability7" "" 
+	"Ability8" "" 
+	
+	
+	
+	"ArmorPhysical" "0" 
+	"MagicalResistance" "0" 
+	
+	
+	
+	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin" "15" 
+	"AttackDamageMax" "15" 
+	"AttackRate" "0.8" 
+	"AttackAnimationPoint" "0.5" 
+	"AttackAcquisitionRange" "500" 
+	"AttackRange" "90" 
+	"ProjectileModel" "" 
+	"ProjectileSpeed" "" 
+	
+	
+	
+	"BountyXP" "0" 
+	"BountyGoldMin" "0" 
+	"BountyGoldMax" "0" 
+	
+	
+	
+	"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" 
+	"MovementSpeed" "300" 
+	"MovementTurnRate" "0.5" 
+	
+	
+	
+	"StatusHealth" "200" 
+	"StatusHealthRegen" "1" 
+	"StatusMana" "0" 
+	"StatusManaRegen" "0" 
+	
+	
+	
+	"TeamName" "DOTA_TEAM_GOODGUYS" 
+	"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+	"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	"AttackType"    "normal"
+	"ArmorType"     "heavy" 
+	
+	
+	
+	"VisionDaytimeRange" "800" 
+	"VisionNighttimeRange" "800" 
+	
+	
+	
+	"HasInventory" "0" 
+	}
+	
+	"butcher_zombie_2" 
+	{
+	
+	
+	"BaseClass" "npc_dota_creature" 
+	"Model" "models/heroes/undying/undying_minion.vmdl" 
+	"SoundSet" "Undying_Zombie" 
+	"ModelScale" "0.7" 
+	"Level" "1" 
+	
+	
+	"Ability1" "butcher_skin"
+	"Ability2" "" 
+	"Ability3" "" 
+	"Ability4" "" 
+	"Ability5" "" 
+	"Ability6" "" 
+	"Ability7" "" 
+	"Ability8" "" 
+	
+	
+	
+	"ArmorPhysical" "3" 
+	"MagicalResistance" "0" 
+	
+	
+	
+	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin" "40" 
+	"AttackDamageMax" "40" 
+	"AttackRate" "0.7" 
+	"AttackAnimationPoint" "0.5" 
+	"AttackAcquisitionRange" "500" 
+	"AttackRange" "90" 
+	"ProjectileModel" "" 
+	"ProjectileSpeed" "" 
+	
+	
+	
+	"BountyXP" "0" 
+	"BountyGoldMin" "0" 
+	"BountyGoldMax" "0" 
+	
+	
+	
+	"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" 
+	"MovementSpeed" "300" 
+	"MovementTurnRate" "0.5" 
+	
+	
+	
+	"StatusHealth" "400" 
+	"StatusHealthRegen" "1" 
+	"StatusMana" "0" 
+	"StatusManaRegen" "0" 
+	
+	
+	
+	"TeamName" "DOTA_TEAM_GOODGUYS" 
+	"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+	"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	"AttackType"    "normal"
+	"ArmorType"     "heavy" 
+	
+	
+	
+	"VisionDaytimeRange" "800" 
+	"VisionNighttimeRange" "800" 
+	
+	
+	
+	"HasInventory" "0" 
+	}
+	
+	"butcher_zombie_3" 
+	{
+	
+	
+	"BaseClass" "npc_dota_creature" 
+	"Model" "models/heroes/undying/undying_minion.vmdl" 
+	"SoundSet" "Undying_Zombie" 
+	"ModelScale" "0.7" 
+	"Level" "1" 
+	
+	
+	
+	"Ability1" "butcher_zombie_bash" 
+	"Ability2" "butcher_skin"
+	"Ability3" "" 
+	"Ability4" "" 
+	"Ability5" "" 
+	"Ability6" "" 
+	"Ability7" "" 
+	"Ability8" "" 
+	
+	
+	
+	"ArmorPhysical" "3" 
+	"MagicalResistance" "0" 
+	
+	
+	
+	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin" "70" 
+	"AttackDamageMax" "70" 
+	"AttackRate" "0.6" 
+	"AttackAnimationPoint" "0.5" 
+	"AttackAcquisitionRange" "500" 
+	"AttackRange" "90" 
+	"ProjectileModel" "" 
+	"ProjectileSpeed" "" 
+	
+	
+	
+	"BountyXP" "0" 
+	"BountyGoldMin" "0" 
+	"BountyGoldMax" "0" 
+	
+	
+	
+	"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" 
+	"MovementSpeed" "330" 
+	"MovementTurnRate" "0.5" 
+	
+	
+	
+	"StatusHealth" "600" 
+	"StatusHealthRegen" "4" 
+	"StatusMana" "0" 
+	"StatusManaRegen" "0" 
+	
+	
+	
+	"TeamName" "DOTA_TEAM_GOODGUYS" 
+	"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+	"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	"AttackType"    "normal"
+	"ArmorType"     "heavy" 
+	
+	
+	
+	"VisionDaytimeRange" "800" 
+	"VisionNighttimeRange" "800" 
+	
+	
+	
+	"HasInventory" "0" 
+	}
+	
 	"npc_custom_unit_hawk" 
 	{
 		"BaseClass" "npc_dota_creature"

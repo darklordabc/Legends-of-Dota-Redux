@@ -1,4 +1,4 @@
-
+require('lib/timers')
 function StasisStart( event )
 	local caster = event.caster
 	local ability = event.ability

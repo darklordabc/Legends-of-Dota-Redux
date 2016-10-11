@@ -1,5 +1,6 @@
 butcher_zombie = class ({})
 LinkLuaModifier("modifier_butcher_zombie", "abilities/life_in_arena/modifier_butcher_zombie.lua" ,LUA_MODIFIER_MOTION_NONE)
+require('lib/timers')
 
 function butcher_zombie:GetIntrinsicModifierName() 
 	return "modifier_butcher_zombie"
@@ -28,7 +29,7 @@ function butcher_zombie:CreateZombie()
 	local caster = self:GetCaster()
 	local level = self:GetLevel()
 	local unit_name = {"butcher_zombie_1","butcher_zombie_2","butcher_zombie_3"}
-	local butcher_return_level = caster:FindAbilityByName("butcher_skin"):GetLevel()
+	local butcher_return_level = caster:FindAbilityByName("butcher_zombie"):GetLevel()
 
 
 	if not caster:HasModifier("modifier_hide_lua") and GameRules:State_Get() ~= DOTA_GAMERULES_STATE_POST_GAME then --если герой спрятан, то зомби не спавним

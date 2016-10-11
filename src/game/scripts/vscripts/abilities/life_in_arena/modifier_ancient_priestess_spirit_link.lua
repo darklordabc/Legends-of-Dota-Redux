@@ -1,7 +1,7 @@
 modifier_ancient_priestess_spirit_link = class({})
 
 if IsServer() then
-	require('utils')
+	require('abilities/life_in_arena/utils')
 end
 
 function modifier_ancient_priestess_spirit_link:GetEffectName()

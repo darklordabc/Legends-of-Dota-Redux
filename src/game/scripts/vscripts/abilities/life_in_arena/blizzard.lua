@@ -1,4 +1,5 @@
-﻿--[[
+﻿require('lib/timers')
+--[[
 	Author: Noya
 	Date: 25.01.2015.
 	Creates a dummy unit to apply the Blizzard thinker modifier which does the waves

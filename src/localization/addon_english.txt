@@ -2889,6 +2889,11 @@
 		"DOTA_Tooltip_modifier_butcher_zombie"	"Living Flesh"
 		"DOTA_Tooltip_modifier_butcher_zombie_Description"	"Zombies count."
 		
+		"DOTA_Tooltip_ability_butcher_skin"	"Abomination"
+		"DOTA_Tooltip_ability_butcher_skin_Description"	"Butcher gains bonus armor and starts to return damage to melee enemies."
+		"DOTA_Tooltip_ability_butcher_skin_bonus_armor"	"+$armor"		
+		"DOTA_Tooltip_ability_butcher_skin_damage_return"	"%DAMAGE RETURN:"	
+		
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"LIFETIME:"

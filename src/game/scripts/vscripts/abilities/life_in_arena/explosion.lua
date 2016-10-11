@@ -1,3 +1,4 @@
+require('lib/timers')
 function Explosion(event)
 	local caster = event.caster
 	local ability = event.ability
