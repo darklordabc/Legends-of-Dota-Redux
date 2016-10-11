@@ -2802,4 +2802,288 @@
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_Description"		"Magic fire burns the mana of the enemy unit, and deals damage equal to the amount of mana burned. Also deal damage if enemy unit have enough mana."
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage" 			"BURN:"
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage_pct" 		"%DAMAGE:"
+	
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence"	"Arcane Barrage"
+		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"	"Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence."
+		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"	"INTELLIGENCE MULTIPLIER:"			
+		
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link"
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_Description"	"Links units together in a chain. All units with Spirit Link on them will live longer, by distributing damage they take across other Spirit Linked units. Linked unit also get bonus health regeneration."
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_distribution_tooltip"	"%DISTRIBUTED DAMAGE PERCENTAGE:"			
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_max_unit"				"NUMBER OF TARGETS:"		
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_heal_value"	"BONUS REGENERATION:"			
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_duration"	"DURATION:"	
+
+		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link"	"Spirit Link"
+		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link_Description" "This unit gains bonus regeneration and all damage dealt to him is distributed across all linked allies."
+		
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection"
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_damage_absorb"	"DAMAGE ABSORBED:"			
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_duration"				"DURATION:"		
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Note0"	"Can be upgraded by Spherical Staff. Increases number of damage absorbed."
+
+		"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection"	"Ritual of Protection"
+		"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection_Description" "Your hero absorbs damage."
+
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff"	"Ritual of Protection"
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_damage_absorb"	"DAMAGE ABSORBED:"			
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_duration"				"DURATION:"	
+		
+		"DOTA_Tooltip_ability_android_cluster_rockets"	"Cluster Rockets"
+		"DOTA_Tooltip_ability_android_cluster_rockets_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
+		"DOTA_Tooltip_ability_android_cluster_rockets_damage"	"ONE ROCKET DAMAGE:"
+		"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
+		
+		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
+		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. Archmage can givve the barrier to his ally. The barrier loses the ammount of damage blocked every second."
+		"DOTA_Tooltip_ability_archmage_magic_barrier_lol"	"%MANA SPENT INTO DAMAGE BLOCK:"
+		"DOTA_Tooltip_ability_archmage_magic_barrier_lol1"	"MANA BLOCKED REDUCTION PER SECOND:"
+
+		"DOTA_Tooltip_modifier_archmage_magic_barrier"	"Magic Barrier"
+		"DOTA_Tooltip_modifier_archmage_magic_barrier_Description" "The barrier can block %dMODIFIER_PROPERTY_TOOLTIP%% damage."
+		
+		"DOTA_Tooltip_ability_archmage_anomaly"	"Anomaly"
+		"DOTA_Tooltip_ability_archmage_anomaly_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomly, will be applied to all enemies in it."
+		"DOTA_Tooltip_ability_archmage_anomaly_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_archmage_anomaly_radius"		"RADIUS:"
+		"DOTA_Tooltip_ability_archmage_anomaly_Note0"	"Can be upgraded by Spherical Staff. Increases duration and manacost."
+
+		"DOTA_Tooltip_ability_archmage_anomaly_staff"	"Anomaly"
+		"DOTA_Tooltip_ability_archmage_anomaly_staff_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomly, will be applied to all enemies in it."
+		"DOTA_Tooltip_ability_archmage_anomaly_staff_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_archmage_anomaly_staff_radius"		"RADIUS:"
+
+		"DOTA_Tooltip_modifier_archmage_anomaly"	"Anomaly"
+		"DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
+		
+		"DOTA_Tooltip_ability_berserker_fire_spear"	"Fire Spear"
+		"DOTA_Tooltip_ability_berserker_fire_spear_Description"	"Berserker throws a fire spear into a target point. The spear deals damage and slows the movement speed of any enemy it hits."
+		"DOTA_Tooltip_ability_berserker_fire_spear_movement_speed_slow"	"%MOVEMENT SPEED SLOW:"
+		"DOTA_Tooltip_ability_berserker_fire_spear_slow_duration"	"DURATION:"	
+
+		"DOTA_Tooltip_modifier_fire_spear_slow"	"Fire Spear"
+		"DOTA_Tooltip_modifier_fire_spear_slow_Description"	"This unit's movespeed is slowed."
+		
+		"DOTA_Tooltip_ability_berserker_madness"	"Rampage"
+		"DOTA_Tooltip_ability_berserker_madness_Description"	"Berserker goes mad increasing his attributes for a few seconds."
+		"DOTA_Tooltip_ability_berserker_madness_bonus_all_stats"	"BONUS ATTRIBUTES:"
+		"DOTA_Tooltip_ability_berserker_madness_duration"	"DURATION:"	
+
+		"DOTA_Tooltip_modifier_berserker_madness"	"Rampage"
+		"DOTA_Tooltip_modifier_berserker_madness_Description"	"This unit's attributes are increased."
+		
+		"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains strength."
+		"DOTA_Tooltip_ability_brewmaster_ferocity_bonus_strength"	"BONUS STRENGTH PER UNIT:"
+
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua"	"Ferocity"
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_Description"	"Strength granted by this ability."
+		
+		"DOTA_Tooltip_ability_butcher_zombie"	"Living Flesh"
+		"DOTA_Tooltip_ability_butcher_zombie_Description"	"Every 15 seconds a part of Buthcer's body falls off and come to life, fighting for Butcher. Zombies have Abomination of the same level as the hero has. The ability can be toggled off."
+		"DOTA_Tooltip_ability_butcher_zombie_zombie_hp_tooltip"	"ZOMBIE'S HIT POINTS:"		
+		"DOTA_Tooltip_ability_butcher_zombie_zombie_damage_tooltip"	"ZOMBIE'S DAMAGE:"			
+
+		"DOTA_Tooltip_modifier_butcher_zombie"	"Living Flesh"
+		"DOTA_Tooltip_modifier_butcher_zombie_Description"	"Zombies count."
+		
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"LIFETIME:"
+
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate"	"Black Arrow"
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_lifetime"	"LIFETIME:"
+		
+		"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
+		"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area 3 seconds and then deals secondary damage over 6 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+		"DOTA_Tooltip_ability_firelord_flame_strike_radius"	"RADIUS:"	
+		"DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"	"PRIMARY DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_firelord_flame_strike_burn_dps"	"SECONDARY DAMAGE PER SECOND:"	
+		"DOTA_Tooltip_ability_firelord_flame_strike_delay"	"CHANNELING TIME:"
+		"DOTA_Tooltip_ability_firelord_flame_strike_Note0"	"Can be upgraded by Spherical Staff. Increases primary damage."
+
+		"DOTA_Tooltip_modifier_flame_strike_first_burn"	"Flame Strike"
+		"DOTA_Tooltip_modifier_flame_strike_first_burn_Description"	"This unit is taking damage."
+
+		"DOTA_Tooltip_modifier_flame_strike_second_burn"	"Flame Strike"
+		"DOTA_Tooltip_modifier_flame_strike_second_burn_Description"	"This unit is taking damage."
+
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff"	"Flame Strike"
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff_Description"	"Conjures a pillar of fire which damages ground units in a target area 3 seconds and then deals secondary damage over 6 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff_radius"	"RADIUS:"	
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff_first_strike_dps"	"PRIMARY DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff_burn_dps"	"SECONDARY DAMAGE PER SECOND:"	
+		"DOTA_Tooltip_ability_firelord_flame_strike_staff_delay"	"CHANNELING TIME:"
+		
+		"DOTA_Tooltip_ability_firelord_fire_trap"	"Fire Trap"
+		"DOTA_Tooltip_ability_firelord_fire_trap_Description"	"Sets an invisible trap that stuns the caught enemies. The trap activates when an enemy unit approaches."
+		"DOTA_Tooltip_ability_firelord_fire_trap_duration"	"TRAP LIFETIME:"	
+		"DOTA_Tooltip_ability_firelord_fire_trap_detonation_radius"	"DETONATION RADIUS:"
+		"DOTA_Tooltip_ability_firelord_fire_trap_stun_duration"	"STUN DURATION:"	
+		"DOTA_Tooltip_ability_firelord_fire_trap_stun_hero_duration"	"HERO STUN DURATION:"		
+		"DOTA_Tooltip_ability_firelord_fire_trap_activation_delay"	"ACTIVATION DELAY:"	
+		"DOTA_Tooltip_ability_firelord_fire_trap_detection_radius"	"DETECTION RADIUS:"
+		
+		"DOTA_Tooltip_ability_frost_lord_freezing"	"Cold Embrace"
+		"DOTA_Tooltip_ability_frost_lord_freezing_Description"	"Gives Frost Lord a 18%% chance to freeze his attacker and deal damage to him."
+		"DOTA_Tooltip_ability_frost_lord_freezing_stun_hero_duration"	"FREEZE DURATION:"
+
+		"DOTA_Tooltip_modifier_frost_lord_freezing_block"	"Cold Embrace"
+		"DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"	"This unit is frozen."
+		
+		"DOTA_Tooltip_ability_frost_lord_cold"	"Chilling Touch"
+		"DOTA_Tooltip_ability_frost_lord_cold_Description"	"Target enemies lose their movement and attack speed and take damage over time. If thet are affected by Frost Breath, they will take additional damage."
+		"DOTA_Tooltip_ability_frost_lord_cold_damage"	"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_frost_lord_cold_add_damage"	"ADDITIONAL DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_frost_lord_cold_movement_speed_slow"	"%MOVESPEED SLOW:"
+		"DOTA_Tooltip_ability_frost_lord_cold_attack_speed_slow"	"ATTACK SLOW:"
+		"DOTA_Tooltip_ability_frost_lord_cold_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_frost_lord_cold_radius"	"RADIUS:"
+
+		"DOTA_Tooltip_modifier_frost_lord_cold"	"Chilling Touch"
+		"DOTA_Tooltip_modifier_frost_lord_cold_Description"	"This unit is slowed and is taking damage."
+		
+		"DOTA_Tooltip_ability_frost_lord_ice"	"Frozen Core"
+		"DOTA_Tooltip_ability_frost_lord_ice_Description"	"Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
+		"DOTA_Tooltip_ability_frost_lord_ice_damage"	"DAMAGE:"
+		"DOTA_Tooltip_ability_frost_lord_ice_movement_slow"	"%MOVEMENT SLOW:"
+		"DOTA_Tooltip_ability_frost_lord_ice_slow_duration"	"SLOW DURATION:"
+		"DOTA_Tooltip_ability_frost_lord_ice_duration"	"ICE DURATION:"		
+		"DOTA_Tooltip_ability_frost_lord_ice_Note0"	"Can be upgraded by Spherical Staff. Increases damage and duration."
+
+		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage"	"Frozen Core"
+		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage_Description"	"This unit is slowed."		
+
+		"DOTA_Tooltip_ability_frost_lord_ice_staff"	"Frozen Core"
+		"DOTA_Tooltip_ability_frost_lord_ice_staff_Description"	"Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
+		"DOTA_Tooltip_ability_frost_lord_ice_staff_damage"	"DAMAGE:"
+		"DOTA_Tooltip_ability_frost_lord_ice_staff_movement_slow"	"%MOVEMENT SLOW:"
+		"DOTA_Tooltip_ability_frost_lord_ice_staff_slow_duration"	"SLOW DURATION:"
+		"DOTA_Tooltip_ability_frost_lord_ice_staff_duration"	"ICE DURATION:"		
+		
+		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_staff_damage"	"Frozen Core"
+		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_staff_damage_Description"	"This unit is slowed."
+		
+		"DOTA_Tooltip_ability_frost_lord_frost_breath"	"Frost Breath"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_Description"	"An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_damage"	"INITIAL DAMAGE:"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_damage_per_second"	"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_Note0"	"Can be upgraded by Spherical Staff. Increases damage."
+
+		"DOTA_Tooltip_modifier_frost_lord_frost_breath"	"Frost Breath"
+		"DOTA_Tooltip_modifier_frost_lord_frost_breath_Description"	"This unit takes damage over time."
+
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_staff"	"Frost Breath"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_staff_Description"	"An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_staff_damage"	"INITIAL DAMAGE:"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_staff_damage_per_second"	"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_frost_lord_frost_breath_staff_duration"	"DURATION:"
+
+		"DOTA_Tooltip_modifier_frost_lord_frost_breath_staff"	"Frost Breath"
+		"DOTA_Tooltip_modifier_frost_lord_frost_breath_staff_Description"	"This unit takes damage over time."
+		
+		"DOTA_Tooltip_ability_ghoul_devour"	"Devour"
+		"DOTA_Tooltip_ability_ghoul_devour_Description"	"Devours a target unit healing himself health instantly and over time. If the target is a boss, a megaboss or a hero, it will be slowed. These effects are stackable."
+		"DOTA_Tooltip_ability_ghoul_devour_instant_heal"	"INSTANT HEAL:"
+		"DOTA_Tooltip_ability_ghoul_devour_heal_per_second"	"HEAL PER SECOND:"
+		"DOTA_Tooltip_ability_ghoul_devour_heal_duration"	"HEAL DURATION:"
+		"DOTA_Tooltip_ability_ghoul_devour_movement_slow"	"%MOVEMENT SLOW:"
+		"DOTA_Tooltip_ability_ghoul_devour_attack_slow"	"ATTACK SLOW:"
+		"DOTA_Tooltip_ability_ghoul_devourt_slow_duration"	"SLOW DURATION:"
+
+		"DOTA_Tooltip_modifier_ghoul_devour_slow"	"Devour"
+		"DOTA_Tooltip_modifier_ghoul_devour_slow_Description"	"You are slowed."
+
+		"DOTA_Tooltip_modifier_ghoul_devour_heal"	"Devour"
+		"DOTA_Tooltip_modifier_ghoul_devour_heal_Description"	"You are being healed."
+		
+		"DOTA_Tooltip_ability_akron_explosion"	"Living Bomb"
+		"DOTA_Tooltip_ability_akron_explosion_Description"	"Golem explodes dealing to nearby enemies and to himself damage based on his maximum health. Affected enemies start to take additional fire damage over time."
+		"DOTA_Tooltip_ability_akron_explosion_hp_prc_dmg"	"%MAX HEALTH INTO DAMAGE:"
+		"DOTA_Tooltip_ability_akron_explosion_burn_damage"	"BURN DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_akron_explosion_duratione"	"BURN DURATION:"
+
+		"DOTA_Tooltip_modifier_akron_explosion_burn"	"Living Bomb"
+		"DOTA_Tooltip_modifier_akron_explosion_burn_Description"	"This unit is taking damage."
+		
+		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel"
+		"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable and enemies take damage.  The hero stays vulnerable."
+		"DOTA_Tooltip_ability_paladin_impregnability_damage_per_sec"	"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_paladin_impregnability_duration"	"DURATION:"		
+
+		"DOTA_Tooltip_modifier_impregnability_aura_inv"	"Guardian Angel"
+		"DOTA_Tooltip_modifier_impregnability_aura_inv_Description"	"This unit is invulnerable."
+		
+		"DOTA_Tooltip_ability_paladin_blizzard"	"Blizzard"
+		"DOTA_Tooltip_ability_paladin_blizzard_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.25 seconds units in a target area every second."
+		"DOTA_Tooltip_ability_paladin_blizzard_wave_damage"	"DAMAGE:"
+		"DOTA_Tooltip_ability_paladin_blizzard_wave_count"	"WAVES COUNT:"
+		"DOTA_Tooltip_ability_paladin_blizzard_radius"	"RADIUS:"
+		"DOTA_Tooltip_ability_paladin_blizzard_max_targets"	"MAX TARGETS:"
+		"DOTA_Tooltip_ability_paladin_blizzard_Note0"	"Can be upgraded by Spherical Staff. Increases damage."
+		
+		"DOTA_Tooltip_ability_paladin_blizzard_staff"	"Blizzard"
+		"DOTA_Tooltip_ability_paladin_blizzard_staff_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.25 seconds units in a target area every second."
+		"DOTA_Tooltip_ability_paladin_blizzard_staff_wave_damage"	"DAMAGE:"
+		"DOTA_Tooltip_ability_paladin_blizzard_staff_wave_count"	"WAVES COUNT:"
+		"DOTA_Tooltip_ability_paladin_blizzard_staff_radius"	"RADIUS:"
+		"DOTA_Tooltip_ability_paladin_blizzard_staff_max_targets"	"MAX TARGETS:"
+		
+		"DOTA_Tooltip_ability_illusionist_mastery_of_deception"	"Mastery of Deception"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_Description"	"When Illusionnist is attacked, he has a 20%% chance to create an illusion of the attacker. Illusions take more damage and deal less. Does not affect megabosses."
+		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_time"	"ILLUSION LIFETIME:"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+
+		"DOTA_Tooltip_ability_illusionist_agility_paws"	"Sleight of Paws"
+		"DOTA_Tooltip_ability_illusionist_agility_paws_Description"	"Illusionist gains agility for his illusion. There is a 10%% chance that this agility will remain after the illusion's death. The hero can gain up to 200 agility from this ability."
+		"DOTA_Tooltip_ability_illusionist_agility_paws_bonus_agility"	"AGILITY FOR ONE ILLUSION:"
+
+		"DOTA_Tooltip_modifier_illusionist_agility_paws_i"	"Sleight of Paws"
+		"DOTA_Tooltip_modifier_illusionist_agility_paws_i_Description"	"Number of agility gained."
+
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions"	"Mastery of Illusions"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_Description"	"Illusionist creates 3 illusions of a target unit and banishes it for 3 seconds. Magic resist of this unit reduces by 40%%."
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_life_illusion"	"ILLUSIONS LIFETIME:"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+
+		"DOTA_Tooltip_modifier_illusionist_mastery_of_illusions"	"Mastery of Illusions"
+		"DOTA_Tooltip_modifier_illusionist_mastery_of_illusions_Description"	"This unit can't be attacked, but takes more magic damage."
+		
+		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath"	"Holy Wrath"
+		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_Description"	"When Lighnthing Lord or his ally in a 800 radius is attacked, there is a chance that the attacker will be struck by a lightning and take damage. This damage is equal to Lightning Lord's intelligence multiplied by some number. Enemies in a 200 radius around the attacker also take damage. Primary target gets purged."
+		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_chance_dmg"	"%LIGHTNING STRIKE CHANCE:"
+		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_damage_per_int"	"INTELLIGENCE MULTIPLIER:"	
+
+		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow"	"Holy Wrath"
+		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow_Description" "This unit is slowed."
+		
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm"
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_Description"	"Enemies in a 500 area of effect get disarmed, but also don't take physical damage. Affected units also lose magic resistance and movement speed."
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_spell_damage_pct"	"%MAGIC RESISTANCE REDUCTION:"	
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_movement_speed"	"%MOVESPEED REDUCTION:"	
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_duration"	"DURATION:"	
+
+		"DOTA_Tooltip_modifier_brain_storm_decrepify"	"Brainstorm"
+		"DOTA_Tooltip_modifier_brain_storm_decrepify_Description" "This unit can't attack, but also can't be attacked. His magic resistance and movement speed are reduced."
+
+		"DOTA_Tooltip_modifier_lol_decrepify_hero"	"Brainstorm"
+		"DOTA_Tooltip_modifier_lol_decrepify_hero_Description" "This unit can't attack, but also can't be attacked. His magic resistance and movement speed are reduced."
+		
+		"DOTA_Tooltip_ability_kret_poisoning"	"Poisonous Scales"
+		"DOTA_Tooltip_ability_kret_poisoning_Description"	"If an enemy attacks Murloc, he has a chance to lose health and mana."
+		"DOTA_Tooltip_ability_kret_poisoning_chanceVal"	"%CHANCE:"		
+		"DOTA_Tooltip_ability_kret_poisoning_adsorbVal"	"HEALTH AND MANA REDUCTION:"			
+		
+		"DOTA_Tooltip_ability_kret_lust_for_life"	"Thirst for Life"
+		"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"Murloc gets regeneration based on hit points missing. He also gains bonus health."
+		"DOTA_Tooltip_ability_kret_lust_for_life_bonus_health"	"BONUS HEALTH:"		
+		"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
+		"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
+		
 }
