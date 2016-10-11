@@ -584,6 +584,23 @@ end
 function Ingame:onPlayerCheat(eventSourceIndex, args)
     local command = args.command
     local value = args.value
+    local playerID = args.playerID
+    local isCustom = tonumber(args.isCustom) == 1 and true or false
+    if isCustom then
+    	-- Lvl-up hero
+    	local player = PlayerResource:GetSelectedHeroEntity(playerID)
+    	if command == 'lvl_up' then
+    		for i=0,value-1 do
+    			player:HeroLevelUp(true)
+    		end
+    	elseif command == 'give_gold' then
+    		player:ModifyGold(value, true, DOTA_ModifyGold_CheatCommand)
+    	elseif command == 'hero_respawn' then
+    		player:RespawnUnit()
+    	elseif command == 'create_item' then
+    		player:AddItemByName(value)
+    	end
+    end
     if type(value) ~= 'table' then
         value = tonumber(value) == 1 and true or false
         Convars:SetBool(command, value)
