@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Added some more preset builds that take advantage of heros perks
 - Added 19 abilities from Angel Arena Reborn
+- Increased level requirement for OP tower abilities
 
 ## 1.6 - Steam Version
 
