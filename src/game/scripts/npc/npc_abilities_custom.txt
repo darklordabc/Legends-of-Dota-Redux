@@ -8203,6 +8203,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"							"10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -8380,6 +8381,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"							"10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -8638,7 +8640,9 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
+		"LevelsBetweenUpgrades"  		"1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"                 "20"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9624,6 +9628,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"							"10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9689,6 +9694,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"							"10"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -13809,7 +13815,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"AbilityTextureName"			"huskar_burning_spear"
+		"AbilityTextureName"			"berserker_fire_spear"
 	
 		"AbilityCastAnimation" "ACT_DOTA_ATTACK"
 		
@@ -14963,7 +14969,7 @@
 	"frost_lord_freezing"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"crystal_maiden_frostbite"
+		"AbilityTextureName"			"frost_lord_freezing"
 	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -15060,7 +15066,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"lich_frost_nova"
+		"AbilityTextureName"			"frost_lord_cold"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -15794,7 +15800,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"life_stealer_feast"
+		"AbilityTextureName"			"ghoul_devour"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -17290,7 +17296,7 @@
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName"            	"viper_corrosive_skin"
+		"AbilityTextureName"            	"kret_poisoning"
 		"AbilityUnitTargetTeam"         	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"         	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"               "3"

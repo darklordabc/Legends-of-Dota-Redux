@@ -975,10 +975,15 @@
 	"warning_imba_tower_essence_drain"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_grievous_wounds"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_sniper"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_fervor"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_machinegun"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_split"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_salvo"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_multihit"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+	"warning_imba_tower_spell_shield"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 20.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.
-	
+	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_force_dash_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -2991,7 +2996,7 @@
 		"DOTA_Tooltip_modifier_frost_lord_frost_breath_staff"	"Frost Breath"
 		"DOTA_Tooltip_modifier_frost_lord_frost_breath_staff_Description"	"This unit takes damage over time."
 		
-		"DOTA_Tooltip_ability_ghoul_devour"	"Devour"
+		"DOTA_Tooltip_ability_ghoul_devour"	"Ghoul Devour"
 		"DOTA_Tooltip_ability_ghoul_devour_Description"	"Devours a target unit healing himself health instantly and over time. If the target is a boss, a megaboss or a hero, it will be slowed. These effects are stackable."
 		"DOTA_Tooltip_ability_ghoul_devour_instant_heal"	"INSTANT HEAL:"
 		"DOTA_Tooltip_ability_ghoul_devour_heal_per_second"	"HEAL PER SECOND:"
