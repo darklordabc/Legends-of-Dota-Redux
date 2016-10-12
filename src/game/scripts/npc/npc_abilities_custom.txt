@@ -11104,7 +11104,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityType"            		"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"angel_arena_grace"
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11117,7 +11117,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 250 300 350"
+		"AbilityManaCost"				"200 250 300"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -11126,7 +11126,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"500 800 1000 1200"
+				"heal"					"500 800 1000"
 			}
 			"02"
 			{
@@ -11214,7 +11214,7 @@
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"		"angel_arena_demonic"
 		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"					"4"
+		"MaxLevel"					"3"
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11226,7 +11226,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 250 300 350"
+		"AbilityManaCost"				"200 250 300"
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -11235,7 +11235,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"20 30 40 50"
+				"duration"				"20 30 40"
 			}
 			"02"
 			{
@@ -11260,12 +11260,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"60 80 120 140"
+				"bonus_damage"			"60 80 120"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"500 1000 1200 1400"
+				"bonus_hp"				"500 1000 1200"
 			}
 		}
 	
@@ -11337,10 +11337,10 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120.0 110.0 100.0 90.0"
-		"AbilityManaCost"				"200 250 300 350"
+		"AbilityCooldown"				"120.0 110.0 100.0"
+		"AbilityManaCost"				"200 250 300"
 		
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 		
 		"precache"
 		{
@@ -11353,17 +11353,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_armor"				"40.0 60.0 75.0 80.0"
+				"bonus_armor"				"40.0 60.0 75.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"80 100 120 140"
+				"bonus_damage"				"80 100 120"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"3 4 5 6"
+				"duration"					"3 4 5"
 			}
 		}
 		
@@ -11582,7 +11582,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"abilities/berserk.lua"
+						"ScriptFile"	"abilities/angel_arena_reborn/berserk.lua"
 						"Function"		"OnAttack"
 						"Damage"		"%damage_pct"
 					}
@@ -11604,11 +11604,11 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"angel_arena_transmute"
 	
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"200"
-		"AbilityCastPoint"				"1.0 1.0 1.0 1.0"
+		"AbilityCastPoint"				"1.0 1.0 1.0"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -11625,7 +11625,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_percent"			"20 30 40 50"
+				"hp_percent"			"20 30 40"
 			}
 		}
 	
@@ -11658,7 +11658,7 @@
 			
 			"RunScript"
 			{
-				"ScriptFile"		"abilities/transmute.lua"
+				"ScriptFile"		"abilities/angel_arena_reborn/transmute.lua"
 				"Function"			"Transmute"
 				"health_to_gold"	"%hp_percent"
 			}	
@@ -11671,7 +11671,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"angel_arena_nether_ritual"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 		"RequiredLevel" 				"15"
 		"LevelsBetweenUpgrades"  		"3"
 		
@@ -11682,27 +11682,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_hp_regen"			"15.0 18.0 20.0 25.0"
+				"bonus_hp_regen"			"15.0 18.0 20.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"4 8 10 12"
+				"bonus_armor"				"4 8 10"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"5 6 8 10"
+				"bonus_damage"				"5 6 8"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movespeed"			"2 4 6 8"
+				"bonus_movespeed"			"2 4 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.6 1.54 1.52 1.51"
+				"base_attack_time"		"1.6 1.54 1.52"
 			}
 	
 		}
@@ -11824,7 +11824,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"    "abilities/hola_heal.lua"
+						"ScriptFile"    "abilities/angel_arena_reborn/hola_heal.lua"
 						"Function"      "HealPercent"
 						"heal_pct"		"%heal_percent"
 					}
@@ -11901,7 +11901,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"abilities/summon_hawk.lua"
+				"ScriptFile"	"abilities/angel_arena_reborn/summon_hawk.lua"
 				"Function"		"SpawnHawk"
 			}
 		}
@@ -12050,7 +12050,7 @@
 							
 							"RunScript"
 							{
-								"ScriptFile"	"abilities/storm.lua"
+								"ScriptFile"	"abilities/angel_arena_reborn/storm.lua"
 								"Function"		"StormDamage"
 								"dmg_pct"		"%damage_percent"
 							}
@@ -12094,9 +12094,9 @@
 			"particle"			"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
 		}
 	
-		"MaxLevel"						"4"
-		"AbilityCooldown"				"100 90 80 70"
-		"AbilityManaCost"				"100 150 200 250"	
+		"MaxLevel"						"3"
+		"AbilityCooldown"				"100 90 80"
+		"AbilityManaCost"				"100 150 200"	
 	
 	
 		"AbilitySpecial"
@@ -12109,7 +12109,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0 5.0 7.0 10.0"
+				"duration"				"4.0 5.0 7.0"
 			}
 		}
 		"OnSpellStart"
@@ -12280,7 +12280,7 @@
 					"RunScript"
 					{
 						"Target" 		"TARGET"
-						"ScriptFile"    "abilities/shot.lua"
+						"ScriptFile"    "abilities/angel_arena_reborn/shot.lua"
 						"Function"      "DamageOfCurrentHealth"
 						"DamagePercent"	"%damage_percent"
 					}
@@ -12299,11 +12299,11 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"				"0.5 0.5 0.5"
 		
 		"AbilityTextureName"			"angel_arena_roots"
 		
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -12318,7 +12318,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 175 200 225"
+		"AbilityManaCost"				"150 175 200"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -12327,7 +12327,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"2.0 2.2 2.5 3.0"
+				"duration"						"2.0 2.2 2.5"
 			}
 			
 			"02"
@@ -12338,12 +12338,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"armor_reduction"				"-5 -6 -7 -8"
+				"armor_reduction"				"-5 -6 -7"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 150 200 250"
+				"damage"						"100 150 200"
 			}
 		}
 		"OnSpellStart"
@@ -12619,7 +12619,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"abilities/rifle.lua"
+						"ScriptFile"		"abilities/angel_arena_reborn/rifle.lua"
 						"Function"			"OnIntervalThinkMachine"
 					}
 				}
@@ -12646,7 +12646,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"abilities/rifle.lua"
+						"ScriptFile"		"abilities/angel_arena_reborn/rifle.lua"
 						"Function"			"OnIntervalThinkRifle"
 					}
 				}
@@ -12683,7 +12683,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"abilities/revenge.lua"
+						"ScriptFile"	"abilities/angel_arena_reborn/revenge.lua"
 						"Function"		"takedamage"
 						"Damage"		"%attack_damage"
 						"Attacker"		"ATTACKER"
@@ -12735,7 +12735,7 @@
 							"Center"	"TARGET"
 							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 						}
-				        "ScriptFile"    "abilities/holy_book.lua"
+				        "ScriptFile"    "abilities/angel_arena_reborn/holy_book.lua"
 				        "Function"      "HolyBook_attack"
 						"Radius"		"%radius"
 						"Damage"		"%attack_damage"
@@ -12752,25 +12752,24 @@
 		"AbilityTextureName"			"angel_arena_night_vampire"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		
-		"MaxLevel"						"4"
-		"LevelsBetweenUpgrades"  		"2"
+		"MaxLevel"						"3"
 		
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_day"					"5 8 10 12"
+				"bonus_day"					"5 8 10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_night"				"10 20 30 35"
+				"bonus_night"				"10 20 30"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_attack_time"			"1.65 1.6 1.55 1.5"
+				"base_attack_time"			"1.65 1.6 1.55"
 			}
 		
 		}
@@ -12792,7 +12791,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"abilities/night_vampire.lua"
+						"ScriptFile"		"abilities/angel_arena_reborn/night_vampire.lua"
 						"Function"			"OnKilled"
 						"bonus_day"			"%bonus_day"
 						"bonus_night"		"%bonus_night"
@@ -12860,7 +12859,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"abilities/magic_fire.lua"
+				"ScriptFile"			"abilities/angel_arena_reborn/magic_fire.lua"
 				"Function"				"mana_burn_function"
 				"dmg_pct"				"%damage_pct"
 			}
@@ -12935,7 +12934,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"abilities/lightning.lua"
+				"ScriptFile"	"abilities/angel_arena_reborn/lightning.lua"
 				"Function"		"lightning_start"
 			}
 		}
