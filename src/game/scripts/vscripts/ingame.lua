@@ -9,6 +9,7 @@ require('lib/util_imba')
 local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
+GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
@@ -20,6 +21,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+    self:fixRuneBug()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -60,7 +62,10 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
+	GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -103,6 +108,8 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
+    perksFilter = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksOrderFilter(filterTable)
     return true
 end    
 
@@ -112,14 +119,32 @@ dc_table = {};
 function Ingame:onStart()
     local this = self
 	
-	--- Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
-	Timers:CreateTimer(function ()
-           Convars:SetBool("dota_all_vision", true)
-        end, 'enable_all_vision_fix', 1)
+	---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
+	if Convars:GetBool("dota_all_vision") == false then
+	
+		Timers:CreateTimer(function ()
+			   Convars:SetBool("dota_all_vision", true)
+			end, 'enable_all_vision_fix', 1)
+			
+		Timers:CreateTimer(function ()
+			   Convars:SetBool("dota_all_vision", false)
+			end, 'disable_all_vision_fix', 1.2)
+			
+	end
 		
-	Timers:CreateTimer(function ()
-           Convars:SetBool("dota_all_vision", false)
-        end, 'disable_all_vision_fix', 1.2)
+	-- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
+	
+	-- Timers:CreateTimer(function ()	
+	-- 	local maxPlayerID = 24
+	-- 	for playerID=0,maxPlayerID-1 do			
+	-- 		if util:isPlayerBot(playerID) then
+	-- 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+	-- 			if hero then
+	-- 				hero:MoveToPositionAggressive(Vector(0, 0, 0))
+	-- 			end
+	-- 		end
+	-- 	end		
+ --        end, 'unstick_bots', 96.0)
 		
 	--Attempt to enable cheats
 	Convars:SetBool("sv_cheats", true)
@@ -209,6 +234,24 @@ function Ingame:onStart()
 			end
 		end, nil)
 	end
+end
+
+function Ingame:fixRuneBug()
+	ListenToGameEvent('game_rules_state_change', function(keys)
+		local newState = GameRules:State_Get()
+		
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+			Timers:CreateTimer(function()
+				for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
+					local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+					if hero and util:isPlayerBot(playerID) then
+						hero:MoveToPositionAggressive(Vector(0, 0, 0))
+					end
+				end
+			end, "botRune", 6)
+		end
+	end, nil)
+
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
@@ -370,7 +413,7 @@ function Ingame:balancePlayer(playerID, newTeam)
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	
+    
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
@@ -560,6 +603,23 @@ end
 function Ingame:onPlayerCheat(eventSourceIndex, args)
     local command = args.command
     local value = args.value
+    local playerID = args.playerID
+    local isCustom = tonumber(args.isCustom) == 1 and true or false
+    if isCustom then
+    	-- Lvl-up hero
+    	local player = PlayerResource:GetSelectedHeroEntity(playerID)
+    	if command == 'lvl_up' then
+    		for i=0,value-1 do
+    			player:HeroLevelUp(true)
+    		end
+    	elseif command == 'give_gold' then
+    		player:ModifyGold(value, true, DOTA_ModifyGold_CheatCommand)
+    	elseif command == 'hero_respawn' then
+    		player:RespawnUnit()
+    	elseif command == 'create_item' then
+    		player:AddItemByName(value)
+    	end
+    end
     if type(value) ~= 'table' then
         value = tonumber(value) == 1 and true or false
         Convars:SetBool(command, value)
@@ -847,17 +907,17 @@ function Ingame:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
     local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-	local ability = hero:FindAbilityByName(abilityname)
-	if not ability then return end
-	if ability.randomRoot then
-		local randomMain = hero:FindAbilityByName(ability.randomRoot)
-		print(ability.randomRoot)
-		if not randomMain then return end
-		if abilityname == randomMain.randomAb then
-			randomMain:OnChannelFinish(true)
-			randomMain:OnAbilityPhaseStart()
-		end
-	end
+    local ability = hero:FindAbilityByName(abilityname)
+    if not ability then return end
+    if ability.randomRoot then
+        local randomMain = hero:FindAbilityByName(ability.randomRoot)
+        print(ability.randomRoot)
+        if not randomMain then return end
+        if abilityname == randomMain.randomAb then
+            randomMain:OnChannelFinish(true)
+            randomMain:OnAbilityPhaseStart()
+        end
+    end
 end
 
 -- Buyback cooldowns
@@ -865,7 +925,7 @@ function Ingame:checkBuybackStatus()
     ListenToGameEvent('npc_spawned', 
         function(keys)
             local hero = EntIndexToHScript(keys.entindex)
-            if IsValidEntity(hero) then
+            if IsValidEntity(hero) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                 if hero:IsHero() then
                     Timers:CreateTimer(
                         function()
@@ -917,15 +977,67 @@ function Ingame:addStrongTowers()
             -- Display upgrade message and play ominous sound
             if tower_team == DOTA_TEAM_GOODGUYS then
                 -- add notification
-				GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
+                GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_01")
             else
-				GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
+                GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
                 EmitGlobalSound("powerup_02")
             end
         end
     end, nil)
 end
 
+targetPerks_projectile = {
+    npc_dota_hero_puck_perk = true,
+}
+
+function Ingame:FilterProjectiles(filterTable)
+    --DeepPrintTable(projectile)
+    local targetIndex = filterTable["entindex_target_const"]
+    local target = EntIndexToHScript(targetIndex)
+    local casterIndex = filterTable["entindex_source_const"]
+    local caster = EntIndexToHScript(casterIndex)
+    local abilityIndex = filterTable["entindex_ability_const"]
+    local ability = EntIndexToHScript(abilityIndex)
+    -- Hero perks
+    if ability then
+    	local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    	filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
+    end
+    return true    
+  end
+
+
+function Ingame:FilterDamage( filterTable )
+    local victim_index = filterTable["entindex_victim_const"]
+    local attacker_index = filterTable["entindex_attacker_const"]
+    local ability_index = filterTable["entindex_inflictor_const"]
+    if not victim_index or not attacker_index then
+        return true
+    end
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksDamageFilter(filterTable)
+    
+    return true
+end
+
+
+function Ingame:FilterModifiers( filterTable )
+    local parent_index = filterTable["entindex_parent_const"]
+    local caster_index = filterTable["entindex_caster_const"]
+    local ability_index = filterTable["entindex_ability_const"]
+    if not parent_index or not caster_index or not ability_index then
+        return true
+    end
+    local parent = EntIndexToHScript( parent_index )
+    local caster = EntIndexToHScript( caster_index )
+    local ability = EntIndexToHScript( ability_index )
+     -- Hero perks
+    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
+    filterTable = heroPerksModifierFilter(filterTable)
+    
+    return true
+end
 -- Return an instance of it
 return Ingame()

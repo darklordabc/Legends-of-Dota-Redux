@@ -29,7 +29,6 @@
 
 		{ "link": "../dota/game/scripts/vscripts", "dir": "../src/game/scripts/vscripts/" },
 		{ "link": "../dota/game/scripts/kv", "dir": "../src/game/scripts/kv" },
-		{ "link": "../dota/game/scripts/abilities", "dir": "../src/game/scripts/abilities" },
 		{ "link": "../dota/game/scripts/game_sounds", "dir": "../src/game/scripts/game_sounds" },
 
 		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
@@ -43,6 +42,9 @@
 
 		{ "link": "../dota/game/resource/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese_token.txt" },
 		{ "link": "../dota/game/panorama/localization/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese.txt" },
+		
+		{ "link": "../dota/game/resource/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian.txt" },
 
 		{ "link": "../dota/game/scripts/npc/npc_abilities_override.txt", "dir": "../src/game/scripts/npc/npc_abilities_override.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },

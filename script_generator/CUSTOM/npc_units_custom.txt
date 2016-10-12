@@ -2,7 +2,69 @@
 "DOTAUnits"
 {
 	"Version"	"1"
-
+	
+	"npc_custom_unit_hawk" 
+	{
+		"BaseClass" "npc_dota_creature"
+		"Model" "models/heroes/visage/visage_familiar.vmdl"
+		
+		"ModelScale" "1.0" 
+		"Level" "11" 
+		"IsAncient" "1"
+		"IsSummoned"				"1"
+	
+		"Ability1" "summons_attack_magical" 
+		"Ability2" "" 
+		"Ability3" "" 
+		"Ability4" "" 
+		"Ability5" "" 
+		"Ability6" "" 
+		"Ability7" "" 
+		"Ability8" "" 
+		 
+		"ArmorPhysical" "0" 
+		"MagicalResistance" "20" 
+		
+		"AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin" "5" 
+		"AttackDamageMax" "11" 
+		"AttackRate" "0.2" 
+		"AttackAnimationPoint" "0.6" 
+		"AttackAcquisitionRange" "300" 
+		
+		"AttackRange" "300" 
+		"ProjectileModel" "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf" 
+		"ProjectileSpeed" "900"
+	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"140"
+		
+		"BountyXP" "200" 
+		"BountyGoldMin" "300" 
+		"BountyGoldMax" "500" 
+		 
+		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" 
+		"MovementSpeed" "360" 
+		"MovementTurnRate" "0.5" 
+	
+		"StatusHealth" "600" 
+		"StatusHealthRegen" "0" 
+		"StatusMana" "0" 
+		"StatusManaRegen" "0" 
+		 
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		  
+		"VisionDaytimeRange" "1200" 
+		"VisionNighttimeRange" "1200" 
+		
+		"precache"
+		{
+			"model" "models/heroes/visage/visage_familiar.vmdl"
+			"particle" "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf"
+		}
+	}
+	
 	// Venomancer Scourge Wards
 	"npc_dota_venomancer_scourge_ward_1"
 	{
@@ -1491,7 +1553,23 @@
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
 			"soundfile"       "sounds/items/dota_item_cyclone.vsnd"
 			"particle"  	  "particles/juggernaut_ward_mana.vpcf"
-                        "particle"  	  "particles/juggernaut_healing_wardmana.vpcf"
+			"particle"  	  "particles/juggernaut_healing_wardmana.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle"	"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		  "particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+		  "particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		  "soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
 		}
 	}
 

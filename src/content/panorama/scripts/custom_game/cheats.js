@@ -2,7 +2,9 @@
 var cheat_list = [
 	{
 		name: 'com_lvl_up_1',
-		command: 'dota_hero_level 1',
+		command: 'lvl_up',
+		value: 1,
+		isCustom: true,
 	},
 	{
 		name: 'com_lvl_bots_1',
@@ -10,11 +12,15 @@ var cheat_list = [
 	},
 	{
 		name: 'com_lvl_max',
-		command: 'dota_dev hero_maxlevel',
+		command: 'lvl_up',
+		value: 100,
+		isCustom: true,
 	},
 	{
 		name: 'com_gold_max',
-		command: 'dota_give_gold 999999',
+		command: 'give_gold',
+		value: 999999,
+		isCustom: true,
 	},
 	{
 		name: 'com_refresh',
@@ -22,7 +28,8 @@ var cheat_list = [
 	},
 	{
 		name: 'com_respawn',
-		command: 'dota_hero_respawn',
+		command: 'hero_respawn',
+		isCustom: true,
 	},
 	{
 		name: 'com_start_game',
@@ -50,19 +57,33 @@ var cheat_list = [
 	// },
 	{
 		name: 'com_item_1',
-		command: 'dota_create_item item_travel_boots',
+		command: 'create_item',
+		value: 'item_travel_boots',
+		isCustom: true,
 	},
 	{
 		name: 'com_item_2',
-		command: 'dota_create_item item_heart',
+		command: 'create_item',
+		value: 'item_heart',
+		isCustom: true,
 	},
 	{
 		name: 'com_item_3',
-		command: 'dota_create_item item_radiance',
+		command: 'create_item',
+		value: 'item_radiance',
+		isCustom: true,
 	},
 	{
 		name: 'com_item_4',
-		command: 'dota_create_item item_blink',
+		command: 'create_item',
+		value: 'item_blink',
+		isCustom: true,
+	},
+	{
+		name: 'com_item_5',
+		command: 'create_item',
+		value: 'item_bloodstone',
+		isCustom: true,
 	},
 	{
 		name: 'com_spawn_enemy',
@@ -115,9 +136,12 @@ function onActivate(id){
 	}
 	var command = cheat_list[cheatID].command;
 	var value = cheat_list[cheatID].value;
+	var isCustom = cheat_list[cheatID].isCustom;
 	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
 		command: command,
 		value: value,
+		isCustom: isCustom,
+		playerID: Players.GetLocalPlayer(),
 		status: 'ok',
 	});
 	if(value !== undefined){

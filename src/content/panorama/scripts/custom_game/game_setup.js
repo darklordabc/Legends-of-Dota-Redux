@@ -240,6 +240,10 @@ var allOptions = {
                         about: 'lodMutatorHidePicks'
                     },
                     {
+                        name: 'lodOptionDisablePerks',
+                        about: 'lodMutatorDisablePerks'
+                    },
+                    {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
@@ -458,6 +462,22 @@ var allOptions = {
                 name: 'lodOptionBanningBalanceMode',
                 des: 'lodOptionDesBanningBalanceMode',
                 about: 'lodOptionAboutBanningBalanceMode',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionDisablePerks',
+                des: 'lodOptionDesDisablePerks',
+                about: 'lodOptionAboutDisablePerks',
                 sort: 'toggle',
                 values: [
                     {
@@ -795,7 +815,7 @@ var allOptions = {
                     }
                 ]
             },
-	    {
+	        {
                 name: 'lodOptionGameSpeedFreeCourier',
                 des: 'lodOptionDesGameSpeedFreeCourier',
                 about: 'lodOptionAboutGameSpeedFreeCourier',
@@ -1010,21 +1030,21 @@ var recommendedBuilds = [
             6: 'garden_blue_blossom_base',
         },
     },{
-        title: 'Neutral Creep Builder',
-        heroName: 'npc_dota_hero_chen',
-	id: 'build_creep_builder',
-        attr: 'int',
+        title: 'Abaddon Support PRO',
+        heroName: 'npc_dota_hero_abaddon',
+		id: 'build_abaddon_pro',
+        attr: 'str',
         build: {
-            1: 'chen_holy_persuasion',
-            2: 'chen_test_of_faith_teleport',
-            3: 'satyr_hellcaller_unholy_aura',
-            4: 'lycan_howl',
-            5: 'alpha_wolf_command_aura',
-            6: 'granite_golem_hp_aura',
+            1: 'abaddon_death_coil',
+            2: 'abaddon_aphotic_shield',
+            3: 'ogre_magi_bloodlust',
+            4: 'force_dash_lod',
+            5: 'obsidian_destroyer_essence_aura_lod',
+            6: 'abaddon_borrowed_time',
         },
     },{
         title: 'Long Dagger Harassment',
-        heroName: 'npc_dota_hero_ogre_magi',
+        heroName: 'npc_dota_hero_phantom_assassin',
         id: 'build_dagger_harrasment',
         attr: 'int',
         build: {
@@ -1034,6 +1054,45 @@ var recommendedBuilds = [
             4: 'lone_druid_spirit_bear_entangle',
             5: 'abaddon_frostmourne',
             6: 'crystal_maiden_brilliance_aura',
+        },
+    },{
+        title: 'Roshan Beware',
+        heroName: 'npc_dota_hero_ursa',
+        id: 'build_roshan_beware',
+        attr: 'agi',
+        build: {
+            1: 'ursa_overpower',
+            2: 'ursa_fury_swipes_lod',
+            3: 'skeleton_king_vampiric_aura',
+            4: 'furion_teleportation',
+            5: 'huskar_berserkers_blood',
+            6: 'skeleton_king_reincarnation',
+        },
+    },{
+        title: 'Skillshot Wars',
+        heroName: 'npc_dota_hero_mirana',
+        id: 'build_skillshot',
+        attr: 'agi',
+        build: {
+            1: 'pudge_meat_hook',
+            2: 'mirana_arrow',
+            3: 'invoker_sun_strike_lod',
+            4: 'rattletrap_hookshot',
+            5: 'crystal_maiden_brilliance_aura',
+            6: 'ancient_apparition_ice_blast',
+        },
+    },{
+        title: 'Techies Demolitions!',
+        heroName: 'npc_dota_hero_techies',
+        id: 'build_techies',
+        attr: 'int',
+        build: {
+            1: 'techies_land_mines',
+            2: 'techies_stasis_trap',
+            3: 'zulf_cyclone_trap',
+            4: 'techies_remote_mines',
+            5: 'gyrocopter_homing_missile',
+            6: 'gyrocopter_call_down',
         },
     },{
         title: 'Hunter in the night',
@@ -1078,48 +1137,6 @@ var recommendedBuilds = [
         },
     },
     {
-        title: 'Global Caster',
-        heroName: 'npc_dota_hero_pugna',
-        id: 'build_global_caster',
-        attr: 'int',
-        build: {
-            1: 'treant_living_armor',
-            2: 'holdout_arcane_aura',
-            3: 'ancient_apparition_ice_blast',
-            4: 'silencer_glaives_of_wisdom',
-            5: 'bloodseeker_thirst_lod',
-            6: 'zuus_thundergods_wrath',
-        },
-    },
-    {
-        title: 'Magic Be Dashed!',
-        heroName: 'npc_dota_hero_mirana',
-        id: 'build_magic_be_dashed',
-        attr: 'agi',
-        build: {
-            1: 'medusa_split_shot',
-            2: 'sniper_take_aim',
-            3: 'spectre_desolate',
-            4: 'meepo_geostrike',
-            5: 'necronomicon_warrior_mana_burn_lod',
-            6: 'phantom_lancer_juxtapose',
-        },
-    },
-    {
-        title: 'All your attributes are belong to me',
-        heroName: 'npc_dota_hero_windrunner',
-        id: 'build_attributes',
-        attr: 'int',
-        build: {
-            1: 'obsidian_destroyer_arcane_orb',
-            2: 'obsidian_destroyer_essence_aura_lod',
-            3: 'skeleton_king_reincarnation',
-            4: 'pudge_flesh_heap',
-            5: 'pudge_flesh_heap_agi',
-            6: 'pudge_flesh_heap_int',
-        },
-    },
-    {
         title: 'Rapture',
         heroName: 'npc_dota_hero_bloodseeker',
         id: 'build_rapture',
@@ -1131,20 +1148,6 @@ var recommendedBuilds = [
             4: 'phoenix_icarus_dive',
             5: 'batrider_flaming_lasso',
             6: 'bloodseeker_rupture',
-        },
-    },
-    {
-        title: 'Global Stunner',
-        heroName: 'npc_dota_hero_pugna',
-        id: 'build_stunner',
-        attr: 'int',
-        build: {
-            1: 'sven_storm_bolt',
-            2: 'vengefulspirit_magic_missile',
-            3: 'holdout_arcane_aura',
-            4: 'furion_teleportation',
-            5: 'antimage_blink',
-            6: 'tinker_rearm_lod',
         },
     },
     {
@@ -1176,30 +1179,16 @@ var recommendedBuilds = [
         },
     },
     {
-        title: 'The Anti-Tank',
-        heroName: 'npc_dota_hero_mirana',
-        id: 'build_anti_tank',
-        attr: 'agi',
-        build: {
-            1: 'force_dash_lod',
-            2: 'ancient_apparition_ice_blast',
-            3: 'life_stealer_feast',
-            4: 'slark_essence_shift_strength_lod',
-            5: 'slark_essence_shift_intellect_lod',
-            6: 'ursa_enrage',
-        },
-    },
-    {
         title: 'Glass Cannon',
         heroName: 'npc_dota_hero_sniper',
         id: 'build_cannon',
         attr: 'agi',
         build: {
-            1: 'chaos_knight_chaos_strike',
-            2: 'slardar_bash',
-            3: 'sniper_headshot',
-            4: 'abaddon_frostmourne',
-            5: 'alpha_wolf_command_aura',
+            1: 'sniper_shrapnel',
+            2: 'chaos_knight_chaos_strike',
+            3: 'slardar_bash',
+            4: 'sniper_headshot',
+            5: 'weaver_geminate_attack',
             6: 'drow_ranger_marksmanship',
         },
     },
@@ -1255,6 +1244,76 @@ var recommendedBuilds = [
             4: 'dragon_knight_dragon_blood',
             5: 'holdout_arcane_aura',
             6: 'alchemist_chemical_rage',
+        },
+    },
+    {
+        title: 'Global Caster',
+        heroName: 'npc_dota_hero_pugna',
+        id: 'build_global_caster',
+        attr: 'int',
+        build: {
+            1: 'treant_living_armor',
+            2: 'holdout_arcane_aura',
+            3: 'ancient_apparition_ice_blast',
+            4: 'silencer_glaives_of_wisdom',
+            5: 'bloodseeker_thirst_lod',
+            6: 'zuus_thundergods_wrath',
+        },
+    },
+    {
+        title: 'Magic Be Dashed!',
+        heroName: 'npc_dota_hero_mirana',
+        id: 'build_magic_be_dashed',
+        attr: 'agi',
+        build: {
+            1: 'medusa_split_shot',
+            2: 'sniper_take_aim',
+            3: 'spectre_desolate',
+            4: 'meepo_geostrike',
+            5: 'necronomicon_warrior_mana_burn_lod',
+            6: 'phantom_lancer_juxtapose',
+        },
+    },
+    {
+        title: 'All your attributes are belong to me',
+        heroName: 'npc_dota_hero_windrunner',
+        id: 'build_attributes',
+        attr: 'int',
+        build: {
+            1: 'obsidian_destroyer_arcane_orb',
+            2: 'obsidian_destroyer_essence_aura_lod',
+            3: 'skeleton_king_reincarnation',
+            4: 'pudge_flesh_heap',
+            5: 'pudge_flesh_heap_agi',
+            6: 'pudge_flesh_heap_int',
+        },
+    },
+    {
+        title: 'Global Stunner',
+        heroName: 'npc_dota_hero_pugna',
+        id: 'build_stunner',
+        attr: 'int',
+        build: {
+            1: 'sven_storm_bolt',
+            2: 'vengefulspirit_magic_missile',
+            3: 'holdout_arcane_aura',
+            4: 'furion_teleportation',
+            5: 'antimage_blink',
+            6: 'tinker_rearm_lod',
+        },
+    },
+    {
+        title: 'The Anti-Tank',
+        heroName: 'npc_dota_hero_mirana',
+        id: 'build_anti_tank',
+        attr: 'agi',
+        build: {
+            1: 'force_dash_lod',
+            2: 'ancient_apparition_ice_blast',
+            3: 'life_stealer_feast',
+            4: 'slark_essence_shift_strength_lod',
+            5: 'slark_essence_shift_intellect_lod',
+            6: 'ursa_enrage',
         },
     },
 ];
@@ -2138,6 +2197,7 @@ function setupBuilderTabs() {
 
 // Builds the hero list
 function buildHeroList() {
+	Game.SetTeamSelectionLocked(true);
     var strHeroes = [];
     var agiHeroes = [];
     var intHeroes = [];
@@ -5327,7 +5387,7 @@ function UpdateTimer() {
             // Should we show the timer?
             if(shouldShowTimer) {
                 // Work out how long to show for
-                var showDuration = 3;
+                var showDuration = .5;
 
                 // Calculate when the next show should occur
                 if(timeLeft <= 30) {
@@ -5399,7 +5459,7 @@ function onAcceptPopup() {
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
-    $('#lodPopupMessage').visible = true;
+    //$('#lodPopupMessage').visible = true;
 }
 
 function showQuestionMessage(data) {

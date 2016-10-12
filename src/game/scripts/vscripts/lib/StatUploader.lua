@@ -25,7 +25,7 @@ function SU:SendRequest( requestParams, successCallback )
         -- Bad request
         SU.IsStatServerUp = false
         
-        print("Request error. See info below: ")
+        print("Request \"".. requestParams.Command .."\" error. See info below: ")
         DeepPrintTable(res)
         return
     end

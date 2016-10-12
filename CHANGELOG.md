@@ -1,7 +1,24 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+
+## 1.7 
+
+### Bug Fixing/New Features
+- Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
+- Fixed techies perk not having 50% reduction in cooldown for explosives/traps
+- Cheat Menu now work properly for non-host players
+
+### Balance
+- Added some more preset builds that take advantage of heros perks
+- Added 19 abilities from Angel Arena Reborn
+
+## 1.6 - Steam Version
+
+### Bug Fixing/New Features
+- Fix Lina's perk not giving 3 int
+- Fixed Bots getting stuck sometimes near runespots at 0:00 mark
+- Added tracking of hero stats
 
 ## 1.5 
 
@@ -9,11 +26,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Host timer will not count-down if the game is single player.
 - Players can now give host powers to other players by clicking on their name
 - Contributors to the mod, including developers, will have their names highlighted in gold
+- Added information about Witchcraft mana refunding to its tooltip and hint
+- Added Support for Russian Language, for the menu at least
+- Added more unique hero mechanics for most the heros
 
 ### Balance
+- Bots now either have chemical rage or shadow dance as their top priority skill to learn. Before only chemical rage was top pick. You will see more variety now.
+- In Balance Mode, bots no longer obey points limit. This was screwing up Earth Shaker and Drow and a few others. 
+- Minor tweaks to bot skills priority
 
-
-## 1.4 - Steam Version
+## 1.4 
 
 ### Bug Fixing/New Features
 - Added chinese localization (might not be in-game yet)

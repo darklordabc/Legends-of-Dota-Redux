@@ -6,6 +6,7 @@ local storedNames = {}
 -- Create list of spells with certain attributes
 local chanelledSpells = {}
 local targetSpells = {}
+local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 
 -- Grab contributors file
 Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
@@ -614,6 +615,13 @@ function Util:RandomChoice(input)
     return input[temp[math.random(#temp)]]
 end
 
+function CDOTABaseAbility:HasAbilityFlag(flag)
+    if GameRules.perks[flag][self:GetAbilityName()] then
+        return true
+    else
+        return false
+    end
+end
 
 function Util:isSinglePlayerMode()
     local maxPlayerID = 24
@@ -626,6 +634,75 @@ function Util:isSinglePlayerMode()
     return count == 1
 end
 
+function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
+    for i = 0, 16 do
+		local ability = self:GetAbilityByIndex(i)
+		if ability and not ability:IsHidden() and ability:HasAbilityFlag(flag) then
+			return true
+		end
+	end
+	return false
+end
+
+function CDOTABaseAbility:IsCustomAbility()
+    local spell = self:GetAbilityName():gsub("_lod", "")
+    if not regularSpells[spell] then
+        return true
+    else
+        return false
+    end
+end
+
+function CDOTA_BaseNPC:HasUnitFlag(flag)
+    if GameRules.perks[flag][self:GetName()] then
+        return true
+    else
+        return false
+    end
+end
+
+function GetRandomAbilityFromListForPerk(flag)
+    numberOfValues = 0
+    local localTable = {}
+
+    -- Getting the number of abilities and recreating the table
+     for k,v in pairs(GameRules.perks[flag]) do
+        if not k then
+            break
+        else
+
+            numberOfValues = numberOfValues + 1
+            localTable[numberOfValues] = v
+        end
+    end
+    
+    local random = RandomInt(1,numberOfValues)
+    return localTable[random]
+end
+
+function CDOTA_BaseNPC:IsSleeping()
+    if self:HasModifier("modifier_bane_nightmare") then 
+        return true
+    elseif self:HasModifier("modifier_elder_titan_echo_stomp") then 
+        return true
+    elseif self:HasModifier("modifier_sleep_cloud_effect") then 
+        return true
+    elseif self:HasModifier("modifier_naga_siren_song_of_the_siren") then 
+        return true
+    else
+        return false
+    end
+end
+
+function CDOTA_BaseNPC:FindItemByName(item_name)
+    for i=0,5 do
+        local item = self:GetItemInSlot(i)
+        if item and item:GetAbilityName() == item_name then
+            return item
+        end
+    end
+    return nil
+end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()

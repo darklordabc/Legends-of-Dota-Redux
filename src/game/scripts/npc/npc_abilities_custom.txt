@@ -6,7 +6,8 @@
     //=================================================================================================================
     // Tiny: Grow
     //=================================================================================================================
-    "tiny_grow_lod"
+			
+	"tiny_grow_lod"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
@@ -19,7 +20,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/tiny_grow_lod.lua"
+                "ScriptFile"            "abilities/tiny_grow_lod.lua"
                 "Function"              "onTinyGrowUpgrade"
             }
         }
@@ -28,7 +29,7 @@
         {
             "RunScript"    
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/tiny_grow_lod.lua"
+                "ScriptFile"            "abilities/tiny_grow_lod.lua"
                 "Function"              "onTinyGrowUpgrade"
             }
         }
@@ -236,7 +237,7 @@
                 {
                     "RunScript"
                     {                             
-                        "ScriptFile"        "scripts/vscripts/../abilities/bloodseeker_thirst.lua"
+                        "ScriptFile"        "abilities/bloodseeker_thirst.lua"
                         "Function"          "AddThirst"
                        }
                 }
@@ -245,7 +246,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/bloodseeker_thirst.lua"
+                        "ScriptFile"        "abilities/bloodseeker_thirst.lua"
                         "Function"          "RemoveThirst"
                     }
                 }
@@ -966,7 +967,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 
         // Casting
@@ -1646,7 +1647,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/mirana_starfall_lod.lua"
+                        "ScriptFile"    "abilities/mirana_starfall_lod.lua"
                         "Function"      "ScepterStarfallCheck"
                     }
                 }
@@ -2109,7 +2110,7 @@
         // Unit Targeting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
         "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 
         // Stats
@@ -2543,7 +2544,7 @@
                         {
                             "RunScript"
                             {
-                                "ScriptFile"    "scripts/vscripts/../abilities/obsidian_destroyer_essence_aura_lod.lua"
+                                "ScriptFile"    "abilities/obsidian_destroyer_essence_aura_lod.lua"
                                 "Function"      "RestoreMana"
                                 "Target"        "UNIT"
                             }
@@ -2617,7 +2618,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/earthshaker_aftershock_lod.lua"
+                        "ScriptFile"    "abilities/earthshaker_aftershock_lod.lua"
                         "Function"      "TryAftershock"
                         "Target"        "UNIT"
                     }
@@ -2672,7 +2673,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2716,7 +2717,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_buff_on_destroy"
                     }
                 }
@@ -2732,7 +2733,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_strength_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_strength_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy"
                     }
                 }
@@ -2790,7 +2791,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2838,7 +2839,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_buff_on_destroy"
                     }
                 }
@@ -2854,7 +2855,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_agility_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_agility_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_agility_datadriven_debuff_on_destroy"
                     }
                 }
@@ -2912,7 +2913,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_on_attack_landed"
                         "StatLoss"                  "%stat_loss"
                     }
@@ -2960,7 +2961,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_buff_on_destroy"
                     }
                 }
@@ -2976,7 +2977,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                "scripts/vscripts/../abilities/slark_essence_shift_intellect_lod.lua"
+                        "ScriptFile"                "abilities/slark_essence_shift_intellect_lod.lua"
                         "Function"                  "modifier_slark_essence_shift_intellect_datadriven_debuff_on_destroy"
                     }
                 }
@@ -3047,7 +3048,7 @@
         
             "RunScript"
             {
-                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "ScriptFile"        "abilities/tinker_rearm_lod.lua"
                 "Function"            "rearm_start"
             }
         }
@@ -3077,7 +3078,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"        "scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "ScriptFile"        "abilities/tinker_rearm_lod.lua"
                 "Function"            "rearm_refresh_cooldown"
             }
         }
@@ -3154,7 +3155,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                "flesh_heap_agi"
-        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_agi.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -3187,7 +3188,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                    "flesh_heap_int"
-        "ScriptFile"                        "scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_int.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -3321,7 +3322,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
+                "ScriptFile"    "abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
@@ -3329,7 +3330,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/aether_range_lod.lua"
+                "ScriptFile"    "abilities/aether_range_lod.lua"
                 "Function"      "SetCastRange"
             }
         }
@@ -3342,7 +3343,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityTextureName"            "octarine_vampirism_lod"
-        "ScriptFile"                    "scripts/vscripts/../abilities/octarine_vampirism_lod.lua"
+        "ScriptFile"                    "abilities/octarine_vampirism_lod.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -3410,7 +3411,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/force_dash_lod.lua"
+                "ScriptFile"    "abilities/force_dash_lod.lua"
                 "Function"        "ForceDash"
                 "modifier"        "modifier_force_dash"
             }
@@ -3438,7 +3439,7 @@
                             "Center"    "TARGET"
                             "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
                         }
-                        "ScriptFile"    "scripts/vscripts/../abilities/force_dash_lod.lua"
+                        "ScriptFile"    "abilities/force_dash_lod.lua"
                         "HorizontalControlFunction" "ForceMotion"
                     }
                     "DestroyTrees"
@@ -3681,7 +3682,7 @@
 
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/riki_backstab_lod.lua"
+                        "ScriptFile"        "abilities/riki_backstab_lod.lua"
                         "Function"          "CheckBackstab"
                         "particle"          "particles/units/heroes/hero_riki/riki_backstab.vpcf"
                         "sound"             "Hero_Riki.Backstab"
@@ -3750,7 +3751,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua"
+                        "ScriptFile"            "abilities/ursa_fury_swipes_lod.lua"
                         "Function"              "fury_swipes_check_stacks"
                     }
                 }
@@ -3758,7 +3759,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/ursa_fury_swipes_lod.lua"
+                        "ScriptFile"            "abilities/ursa_fury_swipes_lod.lua"
                         "Function"              "fury_swipes_attack"
                     }
                 }
@@ -3973,7 +3974,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"        "SleepAuraCheck"
                     }
                 }
@@ -3981,7 +3982,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"    "SleepDamageRemove"
                     }
                 }
@@ -3989,7 +3990,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_sleep_cloud.lua"
+                        "ScriptFile"    "abilities/cherub_sleep_cloud.lua"
                         "Function"        "SleepDamageCheck"
                         "DamageTaken"    "%attack_damage"
                     }
@@ -4059,7 +4060,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisCreate"
                     }
                 }
@@ -4069,7 +4070,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisCheck"
                     }
                 }
@@ -4105,7 +4106,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisDay"
                     }
                     "FireEffect"
@@ -4135,7 +4136,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_synthesis.lua"
+                        "ScriptFile"    "abilities/cherub_synthesis.lua"
                         "Function"    "SynthesisNight"
                     }
                     "FireEffect"
@@ -4241,7 +4242,7 @@
                     "Center"    "CASTER"
                     "ScriptSelectPoints"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_explosive_spore.lua"
+                        "ScriptFile"    "abilities/cherub_explosive_spore.lua"
                         "Function"    "GetSummonPoints"
                         "Target"    "CASTER"
                         "Count"        "1"
@@ -4263,7 +4264,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_explosive_spore.lua"
+                        "ScriptFile"    "abilities/cherub_explosive_spore.lua"
                         "Function"    "SetForwardVector"
                     }
     
@@ -4533,7 +4534,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "SetAbilityLevel"
                     }
                 }
@@ -4565,7 +4566,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -4606,7 +4607,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4619,7 +4620,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyWhite"
                     }
                 }
@@ -4637,7 +4638,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4651,7 +4652,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyRed"
                     }
                 }
@@ -4669,7 +4670,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4683,7 +4684,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "HealUnits"
                         "projectile"     "particles/cherub_pink_flower_heal_projectile.vpcf"
                     }
@@ -4692,7 +4693,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPink"
                     }
                 }
@@ -4710,7 +4711,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4724,7 +4725,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "BlueFlowerRestoreMana"
                         "ReplenishRadius"        "700"
                         "ReplenishAmount"        "%blue_flower_restore"
@@ -4735,7 +4736,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyBlue"
                     }
                 }
@@ -4757,7 +4758,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4770,7 +4771,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyYellow"
                     }
                 }
@@ -4806,7 +4807,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -4819,7 +4820,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPurple"
                     }
                 }
@@ -4915,7 +4916,7 @@
 
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "ScriptFile"    "abilities/garden_teleport.lua"
                 "Function"      "CreateTeleportParticles"
                 "Target"        "POINT"
             }
@@ -4930,7 +4931,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                "ScriptFile"    "abilities/garden_teleport.lua"
                 "Function"      "Teleport"
                 "Target"        "POINT"
             }
@@ -4965,7 +4966,7 @@
 
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/garden_teleport.lua"
+                        "ScriptFile"    "abilities/garden_teleport.lua"
                         "Function"      "EndTeleport"
                     }
 
@@ -4987,7 +4988,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "DestroyGarden"
             }
         }
@@ -5004,7 +5005,7 @@
                 {
                      "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "DamageCooldown"
                     }
                 }
@@ -5071,7 +5072,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantWhiteBase"
                 "Target"        "POINT"
             }
@@ -5087,7 +5088,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5104,7 +5105,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5117,7 +5118,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyWhite"
                     }
                 }
@@ -5183,7 +5184,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantRedBase"
                 "Target"        "POINT"
             }
@@ -5199,7 +5200,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5217,7 +5218,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5231,7 +5232,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyRed"
                     }
                 }
@@ -5302,7 +5303,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantPinkBase"
                 "Target"        "POINT"
             }
@@ -5330,7 +5331,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5348,7 +5349,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5362,7 +5363,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "HealUnits"
                         "projectile"     "particles/cherub_pink_flower_heal_projectile.vpcf"
                     }
@@ -5371,7 +5372,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPink"
                     }
                 }
@@ -5437,7 +5438,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantBlueBase"
                 "Target"        "POINT"
             }
@@ -5453,7 +5454,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"        "GardenCheck"
                     }
                 }
@@ -5471,7 +5472,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5485,7 +5486,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "BlueFlowerRestoreMana"
                         "ReplenishRadius"        "700"
                         "ReplenishAmount"        "%restore_amount"
@@ -5496,7 +5497,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyBlue"
                     }
                 }
@@ -5562,7 +5563,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantYellowBase"
                 "Target"        "POINT"
             }
@@ -5578,7 +5579,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5600,7 +5601,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5613,7 +5614,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyYellow"
                     }
                 }
@@ -5691,7 +5692,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"        "PlantPurpleBase"
                 "Target"        "POINT"
             }
@@ -5707,7 +5708,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "GardenCheck"
                     }
                 }
@@ -5730,7 +5731,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "PlantSetHealth"
                     }
                     "FireSound"
@@ -5743,7 +5744,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                        "ScriptFile"    "abilities/cherub_flower_garden.lua"
                         "Function"    "OnDestroyPurple"
                     }
                 }
@@ -5785,7 +5786,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantBlue"
             }
         }
@@ -5819,7 +5820,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantPink"
             }
         }
@@ -5848,7 +5849,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantPurple"
             }
         }
@@ -5877,7 +5878,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantRed"
             }
         }
@@ -5906,7 +5907,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantWhite"
             }
         }
@@ -5935,7 +5936,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/cherub_flower_garden.lua"
+                "ScriptFile"    "abilities/cherub_flower_garden.lua"
                 "Function"    "PlantYellow"
             }
         }
@@ -6146,7 +6147,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_cyclone_trap.lua"
+                        "ScriptFile"    "abilities/zulf_cyclone_trap.lua"
                         "Function"      "CycloneCheck"
                         "radius"        "%radius"
                     }
@@ -6314,7 +6315,7 @@
                         {
                             "RunScript"
                             {
-                                "ScriptFile"    "scripts/vscripts/../abilities/zulf_gale_force.lua"
+                                "ScriptFile"    "abilities/zulf_gale_force.lua"
                                 "Function"      "ApplyDamageAgility"
                             }
                         }
@@ -6418,7 +6419,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "ScriptFile"    "abilities/zulf_jet_stream.lua"
                 "Function"      "JetStreamGetLocation"
                 "Target"        "POINT"
             }
@@ -6442,7 +6443,7 @@
     
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                "ScriptFile"    "abilities/zulf_jet_stream.lua"
                 "Function"  "JetStreamEffect"
             }
         }
@@ -6457,7 +6458,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamProjectile"
                         "wave_particle" "particles/zulf_jet_stream.vpcf"
                     }
@@ -6483,7 +6484,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamBuff"
                     }
                 }
@@ -6523,7 +6524,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamDebuff"
                     }
                 }   
@@ -6550,7 +6551,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamCheck"
                     }
                 }
@@ -6569,7 +6570,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_jet_stream.lua"
+                        "ScriptFile"    "abilities/zulf_jet_stream.lua"
                         "Function"      "JetStreamCheck"
                     }
                 }
@@ -6739,7 +6740,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/zulf_typhoon.lua"
+                        "ScriptFile"    "abilities/zulf_typhoon.lua"
                         "Function"      "TyphoonSpinStart"
                     }
                 }
@@ -6808,7 +6809,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6816,7 +6817,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6830,7 +6831,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6840,7 +6841,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6868,7 +6869,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6876,7 +6877,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6890,7 +6891,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6900,7 +6901,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6928,7 +6929,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6936,7 +6937,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -6950,7 +6951,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -6960,7 +6961,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -6988,7 +6989,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -6996,7 +6997,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7010,7 +7011,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7020,7 +7021,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7048,7 +7049,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -7056,7 +7057,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7070,7 +7071,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7080,7 +7081,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7108,7 +7109,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomGet"
             }
         }
@@ -7116,7 +7117,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                "ScriptFile"            "abilities/true_random_lod.lua"
                 "Function"              "RandomRemove"
             }
         }
@@ -7130,7 +7131,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "RandomInit"
                     }
                 }
@@ -7140,7 +7141,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/true_random_lod.lua"
+                        "ScriptFile"            "abilities/true_random_lod.lua"
                         "Function"              "Particles"
                         "particle"              "particles/true_random_lod/true_random_lod_swap.vpcf"
                     }
@@ -7312,7 +7313,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"            "DegenAura"
 
                         "modifier_stacks"    "modifier_imba_degen_aura_stacks"
@@ -7420,7 +7421,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "DisplayManager"
 
                         "modifier_display"  "modifier_omniguard_display"
@@ -7431,7 +7432,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "DisplayManager"
 
                         "modifier_display"  "modifier_omniguard_display"
@@ -7441,7 +7442,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"        "scripts/vscripts/../abilities/hero_omniknight.lua"
+                        "ScriptFile"        "abilities/hero_omniknight.lua"
                         "Function"          "PurificationDeath"
 
                         "cast_sound"        "Hero_Omniknight.Purification"
@@ -7518,7 +7519,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                "ScriptFile"                    "abilities/hero_dazzle.lua"
                 "Function"                        "ShallowGraveDamageTrigger"
                 "modifier_passive"                "modifier_imba_shallow_grave_passive"
                 "modifier_grave"                "modifier_imba_shallow_grave"
@@ -7539,7 +7540,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGravePassive"
                         "Target"                        "CASTER"
 
@@ -7587,7 +7588,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGraveDamageStorage"
                         "DamageTaken"                    "%attack_damage"
                     }
@@ -7609,7 +7610,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                    "scripts/vscripts/../abilities/hero_dazzle.lua"
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
                         "Function"                        "ShallowGraveDamageCheck"
                         "modifier_grave"                "modifier_imba_shallow_grave"
                     }
@@ -7695,7 +7696,7 @@
 
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "LaserHit"
 
                 "modifier_blind"                "modifier_imba_tower_laser_blind"
@@ -7717,7 +7718,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Laser"
 
                         "projectile_laser"      "particles/units/heroes/hero_tinker/tinker_base_attack.vpcf"
@@ -7782,7 +7783,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Multishot"
                     }
                 }
@@ -7845,7 +7846,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "HexAura"
 
                         "modifier_slow"         "modifier_imba_tower_hex_aura_slow"
@@ -7906,7 +7907,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "ManaBurn"
 
                         "particle_burn"         "particles/generic_gameplay/generic_manaburn.vpcf"
@@ -7962,7 +7963,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "ManaFlare"
 
                         "particle_burn"         "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
@@ -8015,7 +8016,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"    "abilities/tower_abilities.lua"
                         "Function"      "Permabash"
 
                         "sound_bash"    "Hero_FacelessVoid.TimeLockImpact"
@@ -8094,7 +8095,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Chronotower"
 
                         "sound_stun"            "Hero_FacelessVoid.Chronosphere"
@@ -8165,7 +8166,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "GrievousWounds"
 
                         "modifier_debuff"       "modifier_imba_tower_grievous_wounds_debuff"
@@ -8291,7 +8292,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "EssenceDrain"
 
                         "modifier_str"          "modifier_imba_tower_essence_drain_str_stacks"
@@ -8412,7 +8413,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Fervor"
 
                         "modifier_fervor"       "modifier_imba_tower_fervor_buff"
@@ -8485,7 +8486,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Berserk"
 
                         "modifier_berserk"      "modifier_imba_tower_berserk_buff"
@@ -8616,7 +8617,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Multihit"
                     }
                 }
@@ -8762,7 +8763,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "PlagueParticle"
 
                         "particle_plague"       "particles/units/heroes/hero_pudge/pudge_rot_radius.vpcf"
@@ -8843,7 +8844,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "AegisUpdate"
             }
         }
@@ -8935,7 +8936,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "SelfRepairParticle"
 
                         "particle_regen"        "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
@@ -9132,7 +9133,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Spacecow"
 
                         "sound_creep"           "Hero_Spirit_Breaker.GreaterBash.Creep"
@@ -9183,7 +9184,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Reality"
 
                         "sound_reality"         "DOTA_Item.DiffusalBlade.Activate"
@@ -9248,7 +9249,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Force"
 
                         "sound_force"           "DOTA_Item.ForceStaff.Activate"
@@ -9313,7 +9314,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Nature"
 
                         "sound_root"            "Hero_Treant.Overgrowth.Cast"
@@ -9399,7 +9400,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Mindblast"
 
                         "sound_silence"         "DOTA_Item.Orchid.Activate"
@@ -9600,7 +9601,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Forest"
 
                         "sound_tree"            "Tree.GrowBack"
@@ -9651,7 +9652,7 @@
             
             "RunScript"
             {
-                "ScriptFile"                    "scripts/vscripts/../abilities/tower_abilities.lua"
+                "ScriptFile"                    "abilities/tower_abilities.lua"
                 "Function"                      "SplitHit"
             }
         }
@@ -9667,7 +9668,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Split"
                     }
                 }
@@ -9721,7 +9722,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "scripts/vscripts/../abilities/tower_abilities.lua"
+                        "ScriptFile"            "abilities/tower_abilities.lua"
                         "Function"              "Cannon"
 
                         "particle_explosion"    "particles/ambient/tower_salvo_explosion.vpcf"
@@ -9774,7 +9775,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                "ScriptFile"    "abilities/hero_doom.lua"
                 "Function"      "DevourCheck"
                 "modifier"      "modifier_creep_eaten"
             }
@@ -9801,7 +9802,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                "ScriptFile"    "abilities/hero_doom.lua"
                 "Function"      "EatCreep"
             }
         }
@@ -9815,7 +9816,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "scripts/vscripts/../abilities/hero_doom.lua"
+                        "ScriptFile"    "abilities/hero_doom.lua"
                         "Function"      "CreepGold"
                     }
                 }
@@ -9833,7 +9834,7 @@
         "BaseClass"                     "ability_lua"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"            "lod_creep_power"
-        "ScriptFile"                    "scripts/vscripts/../abilities/lod_creep_power.lua"
+        "ScriptFile"                    "abilities/lod_creep_power.lua"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9887,8 +9888,8 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"       "ability_datadriven"
-        "AbilityTextureName"            "healing_ward_icon"
+        "BaseClass"             "ability_datadriven"
+        "AbilityTextureName"    "healing_ward_icon"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
         "AoERadius"               "500"
         
@@ -9954,7 +9955,7 @@
                     }
                     "RunScript"
                     {
-                        "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                        "ScriptFile"  "abilities/juggernaut_healing_ward_mana.lua"
                         "Function"    "onHealingWardSpawn"
                     }
                 }
@@ -9995,11 +9996,2947 @@
                 {
                     "RunScript"
                     {
-                      "ScriptFile"  "scripts/vscripts/../abilities/juggernaut_healing_ward_mana.lua"
+                      "ScriptFile"  "abilities/juggernaut_healing_ward_mana.lua"
                       "Function"    "healingWardMana"
                     }
                 }  
             }
         }
     }
+    //====================================================================================================
+    //
+    //                                      HERO PERKS 
+    //
+    //====================================================================================================
+    "npc_dota_hero_abaddon_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abaddon_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_abaddon_perk"
+    }
+    "npc_dota_hero_abyssal_underlord_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abyssal_underlord_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_abyssal_underlord_perk"
+    }
+    "npc_dota_hero_alchemist_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_alchemist_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_alchemist_perk"
+    }
+    "npc_dota_hero_ancient_apparition_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_ancient_apparition_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_ancient_apparition_perk"
+    }
+    "npc_dota_hero_antimage_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_antimage_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_antimage_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_antimage_perk"
+    }
+    "npc_dota_hero_arc_warden_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_arc_warden_perk"
+    }
+    "npc_dota_hero_axe_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_axe_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_axe_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_axe_perk"
+    }
+    "npc_dota_hero_bane_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bane_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_bane_perk"
+    }
+    "npc_dota_hero_batrider_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_batrider_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_batrider_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_batrider_perk"
+    }
+    "npc_dota_hero_beastmaster_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_beastmaster_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_beastmaster_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_beastmaster_perk"
+    }
+    "npc_dota_hero_bloodseeker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_bloodseeker_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_bloodseeker_perk"
+    }
+    "npc_dota_hero_bounty_hunter_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_bounty_hunter_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_bounty_hunter_perk"
+    }
+    "npc_dota_hero_brewmaster_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_brewmaster_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
+    }
+    "npc_dota_hero_bristleback_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bristleback_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_bristleback_perk"
+    }
+    "npc_dota_hero_broodmother_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_broodmother_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_broodmother_perk"
+    }
+    "npc_dota_hero_centaur_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_centaur_perk.lua"
+		"AbilityTextureName"    "npc_dota_hero_centaur_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_centaur_perk"
+    }
+    "npc_dota_hero_chaos_knight_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chaos_knight_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_chaos_knight_perk"
+    }
+    "npc_dota_hero_chen_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chen_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_chen_perk"
+    }
+    "npc_dota_hero_clinkz_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_clinkz_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_clinkz_perk"
+    }
+    "npc_dota_hero_crystal_maiden_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_crystal_maiden_perk.lua"
+        "AbilityTextureName"    "npc_dota_hero_crystal_maiden_perk"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_crystal_maiden_perk"
+    }
+    "npc_dota_hero_dark_seer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dark_seer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_dark_seer_perk"
+    }
+    "npc_dota_hero_dazzle_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dazzle_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_dazzle_perk"
+    }
+    "sniper_shrapnel_perk"
+    {
+        "BaseClass"             "sniper_shrapnel"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                    "5154"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"            "sniper_shrapnel"
+        "FightRecapLevel"               "1"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "25000"
+        "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "15 35 55 75"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.25"  // primarily about damage
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "slow_movement_speed"   "-15 -20 -25 -30"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "480"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "building_damage"       "0"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "10.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_delay"          "1.2"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "slow_duration"         "2.0 2.0 2.0 2.0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_charges"           "3"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "charge_restore_time"   "55"
+            }
+        }
+    }
+    "dazzle_shallow_grave_perk"
+    {
+        "BaseClass"             "dazzle_shallow_grave"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+        "AbilityTextureName"            "dazzle_shallow_grave"
+        "FightRecapLevel"               "1"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1000 1400 1700 2000"
+        "AbilityCastPoint"              "0.4"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30 22.5 15 7.5"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "150"
+        
+        "AbilityDuration"               "5 5 5 5"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {   
+                "var_type"          "FIELD_FLOAT"
+                "duration_tooltip"      "5 5 5 5"
+            }
+            "02"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "range_tooltip"     "1000 1400 1700 2000"
+            }
+        }
+    }
+    "npc_dota_hero_death_prophet_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_death_prophet_perk"
+    }
+    "npc_dota_hero_disruptor_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_disruptor_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_disruptor_perk"
+    }
+    "npc_dota_hero_doom_bringer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_doom_bringer_perk"
+        "precache"
+		{
+			"particle" "particles/items3_fx/silver_edge_slow.vpcf"
+		}
+    }
+	"npc_dota_hero_drow_ranger_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_drow_ranger_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_drow_ranger_perk"
+    }
+    "npc_dota_hero_dragon_knight_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dragon_knight_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_dragon_knight_perk"
+    }
+    "npc_dota_hero_earth_spirit_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earth_spirit_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+    "npc_dota_hero_earthshaker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earthshaker_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_earthshaker_perk"
+    }
+    "npc_dota_hero_elder_titan_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_elder_titan_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_elder_titan_perk"
+    }
+    "npc_dota_hero_ember_spirit_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ember_spirit_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_ember_spirit_perk"
+    }
+    "npc_dota_hero_enchantress_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enchantress_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_enchantress_perk"
+    }
+    "npc_dota_hero_enigma_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enigma_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_enigma_perk"
+    }
+    "npc_dota_hero_faceless_void_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_faceless_void_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_faceless_void_perk"
+    }
+    "npc_dota_hero_furion_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_furion_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_furion_perk"
+    }
+    "npc_dota_hero_gyrocopter_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_gyrocopter_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_gyrocopter_perk"
+    }
+    "npc_dota_hero_huskar_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_huskar_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_huskar_perk"
+    }
+    "npc_dota_hero_invoker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_invoker_perk.lua"
+        "AbilityTextureName"	"invoker_invoke"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_invoker_perk"
+    }
+    "npc_dota_hero_jakiro_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_jakiro_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_jakiro_perk"
+    }
+    "npc_dota_hero_juggernaut_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_juggernaut_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_juggernaut_perk"
+    }
+    "npc_dota_hero_keeper_of_the_light_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_keeper_of_the_light_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_keeper_of_the_light_perk"
+    }
+    "npc_dota_hero_kunkka_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_kunkka_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_kunkka_perk"
+    }
+    "npc_dota_hero_legion_commander_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_legion_commander_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_legion_commander_perk"
+    }
+    "npc_dota_hero_leshrac_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_leshrac_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_leshrac_perk"
+    }
+    "npc_dota_hero_lich_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lich_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_lich_perk"
+    }
+    "npc_dota_hero_life_stealer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_life_stealer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_life_stealer_perk"
+    }
+    "npc_dota_hero_lina_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lina_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_lina_perk"
+    }
+    "npc_dota_hero_lion_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lion_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_lion_perk"
+    }
+    "npc_dota_hero_lone_druid_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lone_druid_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_lone_druid_perk"
+    }
+    "npc_dota_hero_luna_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_luna_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_luna_perk"
+    }
+    "npc_dota_hero_lycan_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lycan_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_lycan_perk"
+    }
+    "npc_dota_hero_magnataur_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_magnataur_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_magnataur_perk"
+    }
+    "npc_dota_hero_medusa_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_medusa_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_medusa_perk"
+    }
+    "npc_dota_hero_meepo_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_meepo_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_meepo_perk"
+    }
+    "npc_dota_hero_mirana_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_mirana_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_mirana_perk"
+    }
+    "npc_dota_hero_morphling_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_morphling_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_morphling_perk"
+    }
+    "npc_dota_hero_necrolyte_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_necrolyte_perk"
+    }
+    "npc_dota_hero_nevermore_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nevermore_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_nevermore_perk"
+    }
+    "npc_dota_hero_naga_siren_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_naga_siren_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_naga_siren_perk"
+    }
+    "npc_dota_hero_night_stalker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_night_stalker_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_night_stalker_perk"
+    }
+    "npc_dota_hero_nyx_assassin_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nyx_assassin_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_nyx_assassin_perk"
+    }
+    "npc_dota_hero_omniknight_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_omniknight_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_omniknight_perk"
+    }
+    "npc_dota_hero_oracle_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_oracle_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_oracle_perk"
+    }
+    "npc_dota_hero_obsidian_destroyer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_obsidian_destroyer_perk"
+    }
+    "npc_dota_hero_ogre_magi_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ogre_magi_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_ogre_magi_perk"
+    }
+    "npc_dota_hero_phoenix_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_phoenix_perk"
+    }
+    "npc_dota_hero_puck_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_puck_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_puck_perk"
+    }
+    "npc_dota_hero_pugna_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pugna_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_pugna_perk"
+    }
+    "npc_dota_hero_pudge_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pudge_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_pudge_perk"
+    }
+    "npc_dota_hero_phantom_assassin_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_assassin_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_phantom_assassin_perk"
+    }
+    "npc_dota_hero_phantom_lancer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua"
+        "AbilityTextureName"	"phantom_lancer_phantom_edge"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_phantom_lancer_perk"
+    }
+    "npc_dota_hero_queenofpain_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_queenofpain_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_queenofpain_perk"
+    }
+    "npc_dota_hero_rattletrap_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rattletrap_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+    "rattletrap_rocket_flare_perk" 
+    {
+        "BaseClass"             "rattletrap_rocket_flare"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0"
+        "AbilityCastRange"              "0"
+        "MaxLevel"                      "5"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+        
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "40 80 120 160 200"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "575 575 575 575 575"
+            }
+            "02"
+            {   
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "10.0 10.0 10.0 10.0 10.0"
+            }
+            "03"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1500 1500 1500 1500 1500"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "vision_radius"     "600"
+            }
+        }
+    }
+    "npc_dota_hero_razor_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_razor_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_razor_perk"
+    }
+    "npc_dota_hero_riki_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_riki_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_riki_perk"
+    }
+    "npc_dota_hero_rubick_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rubick_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_rubick_perk"
+    }
+    "npc_dota_hero_shredder_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shredder_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_shredder_perk"
+    }
+    "npc_dota_hero_silencer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_silencer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_silencer_perk"
+    }
+    "npc_dota_hero_slardar_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slardar_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_slardar_perk"
+    }
+    "npc_dota_hero_slark_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slark_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_slark_perk"
+    }
+    "npc_dota_hero_sniper_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sniper_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_sniper_perk"
+    }
+    "npc_dota_hero_spectre_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spectre_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_spectre_perk"
+    }
+    "npc_dota_hero_sven_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sven_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_sven_perk"
+    }
+    "npc_dota_hero_sand_king_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sand_king_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_sand_king_perk"
+    }
+    "npc_dota_hero_shadow_demon_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_shadow_demon_perk"
+    }
+    "npc_dota_hero_shadow_shaman_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_shadow_shaman_perk"
+    }
+    "npc_dota_hero_skeleton_king_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skeleton_king_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_skeleton_king_perk"
+    }
+    "npc_dota_hero_skywrath_mage_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skywrath_mage_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_skywrath_mage_perk"
+    }
+    "npc_dota_hero_spirit_breaker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_spirit_breaker_perk"
+    }
+    "npc_dota_hero_storm_spirit_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_storm_spirit_perk"
+    }
+    "npc_dota_hero_techies_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_techies_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_techies_perk"
+    }
+    "npc_dota_hero_templar_assassin_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_templar_assassin_perk"
+    }
+    "npc_dota_hero_terrorblade_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_terrorblade_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_terrorblade_perk"
+    }
+    "npc_dota_hero_tidehunter_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tidehunter_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_tidehunter_perk"
+    }
+    "npc_dota_hero_tinker_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tinker_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_tinker_perk"
+    }
+    "npc_dota_hero_tiny_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tiny_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_tiny_perk"
+    }
+    "npc_dota_hero_treant_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_treant_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_treant_perk"
+    }
+    "npc_dota_hero_troll_warlord_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_troll_warlord_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_troll_warlord_perk"
+    }
+    "npc_dota_hero_tusk_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_tusk_perk"
+    }
+    "npc_dota_hero_undying_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_undying_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_undying_perk"
+    }
+    "npc_dota_hero_ursa_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ursa_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_ursa_perk"
+    }
+    "npc_dota_hero_vengefulspirit_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_vengefulspirit_perk"
+    }
+    "npc_dota_hero_venomancer_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_venomancer_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_venomancer_perk"
+    }
+    "npc_dota_hero_viper_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_viper_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_viper_perk"
+    }
+    "npc_dota_hero_visage_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_visage_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_visage_perk"
+    }
+    "npc_dota_hero_warlock_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_warlock_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_warlock_perk"
+    }
+    "npc_dota_hero_weaver_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_weaver_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_weaver_perk"
+    }
+    "npc_dota_hero_windrunner_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_windrunner_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_windrunner_perk"
+    }
+    "npc_dota_hero_winter_wyvern_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua"
+        "AbilityTextureName"    "winter_wyvern_arctic_burn"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+    "npc_dota_hero_wisp_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_wisp_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_wisp_perk"
+    }
+    "npc_dota_hero_witch_doctor_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_witch_doctor_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_witch_doctor_perk"
+    }
+    "npc_dota_hero_zuus_perk"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/hero_perks/npc_dota_hero_zuus_perk.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    "npc_dota_hero_zuus_perk"
+    }
+	
+	/////////////////
+	/// ANGEL ARENA REBORN ABILITIES
+	/////////////////
+	
+	"angel_arena_grace"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityType"            		"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"angel_arena_grace"
+		"MaxLevel"						"4"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 250 300 350"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"500 800 1000 1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduce"			"-56"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"4"
+			}
+		}
+	
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+	
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Omniknight.Purification"
+				"Target"		"TARGET"
+			}
+	
+			"FireEffect"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ControlPoints"
+				{
+					"00"	"0 0 0"
+					"01"	"%radius %radius %radius"
+				}
+			}
+			
+			"FireEffect"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+	
+			"Heal"
+			{
+				"Target" 		"TARGET"
+				"HealAmount"	"%heal"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"TARGET"
+				"ModifierName"	"modifier_grace_damage_reduce"
+				"Duration"		"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_grace_damage_reduce"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduce"
+				}
+			}
+		}
+	}
+	
+	"angel_arena_demonic"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"		"angel_arena_demonic"
+		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"					"4"
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"140.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 250 300 350"
+	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"transformation_time"	"0.35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"1.2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"120"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_attack_range"	"248"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"60 80 120 140"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_hp"				"500 1000 1200 1400"
+			}
+		}
+	
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+			"particle"	"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+			"particle"	"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_ambient.vpcf"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Terrorblade.Metamorphosis"
+				"Target"			"CASTER"
+			}
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_demonic"
+				"Target"			"CASTER"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_demonic"
+			{
+				"Duration"	"%duration"
+				
+				"EffectName" 		"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"EffectAttachType"  "follow_origin"
+	
+				"AllowsIllusionDuplicate"	"1"
+	
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName" 		"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_ambient.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"			"%bonus_range"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" 		"%bonus_damage"		
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" 	"%base_attack_time"				
+					"MODIFIER_PROPERTY_HEALTH_BONUS" 				"%bonus_hp"				
+				}
+			}
+		}
+	}
+	
+	"angel_arena_darkrage"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"angel_arena_darkrage"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0 110.0 100.0 90.0"
+		"AbilityManaCost"				"200 250 300 350"
+		
+		"MaxLevel"						"4"
+		
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_armor"				"40.0 60.0 75.0 80.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"80 100 120 140"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3 4 5 6"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_darkrage"
+				"Target"			"CASTER"
+				"Duration"			"%duration"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Clinkz.Strafe"
+				"Target" 		"CASTER"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_darkrage"
+			{
+				"isBuff"		"1"
+				"isHidden" 		"0"
+				"IsPurgable"	"1"
+				
+				"EffectName"		"particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage" 
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"			"%bonus_armor"
+				}		
+			}
+		}	
+	}
+	
+	"angel_arena_cripple"
+	{
+			// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"			"angel_arena_cripple"
+		"MaxLevel"						"4"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
+			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"		
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 550 600 650"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20.0 19.0 18.0 17.0"
+		"AbilityDuration"				"5.0 6.0 7.0 8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 130 140 150"	
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0 6.0 7.0 8.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"55 56 58 60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_reduce"				"-50 -80 -120 -180"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_percent"				"-10 -12 -15 -18"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Bane.Enfeeble.Cast"
+				"Target"		"TARGET"
+			}
+	
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_cripple"
+				"Target"		"TARGET"
+				"Duration"		"%duration"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_cripple"
+			{
+				"EffectName"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+	            	"Damage"
+	            	{
+	            		"Target"	"TARGET"
+	            		"Type"		"DAMAGE_TYPE_MAGICAL"
+	            		"Damage"	"%damage"
+	            	}		            	
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%slow_percent"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"			"%attack_reduce"
+				}
+				
+			}
+		}
+	}
+	
+	"angel_arena_berserk"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"		
+		"AbilityTextureName"			"angel_arena_berserk"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		"AbilityCooldown"				"30.0 29.0 28.0 27.0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityManaCost"				"30 40 50 60"
+		
+		"MaxLevel"				"4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"30.0 30.0 30.0 30.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"60 70 80 90"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"20 18 16 15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_pct"				"0.1 0.2 0.3 0.4"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Clinkz.Strafe"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_berserk"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_berserk"
+			{
+				"isBuff"	"1"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%bonus_damage"
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/berserk.lua"
+						"Function"		"OnAttack"
+						"Damage"		"%damage_pct"
+					}
+				}
+		
+			}
+		}	
+	}
+	
+	"angel_arena_transmute"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"angel_arena_transmute"
+	
+		"MaxLevel"						"4"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"1.0 1.0 1.0 1.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"500"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_percent"			"20 30 40 50"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 	"particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_death_pact_buff.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"CASTER"	"attach_origin"
+				}
+			}
+	
+			"FireSound"
+			{
+				"EffectName"	"Hero_Clinkz.DeathPact"
+				"Target" 		"TARGET"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/transmute.lua"
+				"Function"			"Transmute"
+				"health_to_gold"	"%hp_percent"
+			}	
+		}
+	}
+	
+	"angel_arena_nether_ritual"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"angel_arena_nether_ritual"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"4"
+		"RequiredLevel" 				"15"
+		"LevelsBetweenUpgrades"  		"3"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_hp_regen"			"15.0 18.0 20.0 25.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_armor"				"4 8 10 12"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"5 6 8 10"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movespeed"			"2 4 6 8"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"1.6 1.54 1.52 1.51"
+			}
+	
+		}
+		"Modifiers"
+		{
+			"modifier_nether_ritual"
+			{
+				"isBuff"	"1"
+				"Passive" 	"1"
+				"isHidden" 	"0"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage" 
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_hp_regen"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movespeed"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
+				}	
+			}
+		}	
+	}
+	
+	"angel_arena_hola_heal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"angel_arena_hola_heal"
+		
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"		
+			"particle"		"particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_f_egset.vpcf"
+			"particle"		"particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_c.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400 500 600 700"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"700"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal"						"600 1000 1400 1800"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"400 600 800 1200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_percent"				"2.0 3.0 4.0 6.0"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_EarthShaker.EchoSlam"
+				"Target" 		"CASTER"
+			}
+	
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_c.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+				"Radius"			"%radius"
+			}
+			
+			"FireEffect"
+			{
+				"EffectName"        "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_f_egset.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+				"Radius"			"%radius"
+			}
+	
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				
+				"Action"    
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/hola_heal.lua"
+						"Function"      "HealPercent"
+						"heal_pct"		"%heal_percent"
+					}
+					"Heal"
+					{
+						"Target" 		"TARGET"
+						"HealAmount"	"%heal"
+					}
+				}
+			}
+			
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+			
+				"Action"    
+				{
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+						}
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%damage"
+					}
+				}
+			}
+		}
+	}
+	
+	"angel_arena_summon_hawk"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"angel_arena_summon_hawk"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+				
+		"AbilityCooldown"				"60.0"
+		
+		"AbilityCastPoint"				"0.0"
+		
+		"AbilityManaCost"				"200 250 280 300"
+		
+		"MaxLevel"						"4"
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"60.0 60.0 60.0 60.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"30 40 50 60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_armor"				"6 8 10 12"
+			
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon_hawk.lua"
+				"Function"		"SpawnHawk"
+			}
+		}
+	}	
+	
+	"angel_arena_hawk_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"angel_arena_hawk_passive"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"MaxLevel"				"4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"30 40 50 60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_armor"				"6 8 10 12"
+			
+			}
+	
+		}
+		"Modifiers"
+		{
+			"modifier_hawk"
+			{
+				"isBuff"	"1"
+				"Passive" 	"1"
+				"isHidden" 	"1"
+	            "Properties"
+	            {
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
+	            }
+			}
+		}	
+	}
+	
+	"angel_arena_storm"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"angel_arena_storm"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
+		}
+		"AbilityCooldown"				"30.0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityManaCost"				"110 130 150 190"
+		
+		"MaxLevel"				"4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.0 3.0 3.0 4.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 180 250 310"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_time"					"1.0 1.0 1.0 1.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_percent"			"1.5 2.0 2.5 3.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"aa_modifier_storm"
+				"Target"		"CASTER"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"aa_modifier_storm"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				
+				"ThinkInterval"  "%tick_time"
+	
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Leshrac.Pulse_Nova_Strike"
+						"Target" 		"CASTER"
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+			            {
+			                "Center" "CASTER"
+			                "Radius" "%radius"
+			                "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+			                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			            }
+	
+			            "Action"
+			            {
+			            	"FireEffect"
+			            	{
+			            		"EffectName"        "particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf"
+			            		"EffectAttachType"  "follow_origin"
+			            		"Target"            "TARGET"
+			            	}
+	
+			            	"Damage"
+			            	{
+			            		"Target"	"TARGET"
+			            		"Type"		"DAMAGE_TYPE_MAGICAL"
+			            		"Damage"	"%damage"
+			            	}		            	
+							
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/storm.lua"
+								"Function"		"StormDamage"
+								"dmg_pct"		"%damage_percent"
+							}
+			            }
+					}
+				}
+	
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"CASTER"
+	
+						"ControlPoints"
+						{
+							"00"	"0 0 0"
+							"01"	"%radius 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	"angel_arena_song"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"angel_arena_song"
+	
+	    "AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"	
+	
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle"			"particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+			"particle"			"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+		}
+	
+		"MaxLevel"						"4"
+		"AbilityCooldown"				"100 90 80 70"
+		"AbilityManaCost"				"100 150 200 250"	
+	
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"650"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0 5.0 7.0 10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Bane.FiendsGrip.Cast"
+				"Target" 		"CASTER"
+			}
+	
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+				"EffectAttachType"  "start_at_customorigin"
+				
+				"ControlPointEntities"
+				{
+					"CASTER"	"follow_origin"
+					"CASTER"	"follow_origin"
+					"CASTER"	"follow_origin"
+				}
+			}
+	
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+			
+				"Action"    
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_naga_siren_song"
+						"Target" 		"TARGET"
+						"Duration"		"%duration"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_naga_siren_song"
+			{
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+	
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}	
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"	"100"
+				}
+				
+				"EffectName" 		"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf" 	   
+				"EffectAttachType"  "follow_origin"
+			}
+		}
+	}
+	
+	"angel_arena_shot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"angel_arena_shot"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"MaxLevel"						"4"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"10 12 13 14"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"6 8 10 12"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"35 60 90 140"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_percent"		"0.4 0.5 0.6 0.7"
+			}
+		}
+	
+		
+	
+		"Modifiers"
+		{
+			"modifier_shot_passive"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+	
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_shot_lifesteal_true_strike"
+						"Target"		"CASTER"
+					}
+	
+					"Random"
+					{
+						"Chance"		"%chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_shot_lifesteal_true_strike"
+								"Target"		"CASTER"
+							}
+						}
+					}
+				}
+			}
+	
+			"modifier_shot_lifesteal_true_strike"
+			{
+				"IsHidden"	"1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"			"MODIFIER_STATE_VALUE_ENABLED"
+				}	
+				
+				"OnAttackLanded"
+				{
+					"Lifesteal"
+					{
+						"Target" 				"CASTER"
+						"LifestealPercent"		"%lifesteal"
+					}				
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_shot_lifesteal_true_strike"
+						"Target"		"CASTER"
+					}
+					"Damage"
+					{
+						"Target" 		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%damage"
+					}
+					"RunScript"
+					{
+						"Target" 		"TARGET"
+						"ScriptFile"    "abilities/shot.lua"
+						"Function"      "DamageOfCurrentHealth"
+						"DamagePercent"	"%damage_percent"
+					}
+				}
+			}
+		}
+	}
+	
+  "angel_arena_roots"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		
+		"AbilityTextureName"			"angel_arena_roots"
+		
+		"MaxLevel"						"4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+		}
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 175 200 225"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2.0 2.2 2.5 3.0"
+			}
+			
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"675"
+			}	
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"armor_reduction"				"-5 -6 -7 -8"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 150 200 250"
+			}
+		}
+		"OnSpellStart"
+		{
+		
+		"FireSound"
+			{
+				"EffectName"	"Hero_Treant.Overgrowth.Cast"
+				"Target" 		"CASTER"
+			}
+			
+			"ActOnTargets"
+			{
+				"Target"
+			    {
+					"Center" "CASTER"
+			        "Radius" "%radius"
+			        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+			        "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			    }
+	
+			    "Action"
+			    {
+			     	"FireEffect"
+			       	{
+						"EffectName"        "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+			      		"EffectAttachType"  "follow_origin"
+			       		"Target"            "TARGET"
+						"Duration"			"%duration"
+			    	}
+	
+			       	"ApplyModifier"
+			       	{
+			       		"ModifierName"	"modifier_roots"
+						"Target"		"TARGET"
+						"Duration"		"%duration"
+	            	}
+					"Stun"
+					{
+						"Target"			"TARGET"
+						"Duration"			"0.1"
+					}				
+			    }
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_roots"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				
+				"ThinkInterval"  "1.0"
+	
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+			            {
+			                "Center" "CASTER"
+			                "Radius" "%radius"
+			                "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+			                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			            }
+	
+			            "Action"
+			            {
+			            	"Damage"
+			            	{
+			            		"Target"	"TARGET"
+			            		"Type"		"DAMAGE_TYPE_MAGICAL"
+			            		"Damage"	"%damage"
+			            	}		            	
+			            }
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"				
+				}
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_DISABLED"
+					"MODIFIER_STATE_SOFT_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}  
+  
+  "angel_arena_rifle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"			"angel_arena_rifle"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		"MaxLevel"						"4"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			//machine gun
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"gun_base_attack_time"		"0.01"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"gun_range"					"-50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"		
+				"gun_range_tooltip"			"450"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"gun_bonus_attack"			"-85 -84 -83 -82"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"gun_bonus_movespeed"		"-20"			
+			}
+			//rifle
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"rifle_base_attack_time"		"1.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"rifle_range"				"50 100 150 200"					
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"rifle_range_tooltip"		"550 600 650 700"					
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"rifle_bonus_movespeed"		"25"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"rifle_bonus_attack"		"25"
+			}
+		}
+	
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_sniper_machine_gun"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_sniper_rifle"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+		}
+		
+		"OnOwnerSpawned"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_sniper_machine_gun"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_sniper_rifle"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+		}
+		
+		"OnToggleOn"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_sniper_rifle"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_sniper_machine_gun"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+		}
+	
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_sniper_machine_gun"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_sniper_rifle"
+				"Target" 
+				{
+					"Center"	"CASTER"
+					"Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_sniper_machine_gun"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" 	"%gun_bonus_attack" 
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"			"%gun_range"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%gun_base_attack_time"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%gun_bonus_movespeed"
+				}
+				
+				"ThinkInterval"  "0.3"
+	
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/rifle.lua"
+						"Function"			"OnIntervalThinkMachine"
+					}
+				}
+				
+			}
+			"modifier_sniper_rifle"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"IsPassive"			"1"
+				"IsPurgable"		"0"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"%rifle_bonus_attack" 
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"			"%rifle_range"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%rifle_base_attack_time"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%rifle_bonus_movespeed"
+				}
+				
+				"ThinkInterval"  "0.3"
+	
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/rifle.lua"
+						"Function"			"OnIntervalThinkRifle"
+					}
+				}
+			}
+		}
+	}
+  
+  "angel_arena_revenge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"angel_arena_revenge"
+		"MaxLevel"				"4"
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reduce_percent"		"8 10 15 16"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_revenge"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+	
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/revenge.lua"
+						"Function"		"takedamage"
+						"Damage"		"%attack_damage"
+						"Attacker"		"ATTACKER"
+					}		
+				}
+			}
+		}
+	}
+		
+   "angel_arena_razor_power"
+	{       
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"	        "angel_arena_razor_power"
+		
+		"MaxLevel"						"4"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_percent"		"20 25 30 35"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_passive_razor_power"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+				    {
+						"Target" 
+						{
+							"Center"	"TARGET"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+				        "ScriptFile"    "abilities/holy_book.lua"
+				        "Function"      "HolyBook_attack"
+						"Radius"		"%radius"
+						"Damage"		"%attack_damage"
+				    }
+				}
+			}
+		}
+	}
+	
+   "angel_arena_night_vampire"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"angel_arena_night_vampire"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		"MaxLevel"						"4"
+		"LevelsBetweenUpgrades"  		"2"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_day"					"5 8 10 12"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_night"				"10 20 30 35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"base_attack_time"			"1.65 1.6 1.55 1.5"
+			}
+		
+		}
+		
+		"Modifiers"
+		{
+			"modifier_night_vampire_passive"
+			{
+				"isBuff"	"1"
+				"IsHidden"	"1"
+				"Passive"	"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
+				}	
+				
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/night_vampire.lua"
+						"Function"			"OnKilled"
+						"bonus_day"			"%bonus_day"
+						"bonus_night"		"%bonus_night"
+					}
+				}
+			}
+		}	
+	}
+	
+   "angel_arena_magic_fire"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"angel_arena_magic_fire"
+	
+		// Unit Targeting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600 600 600 600 700 700 800"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4 0.4 0.4 0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0 25.0 20.0 15.0 13.0 12.0 8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 120 140 160 200 250 280"
+		"MaxLevel"						"7"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"180 320 420 540 620 700 800"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage_pct"	"1.0 2.0 3.0 4.0 5.0 6.0 7.0"
+			}
+		}
+		
+		// Data drive
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/magic_fire.lua"
+				"Function"				"mana_burn_function"
+				"dmg_pct"				"%damage_pct"
+			}
+		}
+	}
+	
+   "angel_arena_lightning"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"angel_arena_lightning"
+		"MaxLevel"						"4"
+		
+		"precache"
+		{
+			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_lightning_impact.vpcf"
+			"particle"			"particles/units/heroes/hero_leshrac/leshrac_lightning_sparks.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90 100 110 120"
+		
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"jump_count"		"3 4 5 6"
+			}
+			
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"650 650 650 650"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"jump_delay"		"0.25 0.25 0.25 0.25"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"110 145 255 325"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lightning.lua"
+				"Function"		"lightning_start"
+			}
+		}
+	}
 }
