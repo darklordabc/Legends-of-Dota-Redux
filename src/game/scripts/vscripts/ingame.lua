@@ -248,7 +248,7 @@ function Ingame:fixRuneBug()
 						hero:MoveToPositionAggressive(Vector(0, 0, 0))
 					end
 				end
-			end, "botRune", 10)
+			end, "botRune", 6)
 		end
 	end, nil)
 
