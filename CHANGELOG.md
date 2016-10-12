@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
 - Fixed techies perk not having 50% reduction in cooldown for explosives/traps
+- Cheat Menu now work properly for non-host players
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
