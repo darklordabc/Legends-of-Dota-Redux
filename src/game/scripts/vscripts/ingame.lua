@@ -21,6 +21,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+    self:fixRuneBug()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -131,19 +132,19 @@ function Ingame:onStart()
 			
 	end
 		
-	---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
+	-- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
 	
-	Timers:CreateTimer(function ()	
-		local maxPlayerID = 24
-		for playerID=0,maxPlayerID-1 do			
-			if util:isPlayerBot(playerID) then
-				local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-				if hero then
-					hero:MoveToPositionAggressive(Vector(0, 0, 0))
-				end
-			end
-		end		
-        end, 'unstick_bots', 96.0)
+	-- Timers:CreateTimer(function ()	
+	-- 	local maxPlayerID = 24
+	-- 	for playerID=0,maxPlayerID-1 do			
+	-- 		if util:isPlayerBot(playerID) then
+	-- 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+	-- 			if hero then
+	-- 				hero:MoveToPositionAggressive(Vector(0, 0, 0))
+	-- 			end
+	-- 		end
+	-- 	end		
+ --        end, 'unstick_bots', 96.0)
 		
 	--Attempt to enable cheats
 	Convars:SetBool("sv_cheats", true)
@@ -233,6 +234,24 @@ function Ingame:onStart()
 			end
 		end, nil)
 	end
+end
+
+function Ingame:fixRuneBug()
+	ListenToGameEvent('game_rules_state_change', function(keys)
+		local newState = GameRules:State_Get()
+		
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+			Timers:CreateTimer(function()
+				for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
+					local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+					if hero and util:isPlayerBot(playerID) then
+						hero:MoveToPositionAggressive(Vector(0, 0, 0))
+					end
+				end
+			end, "botRune", 6)
+		end
+	end, nil)
+
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
@@ -584,6 +603,23 @@ end
 function Ingame:onPlayerCheat(eventSourceIndex, args)
     local command = args.command
     local value = args.value
+    local playerID = args.playerID
+    local isCustom = tonumber(args.isCustom) == 1 and true or false
+    if isCustom then
+    	-- Lvl-up hero
+    	local player = PlayerResource:GetSelectedHeroEntity(playerID)
+    	if command == 'lvl_up' then
+    		for i=0,value-1 do
+    			player:HeroLevelUp(true)
+    		end
+    	elseif command == 'give_gold' then
+    		player:ModifyGold(value, true, DOTA_ModifyGold_CheatCommand)
+    	elseif command == 'hero_respawn' then
+    		player:RespawnUnit()
+    	elseif command == 'create_item' then
+    		player:AddItemByName(value)
+    	end
+    end
     if type(value) ~= 'table' then
         value = tonumber(value) == 1 and true or false
         Convars:SetBool(command, value)
