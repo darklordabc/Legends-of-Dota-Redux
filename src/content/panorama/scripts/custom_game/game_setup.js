@@ -1206,32 +1206,6 @@ var recommendedBuilds = [
             6: 'furion_teleportation',
         },
     },
-    /*{
-        title: 'The Brew Trow',
-        heroName: 'npc_dota_hero_brewmaster',
-        attr: 'str',
-        build: {
-            1: 'windrunner_windrun',
-            2: 'silencer_curse_of_the_silent',
-            3: 'spectre_dispersion',
-            4: 'huskar_berserkers_blood',
-            5: 'tiny_grow_lod',
-            6: 'drow_ranger_marksmanship',
-        },
-    },
-    {
-        title: 'Ranged Death',
-        heroName: 'npc_dota_hero_windrunner',
-        attr: 'agi',
-        build: {
-            1: 'clinkz_wind_walk',
-            2: 'ursa_overpower',
-            3: 'medusa_split_shot',
-            4: 'life_stealer_feast',
-            5: 'phantom_assassin_coup_de_grace',
-            6: 'tiny_grow_lod',
-        },
-    },*/
     {
         title: 'MEDIC!',
         heroName: 'npc_dota_hero_wisp',
@@ -1244,6 +1218,34 @@ var recommendedBuilds = [
             4: 'dragon_knight_dragon_blood',
             5: 'holdout_arcane_aura',
             6: 'alchemist_chemical_rage',
+        },
+    },
+    {
+        title: 'Building Buster',
+        heroName: 'npc_dota_hero_tiny',
+        id: 'build_building_buster',
+        attr: 'str',
+        build: {
+            1: 'furion_teleportation',
+            2: 'troll_warlord_berserkers_rage',
+            3: 'lone_druid_spirit_bear_demolish',
+            4: 'phantom_assassin_blur',
+            5: 'holdout_gods_strength',
+            6: 'windrunner_focusfire',
+        },
+    },
+	{
+        title: 'Super Rat',
+        heroName: 'npc_dota_hero_terrorblade',
+        id: 'build_super_rat',
+        attr: 'agi',
+        build: {
+            1: 'furion_teleportation',
+            2: 'troll_warlord_fervor',
+            3: 'lone_druid_spirit_bear_demolish',
+            4: 'phantom_assassin_blur',
+            5: 'sven_gods_strength',
+            6: 'chaos_knight_phantasm',
         },
     },
     {
