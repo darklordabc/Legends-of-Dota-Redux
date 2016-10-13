@@ -29,6 +29,10 @@
     box-shadow: #52545520 0px 0px 1px;
     border: 1px solid #323435;
 
+    vertical-align: top;
+    horizontal-align: right;
+    margin-right: 175px;
+    margin-top: 0px;
     border-radius: 5px;
     padding: 1px 10px;
     vertical-align: top;
