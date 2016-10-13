@@ -2011,6 +2011,17 @@ function Pregame:initOptionSelector()
         lodOptionIngameBuilder = function(value)
             return value == 0 or value == 1
         end,
+
+        -- Other -- Ingame Builder Penalty
+        lodOptionIngameBuilderPenalty = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 180 then return false end
+
+            -- Valid
+            return true
+        end,
     }
 
     -- Callbacks
@@ -2664,6 +2675,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
+        OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3387,7 +3399,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
-            DeepPrintTable(newBuild)
             local newHeroName = self.selectedHeroes[playerID]
             if not newBuild or not newHeroName then return end
             newBuild.hero = newHeroName
@@ -3395,6 +3406,14 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
+            hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
+                Timers:CreateTimer(function()
+                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
+                    hero:Kill(nil, nil)
+                    hero:SetTimeUntilRespawn(penalty)
+                end, DoUniqueString('penalty'), 1)        
+            end
         end
     else
         local playerID = args.PlayerID

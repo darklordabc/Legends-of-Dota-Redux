@@ -256,7 +256,7 @@ end
 
 function Ingame:showIngameBuilder()
 	ListenToGameEvent('game_rules_state_change', function(keys)
-		if OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
+		if OptionManager:GetOption('allowIngameHeroBuilder') then
 			network:enableIngameHeroEditor()
 		end
 	end, nil)
