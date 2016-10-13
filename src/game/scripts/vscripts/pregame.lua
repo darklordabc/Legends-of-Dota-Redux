@@ -2663,7 +2663,6 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
-        print(this.optionStore['lodOptionIngameBuilder'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
 
         -- Enforce max level
@@ -3922,7 +3921,6 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 
     -- Validate that the ability is allowed in this slot (regular count)
-    DeepPrintTable(newBuild)
     if SkillManager:hasTooMany(newBuild, maxRegulars, function(ab)
         return not SkillManager:isUlt(ab)
     end) then
@@ -4093,12 +4091,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 end
 
 function Pregame:canPlayerPickSkill()
-    print(self:getPhase(), OptionManager:GetOption('allowIngameHeroBuilder'))
     if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') then
-        print(true)
         return true
     end
-    print(false)
     return false
 end
 
