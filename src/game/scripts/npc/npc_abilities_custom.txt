@@ -13088,8 +13088,7 @@
 	    
 		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
 	    "MaxLevel"               	"3"
-	    "RequiredLevel"          	"5"
-	    "LevelsBetweenUpgrades"  	"4"
+	    "RequiredLevel"          	"6"
 	    
 	    "AbilityCastPoint"              "0"
 	    "AbilityCooldown"               "40 35 30"
@@ -13123,49 +13122,6 @@
 	    }
 	}
 	
-	"ancient_priestess_ritual_protection_staff"
-	{
-	    "BaseClass"             	"ability_lua"
-	    "ScriptFile"				"abilities/life_in_arena/ancient_priestess_ritual_protection_staff.lua"
-	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"    "ancient_priestess_ritual_protection"
-	    
-		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "5"
-	    "LevelsBetweenUpgrades"  "4"
-	    
-	    //"precache"
-	    //{
-	        //"soundfile"         "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
-	        //"particle"          "particles/units/heroes/hero_lone_druid/lone_druid_battle_cry_overhead.vpcf"
-	        //"particle"          "particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
-	    //}
-	
-	    "AbilityCastPoint"              "0"
-	    "AbilityCooldown"               "40 35 30"
-	
-	    "AbilityManaCost"               "200 250 300"
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage_absorb"      "600 800 1000"        
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "radius"    "600"
-	        }
-	        "03"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "duration"  "15"
-	        }
-	    }
-	}
 	
 	"android_cluster_rockets"
 	{
@@ -13960,7 +13916,7 @@
 	{
 	  "BaseClass"               "ability_datadriven"
 	  "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	  "AbilityTextureName"      "huskar_berserkers_blood"
+	  "AbilityTextureName"      "berserker_madness"
 		
 		"AbilityCooldown"				"80"
 		"AbilityManacost"				"125 150 175"
@@ -15210,7 +15166,7 @@
 	  "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
 	  "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
 	  "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	  "AbilityTextureName"      "ancient_apparition_ice_vortex"
+	  "AbilityTextureName"      "frost_lord_ice"
 	
 	  // Precache
 	  //-------------------------------------------------------------------------------------------------------------
@@ -16044,8 +16000,7 @@
 			
 			"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"	
 		    "MaxLevel"               "3"
-			"RequiredLevel"          "5"
-			"LevelsBetweenUpgrades"  "4"
+			"RequiredLevel"          "6"
 			
 			// Time		
 			//-------------------------------------------------------------------------------------------------------------
@@ -16054,8 +16009,8 @@
 			// Cost
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"200 300 400"
-			"AbilityCastRange"				"2400"
-			"AbilityChannelTime"      "8 14 20"
+			"AbilityCastRange"				"1000"
+			"AbilityChannelTime"      "4 5 6"
 		
 			// Special
 			//-------------------------------------------------------------------------------------------------------------
@@ -16064,12 +16019,12 @@
 				"01"
 				{
 					"var_type"					"FIELD_INTEGER"
-					"radius"					"2400"
+					"radius"					"1000"
 				}		
 				"02"
 				{
 					"var_type"					"FIELD_INTEGER"
-					"damage_per_sec"				"40 60 80"
+					"damage_per_sec"				"0 0 0"
 				}
 				"03"
 				{
@@ -16079,7 +16034,7 @@
 				"04"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"duration"					"8 14 20"
+					"duration"					"3 4.5 6"
 				}
 		
 			}
@@ -16979,14 +16934,14 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"disruptor_glimpse"
+		"AbilityTextureName"			"lord_of_lightning_brain_storm"
 	
 		"AoERadius"		"500"
 		
 		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"              "3"
-		"RequiredLevel"          "5"
-		"LevelsBetweenUpgrades"  "4"
+		"RequiredLevel"          "6"
+
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0"

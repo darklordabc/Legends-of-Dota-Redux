@@ -2832,15 +2832,9 @@
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_damage_absorb"	"DAMAGE ABSORBED:"			
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_duration"				"DURATION:"		
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Note0"	"Can be upgraded by Spherical Staff. Increases number of damage absorbed."
 
 		"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection"	"Ritual of Protection"
 		"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection_Description" "Your hero absorbs damage."
-
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff"	"Ritual of Protection"
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_damage_absorb"	"DAMAGE ABSORBED:"			
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_staff_duration"				"DURATION:"	
 		
 		"DOTA_Tooltip_ability_android_cluster_rockets"	"Cluster Rockets"
 		"DOTA_Tooltip_ability_android_cluster_rockets_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
@@ -2970,20 +2964,9 @@
 		"DOTA_Tooltip_ability_frost_lord_ice_movement_slow"	"%MOVEMENT SLOW:"
 		"DOTA_Tooltip_ability_frost_lord_ice_slow_duration"	"SLOW DURATION:"
 		"DOTA_Tooltip_ability_frost_lord_ice_duration"	"ICE DURATION:"		
-		"DOTA_Tooltip_ability_frost_lord_ice_Note0"	"Can be upgraded by Spherical Staff. Increases damage and duration."
 
 		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage"	"Frozen Core"
 		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage_Description"	"This unit is slowed."		
-
-		"DOTA_Tooltip_ability_frost_lord_ice_staff"	"Frozen Core"
-		"DOTA_Tooltip_ability_frost_lord_ice_staff_Description"	"Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
-		"DOTA_Tooltip_ability_frost_lord_ice_staff_damage"	"DAMAGE:"
-		"DOTA_Tooltip_ability_frost_lord_ice_staff_movement_slow"	"%MOVEMENT SLOW:"
-		"DOTA_Tooltip_ability_frost_lord_ice_staff_slow_duration"	"SLOW DURATION:"
-		"DOTA_Tooltip_ability_frost_lord_ice_staff_duration"	"ICE DURATION:"		
-		
-		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_staff_damage"	"Frozen Core"
-		"DOTA_Tooltip_modifier_modifier_frost_lord_ice_staff_damage_Description"	"This unit is slowed."
 		
 		"DOTA_Tooltip_ability_frost_lord_frost_breath"	"Frost Breath"
 		"DOTA_Tooltip_ability_frost_lord_frost_breath_Description"	"An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
@@ -3029,8 +3012,8 @@
 		"DOTA_Tooltip_modifier_akron_explosion_burn_Description"	"This unit is taking damage."
 		
 		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel"
-		"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable and enemies take damage.  The hero stays vulnerable."
-		"DOTA_Tooltip_ability_paladin_impregnability_damage_per_sec"	"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
+		"DOTA_Tooltip_ability_paladin_impregnability_radius"	"RADIUS:"		
 		"DOTA_Tooltip_ability_paladin_impregnability_duration"	"DURATION:"		
 
 		"DOTA_Tooltip_modifier_impregnability_aura_inv"	"Guardian Angel"
