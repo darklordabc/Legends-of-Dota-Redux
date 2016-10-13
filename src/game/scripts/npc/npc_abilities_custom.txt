@@ -13069,7 +13069,7 @@
 			"05"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"heal_value"		"20 40 60"
+				"heal_value"		"1 1 1"
 			}
 			"06"
 			{
@@ -14974,9 +14974,9 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	
-		"AbilityDamage"					"50 100 150"
+		"AbilityDamage"					"25 50 100 150"
 	
-		"MaxLevel"               "3"
+		"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
@@ -14992,12 +14992,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"freezing_chance"			"18"
+				"freezing_chance"			"9 10 11 12"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_hero_duration"	"0.5 1.0 1.5"
+				"stun_hero_duration"	"0.25 0.5 1.0 1.5"
 			}
 		}
 	
@@ -15798,8 +15798,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ghoul_devour"
 	
 		// Precache
@@ -15810,7 +15810,7 @@
 			"particle"  	"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
 		}
 		
-		"MaxLevel"               "3"
+		"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 		
@@ -15821,11 +15821,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4.0"
+		"AbilityCooldown"				"40.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"20 30 40"
+		"AbilityManaCost"				"20 30 40 50"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -15834,12 +15834,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"instant_heal"	"50 100 150"
+				"instant_heal"	"50 100 150 200"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_per_second"	"10 20 30"
+				"heal_per_second"	"10 20 30 40"
 			}
 			"03"
 			{
@@ -15849,17 +15849,17 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movement_slow"	"-10 -20 -30"
+				"movement_slow"	"-5 -10 -20 -30"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_slow"	"-10 -20 -30"
+				"attack_slow"	"-5 -10 -20 -30"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"	"8.0"
+				"slow_duration"	"4.0"
 			}
 		}
 		
@@ -16244,14 +16244,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
-		"MaxLevel" 				"3"
+		"MaxLevel" 				"4"
 		"RequiredLevel"          		"1"
 		"LevelsBetweenUpgrades"  		"2"
 	
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"19.0 18.0 17.0"
-		"AbilityManaCost"				"100 175 200"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"200"
 	
 		"AOERadius"     				"%radius"
 	
@@ -16262,12 +16262,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wave_damage"			"30 60 120"
+				"wave_damage"			"60 120 160 200"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun"					"0.25"
+				"stun"					"0.10"
 			}
 			"03"
 			{
@@ -16277,17 +16277,17 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wave_count"			"6 8 10"
+				"wave_count"			"6 8 10 12"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"			"175 200 225"
+				"radius"			    "150 175 200 225"
 			}		
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_targets"				"16 16 12"
+				"max_targets"				"16 16 12 10"
 			}
 		}
 	
@@ -16435,7 +16435,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
-		"MaxLevel" 				"3"
+		"MaxLevel" 				"4"
 		"RequiredLevel"          		"1"
 		"LevelsBetweenUpgrades"  		"2"
 	
@@ -16453,7 +16453,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wave_damage"			"60 120 180"
+				"wave_damage"			"60 120 180 240"
 			}
 			"02"
 			{
@@ -16468,7 +16468,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wave_count"			"8 10 12"
+				"wave_count"			"6 8 10 12"
 			}
 			"05"
 			{
@@ -16478,7 +16478,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_targets"				"16 12 11"
+				"max_targets"				"16 12 11 10"
 			}
 		}
 	
@@ -17299,7 +17299,7 @@
 		"AbilityTextureName"            	"kret_poisoning"
 		"AbilityUnitTargetTeam"         	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"         	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"MaxLevel"               "3"
+		"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
@@ -17320,7 +17320,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"adsorbVal"					"50 100 150"
+				"adsorbVal"					"25 50 100 150"
 			}
 		}
 	
@@ -17569,7 +17569,7 @@
 	{
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"lightning_lord_lightning_shield"
-		"MaxLevel"               "3"
+		"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
@@ -17581,10 +17581,10 @@
 			
 		"AbilityCastRange"			"600"
 		"AbilityCastPoint"			"0"
-		"AbilityCooldown"			"16 14 12"
-		"AbilityManaCost"			"120 180 240"
+		"AbilityCooldown"			"16 14 12 10"
+		"AbilityManaCost"			"120"
 			
-		"AOERadius"					"160"
+		"AOERadius"					"300"
 	
 		"precache"
 		{
@@ -17597,12 +17597,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"radius"		"160"
+				"radius"		"300"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"damage_per_second"			"20 40 80"
+				"damage_per_second"			"20 40 60 80"
 			}
 			"03"
 			{
@@ -17649,83 +17649,56 @@
 			}
 		}
 	}
-	
-	"lord_of_lightning_lightning_shield_staff"
+
+	"dummy_passive"
 	{
-		"BaseClass"					"ability_datadriven"
-		"AbilityTextureName"		"lightning_lord_lightning_shield"
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
-			
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-			
-		"AbilityCastRange"			"600"
-		"AbilityCastPoint"			"0"
-		"AbilityCooldown"			"16 14 12"
-		"AbilityManaCost"			"200 240 280"
-			
-		"AOERadius"					"160"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"160"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"damage_per_second"			"40 70 100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_interval"		"0.3"
-			}
-			"04"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"duration"		"8"
-			}
-			// It ticks every second Kappa (actually is 0.1 now Keepo)
-			// Edit: 0.3 looks nicer with a particle hit :D
-		}
-	
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"abilities/life_in_arena/lightning_shield.lua"
-				"Function"				"LightningShieldOnSpellStart"
-			}
-		}
-		
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Modifiers"
 		{
-			"modifier_lord_of_lightning_lightning_shield"
+			"dummy_modifier"
 			{
-				"IsPurgable"		"1"
-				"Duration"			"%duration"
-				
-				"EffectName"            "particles/lightning_shield.vpcf"
-				"EffectAttachType"      "follow_origin"
-				
-				"ThinkInterval" 		"%think_interval"
-				"OnIntervalThink"
+				"Passive"	"1"
+				"States"
 				{
-					"RunScript"
-					{
-						"ScriptFile"			"abilities/life_in_arena/lightning_shield.lua"
-						"Function"				"ModifierLightningShieldOnIntervalThink"
-					}
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		   "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
 	}
+	
+	"dummy_passive_vulnerable"
+	{
+		"BaseClass" 		"ability_datadriven"
+		"AbilityBehavior" 	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"dummy_modifier"
+			{
+				"Passive"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		   "MODIFIER_STATE_VALUE_ENABLED"	
+				}
+			}
+		}
+	}	
 	
 }

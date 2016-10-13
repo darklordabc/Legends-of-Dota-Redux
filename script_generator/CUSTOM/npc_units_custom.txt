@@ -1295,28 +1295,8 @@
 	
 		//Inventory
 		"HasInventory"                "0"
-	}
-	"dummy_unit"
-	{
-		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
+	}	
 	
-	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
-	
-		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
-	
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"        "0"        // Range of vision during day light.
-		"VisionNighttimeRange"        "0"        // Range of vision at night time.
-		"WakesNeutrals"                "0"
-	}
 	"explosive_spore"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
@@ -2050,6 +2030,73 @@
 	  //----------------------------------------------------------------
 	  "AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
+	
+	////////
+	// LIFE IN ARENA
+	////////
+	
+	"dummy_unit"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_vulnerable"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive_vulnerable"
+	}
+	
+	"dummy_unit_building"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_anomaly"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_pure_light"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+		"Ability2"					"pure_light_ability"
+	}
+	
 }
 
 

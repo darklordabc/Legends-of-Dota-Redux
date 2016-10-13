@@ -27,7 +27,7 @@ function ModifierLightningShieldOnIntervalThink(event)
 	local factor = ability:GetSpecialValueFor("think_interval")
 	local damage = dps*factor
 
-	local nearby_units = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_BOTH,
+	local nearby_units = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES, FIND_ANY_ORDER, false)
 	
 	for i, nUnit in pairs(nearby_units) do

@@ -2945,7 +2945,8 @@
 		"DOTA_Tooltip_ability_firelord_fire_trap_detection_radius"	"DETECTION RADIUS:"
 		
 		"DOTA_Tooltip_ability_frost_lord_freezing"	"Cold Embrace"
-		"DOTA_Tooltip_ability_frost_lord_freezing_Description"	"Gives Frost Lord a 18%% chance to freeze his attacker and deal damage to him."
+		"DOTA_Tooltip_ability_frost_lord_freezing_Description"	"Gives Frost Lord a chance to freeze his attacker and deal damage to him."
+		"DOTA_Tooltip_ability_frost_lord_freezing_freezing_chance"	"%CHANCE TO FREEZE:"
 		"DOTA_Tooltip_ability_frost_lord_freezing_stun_hero_duration"	"FREEZE DURATION:"
 
 		"DOTA_Tooltip_modifier_frost_lord_freezing_block"	"Cold Embrace"
@@ -3004,7 +3005,7 @@
 		"DOTA_Tooltip_modifier_frost_lord_frost_breath_staff_Description"	"This unit takes damage over time."
 		
 		"DOTA_Tooltip_ability_ghoul_devour"	"Ghoul Devour"
-		"DOTA_Tooltip_ability_ghoul_devour_Description"	"Devours a target unit healing himself health instantly and over time. If the target is a boss, a megaboss or a hero, it will be slowed. These effects are stackable."
+		"DOTA_Tooltip_ability_ghoul_devour_Description"	"Devours a target unit healing himself health instantly and over time. If the target is a hero, it will be slowed. These effects are stackable."
 		"DOTA_Tooltip_ability_ghoul_devour_instant_heal"	"INSTANT HEAL:"
 		"DOTA_Tooltip_ability_ghoul_devour_heal_per_second"	"HEAL PER SECOND:"
 		"DOTA_Tooltip_ability_ghoul_devour_heal_duration"	"HEAL DURATION:"
@@ -3036,20 +3037,13 @@
 		"DOTA_Tooltip_modifier_impregnability_aura_inv_Description"	"This unit is invulnerable."
 		
 		"DOTA_Tooltip_ability_paladin_blizzard"	"Blizzard"
-		"DOTA_Tooltip_ability_paladin_blizzard_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.25 seconds units in a target area every second."
+		"DOTA_Tooltip_ability_paladin_blizzard_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.1 seconds units in a target area every second."
 		"DOTA_Tooltip_ability_paladin_blizzard_wave_damage"	"DAMAGE:"
 		"DOTA_Tooltip_ability_paladin_blizzard_wave_count"	"WAVES COUNT:"
 		"DOTA_Tooltip_ability_paladin_blizzard_radius"	"RADIUS:"
 		"DOTA_Tooltip_ability_paladin_blizzard_max_targets"	"MAX TARGETS:"
 		"DOTA_Tooltip_ability_paladin_blizzard_Note0"	"Can be upgraded by Spherical Staff. Increases damage."
-		
-		"DOTA_Tooltip_ability_paladin_blizzard_staff"	"Blizzard"
-		"DOTA_Tooltip_ability_paladin_blizzard_staff_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.25 seconds units in a target area every second."
-		"DOTA_Tooltip_ability_paladin_blizzard_staff_wave_damage"	"DAMAGE:"
-		"DOTA_Tooltip_ability_paladin_blizzard_staff_wave_count"	"WAVES COUNT:"
-		"DOTA_Tooltip_ability_paladin_blizzard_staff_radius"	"RADIUS:"
-		"DOTA_Tooltip_ability_paladin_blizzard_staff_max_targets"	"MAX TARGETS:"
-		
+				
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception"	"Mastery of Deception"
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_Description"	"When Illusionnist is attacked, he has a 20%% chance to create an illusion of the attacker. Illusions take more damage and deal less. Does not affect megabosses."
 		"DOTA_Tooltip_ability_illusionist_mastery_of_deception_time"	"ILLUSION LIFETIME:"
@@ -3112,15 +3106,9 @@
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_damage_per_second"	"DAMAGE PER SECOND:"			
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_duration"	"DURATION:"	
-		"DOTA_Tooltip_ability_lord_of_lightning_chain_lightning_Note0"	"Can be upgraded by Spherical Staff. Increases damage."
 
 		"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield"	"Lightning Shield"
-		"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Противники Владыки Молний, находящиеся вокруг этого воина, получают урон."
-
-		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff"	"Lightning Shield"
-		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
-		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_damage_per_second"	"DAMAGE PER SECOND:"			
-		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_staff_duration"	"DURATION:"
+		"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Opponents around the Lord of Lightning take damage."
 		
 		"DOTA_Tooltip_ability_dark_knight_dark_forces"	"Dark Forces"
 		"DOTA_Tooltip_ability_dark_knight_dark_forces_Description"	"Spawns flows of darkness every 0.5 seconds at random places in a 150 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
