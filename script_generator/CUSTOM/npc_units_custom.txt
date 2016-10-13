@@ -1921,6 +1921,10 @@
 			"particle"  "particles/units/heroes/hero_stormspirit/stormspirit_base_attack_glow.vpcf"
 			"particle"	"particles/units/heroes/hero_stormspirit/stormspirit_base_attack_explosion.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			// Retro Dota
+			// Betrayal
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_betrayal.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_betrayal_explosion.vpcf"
 		}
 	}
 
