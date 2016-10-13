@@ -1,4 +1,4 @@
-local Timers = require('lib/timers')
+require('lib/timers')
 
 --[[
 	Author: Noya https://github.com/MNoya/DotaCraft/blob/master/game/dota_addons/dotacraft/scripts/vscripts/heroes/tinker/cluster_rockets.lua
@@ -34,7 +34,7 @@ function FireClusterRocket( event )
 	}
 	ProjectileManager:CreateTrackingProjectile( projTable )
 
-	Timers:CreateTimer(3,function() dummy:RemoveSelf() end)
+	Timers:CreateTimer(10,function() dummy:RemoveSelf() end)
 
 end
 
