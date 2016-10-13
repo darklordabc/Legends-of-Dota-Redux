@@ -1014,23 +1014,15 @@ var allOptions = {
                 name: 'lodOptionIngameBuilder',
                 des: 'lodOptionDesIngameBuilder',
                 about: 'lodOptionAboutIngameBuilder',
-                sort: 'dropdown',
+                sort: 'toggle',
                 values: [
                     {
-                        text: 'lodOptionIngameOff',
+                        text: 'lodOptionNo',
                         value: 0
                     },
                     {
-                        text: 'lodOptionIngamePenalty',
+                        text: 'lodOptionYes',
                         value: 1
-                    },
-                    {
-                        text: 'lodOptionIngamePenalty1',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionIngameOn',
-                        value: 3
                     }
                 ]
             },
