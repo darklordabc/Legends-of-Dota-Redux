@@ -1832,12 +1832,111 @@
 			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
 			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-		  "particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-		  "particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-		  "soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+			////Life in Arena
+			//Surge of intelligence
+			"particle"  "particles/leshrac_diabolic_edict_custom.vpcf"
+	  		"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			//Ritual protection
+			"particle"  "particles/mirana_moonlight_ray_custom.vpcf"
+			"particle"  "particles/lotus_orb_shell_custom.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			//Cluster rockets
+			"particle" 	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_rocket_barrage.vpcf"
+			"particle"  "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+			"particle"	"particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
+			"particle"	"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			//Magic Barrier
+			"particle"  "particles/abaddon_aphotic_shield.vpcf"
+			//Anomaly
+			"particle"   "particles/fv_chronosphere_aeons.vpcf"  
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"        
+			//Firespear
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+			"particle"			"particles/berserker_fire_spear.vpcf"
+			"particle"  		"particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
+			"particle"          "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"		
+			//Blackarrow
+			"particle"				"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+			"particle"				"particles/status_fx/status_effect_gods_strength.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			//Blackarrowultimate
+			"particle"				"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			//Flamestrike
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+			"particle"	"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+			"particle" 	"particles/custom/phoenix_fire_spirit_ground.vpcf"
+			"particle" 	"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_requiemofsouls_line_ground.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			//Firetrap
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"particle"  "particles/firelord_fire_trap.vpcf"
+			"particle"	"particles/firelord_fire_trap_explode_custom.vpcf"
+			//Frost_lord_freezing
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+			//Frost_lord_cold
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"		"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+			//Frost_lord_ice
+			"particle"   "particles/units/heroes/hero_ancient_apparition/ancient_ice_vortex.vpcf"  
+			"particle"  "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+			"particle"  "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"    
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts" 
+			//Frost Breath
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"		"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+			"particle"  	"particles/status_fx/status_effect_frost_lich.vpcf"
+			//Ghoul Devour
+			"particle"		"particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+			"particle"  	"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+			//Akron explosion
+			"particle" "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+			"particle"  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+			"soundfile"  "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			//Impregnability
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+			//Blizzard
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+			"particle"	"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"	"particles/status_fx/status_effect_frost_lich.vpcf"
+			//Whiff of deception
+			"particle"	"particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+			//Mastery of illusions
+			"particle" 	"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+			//Holy wrath
+			"particle" "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact_b.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			//Brainstorm
+			"particle" 	"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+			//Kret poisoning
+			"particle"			"particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion_f.vpcf"
+			//Darkforces
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"	"particles/nevermore_shadowraze_editfirst.vpcf"
+			"particle"  "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			//Lighting shield
+			"particle"  "particles/lightning_shield.vpcf"
+			"particle"  "particles/lightning_shield_hit.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
 		}
 	}
 

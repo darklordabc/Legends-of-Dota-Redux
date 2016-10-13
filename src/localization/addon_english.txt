@@ -2867,6 +2867,7 @@
 		"DOTA_Tooltip_ability_berserker_fire_spear_Description"	"Berserker throws a fire spear into a target point. The spear deals damage and slows the movement speed of any enemy it hits."
 		"DOTA_Tooltip_ability_berserker_fire_spear_movement_speed_slow"	"%MOVEMENT SPEED SLOW:"
 		"DOTA_Tooltip_ability_berserker_fire_spear_slow_duration"	"DURATION:"	
+		"DOTA_Tooltip_ability_berserker_fire_spear_spear_range"	"SPEAR RANGE:"	
 
 		"DOTA_Tooltip_modifier_fire_spear_slow"	"Fire Spear"
 		"DOTA_Tooltip_modifier_fire_spear_slow_Description"	"This unit's movespeed is slowed."

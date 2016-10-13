@@ -13022,7 +13022,7 @@
 		"AbilityTextureName"		"ancient_priestess_spirit_link"
 	
 	  	"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -13835,7 +13835,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600 750 900"
+		"AbilityCastRange"				"900 1050 1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 	
 		// Time		
@@ -13877,7 +13877,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"spear_range"		"600 750 900"
+				"spear_range"		"900 1050 1200"
 			}	
 			"06"
 			{
@@ -14042,7 +14042,7 @@
 	
 	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	    "MaxLevel"               "3"
-	    "RequiredLevel"          "2"
+	    "RequiredLevel"          "1"
 	    "LevelsBetweenUpgrades"  "2"
 	    
 	  // Special  
@@ -14097,7 +14097,7 @@
 		"AbilityTextureName"	"butcher_zombie"
 			
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		"AbilityCooldown"		 "0"
@@ -14866,7 +14866,7 @@
 		"AbilityTextureName"		"firelord_fire_trap"
 	
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT"
@@ -14977,7 +14977,7 @@
 		"AbilityDamage"					"50 100 150"
 	
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		"precache"
@@ -15078,7 +15078,7 @@
 		}
 		
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		"AoERadius"	"300"
@@ -15811,7 +15811,7 @@
 		}
 		
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 		
 		// Casting
@@ -16640,7 +16640,7 @@
 		//"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	   
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 		
 		"Modifiers"
@@ -16826,7 +16826,7 @@
 		//"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		//"AbilityCastRange"				"150"
@@ -17073,7 +17073,7 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"lord_of_lightning_holy_wrath"
 	    "MaxLevel"               "3"
-	    "RequiredLevel"          "2"
+	    "RequiredLevel"          "1"
 	    "LevelsBetweenUpgrades"  "2"
 		
 			
@@ -17300,7 +17300,7 @@
 		"AbilityUnitTargetTeam"         	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"         	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		"precache"
@@ -17377,7 +17377,7 @@
 		"AbilityTextureName"            	"kret_lust_for_life"
 		//
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 	
 		// Special
@@ -17570,7 +17570,7 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"lightning_lord_lightning_shield"
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -17655,7 +17655,7 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"lightning_lord_lightning_shield"
 		"MaxLevel"               "3"
-		"RequiredLevel"          "2"
+		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"

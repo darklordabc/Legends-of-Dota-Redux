@@ -1,6 +1,6 @@
-require('lib/timers')
 ancient_priestess_spirit_link = class({})
 LinkLuaModifier("modifier_ancient_priestess_spirit_link", "abilities/life_in_arena/modifier_ancient_priestess_spirit_link.lua",LUA_MODIFIER_MOTION_NONE)
+require('lib/timers')
 
 function ancient_priestess_spirit_link:CastFilterResultTarget( hTarget )
 	local nCasterID = self:GetCaster():GetPlayerOwnerID()
