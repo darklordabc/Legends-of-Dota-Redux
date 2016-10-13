@@ -2009,7 +2009,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2 or value == 3
         end,
     }
 
@@ -2663,7 +2663,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
-        OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
+        OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3387,7 +3387,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
-            DeepPrintTable(newBuild)
             local newHeroName = self.selectedHeroes[playerID]
             if not newBuild or not newHeroName then return end
             newBuild.hero = newHeroName
@@ -3395,6 +3394,18 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
+            hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if OptionManager:GetOption('allowIngameHeroBuilder') == 1 then
+                Timers:CreateTimer(function()
+                    hero:Kill(nil, nil)
+                    hero:SetTimeUntilRespawn(30)
+                end, DoUniqueString('penalty'), 1)
+            elseif OptionManager:GetOption('allowIngameHeroBuilder') == 2 then
+                Timers:CreateTimer(function()
+                    hero:Kill(nil, nil)
+                    hero:SetTimeUntilRespawn(60)
+                end, DoUniqueString('penalty'), 1)
+            end
         end
     else
         local playerID = args.PlayerID
@@ -4091,7 +4102,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 end
 
 function Pregame:canPlayerPickSkill()
-    if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') then
+    if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
         return true
     end
     return false

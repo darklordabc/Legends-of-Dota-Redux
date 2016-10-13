@@ -116,7 +116,7 @@ OptionManager:SetOption('multicastMadness', false)
 OptionManager:SetOption("useFatOMeter", 0)
 
 -- Ingame Builder
-OptionManager:SetOption('allowIngameHeroBuilder', false)
+OptionManager:SetOption('allowIngameHeroBuilder', 0)
 
 -- Max level
 OptionManager:SetOption('maxHeroLevel', 25)
