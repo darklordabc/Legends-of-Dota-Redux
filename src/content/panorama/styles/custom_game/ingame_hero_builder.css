@@ -1,0 +1,48 @@
+.heroBuilderRoot {
+    width: 100%;
+    height: 100%;
+}
+
+#heroBuilderContainer {
+    width: 100%;
+    height: 100%;
+    visibility: collapse;
+}
+
+#heroBuilderContainer.visible {
+    visibility: visible;
+}
+
+#heroBuilderDisplay {
+    width: 100%;
+    height: fill-parent-flow(0);
+    margin-top: 44px;
+    padding-top: 48px;
+    visibility: collapse;
+    background-color: #000000;
+}
+
+#heroBuilderIcon {
+    width: 95%;
+    height: 95%;
+}
+
+#heroBuilderButton {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+    box-shadow: #52545520 0px 0px 1px;
+    border: 1px solid #323440;
+    
+    vertical-align: top;
+    horizontal-align: right;
+    margin-right: 120px;
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 1px 10px;
+    vertical-align: top;
+}
+
+#showHeroBuilder {
+    width: 24px;
+    height: 24px;
+    wash-color: #00000030;
+}

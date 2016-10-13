@@ -121,6 +121,17 @@ function Network:setDraftArray(draftID, draftArray)
     })
 end
 
+function Network:hideHeroBuilder(ply, options)
+    -- Ensure we have an options table
+    options = options or {}
+
+    -- Ensure we have a valid player
+    if not IsValidEntity(ply) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNewHeroBuild', options)
+end
+
 -- Sends a notification to a player
 function Network:sendNotification(ply, options)
     -- Ensure we have an options table
@@ -164,6 +175,13 @@ function Network:banHero(heroName)
     CustomNetTables:SetTableValue('banned', 'hero_' .. heroName, {
         heroName = heroName
     })
+end
+
+function Network:enableIngameHeroEditor()
+
+    local options = {}
+    -- Push it
+    CustomGameEventManager:Send_ServerToAllClients('lodEnableIngameBuilder', options)
 end
 
 -- Pushes that a hero is banned
