@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Added some more preset builds that take advantage of heros perks
 - Added 19 abilities from Angel Arena Reborn
 - Increased level requirement for OP tower abilities
+- Eyes in the forest is now counted as invisbility ability, because it requires a gem to counter.
 
 ## 1.6 - Steam Version
 
