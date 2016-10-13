@@ -3414,6 +3414,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                     hero:SetTimeUntilRespawn(penalty)
                 end, DoUniqueString('penalty'), 1)        
             end
+            GameRules:SendCustomMessage('Player'..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
         end
     else
         local playerID = args.PlayerID
