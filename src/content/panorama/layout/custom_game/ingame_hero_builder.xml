@@ -1,0 +1,21 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="s2r://panorama/styles/play.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/ingame_hero_builder.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/ingame_hero_builder.js" />
+    </scripts>
+    <Panel class="heroBuilderRoot" hittest="false">
+        <Panel id="heroBuilderContainer" hittest="false">
+            <Panel id="heroBuilderButton">
+                <Button id="showHeroBuilder" class="niceButton" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
+                    <Image id="heroBuilderIcon" src="file://{images}/custom_game/cheats.png"/>
+                </Button>
+            </Panel>
+            <Panel id="heroBuilderDisplay" />
+        </Panel>
+
+    </Panel>
+</root>

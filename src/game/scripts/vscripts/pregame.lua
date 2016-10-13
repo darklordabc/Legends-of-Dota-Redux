@@ -2006,6 +2006,11 @@ function Pregame:initOptionSelector()
         lodOptionCrazyFatOMeter = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
         end,
+
+        -- Other -- Ingame Builder
+        lodOptionIngameBuilder = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end,
     }
 
     -- Callbacks
@@ -2130,6 +2135,9 @@ function Pregame:initOptionSelector()
 
                 -- Disable WTF Mode
                 self:setOption('lodOptionCrazyWTF', 0, true)
+
+                -- Disable ingame hero builder
+                self:setOption('lodOptionIngameBuilder', 0, true)
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
@@ -2642,30 +2650,31 @@ function Pregame:processOptions()
     local this = self
 
     local status,err = pcall(function()
-    	-- Push settings externally where possible
-	    OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
-	    OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
-	    OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
-	    OptionManager:SetOption('multicastMadness', this.optionStore['lodOptionCrazyMulticast'] == 1)
+        -- Push settings externally where possible
+        OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
+        OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
+        OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
+        OptionManager:SetOption('multicastMadness', this.optionStore['lodOptionCrazyMulticast'] == 1)
         OptionManager:SetOption('respawnModifierPercentage', this.optionStore['lodOptionGameSpeedRespawnTimePercentage'])
         OptionManager:SetOption('respawnModifierConstant', this.optionStore['lodOptionGameSpeedRespawnTimeConstant'])
-	    OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
-	    OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
-	    OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
+        OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
+        OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+        OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
-		OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'])
 
-	    -- Enforce max level
-	    if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
-	        this.optionStore['lodOptionGameSpeedStartingLevel'] = this.optionStore['lodOptionGameSpeedMaxLevel']
-	        OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
-	    end
+        -- Enforce max level
+        if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
+            this.optionStore['lodOptionGameSpeedStartingLevel'] = this.optionStore['lodOptionGameSpeedMaxLevel']
+            OptionManager:SetOption('startingLevel', OptionManager:GetOption('maxHeroLevel'))
+        end
 
-	    -- Enable easy mode
-	    --[[if this.optionStore['lodOptionCrazyEasymode'] == 1 then
-	        Convars:SetInt('dota_easy_mode', 1)
-	    end]]
+        -- Enable easy mode
+        --[[if this.optionStore['lodOptionCrazyEasymode'] == 1 then
+            Convars:SetInt('dota_easy_mode', 1)
+        end]]
 
 	    -- Gold per interval
 	    GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
@@ -2829,6 +2838,7 @@ function Pregame:processOptions()
 			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
 			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
 					['Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
+                    ['Enable Ingame Hero Builder'] = this.optionStore['lodOptionIngameBuilder'],
 			    })
 
 				-- Draft arrays
@@ -3083,9 +3093,9 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
         -- Ensure we are in the picking phase
-        if self:getPhase() ~= constants.PHASE_SELECTION then
+        if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedWrongPhaseSelection'
@@ -3169,7 +3179,7 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     end
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -3226,7 +3236,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -3298,7 +3308,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Player shouldn't be able to do this unless it is the all random phase
-    if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION then
+    if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and not self:canPlayerPickSkill() then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedNotAllRandomPhase'
@@ -3371,18 +3381,44 @@ end
 
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW then return end
+    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill() then return end
+    if self:canPlayerPickSkill() then
+        local playerID = args.PlayerID
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if IsValidEntity(hero) then
+            local newBuild = util:DeepCopy(self.selectedSkills[playerID])
+            local newHeroName = self.selectedHeroes[playerID]
+            if not newBuild or not newHeroName then return end
+            newBuild.hero = newHeroName
+            newBuild.setAttr = self.selectedPlayerAttr[playerID]
+            SkillManager:ApplyBuild(hero, newBuild)
+            local player = PlayerResource:GetPlayer(playerID)
+            network:hideHeroBuilder(player)
+            hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if OptionManager:GetOption('allowIngameHeroBuilder') == 1 then
+                Timers:CreateTimer(function()
+                    hero:Kill(nil, nil)
+                    hero:SetTimeUntilRespawn(30)
+                end, DoUniqueString('penalty'), 1)
+            elseif OptionManager:GetOption('allowIngameHeroBuilder') == 2 then
+                Timers:CreateTimer(function()
+                    hero:Kill(nil, nil)
+                    hero:SetTimeUntilRespawn(60)
+                end, DoUniqueString('penalty'), 1)
+            end
+        end
+    else
+        local playerID = args.PlayerID
 
-    local playerID = args.PlayerID
+        -- Ensure we have a store for this player's ready state
+        self.isReady[playerID] = self.isReady[playerID] or 0
 
-    -- Ensure we have a store for this player's ready state
-    self.isReady[playerID] = self.isReady[playerID] or 0
+        -- Toggle their state
+        self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
 
-    -- Toggle their state
-    self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-
-    -- Checks if people are ready
-    self:checkForReady()
+        -- Checks if people are ready
+        self:checkForReady()
+    end
 end
 
 -- Checks if people are ready
@@ -4065,6 +4101,13 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 end
 
+function Pregame:canPlayerPickSkill()
+    if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
+        return true
+    end
+    return false
+end
+
 -- Player wants to remove an ability
 function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     -- Grab data
@@ -4072,7 +4115,7 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -4106,7 +4149,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -4117,7 +4160,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     end
 
     -- Have they locked their skills?
-    if self.isReady[playerID] == 1 then
+    if self.isReady[playerID] == 1 and self:getPhase() ~= constants.PHASE_INGAME then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedPlayerIsReady'

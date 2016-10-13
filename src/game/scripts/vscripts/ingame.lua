@@ -22,6 +22,7 @@ function Ingame:init()
     -- Init stronger towers
     self:addStrongTowers()
     self:fixRuneBug()
+    self:showIngameBuilder()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -251,7 +252,14 @@ function Ingame:fixRuneBug()
 			end, "botRune", 6)
 		end
 	end, nil)
+end
 
+function Ingame:showIngameBuilder()
+	ListenToGameEvent('game_rules_state_change', function(keys)
+		if OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
+			network:enableIngameHeroEditor()
+		end
+	end, nil)
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
