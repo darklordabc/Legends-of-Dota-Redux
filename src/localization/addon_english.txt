@@ -3132,5 +3132,13 @@
 		"android_pocket_factory_building2"	"Pocket Factory"
 		"android_pocket_factory_building3"	"Pocket Factory"
 		
+		"DOTA_Tooltip_ability_serpent_queen_ball_lightning"	"Charged Bolt"
+		"DOTA_Tooltip_ability_serpent_queen_ball_lightning_Description"	"Releases a swarm of electric bolts that follow the caster, damaging enemies on impact."
+		"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locusts"	"LIGHTNINGS COUNT:"
+		"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locust_damage"	"DAMAGE PER COLLISION:"
+		"DOTA_Tooltip_ability_serpent_queen_ball_lightning_duration"	"DURATION:"		
+		
+		"DOTA_Tooltip_modifier_locust_swarm"	"Charged Bolt"	
+		
 		
 }

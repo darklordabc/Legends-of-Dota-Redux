@@ -1917,6 +1917,10 @@
 			"particle"  "particles/lightning_shield.vpcf"
 			"particle"  "particles/lightning_shield_hit.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			//Charged Bolt/ Ball Lighting
+			"particle"  "particles/units/heroes/hero_stormspirit/stormspirit_base_attack_glow.vpcf"
+			"particle"	"particles/units/heroes/hero_stormspirit/stormspirit_base_attack_explosion.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
 		}
 	}
 
