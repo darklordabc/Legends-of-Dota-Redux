@@ -16010,14 +16010,12 @@
 	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"     "golem_explosion"
 	
-	    "AbilityCooldown" "24 22 20"
+	    "AbilityCooldown" "24 22 20 18"
 	    "AbilityCastRange"  "225"
-	    "AbilityManaCost" "70 80 90"
+	    "AbilityManaCost" "70 80 90 100"
 	    "AoERadius"  "225"
 	    
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "1"
-	    "LevelsBetweenUpgrades"  "2"
+	    "MaxLevel"               "4"
 	  
 	    "AbilityCastPoint"  "0.2"
 	    "AbilityCastRange"  "0"
@@ -16041,12 +16039,12 @@
 	        "02"
 	        {
 	            "var_type"                "FIELD_INTEGER"
-	            "hp_prc_dmg"              "10"
+	            "hp_prc_dmg"              "10 15 20 30"
 	        }
 	        "03"
 	        {
 	            "var_type"                "FIELD_INTEGER"
-	            "burn_damage"             "20 40 60"
+	            "burn_damage"             "20 40 60 80"
 	        }
 	        "04"
 	        {
