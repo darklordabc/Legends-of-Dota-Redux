@@ -9,7 +9,7 @@ function Explosion(event)
 	local radius = ability:GetSpecialValueFor("radius")
 
 	Timers:CreateTimer(0.2,function()
-		ApplyDamage({victim = caster, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
+		ApplyDamage({victim = caster, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_PURE, ability = ability})
 	end)
 	
 
@@ -18,10 +18,8 @@ function Explosion(event)
 		ApplyDamage({victim = unit, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
 		ability:ApplyDataDrivenModifier(caster,unit,"modifier_akron_explosion_burn", nil)
 	end
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_akron_explosion_burn", nil)
+	
 
-	local battleFevor = caster:FindAbilityByName("acron_battle_fevor")
-	if battleFevor then
-		battleFevor:OnExplosion()
-	end
 end
 

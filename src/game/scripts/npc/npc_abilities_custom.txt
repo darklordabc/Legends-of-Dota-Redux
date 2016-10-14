@@ -12959,12 +12959,10 @@
 	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"     "ancient_priestess_surge_of_intelligence"
 	  
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 		
 	   "AbilityCooldown"        "16"
-	   "AbilityManaCost"        "90 180 360"
+	   "AbilityManaCost"        "120 240 360 480"
 	
 	  	// Stats
 	  	//-------------------------------------------------------------------------------------------------------------
@@ -12986,7 +12984,7 @@
 	    	"02"
 	    	{
 	      		"var_type"              "FIELD_INTEGER"
-	      		"koef_damage"    		"3 6 9"
+	      		"koef_damage"    		"3 6 9 12"
 	    	}
 	  	}
 	    
@@ -12996,7 +12994,7 @@
 	  	{
 	  		"RunScript"
 	  		{
-	  			"ScriptFile"	"heroes/AncientPriestess/surge_of_intelligence.lua"
+	  			"ScriptFile"	"abilities/life_in_arena/surge_of_intelligence.lua"
 	  			"Function"		"Damage"
 	  			"Target"
 	  			{
@@ -13021,7 +13019,7 @@
 		"ScriptFile"				"abilities/life_in_arena/ancient_priestess_spirit_link.lua"
 		"AbilityTextureName"		"ancient_priestess_spirit_link"
 	
-	  	"MaxLevel"               "3"
+	  	"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
@@ -13034,7 +13032,7 @@
 		"AbilityCastRange"			"800"
 		"AbilityCastPoint"			"0"
 		"AbilityCooldown"			"20"
-		"AbilityManaCost"			"60 70 80"
+		"AbilityManaCost"			"60 70 80 90"
 			
 		//"AOERadius"					"800"
 	
@@ -13064,12 +13062,12 @@
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"max_unit"		"3 6 9"
+				"max_unit"		"3 6 9 12"
 			}
 			"05"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"heal_value"		"1 1 1"
+				"heal_value"		"1 2 3 4"
 			}
 			"06"
 			{
@@ -16010,14 +16008,12 @@
 	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"     "golem_explosion"
 	
-	    "AbilityCooldown" "24 22 20"
+	    "AbilityCooldown" "24 22 20 18"
 	    "AbilityCastRange"  "225"
-	    "AbilityManaCost" "70 80 90"
+	    "AbilityManaCost" "70 80 90 100"
 	    "AoERadius"  "225"
 	    
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "1"
-	    "LevelsBetweenUpgrades"  "2"
+	    "MaxLevel"               "4"
 	  
 	    "AbilityCastPoint"  "0.2"
 	    "AbilityCastRange"  "0"
@@ -16041,12 +16037,12 @@
 	        "02"
 	        {
 	            "var_type"                "FIELD_INTEGER"
-	            "hp_prc_dmg"              "10"
+	            "hp_prc_dmg"              "10 15 20 30"
 	        }
 	        "03"
 	        {
 	            "var_type"                "FIELD_INTEGER"
-	            "burn_damage"             "20 40 60"
+	            "burn_damage"             "20 40 60 80"
 	        }
 	        "04"
 	        {
