@@ -18444,20 +18444,20 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityTextureName" 			"invoker_retro_disarm"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 		"AbilityProcsMagicStick" 		"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"100"
 		"AbilityCastRange"				"500" 
 		
 		"precache"
@@ -18472,13 +18472,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 2 3 4 5 6 7 8"  //Increases with Exort.
+				"duration"				"2 2.5 3 4"  //Increases with Exort.
 			}
 	
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cast_range"			"500 600 700 800 900 1000 1100 1200"  //Increases with Exort.
+				"cast_range"			"500"  //Increases with Exort.
 			}
 			"03"
 			{
@@ -18527,7 +18527,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_reference.vpcf"
+						"EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
 						"EffectAttachType"  "follow_overhead"
 						"Target"            "TARGET"
 					}

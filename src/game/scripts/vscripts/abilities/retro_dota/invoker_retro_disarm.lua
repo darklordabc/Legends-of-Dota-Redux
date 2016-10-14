@@ -4,7 +4,7 @@
 	Called when Disarm is cast.  Remove the attack command from a unit.
 ================================================================================================================= ]]
 function invoker_retro_disarm_on_spell_start(event)
-	local exort_ability = event.caster:FindAbilityByName("invoker_retro_exort")
+	local exort_ability = event.caster:FindAbilityByName("invoker_retro_disarm")
 	if exort_ability ~= nil then
 		local duration = event.ability:GetLevelSpecialValueFor("duration", exort_ability:GetLevel() - 1) 
 		event.ability:ApplyDataDrivenModifier(event.caster, event.target, "modifier_invoker_retro_disarm", {})
