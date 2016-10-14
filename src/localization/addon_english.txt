@@ -3185,6 +3185,9 @@
 		"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable."
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_duration" "DURATION:"
 		
 		//Disarm (Broken into 8 spells)
 		"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"
