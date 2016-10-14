@@ -1,4 +1,6 @@
-﻿require('lib/timers')
+﻿if IsServer() then
+	require('lib/timers')
+end
 --[[
 	Author: Noya
 	Date: 25.01.2015.

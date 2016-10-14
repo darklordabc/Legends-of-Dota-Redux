@@ -1,4 +1,7 @@
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
+
 function LightningShieldOnSpellStart(event)
 	local caster = event.caster
 	local ability = event.ability

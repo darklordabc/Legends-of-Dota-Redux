@@ -4,7 +4,9 @@
 	Creates a building, adds ability to spawn units every at an interval which decreases with engineering_upgrade levels
 ]]
 
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
 
 function BuildPocketFactory( event )
 	-- Variables

@@ -1,4 +1,6 @@
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
 
 --[[
 	Author: Noya https://github.com/MNoya/DotaCraft/blob/master/game/dota_addons/dotacraft/scripts/vscripts/heroes/tinker/cluster_rockets.lua
