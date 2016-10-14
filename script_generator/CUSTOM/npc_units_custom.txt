@@ -1925,6 +1925,16 @@
 			// Betrayal
 			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_betrayal.vpcf"
 			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_betrayal_explosion.vpcf"
+			// Portal
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+			// Scout
+			"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"model"		"models/items/courier/snowl/snowl_flying.vmdl"
+			// Invisiblity Aura
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
 		}
 	}
 
@@ -2636,6 +2646,70 @@
 				"Wearable1"		{	"ItemDef"		"6485"		} //"Mortar Forge Steam Exoskeleton"
 			}
 		}
+	}
+	
+	//Retro Dota
+	"npc_dota_invoker_retro_scout_unit"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/items/courier/snowl/snowl_flying.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"0"			// Name of sound set.
+		"Level"						"1"
+		"ModelScale"				"1.0"
+		"IsSummoned"				"1"
+		"UnitLabel"					"Owl Scout"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"invoker_retro_scout_unit_ability"	// Ability 1
+		"Ability2"					""				// Ability 2
+		"Ability3"					""				// Ability 3
+		"Ability4"					""				// Ability 4
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"165"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"20"		// Experience earn.
+		"BountyGoldMin"				"30"		// Gold earned min.
+		"BountyGoldMax"				"30"		// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"200"		// Speed.
+		"MovementTurnRate"			"0.6"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"40"		// Base health.
+		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_WEAK"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"WakesNeutrals"				"0"
 	}
 	
 }

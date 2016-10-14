@@ -18018,6 +18018,796 @@
 				}
 			}
 		}
-	}	
+	}
+
+	"invoker_retro_portal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"AbilityTextureName" 			"invoker_retro_portal"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_SUN_STRIKE"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityProcsMagicStick" 		"1"
+		"CastFilterRejectCaster" "1"
+		
+		// Stats	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 28 26 24"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"350 500 750 1000"
+		"AbilityCastPoint"				".75"  //Change the variable cast_point if this is.
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"0"  //Increases with Wex.
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"350 500 750 1000"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_point"			".75"  //Change AbilityCastPoint if this is.
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/retro_dota/invoker_retro_portal.lua"
+				"Function"				"invoker_retro_portal_on_ability_phase_start"
+				"CastPoint"				"%cast_point"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/retro_dota/invoker_retro_portal.lua"
+				"Function"				"invoker_retro_portal_on_spell_start"
+			}
+		}
+	}
+	/// Invisibility Aura
+	"invoker_retro_invisibility_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName" 			"invoker_retro_invisibility_aura"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"500"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500" 
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_time"				"4 3 2 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_invisibility_aura"
+			{
+				"Passive"  			"1"
+				"IsHidden"			"0"
+		
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_on_interval_think"
+						"FadeTime"		"%fade_time"
+					}
+				}
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_on_created"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_on_destroy"
+					}
+				}
+								
+			}
+			
+			//A modifier this is applied to units while they are within the radius of a friendly Invoker's Invisibility Aura.
+			"modifier_invoker_retro_invisibility_aura_in_radius"
+			{
+				"Duration"			".5"
+				"Passive"  			"0"
+				"IsHidden"			"1"
+				
+				"OnAbilityExecuted"  //Remove the invisibility modifier from this unit (if applicable).
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_in_radius_on_ability_executed"
+					}
+				}
+				
+				//Note: For parity, the invisibility should be removed when the autoattack projectile appears, 
+				//but there is currently no event that can be used for this.
+				"OnAttackStart" 
+				{				
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_in_radius_on_attack_start"
+					}
+				}
+			}
+			
+			"modifier_invoker_retro_invisibility_aura_effect"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			".5"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"TextureName"		"invoker_retro_invisibility_aura"
+	
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"					"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				"ThinkInterval" 		".03"
+				//Repeatedly apply the stock modifier_invisible for the sole purpose of making the unit have a transparent texture.
+				//This can be gotten rid of when we discover how to apply a translucent texture manually.
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function"		"modifier_invoker_retro_invisibility_aura_effect_on_interval_think"
+					}
+				}				
+			}
+		}
+	}
+	// Scout
+	"invoker_retro_scout_unit_ability"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"invoker_retro_scout"
+		"MaxLevel" 						"1"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+		"Modifiers"
+		{
+			"modifier_invoker_retro_scout_unit_ability"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+	
+				"EffectName"        "particles/items2_fx/ward_true_sight.vpcf"
+				"EffectAttachType"  "follow_origin"
+				
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/retro_dota/invoker_retro_scout.lua"
+						"Function"		"modifier_invoker_retro_scout_unit_ability_on_interval_think"
+					}
+				}
+			}
+		}
+	}
+	
+	
+	"invoker_retro_scout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" 			"invoker_retro_scout"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_FORGE_SPIRIT"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"175"
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"model"		"models/items/courier/snowl/snowl_flying.vmdl"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"owl_duration"				"15 18 21 24"  
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"owl_vision"				"500"  
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"owl_movespeed"				"200 250 300 350"  
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Mirana.Leap.Owlcat"
+				"Target"		"CASTER"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/retro_dota/invoker_retro_scout.lua"
+				"Function"		"invoker_retro_scout_on_spell_start"
+			}
+		}
+	}
+	//Confus
+	"invoker_retro_confuse"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_confuse"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_FORGE_SPIRIT"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"300"
+		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5 10 15 20 25 30 35 40"  //Increases with Quas.  A "ghost" unit is also spawned that will last twice as long.  These values are hardcoded into the tooltip.
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"300 400 500 600 700 800 900 1000"  //Increases with Exort.  This value is hardcoded into each ability's AbilityCastRange.
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage_percent"	"150 140 130 120 110 100 90 80"  //Increases with Wex.  These values are hardcoded into the tooltip.
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/retro_dota/invoker_retro_confuse.lua"
+				"Function"				"invoker_retro_confuse_on_spell_start"
+				"Target"				"POINT"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_confuse_illusion"
+			{
+				"Passive"  			"0"
+				"IsHidden" 			"1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_invoker_retro_confuse_ghost"
+			{
+				"Passive"			"0"
+				"IsHidden" 			"1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"  	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"    	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"  		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"       	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"   		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"   		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"    		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"  		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//Disarm
+	"invoker_retro_disarm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_disarm"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"500" 
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1 2 3 4 5 6 7 8"  //Increases with Exort.
+			}
+	
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"500 600 700 800 900 1000 1100 1200"  //Increases with Exort.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+	
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.HeavensHalberd.Activate"
+				"Target" 		"TARGET"
+			}
+			
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
+				"EffectAttachType"  "PATTACH_ABSORIGIN"
+				"Target"            "TARGET"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/retro_dota/invoker_retro_disarm.lua"
+				"Function"				"invoker_retro_disarm_on_spell_start"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_invoker_retro_disarm"
+			{
+				"Duration"			"%duration"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"TextureName"		"invoker_retro_disarm"
+				
+				"EffectName"            "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+				"EffectAttachType"      "PATTACH_ABSORIGIN"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_reference.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"  	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//Firestorm
+	"invoker_retro_firestorm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_firestorm"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"550"
+		"AoERadius"						"300"  //Update fireball_cast_radius if this is.
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_fly.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_explosion.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_crumble.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"num_fireballs"						"2 4 6 8 10 12 14 16"  //Increases with Exort.
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"fireball_land_delay"				".5"  //The time between when the fireball spawns and when it lands.  If this is changed, modify invoker_retro_firestorm_fireball_fly.vpcf's "travel time" under Constraint -> "Constrain distance to path between two control points"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"fireball_delay_between_spawns"		".25"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"fireball_cast_radius"				"300"  //Update "AoERadius" if this is.
+			}
+			"05"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"fireball_damage_aoe"				"200"  //If this is changed, modify several particle effect radii.
+			}
+			"06"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"fireball_landing_damage"			"30"
+			}
+			"07"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"fireball_aoe_damage_per_second"	"150"
+			}
+			"08"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"fireball_aoe_damage_interval"		".5"
+			}
+			"09"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"fireball_duration"					"7"
+			}
+			"10"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"fireball_explosion_damage"			"150"
+			}
+			"11"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"fireball_vision_radius"			"75"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
+				"Function"						"invoker_retro_firestorm_on_spell_start"
+				"Target"						"POINT"
+				"FireballCastRadius"			"%fireball_cast_radius"
+				"FireballLandDelay"				"%fireball_land_delay"
+				"FireballDelayBetweenSpawns"	"%fireball_delay_between_spawns"
+				"FireballVisionRadius"			"%fireball_vision_radius"
+				"FireballDamageAoE"				"%fireball_damage_aoe"
+				"FireballLandingDamage"			"%fireball_landing_damage"
+				"FireballDuration"				"%fireball_duration"
+				"FireballExplosionDamage"		"%fireball_explosion_damage"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_firestorm_fireball_duration"
+			{
+				"Passive"  			"0"
+				"IsHidden" 			"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				
+				"ThinkInterval" 	".03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
+						"Function"						"modifier_invoker_retro_firestorm_fireball_duration_on_interval_think"
+						"FireballDuration"				"%fireball_duration"
+					}
+				}
+			}		
+			//This aura emitter is placed on landed fireballs to make it so the DoTs from multiple fireballs do not stack.
+			"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_emitter"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Aura" 				"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"
+				"Aura_Radius" 		"%fireball_damage_aoe"
+				"Aura_Teams" 		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" 		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"TextureName"		"invoker_retro_firestorm"
+				
+				"ThinkInterval" 	"%fireball_aoe_damage_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
+						"Function"						"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_on_interval_think"
+						"FireballAoEDamageInterval"		"%fireball_aoe_damage_interval"
+						"FireballAoEDamagePerSecond"	"%fireball_aoe_damage_per_second"
+					}
+				}
+			}
+		}
+	}
+	
+	"invoker_retro_deafening_blast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_deafening_blast"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"350"
+		"AbilityCastRange"				"700"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_debuff.vpcf"
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_impact.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mute_duration"			"1.5 2 2.5 3 3.5 4 4.5 5"  //Increases with Exort.
+			}
+	
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"65 130 195 260 325 390 455 520"  //Increases with Exort.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/retro_dota/invoker_retro_deafening_blast.lua"
+				"Function"				"invoker_retro_deafening_blast_on_spell_start"
+			}
+			
+			"FireEffect"
+			{
+				"EffectName"           "particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_impact.vpcf"
+				"EffectAttachType"     "PATTACH_ABSORIGIN_FOLLOW"
+				"Target"               "TARGET"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_invoker_retro_deafening_blast"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				"TextureName"		"invoker_retro_deafening_blast"
+				
+				"EffectName"            "particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_debuff.vpcf"
+				"EffectAttachType"      "PATTACH_ABSORIGIN"
+	
+				"States"
+				{
+					"MODIFIER_STATE_MUTED"  				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PASSIVES_DISABLED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/generic_gameplay/generic_silence.vpcf"
+						"EffectAttachType"	"follow_overhead"
+					}
+				}
+			}
+		}
+	}
 	
 }
