@@ -18348,19 +18348,19 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" 			"invoker_retro_confuse"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_FORGE_SPIRIT"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 		"AbilityProcsMagicStick" 		"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"15"
 		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"300"
+		"AbilityCastRange"				"700 1000 1200 1500"
 		
 		"precache"
 		{
@@ -18374,17 +18374,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 10 15 20 25 30 35 40"  //Increases with Quas.  A "ghost" unit is also spawned that will last twice as long.  These values are hardcoded into the tooltip.
+				"duration"					"5 10 15 20"  //Increases with Quas.  A "ghost" unit is also spawned that will last twice as long.  These values are hardcoded into the tooltip.
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"300 400 500 600 700 800 900 1000"  //Increases with Exort.  This value is hardcoded into each ability's AbilityCastRange.
+				"cast_range"				"700 1000 1200 1500"  //Increases with Exort.  This value is hardcoded into each ability's AbilityCastRange.
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"incoming_damage_percent"	"150 140 130 120 110 100 90 80"  //Increases with Wex.  These values are hardcoded into the tooltip.
+				"incoming_damage_percent"	"150 140 130 120"  //Increases with Wex.  These values are hardcoded into the tooltip.
 			}
 			"04"
 			{
@@ -18457,7 +18457,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"100 75 100 125"
 		"AbilityCastRange"				"500" 
 		
 		"precache"
@@ -18721,20 +18721,20 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET "
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityTextureName" 			"invoker_retro_deafening_blast"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 		"AbilityProcsMagicStick" 		"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"350"
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"200"
 		"AbilityCastRange"				"700"
 		
 		"precache"
@@ -18750,13 +18750,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mute_duration"			"1.5 2 2.5 3 3.5 4 4.5 5"  //Increases with Exort.
+				"mute_duration"			"2 3 4 5"  
 			}
 	
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"65 130 195 260 325 390 455 520"  //Increases with Exort.
+				"damage"				"65 130 195 260" 
 			}
 			"03"
 			{

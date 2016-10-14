@@ -2818,7 +2818,7 @@
 		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"	"Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence."
 		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"	"INTELLIGENCE MULTIPLIER:"			
 		
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link"
+		"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link [WIP]"
 		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_Description"	"Links units together in a chain. All units with Spirit Link on them will live longer, by distributing damage they take across other Spirit Linked units. Linked unit also get bonus health regeneration."
 		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_distribution_tooltip"	"%DISTRIBUTED DAMAGE PERCENTAGE:"			
 		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_max_unit"				"NUMBER OF TARGETS:"		
@@ -2828,7 +2828,7 @@
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link"	"Spirit Link"
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link_Description" "This unit gains bonus regeneration and all damage dealt to him is distributed across all linked allies."
 		
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection"
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection [WIP]"
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_damage_absorb"	"DAMAGE ABSORBED:"			
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_duration"				"DURATION:"		
@@ -2842,7 +2842,7 @@
 		"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
 		"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
 		
-		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
+		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier [WIP]"
 		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. Archmage can givve the barrier to his ally. The barrier loses the ammount of damage blocked every second."
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol"	"%MANA SPENT INTO DAMAGE BLOCK:"
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol1"	"MANA BLOCKED REDUCTION PER SECOND:"
@@ -2850,16 +2850,11 @@
 		"DOTA_Tooltip_modifier_archmage_magic_barrier"	"Magic Barrier"
 		"DOTA_Tooltip_modifier_archmage_magic_barrier_Description" "The barrier can block %dMODIFIER_PROPERTY_TOOLTIP%% damage."
 		
-		"DOTA_Tooltip_ability_archmage_anomaly"	"Anomaly"
+		"DOTA_Tooltip_ability_archmage_anomaly"	"Anomaly [WIP]"
 		"DOTA_Tooltip_ability_archmage_anomaly_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomly, will be applied to all enemies in it."
 		"DOTA_Tooltip_ability_archmage_anomaly_duration"	"DURATION:"
 		"DOTA_Tooltip_ability_archmage_anomaly_radius"		"RADIUS:"
 		"DOTA_Tooltip_ability_archmage_anomaly_Note0"	"Can be upgraded by Spherical Staff. Increases duration and manacost."
-
-		"DOTA_Tooltip_ability_archmage_anomaly_staff"	"Anomaly"
-		"DOTA_Tooltip_ability_archmage_anomaly_staff_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomly, will be applied to all enemies in it."
-		"DOTA_Tooltip_ability_archmage_anomaly_staff_duration"	"DURATION:"
-		"DOTA_Tooltip_ability_archmage_anomaly_staff_radius"		"RADIUS:"
 
 		"DOTA_Tooltip_modifier_archmage_anomaly"	"Anomaly"
 		"DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
@@ -2873,7 +2868,7 @@
 		"DOTA_Tooltip_modifier_fire_spear_slow"	"Fire Spear"
 		"DOTA_Tooltip_modifier_fire_spear_slow_Description"	"This unit's movespeed is slowed."
 		
-		"DOTA_Tooltip_ability_berserker_madness"	"Rampage"
+		"DOTA_Tooltip_ability_berserker_madness"	"Rampage [WIP]"
 		"DOTA_Tooltip_ability_berserker_madness_Description"	"Berserker goes mad increasing his attributes for a few seconds."
 		"DOTA_Tooltip_ability_berserker_madness_bonus_all_stats"	"BONUS ATTRIBUTES:"
 		"DOTA_Tooltip_ability_berserker_madness_duration"	"DURATION:"	
@@ -2881,7 +2876,7 @@
 		"DOTA_Tooltip_modifier_berserker_madness"	"Rampage"
 		"DOTA_Tooltip_modifier_berserker_madness_Description"	"This unit's attributes are increased."
 		
-		"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity"
+		"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity [WIP]"
 		"DOTA_Tooltip_ability_brewmaster_ferocity_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains strength."
 		"DOTA_Tooltip_ability_brewmaster_ferocity_bonus_strength"	"BONUS STRENGTH PER UNIT:"
 
@@ -2906,7 +2901,7 @@
 		"DOTA_Tooltip_ability_butcher_skin_bonus_armor"	"+$armor"		
 		"DOTA_Tooltip_ability_butcher_skin_damage_return"	"%DAMAGE RETURN:"	
 		
-		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow [WIP]"
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"LIFETIME:"
 
@@ -2914,7 +2909,7 @@
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_lifetime"	"LIFETIME:"
 		
-		"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
+		"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike [WIP]"
 		"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area 3 seconds and then deals secondary damage over 6 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
 		"DOTA_Tooltip_ability_firelord_flame_strike_radius"	"RADIUS:"	
 		"DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"	"PRIMARY DAMAGE PER SECOND:"
@@ -3070,7 +3065,7 @@
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow"	"Holy Wrath"
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow_Description" "This unit is slowed."
 		
-		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm"
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm [WIP]"
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_Description"	"Enemies in a 500 area of effect get disarmed, but also don't take physical damage. Affected units also lose magic resistance and movement speed."
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_spell_damage_pct"	"%MAGIC RESISTANCE REDUCTION:"	
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_movement_speed"	"%MOVESPEED REDUCTION:"	
@@ -3186,6 +3181,9 @@
 		"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable."
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_duration" "DURATION:"
 		
 		//Disarm (Broken into 8 spells)
 		"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"

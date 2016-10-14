@@ -4,7 +4,10 @@
 	Called when Betrayal is cast.  Moves the target unit to another (custom) team for the duration.
 	Additional parameters: keys.Duration
 ================================================================================================================= ]]
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
+
 function invoker_retro_betrayal_on_spell_start(keys)
 	local target_pid = keys.target:GetPlayerID()
 	local target_player = PlayerResource:GetPlayer(target_pid)	

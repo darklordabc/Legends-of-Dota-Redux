@@ -4,8 +4,10 @@
 	Spawns locusts swarms
 ]]
 
-require('lib/timers')
-require('abilities/life_in_arena/physics')
+if IsServer() then
+	require('lib/timers')
+	require('abilities/life_in_arena/physics')
+end
 
 function LocustSwarmStart( event )
 	local caster = event.caster
