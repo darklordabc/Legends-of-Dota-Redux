@@ -1039,13 +1039,17 @@ function Ingame:FilterDamage( filterTable )
 		end
 	end
 
-	-- if filterTable["damage_type"] == DAMAGE_TYPE_MAGICAL then
 	if victim:HasModifier("modifier_archmage_magic_barrier") then 
 		local blocked = victim:FindModifierByName("modifier_archmage_magic_barrier"):GetBlockedDamage(filterTable["damage"])
 		blocked_damage = blocked_damage + blocked
 		filterTable["damage"] = filterTable["damage"] - blocked
 	end
-	-- end
+
+	if victim:HasModifier("modifier_ancient_priestess_ritual_protection") then 
+		local blocked = victim:FindModifierByName("modifier_ancient_priestess_ritual_protection"):GetBlockDamage(filterTable["damage"])
+		blocked_damage = blocked_damage + blocked
+		filterTable["damage"] = filterTable["damage"] - blocked
+	end
 
      -- Hero perks
     local perkFilters = require('abilities/hero_perks/hero_perks_filters')
