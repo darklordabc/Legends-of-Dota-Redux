@@ -1,5 +1,8 @@
 modifier_butcher_skin = class ({})
-require('abilities/life_in_arena/utils')
+if IsServer() then
+	require('abilities/life_in_arena/utils') 
+end
+
 
 function modifier_butcher_skin:IsHidden()
 	return true
@@ -47,7 +50,6 @@ function modifier_butcher_skin:OnTakeDamage(params)
 			if self:GetParent():PassivesDisabled() then
 				return 0
 			end
-
 			if self.attack_record == params.record and not self.ranged_attack then
 				local target = params.unit
 				local return_damage = self:GetAbility():GetSpecialValueFor("damage_return")*0.01*params.damage

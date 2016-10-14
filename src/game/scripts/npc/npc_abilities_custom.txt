@@ -14189,6 +14189,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"zombie_cooldown"		"15"
 			}
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "zombie_lifetime"       "30"
+            }
 		}
 	}
 	

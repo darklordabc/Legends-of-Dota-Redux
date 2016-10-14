@@ -2892,6 +2892,7 @@
 		"DOTA_Tooltip_ability_butcher_zombie_Description"	"Every 15 seconds a part of Buthcer's body falls off and come to life, fighting for Butcher. Zombies have Abomination of the same level as the hero has. The ability can be toggled off."
 		"DOTA_Tooltip_ability_butcher_zombie_zombie_hp_tooltip"	"ZOMBIE'S HIT POINTS:"		
 		"DOTA_Tooltip_ability_butcher_zombie_zombie_damage_tooltip"	"ZOMBIE'S DAMAGE:"			
+        "DOTA_Tooltip_ability_butcher_zombie_zombie_lifetime" "ZOMBIE'S DURATION:"  
 
 		"DOTA_Tooltip_modifier_butcher_zombie"	"Living Flesh"
 		"DOTA_Tooltip_modifier_butcher_zombie_Description"	"Zombies count."

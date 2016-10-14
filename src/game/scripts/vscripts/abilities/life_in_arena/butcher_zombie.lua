@@ -1,6 +1,8 @@
 butcher_zombie = class ({})
 LinkLuaModifier("modifier_butcher_zombie", "abilities/life_in_arena/modifier_butcher_zombie.lua" ,LUA_MODIFIER_MOTION_NONE)
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
 
 function butcher_zombie:GetIntrinsicModifierName() 
 	return "modifier_butcher_zombie"
@@ -44,14 +46,12 @@ function butcher_zombie:CreateZombie()
 		
 		local modifier = caster:FindModifierByName("modifier_butcher_zombie")
 		modifier:SetStackCount(modifier:GetStackCount()+1)
+
+		-- Setup lifetime
+		zombie:AddNewModifier(zombie,nil,"modifier_kill",{duration=self:GetSpecialValueFor("zombie_lifetime")})
 	end
 end
 
-function butcher_zombie:OnUpgrade()
-	if self:GetLevel() == 1 then
-		self:ToggleAbility()
-	end
-end
 function butcher_zombie:OnUpgrade()
 	if self:GetLevel() == 1 then
 		self:ToggleAbility()
