@@ -16124,8 +16124,9 @@
 			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 			"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 			"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
-			
-		
+
+            "AOERadius" "1000"
+
 			"AbilityCastPoint"				"0.5"
 			"AbilityTextureName"			"paladin_impregnability"
 			
@@ -16232,6 +16233,18 @@
 		
 			}
 			//OnChannelInterrupted
+            "OnChannelInterrupted"
+            {
+                "RemoveModifier"
+                {
+                    "Target"
+                    {
+                        "Center"    "CASTER"
+                        "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                    }
+                    "ModifierName"  "modifier_impregnability_new"
+                }
+            }
 			"OnChannelFinish"
 			{
 				"RemoveModifier"
