@@ -1,7 +1,6 @@
 function AddModifier(event)
 	local target = event.target
 	if not target:IsBuilding() --сколько проверок то
-	and not target:IsHero() 
 	and not target:IsIllusion() 
 	and not target:HasModifier("modifier_kill")
 	and not string.find(target:GetUnitName(),"megaboss") then 

@@ -52,7 +52,7 @@ function modifier_archmage_magic_barrier:GetBlockedDamage(attack_damage)
 	end
 
 	ability.barrierMana = ability.barrierMana - blocked_damage
-	CustomNetTables:SetTableValue("custom_modifier_state", tostring( ability:GetEntityIndex() ) ,{ barrierMana = ability.barrierMana })
+	self:GetAbility().state = { barrierMana = ability.barrierMana }
 
 	return blocked_damage
 end
@@ -66,8 +66,8 @@ function modifier_archmage_magic_barrier:OnAbilityExecuted(params)
 		end
 
 		self:GetAbility().barrierMana = self:GetAbility().barrierMana + eventAbility:GetManaCost(-1)*self.barrierManaPercent
-		CustomNetTables:SetTableValue("custom_modifier_state",tostring(self:GetAbility():GetEntityIndex()),{ barrierMana = self:GetAbility().barrierMana })
-		--print("Archmage[Mana barrier]: Added "..eventAbility:GetManaCost(-1)*self.barrierManaPercent.." mana",self:GetAbility().barrierMana)
+		self:GetAbility().state = { barrierMana = self:GetAbility().barrierMana }
+		print("Archmage[Mana barrier]: Added "..eventAbility:GetManaCost(-1)*self.barrierManaPercent.." mana",self:GetAbility().barrierMana)
 	end
 end
 
@@ -103,13 +103,10 @@ function modifier_archmage_magic_barrier:OnIntervalThink()
 			parent.magicBarrerParticle = nil
 		end
 
-		CustomNetTables:SetTableValue("custom_modifier_state", tostring( ability:GetEntityIndex() ) ,{ barrierMana = ability.barrierMana })
+		self:GetAbility().state = { barrierMana = ability.barrierMana }
+		self:SetStackCount(ability.barrierMana)
 	else
-		local netTable = CustomNetTables:GetTableValue("custom_modifier_state", tostring( ability:GetEntityIndex() ) )
-
-		if netTable then
-			self.barrierMana = netTable.barrierMana
-		end
+		self.barrierMana = self:GetStackCount()
 		--print(ability.barrierMana,"client side")
 	end
 
@@ -125,8 +122,8 @@ function modifier_archmage_magic_barrier:OnDeath(params)
 	end
 	if params.unit == self:GetParent() then
 		self:GetAbility().target = nil
-		CustomNetTables:SetTableValue("custom_modifier_state", tostring( self:GetAbility():GetEntityIndex().."behavior" ), 
-			{ behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET } )
+		self:GetAbility().behavior = { behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET };
+
 		if self:GetCaster():IsAlive() then
 			self:GetCaster():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_archmage_magic_barrier",nil)
 		end

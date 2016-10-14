@@ -7,7 +7,7 @@ function archmage_magic_barrier:GetIntrinsicModifierName()
 end
 
 function archmage_magic_barrier:GetBehavior()
-	local netTable = CustomNetTables:GetTableValue("custom_modifier_state", tostring( self:GetEntityIndex() ).."behavior" )
+	local netTable = self.behavior
 
 	if netTable and netTable.behavior then 
 		return netTable.behavior
@@ -28,16 +28,14 @@ function archmage_magic_barrier:OnSpellStart()
 		self.target = target
 		caster:RemoveModifierByName("modifier_archmage_magic_barrier")
 		target:AddNewModifier(caster,self,"modifier_archmage_magic_barrier",nil)
-		CustomNetTables:SetTableValue("custom_modifier_state", tostring( self:GetEntityIndex() ).."behavior", 
-			{ behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE } )
+		self.behavior = { behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE }
 	else
 		if IsValidEntity(self.target) then
 			self.target:RemoveModifierByName("modifier_archmage_magic_barrier")
 		end
 		self.target = nil
 		caster:AddNewModifier(caster,self,"modifier_archmage_magic_barrier",nil)
-		CustomNetTables:SetTableValue("custom_modifier_state", tostring( self:GetEntityIndex() ).."behavior", 
-			{ behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET } )
+		self.behavior = { behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET }
 	end
 end	
 
