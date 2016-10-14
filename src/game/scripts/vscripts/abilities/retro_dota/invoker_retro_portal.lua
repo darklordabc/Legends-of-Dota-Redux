@@ -4,7 +4,10 @@
 	Called when Portal's cast point begins.  Starts the particle effect and sound.
 	Additional parameters: keys.CastPoint
 ================================================================================================================= ]]
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
+
 function invoker_retro_portal_on_ability_phase_start(keys)
 	local target_origin = keys.target:GetAbsOrigin()
 	local distance_to_target = keys.caster:GetRangeToUnit(keys.target)

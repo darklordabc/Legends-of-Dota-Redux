@@ -1,4 +1,7 @@
-require('abilities/life_in_arena/utils')
+if IsServer() then
+	require('abilities/life_in_arena/utils')
+end
+
 function illusions( event )
 	local caster = event.caster
 	local ability = event.ability

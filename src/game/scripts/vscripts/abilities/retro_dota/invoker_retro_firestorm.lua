@@ -6,7 +6,10 @@
 		keys.FireballVisionRadius, keys.FireballDamageAoE, keys.FireballLandingDamage, keys.FireballDuration,
 		keys.FireballExplosionDamage
 ================================================================================================================= ]]
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
+
 function invoker_retro_firestorm_on_spell_start(keys)
 	local caster_point = keys.caster:GetAbsOrigin()
 	local target_point = keys.target_points[1]

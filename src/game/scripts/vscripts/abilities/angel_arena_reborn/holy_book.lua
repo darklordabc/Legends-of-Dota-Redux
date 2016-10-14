@@ -1,5 +1,6 @@
-require('lib/timers')
-local projectiles =require('lib/projectiles')
+if IsServer() then
+	require('lib/timers')
+end
 
 function GetDamagePercent(caster, ability)
 	summ_pct = ability:GetSpecialValueFor("damage_percent")
@@ -23,7 +24,7 @@ function HolyBook_attack( keys )
 	if caster and not caster:IsRealHero() then return end
 	local target = keys.target
 	local ability = keys.ability
-
+	local projectiles = require('lib/projectiles')
 	local position = keys.target:GetAbsOrigin()
 	local team = keys.target:GetOpposingTeamNumber()  
 	local radius = keys.Radius
