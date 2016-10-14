@@ -2814,16 +2814,18 @@
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage" 			"BURN:"
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage_pct" 		"%DAMAGE:"
 	
+	//Arcane Barrage
 	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence"	"Arcane Barrage"
-		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"	"Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence."
-		"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"	"INTELLIGENCE MULTIPLIER:"			
-		
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link"
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_Description"	"Links units together in a chain. All units with Spirit Link on them will live longer, by distributing damage they take across other Spirit Linked units. Linked unit also get bonus health regeneration."
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_distribution_tooltip"	"%DISTRIBUTED DAMAGE PERCENTAGE:"			
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_max_unit"				"NUMBER OF TARGETS:"		
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_heal_value"	"BONUS REGENERATION:"			
-		"DOTA_Tooltip_ability_ancient_priestess_spirit_link_duration"	"DURATION:"	
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"	"Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence."
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"	"INTELLIGENCE MULTIPLIER:"			
+	
+	//Spirit Link
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link"
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_Description"	"Links units together in a chain. All units with Spirit Link on them will live longer, by distributing damage they take across other Spirit Linked units. Linked unit also get bonus health regeneration."
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_distribution_tooltip"	"%DISTRIBUTED DAMAGE PERCENTAGE:"			
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_max_unit"				"NUMBER OF TARGETS:"		
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_heal_value"	"BONUS REGENERATION:"			
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_duration"	"DURATION:"	
 
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link"	"Spirit Link"
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link_Description" "This unit gains bonus regeneration and all damage dealt to him is distributed across all linked allies."

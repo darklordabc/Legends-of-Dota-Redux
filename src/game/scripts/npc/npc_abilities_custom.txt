@@ -12959,12 +12959,10 @@
 	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"     "ancient_priestess_surge_of_intelligence"
 	  
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 		
 	   "AbilityCooldown"        "16"
-	   "AbilityManaCost"        "90 180 360"
+	   "AbilityManaCost"        "120 240 360 480"
 	
 	  	// Stats
 	  	//-------------------------------------------------------------------------------------------------------------
@@ -12986,7 +12984,7 @@
 	    	"02"
 	    	{
 	      		"var_type"              "FIELD_INTEGER"
-	      		"koef_damage"    		"3 6 9"
+	      		"koef_damage"    		"3 6 9 12"
 	    	}
 	  	}
 	    
@@ -12996,7 +12994,7 @@
 	  	{
 	  		"RunScript"
 	  		{
-	  			"ScriptFile"	"heroes/AncientPriestess/surge_of_intelligence.lua"
+	  			"ScriptFile"	"abilities/life_in_arena/surge_of_intelligence.lua"
 	  			"Function"		"Damage"
 	  			"Target"
 	  			{
@@ -13034,7 +13032,7 @@
 		"AbilityCastRange"			"800"
 		"AbilityCastPoint"			"0"
 		"AbilityCooldown"			"20"
-		"AbilityManaCost"			"60 70 80"
+		"AbilityManaCost"			"60 70 80 90"
 			
 		//"AOERadius"					"800"
 	
