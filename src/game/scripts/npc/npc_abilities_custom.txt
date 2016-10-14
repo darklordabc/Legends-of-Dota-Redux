@@ -14081,16 +14081,7 @@
 			
 			"EffectName"			"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
 			"EffectAttachType"		"follow_origin"	  
-	
-			"ThinkInterval"	"%duration - 0.03"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/life_in_arena/MadnessFix.lua"
-					"Function"		"MadnessFix"
-				}
-			}
+
 	    }
 	  } 
 	}
