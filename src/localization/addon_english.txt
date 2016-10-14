@@ -3144,7 +3144,7 @@
 		/////////
 		//Betrayal
 		"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal"
-		"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy unit to your team, allowing it to be damaged by its former allies' spells and autoattacks."
+		"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks."
 		"DOTA_Tooltip_Ability_invoker_retro_betrayal_duration"							  "DURATION:"
 				
 		"DOTA_Tooltip_modifier_invoker_retro_betrayal"                    				  "Betrayal"
