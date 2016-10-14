@@ -18541,13 +18541,13 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" 			"invoker_retro_firestorm"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 		"AbilityProcsMagicStick" 		"1"
 		
 		// Stats
@@ -18575,7 +18575,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"num_fireballs"						"2 4 6 8 10 12 14 16"  //Increases with Exort.
+				"num_fireballs"						"2 4 6 8"  //Increases with Exort.
 			}
 			"02"
 			{

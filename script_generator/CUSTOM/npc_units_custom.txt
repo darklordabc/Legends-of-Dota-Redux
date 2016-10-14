@@ -1935,6 +1935,21 @@
 			"model"		"models/items/courier/snowl/snowl_flying.vmdl"
 			// Invisiblity Aura
 			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
+			// Firestorm
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_fly.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_explosion.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_crumble.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			//Defeaning Blast
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_debuff.vpcf"
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_impact.vpcf"
+			//Disarm
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
+			//Confuse
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
 		}
 	}
 
@@ -2710,6 +2725,38 @@
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		
 		"WakesNeutrals"				"0"
+	}
+	
+	"npc_dota_invoker_retro_firestorm_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+			    "BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "invoker_retro_firestorm_fireball"
+				"Ability2"					"invoker_retro_firestorm"
+	}
+	
+	//A dummy unit used to fire an explosion effect after a npc_dota_invoker_retro_firestorm_unit is destroyed.
+	"npc_dota_invoker_retro_firestorm_fireball_explosion_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+			    "BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit_passive"
 	}
 	
 }

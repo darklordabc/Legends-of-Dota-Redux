@@ -3180,4 +3180,35 @@
 		
 		"DOTA_Tooltip_modifier_invoker_retro_scout_unit_ability"                          "Owl Scout"
 		"DOTA_Tooltip_modifier_invoker_retro_scout_unit_ability_Description"              "Invisible and invulnerable.  Has flying vision and truesight."
+		
+		//Confuse
+		"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable."
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
+		
+		//Disarm (Broken into 8 spells)
+		"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"
+		"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit."
+		"DOTA_Tooltip_Ability_invoker_retro_disarm_duration"				"DURATION:"
+		"DOTA_Tooltip_Ability_invoker_retro_disarm_cast_range" 			  	"CAST RANGE:"		
+
+		"DOTA_Tooltip_modifier_invoker_retro_disarm"                  					  "Disarm"
+		"DOTA_Tooltip_modifier_invoker_retro_disarm_Description"                          "Disarmed."
+		
+		//Firestorm
+		"DOTA_Tooltip_Ability_invoker_retro_firestorm"                                    "Firestorm"
+		"DOTA_Tooltip_Ability_invoker_retro_firestorm_Description"                        "Calls a number of fireballs from the sky to successively and randomly land in the targeted area.  The effects of each fireball have a radius of %fireball_damage_aoe% units.  Upon landing, a fireball will deal %fireball_landing_damage% damage to all nearby enemy units, after which it will deal %fireball_aoe_damage_per_second% damage per second to nearby enemy units while it remains in the ground.  %fireball_duration% seconds after landing, it will explode, dealing %fireball_explosion_damage% damage to nearby enemy units."
+		"DOTA_Tooltip_Ability_invoker_retro_firestorm_num_fireballs" 					  "NUMBER OF FIREBALLS:"
+					
+		"DOTA_Tooltip_modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"                "Firestorm"
+		"DOTA_Tooltip_modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_Description"    "Taking periodic damage from a nearby fireball."
+		
+		//Deafening Blast
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Blast"
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. "
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_mute_duration"                "DURATION:"
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_damage"                       "DAMAGE:"				
+		
+		"DOTA_Tooltip_modifier_invoker_retro_deafening_blast"                  			  "Deafening Blast"
+		"DOTA_Tooltip_modifier_invoker_retro_deafening_blast_Description"                 "This unit's passives are disabled."
 }
