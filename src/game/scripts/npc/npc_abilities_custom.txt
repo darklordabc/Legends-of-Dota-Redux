@@ -13021,7 +13021,7 @@
 		"ScriptFile"				"abilities/life_in_arena/ancient_priestess_spirit_link.lua"
 		"AbilityTextureName"		"ancient_priestess_spirit_link"
 	
-	  	"MaxLevel"               "3"
+	  	"MaxLevel"               "4"
 		"RequiredLevel"          "1"
 		"LevelsBetweenUpgrades"  "2"
 			
@@ -13064,12 +13064,12 @@
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"max_unit"		"3 6 9"
+				"max_unit"		"3 6 9 12"
 			}
 			"05"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"heal_value"		"1 1 1"
+				"heal_value"		"1 2 3 4"
 			}
 			"06"
 			{
