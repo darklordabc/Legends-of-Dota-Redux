@@ -14936,19 +14936,17 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"firelord_fire_trap"
 	
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 			
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 			
-		"AbilityCastRange"			"500"
+		"AbilityCastRange"			"600"
 		"AbilityCastPoint"			"0"
 		"AbilityCooldown"			"25"
-		"AbilityManaCost"			"150 200 250"
+		"AbilityManaCost"			"50 100 150 200"
 			
 		"AbilitySpecial"
 		{
@@ -14960,17 +14958,17 @@
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"detonation_radius"			"300 350 400"
+				"detonation_radius"			"250 300 350 400"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stun_duration"				"3 5 7"
+				"stun_duration"				"2 3 5 7"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stun_hero_duration"		"2 3 4"
+				"stun_hero_duration"		"1 2 3 3.5"
 			}
 			// Phew, I'm glad they balanced Techies.
 			"05"
@@ -14982,7 +14980,7 @@
 			"06"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"detection_radius"			"250 275 300"
+				"detection_radius"			"250 275 300 325"
 			}
 		}
 	
@@ -17318,15 +17316,13 @@
 		"SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
 	
 		"AbilityTextureName"     "dark_knight_dark_forces"
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"      "0.0"
 		"AbilityCooldown"       "14"
-		"AbilityManaCost"       "60 100 140"
+		"AbilityManaCost"       "60 100 140 180"
 		"AbilityCastRange"		"150"
 	
 		// Special
@@ -17341,7 +17337,7 @@
 			"02"
 			{
 				"var_type"            "FIELD_INTEGER"
-				"mana_percentage"     "10 15 20"
+				"mana_percentage"     "10 15 20 25"
 			}
 			"03"
 			{
