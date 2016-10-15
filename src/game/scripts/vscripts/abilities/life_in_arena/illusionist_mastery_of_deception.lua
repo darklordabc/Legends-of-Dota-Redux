@@ -15,13 +15,6 @@ function illusions( event )
 		caster.count_ill = 0
 	end
 	
-	if string.find(attacker:GetUnitName(),"megaboss") then
-		ability:RefundManaCost()
-		ability:EndCooldown()
-		--FireGameEvent( 'custom_error_show', { player_ID = event.caster:GetPlayerOwnerID(), _error = "#lia_hud_error_item_lia_staff_of_illusions_megaboss" } )
-		return
-	end
-
 	local duration = ability:GetSpecialValueFor("time")
 	local outgoingDamage = ability:GetSpecialValueFor("outgoing_damage")
 	local incomingDamage = ability:GetSpecialValueFor("incoming_damage")

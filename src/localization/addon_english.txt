@@ -3083,7 +3083,7 @@
 		"DOTA_Tooltip_modifier_illusionist_agility_paws_i_Description"	"Number of agility gained."
 
 		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions"	"Mastery of Illusions"
-		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_Description"	"Illusionist creates 3 illusions of a target unit and banishes it for 3 seconds. Magic resist of this unit reduces by 40%%."
+		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_Description"	"Illusionist creates 3 illusions of a target unit and makes it immune from physical damage for 3 seconds. Magic resist of this unit reduces by 30%%."
 		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_life_illusion"	"ILLUSIONS LIFETIME:"
 		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
 		"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
@@ -3117,8 +3117,8 @@
 		"DOTA_Tooltip_ability_kret_poisoning_adsorbVal"	"HEALTH AND MANA REDUCTION:"			
 		
 		"DOTA_Tooltip_ability_kret_lust_for_life"	"Thirst for Life"
-		"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"Murloc gets regeneration based on hit points missing. He also gains bonus health."
-		"DOTA_Tooltip_ability_kret_lust_for_life_bonus_health"	"BONUS HEALTH:"		
+		"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"By sacrificing his intelligence, Murloc gets regeneration based on hit points missing. If Murloc's intelligence is zero, this ability will not work."
+		"DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"	"INTELLECT PENALTY:"		
 		"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
 		"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
 		

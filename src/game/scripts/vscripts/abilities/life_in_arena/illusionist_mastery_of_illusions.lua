@@ -1,3 +1,7 @@
+if IsServer() then
+	require('abilities/life_in_arena/utils')
+end
+
 function AddModifier(keys)
 	local ability = keys.ability
 	local target = keys.target
@@ -11,13 +15,6 @@ function AddModifier(keys)
 		caster.count_ill=0
 	end
 
-	if string.find(target:GetUnitName(),"megaboss") then
-		ability:RefundManaCost()
-		ability:EndCooldown()
-		--FireGameEvent( 'custom_error_show', { player_ID = event.caster:GetPlayerOwnerID(), _error = "#lia_hud_error_item_lia_staff_of_illusions_megaboss" } )
-		return
-	end
-	
 	local durationTarget
 	if target:IsHero() then
 		durationTarget = ability:GetSpecialValueFor("duration_hero")
@@ -29,9 +26,15 @@ function AddModifier(keys)
 	
 	-- дадим ловкость Антаро за каждую вызванную иллюзию: повесим модификатор, где будем все делать
 	local ability2 = caster:FindAbilityByName('illusionist_agility_paws')
+	
+	local max_bonus = 0
+	local bonus_agi = 0
 
-	local bonus_agi = ability2:GetSpecialValueFor("bonus_agility")
-	local max_bonus = ability2:GetSpecialValueFor("max_bonus")
+	if ability2 then
+		bonus_agi = ability2:GetSpecialValueFor("bonus_agility")
+		max_bonus = ability2:GetSpecialValueFor("max_bonus")
+	end
+
 
 	
 	if not caster.curr_agi then
@@ -49,22 +52,26 @@ function AddModifier(keys)
 		local illus = CreateIllusion(target,caster,origin,duration,outgoingDamage,incomingDamage)
 
 		local ability3 = caster:FindAbilityByName('illusionist_whiff_of_deception')
-		if ability3:GetLevel() > 0 then
-			caster.count_ill = caster.count_ill +1
-			-- отнимание коунтера по смерти иллюзии
-			ability3:ApplyDataDrivenModifier(caster, illus, "modifier_illusionist_whiff_of_deception", {})
+		if ability3 then
+			if ability3:GetLevel() > 0 then
+				caster.count_ill = caster.count_ill +1
+				-- отнимание коунтера по смерти иллюзии
+				ability3:ApplyDataDrivenModifier(caster, illus, "modifier_illusionist_whiff_of_deception", {})
+			end
 		end
 
-		if ability2:GetLevel() > 0 then
-			if max_bonus > caster.curr_agi then
-				if max_bonus < caster.curr_agi + bonus_agi then
-					bonus_agi = max_bonus - caster.curr_agi
+		if ability2 then
+			if ability2:GetLevel() > 0 then
+				if max_bonus > caster.curr_agi then
+					if max_bonus < caster.curr_agi + bonus_agi then
+						bonus_agi = max_bonus - caster.curr_agi
+					end
+					caster.curr_agi = caster.curr_agi + bonus_agi
+					caster:ModifyAgility(bonus_agi)
+					caster:CalculateStatBonus()
+					illus.bonus_agi = bonus_agi -- чтобы каждый крип знал сколько он добавил ловки герою
+					ability2:ApplyDataDrivenModifier(caster, illus, "modifier_illusionist_agility_paws", {})
 				end
-				caster.curr_agi = caster.curr_agi + bonus_agi
-				caster:ModifyAgility(bonus_agi)
-				caster:CalculateStatBonus()
-				illus.bonus_agi = bonus_agi -- чтобы каждый крип знал сколько он добавил ловки герою
-				ability2:ApplyDataDrivenModifier(caster, illus, "modifier_illusionist_agility_paws", {})
 			end
 		end
 	end

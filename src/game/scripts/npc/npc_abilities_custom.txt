@@ -16458,9 +16458,7 @@
 		"AbilityTextureName"			                "illusionist_agility_paws"
 		//"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 	
 		//"AbilityCastRange"				"150"
 		
@@ -16471,7 +16469,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"		"1 2 3"
+				"bonus_agility"		"1 2 3 4"
 			}
 			"02"
 			{
@@ -16596,8 +16594,8 @@
 		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
 		"MaxLevel"              "3"
-		"RequiredLevel"          "5"
-		"LevelsBetweenUpgrades"  "4"
+
+
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700 700 700"
 		"AbilityCastPoint"				"0.0 0.0 0.0"
@@ -16618,7 +16616,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reduce_spell_damage_pct"	"-40"
+				"reduce_spell_damage_pct"	"-30"
 			}
 			//"02"
 			//{
@@ -16643,22 +16641,22 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"life_illusion"			"8 9 10"
+				"life_illusion"			"5 6 7"
 			}
 			"07"
 			{
 			  "var_type"               "FIELD_INTEGER"
-			  "outgoing_damage"        "-20 -10 -0"
+			  "outgoing_damage"        "-60 -50 -40"
 			}
 			"08"
 			{
 			  "var_type"          "FIELD_INTEGER"
-			  "incoming_damage"     "200 150 100"
+			  "incoming_damage"     "300 250 200"
 			}
 			"09"
 			{
 			  "var_type"               "FIELD_INTEGER"
-			  "outgoing_damage_tooltip"        "80 90 100"
+			  "outgoing_damage_tooltip"        "40 50 60"
 			}
 		}
 	
@@ -16690,12 +16688,13 @@
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE" "%reduce_spell_damage_pct"
 				    //"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 			"%reduce_movement_speed" 
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
 				}
 	
 				"States"
 				{
 					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"					
 				}			
 			}
 		}	
@@ -17006,13 +17005,12 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"             "abilities/life_in_arena/kret_lust_for_life"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"            	"kret_lust_for_life"
 		//
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -17022,47 +17020,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_health"				"100 200 300"
+				"intellect_sacrifice"				"-5 -10 -15 -25"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tolltip"		"10" 
+				"tolltip"		"15" 
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regen_percent"		"0.15 0.25 0.35" 
+				"health_regen_percent"		"0.10 0.15 0.20 .25" 
 			}
 		}
-	
-		"OnRespawn"
-		{
-			"ApplyModifier"		"modifier_lust_for_life"
-		}
+			
 	
 		"Modifiers"
 		{
-			"modifier_lust_for_life"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"           "%bonus_health"
-				}
-	
-				"ThinkInterval" "1"
-					
-				"OnIntervalThink"
-	    		{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/life_in_arena/lustForLife.lua"
-						"Function"		"UpdateRegen"
-					}
-	    		}	
-			}
 			"modifier_lust_for_life_health_regen"
 			{
 				"IsHidden"		"1"
@@ -17073,7 +17047,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_percent"   
 				}
 			}
-	
+							
 		}
 	
 	}
