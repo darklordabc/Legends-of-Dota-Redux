@@ -3432,6 +3432,19 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if not newBuild or not newHeroName then return end
             newBuild.hero = newHeroName
             newBuild.setAttr = self.selectedPlayerAttr[playerID]
+            local isSameBuild = true
+            for i=1,maxCount do
+                local ability = hero:FindAbilityByName(newBuild[i])
+                if not ability then
+                    isSameBuild = false
+                    break
+                end
+            end
+            if isSameBuild then
+                local player = PlayerResource:GetPlayer(playerID)
+                network:hideHeroBuilder(player)
+                return
+            end
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
