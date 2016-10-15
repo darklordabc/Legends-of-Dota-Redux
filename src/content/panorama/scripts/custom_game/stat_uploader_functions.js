@@ -108,7 +108,7 @@ function LoadFavBuilds( ){
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-      $.Msg(data);
+        $.Msg(data);
     }) );
 }
 
@@ -119,6 +119,12 @@ function LoadBuilds( filter ){
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-      $.Msg(data);
+        var builds = JSON.parse(data);
+
+        // The  container to work with
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+
+        for(var build of builds) 
+            addRecommendedBuild(con, build);
     }) );
 } 

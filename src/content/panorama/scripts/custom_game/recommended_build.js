@@ -2,18 +2,20 @@
 var buildData = null;
 
 function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id) {
+    // Get abilities array from JSON string
+    var curBuild = JSON.parse(build.replace(/'/g, '"'))
     // Push skills
-    for(var slotID=1; slotID<=6; ++slotID) {
+    for(var slotID = 0; slotID < 6; ++slotID) {
         var slot = $('#recommendedSkill' + slotID);
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
         hookSkillInfo(slot);
 
-        if(build[slotID]) {
+        if(curBuild[slotID]) {
             slot.visible = true;
-            slot.abilityname = build[slotID];
-            slot.SetAttributeString('abilityname', build[slotID]);
+            slot.abilityname = curBuild[slotID];
+            slot.SetAttributeString('abilityname', curBuild[slotID]);
         } else {
             slot.visible = false;
         }
@@ -44,11 +46,16 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
 
     $('#recommendedAttribute').SetImage(attrImage);
 
+    // Renum items from 0-5 to 1-6 for server functions
+    var buildForSend = {};
+    for(var slotID = 0; slotID < 6; ++slotID)
+        buildForSend[slotID + 1] = curBuild[slotID];
+
     // Store the build data
     buildData = {
         hero: hero,
         attr: attr,
-        build: build,
+        build: buildForSend,
         id: id
     };
 }
@@ -70,7 +77,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     var build = buildData.build;
 
     // Filter each ability
-    for(var slotID=1; slotID<=6; ++slotID) {
+    for(var slotID = 0; slotID <= 5; ++slotID) {
         // Grab the slot
         var slot = $('#recommendedSkill' + slotID);
 
