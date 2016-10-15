@@ -989,6 +989,8 @@
 	"warning_imba_tower_spell_shield"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 20.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
+	
 		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
