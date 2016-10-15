@@ -2781,7 +2781,7 @@
 	"DOTA_Tooltip_ability_angel_arena_roots_damage"					"DAMAGE:"	
 	"DOTA_Tooltip_ability_angel_arena_roots_armor_reduction"		"ARMOR REDUCE:"	
 
-	"DOTA_Tooltip_ability_angel_arena_rifle"							"Toggle Rifle"
+	"DOTA_Tooltip_ability_angel_arena_rifle"							"Toggle Rifle [PLEASE REVIEW IF ITS ABUSEABLE]"
 	"DOTA_Tooltip_ability_angel_arena_rifle_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
 	"DOTA_Tooltip_ability_angel_arena_rifle_gun_base_attack_time"		"GUN BASE ATTACK:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_gun_range_tooltip"			"GUN RANGE:"
@@ -3048,7 +3048,7 @@
 		"DOTA_Tooltip_modifier_akron_explosion_burn"	"Living Bomb"
 		"DOTA_Tooltip_modifier_akron_explosion_burn_Description"	"This unit is taking damage."
 		
-		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel"
+		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel [WIP]"
 		"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
 		"DOTA_Tooltip_ability_paladin_impregnability_radius"	"RADIUS:"		
 		"DOTA_Tooltip_ability_paladin_impregnability_duration"	"DURATION:"		
@@ -3180,7 +3180,7 @@
 		/// RETRO DOTA
 		/////////
 		//Betrayal
-		"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal"
+		"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal [PLEASE REVIEW CODE]"
 		"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks."
 		"DOTA_Tooltip_Ability_invoker_retro_betrayal_duration"							  "DURATION:"
 				
