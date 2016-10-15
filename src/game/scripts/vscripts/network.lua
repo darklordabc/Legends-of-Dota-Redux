@@ -132,6 +132,17 @@ function Network:hideHeroBuilder(ply, options)
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNewHeroBuild', options)
 end
 
+function Network:showHeroBuilder(ply, options)
+    -- Ensure we have an options table
+    options = options or {}
+
+    -- Ensure we have a valid player
+    if not IsValidEntity(ply) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(ply, 'lodShowIngameBuilder', options)
+end
+
 -- Sends a notification to a player
 function Network:sendNotification(ply, options)
     -- Ensure we have an options table

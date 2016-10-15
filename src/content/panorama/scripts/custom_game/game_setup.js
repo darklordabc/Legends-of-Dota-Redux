@@ -1460,6 +1460,7 @@ var calculateHeroFilters = function(){};
 
 // Balance Mode
 var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
+
 var currentBalance = 0;
 var showTier = {};
 

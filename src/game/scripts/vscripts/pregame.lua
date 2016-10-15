@@ -135,6 +135,11 @@ function Pregame:init()
         this:onOptionChanged(eventSourceIndex, args)
     end)
 
+    -- Player wants to open ingame builder
+    CustomGameEventManager:RegisterListener('lodOnIngameBuilder', function(eventSourceIndex, args)
+        this:onIngameBuilder(eventSourceIndex, args)
+    end)
+
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
@@ -1238,6 +1243,16 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
 
         -- Option values and names are validated at a later stage
         self:setOption(optionName, optionValue)
+    end
+end
+
+-- Player wants to open ingame builder
+function Pregame:onIngameBuilder(eventSourceIndex, args)
+    local playerID = args.playerID
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if IsValidEntity(hero) and hero:IsAlive() then
+        local player = PlayerResource:GetPlayer(playerID)
+        network:showHeroBuilder(player)
     end
 end
 
