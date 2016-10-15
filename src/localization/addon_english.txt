@@ -2830,8 +2830,8 @@
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link"	"Spirit Link"
 		"DOTA_Tooltip_modifier_ancient_priestess_spirit_link_Description" "This unit gains bonus regeneration and all damage dealt to him is distributed across all linked allies."
 		
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection [WIP]"
-		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a magic shield that can block some amout of any damage."
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection"
+		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a shield that can block some amount of any damage."
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_damage_absorb"	"DAMAGE ABSORBED:"			
 		"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_duration"				"DURATION:"		
 
@@ -2870,7 +2870,7 @@
 		"DOTA_Tooltip_modifier_fire_spear_slow"	"Fire Spear"
 		"DOTA_Tooltip_modifier_fire_spear_slow_Description"	"This unit's movespeed is slowed."
 		
-		"DOTA_Tooltip_ability_berserker_madness"	"Rampage [WIP]"
+		"DOTA_Tooltip_ability_berserker_madness"	"Rampage"
 		"DOTA_Tooltip_ability_berserker_madness_Description"	"Berserker goes mad increasing his attributes for a few seconds."
 		"DOTA_Tooltip_ability_berserker_madness_bonus_all_stats"	"BONUS ATTRIBUTES:"
 		"DOTA_Tooltip_ability_berserker_madness_duration"	"DURATION:"	
@@ -3099,7 +3099,7 @@
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow"	"Holy Wrath"
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow_Description" "This unit is slowed."
 		
-		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm [WIP]"
+		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm"
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_Description"	"Enemies in a 500 area of effect get disarmed, but also don't take physical damage. Affected units also lose magic resistance and movement speed."
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_spell_damage_pct"	"%MAGIC RESISTANCE REDUCTION:"	
 		"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_movement_speed"	"%MOVESPEED REDUCTION:"	

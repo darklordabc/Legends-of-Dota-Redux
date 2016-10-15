@@ -13086,10 +13086,9 @@
 	    
 		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
 	    "MaxLevel"               	"3"
-	    "RequiredLevel"          	"6"
 	    
 	    "AbilityCastPoint"              "0"
-	    "AbilityCooldown"               "40 35 30"
+	    "AbilityCooldown"               "60"
 	
 	    "AbilityManaCost"               "150 200 250"
 	
@@ -13105,7 +13104,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage_absorb"     "400 600 800"        
+	            "damage_absorb"     "200 300 400"        
 	        }
 	        "02"
 	        {
@@ -13115,7 +13114,7 @@
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "duration"  		"15"
+	            "duration"  		"10"
 	        }
 	    }
 	}
