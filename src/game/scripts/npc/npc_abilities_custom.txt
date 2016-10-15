@@ -16704,11 +16704,8 @@
 	{
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"lord_of_lightning_holy_wrath"
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "1"
-	    "LevelsBetweenUpgrades"  "2"
-		
-			
+	    "MaxLevel"               "4"
+				
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		//"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		//"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
@@ -16717,7 +16714,7 @@
 			
 		"AbilityCastRange"			"800"
 		//"AbilityCastPoint"			"0"
-		"AbilityCooldown"			"2.0 1.5 1.0"
+		"AbilityCooldown"			"2.0 1.5 1.0 0.5"
 		//"AbilityManaCost"			"200 240 280"
 			
 		//"AOERadius"					"800"
@@ -16726,7 +16723,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"chance_dmg"		"11 12 13"
+				"chance_dmg"		"9 10 11 12"
 			}
 			"02"
 			{
@@ -16735,8 +16732,8 @@
 			}
 			"03"
 			{
-				"var_type"		"FIELD_INTEGER"
-				"damage_per_int"			"3 4 5"
+				"var_type"		"FIELD_FLOAT"
+				"damage_per_int"			".5 .75 1 2"
 			}
 			"04"
 			{
@@ -16756,7 +16753,7 @@
 			"modifier_lord_of_lightning_holy_wrath"
 			{
 				"Passive"			"1"
-				"IsHidden"			"1"
+				"IsHidden"			"0"
 				"Aura"		  		"modifier_lord_of_lightning_holy_wrath_aura"
 				"Aura_Radius" 		"%radius"
 				"Aura_Teams"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"

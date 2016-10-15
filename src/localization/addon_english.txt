@@ -3092,9 +3092,13 @@
 		"DOTA_Tooltip_modifier_illusionist_mastery_of_illusions_Description"	"This unit can't be attacked, but takes more magic damage."
 		
 		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath"	"Holy Wrath"
-		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_Description"	"When Lighnthing Lord or his ally in a 800 radius is attacked, there is a chance that the attacker will be struck by a lightning and take damage. This damage is equal to Lightning Lord's intelligence multiplied by some number. Enemies in a 200 radius around the attacker also take damage. Primary target gets purged."
+		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_Description"	"When Lighnthing Lord or his ally in a 800 radius is attacked, there is a chance that the attacker will be struck by a lightning and take damage. This damage is equal to Lightning Lord's intelligence multiplied by some number. Enemies in a 200 radius around the attacker take half the damage. Primary target gets purged and movement slowed for 1 second."
 		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_chance_dmg"	"%LIGHTNING STRIKE CHANCE:"
 		"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_damage_per_int"	"INTELLIGENCE MULTIPLIER:"	
+		
+		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath"	"Holy Wrath"
+		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_Description" "When enemies attack you or nearby allies, you have a chance to strike them with lighting."
+		
 
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow"	"Holy Wrath"
 		"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow_Description" "This unit is slowed."

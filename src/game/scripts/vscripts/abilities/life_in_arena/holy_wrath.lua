@@ -32,10 +32,9 @@ function damageTo(event)
 		victim = attacker,
 	}
 		
-
 	ApplyDamage(damage_table)
 	attacker:Purge(true, false, false, false, false)
-	attacker:AddNewModifier(caster, ability, "modifier_lord_of_lightning_holy_wrath_slow", {duration = 5})
+	attacker:AddNewModifier(caster, ability, "modifier_lord_of_lightning_holy_wrath_slow", {duration = 1})
 		
 	local lightning = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, attacker)
     local loc = attacker:GetAbsOrigin()
