@@ -2708,8 +2708,8 @@
 	"DOTA_Tooltip_modifier_cripple"								"Crippled"
 	"DOTA_Tooltip_modifier_cripple_Description"					"Damage and movement speed reduced and receiving damage over time."
 
-	"DOTA_Tooltip_ability_angel_arena_berserk"						"Berserker's Rage"
-	"DOTA_Tooltip_ability_angel_arena_berserk_Description"			"You become enraged, gaining increased attack speed and damage and with every attack you will do pure damage from current health of enemy."
+	"DOTA_Tooltip_ability_angel_arena_berserk"						"Savage Rage"
+	"DOTA_Tooltip_ability_angel_arena_berserk_Description"			"You become enraged, gaining increased attack speed and with every attack you will do pure damage from current health of enemy. However, you will receive more incoming damage."
 	"DOTA_Tooltip_ability_angel_arena_berserk_bonus_attack_speed"	"ATTACK SPEED:"		
 	"DOTA_Tooltip_ability_angel_arena_berserk_bonus_damage"			"%INCOMING DAMAGE:"	
 	"DOTA_Tooltip_ability_angel_arena_berserk_damage_pct"			"%DAMAGE ENEMY:"
