@@ -261,6 +261,23 @@ var allOptions = {
 							'lodMutatorKDAFatOMeter': 2
                         }
 					},
+                    {
+                        name: 'lodOptionIngameBuilder',
+                        default: {
+                            'lodOptionIngameBuilder': 0,
+                            'lodOptionIngameBuilderPenalty': 0
+                        },
+                        states: {
+                            'lodOptionIngameBuilder2': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 30
+                            },
+                            'lodOptionIngameBuilder3': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 60
+                            }
+                        }
+                    },
                 ]
             }
         ]
