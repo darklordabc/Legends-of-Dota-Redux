@@ -2472,8 +2472,8 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
 	
 	/// PUCK
-	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Puck Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Puck has a 50% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk"	"Puck Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description"	"Puck has a 50%d% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
 	
 	/// PUDGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
@@ -2911,13 +2911,11 @@
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side."
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_ultimate_lifetime"	"LIFETIME:"
 		
-		"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike [WIP]"
-		"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area 3 seconds and then deals secondary damage over 6 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+		"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
+		"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
 		"DOTA_Tooltip_ability_firelord_flame_strike_radius"	"RADIUS:"	
-		"DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"	"PRIMARY DAMAGE PER SECOND:"
-		"DOTA_Tooltip_ability_firelord_flame_strike_burn_dps"	"SECONDARY DAMAGE PER SECOND:"	
+		"DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"	"DAMAGE PER SECOND:"
 		"DOTA_Tooltip_ability_firelord_flame_strike_delay"	"CHANNELING TIME:"
-		"DOTA_Tooltip_ability_firelord_flame_strike_Note0"	"Can be upgraded by Spherical Staff. Increases primary damage."
 
 		"DOTA_Tooltip_modifier_flame_strike_first_burn"	"Flame Strike"
 		"DOTA_Tooltip_modifier_flame_strike_first_burn_Description"	"This unit is taking damage."
