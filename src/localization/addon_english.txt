@@ -2878,13 +2878,46 @@
 		"DOTA_Tooltip_modifier_berserker_madness"	"Rampage"
 		"DOTA_Tooltip_modifier_berserker_madness_Description"	"This unit's attributes are increased."
 		
-		"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity [WIP]"
+		// Ferocity
+		"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity STR"
 		"DOTA_Tooltip_ability_brewmaster_ferocity_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains strength."
 		"DOTA_Tooltip_ability_brewmaster_ferocity_bonus_strength"	"BONUS STRENGTH PER UNIT:"
-
-		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua"	"Ferocity"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_radius"	"RADIUS:"
+		
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua"	"Ferocity STR"
 		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_Description"	"Strength granted by this ability."
 		
+		// Ferocity INT				
+		"DOTA_Tooltip_ability_brewmaster_ferocity_int"	"Ferocity INT"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_int_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains intellect."
+		"DOTA_Tooltip_ability_brewmaster_ferocity_int_bonus_intelligence"	"BONUS INTELLECT PER UNIT:"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_int_radius"	"RADIUS:"
+		
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_int"	"Ferocity INT"
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_int_Description"	"Intellect granted by this ability."
+
+		// Ferocity AGI
+				
+		"DOTA_Tooltip_ability_brewmaster_ferocity_agi"	"Ferocity AGI"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_agi_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains agility."
+		"DOTA_Tooltip_ability_brewmaster_ferocity_agi_bonus_agility"	"BONUS AGILITY PER UNIT:"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_agi_radius"	"RADIUS:"
+
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_agi"	"Ferocity AGI"
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_agi_Description"	"Agility granted by this ability."
+		
+		// Ferocity ALL
+				
+		"DOTA_Tooltip_ability_brewmaster_ferocity_all"	"Ferocity ULT"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_all_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains agility, intellect and strength."
+		"DOTA_Tooltip_ability_brewmaster_ferocity_all_bonus_all"	"BONUS STATS PER UNIT:"
+		"DOTA_Tooltip_ability_brewmaster_ferocity_all_radius"	"RADIUS:"
+
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_all"	"Ferocity ULT"
+		"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_all_Description"	"Agility, intellect and strength are increased by this amount."
+		
+		
+		// Living Flesh
 		"DOTA_Tooltip_ability_butcher_zombie"	"Living Flesh"
 		"DOTA_Tooltip_ability_butcher_zombie_Description"	"Every 15 seconds a part of Buthcer's body falls off and come to life, fighting for Butcher. Zombies have Abomination of the same level as the hero has. The ability can be toggled off."
 		"DOTA_Tooltip_ability_butcher_zombie_zombie_hp_tooltip"	"ZOMBIE'S HIT POINTS:"		
