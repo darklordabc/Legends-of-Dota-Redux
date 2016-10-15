@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fixed techies perk not having 50% reduction in cooldown for explosives/traps
 - Cheat Menu now work properly for non-host players
 - Reorganized some ability groups
+- Added new look to preset builds [NOT READY FOR RELEASE]
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
