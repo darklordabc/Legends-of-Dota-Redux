@@ -350,6 +350,11 @@
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorKDAFatOMeter.png"></Image>
+					
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder1.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder2.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder3.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder4.png"></Image>
                 </Panel>
 				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
 				<!--<Panel id="loadscreen"> 

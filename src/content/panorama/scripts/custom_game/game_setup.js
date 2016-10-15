@@ -242,11 +242,7 @@ var allOptions = {
                     {
                         name: 'lodOptionDisablePerks',
                         about: 'lodMutatorDisablePerks'
-                    },
-                    {
-                        name: 'lodOptionCrazyAllVision',
-                        about: 'lodMutatorAllVision'
-                    },
+                    },                    
                     {
                         name: 'lodOptionCrazyWTF',
                         about: 'lodMutatorWTF'
@@ -260,27 +256,31 @@ var allOptions = {
                             'lodMutatorFarmFatOMeter': 1,
 							'lodMutatorKDAFatOMeter': 2
                         }
-					},
+					},					
                     {
-                        name: 'lodOptionIngameBuilder',
+                        about: 'lodMutatorIngameBuilder1',
                         default: {
                             'lodOptionIngameBuilder': 0,
                             'lodOptionIngameBuilderPenalty': 0
                         },
                         states: {
-                            'lodOptionIngameBuilder1': {
+                            'lodMutatorIngameBuilder2': {
                                 'lodOptionIngameBuilder': 1,
-                                'lodOptionIngameBuilderPenalty': 0
+                                'lodOptionIngameBuilderPenalty': 60
                             },
-                            'lodOptionIngameBuilder2': {
+                            'lodMutatorIngameBuilder3': {
                                 'lodOptionIngameBuilder': 1,
                                 'lodOptionIngameBuilderPenalty': 30
                             },
-                            'lodOptionIngameBuilder3': {
+                            'lodMutatorIngameBuilder4': {
                                 'lodOptionIngameBuilder': 1,
-                                'lodOptionIngameBuilderPenalty': 60
+                                'lodOptionIngameBuilderPenalty': 0
                             }
                         }
+                    },
+					{
+                        name: 'lodOptionCrazyAllVision',
+                        about: 'lodMutatorAllVision'
                     },
                 ]
             }

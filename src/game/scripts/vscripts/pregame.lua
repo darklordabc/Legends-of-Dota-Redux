@@ -2167,6 +2167,7 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
