@@ -3428,6 +3428,14 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                     hero:Kill(nil, nil)
                     hero:SetTimeUntilRespawn(penalty)
                 end, DoUniqueString('penalty'), 1)        
+            else
+                if hero:GetTeam() == DOTA_TEAM_BADGUYS then
+                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")  
+                    hero:SetAbsOrigin(ent:GetAbsOrigin())
+                elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")  
+                    hero:SetAbsOrigin(ent:GetAbsOrigin())
+                end
             end
             GameRules:SendCustomMessage('Player'..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
         end
