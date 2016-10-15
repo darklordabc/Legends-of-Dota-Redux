@@ -3409,7 +3409,7 @@ end
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill() then return end
-    if self:canPlayerPickSkill() then
+    if self:canPlayerPickSkill() and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local playerID = args.PlayerID
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
@@ -4148,7 +4148,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 end
 
 function Pregame:canPlayerPickSkill()
-    if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') then
+    if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
     return false

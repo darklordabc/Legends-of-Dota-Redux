@@ -22,7 +22,6 @@ function Ingame:init()
     -- Init stronger towers
     self:addStrongTowers()
     self:fixRuneBug()
-    self:showIngameBuilder()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -162,6 +161,9 @@ function Ingame:onStart()
         cheats = isCheatsEnabled
     }
     network:showCheatPanel(options)
+    if OptionManager:GetOption('allowIngameHeroBuilder') then
+    	network:enableIngameHeroEditor()
+    end
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
@@ -250,14 +252,6 @@ function Ingame:fixRuneBug()
 					end
 				end
 			end, "botRune", 6)
-		end
-	end, nil)
-end
-
-function Ingame:showIngameBuilder()
-	ListenToGameEvent('game_rules_state_change', function(keys)
-		if OptionManager:GetOption('allowIngameHeroBuilder') then
-			network:enableIngameHeroEditor()
 		end
 	end, nil)
 end
