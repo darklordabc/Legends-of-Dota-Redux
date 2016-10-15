@@ -3464,7 +3464,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                     hero:SetAbsOrigin(ent:GetAbsOrigin())
                 end
             end
-            GameRules:SendCustomMessage('Player'..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
+            GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
         end
     else
         local playerID = args.PlayerID
