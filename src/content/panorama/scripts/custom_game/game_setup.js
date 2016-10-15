@@ -268,6 +268,10 @@ var allOptions = {
                             'lodOptionIngameBuilderPenalty': 0
                         },
                         states: {
+                            'lodOptionIngameBuilder1': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 0
+                            },
                             'lodOptionIngameBuilder2': {
                                 'lodOptionIngameBuilder': 1,
                                 'lodOptionIngameBuilderPenalty': 30

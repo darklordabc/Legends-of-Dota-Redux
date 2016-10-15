@@ -3414,6 +3414,20 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
+            local count = 0
+            for key,_ in pairs(newBuild) do
+                if tonumber(key) then
+                    count = count + 1
+                end
+            end
+            local maxCount = self.optionStore['lodOptionCommonMaxSlots']
+            if count ~= maxCount then
+                for i=1,maxCount do
+                    if not newBuild[i] then
+                        newBuild[i] = self:findRandomSkill(newBuild, i, playerID)
+                    end
+                end
+            end
             local newHeroName = self.selectedHeroes[playerID]
             if not newBuild or not newHeroName then return end
             newBuild.hero = newHeroName
