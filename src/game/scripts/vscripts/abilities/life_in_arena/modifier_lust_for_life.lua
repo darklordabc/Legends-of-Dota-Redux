@@ -10,10 +10,10 @@ end
 
 function modifier_lust_for_life:IsHidden()
 	--print(self:GetStackCount())
-	if self:GetStackCount() == 0 then
-		return true
+	if self:GetStackCount() > 0 then
+		return false
 	end
-	return false
+	return true
 end
 
 if IsServer() then

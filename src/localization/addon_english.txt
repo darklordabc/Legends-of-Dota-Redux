@@ -3122,6 +3122,9 @@
 		"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
 		"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
 		
+		"DOTA_Tooltip_modifier_lust_for_life"	"Thirst for Life"
+		"DOTA_Tooltip_modifier_lust_for_life_Description"	"Regenerating a %% of total health per second. Rate of regeneration increases with amount of missing health."
+		
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield"	"Lightning Shield"
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
 		"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_damage_per_second"	"DAMAGE PER SECOND:"			
