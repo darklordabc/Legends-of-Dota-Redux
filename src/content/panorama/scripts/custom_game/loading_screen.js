@@ -158,6 +158,9 @@ function setBackground() {
         img: 'file://{images}/custom_game/hints/hint_fatOMeter.png',
         txt: '#hintFatOMeter'
     }, {
+        img: 'file://{images}/spellicons/meepo_divided_we_stand.png',
+        txt: '#hintHost'
+    }, {
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
@@ -256,7 +259,7 @@ function setBackground() {
     }, {
         img: 'file://{images}/custom_game/hints/hint_meepo.png',
         txt: '#hintMeepo'
-    }*/, {
+    }*/ {
         img: 'file://{images}/custom_game/hints/hint_pl.png',
         txt: '#hintPL'
     }, {
@@ -493,7 +496,7 @@ function setBackground() {
     }*/, {
         img: 'file://{images}/custom_game/hints/hint_DP.png',
         txt: '#hintDP'
-    },
+    }
 	];
 
     // How long to wait before we show the next tip

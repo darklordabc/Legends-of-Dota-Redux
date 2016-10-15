@@ -31,7 +31,7 @@ function modifier_npc_dota_hero_lina_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lina_perk:OnCreated()
-	self.bonusPerLevel = 1
+	self.bonusPerLevel = 3
 	self.bonusAmount = 1
 	if IsServer() then
 		self:StartIntervalThink(0.1)

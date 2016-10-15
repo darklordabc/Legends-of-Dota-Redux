@@ -455,7 +455,8 @@
     "hintJungle"       "Чтобы эффективно фармить в лесу, вам нужно не только танчить крипов, но и быстро их убивать ."
     "hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
     "hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
-
+	"hintHost"                         "You can give your host powers to another player by clicking on their name."
+	
     // Hero builder
     "finishBanning"                                 "Завершить Баны"
     "unlockBuild"                                   "Разблокировать Билд"
