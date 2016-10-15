@@ -600,18 +600,19 @@
         }
         // The custom skills in LoD
         "custom" {
-            "imba_dazzle_shallow_grave" "1"
-            "imba_omniknight_degen_aura"  "1"
-            "imba_omniknight_purification"      "1"
-            "holdout_arcane_aura"            "1"
-            "holdout_culling_blade"            "1"
-            "holdout_gladiators_unite"            "1"
-            "holdout_gods_strength"            "1"
-            //"holdout_multishot"                                 "1"
-            "holdout_omnislash"            "1"
-            //"holdout_scourge_ward"                              "1"
-            "zuus_thundergods_vengeance"            "1"
-            
+            "holdout" {
+                "zuus_thundergods_vengeance"                "1"
+                "holdout_omnislash"                "1"
+                "holdout_gods_strength"                "1"
+                "holdout_gladiators_unite"                "1"
+				"holdout_culling_blade"                "1"
+				"holdout_arcane_aura"                "1"
+				"holdout_gladiators_unite"                "1"
+				"holdout_gladiators_unite"                "1"
+				"holdout_gladiators_unite"                "1"
+				"holdout_scourge_ward"                              "1"
+				"holdout_multishot"                                 "1"
+            }
             "item_abilities" {
                 "aether_range_lod"                "1"
                 "octarine_vampirism_lod"                "1"
@@ -626,7 +627,6 @@
                 "true_random_lod_5"    "1"
                 "true_random_lod_6"    "1"
             }
-
             "cherub_abilities" {
                 "cherub_sleep_cloud"      "1"
                 "cherub_synthesis"      "1"
@@ -650,54 +650,63 @@
 			"angel_arena_reborn" {
                 "angel_arena_lightning"	"1"
 				"angel_arena_magic_fire"	"1"
-				"angel_arena_night_vampire"	"1"
 				"angel_arena_razor_power"	"1"
 				"angel_arena_revenge"	"1"
 				"angel_arena_rifle"	"1"
-				"angel_arena_roots"	"1"
 				"angel_arena_shot"	"1"
-				"angel_arena_song"	"1"
 				"angel_arena_storm"	"1"
 				"angel_arena_summon_hawk"	"1"
+				"angel_arena_berserk"	"1"
+				"angel_arena_cripple"	"1"
+			}	
+			"angel_arena_reborn_ult" {
+				"angel_arena_darkrage"	"1"
+				"angel_arena_night_vampire"	"1"
+				"angel_arena_roots"	"1"
+				"angel_arena_song"	"1"
 				"angel_arena_hola_heal"	"1"
 				"angel_arena_nether_ritual"	"1"
 				"angel_arena_transmute"	"1"
-				"angel_arena_berserk"	"1"
-				"angel_arena_cripple"	"1"
-				"angel_arena_darkrage"	"1"
 				"angel_arena_demonic"	"1"
 				"angel_arena_grace"	"1"			
-            }			
+            }							
             "imba_towers" {
                 "imba_tower_aegis"   "1"
                 "imba_tower_atrophy"   "1"
                 "imba_tower_berserk"   "1"
                 "imba_tower_chrono"   "1"
-                "imba_tower_disease"   "1"
-                "imba_tower_essence_drain"   "1"
-                "imba_tower_fervor"   "1"
+                "imba_tower_disease"   "1"                               
                 "imba_tower_force"   "1"
                 "imba_tower_forest"   "1"
-                "imba_tower_grievous_wounds"   "1"
                 "imba_tower_hex_aura"   "1"
                 "imba_tower_laser"   "1"
-                "imba_tower_machinegun"   "1"
                 "imba_tower_mana_burn"   "1"
                 "imba_tower_mana_flare"   "1"
                 "imba_tower_mindblast"   "1"
-                "imba_tower_multihit"   "1"
                 "imba_tower_nature"   "1"
                 "imba_tower_permabash"   "1"
                 "imba_tower_plague"   "1"
-                "imba_tower_reality"   "1"
-                "imba_tower_salvo"   "1"
-                "imba_tower_self_repair"   "1"
-                "imba_tower_sniper"   "1"
-                "imba_tower_spacecow"   "1"
-                "imba_tower_spell_shield"   "1"
-                "imba_tower_split"   "1"
+                "imba_tower_reality"   "1"               
+                "imba_tower_self_repair"   "1"                
+                "imba_tower_spacecow"   "1"     
                 "imba_tower_thorns"   "1"
                 "imba_tower_vicious"   "1"
+            }
+			"imba_towers_strong" {
+				"imba_tower_multihit"   "1"
+				"imba_tower_sniper"   "1"
+				"imba_tower_grievous_wounds"   "1"
+				"imba_tower_spell_shield"   "1"
+				"imba_tower_essence_drain"   "1"
+				"imba_tower_machinegun"   "1"
+				"imba_tower_salvo"   "1"
+				"imba_tower_fervor"   "1"
+				"imba_tower_split"   "1"
+            }
+			"imba" {
+				"imba_dazzle_shallow_grave" "1"
+				"imba_omniknight_degen_aura"  "1"
+				"imba_omniknight_purification"      "1"
             }
         }
     }
@@ -758,8 +767,7 @@
             "Ability1"            "zuus_arc_lightning"
             "Ability2"            "zuus_lightning_bolt"
             "Ability3"            "zuus_static_field"
-            "Ability4"            "zuus_thundergods_vengeance"
-            "Ability5"            "zuus_thundergods_wrath"
+            "Ability4"            "zuus_thundergods_wrath"
         }
         "npc_dota_hero_brewmaster" {
             "Ability1"            "brewmaster_thunder_clap"
@@ -777,37 +785,32 @@
             "Ability1"            "crystal_maiden_crystal_nova"
             "Ability2"            "crystal_maiden_frostbite"
             "Ability3"            "crystal_maiden_brilliance_aura"
-            "Ability4"            "holdout_arcane_aura"
-            "Ability5"            "crystal_maiden_freezing_field"
+            "Ability4"            "crystal_maiden_freezing_field"
         }
         "npc_dota_hero_axe" {
             "Ability1"            "axe_berserkers_call"
             "Ability2"            "axe_battle_hunger"
             "Ability3"            "axe_counter_helix"
             "Ability4"            "axe_culling_blade"
-            "Ability5"            "holdout_culling_blade"
         }
         "npc_dota_hero_legion_commander" {
             "Ability1"            "legion_commander_overwhelming_odds"
             "Ability2"            "legion_commander_press_the_attack"
             "Ability3"            "legion_commander_moment_of_courage"
-            "Ability4"            "holdout_gladiators_unite"
-            "Ability5"            "legion_commander_duel"
+            "Ability4"            "legion_commander_duel"
         }
         "npc_dota_hero_sven" {
             "Ability1"            "sven_storm_bolt"
             "Ability2"            "sven_warcry"
             "Ability3"            "sven_great_cleave"
-            "Ability4"            "holdout_gods_strength"
-            "Ability5"            "sven_gods_strength"
+            "Ability4"            "sven_gods_strength"
         }
         "npc_dota_hero_juggernaut" {
             "Ability1"            "juggernaut_blade_fury"
             "Ability2"            "juggernaut_blade_dance"
             "Ability3"            "juggernaut_healing_ward"
-            "Ability4"            "holdout_omnislash"
-            "Ability5"            "juggernaut_omni_slash"
-            "Ability6"              "juggernaut_healing_ward_mana"
+            "Ability4"            "juggernaut_omni_slash"
+            "Ability5"            "juggernaut_healing_ward_mana"
         }
         "npc_dota_hero_obsidian_destroyer" {
             "Ability1"            "obsidian_destroyer_arcane_orb"
@@ -876,18 +879,15 @@
         }
         "npc_dota_hero_omniknight" {
             "Ability1"            "omniknight_degen_aura"
-            "Ability2"            "imba_omniknight_degen_aura"
             "Ability3"            "omniknight_purification"
-            "Ability4"            "imba_omniknight_purification"
             "Ability5"            "omniknight_repel"
             "Ability6"            "omniknight_guardian_angel"
         }
         "npc_dota_hero_dazzle" {
             "Ability1"            "dazzle_poison_touch"
-            "Ability2"            "imba_dazzle_shallow_grave"
-            "Ability3"            "dazzle_shadow_wave"
-            "Ability4"            "dazzle_shallow_grave"
-            "Ability5"            "dazzle_weave"
+            "Ability2"            "dazzle_shadow_wave"
+            "Ability3"            "dazzle_shallow_grave"
+            "Ability4"            "dazzle_weave"
         }
         "npc_dota_hero_doom_bringer" {
             "Ability1"            "doom_bringer_devour_lod"

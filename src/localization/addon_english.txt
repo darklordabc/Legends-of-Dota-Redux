@@ -975,10 +975,15 @@
 	"warning_imba_tower_essence_drain"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_grievous_wounds"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_sniper"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_fervor"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_machinegun"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_split"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
+	"warning_imba_tower_salvo"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
 	"warning_imba_tower_multihit"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+	"warning_imba_tower_spell_shield"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 20.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.
-	
+	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_force_dash_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -2802,4 +2807,5 @@
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_Description"		"Magic fire burns the mana of the enemy unit, and deals damage equal to the amount of mana burned. Also deal damage if enemy unit have enough mana."
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage" 			"BURN:"
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage_pct" 		"%DAMAGE:"
+			
 }
