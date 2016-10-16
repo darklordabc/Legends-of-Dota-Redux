@@ -2,7 +2,7 @@
 var buildData = null;
 
 function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
-    var buildVariant = balanceMode ? build.Balanced : build.Unbalanced;
+    var buildVariant = balanceMode == 1 ? build.Balanced : build.Unbalanced;
 
     // Get abilities array from JSON string
     var curBuild = JSON.parse(buildVariant.replace(/'/g, '"'))
