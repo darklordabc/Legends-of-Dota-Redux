@@ -1738,7 +1738,8 @@ function setupBuilderTabs() {
     });
 
     // Show the main tab only
-    showBuilderTab('pickingPhaseMainTab');
+    // #warning
+    //showBuilderTab('pickingPhaseMainTab');
 
     // Default to no selected preview hero
     setSelectedHelperHero();
@@ -2605,7 +2606,7 @@ function addRecommendedBuild(con, build) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
-    buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
+    buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
 
     // Store the container
     recommenedBuildContainerList.push(buildCon); 
