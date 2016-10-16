@@ -76,6 +76,7 @@
     "filter_by_name"                                "Filter by name:"
     "filter_by_value"                               "Filter by price:"
     "presets_lod"                                   "Presets"
+	"builds_lod"                                    "Builds"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
     "common_selection_lod"                          "Common Selection"
@@ -462,7 +463,7 @@
 	"build_magic_be_dashed_desc"					"Destroy your enemies mana in record time."
 	
 	"build_attributes_title"						"All your attributes are belong to me"
-	"build_attributes_desc"							"Permanently gain stats as the game continues. Good with instant respawn times and long games."
+	"build_attributes_desc"							"Permanently gain stats as the game continues. Good in long games with low respawn times."
 	
 	"build_rapture_title"							"Rapture"
 	"build_rapture_desc"							"Bloodseeker's Perk enables quick and cheap casting of Rupture."
