@@ -9,12 +9,13 @@
     </scripts>
     <Panel class="heroBuilderRoot" hittest="false">
         <Panel id="heroBuilderContainer" hittest="false">
-            <Panel id="heroBuilderPanel">
-                <Button id="showHeroBuilder" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
-                    <Label id="heroBuilderText" text="#buildSwitch_title" />
+            <Panel id="heroBuilderButton">
+                <Button id="showHeroBuilder" class="niceButton" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
+                    <Image id="heroBuilderIcon" src="file://{images}/custom_game/cheats.png"/>
                 </Button>
             </Panel>
             <Panel id="heroBuilderDisplay" />
         </Panel>
+
     </Panel>
 </root>
