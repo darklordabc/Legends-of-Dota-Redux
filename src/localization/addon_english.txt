@@ -441,16 +441,16 @@
 	"build_roshan_beware_desc"						"Dominate Roshan with this build. Use teleport to get to Roshan undetected by enemy wards."
 	
 	"build_skillshot_title"							"Skillshot Wars"
-	"build_skillshot_desc"							""
+	"build_skillshot_desc"							"Mirana's Perk allows her to cast Skillshot abilities easily."
 	
 	"build_techies_title"							"Techies Demolitions"
 	"build_techies_desc"							"Make use of Techies perk to dramatically reduce cost of Explosives and Traps."
 	
 	"build_hunter_in_the_night_title"				"Hunter in the night"
-	"build_hunter_in_the_night_desc"				""
+	"build_hunter_in_the_night_desc"				"When NS gets Aghanim's Scepter he can see unobstructed at night."
 	
 	"build_generic_tank_title"						"Generic Tank"
-	"build_generic_tank_desc"						""
+	"build_generic_tank_desc"						"Keep it simple stupid. Auto-pilot for winning."
 	
 	"build_infest_support_title"					"Infest Support"
 	"build_infest_support_desc"						""
