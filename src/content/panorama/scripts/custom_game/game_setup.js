@@ -2602,15 +2602,12 @@ function OnMainSelectionTabShown() {
 var recBuildCounter = 0;
 var recommenedBuildContainerList = [];
 function addRecommendedBuild(con, build) {
-	var buildVariant = balanceMode ? build.Balanced : build.Unbalanced;
- 
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
-    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build.Hero, buildVariant, build.Attr, build.Title, build.ID);
+    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
-    buildCon.FindChildTraverse('buildDesc').text = $.Localize(build.Description); 
 
-    //buildCon.FindChildTraverse('authorAvatarImage').steamID = SteamID32To64(build.AuthorSteamID);
+    //buildCon.FindChildTraverse('authorAvatarImage').steamID = SteamID32To64(build.AuthorSteamID); 
 
     // Store the container
     recommenedBuildContainerList.push(buildCon); 

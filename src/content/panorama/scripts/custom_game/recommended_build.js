@@ -1,9 +1,11 @@
 // Store build data to send to the server
 var buildData = null;
 
-function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id) {
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
+    var buildVariant = balanceMode ? build.Balanced : build.Unbalanced;
+
     // Get abilities array from JSON string
-    var curBuild = JSON.parse(build.replace(/'/g, '"'))
+    var curBuild = JSON.parse(buildVariant.replace(/'/g, '"'))
     // Push skills
     for(var slotID = 0; slotID < 6; ++slotID) {
         var slot = $('#recommendedSkill' + (slotID + 1));
@@ -23,24 +25,26 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
 
     // Set hero image
     var heroImageCon = $('#recommendedHeroImage');
-    heroImageCon.heroname = hero;
-    heroImageCon.SetAttributeString('heroName', hero);
+    heroImageCon.heroname = build.Hero;
+    heroImageCon.SetAttributeString('heroName', build.Hero);
     makeHeroSelectable(heroImageCon);
 
     // Set the title
     var titleLabel = $('#buildName');
-    if(title != null) {
-        titleLabel.text = title;
+    if(build.Title != null) {
+        titleLabel.text = $.Localize(build.Title);
         titleLabel.visible = true;
     } else {
         titleLabel.visible = false;
     }
 
+    $('#buildDesc').text = $.Localize(build.Description); 
+
     // Set hero attribute
     var attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
-    if(attr == 'agi') {
+    if(build.Attr == 'agi') {
         attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd';
-    } else if(attr == 'int') {
+    } else if(build.Attr == 'int') {
         attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd';
     }
 
@@ -53,10 +57,10 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
 
     // Store the build data
     buildData = {
-        hero: hero,
-        attr: attr,
+        hero: build.Hero,
+        attr: build.Attr,
         build: buildForSend,
-        id: id
+        id: build.ID
     };
 }
 
