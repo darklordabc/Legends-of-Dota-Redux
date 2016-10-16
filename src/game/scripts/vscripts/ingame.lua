@@ -303,8 +303,8 @@ function Ingame:FatOMeterThinker(dt)
 					local deaths = PlayerResource:GetDeaths(playerID)
 					local assists = PlayerResource:GetAssists(playerID)
 					
-					--Assists are weighted as quarter kills and deaths as negative quarter kills
-					fatData[playerID].lastNetWorth = 4*kills + assists - deaths
+					--Assists are weighted as eighth kills and deaths as negative eighth kills.
+					fatData[playerID].lastNetWorth = 8*kills + assists - 2*deaths
 				end
 			end
 		end
