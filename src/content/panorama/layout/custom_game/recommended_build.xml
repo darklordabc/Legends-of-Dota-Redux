@@ -50,7 +50,7 @@
                         <Label id="buildName" text="Build Name" />
                         <Label id="buildAuthor" text="kernelpicnic" />
                     </Panel>
-                    <Label id="buildDesc" text="Lorem ipsum dolor sit amet, consectetur adipiscing. Pellentesque semper dui mollis ante aliquam." />
+                    <Label id="buildDesc" html="true" text="Lorem ipsum dolor sit amet, consectetur adipiscing. Pellentesque semper dui mollis ante aliquam." />
                 </Panel>
             </Panel>
         </Panel>
