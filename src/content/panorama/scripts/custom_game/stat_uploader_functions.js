@@ -113,6 +113,8 @@ function LoadFavBuilds( ){
             return;
 
         var builds = JSON.parse(rows[0].FavBuilds);
+        	return;
+
         var con = $('#pickingPhaseRecommendedBuildContainer');
         for (var i = 0; i < con.GetChildCount(); i++) {
             var child = con.GetChild(i);
