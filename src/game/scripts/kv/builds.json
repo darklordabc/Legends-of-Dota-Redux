@@ -1,0 +1,266 @@
+[
+    {
+    	"id": "build_cherub",
+        "title": "Cherub",
+        "hero": "npc_dota_hero_enchantress",
+        "attr": "int",
+        "desc": "test2",
+        "author": 93913344,
+        "categories": "",
+        "balanced": "['cherub_sleep_cloud','cherub_synthesis','cherub_explosive_spore','cherub_flower_garden','garden_pink_blossom_base','garden_blue_blossom_base']",
+        "unbalanced": "['cherub_sleep_cloud','cherub_synthesis','cherub_explosive_spore','cherub_flower_garden','garden_pink_blossom_base','garden_blue_blossom_base']"
+    },
+
+    {
+        "id": "build_dagger_harrasment",    	
+        "title": "Long Dagger Harassment",
+        "hero": "npc_dota_hero_phantom_assassin",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['phantom_assassin_stifling_dagger','weaver_geminate_attack','treant_eyes_in_the_forest','lone_druid_spirit_bear_entangle','abaddon_frostmourne','crystal_maiden_brilliance_aura']",
+        "unbalanced": "['phantom_assassin_stifling_dagger','weaver_geminate_attack','treant_eyes_in_the_forest','lone_druid_spirit_bear_entangle','abaddon_frostmourne','crystal_maiden_brilliance_aura']"
+    },
+	
+	{
+        "id": "build_abaddon_pro",    	
+        "title": "Abaddon Support PRO",
+        "hero": "npc_dota_hero_abaddon",
+        "attr": "str",
+        "desc": "<font color='#70EA72'>Balance Mode is on.</font>",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['abaddon_death_coil','abaddon_aphotic_shield','ogre_magi_bloodlust','force_dash_lod','obsidian_destroyer_essence_aura_lod','abaddon_borrowed_time']",
+        "unbalanced": "['abaddon_death_coil','abaddon_aphotic_shield','ogre_magi_bloodlust','force_dash_lod','obsidian_destroyer_essence_aura_lod','abaddon_borrowed_time']"
+    },
+	
+	{
+        "id": "build_roshan_beware",    	
+        "title": "Roshan Beware",
+        "hero": "npc_dota_hero_ursa",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['ursa_overpower','ursa_fury_swipes_lod','skeleton_king_vampiric_aura','furion_teleportation','huskar_berserkers_blood','skeleton_king_reincarnation']",
+        "unbalanced": "['ursa_overpower','ursa_fury_swipes_lod','skeleton_king_vampiric_aura','furion_teleportation','huskar_berserkers_blood','skeleton_king_reincarnation']"
+    },
+	
+	{
+        "id": "build_skillshot",    	
+        "title": "Skillshot Wars",
+        "hero": "npc_dota_hero_mirana",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['pudge_meat_hook','mirana_arrow','invoker_sun_strike_lod','rattletrap_hookshot','crystal_maiden_brilliance_aura','ancient_apparition_ice_blast']",
+        "unbalanced": "['pudge_meat_hook','mirana_arrow','invoker_sun_strike_lod','rattletrap_hookshot','crystal_maiden_brilliance_aura','ancient_apparition_ice_blast']"
+    },
+	
+	{
+        "id": "build_techies",    	
+        "title": "Techies Demolitions",
+        "hero": "npc_dota_hero_techies",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['techies_land_mines','techies_stasis_trap','zulf_cyclone_trap','techies_remote_mines','gyrocopter_homing_missile','gyrocopter_call_down']",
+        "unbalanced": "['techies_land_mines','techies_stasis_trap','zulf_cyclone_trap','techies_remote_mines','gyrocopter_homing_missile','gyrocopter_call_down']"
+    },
+	
+    {
+        "id": "build_hunter_in_the_night",    	
+        "title": "Hunter in the night",
+        "hero": "npc_dota_hero_night_stalker",
+        "attr": "str",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['magnataur_empower','antimage_blink','lycan_shapeshift','luna_lunar_blessing','night_stalker_hunter_in_the_night','night_stalker_darkness']",
+        "unbalanced": "['magnataur_empower','antimage_blink','lycan_shapeshift','luna_lunar_blessing','night_stalker_hunter_in_the_night','night_stalker_darkness']"
+    },
+
+    {
+        "id": "build_generic_tank",
+        "title": "Generic Tank",
+        "hero": "npc_dota_hero_centaur",
+        "attr": "str",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['tidehunter_kraken_shell','dragon_knight_dragon_blood','viper_corrosive_skin','medusa_mana_shield','granite_golem_hp_aura','alchemist_chemical_rage']",
+        "unbalanced": "['tidehunter_kraken_shell','dragon_knight_dragon_blood','viper_corrosive_skin','medusa_mana_shield','granite_golem_hp_aura','alchemist_chemical_rage']"
+    },
+
+    {
+        "id": "build_infest_support",
+        "title": "Infest Support",
+        "hero": "npc_dota_hero_life_stealer",
+        "attr": "str",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['pudge_rot','witch_doctor_voodoo_restoration','magnataur_empower','alpha_wolf_command_aura','omniknight_degen_aura','life_stealer_infest']",
+        "unbalanced": "['pudge_rot','witch_doctor_voodoo_restoration','magnataur_empower','alpha_wolf_command_aura','omniknight_degen_aura','life_stealer_infest']"
+    },
+
+    {
+        "id": "build_global_caster",
+        "title": "Global Caster",
+        "hero": "npc_dota_hero_pugna",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['treant_living_armor','holdout_arcane_aura','ancient_apparition_ice_blast','silencer_glaives_of_wisdom','bloodseeker_thirst_lod','zuus_thundergods_wrath']",
+        "unbalanced": "['treant_living_armor','holdout_arcane_aura','ancient_apparition_ice_blast','silencer_glaives_of_wisdom','bloodseeker_thirst_lod','zuus_thundergods_wrath']"
+    },
+
+    {
+        "id": "build_magic_be_dashed",
+        "title": "Magic Be Dashed!",
+        "hero": "npc_dota_hero_mirana",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "", 
+        "balanced": "['medusa_split_shot','sniper_take_aim','spectre_desolate','meepo_geostrike','necronomicon_warrior_mana_burn_lod','phantom_lancer_juxtapose']",
+        "unbalanced": "['medusa_split_shot','sniper_take_aim','spectre_desolate','meepo_geostrike','necronomicon_warrior_mana_burn_lod','phantom_lancer_juxtapose']"
+    },
+
+    {
+        "id": "build_attributes",
+        "title": "All your attributes are belong to me",
+        "hero": "npc_dota_hero_windrunner",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['obsidian_destroyer_arcane_orb','obsidian_destroyer_essence_aura_lod','skeleton_king_reincarnation','pudge_flesh_heap','pudge_flesh_heap_agi','pudge_flesh_heap_int']",
+        "unbalanced": "['obsidian_destroyer_arcane_orb','obsidian_destroyer_essence_aura_lod','skeleton_king_reincarnation','pudge_flesh_heap','pudge_flesh_heap_agi','pudge_flesh_heap_int']"
+    },
+
+    {
+        "id": "build_rapture",
+        "title": "Rapture",
+        "hero": "npc_dota_hero_bloodseeker",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['pudge_meat_hook','tusk_walrus_kick','lone_druid_savage_roar','phoenix_icarus_dive','batrider_flaming_lasso','bloodseeker_rupture']",
+        "unbalanced": "['pudge_meat_hook','tusk_walrus_kick','lone_druid_savage_roar','phoenix_icarus_dive','batrider_flaming_lasso','bloodseeker_rupture']"
+    },
+
+    {
+        "id": "build_stunner",
+        "title": "Global Stunner",
+        "hero": "npc_dota_hero_pugna",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['sven_storm_bolt','vengefulspirit_magic_missile','holdout_arcane_aura','furion_teleportation','antimage_blink','tinker_rearm_lod']",
+        "unbalanced": "['sven_storm_bolt','vengefulspirit_magic_missile','holdout_arcane_aura','furion_teleportation','antimage_blink','tinker_rearm_lod']"
+    },
+
+    {
+        "id": "build_team_fight",
+        "title": "Bring the team fight",
+        "hero": "npc_dota_hero_enigma",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['enigma_midnight_pulse','necrolyte_heartstopper_aura','warlock_rain_of_chaos','magnataur_empower','skeleton_king_vampiric_aura','enigma_black_hole']",
+        "unbalanced": "['enigma_midnight_pulse','necrolyte_heartstopper_aura','warlock_rain_of_chaos','magnataur_empower','skeleton_king_vampiric_aura','enigma_black_hole']"
+    },
+
+    {
+        "id": "build_duelist",
+        "title": "The Duelist",
+        "hero": "npc_dota_hero_legion_commander",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['viper_nethertoxin','skeleton_king_mortal_strike','antimage_mana_break','slark_essence_shift_agility_lod','phantom_assassin_phantom_strike','legion_commander_duel']",
+        "unbalanced": "['viper_nethertoxin','skeleton_king_mortal_strike','antimage_mana_break','slark_essence_shift_agility_lod','phantom_assassin_phantom_strike','legion_commander_duel']"
+    },
+
+    {
+        "id": "build_anti_tank",
+        "title": "The Anti-Tank",
+        "hero": "npc_dota_hero_mirana",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['force_dash_lod','ancient_apparition_ice_blast','life_stealer_feast','slark_essence_shift_strength_lod','slark_essence_shift_intellect_lod','ursa_enrage']",
+        "unbalanced": "['force_dash_lod','ancient_apparition_ice_blast','life_stealer_feast','slark_essence_shift_strength_lod','slark_essence_shift_intellect_lod','ursa_enrage']"
+    },
+
+    {
+        "id": "build_cannon",
+        "title": "Glass Cannon",
+        "hero": "npc_dota_hero_sniper",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['sniper_shrapnel','chaos_knight_chaos_strike','slardar_bash','sniper_headshot','weaver_geminate_attack','drow_ranger_marksmanship']",
+        "unbalanced": "['sniper_shrapnel','chaos_knight_chaos_strike','slardar_bash','sniper_headshot','weaver_geminate_attack','drow_ranger_marksmanship']"
+    },
+
+    {
+        "id": "build_no_ulty",
+        "title": "Disregard Team, Acquire Currency",
+        "hero": "npc_dota_hero_furion",
+        "attr": "int",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['sandking_burrowstrike','doom_bringer_devour_lod','alchemist_goblins_greed','life_stealer_feast','medusa_split_shot','furion_teleportation']",
+        "unbalanced": "['sandking_burrowstrike','doom_bringer_devour_lod','alchemist_goblins_greed','life_stealer_feast','medusa_split_shot','furion_teleportation']"
+    },
+	
+	{
+        "id": "build_building_buster",
+        "title": "Building Buster",
+        "hero": "npc_dota_hero_tiny",
+        "attr": "str",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['furion_teleportation','troll_warlord_berserkers_rage','lone_druid_spirit_bear_demolish','phantom_assassin_blur','holdout_gods_strength','windrunner_focusfire']",
+        "unbalanced": "['furion_teleportation','troll_warlord_berserkers_rage','lone_druid_spirit_bear_demolish','phantom_assassin_blur','holdout_gods_strength','windrunner_focusfire']"
+    },
+	
+	{
+        "id": "build_super_rat",
+        "title": "Super Rat",
+        "hero": "npc_dota_hero_terrorblade",
+        "attr": "agi",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['furion_teleportation','troll_warlord_fervor','lone_druid_spirit_bear_demolish','phantom_assassin_blur','sven_gods_strength','chaos_knight_phantasm']",
+        "unbalanced": "['furion_teleportation','troll_warlord_fervor','lone_druid_spirit_bear_demolish','phantom_assassin_blur','sven_gods_strength','chaos_knight_phantasm']"
+    },
+	
+	
+    {
+        "id": "build_medic",
+        "title": "MEDIC!",
+        "hero": "npc_dota_hero_wisp",
+        "attr": "str",
+        "desc": "desc desc desc",
+        "author": 93913344,
+        "categories": "",        
+        "balanced": "['wisp_tether','wisp_overcharge','invoker_ghost_walk_lod','dragon_knight_dragon_blood','holdout_arcane_aura','alchemist_chemical_rage']",
+        "unbalanced": "['sandking_burrowstrike','doom_bringer_devour_lod','alchemist_goblins_greed','life_stealer_feast','medusa_split_shot','furion_teleportation']"
+    }
+]
