@@ -16036,7 +16036,7 @@
 					{
 						"RunScript"
 						{
-							"ScriptFile"	"heroes\Paladin\impregnability.lua"
+							"ScriptFile"	"abilities/life_in_arena/impregnability.lua"
 							"Function" 		"DestroyModifiers"
 						}
 					}
