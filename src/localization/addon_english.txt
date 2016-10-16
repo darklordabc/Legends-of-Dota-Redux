@@ -426,7 +426,74 @@
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
     "lodOptionAboutDisablePerks"  					"Hero Perks will not be assigned to heroes."
-
+	
+	//Builds
+	"build_cherub_title"							"Cherub"
+	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
+	
+	"build_dagger_harrasment_title"					"Long Dagger Harassment"
+	"build_dagger_harrasment_desc"					"Use hit and run tactics to wear enemies down."
+	
+	"build_abaddon_pro_title"						"Abaddon Support PRO"
+	"build_abaddon_pro_desc"						"Make uses of Abaddon's perk to supercharge Mist Coil and Apothetic Shield."
+	
+	"build_roshan_beware_title"						"Roshan Beware"
+	"build_roshan_beware_desc"						"Dominate Roshan with this build. Use teleport to get to Roshan undetected by enemy wards."
+	
+	"build_skillshot_title"							"Skillshot Wars"
+	"build_skillshot_desc"							""
+	
+	"build_techies_title"							"Techies Demolitions"
+	"build_techies_desc"							"Make use of Techies perk to dramatically reduce cost of Explosives and Traps."
+	
+	"build_hunter_in_the_night_title"				"Hunter in the night"
+	"build_hunter_in_the_night_desc"				""
+	
+	"build_generic_tank_title"						"Generic Tank"
+	"build_generic_tank_desc"						""
+	
+	"build_infest_support_title"					"Infest Support"
+	"build_infest_support_desc"						""
+	
+	"build_global_caster_title"						"Global Caster"
+	"build_global_caster_desc"						""
+	
+	"build_magic_be_dashed_title"					"Magic Be Dashed!"
+	"build_magic_be_dashed_desc"					""
+	
+	"build_attributes_title"						"All your attributes are belong to me"
+	"build_attributes_desc"							""
+	
+	"build_rapture_title"							"Rapture"
+	"build_rapture_desc"							""
+	
+	"build_stunner_title"							"Global Stunner"
+	"build_stunner_desc"							""
+	
+	"build_team_fight_title"						"Bring the team fight"
+	"build_team_fight_desc"							""
+	
+	"build_duelist_title"							"The Duelist"
+	"build_duelist_desc"							""
+	
+	"build_anti_tank_title"							"The Anti-Tank"
+	"build_anti_tank_desc"							""
+	
+	"build_cannon_title"							"Glass Cannon"
+	"build_cannon_desc"								""
+	
+	"build_no_ulty_title"							"Disregard Team, Acquire Currency"
+	"build_no_ulty_desc"							""
+	
+	"build_building_buster_title"					"Building Buster"
+	"build_building_buster_desc"					""
+	
+	"build_super_rat_title"							"Super Rat"
+	"build_super_rat_desc"							""
+	
+	"build_medic_title"								"MEDIC!"
+	"build_medic_desc"								""
+	
     // Hints
     "hintSuggestHint"                               "Do you know a good hint? Submit it with a suggested icon and it may be added."
     "hintWitchCraft"                                "Select Witchcraft to lower the cooldowns of all active skills by up to 4 seconds, however it will not lower a cooldown to less than 1 second. Will refund 10 mana per level of Witchcraft"
