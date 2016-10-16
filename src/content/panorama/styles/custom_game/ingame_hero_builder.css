@@ -16,6 +16,7 @@
 }
 
 #heroBuilderDisplay {
+    z-index: 2000000000;
     width: 100%;
     height: fill-parent-flow(0);
     margin-top: 44px;
@@ -24,15 +25,7 @@
     background-color: #000000;
 }
 
-#heroBuilderIcon {
-    width: 17px;
-    height: 17px;
-    wash-color: #00000030;
-    vertical-align: center;
-}
-
 #heroBuilderText {
-    margin-left: 32px;
     font-size: 20;
     font-family: Radiance;
     opacity: 0.75;
@@ -43,10 +36,10 @@
 #showHeroBuilder {
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
     box-shadow: #52545520 0px 0px 1px;
-    border: 1px solid #323435;
     border-radius: 5px;
-    padding: 1px 10px;
+    padding: 2px 10px;
     vertical-align: top;
+    border: 1px solid #323435;
 }
 
 #heroBuilderPanel {

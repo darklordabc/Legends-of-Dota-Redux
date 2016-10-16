@@ -11,7 +11,6 @@
         <Panel id="heroBuilderContainer" hittest="false">
             <Panel id="heroBuilderPanel">
                 <Button id="showHeroBuilder" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
-                    <Image src="file://{images}/custom_game/switch.png" id="heroBuilderIcon" scaling="stretch-to-fit-preserve-aspect" />
                     <Label id="heroBuilderText" text="#buildSwitch_title" />
                 </Button>
             </Panel>
