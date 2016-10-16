@@ -2607,8 +2607,6 @@ function addRecommendedBuild(con, build) {
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
 
-    //buildCon.FindChildTraverse('authorAvatarImage').steamID = SteamID32To64(build.AuthorSteamID); 
-
     // Store the container
     recommenedBuildContainerList.push(buildCon); 
 }
