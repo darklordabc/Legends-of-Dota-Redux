@@ -6,7 +6,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
     var curBuild = JSON.parse(build.replace(/'/g, '"'))
     // Push skills
     for(var slotID = 0; slotID < 6; ++slotID) {
-        var slot = $('#recommendedSkill' + slotID);
+        var slot = $('#recommendedSkill' + (slotID + 1));
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
@@ -77,7 +77,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     var build = buildData.build;
 
     // Filter each ability
-    for(var slotID = 0; slotID <= 5; ++slotID) {
+    for(var slotID = 1; slotID < 7; ++slotID) {
         // Grab the slot
         var slot = $('#recommendedSkill' + slotID);
 
