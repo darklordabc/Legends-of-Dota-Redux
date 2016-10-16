@@ -2136,6 +2136,7 @@
     margin: 7px 0 11px;
 }
 
+#recommendedBuildFavourite.active,
 #recommendedBuildFavourite:hover {
     background-position: -115px 0;
 }

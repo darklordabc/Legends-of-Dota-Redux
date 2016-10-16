@@ -1,4 +1,5 @@
 // Store build data to send to the server
+$.GetContextPanel().isFavorite = false;
 var buildData = null;
 
 function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
@@ -62,6 +63,8 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         build: buildForSend,
         id: build.ID
     };
+
+    $.GetContextPanel().buildID = build.ID;
 }
 
 // When the build is selected
@@ -71,6 +74,15 @@ function onSelectBuildPressed() {
 
     // Push it to the server
     GameEvents.SendCustomGameEventToServer('lodSelectBuild', buildData);
+}
+
+function setFavorite( flag ) {
+    $.GetContextPanel().isFavorite = flag;
+    $('#recommendedBuildFavourite').SetHasClass('active', flag);
+}
+
+function onClickFav() {
+    setFavorite( !$.GetContextPanel().isFavorite );
 }
 
 // Does filtering on the abilities
@@ -124,4 +136,6 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     // Add the events
     mainPanel.setBuildData = setBuildData;
     mainPanel.updateFilters = updateFilters;
+    mainPanel.setFavorite = setFavorite;
+    mainPanel.onClickFav = onClickFav;
 })();

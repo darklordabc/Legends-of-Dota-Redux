@@ -1707,6 +1707,17 @@ function updateAllRandomHighlights() {
 
 // When the lock build button is pressed
 function onLockBuildButtonPressed() {
+	// Send fav builds
+    var con = $('#pickingPhaseRecommendedBuildContainer');
+    var favBuilds = [];
+    for (var i = 0; i < con.GetChildCount(); i++) {
+        var child = con.GetChild(i);
+        if (child.isFavorite)
+        	favBuilds.push(child.buildID);
+    }
+
+	SaveFavBuilds( favBuilds ); 
+
     // Tell the server we clicked it
     GameEvents.SendCustomGameEventToServer('lodReady', {});
 }
@@ -2594,6 +2605,7 @@ var firstBuildTabCall = true;
 function OnMainSelectionTabShown() {
     if(firstBuildTabCall) {
     	LoadBuilds( '' );
+
         // Only do this once
         firstBuildTabCall = false; 
     }

@@ -14,7 +14,7 @@
                     <Button id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVotedDown()"></Button>
                 </Panel>
                 <Panel class="recommendedBuildActions">
-                    <Button id="recommendedBuildFavourite" onactivate="onSelectBuildPressed()"></Button>
+                    <Button id="recommendedBuildFavourite" class="active" onactivate="onClickFav()"></Button>
                     <Button id="recommendedBuildSettings" onactivate="onSelectBuildPressed()"></Button>
                 </Panel>
             </Panel>
