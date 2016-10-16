@@ -453,7 +453,7 @@
 	"build_generic_tank_desc"						"Keep it simple stupid. Auto-pilot for winning."
 	
 	"build_infest_support_title"					"Infest Support"
-	"build_infest_support_desc"						""
+	"build_infest_support_desc"						"Use Rot and Voodoo restoration before you infest to permanently have them on."
 	
 	"build_global_caster_title"						"Global Caster"
 	"build_global_caster_desc"						""
