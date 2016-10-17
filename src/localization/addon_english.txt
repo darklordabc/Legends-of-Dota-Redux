@@ -2858,15 +2858,6 @@
 		"DOTA_Tooltip_modifier_archmage_magic_barrier"	"Magic Barrier"
 		"DOTA_Tooltip_modifier_archmage_magic_barrier_Description" "The barrier can block %dMODIFIER_PROPERTY_TOOLTIP%% damage."
 		
-		"DOTA_Tooltip_ability_archmage_anomaly"	"Anomaly [WIP]"
-		"DOTA_Tooltip_ability_archmage_anomaly_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomly, will be applied to all enemies in it."
-		"DOTA_Tooltip_ability_archmage_anomaly_duration"	"DURATION:"
-		"DOTA_Tooltip_ability_archmage_anomaly_radius"		"RADIUS:"
-		"DOTA_Tooltip_ability_archmage_anomaly_Note0"	"Can be upgraded by Spherical Staff. Increases duration and manacost."
-
-		"DOTA_Tooltip_modifier_archmage_anomaly"	"Anomaly"
-		"DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
-		
 		"DOTA_Tooltip_ability_berserker_fire_spear"	"Fire Spear"
 		"DOTA_Tooltip_ability_berserker_fire_spear_Description"	"Berserker throws a fire spear into a target point. The spear deals damage and slows the movement speed of any enemy it hits."
 		"DOTA_Tooltip_ability_berserker_fire_spear_movement_speed_slow"	"%MOVEMENT SPEED SLOW:"
