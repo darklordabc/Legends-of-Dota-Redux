@@ -9,7 +9,7 @@
 
 		"dota/game/panorama",
  		"dota/game/panorama/localization",
-		
+		"dota/game/panorama/layout",
 		"dota/game/panorama/images"
 	],
 
@@ -55,5 +55,6 @@
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
 
 		{ "link": "../dota/game/panorama/images", "dir": "../src/game/panorama/images" }
+		{ "link": "../dota/game/panorama/layout", "dir": "../src/game/panorama/layout" }
 	]
 }
