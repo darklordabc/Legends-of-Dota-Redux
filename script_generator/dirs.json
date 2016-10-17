@@ -9,6 +9,8 @@
 
 		"dota/game/panorama",
  		"dota/game/panorama/localization"
+		
+		"dota/game/panorama/images"
 	],
 
 	"linkDirs" : [
@@ -51,5 +53,7 @@
 		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },
 
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" }
+
+		{ "link": "../dota/game/panorama/images", "dir": "../src/game/panorama/images" }
 	]
 }
