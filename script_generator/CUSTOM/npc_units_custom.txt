@@ -1570,6 +1570,21 @@
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+			//Force Dash
+			"particle"    "particles/force_dash/force_dash.vpcf"
+            "particle"    "particles/status_fx/status_effect_forcestaff.vpcf"
+            "sound"        "sounds/items/force_staff.vsnd"
+			// Shards of Truesight
+			"particle"    "particles/true_sight/dust_of_gem.vpcf"
+            "particle"    "particles/true_sight/true_sight_debuff.vpcf"
+            "sound"        "sounds/items/dust_of_appearance.vsnd"
+			//Sleep Cloud
+			"particle"    "particles/cherub_sleep_cloud.vpcf"
+            "particle"    "particles/cherub_sleep_status.vpcf"
+            "soundfile"   "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			//True random 
+			"soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
 		}
 	}
 
