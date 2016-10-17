@@ -9,8 +9,13 @@
 
 		"dota/game/panorama",
  		"dota/game/panorama/localization",
+		
+		"dota/game/panorama/images",
+		"dota/game/panorama/images/custom_game",
+		"dota/game/panorama/images/custom_game/flags",
+		
 		"dota/game/panorama/layout",
-		"dota/game/panorama/images"
+		"dota/game/panorama/layout/custom_game"
 	],
 
 	"linkDirs" : [
@@ -54,7 +59,7 @@
 
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
 
-		{ "link": "../dota/game/panorama/images", "dir": "../src/game/panorama/images" }
-		{ "link": "../dota/game/panorama/layout", "dir": "../src/game/panorama/layout" }
+		{ "link": "../dota/game/panorama/images/custom_game/flags", "dir": "../src/game/panorama/images/custom_game/flags" },
+		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" }
 	]
 }
