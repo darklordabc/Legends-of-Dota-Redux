@@ -2807,5 +2807,13 @@
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_Description"		"Magic fire burns the mana of the enemy unit, and deals damage equal to the amount of mana burned. Also deal damage if enemy unit have enough mana."
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage" 			"BURN:"
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage_pct" 		"%DAMAGE:"
+	
+	"DOTA_Tooltip_ability_death_ward_datadriven" 					"Armored Centipede"
+	"DOTA_Tooltip_ability_death_ward_datadriven_Description"		"Summon a mighty Centipede to help defend positions. Centipede gains extra defensive abilities per level."
+	"DOTA_Tooltip_ability_death_ward_datadriven_damage" 			"ATTACK DAMAGE:"
+	
+	"npc_dota_venomancer_scourge_ward_1"                                                           "Armored Centipede 1"
+	"npc_dota_venomancer_scourge_ward_2"                                                           "Armored Centipede 2"
+	"npc_dota_venomancer_scourge_ward_3"                                                           "Armored Centipede 3"
 			
 }
