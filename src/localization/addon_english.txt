@@ -621,8 +621,12 @@
     "lod_cat_crit"                                  "Critical Strike"
     "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
     "lod_cat_attack_modifier"                       "All Attack Modifiers"
-    "lod_cat_stun"                                  "Stuns, Shackles and Roots"
+    "lod_cat_stun"                                  "Stun, Shackle and Root"
     "lod_cat_isUlt"                                 "Ultimate Ability"
+	"lod_cat_summon"                                "Summon"
+	"lod_cat_silence"                  "Silence"
+	"lod_cat_disarm_break"                  "Disarm and Break"
+	"lod_cat_illusion"                  "Illusion"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
@@ -3246,11 +3250,11 @@
 		"DOTA_Tooltip_modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_Description"    "Taking periodic damage from a nearby fireball."
 		
 		//Deafening Blast
-		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Blast"
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Bolt"
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. "
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_mute_duration"                "DURATION:"
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_damage"                       "DAMAGE:"				
 		
-		"DOTA_Tooltip_modifier_invoker_retro_deafening_blast"                  			  "Deafening Blast"
+		"DOTA_Tooltip_modifier_invoker_retro_deafening_blast"                  			  "Deafening Bolt"
 		"DOTA_Tooltip_modifier_invoker_retro_deafening_blast_Description"                 "This unit's passives are disabled."
 }
