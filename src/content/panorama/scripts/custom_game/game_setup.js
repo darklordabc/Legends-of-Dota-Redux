@@ -1007,33 +1007,9 @@ var allOptions = {
 					{
 						text: 'lodOptionKDAFatOMeter',
 						value: 2
-					}
+					},
 				]
 			},
-            {
-                name: 'lodOptionIngameBuilder',
-                des: 'lodOptionDesIngameBuilder',
-                about: 'lodOptionAboutIngameBuilder',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionIngameOff',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionIngamePenalty',
-                        value: 1
-                    },
-                    {
-                        text: 'lodOptionIngamePenalty1',
-                        value: 2
-                    },
-                    {
-                        text: 'lodOptionIngameOn',
-                        value: 3
-                    }
-                ]
-            },
         ]
     }
 }
