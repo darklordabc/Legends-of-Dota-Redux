@@ -2886,7 +2886,7 @@
 		"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
 		
 		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
-		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. Archmage can givve the barrier to his ally. The barrier loses the ammount of damage blocked every second."
+		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. The barrier naturally deterioriates every second."
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol"	"%MANA SPENT INTO DAMAGE BLOCK:"
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol1"	"MANA BLOCKED REDUCTION PER SECOND:"
 

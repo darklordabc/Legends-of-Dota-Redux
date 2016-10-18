@@ -13632,23 +13632,9 @@
 	
 	    "CastFilterRejectCaster" "1"
 	    
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "2"
-	    "LevelsBetweenUpgrades"  "2"
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastRange"        "700"
-	    "AbilityCastPoint"        "0.0"
-	    
-	    // Time   
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"       "5"       
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"       "0"
-	
-	
+	    "MaxLevel"               "4"
+
+	    		
 	    "precache"
 	    {
 	      "particle"  "particles/abaddon_aphotic_shield.vpcf"
@@ -13661,7 +13647,7 @@
 	        "01"
 	        {
 	            "var_type"        "FIELD_INTEGER"
-	            "lol"             "25 45 65"
+	            "lol"             "25 45 65 85"
 	        }
 	        "02"
 	        {
