@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Eyes in the forest is now counted as invisbility ability, because it requires a gem to counter.
 - Added Armored Centipede ability
 - Added Berserker's Blood (pre 6.78)
+- Atropy Aura and Atropy Tower is now a troll combo because it was 100% damage reduction
 
 ## 1.6 - Steam Version
 
