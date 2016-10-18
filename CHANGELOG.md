@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Increased level requirement for OP tower abilities
 - Eyes in the forest is now counted as invisbility ability, because it requires a gem to counter.
 - Added Armored Centipede ability
+- Added Berserker's Blood (pre 6.78)
 
 ## 1.6 - Steam Version
 

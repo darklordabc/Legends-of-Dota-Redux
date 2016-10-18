@@ -3857,6 +3857,54 @@
             }
         }
     }
+    //================================================================================================================= 
+    // Huskar:Berserker's Blood
+    //=================================================================================================================
+    "huskar_berserkers_blood_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "huskar_berserkers_blood_lod"
+                
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "attack_speed_bonus_per_stack"  "3 6 9 12"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_per_stack"              "2 4 6 8"
+            }
+        }
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_huskar/huskar_berserker_blood_hero_effect.vpcf"
+            "particle"  "particles/units/heroes/hero_huskar/huskar_berserkers_blood_glow.vpcf"
+        }
+    
+        //Datadriven
+        //-------------------------------------------------------------------------------------------------------------
+        "OnUpgrade"
+        {
+            //ApplyLuaModifier 
+            "RunScript"
+            {
+                "ModifierName"  "modifier_huskar_berserkers_blood_lod"
+                "ScriptFile"    "abilities/berserkers_blood_lod.lua"
+                "Function"      "ApplyLuaModifier"
+            }
+        }
+    }
     //=================================================================================================================
     //
     //                                          HERO CONCEPTS (The Next Generation)
