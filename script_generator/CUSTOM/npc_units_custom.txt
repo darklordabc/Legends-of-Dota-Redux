@@ -66,7 +66,7 @@
 	}
 	
 	// Venomancer Scourge Wards
-	"npc_dota_venomancer_scourge_ward_1"
+	"npc_dota_armoured_centipede_ward_1"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -143,7 +143,7 @@
 		"HasInventory"				"0"
 	}
 
-	"npc_dota_venomancer_scourge_ward_2"
+	"npc_dota_armoured_centipede_ward_2"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -220,7 +220,7 @@
 		"HasInventory"				"0"
 	}
 
-	"npc_dota_venomancer_scourge_ward_3"
+	"npc_dota_armoured_centipede_ward_3"
 	{
 		// General
 		//----------------------------------------------------------------

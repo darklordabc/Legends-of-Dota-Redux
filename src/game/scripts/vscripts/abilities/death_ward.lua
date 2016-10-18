@@ -13,11 +13,11 @@ function CreateWard(keys)
 	print (ability_level)
 	-- Creates the death ward (There is no way to control the default ward, so this is a custom one)
 	if ability_level == 0 then
-		caster.death_ward = CreateUnitByName("npc_dota_venomancer_scourge_ward_1", position, true, caster, nil, caster:GetTeam())
+		caster.death_ward = CreateUnitByName("npc_dota_armoured_centipede_ward_1", position, true, caster, nil, caster:GetTeam())
 	elseif ability_level == 1 then
-		caster.death_ward = CreateUnitByName("npc_dota_venomancer_scourge_ward_2", position, true, caster, nil, caster:GetTeam())
+		caster.death_ward = CreateUnitByName("npc_dota_armoured_centipede_ward_2", position, true, caster, nil, caster:GetTeam())
 	elseif ability_level == 2 then
-		caster.death_ward = CreateUnitByName("npc_dota_venomancer_scourge_ward_3", position, true, caster, nil, caster:GetTeam())
+		caster.death_ward = CreateUnitByName("npc_dota_armoured_centipede_ward_3", position, true, caster, nil, caster:GetTeam())
 	end
 
 	caster.death_ward:AddNewModifier(caster, ability, "modifier_kill", {duration = 16})		

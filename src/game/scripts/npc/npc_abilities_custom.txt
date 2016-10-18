@@ -1021,20 +1021,7 @@
         }
     }
 
-	// Rewrite of Witch Doctor's Death Ward
-// Author: YOLOSPAGHETTI
-// Date: March 15, 2016
-// Version: 6.86
-// Type: Datadriven
-//
-// Notes: Some of the particles on the death ward do not appear
-//
-// ----- FILE REQUIREMENTS -----
-// Script files:
-// scripts/vscripts/heroes/hero_witch_doctor/death_ward.lua
-// scripts/npc/units/witch_doctor_death_ward_datadriven.txt
-
-	"death_ward_datadriven"
+	"armoured_centipede"
 	{
 	// General
 	//-------------------------------------------------------------------------------------------------------------
@@ -1047,7 +1034,7 @@
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 	"FightRecapLevel"				"2"
 	"MaxLevel"						"3"
-	"AbilityTextureName"			"death_ward_datadriven"
+	"AbilityTextureName"			"armoured_centipede"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
