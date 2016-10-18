@@ -14082,9 +14082,7 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"dark_ranger_black_arrow"
 	
-		"MaxLevel"               "3"
-		"RequiredLevel"          "1"
-		"LevelsBetweenUpgrades"  "2"
+		"MaxLevel"               "4"
 	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityUnitTargetTeam" 		"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14093,8 +14091,8 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastRange"				"550"
 	
-		"AbilityManaCost"				"6 12 18"
-		"AbilityDamage"					"25 50 75"
+		"AbilityManaCost"				"8"
+		"AbilityDamage"					"10 20 30 40"
 	
 		"precache"
 		{
@@ -14108,17 +14106,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
+				"duration"					"3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"lifetime"					"4 5 6"		
+				"lifetime"					"4 5 6 7"		
 			}	
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mana"						"6 12 18"		
+				"mana"						"8"		
+			}
+			"04"
+			{
+			  "var_type"               "FIELD_INTEGER"
+			  "outgoing_damage"        "50"
+			}
+			"05"
+			{
+			  "var_type"          "FIELD_INTEGER"
+			  "incoming_damage"     "100"
 			}			
 		}
 	
