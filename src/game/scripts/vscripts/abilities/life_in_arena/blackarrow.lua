@@ -19,7 +19,7 @@ function BlackArrow(event)
 	creep:AddNewModifier(caster, event.ability, "modifier_kill", {duration = lifetime})
 	--creep:AddNewModifier(caster, event.ability, "modifier_illusion", nil)
 	-- event.ability:ApplyDataDrivenModifier(caster, creep, "modifier_dark_ranger_black_arrow_unit", nil)
-	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = 50, incoming_damage = 200})
+	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = event.ability:GetSpecialValueFor("outgoing_damage"), incoming_damage = event.ability:GetSpecialValueFor("incoming_damage")})
 	creep:SetRenderColor(249, 127, 127)
 	
 	if target:IsRealHero() then
