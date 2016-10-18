@@ -1833,10 +1833,7 @@
 			"particle"	"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
 			//Magic Barrier
-			"particle"  "particles/abaddon_aphotic_shield.vpcf"
-			//Anomaly
-			"particle"   "particles/fv_chronosphere_aeons.vpcf"  
-			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"        
+			"particle"  "particles/abaddon_aphotic_shield.vpcf"			       
 			//Firespear
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
 			"particle"			"particles/berserker_fire_spear.vpcf"
