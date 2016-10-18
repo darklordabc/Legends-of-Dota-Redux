@@ -1383,10 +1383,10 @@
 }
 
 .skillCostRecommended {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
-	margin-right: 0px;
-	margin-bottom: 0px;
+	margin-right: 3px;
+	margin-bottom: 3px;
     vertical-align: bottom;
     horizontal-align: right;
 }
@@ -2019,11 +2019,11 @@
 
 .buildCategoryLabel {
     font-size: 24px;
-    margin: 8px;
+    margin: 10px;
 }
 
 #pickingPhaseRecommendedBuildContainer {
-    horizontal-align: center;
+    horizontal-align: left;
     width: 100%;
     flow-children: right-wrap;
     height: 100%;
@@ -2340,9 +2340,9 @@
 }
 
 .VotingOptionInfo {
-    flow-children: right;
+    horizontal-align: right;
 
-	margin-left: 10px;
+	margin-left: 5px;
 	width: 18px;
 	height: 18px;
 }
@@ -2365,8 +2365,8 @@
 .tooltipContents
 {
     min-width: 80px;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 600px;
+    max-height: 600px;
     flow-children: down;
 }
 
@@ -2581,7 +2581,7 @@
 }
 
 #importAndExportCaption {
-    flow-children: right;
+    width: auto;
 }
 
 .importAndExportButton {
@@ -2596,7 +2596,7 @@
 }
 
 #importAndExportEntryRoot {
-    flow-children: left;
+    flow-children: right;
     margin-left: -10px;
 }
 
