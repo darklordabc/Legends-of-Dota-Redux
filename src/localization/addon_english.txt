@@ -1655,12 +1655,13 @@
     "DOTA_Tooltip_modifier_fury_swipes_target_lod_Description"  "Taking extra damage per stack."
 
     //Huskar
-    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod"                                  "Berserker's Blood LoD"
-    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Increase damage and attack speed"
-    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_attack_speed_bonus_per_stack"     "Attack Speed Bonus Per Stack:"
-    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_damage_per_stack"                 "Damage Per Stack:"
-
-    "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod"                                 "Berserker's Blood LoD"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod"                                  "Berserker's Blood (pre 6.78)"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Huskar's injuries feed his power, giving increased attack speed and damage for each 7% of missing health."
+	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_attack_speed_bonus_per_stack"       "ATTACK SPEED BONUS PER STACK:"
+	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_damage_per_stack"       "ATTACK DAMAGE BONUS PER STACK:"
+	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Lore"           					"After losing his birthright, Huskar gained a lethality in physical combat that is only heightened as his own blood is spilled."        
+	
+    "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod"                                 "Berserker's Blood"
     "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod_Description"                     "Increase damage and attack speed."
     
     ///////////////////////////////////////

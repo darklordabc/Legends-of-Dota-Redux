@@ -23,6 +23,23 @@ function modifier_huskar_berserkers_blood_lua:GetStatusEffectPriority()
 end
 ]]--
 
+function modifier_huskar_berserkers_blood_lod:IsPassive()
+	return true
+end
+
+function modifier_huskar_berserkers_blood_lod:RemoveOnDeath()
+	return false
+end
+
+function modifier_huskar_berserkers_blood_lod:IsHidden()
+	
+	if self:GetStackCount() > 1 then 
+		return false
+	else 
+		return true
+	end
+end
+
 function modifier_huskar_berserkers_blood_lod:OnCreated()
 	-- Variables
 	self.berserkers_blood_damage = self:GetAbility():GetSpecialValueFor( "damage_per_stack" )
@@ -51,31 +68,36 @@ function modifier_huskar_berserkers_blood_lod:OnIntervalThink()
 		local oldStackCount = self:GetStackCount()
 		local health_perc = caster:GetHealthPercent()/100
 		local newStackCount = 1
+		
+		if caster:IsAlive() then 
+			-- local model_size = self.berserkers_blood_model_size
+			local hurt_health_ceiling = self.berserkers_blood_hurt_health_ceiling
+			local hurt_health_floor = self.berserkers_blood_hurt_health_floor
+			local hurt_health_step = self.berserkers_blood_hurt_health_step
 
-		-- local model_size = self.berserkers_blood_model_size
-		local hurt_health_ceiling = self.berserkers_blood_hurt_health_ceiling
-		local hurt_health_floor = self.berserkers_blood_hurt_health_floor
-		local hurt_health_step = self.berserkers_blood_hurt_health_step
 
+			for current_health=hurt_health_ceiling, hurt_health_floor, -hurt_health_step do
+				if health_perc <= current_health then
 
-	    for current_health=hurt_health_ceiling, hurt_health_floor, -hurt_health_step do
-	        if health_perc <= current_health then
+					newStackCount = newStackCount+1
+				else
+					break
+				end
+			end
+		   
 
-	            newStackCount = newStackCount+1
-	        else
-	        	break
-	        end
-	    end
-	   
+			local difference = newStackCount - oldStackCount
+			
 
-    	local difference = newStackCount - oldStackCount
-
-    	-- set stackcount
-    	if difference ~= 0 then
-    		-- caster:SetModelScale(caster:GetModelScale()+difference*model_size)
-    		self:SetStackCount( newStackCount )
-    		self:ForceRefresh()
-    	end
+			-- set stackcount
+			if difference ~= 0 then
+				--caster:SetModelScale(caster:GetModelScale()+difference*model_size)
+				self:SetStackCount( newStackCount )
+				self:ForceRefresh()
+			end
+		else
+			self:SetStackCount( 0 )
+		end
 		
 	end
 end
@@ -90,6 +112,7 @@ function modifier_huskar_berserkers_blood_lod:OnRefresh()
         self:GetParent():CalculateStatBonus()
     end
 end
+
 
 function modifier_huskar_berserkers_blood_lod:DeclareFunctions()
 	local funcs = {
