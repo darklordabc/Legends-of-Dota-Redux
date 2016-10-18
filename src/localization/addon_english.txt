@@ -1104,8 +1104,9 @@
 	"credit_illusionist_whiff_of_deception"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_illusionist_agility_paws"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_illusionist_mastery_of_illusions"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_firelord_flame_strike"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_firelord_flame_strike"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"	
 	
+				
     /////////////////
     // CUSTOM ABILITIES
     ////////////////
@@ -2821,7 +2822,7 @@
 	"DOTA_Tooltip_ability_angel_arena_roots_damage"					"DAMAGE:"	
 	"DOTA_Tooltip_ability_angel_arena_roots_armor_reduction"		"ARMOR REDUCE:"	
 
-	"DOTA_Tooltip_ability_angel_arena_rifle"							"Toggle Rifle [PLEASE REVIEW IF ITS ABUSEABLE]"
+	"DOTA_Tooltip_ability_angel_arena_rifle"							"Toggle Rifle"
 	"DOTA_Tooltip_ability_angel_arena_rifle_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
 	"DOTA_Tooltip_ability_angel_arena_rifle_gun_base_attack_time"		"GUN BASE ATTACK:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_gun_range_tooltip"			"GUN RANGE:"
@@ -2884,8 +2885,8 @@
 		"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
 		"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
 		
-		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier [WIP]"
-		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. Archmage can givve the barrier to his ally. The barrier loses the ammount of damage blocked every second."
+		"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
+		"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. The barrier naturally deterioriates over time."
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol"	"%MANA SPENT INTO DAMAGE BLOCK:"
 		"DOTA_Tooltip_ability_archmage_magic_barrier_lol1"	"MANA BLOCKED REDUCTION PER SECOND:"
 
@@ -2967,7 +2968,7 @@
 		"DOTA_Tooltip_ability_butcher_skin_bonus_armor"	"+$armor"		
 		"DOTA_Tooltip_ability_butcher_skin_damage_return"	"%DAMAGE RETURN:"	
 		
-		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow [WIP]"
+		"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side. Black arrow effect lasts 3 seconds"
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"ILLUSION LIFETIME:"
 		"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
@@ -3060,7 +3061,7 @@
 		"DOTA_Tooltip_modifier_akron_explosion_burn"	"Living Bomb"
 		"DOTA_Tooltip_modifier_akron_explosion_burn_Description"	"This unit is taking damage."
 		
-		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel [WIP]"
+		"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel"
 		"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
 		"DOTA_Tooltip_ability_paladin_impregnability_radius"	"RADIUS:"		
 		"DOTA_Tooltip_ability_paladin_impregnability_duration"	"DURATION:"		
@@ -3191,8 +3192,8 @@
 		/// RETRO DOTA
 		/////////
 		//Betrayal
-		"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal [PLEASE REVIEW CODE]"
-		"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks."
+		"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal"
+		"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_betrayal_duration"							  "DURATION:"
 				
 		"DOTA_Tooltip_modifier_invoker_retro_betrayal"                    				  "Betrayal"
@@ -3200,12 +3201,12 @@
 		
 		///Portal
 		"DOTA_Tooltip_Ability_invoker_retro_portal"                        "Portal"
-		"DOTA_Tooltip_Ability_invoker_retro_portal_Description"            "After a slightly extended cast animation, moves the targeted allied unit to Invoker's position."
+		"DOTA_Tooltip_Ability_invoker_retro_portal_Description"            "After a slightly extended cast animation, moves the targeted allied unit to Invoker's position.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_portal_cast_range"                 "CAST RANGE:"
 		
 		//Invisibility Aura
 		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura"                            "Invisibility Aura"
-		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible."
+		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
 		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_radius"                     "RADIUS:"
 		"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_fade_time"                     "FADE TIME:"
@@ -3216,7 +3217,7 @@
 		"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_Description"				  "Will make your nearby allies invisible, but not you."
 		//Scout
 		"DOTA_Tooltip_Ability_invoker_retro_scout"                                        "Scout"
-		"DOTA_Tooltip_Ability_invoker_retro_scout_Description"                            "Summons an invisible, invulnerable Owl Scout that has flying vision and truesight."
+		"DOTA_Tooltip_Ability_invoker_retro_scout_Description"                            "Summons an invisible, invulnerable Owl Scout that has flying vision and truesight.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_scout_owl_duration"             	 	      "DURATION:"
 		"DOTA_Tooltip_Ability_invoker_retro_scout_owl_vision"							  "VISION RADIUS:"
 		"DOTA_Tooltip_Ability_invoker_retro_scout_owl_movespeed"						  "MOVEMENT SPEED:"
@@ -3231,7 +3232,7 @@
 		
 		//Confuse
 		"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
-		"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable."
+		"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
 		"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
@@ -3239,24 +3240,16 @@
 		
 		//Disarm (Broken into 8 spells)
 		"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"
-		"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit."
+		"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_disarm_duration"				"DURATION:"
 		"DOTA_Tooltip_Ability_invoker_retro_disarm_cast_range" 			  	"CAST RANGE:"		
 
 		"DOTA_Tooltip_modifier_invoker_retro_disarm"                  					  "Disarm"
 		"DOTA_Tooltip_modifier_invoker_retro_disarm_Description"                          "Disarmed."
 		
-		//Firestorm
-		"DOTA_Tooltip_Ability_invoker_retro_firestorm"                                    "Firestorm"
-		"DOTA_Tooltip_Ability_invoker_retro_firestorm_Description"                        "Calls a number of fireballs from the sky to successively and randomly land in the targeted area.  The effects of each fireball have a radius of %fireball_damage_aoe% units.  Upon landing, a fireball will deal %fireball_landing_damage% damage to all nearby enemy units, after which it will deal %fireball_aoe_damage_per_second% damage per second to nearby enemy units while it remains in the ground.  %fireball_duration% seconds after landing, it will explode, dealing %fireball_explosion_damage% damage to nearby enemy units."
-		"DOTA_Tooltip_Ability_invoker_retro_firestorm_num_fireballs" 					  "NUMBER OF FIREBALLS:"
-					
-		"DOTA_Tooltip_modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"                "Firestorm"
-		"DOTA_Tooltip_modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_Description"    "Taking periodic damage from a nearby fireball."
-		
 		//Deafening Blast
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Bolt"
-		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. "
+		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. \n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_mute_duration"                "DURATION:"
 		"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_damage"                       "DAMAGE:"				
 		

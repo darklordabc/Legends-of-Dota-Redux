@@ -13632,23 +13632,9 @@
 	
 	    "CastFilterRejectCaster" "1"
 	    
-	    "MaxLevel"               "3"
-	    "RequiredLevel"          "2"
-	    "LevelsBetweenUpgrades"  "2"
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastRange"        "700"
-	    "AbilityCastPoint"        "0.0"
-	    
-	    // Time   
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"       "5"       
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"       "0"
-	
-	
+	    "MaxLevel"               "4"
+
+	    		
 	    "precache"
 	    {
 	      "particle"  "particles/abaddon_aphotic_shield.vpcf"
@@ -13661,7 +13647,7 @@
 	        "01"
 	        {
 	            "var_type"        "FIELD_INTEGER"
-	            "lol"             "25 45 65"
+	            "lol"             "25 45 65 85"
 	        }
 	        "02"
 	        {
@@ -18077,182 +18063,7 @@
 			}
 		}
 	}
-	//Firestorm
-	"invoker_retro_firestorm"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" 			"invoker_retro_firestorm"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"AbilityProcsMagicStick" 		"1"
 		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"250"
-		"AbilityCastRange"				"550"
-		"AoERadius"						"300"  //Update fireball_cast_radius if this is.
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_fly.vpcf"
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball.vpcf"
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_explosion.vpcf"
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_firestorm_fireball_crumble.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"num_fireballs"						"2 4 6 8"  //Increases with Exort.
-			}
-			"02"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"fireball_land_delay"				".5"  //The time between when the fireball spawns and when it lands.  If this is changed, modify invoker_retro_firestorm_fireball_fly.vpcf's "travel time" under Constraint -> "Constrain distance to path between two control points"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"fireball_delay_between_spawns"		".25"
-			}
-			"04"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"fireball_cast_radius"				"300"  //Update "AoERadius" if this is.
-			}
-			"05"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"fireball_damage_aoe"				"200"  //If this is changed, modify several particle effect radii.
-			}
-			"06"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"fireball_landing_damage"			"30"
-			}
-			"07"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"fireball_aoe_damage_per_second"	"150"
-			}
-			"08"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"fireball_aoe_damage_interval"		".5"
-			}
-			"09"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"fireball_duration"					"7"
-			}
-			"10"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"fireball_explosion_damage"			"150"
-			}
-			"11"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"fireball_vision_radius"			"75"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pip_current"			"1"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
-				"Function"						"invoker_retro_firestorm_on_spell_start"
-				"Target"						"POINT"
-				"FireballCastRadius"			"%fireball_cast_radius"
-				"FireballLandDelay"				"%fireball_land_delay"
-				"FireballDelayBetweenSpawns"	"%fireball_delay_between_spawns"
-				"FireballVisionRadius"			"%fireball_vision_radius"
-				"FireballDamageAoE"				"%fireball_damage_aoe"
-				"FireballLandingDamage"			"%fireball_landing_damage"
-				"FireballDuration"				"%fireball_duration"
-				"FireballExplosionDamage"		"%fireball_explosion_damage"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_invoker_retro_firestorm_fireball_duration"
-			{
-				"Passive"  			"0"
-				"IsHidden" 			"1"
-				"IsBuff"			"0"
-				"IsDebuff"			"0"
-				"IsPurgable"		"0"
-				
-				"ThinkInterval" 	".03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
-						"Function"						"modifier_invoker_retro_firestorm_fireball_duration_on_interval_think"
-						"FireballDuration"				"%fireball_duration"
-					}
-				}
-			}		
-			//This aura emitter is placed on landed fireballs to make it so the DoTs from multiple fireballs do not stack.
-			"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_emitter"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsBuff"			"0"
-				"IsDebuff"			"0"
-				"IsPurgable"		"0"
-				"Aura" 				"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"
-				"Aura_Radius" 		"%fireball_damage_aoe"
-				"Aura_Teams" 		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" 		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_ApplyToCaster" "0"
-			}
-			"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsBuff"			"0"
-				"IsDebuff"			"1"
-				"IsPurgable"		"0"
-				"TextureName"		"invoker_retro_firestorm"
-				
-				"ThinkInterval" 	"%fireball_aoe_damage_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"					"abilities/retro_dota/invoker_retro_firestorm.lua"
-						"Function"						"modifier_invoker_retro_firestorm_fireball_damage_over_time_aura_on_interval_think"
-						"FireballAoEDamageInterval"		"%fireball_aoe_damage_interval"
-						"FireballAoEDamagePerSecond"	"%fireball_aoe_damage_per_second"
-					}
-				}
-			}
-		}
-	}
-	
 	"invoker_retro_deafening_blast"
 	{
 		// General
