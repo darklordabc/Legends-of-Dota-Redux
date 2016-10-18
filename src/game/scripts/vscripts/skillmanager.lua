@@ -149,8 +149,10 @@ end
 
 -- Precaches a skill -- DODGY!
 local alreadyCached = {}
+local customSkill = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 function skillManager:precacheSkill(skillName, callback)
     local heroID = skillOwningHero[skillName]
+	local customSkill = customSkill[skillName]
 
     if heroID then
         local heroName = heroIDToName[heroID]
@@ -181,6 +183,23 @@ function skillManager:precacheSkill(skillName, callback)
                 end
             end
         end
+	elseif customSkill then
+		if alreadyCached[skillName] then
+			if callback() then
+                callback()
+                return
+			else
+				return
+			end
+		end
+		alreadyCached[skillName] = true
+		PrecacheItemByNameAsync(skillName, function()
+			local precache = CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
+            local hAbility = precache:AddAbility(skillName)
+            if callback ~= nil then
+               callback()
+            end
+        end)
     else
         -- Done
         callback()
