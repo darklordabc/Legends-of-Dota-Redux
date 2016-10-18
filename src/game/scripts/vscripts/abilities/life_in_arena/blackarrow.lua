@@ -21,9 +21,13 @@ function BlackArrow(event)
 	-- event.ability:ApplyDataDrivenModifier(caster, creep, "modifier_dark_ranger_black_arrow_unit", nil)
 	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = 50, incoming_damage = 200})
 	creep:SetRenderColor(249, 127, 127)
-	local target_level = target:GetLevel()
-    for i = 1, target_level - 1 do
-        creep:HeroLevelUp(false)
-    end
+	
+	if target:IsRealHero() then
+		local target_level = target:GetLevel()
+	    for i = 1, target_level - 1 do
+	        creep:HeroLevelUp(false)
+	    end
+	end
+
 	creep:MakeIllusion()
 end
