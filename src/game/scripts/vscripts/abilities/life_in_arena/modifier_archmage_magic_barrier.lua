@@ -116,16 +116,20 @@ end
 
 
 function modifier_archmage_magic_barrier:OnDeath(params)
-	if self:GetParent().magicBarrerParticle ~= nil then
-		ParticleManager:DestroyParticle(self:GetParent().magicBarrerParticle,true)
-		self:GetParent().magicBarrerParticle = nil
-	end
-	if params.unit == self:GetParent() then
-		self:GetAbility().target = nil
-		self:GetAbility().behavior = { behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET };
+	if IsServer() then
+		if params.unit:entindex() == self:GetCaster():entindex() then
+			if self:GetParent().magicBarrerParticle ~= nil then
+				ParticleManager:DestroyParticle(self:GetParent().magicBarrerParticle,true)
+				self:GetParent().magicBarrerParticle = nil
+			end
+			if params.unit == self:GetParent() then
+				self:GetAbility().target = nil
+				self:GetAbility().behavior = { behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET };
 
-		if self:GetCaster():IsAlive() then
-			self:GetCaster():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_archmage_magic_barrier",nil)
+				if self:GetCaster():IsAlive() then
+					self:GetCaster():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_archmage_magic_barrier",nil)
+				end
+			end
 		end
 	end
 end
