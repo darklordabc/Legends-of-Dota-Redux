@@ -1653,6 +1653,15 @@
 
     "DOTA_Tooltip_modifier_fury_swipes_target_lod"  "Fury Swipes"
     "DOTA_Tooltip_modifier_fury_swipes_target_lod_Description"  "Taking extra damage per stack."
+
+    //Huskar
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod"                                  "Berserker's Blood LoD"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Increase damage and attack speed"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_attack_speed_bonus_per_stack"     "Attack Speed Bonus Per Stack:"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_damage_per_stack"                 "Damage Per Stack:"
+
+    "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod"                                 "Berserker's Blood LoD"
+    "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod_Description"                     "Increase damage and attack speed."
     
     ///////////////////////////////////////
     // HERO CONCEPTS (The Next Generation)
@@ -2814,6 +2823,5 @@
 	
 	"npc_dota_venomancer_scourge_ward_1"                                                           "Armored Centipede 1"
 	"npc_dota_venomancer_scourge_ward_2"                                                           "Armored Centipede 2"
-	"npc_dota_venomancer_scourge_ward_3"                                                           "Armored Centipede 3"
-			
+	"npc_dota_venomancer_scourge_ward_3"                                                           "Armored Centipede 3"		
 }
