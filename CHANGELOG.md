@@ -8,10 +8,17 @@ All notable changes to this project will be documented in this file.
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
 - Fixed techies perk not having 50% reduction in cooldown for explosives/traps
 - Cheat Menu now work properly for non-host players
+- Reorganized some ability groups
+- Added new look to preset builds [NOT READY FOR RELEASE]
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
-- Added 19 abilities from Angel Arena Reborn
+- Added 19 abilities from Angel Arena Reborn [NOT READY FOR RELEASE]
+- Increased level requirement for OP tower abilities
+- Eyes in the forest is now counted as invisbility ability, because it requires a gem to counter.
+- Added Armored Centipede ability
+- Added Berserker's Blood (pre 6.78)
+- Atropy Aura and Atropy Tower is now a troll combo because it was 100% damage reduction
 
 ## 1.6 - Steam Version
 
