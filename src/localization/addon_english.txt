@@ -309,6 +309,7 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
+    "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
@@ -330,6 +331,9 @@
 	"lodOptionNoFatOMeter"							"Disabled"
 	"lodOptionFarmFatOMeter"						"Networth"
 	"lodOptionKDAFatOMeter"							"KDA"	
+    "lodOptionIngameOff"                            "Ability Switching Disabled"
+    "lodOptionIngamePenalty1"                       "Ability Switching, 60 second death penalty"
+    "lodOptionIngameOn"                             "Ability Switching, No Penalty"
 	"lodOptionAboutCrazyFatOMeter"					"This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
 	"lodMutatorNoFatOMeter"							"Fat-O-Meter"
 	"lodMutatorFarmFatOMeter"						"Fat-O-Meter Networth"
@@ -615,8 +619,12 @@
     "lod_cat_crit"                                  "Critical Strike"
     "lod_cat_aoe_attack"                            "Cleave and Multi-Target"
     "lod_cat_attack_modifier"                       "All Attack Modifiers"
-    "lod_cat_stun"                                  "Stuns, Shackles and Roots"
+    "lod_cat_stun"                                  "Stun, Shackle and Root"
     "lod_cat_isUlt"                                 "Ultimate Ability"
+	"lod_cat_summon"                                "Summon"
+	"lod_cat_silence"                  "Silence"
+	"lod_cat_disarm_break"                  "Disarm and Break"
+	"lod_cat_illusion"                  "Illusion"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
@@ -631,7 +639,7 @@
     "lodFailedInvalidSlot"                          "You tried to place a skill into an invalid slot number."
     "lodFailedInvalidAbility"                       "'{abilityName}' is not a valid ability."
     "lodFailedTooManyUlts"                          "You have {maxUlts}/{maxUlts} ultimate abilities."
-    "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} reguluar abilities."
+    "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} regular abilities."
     "lodFailedTrollCombo"                           "'{ab1}' can not be picked with '{ab2}' because it is considered a troll combination and troll combinations have been banned."
     "lodFailedUnknownCategory"                      "'{ab}' does not belong to a valid category of skills. (You will only see this error if LoD has been configured incorrectly)."
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
@@ -983,6 +991,8 @@
 	"warning_imba_tower_spell_shield"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 20.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
 	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
+	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
+	
 		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -1058,8 +1068,43 @@
 	"credit_angel_arena_darkrage"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_demonic"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_grace"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_ancient_priestess_surge_of_intelligence"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ancient_priestess_spirit_link"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_archmage_magic_barrier"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_berserker_fire_spear"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_dark_ranger_black_arrow"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_firelord_fire_trap"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_cold"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_frost_breath"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ghoul_devour"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_akron_explosion"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_paladin_blizzard"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_dark_knight_dark_forces"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_lightning_shield"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_cluster_rockets"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_serpent_queen_ball_lightning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_butcher_zombie"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_freezing"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_holy_wrath"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_kret_poisoning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_kret_lust_for_life"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_agi"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_int"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_all"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_pocket_factory"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ancient_priestess_ritual_protection"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_berserker_madness"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_ice"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_brain_storm"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_paladin_impregnability"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_mastery_of_deception"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_whiff_of_deception"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_agility_paws"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_mastery_of_illusions"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_firelord_flame_strike"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"	
 	
-
+				
     /////////////////
     // CUSTOM ABILITIES
     ////////////////
@@ -1685,7 +1730,7 @@
 
     "DOTA_Tooltip_ability_cherub_explosive_spore"                "Explosive Spore"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Description"  "Cherub creates a floating spore with flying movement. Spores will explode after 10 seconds or upon dying, dealing magical damage in an area of effect and lifestealing based on damage dealt."
-    "DOTA_Tooltip_ability_cherub_explosive_spore_Note0"      "Spores have 0 armor and 0%d%% magical resistance, and give 30 gold and 25 experience when killed. 
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Note0"      "Spores have 0 armor and 0%d%% magical resistance, and give 30 gold and 25 experience when killed."
     "DOTA_Tooltip_ability_cherub_explosive_spore_Delay"      "EXPLODE DELAY:"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Radius"    "EXPLODE RADIUS:"
     "DOTA_Tooltip_ability_cherub_explosive_spore_Damage"      "DAMAGE:"
@@ -1818,7 +1863,7 @@
     // Zulf, the Stormhunter
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"  
-    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration."
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"           "Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."        
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"     "CAST RANGE:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"        "ARMOR REDUCTION:"
@@ -1828,7 +1873,7 @@
 
 
     "DOTA_Tooltip_Ability_zulf_jet_stream"              "Jet Stream"
-    "DOTA_Tooltip_Ability_zulf_jet_stream_Description"      "Zulf creates a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing towards the stream."
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Description"      "Zulf creates a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing towards the stream.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_jet_stream_Lore"         "Higher than can be imagined, at the border of sky and space, are winds so fast that any being can fly in them."
     "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_buff"       "%MOVESPEED INCREASE/DECREASE:"
     "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_increase"   "%BONUS MOVESPEED INCREASE/DECREASE PER STACK:"
@@ -1837,14 +1882,14 @@
     "DOTA_Tooltip_Ability_zulf_jet_stream_Duration"         "DURATION:"
 
     "DOTA_Tooltip_Ability_zulf_gale_force"              "Gale Force"    
-    "DOTA_Tooltip_Ability_zulf_gale_force_Description"      "Zulf summons a current of extremely fast air that disarms himself and nearby enemies, dealing damage over time based on Zulf's agility."
+    "DOTA_Tooltip_Ability_zulf_gale_force_Description"      "Zulf summons a current of extremely fast air that disarms himself and nearby enemies, dealing damage over time based on Zulf's agility.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_gale_force_Lore"                 "A Stormhunter needs no blade to kill his prey, when the wicked winds at his talontips do just the trick."  
     "DOTA_Tooltip_Ability_zulf_gale_force_Damage_per_agility"   "DAMAGE PER AGILITY:"   
     "DOTA_Tooltip_Ability_zulf_gale_force_Radius"               "RADIUS:"
     "DOTA_Tooltip_Ability_zulf_gale_force_Duration"             "DURATION:" 
 
     "DOTA_Tooltip_Ability_zulf_typhoon"             "Typhoon"   
-    "DOTA_Tooltip_Ability_zulf_typhoon_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. \nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_Ability_zulf_typhoon_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. \nUpgradable by Aghanim's Scepter.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_typhoon_Lore"            "The storm of the century!"
     "DOTA_Tooltip_Ability_zulf_typhoon_Radius"          "RADIUS:"
     "DOTA_Tooltip_Ability_zulf_typhoon_Damage"          "DAMAGE PER 100 ELEVATION:"
@@ -2476,8 +2521,8 @@
   	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
 	
 	/// PUCK
-	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Puck Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Puck has a 50% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk"	"Puck Perk"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description"	"Puck has a 50%d% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
 	
 	/// PUDGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
@@ -2710,8 +2755,8 @@
 	"DOTA_Tooltip_modifier_cripple"								"Crippled"
 	"DOTA_Tooltip_modifier_cripple_Description"					"Damage and movement speed reduced and receiving damage over time."
 
-	"DOTA_Tooltip_ability_angel_arena_berserk"						"Berserker's Rage"
-	"DOTA_Tooltip_ability_angel_arena_berserk_Description"			"You become enraged, gaining increased attack speed and damage and with every attack you will do pure damage from current health of enemy."
+	"DOTA_Tooltip_ability_angel_arena_berserk"						"Savage Rage"
+	"DOTA_Tooltip_ability_angel_arena_berserk_Description"			"You become enraged, gaining increased attack speed and with every attack you will do pure damage from current health of enemy. However, you will receive more incoming damage."
 	"DOTA_Tooltip_ability_angel_arena_berserk_bonus_attack_speed"	"ATTACK SPEED:"		
 	"DOTA_Tooltip_ability_angel_arena_berserk_bonus_damage"			"%INCOMING DAMAGE:"	
 	"DOTA_Tooltip_ability_angel_arena_berserk_damage_pct"			"%DAMAGE ENEMY:"
@@ -2818,6 +2863,412 @@
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage" 			"BURN:"
 	"DOTA_Tooltip_ability_angel_arena_magic_fire_damage_pct" 		"%DAMAGE:"
 	
+	//////
+	/// LIFE IN ARENA
+	//////
+	
+	//Arcane Barrage
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence"	"Arcane Barrage"
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"	"Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence."
+	"DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"	"INTELLIGENCE MULTIPLIER:"			
+	
+	//Spirit Link
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link"	"Spirit Link"
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_Description"	"Links units together in a chain. All units with Spirit Link on them will live longer, by distributing damage they take across other Spirit Linked units. Linked unit also get bonus health regeneration."
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_distribution_tooltip"	"%DISTRIBUTED DAMAGE PERCENTAGE:"			
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_max_unit"				"NUMBER OF TARGETS:"		
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_heal_value"	"BONUS REGENERATION:"			
+	"DOTA_Tooltip_ability_ancient_priestess_spirit_link_duration"	"DURATION:"	
+
+	"DOTA_Tooltip_modifier_ancient_priestess_spirit_link"	"Spirit Link"
+	"DOTA_Tooltip_modifier_ancient_priestess_spirit_link_Description" "This unit gains bonus regeneration and all damage dealt to him is distributed across all linked allies."
+	
+	"DOTA_Tooltip_ability_ancient_priestess_ritual_protection"	"Ritual of Protection"
+	"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_Description"	"All allies in a 600 area of effect get a shield that can block some amount of any damage."
+	"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_damage_absorb"	"DAMAGE ABSORBED:"			
+	"DOTA_Tooltip_ability_ancient_priestess_ritual_protection_duration"				"DURATION:"		
+
+	"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection"	"Ritual of Protection"
+	"DOTA_Tooltip_modifier_ancient_priestess_ritual_protection_Description" "Your hero absorbs damage."
+	
+	"DOTA_Tooltip_ability_android_cluster_rockets"	"Cluster Rockets"
+	"DOTA_Tooltip_ability_android_cluster_rockets_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
+	"DOTA_Tooltip_ability_android_cluster_rockets_damage"	"ONE ROCKET DAMAGE:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
+	
+	"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
+	"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. The barrier naturally deterioriates over time."
+	"DOTA_Tooltip_ability_archmage_magic_barrier_lol"	"%MANA SPENT INTO DAMAGE BLOCK:"
+	"DOTA_Tooltip_ability_archmage_magic_barrier_lol1"	"MANA BLOCKED REDUCTION PER SECOND:"
+
+	"DOTA_Tooltip_modifier_archmage_magic_barrier"	"Magic Barrier"
+	"DOTA_Tooltip_modifier_archmage_magic_barrier_Description" "The barrier can block %dMODIFIER_PROPERTY_TOOLTIP%% damage."
+	
+	"DOTA_Tooltip_ability_berserker_fire_spear"	"Fire Spear"
+	"DOTA_Tooltip_ability_berserker_fire_spear_Description"	"Berserker throws a fire spear into a target point. The spear deals damage and slows the movement speed of any enemy it hits."
+	"DOTA_Tooltip_ability_berserker_fire_spear_movement_speed_slow"	"%MOVEMENT SPEED SLOW:"
+	"DOTA_Tooltip_ability_berserker_fire_spear_slow_duration"	"SLOW DURATION:"	
+	"DOTA_Tooltip_ability_berserker_fire_spear_spear_range"	"SPEAR RANGE:"	
+
+	"DOTA_Tooltip_modifier_fire_spear_slow"	"Fire Spear"
+	"DOTA_Tooltip_modifier_fire_spear_slow_Description"	"This unit's movespeed is slowed."
+	
+	"DOTA_Tooltip_ability_berserker_madness"	"Rampage"
+	"DOTA_Tooltip_ability_berserker_madness_Description"	"Berserker goes mad increasing his attributes for a few seconds."
+	"DOTA_Tooltip_ability_berserker_madness_bonus_all_stats"	"BONUS ATTRIBUTES:"
+	"DOTA_Tooltip_ability_berserker_madness_duration"	"DURATION:"	
+
+	"DOTA_Tooltip_modifier_berserker_madness"	"Rampage"
+	"DOTA_Tooltip_modifier_berserker_madness_Description"	"This unit's attributes are increased."
+	
+	// Ferocity
+	"DOTA_Tooltip_ability_brewmaster_ferocity"	"Ferocity STR"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains strength."
+	"DOTA_Tooltip_ability_brewmaster_ferocity_bonus_strength"	"BONUS STRENGTH PER UNIT:"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_radius"	"RADIUS:"
+	
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua"	"Ferocity STR"
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_Description"	"Strength granted by this ability."
+	
+	// Ferocity INT				
+	"DOTA_Tooltip_ability_brewmaster_ferocity_int"	"Ferocity INT"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_int_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains intellect."
+	"DOTA_Tooltip_ability_brewmaster_ferocity_int_bonus_intelligence"	"BONUS INTELLECT PER UNIT:"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_int_radius"	"RADIUS:"
+	
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_int"	"Ferocity INT"
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_int_Description"	"Intellect granted by this ability."
+
+	// Ferocity AGI
+			
+	"DOTA_Tooltip_ability_brewmaster_ferocity_agi"	"Ferocity AGI"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_agi_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains agility."
+	"DOTA_Tooltip_ability_brewmaster_ferocity_agi_bonus_agility"	"BONUS AGILITY PER UNIT:"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_agi_radius"	"RADIUS:"
+
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_agi"	"Ferocity AGI"
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_agi_Description"	"Agility granted by this ability."
+	
+	// Ferocity ALL
+			
+	"DOTA_Tooltip_ability_brewmaster_ferocity_all"	"Ferocity ULT"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_all_Description"	"When drunken Brewmaster sees an enemy or an ally, he gains agility, intellect and strength."
+	"DOTA_Tooltip_ability_brewmaster_ferocity_all_bonus_all"	"BONUS STATS PER UNIT:"
+	"DOTA_Tooltip_ability_brewmaster_ferocity_all_radius"	"RADIUS:"
+
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_all"	"Ferocity ULT"
+	"DOTA_Tooltip_modifier_brewmaster_ferocity_lua_all_Description"	"Agility, intellect and strength are increased by this amount."
+	
+	
+	// Living Flesh
+	"DOTA_Tooltip_ability_butcher_zombie"	"Living Flesh"
+	"DOTA_Tooltip_ability_butcher_zombie_Description"	"Every 15 seconds a part of Buthcer's body falls off and come to life, fighting for Butcher. Zombies have Abomination of the same level as the hero has. The ability can be toggled off."
+	"DOTA_Tooltip_ability_butcher_zombie_zombie_hp_tooltip"	"ZOMBIE'S HIT POINTS:"		
+	"DOTA_Tooltip_ability_butcher_zombie_zombie_damage_tooltip"	"ZOMBIE'S DAMAGE:"			
+	"DOTA_Tooltip_ability_butcher_zombie_zombie_lifetime" "ZOMBIE'S DURATION:"  
+
+	"DOTA_Tooltip_modifier_butcher_zombie"	"Living Flesh"
+	"DOTA_Tooltip_modifier_butcher_zombie_Description"	"Zombies count."
+	
+	"butcher_zombie_1" 	"Zombie"
+	"butcher_zombie_2" 	"Zombie"
+	"butcher_zombie_3" 	"Zombie"
+	
+	"DOTA_Tooltip_ability_butcher_skin"	"Abomination"
+	"DOTA_Tooltip_ability_butcher_skin_Description"	"Butcher gains bonus armor and starts to return damage to melee enemies."
+	"DOTA_Tooltip_ability_butcher_skin_bonus_armor"	"+$armor"		
+	"DOTA_Tooltip_ability_butcher_skin_damage_return"	"%DAMAGE RETURN:"	
+	
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side. Black arrow effect lasts 3 seconds"
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"ILLUSION LIFETIME:"
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+	
+	"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
+	"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+	"DOTA_Tooltip_ability_firelord_flame_strike_radius"	"RADIUS:"	
+	"DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"	"DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_firelord_flame_strike_delay"	"CHANNELING TIME:"
+
+	"DOTA_Tooltip_modifier_flame_strike_first_burn"	"Flame Strike"
+	"DOTA_Tooltip_modifier_flame_strike_first_burn_Description"	"This unit is taking damage."
+
+	"DOTA_Tooltip_modifier_flame_strike_second_burn"	"Flame Strike"
+	"DOTA_Tooltip_modifier_flame_strike_second_burn_Description"	"This unit is taking damage."
+
+	"DOTA_Tooltip_ability_firelord_fire_trap"	"Fire Trap"
+	"DOTA_Tooltip_ability_firelord_fire_trap_Description"	"Sets an invisible trap that stuns the caught enemies. The trap activates when an enemy unit approaches."
+	"DOTA_Tooltip_ability_firelord_fire_trap_duration"	"TRAP LIFETIME:"	
+	"DOTA_Tooltip_ability_firelord_fire_trap_detonation_radius"	"DETONATION RADIUS:"
+	"DOTA_Tooltip_ability_firelord_fire_trap_stun_duration"	"STUN DURATION:"	
+	"DOTA_Tooltip_ability_firelord_fire_trap_stun_hero_duration"	"HERO STUN DURATION:"		
+	"DOTA_Tooltip_ability_firelord_fire_trap_activation_delay"	"ACTIVATION DELAY:"	
+	"DOTA_Tooltip_ability_firelord_fire_trap_detection_radius"	"DETECTION RADIUS:"
+	
+	"fire_trap_unit"	"Fire Trap"
+	
+	"DOTA_Tooltip_ability_frost_lord_freezing"	"Cold Embrace"
+	"DOTA_Tooltip_ability_frost_lord_freezing_Description"	"Gives Frost Lord a chance to freeze his attacker and deal damage to him."
+	"DOTA_Tooltip_ability_frost_lord_freezing_freezing_chance"	"%CHANCE TO FREEZE:"
+	"DOTA_Tooltip_ability_frost_lord_freezing_stun_hero_duration"	"FREEZE DURATION:"
+
+	"DOTA_Tooltip_modifier_frost_lord_freezing_block"	"Cold Embrace"
+	"DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"	"This unit is frozen."
+	
+	"DOTA_Tooltip_ability_frost_lord_cold"	"Chilling Touch"
+	"DOTA_Tooltip_ability_frost_lord_cold_Description"	"Target enemies lose their movement and attack speed and take damage over time. If thet are affected by Frost Breath, they will take additional damage."
+	"DOTA_Tooltip_ability_frost_lord_cold_damage"	"DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_frost_lord_cold_add_damage"	"ADDITIONAL DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_frost_lord_cold_movement_speed_slow"	"%MOVESPEED SLOW:"
+	"DOTA_Tooltip_ability_frost_lord_cold_attack_speed_slow"	"ATTACK SLOW:"
+	"DOTA_Tooltip_ability_frost_lord_cold_duration"	"DURATION:"
+	"DOTA_Tooltip_ability_frost_lord_cold_radius"	"RADIUS:"
+
+	"DOTA_Tooltip_modifier_frost_lord_cold"	"Chilling Touch"
+	"DOTA_Tooltip_modifier_frost_lord_cold_Description"	"This unit is slowed and is taking damage."
+	
+	"DOTA_Tooltip_ability_frost_lord_ice"	"Frozen Core"
+	"DOTA_Tooltip_ability_frost_lord_ice_Description"	"Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
+	"DOTA_Tooltip_ability_frost_lord_ice_damage"	"DAMAGE:"
+	"DOTA_Tooltip_ability_frost_lord_ice_movement_slow"	"%MOVEMENT SLOW:"
+	"DOTA_Tooltip_ability_frost_lord_ice_slow_duration"	"SLOW DURATION:"
+	"DOTA_Tooltip_ability_frost_lord_ice_duration"	"ICE DURATION:"		
+
+	"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage"	"Frozen Core"
+	"DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage_Description"	"This unit is slowed."		
+	
+	"DOTA_Tooltip_ability_frost_lord_frost_breath"	"Frost Breath"
+	"DOTA_Tooltip_ability_frost_lord_frost_breath_Description"	"An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
+	"DOTA_Tooltip_ability_frost_lord_frost_breath_damage"	"INITIAL DAMAGE:"
+	"DOTA_Tooltip_ability_frost_lord_frost_breath_damage_per_second"	"DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_frost_lord_frost_breath_duration"	"DURATION:"
+
+	"DOTA_Tooltip_modifier_frost_lord_frost_breath"	"Frost Breath"
+	"DOTA_Tooltip_modifier_frost_lord_frost_breath_Description"	"This unit takes damage over time."
+	
+	"DOTA_Tooltip_ability_ghoul_devour"	"Ghoul Devour"
+	"DOTA_Tooltip_ability_ghoul_devour_Description"	"Devours a target unit healing himself health instantly and over time. If the target is a hero, it will be slowed. These effects are stackable."
+	"DOTA_Tooltip_ability_ghoul_devour_instant_heal"	"INSTANT HEAL:"
+	"DOTA_Tooltip_ability_ghoul_devour_heal_per_second"	"HEAL PER SECOND:"
+	"DOTA_Tooltip_ability_ghoul_devour_heal_duration"	"HEAL DURATION:"
+	"DOTA_Tooltip_ability_ghoul_devour_movement_slow"	"%MOVEMENT SLOW:"
+	"DOTA_Tooltip_ability_ghoul_devour_attack_slow"	"ATTACK SLOW:"
+	"DOTA_Tooltip_ability_ghoul_devourt_slow_duration"	"SLOW DURATION:"
+
+	"DOTA_Tooltip_modifier_ghoul_devour_slow"	"Devour"
+	"DOTA_Tooltip_modifier_ghoul_devour_slow_Description"	"You are slowed."
+
+	"DOTA_Tooltip_modifier_ghoul_devour_heal"	"Devour"
+	"DOTA_Tooltip_modifier_ghoul_devour_heal_Description"	"You are being healed."
+	
+	"DOTA_Tooltip_ability_akron_explosion"	"Living Bomb"
+	"DOTA_Tooltip_ability_akron_explosion_Description"	"Golem explodes dealing to nearby enemies and to himself damage based on his maximum health. Sets himself and nearby enemies aflame."
+	"DOTA_Tooltip_ability_akron_explosion_hp_prc_dmg"	"%MAX HEALTH INTO DAMAGE:"
+	"DOTA_Tooltip_ability_akron_explosion_burn_damage"	"BURN DAMAGE PER SECOND:"
+	"DOTA_Tooltip_ability_akron_explosion_duration"	"BURN DURATION:"
+	"DOTA_Tooltip_ability_akron_explosion_Note0"	"Caster receives Pure damage from initial explosion, enemies receive Magic damage."
+
+	"DOTA_Tooltip_modifier_akron_explosion_burn"	"Living Bomb"
+	"DOTA_Tooltip_modifier_akron_explosion_burn_Description"	"This unit is taking damage."
+	
+	"DOTA_Tooltip_ability_paladin_impregnability"	"Guardian Angel"
+	"DOTA_Tooltip_ability_paladin_impregnability_Description"	"Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
+	"DOTA_Tooltip_ability_paladin_impregnability_radius"	"RADIUS:"		
+	"DOTA_Tooltip_ability_paladin_impregnability_duration"	"DURATION:"		
+
+	"DOTA_Tooltip_modifier_impregnability_aura_inv"	"Guardian Angel"
+	"DOTA_Tooltip_modifier_impregnability_aura_inv_Description"	"This unit is invulnerable."
+	
+	"DOTA_Tooltip_ability_paladin_blizzard"	"Blizzard"
+	"DOTA_Tooltip_ability_paladin_blizzard_Description"	"Calls down waves of freezing ice shards that damage and stun for 0.1 seconds units in a target area every second."
+	"DOTA_Tooltip_ability_paladin_blizzard_wave_damage"	"DAMAGE:"
+	"DOTA_Tooltip_ability_paladin_blizzard_wave_count"	"WAVES COUNT:"
+	"DOTA_Tooltip_ability_paladin_blizzard_radius"	"RADIUS:"
+	"DOTA_Tooltip_ability_paladin_blizzard_max_targets"	"MAX TARGETS:"
+			
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception"	"Mastery of Deception"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_Description"	"When Illusionnist is attacked, he has a 20%% chance to create an illusion of the attacker. Illusions take more damage and deal less. Does not affect megabosses."
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_time"	"ILLUSION LIFETIME:"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+	
+	"DOTA_Tooltip_ability_illusionist_whiff_of_deception"	"Whiff of Deception"
+	"DOTA_Tooltip_ability_illusionist_whiff_of_deception_Description"	"Illusionist deals damage to nearby enemies. This damage is equal to a certain part of the hero's agilitiy multiplied by the number of his illusions. If there are no illusions, damage will be dealt for one illusion."
+	"DOTA_Tooltip_ability_illusionist_whiff_of_deception_radius"	"RADIUS:"
+	"DOTA_Tooltip_ability_illusionist_whiff_of_deception_value_p"	"AGILITY MULTIPLIER:"	
+
+	"DOTA_Tooltip_ability_illusionist_agility_paws"	"Sleight of Paws"
+	"DOTA_Tooltip_ability_illusionist_agility_paws_Description"	"Illusionist gains agility for his illusion. There is a 10%% chance that this agility will remain after the illusion's death. The hero can gain up to 200 agility from this ability."
+	"DOTA_Tooltip_ability_illusionist_agility_paws_bonus_agility"	"AGILITY FOR ONE ILLUSION:"
+
+	"DOTA_Tooltip_modifier_illusionist_agility_paws_i"	"Sleight of Paws"
+	"DOTA_Tooltip_modifier_illusionist_agility_paws_i_Description"	"Number of agility gained."
+
+	"DOTA_Tooltip_ability_illusionist_mastery_of_illusions"	"Mastery of Illusions"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_Description"	"Illusionist creates 3 illusions of a target unit and makes it immune from physical damage for 3 seconds. Magic resist of this unit reduces by 30%%."
+	"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_life_illusion"	"ILLUSIONS LIFETIME:"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
+	"DOTA_Tooltip_ability_illusionist_mastery_of_illusions_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+
+	"DOTA_Tooltip_modifier_illusionist_mastery_of_illusions"	"Mastery of Illusions"
+	"DOTA_Tooltip_modifier_illusionist_mastery_of_illusions_Description"	"This unit can't be attacked, but takes more magic damage."
+	
+	"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath"	"Holy Wrath"
+	"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_Description"	"When Lighnthing Lord or his ally in a 800 radius is attacked, there is a chance that the attacker will be struck by a lightning and take damage. This damage is equal to Lightning Lord's intelligence multiplied by some number. Enemies in a 200 radius around the attacker take half the damage. Primary target gets purged and movement slowed for 1 second."
+	"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_chance_dmg"	"%LIGHTNING STRIKE CHANCE:"
+	"DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_damage_per_int"	"INTELLIGENCE MULTIPLIER:"	
+	
+	"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath"	"Holy Wrath"
+	"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_Description" "When enemies attack you or nearby allies, you have a chance to strike them with lighting."
+	
+
+	"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow"	"Holy Wrath"
+	"DOTA_Tooltip_modifier_lord_of_lightning_holy_wrath_slow_Description" "This unit is slowed."
+	
+	"DOTA_Tooltip_ability_lord_of_lightning_brain_storm"	"Brainstorm"
+	"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_Description"	"Enemies in a 500 area of effect get disarmed, but also don't take physical damage. Affected units also lose magic resistance and movement speed."
+	"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_spell_damage_pct"	"%MAGIC RESISTANCE REDUCTION:"	
+	"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_reduce_movement_speed"	"%MOVESPEED REDUCTION:"	
+	"DOTA_Tooltip_ability_lord_of_lightning_brain_storm_duration"	"DURATION:"	
+
+	"DOTA_Tooltip_modifier_brain_storm_decrepify"	"Brainstorm"
+	"DOTA_Tooltip_modifier_brain_storm_decrepify_Description" "This unit can't attack, but also can't be attacked. His magic resistance and movement speed are reduced."
+
+	"DOTA_Tooltip_modifier_lol_decrepify_hero"	"Brainstorm"
+	"DOTA_Tooltip_modifier_lol_decrepify_hero_Description" "This unit can't attack, but also can't be attacked. His magic resistance and movement speed are reduced."
+	
+	"DOTA_Tooltip_ability_kret_poisoning"	"Poisonous Scales"
+	"DOTA_Tooltip_ability_kret_poisoning_Description"	"If an enemy attacks Murloc, he has a chance to lose health and mana."
+	"DOTA_Tooltip_ability_kret_poisoning_chanceVal"	"%CHANCE:"		
+	"DOTA_Tooltip_ability_kret_poisoning_adsorbVal"	"HEALTH AND MANA REDUCTION:"			
+	
+	"DOTA_Tooltip_ability_kret_lust_for_life"	"Thirst for Life"
+	"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"By sacrificing his intelligence, Murloc gets regeneration based on hit points missing. If Murloc's intelligence is zero, this ability will not work."
+	"DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"	"INTELLECT PENALTY:"		
+	"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
+	"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
+	
+	"DOTA_Tooltip_modifier_lust_for_life"	"Thirst for Life"
+	"DOTA_Tooltip_modifier_lust_for_life_Description"	"Regenerating a %% of total health per second. Rate of regeneration increases with amount of missing health."
+	
+	"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield"	"Lightning Shield"
+	"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_Description"	"Forms a shield of electricity around a target unit, dealing damage every second to Lightning Lord's enemies around it."
+	"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_damage_per_second"	"DAMAGE PER SECOND:"			
+	"DOTA_Tooltip_ability_lord_of_lightning_lightning_shield_duration"	"DURATION:"	
+
+	"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield"	"Lightning Shield"
+	"DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Opponents around the Lord of Lightning take damage."
+	
+	"DOTA_Tooltip_ability_dark_knight_dark_forces"	"Dark Forces"
+	"DOTA_Tooltip_ability_dark_knight_dark_forces_Description"	"Spawns flows of darkness every 0.5 seconds at random places in a 150 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
+	"DOTA_Tooltip_ability_dark_knight_dark_forces_mana_percentage"	"%MANA INTO DAMAGE:"
+	"DOTA_Tooltip_ability_dark_knight_dark_forces_duration"	"DURATION:"
+
+	"DOTA_Tooltip_modifier_dark_knight_dark_forces"	"Dark Forces"
+	
+	"DOTA_Tooltip_ability_android_pocket_factory"	"Pocket Factory"
+	"DOTA_Tooltip_ability_android_pocket_factory_Description"	"Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds."
+	"DOTA_Tooltip_ability_android_pocket_factory_factory_duration"	"FACTORY DURATION:"
+	"DOTA_Tooltip_ability_android_pocket_factory_goblin_hp"	"GOBLIN HEALTH:"
+	"DOTA_Tooltip_ability_android_pocket_factory_goblin_damage"	"GOBLIN DAMAGE:"
+	
+	"DOTA_Tooltip_ability_android_clockwerk_goblin_kaboom"	"Kaboom!"
+	"DOTA_Tooltip_ability_android_clockwerk_goblin_kaboom_Description"	"Explodes the Clockwerk Goblin, dealing damage in an area."
+
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin1"	"Bash"
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin1_Description"	"Gives a slight chance to bash an enemy for 0.5 seconds."
+
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin2"	"Bash"
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin2_Description"	"Gives a slight chance to bash an enemy for 0.5 seconds."
+
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin3"	"Bash"
+	"DOTA_Tooltip_ability_android_pocket_factory_spawn_goblin3_Description"	"Gives a slight chance to bash an enemy for 0.5 seconds."
+	
+	"android_clockwerk_goblin1"	"Clockwerk Goblin"
+	"android_clockwerk_goblin2"	"Clockwerk Goblin"
+	"android_clockwerk_goblin3"	"Clockwerk Goblin"
+	"android_pocket_factory_building1"	"Pocket Factory"
+	"android_pocket_factory_building2"	"Pocket Factory"
+	"android_pocket_factory_building3"	"Pocket Factory"
+	
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning"	"Charged Bolt"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_Description"	"Releases a swarm of electric bolts that follow the caster, damaging enemies on impact."
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locusts"	"LIGHTNINGS COUNT:"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locust_damage"	"DAMAGE PER COLLISION:"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_duration"	"DURATION:"		
+	
+	"DOTA_Tooltip_modifier_locust_swarm"	"Charged Bolt"	
+	/////////
+	/// RETRO DOTA
+	/////////
+	//Betrayal
+	"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal"
+	"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_betrayal_duration"							  "DURATION:"
+			
+	"DOTA_Tooltip_modifier_invoker_retro_betrayal"                    				  "Betrayal"
+	"DOTA_Tooltip_modifier_invoker_retro_betrayal_Description"       				  "Temporarily moved to another team."
+	
+	///Portal
+	"DOTA_Tooltip_Ability_invoker_retro_portal"                        "Portal"
+	"DOTA_Tooltip_Ability_invoker_retro_portal_Description"            "After a slightly extended cast animation, moves the targeted allied unit to Invoker's position.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_portal_cast_range"                 "CAST RANGE:"
+	
+	//Invisibility Aura
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura"                            "Invisibility Aura"
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_radius"                     "RADIUS:"
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_fade_time"                     "FADE TIME:"
+
+	"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect"                    "Invisibility Aura"
+	"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect_Description"        "Invisible while you remain near owner of aura."
+	"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura"							  "Invisibility Aura"
+	"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_Description"				  "Will make your nearby allies invisible, but not you."
+	//Scout
+	"DOTA_Tooltip_Ability_invoker_retro_scout"                                        "Scout"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_Description"                            "Summons an invisible, invulnerable Owl Scout that has flying vision and truesight.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_duration"             	 	      "DURATION:"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_vision"							  "VISION RADIUS:"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_movespeed"						  "MOVEMENT SPEED:"
+	
+	"npc_dota_invoker_retro_scout_unit"                                               "Owl Scout"
+	
+	"DOTA_Tooltip_Ability_invoker_retro_scout_unit_ability"                           "Owl Scout"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_unit_ability_Description"               "Invisible and invulnerable.  Has flying vision and truesight."
+	
+	"DOTA_Tooltip_modifier_invoker_retro_scout_unit_ability"                          "Owl Scout"
+	"DOTA_Tooltip_modifier_invoker_retro_scout_unit_ability_Description"              "Invisible and invulnerable.  Has flying vision and truesight."
+	
+	//Confuse
+	"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_duration" "DURATION:"
+	
+	//Disarm (Broken into 8 spells)
+	"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"
+	"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_disarm_duration"				"DURATION:"
+	"DOTA_Tooltip_Ability_invoker_retro_disarm_cast_range" 			  	"CAST RANGE:"		
+
+	"DOTA_Tooltip_modifier_invoker_retro_disarm"                  					  "Disarm"
+	"DOTA_Tooltip_modifier_invoker_retro_disarm_Description"                          "Disarmed."
+	
+	//Deafening Blast
+	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Bolt"
+	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. \n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_mute_duration"                "DURATION:"
+	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_damage"                       "DAMAGE:"				
+	
+	"DOTA_Tooltip_modifier_invoker_retro_deafening_blast"                  			  "Deafening Bolt"
+	"DOTA_Tooltip_modifier_invoker_retro_deafening_blast_Description"                 "This unit's passives are disabled."
+
+	//Armored Centipede
 	"DOTA_Tooltip_ability_armoured_centipede" 					"Armored Centipede"
 	"DOTA_Tooltip_ability_armoured_centipede_Description"		"Summon a mighty Centipede to help defend positions. Centipede gains extra defensive abilities per level."
 	"DOTA_Tooltip_ability_armoured_centipede_damage" 			"ATTACK DAMAGE:"

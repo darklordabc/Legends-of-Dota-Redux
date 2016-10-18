@@ -120,7 +120,7 @@ Constants.XP_PER_LEVEL_TABLE = {
 }
 
 --Max percent scaling factor for Fat-O-Meter, per hero. Generally speaking, bigger hero = smaller max height.
---Initial categories: Small: 3.6, Humanoid: 3.2, Large: 2.8, Huge: 2.4. Adjust individually as necessary.
+--Initial categories: Small: 3.6, Humanoid: 3.2, Large: 2.8, Flying/Tall: 2.4, Huge: 2.0. Adjust individually as necessary.
 Constants.FAT_SCALING = {
 	npc_dota_hero_ancient_apparition = 2.8,
 	npc_dota_hero_antimage = 2.8,
@@ -133,7 +133,7 @@ Constants.FAT_SCALING = {
 	npc_dota_hero_dark_seer = 3.6,
 	npc_dota_hero_dazzle = 3.2,
 	npc_dota_hero_dragon_knight = 3.2,
-	npc_dota_hero_doom_bringer = 2.4,
+	npc_dota_hero_doom_bringer = 2.0,
 	npc_dota_hero_drow_ranger = 3.2,
 	npc_dota_hero_earthshaker = 3.2,
 	npc_dota_hero_enchantress = 3.2,
@@ -168,7 +168,7 @@ Constants.FAT_SCALING = {
 	npc_dota_hero_sven = 2.8,
 	npc_dota_hero_tidehunter = 2.8,
 	npc_dota_hero_tinker = 3.2,
-	npc_dota_hero_tiny = 3.6, --Tiny's Grow model is not used, so treat him as a midget.
+	npc_dota_hero_tiny = 2.8, --Nobody even picks him anyway, but I stuck him in the middle so he's not too small without grow but not too big with it.
 	npc_dota_hero_vengefulspirit = 2.8,
 	npc_dota_hero_venomancer = 3.2,
 	npc_dota_hero_viper = 2.4,
@@ -176,7 +176,7 @@ Constants.FAT_SCALING = {
 	npc_dota_hero_windrunner = 3.2,
 	npc_dota_hero_witch_doctor = 3.2,
 	npc_dota_hero_zuus = 3.6,
-	npc_dota_hero_broodmother = 2.4,
+	npc_dota_hero_broodmother = 2.0,
 	npc_dota_hero_skeleton_king = 2.8,
 	npc_dota_hero_queenofpain = 3.2,
 	npc_dota_hero_huskar = 3.2, --Smaller than normal Dota because of not necessarily having Berserker's Blood
@@ -214,7 +214,7 @@ Constants.FAT_SCALING = {
 	npc_dota_hero_visage = 2.4,
 	npc_dota_hero_meepo = 3.6,
 	npc_dota_hero_magnataur = 2.8,
-	npc_dota_hero_centaur = 2.4,
+	npc_dota_hero_centaur = 2.0,
 	npc_dota_hero_slark = 3.6,
 	npc_dota_hero_shredder = 2.8,
 	npc_dota_hero_medusa = 2.8,
@@ -233,7 +233,7 @@ Constants.FAT_SCALING = {
 	npc_dota_hero_oracle = 2.4,
 	npc_dota_hero_winter_wyvern = 2.4,
 	npc_dota_hero_arc_warden = 3.2,
-	npc_dota_hero_abyssal_underlord = 2.4,
+	npc_dota_hero_abyssal_underlord = 2.0,
 }
 
 return Constants
