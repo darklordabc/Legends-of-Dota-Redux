@@ -1465,48 +1465,10 @@
 			//"particle_folder"				"particles/nian_gameplay_b"
 			"particle_folder"				"particles/nian_temp"
 			// Custom ability stuff that doesn't always load properly ingame
-			"particle"        "particles/cherub_pink_flower_heal_projectile.vpcf"
-			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
-			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
-			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-			"particle"        "particles/zulf_jet_stream.vpcf"
-			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-			"soundfile"       "sounds/items/dota_item_cyclone.vsnd"
-			"particle"  	  "particles/juggernaut_ward_mana.vpcf"
-			"particle"  	  "particles/juggernaut_healing_wardmana.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
-			"particle"	"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
 			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
-			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
 			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-		  "particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-		  "particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-		  "soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-		  "soundfile"	"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-			//Force Dash
-			"particle"    "particles/force_dash/force_dash.vpcf"
-            "particle"    "particles/status_fx/status_effect_forcestaff.vpcf"
-            "sound"        "sounds/items/force_staff.vsnd"
-			// Shards of Truesight
-			"particle"    "particles/true_sight/dust_of_gem.vpcf"
-            "particle"    "particles/true_sight/true_sight_debuff.vpcf"
-            "sound"        "sounds/items/dust_of_appearance.vsnd"
-			//Sleep Cloud
-			"particle"    "particles/cherub_sleep_cloud.vpcf"
-            "particle"    "particles/cherub_sleep_status.vpcf"
-            "soundfile"   "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
-			//True random 
-			"soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"			
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"s	
 		}
 	}
 
