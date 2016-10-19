@@ -1506,12 +1506,7 @@
             "soundfile"   "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
 			//True random 
 			"soundfile"        "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"
-			"Model"		"models/items/venomancer/centipede_ward/centipede_ward.vmdl"
-			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
-			"particle" "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf"
-
+            "particle"        "particles/true_random_lod/true_random_lod_swap.vpcf"			
 		}
 	}
 

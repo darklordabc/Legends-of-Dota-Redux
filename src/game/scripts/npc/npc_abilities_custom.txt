@@ -1035,7 +1035,17 @@
 	"FightRecapLevel"				"2"
 	"MaxLevel"						"3"
 	"AbilityTextureName"			"armoured_centipede"
-
+	
+	// Precache
+    //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "Model"		"models/items/venomancer/centipede_ward/centipede_ward.vmdl"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"particle" "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf"
+        }
+			
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastRange"				"700"
