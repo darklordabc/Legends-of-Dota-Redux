@@ -108,7 +108,19 @@ function LoadFavBuilds( ){
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-      $.Msg(data);
+        var rows = JSON.parse(data);
+        if (rows.length == 0)
+            return;
+
+        var builds = JSON.parse(rows[0].FavBuilds);
+        if (builds.length == 0)
+        	return;
+
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+        for (var i = 0; i < con.GetChildCount(); i++) {
+            var child = con.GetChild(i);
+            child.setFavorite(builds.indexOf(child.buildID) != -1);
+        }
     }) );
 }
 
@@ -119,6 +131,14 @@ function LoadBuilds( filter ){
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
-      $.Msg(data);
+        var builds = JSON.parse(data);
+
+        // The  container to work with
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+
+        for(var build of builds) 
+            addRecommendedBuild(con, build);
+
+        LoadFavBuilds();
     }) );
 } 

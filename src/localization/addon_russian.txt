@@ -76,6 +76,7 @@
     "filter_by_name"                                "Фильтровать по имени:"
     "filter_by_value"                               "Фильтровать по цене:"
     "presets_lod"                                   "Билды"
+	"builds_lod"                                    "Builds"
     "heroes_lod"                                    "Герои"
     "skills_lod"                                    "Скилы"
     "common_selection_lod"                          "Обычные настройки"
@@ -431,6 +432,73 @@
     // Игра сейчас обрабатывает способности / героев, ожидайте, пожалуйста!
     "lodPrecaching"                                 "Подготовка игры..."
 
+	//Builds
+	"build_cherub_title"							"Cherub"
+	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
+	
+	"build_dagger_harrasment_title"					"Long Dagger Harassment"
+	"build_dagger_harrasment_desc"					"Use hit and run tactics to wear enemies down."
+	
+	"build_abaddon_pro_title"						"Abaddon Support PRO"
+	"build_abaddon_pro_desc"						"Makes use of Abaddon's Perk to supercharge Mist Coil and Apothetic Shield."
+	
+	"build_roshan_beware_title"						"Roshan Beware"
+	"build_roshan_beware_desc"						"Dominate Roshan with this build. Use teleport to get to Roshan undetected by enemy wards."
+	
+	"build_skillshot_title"							"Skillshot Wars"
+	"build_skillshot_desc"							"Mirana's Perk allows her to cast Skillshot abilities easily."
+	
+	"build_techies_title"							"Techies Demolitions"
+	"build_techies_desc"							"Make use of Techies Perk to dramatically reduce cost of Explosives and Traps."
+	
+	"build_hunter_in_the_night_title"				"Hunter in the night"
+	"build_hunter_in_the_night_desc"				"When NS gets Aghanim's Scepter he can see unobstructed at night."
+	
+	"build_generic_tank_title"						"Generic Tank"
+	"build_generic_tank_desc"						"Keep it simple stupid. Auto-pilot for winning."
+	
+	"build_infest_support_title"					"Infest Support"
+	"build_infest_support_desc"						"Use Rot and Voodoo restoration before you infest to permanently have them on."
+	
+	"build_global_caster_title"						"Global Caster"
+	"build_global_caster_desc"						"Who needs positioning!"
+	
+	"build_magic_be_dashed_title"					"Magic Be Dashed!"
+	"build_magic_be_dashed_desc"					"Destroy your enemies mana in record time."
+	
+	"build_attributes_title"						"All your attributes are belong to me"
+	"build_attributes_desc"							"Permanently gain stats as the game continues. Good in long games with low respawn times."
+	
+	"build_rapture_title"							"Rapture"
+	"build_rapture_desc"							"Bloodseeker's Perk enables quick and cheap casting of Rupture."
+	
+	"build_stunner_title"							"Global Stunner"
+	"build_stunner_desc"							"Quickly relocate anywhere on the map to stun your enemies."
+	
+	"build_team_fight_title"						"Bring the team fight"
+	"build_team_fight_desc"							"Wait (if you can) for the team fights. Enigma's Perk refreshes Blackhole on death."
+	
+	"build_duelist_title"							"The Duelist"
+	"build_duelist_desc"							"Legion Commander's Perk gives her spell immunity when she casts Duel."
+	
+	"build_anti_tank_title"							"The Anti-Tank"
+	"build_anti_tank_desc"							"Drain the attributes of Tanks to make them vulnerable."
+	
+	"build_cannon_title"							"Glass Cannon"
+	"build_cannon_desc"								"Typical Right-Clicking build. Sniper's Perk makes Shrapnel a global spell."
+	
+	"build_no_ulty_title"							"Disregard Team, Acquire Currency"
+	"build_no_ulty_desc"							"Let your team die as you become a billionaire. They'll thank you later. Hopefully."
+	
+	"build_building_buster_title"					"Building Buster"
+	"build_building_buster_desc"					"Teleport to builidings and destroy them before the enemy realizes. Blur hides you from the minimap."
+	
+	"build_super_rat_title"							"Super Rat"
+	"build_super_rat_desc"							"Teleport to builidings and destroy them before the enemy realizes. Blur hides you from the minimap."
+	
+	"build_medic_title"								"MEDIC!"
+	"build_medic_desc"								"Give your tethered allies insane health regeneration."
+	
     // Hints
     "hintSuggestHint"                               "Знаете хороший совет? Отправьте его нам с рекомендованной иконкой и он может быть добавлен."
     "hintWitchCraft"                                "Witchcraft уменьшает перезарядку всех активных навыков на 4 секунды, однако не уменьшает перезарядку до менее одной секунды."

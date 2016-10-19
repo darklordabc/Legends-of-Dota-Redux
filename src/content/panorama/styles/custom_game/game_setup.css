@@ -2137,8 +2137,20 @@
 }
 
 #recommendedBuildFavourite:hover {
+    brightness: 0.2;
     background-position: -115px 0;
 }
+
+#recommendedBuildFavourite.active:hover {
+	brightness: 1.0;
+    background-position: -115px 0;
+}
+
+#recommendedBuildFavourite.active {
+	brightness: 1.0;
+    background-position: -115px 0;
+}
+
 
 #recommendedBuildSettings {
     background-image: url("file://{images}/custom_game/build.png");

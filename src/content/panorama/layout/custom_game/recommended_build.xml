@@ -14,7 +14,7 @@
                     <Button id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVotedDown()"></Button>
                 </Panel>
                 <Panel class="recommendedBuildActions">
-                    <Button id="recommendedBuildFavourite" onactivate="onSelectBuildPressed()"></Button>
+                    <Button id="recommendedBuildFavourite" class="active" onactivate="onClickFav()"></Button>
                     <Button id="recommendedBuildSettings" onactivate="onSelectBuildPressed()"></Button>
                 </Panel>
             </Panel>
@@ -48,9 +48,9 @@
                 <Panel class="recommendedBuildBottomRow">
                     <Panel class="recommendedBuildTitle">
                         <Label id="buildName" text="Build Name" />
-                        <Label id="buildAuthor" text="kernelpicnic" />
+                        <Label id="buildAuthor" text="" />
                     </Panel>
-                    <Label id="buildDesc" text="Lorem ipsum dolor sit amet, consectetur adipiscing. Pellentesque semper dui mollis ante aliquam." />
+                    <Label id="buildDesc" html="true" text="Lorem ipsum dolor sit amet, consectetur adipiscing. Pellentesque semper dui mollis ante aliquam." />
                 </Panel>
             </Panel>
         </Panel>
