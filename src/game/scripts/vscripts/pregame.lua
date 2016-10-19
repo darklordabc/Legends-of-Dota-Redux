@@ -1253,6 +1253,9 @@ function Pregame:onIngameBuilder(eventSourceIndex, args)
     if IsValidEntity(hero) and hero:IsAlive() then
         local player = PlayerResource:GetPlayer(playerID)
         network:showHeroBuilder(player)
+        Timers:CreateTimer(function()
+            network:setOption('lodOptionBalanceMode', true)
+        end, "changeBalanceMode", 0.5)
     end
 end
 
@@ -3425,7 +3428,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if count ~= maxCount then
                 for i=1,maxCount do
                     if not newBuild[i] then
-                        newBuild[i] = self:findRandomSkill(newBuild, i, playerID)
+                        local randomSkill = self:findRandomSkill(newBuild, i, playerID)
+                        newBuild[i] = randomSkill
+                        self.selectedSkills[playerID][i] = randomSkill
                     end
                 end
             end
@@ -3441,6 +3446,12 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                     break
                 end
             end
+            local attr = hero:GetPrimaryAttribute()
+            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int'
+            local heroName = PlayerResource:GetSelectedHeroName(playerID)
+            if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
+                isSameBuild = false
+            end
             if isSameBuild then
                 local player = PlayerResource:GetPlayer(playerID)
                 network:hideHeroBuilder(player)
@@ -3449,6 +3460,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
+            network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+            network:setSelectedHero(playerID, newBuild.hero)
+            network:setSelectedAttr(playerID, newBuild.setAttr)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
             if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 Timers:CreateTimer(function()
