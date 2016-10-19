@@ -3213,7 +3213,7 @@
 	"DOTA_Tooltip_ability_kret_poisoning_adsorbVal"	"HEALTH AND MANA REDUCTION:"			
 	
 	"DOTA_Tooltip_ability_kret_lust_for_life"	"Thirst for Life"
-	"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"By sacrificing his intelligence, Murloc gets regeneration based on hit points missing. If Murloc's intelligence is zero, this ability will not work."
+	"DOTA_Tooltip_ability_kret_lust_for_life_Description"	"By sacrificing his intelligence, Murloc gets regeneration based on hit points missing."
 	"DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"	"INTELLECT PENALTY:"		
 	"DOTA_Tooltip_ability_kret_lust_for_life_tolltip"	"%MISSING HEALTH FOR ONE BONUS:"		
 	"DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"	"%REGENERATION PER BONUS:"
