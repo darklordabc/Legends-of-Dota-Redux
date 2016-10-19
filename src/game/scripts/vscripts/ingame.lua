@@ -22,6 +22,7 @@ function Ingame:init()
     -- Init stronger towers
     self:addStrongTowers()
     self:fixRuneBug()
+    self:showIngameBuilder()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -251,7 +252,14 @@ function Ingame:fixRuneBug()
 			end, "botRune", 6)
 		end
 	end, nil)
+end
 
+function Ingame:showIngameBuilder()
+	ListenToGameEvent('game_rules_state_change', function(keys)
+		if OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
+			network:enableIngameHeroEditor()
+		end
+	end, nil)
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
@@ -1015,6 +1023,34 @@ function Ingame:FilterDamage( filterTable )
     if not victim_index or not attacker_index then
         return true
     end
+
+    local blocked_damage = 0 
+
+   	local victim = EntIndexToHScript(victim_index)
+   	local attacker = EntIndexToHScript(attacker_index)
+	if victim:HasModifier("modifier_ancient_priestess_spirit_link") then 
+		if victim.spiritLink_damage then 
+			victim.spiritLink_damage = nil
+		else
+			--print("Link Damage")
+			local link_blocked = victim:FindModifierByName("modifier_ancient_priestess_spirit_link"):LinkDamage(filterTable["damage"],filterTable["damage_type"],attacker,nil)
+			blocked_damage = blocked_damage + link_blocked
+			filterTable["damage"] = filterTable["damage"] - link_blocked
+		end
+	end
+
+	if victim:HasModifier("modifier_archmage_magic_barrier") then 
+		local blocked = victim:FindModifierByName("modifier_archmage_magic_barrier"):GetBlockedDamage(filterTable["damage"])
+		blocked_damage = blocked_damage + blocked
+		filterTable["damage"] = filterTable["damage"] - blocked
+	end
+
+	if victim:HasModifier("modifier_ancient_priestess_ritual_protection") then 
+		local blocked = victim:FindModifierByName("modifier_ancient_priestess_ritual_protection"):GetBlockDamage(filterTable["damage"])
+		blocked_damage = blocked_damage + blocked
+		filterTable["damage"] = filterTable["damage"] - blocked
+	end
+
      -- Hero perks
     local perkFilters = require('abilities/hero_perks/hero_perks_filters')
     filterTable = heroPerksDamageFilter(filterTable)

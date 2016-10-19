@@ -10,12 +10,20 @@ All notable changes to this project will be documented in this file.
 - Cheat Menu now work properly for non-host players
 - Reorganized some ability groups
 - Added new look to preset builds [NOT READY FOR RELEASE]
+- Added 4 more categories of skills to skill filter: Summon, Silence, Disarm and Breaks, Illusion
+- Reorganized some of the ability groupings in the custom skills tab
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
-- Added 19 abilities from Angel Arena Reborn
+- Added 19 abilities from Angel Arena Reborn [NOT READY FOR RELEASE]
 - Increased level requirement for OP tower abilities
 - Eyes in the forest is now counted as invisbility ability, because it requires a gem to counter.
+- Added Armored Centipede ability
+- Added Berserker's Blood (pre 6.78)
+- Atropy Aura and Atropy Tower is now a troll combo because it was 100% damage reduction
+- Added 7 new abilities from "Retro Dota" custom game
+- Added 35 new abilities from "Life In Arena" custom game
+- Increased the level requirements for many of the IMBA abilities
 
 ## 1.6 - Steam Version
 

@@ -1,4 +1,6 @@
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
 
 function Transmute( event )
 	-- Variables

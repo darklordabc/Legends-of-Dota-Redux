@@ -8,7 +8,17 @@
 		"dota/game/scripts/npc",
 
 		"dota/game/panorama",
- 		"dota/game/panorama/localization"
+ 		"dota/game/panorama/localization",
+		
+		"dota/game/panorama/images",
+		"dota/game/panorama/images/custom_game",
+		"dota/game/panorama/images/custom_game/flags",
+		
+		"dota/game/panorama/layout",
+		"dota/game/panorama/layout/custom_game",
+		
+		"dota/game/panorama/scripts",
+		"dota/game/panorama/scripts/custom_game"
 	],
 
 	"linkDirs" : [
@@ -50,6 +60,13 @@
 		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },
 
-		{ "link": "../dota/game/materials", "dir": "../src/game/materials" }
+		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
+
+		{ "link": "../dota/game/panorama/images/custom_game/flags", "dir": "../src/game/panorama/images/custom_game/flags" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/all_random_build.vxml_c", "dir": "../src/game/panorama/layout/custom_game/all_random_build.vxml_c" },
+		{ "link": "../dota/game/panorama/scripts/custom_game/all_random_build.vjs_c", "dir": "../src/game/panorama/scripts/custom_game/all_random_build.vjs_c" }
 	]
 }
