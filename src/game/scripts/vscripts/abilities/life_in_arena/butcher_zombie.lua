@@ -30,7 +30,7 @@ end
 function butcher_zombie:CreateZombie()
 	local caster = self:GetCaster()
 	local level = self:GetLevel()
-	local unit_name = {"butcher_zombie_1","butcher_zombie_2","butcher_zombie_3"}
+	local unit_name = {"butcher_zombie_1","butcher_zombie_2","butcher_zombie_3","butcher_zombie_4"}
 	local butcher_return_level = caster:FindAbilityByName("butcher_zombie"):GetLevel()
 
 

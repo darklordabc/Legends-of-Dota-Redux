@@ -52,7 +52,7 @@
 	"BaseClass" "npc_dota_creature" 
 	"Model" "models/heroes/undying/undying_minion.vmdl" 
 	"SoundSet" "Undying_Zombie" 
-	"ModelScale" "0.7" 
+	"ModelScale" "0.8" 
 	"Level" "1" 
 	
 	
@@ -73,8 +73,8 @@
 	
 	
 	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
-	"AttackDamageMin" "15" 
-	"AttackDamageMax" "15" 
+	"AttackDamageMin" "14" 
+	"AttackDamageMax" "14" 
 	"AttackRate" "0.8" 
 	"AttackAnimationPoint" "0.5" 
 	"AttackAcquisitionRange" "500" 
@@ -127,7 +127,7 @@
 	"BaseClass" "npc_dota_creature" 
 	"Model" "models/heroes/undying/undying_minion.vmdl" 
 	"SoundSet" "Undying_Zombie" 
-	"ModelScale" "0.7" 
+	"ModelScale" "0.9" 
 	"Level" "1" 
 	
 	
@@ -148,8 +148,8 @@
 	
 	
 	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
-	"AttackDamageMin" "40" 
-	"AttackDamageMax" "40" 
+	"AttackDamageMin" "28" 
+	"AttackDamageMax" "28" 
 	"AttackRate" "0.7" 
 	"AttackAnimationPoint" "0.5" 
 	"AttackAcquisitionRange" "500" 
@@ -171,7 +171,7 @@
 	
 	
 	
-	"StatusHealth" "400" 
+	"StatusHealth" "200" 
 	"StatusHealthRegen" "1" 
 	"StatusMana" "0" 
 	"StatusManaRegen" "0" 
@@ -202,7 +202,7 @@
 	"BaseClass" "npc_dota_creature" 
 	"Model" "models/heroes/undying/undying_minion.vmdl" 
 	"SoundSet" "Undying_Zombie" 
-	"ModelScale" "0.7" 
+	"ModelScale" "1.0" 
 	"Level" "1" 
 	
 	
@@ -224,8 +224,8 @@
 	
 	
 	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
-	"AttackDamageMin" "70" 
-	"AttackDamageMax" "70" 
+	"AttackDamageMin" "42" 
+	"AttackDamageMax" "42" 
 	"AttackRate" "0.6" 
 	"AttackAnimationPoint" "0.5" 
 	"AttackAcquisitionRange" "500" 
@@ -247,7 +247,83 @@
 	
 	
 	
-	"StatusHealth" "600" 
+	"StatusHealth" "200" 
+	"StatusHealthRegen" "4" 
+	"StatusMana" "0" 
+	"StatusManaRegen" "0" 
+	
+	
+	
+	"TeamName" "DOTA_TEAM_GOODGUYS" 
+	"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+	"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+	"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	"AttackType"    "normal"
+	"ArmorType"     "heavy" 
+	
+	
+	
+	"VisionDaytimeRange" "800" 
+	"VisionNighttimeRange" "800" 
+	
+	
+	
+	"HasInventory" "0" 
+	}
+	
+	"butcher_zombie_4" 
+	{
+	
+	
+	"BaseClass" "npc_dota_creature" 
+	"Model" "models/heroes/undying/undying_minion.vmdl" 
+	"SoundSet" "Undying_Zombie" 
+	"ModelScale" "1.1" 
+	"Level" "1" 
+	
+	
+	
+	"Ability1" "butcher_zombie_bash" 
+	"Ability2" "butcher_skin"
+	"Ability3" "" 
+	"Ability4" "" 
+	"Ability5" "" 
+	"Ability6" "" 
+	"Ability7" "" 
+	"Ability8" "" 
+	
+	
+	
+	"ArmorPhysical" "3" 
+	"MagicalResistance" "0" 
+	
+	
+	
+	"AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin" "56" 
+	"AttackDamageMax" "56" 
+	"AttackRate" "0.6" 
+	"AttackAnimationPoint" "0.5" 
+	"AttackAcquisitionRange" "500" 
+	"AttackRange" "90" 
+	"ProjectileModel" "" 
+	"ProjectileSpeed" "" 
+	
+	
+	
+	"BountyXP" "0" 
+	"BountyGoldMin" "0" 
+	"BountyGoldMax" "0" 
+	
+	
+	
+	"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" 
+	"MovementSpeed" "330" 
+	"MovementTurnRate" "0.5" 
+	
+	
+	
+	"StatusHealth" "200" 
 	"StatusHealthRegen" "4" 
 	"StatusMana" "0" 
 	"StatusManaRegen" "0" 

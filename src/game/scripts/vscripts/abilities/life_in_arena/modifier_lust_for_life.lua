@@ -26,7 +26,6 @@ if IsServer() then
 		local caster = self:GetParent()
 		local ability = self:GetAbility()
 		local perChunk = self:GetAbility():GetSpecialValueFor("tolltip")
-		print(caster:GetIntellect())
 		while(caster:HasModifier("modifier_lust_for_life_health_regen")) do
 			caster:RemoveModifierByName("modifier_lust_for_life_health_regen")
 		end
