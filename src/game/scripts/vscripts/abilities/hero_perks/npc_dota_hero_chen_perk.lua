@@ -78,7 +78,7 @@
           local random = RandomInt(1,target.chenAbilityCount)
           local boolMaxedOut = false
 
-          for i=i,6 do
+          for i=1,6 do
             if target.chenAbilityTable[i]:GetLevel() ~= target.chenAbilityTable[i]:GetMaxLevel() then
               local boolMaxedOut = false
               break
