@@ -6,8 +6,6 @@
 local OptionManager = require('optionmanager')
 local util = require('util')
 local Network = require('network')
-local constants = require('constants')
-local Timers = require('easytimers')
 
 -- Keeps track of what skills a given hero has
 local currentSkillList = {}
@@ -362,20 +360,12 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- If we are currently swapping a hero, ignore
     if inSwap then return end
 
-    -- Cooldowns        
-    self.abilityCooldowns = self.abilityCooldowns or {}     
-    local cooldownInfo = {}
-
     -- Check if there is a new hero
     local playerID
     local isRealHero = false
     if hero:IsHero() then
         playerID = hero:GetPlayerID()
         local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-        -- Grab cooldowns       
-        self.abilityCooldowns[playerID] = self.abilityCooldowns[playerID] or {}     
-        cooldownInfo = self.abilityCooldowns[playerID]
 
         -- Hero check
         if hero:IsRealHero() then
@@ -414,24 +404,9 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                         items[i].replacePurchaser = true
                     end
 
-                    hero:RemoveItem(item)
+                    item:Remove()
                 end
             end
-
-
-            -- Handle cooldowns     
-            for i=0,hero:GetAbilityCount()-1 do     
-                local ab = hero:GetAbilityByIndex(i)        
-                if IsValidEntity(ab) then       
-                    local timeLeft = ab:GetCooldownTimeRemaining()      
-                    if timeLeft > 0 then        
-                        cooldownInfo[ab:GetClassname()] = Time() + timeLeft     
-                    end     
-                end     
-            end     
-            -- Grab exp / level     
-            local currentLevel = hero:GetLevel()        
-            local expNeeded = constants.XP_PER_LEVEL_TABLE[currentLevel] or 0
 
             -- Replace the hero
             inSwap = true
@@ -439,11 +414,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             inSwap = false
 
             -- Ensure swap is successful
-            if not IsValidEntity(hero) then return end
-            -- Add EXP      
-            if expNeeded > 0 then       
-                hero:AddExperience(expNeeded, false, false)     
-            end
+            if not hero then return end
 
             -- Replace gold
             PlayerResource:SetGold(playerID, ug, false)
@@ -481,33 +452,14 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             for k,v in pairs(removeMe) do
-                hero:RemoveItem(v)
+                v:Remove()
             end
 
             -- Reset current skills
             currentSkillList[hero] = nil
 
             -- Reset ability points
-            hero:SetAbilityPoints(currentLevel)
-
-            if build.setAttr then
-                local toSet = 0
-
-                if build.setAttr == 'str' then
-                    toSet = 0
-                elseif build.setAttr == 'agi' then
-                    toSet = 1
-                elseif build.setAttr == 'int' then
-                    toSet = 2
-                end
-
-                -- Set a timer to fix stuff up
-                Timers:CreateTimer(function()
-                    if IsValidEntity(hero) then
-                        hero:SetPrimaryAttribute(toSet)
-                    end
-                end, DoUniqueString('primaryAttrFix'), 0.1)
-            end
+            hero:SetAbilityPoints(hero:GetLevel())
         end
     end
 
@@ -640,7 +592,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 -- Enable it
                 oldAb:SetHidden(false)
             else
-                local newAb = hero:AddAbility(multV)
+                hero:AddAbility(multV)
+                local newAb = hero:FindAbilityByName(multV)
                 if newAb then
                     newAb:SetHidden(false)
 
@@ -776,16 +729,6 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 if newAb then
                     newAb:SetLevel(newAb:GetMaxLevel())
                 end
-            end     
-        end     
-    end     
-    -- Handle cooldowns     
-    for i=0,hero:GetAbilityCount()-1 do     
-        local ab = hero:GetAbilityByIndex(i)        
-        if IsValidEntity(ab) then       
-            local timeLeft = (cooldownInfo[ab:GetClassname()] or 0) - Time()        
-            if timeLeft > 0 then        
-                ab:StartCooldown(timeLeft)
             end
         end
     end
@@ -842,7 +785,7 @@ function skillManager:hasTooMany(build, maxCount, checkFunction)
     -- Check stuff
     local totalSoFar = 0
     for k,v in pairs(build) do
-        if checkFunction(v) and k ~= 'hero' then
+        if checkFunction(v) then
             totalSoFar = totalSoFar + 1
 
             if totalSoFar > maxCount then

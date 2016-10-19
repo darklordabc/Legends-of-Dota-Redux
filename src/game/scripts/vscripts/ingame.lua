@@ -22,7 +22,6 @@ function Ingame:init()
     -- Init stronger towers
     self:addStrongTowers()
     self:fixRuneBug()
-    self:showIngameBuilder()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -252,14 +251,7 @@ function Ingame:fixRuneBug()
 			end, "botRune", 6)
 		end
 	end, nil)
-end
 
-function Ingame:showIngameBuilder()
-	ListenToGameEvent('game_rules_state_change', function(keys)
-		if OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
-			network:enableIngameHeroEditor()
-		end
-	end, nil)
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
@@ -311,8 +303,8 @@ function Ingame:FatOMeterThinker(dt)
 					local deaths = PlayerResource:GetDeaths(playerID)
 					local assists = PlayerResource:GetAssists(playerID)
 					
-					--Assists are weighted as quarter kills and deaths as negative quarter kills
-					fatData[playerID].lastNetWorth = 4*kills + assists - deaths
+					--Assists are weighted as eighth kills and deaths as negative eighth kills.
+					fatData[playerID].lastNetWorth = 8*kills + assists - 2*deaths
 				end
 			end
 		end

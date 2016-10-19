@@ -166,13 +166,6 @@ function Network:banHero(heroName)
     })
 end
 
-function Network:enableIngameHeroEditor()
-
-    local options = {}
-    -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodEnableIngameBuilder', options)
-end
-
 -- Pushes that a hero is banned
 function Network:setTotalBans(playerID, currentHeroBans, currentAbilityBans)
     -- Push to everyone

@@ -79,21 +79,6 @@ function Util:MergeTables(t1, t2)
     return t1
 end
 
-function Util:DeepCopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            copy[self:DeepCopy(orig_key)] = self:DeepCopy(orig_value)
-        end
-        setmetatable(copy, self:DeepCopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
-    end
-    return copy
-end
-
 -- Sets up spell properties
 function Util:SetupSpellProperties(abs)
     for k,v in pairs(abs) do
