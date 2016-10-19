@@ -163,6 +163,21 @@ function Ingame:onStart()
     network:showCheatPanel(options)
     if OptionManager:GetOption('allowIngameHeroBuilder') then
     	network:enableIngameHeroEditor()
+		
+		-- Notification to players that they can change builds ingame.
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderNotification", 0, 0)
+				end, "builderReminder0", 10) -- 5 Mins
+		-- Reminders for the players.
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder1", 300) -- 5 Mins
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder2", 600) -- 10 Mins
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder3", 1200) -- 20 Mins
     end
 
     -- Start listening for players that are disconnecting

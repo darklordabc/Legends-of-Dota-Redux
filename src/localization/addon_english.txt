@@ -342,6 +342,9 @@
 	"lodMutatorIngameBuilder3"						"Build Switcher 30s penalty"
 	"lodMutatorIngameBuilder4"						"Build Switcher Free"
 	
+	"ingameBuilderNotification"						"<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
+	"ingameBuilderReminder"						"<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
+	
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
