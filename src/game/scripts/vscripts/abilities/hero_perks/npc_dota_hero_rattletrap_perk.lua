@@ -47,7 +47,7 @@ function modifier_npc_dota_hero_rattletrap_perk:OnIntervalThink(keys)
             flare:SetLevel(rocketFlare:GetLevel() + 1)
         end
 
-        if flare and caster:IsAlive() then
+        if flare and caster:IsAlive() and caster:IsRealHero() then
             local findFowLocation = false
             while findFowLocation == false do
                 local randomX = RandomInt(-7136, 7136)
