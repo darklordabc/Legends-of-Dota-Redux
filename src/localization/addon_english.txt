@@ -1778,6 +1778,24 @@
 	
     "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod"                                 "Berserker's Blood"
     "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod_Description"                     "Increase damage and attack speed."
+	
+	//Drow - Marksmanship INT
+	"DOTA_Tooltip_ability_marksmanship_int"									"Marksmanship INT"
+	"DOTA_Tooltip_ability_marksmanship_int_Description"						"Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to <font color='#70EA72'>Intelligence</font>. Grants no bonus if there are enemy heroes within a 375 AoE."
+	"DOTA_Tooltip_ability_marksmanship_int_Lore"								"The Drow Ranger is the epitome of archery prowess."
+	"DOTA_Tooltip_ability_marksmanship_int_marksmanship_intellect_bonus"		"BONUS INTELLECT:"
+	
+	"DOTA_Tooltip_modifier_marksmanship_int_effect_datadriven" 							"Marksmanship INT"
+	"DOTA_Tooltip_modifier_marksmanship_int_effect_datadriven_Description" 				"Bonus Intellect. Deactivated by nearby enemy heroes."
+	
+	//Drow - Marksmanship STR
+	"DOTA_Tooltip_ability_marksmanship_str"									"Marksmanship STR"
+	"DOTA_Tooltip_ability_marksmanship_str_Description"						"Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to <font color='#70EA72'>Strength</font>. Grants no bonus if there are enemy heroes within a 375 AoE."
+	"DOTA_Tooltip_ability_marksmanship_str_Lore"								"The Drow Ranger is the epitome of archery prowess."
+	"DOTA_Tooltip_ability_marksmanship_str_marksmanship_strength_bonus"		"BONUS STRENGTH:"
+	
+	"DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven" 							"Marksmanship STR"
+	"DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description" 				"Bonus Strength. Deactivated by nearby enemy heroes."
     
     ///////////////////////////////////////
     // HERO CONCEPTS (The Next Generation)
