@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - Added 7 new abilities from "Retro Dota" custom game
 - Added 35 new abilities from "Life In Arena" custom game
 - Increased the level requirements for many of the IMBA abilities
+- Added Int and Str version of marksmanship
 
 ## 1.6 - Steam Version
 
