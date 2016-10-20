@@ -1,4 +1,7 @@
-require('lib/timers')
+if IsServer() then
+	require('lib/timers')
+end
+
 function mana_burn_function( keys )
 	-- Variables
 	local caster = keys.caster

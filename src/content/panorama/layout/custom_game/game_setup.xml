@@ -562,7 +562,7 @@
                 <Panel id="pickingPhaseLeftSide">
                     <Panel id="pickingPhaseTabBar">
                         <Panel id="pickingPhaseMainTabRoot" link="pickingPhaseMainTab" class="heroBuildMenuButton">
-                            <Label text="#presets_lod" />
+                            <Label text="#builds_lod" />
                         </Panel>
                         <Panel id="pickingPhaseHeroTabRoot" link="pickingPhaseHeroTab" class="heroBuildMenuButton">
                             <Label text="#heroes_lod" />

@@ -29,6 +29,7 @@
 			<Image src="file://{images}/custom_game/hints/hint_saveload.png" />
 			<Image src="file://{images}/custom_game/hints/commentButton.png" />
 			<Image src="file://{images}/custom_game/hints/hint_fatOMeter.png" />
+			<Image src="file://{images}/custom_game/hints/hint_UniversalShop.png" />
 			<Image src="file://{images}/custom_game/hints/hint_removeability.png" />
 			<Image src="file://{images}/custom_game/hints/hint_timbersaw.png" />
 			<Image src="file://{images}/custom_game/hints/hint_morphling.png" />

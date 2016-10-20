@@ -88,3 +88,57 @@ function RecordPlayerSC( ) {
         });
     })
 }
+
+function SaveFavBuilds( builds ){
+    var requestParams = {
+        Command : "SaveFavBuilds",
+        Data: {
+            SteamID: GetSteamID32(),
+            Builds : JSON.stringify(builds),
+        }
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function () {}) );
+}
+
+function LoadFavBuilds( ){
+    var requestParams = {
+        Command : "LoadFavBuilds",
+        SteamID: GetSteamID32(),
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
+        var rows = JSON.parse(data);
+        if (rows.length == 0)
+            return;
+
+        var builds = JSON.parse(rows[0].FavBuilds);
+        if (builds.length == 0)
+        	return;
+
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+        for (var i = 0; i < con.GetChildCount(); i++) {
+            var child = con.GetChild(i);
+            child.setFavorite(builds.indexOf(child.buildID) != -1);
+        }
+    }) );
+}
+
+function LoadBuilds( filter ){
+    var requestParams = {
+        Command : "LoadBuilds",
+        Filter: filter,
+    }
+
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
+        var builds = JSON.parse(data);
+
+        // The  container to work with
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+
+        for(var build of builds) 
+            addRecommendedBuild(con, build);
+
+        LoadFavBuilds();
+    }) );
+} 

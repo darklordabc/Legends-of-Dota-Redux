@@ -1,19 +1,24 @@
 // Store build data to send to the server
+$.GetContextPanel().isFavorite = false;
 var buildData = null;
 
-function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, hero, build, attr, title, id) {
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
+    var buildVariant = balanceMode == 1 ? build.Balanced : build.Unbalanced;
+
+    // Get abilities array from JSON string
+    var curBuild = JSON.parse(buildVariant.replace(/'/g, '"'))
     // Push skills
-    for(var slotID=1; slotID<=6; ++slotID) {
-        var slot = $('#recommendedSkill' + slotID);
+    for(var slotID = 0; slotID < 6; ++slotID) {
+        var slot = $('#recommendedSkill' + (slotID + 1));
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
         hookSkillInfo(slot);
 
-        if(build[slotID]) {
+        if(curBuild[slotID]) {
             slot.visible = true;
-            slot.abilityname = build[slotID];
-            slot.SetAttributeString('abilityname', build[slotID]);
+            slot.abilityname = curBuild[slotID];
+            slot.SetAttributeString('abilityname', curBuild[slotID]);
         } else {
             slot.visible = false;
         }
@@ -21,36 +26,45 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, he
 
     // Set hero image
     var heroImageCon = $('#recommendedHeroImage');
-    heroImageCon.heroname = hero;
-    heroImageCon.SetAttributeString('heroName', hero);
+    heroImageCon.heroname = build.Hero;
+    heroImageCon.SetAttributeString('heroName', build.Hero);
     makeHeroSelectable(heroImageCon);
 
     // Set the title
     var titleLabel = $('#buildName');
-    if(title != null) {
-        titleLabel.text = title;
+    if(build.Title != null) {
+        titleLabel.text = $.Localize(build.Title);
         titleLabel.visible = true;
     } else {
         titleLabel.visible = false;
     }
 
+    $('#buildDesc').text = $.Localize(build.Description); 
+
     // Set hero attribute
     var attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
-    if(attr == 'agi') {
+    if(build.Attr == 'agi') {
         attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd';
-    } else if(attr == 'int') {
+    } else if(build.Attr == 'int') {
         attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd';
     }
 
     $('#recommendedAttribute').SetImage(attrImage);
 
+    // Renum items from 0-5 to 1-6 for server functions
+    var buildForSend = {};
+    for(var slotID = 0; slotID < 6; ++slotID)
+        buildForSend[slotID + 1] = curBuild[slotID];
+
     // Store the build data
     buildData = {
-        hero: hero,
-        attr: attr,
-        build: build,
-        id: id
+        hero: build.Hero,
+        attr: build.Attr,
+        build: buildForSend,
+        id: build.ID
     };
+
+    $.GetContextPanel().buildID = build.ID;
 }
 
 // When the build is selected
@@ -62,6 +76,15 @@ function onSelectBuildPressed() {
     GameEvents.SendCustomGameEventToServer('lodSelectBuild', buildData);
 }
 
+function setFavorite( flag ) {
+    $.GetContextPanel().isFavorite = flag;
+    $('#recommendedBuildFavourite').SetHasClass('active', flag);
+}
+
+function onClickFav() {
+    setFavorite( !$.GetContextPanel().isFavorite );
+}
+
 // Does filtering on the abilities
 function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     if(buildData == null) return;
@@ -70,7 +93,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     var build = buildData.build;
 
     // Filter each ability
-    for(var slotID=1; slotID<=6; ++slotID) {
+    for(var slotID = 1; slotID < 7; ++slotID) {
         // Grab the slot
         var slot = $('#recommendedSkill' + slotID);
 
@@ -113,4 +136,6 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     // Add the events
     mainPanel.setBuildData = setBuildData;
     mainPanel.updateFilters = updateFilters;
+    mainPanel.setFavorite = setFavorite;
+    mainPanel.onClickFav = onClickFav;
 })();

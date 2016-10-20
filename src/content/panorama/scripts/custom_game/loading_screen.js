@@ -161,6 +161,9 @@ function setBackground() {
         img: 'file://{images}/spellicons/meepo_divided_we_stand.png',
         txt: '#hintHost'
     }, {
+        img: 'file://{images}/custom_game/hints/hint_UniversalShop.png',
+        txt: '#hintUniversalShop'
+    }, {
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
