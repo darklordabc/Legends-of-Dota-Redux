@@ -40,6 +40,7 @@ function modifier_npc_dota_hero_dragon_knight_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_dragon_knight_perk:OnTakeDamage(params)
+	if params.attacker:GetTeamNumber() == params.unit:GetTeamNumber() then return end
 	local dragonform = self:GetParent():FindAbilityByName("dragon_knight_elder_dragon_form")
 	if self.dragonform or dragonform and params.attacker == self:GetParent() then
 		local caster = params.attacker
@@ -67,6 +68,7 @@ function PerkDragonKnight(filterTable)
   	local parent = EntIndexToHScript( parent_index )
   	local caster = EntIndexToHScript( caster_index )
   	local ability = EntIndexToHScript( ability_index )
+	if parent:GetTeamNumber() == caster:GetTeamNumber() then return end
 	if ability then
     		local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
 	 	if targetPerk and targetPerks_modifier[targetPerk:GetName()] then
