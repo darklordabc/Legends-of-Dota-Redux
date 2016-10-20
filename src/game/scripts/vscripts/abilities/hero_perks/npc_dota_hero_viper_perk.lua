@@ -37,6 +37,7 @@ function perkViper(filterTable)
   end
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
+  if parent:GetTeamNumber() == caster:GetTeamNumber() then return end
   local ability = EntIndexToHScript( ability_index )
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_viper_perk") then
