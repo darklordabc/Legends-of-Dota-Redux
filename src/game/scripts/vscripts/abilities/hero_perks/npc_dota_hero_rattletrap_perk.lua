@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: Clockwork
---		Perk: Fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare.
+--      Hero: Clockwork
+--      Perk: Fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_rattletrap_perk", "abilities/hero_perks/npc_dota_hero_rattletrap_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -9,16 +9,16 @@ LinkLuaModifier( "modifier_npc_dota_hero_rattletrap_flare_delay", "abilities/her
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_rattletrap_perk == nil then npc_dota_hero_rattletrap_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_rattletrap_perk				
+--      Modifier: modifier_npc_dota_hero_rattletrap_perk                
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_rattletrap_perk == nil then modifier_npc_dota_hero_rattletrap_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_rattletrap_perk:IsPassive()
-	return true
+    return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_rattletrap_perk:IsHidden()
-	return true
+    return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -44,19 +44,20 @@ function modifier_npc_dota_hero_rattletrap_perk:OnIntervalThink(keys)
         local rocketFlare = caster:FindAbilityByName("rattletrap_rocket_flare")
 
         if rocketFlare then
-        	flare:SetLevel(rocketFlare:GetLevel() + 1)
+            flare:SetLevel(rocketFlare:GetLevel() + 1)
         end
 
         if flare and caster:IsAlive() then
-        	local findFowLocation = false
-        	while findFowLocation == false do
-	        	local randomX = RandomInt(-7136, 7136)
-	        	local randomY = RandomInt(-7136, 7136)
-	        	local vector = Vector(randomX, randomY, 0)
-	        	caster:CastAbilityOnPosition(vector, flare, caster:GetPlayerID())
+            local findFowLocation = false
+            while findFowLocation == false do
+                local randomX = RandomInt(-7136, 7136)
+                local randomY = RandomInt(-7136, 7136)
+                local vector = Vector(randomX, randomY, 0)
+                caster:SetCursorPosition(vector)
+                flare:OnSpellStart()
                 caster:AddNewModifier(caster, flare, "modifier_npc_dota_hero_rattletrap_flare_delay", {Duration = self.thinkInterval})
-	        	findFowLocation = true
-	        end
+                findFowLocation = true
+            end
         end
         return true
     end
