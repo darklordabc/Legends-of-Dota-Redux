@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Slardar and Alch gold noise being heard by all players (hopefully)
 - Added warning to bristleback about quill release not doing any damage
 - Added hint about universal shops
+- Added Ingame Build Switcher
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
