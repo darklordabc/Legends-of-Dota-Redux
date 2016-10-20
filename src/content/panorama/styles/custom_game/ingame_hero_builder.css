@@ -12,6 +12,10 @@
 #heroBuilderDisplay {
     width: 100%;
     height: fill-parent-flow(0);
-    visibility: collapse;
+
     background-color: #000000;
+    visibility: collapse;
+}
+#heroBuilderDisplay .lodOptionsInterface {
+	margin-left: 42px;
 }

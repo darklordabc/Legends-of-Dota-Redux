@@ -1485,6 +1485,9 @@ var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 var currentBalance = 0;
 var showTier = {};
 
+// Is ingame builder
+$.GetContextPanel().isIngameBuilder = false;
+
 (function() {
     var playerInfo = Game.GetLocalPlayerInfo();
     if (playerInfo.player_has_host_privileges){
@@ -5153,7 +5156,7 @@ function recalculateBanLimits() {
 }
 
 // Recalculates what teams should be hidden
-function calculateHideEnemyPicks() {
+function calculateHideEnemyPicks( ) {
     // Hide picks
     var hideRadiantPicks = false;
     var hideDirePicks = false;
@@ -5173,8 +5176,8 @@ function calculateHideEnemyPicks() {
         }
     }
 
-    $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
-    $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
+    $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks && !$.GetContextPanel().isIngameBuilder);
+    $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks && !$.GetContextPanel().isIngameBuilder);
 }
 
 // The gamemode has changed
@@ -5781,4 +5784,6 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
 
     // Do an initial update of the player team assignment
     OnTeamPlayerListChanged();
+
+    $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
 })();

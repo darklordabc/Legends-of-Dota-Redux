@@ -3,13 +3,16 @@
 // Have we spawned a hero builder?
 var spawnedHeroBuilder = false;
 
+var heroBuilderPanel = null;
+
 function showIngameBuilder() {
     if(!spawnedHeroBuilder) {
         spawnedHeroBuilder = true;
 
         // Spawn the hero builder
-        var heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
+        heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
         heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup.xml', false, false);
+        heroBuilderPanel.isIngameBuilder = true;
 
         // Boot it into selection mode
         // heroBuilderPanel.SetHasClass('phase_ingame', true);
@@ -29,12 +32,17 @@ function showIngameBuilder() {
         GameEvents.Subscribe('lodNewHeroBuild', function() {
             $('#heroBuilderDisplay').visible = false;
         });
+
+
+
         // Make it visible
-        $('#heroBuilderDisplay').visible = true;
+        $('#heroBuilderDisplay').visible = true; 
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
+        heroBuilderPanel.doActualTeamUpdate();
     }
 
+    heroBuilderPanel.doActualTeamUpdate();
 }
 
 (function() {
