@@ -5478,4 +5478,6 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
     OnTeamPlayerListChanged();
 
     $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
+
+    showBuilderTab('pickingPhaseMainTab');
 })();

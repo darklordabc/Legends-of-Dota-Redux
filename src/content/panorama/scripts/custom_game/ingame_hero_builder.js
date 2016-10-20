@@ -33,13 +33,10 @@ function showIngameBuilder() {
             $('#heroBuilderDisplay').visible = false;
         });
 
-
-
         // Make it visible
         $('#heroBuilderDisplay').visible = true; 
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
-        heroBuilderPanel.doActualTeamUpdate();
     }
 
     heroBuilderPanel.doActualTeamUpdate();
