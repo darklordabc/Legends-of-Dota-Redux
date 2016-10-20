@@ -1,0 +1,33 @@
+.menuButtonsRoot {
+    //width: 100%;
+    height: 45px;
+
+    flow-children: right;
+    horizontal-align: right;
+}
+
+#heroBuilder {
+    visibility: collapse;
+}
+
+.menuButtonsIcon {
+    width: 95%;
+    height: 95%;
+}
+
+.menuButton {
+    width: 24px;
+    height: 24px;
+
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+
+    vertical-align: center;
+
+    margin-right: 10px;
+
+    box-shadow: #52545520 0px 0px 1px;
+    border: 1px solid #323440;
+    border-radius: 5px;
+
+    wash-color: #00000030;
+}

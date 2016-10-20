@@ -24,12 +24,15 @@
         <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
 
-        <CustomUIElement type="HudTopBar" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
         <CustomUIElement type="FlyoutScoreboard" layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml" />
         <CustomUIElement type="EndScreen" layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_hero_builder.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch_vote.xml" />
+
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/menu_buttons.xml" />
+
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/cheats.xml" />

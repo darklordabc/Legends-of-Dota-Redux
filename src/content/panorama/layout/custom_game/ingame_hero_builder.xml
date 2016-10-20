@@ -8,14 +8,6 @@
         <include src="file://{resources}/scripts/custom_game/ingame_hero_builder.js" />
     </scripts>
     <Panel class="heroBuilderRoot" hittest="false">
-        <Panel id="heroBuilderContainer" hittest="false">
-            <Panel id="heroBuilderButton">
-                <Button id="showHeroBuilder" class="niceButton" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
-                    <Image id="heroBuilderIcon" src="file://{images}/custom_game/changebuild.png"/>
-                </Button>
-            </Panel>
-            <Panel id="heroBuilderDisplay" />
-        </Panel>
-
+        <Panel id="heroBuilderDisplay"/>
     </Panel>
 </root>

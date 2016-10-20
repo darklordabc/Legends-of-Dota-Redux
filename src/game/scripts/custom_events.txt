@@ -595,4 +595,14 @@
       "player_ID"		"short"
       "_error"		"string"
     }
+
+    // Display changelog
+    "lodOnChangelog"
+    {    
+    }
+
+    // Display cheats
+    "lodOnCheats"
+    {
+    }
 }

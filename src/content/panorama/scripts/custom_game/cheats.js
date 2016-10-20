@@ -114,16 +114,9 @@ var cheat_list = [
 var playersCount;
 var isCheatsEnabled;
 
-function toggleCheats(){
-	if (!isCheatsEnabled){
-		GameEvents.SendCustomGameEventToServer('lodOnCheats', {
-		status: 'error',
-		});
-		return false;
-	}
+function displayCheats(){
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 }
-
 
 function onActivate(id){
 	var cheatID = null;
@@ -166,5 +159,5 @@ function setupCheats(data){
 	}
 }
 
-
+GameEvents.Subscribe( "lodOnCheats", displayCheats );
 GameEvents.Subscribe('lodShowCheatPanel', setupCheats);

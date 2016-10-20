@@ -3,11 +3,6 @@
 // Have we spawned a hero builder?
 var spawnedHeroBuilder = false;
 
-// Play wants to open the hero builder
-function onBtnOpenHeroBuilderPressed() {
-    GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', {playerID: Players.GetLocalPlayer()});
-}
-
 function showIngameBuilder() {
     if(!spawnedHeroBuilder) {
         spawnedHeroBuilder = true;
@@ -43,9 +38,6 @@ function showIngameBuilder() {
 }
 
 (function() {
-    GameEvents.Subscribe('lodEnableIngameBuilder', function() {
-        $('#heroBuilderContainer').AddClass('visible');
-    });
     GameEvents.Subscribe('lodShowIngameBuilder', function() {
         showIngameBuilder();
     })

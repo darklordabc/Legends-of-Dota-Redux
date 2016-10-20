@@ -32,11 +32,6 @@
 	</snippets>
 
 	<Panel class="changelogRoot" hittest="false">
-		<Panel id="changelogButton">
-			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
-				<Image id="changelogIcon" src="file://{images}/custom_game/changelog.png"/>
-			</Button>
-		</Panel>
 		<Button id="changelogNotification" onactivate='toggleChangelog(toggleCredits)'>
 			<Label id="changelogNotificationLabel" text="1" />
 		</Button>
