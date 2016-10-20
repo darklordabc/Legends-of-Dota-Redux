@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Added 4 more categories of skills to skill filter: Summon, Silence, Disarm and Breaks, Illusion
 - Reorganized some of the ability groupings in the custom skills tab
 - Fixed Slardar and Alch gold noise being heard by all players (hopefully)
+- Added warning to bristleback about quill release not doing any damage
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
