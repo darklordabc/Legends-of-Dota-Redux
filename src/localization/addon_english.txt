@@ -524,6 +524,7 @@
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
 	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 	"hintHost"                         "You can give your host powers to another player by clicking on their name."
+	"hintUniversalShop"                         "By Default, 'Universal Shops' are enabled. This means you can buy any item from any shop and you can also pick up items from your stash from any shop."
 	
     // Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"

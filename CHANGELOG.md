@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Reorganized some of the ability groupings in the custom skills tab
 - Fixed Slardar and Alch gold noise being heard by all players (hopefully)
 - Added warning to bristleback about quill release not doing any damage
+- Added hint about universal shops
 
 ### Balance
 - Added some more preset builds that take advantage of heros perks
