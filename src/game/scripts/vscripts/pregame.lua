@@ -135,6 +135,11 @@ function Pregame:init()
         this:onOptionChanged(eventSourceIndex, args)
     end)
 
+    -- Player wants to open ingame builder
+    CustomGameEventManager:RegisterListener('lodOnIngameBuilder', function(eventSourceIndex, args)
+        this:onIngameBuilder(eventSourceIndex, args)
+    end)
+
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
@@ -1241,6 +1246,19 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     end
 end
 
+-- Player wants to open ingame builder
+function Pregame:onIngameBuilder(eventSourceIndex, args)
+    local playerID = args.playerID
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if IsValidEntity(hero) and hero:IsAlive() then
+        local player = PlayerResource:GetPlayer(playerID)
+        network:showHeroBuilder(player)
+        Timers:CreateTimer(function()
+            network:setOption('lodOptionBalanceMode', true)
+        end, "changeBalanceMode", 0.5)
+    end
+end
+
 -- Player wants to cast a vote
 function Pregame:onPlayerCastVote(eventSourceIndex, args)
     -- Ensure we are in the options voting
@@ -2009,7 +2027,18 @@ function Pregame:initOptionSelector()
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- Ingame Builder Penalty
+        lodOptionIngameBuilderPenalty = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 180 then return false end
+
+            -- Valid
+            return true
         end,
     }
 
@@ -2141,6 +2170,7 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2663,7 +2693,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
-        OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'])
+        OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
+        OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3382,30 +3413,73 @@ end
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill() then return end
-    if self:canPlayerPickSkill() then
+    if self:canPlayerPickSkill() and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local playerID = args.PlayerID
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
+            local count = 0
+            for key,_ in pairs(newBuild) do
+                if tonumber(key) then
+                    count = count + 1
+                end
+            end
+            local maxCount = self.optionStore['lodOptionCommonMaxSlots']
+            if count ~= maxCount then
+                for i=1,maxCount do
+                    if not newBuild[i] then
+                        local randomSkill = self:findRandomSkill(newBuild, i, playerID)
+                        newBuild[i] = randomSkill
+                        self.selectedSkills[playerID][i] = randomSkill
+                    end
+                end
+            end
             local newHeroName = self.selectedHeroes[playerID]
             if not newBuild or not newHeroName then return end
             newBuild.hero = newHeroName
             newBuild.setAttr = self.selectedPlayerAttr[playerID]
+            local isSameBuild = true
+            for i=1,maxCount do
+                local ability = hero:FindAbilityByName(newBuild[i])
+                if not ability then
+                    isSameBuild = false
+                    break
+                end
+            end
+            local attr = hero:GetPrimaryAttribute()
+            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int'
+            local heroName = PlayerResource:GetSelectedHeroName(playerID)
+            if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
+                isSameBuild = false
+            end
+            if isSameBuild then
+                local player = PlayerResource:GetPlayer(playerID)
+                network:hideHeroBuilder(player)
+                return
+            end
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
+            network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+            network:setSelectedHero(playerID, newBuild.hero)
+            network:setSelectedAttr(playerID, newBuild.setAttr)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if OptionManager:GetOption('allowIngameHeroBuilder') == 1 then
+            if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 Timers:CreateTimer(function()
+                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
                     hero:Kill(nil, nil)
-                    hero:SetTimeUntilRespawn(30)
-                end, DoUniqueString('penalty'), 1)
-            elseif OptionManager:GetOption('allowIngameHeroBuilder') == 2 then
-                Timers:CreateTimer(function()
-                    hero:Kill(nil, nil)
-                    hero:SetTimeUntilRespawn(60)
-                end, DoUniqueString('penalty'), 1)
+                    hero:SetTimeUntilRespawn(penalty)
+                end, DoUniqueString('penalty'), 1)        
+            else
+                if hero:GetTeam() == DOTA_TEAM_BADGUYS then
+                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")  
+                    hero:SetAbsOrigin(ent:GetAbsOrigin())
+                elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")  
+                    hero:SetAbsOrigin(ent:GetAbsOrigin())
+                end
             end
+            GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
         end
     else
         local playerID = args.PlayerID
@@ -3428,7 +3502,7 @@ function Pregame:checkForReady()
 
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
-    local minTime = .5
+    local minTime = 3
 
     local canFinishBanning = false
 
@@ -4102,7 +4176,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 end
 
 function Pregame:canPlayerPickSkill()
-    if self:getPhase() == constants.PHASE_INGAME and OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
+    if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
     return false

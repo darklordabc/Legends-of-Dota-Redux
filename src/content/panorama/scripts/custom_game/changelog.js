@@ -10,6 +10,10 @@ function toggleChangelog(arg){
 	}
 }
 
+function displayChangelog(){
+	$("#changelogDisplay").SetHasClass("changelogDisplayHidden", !$("#changelogDisplay").BHasClass("changelogDisplayHidden"))
+}
+
 function toggleDescription(arg){
 	$("#descriptionDisplay").visible = true
 	$("#updateDisplay").visible = false
@@ -142,5 +146,6 @@ function newMessages( newMessages ) {
 	$("#showDescriptionButton").checked = true;
 	$("#changelogNotification").visible = false;
 
+	GameEvents.Subscribe( "lodOnChangelog", displayChangelog );
 	GameEvents.Subscribe( "su_new_messages", newMessages );
 })();

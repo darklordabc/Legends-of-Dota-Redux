@@ -260,7 +260,28 @@ var allOptions = {
                             'lodMutatorFarmFatOMeter': 1,
 							'lodMutatorKDAFatOMeter': 2
                         }
-					},
+					},					
+                    {
+                        about: 'lodMutatorIngameBuilder1',
+                        default: {
+                            'lodOptionIngameBuilder': 0,
+                            'lodOptionIngameBuilderPenalty': 0
+                        },
+                        states: {
+                            'lodMutatorIngameBuilder2': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 60
+                            },
+                            'lodMutatorIngameBuilder3': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 30
+                            },
+                            'lodMutatorIngameBuilder4': {
+                                'lodOptionIngameBuilder': 1,
+                                'lodOptionIngameBuilderPenalty': 0
+                            }
+                        }
+                    },
                 ]
             }
         ]
@@ -1010,6 +1031,32 @@ var allOptions = {
 					},
 				]
 			},
+            {
+                name: 'lodOptionIngameBuilder',
+                des: 'lodOptionDesIngameBuilder',
+                about: 'lodOptionAboutIngameBuilder',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionIngameBuilderPenalty',
+                des: 'lodOptionDesIngameBuilderPenalty',
+                about: 'lodOptionAboutIngameBuilderPenalty',
+                sort: 'range',
+                min: 0,
+                max: 180,
+                step: 1,
+                default: 0,
+            }
         ]
     }
 }
@@ -1128,8 +1175,12 @@ var calculateHeroFilters = function(){};
 
 // Balance Mode
 var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
+
 var currentBalance = 0;
 var showTier = {};
+
+// Is ingame builder
+$.GetContextPanel().isIngameBuilder = false;
 
 (function() {
     var playerInfo = Game.GetLocalPlayerInfo();
@@ -1905,7 +1956,7 @@ function setupBuilderTabs() {
 
 // Builds the hero list
 function buildHeroList() {
-	Game.SetTeamSelectionLocked(true);
+	Game.SetTeamSelectionLocked(false);
     var strHeroes = [];
     var agiHeroes = [];
     var intHeroes = [];
@@ -4797,7 +4848,7 @@ function recalculateBanLimits() {
 }
 
 // Recalculates what teams should be hidden
-function calculateHideEnemyPicks() {
+function calculateHideEnemyPicks( ) {
     // Hide picks
     var hideRadiantPicks = false;
     var hideDirePicks = false;
@@ -4817,8 +4868,8 @@ function calculateHideEnemyPicks() {
         }
     }
 
-    $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks);
-    $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks);
+    $('#theRadiantContainer').SetHasClass('hide_picks', hideRadiantPicks && !$.GetContextPanel().isIngameBuilder);
+    $('#theDireContainer').SetHasClass('hide_picks', hideDirePicks && !$.GetContextPanel().isIngameBuilder);
 }
 
 // The gamemode has changed
@@ -5081,7 +5132,7 @@ function UpdateTimer() {
             // Should we show the timer?
             if(shouldShowTimer) {
                 // Work out how long to show for
-                var showDuration = .5;
+                var showDuration = 3;
 
                 // Calculate when the next show should occur
                 if(timeLeft <= 30) {
@@ -5153,7 +5204,7 @@ function onAcceptPopup() {
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
-    //$('#lodPopupMessage').visible = true;
+    $('#lodPopupMessage').visible = true;
 }
 
 function showQuestionMessage(data) {
@@ -5425,4 +5476,8 @@ function buttonGlowHelper(category,choice,yesBtn,noBtn){
 
     // Do an initial update of the player team assignment
     OnTeamPlayerListChanged();
+
+    $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
+
+    showBuilderTab('pickingPhaseMainTab');
 })();

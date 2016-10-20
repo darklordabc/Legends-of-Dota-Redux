@@ -10,11 +10,6 @@
 	
 	<Panel class="cheatsRoot" hittest="false">
 		<Panel id="cheatsContainer" hittest="false">
-			<Panel id="cheatsButton">
-				<Button id="showCheatsButton" onactivate="toggleCheats()">
-					<Image id="cheatsIcon" src="file://{images}/custom_game/cheats.png"/>
-				</Button>
-			</Panel>
 			<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
 				<Label class="titlelabel" text="Cheat/Debuging Menu" />
 				<TextButton id="com_start_game" class="cheatButton" text="#com_start_game_Description"  onactivate="onActivate('com_start_game')">

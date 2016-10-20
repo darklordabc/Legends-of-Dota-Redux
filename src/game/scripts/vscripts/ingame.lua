@@ -22,7 +22,6 @@ function Ingame:init()
     -- Init stronger towers
     self:addStrongTowers()
     self:fixRuneBug()
-    self:showIngameBuilder()
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -162,6 +161,24 @@ function Ingame:onStart()
         cheats = isCheatsEnabled
     }
     network:showCheatPanel(options)
+    if OptionManager:GetOption('allowIngameHeroBuilder') then
+    	network:enableIngameHeroEditor()
+		
+		-- Notification to players that they can change builds ingame.
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderNotification", 0, 0)
+				end, "builderReminder0", 10) -- 5 Mins
+		-- Reminders for the players.
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder1", 300) -- 5 Mins
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder2", 600) -- 10 Mins
+		Timers:CreateTimer(function()
+				GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
+				end, "builderReminder3", 1200) -- 20 Mins
+    end
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
@@ -250,14 +267,6 @@ function Ingame:fixRuneBug()
 					end
 				end
 			end, "botRune", 6)
-		end
-	end, nil)
-end
-
-function Ingame:showIngameBuilder()
-	ListenToGameEvent('game_rules_state_change', function(keys)
-		if OptionManager:GetOption('allowIngameHeroBuilder') >= 1 then
-			network:enableIngameHeroEditor()
 		end
 	end, nil)
 end

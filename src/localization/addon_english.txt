@@ -311,6 +311,7 @@
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
+    "lodOptionDesIngameBuilderPenalty"              "Build Change Death Penalty (sec.)"
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
@@ -338,8 +339,16 @@
 	"lodOptionAboutCrazyFatOMeter"					"This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
 	"lodMutatorNoFatOMeter"							"Fat-O-Meter"
 	"lodMutatorFarmFatOMeter"						"Fat-O-Meter Networth"
-	"lodMutatorKDAFatOMeter"						"Fat-O-Meter KDA "
+	"lodMutatorKDAFatOMeter"						"Fat-O-Meter KDA"
 
+	"lodMutatorIngameBuilder1"                		"Build Switcher"
+	"lodMutatorIngameBuilder2"						"Build Switcher 60s penalty"
+	"lodMutatorIngameBuilder3"						"Build Switcher 30s penalty"
+	"lodMutatorIngameBuilder4"						"Build Switcher Free"
+	
+	"ingameBuilderNotification"						"<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
+	"ingameBuilderReminder"						"<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
+	
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
@@ -430,6 +439,8 @@
     "lodOptionAboutCrazyAllVision"                  "Teams will shared vision."
     "lodOptionAboutCrazyMulticast"                  "Every active ability will multicast at least once."
     "lodOptionAboutCrazyWTF"                        "Abilities and items will have no cooldown and will use no mana when cast."
+    "lodOptionAboutIngameBuilder"                   "Enable an ingame hero builder that allows you to change your skills during gameplay."
+    "lodOptionAboutIngameBuilderPenalty"            "This sets how long the switching player will be dead for. If its zero, player's can switch builds without dying. Dead players cannot use the build switcher."
     "lodOptionAboutDisablePerks"  					"Hero Perks will not be assigned to heroes."
 	
 	//Builds
