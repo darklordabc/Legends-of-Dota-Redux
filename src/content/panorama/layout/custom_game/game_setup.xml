@@ -5,7 +5,6 @@
         <include src="file://{resources}/styles/custom_game/game_setup.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
         <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
     </scripts>
