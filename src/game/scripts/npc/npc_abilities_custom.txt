@@ -3962,6 +3962,21 @@
 			"particle"							"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
 		}
 		
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"            "modifier_marksmanship_int_effect_datadriven"
+				"Target"                 "CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"            "modifier_marksmanship_int_effect_datadriven"
+				"Target"                 "CASTER"
+			}
+		}
+		
 		"Modifiers"
 		{
 			"modifier_marksmanship_int_passive_datadriven"
@@ -3979,6 +3994,7 @@
 						"Function"				"marksmanship_detection"
 					}
 				}
+				
 			}
 			
 			"modifier_marksmanship_int_effect_datadriven"
@@ -4055,6 +4071,21 @@
 		{
 			"particle"							"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
 			"particle"							"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+		}
+		
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"            "modifier_marksmanship_str_effect_datadriven"
+				"Target"                 "CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"            "modifier_marksmanship_str_effect_datadriven"
+				"Target"                 "CASTER"
+			}
 		}
 		
 		"Modifiers"
