@@ -49,7 +49,7 @@ function AIControl( keys )
                     end
                 end)
             else
-				local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")
+				local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active"))
                 if distance < veryClose then
                     if invulnerable then
                         abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
