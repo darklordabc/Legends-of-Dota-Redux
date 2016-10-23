@@ -24,55 +24,49 @@ function AIControl( keys )
 
 	-- Find nearby enemies
 	local EnemyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	
 	if #EnemyInRange == 0 then
 		return nil
 	end
 	
 	local AllyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby+100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	local AllyVeryClose = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, veryClose, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)	
-	local EnemyVeryClose = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, veryClose, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	
+	local veryCloseAllies = 0
+	for _,ally in pairs(AllyInRange) do
+		if (tower_loc - ally:GetAbsOrigin):Length2D() < veryClose then
+			veryCloseAllies = veryCloseAllies + 1
+		end
+	end
 	-- Check if the ability should be cast
 		-- IF TOWER IS VULNERABLE AND DOES NOT HAVE BACK DOOR PROTECTION AND AT LEAST 1 ENEMY NEARBY
-		if #EnemyInRange >= 1 then
-			for _,enemy1 in pairs(EnemyInRange) do
-				if util:isPlayerBot(enemy1:GetPlayerID()) and enemy1:GetHealth() < 300 and enemy1:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
-					enemy1:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
-					enemy1:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
-					Timers:CreateTimer(1, function()
-						if enemy1 then
-							enemy1:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
-							ability:StartCooldown(ability:GetCooldown(ability_level))
-						end
-					end)
-				end 		
-			end
-			
-			for _,enemy2 in pairs(EnemyVeryClose) do
-				if util:isPlayerBot(enemy2:GetPlayerID()) then
-					if caster:HasModifier("modifier_invulnerable") == true or caster:HasModifier("modifier_backdoor_protection_active") == true then
-						abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
-						caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
-						ability:StartCooldown(ability:GetCooldown(ability_level))
-						enemy2:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
-						enemy2:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
-						ability:StartCooldown(ability:GetCooldown(ability_level))						
-					elseif enemy2:GetHealth() > enemy2:GetMaxHealth() * 0.90 and #AllyVeryClose == 0 then 
-						enemy2:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+	for _,enemy in pairs(EnemyInRange) do
+		if util:isPlayerBot(enemy:GetPlayerID()) then
+			local distance = (tower_loc - enemy:GetAbsOrigin):Length2D()
+			if enemy:GetHealth() < 300 and enemy:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
+				enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
+				enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
+				Timers:CreateTimer(1, function()
+					if enemy then
+						enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
 						ability:StartCooldown(ability:GetCooldown(ability_level))
 					end
-				end
+				end)
 			end
-			
-			for _,enemy3 in pairs(EnemyInRange) do
-				if util:isPlayerBot(enemy3:GetPlayerID()) and caster:HasModifier("modifier_invulnerable") == false and caster:HasModifier("modifier_backdoor_protection_active") == false and enemy3:HasModifier("modifier_lone_druid_savage_roar") == false and enemy3:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then 
-					enemy3:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-					ability:StartCooldown(ability:GetCooldown(ability_level))
-				end
+			if distance < veryClose and (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")) then
+				abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
+				caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
+				ability:StartCooldown(ability:GetCooldown(ability_level))
+				enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
+				enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
+				ability:StartCooldown(ability:GetCooldown(ability_level))
+			elseif enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 and veryCloseAllies == 0 then
+				enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+				ability:StartCooldown(ability:GetCooldown(ability_level))
+			end
+			if not caster:HasModifier("modifier_invulnerable") and not caster:HasModifier("modifier_backdoor_protection_active") and not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 then 
+				enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+				ability:StartCooldown(ability:GetCooldown(ability_level))
 			end
 		end
-									
+	end									
 end
 		
 function Laser( keys )
