@@ -60,7 +60,7 @@ function AIControl( keys )
                         enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
                         ability:StartCooldown(ability:GetCooldown(-1))
                     end
-                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 and
+                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 then
                     enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
                     ability:StartCooldown(ability:GetCooldown(-1))
                 end
