@@ -2591,6 +2591,7 @@
 }
 
 #importAndExportCaption {
+    flow-children: right;
 }
 
 .importAndExportButton {
