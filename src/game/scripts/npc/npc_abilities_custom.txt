@@ -8273,6 +8273,47 @@
             }
         }
     }
+	
+	//=================================================================================================================
+    // Tower ability: AI CONTROLLER
+    //=================================================================================================================
+    "imba_tower_ai_controller"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "shadow_shaman_voodoo"
+        "MaxLevel"                              "1"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "1200"
+        "AbilityCooldown"                       "1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+
+        "Modifiers"
+        {
+            "modifier_imba_tower_hex_aura"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+
+                "ThinkInterval"                 "0.5"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/tower_abilities.lua"
+                        "Function"              "AIControl"
+
+                    }
+                }
+            }
+
+        }
+    }
 
     //=================================================================================================================
     // Tower ability: Mana Burn

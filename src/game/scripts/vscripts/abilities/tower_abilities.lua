@@ -3,12 +3,12 @@
 
 require('lib/timers')
 require('lib/util_imba')
+local util = require('util')
 
 function AIControl( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
-	local modifier_slow = keys.modifier_slow
 
 	-- If the ability is on cooldown, do nothing
 	if not ability:IsCooldownReady() then
@@ -19,96 +19,60 @@ function AIControl( keys )
 	local tower_loc = caster:GetAbsOrigin()
 	
 	local longRange = 4000
-	local nearby = 1200
-	local veryClose = 325
+	local nearby = 800
+	local veryClose = 300
 
 	-- Find nearby enemies
-	local AllyInLongRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, longRange, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	local AllyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	local AllyVeryClose = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, veryClose, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 	local EnemyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	
+	if #EnemyInRange == 0 then
+		return nil
+	end
+	
+	local AllyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby+100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local AllyVeryClose = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, veryClose, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)	
 	local EnemyVeryClose = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, veryClose, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 	
 	-- Check if the ability should be cast
 		-- IF TOWER IS VULNERABLE AND DOES NOT HAVE BACK DOOR PROTECTION AND AT LEAST 1 ENEMY NEARBY
-		if caster:HasModifier("modifier_invulnerable") == false and caster:HasModifier("modifier_backdoor_protection_active") == false and #EnemyInRange >= 1 then
-						
-			-- IF BOTS NEARBY AND NO ALLIES NEARBY
-			if #EnemyInRange >= 1 and #AllyInRange == 0 then			
-				local noDefenders = 0
-				-- IF NO ALLIES IN A HUGE RADIUS
-				if #AllyInLongRange == 0 then
-					noDefenders = 2
-				end
-				
-				
-				for _,enemy in pairs(EnemyInRange) do
-					if util:isPlayerBot(enemy:GetPlayerID()) and enemy:HasModifier("modifier_lone_druid_savage_roar") == false then 
-						local target = enemy:GetAttackTarget()
-						
-						-- IF BOT IS HIGH ON HEALTH
-						if target == caster and enemy:GetHealth() > enemy:GetMaxHealth() * 0.50 and enemy:GetHealth() > 400 then
-							enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-						-- IF BOT HAS SOME HEALTH
-						elseif not target and enemy:GetHealth() > enemy:GetMaxHealth() * 0.6 and enemy:GetHealth() > 600 then
-							enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})													
-						-- IF NO ENENMY HEROS ARE NEARBY AND BOT HAS AT LEAST 1000 HEALTH
-						elseif not target and enemy:GetHealth() > enemy:GetMaxHealth() * 0.30 and enemy:GetHealth() > 700 and noDefenders == 0 then
-							enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})		
-						elseif enemy:GetHealth() < 250 and enemy:HasModifier("modifier_pugna_decrepify") == false then						    
-								enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
-								enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
-								Timers:CreateTimer(1, function()
-								    if enemy then
-										enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
-									end
-								end)	
+		if #EnemyInRange >= 1 then
+			for _,enemy1 in pairs(EnemyInRange) do
+				if util:isPlayerBot(enemy1:GetPlayerID()) and enemy1:GetHealth() < 300 and enemy1:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
+					enemy1:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
+					enemy1:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
+					Timers:CreateTimer(1, function()
+						if enemy1 then
+							enemy1:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
+							ability:StartCooldown(ability:GetCooldown(ability_level))
 						end
-					end
-				end
-			ability:StartCooldown(ability:GetCooldown(ability_level))
-
-			-- IF BOTS NEARBY AND NO ALIES IN MEDIUSM DISTANCE AND NO ALLIES VERY CLOSE
-			elseif #EnemyVeryClose >= 1 and #AllyInRange > 0 and #AllyVeryClose == 0 then
-				for _,enemy in pairs(EnemyVeryClose) do
-					if util:isPlayerBot(enemy:GetPlayerID()) and enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 then
-						enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 3})
-					end
-				end
-			ability:StartCooldown(ability:GetCooldown(ability_level))
+					end)
+				end 		
 			end
 			
-
-		-- IF TOWER IS INVULNERABLE
-		elseif caster:HasModifier("modifier_invulnerable") == true then
-			local botsNearby = false
-			--IF BOT IS NEARBY AND THERE IS AN ENEMY NEARBY
-			if #EnemyVeryClose >= 1 and #AllyInRange > 0 then							
-				for _,enemy in pairs(EnemyVeryClose) do
-					--IF THE BOT IS LOW ON HEALTH, RUNAWAY
-					if util:isPlayerBot(enemy:GetPlayerID()) and enemy:GetHealth() < enemy:GetMaxHealth() * 0.30  then
-						enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
-						enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
-						botsNearby = true
+			for _,enemy2 in pairs(EnemyVeryClose) do
+				if util:isPlayerBot(enemy2:GetPlayerID()) then
+					if caster:HasModifier("modifier_invulnerable") == true or caster:HasModifier("modifier_backdoor_protection_active") == true then
+						abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
+						caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
+						ability:StartCooldown(ability:GetCooldown(ability_level))
+						enemy2:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
+						enemy2:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
+						ability:StartCooldown(ability:GetCooldown(ability_level))						
+					elseif enemy2:GetHealth() > enemy2:GetMaxHealth() * 0.90 and #AllyVeryClose == 0 then 
+						enemy2:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+						ability:StartCooldown(ability:GetCooldown(ability_level))
 					end
-				end									
-			--IF A BOT IS NEARBY AND THERE IS NO ENEMIES NEARBY
-			elseif #EnemyVeryClose >= 1 and #AllyInRange == 0 then							
-				for _,enemy in pairs(EnemyVeryClose) do
-					if util:isPlayerBot(enemy:GetPlayerID()) then
-						enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
-						enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
-						botsNearby = true
-					end
-				end									
+				end
 			end
 			
-			if botsNearby then
-					local abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
-					caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
+			for _,enemy3 in pairs(EnemyInRange) do
+				if util:isPlayerBot(enemy3:GetPlayerID()) and caster:HasModifier("modifier_invulnerable") == false and caster:HasModifier("modifier_backdoor_protection_active") == false and enemy3:HasModifier("modifier_lone_druid_savage_roar") == false and enemy3:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then 
+					enemy3:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
 					ability:StartCooldown(ability:GetCooldown(ability_level))
 				end
-		end			
+			end
+		end
+									
 end
 		
 function Laser( keys )
