@@ -5,6 +5,7 @@ require('lib/timers')
 require('lib/util_imba')
 local util = require('util')
 
+
 function AIControl( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -24,14 +25,12 @@ function AIControl( keys )
 
 	-- Find nearby enemies
 	local EnemyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
-	if #EnemyInRange == 0 then
-		return nil
-	end
+	if not EnemyInRange then return end
 	
 	local AllyInRange = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, nearby+100, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 	local veryCloseAllies = 0
 	for _,ally in pairs(AllyInRange) do
-		if (tower_loc - ally:GetAbsOrigin):Length2D() < veryClose then
+		if (tower_loc - ally:GetAbsOrigin()):Length2D() < veryClose then
 			veryCloseAllies = veryCloseAllies + 1
 		end
 	end
@@ -39,7 +38,7 @@ function AIControl( keys )
 		-- IF TOWER IS VULNERABLE AND DOES NOT HAVE BACK DOOR PROTECTION AND AT LEAST 1 ENEMY NEARBY
 	for _,enemy in pairs(EnemyInRange) do
 		if util:isPlayerBot(enemy:GetPlayerID()) then
-			local distance = (tower_loc - enemy:GetAbsOrigin):Length2D()
+			local distance = (tower_loc - enemy:GetAbsOrigin()):Length2D()
 			if enemy:GetHealth() < 300 and enemy:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
 				enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
 				enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
