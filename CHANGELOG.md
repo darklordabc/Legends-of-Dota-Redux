@@ -6,7 +6,6 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
-### Balance
 
 ## 1.7 Steam Version
 
