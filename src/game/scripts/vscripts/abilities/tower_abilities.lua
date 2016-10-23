@@ -48,21 +48,23 @@ function AIControl( keys )
 						ability:StartCooldown(ability:GetCooldown(ability_level))
 					end
 				end)
-			end
-			if distance < veryClose and (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")) then
-				abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
-				caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
-				ability:StartCooldown(ability:GetCooldown(ability_level))
-				enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
-				enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
-				ability:StartCooldown(ability:GetCooldown(ability_level))
-			elseif enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 and veryCloseAllies == 0 then
-				enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-				ability:StartCooldown(ability:GetCooldown(ability_level))
-			end
-			if not caster:HasModifier("modifier_invulnerable") and not caster:HasModifier("modifier_backdoor_protection_active") and not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 then 
-				enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-				ability:StartCooldown(ability:GetCooldown(ability_level))
+			else
+				if distance < veryClose then 
+					if (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")) then
+						abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")	
+						caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
+						ability:StartCooldown(ability:GetCooldown(ability_level))
+						enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
+						enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
+						ability:StartCooldown(ability:GetCooldown(ability_level))
+					elseif enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 and veryCloseAllies == 0 then
+						enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+						ability:StartCooldown(ability:GetCooldown(ability_level))
+					end
+				elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 and
+					enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+					ability:StartCooldown(ability:GetCooldown(ability_level))
+				end
 			end
 		end
 	end									
