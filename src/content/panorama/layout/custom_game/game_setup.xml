@@ -9,7 +9,7 @@
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
         <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
     </scripts>
-    <Panel class="lodOptionsInterface">
+    <Panel class="lodOptionsInterface" hittest="false">
         <Panel id="lodNotificationArea">
         </Panel>
 
