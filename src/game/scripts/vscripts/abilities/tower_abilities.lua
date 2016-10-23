@@ -49,8 +49,9 @@ function AIControl( keys )
                     end
                 end)
             else
-                if distance < veryClose then 
-                    if (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")) then
+				local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")
+                if distance < veryClose then
+                    if invulnerable then
                         abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
                         caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
                         enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
@@ -60,7 +61,7 @@ function AIControl( keys )
                         enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
                         ability:StartCooldown(ability:GetCooldown(-1))
                     end
-                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 then
+                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 and not invulnerable then
                     enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
                     ability:StartCooldown(ability:GetCooldown(-1))
                 end
