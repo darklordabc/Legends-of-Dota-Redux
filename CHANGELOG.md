@@ -2,7 +2,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 1.7 
+## 1.8 
+
+### Bug Fixing/New Features
+- Fixed Naix Perk
+### Balance
+
+## 1.7 Steam Version
 
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
