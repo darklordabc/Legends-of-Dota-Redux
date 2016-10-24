@@ -9,8 +9,10 @@ All notable changes to this project will be documented in this file.
 - Fix Phoenix Perk Abuse 
 - Rename Common Selection to Main Gamemode
 - Vicious Tower and Forest tower are disabled with bots in game. Vicisous kills them too unpredicatably and forest tower screws up their navigation
+- Fixed DragonKnight and Pudge Perk
 
 ### Balance
+- Reworked Wraith King Perk
 - Holy Wrath will not hit buildings
 - Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
 - Increased price of wave form and time walk in balance mode
