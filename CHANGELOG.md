@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.9 
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Gave Rifle a cooldown and increased the movement slow to 40
+
 ## 1.9 Steam Version
 
 ### Bug Fixing/New Features
@@ -21,7 +29,7 @@ All notable changes to this project will be documented in this file.
 - Multihit tower now has 1 second cooldown to prevent attack cancelling abuse.
 - Most Imba abilities will not work on buildings anymore.
 
-## 1.8 Steam Version
+## 1.8 
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
