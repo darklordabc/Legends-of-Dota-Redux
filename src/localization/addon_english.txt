@@ -638,7 +638,7 @@
 	"hintWarlock"                         "Warlock starts the game with 2 free Observer Wards."
 	"hintWeaver"                         "If Weaver has Time Lapse, he will automatically cast it upon taking fatal damage."
 	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
-	"hintWK"                         "Wraith King starts the game with an Aegis of the Immortal."
+	"hintWK"                         "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
 	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
 	"hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
 	"hintEarthShaker"                         "Earth abilities Earthshaker uses heal him for 2% of his health."
@@ -976,7 +976,7 @@
 	"unique_mechanic_windrunner"                        "If Windranger has no <br>passives, all her active spells will refund <br>20% mana and have 20% reduced <br>cooldowns."
 	"unique_mechanic_winter_wyvern"			"When Winter Wyvern's <br>health and mana are above 90% she gains <br>flying status after a 5 second delay."
 	"unique_mechanic_witch_doctor"           "<font color=\"#ffd966\">Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor." 
-	"unique_mechanic_skeleton_king"                        "Wraith King starts the <br>game with an Aegis of the Immortal."
+	"unique_mechanic_skeleton_king"                        "Wraith King can buyback <br>with a 50% reduced cooldown, refunding <br>50% of the buyback cost and removing the <br>gold penalty."
 	"unique_mechanic_zuus"                        "Refunds 20% of the <br>manacost of <font color=\"#ffd966\">Lightning</font> spells. "
 	
     /////////////////
