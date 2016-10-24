@@ -31,9 +31,13 @@
 }
 
 #questionYes {
+    position: -25%;
+
 }
 
 #questionNo {
+    position: 25%;
+
 }
 
 #lodPopupMessage {
