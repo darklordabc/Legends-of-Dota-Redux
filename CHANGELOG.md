@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
+- Chat Chat being unusable in menu
+- Fix some towers having mising projectiles
+### Balance
+- Bots now deal with additional towers by force attacking them
 
 ## 1.7 Steam Version
 
