@@ -8,10 +8,11 @@ All notable changes to this project will be documented in this file.
 - Fix Shadow Demon Perk Abuse
 - Fix Phoenix Perk Abuse 
 - Rename Common Selection to Main Gamemode
-- Holy Wrath will not hit buildings
+- Vicious Tower and Forest tower are disabled with bots in game. Vicisous kills them too unpredicatably and forest tower screws up their navigation
 
 ### Balance
-
+- Holy Wrath will not hit buildings
+- Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
 
 ## 1.8 Steam Version
 

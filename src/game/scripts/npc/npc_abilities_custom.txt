@@ -10013,11 +10013,11 @@
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                    "furion_sprout"
-        "MaxLevel"                              "3"
+        "MaxLevel"                              "4"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 650 700"
-        "AbilityCooldown"                       "12 10 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCastRange"                      "600 650 700 750"
+        "AbilityCooldown"                       "12 10 8 6"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "RequiredLevel"                 "1"
 
         // Special
@@ -10027,7 +10027,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "tree_radius"                   "600 650 700"
+                "tree_radius"                   "600 650 700 750"
             }
             "02"
             {
