@@ -214,10 +214,11 @@ function Ingame:onStart()
 			if hero and IsValidEntity(hero) then
 				fatData[playerID] = {
 					defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
+					prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
 					modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
 					targetScaleDifference = 0.0,
-					maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.2,
-					scaleNextInterval = 0.0, --scale per second, i.e. the animation of growth
+					interpScaleDifference = 0, --interpolates between previous and target scale diff
+					maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
 					lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
 					netWorthChange = 0, --stored for faster calculations on gold and levels
 					fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
@@ -235,7 +236,7 @@ function Ingame:onStart()
 						lastFatThink = -60
 					end
 					if lastFatAnimate == nil then
-						lastFatAnimate = -1.0
+						lastFatAnimate = -3.0
 					end
 					local dotaTime = GameRules:GetDOTATime(false, false)
 					
@@ -243,11 +244,11 @@ function Ingame:onStart()
 						Ingame:FatOMeterThinker(60)
 						lastFatThink = lastFatThink + 60
 					end
-					while (dotaTime - lastFatAnimate) > 1.0 do
-						Ingame:FatOMeterAnimate(1.0)
-						lastFatAnimate = lastFatAnimate + 1.0
+					while (dotaTime - lastFatAnimate) > 3.0 do
+						Ingame:FatOMeterAnimate(3.0)
+						lastFatAnimate = lastFatAnimate + 3.0
 					end
-					return 1.0
+					return 3.0
 				end, "fatThink", 0.5)
 			end
 		end, nil)
@@ -338,12 +339,14 @@ function Ingame:FatOMeterThinker(dt)
 	for playerID in pairs(fatData) do
 		local fatness = fatData[playerID].fatness
 		local default = fatData[playerID].defaultModelScale or 1
-		local maxPct = fatData[playerID].maxScalePercent or 3.2 --Assume normal humanoid scale if not specified
+		local maxPct = fatData[playerID].maxScalePercent or 3.3 --Assume normal humanoid scale if not specified
 		
 		--This looks intimidating, but it's simply an arbitrary power scaling to diminish the effect of early growth while still ultimately reaching max at 100.
 		fatData[playerID].targetScaleDifference = default*(maxPct -1)*(math.pow(.17162*fatness, 1.62)/100)
-		--fatData[playerID].targetScaleDifference = default * (maxPct -1)*(fatness)/100
-		fatData[playerID].scaleNextInterval = (fatData[playerID].targetScaleDifference - (fatData[playerID].modelScaleDifference or fatData[playerID].targetScaleDifference))/50
+		fatData[playerID].interpScaleDifference = 0
+		fatData[playerID].prevScaleDifference = fatData[playerID].modelScaleDifference
+		
+		--print("Player "..playerID.." Initial: "..(fatData[playerID].prevScaleDifference).." Final: "..(fatData[playerID].targetScaleDifference))
 	end
 	
 end
@@ -356,26 +359,19 @@ function Ingame:FatOMeterAnimate(dt)
 	for playerID in pairs(fatData) do
 		local default = fatData[playerID].defaultModelScale or 0
 		local diff = fatData[playerID].modelScaleDifference or 0
-		local grow = fatData[playerID].scaleNextInterval or 0
 		local targetDiff = fatData[playerID].targetScaleDifference or 0
-		--New scale relative to default, not previous growth
-		local scaleDiff =  diff + grow
+		local interpDiff = fatData[playerID].interpScaleDifference or 1
+		local prevDiff = fatData[playerID].prevScaleDifference or 0
 		
-		--Stop scaling up or down if our target is met or passed.
-		if grow and targetDiff then
-			if grow > 0 and scaleDiff > targetDiff then
-				scaleDiff = targetDiff
-				fatData[playerID].scaleNextInterval = 0.0
-			elseif grow < 0 and scaleDiff < targetDiff then
-				scaleDiff = targetDiff
-				fatData[playerID].scaleNextInterval = 0.0
-			end
-		end
+		--target is lerped between initial and destination
+		interpDiff = math.min(interpDiff + 0.02*dt, 1)
+		fatData[playerID].interpScaleDifference = interpDiff
+		local target = prevDiff + interpDiff*(targetDiff-prevDiff)
 		
 		--Actually do the scaling. Also check for any existing hero clones and modify them.
 		local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 		if hero and IsValidEntity(hero) then
-			hero:SetModelScale(default + scaleDiff)
+			hero:SetModelScale(default + target)
 		
 			--Meepo/Arc Warden ult checker
 			if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') then
@@ -383,12 +379,12 @@ function Ingame:FatOMeterAnimate(dt)
 
 				for k,heroClone in pairs(clones) do
 					if heroClone:IsClone() and playerID == heroClone:GetPlayerID() then
-						hero:SetModelScale(default + scaleDiff)
+						hero:SetModelScale(default + target)
 					end
 				end
 			end
 			
-			fatData[playerID].modelScaleDifference = scaleDiff
+			fatData[playerID].modelScaleDifference = target
 		end
 	end
 end
