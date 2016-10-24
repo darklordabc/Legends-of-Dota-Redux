@@ -2,7 +2,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 1.8 
+## 1.9 Steam Version
+
+### Bug Fixing/New Features
+- Fix Shadow Demon Perk Abuse
+- Fix Phoenix Perk Abuse 
+
+### Balance
+
+
+## 1.8 Steam Version
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
@@ -11,7 +20,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Bots now deal with additional towers by force attacking them
 
-## 1.7 Steam Version
+## 1.7 
 
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
