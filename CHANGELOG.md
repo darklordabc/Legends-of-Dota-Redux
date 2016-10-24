@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
 - Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
 - Increased price of wave form and time walk in balance mode
 - Increased the price of a few of the new custom abilities in balance mode
+- IMBA Tower: Split, Chrono, Laser, Nature, Hex, Permabash, Multihit, Essence and Grevious wounds no longer work against Heros, if the owner is also a hero. Knockback tower will not apply damage but still knocks back. 
+- Multihit tower now has 1 second cooldown to prevent attack cancelling abuse.
+- Most Imba abilities will not work on buildings anymore.
 
 ## 1.8 Steam Version
 

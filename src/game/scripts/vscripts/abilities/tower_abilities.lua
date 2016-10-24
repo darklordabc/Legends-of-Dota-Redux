@@ -130,9 +130,11 @@ function Laser( keys )
 			laser_projectile.Target = enemy
 			ProjectileManager:CreateTrackingProjectile(laser_projectile)
 		end
-		for _,enemy in pairs(heroes) do
-			laser_projectile.Target = enemy
-			ProjectileManager:CreateTrackingProjectile(laser_projectile)
+		if not caster:IsHero() then
+			for _,enemy in pairs(heroes) do
+				laser_projectile.Target = enemy
+				ProjectileManager:CreateTrackingProjectile(laser_projectile)
+			end
 		end
 
 		-- Put the ability on cooldown
@@ -215,12 +217,14 @@ function HexAura( keys )
 				ability:ApplyDataDrivenModifier(caster, enemy, modifier_slow, {})
 			end
 		end
-		for _,enemy in pairs(heroes) do
-			if enemy:IsIllusion() then
-				enemy:ForceKill(true)
-			else
-				enemy:AddNewModifier(hero_owner, ability, "modifier_sheepstick_debuff", {duration = hex_duration})
-				ability:ApplyDataDrivenModifier(caster, enemy, modifier_slow, {})
+		if not caster:IsHero() then
+			for _,enemy in pairs(heroes) do
+				if enemy:IsIllusion() then
+					enemy:ForceKill(true)
+				else
+					enemy:AddNewModifier(hero_owner, ability, "modifier_sheepstick_debuff", {duration = hex_duration})
+					ability:ApplyDataDrivenModifier(caster, enemy, modifier_slow, {})
+				end
 			end
 		end
 
@@ -314,6 +318,9 @@ function Permabash( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
+	
+	if target:IsBuilding() then return end
+	if caster:IsHero() and target:IsHero() then return end
 
 	-- Parameters
 	local bash_damage = ability:GetLevelSpecialValueFor("bash_damage", ability_level)
@@ -344,7 +351,7 @@ function Chronotower( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
+	
 	-- Parameters
 	local stun_radius = ability:GetLevelSpecialValueFor("stun_radius", ability_level)
 	local stun_duration = ability:GetLevelSpecialValueFor("stun_duration", ability_level)
@@ -366,9 +373,11 @@ function Chronotower( keys )
 			ability:ApplyDataDrivenModifier(caster, enemy, modifier_stun, {})
 			enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = stun_duration})
 		end
-		for _,enemy in pairs(heroes) do
-			ability:ApplyDataDrivenModifier(caster, enemy, modifier_stun, {})
-			enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = stun_duration})
+		if not caster:IsHero() then
+			for _,enemy in pairs(heroes) do
+				ability:ApplyDataDrivenModifier(caster, enemy, modifier_stun, {})
+				enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = stun_duration})
+			end
 		end
 
 		-- Put the ability on cooldown
@@ -383,6 +392,9 @@ function GrievousWounds( keys )
 	local ability_level = ability:GetLevel() - 1
 	local modifier_debuff = keys.modifier_debuff
 	local particle_hit = keys.particle_hit
+	
+	if target:IsBuilding() then return end
+	if caster:IsHero() and target:IsHero() then return end
 
 	-- Parameters
 	local damage_increase = ability:GetLevelSpecialValueFor("damage_increase", ability_level)
@@ -412,6 +424,9 @@ function EssenceDrain( keys )
 	local modifier_agi = keys.modifier_agi
 	local modifier_int = keys.modifier_int
 	local modifier_stacks = keys.modifier_stacks
+	
+	if target:IsBuilding() then return end
+	if caster:IsHero() and target:IsHero() then return end
 
 	-- Parameters
 	local drain_per_hit = ability:GetLevelSpecialValueFor("drain_per_hit", ability_level)
@@ -482,7 +497,7 @@ function Fervor( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local modifier_fervor = keys.modifier_fervor
-
+	
 	-- Parameters
 	local max_stacks = ability:GetLevelSpecialValueFor("max_stacks", ability_level)
 
@@ -520,7 +535,13 @@ function Multihit( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
+	
+	if not ability:IsCooldownReady() then
+		return nil
+	end
 
+	if caster:IsHero() and target:IsHero() then return end
+	
 	-- Parameters
 	local bonus_attacks = ability:GetLevelSpecialValueFor("bonus_attacks", ability_level)
 	local delay = ability:GetLevelSpecialValueFor("delay", ability_level)
@@ -530,6 +551,9 @@ function Multihit( keys )
 		Timers:CreateTimer(delay * i, function()
 			caster:PerformAttack(target, true, true, true, true, true)
 		end)
+	end
+	if caster:IsHero() then
+	ability:StartCooldown(1)
 	end
 end
 
@@ -642,7 +666,10 @@ function Spacecow( keys )
 	target:AddNewModifier(caster, nil, "modifier_knockback", knockback_param)
 
 	-- Deal damage
-	ApplyDamage({attacker = caster, victim = target, ability = ability, damage = knockback_damage, damage_type = DAMAGE_TYPE_MAGICAL})
+	if not caster:IsHero() or not target:IsHero() then
+		ApplyDamage({attacker = caster, victim = target, ability = ability, damage = knockback_damage, damage_type = DAMAGE_TYPE_MAGICAL})
+	end
+	
 
 	-- Put the ability on cooldown
 	ability:StartCooldown(ability:GetCooldown(ability_level))
@@ -773,8 +800,10 @@ function Nature( keys )
 		for _,enemy in pairs(creeps) do
 			ability:ApplyDataDrivenModifier(caster, enemy, modifier_root, {})
 		end
-		for _,enemy in pairs(heroes) do
-			ability:ApplyDataDrivenModifier(caster, enemy, modifier_root, {})
+		if not caster:IsHero() then
+			for _,enemy in pairs(heroes) do
+				ability:ApplyDataDrivenModifier(caster, enemy, modifier_root, {})
+			end
 		end
 
 		-- Put the ability on cooldown
@@ -896,6 +925,9 @@ function Split( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local scepter = HasScepter(caster)
+	
+	if target:IsBuilding() then return end
+	if caster:IsHero() and target:IsHero() then return end
 
 	-- Parameters
 	local split_chance = ability:GetLevelSpecialValueFor("split_chance", ability_level)
@@ -971,6 +1003,9 @@ function Cannon( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local particle_explosion = keys.particle_explosion
+	
+	if target:IsBuilding() then return end
+	if caster:IsHero() and target:IsHero() then return end
 
 	-- Parameters
 	local salvo_aoe = ability:GetLevelSpecialValueFor("salvo_aoe", ability_level)
