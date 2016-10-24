@@ -1807,6 +1807,12 @@
 	
 	"DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven" 							"Marksmanship STR"
 	"DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description" 				"Bonus Strength. Deactivated by nearby enemy heroes."
+	
+	//Bot Controller
+	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot Controller"
+	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Forces bots to attack, retreat or be effected by a few different modifiers depending on the context. Is designed to help Bots deal with additional towers."
+	"DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"								"ASSUMING DIRECT CONTROL"
+
     
     ///////////////////////////////////////
     // HERO CONCEPTS (The Next Generation)

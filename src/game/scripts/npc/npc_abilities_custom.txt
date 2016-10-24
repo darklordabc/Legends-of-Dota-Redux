@@ -8283,7 +8283,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "shadow_shaman_voodoo"
+        "AbilityTextureName"                    "life_stealer_control"
         "MaxLevel"                              "1"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
