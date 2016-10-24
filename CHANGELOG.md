@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - If the game is single player, the ingame hero builder will always be enabled
+- Extra towers now have proper names
 
 ### Balance
 - Gave Rifle a cooldown and increased the movement slow to 40
