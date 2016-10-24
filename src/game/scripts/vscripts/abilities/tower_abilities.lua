@@ -39,13 +39,26 @@ function AIControl( keys )
     for _,enemy in pairs(EnemyInRange) do
         if util:isPlayerBot(enemy:GetPlayerID()) then
             local distance = (tower_loc - enemy:GetAbsOrigin()):Length2D()
+			-- IF BOT IS ABOUT TO DIE, SAVE IT AND SEND IT BACK TO BASE WITH FULL HP MP AND MAX MOVE SPEED FOR 30 SECONDS
             if enemy:GetHealth() < 300 and enemy:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
                 enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
                 enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
+				ability:StartCooldown(ability:GetCooldown(-1))
                 Timers:CreateTimer(1, function()
                     if enemy then
                         enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
-                        ability:StartCooldown(ability:GetCooldown(-1))
+                        
+                    end
+                end)
+				Timers:CreateTimer(5, function()
+                    if enemy:IsAlive() then
+						enemy:SetHealth(enemy:GetMaxHealth())
+						enemy:SetMana(enemy:GetMaxMana())
+						local tpScroll = enemy:FindItemByName("item_tpscroll")
+						if tpScroll then
+							tpScroll:StartCooldown(30)
+						end
+                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 30})
                     end
                 end)
             else
