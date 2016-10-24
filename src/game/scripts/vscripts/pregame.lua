@@ -2168,6 +2168,9 @@ function Pregame:initOptionSelector()
                 -- Disable ingame hero builder
                 self:setOption('lodOptionIngameBuilder', 0, true)
 				
+				-- Enable Perks
+                self:setOption('lodOptionDisablePerks', 0, false)
+				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
 				self:setOption("lodOptionIngameBuilderPenalty", 0)
