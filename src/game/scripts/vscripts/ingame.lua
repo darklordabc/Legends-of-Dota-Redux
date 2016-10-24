@@ -21,6 +21,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+	self:AddTowerBotController()
     self:fixRuneBug()
 
     -- Setup standard rules
@@ -962,16 +963,74 @@ function Ingame:checkBuybackStatus()
         end, nil)
 end
 
+function Ingame:AddTowerBotController()
+	print("hi there")
+    ListenToGameEvent('game_rules_state_change', function(keys)
+
+        local newState = GameRules:State_Get()
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+			local maxPlayers = 24
+			local direBots = false
+			local radiantBots = false
+			-- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
+			for playerID=0,(maxPlayers-1) do
+				if  util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+					radiantBots = true
+				elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+					direBots = true
+				end
+			end
+			
+			local towers = Entities:FindAllByClassname('npc_dota_tower')
+			
+			for _, tower in pairs(towers) do
+					-- IF DIRE BOTS EXIST GIVE RADIANT TOWERS THE BOT CONTROLLER ABILITY
+					if direBots and tower:GetTeam() == DOTA_TEAM_GOODGUYS then
+						tower:AddAbility("imba_tower_ai_controller")
+						tower:AddAbility("lone_druid_savage_roar_tower")
+						local abilityController = tower:FindAbilityByName("imba_tower_ai_controller")
+						local abilityRoar = tower:FindAbilityByName("lone_druid_savage_roar_tower")
+						abilityController:SetLevel(1)
+						abilityRoar:SetLevel(1)
+					-- IF RADIANT BOTS EXIST GIVE DIRE TOWERS THE BOT CONTROLLER ABILITY
+					elseif radiantBots and tower:GetTeam() == DOTA_TEAM_BADGUYS then 
+						tower:AddAbility("imba_tower_ai_controller")
+						tower:AddAbility("lone_druid_savage_roar_tower")
+						local abilityController = tower:FindAbilityByName("imba_tower_ai_controller")
+						local abilityRoar = tower:FindAbilityByName("lone_druid_savage_roar_tower")
+						abilityController:SetLevel(1)
+						abilityRoar:SetLevel(1)
+					end
+                    
+                end
+		end
+    end, nil)
+ 
+end
 
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
+
         local newState = GameRules:State_Get()
         if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('strongTowers') then
+				local maxPlayers = 24
+				local botsEnabled = false
+				for playerID=0,(maxPlayers-1) do
+					if util:isPlayerBot(playerID) then
+						botsEnabled = true
+					end
+				end
                 local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
                 local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
+					if botsEnabled == true then
+						if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" then
+							table.insert(towerSkills, skill_name)  	
+						end
+					else 
+						table.insert(towerSkills, skill_name)  															 					
+					end
+				end
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
                 for _, tower in pairs(towers) do
                     local ability_name = RandomFromTable(towerSkills)
