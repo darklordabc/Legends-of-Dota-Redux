@@ -79,7 +79,7 @@
 	"builds_lod"                                    "Builds"
     "heroes_lod"                                    "Heroes"
     "skills_lod"                                    "Skills"
-    "common_selection_lod"                          "Common Selection"
+    "common_selection_lod"                          "Main Gamemode"
     "banning_lod"                                   "Banning"
     "game_speed_lod"                                "Game Speed"
     "towers_creeps_lod"                             "Towers and Creeps"

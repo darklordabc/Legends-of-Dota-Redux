@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fix Shadow Demon Perk Abuse
 - Fix Phoenix Perk Abuse 
+- Rename Common Selection to Main Gamemode
 
 ### Balance
 
