@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 2.0
 
 ### Bug Fixing/New Features
-- 
+- If the game is single player, the ingame hero builder will always be enabled
 
 ### Balance
 - Gave Rifle a cooldown and increased the movement slow to 40

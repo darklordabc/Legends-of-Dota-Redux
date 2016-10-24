@@ -2167,13 +2167,14 @@ function Pregame:initOptionSelector()
 
                 -- Disable ingame hero builder
                 self:setOption('lodOptionIngameBuilder', 0, true)
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
 				
 				-- Enable Perks
                 self:setOption('lodOptionDisablePerks', 0, false)
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-				self:setOption("lodOptionIngameBuilderPenalty", 0)
+
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2676,6 +2677,12 @@ function Pregame:processOptions()
     -- Check Map
     local mapName = GetMapName()
     
+	-- Single Player Overrides
+	if util:isSinglePlayerMode() then
+                self:setOption('lodOptionIngameBuilder', 1, true)
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
+	end
+	
     -- Only process options once
     if self.processedOptions then return end
     self.processedOptions = true
