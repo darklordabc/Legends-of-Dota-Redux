@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Holy Wrath will not hit buildings
 - Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
+- Increased price of wave form and time walk in balance mode
+- Increased the price of a few of the new custom abilities in balance mode
 
 ## 1.8 Steam Version
 
