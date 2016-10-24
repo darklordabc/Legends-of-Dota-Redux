@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Gave Rifle a cooldown and increased the movement slow to 40
+- The Essence Shifts are now diabled when passives are disabled
 
 ## 1.9 Steam Version
 
