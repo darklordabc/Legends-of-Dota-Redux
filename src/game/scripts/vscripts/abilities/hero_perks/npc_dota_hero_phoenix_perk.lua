@@ -40,14 +40,21 @@ if IsServer() then
     
     function modifier_npc_dota_hero_phoenix_perk:OnTakeDamage(params)
         if params.unit == self:GetParent() then
-            if params.damage > self:GetParent():GetHealth() and self.egg and self.egg:IsCooldownReady() and self.egg:GetLevel() > 0 then
-                self:GetParent():CastAbilityNoTarget(self.egg, self:GetParent():GetPlayerID())
+            if params.damage > self:GetParent():GetHealth() and self.egg and self.egg:IsCooldownReady() and self.egg:GetLevel() > 0 and self:GetParent():IsRealHero() then
+                if self:GetParent():HasScepter() then
+                    self:GetParent():SetCursorCastTarget(self:GetParent())
+                    self.egg:OnSpellStart()
+                    self.egg:StartCooldown(self.egg:GetTrueCooldown())
+                else
+                    self.egg:OnSpellStart()
+                    self.egg:StartCooldown(self.egg:GetTrueCooldown())
+                end
             end
         end
     end
 
     function modifier_npc_dota_hero_phoenix_perk:GetMinHealth(params)
-        if self.egg and self.egg:GetLevel() > 0 and self.egg:IsCooldownReady() then
+        if self.egg and self.egg:GetLevel() > 0 and self.egg:IsCooldownReady() and self:GetParent():IsRealHero() then
             return 1
         else
             return 0

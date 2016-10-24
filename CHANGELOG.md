@@ -2,12 +2,44 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.0
+
+### Bug Fixing/New Features
+- If the game is single player, the ingame hero builder will always be enabled
+- Extra towers now have proper names
+
+### Balance
+- Gave Rifle a cooldown and increased the movement slow to 40
+
+## 1.9 Steam Version
+
+### Bug Fixing/New Features
+- Fix Shadow Demon Perk Abuse
+- Fix Phoenix Perk Abuse 
+- Rename Common Selection to Main Gamemode
+- Vicious Tower and Forest tower are disabled with bots in game. Vicisous kills them too unpredicatably and forest tower screws up their navigation
+- Fixed DragonKnight and Pudge Perk
+
+### Balance
+- Reworked Wraith King Perk
+- Holy Wrath will not hit buildings
+- Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
+- Increased price of wave form and time walk in balance mode
+- Increased the price of a few of the new custom abilities in balance mode
+- IMBA Tower: Split, Chrono, Laser, Nature, Hex, Permabash, Multihit, Essence and Grevious wounds no longer work against Heros, if the owner is also a hero. Knockback tower will not apply damage but still knocks back. 
+- Multihit tower now has 1 second cooldown to prevent attack cancelling abuse.
+- Most Imba abilities will not work on buildings anymore.
+
 ## 1.8 
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
+- Chat Chat being unusable in menu
+- Fix some towers having mising projectiles
+### Balance
+- Bots now deal with additional towers by force attacking them
 
-## 1.7 Steam Version
+## 1.7 
 
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
