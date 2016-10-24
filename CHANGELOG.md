@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fix Shadow Demon Perk Abuse
 - Fix Phoenix Perk Abuse 
 - Rename Common Selection to Main Gamemode
+- Holy Wrath will not hit buildings
 
 ### Balance
 
