@@ -18033,7 +18033,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"350 500 750 1000"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
+				"cast_range"			"600 750 900 1100"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
 			}
 			"03"
 			{
