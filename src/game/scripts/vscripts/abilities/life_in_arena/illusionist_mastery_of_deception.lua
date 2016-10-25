@@ -17,13 +17,23 @@ function illusions( event )
 		caster.count_ill = 0
 	end
 	
+	
+	
 	local duration = ability:GetSpecialValueFor("time")
 	local outgoingDamage = ability:GetSpecialValueFor("outgoing_damage")
 	local incomingDamage = ability:GetSpecialValueFor("incoming_damage")
 
 	local origin = attacker:GetAbsOrigin()
 
-	local creep = CreateIllusion(attacker,caster,origin,duration,outgoingDamage,incomingDamage)
+	--local creep = CreateIllusion(attacker,caster,origin,duration,outgoingDamage,incomingDamage)
+	
+	local creep = CreateUnitByName(attacker:GetUnitName(), attacker:GetAbsOrigin(), true, caster, nil, caster:GetTeamNumber())
+	
+	creep:SetControllableByPlayer(caster:GetPlayerID(), true)
+	creep:AddNewModifier(caster, event.ability, "modifier_kill", {duration = duration})
+	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage})
+	creep:SetRenderColor(249, 127, 127)
+	
 	--
 	local ability3 = caster:FindAbilityByName('illusionist_whiff_of_deception')
 	if ability3 and ability3:GetLevel() > 0 then

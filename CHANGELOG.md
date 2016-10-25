@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 2.1 
 
 ### Bug Fixing/New Features
-- 
+- Fixed Mastery of Deception creating illusions of Roshan that drop aegis
 
 ### Balance
 - Bots now get items instantly to their inventory
