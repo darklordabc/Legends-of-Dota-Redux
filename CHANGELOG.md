@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
 
 ### Balance
-- 
+- Improved Portal's Castrange
 
 ## 2.1 Steam Version
 

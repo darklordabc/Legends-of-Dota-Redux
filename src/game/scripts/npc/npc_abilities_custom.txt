@@ -18011,7 +18011,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30 28 26 24"
 		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"350 500 750 1000"
+		"AbilityCastRange"				"600 750 900 1100"
 		"AbilityCastPoint"				".75"  //Change the variable cast_point if this is.
 		
 		"precache"
