@@ -57,7 +57,7 @@ function modifier_npc_dota_hero_pudge_perk:OnRefresh()
 	if IsServer() then
 		self.damagecooldown = self.hook:GetCooldown(-1) -- Time before hook does damage again.
 		local modifier = self:GetParent():FindModifierByName("modifier_charges")
-		if modifier.kv.replenish_time ~= self.hook:GetCooldown(-1) then
+		if modifier and modifier.kv.replenish_time ~= self.hook:GetCooldown(-1) then
 			modifier.kv.replenish_time = self.hook:GetCooldown(-1)
 		end
 	end

@@ -10,6 +10,8 @@ function illusions( event )
 	if caster:IsIllusion() then 
 		return 
 	end
+	
+	if caster:PassivesDisabled() then return end
 
 	if not caster.count_ill then
 		caster.count_ill = 0

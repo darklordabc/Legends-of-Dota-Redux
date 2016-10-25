@@ -2,7 +2,52 @@
 "DOTAAbilities"
 {
     "Version"       "1"
+	/////////
+	// Savage Roar Scare Ability for Towers
+	/////////
+	"lone_druid_savage_roar_tower"
+	{
+		"BaseClass"                     "lone_druid_savage_roar"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5687"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_speed"			"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
+			}
+		}
+	}
+	
     //=================================================================================================================
     // Tiny: Grow
     //=================================================================================================================
@@ -8228,6 +8273,47 @@
             }
         }
     }
+	
+	//=================================================================================================================
+    // Tower ability: AI CONTROLLER
+    //=================================================================================================================
+    "imba_tower_ai_controller"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "life_stealer_control"
+        "MaxLevel"                              "1"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "1200"
+        "AbilityCooldown"                       "1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+
+        "Modifiers"
+        {
+            "modifier_imba_tower_hex_aura"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+
+                "ThinkInterval"                 "0.5"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/tower_abilities.lua"
+                        "Function"              "AIControl"
+
+                    }
+                }
+            }
+
+        }
+    }
 
     //=================================================================================================================
     // Tower ability: Mana Burn
@@ -9927,11 +10013,11 @@
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                    "furion_sprout"
-        "MaxLevel"                              "3"
+        "MaxLevel"                              "4"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 650 700"
-        "AbilityCooldown"                       "12 10 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCastRange"                      "600 650 700 750"
+        "AbilityCooldown"                       "12 10 8 6"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "RequiredLevel"                 "1"
 
         // Special
@@ -9941,7 +10027,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "tree_radius"                   "600 650 700"
+                "tree_radius"                   "600 650 700 750"
             }
             "02"
             {
@@ -12808,6 +12894,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"angel_arena_rifle"
+		"AbilityCooldown"				"30.0 25.0 20.0 15.0"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -12843,7 +12930,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gun_bonus_movespeed"		"-20"			
+				"gun_bonus_movespeed"		"-40"			
 			}
 			//rifle
 			"06"
@@ -18452,7 +18539,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mute_duration"			"2 3 4 5"  
+				"mute_duration"			"3 4 5 6"  
 			}
 	
 			"02"
@@ -18499,8 +18586,6 @@
 	
 				"States"
 				{
-					"MODIFIER_STATE_MUTED"  				"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"				"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_PASSIVES_DISABLED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				

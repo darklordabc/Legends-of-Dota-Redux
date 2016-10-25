@@ -47,6 +47,7 @@ end
 
 function modifier_octarine_vampirism_lod_buff:OnTakeDamage(params)
     local hero = self:GetParent()
+	if hero:PassivesDisabled() then return end
     local dmg = params.damage
     local nHeroHeal = self.hero_lifesteal / 100
     local nCreepHeal = self.creep_lifesteal / 100

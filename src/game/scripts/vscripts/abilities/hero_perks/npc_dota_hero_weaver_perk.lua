@@ -40,7 +40,7 @@ if IsServer() then
     
     function modifier_npc_dota_hero_weaver_perk:OnTakeDamage(params)
         if params.unit == self:GetParent() then
-            if params.damage > self:GetParent():GetHealth() and self.lapse and self.lapse:IsCooldownReady() and self.lapse:GetLevel() > 0 then
+            if params.damage > self:GetParent():GetHealth() and self.lapse and self.lapse:IsCooldownReady() and self.lapse:GetLevel() > 0  and self:GetParent():IsRealHero() then
                 if self:GetParent():HasScepter() then
                     self:GetParent():SetCursorCastTarget(self:GetParent())
                     self.lapse:OnSpellStart()
@@ -56,7 +56,7 @@ if IsServer() then
     end
 
     function modifier_npc_dota_hero_weaver_perk:GetMinHealth(params)
-        if self.lapse and self.lapse:GetLevel() > 0 and self.lapse:IsCooldownReady() then
+        if self.lapse and self.lapse:GetLevel() > 0 and self.lapse:IsCooldownReady() and self:GetParent():IsRealHero() then
             return 1
         else
             return 0

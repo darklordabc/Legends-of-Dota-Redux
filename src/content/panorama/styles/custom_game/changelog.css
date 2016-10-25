@@ -176,8 +176,6 @@
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
 	font-family: Radiance;
-
-	text-align: justify;
 }
 
 .displayHeader

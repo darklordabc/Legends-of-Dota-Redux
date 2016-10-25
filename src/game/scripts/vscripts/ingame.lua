@@ -21,6 +21,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+	self:AddTowerBotController()
     self:fixRuneBug()
 
     -- Setup standard rules
@@ -214,10 +215,11 @@ function Ingame:onStart()
 			if hero and IsValidEntity(hero) then
 				fatData[playerID] = {
 					defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
+					prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
 					modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
 					targetScaleDifference = 0.0,
-					maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.2,
-					scaleNextInterval = 0.0, --scale per second, i.e. the animation of growth
+					interpScaleDifference = 0, --interpolates between previous and target scale diff
+					maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
 					lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
 					netWorthChange = 0, --stored for faster calculations on gold and levels
 					fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
@@ -235,7 +237,7 @@ function Ingame:onStart()
 						lastFatThink = -60
 					end
 					if lastFatAnimate == nil then
-						lastFatAnimate = -1.0
+						lastFatAnimate = -3.0
 					end
 					local dotaTime = GameRules:GetDOTATime(false, false)
 					
@@ -243,11 +245,11 @@ function Ingame:onStart()
 						Ingame:FatOMeterThinker(60)
 						lastFatThink = lastFatThink + 60
 					end
-					while (dotaTime - lastFatAnimate) > 1.0 do
-						Ingame:FatOMeterAnimate(1.0)
-						lastFatAnimate = lastFatAnimate + 1.0
+					while (dotaTime - lastFatAnimate) > 3.0 do
+						Ingame:FatOMeterAnimate(3.0)
+						lastFatAnimate = lastFatAnimate + 3.0
 					end
-					return 1.0
+					return 3.0
 				end, "fatThink", 0.5)
 			end
 		end, nil)
@@ -338,12 +340,14 @@ function Ingame:FatOMeterThinker(dt)
 	for playerID in pairs(fatData) do
 		local fatness = fatData[playerID].fatness
 		local default = fatData[playerID].defaultModelScale or 1
-		local maxPct = fatData[playerID].maxScalePercent or 3.2 --Assume normal humanoid scale if not specified
+		local maxPct = fatData[playerID].maxScalePercent or 3.3 --Assume normal humanoid scale if not specified
 		
 		--This looks intimidating, but it's simply an arbitrary power scaling to diminish the effect of early growth while still ultimately reaching max at 100.
 		fatData[playerID].targetScaleDifference = default*(maxPct -1)*(math.pow(.17162*fatness, 1.62)/100)
-		--fatData[playerID].targetScaleDifference = default * (maxPct -1)*(fatness)/100
-		fatData[playerID].scaleNextInterval = (fatData[playerID].targetScaleDifference - (fatData[playerID].modelScaleDifference or fatData[playerID].targetScaleDifference))/50
+		fatData[playerID].interpScaleDifference = 0
+		fatData[playerID].prevScaleDifference = fatData[playerID].modelScaleDifference
+		
+		--print("Player "..playerID.." Initial: "..(fatData[playerID].prevScaleDifference).." Final: "..(fatData[playerID].targetScaleDifference))
 	end
 	
 end
@@ -356,26 +360,19 @@ function Ingame:FatOMeterAnimate(dt)
 	for playerID in pairs(fatData) do
 		local default = fatData[playerID].defaultModelScale or 0
 		local diff = fatData[playerID].modelScaleDifference or 0
-		local grow = fatData[playerID].scaleNextInterval or 0
 		local targetDiff = fatData[playerID].targetScaleDifference or 0
-		--New scale relative to default, not previous growth
-		local scaleDiff =  diff + grow
+		local interpDiff = fatData[playerID].interpScaleDifference or 1
+		local prevDiff = fatData[playerID].prevScaleDifference or 0
 		
-		--Stop scaling up or down if our target is met or passed.
-		if grow and targetDiff then
-			if grow > 0 and scaleDiff > targetDiff then
-				scaleDiff = targetDiff
-				fatData[playerID].scaleNextInterval = 0.0
-			elseif grow < 0 and scaleDiff < targetDiff then
-				scaleDiff = targetDiff
-				fatData[playerID].scaleNextInterval = 0.0
-			end
-		end
+		--target is lerped between initial and destination
+		interpDiff = math.min(interpDiff + 0.02*dt, 1)
+		fatData[playerID].interpScaleDifference = interpDiff
+		local target = prevDiff + interpDiff*(targetDiff-prevDiff)
 		
 		--Actually do the scaling. Also check for any existing hero clones and modify them.
 		local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 		if hero and IsValidEntity(hero) then
-			hero:SetModelScale(default + scaleDiff)
+			hero:SetModelScale(default + target)
 		
 			--Meepo/Arc Warden ult checker
 			if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') then
@@ -383,12 +380,12 @@ function Ingame:FatOMeterAnimate(dt)
 
 				for k,heroClone in pairs(clones) do
 					if heroClone:IsClone() and playerID == heroClone:GetPlayerID() then
-						hero:SetModelScale(default + scaleDiff)
+						hero:SetModelScale(default + target)
 					end
 				end
 			end
 			
-			fatData[playerID].modelScaleDifference = scaleDiff
+			fatData[playerID].modelScaleDifference = target
 		end
 	end
 end
@@ -962,16 +959,74 @@ function Ingame:checkBuybackStatus()
         end, nil)
 end
 
+function Ingame:AddTowerBotController()
+	print("hi there")
+    ListenToGameEvent('game_rules_state_change', function(keys)
+
+        local newState = GameRules:State_Get()
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+			local maxPlayers = 24
+			local direBots = false
+			local radiantBots = false
+			-- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
+			for playerID=0,(maxPlayers-1) do
+				if  util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+					radiantBots = true
+				elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+					direBots = true
+				end
+			end
+			
+			local towers = Entities:FindAllByClassname('npc_dota_tower')
+			
+			for _, tower in pairs(towers) do
+					-- IF DIRE BOTS EXIST GIVE RADIANT TOWERS THE BOT CONTROLLER ABILITY
+					if direBots and tower:GetTeam() == DOTA_TEAM_GOODGUYS then
+						tower:AddAbility("imba_tower_ai_controller")
+						tower:AddAbility("lone_druid_savage_roar_tower")
+						local abilityController = tower:FindAbilityByName("imba_tower_ai_controller")
+						local abilityRoar = tower:FindAbilityByName("lone_druid_savage_roar_tower")
+						abilityController:SetLevel(1)
+						abilityRoar:SetLevel(1)
+					-- IF RADIANT BOTS EXIST GIVE DIRE TOWERS THE BOT CONTROLLER ABILITY
+					elseif radiantBots and tower:GetTeam() == DOTA_TEAM_BADGUYS then 
+						tower:AddAbility("imba_tower_ai_controller")
+						tower:AddAbility("lone_druid_savage_roar_tower")
+						local abilityController = tower:FindAbilityByName("imba_tower_ai_controller")
+						local abilityRoar = tower:FindAbilityByName("lone_druid_savage_roar_tower")
+						abilityController:SetLevel(1)
+						abilityRoar:SetLevel(1)
+					end
+                    
+                end
+		end
+    end, nil)
+ 
+end
 
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
+
         local newState = GameRules:State_Get()
         if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('strongTowers') then
+				local maxPlayers = 24
+				local botsEnabled = false
+				for playerID=0,(maxPlayers-1) do
+					if util:isPlayerBot(playerID) then
+						botsEnabled = true
+					end
+				end
                 local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
                 local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
+					if botsEnabled == true then
+						if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" then
+							table.insert(towerSkills, skill_name)  	
+						end
+					else 
+						table.insert(towerSkills, skill_name)  															 					
+					end
+				end
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
                 for _, tower in pairs(towers) do
                     local ability_name = RandomFromTable(towerSkills)
@@ -994,11 +1049,18 @@ function Ingame:addStrongTowers()
             -- Display upgrade message and play ominous sound
             if tower_team == DOTA_TEAM_GOODGUYS then
                 -- add notification
-                GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)
-                EmitGlobalSound("powerup_01")
+                GameRules:SendCustomMessage('radiantTowersUpgraded', 0, 0)				
+				-- Only has a 50% chance to play sound because its kind of annoying if you hear it too much
+				local shouldPlaySound = (RandomInt(1,2))
+				if shouldPlaySound == 1 then
+					EmitGlobalSound("powerup_01")
+				end
             else
                 GameRules:SendCustomMessage('direTowersUpgraded', 0, 0)
-                EmitGlobalSound("powerup_02")
+				local shouldPlaySound = (RandomInt(1,2))
+				if shouldPlaySound == 1 then
+					EmitGlobalSound("powerup_02")
+				end
             end
         end
     end, nil)

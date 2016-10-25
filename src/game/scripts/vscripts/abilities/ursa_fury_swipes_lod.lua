@@ -57,6 +57,8 @@ function fury_swipes_attack( keys )
 	if target:IsBuilding() then return end
 	if not caster:IsRealHero() then return end
 	
+	if caster:PassivesDisabled() then return end
+	
 	-- Necessary value from KV
 	local duration = ability:GetLevelSpecialValueFor( "bonus_reset_time", ability:GetLevel() - 1 )
 	-- Modifies damage bonus if ranged attacker
@@ -97,6 +99,7 @@ function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Phy
     local caster = params.attacker
     local target = params.target
     if not caster:IsRealHero() then return 0 end
+	if caster:PassivesDisabled() then return 0 end
     local nFurySwipes
     
     if caster:IsRangedAttacker() then
