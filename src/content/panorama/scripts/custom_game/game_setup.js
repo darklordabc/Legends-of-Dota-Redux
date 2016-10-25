@@ -39,10 +39,20 @@ var allOptions = {
                     {
                         text: 'lodOptionBalancedCustom',
                         about: 'lodOptionAboutBalancedCustom',
-                        value: -1
+                        value: 1
                     }
                 ],
-                mutators: [                   
+                mutators: [ 
+                    {
+                        name: 'lodOptionCommonGamemode',
+                        states: {
+                            'lodMutatorAllPick': 1,
+                            'lodMutatorAllPickFast': 2,
+                            'lodMutatorMirrorDraft': 3,
+                            'lodMutatorAllRandom': 4,
+                            'lodMutatorSingleDraft': 5
+                        }
+                    },                  
 					{
                         about: 'lodMutatorBalanceMode',
                         values: {
@@ -5156,8 +5166,8 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
-                    var showTab = 'pickingPhaseMainTab';
-                    showBuilderTab(showTab);
+                    // var showTab = 'pickingPhaseMainTab';
+                    // showBuilderTab(showTab);
                     
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });

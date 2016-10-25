@@ -101,6 +101,7 @@
     "lodOptionBalancedCustom"                       "Custom Settings"
 
     "lodOptionPresetMutators"                       "Optional Mutators"
+    "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
@@ -154,6 +155,12 @@
     "lodMutatorCreepPowerNormal"                    "Strong Creeps"
     "lodMutatorCreepPowerHigh"                      "High Creeps"
     "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
+
+    "lodMutatorAllPick"                             "All Pick"
+    "lodMutatorAllPickFast"                         "All Pick Fast"
+    "lodMutatorMirrorDraft"                         "Mirror Draft"
+    "lodMutatorAllRandom"                           "All Random"
+    "lodMutatorSingleDraft"                         "Single Draft"
 
     "lodMutatorMaxLevel1"                           "Max Level 25"
     "lodMutatorMaxLevel2"                           "Max Level 50"
