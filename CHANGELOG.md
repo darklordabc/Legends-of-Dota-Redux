@@ -10,7 +10,8 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Gave Rifle a cooldown and increased the movement slow to 40
-- The Essence Shifts are now diabled when passives are disabled
+- The following abilities can now be broken by passive breaking abilities: Invisibility Aura, Essence Aura, Holy Book, Aftershock (Lod), Degen Aura IMBA, Mastery of Deception, The 4 "Ferocity" abilities, Int and Str Marksmanship, Berserkers Blood (Pre 6.86), Octarine Vampirism, All the IMBA tower abilities, the Essence Shifts and Fury Swipes (Lod). I probably missed a few, let me know and I'll add them.
+- Deafing Blast (Retro Dota) no longer also silences and mutes. But its duration has been increased by one second.  
 
 ## 1.9 Steam Version
 

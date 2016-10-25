@@ -8,7 +8,10 @@ function RestoreMana(keys)
     -- Grab ability
     local target = keys.unit
     local ability = keys.ability
-
+	local caster = keys.caster
+	
+	if caster:PassivesDisabled() then return end
+	
     -- Validate level
     local abLevel = ability:GetLevel()
     if abLevel <= 0 then return end
