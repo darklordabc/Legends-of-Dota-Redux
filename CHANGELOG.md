@@ -5,13 +5,21 @@ All notable changes to this project will be documented in this file.
 ## 2.1 
 
 ### Bug Fixing/New Features
+- Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
+
+### Balance
+- 
+
+## 2.1 Steam Version
+
+### Bug Fixing/New Features
 - Fixed Mastery of Deception creating illusions of Roshan that drop aegis
 - Fixed another Shadow Demon Perk bug
 
 ### Balance
 - Bots now get items instantly to their inventory
 
-## 2.0 Steam Version
+## 2.0 
 
 ### Bug Fixing/New Features
 - If the game is single player, the ingame hero builder will always be enabled

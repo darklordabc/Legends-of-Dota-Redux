@@ -3092,7 +3092,7 @@
 	"DOTA_Tooltip_ability_butcher_skin_damage_return"	"%DAMAGE RETURN:"	
 	
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow"	"Black Arrow"
-	"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side. Black arrow effect lasts 3 seconds"
+	"DOTA_Tooltip_ability_dark_ranger_black_arrow_Description"	"Dark Ranger deals bonus damage on each attack. If an enemy affected by a black arrow dies, he will come back to life and fight on Dark Ranger's side. Black arrow effect lasts 3 seconds\n\nMana Break is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers."
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"ILLUSION LIFETIME:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
