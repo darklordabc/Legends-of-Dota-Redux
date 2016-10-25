@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.0
+## 2.1 
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Bots now get items instantly to their inventory
+
+## 2.0 Steam Version
 
 ### Bug Fixing/New Features
 - If the game is single player, the ingame hero builder will always be enabled
@@ -14,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - The following abilities can now be broken by passive breaking abilities: Invisibility Aura, Essence Aura, Holy Book, Aftershock (Lod), Degen Aura IMBA, Mastery of Deception, The 4 "Ferocity" abilities, Int and Str Marksmanship, Berserkers Blood (Pre 6.86), Octarine Vampirism, All the IMBA tower abilities, the Essence Shifts and Fury Swipes (Lod). I probably missed a few, let me know and I'll add them.
 - Deafing Blast (Retro Dota) no longer also silences and mutes. But its duration has been increased by one second.  
 
-## 1.9 Steam Version
+## 1.9 
 
 ### Bug Fixing/New Features
 - Fix Shadow Demon Perk Abuse

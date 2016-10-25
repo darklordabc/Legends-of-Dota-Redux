@@ -78,7 +78,60 @@ function Ingame:init()
 end
 
 function Ingame:OnPlayerPurchasedItem(keys)
-    local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+    
+	-- Bots will get items auto-delievered to them
+	if util:isPlayerBot(keys.PlayerID) then 		
+		local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()		
+			for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+				item = hero:GetItemInSlot(slot)
+				if item ~= nil then
+					itemName = item:GetAbilityName()
+					if itemName == keys.itemname then
+						item:RemoveSelf()
+						hero:AddItem(CreateItem(itemName, hero, hero))
+						break
+					end
+				end
+			end
+		
+		-- Check if there is any remaining items in slot, if there is, it means their inventory is full
+		local isFull = false
+		for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+				local item = hero:GetItemInSlot(slot)
+				if item ~= nil then
+					isFull = true			
+				end
+			end
+		
+		-- If they have a full inventory, remove any tangos or branches to clear space
+		if isFull then
+			for slot =  DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+				item = hero:GetItemInSlot(slot)
+				if item ~= nil then
+					itemName = item:GetAbilityName()
+					if itemName == "item_tango" or itemName == "item_branches" then
+						item:RemoveSelf()
+						break
+					end
+				end
+			end		
+				
+			-- Try to move items from stash to inventory again after we have cleared out some items
+			for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+				item = hero:GetItemInSlot(slot)
+				if item ~= nil then
+					itemName = item:GetAbilityName()
+					if itemName == keys.itemname then
+						item:RemoveSelf()
+						hero:AddItem(CreateItem(itemName, hero, hero))
+						break
+					end
+				end
+			end
+		end
+	end
+			
+		
     if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
