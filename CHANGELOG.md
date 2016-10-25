@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Fixed Mastery of Deception creating illusions of Roshan that drop aegis
+- Fixed another Shadow Demon Perk bug
 
 ### Balance
 - Bots now get items instantly to their inventory
