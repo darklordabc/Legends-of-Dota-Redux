@@ -35,8 +35,6 @@ function RandomGet(keys)
 	else
 		return
 	end
-	
-	randomAb:SetStolen(true) -- set as stolen to prevent weird interactions when removed
 
 	-- Leveling filters; 1 is the ultimate type
 	local maxLevel = randomAb:GetMaxLevel()
@@ -72,7 +70,7 @@ function RandomRemove(keys)
 	if IsValidEntity(randomAb) then
 		
 		caster:SwapAbilities(ability:GetName(), randomAb:GetName(), true, false)
-		randomAb:SetStolen(true) -- just to be sure it's set as stolen before removal
+		
 		randomAb:SetHidden(true) -- double check for flyout
 		
 	end
