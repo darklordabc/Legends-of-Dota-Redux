@@ -10293,7 +10293,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "coef"                          "7"
+                "coef"                          "8"
             }
             "02"
             {

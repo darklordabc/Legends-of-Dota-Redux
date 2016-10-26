@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Degen Aura rate lowered by 1%
 - Pocket Factory Goblins acquistion range increased
 - Scout Owl higher duration and automatically follows when cast
+- Stronger Creeps give 8% extra gold instead of 7% per level
 
 
 ## 2.2 Steam Version
