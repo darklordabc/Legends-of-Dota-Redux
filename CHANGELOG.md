@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.3 
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Degen Aura rate lowered by 1%
+
 ## 2.2 Steam Version
 
 ### Bug Fixing/New Features
