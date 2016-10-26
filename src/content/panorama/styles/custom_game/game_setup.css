@@ -2541,6 +2541,11 @@
     opacity: .5;
 }
 
+#optionList #mutator_lodMutatorMirrorDraft {
+    opacity: 1;
+    border-color: #FFFFFF;
+}
+
 #optionList .mutator:hover {
     opacity: .7;
 }
