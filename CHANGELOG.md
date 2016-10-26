@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 2.3 
 
 ### Bug Fixing/New Features
-- 
+- Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
 
 ### Balance
 - Degen Aura rate lowered by 1%
@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Increased price of Betrayal, Tombstone and Global Break
 - Rearm (Original) is now banned on balance mode
 - The Saint's Rage no longer damages buildings
+- Betaryal and Test of Faith is now a troll combo
 
 
 ## 2.2 Steam Version
