@@ -5,13 +5,22 @@ All notable changes to this project will be documented in this file.
 ## 2.4 
 
 ### Bug Fixing/New Features
+- Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
+
+### Balance
+- 
+
+
+## 2.4 Steam Verison
+
+### Bug Fixing/New Features
 - Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
 
 ### Balance
 - Added Cluster Rockets and Pocket Factory to Scientific category.
 - Increased damage reduction on rifle
 
-## 2.3 Steam Verison
+## 2.3 
 
 ### Bug Fixing/New Features
 - Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
