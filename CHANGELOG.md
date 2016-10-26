@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 - Pocket Factory Goblins acquistion range increased
 - Scout Owl higher duration and automatically follows when cast
 - Stronger Creeps give 8% extra gold instead of 7% per level
+- Mastery of Deception no longer procs from hero attacks
+- Increased price of Betrayal, Tombstone and Global Break
+- Rearm (Original) is now banned on balance mode
+- The Saint's Rage no longer damages buildings
 
 
 ## 2.2 Steam Version

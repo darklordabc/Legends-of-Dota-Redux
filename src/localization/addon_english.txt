@@ -3201,7 +3201,7 @@
 	"DOTA_Tooltip_ability_paladin_blizzard_max_targets"	"MAX TARGETS:"
 			
 	"DOTA_Tooltip_ability_illusionist_mastery_of_deception"	"Mastery of Deception"
-	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_Description"	"When Illusionnist is attacked, he has a 20%% chance to create an illusion of the attacker. Illusions take more damage and deal less. Does not affect megabosses."
+	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_Description"	"When Illusionnist is attacked, he has a 20%% chance to create an illusion of the attacker. Illusions take more damage and deal less. Does not affect attacking heroes."
 	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_time"	"ILLUSION LIFETIME:"
 	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_outgoing_damage_tooltip"	"%ILLUSION OUTGOING DAMAGE:"
 	"DOTA_Tooltip_ability_illusionist_mastery_of_deception_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
