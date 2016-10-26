@@ -68,6 +68,8 @@
 		
 		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" },
 		
+		{ "link": "../dota/game/panorama/layout/custom_game/custom_tooltip.vxml_c", "dir": "../src/game/panorama/layout/custom_game/custom_tooltip.vxml_c" },
+		
 		{ "link": "../dota/game/panorama/layout/custom_game/all_random_build.vxml_c", "dir": "../src/game/panorama/layout/custom_game/all_random_build.vxml_c" },
 		{ "link": "../dota/game/panorama/scripts/custom_game/all_random_build.vjs_c", "dir": "../src/game/panorama/scripts/custom_game/all_random_build.vjs_c" }
 	]
