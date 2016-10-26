@@ -767,7 +767,7 @@
     "voteMaxSlots5"                                 "5 Slots"
     "voteMaxSlots6"                                 "6 Slots"
 
-    "lodBanningPhase"                               "Enable The Banning Phase (Broken for Now)"
+    "lodBanningPhase"                               "Banning Phase (Broken for Now)"
     "lodFastStart"                                  "Enable Fast Start"
     "lodBalanceMode"                                "Disable Balance Mode"
     "lodStrongTower"                                "Enable Stronger Towers"

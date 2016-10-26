@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
+- Abaddon's perk is hidden if he has shield charges. Two buffs for a perk is just clutter.
+- Removed the broken player ban option vote.
+- If Balance mode is disabled in vote maps, OP abilities will be banned
 
 ### Balance
 - Degen Aura rate lowered by 1%

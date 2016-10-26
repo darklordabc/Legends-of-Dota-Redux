@@ -22,7 +22,7 @@ function modifier_npc_dota_hero_abaddon_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:IsHidden()
-	return false
+	return self:GetCaster():HasModifier("modifier_charges")
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()

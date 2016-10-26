@@ -1396,6 +1396,8 @@ function Pregame:processVoteData()
         if results.balancemode == 1 then
         	-- Disable Balance Mode
         	self:setOption('lodOptionBalanceMode', 0, true)
+			self:setOption('lodOptionBanningUseBanList', 1, true)
+            self:setOption('lodOptionAdvancedOPAbilities', 1, true)
             self.optionVotingBalanceMode = 1
         else
         	-- On by default
