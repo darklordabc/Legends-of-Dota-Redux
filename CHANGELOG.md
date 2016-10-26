@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
 
 ### Balance
-- 
+- Added Cluster Rockets and Pocket Factory to Scientific category.
 
 ## 2.3 Steam Verison
 
