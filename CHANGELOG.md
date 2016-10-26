@@ -2,7 +2,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.1 
+## 2.2 Steam Version
 
 ### Bug Fixing/New Features
 - Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
@@ -12,8 +12,9 @@ All notable changes to this project will be documented in this file.
 - Improved Portal's Castrange
 - Enabled Meepo's Perk
 - Disabled True Random abilities because they are likely causing crashes, enable OP abilities to use them.
+- Rifle has more movement speed reduction and higher cooldown
 
-## 2.1 Steam Version
+## 2.1 
 
 ### Bug Fixing/New Features
 - Fixed Mastery of Deception creating illusions of Roshan that drop aegis
