@@ -8,7 +8,7 @@ function EssenceAmp(filterTable)
     local attacker = EntIndexToHScript( attacker_index )
     local victim = EntIndexToHScript( victim_index )
     local ability = EntIndexToHScript( ability_index )
-	if attacker == victim then return filterTable end
+	if attacker == victim or attacker:PassivesDisabled() then return filterTable end
 	local amp = attacker:FindAbilityByName("ebf_mana_fiend_essence_amp")
 	print(amp and amp:GetLevel() > 0, "ampcheck")
 	if amp and amp:GetLevel() > 0 then
