@@ -5156,8 +5156,8 @@ function UpdateTimer() {
                     if(myUpdateNumber != updateTimerCounter) return;
 
                     //$('#lodTimerWarningLabel').visible = false;
-                    var showTab = 'pickingPhaseMainTab';
-                    showBuilderTab(showTab);
+                    // var showTab = 'pickingPhaseMainTab';
+                    // showBuilderTab(showTab);
                     
                     $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
                 });

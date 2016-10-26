@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
+- Fixed the constant switching back to the "Builds" page
 
 ### Balance
 - Improved Portal's Castrange
