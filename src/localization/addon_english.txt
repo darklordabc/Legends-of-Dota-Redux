@@ -582,7 +582,7 @@
 	"hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
 	"hintVS"                         "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
 	"hintVisage"                         "For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
-	"hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
+	"hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%, when used by Naga."
 	"hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
 	"hintDrow"                         "Gust also disarms enemies when cast by Drow Ranger."
 	"hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
