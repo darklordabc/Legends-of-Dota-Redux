@@ -2,7 +2,56 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.0
+## 2.4 
+
+### Bug Fixing/New Features
+- Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
+
+### Balance
+- Added Cluster Rockets and Pocket Factory to Scientific category.
+
+## 2.3 Steam Verison
+
+### Bug Fixing/New Features
+- Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
+- Abaddon's perk is hidden if he has shield charges. Two buffs for a perk is just clutter.
+- Removed the broken player ban option vote.
+- If Balance mode is disabled in vote maps, OP abilities will be banned
+
+### Balance
+- Degen Aura rate lowered by 1%
+- Pocket Factory Goblins acquistion range increased
+- Scout Owl higher duration and automatically follows when cast
+- Stronger Creeps give 8% extra gold instead of 7% per level
+- Mastery of Deception no longer procs from hero attacks
+- Increased price of Betrayal, Tombstone and Global Break
+- Rearm (Original) is now banned on balance mode
+- The Saint's Rage no longer damages buildings
+- Betaryal and Test of Faith is now a troll combo
+
+
+## 2.2 Steam Version
+
+### Bug Fixing/New Features
+- Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
+- Fixed the constant switching back to the "Builds" page
+
+### Balance
+- Improved Portal's Castrange
+- Enabled Meepo's Perk
+- Disabled True Random abilities because they are likely causing crashes, enable OP abilities to use them.
+- Rifle has more movement speed reduction and higher cooldown
+
+## 2.1 
+
+### Bug Fixing/New Features
+- Fixed Mastery of Deception creating illusions of Roshan that drop aegis
+- Fixed another Shadow Demon Perk bug
+
+### Balance
+- Bots now get items instantly to their inventory
+
+## 2.0 
 
 ### Bug Fixing/New Features
 - If the game is single player, the ingame hero builder will always be enabled
@@ -14,7 +63,7 @@ All notable changes to this project will be documented in this file.
 - The following abilities can now be broken by passive breaking abilities: Invisibility Aura, Essence Aura, Holy Book, Aftershock (Lod), Degen Aura IMBA, Mastery of Deception, The 4 "Ferocity" abilities, Int and Str Marksmanship, Berserkers Blood (Pre 6.86), Octarine Vampirism, All the IMBA tower abilities, the Essence Shifts and Fury Swipes (Lod). I probably missed a few, let me know and I'll add them.
 - Deafing Blast (Retro Dota) no longer also silences and mutes. But its duration has been increased by one second.  
 
-## 1.9 Steam Version
+## 1.9 
 
 ### Bug Fixing/New Features
 - Fix Shadow Demon Perk Abuse

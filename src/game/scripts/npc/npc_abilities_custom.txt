@@ -3409,14 +3409,7 @@
             
                 "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
-                "OnCreated"
-                {
-                    "FireSound"
-                    {
-                        "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
-                        "Target"        "TARGET"
-                    }
-                }
+
                 "States"
                 {
                     "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
@@ -7647,7 +7640,7 @@
             "04"
             {
                 "var_type"                "FIELD_INTEGER"
-                "stack_reduction_pct"    "4 5 6 7"
+                "stack_reduction_pct"    "3 4 5 6"
             }
         }
 
@@ -10293,7 +10286,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "coef"                          "7"
+                "coef"                          "8"
             }
             "02"
             {
@@ -12293,6 +12286,7 @@
 					"Center"  	"CASTER"
 					"Radius" 	"%radius"
 					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				}
 			
 				"Action"    
@@ -12894,7 +12888,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"angel_arena_rifle"
-		"AbilityCooldown"				"30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"45"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -12930,7 +12924,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gun_bonus_movespeed"		"-40"			
+				"gun_bonus_movespeed"		"-100"			
 			}
 			//rifle
 			"06"
@@ -18011,7 +18005,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30 28 26 24"
 		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"350 500 750 1000"
+		"AbilityCastRange"				"600 750 900 1100"
 		"AbilityCastPoint"				".75"  //Change the variable cast_point if this is.
 		
 		"precache"
@@ -18033,7 +18027,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"350 500 750 1000"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
+				"cast_range"			"600 750 900 1100"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
 			}
 			"03"
 			{
@@ -18215,7 +18209,7 @@
 			"modifier_invoker_retro_scout_unit_ability"
 			{
 				"Passive"			"1"
-				"IsHidden"			"0"
+				"IsHidden"			"1"
 				
 				"States"
 				{
@@ -18272,7 +18266,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"owl_duration"				"15 18 21 24"  
+				"owl_duration"				"30 35 40 45"  
 			}
 			"02"
 			{

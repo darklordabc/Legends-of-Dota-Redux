@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_shadow_demon_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:OnCreated(keys)
 	-- Hard-coded due to being used in a listener for items purchased. 
 	self.limitedItems = {
@@ -70,7 +74,7 @@ function perkShadowDemon(filterTable)
 	if abilityIndex then
 		if order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability then
 			local seller = ability:GetPurchaser()
-			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") then
+			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") and seller:IsAlive() then
 				if ability:GetAbilityName() == "item_ward_dispenser" then
 					seller:DisassembleItem(ability)
 					print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
@@ -87,7 +91,7 @@ function perkShadowDemon(filterTable)
 			end
 		elseif order_type == DOTA_UNIT_ORDER_GIVE_ITEM and not target:HasInventory() and ability then
 			local seller = ability:GetPurchaser()
-			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") then
+			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") and seller:IsAlive() then
 				if ability:GetAbilityName() == "item_ward_dispenser" then
 					seller:DisassembleItem(ability)
 					print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
