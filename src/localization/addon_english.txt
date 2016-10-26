@@ -22,7 +22,7 @@
     "76561197990480277" "Wouterz90"
     "76561197990480277_Description" "Spells and Perks Contributor"  
     "76561198059260684" "CarpeSwag"
-    "76561198059260684_Description" "Balance Mode Developer, Spells Contributor"  
+    "76561198059260684_Description" "Points Mode Developer, Spells Contributor"  
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"  
 	"76561197996730911" "K1llMan"
@@ -107,7 +107,7 @@
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
     "lodMutatorUnlimitedBans"                       "Host Bans"
-    "lodMutatorBalanceMode"                         "Balance Mode"
+    "lodMutatorBalanceMode"                         "Points Mode"
     "lodMutatorPlayerBans"                          "Player Bans"
     "lodMutatorOPAbilities"                         "Ban OP Abils"
     "lodMutatorCustomSkills"                        "Custom Skills"
@@ -235,7 +235,7 @@
     "lodOptionCommonUlts11"                         "11 Ultimate Abilities"
     "lodOptionCommonUlts12"                         "12 Ultimate Abilities"
 
-    "lodOptionDesBalanceMode"                       "Balance Mode"
+    "lodOptionDesBalanceMode"                       "Points Mode"
 
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
@@ -252,7 +252,7 @@
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
-	"lodOptionDesBanningBalanceMode"                "Use Balance Mode Ban List"
+	"lodOptionDesBanningBalanceMode"                "Use Points Mode Ban List"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
     "lodOptionLevel1"                               "Level 1"
@@ -391,7 +391,7 @@
     "lodHostingMessage"                             "<font color='#70EA72'>You are the host</font>, you are required to select the options for this match. All options will be recorded and you may be banned from selecting options if you continue to troll other players.\n\n<font color='#70EA72'>Lock the teams using the button at the top center of the screen</font>, and lock the options by pressing the button in the bottom right hand corner."
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
-    "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Balance Mode is on.</font> In Balance Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
+    "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
     "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
     "lodOptionVoting"                               "Cast your vote to select the options."
 
@@ -414,7 +414,7 @@
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
     "lodOptionAboutBanningUseBanList"               "Ban a predefined list of annoying abilities."
-    "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for balance mode."
+    "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for Points mode."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
     "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible."
     "lodOptionAboutGameSpeedStartingLevel"          "The level a player will start at. (1 - 100)\nNote: A player can not start higher than the max hero level."
@@ -526,7 +526,7 @@
 	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
 	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
 	"hintBlink"                             	    "Its always a good idea to have an escape plan."
-	"hintBalanceMode"                              "In Balance Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
+	"hintBalanceMode"                              "In Points Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
 	"hintScoreboard"                              "You can see the abilities of allies and enemies in the scoreboard."
 	"hintComment"                              "You can leave feedback that goes straight to the developers by using the gear icon at the top of the screen. From here you can also see the changelog and credits."
 	"hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
@@ -769,11 +769,11 @@
 
     "lodBanningPhase"                               "Banning Phase (Broken for Now)"
     "lodFastStart"                                  "Enable Fast Start"
-    "lodBalanceMode"                                "Disable Balance Mode"
+    "lodBalanceMode"                                "Disable Points Mode"
     "lodStrongTower"                                "Enable Stronger Towers"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
-    "textBMTooltip"                             "In Balance Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
+    "textBMTooltip"                             "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
     "textSTTooltip"                             "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
 
     "bots_lod"                                      "Bots"
@@ -807,7 +807,7 @@
     "statAbandonMoreThanOneDay"                     "About {0} days ago"
     
     //CHANGELOG BUTTONS
-    "lodDescriptionText"                            "This is a fan remake of Ash47's 'Legends of Dota: Official'. To name a few differenecs with this version: Enhanced neutral abilities, balance tweaks to some abilities, brand new abilities, new Balance Mode, abilities now shown in scoreboard etc. Check the updates tab above to see a more detailed list of changes. Leave a comment or suggestion below and a developer will respond to you promptly. Have fun!"
+    "lodDescriptionText"                            "This is a fan remake of Ash47's 'Legends of Dota: Official'. To name a few differenecs with this version: Enhanced neutral abilities, balance tweaks to some abilities, brand new abilities, new Points Mode, abilities now shown in scoreboard etc. Check the updates tab above to see a more detailed list of changes. Leave a comment or suggestion below and a developer will respond to you promptly. Have fun!"
     "lodMessagePlaceholder"                         "Leave your suggestion here..."
     "lodMessageSubmit"                              "Submit"
     "lodMessageSent"                                "Sent"

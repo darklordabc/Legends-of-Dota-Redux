@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.3 
+## 2.4 
+
+### Bug Fixing/New Features
+- Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
+
+### Balance
+- 
+
+## 2.3 Steam Verison
 
 ### Bug Fixing/New Features
 - Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
