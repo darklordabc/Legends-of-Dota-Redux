@@ -158,7 +158,7 @@ if not Timers.timers then Timers:start() end
 function SpellEcho(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	if not ability:IsCooldownReady() then return end
+	if not ability:IsCooldownReady() or caster:PassivesDisabled() then return end
 	local echo = keys.event_ability
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
 	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
