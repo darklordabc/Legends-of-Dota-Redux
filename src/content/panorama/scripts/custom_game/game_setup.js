@@ -39,15 +39,17 @@ var allOptions = {
                     {
                         text: 'lodOptionBalancedCustom',
                         about: 'lodOptionAboutBalancedCustom',
-                        value: 1
+                        value: -1
                     }
                 ],
                 mutators: [ 
                     {
                         name: 'lodOptionCommonGamemode',
-                        states: {
+                        default: {
                             'lodMutatorAllPick': 1,
-                            'lodMutatorAllPickFast': 2,
+                        },
+                        states: {
+
                             'lodMutatorMirrorDraft': 3,
                             'lodMutatorAllRandom': 4,
                             'lodMutatorSingleDraft': 5
@@ -3602,6 +3604,9 @@ function buildOptionsCategories() {
             // When the mutators changes
             optionMutator.SetPanelEvent('onactivate', function(e) {
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+                if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
+                    return;
+                }
 
                 if (item.values !== undefined) {
                     var state;

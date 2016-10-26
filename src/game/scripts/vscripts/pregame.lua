@@ -2047,6 +2047,7 @@ function Pregame:initOptionSelector()
         -- Fast Gamemode
         lodOptionGamemode = function(optionName, optionValue)
             -- If we are using a hard coded gamemode, then, set all options automatically
+            print(self.optionStore['lodOptionGamemode'])
             if optionValue ~= -1 then
                 -- Gamemode is copied
                 self:setOption('lodOptionCommonGamemode', optionValue, true)
