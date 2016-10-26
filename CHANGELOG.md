@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Improved Portal's Castrange
+- Enabled Meepo's Perk
+- Disabled True Random abilities because they are likely causing crashes, enable OP abilities to use them.
 
 ## 2.1 Steam Version
 
