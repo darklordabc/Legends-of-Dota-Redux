@@ -13,6 +13,7 @@
 		"dota/game/panorama/images",
 		"dota/game/panorama/images/custom_game",
 		"dota/game/panorama/images/custom_game/flags",
+		"dota/game/panorama/images/custom_game/loading_screens",
 		
 		"dota/game/panorama/layout",
 		"dota/game/panorama/layout/custom_game",
@@ -63,6 +64,7 @@
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
 
 		{ "link": "../dota/game/panorama/images/custom_game/flags", "dir": "../src/game/panorama/images/custom_game/flags" },
+		{ "link": "../dota/game/panorama/images/custom_game/loading_screens", "dir": "../src/game/panorama/images/custom_game/loading_screens" },
 		
 		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" },
 		
