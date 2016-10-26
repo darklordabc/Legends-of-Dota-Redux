@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Degen Aura rate lowered by 1%
+- Pocket Factory Goblins acquistion range increased
+- Scout Owl higher duration and automatically follows when cast
+
 
 ## 2.2 Steam Version
 
