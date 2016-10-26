@@ -12919,7 +12919,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gun_bonus_attack"			"-85 -84 -83 -82"
+				"gun_bonus_attack"			"-95 -94 -93 -92"
 			}
 			"05"
 			{

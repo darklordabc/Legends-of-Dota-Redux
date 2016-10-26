@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Cluster Rockets and Pocket Factory to Scientific category.
+- Increased damage reduction on rifle
 
 ## 2.3 Steam Verison
 
