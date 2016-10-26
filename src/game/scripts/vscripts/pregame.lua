@@ -2213,6 +2213,8 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
+            else
+                self:setOption('lodOptionCommonGamemode', 1)
             end
         end,
 

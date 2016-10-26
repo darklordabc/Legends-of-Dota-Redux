@@ -42,7 +42,19 @@ var allOptions = {
                         value: -1
                     }
                 ],
-                mutators: [                   
+                mutators: [ 
+                    {
+                        name: 'lodOptionCommonGamemode',
+                        default: {
+                            'lodMutatorAllPick': 1,
+                        },
+                        states: {
+
+                            'lodMutatorMirrorDraft': 3,
+                            'lodMutatorAllRandom': 4,
+                            'lodMutatorSingleDraft': 5
+                        }
+                    },                  
 					{
                         about: 'lodMutatorBalanceMode',
                         values: {
@@ -247,10 +259,10 @@ var allOptions = {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
-                    {
-                        name: 'lodOptionCrazyWTF',
-                        about: 'lodMutatorWTF'
-                    },                   
+                    //{
+                    //    name: 'lodOptionCrazyWTF',
+                    //    about: 'lodMutatorWTF'
+                   // },                   
 					{
 						name: 'lodOptionCrazyFatOMeter',
 						default: {
@@ -3592,6 +3604,9 @@ function buildOptionsCategories() {
             // When the mutators changes
             optionMutator.SetPanelEvent('onactivate', function(e) {
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+                if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
+                    return;
+                }
 
                 if (item.values !== undefined) {
                     var state;

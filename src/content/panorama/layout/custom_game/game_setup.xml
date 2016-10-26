@@ -354,6 +354,11 @@
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder2.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder3.png"></Image>
 					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder4.png"></Image>
+					
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllPick.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
+					<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png"></Image>
                 </Panel>
 				<!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
 				<!--<Panel id="loadscreen"> 
