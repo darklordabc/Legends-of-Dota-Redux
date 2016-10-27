@@ -3942,7 +3942,17 @@
     
         //Datadriven
         //-------------------------------------------------------------------------------------------------------------
-        "OnUpgrade"
+        "OnOwnerSpawned"
+        {
+            "RunScript"
+            {
+                "ModifierName"  "modifier_huskar_berserkers_blood_lod"
+                "ScriptFile"    "abilities/berserkers_blood_lod.lua"
+                "Function"      "ApplyLuaModifier"
+            }
+        }
+		
+		"OnUpgrade"
         {
             //ApplyLuaModifier 
             "RunScript"
