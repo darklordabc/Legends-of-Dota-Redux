@@ -1440,13 +1440,13 @@ function Pregame:loadTrollCombos()
     self.wtfAutoBan = tempBanList.wtfAutoBan
     self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
-    self.lodBanList = tempBanList.lodBanList
+    self.SuperOP = tempBanList.SuperOP
     self.doNotRandom = tempBanList.doNotRandom
 
-    -- All OP skills should be added to the LoD ban list
-    for skillName,_ in pairs(self.OPSkillsList) do
-        self.lodBanList[skillName] = 1
-    end
+    -- All SUPER OP skills should be added to the OP ban list
+    --for skillName,_ in pairs(self.lodBanList) do
+    --    self.OPSkillsList[skillName] = 1
+    --end
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -2800,7 +2800,7 @@ function Pregame:processOptions()
 
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
-            for abilityName,v in pairs(this.lodBanList) do
+            for abilityName,v in pairs(this.SuperOP) do
                 this:banAbility(abilityName)
             end
         end
