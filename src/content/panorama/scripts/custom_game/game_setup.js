@@ -154,11 +154,9 @@ var allOptions = {
                         about: 'lodMutatorOPAbilities',
                         values: {
                             enabled: {
-                                'lodOptionBanningUseBanList': 1,
                                 'lodOptionAdvancedOPAbilities': 1
                             },
                             disabled: {
-                                'lodOptionBanningUseBanList': 0,
                                 'lodOptionAdvancedOPAbilities': 0
                             }
                         }

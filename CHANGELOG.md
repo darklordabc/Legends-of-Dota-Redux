@@ -6,9 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
+- LOD and OP bans are now combined into OP bans
+- Single Player bans have been added. These are abilities that REALLY should not be in multiplayer games, and are not balanced and never will be balanced. 
 
 ### Balance
-- 
+- Returned Imba Towers to their previous powers but added them to single player banlist.
 
 
 ## 2.4 Steam Verison
