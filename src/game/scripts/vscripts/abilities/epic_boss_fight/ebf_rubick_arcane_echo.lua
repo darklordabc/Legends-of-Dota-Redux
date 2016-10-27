@@ -158,8 +158,9 @@ if not Timers.timers then Timers:start() end
 function SpellEcho(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	if not ability:IsCooldownReady() or caster:PassivesDisabled() then return end
+	if not ability:IsCooldownReady() then return end
 	local echo = keys.event_ability
+	if echo:IsItem() then return end
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
 	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
 	local no_echo = {["shredder_chakram"] = true,
@@ -185,15 +186,22 @@ function SpellEcho(keys)
 					}
 	if echo and caster:IsRealHero() and not no_echo[ echo:GetName() ] then
 		local cooldown = ability:GetTrueCooldown()
-		if echo:GetCursorTarget() then
-			caster:SetCursorCastTarget(echo:GetCursorTarget())
-		elseif echo:GetCursorPosition() then
-			caster:SetCursorPosition(echo:GetCursorPosition())
-		else
-			caster:SetCursorTargetingNothing(true)
-		end
 		Timers:CreateTimer(delay + echo:GetChannelTime(),
                         function()
+							if keys.target then
+								caster:SetCursorCastTarget(keys.target)
+								print("target")
+							elseif echo:GetCursorPosition() then
+								local position = keys.target_points[1] + Vector(math.random(150), math.random(150), 0)
+								if (position - caster:GetAbsOrigin()):Length2D() > echo:GetCastRange() then
+									position = caster:GetAbsOrigin() + Vector(math.random(echo:GetCastRange()/2), math.random(echo:GetCastRange()/2), 0)
+								end
+								print(position, caster:GetAbsOrigin())
+								caster:SetCursorPosition(position)
+							else
+								caster:SetCursorTargetingNothing(true)
+								print("nothing")
+							end
 							local echo_effect = ParticleManager:CreateParticle("particles/rubick_spell_echo.vpcf", PATTACH_ABSORIGIN , caster)
 							ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
 							ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
