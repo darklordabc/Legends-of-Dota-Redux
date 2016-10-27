@@ -224,7 +224,15 @@ function Pregame:init()
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
     self:setOption('lodOptionMirrorHeroes', 25)
-    self:setOption('lodOptionCreepPower', 0)
+    self:setOption('lodOptionCreepPower', 0)	
+	
+	Timers:CreateTimer(function()
+		if util:isSinglePlayerMode() then
+			self:setOption('lodOptionBanningUseBanList', 0, true)
+		else
+			self:setOption('lodOptionBanningUseBanList', 1, true)
+		end
+	end, DoUniqueString('checkSinglePlayer'), 1.5)
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -1396,7 +1404,6 @@ function Pregame:processVoteData()
         if results.balancemode == 1 then
         	-- Disable Balance Mode
         	self:setOption('lodOptionBalanceMode', 0, true)
-			self:setOption('lodOptionBanningUseBanList', 1, true)
             self:setOption('lodOptionAdvancedOPAbilities', 1, true)
             self.optionVotingBalanceMode = 1
         else
@@ -1736,14 +1743,12 @@ function Pregame:initOptionSelector()
                 -- Enable balance mode bans and disable other lists
                 self:setOption('lodOptionBalanceMode', 1, true)
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 
                 return true
             elseif value == 0 then
                 -- Disable balance mode bans and renable default bans
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
-				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                 return true
             end
@@ -2136,7 +2141,7 @@ function Pregame:initOptionSelector()
 
                 -- Disable OP abilities
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-
+								
                 -- Unique Skills default
                 self:setOption('lodOptionBotsUniqueSkills', 0, true)
 
@@ -2176,13 +2181,11 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-
-
+												
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
-                    self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
@@ -2195,7 +2198,6 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
 
                     -- Turn easy mode on
                     --self:setOption('lodOptionCrazyEasymode', 1, true)
