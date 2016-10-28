@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.4 
+## 2.6 Steam Version
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Towers will not have the bot controller ability unless the game has extra tower settings. 
+
+## 2.5 Steam Version
 
 ### Bug Fixing/New Features
 - Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
@@ -14,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Added Rifle and Nether Ritual and Cluster Rockets versions to single player abilities
 
 
-## 2.4 Steam Verison
+## 2.4 
 
 ### Bug Fixing/New Features
 - Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
