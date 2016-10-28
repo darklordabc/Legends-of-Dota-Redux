@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Towers will not have the bot controller ability unless the game has extra tower settings. 
+- Disable Cyclone Trap for now because its buggy
 
 ## 2.5 Steam Version
 
