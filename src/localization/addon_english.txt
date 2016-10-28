@@ -1068,7 +1068,6 @@
 	"warning_true_random_lod_5"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_6"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
 	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
 	"warning_bristleback_bristleback" "<font color=\"#FF4949\">LoD Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\"#70EA72\">Quill Spray</font>.\n"
 	
@@ -1134,6 +1133,7 @@
 	"credit_angel_arena_night_vampire"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_revenge"          "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_rifle"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_rifle_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_roots"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_shot"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_song"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
@@ -1161,6 +1161,7 @@
 	"credit_dark_knight_dark_forces"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_lord_of_lightning_lightning_shield"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_android_cluster_rockets"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_cluster_rockets_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_serpent_queen_ball_lightning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_butcher_zombie"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_frost_lord_freezing"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
@@ -2944,6 +2945,18 @@
 	"DOTA_Tooltip_ability_angel_arena_rifle_rifle_range_tooltip"		"RIFLE RANGE:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_rifle_bonus_movespeed"		"RIFLE MOVESPEED BONUS:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_bonus_attack"				"RIFLE BONUS DAMAGE:"
+	
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP"							"Toggle Rifle OP"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_base_attack_time"		"GUN BASE ATTACK:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_range_tooltip"			"GUN RANGE:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_attack"			"%GUN ATTACK PENALTY:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_movespeed"		"GUN MOVEMENT SLOW:"
+
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_base_attack_time"		"RIFLE BASE ATTACK:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_range_tooltip"		"RIFLE RANGE:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_bonus_movespeed"		"RIFLE MOVESPEED BONUS:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"				"RIFLE BONUS DAMAGE:"
 
 	"DOTA_Tooltip_ability_angel_arena_revenge"						"Shield of Revenge"
 	"DOTA_Tooltip_ability_angel_arena_revenge_Description"			"Reduces and reflects a percentage of recieved damage."
@@ -2999,6 +3012,12 @@
 	"DOTA_Tooltip_ability_android_cluster_rockets_damage"	"ONE ROCKET DAMAGE:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
+	
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP"	"Cluster Rockets OP"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_damage"	"ONE ROCKET DAMAGE:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_projectile_count"	"ROCKETS COUNT:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_radius"	"RADIUS:"
 	
 	"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
 	"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. The barrier naturally deterioriates over time."

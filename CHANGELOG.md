@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Returned Imba Towers to their previous powers but added them to single player banlist.
+- Added Rifle and Nether Ritual and Cluster Rockets versions to single player abilities
 
 
 ## 2.4 Steam Verison
