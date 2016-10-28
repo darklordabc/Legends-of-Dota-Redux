@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.7 S
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Invoker's Perk has a maxium of 30 stacks now
+
 ## 2.6 Steam Version
 
 ### Bug Fixing/New Features
@@ -11,7 +19,7 @@ All notable changes to this project will be documented in this file.
 - Towers will not have the bot controller ability unless the game has extra tower settings. 
 - Disable Cyclone Trap for now because its buggy
 
-## 2.5 Steam Version
+## 2.5 
 
 ### Bug Fixing/New Features
 - Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
