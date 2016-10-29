@@ -5276,7 +5276,7 @@ function Pregame:fixSpawningIssues()
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                     end
-                end, DoUniqueString('addPerk'), 0.1)
+                end, DoUniqueString('addPerk'), 1)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
