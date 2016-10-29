@@ -1809,7 +1809,7 @@
 	
 	//Bot Controller
 	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot Controller"
-	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Forces bots to attack, retreat or be effected by a few different modifiers depending on the context. Is designed to help Bots deal with additional towers."
+	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Will Force Bots to attack towers if there is no nearby allied heros. Will force bots to retreat from towers with invulnerability, this is to prevent diving. Will also decripfy, stun and then teleport bots back to their base if they reach below a certain HP threshold, this is to prevent them dying due to recklessness. Bot Controller is only enabled when there is more than the default number of towers."
 	"DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"								"ASSUMING DIRECT CONTROL"
 
     

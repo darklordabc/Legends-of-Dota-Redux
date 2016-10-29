@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Invoker's Perk has a maxium of 30 stacks now
+- Having more than 1 Bash ability is now considered a troll combo
 
 ## 2.6 Steam Version
 
