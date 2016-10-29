@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 ## 2.7 S
 
 ### Bug Fixing/New Features
-- 
+- Fixed the game trying to give players their perks everytime they spawn, even when they already have it.
+- Beastmaster and CM Perk bonus will not be removed on death anymore. 
 
 ### Balance
 - Invoker's Perk has a maxium of 30 stacks now
