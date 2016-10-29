@@ -26,6 +26,10 @@ function modifier_npc_dota_hero_arc_warden_perk:OnCreated(keys)
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_arc_warden_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk:DeclareFunctions()

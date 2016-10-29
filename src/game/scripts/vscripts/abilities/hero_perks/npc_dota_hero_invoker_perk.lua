@@ -28,6 +28,10 @@ function modifier_npc_dota_hero_invoker_perk:OnCreated()
 	self.maxStacks = 30
 end
 
+function modifier_npc_dota_hero_invoker_perk:RemoveOnDeath()
+	return false
+end
+
 function modifier_npc_dota_hero_invoker_perk:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
