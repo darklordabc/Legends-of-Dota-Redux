@@ -5268,13 +5268,14 @@ function Pregame:fixSpawningIssues()
                  -- Add hero perks			
                 Timers:CreateTimer(function()
                     --print(self.perksDisabled) 
-					local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and nameTest ~= "npc_dota_hero_chen" and nameTest ~= "npc_dota_hero_storm_spirit" and nameTest ~= "npc_dota_hero_wisp" and nameTest ~= "npc_dota_hero_disruptor" then
+                    local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and nameTest ~= "npc_dota_hero_chen" and nameTest ~= "npc_dota_hero_storm_spirit" and nameTest ~= "npc_dota_hero_wisp" and nameTest ~= "npc_dota_hero_disruptor" and not spawnedUnit.hasPerk then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
                        local perkModifier = "modifier_" .. perkName
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+                       spawnedUnit.hasPerk = true
                     end
                 end, DoUniqueString('addPerk'), 1)
 
