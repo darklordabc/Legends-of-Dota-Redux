@@ -11,7 +11,7 @@ function StrafeAttack(keys)
                                   radius,
                                   DOTA_UNIT_TARGET_TEAM_ENEMY,
                                   DOTA_UNIT_TARGET_ALL,
-                                  DOTA_UNIT_TARGET_FLAG_NONE,
+                                  DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
                                   FIND_ANY_ORDER,
                                   false)
 	for _, unit in pairs( units ) do
