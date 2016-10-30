@@ -13101,7 +13101,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityTextureName"			"angel_arena_rifle"
+		"AbilityTextureName"			"angel_arena_rifle_op"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -13974,7 +13974,7 @@
 	"android_cluster_rockets_OP"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"android_cluster_rockets"
+		"AbilityTextureName"			"android_cluster_rockets_op"
 	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
