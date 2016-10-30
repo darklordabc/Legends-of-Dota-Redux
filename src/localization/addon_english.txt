@@ -3407,6 +3407,17 @@
 	"DOTA_Tooltip_modifier_strafe"							   "Trickshot"
 	"DOTA_Tooltip_modifier_strafe_Description"                 "Will auto-attack nearby units."
 	
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive"                                      "Trickshot Passive"
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_Description" "Clinkz automatically shoots arrows to the nearest target.\n\nUpgradable by Aghanim's Scepter"
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_aghanim_description" "Increases target count."
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_Lore"  "An archer great enough to defeat demons has some tricks up his sleeve."
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_duration" "DURATION:"
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_double_interval" "ATTACK RATE:"
+	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_targets_scepter"  "MAX TARGETS SCEPTER:"
+	
+	"DOTA_Tooltip_modifier_strafe_passive"							   "Trickshot Passive"
+	"DOTA_Tooltip_modifier_strafe_passive_Description"                 "Will auto-attack nearby units."
+	
 	
 	"DOTA_Tooltip_ability_ebf_underlord_expulsion"                                "Abyssal Expulsion"
 	"DOTA_Tooltip_ability_ebf_underlord_expulsion_Description"                    "The Abyssal Underlord sends out a corrupt wave that burns every unit within %search_radius% range; these burning units will share their affliction to nearby allies. Every explosion heals allies in range for half the damage value.\n\nUpgradable by Aghanim's Scepter"

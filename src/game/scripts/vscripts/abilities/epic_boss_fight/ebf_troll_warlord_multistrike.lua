@@ -165,7 +165,7 @@ function Fervor(keys)
 	local max_stacks = ability:GetLevelSpecialValueFor("max_stacks", ability_level)
 	local chance = ability:GetLevelSpecialValueFor("chance_per_stack", ability_level)
 	local duration = ability:GetSpecialValueFor("stack_duration")
-	if caster:PassivesDisabled or caster:IsIllusion() then return end
+	if caster:PassivesDisabled() or caster:IsIllusion() then return end
 	if not ability.prng then ability.prng = 0 end
 	-- Check if we have an old target
 	if caster.fervor_target then

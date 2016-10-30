@@ -18602,7 +18602,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"clinkz_strafe"
+		"AbilityTextureName"			"ebf_clinkz_trickshot"
 		"HasScepterUpgrade"				"1"
 
 		// Time		
@@ -18690,6 +18690,96 @@
 			}
 		}
 	}
+	
+	"ebf_clinkz_trickshot_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"ebf_clinkz_trickshot_passive"
+		"HasScepterUpgrade"				"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"double_interval"			"1.0 0.7 0.4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"targets_scepter"			"4"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		
+		"OnOwnerSpawned"
+        {
+            "ApplyModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target" 		"CASTER"
+			}
+        }
+		
+        "OnUpgrade"
+        {
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target"		"CASTER"
+			}
+
+            "ApplyModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target" 		"CASTER"
+			}
+        }
+
+		
+		"Modifiers"
+		{
+			"modifier_strafe_passive"
+			{
+				"OnCreated"
+				{					
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+				
+				"ThinkInterval" "%double_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+			}
+		}
+	}
+	
 	"ebf_underlord_expulsion"
 	{
 		// General
