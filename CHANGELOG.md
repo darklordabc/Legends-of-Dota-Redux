@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.8 Steam Version
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Added 17 more Aura's to Elder Titan's Perk. That should be all auras. Let us know if we missed one. Thanks to Squaboonagator for the find.
+
 ## 2.7 
 
 ### Bug Fixing/New Features
@@ -14,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Fixed another Shadow Demon Perk abuse
 - Added OP version of charged bolt, intended for single player games.
 
-## 2.6 Steam Version
+## 2.6 
 
 ### Bug Fixing/New Features
 - 
