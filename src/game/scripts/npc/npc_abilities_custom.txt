@@ -6590,9 +6590,6 @@
                 "IsHidden"          "0"
                 "IsDebuff"          "1"
             
-                "StatusEffectName"      "particle_name"        
-                "StatusEffectPriority"  "10"
-            
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armor_reduction"
