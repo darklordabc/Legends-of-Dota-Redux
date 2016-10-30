@@ -8,10 +8,15 @@ function EssenceAmp(filterTable)
     local attacker = EntIndexToHScript( attacker_index )
     local victim = EntIndexToHScript( victim_index )
     local ability = EntIndexToHScript( ability_index )
+	
+	
 	if attacker == victim or attacker:PassivesDisabled() then return filterTable end
 	local amp = attacker:FindAbilityByName("ebf_mana_fiend_essence_amp")
 	print(amp and amp:GetLevel() > 0, "ampcheck")
 	if amp and amp:GetLevel() > 0 then
+		if not amp:IsCooldownReady() then
+			return filterTable
+		end
 		local damageMult = amp:GetSpecialValueFor("crit_amp") / 100
 		local manaburn = ability:GetManaCost(-1) * (filterTable["damage"]*damageMult / (ability:GetLevel()*80))
 		local perc = amp:GetSpecialValueFor("crit_chance")
@@ -29,6 +34,7 @@ function EssenceAmp(filterTable)
 							pfx = "spell_custom"} )
 				attacker:SpendMana(manaburn, ability)
 				attacker.essenceCritPrng = 0
+				amp:StartCooldown(3)
 			else
 				attacker.essenceCritPrng = attacker.essenceCritPrng + 1
 			end
