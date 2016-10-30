@@ -1013,11 +1013,13 @@ function Ingame:checkBuybackStatus()
 end
 
 function Ingame:AddTowerBotController()
-	print("hi there")
+	
     ListenToGameEvent('game_rules_state_change', function(keys)
 
+	 
         local newState = GameRules:State_Get()
-		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		-- If Towers are default amount (3), do not use bot controller because bots can handle them
+		if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('towerCount') ~= 3 then
 			local maxPlayers = 24
 			local direBots = false
 			local radiantBots = false

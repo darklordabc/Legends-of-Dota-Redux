@@ -19,6 +19,10 @@ end
 function modifier_npc_dota_hero_bounty_hunter_perk:IsHidden()
 	return false
 end
+
+function modifier_npc_dota_hero_bounty_hunter_perk:RemoveOnDeath()
+	return false
+end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------

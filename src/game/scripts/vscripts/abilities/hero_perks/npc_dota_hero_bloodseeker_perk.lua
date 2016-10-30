@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_bloodseeker_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_bloodseeker_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bloodseeker_perk:OnCreated()
   if IsServer() then
     local cooldownReductionPercent = 20

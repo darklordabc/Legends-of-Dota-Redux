@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Invoker
---		Perk: Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice. 
+--		Perk: Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice. Caps at +30 intelligence. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_invoker_perk", "abilities/hero_perks/npc_dota_hero_invoker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -25,6 +25,11 @@ end
 function modifier_npc_dota_hero_invoker_perk:OnCreated()
 	self.abilityTable = {}
 	self.intPerAbility = 5
+	self.maxStacks = 30
+end
+
+function modifier_npc_dota_hero_invoker_perk:RemoveOnDeath()
+	return false
 end
 
 function modifier_npc_dota_hero_invoker_perk:DeclareFunctions()
@@ -45,7 +50,7 @@ function modifier_npc_dota_hero_invoker_perk:OnAbilityExecuted(params)
 				break
 			end
 		end
-		if params.unit == self:GetParent() and not castAbility and not (params.ability:IsItem() or params.ability:IsToggle()) then
+		if params.unit == self:GetParent() and not castAbility and not (params.ability:IsItem() or params.ability:IsToggle()) and self:GetStackCount() < self.maxStacks then
 			table.insert(self.abilityTable, params.ability)
 			self:SetStackCount(self:GetStackCount() + self.intPerAbility)
 		elseif castAbility then

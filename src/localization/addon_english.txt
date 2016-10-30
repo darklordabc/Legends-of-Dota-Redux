@@ -101,6 +101,7 @@
     "lodOptionBalancedCustom"                       "Custom Settings"
 
     "lodOptionPresetMutators"                       "Optional Mutators"
+    "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorFastStart"                           "Fast Start"
@@ -154,6 +155,12 @@
     "lodMutatorCreepPowerNormal"                    "Strong Creeps"
     "lodMutatorCreepPowerHigh"                      "High Creeps"
     "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
+
+    "lodMutatorAllPick"                             "All Pick"
+    "lodMutatorAllPickFast"                         "All Pick Fast"
+    "lodMutatorMirrorDraft"                         "Mirror Draft"
+    "lodMutatorAllRandom"                           "All Random"
+    "lodMutatorSingleDraft"                         "Single Draft"
 
     "lodMutatorMaxLevel1"                           "Max Level 25"
     "lodMutatorMaxLevel2"                           "Max Level 50"
@@ -250,7 +257,7 @@
     "lodOptionBanningMaxBans25"                     "25 Bans Per Player"
 
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
-    "lodOptionDesBanningUseBanList"                 "Use LoD Ban List"
+    "lodOptionDesBanningUseBanList"                 "Ban Single Player Abilities (SUPER OP)"
     "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
 	"lodOptionDesBanningBalanceMode"                "Use Points Mode Ban List"
 
@@ -413,10 +420,10 @@
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
-    "lodOptionAboutBanningUseBanList"               "Ban a predefined list of annoying abilities."
+    "lodOptionAboutBanningUseBanList"               "Ban abilities not designed for Multiplayer games. These abilities are purposely not balanced and are guaranteed to ruin a Multiplayer game."
     "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for Points mode."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
-    "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible."
+    "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible or abilities that require invis detect to counter."
     "lodOptionAboutGameSpeedStartingLevel"          "The level a player will start at. (1 - 100)\nNote: A player can not start higher than the max hero level."
     "lodOptionAboutGameSpeedMaxLevel"               "The max level a hero can become. (1 - 100)"
     "lodOptionAboutGameSpeedStartingGold"           "How much additional gold each player will start with. (25 - 100,000)"
@@ -1060,26 +1067,10 @@
 	"warning_true_random_lod_4"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_5"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_6"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_imba_tower_aegis"    "<font color=\"#FF4949\">LoD Warning:</font> Heros will not receive the bonus health, that only works on towers.\n"
-	"warning_imba_tower_essence_drain"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10. Does not work against Heros.\n"
-	"warning_imba_tower_grievous_wounds"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10. Does not work against Heros.\n"
-	"warning_imba_tower_sniper"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
-	"warning_imba_tower_fervor"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10. Does not work against Heros.\n"
-	"warning_imba_tower_machinegun"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10.\n"
-	"warning_imba_tower_split"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10. Does not work against Heros.\n"
-	"warning_imba_tower_salvo"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 10. Does not work against Heros.\n"
-	"warning_imba_tower_chrono"    "<font color=\"#FF4949\">LoD Warning:</font> Does not work against Heros.\n"
-	"warning_imba_tower_laser"    "<font color=\"#FF4949\">LoD Warning:</font> Does not work against Heros.\n"
-	"warning_imba_tower_nature"    "<font color=\"#FF4949\">LoD Warning:</font> Does not work against Heros.\n"
-	"warning_imba_tower_hex_aura"    "<font color=\"#FF4949\">LoD Warning:</font> Does not work against Heros.\n"
-	"warning_imba_tower_permabash"    "<font color=\"#FF4949\">LoD Warning:</font> Does not work against Heros.\n"
-	"warning_imba_tower_spacecow"    "<font color=\"#FF4949\">LoD Warning:</font> Does not apply damage against Heros.\n"
-	"warning_imba_tower_multihit"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15. Does not work against Heros. \n"
-	"warning_imba_tower_spell_shield"    "<font color=\"#FF4949\">LoD Warning:</font> Requires level 20.\n"
 	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
 	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
 	"warning_bristleback_bristleback" "<font color=\"#FF4949\">LoD Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\"#70EA72\">Quill Spray</font>.\n"
+	"warning_ebf_rubick_arcane_echo" "<font color=\"#FF4949\">LoD Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
 	
 		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -1143,6 +1134,7 @@
 	"credit_angel_arena_night_vampire"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_revenge"          "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_rifle"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_rifle_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_roots"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_shot"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
 	"credit_angel_arena_song"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
@@ -1170,6 +1162,7 @@
 	"credit_dark_knight_dark_forces"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_lord_of_lightning_lightning_shield"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_android_cluster_rockets"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_cluster_rockets_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_serpent_queen_ball_lightning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_butcher_zombie"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_frost_lord_freezing"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
@@ -1191,6 +1184,13 @@
 	"credit_illusionist_agility_paws"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_illusionist_mastery_of_illusions"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 	"credit_firelord_flame_strike"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"	
+	
+	"credit_ebf_rubick_arcane_echo"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_mana_fiend_essence_amp"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_clinkz_trickshot"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_underlord_expulsion"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_troll_warlord_multistrike"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_clinkz_trickshot_passive"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
 	
 				
     /////////////////
@@ -1817,7 +1817,7 @@
 	
 	//Bot Controller
 	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot Controller"
-	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Forces bots to attack, retreat or be effected by a few different modifiers depending on the context. Is designed to help Bots deal with additional towers."
+	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Will Force Bots to attack towers if there is no nearby allied heros. Will force bots to retreat from towers with invulnerability, this is to prevent diving. Will also decripfy, stun and then teleport bots back to their base if they reach below a certain HP threshold, this is to prevent them dying due to recklessness. Bot Controller is only enabled when there is more than the default number of towers."
 	"DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"								"ASSUMING DIRECT CONTROL"
 
     
@@ -2953,6 +2953,18 @@
 	"DOTA_Tooltip_ability_angel_arena_rifle_rifle_range_tooltip"		"RIFLE RANGE:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_rifle_bonus_movespeed"		"RIFLE MOVESPEED BONUS:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_bonus_attack"				"RIFLE BONUS DAMAGE:"
+	
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP"							"Toggle Rifle OP"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_base_attack_time"		"GUN BASE ATTACK:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_range_tooltip"			"GUN RANGE:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_attack"			"%GUN ATTACK PENALTY:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_movespeed"		"GUN MOVEMENT SLOW:"
+
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_base_attack_time"		"RIFLE BASE ATTACK:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_range_tooltip"		"RIFLE RANGE:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_bonus_movespeed"		"RIFLE MOVESPEED BONUS:"
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"				"RIFLE BONUS DAMAGE:"
 
 	"DOTA_Tooltip_ability_angel_arena_revenge"						"Shield of Revenge"
 	"DOTA_Tooltip_ability_angel_arena_revenge_Description"			"Reduces and reflects a percentage of recieved damage."
@@ -3008,6 +3020,12 @@
 	"DOTA_Tooltip_ability_android_cluster_rockets_damage"	"ONE ROCKET DAMAGE:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_projectile_count"	"ROCKETS COUNT:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
+	
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP"	"Cluster Rockets OP"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_damage"	"ONE ROCKET DAMAGE:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_projectile_count"	"ROCKETS COUNT:"
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_radius"	"RADIUS:"
 	
 	"DOTA_Tooltip_ability_archmage_magic_barrier"	"Magic Barrier"
 	"DOTA_Tooltip_ability_archmage_magic_barrier_Description"	"When Archmage casts a spell, he creates a barrier around him that can block damage equal to some part of mana spent on that spell. The barrier naturally deterioriates over time."

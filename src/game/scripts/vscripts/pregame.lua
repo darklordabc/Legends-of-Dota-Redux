@@ -224,7 +224,15 @@ function Pregame:init()
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
     self:setOption('lodOptionMirrorHeroes', 25)
-    self:setOption('lodOptionCreepPower', 0)
+    self:setOption('lodOptionCreepPower', 0)	
+	
+	Timers:CreateTimer(function()
+		if util:isSinglePlayerMode() then
+			self:setOption('lodOptionBanningUseBanList', 0, true)
+		else
+			self:setOption('lodOptionBanningUseBanList', 1, true)
+		end
+	end, DoUniqueString('checkSinglePlayer'), 1.5)
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -1396,7 +1404,6 @@ function Pregame:processVoteData()
         if results.balancemode == 1 then
         	-- Disable Balance Mode
         	self:setOption('lodOptionBalanceMode', 0, true)
-			self:setOption('lodOptionBanningUseBanList', 1, true)
             self:setOption('lodOptionAdvancedOPAbilities', 1, true)
             self.optionVotingBalanceMode = 1
         else
@@ -1440,13 +1447,13 @@ function Pregame:loadTrollCombos()
     self.wtfAutoBan = tempBanList.wtfAutoBan
     self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
-    self.lodBanList = tempBanList.lodBanList
+    self.SuperOP = tempBanList.SuperOP
     self.doNotRandom = tempBanList.doNotRandom
 
-    -- All OP skills should be added to the LoD ban list
-    for skillName,_ in pairs(self.OPSkillsList) do
-        self.lodBanList[skillName] = 1
-    end
+    -- All SUPER OP skills should be added to the OP ban list
+    --for skillName,_ in pairs(self.lodBanList) do
+    --    self.OPSkillsList[skillName] = 1
+    --end
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -1736,14 +1743,12 @@ function Pregame:initOptionSelector()
                 -- Enable balance mode bans and disable other lists
                 self:setOption('lodOptionBalanceMode', 1, true)
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 
                 return true
             elseif value == 0 then
                 -- Disable balance mode bans and renable default bans
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
-				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                 return true
             end
@@ -2136,7 +2141,7 @@ function Pregame:initOptionSelector()
 
                 -- Disable OP abilities
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-
+								
                 -- Unique Skills default
                 self:setOption('lodOptionBotsUniqueSkills', 0, true)
 
@@ -2176,13 +2181,11 @@ function Pregame:initOptionSelector()
 				
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-
-
+												
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
-                    self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
@@ -2195,7 +2198,6 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
 
                     -- Turn easy mode on
                     --self:setOption('lodOptionCrazyEasymode', 1, true)
@@ -2213,6 +2215,8 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
+            else
+                self:setOption('lodOptionCommonGamemode', 1)
             end
         end,
 
@@ -2703,6 +2707,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
         OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
+		OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
@@ -2798,7 +2803,7 @@ function Pregame:processOptions()
 
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
-            for abilityName,v in pairs(this.lodBanList) do
+            for abilityName,v in pairs(this.SuperOP) do
                 this:banAbility(abilityName)
             end
         end
@@ -5175,7 +5180,7 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
--- Apply fixes
+-- Apply fixes, add perks
 function Pregame:fixSpawningIssues()
     local givenBonuses = {}
     local handled = {}
@@ -5192,6 +5197,13 @@ function Pregame:fixSpawningIssues()
     local botAIModifier = {
         slark_shadow_dance = true,
         alchemist_chemical_rage = true,
+    }
+
+    local disabledPerks = {
+        npc_dota_hero_disruptor = true,
+        npc_dota_hero_chen = true,
+        npc_dota_hero_storm_spirit = true,
+        npc_dota_hero_wisp = true
     }
 
     ListenToGameEvent('npc_spawned', function(keys)
@@ -5260,18 +5272,21 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-                 -- Add hero perks			
+
+                 -- Add hero perks          
                 Timers:CreateTimer(function()
                     --print(self.perksDisabled) 
-					local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and nameTest ~= "npc_dota_hero_chen" and nameTest ~= "npc_dota_hero_storm_spirit" and nameTest ~= "npc_dota_hero_wisp" and nameTest ~= "npc_dota_hero_disruptor" then
+                    local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
                        local perkModifier = "modifier_" .. perkName
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+                       spawnedUnit.hasPerk = true
+                       print("Perk assigned")
                     end
-                end, DoUniqueString('addPerk'), 0.1)
+                end, DoUniqueString('addPerk'), 1)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end

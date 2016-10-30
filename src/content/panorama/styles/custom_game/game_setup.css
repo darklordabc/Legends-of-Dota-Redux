@@ -31,12 +31,12 @@
 }
 
 #questionYes {
-    position: -25%;
+    /*position: -25% 0% 0%;*/
 
 }
 
 #questionNo {
-    position: 25%;
+    /*position: 25% 0% 0%;*/
 
 }
 
@@ -2539,6 +2539,11 @@
     border-radius: 5px;
     border: 2px solid #626262;
     opacity: .5;
+}
+
+#optionList #mutator_lodMutatorMirrorDraft {
+    opacity: 1;
+    border-color: #FFFFFF;
 }
 
 #optionList .mutator:hover {

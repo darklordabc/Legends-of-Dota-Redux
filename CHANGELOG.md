@@ -2,6 +2,37 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.7 S
+
+### Bug Fixing/New Features
+- Fixed the game trying to give players their perks everytime they spawn, even when they already have it.
+- Beastmaster and CM Perk bonus will not be removed on death anymore. 
+
+### Balance
+- Invoker's Perk has a maxium of 30 stacks now
+- Having more than 1 Bash ability is now considered a troll combo
+
+## 2.6 Steam Version
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Towers will not have the bot controller ability unless the game has extra tower settings. 
+- Disable Cyclone Trap for now because its buggy
+
+## 2.5 
+
+### Bug Fixing/New Features
+- Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
+- LOD and OP bans are now combined into OP bans
+- Single Player bans have been added. These are abilities that REALLY should not be in multiplayer games, and are not balanced and never will be balanced. 
+
+### Balance
+- Returned Imba Towers to their previous powers but added them to single player banlist.
+- Added Rifle and Nether Ritual and Cluster Rockets versions to single player abilities
+
+
 ## 2.4 
 
 ### Bug Fixing/New Features
@@ -9,8 +40,9 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Cluster Rockets and Pocket Factory to Scientific category.
+- Increased damage reduction on rifle
 
-## 2.3 Steam Verison
+## 2.3 
 
 ### Bug Fixing/New Features
 - Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
