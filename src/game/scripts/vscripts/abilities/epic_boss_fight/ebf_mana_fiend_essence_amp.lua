@@ -12,14 +12,16 @@ function EssenceAmp(filterTable)
 	
 	if attacker == victim or attacker:PassivesDisabled() then return filterTable end
 	local amp = attacker:FindAbilityByName("ebf_mana_fiend_essence_amp")
-	print(amp and amp:GetLevel() > 0, "ampcheck")
+	--print(amp and amp:GetLevel() > 0, "ampcheck")
 	if amp and amp:GetLevel() > 0 then
-		if not amp:IsCooldownReady() then
-			return filterTable
-		end
 		local damageMult = amp:GetSpecialValueFor("crit_amp") / 100
 		local manaburn = ability:GetManaCost(-1) * (filterTable["damage"]*damageMult / (ability:GetLevel()*80))
-		local perc = amp:GetSpecialValueFor("crit_chance")
+		-- Return if the source of spell damage does not have a manacost, its probably a passive source of spell damage like radiance.
+		--print(manaburn)
+		if manaburn == 0 then
+			return filterTable
+		end
+		local perc = amp:GetSpecialValueFor("crit_chance")		
 		if attacker:GetMana() >= manaburn then
 			attacker.essenceCritPrng = attacker.essenceCritPrng or 0
 			if RollPercentage(perc-1+attacker.essenceCritPrng) then
@@ -34,7 +36,6 @@ function EssenceAmp(filterTable)
 							pfx = "spell_custom"} )
 				attacker:SpendMana(manaburn, ability)
 				attacker.essenceCritPrng = 0
-				amp:StartCooldown(3)
 			else
 				attacker.essenceCritPrng = attacker.essenceCritPrng + 1
 			end

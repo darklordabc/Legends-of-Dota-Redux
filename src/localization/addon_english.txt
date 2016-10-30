@@ -3473,8 +3473,8 @@
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
 	
-	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp"                    "Essence Amp"
-	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Description"        "Mana Fiend's abilies and Aura Spike can sometimes critically cast.\nAn Aura Spike crit will increase its damage while consuming more mana.\nAn Arcane Infusion crit will increase mana recovered by crit amount.\nA Mana Lance crit will consume no mana and its cooldown will be instantly restored."
+	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp"                    "Essence Amp Crit"
+	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Description"        "Each instance of magical damage you deal has a chance to Crit dealing extra magical damage but consuming more mana. Sources of magic damage that does not have a mana cost will not Crit."
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Note0"                "Burns mana equal to casting the ability multiple times on crit."
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Lore"                "Kel'al's core is highly unstable, surging with power occasionally."
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_crit_chance"        "%CRIT CHANCE:"
