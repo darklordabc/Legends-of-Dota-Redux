@@ -13,7 +13,7 @@ function EssenceAmp(filterTable)
 	print(amp and amp:GetLevel() > 0, "ampcheck")
 	if amp and amp:GetLevel() > 0 then
 		local damageMult = amp:GetSpecialValueFor("crit_amp") / 100
-		local manaburn = ability:GetManaCost(-1) * damageMult - ability:GetManaCost(-1)
+		local manaburn = ability:GetManaCost(-1) * (filterTable["damage"]*damageMult / (ability:GetLevel()*80))
 		local perc = amp:GetSpecialValueFor("crit_chance")
 		if attacker:GetMana() >= manaburn then
 			attacker.essenceCritPrng = attacker.essenceCritPrng or 0
