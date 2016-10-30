@@ -326,7 +326,7 @@
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
-    "lodOptionDesCrazyMulticast"                    "Multicast Madness"
+    "lodOptionDesCrazyMulticast"                    "Multicast Madness (Not Working)"
     "lodOptionDesCrazyEasymode"                     "Easy Mode"
     "lodOptionDesAdvancedHidePicks"                 "Hide Enemy Picks"
     "lodOptionDesAdvancedUniqueSkills"              "Unique Skills"
