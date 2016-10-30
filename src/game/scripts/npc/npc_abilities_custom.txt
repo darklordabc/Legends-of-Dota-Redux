@@ -4262,7 +4262,7 @@
         {
             "SpawnUnit"
             {
-                "UnitName"        "dummy_unit"
+                "UnitName"        "npc_dummy_unit"
                 "Target"         "CASTER"
                 "Duration"        "%duration"
                 "UnitCount"        "1"
@@ -6446,7 +6446,7 @@
     
             "SpawnUnit"
             {
-                "UnitName"  "dummy_unit"
+                "UnitName"  "npc_dummy_unit"
                 "UnitCount" "1"
                 "SpawnRadius"   "1"
                 "Duration"  "%duration"
