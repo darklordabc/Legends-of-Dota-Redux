@@ -4262,7 +4262,7 @@
         {
             "SpawnUnit"
             {
-                "UnitName"        "dummy_unit"
+                "UnitName"        "npc_dummy_unit"
                 "Target"         "CASTER"
                 "Duration"        "%duration"
                 "UnitCount"        "1"
@@ -4814,6 +4814,7 @@
         "AOERadius"                "%radius"
         "AbilityProcsMagicStick"        "1"
         "AnimationPlaybackRate"            "0.2"
+        "HasScepterUpgrade" 			"1"
     
         "AbilitySpecial"
         {
@@ -6446,7 +6447,7 @@
     
             "SpawnUnit"
             {
-                "UnitName"  "dummy_unit"
+                "UnitName"  "npc_dummy_unit"
                 "UnitCount" "1"
                 "SpawnRadius"   "1"
                 "Duration"  "%duration"
@@ -7015,6 +7016,7 @@
         "AbilityTextureName"                "zulf_typhoon"
         "AnimationPlaybackRate"             "0.5"
         "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade" 		"1"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -13101,7 +13103,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityTextureName"			"angel_arena_rifle"
+		"AbilityTextureName"			"angel_arena_rifle_op"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -13974,7 +13976,7 @@
 	"android_cluster_rockets_OP"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"android_cluster_rockets"
+		"AbilityTextureName"			"android_cluster_rockets_op"
 	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"

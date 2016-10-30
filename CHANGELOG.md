@@ -2,17 +2,28 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.7 S
+## 2.8 
 
 ### Bug Fixing/New Features
-- Fixed the game trying to give players their perks everytime they spawn, even when they already have it.
-- Beastmaster and CM Perk bonus will not be removed on death anymore. 
+- Fixed caching of new abilities selected by ingame hero builder
 
 ### Balance
-- Invoker's Perk has a maxium of 30 stacks now
-- Having more than 1 Bash ability is now considered a troll combo
+- Added 17 more Aura's to Elder Titan's Perk. That should be all auras. Let us know if we missed one. Thanks to Squaboonagator for the find.
+- Cyclone Trap Reenabled
 
-## 2.6 Steam Version
+## 2.7 Steam Version
+
+### Bug Fixing/New Features
+- Fixed the game trying to give players their perks every-time they spawn, even when they already have it.
+- Beast-master and CM Perk bonus will not be removed on death any-more. 
+
+### Balance
+- Invoker's Perk has a maximum of 30 stacks now
+- Having more than 1 Bash ability is now considered a troll combo
+- Fixed another Shadow Demon Perk abuse
+- Added OP version of charged bolt, intended for single player games.
+
+## 2.6 
 
 ### Bug Fixing/New Features
 - 

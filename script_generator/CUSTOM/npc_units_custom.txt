@@ -1301,7 +1301,7 @@
 		//Inventory
 		"HasInventory"                "0"
 	}
-	"dummy_unit"
+	"npc_dummy_unit"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
 	
