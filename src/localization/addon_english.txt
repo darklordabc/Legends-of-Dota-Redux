@@ -2947,7 +2947,7 @@
 	"DOTA_Tooltip_ability_angel_arena_rifle_bonus_attack"				"RIFLE BONUS DAMAGE:"
 	
 	"DOTA_Tooltip_ability_angel_arena_rifle_OP"							"Toggle Rifle OP"
-	"DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
+	"DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"				"Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash). <font color='#70EA72'>Has less movement and damage penalty.</font>"
 	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_base_attack_time"		"GUN BASE ATTACK:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_range_tooltip"			"GUN RANGE:"
 	"DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_attack"			"%GUN ATTACK PENALTY:"
@@ -3014,7 +3014,7 @@
 	"DOTA_Tooltip_ability_android_cluster_rockets_radius"	"RADIUS:"
 	
 	"DOTA_Tooltip_ability_android_cluster_rockets_OP"	"Cluster Rockets OP"
-	"DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units."
+	"DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"	"Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units. <font color='#70EA72'>Fires more rockets and does more damage per rocket.</font>"
 	"DOTA_Tooltip_ability_android_cluster_rockets_OP_damage"	"ONE ROCKET DAMAGE:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_OP_projectile_count"	"ROCKETS COUNT:"
 	"DOTA_Tooltip_ability_android_cluster_rockets_OP_radius"	"RADIUS:"
@@ -3319,7 +3319,13 @@
 	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_Description"	"Releases a swarm of electric bolts that follow the caster, damaging enemies on impact."
 	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locusts"	"LIGHTNINGS COUNT:"
 	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_locust_damage"	"DAMAGE PER COLLISION:"
-	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_duration"	"DURATION:"		
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_duration"	"DURATION:"
+
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_op"	"Charged Bolt OP"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_op_Description"	"Releases a swarm of electric bolts that follow the caster, damaging enemies on impact. <font color='#70EA72'>Does more damage per collision.</font>"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_op_locusts"	"LIGHTNINGS COUNT:"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_op_locust_damage"	"DAMAGE PER COLLISION:"
+	"DOTA_Tooltip_ability_serpent_queen_ball_lightning_op_duration"	"DURATION:"		
 	
 	"DOTA_Tooltip_modifier_locust_swarm"	"Charged Bolt"	
 	/////////

@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Invoker's Perk has a maximum of 30 stacks now
 - Having more than 1 Bash ability is now considered a troll combo
 - Fixed another Shadow Demon Perk abuse
+- Added OP version of charged bolt, intended for single player games.
 
 ## 2.6 Steam Version
 
