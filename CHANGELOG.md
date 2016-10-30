@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Added 17 more Aura's to Elder Titan's Perk. That should be all auras. Let us know if we missed one. Thanks to Squaboonagator for the find.
 - Cyclone Trap Reenabled
+- Added 6 abilities from EPIC BOSS FIGHT, including 1 single player ability. 
 
 ## 2.7 Steam Version
 

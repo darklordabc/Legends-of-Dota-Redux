@@ -1170,6 +1170,11 @@ function Ingame:FilterDamage( filterTable )
 		blocked_damage = blocked_damage + blocked
 		filterTable["damage"] = filterTable["damage"] - blocked
 	end
+	
+	if attacker:HasAbility("ebf_mana_fiend_essence_amp") then
+		local essenceAmp = require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
+		filterTable = EssenceAmp(filterTable)
+	end
 
 	if victim:HasModifier("modifier_ancient_priestess_ritual_protection") then 
 		local blocked = victim:FindModifierByName("modifier_ancient_priestess_ritual_protection"):GetBlockDamage(filterTable["damage"])
