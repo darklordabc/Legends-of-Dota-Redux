@@ -3428,6 +3428,11 @@
 	"DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_max_stacks"                    "MAX STACKS:"
 	"DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_chance_per_stack"                "%STACK CHANCE:"
 	
+	"DOTA_Tooltip_modifier_fervor_stack_datadriven"							   "Multistrike"
+	"DOTA_Tooltip_modifier_fervor_stack_datadriven_Description"                 "Each stack increases your chance to Multistrike your target."
+	
+	
+	
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo"                                     "Arcane Echo"
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
