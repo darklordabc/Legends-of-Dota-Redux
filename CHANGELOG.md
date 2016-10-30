@@ -2,15 +2,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.7 S
+## 2.7 
 
 ### Bug Fixing/New Features
-- Fixed the game trying to give players their perks everytime they spawn, even when they already have it.
-- Beastmaster and CM Perk bonus will not be removed on death anymore. 
+- Fixed the game trying to give players their perks every-time they spawn, even when they already have it.
+- Beast-master and CM Perk bonus will not be removed on death any-more. 
 
 ### Balance
-- Invoker's Perk has a maxium of 30 stacks now
+- Invoker's Perk has a maximum of 30 stacks now
 - Having more than 1 Bash ability is now considered a troll combo
+- Fixed another Shadow Demon Perk abuse
 
 ## 2.6 Steam Version
 
