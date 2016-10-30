@@ -4814,6 +4814,7 @@
         "AOERadius"                "%radius"
         "AbilityProcsMagicStick"        "1"
         "AnimationPlaybackRate"            "0.2"
+	"HasScepterUpgrade" 			"1"
     
         "AbilitySpecial"
         {
@@ -7015,6 +7016,7 @@
         "AbilityTextureName"                "zulf_typhoon"
         "AnimationPlaybackRate"             "0.5"
         "AbilityProcsMagicStick"        "1"
+	"HasScepterUpgrade" 		"1"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
