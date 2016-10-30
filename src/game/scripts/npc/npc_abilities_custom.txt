@@ -19203,5 +19203,605 @@
 			}
 		}
 	}
+	"ebf_clinkz_trickshot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"ebf_clinkz_trickshot"
+		"HasScepterUpgrade"				"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90 80 70 60"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"double_interval"			"1.4 1.0 0.7 0.4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"targets_scepter"			"4"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Clinkz.Strafe"
+				"Target" 		"CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_strafe"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_strafe"
+			{
+				"EffectName"		"particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnCreated"
+				{					
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+				
+				"ThinkInterval" "%double_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+			}
+		}
+	}
 	
+	"ebf_clinkz_trickshot_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"ebf_clinkz_trickshot_passive"
+		"HasScepterUpgrade"				"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"double_interval"			"1.0 0.7 0.4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"targets_scepter"			"4"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		
+		"OnOwnerSpawned"
+        {
+            "ApplyModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target" 		"CASTER"
+			}
+        }
+		
+        "OnUpgrade"
+        {
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target"		"CASTER"
+			}
+
+            "ApplyModifier"
+			{
+				"ModifierName"	"modifier_strafe_passive"
+				"Target" 		"CASTER"
+			}
+        }
+
+		
+		"Modifiers"
+		{
+			"modifier_strafe_passive"
+			{
+				"OnCreated"
+				{					
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+				
+				"ThinkInterval" "%double_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/epic_boss_fight/ebf_clinkz_trickshot"
+						"Function"			"StrafeAttack"
+					}
+				}
+			}
+		}
+	}
+	
+	"ebf_underlord_expulsion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"underlord_expulsion"
+		"HasScepterUpgrade"				"1"
+		
+		"precache"
+		{
+			"particle"		"particles/underlord_expulsion_debuff.vpcf"
+			"particle"		"particles/underlord_expulsion_init.vpcf"
+			"particle"		"particles/underlord_expulsion_explosion.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCooldown"				"45"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"search_radius"						"900"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_radius"					"450 600 750"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"explosion_interval"			"0.25"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_sec"				"80 120 160"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"heal_per_sec"					"40 60 80"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_duration"					"6.66"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_duration_per_aura_affected_scepter"		"0.25"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_damage_per_aura_affected_scepter"		"6 10 14"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_heal_per_aura_affected_scepter"			"3 5 7"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_underlord_expulsion_explosion_particle"
+				"Target"		"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_underlord_expulsion_explosion_particle"
+				"Target"		"CASTER"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"%search_radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+				"Action"    
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function"		"ApplyExplosion"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_underlord_expulsion_explosion_particle"
+			{
+				"IsHidden"		"1"
+				"Duration"		"0.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_aura.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%search_radius 0 0"
+						}
+					}
+				}
+			}
+			"modifier_underlord_expulsion_explosion"
+			{
+				"EffectName"	"particles/underlord_expulsion_debuff.vpcf"
+				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_aura.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%damage_radius 0 0"
+						}
+					}
+				}
+				"ThinkInterval"	"%explosion_interval"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Radius" 	"%damage_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_underlord_expulsion_explosion_damage"
+								"Target"		"TARGET"
+								"Duration"		"%explosion_interval"
+							}
+						}
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Radius" 	"%damage_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_underlord_expulsion_explosion_heal"
+								"Target"		"TARGET"
+								"Duration"		"%explosion_interval"
+							}
+						}
+					}
+				}
+			}
+			"modifier_underlord_expulsion_explosion_damage"
+			{
+				"IsHidden"		"1"
+				"Duration"		"%explosion_interval"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function"		"ExplosionDamage"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+				"ThinkInterval" "%explosion_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function"		"ExplosionDamage"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+			}
+			"modifier_underlord_expulsion_explosion_heal"
+			{
+				"IsHidden"		"1"
+				"Duration"		"%explosion_interval"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function"		"ExplosionHeal"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 150"
+							"01" "0 0 0"
+						}
+					}
+				}
+				"ThinkInterval" "%explosion_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function"		"ExplosionHeal"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+	"ebf_troll_warlord_multistrike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"troll_multistrike"
+		
+		// Casting
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stacks"			"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chance_per_stack"		"1.5 3 4.5 6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack_duration"		"10"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_fervor_datadriven"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_troll_warlord_multistrike"
+						"Function"		"Fervor"
+						"modifier"		"modifier_fervor_stack_datadriven"
+					}
+				}
+			}
+			"modifier_fervor_stack_datadriven"
+			{
+				"IsBuff"		"1"
+				"IsPurgable"	"0"
+			}
+		}
+	}
+	"ebf_rubick_arcane_echo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"rubick_spell_echo"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/rubick_spell_echo.vpcf"
+		}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 10.0 8.0 6.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+			
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"50"
+			}
+		}
+		"Modifiers"
+		{
+			"rubick_spell_echo_passive"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_rubick_arcane_echo"
+						"Function"		"SpellEcho"
+						"Target"		"POINT"
+					}
+				}
+			}
+		}
+	}
+	"ebf_mana_fiend_essence_amp"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"mana_fiend_essence_amp"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"particle"			"particles/essence_amp_crit.vpcf"	
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_chance"			"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_amp"				"160 200 240"
+			}
+		}
+	}
 }
