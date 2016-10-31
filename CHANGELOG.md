@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed SD Perk removing too many stats when selling infused raindrop
 - AA Perk hurting allies should be fixed
 - Added hint about discord chatroom
+- Fixed cheat menuing bugging when you try to use same cheat a second time
 
 
 ### Balance
