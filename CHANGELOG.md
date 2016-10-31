@@ -2,10 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.9
+## 3.0 
 
 ### Bug Fixing/New Features
+- Fixed SD Perk removing too many stats when selling infused raindrop
+
+### Balance
 - 
+
+## 2.9 Steam Version
 
 ### Balance
 - Arcane Barrage has been rebalanced.
@@ -17,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Points mode pricing tweaks
 - Armoured Centipede is no longer a channeled spell and has a lowered cooldown
 
-## 2.8 Steam Version
+## 2.8 
 
 ### Bug Fixing/New Features
 - Fixed caching of new abilities selected by ingame hero builder
