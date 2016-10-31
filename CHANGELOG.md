@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 2.8 
+## 2.9
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Arcane Barrage has been rebalanced.
+
+## 2.8 Steam Version
 
 ### Bug Fixing/New Features
 - Fixed caching of new abilities selected by ingame hero builder
@@ -11,8 +19,9 @@ All notable changes to this project will be documented in this file.
 - Added 17 more Aura's to Elder Titan's Perk. That should be all auras. Let us know if we missed one. Thanks to Squaboonagator for the find.
 - Cyclone Trap Reenabled
 - Added 6 abilities from EPIC BOSS FIGHT, including 1 single player ability. 
+- Thirst is now counted as an OP ability and cost more in balance mode until it can be fixed
 
-## 2.7 Steam Version
+## 2.7 
 
 ### Bug Fixing/New Features
 - Fixed the game trying to give players their perks every-time they spawn, even when they already have it.
