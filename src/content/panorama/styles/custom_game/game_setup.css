@@ -937,7 +937,6 @@
 
 .reviewPhaseTeam {
     flow-children: right;
-    horizontal-align: center;
 
     width: 47%;
     min-height: 324px;
@@ -960,17 +959,21 @@
     width: 100%;
 }
 
+.reviewTeamFiller {
+	width: fill-parent-flow(1);
+}
+
 #reviewTeams {
     width: 100%;
     flow-children: right;
 }
 
 #reviewRadiantTeam {
-    vertical-align: top;
+	align: left top;
 }
 
 #reviewDireTeam {
-    vertical-align: bottom;
+	align: right bottom;
 }
 
 .reviewPlayerContainer {
@@ -978,10 +981,6 @@
     
     width: 20%;
     height: 680px;
-}
-
-#reviewRadiantTeam .reviewPlayerContainer {
-    horizontal-align: right;
 }
 
 .playerBackground {
@@ -1098,18 +1097,11 @@
     }
 }
 
-#reviewRadiantTeam {
-    horizontal-align: left;
-}
-
 #reviewRadiantTeam #reviewPhasePlayerSkillContainer{
     margin-right: -20px;
     horizontal-align: right;
  }
 
-#reviewDireTeam {
-    horizontal-align: right;
-}
 
 #reviewDireTeam #reviewPhasePlayerSkillContainer{
     horizontal-align: left;
