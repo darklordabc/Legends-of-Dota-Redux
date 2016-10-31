@@ -543,7 +543,7 @@
 	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 	"hintHost"                         "You can give your host powers to another player by clicking on their name."
 	"hintUniversalShop"                         "By Default, 'Universal Shops' are enabled. This means you can buy any item from any shop and you can also pick up items from your stash from any shop."
-	
+	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
     // Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
 	"hintLifeStealer"                         "When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
@@ -567,7 +567,7 @@
 	"hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
 	"hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
 	"hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage."
-	"hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
+	"hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."	
 	"hintShadowShaman"                         "Shadow Shaman refunds the manacost of Hex spells and reduces their cooldowns by 20%."
 	"hintDoom"                         "Doom applies Break when casting Doom."
 	"hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
