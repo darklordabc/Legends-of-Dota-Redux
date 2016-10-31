@@ -94,7 +94,9 @@ function Laser( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local blind_aoe = ability:GetLevelSpecialValueFor("blind_aoe", ability_level)
 	local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
@@ -164,10 +166,10 @@ function Multishot( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-
+	if caster:PassivesDisabled() then return end
 	-- Parameters
 	local tower_range = caster:GetAttackRange() + 128
-
+	
 	-- Find nearby enemies
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, tower_range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 
@@ -189,7 +191,9 @@ function HexAura( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local hex_aoe = ability:GetLevelSpecialValueFor("hex_aoe", ability_level)
 	local hex_duration = ability:GetLevelSpecialValueFor("hex_duration", ability_level)
@@ -236,7 +240,9 @@ function ManaBurn( keys )
 	local ability_level = ability:GetLevel() - 1
 	local particle_burn = keys.particle_burn
 	local sound_burn = keys.sound_burn
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- If the target has no mana, do nothing
 	if target:GetMaxMana() <= 0 then
 		return nil
@@ -266,6 +272,8 @@ function ManaFlare( keys )
 	local particle_burn = keys.particle_burn
 	local sound_burn = keys.sound_burn
 
+	if caster:PassivesDisabled() then return end
+	
 	-- If the ability is on cooldown, do nothing
 	if not ability:IsCooldownReady() then
 		return nil
@@ -314,6 +322,8 @@ function Permabash( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
+	
+	if caster:PassivesDisabled() then return end	
 
 	-- Parameters
 	local bash_damage = ability:GetLevelSpecialValueFor("bash_damage", ability_level)
@@ -344,7 +354,9 @@ function Chronotower( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local stun_radius = ability:GetLevelSpecialValueFor("stun_radius", ability_level)
 	local stun_duration = ability:GetLevelSpecialValueFor("stun_duration", ability_level)
@@ -383,6 +395,9 @@ function GrievousWounds( keys )
 	local ability_level = ability:GetLevel() - 1
 	local modifier_debuff = keys.modifier_debuff
 	local particle_hit = keys.particle_hit
+	
+	if caster:PassivesDisabled() then return end
+
 
 	-- Parameters
 	local damage_increase = ability:GetLevelSpecialValueFor("damage_increase", ability_level)
@@ -412,6 +427,9 @@ function EssenceDrain( keys )
 	local modifier_agi = keys.modifier_agi
 	local modifier_int = keys.modifier_int
 	local modifier_stacks = keys.modifier_stacks
+	
+	if caster:PassivesDisabled() then return end
+
 
 	-- Parameters
 	local drain_per_hit = ability:GetLevelSpecialValueFor("drain_per_hit", ability_level)
@@ -482,7 +500,9 @@ function Fervor( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local modifier_fervor = keys.modifier_fervor
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local max_stacks = ability:GetLevelSpecialValueFor("max_stacks", ability_level)
 
@@ -503,6 +523,8 @@ function Berserk( keys )
 	local ability_level = ability:GetLevel() - 1
 	local modifier_berserk = keys.modifier_berserk
 
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local hp_per_stack = ability:GetLevelSpecialValueFor("hp_per_stack", ability_level)
 
@@ -520,7 +542,14 @@ function Multihit( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
-
+	
+	if not ability:IsCooldownReady() then
+		return nil
+	end
+	
+	if caster:PassivesDisabled() then return end
+	
+	
 	-- Parameters
 	local bonus_attacks = ability:GetLevelSpecialValueFor("bonus_attacks", ability_level)
 	local delay = ability:GetLevelSpecialValueFor("delay", ability_level)
@@ -530,6 +559,9 @@ function Multihit( keys )
 		Timers:CreateTimer(delay * i, function()
 			caster:PerformAttack(target, true, true, true, true, true)
 		end)
+	end
+	if caster:IsHero() then
+	ability:StartCooldown(.5)
 	end
 end
 
@@ -613,6 +645,8 @@ function Spacecow( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
+	
+	if caster:PassivesDisabled() then return end
 
 	-- Parameters
 	local knockback_damage = ability:GetLevelSpecialValueFor("knockback_damage", ability_level)
@@ -658,7 +692,9 @@ function Reality( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
+	
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local reality_aoe = ability:GetLevelSpecialValueFor("reality_aoe", ability_level)
 	local tower_loc = caster:GetAbsOrigin()
@@ -698,6 +734,8 @@ function Force( keys )
 		return nil
 	end
 
+	if caster:PassivesDisabled() then return end	
+		
 	-- Parameters
 	local force_aoe = ability:GetLevelSpecialValueFor("force_aoe", ability_level)
 	local force_distance = ability:GetLevelSpecialValueFor("force_distance", ability_level)
@@ -754,6 +792,8 @@ function Nature( keys )
 		return nil
 	end
 
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local root_radius = ability:GetLevelSpecialValueFor("root_radius", ability_level)
 	local min_creeps = ability:GetLevelSpecialValueFor("min_creeps", ability_level)
@@ -794,6 +834,8 @@ function Mindblast( keys )
 		return nil
 	end
 
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local silence_radius = ability:GetLevelSpecialValueFor("silence_radius", ability_level)
 	local tower_loc = caster:GetAbsOrigin()
@@ -828,6 +870,8 @@ function Forest( keys )
 		return nil
 	end
 
+	if caster:PassivesDisabled() then return end
+	
 	-- Parameters
 	local tree_radius = ability:GetLevelSpecialValueFor("tree_radius", ability_level)
 	local tree_duration = ability:GetLevelSpecialValueFor("tree_duration", ability_level)
@@ -855,6 +899,8 @@ function Glaives( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
+	
+	if caster:PassivesDisabled() then return end
 
 	-- Parameters
 	local knockback_damage = ability:GetLevelSpecialValueFor("knockback_damage", ability_level)
@@ -896,6 +942,9 @@ function Split( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local scepter = HasScepter(caster)
+	
+	if caster:PassivesDisabled() then return end
+	
 
 	-- Parameters
 	local split_chance = ability:GetLevelSpecialValueFor("split_chance", ability_level)
@@ -971,6 +1020,9 @@ function Cannon( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local particle_explosion = keys.particle_explosion
+	
+	if caster:PassivesDisabled() then return end
+	
 
 	-- Parameters
 	local salvo_aoe = ability:GetLevelSpecialValueFor("salvo_aoe", ability_level)
