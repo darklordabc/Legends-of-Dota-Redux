@@ -548,7 +548,7 @@ function Multihit( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
-	
+	cooldown = caster:GetSecondsPerAttack()
 	
 	-- Parameters
 	local bonus_attacks = ability:GetLevelSpecialValueFor("bonus_attacks", ability_level)
@@ -560,8 +560,9 @@ function Multihit( keys )
 			caster:PerformAttack(target, true, true, true, true, true)
 		end)
 	end
+	
 	if caster:IsHero() then
-	ability:StartCooldown(.5)
+		ability:StartCooldown(cooldown)
 	end
 end
 

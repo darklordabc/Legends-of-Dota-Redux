@@ -1071,7 +1071,7 @@
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"				"ability_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
@@ -1098,8 +1098,8 @@
 
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"100 80 60"
-	"AbilityChannelTime"			"16.0 16.0 16.0"
+	"AbilityCooldown"				"60"
+	//"AbilityChannelTime"			"16.0 16.0 16.0"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
@@ -1132,14 +1132,14 @@
 		}
 	}
 	
-	"OnChannelFinish"
-	{
-		"RunScript"
-		{
-			"ScriptFile"	"abilities/death_ward.lua"
-			"Function"		"DestroyWard"
-		}
-	}
+	//"OnChannelFinish"
+	//{
+	//	"RunScript"
+	//	{
+	//		"ScriptFile"	"abilities/death_ward.lua"
+	//		"Function"		"DestroyWard"
+	//	}
+	//}
 	
 
 	}
@@ -19314,14 +19314,9 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
 				"double_interval"			"1.0 0.7 0.4"
 			}
-			"03"
+			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"targets_scepter"			"4"

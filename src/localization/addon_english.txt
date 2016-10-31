@@ -2234,6 +2234,7 @@
 
 	"DOTA_Tooltip_ability_imba_tower_multihit"											"Combo Tower"
 	"DOTA_Tooltip_ability_imba_tower_multihit_Description"								"Attacks its target multiple times."
+	"DOTA_Tooltip_ability_imba_tower_multihit_Note0"									"Has a Cooldown equal to your current attacks per second. This is to prevent abuse."
 	"DOTA_Tooltip_ability_imba_tower_multihit_Lore"										"Quarter circle forward x2 + Heavy punch."
 	"DOTA_Tooltip_ability_imba_tower_multihit_bonus_attacks"							"BONUS ATTACKS:"
 
@@ -3438,7 +3439,6 @@
 	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_Description" "Clinkz automatically shoots arrows to the nearest target.\n\nUpgradable by Aghanim's Scepter"
 	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_aghanim_description" "Increases target count."
 	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_Lore"  "An archer great enough to defeat demons has some tricks up his sleeve."
-	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_duration" "DURATION:"
 	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_double_interval" "ATTACK RATE:"
 	"DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_targets_scepter"  "MAX TARGETS SCEPTER:"
 	

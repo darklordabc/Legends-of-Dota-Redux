@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Force tower is cheaper
 - Trickshot cost more mana and attack's range is now exactly the same attack range of hero
 - Points mode pricing tweaks
+- Armoured Centipede is no longer a channeled spell and has a lowered cooldown
 
 ## 2.8 Steam Version
 
