@@ -86,7 +86,7 @@ function perkShadowDemon(filterTable)
 							print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
 							local stacks = modifier:GetStackCount()
 							local charges = ability:GetCurrentCharges()
-							if charges == 0 then charges = 1 end
+							if charges == 0 or ability:GetAbilityName() == "item_infused_raindrop" then charges = 1 end
 							seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
 						end
 					end
@@ -108,7 +108,7 @@ function perkShadowDemon(filterTable)
 							print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
 							local stacks = modifier:GetStackCount()
 							local charges = ability:GetCurrentCharges()
-							if charges == 0 then charges = 1 end
+							if charges == 0 or ability:GetAbilityName() == "item_infused_raindrop" then charges = 1 end
 							seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
 						end
 					end
