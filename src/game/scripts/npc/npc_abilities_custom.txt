@@ -10071,7 +10071,7 @@
 		  "precache"
 		  {
 			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"      "particles/concussive_break/skywrath_mage_concussive_breakshot.vpcf"
+			"particle"      "particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf"
 			"particle"      "particles/items3_fx/silver_edge_slow.vpcf"
 		  }
 		  
