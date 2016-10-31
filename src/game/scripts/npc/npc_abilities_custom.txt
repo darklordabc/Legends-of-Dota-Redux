@@ -3648,7 +3648,7 @@
                 "IsHidden" "0"
                 "IsPurgable"    "0"
                 
-                "EffectName"    particles/true_sight/true_sight_debuff.vpcf
+                "EffectName"    "particles/true_sight/true_sight_debuff.vpcf"
                 "EffectAttachType"        "follow_overhead"
                 
                 "Aura" "truesight_aura_debuff"
