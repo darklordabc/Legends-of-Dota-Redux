@@ -12886,7 +12886,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"angel_arena_rifle"
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"60"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -12922,7 +12922,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gun_bonus_movespeed"		"-100"			
+				"gun_bonus_movespeed"		"-500"			
 			}
 			//rifle
 			"06"
