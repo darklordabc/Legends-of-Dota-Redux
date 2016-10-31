@@ -13613,10 +13613,7 @@
 	    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"     "ancient_priestess_surge_of_intelligence"
 	  
-		"MaxLevel"               "4"
-		
-	   "AbilityCooldown"        "16"
-	   "AbilityManaCost"        "120 240 360 480"
+		"MaxLevel"               "4"		
 	
 	  	// Stats
 	  	//-------------------------------------------------------------------------------------------------------------
