@@ -3594,7 +3594,7 @@
         "precache"
         {
             "particle"    "particles/true_sight/dust_of_gem.vpcf"
-            "particle"    particles/true_sight/true_sight_debuff.vpcf
+            "particle"    "particles/true_sight/true_sight_debuff.vpcf"
             "sound"        "sounds/items/dust_of_appearance.vsnd"
         }
 
