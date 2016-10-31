@@ -29,6 +29,10 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()
     self:GetCaster().position = {}
   end
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_storm_spirit_perk:RemoveOnDeath()
+	return false
+end
 
 function modifier_npc_dota_hero_storm_spirit_perk:DeclareFunctions()
   local funcs = {

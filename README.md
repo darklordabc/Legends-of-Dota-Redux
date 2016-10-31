@@ -10,6 +10,9 @@ Legends of Dota
 
 ###Steam Workshop###
  - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Legends of Dota: Redux on the steam workshop.
+ 
+###Discord Chat Room###
+ - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
 
 ###Requirements to Compile and Run###
  - Dota 2 Workshop Tools
@@ -47,7 +50,7 @@ Legends of Dota
   - If you make a call to an async function, ensure you check that the resources you want to access are still valid once the callback happens, this is usually needed when timers are used to process something on a unit after a short delay
  - Do not put credits or your name in code, the commit log will have your name, as well as the blame section of GitHub
  - Filenames are strictly lowercase. Sperate words should be seperated by an underscore (_) to increase readability, short file names should be used where possible, however, file names need to be readible and easily understandable.
- - Greentext in abilities (not including alt-text or warning texts) should accord to the following rule: We only use greentext in the tooltip, for REWORKED abilities, not for completely new ones. And greentext should only highlight what has been reworked, i.e. what is different to the reworked one and the original. [Example of correct usage.](http://imgur.com/5KWkSh5)
+ - Greentext in abilities (not including alt-text or warning texts) should accord to the following rule: We only use greentext in the tooltip, for REWORKED abilities, not for completely new ones. And greentext should only highlight what has been reworked, i.e. what is different to the reworked one and the original. [Example of correct usage.](http://imgur.com/5KWkSh5). The expcetion of green text in new abilities is when its a reworked new ability, an example of this, is the OP variety of abilities, greentext should be used to highlight the difference between the OP and normal version.
 
 ###Can I translate this into my language?###
  - Yes!

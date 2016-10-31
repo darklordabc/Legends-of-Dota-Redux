@@ -69,7 +69,7 @@ function modifier_huskar_berserkers_blood_lod:OnIntervalThink()
 		local health_perc = caster:GetHealthPercent()/100
 		local newStackCount = 1
 		
-		if caster:IsAlive() then 
+		if caster:IsAlive() and caster:PassivesDisabled() == false then 
 			-- local model_size = self.berserkers_blood_model_size
 			local hurt_health_ceiling = self.berserkers_blood_hurt_health_ceiling
 			local hurt_health_floor = self.berserkers_blood_hurt_health_floor

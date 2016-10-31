@@ -2,12 +2,162 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0 
+
+### Bug Fixing/New Features
+- Fixed SD Perk removing too many stats when selling infused raindrop
+- AA Perk hurting allies should be fixed
+
+### Balance
+- 
+
+## 2.9 Steam Version
+
+### Balance
+- Arcane Barrage has been rebalanced.
+- Toggle rifle now drastically reduce movement speed and has higher cooldown
+- Tower abilities can be passive broken, and combotower has a very small cooldown to prevent cancel attack abuse
+- Roshan bash is now a troll combo with non-ultimate illusions because it works on illusions
+- Force tower is cheaper
+- Trickshot cost more mana and attack's range is now exactly the same attack range of hero
+- Points mode pricing tweaks
+- Armoured Centipede is no longer a channeled spell and has a lowered cooldown
+
+## 2.8 
+
+### Bug Fixing/New Features
+- Fixed caching of new abilities selected by ingame hero builder
+
+### Balance
+- Added 17 more Aura's to Elder Titan's Perk. That should be all auras. Let us know if we missed one. Thanks to Squaboonagator for the find.
+- Cyclone Trap Reenabled
+- Added 6 abilities from EPIC BOSS FIGHT, including 1 single player ability. 
+- Thirst is now counted as an OP ability and cost more in balance mode until it can be fixed
+
+## 2.7 
+
+### Bug Fixing/New Features
+- Fixed the game trying to give players their perks every-time they spawn, even when they already have it.
+- Beast-master and CM Perk bonus will not be removed on death any-more. 
+
+### Balance
+- Invoker's Perk has a maximum of 30 stacks now
+- Having more than 1 Bash ability is now considered a troll combo
+- Fixed another Shadow Demon Perk abuse
+- Added OP version of charged bolt, intended for single player games.
+
+## 2.6 
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Towers will not have the bot controller ability unless the game has extra tower settings. 
+- Disable Cyclone Trap for now because its buggy
+
+## 2.5 
+
+### Bug Fixing/New Features
+- Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
+- LOD and OP bans are now combined into OP bans
+- Single Player bans have been added. These are abilities that REALLY should not be in multiplayer games, and are not balanced and never will be balanced. 
+
+### Balance
+- Returned Imba Towers to their previous powers but added them to single player banlist.
+- Added Rifle and Nether Ritual and Cluster Rockets versions to single player abilities
+
+
+## 2.4 
+
+### Bug Fixing/New Features
+- Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
+
+### Balance
+- Added Cluster Rockets and Pocket Factory to Scientific category.
+- Increased damage reduction on rifle
+
+## 2.3 
+
+### Bug Fixing/New Features
+- Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
+- Abaddon's perk is hidden if he has shield charges. Two buffs for a perk is just clutter.
+- Removed the broken player ban option vote.
+- If Balance mode is disabled in vote maps, OP abilities will be banned
+
+### Balance
+- Degen Aura rate lowered by 1%
+- Pocket Factory Goblins acquistion range increased
+- Scout Owl higher duration and automatically follows when cast
+- Stronger Creeps give 8% extra gold instead of 7% per level
+- Mastery of Deception no longer procs from hero attacks
+- Increased price of Betrayal, Tombstone and Global Break
+- Rearm (Original) is now banned on balance mode
+- The Saint's Rage no longer damages buildings
+- Betaryal and Test of Faith is now a troll combo
+
+
+## 2.2 Steam Version
+
+### Bug Fixing/New Features
+- Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
+- Fixed the constant switching back to the "Builds" page
+
+### Balance
+- Improved Portal's Castrange
+- Enabled Meepo's Perk
+- Disabled True Random abilities because they are likely causing crashes, enable OP abilities to use them.
+- Rifle has more movement speed reduction and higher cooldown
+
+## 2.1 
+
+### Bug Fixing/New Features
+- Fixed Mastery of Deception creating illusions of Roshan that drop aegis
+- Fixed another Shadow Demon Perk bug
+
+### Balance
+- Bots now get items instantly to their inventory
+
+## 2.0 
+
+### Bug Fixing/New Features
+- If the game is single player, the ingame hero builder will always be enabled
+- Extra towers now have proper names
+- Fat-O-Meter has been tweaked
+
+### Balance
+- Gave Rifle a cooldown and increased the movement slow to 40
+- The following abilities can now be broken by passive breaking abilities: Invisibility Aura, Essence Aura, Holy Book, Aftershock (Lod), Degen Aura IMBA, Mastery of Deception, The 4 "Ferocity" abilities, Int and Str Marksmanship, Berserkers Blood (Pre 6.86), Octarine Vampirism, All the IMBA tower abilities, the Essence Shifts and Fury Swipes (Lod). I probably missed a few, let me know and I'll add them.
+- Deafing Blast (Retro Dota) no longer also silences and mutes. But its duration has been increased by one second.  
+
+## 1.9 
+
+### Bug Fixing/New Features
+- Fix Shadow Demon Perk Abuse
+- Fix Phoenix Perk Abuse 
+- Rename Common Selection to Main Gamemode
+- Vicious Tower and Forest tower are disabled with bots in game. Vicisous kills them too unpredicatably and forest tower screws up their navigation
+- Fixed DragonKnight and Pudge Perk
+
+### Balance
+- Reworked Wraith King Perk
+- Holy Wrath will not hit buildings
+- Forest IMBA Ability is now a basic ability with 4 levels instead of an ult with 3 levels
+- Increased price of wave form and time walk in balance mode
+- Increased the price of a few of the new custom abilities in balance mode
+- IMBA Tower: Split, Chrono, Laser, Nature, Hex, Permabash, Multihit, Essence and Grevious wounds no longer work against Heros, if the owner is also a hero. Knockback tower will not apply damage but still knocks back. 
+- Multihit tower now has 1 second cooldown to prevent attack cancelling abuse.
+- Most Imba abilities will not work on buildings anymore.
+
 ## 1.8 
 
 ### Bug Fixing/New Features
 - Fixed Naix Perk
+- Chat Chat being unusable in menu
+- Fix some towers having mising projectiles
+### Balance
+- Bots now deal with additional towers by force attacking them
 
-## 1.7 Steam Version
+## 1.7 
 
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).

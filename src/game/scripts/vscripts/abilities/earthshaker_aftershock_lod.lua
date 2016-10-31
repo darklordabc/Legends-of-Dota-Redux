@@ -8,6 +8,9 @@ function TryAftershock(keys)
     -- Calculate how much mana to restore
     local target = keys.unit
     local ability = keys.ability
+	local caster = keys.caster
+	
+	if caster:PassivesDisabled() then return end 
 
     -- Ensure the cooldown is completed
     if not ability:IsCooldownReady() then return end

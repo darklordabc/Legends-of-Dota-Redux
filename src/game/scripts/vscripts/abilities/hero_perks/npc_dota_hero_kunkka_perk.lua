@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_kunkka_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_kunkka_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_kunkka_perk:OnCreated()

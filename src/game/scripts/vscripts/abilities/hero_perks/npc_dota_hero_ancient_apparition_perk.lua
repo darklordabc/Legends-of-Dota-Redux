@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_ancient_apparition_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_ancient_apparition_perk:IsBuff()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze", "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua", LUA_MODIFIER_MOTION_NONE )
@@ -61,7 +65,9 @@ function perkAncientApparition(filterTable)
     if caster:HasModifier("modifier_npc_dota_hero_ancient_apparition_perk") then
       if ability:HasAbilityFlag("ice") then
         local modifierDuration = filterTable["duration"]
-        parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
+	if target:GetTeamNumber() ~= caster:GetTeamNumber() then
+          parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
+	end
       end
     end  
   end

@@ -29,17 +29,18 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_meepo_perk:OnCreated(keys)
 	self.bonusPerMeepo = 5
+	self:StartIntervalThink(0.2)
 	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_meepo_perk:DeclareFunctions()
 	return { 
 	MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, 
-	MODIFIER_EVENT_ON_HERO_KILLED  
+	MODIFIER_EVENT_ON_DEATH
 	}
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_meepo_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
+function modifier_npc_dota_hero_meepo_perk:OnIntervalThink()
 	local caster = self:GetCaster()
 	local heroes = HeroList:GetAllHeroes()
 
@@ -49,18 +50,21 @@ function modifier_npc_dota_hero_meepo_perk:GetModifierTotalDamageOutgoing_Percen
 			otherMeepos = otherMeepos + 1
 		end
 	end
-	return otherMeepos * self.bonusPerMeepo
+	caster:SetModifierStackCount("modifier_npc_dota_hero_meepo_perk",ability,otherMeepos)
+	return true
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_meepo_perk:OnHeroKilled(keys)
-	local caster = self:GetCaster()
-	local heroes = HeroList:GetAllHeroes()
-
+function modifier_npc_dota_hero_meepo_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
+	return self:GetStackCount() * self.bonusPerMeepo
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_meepo_perk:OnDeath(keys)
+	local caster = self:GetParent()
 	-- returns if killed hero doesnt have meepo perk or is illusion
-	if not IsServer() or not keys.target:HasModifier("modifier_npc_dota_hero_meepo_perk") or keys.target:IsIllusion() then return true end
+	if not IsServer() or not keys.unit:HasModifier("modifier_npc_dota_hero_meepo_perk") or not keys.unit:IsRealHero() then return true end
 	
 	-- if Meepo is alive and on the same team as killed Meepo, take 25% max health as damage
-	if caster:IsAlive() and caster:IsRealHero() and caster:GetTeamNumber() == keys.target:GetTeamNumber() then
+	if caster:IsAlive() and caster:IsRealHero() and caster:GetTeamNumber() == keys.unit:GetTeamNumber() then
 		local damage = {
 			victim = caster,
 			attacker = keys.attacker,
@@ -69,7 +73,6 @@ function modifier_npc_dota_hero_meepo_perk:OnHeroKilled(keys)
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 			ability = self:GetAbility()
 		}
-		print(keys.attacker:GetName())
 		ApplyDamage( damage )
 	end
 	return true

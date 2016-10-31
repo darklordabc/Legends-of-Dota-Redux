@@ -620,7 +620,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             -- Precache
-            --precacheSkill(v)
+            skillManager:precacheSkill(v, function() return 1 end)
 
             local multV = self:GetMultiplierSkillName(v)
             if isRealHero then
@@ -756,7 +756,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             abNum = abNum + 1
 
             -- Precache
-            --precacheSkill(k)
+            skillManager:precacheSkill(k, function() return 1 end)
 
             -- Grab the real name (this was different for mult, disabled for now)
             local realAbility = k
