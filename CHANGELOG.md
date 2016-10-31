@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Fixed SD Perk removing too many stats when selling infused raindrop
+- AA Perk hurting allies should be fixed
 
 ### Balance
 - 
