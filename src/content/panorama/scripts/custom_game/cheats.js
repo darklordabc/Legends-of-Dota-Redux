@@ -130,6 +130,7 @@ function onActivate(id){
 	var command = cheat_list[cheatID].command;
 	var value = cheat_list[cheatID].value;
 	var isCustom = cheat_list[cheatID].isCustom;
+	$.Msg(value);
 	GameEvents.SendCustomGameEventToServer('lodOnCheats', {
 		command: command,
 		value: value,
@@ -137,7 +138,7 @@ function onActivate(id){
 		playerID: Players.GetLocalPlayer(),
 		status: 'ok',
 	});
-	if(value !== undefined){
+	if(value !== undefined && isCustom === undefined){
 		cheat_list[cheatID].value = !value;
 	}
 }
