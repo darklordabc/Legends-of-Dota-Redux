@@ -9,6 +9,12 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Arcane Barrage has been rebalanced.
+- Toggle rifle now drastically reduce movement speed and has higher cooldown
+- Tower abilities can be passive broken, and combotower has a very small cooldown to prevent cancel attack abuse
+- Roshan bash is now a troll combo with non-ultimate illusions because it works on illusions
+- Force tower is cheaper
+- Trickshot cost more mana and attack's range is now exactly the same attack range of hero
+- Points mode pricing tweaks
 
 ## 2.8 Steam Version
 
