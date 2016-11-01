@@ -788,7 +788,7 @@ function Pregame:actualSpawnPlayer()
 
         -- Continue actually spawning
         this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
+    end, DoUniqueString('continueSpawning'), 1)
 
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
