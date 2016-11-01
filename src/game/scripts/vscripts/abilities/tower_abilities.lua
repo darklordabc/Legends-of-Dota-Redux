@@ -870,9 +870,9 @@ function Forest( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
-
-	if caster:PassivesDisabled() then return end
 	
+	if caster:PassivesDisabled() then return end
+
 	-- Parameters
 	local tree_radius = ability:GetLevelSpecialValueFor("tree_radius", ability_level)
 	local tree_duration = ability:GetLevelSpecialValueFor("tree_duration", ability_level)
@@ -883,6 +883,11 @@ function Forest( keys )
 	-- Create a tree on a random location
 	local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(100, tree_radius)
 	CreateTempTree(tree_loc, tree_duration)
+
+	local unitsInRadius = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 256, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+	for _, unit in pairs(unitsInRadius) do
+		FindClearSpaceForUnit(unit,unit:GetAbsOrigin(),true)
+	end
 
 	-- Put the ability on cooldown
 	ability:StartCooldown(ability:GetCooldown(ability_level))
