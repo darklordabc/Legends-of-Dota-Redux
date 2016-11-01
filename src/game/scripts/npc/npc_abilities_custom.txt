@@ -19796,7 +19796,7 @@
 			}
 		}
 	}
-	"skywrath_mage_concussive_break"
+	    "skywrath_mage_concussive_break"
 		{
 		  // General
 		  //-------------------------------------------------------------------------------------------------------------
@@ -19868,7 +19868,8 @@
 		  "precache"
 		  {
 			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"      "particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf"
+			"particle"      "particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
 			"particle"      "particles/items3_fx/silver_edge_slow.vpcf"
 		  }
 		  
