@@ -7,7 +7,7 @@ function concussive_shot_seek_target( keys )
   -- Variables
   local caster = keys.caster
   local ability = keys.ability
-  local particle_name = "particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf"
+  local particle_name = "particles/units/heroes/hero_puck/puck_base_attack.vpcf"
   local radius = ability:GetLevelSpecialValueFor( "launch_radius", ability:GetLevel() - 1 )
   local speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
   local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
