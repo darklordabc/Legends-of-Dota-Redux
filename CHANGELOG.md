@@ -2,7 +2,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.0 
+## 3.1 The Return
+
+### Bug Fixing/New Features
+- Bots receiving extra levels into attribute bonus is now an optional setting (default on)
+
+
+### Balance
+- 
+
+## 3.0 Steam Version
 
 ### Bug Fixing/New Features
 - Fixed SD Perk removing too many stats when selling infused raindrop
@@ -14,7 +23,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Fixed Thirst
 
-## 2.9 Steam Version
+## 2.9 
 
 ### Balance
 - Arcane Barrage has been rebalanced.

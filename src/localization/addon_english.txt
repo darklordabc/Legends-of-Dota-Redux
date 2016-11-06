@@ -796,6 +796,9 @@
     "lodOptionUniqueDefault"                        "Use Main Setting"
     "lodOptionUniqueTeam"                           "Unique Team Skills"
     "lodOptionUniqueGlobal"                         "Unique Global Skills"
+	
+	"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
 
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."

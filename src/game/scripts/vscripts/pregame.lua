@@ -1767,7 +1767,7 @@ function Pregame:initOptionSelector()
         lodOptionBanningBlockTrollCombos = function(value)
             return value == 0 or value == 1
         end,
-
+				
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
             return value == 0 or value == 1
@@ -1932,6 +1932,11 @@ function Pregame:initOptionSelector()
             -- Valid
             return true
         end,
+		
+		-- Bots Bonus Points
+        lodOptionBotsBonusPoints = function(value)
+            return value == 0 or value == 1
+        end,
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
@@ -2082,6 +2087,9 @@ function Pregame:initOptionSelector()
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+				
+				-- Bots get bonus points by default
+                self:setOption('lodOptionBotsBonusPoints', 1, true)
 
                 -- Default, we don't ban all invisiblity
                 self:setOption('lodOptionBanningBanInvis', 0, true)
@@ -2188,6 +2196,7 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+					self:setOption('lodOptionBotsBonusPoints', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
@@ -2711,6 +2720,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
+		OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
 
         -- Enforce max level
@@ -5160,7 +5170,8 @@ function Pregame:hookBotStuff()
                 end
 
                 -- If we failed to find any skills to skill
-                if lowestAb == nil then
+                if lowestAb == nil and OptionManager:GetOption('botBonusPoints') then
+					print("bonus bot abilities are on")
                     -- Try to skill attribute bonus
                     lowestAb = hero:FindAbilityByName('attribute_bonus')
                     if lowestAb ~= nil then
@@ -5170,6 +5181,7 @@ function Pregame:hookBotStuff()
                         end
                     end
                 end
+				
 
                 -- Apply the point
                 if lowestAb ~= nil then
