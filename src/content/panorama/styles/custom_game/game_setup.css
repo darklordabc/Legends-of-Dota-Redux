@@ -650,6 +650,10 @@
     visibility: visible;
 }
 
+#option_panel_presets {
+	overflow: clip scroll;
+}
+
 #option_panel_main_lodOptionMirrorHeroes {
     visibility: collapse;
 }
@@ -2440,21 +2444,21 @@
 }
 
 #optionCategories {
-    flow-children: down;
-}
-
-#optionCategories {
-    width: 320px;
+    width: 300px;
     height: 100%;
     padding: 8px;
+
+    flow-children: down;    
 }
 
 #optionList {
     width: fill-parent-flow(1.0);
     height: 670px;
-    margin-left: 320px;
+    margin-left: 300px;
     flow-children: right;
     padding: 15px 15px 0 0;
+
+    overflow: clip scroll;
 }
 
 #mutatorPanel {
@@ -2474,10 +2478,19 @@
     border-radius: 5px;
     border: 5px solid #626262;
     width: 230px;
-    height: 170px;
+    height: width-percentage(74%);
     margin: 3px;
     text-align: center;
     opacity: .5;
+}
+
+.AspectRatio4x3 #optionList .option {
+	width: 275px;
+}
+
+.AspectRatio16x10 #optionList .option,
+.AspectRatio16x9 #optionList .option {
+	width: 237px;
 }
 
 #optionList .option.active,
@@ -2514,6 +2527,8 @@
 }
 
 #optionList  .optionImage {
+	width: 100%;
+	height: 100%;
     transition: opacity .2s ease-in-out 0.0s, blur .2s ease-in-out 0.0s;
 }
 
@@ -2695,7 +2710,7 @@
 
 .OptionButtonFancy {
     margin-top: 12px;
-    width: 285px;
+    width: 300px;
     height: 48px;
     background-color: gradient( linear, 0% 0%, 100% 0%, from( #12181acc ), to( #222f37cc ) );
     box-shadow: fill #00000044 -3px -3px 6px 6px;
@@ -2722,6 +2737,9 @@
 
 .OptionButtonGlow {
     margin-top: -14px;
+    horizontal-align: right;
+    margin-right: -14px;
+
     width: 300px;
     height: 96px;
     background-image: url("s2r://panorama/images/glows/herogridnavglow_psd.vtex");
@@ -2739,7 +2757,6 @@
     font-size: 24px;
     padding: 8px;
     horizontal-align: right;
-    margin-right: 24px;
 }
 
 .activeMenu .OptionButtonGlow {
@@ -2762,7 +2779,7 @@
     flow-children: down;
     visibility: collapse;
 
-    padding: 0 10px 0 10px;
+    padding: 0 8px 0 8px;
 }
 
 .OptionPanel.activeMenu {
