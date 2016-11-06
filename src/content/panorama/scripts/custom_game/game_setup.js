@@ -257,10 +257,10 @@ var allOptions = {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
-                    //{
-                    //    name: 'lodOptionCrazyWTF',
-                    //    about: 'lodMutatorWTF'
-                   // },                   
+                    {
+                        name: 'lodOptionCrazyWTF',
+                        about: 'lodMutatorWTF'
+                    },                   
 					{
 						name: 'lodOptionCrazyFatOMeter',
 						default: {
