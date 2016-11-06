@@ -2459,6 +2459,8 @@
 
 #mutatorPanel {
     width: 458px;
+    height: 600px;
+    overflow: clip scroll;
     flow-children: right-wrap;
 }
 
@@ -2759,6 +2761,8 @@
     height: 600px;
     flow-children: down;
     visibility: collapse;
+
+    padding: 0 10px 0 10px;
 }
 
 .OptionPanel.activeMenu {
