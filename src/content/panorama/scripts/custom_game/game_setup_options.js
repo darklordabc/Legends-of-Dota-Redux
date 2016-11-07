@@ -271,7 +271,7 @@ var basicOptions = {
                     },                  
                     {
                         about: 'lodMutatorIngameBuilder1',
-						extraInfo: 'lodOptionAboutIngameBuilder'
+						extraInfo: 'lodOptionAboutIngameBuilder',
                         default: {
                             'lodOptionIngameBuilder': 0,
                             'lodOptionIngameBuilderPenalty': 0
