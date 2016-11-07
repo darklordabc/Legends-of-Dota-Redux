@@ -235,6 +235,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
+						extaInfo: 'lodOptionAboutAdvancedUniqueSkills',
                         default: {
                             'lodMutatorUniqueSkillsOff': 0
                         },
@@ -261,6 +262,7 @@ var basicOptions = {
                    // },                   
                     {
                         name: 'lodOptionCrazyFatOMeter',
+						extraInfo: 'lodOptionAboutCrazyFatOMeter',
                         default: {
                             'lodMutatorNoFatOMeter': 0
                         },
