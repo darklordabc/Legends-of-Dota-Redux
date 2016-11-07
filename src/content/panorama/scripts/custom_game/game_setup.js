@@ -145,11 +145,7 @@ var allOptions = {
                                 'lodOptionGameSpeedTowersPerLane': 3
                             }
                         }
-                    },                    
-                    {
-                        name: 'lodOptionAdvancedCustomSkills',
-                        about: 'lodMutatorCustomSkills'
-                    },                    
+                    },                                                            
                     {
                         about: 'lodMutatorOPAbilities',
                         values: {
@@ -181,7 +177,7 @@ var allOptions = {
                             }
                         }
                     },
-                    {
+					{
                         name: 'lodOptionGameSpeedGoldTickRate',
                         default: {
                             'lodMutatorGoldTickRate1': 1
@@ -214,7 +210,11 @@ var allOptions = {
 					{
                         name: 'lodOptionGameSpeedSharedEXP',
                         about: 'lodMutatorShareEXP'
-                    },                   
+                    },
+					{
+                        name: 'lodOptionAdvancedCustomSkills',
+                        about: 'lodMutatorCustomSkills'
+                    },					
                     {
                         name: 'lodOptionBotsRadiant',
                         default: {
@@ -234,6 +234,10 @@ var allOptions = {
                             'lodMutatorBotsDire2': 5,
                             'lodMutatorBotsDire3': 10
                         }
+                    },
+					{
+                        name: 'lodOptionBotsBonusPoints',
+                        about: 'lodMutatorBotsBuff1'
                     },
 					{
                         name: 'lodOptionAdvancedUniqueSkills',
@@ -270,8 +274,8 @@ var allOptions = {
                             'lodMutatorFarmFatOMeter': 1,
 							'lodMutatorKDAFatOMeter': 2
                         }
-					},					
-                    {
+					},
+					{
                         about: 'lodMutatorIngameBuilder1',
                         default: {
                             'lodOptionIngameBuilder': 0,

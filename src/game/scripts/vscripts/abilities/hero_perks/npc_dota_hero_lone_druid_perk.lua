@@ -18,6 +18,10 @@ function modifier_npc_dota_hero_lone_druid_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lone_druid_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lone_druid_perk:IsHidden()
 	if IsClient() then
 		if not self.check then

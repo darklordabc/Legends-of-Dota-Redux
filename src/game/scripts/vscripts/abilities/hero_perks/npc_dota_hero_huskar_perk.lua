@@ -41,6 +41,10 @@ function modifier_npc_dota_hero_huskar_perk:GetModifierConstantHealthRegen()
     return 1 * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_huskar_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_huskar_perk:GetAttributes()
   return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end

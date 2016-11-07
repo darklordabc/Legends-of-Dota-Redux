@@ -16,6 +16,10 @@ function modifier_npc_dota_hero_keeper_of_the_light_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_keeper_of_the_light_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_keeper_of_the_light_perk:IsHidden()
 	return true
 end
