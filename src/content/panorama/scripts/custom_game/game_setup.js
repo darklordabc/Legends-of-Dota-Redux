@@ -2647,6 +2647,19 @@ function buildBasicOptionsCategories() {
             } else {
                 mutatorList[item.name] = optionMutator;
             }
+
+            if (item.hasOwnProperty('extraInfo')) {
+                var extraPanel = $.CreatePanel('Image', optionMutator, '');
+                extraPanel.SetImage('s2r://panorama/images/custom_game/infotooltip_png.vtex');
+                extraPanel.AddClass('mutatorExtra');
+
+                extraPanel.SetPanelEvent('onmouseover', function() {
+                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + item.extraInfo ); 
+                });
+                extraPanel.SetPanelEvent('onmouseout', function() {
+                    $.DispatchEvent( 'UIHideCustomLayoutTooltip', extraPanel, 'MutatorTooltip' );
+                });
+            }
         });
     }
 
@@ -2658,7 +2671,7 @@ function buildBasicOptionsCategories() {
             var fieldData = optionData.fields;
 
             // The panel
-            var optionPanel = $.CreatePanel('Panel', optionContainer, 'option_panel_' + optionLabelText);
+            var optionPanel = $('#gamemodesContainer');
 
             if(optionData.custom) {
                 optionPanel.AddClass('optionButtonCustomRequired');
@@ -2716,31 +2729,6 @@ function buildBasicOptionsCategories() {
                         });
 
                         mutators = fieldData[i].mutators;
-                    } else {
-                        // Create the info
-                        var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
-                        mainSlot.AddClass('optionSlotPanel');
-                        var infoLabel = $.CreatePanel('Label', mainSlot, 'option_panel_main_' + fieldName);
-                        infoLabel.text = $.Localize(info.des);
-                        infoLabel.AddClass('optionSlotPanelLabel');
-
-                        mainSlot.SetPanelEvent('onmouseover', function() {
-                            $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
-                        });
-
-                        mainSlot.SetPanelEvent('onmouseout', function() {
-                            $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
-                        });
-
-                        var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
-                        floatRightContiner.AddClass('optionsSlotPanelContainer');
-
-                        // Create stores for the newly created items
-                        var hostPanel;
-                        var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
-                        slavePanel.AddClass('optionsSlotPanelSlave');
-                        slavePanel.AddClass('optionSlotPanelLabel');
-                        slavePanel.text = 'Unknown';
                     }
                 })();
             }
@@ -2784,11 +2772,7 @@ function buildBasicOptionsCategories() {
         })(optionLabelText, basicOptions[optionLabelText]);
     }
 
-    var mutatorPanel = $.CreatePanel('Panel', optionContainer, 'mutatorPanel');
-    //var infoLabel = $.CreatePanel('Label', mutatorPanel, 'optionMutatorTitle');
-    //infoLabel.text = $.Localize('lodOptionPresetMutators');
-
-    addMutators(mutatorPanel);
+    addMutators($('#mutatorPanel'));
 
     return mutatorList;
 }
@@ -2808,7 +2792,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
         mutatorList[field].label.text = $.Localize(state);
         mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
     }
-    
+
     var checkMutators = function(field, hostPanel) {
         if(mutatorList[field]) {
             var found = true;
@@ -4409,6 +4393,15 @@ function switchOptions() {
         $('#optionAdvancedSwitcherPanel').AddClass('hide');
         $('#optionBasicSwitcherPanel').AddClass('show');           
     }
+}
+
+// Gamemodes scroller
+function gamemodesScrollLeft() {
+    $('#gamemodesContainer').ScrollToLeftEdge();
+}
+
+function gamemodesScrollRight() {
+    $('#gamemodesContainer').ScrollToRightEdge();
 }
 
 //--------------------------------------------------------------------------------------------------

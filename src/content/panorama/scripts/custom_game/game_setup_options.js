@@ -235,7 +235,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
-						extaInfo: 'lodOptionAboutAdvancedUniqueSkills',
+						extraInfo: 'lodOptionAboutAdvancedUniqueSkills',
                         default: {
                             'lodMutatorUniqueSkillsOff': 0
                         },
