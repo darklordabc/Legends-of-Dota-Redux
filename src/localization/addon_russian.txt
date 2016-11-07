@@ -60,6 +60,8 @@
     // The options menu	
     "lockOptions"                                   "Заблокировать"
     "lockTeamsFirst"                                "Перед Продолжением Заблокируйте Команды"
+    "to_advanced_options"                           "К расширенным настройкам"
+    "to_basic_options"                              "К основным настройкам"    
     "importAndExport_code"                          "Настройки"
     "importAndExport_apply"                         "Применить"
     "importAndExport_save"                          "Сохранить"
