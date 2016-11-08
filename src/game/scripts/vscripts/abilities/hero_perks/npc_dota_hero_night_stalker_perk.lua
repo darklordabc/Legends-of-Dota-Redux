@@ -16,6 +16,10 @@ function modifier_npc_dota_hero_night_stalker_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_night_stalker_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_night_stalker_perk:IsHidden()
 	return true
 end

@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_lion_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lion_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lion_perk:DeclareFunctions()
@@ -40,7 +44,7 @@ function modifier_npc_dota_hero_lion_perk:OnTakeDamage(keys)
 		local target = keys.target
 		local attacker = keys.attacker
 		if attacker == caster then
-			if ability then 
+			if ability and not ability:HasAbilityFlag("attack_modifier") then 
 				self.ability = ability 
 			else
 				self.ability = nil
@@ -58,7 +62,7 @@ function modifier_npc_dota_hero_lion_perk:OnHeroKilled(keys)
 
 		if attacker == caster and self.ability then
 			local ability = caster:FindAbilityByName(self.ability:GetName())
-			if ability then
+			if ability and not ability:HasAbilityFlag("attack_modifier") then
 				local prt = ParticleManager:CreateParticle('particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf', PATTACH_ABSORIGIN_FOLLOW, caster)
 				ParticleManager:ReleaseParticleIndex(prt)
 				-- Refunds manacost

@@ -265,37 +265,16 @@
                 "IsHidden"  "1"
                 "Passive"   "1"
                     
-                "Aura"                      "modifier_thirst_check_health_datadriven"
-                "Aura_Radius"               "%global_radius"
-                "Aura_Teams"                "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                "Aura_Types"                "DOTA_UNIT_TARGET_HERO"
-                "Aura_Flags"                "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-            }
-                
-            "modifier_thirst_check_health_datadriven"
-            {
-                "IsDebuff"      "1"
-                "IsPurgable"    "0"
-                "IsHidden"      "1"
-
-                "OnTakeDamage" 
+                "ThinkInterval"  "0.5"
+                "OnIntervalThink"
                 {
                     "RunScript"
                     {                             
                         "ScriptFile"        "abilities/bloodseeker_thirst.lua"
-                        "Function"          "AddThirst"
-                       }
-                }
-
-                "OnHealReceived" 
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"        "abilities/bloodseeker_thirst.lua"
-                        "Function"          "RemoveThirst"
+                        "Function"          "CheckThirst"
                     }
                 }
-            } 
+            }
                 
             "modifier_thirst_buff"
             {
@@ -307,9 +286,15 @@
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed_per_stack"
                 }
             }
-                
+	    
             "modifier_thirst_visual"
             {
+                "Passive"   "1"
+            }
+	    
+            "modifier_thirst_haste"
+            {
+                "IsHidden"  "1"
                 "EffectName" "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
                 "EffectAttachType" "follow_origin"
             }
