@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
 - Added scroll bar to mutators list to accomdate more mutators
+- Redesigned mutator/gamemode screen in custom maps
 
 
 ### Balance

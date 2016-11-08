@@ -60,6 +60,8 @@
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
+    "to_advanced_options"                           "To advanced options"
+    "to_basic_options"                              "To basic options"
     "importAndExport_code"                          "Settings"
     "importAndExport_apply"                         "Apply"
     "importAndExport_save"                          "Save"

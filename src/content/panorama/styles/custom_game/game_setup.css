@@ -649,8 +649,67 @@
     visibility: visible;
 }
 
-#option_panel_presets {
-	overflow: clip scroll;
+#gamemodesPanel {
+    width: 100%;
+    margin: 10px 0 10px 0;
+
+    flow-children: right;
+}
+
+.gamemodesScrollLeft {
+    width: 30px;
+    height: 100%;
+}
+
+.gamemodesScrollLeft Image {
+    width: 40px;
+    height: 40px;
+
+    align: center center;
+
+    transform: rotateZ(90deg);
+}
+
+.gamemodesScrollRight {
+    width: 30px;
+    height: 100%;
+}
+
+.gamemodesScrollRight Image {
+    width: 40px;
+    height: 40px;
+
+    align: center center;
+
+    transform: rotateZ(-90deg);
+}
+
+.gamemodesScrollLeft,
+.gamemodesScrollRight
+{
+    wash-color: #66aadd;
+
+    transition-property: wash-color;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;
+}
+
+.gamemodesScrollLeft:hover,
+.gamemodesScrollRight:hover {
+    wash-color: white;
+}
+
+#gamemodesContainer {
+    width: fill-parent-flow(1);
+    horizontal-align: center;
+
+    flow-children: right;
+    overflow: scroll clip;
+}
+
+#gamemodesContainer HorizontalScrollBar {
+    height: 0px;
 }
 
 #option_panel_main_lodOptionMirrorHeroes {
@@ -2429,13 +2488,14 @@
     width: 100%;
     max-width: 1520px;
     margin-right: 42px;
-    height: 720px;
+    height: 735px;
     margin-top: 4px;
     border-radius: 8px;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
     box-shadow: black -4px -4px 8px 8px;
     visibility: collapse;
     horizontal-align: middle;
+    flow-children: down;
 }
 
 .phase_option_selection_selected #optionSelection {
@@ -2444,35 +2504,75 @@
 
 #optionCategories {
     width: 300px;
-    height: 100%;
-    padding: 8px;
+    padding: 0 8px 0 8px;
 
     flow-children: down;    
 }
 
-#optionList {
-    width: fill-parent-flow(1.0);
-    height: 670px;
-    margin-left: 300px;
-    flow-children: right;
-    padding: 15px 15px 0 0;
+#optionsPanel {
+    width: 100%;
+    height: fill-parent-flow(1.0);
+}
 
-    overflow: clip scroll;
+#optionBasic {
+    width: 100%;
+    height: fill-parent-flow(1.0);
+    
+    padding: 8px;
+    
+    flow-children: down;
+
+    //visibility: collapse;
+
+    transition-property: opacity, transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;    
+}
+
+#optionBasic.hide {
+    transform: translateY(-30px);
+    opacity: 0;
 }
 
 #mutatorPanel {
-    width: 458px;
-    height: 600px;
+    padding: 8px;
+    
+    horizontal-align: center;
+
     overflow: clip scroll;
     flow-children: right-wrap;
 }
 
-#optionList .OptionPanel {
-    flow-children: right-wrap;
-    width: fill-parent-flow(1.0);
+#optionAdvanced {
+    width: 100%;
+    height: fill-parent-flow(1.0);
+
+    padding: 8px;
+
+    flow-children: right;
+
+    opacity: 0;
+
+    position: 0px 30px 0px;
+
+    transition-property: opacity, transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;     
+} 
+
+#optionAdvanced.show {
+    transform: translateY(-30px);
+    opacity: 1;
 }
 
-#optionList .option {
+#optionSidebar {
+    height: 100%;
+    flow-children: down;
+}
+
+#gamemodesPanel .option {
     background-color: #000000;
     border-radius: 5px;
     border: 5px solid #626262;
@@ -2483,22 +2583,26 @@
     opacity: .5;
 }
 
-.AspectRatio4x3 #optionList .option {
-	width: 275px;
+.AspectRatio4x3 #gamemodesPanel .option {
+	width: 205px;
 }
 
-.AspectRatio16x10 #optionList .option,
-.AspectRatio16x9 #optionList .option {
-	width: 237px;
+.AspectRatio5x4 #gamemodesPanel .option {
+    width: 192px;
 }
 
-#optionList .option.active,
-#optionList .mutator.active {
+.AspectRatio16x10 #gamemodesPanel .option,
+.AspectRatio16x9 #gamemodesPanel .option {
+	width: 235px;
+}
+
+#gamemodesPanel .option.active,
+#mutatorPanel .mutator.active {
     opacity: 1;
     border-color: #FFFFFF;
 }
 
-#optionList .optionDescription {
+#gamemodesPanel .optionDescription {
     text-shadow: 0 1px 5px 5.0 #00000040;
     opacity: 0;
     transition: opacity .3s ease-in-out 0.0s;
@@ -2506,12 +2610,12 @@
     padding: 15px 20px;
 }
 
-#optionList .option:hover .optionDescription {
+#gamemodesPanel .option:hover .optionDescription {
     opacity: 1;
     z-index: 1;
 }
 
-#optionList .optionLabel {
+#gamemodesPanel .optionLabel {
     margin-top: 10px;
     font-size: 20px;
     z-index: 2;
@@ -2521,17 +2625,17 @@
     transition: opacity .2s ease-in-out 0.0s;
 }
 
-#optionList .option:hover .optionLabel {
+#gamemodesPanel .option:hover .optionLabel {
     opacity: 0;
 }
 
-#optionList  .optionImage {
+#gamemodesPanel  .optionImage {
 	width: 100%;
 	height: 100%;
     transition: opacity .2s ease-in-out 0.0s, blur .2s ease-in-out 0.0s;
 }
 
-#optionList .option:hover .optionImage {
+#gamemodesPanel .option:hover .optionImage {
     opacity: .1;
     blur: gaussian(5);
 }
@@ -2540,52 +2644,64 @@
     visibility: collapse;
 }
 
-#optionList .mutator {
+#mutatorPanel .mutator {
     width: 110px;
-    height: 80px;
+    height: width-percentage(73%);
     margin: 1px;
     border-radius: 5px;
     border: 2px solid #626262;
     opacity: .5;
 }
 
-#optionList #mutator_lodMutatorMirrorDraft {
+.mutatorExtra {
+    width: 18px;
+    height: 18px;
+
+    margin: 0 5px 5px 0;
+    align: right bottom;
+}
+
+.AspectRatio4x3 #mutatorPanel .mutator {
+    width: 99px;
+}
+
+.AspectRatio16x10 #mutatorPanel .mutator {
+    width: 112px;
+}
+
+#gamemodesPanel #mutator_lodMutatorMirrorDraft {
     opacity: 1;
     border-color: #FFFFFF;
 }
 
-#optionList .mutator:hover {
+#mutatorPanel .mutator:hover {
     opacity: .7;
 }
 
-#optionList .mutator.active:hover {
+#mutatorPanel .mutator.active:hover {
     opacity: 1;
 }
 
-#optionList #optionMutatorTitle {
+#optionMutatorTitle {
     width: 223px;
-    height: 80px;
-    line-height: 60px;
     font-size: 26px;
-    margin: 0 3px 3px 0;
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
     text-align: center;
-    border-radius: 5px;
+    horizontal-align: center;
 }
 
-#optionList .mutatorLabel {
+#mutatorPanel .mutatorLabel {
     text-shadow: 0 0 3px 4.5 #000000;
     padding: 5px 7px 0 7px;
 }
 
-#optionList .mutator .circleWrapper {
+#mutatorPanel .mutator .circleWrapper {
     flow-children: right;
     z-index: 10;
     margin: 5px;
     horizontal-align: right;
 }
 
-#optionList .mutator .circle {
+#mutatorPanel .mutator .circle {
     width: 11px;
     height: 11px;
     border-radius: 5px;
@@ -2593,11 +2709,13 @@
     margin: 3px;
 }
 
-#optionList .mutator .circle.active {
+#mutatorPanel .mutator .circle.active {
     background-color: #ffffff;
 }
 
 #importAndExportRoot {
+    height: 100%;
+
     vertical-align: bottom;
     horizontal-align: left;
     margin: 8px;
@@ -2635,11 +2753,70 @@
 }
 
 #optionButtons {
-    flow-children: down;
-    horizontal-align: right;
+    width: 100%;
+    height: 80px;
+
+    padding: 8px;
     vertical-align: bottom;
-    padding: 16px;
+
     visibility: collapse;
+}
+
+#lockOptionPanel {
+    horizontal-align: right;
+    flow-children: down;
+}
+
+.optionSwitch {
+    height: 100%;
+
+    wash-color: #66aadd;
+    padding: 0 8px 0 8px;
+
+    align: center center;
+
+    margin-top: 20px;
+
+    transition-property: opacity;
+    transition-duration: 0.1s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;     
+}
+
+.optionSwitch Label,
+.optionSwitch .ExpandDownArrow {
+    letter-spacing: 2px;    
+    vertical-align: center;
+}
+
+#optionAdvancedSwitcherPanel.optionSwitch:hover,
+#optionBasicSwitcherPanel.optionSwitch:hover {
+    wash-color: white;
+}
+
+#optionAdvancedSwitcherPanel:hover .ExpandDownArrow
+{
+    transform: translateY(5px);
+}
+
+#optionBasicSwitcherPanel {
+    opacity: 0;
+}
+
+#optionAdvancedSwitcherPanel.hide {
+    opacity: 0;
+}
+
+#optionBasicSwitcherPanel.show {
+    opacity: 1;
+}
+
+#optionBasicSwitcherPanel .ExpandDownArrow {
+    transform: rotateZ(180deg);
+}
+
+#optionBasicSwitcherPanel:hover .ExpandDownArrow {
+    transform: rotateZ(180deg) translateY(-5px);
 }
 
 .phase_option_selection #optionButtons {
