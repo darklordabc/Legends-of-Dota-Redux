@@ -2,16 +2,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.0 
+## 3.1 The Return
 
 ### Bug Fixing/New Features
-- Fixed SD Perk removing too many stats when selling infused raindrop
-- AA Perk hurting allies should be fixed
+- Bots receiving extra levels into attribute bonus is now an optional setting (default on)
+- Added scroll bar to mutators list to accomdate more mutators
+
 
 ### Balance
 - 
 
-## 2.9 Steam Version
+## 3.0 Steam Version
+
+### Bug Fixing/New Features
+- Fixed SD Perk removing too many stats when selling infused raindrop
+- AA Perk hurting allies should be fixed
+- Added hint about discord chatroom
+- Fixed cheat menuing bugging when you try to use same cheat a second time
+
+
+### Balance
+- Fixed Thirst
+
+## 2.9 
 
 ### Balance
 - Arcane Barrage has been rebalanced.

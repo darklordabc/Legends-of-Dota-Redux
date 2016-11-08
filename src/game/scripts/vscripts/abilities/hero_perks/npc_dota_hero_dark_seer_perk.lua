@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_dark_seer_perk:RemoveOnDeath()
     return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dark_seer_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 

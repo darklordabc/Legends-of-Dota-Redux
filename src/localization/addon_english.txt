@@ -119,6 +119,7 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
+	"lodMutatorBotsBuff1"                           "Buff Bots"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -545,7 +546,7 @@
 	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
 	"hintHost"                         "You can give your host powers to another player by clicking on their name."
 	"hintUniversalShop"                         "By Default, 'Universal Shops' are enabled. This means you can buy any item from any shop and you can also pick up items from your stash from any shop."
-	
+	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
     // Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
 	"hintLifeStealer"                         "When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
@@ -569,7 +570,7 @@
 	"hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
 	"hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
 	"hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage."
-	"hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
+	"hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."	
 	"hintShadowShaman"                         "Shadow Shaman refunds the manacost of Hex spells and reduces their cooldowns by 20%."
 	"hintDoom"                         "Doom applies Break when casting Doom."
 	"hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
@@ -798,6 +799,9 @@
     "lodOptionUniqueDefault"                        "Use Main Setting"
     "lodOptionUniqueTeam"                           "Unique Team Skills"
     "lodOptionUniqueGlobal"                         "Unique Global Skills"
+	
+	"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
 
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."

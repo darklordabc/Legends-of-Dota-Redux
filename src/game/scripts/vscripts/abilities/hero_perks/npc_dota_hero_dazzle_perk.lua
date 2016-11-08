@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_dazzle_perk:IsHidden()
 end
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dazzle_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dazzle_perk:RemoveOnDeath()
 	return false
 end

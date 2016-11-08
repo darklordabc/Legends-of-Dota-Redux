@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_meepo_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_meepo_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_meepo_perk:RemoveOnDeath()
 	return false
 end

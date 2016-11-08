@@ -18,6 +18,10 @@ function modifier_npc_dota_hero_jakiro_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_jakiro_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk:IsHidden()
 	local caster = self:GetCaster()
 	if caster:HasModifier(self.icePerk) then return true end
