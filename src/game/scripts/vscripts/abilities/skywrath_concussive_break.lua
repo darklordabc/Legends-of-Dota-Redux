@@ -82,28 +82,28 @@ function skywrath_mage_concussive_break:OnProjectileHit(hTarget,vLocation)
 end
 
 function modifier_skywrath_mage_concussive_break_slow:DeclareFunctions()
-  if IsServer() then
+ 
     local funcs = {
       MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
     }
 
     return funcs
-  end
+  
 end
 
 function modifier_skywrath_mage_concussive_break_slow:GetModifierMoveSpeedBonus_Constant()
-  if IsServer() then
+  
     return self:GetAbility():GetSpecialValueFor("movement_speed_pct")
-  end
+  
 end
 
 function modifier_skywrath_mage_concussive_break_break:CheckState()
-  if IsServer() then
+ 
     local funcs = {
       [MODIFIER_STATE_PASSIVES_DISABLED] = true,
     }
     return funcs
-  end
+  
 end
 
 function modifier_skywrath_mage_concussive_break_break:GetEffectName()
