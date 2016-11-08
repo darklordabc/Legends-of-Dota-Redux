@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_obsidian_destroyer_perk:IsHidden()
 	return false
 end

@@ -16,6 +16,10 @@ function modifier_npc_dota_hero_faceless_void_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_faceless_void_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_faceless_void_perk:IsHidden()
 	return true
 end
