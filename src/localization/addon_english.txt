@@ -3483,11 +3483,11 @@
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_crit_chance"        "%CRIT CHANCE:"
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_crit_amp"			"%CRIT AMP:"
 
-       "DOTA_Tooltip_modifier_concussive_break_slow_datadriven"                          "Movement Speed Slowed"
-    "DOTA_Tooltip_modifier_concussive_break_slow_datadriven_Description"              "Slowed by Concussive Break"
+       "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_slow"                          "Movement Speed Slowed"
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_slow_Description"              "Slowed by Concussive Break"
 
-    "DOTA_Tooltip_modifier_concussive_break_break_datadriven"                         "Passives Disabled"
-    "DOTA_Tooltip_modifier_concussive_break_break_datadriven_Description"             "Your passives are currently disabled"
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_break"                         "Passives Disabled"
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_break_Description"             "Your passives are currently disabled"
 
 
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
