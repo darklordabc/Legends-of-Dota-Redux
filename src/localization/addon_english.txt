@@ -1093,6 +1093,7 @@
 	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_ursa_fury_swipes_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_mirana_starfall_lod"           "<font color=\"#7D7D7D\">Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
+	"credit_skywrath_mage_concussive_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_cherub_sleep_cloud"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_synthesis"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_explosive_spore"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -3488,6 +3489,26 @@
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Lore"                "Kel'al's core is highly unstable, surging with power occasionally."
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_crit_chance"        "%CRIT CHANCE:"
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_crit_amp"			"%CRIT AMP:"
+
+       "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_slow"                          "Movement Speed Slowed"
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_slow_Description"              "Slowed by Concussive Break"
+
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_break"                         "Passives Disabled"
+    "DOTA_Tooltip_modifier_skywrath_mage_concussive_break_break_Description"             "Your passives are currently disabled"
+
+
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect."
+
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Lore"            "Rivers know this: there is no hurry. We shall get there some day."
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note0"         "Does not work when no heroes are in range or heroes are in fog."
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note1"         "Provides 400 vision around the projectile, and reveals the target area for 3.34 seconds upon impact."
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note2"         "Concussive Shot cannot be disjointed."
+
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_launch_radius"               "SHOT RANGE:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"          "%SLOW:"
 	
 			
 }

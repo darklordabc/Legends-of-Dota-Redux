@@ -19781,4 +19781,90 @@
 			}
 		}
 	}
+	    "skywrath_mage_concussive_break"
+		{
+		  // General
+		  //-------------------------------------------------------------------------------------------------------------
+		  "BaseClass"       "ability_lua"
+		  "ScriptFile"	"abilities/skywrath_concussive_break.lua"
+		  "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		  
+		  "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+
+		  "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+		  "FightRecapLevel"       "1"
+		  "AbilityTextureName"      "skywrath_mage_concussive_break"
+
+		  // Casting
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+		  "AbilityCastRange"        "1600"
+		  
+		  // Time   
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityCooldown"       "18.0 16.0 14.0 12.0"
+
+
+		  // Cost
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilityManaCost"       "95 95 95 95" 
+
+
+		  // Special
+		  //-------------------------------------------------------------------------------------------------------------
+		  "AbilitySpecial"
+		  { 
+			"01"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "launch_radius"   "1600"
+			}
+			"02"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "slow_radius"   "250"
+			}
+			"03"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "speed"       "800 800 800 800"
+			}
+			"04"
+			{
+			  "var_type"      "FIELD_FLOAT"
+			  "duration"   "4.0"
+			}
+			"05"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "shot_vision"   "400"
+			}
+			"06"
+			{
+			  "var_type"      "FIELD_INTEGER"
+			  "movement_speed_pct"  "-30 -35 -40 -45"
+			
+			}
+		  }
+		  
+		  // Data driven
+		  //------------------------------------------------------------------------------------------------------------- 
+		  "precache"
+		  {
+			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"      "particles/units/heroes/hero_puck/puck_base_attack.vpcf"
+			"particle"		"particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf"
+			"particle"		"particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break_projectile.vpcf"
+			"particle"		"particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break_projectile_warmup.vpcf"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
+
+			"particle"      "particles/items3_fx/silver_edge_slow.vpcf"
+		  }
+		  
+		}
+
+		  
+		  
 }
