@@ -1,5 +1,7 @@
 local Debug = {}
 
+require('lib/util_aar')
+
 -- Init debug functions
 function Debug:init()
     -- Only allow init once
@@ -9,6 +11,17 @@ function Debug:init()
 
     -- copy self into global scope
     _G.Debug = self
+
+    -- Debug command for debugging, this command will only work for Ash47
+    Convars:RegisterCommand('test_aar_duel', function(...)
+        local ply = Convars:GetCommandClient()
+        if not ply then return end
+        local playerID = ply:GetPlayerID()
+
+        local hero = PlayerResource:GetPlayer(playerID):GetAssignedHero()
+
+        initDuel(hero)
+    end, 'test', 0)
 
     -- Debug command for debugging, this command will only work for Ash47
     Convars:RegisterCommand('lua_exec', function(...)
