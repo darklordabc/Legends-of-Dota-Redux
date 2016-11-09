@@ -8,10 +8,12 @@ function initDuel(hero)
 
 	Timers:CreateTimer(function()
     	if not isPointInsidePolygon(hero:GetAbsOrigin(), AAR_BIG_ARENA) then
-    		FindClearSpaceForUnit(hero,getMidPoint( AAR_BIG_ARENA ),true)
+    		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( AAR_BIG_ARENA ),hero),true)
+    	else
+    		hero.oldArenaPos = hero:GetAbsOrigin()
     	end
-        return 1.0
-    end, 'duel_timer', 1.0)
+        return 0.5
+    end, 'duel_timer', 0.5)
 
     spawnEntitiesAlongPath( "models/props_rock/badside_rocks002.vmdl", AAR_BIG_ARENA )
 end
@@ -25,8 +27,10 @@ function spawnEntitiesAlongPath( model, path )
 		local distance = (path[j] - path[i]):Length2D()
 
 		for x=0,distance,128 do
+			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
-			obstacle:SetAbsOrigin(GetGroundPosition(path[j] + (direction * x),obstacle))
+			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
+			obstacle:SetAbsOrigin(pos)
 			obstacle:SetModelScale(4.0)
 		end
 
