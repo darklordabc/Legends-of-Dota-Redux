@@ -7,10 +7,15 @@ modifier_tribune = class({})
 
 function modifier_tribune:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION
 	}
  
 	return funcs
+end
+
+function modifier_tribune:GetOverrideAnimation()
+	return ACT_DOTA_VICTORY
 end
 
 function modifier_tribune:GetDisableHealing()
@@ -67,6 +72,7 @@ local duel_dire_heroes = {}
 local duel_end_callback
 local duel_victory_team = 0
 temp_entities = {}
+winners = nil
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
@@ -536,9 +542,19 @@ function removeHeroesFromDuel(heroes_table)
                     if x:IsAlive() then
                         x:SetAbsOrigin(point)
                         x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
+                        if x:GetTeamNumber() == winners then
+                        	-- x:AddNewModifier(caster,nil,"modifier_tribune_win",{duration = 4})
+                        	x:StartGesture(ACT_DOTA_VICTORY)
+                        else
+                        	-- x:AddNewModifier(caster,nil,"modifier_tribune_lose",{duration = 4})
+                        	x:StartGesture(ACT_DOTA_DEFEAT)
+                        end
                         local t = 0
                         Timers:CreateTimer(function()
-                        	if t > 4 then return end
+                        	if t > 4 then 
+                        		x:RemoveGesture(ACT_DOTA_DEFEAT)
+                        		x:RemoveGesture(ACT_DOTA_VICTORY)
+                        	end
 					    	x:SetAbsOrigin(point)
 					    	t = t + 0.03
 					    	return 0.03
@@ -604,12 +620,14 @@ function toTribune(hero)
         for _, x in pairs(tribune_points[current_arena].radiant) do
         	FindClearSpaceForUnit(hero,x,true)
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
+            hero:StartGesture(ACT_DOTA_VICTORY)
             return
         end
     else
         for _, x in pairs(tribune_points[current_arena].dire) do
             FindClearSpaceForUnit(hero,x,true)
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
+            hero:StartGesture(ACT_DOTA_VICTORY)
             return
         end
     end
@@ -632,6 +650,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 	if not duel_active then return end
     duel_active = false
     if radiant_heroes and dire_heroes then
+    	winners = duel_victory_team
         if duel_victory_team ~= -1 then
             removeHeroesFromDuel(radiant_heroes)
             removeHeroesFromDuel(dire_heroes)
