@@ -516,6 +516,14 @@ function removeHeroesFromDuel(heroes_table)
                 if point then
                     if x:IsAlive() then
                         x:SetAbsOrigin(point)
+                        x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
+                        local t = 0
+                        Timers:CreateTimer(function()
+                        	if t > 4 then return end
+					    	x:SetAbsOrigin(point)
+					    	t = t + 0.03
+					    	return 0.03
+					    end, DoUniqueString("duel_end_point"), 0.03)
                     end
                     x.duel_old_point = nil
                 else
