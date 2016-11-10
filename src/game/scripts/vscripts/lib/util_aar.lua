@@ -58,10 +58,11 @@ function modifier_duel_out_of_game:CheckState()
 	return state
 end
 
-DUEL_STATE = false
+DUEL_INTERVAL = 300
+DUEL_NOBODY_WINS = 60
 
-local init
-local duel_active = false
+duel_active = false
+
 local duel_interval = 300
 local duel_draw_time = 120
 local duel_count = 0
@@ -401,7 +402,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         -- Timers:CreateTimer(function()
         --     endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
         -- 	return nil
-        -- end, "duel_check_id" .. x:GetPlayerOwnerID(), 60)
+        -- end, "duel_check_id" .. x:GetPlayerOwnerID(), DUEL_NOBODY_WINS)
 
         cur = cur + 1
         if cur >= max then cur = 1 end
@@ -944,9 +945,8 @@ function initDuel()
 	  		end
 		end
 	end
-	print("Asd")
-	print(#direHeroes, #radiantHeroes)
-	startDuel(radiantHeroes, direHeroes, #radiantHeroes, 60, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
+
+	startDuel(radiantHeroes, direHeroes, #radiantHeroes, DUEL_NOBODY_WINS, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		-- onDuelEnd(winner_side)
 	end, AAR_SMALL_ARENA)
 end
@@ -993,7 +993,7 @@ function spawnEntitiesAlongPath( model, path )
 			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
-			CreateTempTree(pos, 60)
+			CreateTempTree(pos, DUEL_NOBODY_WINS)
 			obstacle:SetAbsOrigin(pos)
 			obstacle:SetModelScale(2.0)
 
@@ -1042,7 +1042,7 @@ function spawnEntitiesAlongPath( model, path )
 					end
 
 					if exists == false then
-						CreateTempTree(pos, 60)
+						CreateTempTree(pos, DUEL_NOBODY_WINS)
 
 						local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
@@ -1156,4 +1156,43 @@ function resetAllAbilitiesCooldown(unit, item_table)
             end
         end
     end
+end
+
+function sendEventTimer(text, time)
+	local t = time
+    local minutes = math.floor(t / DUEL_NOBODY_WINS)
+    local seconds = t - (minutes * DUEL_NOBODY_WINS)
+    local m10 = math.floor(minutes / 10)
+    local m01 = minutes - (m10 * 10)
+    local s10 = math.floor(seconds / 10)
+    local s01 = seconds - (s10 * 10)
+    local timer_text = m10 .. m01 .. ":" .. s10 .. s01
+
+    local text_color = "#FFFFFF"
+    if time < 16 then
+    	text_color = "#FF0000"
+    end
+
+    local data = 
+    {
+    	string = text,
+    	time_string = timer_text,
+    	color = text_color,
+	}
+    --CustomGameEventManager:Send_ServerToAllClients( "duel_text_update", data )
+    CustomGameEventManager:Send_ServerToTeam( DOTA_TEAM_GOODGUYS, "duel_text_update", data )
+    CustomGameEventManager:Send_ServerToTeam( DOTA_TEAM_BADGUYS, "duel_text_update", data )
+
+end
+
+function customAttension(text, time)
+	local data = {
+		string = text
+	}
+	CustomGameEventManager:Send_ServerToAllClients( "attension_text", data )
+
+    Timers:CreateTimer(function()
+    	CustomGameEventManager:Send_ServerToAllClients( "attension_close", nil )
+		return nil 
+    end, DoUniqueString(text), time)
 end

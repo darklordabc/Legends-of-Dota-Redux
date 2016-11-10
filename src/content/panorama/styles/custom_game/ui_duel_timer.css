@@ -1,0 +1,59 @@
+ .TeamOverlay
+{
+    width: 100%;
+    height: 100%;
+}
+
+#KillLimit
+{
+	margin-top:0.6%;
+	margin-right:10%;
+	flow-children: none;
+	horizontal-align: right;
+	vertical-align: top;
+}
+
+#KillLimit_text
+{
+	color: #FFFFFF;
+	font-size: 28px;
+	horizontal-align: center;
+}
+#Block
+{
+
+	flow-children: none;
+	width: 230px;
+	height: 50px;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 1.5%;
+	margin-bottom:26.7%;
+	background-image: url( "file://{images}/custom_game/ui_timer.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100% 100%;
+}
+#Attension
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top:80px;
+	color: #FF0000;
+	font-size: 34px;
+}
+
+#DuelTextBlock
+{
+    horizontal-align: left;
+	flow-children: none;
+	margin-bottom: -30%;
+	margin-top:8px;
+	margin-left:4px;
+	vertical-align: center;
+	horizontal-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 3px 5px 5px black;
+}

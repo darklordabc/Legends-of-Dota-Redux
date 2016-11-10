@@ -383,7 +383,23 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            }
+            },
+            {
+                name: 'lodOptionDuels',
+                des: 'lodOptionDesDuels',
+                about: 'lodOptionAboutDuels',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     },
 

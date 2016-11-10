@@ -12,6 +12,8 @@ local Debug = require('lod_debug')              -- Debug library with helper fun
 local challenge = require('challenge')
 local ingame = require('ingame')
 
+require('lib/util_aar')
+
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -1764,6 +1766,11 @@ function Pregame:initOptionSelector()
         end,
 
         -- Common block troll combos
+        lodOptionDuels = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
             return value == 0 or value == 1
         end,
@@ -2706,6 +2713,7 @@ function Pregame:processOptions()
 
     local status,err = pcall(function()
         -- Push settings externally where possible
+        OptionManager:SetOption('duels', this.optionStore['lodOptionDuels'])
         OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
         OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
         OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
@@ -2858,6 +2866,7 @@ function Pregame:processOptions()
 			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
 			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
 			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+                    ['Duels'] = this.optionStore['lodOptionDuels'],
                     ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
                     ['Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
 			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
@@ -5418,6 +5427,52 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             WAVE = WAVE + 1
             return 30.0
         end, 'waves', 0.0)
+
+        if OptionManager:GetOption('duels') == 1 then
+            Timers:CreateTimer(function()
+                customAttension("#duel_10_sec_to_begin", 5)
+
+                Timers:CreateTimer(function()
+                    initDuel()
+                end, 'start_duel', 10)
+
+                Timers:CreateTimer(function()
+                    if duel_active then
+                        customAttension("#duel_10_sec_to_end", 5)
+                    end
+                end, 'waves', DUEL_NOBODY_WINS)
+
+                local next_tick = 10
+
+                Timers:CreateTimer(function()
+                    if duel_active == true then 
+                        CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+                        return
+                    else 
+                        sendEventTimer( "#duel_next_duel", next_tick)
+                    end
+
+                    next_tick = next_tick - 1
+                    return 1.0
+                end, 'duel_countdown_next', 0)
+
+                local draw_tick = 10
+
+                Timers:CreateTimer(function()
+                    if duel_active ~= true then
+                        CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+                        return
+                    else
+                        sendEventTimer( "#duel_nobody_wins", draw_tick)
+                    end
+
+                    draw_tick = draw_tick - 1
+                    return 1.0
+                end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
+
+                return DUEL_INTERVAL - 10
+            end, 'main_duel_timer', DUEL_INTERVAL - 10)
+        end
     end
 end, nil)
 

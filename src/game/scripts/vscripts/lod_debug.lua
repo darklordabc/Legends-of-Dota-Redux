@@ -1,6 +1,6 @@
 local Debug = {}
 
-require('lib/util_aar')
+-- require('lib/util_aar')
 
 -- Init debug functions
 function Debug:init()
