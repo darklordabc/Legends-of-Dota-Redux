@@ -376,6 +376,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x:RemoveModifierByName("modifier_dazzle_weave_armor_debuff")
         x:RemoveModifierByName("modifier_life_stealer_infest")
         x:RemoveModifierByName("modifier_maledict")
+        x:RemoveModifierByName("modifier_bloodseeker_rupture")
 
 		Timers:CreateTimer(function()
 			if not duel_active or not x:IsAlive() then
@@ -488,6 +489,24 @@ function removeHeroesFromDuel(heroes_table)
                     x:RemoveModifierByName("modifier_huskar_burning_spear_counter")
                 end
                 x:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
+
+		        while(x:HasModifier("modifier_huskar_burning_spear_counter")) do
+		            x:RemoveModifierByName("modifier_huskar_burning_spear_counter")
+		        end
+		 
+		        while(x:HasModifier("modifier_razor_eye_of_the_storm")) do
+		            x:RemoveModifierByName("modifier_razor_eye_of_the_storm")
+		        end
+		       
+		        x:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
+		        x:RemoveModifierByName("modifier_kings_bar_magic_immune_active")
+		        x:RemoveModifierByName("modifier_black_king_bar_immune")
+		        x:RemoveModifierByName("modifier_venomancer_poison_nova")
+		        x:RemoveModifierByName("modifier_dazzle_weave_armor")
+		        x:RemoveModifierByName("modifier_dazzle_weave_armor_debuff")
+		        x:RemoveModifierByName("modifier_life_stealer_infest")
+		        x:RemoveModifierByName("modifier_maledict")
+		        x:RemoveModifierByName("modifier_bloodseeker_rupture")
  
                 local point = x.duel_old_point
                 if not point then
