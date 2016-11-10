@@ -34,7 +34,7 @@
   end
 
   function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
-    if IsServer() then
+    --if IsServer() then
       local hero = self:GetCaster()
       local target = keys.target
       local ability = keys.ability
@@ -46,8 +46,9 @@
         if not target.chenAbilityCount then target.chenAbilityCount = 0 end
         if not target.chenAbilityTable then target.chenAbilityTable = {} end
 
-        if target:GetAbilityCount() == 1 or (target.chenAbilityCount ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
+        if target.chenAbilityCount == 0 or (target:GetAbilityCount() ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
           target.chenAbilityCount = target.chenAbilityCount +1
+          print("ChenPerkIF")
           while boolMana == false and boolAllowActive == false do
             ::LoopAgain::
             local randomability = GetRandomAbilityFromListForPerk("chen_creep_abilities")
@@ -75,25 +76,32 @@
             
           end
         else -- Pick a random ability to upgrade
+
           local random = RandomInt(1,target.chenAbilityCount)
           local boolMaxedOut = false
-
-          for i=1,6 do
-            if target.chenAbilityTable[i]:GetLevel() ~= target.chenAbilityTable[i]:GetMaxLevel() then
-              local boolMaxedOut = false
+          for k,v in pairs(target.chenAbilityTable) do
+            if v:GetLevel() ~= v:GetMaxLevel() then
+              boolMaxedOut = false
               break
             else
-              local boolMaxedOut = true
+              boolMaxedOut = true
             end
           end
 
           local tempAbility = target.chenAbilityTable[random]
-          while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() and boolMaxedOut == false do
-            local random = RandomInt(1,target.chenAbilityCount)
+          
+          local stop = 1
+          while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() and boolMaxedOut == false and stop < 20 do
+            stop = stop +1
+            random = RandomInt(1,target.chenAbilityCount)
+            tempAbility = target.chenAbilityTable[random]
           end
-          tempAbility:UpgradeAbility(true)
+          if stop < 20 then
+            tempAbility:UpgradeAbility(true)
+          end
+
         end
       end
-    end
+    --end
   end
     
