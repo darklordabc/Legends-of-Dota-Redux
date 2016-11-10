@@ -349,6 +349,16 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x:SetHealth(9999999)
         x:SetMana(9999999)
         x:Purge(true, true, false, true, false )
+
+        local ents = Entities:FindAllInSphere(Vector(), 100000)
+
+        for k,v in pairs(ents) do
+        	if v.GetOwnerEntity and IsValidEntity(v:GetOwnerEntity()) and v:GetOwnerEntity():entindex() == x:entindex() then
+        		pcall(function (  )
+        			v:Kill(nil, nil)
+        		end)
+        	end
+        end
        
         while(x:HasModifier("modifier_huskar_burning_spear_counter")) do
             x:RemoveModifierByName("modifier_huskar_burning_spear_counter")
@@ -764,6 +774,7 @@ end
 
 function deathListener( event )
     if not duel_active then return end
+    if not event.entindex_attacker then return end
     local killedUnit = EntIndexToHScript( event.entindex_killed )
     local killedTeam = killedUnit:GetTeam()
     local hero = EntIndexToHScript( event.entindex_attacker )
