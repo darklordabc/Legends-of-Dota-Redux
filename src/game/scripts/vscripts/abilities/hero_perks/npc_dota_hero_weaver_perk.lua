@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Weaver
---		Perk: If Weaver has Time Lapse, he will automatically cast it upon taking fatal damage. 
+--		Perk: Once level 6, Weaver will automatically cast Time Lapse upon taking fatal damage. Has a separate 120 second cooldown. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_weaver_perk", "abilities/hero_perks/npc_dota_hero_weaver_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_weaver_perk == nil then npc_dota_hero_weaver_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_weaver_perk				
+--		Modifier: modifier_npc_dota_hero_weaver_perk
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_weaver_perk == nil then modifier_npc_dota_hero_weaver_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -35,7 +35,31 @@ function modifier_npc_dota_hero_weaver_perk:DeclareFunctions()
 end
 if IsServer() then
     function modifier_npc_dota_hero_weaver_perk:OnCreated()
-        self.lapse = self:GetParent():FindAbilityByName("weaver_time_lapse")
+        self.lapseLevel = 0
+        self.lapse = self:GetParent():AddAbility("weaver_time_lapse_perk")
+        self.lapse:SetLevel(self.lapseLevel)
+        self.lapse:SetHidden(true)
+        self:StartIntervalThink(2.0)
+    end
+
+     function modifier_npc_dota_hero_weaver_perk:OnIntervalThink()
+        local checkLevel = self:GetParent():GetLevel()
+        local lapseLevel = 1
+
+        if checkLevel >= 16 then 
+            lapseLevel = 3
+        elseif checkLevel >= 11 then
+            lapseLevel = 2
+        elseif checkLevel >= 6 then
+            lapseLevel = 1
+        else
+            lapseLevel = 0
+        end
+        
+        if lapseLevel ~= self.lapseLevel then 
+            self.lapseLevel = lapseLevel
+            self.lapse:SetLevel(lapseLevel)
+        end
     end
     
     function modifier_npc_dota_hero_weaver_perk:OnTakeDamage(params)
