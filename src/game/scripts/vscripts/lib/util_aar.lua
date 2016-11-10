@@ -1,6 +1,31 @@
 local Timers = require('easytimers')
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_tribune", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+
+modifier_tribune = class({})
+
+function modifier_tribune:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_DISABLE_HEALING
+	}
+ 
+	return funcs
+end
+
+function modifier_tribune:GetDisableHealing()
+	return true
+end
+
+function modifier_tribune:CheckState()
+	local state = {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
+	}
+	return state
+end
 
 modifier_duel_out_of_game = class({})
 
@@ -281,7 +306,7 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
                             meepo_duel_table[i]:SetAbsOrigin(tribune_points_table[cur])
 
                             meepo_duel_table[i]:Stop()
-                            meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_stunned", {})
+                            meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_tribune", {})
                         end
                     end
                 end
@@ -292,7 +317,7 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
                 x:SetAbsOrigin(tribune_points_table[cur])
 
                 x:Stop()
-                x:AddNewModifier(x, nil, "modifier_stunned", {})
+                x:AddNewModifier(x, nil, "modifier_tribune", {})
             end
  
             cur = cur + 1
@@ -312,9 +337,9 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x:SetAbsOrigin(duel_points_table[cur] + RandomVector(64))
 
         x:Stop()
-        print("move to duel remove")
-        x:RemoveModifierByName('modifier_stunned')
-        x:AddNewModifier(x, nil, "modifier_godmode", { duration = 5 })
+
+        x:RemoveModifierByName('modifier_tribune')
+        x:AddNewModifier(x, nil, "modifier_phased", { duration = 4 })
  
         local duel_gem = CreateItem("item_gem", x, x)
         x:AddNewModifier(x, duel_gem, "modifier_item_gem_of_true_sight", {})
@@ -350,6 +375,12 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         	return 0.5
         end, "duel_check_id" .. x:GetPlayerOwnerID(), 1)
 
+		PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),x)
+
+		Timers:CreateTimer(function()
+			PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
+		end, DoUniqueString("camera"), 1.0)
+
         -- Timers:CreateTimer(function()
         --     endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
         -- 	return nil
@@ -359,13 +390,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         if cur >= max then cur = 1 end
  
         if first_time == false then
-            for _, y in pairs(team_heroes) do
-				PlayerResource:SetCameraTarget(y:GetPlayerOwnerID(),x)
 
-				Timers:CreateTimer(function()
-					PlayerResource:SetCameraTarget(y:GetPlayerOwnerID(),nil)
-	    		end, DoUniqueString("camera"), 0.1)
-            end
             first_time = true
         end
     end
@@ -378,13 +403,13 @@ function moveToDuelHero(hero)
  
     x:SetAbsOrigin(getMidPoint( arenas[current_arena] ))
 
-    hero:RemoveModifierByName("modifier_stunned")
+    hero:RemoveModifierByName("modifier_tribune")
 end
 
 function isHeroOnDuel(hero)
     if not hero then return false end
    
-	if not isPointInsidePolygon(hero:GetAbsOrigin(), arenas[current_arena]) and not hero:HasModifier("modifier_stunned") then
+	if not isPointInsidePolygon(hero:GetAbsOrigin(), arenas[current_arena]) and not hero:HasModifier("modifier_tribune") then
 		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( arenas[current_arena] ),hero),true)
 	else
 		hero.oldArenaPos = hero:GetAbsOrigin()
@@ -421,7 +446,7 @@ function removeHeroesFromDuel(heroes_table)
                             end
  
                             if meepo_return_table[i]:IsAlive() then
-                                meepo_return_table[i]:RemoveModifierByName('modifier_stunned')
+                                meepo_return_table[i]:RemoveModifierByName('modifier_tribune')
                             end
  
                             if meepo_return_table[i] then
@@ -465,7 +490,7 @@ function removeHeroesFromDuel(heroes_table)
                 end
  
                 if x:IsAlive() then
-                    x:RemoveModifierByName('modifier_stunned')
+                    x:RemoveModifierByName('modifier_tribune')
                 end
  
                 x:RemoveModifierByName("modifier_item_gem_of_true_sight")
@@ -540,14 +565,14 @@ function toTribune(hero)
     local team = hero:GetTeamNumber()
     if team == DOTA_TEAM_GOODGUYS then
         for _, x in pairs(tribune_points[current_arena].radiant) do
-        	hero:SetAbsOrigin(x)
-            hero:AddNewModifier(hero, nil, "modifier_stunned", {})
+        	FindClearSpaceForUnit(hero,x,true)
+            hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
         end
     else
         for _, x in pairs(tribune_points[current_arena].dire) do
-            hero:SetAbsOrigin(x)
-            hero:AddNewModifier(hero, nil, "modifier_stunned", {})
+            FindClearSpaceForUnit(hero,x,true)
+            hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
         end
     end
@@ -599,6 +624,12 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 		end
 
 		for k,v in pairs(temp_entities) do
+			UTIL_Remove(v)
+		end
+
+		local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
+
+		for k,v in pairs(tempTrees) do
 			UTIL_Remove(v)
 		end
 
@@ -762,11 +793,9 @@ function spawnListener(event)
     if not spawnedUnit or not IsValidEntity(spawnedUnit) or not spawnedUnit:IsRealHero() then
         return
     end
- 	print("pass")
+
     if spawnedUnit:IsRealHero() then
-    	print("h")
         if duel_active and not isHeroDuelWarrior(spawnedUnit) then
-        	print("to tribune")
             toTribune(spawnedUnit)
         end
     end
@@ -905,14 +934,76 @@ function spawnEntitiesAlongPath( model, path )
 			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
+			CreateTempTree(pos, 60)
 			obstacle:SetAbsOrigin(pos)
-			obstacle:SetModelScale(4.0)
+			obstacle:SetModelScale(2.0)
 
 			table.insert(temp_entities, obstacle)
 			table.insert(temp_entities, blocker)
 		end
 
 	    j = i
+	end
+
+	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+		local trees = Entities:FindAllByClassname("ent_dota_tree")
+
+		for k,v in pairs(trees) do
+			if isPointInsidePolygon(v:GetOrigin(), path) then
+				GridNav:DestroyTreesAroundPoint(v:GetOrigin(), 32, true)
+			end
+		end
+	end
+
+	Timers:CreateTimer(function()
+		if not duel_active then
+			return
+		end
+        
+		local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
+
+		if #tempTrees * 2 < #temp_entities then
+			local j = #path
+			for i = 1, #path do
+				local offset = 128
+
+				local direction = (path[i] - path[j]):Normalized()
+				local distance = (path[j] - path[i]):Length2D()
+
+				for x=0,distance,128 do
+					local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
+
+					local exists = false
+
+					for _,t in pairs(tempTrees) do
+						if t:GetAbsOrigin() == pos then
+							exists = true
+							break
+						end
+					end
+
+					if exists == false then
+						CreateTempTree(pos, 60)
+
+						local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
+
+						for k,v in pairs(tempTrees) do
+							v:SetModel("models/development/invisiblebox.vmdl")
+						end
+					end
+				end
+
+			    j = i
+			end
+		end
+
+    	return 0.5
+    end, "duel_tree_check", 1)
+
+	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
+
+	for k,v in pairs(tempTrees) do
+		v:SetModel("models/development/invisiblebox.vmdl")
 	end
 end
 
