@@ -5,6 +5,7 @@
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk_delay", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_phoenix_perk == nil then npc_dota_hero_phoenix_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -68,24 +69,31 @@ if IsServer() then
     
     function modifier_npc_dota_hero_phoenix_perk:OnTakeDamage(params)
         if params.unit == self:GetParent() then
-            if params.damage > self:GetParent():GetHealth() and self.egg and self.egg:IsCooldownReady() and self.egg:GetLevel() > 0 and self:GetParent():IsRealHero() then
+            if params.damage > self:GetParent():GetHealth() and self.egg and not self:GetParent():HasModifier("modifier_npc_dota_hero_phoenix_perk_delay") and self.egg:GetLevel() > 0 and self:GetParent():IsRealHero() then
                 if self:GetParent():HasScepter() then
                     self:GetParent():SetCursorCastTarget(self:GetParent())
                     self.egg:OnSpellStart()
-                    self.egg:StartCooldown(self.egg:GetTrueCooldown())
+                    self:GetParent():AddNewModifier(self:GetParent(),self:GetAbility(),"modifier_npc_dota_hero_phoenix_perk_delay",{Duration = self.egg:GetCooldown(-1)})
                 else
                     self.egg:OnSpellStart()
-                    self.egg:StartCooldown(self.egg:GetTrueCooldown())
+                    self:GetParent():AddNewModifier(self:GetParent(),self:GetAbility(),"modifier_npc_dota_hero_phoenix_perk_delay",{Duration = self.egg:GetCooldown(-1)})
                 end
             end
         end
     end
 
     function modifier_npc_dota_hero_phoenix_perk:GetMinHealth(params)
-        if self.egg and self.egg:GetLevel() > 0 and self.egg:IsCooldownReady() and self:GetParent():IsRealHero() then
+        if self.egg and self.egg:GetLevel() > 0 and not self:GetParent():HasModifier("modifier_npc_dota_hero_phoenix_perk_delay") and self:GetParent():IsRealHero() then
             return 1
         else
             return 0
         end
     end
 end
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_phoenix_perk_delay == nil then modifier_npc_dota_hero_phoenix_perk_delay = class({}) end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_phoenix_perk_delay:RemoveOnDeath()
+    return false
+end
+--------------------------------------------------------------------------------------------------------
