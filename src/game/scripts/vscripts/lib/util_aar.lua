@@ -554,6 +554,7 @@ function removeHeroesFromDuel(heroes_table)
                         	if t > 4 then 
                         		x:RemoveGesture(ACT_DOTA_DEFEAT)
                         		x:RemoveGesture(ACT_DOTA_VICTORY)
+                        		return nil
                         	end
 					    	x:SetAbsOrigin(point)
 					    	t = t + 0.03
