@@ -23,6 +23,16 @@ function Debug:init()
         initDuel(hero)
     end, 'test', 0)
 
+    Convars:RegisterCommand('test_aar_duel_end', function(...)
+        local ply = Convars:GetCommandClient()
+        if not ply then return end
+        local playerID = ply:GetPlayerID()
+
+        local hero = PlayerResource:GetPlayer(playerID):GetAssignedHero()
+
+        endDuel()
+    end, 'test', 0)
+
     -- Debug command for debugging, this command will only work for Ash47
     Convars:RegisterCommand('lua_exec', function(...)
         local ply = Convars:GetCommandClient()
