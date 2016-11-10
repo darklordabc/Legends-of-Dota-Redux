@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------------------------------
 --
 --        Hero: Phoenix
---        Perk: Phoenix auto-casts Supernova when taking lethal damage.
+--        Perk: Once level 6, Phoenix will automatically cast Supernova upon taking fatal damage. Has a separate 180 second cooldown. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_phoenix_perk == nil then npc_dota_hero_phoenix_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---        Modifier: modifier_npc_dota_hero_phoenix_perk                
+--        Modifier: modifier_npc_dota_hero_phoenix_perk
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_phoenix_perk == nil then modifier_npc_dota_hero_phoenix_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -39,7 +39,31 @@ function modifier_npc_dota_hero_phoenix_perk:DeclareFunctions()
 end
 if IsServer() then
     function modifier_npc_dota_hero_phoenix_perk:OnCreated()
-        self.egg = self:GetParent():FindAbilityByName("phoenix_supernova")
+        self.eggLevel = 0
+        self.egg = self:GetParent():AddAbility("phoenix_supernova_perk")
+        self.egg:SetLevel(self.eggLevel)
+        self.egg:SetHidden(true)
+        self:StartIntervalThink(2.0)
+    end
+
+    function modifier_npc_dota_hero_phoenix_perk:OnIntervalThink()
+        local checkLevel = self:GetParent():GetLevel()
+        local eggLevel = 1
+
+        if checkLevel >= 16 then 
+            eggLevel = 3
+        elseif checkLevel >= 11 then
+            eggLevel = 2
+        elseif checkLevel >= 6 then
+            eggLevel = 1
+        else
+            eggLevel = 0
+        end
+
+        if eggLevel ~= self.eggLevel then 
+            self.eggLevel = eggLevel
+            self.egg:SetLevel(eggLevel)
+        end
     end
     
     function modifier_npc_dota_hero_phoenix_perk:OnTakeDamage(params)
