@@ -791,6 +791,7 @@ function deathListener( event )
     if not killedUnit or not IsValidEntity(killedUnit) or not killedUnit:IsRealHero() then return end
  
     if duel_active and not killedUnit:IsReincarnating() then
+    	killedUnit:SetTimeUntilRespawn(0.03)
        _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
        _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
     end
