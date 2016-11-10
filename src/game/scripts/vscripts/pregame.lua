@@ -5429,49 +5429,53 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         end, 'waves', 0.0)
 
         if OptionManager:GetOption('duels') == 1 then
-            Timers:CreateTimer(function()
-                customAttension("#duel_10_sec_to_begin", 5)
-
+            local duel
+            duel = (function () 
                 Timers:CreateTimer(function()
-                    initDuel()
-                end, 'start_duel', 10)
+                    customAttension("#duel_10_sec_to_begin", 5)
 
-                Timers:CreateTimer(function()
-                    if duel_active then
-                        customAttension("#duel_10_sec_to_end", 5)
-                    end
-                end, 'waves', DUEL_NOBODY_WINS)
+                    Timers:CreateTimer(function()
+                        initDuel(duel)
+                    end, 'start_duel', 10)
 
-                local next_tick = 10
+                    Timers:CreateTimer(function()
+                        if duel_active then
+                            customAttension("#duel_10_sec_to_end", 5)
+                        end
+                    end, 'waves', DUEL_NOBODY_WINS)
 
-                Timers:CreateTimer(function()
-                    if duel_active == true then 
-                        CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
-                        return
-                    else 
-                        sendEventTimer( "#duel_next_duel", next_tick)
-                    end
+                    local next_tick = 10
 
-                    next_tick = next_tick - 1
-                    return 1.0
-                end, 'duel_countdown_next', 0)
+                    Timers:CreateTimer(function()
+                        if duel_active == true then 
+                            CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+                            return
+                        else 
+                            sendEventTimer( "#duel_next_duel", next_tick)
+                        end
 
-                local draw_tick = 10
+                        next_tick = next_tick - 1
+                        return 1.0
+                    end, 'duel_countdown_next', 0)
 
-                Timers:CreateTimer(function()
-                    if duel_active ~= true then
-                        CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
-                        return
-                    else
-                        sendEventTimer( "#duel_nobody_wins", draw_tick)
-                    end
+                    local draw_tick = 10
 
-                    draw_tick = draw_tick - 1
-                    return 1.0
-                end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
+                    Timers:CreateTimer(function()
+                        if duel_active ~= true then
+                            CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+                            return
+                        else
+                            sendEventTimer( "#duel_nobody_wins", draw_tick)
+                        end
 
-                return DUEL_INTERVAL - 10
-            end, 'main_duel_timer', DUEL_INTERVAL - 10)
+                        draw_tick = draw_tick - 1
+                        return 1.0
+                    end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
+
+                    return DUEL_INTERVAL - 10
+                end, 'main_duel_timer', DUEL_INTERVAL - 10)
+            end)
+            duel()
         end
     end
 end, nil)
