@@ -40,17 +40,59 @@ AAR_GIANT_ARENA =	{[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, 
 					[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
 					[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)}
 
-function initDuel(hero)
-	hero:SetAbsOrigin(getMidPoint( AAR_GIANT_ARENA ))
+DUEL_STATE = false
 
-	Timers:CreateTimer(function()
-    	if not isPointInsidePolygon(hero:GetAbsOrigin(), AAR_GIANT_ARENA) then
-    		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( AAR_GIANT_ARENA ),hero),true)
-    	else
-    		hero.oldArenaPos = hero:GetAbsOrigin()
-    	end
-        return 0.5
-    end, 'duel_timer', 0.5)
+function initDuel(hero)
+	if DUEL_STATE then return end
+	DUEL_STATE = true
+
+	for _,hero in pairs(HeroList:GetAllHeroes()) do
+		if IsValidEntity(hero) == true then
+			hero._duelPosition = hero:GetAbsOrigin()
+
+			hero:SetAbsOrigin(getMidPoint( AAR_GIANT_ARENA ))
+
+			PlayerResource:SetCameraTarget(hero:GetPlayerID(),hero)
+
+			Timers:CreateTimer(function()
+				PlayerResource:SetCameraTarget(hero:GetPlayerID(),nil)
+    		end, DoUniqueString("camera"), 0.1)
+
+			hero._savedCooldowns = saveAbilitiesCooldowns(hero)
+			resetAllAbilitiesCooldown(hero, hero._savedCooldowns)
+
+			hero:SetHealth(9999999)
+			hero:SetMana(9999999)
+			hero:Purge(true, true, false, true, false )
+
+			while(hero:HasModifier("modifier_huskar_burning_spear_counter")) do
+				hero:RemoveModifierByName("modifier_huskar_burning_spear_counter")
+			end
+
+			while(hero:HasModifier("modifier_razor_eye_of_the_storm")) do
+				hero:RemoveModifierByName("modifier_razor_eye_of_the_storm")
+			end
+
+			hero:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
+			hero:RemoveModifierByName("modifier_kings_bar_magic_immune_active")
+			hero:RemoveModifierByName("modifier_black_king_bar_immune")
+			hero:RemoveModifierByName("modifier_venomancer_poison_nova")
+			hero:RemoveModifierByName("modifier_dazzle_weave_armor")
+			hero:RemoveModifierByName("modifier_dazzle_weave_armor_debuff")
+			hero:RemoveModifierByName("modifier_life_stealer_infest")
+			hero:RemoveModifierByName("modifier_maledict")
+
+			Timers:CreateTimer(function()
+				if not DUEL_STATE then return end
+    			if not isPointInsidePolygon(hero:GetAbsOrigin(), AAR_GIANT_ARENA) then
+    				FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( AAR_GIANT_ARENA ),hero),true)
+    			else
+    				hero.oldArenaPos = hero:GetAbsOrigin()
+    			end
+        		return 0.5
+    		end, 'duel_timer', 0.5)
+		end
+	end
 
     spawnEntitiesAlongPath( "models/props_rock/badside_rocks002.vmdl", AAR_GIANT_ARENA )
 
@@ -58,15 +100,31 @@ function initDuel(hero)
 end
 
 function endDuel()
+	if not DUEL_STATE then return end
+	for _,hero in pairs(HeroList:GetAllHeroes()) do
+		if IsValidEntity(hero) == true then
+			hero:SetAbsOrigin(hero._duelPosition)
+
+			setAbilitiesCooldowns(hero, hero._savedCooldowns)
+		end
+	end
+
 	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 	for k,v in pairs(ents) do
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature()) then
-			if v:IsNeutralUnitType() then
+		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+			if v:IsBuilding() then
+
 			else
-				v:RemoveNoDraw()
+				if v:IsNeutralUnitType() then
+
+				else
+					v:RemoveNoDraw()
+				end
+				v:RemoveModifierByName("modifier_duel_out_of_game")
 			end
-			v:RemoveModifierByName("modifier_duel_out_of_game")
+			v:SetDayTimeVisionRange(v._duelDayVisionRange)
+			v:SetNightTimeVisionRange(v._duelNightVisionRange)
 		end
 	end
 
@@ -79,12 +137,20 @@ function freezeGameplay()
 	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 	for k,v in pairs(ents) do
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature()) then
-			if v:IsNeutralUnitType() then
+		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+			if v:IsBuilding() then
+
 			else
-				v:AddNoDraw()
+				if v:IsNeutralUnitType() then
+				else
+					v:AddNoDraw()
+				end
+				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 			end
-			v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
+			v._duelDayVisionRange = v:GetDayTimeVisionRange()
+			v._duelNightVisionRange = v:GetNightTimeVisionRange()
+			v:SetDayTimeVisionRange(1)
+			v:SetNightTimeVisionRange(1)
 		end
 	end
 end
@@ -196,4 +262,73 @@ function getMidPoint( points )
     end
     midPoint = midPoint / #points
     return midPoint
+end
+
+function saveAbilitiesCooldowns(unit)
+    if not unit then
+        return
+    end
+   
+    local savetable = {}
+    local abilities = unit:GetAbilityCount() - 1
+    for i = 0, abilities do
+        if unit:GetAbilityByIndex(i) then
+            savetable[i] = unit:GetAbilityByIndex(i):GetCooldownTimeRemaining()
+            --print("Save Ability Cooldown abilityname='" .. unit:GetAbilityByIndex(i):GetAbilityName() .. "' cooldown = " .. savetable[i])
+        end
+    end
+ 
+    savetable.items = {}
+ 
+    for i = 0, 5 do
+        if unit:GetItemInSlot(i) then
+            savetable.items[unit:GetItemInSlot(i)] = unit:GetItemInSlot(i):GetCooldownTimeRemaining()
+        end
+    end
+ 
+    return savetable
+end
+ 
+function setAbilitiesCooldowns(unit, settable)
+    local abilities = unit:GetAbilityCount() - 1
+    if not settable or not unit then
+        return
+    end
+    for i = 0, abilities do
+        if unit:GetAbilityByIndex(i) then
+            unit:GetAbilityByIndex(i):StartCooldown(settable[i])
+            if settable[i] == 0 then
+                unit:GetAbilityByIndex(i):EndCooldown()
+            end
+        end
+    end
+ 
+    if settable.items then
+        for item, cooldown in pairs(settable.items) do
+            if item and IsValidEntity(item) then
+                item:EndCooldown()
+                print("start cooldown for ", item:GetName(), item, cooldown)
+                item:StartCooldown(cooldown)
+            end
+        end
+    end
+end
+ 
+function resetAllAbilitiesCooldown(unit, item_table)
+    if not unit then return end
+ 
+    local abilities = unit:GetAbilityCount() - 1
+    for i = 0, abilities do
+        if unit:GetAbilityByIndex(i) then
+            unit:GetAbilityByIndex(i):EndCooldown()
+        end
+    end
+ 
+    if item_table then
+        if item_table.items then
+            for i,x in pairs(item_table.items) do
+                i:EndCooldown()
+            end
+        end
+    end
 end
