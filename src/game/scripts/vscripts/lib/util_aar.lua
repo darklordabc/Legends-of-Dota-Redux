@@ -28,131 +28,278 @@ function modifier_duel_out_of_game:CheckState()
 	return state
 end
 
-AAR_SMALL_ARENA = {[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)}
-AAR_BIG_ARENA = {[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)}
-AAR_GIANT_ARENA =	{[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
-					[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
-					[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
-					[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
-					[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
-					[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
-					[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
-					[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
-					[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)}
-
 DUEL_STATE = false
 
-function initDuel(hero)
-	if DUEL_STATE then return end
-	DUEL_STATE = true
+local init
+local duel_active = false
+local duel_interval = 300
+local duel_draw_time = 120
+local duel_count = 0
+local duel_radiant_warriors = {}
+local duel_dire_warriors = {}
+local duel_radiant_heroes = {}
+local duel_dire_heroes = {}
+local duel_end_callback
+local duel_victory_team = 0
+temp_entities = {}
 
-	for _,hero in pairs(HeroList:GetAllHeroes()) do
-		if IsValidEntity(hero) == true then
-			hero._duelPosition = hero:GetAbsOrigin()
+AAR_SMALL_ARENA = 1
+AAR_BIG_ARENA = 2
+AAR_GIANT_ARENA =	3
 
-			hero:SetAbsOrigin(getMidPoint( AAR_GIANT_ARENA ))
+current_arena = 1
 
-			PlayerResource:SetCameraTarget(hero:GetPlayerID(),hero)
+arenas = {}
+arenas[AAR_SMALL_ARENA] = {
+	[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
+}
+arenas[AAR_BIG_ARENA] = {
+	[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
+}
+arenas[AAR_GIANT_ARENA] = {
+	[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
+	[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
+	[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
+	[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
+	[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
+	[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
+	[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
+	[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
+	[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)
+}
 
-			Timers:CreateTimer(function()
-				PlayerResource:SetCameraTarget(hero:GetPlayerID(),nil)
-    		end, DoUniqueString("camera"), 0.1)
+tribune_points = {}
+tribune_points[AAR_SMALL_ARENA] = {
+	radiant = {
+		[1] = Vector(1223.5, -4757, 261.646),
+		[2] = Vector(1223.5, -4757, 261.646),
+		[3] = Vector(1223.5, -4757, 261.646),
+		[4] = Vector(1223.5, -4757, 261.646),
+		[5] = Vector(1223.5, -4757, 261.646),
+		[6] = Vector(1223.5, -4757, 261.646),
+		[7] = Vector(1223.5, -4757, 261.646),
+		[8] = Vector(1223.5, -4757, 261.646),
+		[9] = Vector(1223.5, -4757, 261.646),
+		[10] = Vector(1223.5, -4757, 261.646)
+	},
+	dire = {
+		[1] = Vector(4676.5, -4757, 261.646),
+		[2] = Vector(4676.5, -4757, 261.646),
+		[3] = Vector(4676.5, -4757, 261.646),
+		[4] = Vector(4676.5, -4757, 261.646),
+		[5] = Vector(4676.5, -4757, 261.646),
+		[6] = Vector(4676.5, -4757, 261.646),
+		[7] = Vector(4676.5, -4757, 261.646),
+		[8] = Vector(4676.5, -4757, 261.646),
+		[9] = Vector(4676.5, -4757, 261.646),
+		[10] = Vector(4676.5, -4757, 261.646)
+	}
+}
+tribune_points[AAR_BIG_ARENA] = {
+	radiant = {
+		[1] = Vector(1223.5, -4757, 261.646),
+		[2] = Vector(1223.5, -4757, 261.646),
+		[3] = Vector(1223.5, -4757, 261.646),
+		[4] = Vector(1223.5, -4757, 261.646),
+		[5] = Vector(1223.5, -4757, 261.646),
+		[6] = Vector(1223.5, -4757, 261.646),
+		[7] = Vector(1223.5, -4757, 261.646),
+		[8] = Vector(1223.5, -4757, 261.646),
+		[9] = Vector(1223.5, -4757, 261.646),
+		[10] = Vector(1223.5, -4757, 261.646)
+	},
+	dire = {
+		[1] = Vector(4676.5, -4757, 261.646),
+		[2] = Vector(4676.5, -4757, 261.646),
+		[3] = Vector(4676.5, -4757, 261.646),
+		[4] = Vector(4676.5, -4757, 261.646),
+		[5] = Vector(4676.5, -4757, 261.646),
+		[6] = Vector(4676.5, -4757, 261.646),
+		[7] = Vector(4676.5, -4757, 261.646),
+		[8] = Vector(4676.5, -4757, 261.646),
+		[9] = Vector(4676.5, -4757, 261.646),
+		[10] = Vector(4676.5, -4757, 261.646)
+	}
+}
+tribune_points[AAR_GIANT_ARENA] = {
+	radiant = {
+		[1] = Vector(1223.5, -4757, 261.646),
+		[2] = Vector(1223.5, -4757, 261.646),
+		[3] = Vector(1223.5, -4757, 261.646),
+		[4] = Vector(1223.5, -4757, 261.646),
+		[5] = Vector(1223.5, -4757, 261.646),
+		[6] = Vector(1223.5, -4757, 261.646),
+		[7] = Vector(1223.5, -4757, 261.646),
+		[8] = Vector(1223.5, -4757, 261.646),
+		[9] = Vector(1223.5, -4757, 261.646),
+		[10] = Vector(1223.5, -4757, 261.646)
+	},
+	dire = {
+		[1] = Vector(4676.5, -4757, 261.646),
+		[2] = Vector(4676.5, -4757, 261.646),
+		[3] = Vector(4676.5, -4757, 261.646),
+		[4] = Vector(4676.5, -4757, 261.646),
+		[5] = Vector(4676.5, -4757, 261.646),
+		[6] = Vector(4676.5, -4757, 261.646),
+		[7] = Vector(4676.5, -4757, 261.646),
+		[8] = Vector(4676.5, -4757, 261.646),
+		[9] = Vector(4676.5, -4757, 261.646),
+		[10] = Vector(4676.5, -4757, 261.646)
+	}
+}
 
-			hero._savedCooldowns = saveAbilitiesCooldowns(hero)
-			resetAllAbilitiesCooldown(hero, hero._savedCooldowns)
+duel_points = {}
+duel_points[AAR_SMALL_ARENA] = {
+    radiant = {
+        [1] = Vector(2354.52,-4459.45,261.646),
+        [2] = Vector(2354.52,-4459.45,261.646),
+        [3] = Vector(2354.52,-4459.45,261.646),
+        [4] = Vector(2354.52,-4459.45,261.646),
+        [5] = Vector(2354.52,-4459.45,261.646),
+        [6] = Vector(2354.52,-4459.45,261.646),
+        [7] = Vector(2354.52,-4459.45,261.646),
+        [8] = Vector(2354.52,-4459.45,261.646),
+        [9] = Vector(2354.52,-4459.45,261.646),
+        [10] = Vector(2354.52,-4459.45,261.646)
+    },
+    dire = {
+        [1] = Vector(3764,-4926,261.646),
+        [2] = Vector(3764,-4926,261.646),
+        [3] = Vector(3764,-4926,261.646),
+        [4] = Vector(3764,-4926,261.646),
+        [5] = Vector(3764,-4926,261.646),
+        [6] = Vector(3764,-4926,261.646),
+        [7] = Vector(3764,-4926,261.646),
+        [8] = Vector(3764,-4926,261.646),
+        [9] = Vector(3764,-4926,261.646),
+        [10] = Vector(3764,-4926,261.646)
+    },
+}
+duel_points[AAR_BIG_ARENA] = {
+    radiant = {
+        [1] = Vector(2354.52,-4459.45,261.646),
+        [2] = Vector(2354.52,-4459.45,261.646),
+        [3] = Vector(2354.52,-4459.45,261.646),
+        [4] = Vector(2354.52,-4459.45,261.646),
+        [5] = Vector(2354.52,-4459.45,261.646),
+        [6] = Vector(2354.52,-4459.45,261.646),
+        [7] = Vector(2354.52,-4459.45,261.646),
+        [8] = Vector(2354.52,-4459.45,261.646),
+        [9] = Vector(2354.52,-4459.45,261.646),
+        [10] = Vector(2354.52,-4459.45,261.646)
+    },
+    dire = {
+        [1] = Vector(3764,-4926,261.646),
+        [2] = Vector(3764,-4926,261.646),
+        [3] = Vector(3764,-4926,261.646),
+        [4] = Vector(3764,-4926,261.646),
+        [5] = Vector(3764,-4926,261.646),
+        [6] = Vector(3764,-4926,261.646),
+        [7] = Vector(3764,-4926,261.646),
+        [8] = Vector(3764,-4926,261.646),
+        [9] = Vector(3764,-4926,261.646),
+        [10] = Vector(3764,-4926,261.646)
+    },
+}
+duel_points[AAR_GIANT_ARENA] = {
+    radiant = {
+        [1] = Vector(2354.52,-4459.45,261.646),
+        [2] = Vector(2354.52,-4459.45,261.646),
+        [3] = Vector(2354.52,-4459.45,261.646),
+        [4] = Vector(2354.52,-4459.45,261.646),
+        [5] = Vector(2354.52,-4459.45,261.646),
+        [6] = Vector(2354.52,-4459.45,261.646),
+        [7] = Vector(2354.52,-4459.45,261.646),
+        [8] = Vector(2354.52,-4459.45,261.646),
+        [9] = Vector(2354.52,-4459.45,261.646),
+        [10] = Vector(2354.52,-4459.45,261.646)
+    },
+    dire = {
+        [1] = Vector(3764,-4926,261.646),
+        [2] = Vector(3764,-4926,261.646),
+        [3] = Vector(3764,-4926,261.646),
+        [4] = Vector(3764,-4926,261.646),
+        [5] = Vector(3764,-4926,261.646),
+        [6] = Vector(3764,-4926,261.646),
+        [7] = Vector(3764,-4926,261.646),
+        [8] = Vector(3764,-4926,261.646),
+        [9] = Vector(3764,-4926,261.646),
+        [10] = Vector(3764,-4926,261.646)
+    },
+}
 
-			hero:SetHealth(9999999)
-			hero:SetMana(9999999)
-			hero:Purge(true, true, false, true, false )
-
-			while(hero:HasModifier("modifier_huskar_burning_spear_counter")) do
-				hero:RemoveModifierByName("modifier_huskar_burning_spear_counter")
-			end
-
-			while(hero:HasModifier("modifier_razor_eye_of_the_storm")) do
-				hero:RemoveModifierByName("modifier_razor_eye_of_the_storm")
-			end
-
-			hero:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
-			hero:RemoveModifierByName("modifier_kings_bar_magic_immune_active")
-			hero:RemoveModifierByName("modifier_black_king_bar_immune")
-			hero:RemoveModifierByName("modifier_venomancer_poison_nova")
-			hero:RemoveModifierByName("modifier_dazzle_weave_armor")
-			hero:RemoveModifierByName("modifier_dazzle_weave_armor_debuff")
-			hero:RemoveModifierByName("modifier_life_stealer_infest")
-			hero:RemoveModifierByName("modifier_maledict")
-
-			Timers:CreateTimer(function()
-				if not DUEL_STATE then return end
-    			if not isPointInsidePolygon(hero:GetAbsOrigin(), AAR_GIANT_ARENA) then
-    				FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( AAR_GIANT_ARENA ),hero),true)
-    			else
-    				hero.oldArenaPos = hero:GetAbsOrigin()
-    			end
-        		return 0.5
-    		end, 'duel_timer', 0.5)
-		end
-	end
-
-    spawnEntitiesAlongPath( "models/props_rock/badside_rocks002.vmdl", AAR_GIANT_ARENA )
-
-    freezeGameplay()
+function getHeroesCount(radiant_heroes, dire_heroes)
+    local rp = 0
+    local dp = 0
+   
+    if not radiant_heroes or not dire_heroes then return end
+    for _, x in pairs(radiant_heroes) do
+        if x and x:IsRealHero() and isConnected(x) then rp = rp + 1 end
+    end
+   
+    for _, x in pairs(dire_heroes) do
+        if x and x:IsRealHero() and isConnected(x) then dp = dp + 1 end
+    end
+ 
+    return rp, dp
 end
 
-function endDuel()
-	if not DUEL_STATE then return end
-	for _,hero in pairs(HeroList:GetAllHeroes()) do
-		if IsValidEntity(hero) == true then
-			hero:SetAbsOrigin(hero._duelPosition)
-
-			setAbilitiesCooldowns(hero, hero._savedCooldowns)
-		end
-	end
-
-	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
-
-	for k,v in pairs(ents) do
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
-			if v:IsBuilding() then
-
-			else
-				if v:IsNeutralUnitType() then
-
-				else
-					v:RemoveNoDraw()
-				end
-				v:RemoveModifierByName("modifier_duel_out_of_game")
-			end
-			v:SetDayTimeVisionRange(v._duelDayVisionRange)
-			v:SetNightTimeVisionRange(v._duelNightVisionRange)
-		end
-	end
-
-	Convars:SetBool("dota_creeps_no_spawning", false)
+function clearDuelFromHeroes(heroes_table)
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) and x:IsRealHero() then
+            x.IsDueled = false
+        end
+    end
 end
 
-function freezeGameplay()
-	Convars:SetBool("dota_creeps_no_spawning", true)
+function getAliveHeroesCount(heroes_table)
+    if not heroes_table then
+        return 0
+    end
+    local lc = 0
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then
+            lc = lc + 1
+        end
+    end
+    return lc
+end
 
-	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
+function moveHeroesToTribune(heroes_table, tribune_points_table)
+    local cur = 1
+    local max = #tribune_points_table
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) and x:IsAlive() then
+            if x:GetUnitName() == "npc_dota_hero_meepo" and not x:IsIllusion() then
+                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
+                if meepo_duel_table then
+                    for i = 1, #meepo_duel_table do
+                        if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner() then
+                            meepo_duel_table[i].duel_old_point = x:GetAbsOrigin()
+                            meepo_duel_table[i]:Stop()
 
-	for k,v in pairs(ents) do
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
-			if v:IsBuilding() then
+                            meepo_duel_table[i]:SetAbsOrigin(tribune_points_table[cur])
 
-			else
-				if v:IsNeutralUnitType() then
-				else
-					v:AddNoDraw()
-				end
-				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
-			end
-			v._duelDayVisionRange = v:GetDayTimeVisionRange()
-			v._duelNightVisionRange = v:GetNightTimeVisionRange()
-			v:SetDayTimeVisionRange(1)
-			v:SetNightTimeVisionRange(1)
-		end
-	end
+                            meepo_duel_table[i]:Stop()
+                            meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_stunned", {})
+                        end
+                    end
+                end
+            else
+                x.duel_old_point = x:GetAbsOrigin()
+                x:Stop()
+
+                x:SetAbsOrigin(tribune_points_table[cur])
+
+                x:Stop()
+                x:AddNewModifier(x, nil, "modifier_stunned", {})
+            end
+ 
+            cur = cur + 1
+            cur = cur + 1
+            if cur >= max then cur = 1 end
+        end
+    end
 end
 
 function moveToDuel(duel_heroes, team_heroes, duel_points_table)
@@ -161,16 +308,19 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
     local first_time = false
     for _, x in pairs(duel_heroes) do
         x:Stop()
-        TeleportUnitToPointName(x, duel_points_table[cur], true, false)
+
+        x:SetAbsOrigin(duel_points_table[cur] + RandomVector(64))
+
         x:Stop()
-        x:RemoveModifierByName('modifier_stun')
+        print("move to duel remove")
+        x:RemoveModifierByName('modifier_stunned')
         x:AddNewModifier(x, nil, "modifier_godmode", { duration = 5 })
  
         local duel_gem = CreateItem("item_gem", x, x)
         x:AddNewModifier(x, duel_gem, "modifier_item_gem_of_true_sight", {})
         UTIL_Remove(duel_gem)
-        x.duel_cooldowns = SaveAbilitiesCooldowns(x)
-        ResetAllAbilitiesCooldown(x, x.duel_cooldowns)
+        x.duel_cooldowns = saveAbilitiesCooldowns(x)
+        resetAllAbilitiesCooldown(x, x.duel_cooldowns)
         x:SetHealth(9999999)
         x:SetMana(9999999)
         x:Purge(true, true, false, true, false )
@@ -191,37 +341,559 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x:RemoveModifierByName("modifier_dazzle_weave_armor_debuff")
         x:RemoveModifierByName("modifier_life_stealer_infest")
         x:RemoveModifierByName("modifier_maledict")
- 
-        local timer_info = {
-            endTime = 1,
-            callback = function()
-                IsHeroOnDuel(x)
-            return 1
-        end
-        }
-        Timers:CreateTimer("duel_check_id" .. x:GetPlayerOwnerID(), timer_info);
-        local duel_info = {
-        endTime = draw_time,
-        callback = function()
-            EndDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
-            return nil
-        end
-    }
- 
-    Timers:CreateTimer("DS_DRAW_ITERNAL",duel_info)
+
+		Timers:CreateTimer(function()
+			if not duel_active or not x:IsAlive() then
+				return
+			end
+            isHeroOnDuel(x)
+        	return 0.5
+        end, "duel_check_id" .. x:GetPlayerOwnerID(), 1)
+
+        -- Timers:CreateTimer(function()
+        --     endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
+        -- 	return nil
+        -- end, "duel_check_id" .. x:GetPlayerOwnerID(), 60)
+
         cur = cur + 1
         if cur >= max then cur = 1 end
  
         if first_time == false then
             for _, y in pairs(team_heroes) do
-                SetPlayerCameraToEntity(y:GetPlayerOwnerID(), x)
+				PlayerResource:SetCameraTarget(y:GetPlayerOwnerID(),x)
+
+				Timers:CreateTimer(function()
+					PlayerResource:SetCameraTarget(y:GetPlayerOwnerID(),nil)
+	    		end, DoUniqueString("camera"), 0.1)
             end
             first_time = true
         end
     end
 end
 
+function moveToDuelHero(hero)
+    if not hero or not IsValidEntity(hero) or not hero:IsRealHero() then
+        return
+    end
+ 
+    x:SetAbsOrigin(getMidPoint( arenas[current_arena] ))
+
+    hero:RemoveModifierByName("modifier_stunned")
+end
+
+function isHeroOnDuel(hero)
+    if not hero then return false end
+   
+	if not isPointInsidePolygon(hero:GetAbsOrigin(), arenas[current_arena]) and not hero:HasModifier("modifier_stunned") then
+		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( arenas[current_arena] ),hero),true)
+	else
+		hero.oldArenaPos = hero:GetAbsOrigin()
+	end
+end
+
+function removeHeroesFromDuel(heroes_table)
+    if not heroes_table or type(heroes_table) ~= type({}) then
+        return
+    end
+ 
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) then
+            if x:GetUnitName() == "npc_dota_hero_meepo" then
+                local meepo_return_table = Entities:FindAllByName("npc_dota_hero_meepo")
+                if meepo_return_table then
+                    for i = 1, #meepo_return_table do
+                        if meepo_return_table[i] and not meepo_return_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_return_table[i]:GetPlayerOwner() then
+                            meepo_return_table[i]:Purge(true, true, false, true, true )
+ 
+                            while(meepo_return_table[i]:HasModifier("modifier_huskar_burning_spear_counter")) do
+                                meepo_return_table[i]:RemoveModifierByName("modifier_huskar_burning_spear_counter")
+                             end
+                            meepo_return_table[i]:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
+       
+                            local point = meepo_return_table[i].duel_old_point
+                            if not point then
+                                point = getMidPoint( arenas[current_arena] ) --Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, meepo_return_table[i]:GetTeamNumber())):GetAbsOrigin()
+                            end      
+ 
+                            if meepo_return_table[i].duel_cooldowns then
+                                setAbilitiesCooldowns(meepo_return_table[i], meepo_return_table[i].duel_cooldowns)
+                                meepo_return_table[i].duel_cooldowns = nil
+                            end
+ 
+                            if meepo_return_table[i]:IsAlive() then
+                                meepo_return_table[i]:RemoveModifierByName('modifier_stunned')
+                            end
+ 
+                            if meepo_return_table[i] then
+                                meepo_return_table[i]:RemoveModifierByName("modifier_item_gem_of_true_sight")
+                            end
+ 
+                            if meepo_return_table[i].item_gem then
+                                meepo_return_table[i]:AddNewModifier(meepo_return_table[i], meepo_return_table[i].item_gem, "modifier_item_gem_of_true_sight", {})
+                            end
+                            if meepo_return_table[i].duel_gem then
+                                meepo_return_table[i].duel_gem:RemoveSelf()
+                                meepo_return_table[i].duel_gem = nil
+                            end
+ 
+                            if point then
+                                if meepo_return_table[i]:IsAlive() then
+                                    x:SetAbsOrigin(point)
+                                end
+                                meepo_return_table[i].duel_old_point = nil
+                            else
+                                print("Duel system error, base points not found!")
+                            end
+                        end
+                    end
+                end
+            else
+                x:Purge(true, true, false, true, true )
+                while(x:HasModifier("modifier_huskar_burning_spear_counter")) do
+                    x:RemoveModifierByName("modifier_huskar_burning_spear_counter")
+                end
+                x:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
+ 
+                local point = x.duel_old_point
+                if not point then
+                    point = getMidPoint( arenas[current_arena] ) -- Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, x:GetTeamNumber())):GetAbsOrigin()
+                end
+ 
+                if x.duel_cooldowns then
+                    setAbilitiesCooldowns(x, x.duel_cooldowns)
+                    x.duel_cooldowns = nil
+                end
+ 
+                if x:IsAlive() then
+                    x:RemoveModifierByName('modifier_stunned')
+                end
+ 
+                x:RemoveModifierByName("modifier_item_gem_of_true_sight")
+ 
+                if x.item_gem then
+                    x:AddNewModifier(x, x.item_gem, "modifier_item_gem_of_true_sight", {})
+                end
+               
+                --if x.duel_gem then
+                --    x.duel_gem:RemoveSelf()
+                --    x.duel_gem = nil
+                --end
+                if point then
+                    if x:IsAlive() then
+                        x:SetAbsOrigin(point)
+                    end
+                    x.duel_old_point = nil
+                else
+                    print("Duel system error, base points not found!")
+                end
+            end
+        end
+    end
+end
+
+function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
+    if getAliveHeroesCount(heroes_table) < hero_count then
+        print("Duel system error, alive heroes < hero count. Fix it!")
+        return
+    end
+ 
+    local counter_local = 0;
+    local output_table = {}
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
+            if x:GetUnitName() == "npc_dota_hero_meepo" then
+                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
+                if meepo_duel_table then
+                    for i = 1, #meepo_duel_table do
+                        if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner()  then
+                            meepo_duel_table[i].IsDueled = true
+                            table.insert(output_table, meepo_duel_table[i])
+                        end
+                    end
+                end
+                counter_local = counter_local + 1
+                if counter_local == hero_count then
+                    return output_table
+                end
+            else
+                x.IsDueled = true
+                table.insert(output_table, x)
+                counter_local = counter_local + 1
+                if counter_local == hero_count then
+                    return output_table
+                end
+            end
+        end
+    end
+ 
+    if counter_local < hero_count then -- if some heroes already dueled
+        clearDuelFromHeroes(heroes_table)
+        return getHeroesToDuelFromTeamTable(heroes_table, hero_count)
+    end
+end
+
+function toTribune(hero)
+    if not hero or not IsValidEntity(hero) or not hero:IsRealHero() then
+        print("[DS]Duel system error, invalid unit, expected hero (global func ToTribune)")
+        return
+    end
+    local team = hero:GetTeamNumber()
+    if team == DOTA_TEAM_GOODGUYS then
+        for _, x in pairs(tribune_points[current_arena].radiant) do
+        	hero:SetAbsOrigin(x)
+            hero:AddNewModifier(hero, nil, "modifier_stunned", {})
+            return
+        end
+    else
+        for _, x in pairs(tribune_points[current_arena].dire) do
+            hero:SetAbsOrigin(x)
+            hero:AddNewModifier(hero, nil, "modifier_stunned", {})
+            return
+        end
+    end
+end
+
+function isHeroDuelWarrior(hero)
+    if not hero or not IsValidEntity(hero) or not hero:IsRealHero() then
+        return false
+    end
+    for _, x in pairs(duel_radiant_warriors) do
+        if x == hero then return true end
+    end
+    for _, x in pairs(duel_dire_warriors) do
+        if x == hero then return true end
+    end
+    return false
+end
+
+function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, duel_victory_team)
+	if not duel_active then return end
+    duel_active = false
+    if radiant_heroes and dire_heroes then
+        if duel_victory_team ~= -1 then
+            removeHeroesFromDuel(radiant_heroes)
+            removeHeroesFromDuel(dire_heroes)
+            duel_radiant_warriors = {}
+            duel_dire_warriors = {}
+            duel_radiant_heroes = {}
+            duel_dire_heroes = {}
+        end
+
+		local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
+
+		for k,v in pairs(ents) do
+			if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+				if v:IsBuilding() and not v:IsTower() then
+
+				else
+					if v:IsNeutralUnitType() then
+
+					else
+						v:RemoveNoDraw()
+					end
+					v:RemoveModifierByName("modifier_duel_out_of_game")
+				end
+				v:SetDayTimeVisionRange(v._duelDayVisionRange)
+				v:SetNightTimeVisionRange(v._duelNightVisionRange)
+			end
+		end
+
+		for k,v in pairs(temp_entities) do
+			UTIL_Remove(v)
+		end
+
+		Convars:SetBool("dota_creeps_no_spawning", false)
+
+        if type(end_duel_callback) == "function" then
+            end_duel_callback(duel_victory_team)
+        end
+    else
+        print("ERROR, INVALID HEROES TABLE(EndDuel(...))")
+    end
+    GameRules:SendCustomMessage("#duel_end", 0, 0)
+end
+
+function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_callback, end_duel_callback, arena)
+    if not radiant_heroes or not dire_heroes then
+        local err ="[DS] Duel system error, {} tables of heroes! "
+        print(err)
+        return
+    end
+ 
+    for i,x in pairs(radiant_heroes) do
+        if not x then
+            table.remove(radiant_heroes, i)
+        end
+    end
+ 
+    for i,x in pairs(dire_heroes) do
+        if not x then
+            table.remove(dire_heroes, i)
+        end
+    end
+   
+    if duel_active == true then
+        local err ="Duel system error, duel already started "
+        print(err)
+        if type(error_callback) == "function" then
+            error_callback({ err_code = -1, err_string = err})
+        end
+        return
+    end
+    local radiant_count, dire_count = getHeroesCount(radiant_heroes, dire_heroes)
+    if (radiant_count < hero_count) or (dire_count < hero_count) or (hero_count <= 0) then
+        local err = "Duel system error, not enought players / invalid players count waiting for " .. hero_count .. " got rh = " .. radiant_count .. " dh = " .. dire_count
+        print(err)
+        GameRules:SendCustomMessage("#duel_error", 0, 0)
+        endDuel(radiant_heroes, dire_heroes, {}, {}, end_duel_callback, -1)
+        if type(error_callback) == "function" then
+            error_callback({ err_code = -2, err_string = err})
+        end
+        return
+    end
+ 
+ 
+    local radiant_warriors = getHeroesToDuelFromTeamTable(radiant_heroes, hero_count)
+    local dire_warriors = getHeroesToDuelFromTeamTable(dire_heroes, hero_count)
+ 
+    if (not radiant_warriors) or (not dire_warriors) then
+        local err = "[DS] Duel system error, not enought heroes for duel[2]. waiting "
+        print(err)
+        GameRules:SendCustomMessage("#duel_error", 0, 0)
+        endDuel(radiant_heroes, dire_heroes, {}, {}, end_duel_callback, -1)
+        if type(error_callback) == "function" then
+            error_callback({ err_code = -2, err_string = err})
+        end
+        return
+    end
+ 
+    GameRules:SendCustomMessage("#duel_start", 0, 0)
+ 
+    duel_radiant_warriors = radiant_warriors
+    duel_dire_warriors = dire_warriors
+    duel_end_callback = end_duel_callback
+    duel_radiant_heroes = radiant_heroes
+    duel_dire_heroes = dire_heroes
+ 
+    duel_count = duel_count + 1
+    duel_active = true
+
+    current_arena = arena
+ 
+    moveHeroesToTribune(radiant_heroes, tribune_points[current_arena].radiant)
+    moveHeroesToTribune(dire_heroes, tribune_points[current_arena].dire)
+    moveToDuel(radiant_warriors, radiant_heroes, duel_points[current_arena].radiant)
+    moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
+
+    spawnEntitiesAlongPath( "models/props_rock/badside_rocks002.vmdl", arenas[current_arena] )
+
+    freezeGameplay()
+
+    Convars:SetBool("dota_creeps_no_spawning", true)
+ 
+    Timers:CreateTimer(function()
+    	print("draw")
+        endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
+    end, "DS_DRAW_ITERNAL", draw_time)
+end
+
+function _OnHeroDeathOnDuel(warriors_table, hero )
+    for i, x in pairs(warriors_table) do
+        if x == hero then
+            table.remove(warriors_table, i)
+
+            if hero:GetUnitName() == "npc_dota_hero_meepo" then
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+            end
+ 
+            if #warriors_table == 0 then
+                duel_victory_team = ((x:GetTeamNumber() == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS) or ((x:GetTeamNumber() == DOTA_TEAM_BADGUYS) and DOTA_TEAM_GOODGUYS)
+                print("all play dead")
+                endDuel(duel_radiant_heroes, duel_dire_heroes, duel_radiant_warriors, duel_dire_warriors, duel_end_callback, duel_victory_team )
+                print("team victory = " , duel_victory_team)
+            end
+            return
+        end
+    end
+end
+
+function deathListener( event )
+    if not duel_active then return end
+    local killedUnit = EntIndexToHScript( event.entindex_killed )
+    local killedTeam = killedUnit:GetTeam()
+    local hero = EntIndexToHScript( event.entindex_attacker )
+    local heroTeam = hero:GetTeam()
+   
+    if not killedUnit or not IsValidEntity(killedUnit) or not killedUnit:IsRealHero() then return end
+ 
+    if duel_active and not killedUnit:IsReincarnating() then
+       _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
+       _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
+    end
+ 
+end
+
+function getTeamPointNameByTeamNumber(table_of_points, teamnumber)
+    if teamnumber == DOTA_TEAM_GOODGUYS then
+        return table_of_points.radiant
+    elseif teamnumber == DOTA_TEAM_BADGUYS then
+        return table_of_points.dire
+    else
+    end
+end
+
+function spawnListener(event)
+    if not duel_active then return end
+    local spawnedUnit = EntIndexToHScript( event.entindex )
+    if not spawnedUnit or not IsValidEntity(spawnedUnit) or not spawnedUnit:IsRealHero() then
+        return
+    end
+ 	print("pass")
+    if spawnedUnit:IsRealHero() then
+    	print("h")
+        if duel_active and not isHeroDuelWarrior(spawnedUnit) then
+        	print("to tribune")
+            toTribune(spawnedUnit)
+        end
+    end
+ 
+	Timers:CreateTimer(function()
+        if not spawnedUnit then return nil end
+ 
+        if not spawnedUnit:HasModifier("modifier_arc_warden_tempest_double") then
+            if spawnedUnit:IsRealHero() then
+                if duel_active then -- and not isHeroDuelWarrior(spawnedUnit)
+                    toTribune(spawnedUnit)
+                end
+            end
+        end
+       
+		return nil
+	end, DoUniqueString('preventcamping'), 0.15)
+end
+
+function getMaximumAliveHeroes(hero_table1, hero_table2)
+    local alive_max = 0
+    for _, x in pairs(hero_table1) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_max = alive_max + 1 end
+    end
+ 
+    local al = alive_max
+    alive_max = 0
+    for _, x in pairs(hero_table2) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_max = alive_max + 1 end
+    end
+    if alive_max > al then
+        return al
+    else
+        return alive_max
+    end
+end
+ 
+function isConnected(unit)
+    return not isDisconnected(unit)
+end
+ 
+function isDisconnected(unit)
+    if not unit or not IsValidEntity(unit) then
+        return false
+    end
+ 
+    local playerid = unit:GetPlayerOwnerID()
+    if not playerid then
+        return false
+    end
+ 
+    local connection_state = PlayerResource:GetConnectionState(playerid)
+    if connection_state == DOTA_CONNECTION_STATE_ABANDONED or connection_state == DOTA_CONNECTION_STATE_DISCONNECTED then
+        return true
+    else
+        return false
+    end
+end
+ 
+function isAbadoned(unit)
+    if not unit or not IsValidEntity(unit) then return false end
+ 
+    local playerid = unit:GetPlayerOwnerID()
+    if not playerid then return false end
+    local connection_state = PlayerResource:GetConnectionState(playerid)
+ 
+    if connection_state == DOTA_CONNECTION_STATE_ABANDONED then
+        return true
+    else
+        return false
+    end
+end
+ 
+ListenToGameEvent("entity_killed", deathListener, nil)
+ListenToGameEvent('npc_spawned', spawnListener, nil )
+
+function initDuel()
+	local radiantHeroes = {}
+	local direHeroes = {}
+
+	for k,v in pairs(HeroList:GetAllHeroes()) do
+		if IsValidEntity(v) == true and isConnected(v) then
+	  		if v:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+	  			table.insert(radiantHeroes, v)
+	  		else
+	  			table.insert(direHeroes, v)
+	  		end
+		end
+	end
+	print("Asd")
+	print(#direHeroes, #radiantHeroes)
+	startDuel(radiantHeroes, direHeroes, #radiantHeroes, 60, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
+		-- onDuelEnd(winner_side)
+	end, AAR_SMALL_ARENA)
+end
+
+-- function endDuel()
+
+-- end
+
+function freezeGameplay()
+	Convars:SetBool("dota_creeps_no_spawning", true)
+
+	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
+
+	for k,v in pairs(ents) do
+		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+			if v:IsBuilding() and not v:IsTower() then
+
+			else
+				if v:IsNeutralUnitType() then
+				else
+					v:AddNoDraw()
+				end
+				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
+			end
+			v._duelDayVisionRange = v:GetDayTimeVisionRange()
+			v._duelNightVisionRange = v:GetNightTimeVisionRange()
+			v:SetDayTimeVisionRange(1)
+			v:SetNightTimeVisionRange(1)
+		end
+	end
+end
+
 function spawnEntitiesAlongPath( model, path )
+	temp_entities = {}
+
 	local j = #path
 	for i = 1, #path do
 		local offset = 128
@@ -235,6 +907,9 @@ function spawnEntitiesAlongPath( model, path )
 			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
 			obstacle:SetAbsOrigin(pos)
 			obstacle:SetModelScale(4.0)
+
+			table.insert(temp_entities, obstacle)
+			table.insert(temp_entities, blocker)
 		end
 
 	    j = i

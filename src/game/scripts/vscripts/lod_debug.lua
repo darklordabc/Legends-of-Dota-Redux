@@ -20,7 +20,7 @@ function Debug:init()
 
         local hero = PlayerResource:GetPlayer(playerID):GetAssignedHero()
 
-        initDuel(hero)
+        initDuel()
     end, 'test', 0)
 
     Convars:RegisterCommand('test_aar_duel_end', function(...)
