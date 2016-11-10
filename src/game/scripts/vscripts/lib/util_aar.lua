@@ -541,6 +541,12 @@ function removeHeroesFromDuel(heroes_table)
                 --end
                 if point then
                     if x:IsAlive() then
+						PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),x)
+
+						Timers:CreateTimer(function()
+							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
+						end, DoUniqueString("camera"), 1.0)
+
                         x:SetAbsOrigin(point)
                         x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
                         if x:GetTeamNumber() == winners then
@@ -932,7 +938,7 @@ end
 ListenToGameEvent("entity_killed", deathListener, nil)
 ListenToGameEvent('npc_spawned', spawnListener, nil )
 
-function initDuel()
+function initDuel(restart)
 	local radiantHeroes = {}
 	local direHeroes = {}
 
@@ -946,9 +952,22 @@ function initDuel()
 		end
 	end
 
-	startDuel(radiantHeroes, direHeroes, #radiantHeroes, DUEL_NOBODY_WINS, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
-		-- onDuelEnd(winner_side)
-	end, AAR_SMALL_ARENA)
+	local max_alives = getMaximumAliveHeroes(radiantHeroes, direHeroes)
+  	if max_alives < 1 then max_alives = 1 end
+  	local c = RandomInt(1, max_alives)
+
+  	local arena = AAR_SMALL_ARENA
+
+  	if c == 5 then
+  		arena = AAR_GIANT_ARENA
+  	end
+  	if c > 1 and c < 5 then
+  		arena = AAR_BIG_ARENA
+  	end
+
+	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
+		restart()
+	end, arena)
 end
 
 -- function endDuel()
