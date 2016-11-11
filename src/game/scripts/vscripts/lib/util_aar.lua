@@ -998,7 +998,10 @@ function spawnEntitiesAlongPath( path )
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
 
-			GridNav:DestroyTreesAroundPoint(pos, 256, true)
+			GridNav:DestroyTreesAroundPoint(pos, 128, true)
+
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 128, 5.0, false)
+			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 128, 5.0, false)
 
 			table.insert(temp_entities, obstacle)
 			table.insert(temp_entities, blocker)
