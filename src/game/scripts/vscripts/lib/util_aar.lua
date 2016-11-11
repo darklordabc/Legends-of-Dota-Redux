@@ -14,6 +14,10 @@ function modifier_tribune:DeclareFunctions()
 	return funcs
 end
 
+function modifier_tribune:IsHidden()
+	return true
+end
+
 function modifier_tribune:GetOverrideAnimation()
 	return ACT_DOTA_VICTORY
 end
@@ -40,6 +44,10 @@ function modifier_duel_out_of_game:DeclareFunctions()
 	}
  
 	return funcs
+end
+
+function modifier_duel_out_of_game:IsHidden()
+	return true
 end
 
 function modifier_duel_out_of_game:GetDisableHealing()
