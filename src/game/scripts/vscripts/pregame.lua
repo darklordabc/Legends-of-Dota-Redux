@@ -5445,7 +5445,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                             else 
                                 sendEventTimer( "#duel_nobody_wins", draw_tick)
                             end
-                            
+
                             return 1.0
                         end, 'duel_countdown_draw', 0)
                         return
@@ -5467,9 +5467,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                         if duel_active then
                             customAttension("#duel_10_sec_to_end", 5)
                         end
-                    end, 'waves', DUEL_NOBODY_WINS)
-
-                    return DUEL_INTERVAL - 10
+                    end, 'duel_draw_warning', DUEL_NOBODY_WINS + 10)
                 end, 'main_duel_timer', DUEL_INTERVAL - 10)
             end)
             duel()

@@ -211,7 +211,7 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
                             meepo_duel_table[i].duel_old_point = x:GetAbsOrigin()
                             meepo_duel_table[i]:Stop()
 
-                            meepo_duel_table[i]:SetAbsOrigin(tribune_points_table[cur])
+                            FindClearSpaceForUnit(meepo_duel_table[i],tribune_points_table[cur],true)
 
                             meepo_duel_table[i]:Stop()
                             meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_tribune", {})
@@ -222,7 +222,7 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
                 x.duel_old_point = x:GetAbsOrigin()
                 x:Stop()
 
-                x:SetAbsOrigin(tribune_points_table[cur])
+                FindClearSpaceForUnit(x,tribune_points_table[cur],true)
 
                 x:Stop()
                 x:AddNewModifier(x, nil, "modifier_tribune", {})
@@ -742,7 +742,7 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
             end
 
             if winners ~= -1 and hero:GetTeamNumber() ~= winners then
-            	
+            	hero:SetTimeUntilRespawn(3)
             else
             	hero:SetTimeUntilRespawn(3)
             end
@@ -867,11 +867,15 @@ function generatePoints( initial )
 		for k2,v2 in pairs(v) do -- teams
 			GridNav:DestroyTreesAroundPoint(initial[k][k2][1], 32, true)
 			for i=2,10 do
-				initial[k][k2][i] = v2[1] + Vector(0, -128 * i, 0)
+				local xOffset = 0
+				if i >= 6 then
+					xOffset = -128
+				end
+				initial[k][k2][i] = v2[1] + Vector(xOffset, -128 * i, 0)
 				GridNav:DestroyTreesAroundPoint(initial[k][k2][i], 32, true)
 
-				AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
-				AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
+				-- AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
+				-- AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
 			end
 		end
 	end

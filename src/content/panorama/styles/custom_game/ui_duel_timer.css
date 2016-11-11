@@ -51,9 +51,12 @@
 {
 	align: center center;
 	flow-children: none;
-	font-family: Goudy Trajan Medium,FZKai-Z03,TH Sarabun New,YDYGO 540;
+	margin-top: 1px;
+	font-family: RadianceM;
     color: white;
     font-size: 23px;
     font-weight: bold;
     text-shadow: 3px 5px 5px black;
+    text-align: center;
+    text-overflow: ellipsis;
 }
