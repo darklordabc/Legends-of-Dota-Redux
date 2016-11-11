@@ -78,11 +78,11 @@ function modifier_angel_arena_archmage_anomaly_thinker:DeclareFunctions()
 end
 
 function modifier_angel_arena_archmage_anomaly_thinker:OnAbilityFullyCast(params)
-	if params.unit == self:GetCaster() and IsServer() and params.ability ~= self:GetAbility() then
-		if self:GetCaster():HasAbility( params.ability:GetName() ) then -- check if caster owns ability and it's unit target
+	if params.unit:GetTeamNumber() == self:GetCaster():GetTeamNumber() and IsServer() and params.ability ~= self:GetAbility() then
+		if params.unit:HasAbility( params.ability:GetName() ) then -- check if caster owns ability and it's unit target
 			self.AlreadyHit = {}
 			if params.target then self.AlreadyHit[params.target] = true end
-			local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent(), self.aura_radius * 2, self.auraTargetTeam, self.auraTargetType, self.auraTargetFlags, FIND_ANY_ORDER, false)
+			local enemies = FindUnitsInRadius(params.unit:GetTeamNumber(), self:GetParent():GetAbsOrigin(), params.unit, self.aura_radius * 2, self.auraTargetTeam, self.auraTargetType, self.auraTargetFlags, FIND_ANY_ORDER, false)
 			for _,enemy in pairs(enemies) do
 				if enemy:HasModifier("modifier_archmage_anomaly") then
 					if params.ability:GetCursorTarget() and not self.AlreadyHit[enemy] then
