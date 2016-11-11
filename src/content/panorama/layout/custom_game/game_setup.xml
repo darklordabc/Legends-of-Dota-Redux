@@ -361,13 +361,15 @@
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png"></Image>
-						
+						 
 						<Panel id="gamemodesPanel"> 
-							<Panel class="gamemodesScrollLeft" onactivate="gamemodesScrollLeft()"> 
+							<Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 
 								<Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
 							</Panel>
-							<Panel id="gamemodesContainer" />
-							<Panel class="gamemodesScrollRight" onactivate="gamemodesScrollRight()"> 
+							<Panel id="gamemodesContainer"> 
+								<Panel id="gamemodesScroller" /> 
+							</Panel>
+							<Panel class="gamemodesScrollRight" onactivate="gamemodesScroll('right')"> 
 								<Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
 							</Panel>
 						</Panel>

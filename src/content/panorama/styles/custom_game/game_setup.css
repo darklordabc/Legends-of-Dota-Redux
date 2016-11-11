@@ -687,6 +687,7 @@
 .gamemodesScrollLeft,
 .gamemodesScrollRight
 {
+    z-index: 1;
     wash-color: #66aadd;
 
     transition-property: wash-color;
@@ -704,12 +705,16 @@
     width: fill-parent-flow(1);
     horizontal-align: center;
 
-    flow-children: right;
-    overflow: scroll clip;
+    overflow: clip clip;
 }
 
-#gamemodesContainer HorizontalScrollBar {
-    height: 0px;
+#gamemodesScroller {
+    flow-children: right;
+
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;    
 }
 
 #option_panel_main_lodOptionMirrorHeroes {
@@ -2581,6 +2586,11 @@
     margin: 3px;
     text-align: center;
     opacity: .5;
+
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;    
 }
 
 .AspectRatio4x3 #gamemodesPanel .option {
