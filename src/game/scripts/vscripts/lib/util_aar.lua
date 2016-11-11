@@ -510,14 +510,12 @@ function toTribune(hero)
         for _, x in pairs(tribune_points[current_arena].radiant) do
         	FindClearSpaceForUnit(hero,x,true)
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
-            hero:StartGesture(ACT_DOTA_VICTORY)
             return
         end
     else
         for _, x in pairs(tribune_points[current_arena].dire) do
             FindClearSpaceForUnit(hero,x,true)
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
-            hero:StartGesture(ACT_DOTA_VICTORY)
             return
         end
     end
