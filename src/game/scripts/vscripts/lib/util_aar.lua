@@ -81,6 +81,11 @@ AAR_GIANT_ARENA =	3
 
 current_arena = 1
 
+random_obstacles = {}
+random_obstacles[AAR_SMALL_ARENA] = 20
+random_obstacles[AAR_BIG_ARENA] = 45
+random_obstacles[AAR_GIANT_ARENA] = 70
+
 arenas = {}
 arenas[AAR_SMALL_ARENA] = {
 	[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
@@ -954,6 +959,8 @@ function initDuel(restart)
 	local radiantHeroes = {}
 	local direHeroes = {}
 
+	restart = restart or (function (  ) end)
+
 	for k,v in pairs(HeroList:GetAllHeroes()) do
 		if IsValidEntity(v) == true and isConnected(v) then
 	  		if v:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
@@ -1094,6 +1101,15 @@ function spawnEntitiesAlongPath( model, path )
 
 	for k,v in pairs(tempTrees) do
 		v:SetModel("models/development/invisiblebox.vmdl")
+	end
+
+	for i=1,random_obstacles[current_arena] do
+		local nextPoint
+		repeat
+			nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
+		until isPointInsidePolygon(nextPoint, path)
+
+		CreateTempTree(nextPoint, DUEL_NOBODY_WINS)
 	end
 end
 
