@@ -885,6 +885,7 @@
     "duel_10_sec_to_end"                            "10 seconds to draw!"
     "duel_next_duel"                                "Next Duel: "
     "duel_nobody_wins"                              "Draw: "
+    "duel_start"                                    "Duel has been started"
     "duel_end"                                      "Duel has been ended"
     "duel_draw"                                     "Duel has been ended"
 
