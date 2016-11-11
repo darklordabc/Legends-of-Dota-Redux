@@ -129,54 +129,54 @@ tribune_points[AAR_SMALL_ARENA] = {
 }
 tribune_points[AAR_BIG_ARENA] = {
 	radiant = {
-		[1] = Vector(1223.5, -4757, 261.646),
-		[2] = Vector(1223.5, -4757, 261.646),
-		[3] = Vector(1223.5, -4757, 261.646),
-		[4] = Vector(1223.5, -4757, 261.646),
-		[5] = Vector(1223.5, -4757, 261.646),
-		[6] = Vector(1223.5, -4757, 261.646),
-		[7] = Vector(1223.5, -4757, 261.646),
-		[8] = Vector(1223.5, -4757, 261.646),
-		[9] = Vector(1223.5, -4757, 261.646),
-		[10] = Vector(1223.5, -4757, 261.646)
+		[1] = Vector(523.5, -4757, 261.646),
+		[2] = Vector(523.5, -4757, 261.646),
+		[3] = Vector(523.5, -4757, 261.646),
+		[4] = Vector(523.5, -4757, 261.646),
+		[5] = Vector(523.5, -4757, 261.646),
+		[6] = Vector(523.5, -4757, 261.646),
+		[7] = Vector(523.5, -4757, 261.646),
+		[8] = Vector(523.5, -4757, 261.646),
+		[9] = Vector(523.5, -4757, 261.646),
+		[10] = Vector(523.5, -4757, 261.646)
 	},
 	dire = {
-		[1] = Vector(4676.5, -4757, 261.646),
-		[2] = Vector(4676.5, -4757, 261.646),
-		[3] = Vector(4676.5, -4757, 261.646),
-		[4] = Vector(4676.5, -4757, 261.646),
-		[5] = Vector(4676.5, -4757, 261.646),
-		[6] = Vector(4676.5, -4757, 261.646),
-		[7] = Vector(4676.5, -4757, 261.646),
-		[8] = Vector(4676.5, -4757, 261.646),
-		[9] = Vector(4676.5, -4757, 261.646),
-		[10] = Vector(4676.5, -4757, 261.646)
+		[1] = Vector(5576.5, -4757, 261.646),
+		[2] = Vector(5576.5, -4757, 261.646),
+		[3] = Vector(5576.5, -4757, 261.646),
+		[4] = Vector(5576.5, -4757, 261.646),
+		[5] = Vector(5576.5, -4757, 261.646),
+		[6] = Vector(5576.5, -4757, 261.646),
+		[7] = Vector(5576.5, -4757, 261.646),
+		[8] = Vector(5576.5, -4757, 261.646),
+		[9] = Vector(5576.5, -4757, 261.646),
+		[10] = Vector(5576.5, -4757, 261.646)
 	}
 }
 tribune_points[AAR_GIANT_ARENA] = {
 	radiant = {
-		[1] = Vector(1223.5, -4757, 261.646),
-		[2] = Vector(1223.5, -4757, 261.646),
-		[3] = Vector(1223.5, -4757, 261.646),
-		[4] = Vector(1223.5, -4757, 261.646),
-		[5] = Vector(1223.5, -4757, 261.646),
-		[6] = Vector(1223.5, -4757, 261.646),
-		[7] = Vector(1223.5, -4757, 261.646),
-		[8] = Vector(1223.5, -4757, 261.646),
-		[9] = Vector(1223.5, -4757, 261.646),
-		[10] = Vector(1223.5, -4757, 261.646)
+		[1] = Vector(2.5, -4757, 261.646),
+		[2] = Vector(2.5, -4757, 261.646),
+		[3] = Vector(2.5, -4757, 261.646),
+		[4] = Vector(2.5, -4757, 261.646),
+		[5] = Vector(2.5, -4757, 261.646),
+		[6] = Vector(2.5, -4757, 261.646),
+		[7] = Vector(2.5, -4757, 261.646),
+		[8] = Vector(2.5, -4757, 261.646),
+		[9] = Vector(2.5, -4757, 261.646),
+		[10] = Vector(2.5, -4757, 261.646)
 	},
 	dire = {
-		[1] = Vector(4676.5, -4757, 261.646),
-		[2] = Vector(4676.5, -4757, 261.646),
-		[3] = Vector(4676.5, -4757, 261.646),
-		[4] = Vector(4676.5, -4757, 261.646),
-		[5] = Vector(4676.5, -4757, 261.646),
-		[6] = Vector(4676.5, -4757, 261.646),
-		[7] = Vector(4676.5, -4757, 261.646),
-		[8] = Vector(4676.5, -4757, 261.646),
-		[9] = Vector(4676.5, -4757, 261.646),
-		[10] = Vector(4676.5, -4757, 261.646)
+		[1] = Vector(6276.5, -4757, 261.646),
+		[2] = Vector(6276.5, -4757, 261.646),
+		[3] = Vector(6276.5, -4757, 261.646),
+		[4] = Vector(6276.5, -4757, 261.646),
+		[5] = Vector(6276.5, -4757, 261.646),
+		[6] = Vector(6276.5, -4757, 261.646),
+		[7] = Vector(6276.5, -4757, 261.646),
+		[8] = Vector(6276.5, -4757, 261.646),
+		[9] = Vector(6276.5, -4757, 261.646),
+		[10] = Vector(6276.5, -4757, 261.646)
 	}
 }
 
@@ -545,28 +545,9 @@ function removeHeroesFromDuel(heroes_table)
 
 						Timers:CreateTimer(function()
 							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
-						end, DoUniqueString("camera"), 1.0)
+						end, DoUniqueString("camera"), 0.5)
 
                         x:SetAbsOrigin(point)
-                        x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
-                        if x:GetTeamNumber() == winners then
-                        	-- x:AddNewModifier(caster,nil,"modifier_tribune_win",{duration = 4})
-                        	x:StartGesture(ACT_DOTA_VICTORY)
-                        else
-                        	-- x:AddNewModifier(caster,nil,"modifier_tribune_lose",{duration = 4})
-                        	x:StartGesture(ACT_DOTA_DEFEAT)
-                        end
-                        local t = 0
-                        Timers:CreateTimer(function()
-                        	if t > 4 then 
-                        		x:RemoveGesture(ACT_DOTA_DEFEAT)
-                        		x:RemoveGesture(ACT_DOTA_VICTORY)
-                        		return nil
-                        	end
-					    	x:SetAbsOrigin(point)
-					    	t = t + 0.03
-					    	return 0.03
-					    end, DoUniqueString("duel_end_point"), 0.03)
                     end
                     x.duel_old_point = nil
                 else
@@ -657,54 +638,85 @@ end
 function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, duel_victory_team)
 	if not duel_active then return end
     duel_active = false
-    if radiant_heroes and dire_heroes then
-    	winners = duel_victory_team
-        if duel_victory_team ~= -1 then
-            removeHeroesFromDuel(radiant_heroes)
-            removeHeroesFromDuel(dire_heroes)
-            duel_radiant_warriors = {}
-            duel_dire_warriors = {}
-            duel_radiant_heroes = {}
-            duel_dire_heroes = {}
-        end
 
-		local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
+	for _,x in pairs(HeroList:GetAllHeroes()) do
+		if IsValidEntity(x) == true then
+			x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
+			x:RemoveGesture(ACT_DOTA_DEFEAT)
+			x:RemoveGesture(ACT_DOTA_VICTORY)
+            if x:GetTeamNumber() == duel_victory_team then
+            	-- x:AddNewModifier(caster,nil,"modifier_tribune_win",{duration = 4})
+            	x:StartGesture(ACT_DOTA_VICTORY)
+            else
+            	-- x:AddNewModifier(caster,nil,"modifier_tribune_lose",{duration = 4})
+            	x:StartGesture(ACT_DOTA_DEFEAT)
+            end
+            local t = 0
+            Timers:CreateTimer(function()
+            	if t > 4 then 
+            		x:RemoveGesture(ACT_DOTA_DEFEAT)
+            		x:RemoveGesture(ACT_DOTA_VICTORY)
+            		return nil
+            	end
+		    	t = t + 0.03
+		    	return 0.03
+		    end, DoUniqueString("duel_end_point"), 0.03)
+		end
+	end
 
-		for k,v in pairs(ents) do
-			if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
-				if v:IsBuilding() and not v:IsTower() then
+	Timers:CreateTimer(function()
+	    if radiant_heroes and dire_heroes then
+	    	winners = duel_victory_team
+	        if duel_victory_team ~= -1 then
+	            removeHeroesFromDuel(radiant_heroes)
+	            removeHeroesFromDuel(dire_heroes)
+	            duel_radiant_warriors = {}
+	            duel_dire_warriors = {}
+	            duel_radiant_heroes = {}
+	            duel_dire_heroes = {}
+	        end
 
-				else
-					if v:IsNeutralUnitType() then
+			local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
+
+			for k,v in pairs(ents) do
+				if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+					if v:IsBuilding() and not v:IsTower() then
 
 					else
-						v:RemoveNoDraw()
+						if v:IsNeutralUnitType() then
+
+						else
+							v:RemoveNoDraw()
+						end
+						v:RemoveModifierByName("modifier_duel_out_of_game")
 					end
-					v:RemoveModifierByName("modifier_duel_out_of_game")
+					v:SetDayTimeVisionRange(v._duelDayVisionRange)
+					v:SetNightTimeVisionRange(v._duelNightVisionRange)
 				end
-				v:SetDayTimeVisionRange(v._duelDayVisionRange)
-				v:SetNightTimeVisionRange(v._duelNightVisionRange)
 			end
-		end
 
-		for k,v in pairs(temp_entities) do
-			UTIL_Remove(v)
-		end
+			for k,v in pairs(temp_entities) do
+				UTIL_Remove(v)
+			end
 
-		local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
+			local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
-		for k,v in pairs(tempTrees) do
-			UTIL_Remove(v)
-		end
+			for k,v in pairs(tempTrees) do
+				UTIL_Remove(v)
+			end
 
-		Convars:SetBool("dota_creeps_no_spawning", false)
+			GridNav:RegrowAllTrees()
 
-        if type(end_duel_callback) == "function" then
-            end_duel_callback(duel_victory_team)
-        end
-    else
-        print("ERROR, INVALID HEROES TABLE(EndDuel(...))")
-    end
+			Convars:SetBool("dota_creeps_no_spawning", false)
+
+	        if type(end_duel_callback) == "function" then
+	            end_duel_callback(duel_victory_team)
+	        end
+	    else
+	        print("ERROR, INVALID HEROES TABLE(EndDuel(...))")
+	    end
+	end, DoUniqueString("duel_end_timer"), 4.0)
+
     GameRules:SendCustomMessage("#duel_end", 0, 0)
 end
 
