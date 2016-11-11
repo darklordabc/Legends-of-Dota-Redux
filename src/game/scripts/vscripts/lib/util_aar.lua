@@ -112,53 +112,53 @@ arenas[AAR_GIANT_ARENA] = {
 tribune_points = {}
 tribune_points[AAR_SMALL_ARENA] = {
 	radiant = {
-		[1] = Vector(1223.5, -4757, 261.646),
+		[1] = Vector(1263.93, -4192, 257),
 	},
 	dire = {
-		[1] = Vector(4676.5, -4757, 261.646),
+		[1] = Vector(4514.9, -4088.89, 257),
 	}
 }
 tribune_points[AAR_BIG_ARENA] = {
 	radiant = {
-		[1] = Vector(523.5, -4757, 261.646),
+		[1] = Vector(-583.137, -4057.1, 257),
 	},
 	dire = {
-		[1] = Vector(5576.5, -4757, 261.646),
+		[1] = Vector(5736.05, -4348.62, 257),
 	}
 }
 tribune_points[AAR_GIANT_ARENA] = {
 	radiant = {
-		[1] = Vector(2.5, -4757, 261.646),
+		[1] = Vector(-2117.77, -5658.65, 129),
 	},
 	dire = {
-		[1] = Vector(6276.5, -4757, 261.646),
+		[1] = Vector(-2112.69, -5980, 129),
 	}
 }
 
 duel_points = {}
 duel_points[AAR_SMALL_ARENA] = {
-    radiant = {
-        [1] = Vector(2354.52,-4459.45,261.646),
-    },
-    dire = {
-        [1] = Vector(3764,-4926,261.646),
-    },
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
 }
 duel_points[AAR_BIG_ARENA] = {
-    radiant = {
-        [1] = Vector(2354.52,-4459.45,261.646),
-    },
-    dire = {
-        [1] = Vector(3764,-4926,261.646),
-    },
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
 }
 duel_points[AAR_GIANT_ARENA] = {
-    radiant = {
-        [1] = Vector(2354.52,-4459.45,261.646),
-    },
-    dire = {
-        [1] = Vector(3764,-4926,261.646),
-    },
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
 }
 
 function getHeroesCount(radiant_heroes, dire_heroes)
@@ -242,7 +242,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
     for _, x in pairs(duel_heroes) do
         x:Stop()
 
-        x:SetAbsOrigin(duel_points_table[cur] + RandomVector(64))
+        FindClearSpaceForUnit(x,duel_points_table[cur],true)
 
         x:Stop()
 
@@ -744,7 +744,7 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
             if winners ~= -1 and hero:GetTeamNumber() ~= winners then
             	
             else
-            	hero:SetTimeUntilRespawn(0.03)
+            	hero:SetTimeUntilRespawn(3)
             end
             return
         end
@@ -866,7 +866,7 @@ function generatePoints( initial )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v) do -- teams
 			for i=2,10 do
-				v2[i] = v2[1] + Vector(0, 128 * i, 0)
+				initial[k][k2][i] = v2[1] + Vector(0, -128 * i, 0)
 			end
 		end
 	end
@@ -968,7 +968,7 @@ function spawnEntitiesAlongPath( path )
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
 
-			GridNav:DestroyTreesAroundPoint(pos, 128, true)
+			GridNav:DestroyTreesAroundPoint(pos, 256, true)
 
 			table.insert(temp_entities, obstacle)
 			table.insert(temp_entities, blocker)
@@ -983,6 +983,9 @@ function spawnEntitiesAlongPath( path )
 		for k,v in pairs(trees) do
 			if isPointInsidePolygon(v:GetOrigin(), path) then
 				GridNav:DestroyTreesAroundPoint(v:GetOrigin(), 32, true)
+
+				AddFOWViewer(DOTA_TEAM_GOODGUYS, v:GetOrigin(), 128, 5.0, false)
+				AddFOWViewer(DOTA_TEAM_BADGUYS, v:GetOrigin(), 128, 5.0, false)
 			end
 		end
 	end
@@ -1048,9 +1051,6 @@ function spawnEntitiesAlongPath( path )
 		until isPointInsidePolygon(nextPoint, path)
 
 		CreateTempTree(nextPoint, DUEL_NOBODY_WINS)
-
-		AddFOWViewer(DOTA_TEAM_GOODGUYS, nextPoint, 128, 1.0, true)
-		AddFOWViewer(DOTA_TEAM_BADGUYS, nextPoint, 128, 1.0, true)
 
 		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
 		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
