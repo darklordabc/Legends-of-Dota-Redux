@@ -73,13 +73,17 @@ local duel_dire_heroes = {}
 local duel_end_callback
 local duel_victory_team = 0
 temp_entities = {}
-winners = nil
+temp_vision = {}
+winners = -1
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
 AAR_GIANT_ARENA =	3
 
 current_arena = 1
+
+wallModel = "models/props_structures/tower_good4.vmdl"
+towerModel = "models/props_structures/tower_good2.vmdl"
 
 random_obstacles = {}
 random_obstacles[AAR_SMALL_ARENA] = 20
@@ -109,79 +113,25 @@ tribune_points = {}
 tribune_points[AAR_SMALL_ARENA] = {
 	radiant = {
 		[1] = Vector(1223.5, -4757, 261.646),
-		[2] = Vector(1223.5, -4757, 261.646),
-		[3] = Vector(1223.5, -4757, 261.646),
-		[4] = Vector(1223.5, -4757, 261.646),
-		[5] = Vector(1223.5, -4757, 261.646),
-		[6] = Vector(1223.5, -4757, 261.646),
-		[7] = Vector(1223.5, -4757, 261.646),
-		[8] = Vector(1223.5, -4757, 261.646),
-		[9] = Vector(1223.5, -4757, 261.646),
-		[10] = Vector(1223.5, -4757, 261.646)
 	},
 	dire = {
 		[1] = Vector(4676.5, -4757, 261.646),
-		[2] = Vector(4676.5, -4757, 261.646),
-		[3] = Vector(4676.5, -4757, 261.646),
-		[4] = Vector(4676.5, -4757, 261.646),
-		[5] = Vector(4676.5, -4757, 261.646),
-		[6] = Vector(4676.5, -4757, 261.646),
-		[7] = Vector(4676.5, -4757, 261.646),
-		[8] = Vector(4676.5, -4757, 261.646),
-		[9] = Vector(4676.5, -4757, 261.646),
-		[10] = Vector(4676.5, -4757, 261.646)
 	}
 }
 tribune_points[AAR_BIG_ARENA] = {
 	radiant = {
 		[1] = Vector(523.5, -4757, 261.646),
-		[2] = Vector(523.5, -4757, 261.646),
-		[3] = Vector(523.5, -4757, 261.646),
-		[4] = Vector(523.5, -4757, 261.646),
-		[5] = Vector(523.5, -4757, 261.646),
-		[6] = Vector(523.5, -4757, 261.646),
-		[7] = Vector(523.5, -4757, 261.646),
-		[8] = Vector(523.5, -4757, 261.646),
-		[9] = Vector(523.5, -4757, 261.646),
-		[10] = Vector(523.5, -4757, 261.646)
 	},
 	dire = {
 		[1] = Vector(5576.5, -4757, 261.646),
-		[2] = Vector(5576.5, -4757, 261.646),
-		[3] = Vector(5576.5, -4757, 261.646),
-		[4] = Vector(5576.5, -4757, 261.646),
-		[5] = Vector(5576.5, -4757, 261.646),
-		[6] = Vector(5576.5, -4757, 261.646),
-		[7] = Vector(5576.5, -4757, 261.646),
-		[8] = Vector(5576.5, -4757, 261.646),
-		[9] = Vector(5576.5, -4757, 261.646),
-		[10] = Vector(5576.5, -4757, 261.646)
 	}
 }
 tribune_points[AAR_GIANT_ARENA] = {
 	radiant = {
 		[1] = Vector(2.5, -4757, 261.646),
-		[2] = Vector(2.5, -4757, 261.646),
-		[3] = Vector(2.5, -4757, 261.646),
-		[4] = Vector(2.5, -4757, 261.646),
-		[5] = Vector(2.5, -4757, 261.646),
-		[6] = Vector(2.5, -4757, 261.646),
-		[7] = Vector(2.5, -4757, 261.646),
-		[8] = Vector(2.5, -4757, 261.646),
-		[9] = Vector(2.5, -4757, 261.646),
-		[10] = Vector(2.5, -4757, 261.646)
 	},
 	dire = {
 		[1] = Vector(6276.5, -4757, 261.646),
-		[2] = Vector(6276.5, -4757, 261.646),
-		[3] = Vector(6276.5, -4757, 261.646),
-		[4] = Vector(6276.5, -4757, 261.646),
-		[5] = Vector(6276.5, -4757, 261.646),
-		[6] = Vector(6276.5, -4757, 261.646),
-		[7] = Vector(6276.5, -4757, 261.646),
-		[8] = Vector(6276.5, -4757, 261.646),
-		[9] = Vector(6276.5, -4757, 261.646),
-		[10] = Vector(6276.5, -4757, 261.646)
 	}
 }
 
@@ -189,79 +139,25 @@ duel_points = {}
 duel_points[AAR_SMALL_ARENA] = {
     radiant = {
         [1] = Vector(2354.52,-4459.45,261.646),
-        [2] = Vector(2354.52,-4459.45,261.646),
-        [3] = Vector(2354.52,-4459.45,261.646),
-        [4] = Vector(2354.52,-4459.45,261.646),
-        [5] = Vector(2354.52,-4459.45,261.646),
-        [6] = Vector(2354.52,-4459.45,261.646),
-        [7] = Vector(2354.52,-4459.45,261.646),
-        [8] = Vector(2354.52,-4459.45,261.646),
-        [9] = Vector(2354.52,-4459.45,261.646),
-        [10] = Vector(2354.52,-4459.45,261.646)
     },
     dire = {
         [1] = Vector(3764,-4926,261.646),
-        [2] = Vector(3764,-4926,261.646),
-        [3] = Vector(3764,-4926,261.646),
-        [4] = Vector(3764,-4926,261.646),
-        [5] = Vector(3764,-4926,261.646),
-        [6] = Vector(3764,-4926,261.646),
-        [7] = Vector(3764,-4926,261.646),
-        [8] = Vector(3764,-4926,261.646),
-        [9] = Vector(3764,-4926,261.646),
-        [10] = Vector(3764,-4926,261.646)
     },
 }
 duel_points[AAR_BIG_ARENA] = {
     radiant = {
         [1] = Vector(2354.52,-4459.45,261.646),
-        [2] = Vector(2354.52,-4459.45,261.646),
-        [3] = Vector(2354.52,-4459.45,261.646),
-        [4] = Vector(2354.52,-4459.45,261.646),
-        [5] = Vector(2354.52,-4459.45,261.646),
-        [6] = Vector(2354.52,-4459.45,261.646),
-        [7] = Vector(2354.52,-4459.45,261.646),
-        [8] = Vector(2354.52,-4459.45,261.646),
-        [9] = Vector(2354.52,-4459.45,261.646),
-        [10] = Vector(2354.52,-4459.45,261.646)
     },
     dire = {
         [1] = Vector(3764,-4926,261.646),
-        [2] = Vector(3764,-4926,261.646),
-        [3] = Vector(3764,-4926,261.646),
-        [4] = Vector(3764,-4926,261.646),
-        [5] = Vector(3764,-4926,261.646),
-        [6] = Vector(3764,-4926,261.646),
-        [7] = Vector(3764,-4926,261.646),
-        [8] = Vector(3764,-4926,261.646),
-        [9] = Vector(3764,-4926,261.646),
-        [10] = Vector(3764,-4926,261.646)
     },
 }
 duel_points[AAR_GIANT_ARENA] = {
     radiant = {
         [1] = Vector(2354.52,-4459.45,261.646),
-        [2] = Vector(2354.52,-4459.45,261.646),
-        [3] = Vector(2354.52,-4459.45,261.646),
-        [4] = Vector(2354.52,-4459.45,261.646),
-        [5] = Vector(2354.52,-4459.45,261.646),
-        [6] = Vector(2354.52,-4459.45,261.646),
-        [7] = Vector(2354.52,-4459.45,261.646),
-        [8] = Vector(2354.52,-4459.45,261.646),
-        [9] = Vector(2354.52,-4459.45,261.646),
-        [10] = Vector(2354.52,-4459.45,261.646)
     },
     dire = {
         [1] = Vector(3764,-4926,261.646),
-        [2] = Vector(3764,-4926,261.646),
-        [3] = Vector(3764,-4926,261.646),
-        [4] = Vector(3764,-4926,261.646),
-        [5] = Vector(3764,-4926,261.646),
-        [6] = Vector(3764,-4926,261.646),
-        [7] = Vector(3764,-4926,261.646),
-        [8] = Vector(3764,-4926,261.646),
-        [9] = Vector(3764,-4926,261.646),
-        [10] = Vector(3764,-4926,261.646)
     },
 }
 
@@ -644,6 +540,8 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 	if not duel_active then return end
     duel_active = false
 
+    winners = duel_victory_team
+
 	for _,x in pairs(HeroList:GetAllHeroes()) do
 		if IsValidEntity(x) == true then
 			x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
@@ -698,6 +596,10 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 					v:SetDayTimeVisionRange(v._duelDayVisionRange)
 					v:SetNightTimeVisionRange(v._duelNightVisionRange)
 				end
+			end
+
+			for k,v in pairs(temp_vision) do
+				UTIL_Remove(v)
 			end
 
 			for k,v in pairs(temp_entities) do
@@ -797,7 +699,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     moveToDuel(radiant_warriors, radiant_heroes, duel_points[current_arena].radiant)
     moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
 
-    spawnEntitiesAlongPath( "models/props_rock/badside_rocks002.vmdl", arenas[current_arena] )
+    spawnEntitiesAlongPath( arenas[current_arena] )
 
     freezeGameplay()
 
@@ -837,6 +739,11 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
                 print("all play dead")
                 endDuel(duel_radiant_heroes, duel_dire_heroes, duel_radiant_warriors, duel_dire_warriors, duel_end_callback, duel_victory_team )
                 print("team victory = " , duel_victory_team)
+                if winners ~= -1 and hero:GetTeamNumber() ~= winners then
+                	
+                else
+                	killedUnit:SetTimeUntilRespawn(0.03)
+                end
             end
             return
         end
@@ -854,7 +761,6 @@ function deathListener( event )
     if not killedUnit or not IsValidEntity(killedUnit) or not killedUnit:IsRealHero() then return end
  
     if duel_active and not killedUnit:IsReincarnating() then
-    	killedUnit:SetTimeUntilRespawn(0.03)
        _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
        _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
     end
@@ -955,7 +861,22 @@ end
 ListenToGameEvent("entity_killed", deathListener, nil)
 ListenToGameEvent('npc_spawned', spawnListener, nil )
 
+function generatePoints( initial )
+	for k,v in pairs(initial) do -- arenas
+		for k2,v2 in pairs(v) do -- teams
+			for i=2,10 do
+				v2[i] = v2[1] + Vector(0, 128 * i, 0)
+			end
+		end
+	end
+end
+
 function initDuel(restart)
+	winners = -1
+	
+	generatePoints( tribune_points )
+	generatePoints( duel_points )
+
 	local radiantHeroes = {}
 	local direHeroes = {}
 
@@ -1017,7 +938,8 @@ function freezeGameplay()
 	end
 end
 
-function spawnEntitiesAlongPath( model, path )
+function spawnEntitiesAlongPath( path )
+	temp_vision = {}
 	temp_entities = {}
 
 	local j = #path
@@ -1029,11 +951,23 @@ function spawnEntitiesAlongPath( model, path )
 
 		for x=0,distance,128 do
 			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
+			local scale = 1.0
+			local model = wallModel
+			if x == 0 then
+				model = towerModel
+				scale = 1.5
+			end
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
 			CreateTempTree(pos, DUEL_NOBODY_WINS)
 			obstacle:SetAbsOrigin(pos)
-			obstacle:SetModelScale(2.0)
+			obstacle:SetModelScale(scale)
+
+			if x == 0 then
+				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
+			end
+
+			GridNav:DestroyTreesAroundPoint(pos, 128, true)
 
 			table.insert(temp_entities, obstacle)
 			table.insert(temp_entities, blocker)
@@ -1085,7 +1019,10 @@ function spawnEntitiesAlongPath( model, path )
 						local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
 						for k,v in pairs(tempTrees) do
-							v:SetModel("models/development/invisiblebox.vmdl")
+							if v:GetOrigin() == pos then
+								v:SetModel("models/development/invisiblebox.vmdl")
+								break
+							end
 						end
 					end
 				end
@@ -1110,6 +1047,15 @@ function spawnEntitiesAlongPath( model, path )
 		until isPointInsidePolygon(nextPoint, path)
 
 		CreateTempTree(nextPoint, DUEL_NOBODY_WINS)
+
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, nextPoint, 128, 1.0, true)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, nextPoint, 128, 1.0, true)
+
+		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
+		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
+
+		-- table.insert(temp_vision, radiantDummy)
+		-- table.insert(temp_vision, direDummy)
 	end
 end
 
