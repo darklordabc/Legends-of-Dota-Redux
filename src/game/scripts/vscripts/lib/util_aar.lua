@@ -641,8 +641,10 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 						end
 						v:RemoveModifierByName("modifier_duel_out_of_game")
 					end
-					v:SetDayTimeVisionRange(v._duelDayVisionRange)
-					v:SetNightTimeVisionRange(v._duelNightVisionRange)
+					if v._duelDayVisionRange and v._duelNightVisionRange then
+						v:SetDayTimeVisionRange(v._duelDayVisionRange)
+						v:SetNightTimeVisionRange(v._duelNightVisionRange)
+					end
 				end
 			end
 
