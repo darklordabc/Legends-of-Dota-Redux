@@ -366,9 +366,7 @@
 							<Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 
 								<Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
 							</Panel>
-							<Panel id="gamemodesContainer"> 
-								<Panel id="gamemodesScroller" /> 
-							</Panel>
+							<Panel id="gamemodesContainer" /> 
 							<Panel class="gamemodesScrollRight" onactivate="gamemodesScroll('right')"> 
 								<Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
 							</Panel>

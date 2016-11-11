@@ -705,16 +705,8 @@
     width: fill-parent-flow(1);
     horizontal-align: center;
 
-    overflow: clip clip;
-}
-
-#gamemodesScroller {
     flow-children: right;
-
-    transition-property: transform;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;    
+    overflow: clip clip;
 }
 
 #option_panel_main_lodOptionMirrorHeroes {

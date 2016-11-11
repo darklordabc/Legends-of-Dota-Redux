@@ -2671,7 +2671,7 @@ function buildBasicOptionsCategories() {
             var fieldData = optionData.fields;
 
             // The panel
-            var optionPanel = $('#gamemodesScroller');
+            var optionPanel = $('#gamemodesContainer');
 
             if(optionData.custom) {
                 optionPanel.AddClass('optionButtonCustomRequired');
@@ -4388,21 +4388,21 @@ function switchOptions() {
 
 // Gamemodes scroller
 function gamemodesScroll(direction) {
-    if ($('#gamemodesScroller').num == undefined)
-        $('#gamemodesScroller').num = 0;
+    if ($('#gamemodesContainer').num == undefined)
+        $('#gamemodesContainer').num = 0;
 
-    var childCount = $('#gamemodesScroller').GetChildCount();
+    var childCount = $('#gamemodesContainer').GetChildCount();
 
     
     var dir = direction == 'right' ? -1 : 1;
-    if (childCount + $('#gamemodesScroller').num + dir == 0 ||
-        $('#gamemodesScroller').num + dir > 0)
+    if (childCount + $('#gamemodesContainer').num + dir == 0 ||
+        $('#gamemodesContainer').num + dir > 0)
             return;
 
-    $('#gamemodesScroller').num += dir;
+    $('#gamemodesContainer').num += dir;
     for(var i = 0; i < childCount; i++){
-        var c = $('#gamemodesScroller').GetChild(i);
-        c.style.transform = 'translateX(' + $('#gamemodesScroller').num / childCount * 100  + '%);';
+        var c = $('#gamemodesContainer').GetChild(i);
+        c.style.transform = 'translateX(' + $('#gamemodesContainer').num / childCount * 100  + '%);';
     }
 }
 
