@@ -18,10 +18,6 @@ function modifier_tribune:IsHidden()
 	return true
 end
 
-function modifier_tribune:GetOverrideAnimation()
-	return ACT_DOTA_VICTORY
-end
-
 function modifier_tribune:GetDisableHealing()
 	return true
 end
@@ -481,18 +477,20 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
     local anyHuman = false
 
     for _, x in pairs(heroes_table) do
-        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
-        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then
+        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) > 0 then
         		anyHuman = true
         		break
         	end
         end
     end
+
+    local addedHuman = false
  
     local counter_local = 0;
     local output_table = {}
     for _, x in pairs(heroes_table) do
-        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and (x.IsDueled == false or (addedHuman == false and anyHuman and PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0)) and isConnected(x) then --x.IsDisconnect == false then
             if x:GetUnitName() == "npc_dota_hero_meepo" then
                 local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
                 if meepo_duel_table then
@@ -515,33 +513,8 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
                     return output_table
                 end
             end
+            addedHuman = true
         end
-    end
-
-    if anyHuman then
-    	local anyHuman2 = false
-	    for _, x in pairs(output_table) do
-	        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
-	        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
-	        		anyHuman2 = true
-	        		break
-	        	end
-	        end
-	    end
-
-	    if anyHuman2 == false then
-		    for _, x in pairs(output_table) do
-		        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
-		        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
-		        		x.IsDueled = false
-		        		break
-		        	end
-		        end
-		    end
-
-	        clearDuelFromHeroes(heroes_table)
-	        return getHeroesToDuelFromTeamTable(heroes_table, hero_count)
-	    end
     end
 
     if counter_local < hero_count then -- if some heroes already dueled
@@ -596,10 +569,8 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			x:RemoveGesture(ACT_DOTA_DEFEAT)
 			x:RemoveGesture(ACT_DOTA_VICTORY)
             if x:GetTeamNumber() == duel_victory_team then
-            	-- x:AddNewModifier(caster,nil,"modifier_tribune_win",{duration = 4})
             	x:StartGesture(ACT_DOTA_VICTORY)
             else
-            	-- x:AddNewModifier(caster,nil,"modifier_tribune_lose",{duration = 4})
             	x:StartGesture(ACT_DOTA_DEFEAT)
             end
             local t = 0
