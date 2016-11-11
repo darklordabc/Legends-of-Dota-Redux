@@ -6,6 +6,7 @@ function UpdateDuelText(data)
 	var temp_text = ""
 	temp_text+=data.string
 	$( "#DuelTextBlock").text = $.Localize(temp_text) + " " + data.time_string
+	$( "#DuelTextBlock").style.color = data.color
 }
 
 function HideDuelText() {

@@ -58,7 +58,7 @@ function modifier_duel_out_of_game:CheckState()
 	return state
 end
 
-DUEL_INTERVAL = 300
+DUEL_INTERVAL = 30
 DUEL_NOBODY_WINS = 60
 
 duel_active = false
@@ -254,6 +254,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         UTIL_Remove(duel_gem)
         x.duel_cooldowns = saveAbilitiesCooldowns(x)
         resetAllAbilitiesCooldown(x, x.duel_cooldowns)
+        x.tempHealth = x:GetHealth()
         x:SetHealth(9999999)
         x:SetMana(9999999)
         x:Purge(true, true, false, true, false )
@@ -435,6 +436,10 @@ function removeHeroesFromDuel(heroes_table)
                 if x.item_gem then
                     x:AddNewModifier(x, x.item_gem, "modifier_item_gem_of_true_sight", {})
                 end
+
+                if x.tempHealth then
+                	x:SetHealth(x.tempHealth)
+                end
                
                 --if x.duel_gem then
                 --    x.duel_gem:RemoveSelf()
@@ -463,6 +468,17 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
     if getAliveHeroesCount(heroes_table) < hero_count then
         print("Duel system error, alive heroes < hero count. Fix it!")
         return
+    end
+
+    local anyHuman = false
+
+    for _, x in pairs(heroes_table) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
+        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
+        		anyHuman = true
+        		break
+        	end
+        end
     end
  
     local counter_local = 0;
@@ -493,7 +509,33 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
             end
         end
     end
- 
+
+    if anyHuman then
+    	local anyHuman2 = false
+	    for _, x in pairs(output_table) do
+	        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
+	        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
+	        		anyHuman2 = true
+	        		break
+	        	end
+	        end
+	    end
+
+	    if anyHuman2 == false then
+		    for _, x in pairs(output_table) do
+		        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then
+		        	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0 then
+		        		x.IsDueled = false
+		        		break
+		        	end
+		        end
+		    end
+
+	        clearDuelFromHeroes(heroes_table)
+	        return getHeroesToDuelFromTeamTable(heroes_table, hero_count)
+	    end
+    end
+
     if counter_local < hero_count then -- if some heroes already dueled
         clearDuelFromHeroes(heroes_table)
         return getHeroesToDuelFromTeamTable(heroes_table, hero_count)
@@ -1154,6 +1196,9 @@ function resetAllAbilitiesCooldown(unit, item_table)
         if item_table.items then
             for i,x in pairs(item_table.items) do
                 i:EndCooldown()
+                if i:GetName() == "item_tpscroll" or i:GetName() == "item_travel_boots" or i:GetName() == "item_travel_boots_2" then
+                	i:StartCooldown(DUEL_NOBODY_WINS)
+                end
             end
         end
     end
@@ -1170,7 +1215,7 @@ function sendEventTimer(text, time)
     local timer_text = m10 .. m01 .. ":" .. s10 .. s01
 
     local text_color = "#FFFFFF"
-    if time < 16 then
+    if time < 11 then
     	text_color = "#FF0000"
     end
 

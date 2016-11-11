@@ -5467,7 +5467,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                         if duel_active then
                             customAttension("#duel_10_sec_to_end", 5)
                         end
-                    end, 'duel_draw_warning', DUEL_NOBODY_WINS + 10)
+                    end, 'duel_draw_warning', DUEL_NOBODY_WINS)
                 end, 'main_duel_timer', DUEL_INTERVAL - 10)
             end)
             duel()
