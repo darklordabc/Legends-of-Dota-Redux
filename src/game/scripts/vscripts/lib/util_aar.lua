@@ -865,8 +865,13 @@ ListenToGameEvent('npc_spawned', spawnListener, nil )
 function generatePoints( initial )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v) do -- teams
+			GridNav:DestroyTreesAroundPoint(initial[k][k2][1], 32, true)
 			for i=2,10 do
 				initial[k][k2][i] = v2[1] + Vector(0, -128 * i, 0)
+				GridNav:DestroyTreesAroundPoint(initial[k][k2][i], 32, true)
+
+				AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
+				AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
 			end
 		end
 	end
