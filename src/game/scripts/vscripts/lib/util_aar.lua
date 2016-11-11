@@ -739,11 +739,12 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
                 print("all play dead")
                 endDuel(duel_radiant_heroes, duel_dire_heroes, duel_radiant_warriors, duel_dire_warriors, duel_end_callback, duel_victory_team )
                 print("team victory = " , duel_victory_team)
-                if winners ~= -1 and hero:GetTeamNumber() ~= winners then
-                	
-                else
-                	killedUnit:SetTimeUntilRespawn(0.03)
-                end
+            end
+
+            if winners ~= -1 and hero:GetTeamNumber() ~= winners then
+            	
+            else
+            	hero:SetTimeUntilRespawn(0.03)
             end
             return
         end
@@ -873,7 +874,7 @@ end
 
 function initDuel(restart)
 	winners = -1
-	
+
 	generatePoints( tribune_points )
 	generatePoints( duel_points )
 
