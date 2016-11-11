@@ -315,6 +315,10 @@
     "lodOptionHigh"                                 "High - Every Minute"
     "lodOptionExtreme"                              "Extreme - Every 30 Seconds"
 
+    "lodOptionDuels"                                "Duels"
+    "lodOptionDesDuels"                             "Duels"
+    "lodOptionAboutDuels"                           "Imported from AAR duel system"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -874,6 +878,15 @@
     "teamSwitch_disconnected"                       "DISCONNECTED"
     "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
     "teamSwitch_cooldown"                           "Team switching is still on cooldown."
+
+    // Duel
+
+    "duel_10_sec_to_begin"                          "10 seconds before start of duel!"
+    "duel_10_sec_to_end"                            "10 seconds to draw!"
+    "duel_next_duel"                                "Next Duel: "
+    "duel_nobody_wins"                              "Draw: "
+    "duel_end"                                      "Duel has been ended"
+    "duel_draw"                                     "Duel has been ended"
 
     /////////////////
     // UNIQUE HERO MECHANICS

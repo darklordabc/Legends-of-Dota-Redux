@@ -2,13 +2,14 @@
 
 function UpdateDuelText(data)
 {
+	$( "#Block").visible = true;
 	var temp_text = ""
 	temp_text+=data.string
 	$( "#DuelTextBlock").text = $.Localize(temp_text) + " " + data.time_string
-	$( "#DuelTextBlock").style.color = data.color
 }
 
 function HideDuelText() {
+	$( "#Block").visible = false;
 	$( "#DuelTextBlock").text = "";
 }
 
@@ -40,5 +41,7 @@ function SetKillLimit( data)
 	GameEvents.Subscribe( "attension_text", Attension_update)
 	GameEvents.Subscribe( "attension_close", Attension_close)
 	//GameEvents.Subscribe( "SetKillLimit", SetKillLimit )
+
+	HideDuelText();
 })();
 

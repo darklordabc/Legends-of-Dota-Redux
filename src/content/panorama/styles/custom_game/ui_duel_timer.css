@@ -21,39 +21,39 @@
 }
 #Block
 {
-
 	flow-children: none;
 	width: 230px;
 	height: 50px;
 	horizontal-align: left;
 	vertical-align: bottom;
 	margin-left: 1.5%;
-	margin-bottom:26.7%;
-	background-image: url( "file://{images}/custom_game/ui_timer.png");
+	margin-bottom:29.0%;
+	/*background-image: url( "file://{images}/custom_game/ui_timer.png");*/
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: 100% 100%;
+
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
+    box-shadow: #52545520 0px 0px 1px;
+    border: 1px solid #323435;
 }
 #Attension
 {
 	flow-children: down;
+	font-family: Goudy Trajan Medium,FZKai-Z03,TH Sarabun New,YDYGO 540;
 	horizontal-align: center;
 	margin-top:80px;
-	color: #FF0000;
+	color: white;
 	font-size: 34px;
 }
 
 #DuelTextBlock
 {
-    horizontal-align: left;
+	align: center center;
 	flow-children: none;
-	margin-bottom: -30%;
-	margin-top:8px;
-	margin-left:4px;
-	vertical-align: center;
-	horizontal-align: center;
-    color: #ffffff;
-    font-size: 20px;
+	font-family: Goudy Trajan Medium,FZKai-Z03,TH Sarabun New,YDYGO 540;
+    color: white;
+    font-size: 23px;
     font-weight: bold;
     text-shadow: 3px 5px 5px black;
 }
