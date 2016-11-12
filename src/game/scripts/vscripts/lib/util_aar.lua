@@ -945,7 +945,7 @@ function initDuel(restart)
   		arena = AAR_BIG_ARENA
   	end
 
-	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
+	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS + DUEL_PREPARE, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		restart()
 	end, arena)
 end
@@ -999,7 +999,7 @@ function spawnEntitiesAlongPath( path )
 			end
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
-			CreateTempTree(pos, DUEL_NOBODY_WINS)
+			CreateTempTree(pos, DUEL_NOBODY_WINS + DUEL_PREPARE)
 			obstacle:SetAbsOrigin(pos)
 			obstacle:SetModelScale(scale)
 
@@ -1007,29 +1007,16 @@ function spawnEntitiesAlongPath( path )
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
 
-			GridNav:DestroyTreesAroundPoint(pos, 128, true)
+			GridNav:DestroyTreesAroundPoint(pos, 256, true)
 
-			AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 128, 5.0, false)
-			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 128, 5.0, false)
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
+			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
 
 			table.insert(temp_entities, obstacle)
 			table.insert(temp_entities, blocker)
 		end
 
 	    j = i
-	end
-
-	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
-		local trees = Entities:FindAllByClassname("ent_dota_tree")
-
-		for k,v in pairs(trees) do
-			if isPointInsidePolygon(v:GetOrigin(), path) then
-				GridNav:DestroyTreesAroundPoint(v:GetOrigin(), 32, true)
-
-				AddFOWViewer(DOTA_TEAM_GOODGUYS, v:GetOrigin(), 128, 5.0, false)
-				AddFOWViewer(DOTA_TEAM_BADGUYS, v:GetOrigin(), 128, 5.0, false)
-			end
-		end
 	end
 
 	Timers:CreateTimer(function()
@@ -1060,7 +1047,7 @@ function spawnEntitiesAlongPath( path )
 					end
 
 					if exists == false then
-						CreateTempTree(pos, DUEL_NOBODY_WINS)
+						CreateTempTree(pos, DUEL_NOBODY_WINS + DUEL_PREPARE)
 
 						local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
@@ -1092,13 +1079,26 @@ function spawnEntitiesAlongPath( path )
 			nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
 		until isPointInsidePolygon(nextPoint, path)
 
-		CreateTempTree(nextPoint, DUEL_NOBODY_WINS)
+		CreateTempTree(nextPoint, DUEL_NOBODY_WINS + DUEL_PREPARE)
 
 		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
 		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
 
 		-- table.insert(temp_vision, radiantDummy)
 		-- table.insert(temp_vision, direDummy)
+	end
+
+	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+		local trees = Entities:FindAllByClassname("ent_dota_tree")
+
+		for k,v in pairs(trees) do
+			if isPointInsidePolygon(v:GetOrigin(), path) then
+				GridNav:DestroyTreesAroundPoint(v:GetOrigin(), 32, true)
+
+				AddFOWViewer(DOTA_TEAM_GOODGUYS, v:GetOrigin(), 128, 5.0, false)
+				AddFOWViewer(DOTA_TEAM_BADGUYS, v:GetOrigin(), 128, 5.0, false)
+			end
+		end
 	end
 end
 
@@ -1190,7 +1190,7 @@ function resetAllAbilitiesCooldown(unit, item_table)
             for i,x in pairs(item_table.items) do
                 i:EndCooldown()
                 if i:GetName() == "item_tpscroll" or i:GetName() == "item_travel_boots" or i:GetName() == "item_travel_boots_2" then
-                	i:StartCooldown(DUEL_NOBODY_WINS)
+                	i:StartCooldown(DUEL_NOBODY_WINS + DUEL_PREPARE)
                 end
             end
         end
