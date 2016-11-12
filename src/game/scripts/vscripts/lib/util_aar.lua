@@ -1,111 +1,156 @@
 local Timers = require('easytimers')
 require('obstacles')
 
-wallModel = "models/props_structures/tower_good4.vmdl"
-towerModel = "models/props_structures/tower_good2.vmdl"
-
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
 AAR_GIANT_ARENA = 3
 
 arenas = {}
 arenas[AAR_SMALL_ARENA] = {
-	[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
+	polygon = {
+		[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
+	},
+	tribune_points = {
+		radiant = {
+			[1] = Vector(1263.93, -4192, 257),
+		},
+		dire = {
+			[1] = Vector(4514.9, -4088.89, 257),
+		}
+	},
+	duel_points = {
+		radiant = {
+			[1] = Vector(1907.01, -4406.56, 257),
+		},
+		dire = {
+			[1] = Vector(3750.69, -4362.2, 257),
+		}
+	},
+	random_obstacles = 10,
+	obstacle_models = {
+		[1] = {
+			name = "Mother Tree",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.7,
+			collisionSize = 2,
+			maxCount = 1,
+			hits = 4
+		},
+		[2] = {
+			name = "Small Tree A",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.3,
+			collisionSize = 1,
+			maxCount = 50,
+			hits = 2
+		}
+	},
+	wallModel = "models/props_structures/tower_good4.vmdl",
+	towerModel = "models/props_structures/tower_good2.vmdl"
 }
 arenas[AAR_BIG_ARENA] = {
-	[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
+	polygon = {
+		[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
+	},
+	tribune_points = {
+		radiant = {
+			[1] = Vector(-583.137, -4057.1, 257),
+		},
+		dire = {
+			[1] = Vector(5736.05, -4348.62, 257),
+		}
+	},
+	duel_points = {
+		radiant = {
+			[1] = Vector(1907.01, -4406.56, 257),
+		},
+		dire = {
+			[1] = Vector(3750.69, -4362.2, 257),
+		}
+	},
+	random_obstacles = 25,
+	obstacle_models = {
+		[1] = {
+			name = "Mother Tree",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.7,
+			collisionSize = 2,
+			maxCount = 1,
+			hits = 4
+		},
+		[2] = {
+			name = "Small Tree A",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.3,
+			collisionSize = 1,
+			maxCount = 50,
+			hits = 2
+		}
+	},
+	wallModel = "models/props_structures/tower_good4.vmdl",
+	towerModel = "models/props_structures/tower_good2.vmdl"
 }
 arenas[AAR_GIANT_ARENA] = {
-	[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
-	[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
-	[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
-	[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
-	[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
-	[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
-	[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
-	[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
-	[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)
-}
-
-tribune_points = {}
-tribune_points[AAR_SMALL_ARENA] = {
-	radiant = {
-		[1] = Vector(1263.93, -4192, 257),
+	polygon = {
+		[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
+		[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
+		[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
+		[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
+		[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
+		[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
+		[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
+		[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
+		[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)
 	},
-	dire = {
-		[1] = Vector(4514.9, -4088.89, 257),
-	}
-}
-tribune_points[AAR_BIG_ARENA] = {
-	radiant = {
-		[1] = Vector(-583.137, -4057.1, 257),
+	tribune_points = {
+		radiant = {
+			[1] = Vector(-2117.77, -5658.65, 129),
+		},
+		dire = {
+			[1] = Vector(-2112.69, -5980, 129),
+		}
 	},
-	dire = {
-		[1] = Vector(5736.05, -4348.62, 257),
-	}
-}
-tribune_points[AAR_GIANT_ARENA] = {
-	radiant = {
-		[1] = Vector(-2117.77, -5658.65, 129),
+	duel_points = {
+		radiant = {
+			[1] = Vector(1907.01, -4406.56, 257),
+		},
+		dire = {
+			[1] = Vector(3750.69, -4362.2, 257),
+		}
 	},
-	dire = {
-		[1] = Vector(-2112.69, -5980, 129),
-	}
-}
-
-duel_points = {}
-duel_points[AAR_SMALL_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
+	random_obstacles = 40,
+	obstacle_models = {
+		[1] = {
+			name = "Mother Tree",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.7,
+			collisionSize = 2,
+			maxCount = 1,
+			hits = 4
+		},
+		[2] = {
+			name = "Small Tree A",
+			model = "models/props_tree/dire_tree007_sfm.vmdl",
+			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+			blockVision = true,
+			scale = 0.3,
+			collisionSize = 1,
+			maxCount = 50,
+			hits = 2
+		}
 	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
-duel_points[AAR_BIG_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
-	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
-duel_points[AAR_GIANT_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
-	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
-
-random_obstacles = {}
-random_obstacles[AAR_SMALL_ARENA] = 10
-random_obstacles[AAR_BIG_ARENA] = 25
-random_obstacles[AAR_GIANT_ARENA] = 40
-
-obstacle_models = {}
-obstacle_models[1] = {
-	name = "Mother Tree",
-	model = "models/props_tree/dire_tree007_sfm.vmdl",
-	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-	destructible = true,
-	blockVision = true,
-	scale = 0.7,
-	collisionSize = 2,
-	maxCount = 1,
-	hits = 4
-}
-obstacle_models[2] = {
-	name = "Small Tree A",
-	model = "models/props_tree/dire_tree007_sfm.vmdl",
-	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-	destructible = true,
-	blockVision = true,
-	scale = 0.3,
-	collisionSize = 1,
-	maxCount = 50,
-	hits = 2
+	wallModel = "models/props_structures/tower_good4.vmdl",
+	towerModel = "models/props_structures/tower_good2.vmdl"
 }
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
@@ -256,6 +301,11 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
 
                 FindClearSpaceForUnit(x,tribune_points_table[cur],true)
 
+                if x.duelParticle then
+					ParticleManager:DestroyParticle(x.duelParticle,false)
+					x:EmitSound("Portal.Hero_Disappear")
+                end
+
                 x:Stop()
                 x:AddNewModifier(x, nil, "modifier_tribune", {})
             end
@@ -319,6 +369,11 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x:RemoveModifierByName("modifier_maledict")
         x:RemoveModifierByName("modifier_bloodseeker_rupture")
 
+	    if x.duelParticle then
+			ParticleManager:DestroyParticle(x.duelParticle,false)
+			x:EmitSound("Portal.Hero_Disappear")
+	    end
+
 		Timers:CreateTimer(function()
 			if not duel_active or not x:IsAlive() then
 				return
@@ -353,7 +408,7 @@ function moveToDuelHero(hero)
         return
     end
  
-    x:SetAbsOrigin(getMidPoint( arenas[current_arena] ))
+    x:SetAbsOrigin(getMidPoint( arenas[current_arena].polygon ))
 
     hero:RemoveModifierByName("modifier_tribune")
 end
@@ -361,8 +416,8 @@ end
 function isHeroOnDuel(hero)
     if not hero then return false end
    
-	if not isPointInsidePolygon(hero:GetAbsOrigin(), arenas[current_arena]) and not hero:HasModifier("modifier_tribune") then
-		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( arenas[current_arena] ),hero),true)
+	if not isPointInsidePolygon(hero:GetAbsOrigin(), arenas[current_arena].polygon) and not hero:HasModifier("modifier_tribune") then
+		FindClearSpaceForUnit(hero, GetGroundPosition(hero.oldArenaPos or getMidPoint( arenas[current_arena].polygon ),hero),true)
 	else
 		hero.oldArenaPos = hero:GetAbsOrigin()
 	end
@@ -389,7 +444,7 @@ function removeHeroesFromDuel(heroes_table)
        
                             local point = meepo_return_table[i].duel_old_point
                             if not point then
-                                point = getMidPoint( arenas[current_arena] ) --Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, meepo_return_table[i]:GetTeamNumber())):GetAbsOrigin()
+                                point = getMidPoint( arenas[current_arena].polygon ) --Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, meepo_return_table[i]:GetTeamNumber())):GetAbsOrigin()
                             end      
  
                             if meepo_return_table[i].duel_cooldowns then
@@ -451,7 +506,7 @@ function removeHeroesFromDuel(heroes_table)
  
                 local point = x.duel_old_point
                 if not point then
-                    point = getMidPoint( arenas[current_arena] ) -- Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, x:GetTeamNumber())):GetAbsOrigin()
+                    point = getMidPoint( arenas[current_arena].polygon ) -- Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, x:GetTeamNumber())):GetAbsOrigin()
                 end
  
                 if x.duel_cooldowns then
@@ -485,6 +540,8 @@ function removeHeroesFromDuel(heroes_table)
 
 						Timers:CreateTimer(function()
 							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
+							ParticleManager:DestroyParticle(x.duelParticle, false)
+							x:EmitSound("Portal.Hero_Disappear")
 						end, DoUniqueString("camera"), 0.06)
                     end
                     x.duel_old_point = nil
@@ -558,14 +615,14 @@ function toTribune(hero)
     end
     local team = hero:GetTeamNumber()
     if team == DOTA_TEAM_GOODGUYS then
-        for _, x in pairs(tribune_points[current_arena].radiant) do
+        for _, x in pairs(arenas[current_arena].tribune_points.radiant) do
         	FindClearSpaceForUnit(hero,x,true)
         	hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
         end
     else
-        for _, x in pairs(tribune_points[current_arena].dire) do
+        for _, x in pairs(arenas[current_arena].tribune_points.dire) do
             FindClearSpaceForUnit(hero,x,true)
             hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
@@ -596,6 +653,13 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 	for _,x in pairs(HeroList:GetAllHeroes()) do
 		if IsValidEntity(x) == true then
 			x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
+
+			x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
+			ParticleManager:SetParticleControl(x.duelParticle, 0, x:GetAbsOrigin() + Vector(0,0,30))
+			ParticleManager:SetParticleControl(x.duelParticle, 1, x:GetAbsOrigin() + Vector(0,0,30))
+			ParticleManager:SetParticleControl(x.duelParticle, 2, Vector(40,40,200))
+			ParticleManager:SetParticleControl(x.duelParticle, 3, x:GetAbsOrigin() + Vector(0,0,30))
+
 			x:RemoveGesture(ACT_DOTA_DEFEAT)
 			x:RemoveGesture(ACT_DOTA_VICTORY)
             if x:GetTeamNumber() == duel_victory_team then
@@ -754,19 +818,24 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
   	for k,v in pairs(HeroList:GetAllHeroes()) do
 	    if IsValidEntity(v) == true then
 	    	v:AddNewModifier(v,nil,"modifier_tribune",{})
+			v.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, v )
+			ParticleManager:SetParticleControl(v.duelParticle, 0, v:GetAbsOrigin() + Vector(0,0,30))
+			ParticleManager:SetParticleControl(v.duelParticle, 1, v:GetAbsOrigin() + Vector(0,0,30))
+			ParticleManager:SetParticleControl(v.duelParticle, 2, Vector(40,40,200))
+			ParticleManager:SetParticleControl(v.duelParticle, 3, v:GetAbsOrigin() + Vector(0,0,30))
 	    end
 	end
 
     Timers:CreateTimer(function()
-	    moveHeroesToTribune(radiant_heroes, tribune_points[current_arena].radiant)
-	    moveHeroesToTribune(dire_heroes, tribune_points[current_arena].dire)
-	    moveToDuel(radiant_warriors, radiant_heroes, duel_points[current_arena].radiant)
-	    moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
+	    moveHeroesToTribune(radiant_heroes, arenas[current_arena].tribune_points.radiant)
+	    moveHeroesToTribune(dire_heroes, arenas[current_arena].tribune_points.dire)
+	    moveToDuel(radiant_warriors, radiant_heroes, arenas[current_arena].duel_points.radiant)
+	    moveToDuel(dire_warriors, dire_heroes, arenas[current_arena].duel_points.dire)
     end, "duek_move_heroes", DUEL_PREPARE)
 
     freezeGameplay()
 
-    spawnEntitiesAlongPath( arenas[current_arena] )
+    spawnEntitiesAlongPath( arenas[current_arena].polygon )
 
     Convars:SetBool("dota_creeps_no_spawning", true)
  
@@ -944,17 +1013,17 @@ function destroyTrees(pos, radius)
 	GridNav:DestroyTreesAroundPoint(pos, radius, true)
 end
 
-function generatePoints( initial )
+function generatePoints( initial, p )
 	for k,v in pairs(initial) do -- arenas
-		for k2,v2 in pairs(v) do -- teams
-			destroyTrees(initial[k][k2][1], 32)
+		for k2,v2 in pairs(v[p]) do -- teams
+			destroyTrees(v2[1], 32)
 			for i=2,10 do
 				local xOffset = 0
 				if i >= 6 then
 					xOffset = -128
 				end
-				initial[k][k2][i] = v2[1] + Vector(xOffset, -128 * i, 0)
-				destroyTrees(initial[k][k2][i], 32)
+				v2[i] = v2[1] + Vector(xOffset, -128 * i, 0)
+				destroyTrees(v2[i], 32)
 
 				-- AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
 				-- AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
@@ -966,8 +1035,8 @@ end
 function initDuel(restart)
 	winners = -1
 
-	generatePoints( tribune_points )
-	generatePoints( duel_points )
+	generatePoints( arenas, "tribune_points" )
+	generatePoints( arenas, "duel_points" )
 
 	local radiantHeroes = {}
 	local direHeroes = {}
@@ -1043,7 +1112,7 @@ function spawnEntitiesAlongPath( path )
 
 	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
 		local obstacle_counts = {}
-		for i=1,random_obstacles[current_arena] do
+		for i=1,arenas[current_arena].random_obstacles do
 			local nextPoint
 			repeat
 				nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
@@ -1051,11 +1120,11 @@ function spawnEntitiesAlongPath( path )
 
 			nextPoint = GetGroundPosition(nextPoint,obstacle)
 
-			local obstacleTable = obstacle_models[RandomInt(1,#obstacle_models)]
+			local obstacleTable = arenas[current_arena].obstacle_models[RandomInt(1,#arenas[current_arena].obstacle_models)]
 
 			local obstacleTable
 			repeat
-				obstacleTable = obstacle_models[RandomInt(1,#obstacle_models)]
+				obstacleTable = arenas[current_arena].obstacle_models[RandomInt(1,#arenas[current_arena].obstacle_models)]
 				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
 			until obstacle_counts[obstacleTable.name] < obstacleTable.maxCount
 
@@ -1073,9 +1142,9 @@ function spawnEntitiesAlongPath( path )
 		for x=0,distance,128 do
 			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
 			local scale = 1.0
-			local model = wallModel
+			local model = arenas[current_arena].wallModel
 			if x == 0 then
-				model = towerModel
+				model = arenas[current_arena].towerModel
 				scale = 1.5
 			end
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
@@ -1259,42 +1328,4 @@ function customAttension(text, time)
     	CustomGameEventManager:Send_ServerToAllClients( "attension_close", nil )
 		return nil 
     end, DoUniqueString(text), time)
-end
-
-function blockGridNavSquare(size, location, block_fow)
-	if size % 2 ~= 0 then
-		location.x = snapToGrid32(location.x)
-		location.y = snapToGrid32(location.y)
-	else
-		location.x = snapToGrid64(location.x)
-		location.y = snapToGrid64(location.y)
-	end
-
-	local gridNavBlockers = {}
-	if size % 2 == 1 then
-		for x = location.x - (size-2) * 32, location.x + (size-2) * 32, 64 do
-		  	for y = location.y - (size-2) * 32, location.y + (size-2) * 32, 64 do
-		    	local blockerLocation = Vector(x, y, location.z)
-		    	local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
-		    	table.insert(gridNavBlockers, ent)
-		  	end
-		end
-	else
-		for x = location.x - (size / 2) * 32 + 16, location.x + (size / 2) * 32 - 16, 96 do
-		  	for y = location.y - (size / 2) * 32 + 16, location.y + (size / 2) * 32 - 16, 96 do
-		    	local blockerLocation = Vector(x, y, location.z)
-		    	local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
-		    	table.insert(gridNavBlockers, ent)
-		  	end
-		end
-	end
-	return gridNavBlockers
-end
-
-function snapToGrid64(coord)
-	return 64*math.floor(0.5+coord/64)
-end
-
-function snapToGrid32(coord)
-	return 32+64*math.floor(coord/64)
 end

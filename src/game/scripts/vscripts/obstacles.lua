@@ -1,8 +1,8 @@
-LinkLuaModifier("modifier_destructible_obstacle", "obstacles.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_undestructible_obstacle", "obstacles.lua",LUA_MODIFIER_MOTION_NONE)
 
-modifier_destructible_obstacle = class({})
+modifier_undestructible_obstacle = class({})
 
-function modifier_destructible_obstacle:DeclareFunctions()
+function modifier_undestructible_obstacle:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_DISABLE_HEALING,
         MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
@@ -15,22 +15,22 @@ function modifier_destructible_obstacle:DeclareFunctions()
     return funcs
 end
 
-function modifier_destructible_obstacle:GetModifierMagicalResistanceBonus(  )
+function modifier_undestructible_obstacle:GetModifierMagicalResistanceBonus(  )
     return 100
 end
 
-function modifier_destructible_obstacle:GetModifierHealthBonus( )
+function modifier_undestructible_obstacle:GetModifierHealthBonus( )
     return math.max(1,self:GetStackCount()) - 1
 end
 
-function modifier_destructible_obstacle:GetModifierIncomingDamage_Percentage(  )
+function modifier_undestructible_obstacle:GetModifierIncomingDamage_Percentage(  )
     if self:GetParent().hits == 0 then
         return 0
     end
     return -100
 end
 
-function modifier_destructible_obstacle:OnAttacked(args)
+function modifier_undestructible_obstacle:OnAttacked(args)
     local victim = self:GetParent()
     local attacker = args.attacker
 
@@ -52,15 +52,15 @@ function modifier_destructible_obstacle:OnAttacked(args)
     end
 end
 
-function modifier_destructible_obstacle:IsHidden()
+function modifier_undestructible_obstacle:IsHidden()
     return true
 end
 
-function modifier_destructible_obstacle:GetDisableHealing()
+function modifier_undestructible_obstacle:GetDisableHealing()
     return true
 end
 
-function modifier_destructible_obstacle:CheckState()
+function modifier_undestructible_obstacle:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
         [MODIFIER_STATE_ROOTED] = true,
@@ -71,6 +71,9 @@ function modifier_destructible_obstacle:CheckState()
         [MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
         [MODIFIER_STATE_NO_TEAM_MOVE_TO] = true,
         [MODIFIER_STATE_NO_TEAM_SELECT] = true,
+        [MODIFIER_STATE_INVULNERABLE] = true,
+        [MODIFIER_STATE_UNSELECTABLE]= true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }
     return state
 end
@@ -78,33 +81,68 @@ end
 function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
     local size = obstacleTable.collisionSize or 1
 
-    if size % 2 ~= 0 then
-        nextPoint.x = snapToGrid32(nextPoint.x)
-        nextPoint.y = snapToGrid32(nextPoint.y)
-    else
-        nextPoint.x = snapToGrid64(nextPoint.x)
-        nextPoint.y = snapToGrid64(nextPoint.y)
-    end
-
     local obstacle = CreateUnitByName("npc_dummy_unit",nextPoint,true,nil,nil,DOTA_TEAM_NOTEAM)
     obstacle:SetOriginalModel(obstacleTable.model)
     obstacle:SetModel(obstacleTable.model)
     obstacle:SetModelScale(obstacleTable.scale or 1.0)
 
-    obstacle:AddNewModifier(obstacle,nil,"modifier_destructible_obstacle",{})
-    obstacle:SetModifierStackCount("modifier_destructible_obstacle",obstacle,obstacleTable.hits or 1)
+    obstacle:AddNewModifier(obstacle,nil,"modifier_undestructible_obstacle",{})
+    obstacle:SetModifierStackCount("modifier_undestructible_obstacle",obstacle,obstacleTable.hits or 1)
 
     obstacle:SetHealth(999)
 
     obstacle.deathsim = obstacleTable.deathsim
 
-    obstacle.blockers = blockGridNavSquare(size, nextPoint, obstacleTable.blockVision)
+    if size == 1 then
+        obstacle.blockers = {}
+        table.insert(obstacle.blockers, SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = nextPoint, block_fow = obstacleTable.blockVision}))
+    else
+        if size % 2 ~= 0 then
+            nextPoint.x = snapToGrid32(nextPoint.x)
+            nextPoint.y = snapToGrid32(nextPoint.y)
+        else
+            nextPoint.x = snapToGrid64(nextPoint.x)
+            nextPoint.y = snapToGrid64(nextPoint.y)
+        end
 
-    FindClearSpaceForUnit(obstacle,nextPoint,true)
+        obstacle.blockers = blockGridNavSquare(size, nextPoint, obstacleTable.blockVision)
+    end
+
+    obstacle:SetAbsOrigin(nextPoint)
 
     if obstacle_counts then
         obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] + 1
     end
     
     return obstacle
+end
+
+function blockGridNavSquare(size, location, block_fow)
+    local gridNavBlockers = {}
+    if size % 2 == 1 then
+        for x = location.x - (size-2) * 32, location.x + (size-2) * 32, 64 do
+            for y = location.y - (size-2) * 32, location.y + (size-2) * 32, 64 do
+                local blockerLocation = Vector(x, y, location.z)
+                local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
+                table.insert(gridNavBlockers, ent)
+            end
+        end
+    else
+        for x = location.x - (size / 2) * 32 + 16, location.x + (size / 2) * 32 - 16, 96 do
+            for y = location.y - (size / 2) * 32 + 16, location.y + (size / 2) * 32 - 16, 96 do
+                local blockerLocation = Vector(x, y, location.z)
+                local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
+                table.insert(gridNavBlockers, ent)
+            end
+        end
+    end
+    return gridNavBlockers
+end
+
+function snapToGrid64(coord)
+    return 64*math.floor(0.5+coord/64)
+end
+
+function snapToGrid32(coord)
+    return 32+64*math.floor(coord/64)
 end
