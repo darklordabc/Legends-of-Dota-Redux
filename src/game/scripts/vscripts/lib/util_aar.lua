@@ -64,6 +64,7 @@ end
 
 DUEL_INTERVAL = 30
 DUEL_NOBODY_WINS = 60
+DUEL_PREPARE = 2.0
 
 duel_active = false
 
@@ -714,11 +715,19 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     duel_active = true
 
     current_arena = arena
- 
-    moveHeroesToTribune(radiant_heroes, tribune_points[current_arena].radiant)
-    moveHeroesToTribune(dire_heroes, tribune_points[current_arena].dire)
-    moveToDuel(radiant_warriors, radiant_heroes, duel_points[current_arena].radiant)
-    moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
+
+  	for k,v in pairs(HeroList:GetAllHeroes()) do
+	    if IsValidEntity(v) == true then
+	    	v:AddNewModifier(v,nil,"modifier_tribune",{duration = DUEL_PREPARE})
+	    end
+	end
+
+    Timers:CreateTimer(function()
+	    moveHeroesToTribune(radiant_heroes, tribune_points[current_arena].radiant)
+	    moveHeroesToTribune(dire_heroes, tribune_points[current_arena].dire)
+	    moveToDuel(radiant_warriors, radiant_heroes, duel_points[current_arena].radiant)
+	    moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
+    end, "duek_move_heroes", DUEL_PREPARE)
 
     spawnEntitiesAlongPath( arenas[current_arena] )
 
