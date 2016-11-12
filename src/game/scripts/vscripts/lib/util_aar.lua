@@ -1,4 +1,5 @@
 local Timers = require('easytimers')
+require('obstacles')
 
 wallModel = "models/props_structures/tower_good4.vmdl"
 towerModel = "models/props_structures/tower_good2.vmdl"
@@ -86,7 +87,7 @@ random_obstacles[AAR_GIANT_ARENA] = 40
 obstacle_models = {}
 obstacle_models[1] = {
 	name = "Mother Tree",
-	model = "models/props_tree/dire_tree007_inspector.vmdl",
+	model = "models/props_tree/dire_tree007_sfm.vmdl",
 	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
 	destructible = true,
 	blockVision = true,
@@ -97,7 +98,7 @@ obstacle_models[1] = {
 }
 obstacle_models[2] = {
 	name = "Small Tree A",
-	model = "models/props_tree/dire_tree007_inspector.vmdl",
+	model = "models/props_tree/dire_tree007_sfm.vmdl",
 	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
 	destructible = true,
 	blockVision = true,
@@ -109,78 +110,6 @@ obstacle_models[2] = {
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tribune", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_destructible_obstacle", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
-
-modifier_destructible_obstacle = class({})
-
-function modifier_destructible_obstacle:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_EVENT_ON_ATTACKED,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
-	}
- 
-	return funcs
-end
-
-function modifier_destructible_obstacle:GetModifierMagicalResistanceBonus(  )
-	return 100
-end
-
-function modifier_destructible_obstacle:GetModifierHealthBonus( )
-	return math.max(1,self:GetStackCount()) - 1
-end
-
-function modifier_destructible_obstacle:GetModifierIncomingDamage_Percentage(  )
-	if self:GetParent().hits == 0 then
-		return 0
-	end
-	return -100
-end
-
-function modifier_destructible_obstacle:OnAttacked(args)
-	local victim = self:GetParent()
-	local attacker = args.attacker
-
-	if IsServer() then
-		if args.attacker ~= self:GetParent() and args.target == self:GetParent() then
-			if not victim.hits then
-				if self:GetStackCount() > 0 then
-					victim.hits = self:GetStackCount()
-				else
-					victim.hits = 1
-				end
-			end
-			victim.hits = victim.hits - 1
-			if victim.hits == 0 then
-				victim:ForceKill(false)
-				return
-			end
-		end
-	end
-end
-
-function modifier_destructible_obstacle:IsHidden()
-	return true
-end
-
-function modifier_destructible_obstacle:GetDisableHealing()
-	return true
-end
-
-function modifier_destructible_obstacle:CheckState()
-	local state = {
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
-	}
-	return state
-end
 
 modifier_tribune = class({})
 
@@ -1130,35 +1059,7 @@ function spawnEntitiesAlongPath( path )
 				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
 			until obstacle_counts[obstacleTable.name] < obstacleTable.maxCount
 
-			local size = obstacleTable.collisionSize or 1
-
-			if size % 2 ~= 0 then
-				nextPoint.x = snapToGrid32(nextPoint.x)
-				nextPoint.y = snapToGrid32(nextPoint.y)
-			else
-				nextPoint.x = snapToGrid64(nextPoint.x)
-				nextPoint.y = snapToGrid64(nextPoint.y)
-			end
-
-			local obstacle = CreateUnitByName("npc_dummy_unit",nextPoint,true,nil,nil,DOTA_TEAM_NOTEAM)
-			obstacle:SetOriginalModel(obstacleTable.model)
-			obstacle:SetModel(obstacleTable.model)
-			obstacle:SetModelScale(obstacleTable.scale or 1.0)
-
-			obstacle:AddNewModifier(obstacle,nil,"modifier_destructible_obstacle",{})
-			obstacle:SetModifierStackCount("modifier_destructible_obstacle",obstacle,obstacleTable.hits or 1)
-
-			obstacle:SetHealth(999)
-
-			obstacle.deathsim = obstacleTable.deathsim
-
-			obstacle.blockers = blockGridNavSquare(size, nextPoint, obstacleTable.blockVision)
-
-			FindClearSpaceForUnit(obstacle,nextPoint,true)
-
-			table.insert(temp_obstacles, obstacle)
-
-			obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] + 1
+			table.insert(temp_obstacles, spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts ))
 		end
 	end
 
