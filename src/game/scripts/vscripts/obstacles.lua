@@ -68,7 +68,9 @@ function modifier_destructible_obstacle:CheckState()
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
         [MODIFIER_STATE_FAKE_ALLY] = true,
-        [MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true
+        [MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+        [MODIFIER_STATE_NO_TEAM_MOVE_TO] = true,
+        [MODIFIER_STATE_NO_TEAM_SELECT] = true,
     }
     return state
 end
