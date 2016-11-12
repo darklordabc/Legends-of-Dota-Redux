@@ -5435,7 +5435,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                 
                 Timers:CreateTimer(function()
                     if duel_active == true then 
-                        local draw_tick = DUEL_NOBODY_WINS
+                        local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
 
                         Timers:CreateTimer(function()
                             draw_tick = draw_tick - 1
