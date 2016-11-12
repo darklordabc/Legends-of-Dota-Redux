@@ -304,7 +304,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
 
 		Timers:CreateTimer(function()
 			PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
-		end, DoUniqueString("camera"), 1.0)
+		end, DoUniqueString("camera"), 0.06)
 
         -- Timers:CreateTimer(function()
         --     endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
@@ -452,13 +452,13 @@ function removeHeroesFromDuel(heroes_table)
                 --end
                 if point then
                     if x:IsAlive() then
+                    	FindClearSpaceForUnit(x,point,true)
+
 						PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),x)
 
 						Timers:CreateTimer(function()
 							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
-						end, DoUniqueString("camera"), 0.5)
-
-                        x:SetAbsOrigin(point)
+						end, DoUniqueString("camera"), 0.06)
                     end
                     x.duel_old_point = nil
                 else
@@ -533,12 +533,14 @@ function toTribune(hero)
     if team == DOTA_TEAM_GOODGUYS then
         for _, x in pairs(tribune_points[current_arena].radiant) do
         	FindClearSpaceForUnit(hero,x,true)
+        	hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
         end
     else
         for _, x in pairs(tribune_points[current_arena].dire) do
             FindClearSpaceForUnit(hero,x,true)
+            hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
         end
@@ -892,17 +894,23 @@ end
 ListenToGameEvent("entity_killed", deathListener, nil)
 ListenToGameEvent('npc_spawned', spawnListener, nil )
 
+function destroyTrees(pos, radius)
+	local trees = GridNav:GetAllTreesAroundPoint(pos, radius, true)
+
+	GridNav:DestroyTreesAroundPoint(pos, radius, true)
+end
+
 function generatePoints( initial )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v) do -- teams
-			GridNav:DestroyTreesAroundPoint(initial[k][k2][1], 32, true)
+			destroyTrees(initial[k][k2][1], 32)
 			for i=2,10 do
 				local xOffset = 0
 				if i >= 6 then
 					xOffset = -128
 				end
 				initial[k][k2][i] = v2[1] + Vector(xOffset, -128 * i, 0)
-				GridNav:DestroyTreesAroundPoint(initial[k][k2][i], 32, true)
+				destroyTrees(initial[k][k2][i], 32)
 
 				-- AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
 				-- AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
@@ -982,6 +990,21 @@ function spawnEntitiesAlongPath( path )
 	temp_vision = {}
 	temp_entities = {}
 
+	for i=1,random_obstacles[current_arena] do
+		local nextPoint
+		repeat
+			nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
+		until isPointInsidePolygon(nextPoint, path)
+
+		CreateTempTree(nextPoint, DUEL_NOBODY_WINS + DUEL_PREPARE)
+
+		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
+		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
+
+		-- table.insert(temp_vision, radiantDummy)
+		-- table.insert(temp_vision, direDummy)
+	end
+
 	local j = #path
 	for i = 1, #path do
 		local offset = 128
@@ -1007,7 +1030,7 @@ function spawnEntitiesAlongPath( path )
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
 
-			GridNav:DestroyTreesAroundPoint(pos, 256, true)
+			destroyTrees(pos, 256)
 
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
 			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
@@ -1073,30 +1096,18 @@ function spawnEntitiesAlongPath( path )
 		v:SetModel("models/development/invisiblebox.vmdl")
 	end
 
-	for i=1,random_obstacles[current_arena] do
-		local nextPoint
-		repeat
-			nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
-		until isPointInsidePolygon(nextPoint, path)
-
-		CreateTempTree(nextPoint, DUEL_NOBODY_WINS + DUEL_PREPARE)
-
-		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
-		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
-
-		-- table.insert(temp_vision, radiantDummy)
-		-- table.insert(temp_vision, direDummy)
-	end
-
 	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
 		local trees = Entities:FindAllByClassname("ent_dota_tree")
 
 		for k,v in pairs(trees) do
 			if isPointInsidePolygon(v:GetOrigin(), path) then
-				GridNav:DestroyTreesAroundPoint(v:GetOrigin(), 32, true)
+				local pos = v:GetOrigin()
+				destroyTrees(pos, 128)
 
-				AddFOWViewer(DOTA_TEAM_GOODGUYS, v:GetOrigin(), 128, 5.0, false)
-				AddFOWViewer(DOTA_TEAM_BADGUYS, v:GetOrigin(), 128, 5.0, false)
+				Timers:CreateTimer(function()
+					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 128, DUEL_PREPARE, false)
+					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 128, DUEL_PREPARE, false)
+			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE)
 			end
 		end
 	end
