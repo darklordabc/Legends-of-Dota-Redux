@@ -1,7 +1,186 @@
 local Timers = require('easytimers')
 
+wallModel = "models/props_structures/tower_good4.vmdl"
+towerModel = "models/props_structures/tower_good2.vmdl"
+
+AAR_SMALL_ARENA = 1
+AAR_BIG_ARENA = 2
+AAR_GIANT_ARENA = 3
+
+arenas = {}
+arenas[AAR_SMALL_ARENA] = {
+	[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
+}
+arenas[AAR_BIG_ARENA] = {
+	[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
+}
+arenas[AAR_GIANT_ARENA] = {
+	[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
+	[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
+	[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
+	[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
+	[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
+	[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
+	[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
+	[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
+	[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)
+}
+
+tribune_points = {}
+tribune_points[AAR_SMALL_ARENA] = {
+	radiant = {
+		[1] = Vector(1263.93, -4192, 257),
+	},
+	dire = {
+		[1] = Vector(4514.9, -4088.89, 257),
+	}
+}
+tribune_points[AAR_BIG_ARENA] = {
+	radiant = {
+		[1] = Vector(-583.137, -4057.1, 257),
+	},
+	dire = {
+		[1] = Vector(5736.05, -4348.62, 257),
+	}
+}
+tribune_points[AAR_GIANT_ARENA] = {
+	radiant = {
+		[1] = Vector(-2117.77, -5658.65, 129),
+	},
+	dire = {
+		[1] = Vector(-2112.69, -5980, 129),
+	}
+}
+
+duel_points = {}
+duel_points[AAR_SMALL_ARENA] = {
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
+}
+duel_points[AAR_BIG_ARENA] = {
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
+}
+duel_points[AAR_GIANT_ARENA] = {
+	radiant = {
+		[1] = Vector(1907.01, -4406.56, 257),
+	},
+	dire = {
+		[1] = Vector(3750.69, -4362.2, 257),
+	}
+}
+
+random_obstacles = {}
+random_obstacles[AAR_SMALL_ARENA] = 10
+random_obstacles[AAR_BIG_ARENA] = 25
+random_obstacles[AAR_GIANT_ARENA] = 40
+
+obstacle_models = {}
+obstacle_models[1] = {
+	name = "Mother Tree",
+	model = "models/props_tree/dire_tree007_inspector.vmdl",
+	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+	destructible = true,
+	blockVision = true,
+	scale = 0.7,
+	collisionSize = 2,
+	maxCount = 1,
+	hits = 4
+}
+obstacle_models[2] = {
+	name = "Small Tree A",
+	model = "models/props_tree/dire_tree007_inspector.vmdl",
+	deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+	destructible = true,
+	blockVision = true,
+	scale = 0.3,
+	collisionSize = 1,
+	maxCount = 50,
+	hits = 2
+}
+
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tribune", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_destructible_obstacle", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+
+modifier_destructible_obstacle = class({})
+
+function modifier_destructible_obstacle:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+		MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+	}
+ 
+	return funcs
+end
+
+function modifier_destructible_obstacle:GetModifierMagicalResistanceBonus(  )
+	return 100
+end
+
+function modifier_destructible_obstacle:GetModifierHealthBonus( )
+	return math.max(1,self:GetStackCount()) - 1
+end
+
+function modifier_destructible_obstacle:GetModifierIncomingDamage_Percentage(  )
+	if self:GetParent().hits == 0 then
+		return 0
+	end
+	return -100
+end
+
+function modifier_destructible_obstacle:OnAttacked(args)
+	local victim = self:GetParent()
+	local attacker = args.attacker
+
+	if IsServer() then
+		if args.attacker ~= self:GetParent() and args.target == self:GetParent() then
+			if not victim.hits then
+				if self:GetStackCount() > 0 then
+					victim.hits = self:GetStackCount()
+				else
+					victim.hits = 1
+				end
+			end
+			victim.hits = victim.hits - 1
+			if victim.hits == 0 then
+				victim:ForceKill(false)
+				return
+			end
+		end
+	end
+end
+
+function modifier_destructible_obstacle:IsHidden()
+	return true
+end
+
+function modifier_destructible_obstacle:GetDisableHealing()
+	return true
+end
+
+function modifier_destructible_obstacle:CheckState()
+	local state = {
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
+	}
+	return state
+end
 
 modifier_tribune = class({})
 
@@ -77,94 +256,13 @@ local duel_radiant_heroes = {}
 local duel_dire_heroes = {}
 local duel_end_callback
 local duel_victory_team = 0
+
+temp_obstacles = {}
 temp_entities = {}
 temp_vision = {}
+
 winners = -1
-
-AAR_SMALL_ARENA = 1
-AAR_BIG_ARENA = 2
-AAR_GIANT_ARENA =	3
-
 current_arena = 1
-
-wallModel = "models/props_structures/tower_good4.vmdl"
-towerModel = "models/props_structures/tower_good2.vmdl"
-
-random_obstacles = {}
-random_obstacles[AAR_SMALL_ARENA] = 20
-random_obstacles[AAR_BIG_ARENA] = 45
-random_obstacles[AAR_GIANT_ARENA] = 70
-
-arenas = {}
-arenas[AAR_SMALL_ARENA] = {
-	[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
-}
-arenas[AAR_BIG_ARENA] = {
-	[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
-}
-arenas[AAR_GIANT_ARENA] = {
-	[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
-	[3] = Vector(-1894.97, -4985.5, 283.667), [4] = Vector(-2651.49, -3477.07, 129),
-	[5] = Vector(-1710.43, -2119.33, 129), [6] = Vector(-658.098, -1711.48, 129),
-	[7] = Vector(211.006, -1998.87, 268.876), [8] = Vector(2105.04, -2220.36, 60.0008),
-	[9] = Vector(2836.18, -2726.16, 255.578), [10] = Vector(3418.14, -3282.93, 288.287),
-	[11] = Vector(3443, -3584.1, 284.458), [12] = Vector(4005.46, -3655.42, 282.417),
-	[13] = Vector(4056.13, -3258.43, 264.392), [14] = Vector(7642.01, -3110.64, 257),
-	[15] = Vector(7723.77, -4796.05, 282.028), [16] = Vector(7459.8, -5119.99, 288.688),
-	[17] = Vector(7400.76, -6215.87, 281.567), [18] = Vector(6114.49, -7238.02, 298.057)
-}
-
-tribune_points = {}
-tribune_points[AAR_SMALL_ARENA] = {
-	radiant = {
-		[1] = Vector(1263.93, -4192, 257),
-	},
-	dire = {
-		[1] = Vector(4514.9, -4088.89, 257),
-	}
-}
-tribune_points[AAR_BIG_ARENA] = {
-	radiant = {
-		[1] = Vector(-583.137, -4057.1, 257),
-	},
-	dire = {
-		[1] = Vector(5736.05, -4348.62, 257),
-	}
-}
-tribune_points[AAR_GIANT_ARENA] = {
-	radiant = {
-		[1] = Vector(-2117.77, -5658.65, 129),
-	},
-	dire = {
-		[1] = Vector(-2112.69, -5980, 129),
-	}
-}
-
-duel_points = {}
-duel_points[AAR_SMALL_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
-	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
-duel_points[AAR_BIG_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
-	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
-duel_points[AAR_GIANT_ARENA] = {
-	radiant = {
-		[1] = Vector(1907.01, -4406.56, 257),
-	},
-	dire = {
-		[1] = Vector(3750.69, -4362.2, 257),
-	}
-}
 
 function getHeroesCount(radiant_heroes, dire_heroes)
     local rp = 0
@@ -630,6 +728,12 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 				UTIL_Remove(v)
 			end
 
+			for k,v in pairs(temp_obstacles) do
+				if v:IsNull() == false and v.Kill then
+					v:Kill(nil, nil)
+				end
+			end
+
 			local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
 			for k,v in pairs(tempTrees) do
@@ -720,7 +824,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 
   	for k,v in pairs(HeroList:GetAllHeroes()) do
 	    if IsValidEntity(v) == true then
-	    	v:AddNewModifier(v,nil,"modifier_tribune",{duration = DUEL_PREPARE})
+	    	v:AddNewModifier(v,nil,"modifier_tribune",{})
 	    end
 	end
 
@@ -731,9 +835,9 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    moveToDuel(dire_warriors, dire_heroes, duel_points[current_arena].dire)
     end, "duek_move_heroes", DUEL_PREPARE)
 
-    spawnEntitiesAlongPath( arenas[current_arena] )
-
     freezeGameplay()
+
+    spawnEntitiesAlongPath( arenas[current_arena] )
 
     Convars:SetBool("dota_creeps_no_spawning", true)
  
@@ -784,9 +888,20 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
 end
 
 function deathListener( event )
+	local killedUnit = EntIndexToHScript( event.entindex_killed )
+	if killedUnit.deathsim then
+		local particle = ParticleManager:CreateParticle("particles/world_destruction_fx/dire_tree007_destruction.vpcf",PATTACH_CUSTOMORIGIN,nil)
+		ParticleManager:SetParticleControl(particle,0,killedUnit:GetAbsOrigin())
+		killedUnit:AddNoDraw()
+	end
+    if killedUnit.blockers then
+    	for k,v in pairs(killedUnit.blockers) do
+    		UTIL_Remove(v)
+    	end
+    end
     if not duel_active then return end
     if not event.entindex_attacker then return end
-    local killedUnit = EntIndexToHScript( event.entindex_killed )
+
     local killedTeam = killedUnit:GetTeam()
     local hero = EntIndexToHScript( event.entindex_attacker )
     local heroTeam = hero:GetTeam()
@@ -987,22 +1102,64 @@ function freezeGameplay()
 end
 
 function spawnEntitiesAlongPath( path )
+	temp_obstacles = {}
 	temp_vision = {}
 	temp_entities = {}
 
-	for i=1,random_obstacles[current_arena] do
-		local nextPoint
-		repeat
-			nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
-		until isPointInsidePolygon(nextPoint, path)
+	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
-		CreateTempTree(nextPoint, DUEL_NOBODY_WINS + DUEL_PREPARE)
+	for k,v in pairs(tempTrees) do
+		v:CutDown(-1)
+	end
 
-		-- local radiantDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_GOODGUYS)
-		-- local direDummy = CreateUnitByName("dummy_unit",nextPoint,false,nil,nil,DOTA_TEAM_BADGUYS)
+	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+		local obstacle_counts = {}
+		for i=1,random_obstacles[current_arena] do
+			local nextPoint
+			repeat
+				nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
+			until isPointInsidePolygon(nextPoint, path)
 
-		-- table.insert(temp_vision, radiantDummy)
-		-- table.insert(temp_vision, direDummy)
+			nextPoint = GetGroundPosition(nextPoint,obstacle)
+
+			local obstacleTable = obstacle_models[RandomInt(1,#obstacle_models)]
+
+			local obstacleTable
+			repeat
+				obstacleTable = obstacle_models[RandomInt(1,#obstacle_models)]
+				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
+			until obstacle_counts[obstacleTable.name] < obstacleTable.maxCount
+
+			local size = obstacleTable.collisionSize or 1
+
+			if size % 2 ~= 0 then
+				nextPoint.x = snapToGrid32(nextPoint.x)
+				nextPoint.y = snapToGrid32(nextPoint.y)
+			else
+				nextPoint.x = snapToGrid64(nextPoint.x)
+				nextPoint.y = snapToGrid64(nextPoint.y)
+			end
+
+			local obstacle = CreateUnitByName("npc_dummy_unit",nextPoint,true,nil,nil,DOTA_TEAM_NOTEAM)
+			obstacle:SetOriginalModel(obstacleTable.model)
+			obstacle:SetModel(obstacleTable.model)
+			obstacle:SetModelScale(obstacleTable.scale or 1.0)
+
+			obstacle:AddNewModifier(obstacle,nil,"modifier_destructible_obstacle",{})
+			obstacle:SetModifierStackCount("modifier_destructible_obstacle",obstacle,obstacleTable.hits or 1)
+
+			obstacle:SetHealth(999)
+
+			obstacle.deathsim = obstacleTable.deathsim
+
+			obstacle.blockers = blockGridNavSquare(size, nextPoint, obstacleTable.blockVision)
+
+			FindClearSpaceForUnit(obstacle,nextPoint,true)
+
+			table.insert(temp_obstacles, obstacle)
+
+			obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] + 1
+		end
 	end
 
 	local j = #path
@@ -1021,14 +1178,14 @@ function spawnEntitiesAlongPath( path )
 				scale = 1.5
 			end
 			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
-			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos})
-			CreateTempTree(pos, DUEL_NOBODY_WINS + DUEL_PREPARE)
 			obstacle:SetAbsOrigin(pos)
 			obstacle:SetModelScale(scale)
 
 			if x == 0 then
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
+
+			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos, block_fow = true})
 
 			destroyTrees(pos, 256)
 
@@ -1042,58 +1199,14 @@ function spawnEntitiesAlongPath( path )
 	    j = i
 	end
 
-	Timers:CreateTimer(function()
-		if not duel_active then
-			return
-		end
-        
-		local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
-
-		if #tempTrees * 2 < #temp_entities then
-			local j = #path
-			for i = 1, #path do
-				local offset = 128
-
-				local direction = (path[i] - path[j]):Normalized()
-				local distance = (path[j] - path[i]):Length2D()
-
-				for x=0,distance,128 do
-					local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
-
-					local exists = false
-
-					for _,t in pairs(tempTrees) do
-						if t:GetAbsOrigin() == pos then
-							exists = true
-							break
-						end
-					end
-
-					if exists == false then
-						CreateTempTree(pos, DUEL_NOBODY_WINS + DUEL_PREPARE)
-
-						local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
-
-						for k,v in pairs(tempTrees) do
-							if v:GetOrigin() == pos then
-								v:SetModel("models/development/invisiblebox.vmdl")
-								break
-							end
-						end
-					end
-				end
-
-			    j = i
-			end
-		end
-
-    	return 0.5
-    end, "duel_tree_check", 1)
-
 	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
-	for k,v in pairs(tempTrees) do
-		v:SetModel("models/development/invisiblebox.vmdl")
+	for k,v in pairs(temp_entities) do
+		for k2,v2 in pairs(tempTrees) do
+			if v2:GetOrigin() == v:GetOrigin() then
+				v2:SetModel("models/development/invisiblebox.vmdl")
+			end
+		end
 	end
 
 	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
@@ -1107,7 +1220,7 @@ function spawnEntitiesAlongPath( path )
 				Timers:CreateTimer(function()
 					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 128, DUEL_PREPARE, false)
 					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 128, DUEL_PREPARE, false)
-			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE)
+			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
 			end
 		end
 	end
@@ -1245,4 +1358,42 @@ function customAttension(text, time)
     	CustomGameEventManager:Send_ServerToAllClients( "attension_close", nil )
 		return nil 
     end, DoUniqueString(text), time)
+end
+
+function blockGridNavSquare(size, location, block_fow)
+	if size % 2 ~= 0 then
+		location.x = snapToGrid32(location.x)
+		location.y = snapToGrid32(location.y)
+	else
+		location.x = snapToGrid64(location.x)
+		location.y = snapToGrid64(location.y)
+	end
+
+	local gridNavBlockers = {}
+	if size % 2 == 1 then
+		for x = location.x - (size-2) * 32, location.x + (size-2) * 32, 64 do
+		  	for y = location.y - (size-2) * 32, location.y + (size-2) * 32, 64 do
+		    	local blockerLocation = Vector(x, y, location.z)
+		    	local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
+		    	table.insert(gridNavBlockers, ent)
+		  	end
+		end
+	else
+		for x = location.x - (size / 2) * 32 + 16, location.x + (size / 2) * 32 - 16, 96 do
+		  	for y = location.y - (size / 2) * 32 + 16, location.y + (size / 2) * 32 - 16, 96 do
+		    	local blockerLocation = Vector(x, y, location.z)
+		    	local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
+		    	table.insert(gridNavBlockers, ent)
+		  	end
+		end
+	end
+	return gridNavBlockers
+end
+
+function snapToGrid64(coord)
+	return 64*math.floor(0.5+coord/64)
+end
+
+function snapToGrid32(coord)
+	return 32+64*math.floor(coord/64)
 end
