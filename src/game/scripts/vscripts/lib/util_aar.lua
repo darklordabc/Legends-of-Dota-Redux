@@ -1164,7 +1164,7 @@ function destroyTrees(pos, radius)
 	GridNav:DestroyTreesAroundPoint(pos, radius, true)
 end
 
-function generatePoints( initial, p )
+function generatePoints( initial, p, randomize )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v[p]) do -- teams
 			destroyTrees(v2[1], 32)
@@ -1183,13 +1183,23 @@ function generatePoints( initial, p )
 			end
 		end
 	end
+
+	if randomize then
+		for k,v in pairs(initial) do
+			local temp = v[p].dire
+			v[p].dire = v[p].radiant
+			v[p].radiant = temp
+		end
+	end
 end
 
 function initDuel(restart)
 	winners = -1
 
-	generatePoints( arenas, "tribune_points" )
-	generatePoints( arenas, "duel_points" )
+	local randomize = RandomInt(0,1) == 1
+
+	generatePoints( arenas, "tribune_points", randomize )
+	generatePoints( arenas, "duel_points", randomize )
 
 	local radiantHeroes = {}
 	local direHeroes = {}
