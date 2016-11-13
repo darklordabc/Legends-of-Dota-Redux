@@ -300,22 +300,28 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
     local max = #tribune_points_table
     for _, x in pairs(heroes_table) do
         if x and IsValidEntity(x) and x:IsAlive() then
-            if false then -- x:GetUnitName() == "npc_dota_hero_meepo" and not x:IsIllusion()
-                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
+            if x:HasAbility("meepo_divided_we_stand") then -- x:GetUnitName() == "npc_dota_hero_meepo" and not x:IsIllusion()
+                local meepo_duel_table = Entities:FindAllByName(x:GetUnitName())
                 if meepo_duel_table then
-                    for i = 1, #meepo_duel_table do
-                        if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner() then
-                            meepo_duel_table[i].duel_old_point = x:GetAbsOrigin()
-                            meepo_duel_table[i]:Stop()
+                	for k,v in pairs(meepo_duel_table) do
+                        if v and not v:IsIllusion() and x:GetPlayerOwner() == v:GetPlayerOwner() then
+                            v.duel_old_point = x:GetAbsOrigin()
 
-                            FindClearSpaceForUnit(meepo_duel_table[i],tribune_points_table[cur],true)
+                            v:Stop()
 
-                            meepo_duel_table[i]:SetForwardVector(-(tribune_points_table[cur] - getMidPoint(arenas[current_arena].polygon)):Normalized())
+                            FindClearSpaceForUnit(v,tribune_points_table[cur],true)
 
-                            meepo_duel_table[i]:Stop()
-                            meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_tribune", {})
+                            v:SetForwardVector(-(tribune_points_table[cur] - getMidPoint(arenas[current_arena].polygon)):Normalized())
+
+			                if x.duelParticle then
+								ParticleManager:DestroyParticle(x.duelParticle,false)
+								x:EmitSound("Portal.Hero_Disappear")
+			                end
+
+                            v:Stop()
+                            v:AddNewModifier(x, nil, "modifier_tribune", {})
                         end
-                    end
+                	end
                 end
             else
                 x.duel_old_point = x:GetAbsOrigin()
@@ -455,8 +461,8 @@ function removeHeroesFromDuel(heroes_table)
  
     for _, x in pairs(heroes_table) do
         if x and IsValidEntity(x) then
-            if false then -- x:GetUnitName() == "npc_dota_hero_meepo"
-                local meepo_return_table = Entities:FindAllByName("npc_dota_hero_meepo")
+            if x:HasAbility("meepo_divided_we_stand") then -- x:GetUnitName() == "npc_dota_hero_meepo"
+                local meepo_return_table = Entities:FindAllByName(x:GetUnitName())
                 if meepo_return_table then
                     for i = 1, #meepo_return_table do
                         if meepo_return_table[i] and not meepo_return_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_return_table[i]:GetPlayerOwner() then
@@ -495,15 +501,15 @@ function removeHeroesFromDuel(heroes_table)
  
                             if point then
                                 if meepo_return_table[i]:IsAlive() then
-                                    x:SetAbsOrigin(point)
+                                    FindClearSpaceForUnit(meepo_return_table[i],point,true)
 
-									PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),x)
+									PlayerResource:SetCameraTarget(meepo_return_table[i]:GetPlayerOwnerID(),x)
 
 									Timers:CreateTimer(function()
-										PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
+										PlayerResource:SetCameraTarget(meepo_return_table[i]:GetPlayerOwnerID(),nil)
 										ParticleManager:DestroyParticle(x.duelParticle, false)
 										x:EmitSound("Portal.Hero_Disappear")
-									end, DoUniqueString("camera"), 0.06)
+									end, "meepo_cam"..meepo_return_table[i]:GetPlayerID(), 0.06)
                                 end
                                 meepo_return_table[i].duel_old_point = nil
                             else
@@ -601,8 +607,8 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
 
     local function checkHero( x )
         if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
-            if false then -- x:GetUnitName() == "npc_dota_hero_meepo"
-                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
+            if x:HasAbility("meepo_divided_we_stand") then
+                local meepo_duel_table = Entities:FindAllByName(x:GetUnitName())
                 if meepo_duel_table then
                     for i = 1, #meepo_duel_table do
                         if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner()  then
@@ -667,21 +673,17 @@ function toTribune(hero)
     end
     local team = hero:GetTeamNumber()
     if team == DOTA_TEAM_GOODGUYS then
-        for _, x in pairs(arenas[current_arena].tribune_points.radiant) do
-        	FindClearSpaceForUnit(hero,x,true)
-        	hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
-        	hero:RemoveModifierByName("modifier_tribune")
-            hero:AddNewModifier(hero, nil, "modifier_tribune", {})
-            return
-        end
+    	local x = arenas[current_arena].tribune_points.radiant[hero:GetPlayerID() + 1]
+    	FindClearSpaceForUnit(hero,x,true)
+    	hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
+    	hero:RemoveModifierByName("modifier_tribune")
+        hero:AddNewModifier(hero, nil, "modifier_tribune", {})
     else
-        for _, x in pairs(arenas[current_arena].tribune_points.dire) do
-            FindClearSpaceForUnit(hero,x,true)
-            hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
-            hero:RemoveModifierByName("modifier_tribune")
-            hero:AddNewModifier(hero, nil, "modifier_tribune", {})
-            return
-        end
+    	local x = arenas[current_arena].tribune_points.dire[hero:GetPlayerID() + 1]
+        FindClearSpaceForUnit(hero,x,true)
+        hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
+        hero:RemoveModifierByName("modifier_tribune")
+        hero:AddNewModifier(hero, nil, "modifier_tribune", {})
     end
 end
 
@@ -709,35 +711,43 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
     	EmitGlobalSound("Hero_LegionCommander.Duel.Victory")
     end
 
+    local function prepareHero( x )
+    	x:AddNewModifier(x,nil,"modifier_tribune",{duration = 4})
+
+		x:RemoveGesture(ACT_DOTA_DEFEAT)
+		x:RemoveGesture(ACT_DOTA_VICTORY)
+        if x:GetTeamNumber() == duel_victory_team then
+        	x:StartGesture(ACT_DOTA_VICTORY)
+
+        	CustomGameEventManager:Send_ServerToPlayer(x:GetPlayerOwner(),"duel_win",{})
+        else
+        	x:StartGesture(ACT_DOTA_DEFEAT)
+        end
+        local t = 0
+        Timers:CreateTimer(function()
+        	if t > 4 then 
+        		x:RemoveGesture(ACT_DOTA_DEFEAT)
+        		x:RemoveGesture(ACT_DOTA_VICTORY)
+        		return nil
+        	end
+	    	t = t + 0.03
+	    	return 0.03
+	    end, DoUniqueString("duel_end_point"), 0.03)
+    end
+
 	for _,x in pairs(Entities:FindAllByName("npc_dota_hero*")) do
 		if IsValidEntity(x) == true and x.GetPlayerOwnerID and x:IsNull() == false and not x:IsClone() then
-			x:AddNewModifier(x,nil,"modifier_tribune",{duration = 4})
+            if x:HasAbility("meepo_divided_we_stand") then
+                local meepo_return_table = Entities:FindAllByName(x:GetUnitName())
 
-			-- x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
-			-- ParticleManager:SetParticleControl(x.duelParticle, 0, x:GetAbsOrigin() + Vector(0,0,30))
-			-- ParticleManager:SetParticleControl(x.duelParticle, 1, x:GetAbsOrigin() + Vector(0,0,30))
-			-- ParticleManager:SetParticleControl(x.duelParticle, 2, Vector(40,40,200))
-			-- ParticleManager:SetParticleControl(x.duelParticle, 3, x:GetAbsOrigin() + Vector(0,0,30))
-
-			x:RemoveGesture(ACT_DOTA_DEFEAT)
-			x:RemoveGesture(ACT_DOTA_VICTORY)
-            if x:GetTeamNumber() == duel_victory_team then
-            	x:StartGesture(ACT_DOTA_VICTORY)
-
-            	CustomGameEventManager:Send_ServerToPlayer(x:GetPlayerOwner(),"duel_win",{})
+                for k,v in pairs(meepo_return_table) do
+                	if v and not v:IsIllusion() and x:GetPlayerOwner() == v:GetPlayerOwner() then
+                		prepareHero( v )
+                	end
+                end
             else
-            	x:StartGesture(ACT_DOTA_DEFEAT)
+            	prepareHero( x )
             end
-            local t = 0
-            Timers:CreateTimer(function()
-            	if t > 4 then 
-            		x:RemoveGesture(ACT_DOTA_DEFEAT)
-            		x:RemoveGesture(ACT_DOTA_VICTORY)
-            		return nil
-            	end
-		    	t = t + 0.03
-		    	return 0.03
-		    end, DoUniqueString("duel_end_point"), 0.03)
 		end
 	end
 
@@ -976,23 +986,23 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
         if x == hero then
             table.remove(warriors_table, i)
 
-            -- if hero:GetUnitName() == "npc_dota_hero_meepo" then
-            --     for j, y in pairs(warriors_table) do
-            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-            --             table.remove(warriors_table, j)
-            --         end
-            --     end
-            --     for j, y in pairs(warriors_table) do
-            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-            --             table.remove(warriors_table, j)
-            --         end
-            --     end
-            --     for j, y in pairs(warriors_table) do
-            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-            --             table.remove(warriors_table, j)
-            --         end
-            --     end
-            -- end
+            if hero:HasAbility("meepo_divided_we_stand") then
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == hero:GetUnitName() and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == hero:GetUnitName() and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+                for j, y in pairs(warriors_table) do
+                    if y and y:GetUnitName() == hero:GetUnitName() and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+                        table.remove(warriors_table, j)
+                    end
+                end
+            end
  
             if #warriors_table == 0 then
                 duel_victory_team = ((x:GetTeamNumber() == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS) or ((x:GetTeamNumber() == DOTA_TEAM_BADGUYS) and DOTA_TEAM_GOODGUYS)
@@ -1032,12 +1042,16 @@ function deathListener( event )
     local heroTeam = hero:GetTeam()
    
     if not killedUnit or not IsValidEntity(killedUnit) or not killedUnit:IsRealHero() then return end
+
+    if killedUnit:IsReincarnating() then
+    	killedUnit.duelReincarnation = true
+    	return
+    end
  
-    if duel_active and not killedUnit:IsReincarnating() then
+    if duel_active then
        _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
        _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
     end
- 
 end
 
 function getTeamPointNameByTeamNumber(table_of_points, teamnumber)
@@ -1067,6 +1081,11 @@ function spawnListener(event)
  
         if not spawnedUnit:HasModifier("modifier_arc_warden_tempest_double") then
             if spawnedUnit:IsRealHero() then
+            	if spawnedUnit.duelReincarnation then
+            		spawnedUnit.duelReincarnation = false
+            		return
+            	end
+
                 if duel_active then -- and not isHeroDuelWarrior(spawnedUnit)
                     toTribune(spawnedUnit)
                 end

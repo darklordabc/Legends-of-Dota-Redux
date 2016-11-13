@@ -34,6 +34,9 @@ function SetKillLimit( data)
 }
 
 function WinPanel() {
+	if ($("#WinPanel")) {
+		return;
+	}
 	var panel = $.CreatePanel("Panel", $.GetContextPanel(), "WinPanel")
 	panel.BLoadLayoutSnippet("Winner");
 
