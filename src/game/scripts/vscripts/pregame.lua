@@ -5458,7 +5458,8 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 
                 Timers:CreateTimer(function()
                     customAttension("#duel_10_sec_to_begin", 5)
-
+                    EmitGlobalSound("Hero_LegionCommander.Duel.Victory")
+                    
                     Timers:CreateTimer(function()
                         initDuel(duel)
                     end, 'start_duel', 10)

@@ -290,6 +290,8 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
 
                             FindClearSpaceForUnit(meepo_duel_table[i],tribune_points_table[cur],true)
 
+                            meepo_duel_table[i]:SetForwardVector(-(tribune_points_table[cur] - getMidPoint(arenas[current_arena].polygon)):Normalized())
+
                             meepo_duel_table[i]:Stop()
                             meepo_duel_table[i]:AddNewModifier(x, nil, "modifier_tribune", {})
                         end
@@ -300,6 +302,8 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
                 x:Stop()
 
                 FindClearSpaceForUnit(x,tribune_points_table[cur],true)
+
+                x:SetForwardVector(-(tribune_points_table[cur] - getMidPoint(arenas[current_arena].polygon)):Normalized())
 
                 if x.duelParticle then
 					ParticleManager:DestroyParticle(x.duelParticle,false)
@@ -617,6 +621,7 @@ function toTribune(hero)
     if team == DOTA_TEAM_GOODGUYS then
         for _, x in pairs(arenas[current_arena].tribune_points.radiant) do
         	FindClearSpaceForUnit(hero,x,true)
+        	hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
         	hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
@@ -624,6 +629,7 @@ function toTribune(hero)
     else
         for _, x in pairs(arenas[current_arena].tribune_points.dire) do
             FindClearSpaceForUnit(hero,x,true)
+            hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
             hero:RemoveModifierByName("modifier_tribune")
             hero:AddNewModifier(hero, nil, "modifier_tribune", {})
             return
@@ -650,15 +656,20 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 
     winners = duel_victory_team
 
+    if winners > 0 then
+    	print("winners: ", winners)
+    	EmitGlobalSound("Hero_LegionCommander.Duel.Victory")
+    end
+
 	for _,x in pairs(HeroList:GetAllHeroes()) do
 		if IsValidEntity(x) == true then
 			x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
 
-			x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
-			ParticleManager:SetParticleControl(x.duelParticle, 0, x:GetAbsOrigin() + Vector(0,0,30))
-			ParticleManager:SetParticleControl(x.duelParticle, 1, x:GetAbsOrigin() + Vector(0,0,30))
-			ParticleManager:SetParticleControl(x.duelParticle, 2, Vector(40,40,200))
-			ParticleManager:SetParticleControl(x.duelParticle, 3, x:GetAbsOrigin() + Vector(0,0,30))
+			-- x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
+			-- ParticleManager:SetParticleControl(x.duelParticle, 0, x:GetAbsOrigin() + Vector(0,0,30))
+			-- ParticleManager:SetParticleControl(x.duelParticle, 1, x:GetAbsOrigin() + Vector(0,0,30))
+			-- ParticleManager:SetParticleControl(x.duelParticle, 2, Vector(40,40,200))
+			-- ParticleManager:SetParticleControl(x.duelParticle, 3, x:GetAbsOrigin() + Vector(0,0,30))
 
 			x:RemoveGesture(ACT_DOTA_DEFEAT)
 			x:RemoveGesture(ACT_DOTA_VICTORY)
@@ -1019,10 +1030,12 @@ function generatePoints( initial, p )
 			destroyTrees(v2[1], 32)
 			for i=2,10 do
 				local xOffset = 0
+				local yOffset = 0
 				if i >= 6 then
 					xOffset = -128
+					yOffset = 128 * 5
 				end
-				v2[i] = v2[1] + Vector(xOffset, -128 * i, 0)
+				v2[i] = v2[1] + Vector(xOffset, (-128 * i) + yOffset, 0)
 				destroyTrees(v2[i], 32)
 
 				-- AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
@@ -1090,6 +1103,9 @@ function freezeGameplay()
 					v:AddNoDraw()
 				end
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
+
+				local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
 			end
 			v._duelDayVisionRange = v:GetDayTimeVisionRange()
 			v._duelNightVisionRange = v:GetNightTimeVisionRange()
@@ -1155,7 +1171,12 @@ function spawnEntitiesAlongPath( path )
 				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
 			end
 
-			local blocker = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos, block_fow = true})
+			for x=-1,1 do
+				for y=-1,1 do
+					table.insert(temp_entities, SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos + Vector(x * 32,y * 32,0), block_fow = true}))
+				end
+			end
+			
 
 			destroyTrees(pos, 256)
 
@@ -1163,7 +1184,6 @@ function spawnEntitiesAlongPath( path )
 			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
 
 			table.insert(temp_entities, obstacle)
-			table.insert(temp_entities, blocker)
 		end
 
 	    j = i
@@ -1188,8 +1208,8 @@ function spawnEntitiesAlongPath( path )
 				destroyTrees(pos, 128)
 
 				Timers:CreateTimer(function()
-					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 128, DUEL_PREPARE, false)
-					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 128, DUEL_PREPARE, false)
+					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+1, false)
+					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+1, false)
 			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
 			end
 		end
