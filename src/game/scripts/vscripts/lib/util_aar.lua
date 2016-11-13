@@ -341,6 +341,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         x.duel_cooldowns = saveAbilitiesCooldowns(x)
         resetAllAbilitiesCooldown(x, x.duel_cooldowns)
         x.tempHealth = x:GetHealth()
+        x.tempMana = x:GetMana()
         x:SetHealth(9999999)
         x:SetMana(9999999)
         x:Purge(true, true, false, true, false )
@@ -530,6 +531,10 @@ function removeHeroesFromDuel(heroes_table)
 
                 if x.tempHealth then
                 	x:SetHealth(x.tempHealth)
+                end
+
+                if x.tempMana then
+                	x:SetMana(x.tempMana)
                 end
                
                 --if x.duel_gem then
@@ -733,9 +738,12 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			end
 
 			for k,v in pairs(temp_obstacles) do
-				if v:IsNull() == false and v.Kill then
-					v:Kill(nil, nil)
+				if v.blockers then
+					for k2,v2 in pairs(v.blockers) do
+						UTIL_Remove(v2)
+					end
 				end
+				UTIL_Remove(v)
 			end
 
 			local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
@@ -854,6 +862,52 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     	print("draw")
         endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
     end, "DS_DRAW_ITERNAL", draw_time)
+
+    local visionTimer = 0
+
+    Timers:CreateTimer(function()
+    	if not duel_active then
+    		return
+    	end
+
+    	local radiantSeesDire = false
+
+    	for k,v in pairs(dire_warriors) do
+    		if radiant_warriors[1]:CanEntityBeSeenByMyTeam(v) and not v:HasModifier("modifier_tribune") and v:IsAlive() then
+    			radiantSeesDire = true 
+    			break
+    		end
+    	end
+
+    	local direSeesRadiant = false
+
+    	for k,v in pairs(radiant_warriors) do
+    		if dire_warriors[1]:CanEntityBeSeenByMyTeam(v) and not v:HasModifier("modifier_tribune") and v:IsAlive() then
+    			direSeesRadiant = true 
+    			break
+    		end
+    	end
+
+    	if not direSeesRadiant and not radiantSeesDire then
+    		if visionTimer == 7 then
+	    		for k,v in pairs(radiant_warriors) do
+	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
+	    				AddFOWViewer(DOTA_TEAM_BADGUYS,v:GetAbsOrigin(),512,3.0,true)
+	    			end
+	    		end
+	    		for k,v in pairs(dire_warriors) do
+	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
+	    				AddFOWViewer(DOTA_TEAM_GOODGUYS,v:GetAbsOrigin(),512,3.0,true)
+	    			end
+	    		end
+	    		visionTimer = 0
+    		else
+    			visionTimer = visionTimer + 1
+    		end
+    	end
+
+    	return 1.0
+    end, "vision_check", 0.0)
 end
 
 function _OnHeroDeathOnDuel(warriors_table, hero )
@@ -898,6 +952,7 @@ end
 
 function deathListener( event )
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
+	if not killedUnit then return end
 	if killedUnit.deathsim then
 		local particle = ParticleManager:CreateParticle("particles/world_destruction_fx/dire_tree007_destruction.vpcf",PATTACH_CUSTOMORIGIN,nil)
 		ParticleManager:SetParticleControl(particle,0,killedUnit:GetAbsOrigin())
@@ -1104,8 +1159,12 @@ function freezeGameplay()
 				end
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 
-				local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
-				ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
+				if v:IsCreature() and v:IsCreep() then
+					if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) and duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
+						local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
+						ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
+					end
+				end
 			end
 			v._duelDayVisionRange = v:GetDayTimeVisionRange()
 			v._duelNightVisionRange = v:GetNightTimeVisionRange()
@@ -1129,11 +1188,7 @@ function spawnEntitiesAlongPath( path )
 	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
 		local obstacle_counts = {}
 		for i=1,arenas[current_arena].random_obstacles do
-			local nextPoint
-			repeat
-				nextPoint = Vector(RandomFloat(GetWorldMinX(),GetWorldMaxX()), RandomFloat(GetWorldMinY(),GetWorldMaxY()), 0)
-			until isPointInsidePolygon(nextPoint, path)
-
+			local nextPoint = randomPointInPolygon( arenas[current_arena].polygon )
 			nextPoint = GetGroundPosition(nextPoint,obstacle)
 
 			local obstacleTable = arenas[current_arena].obstacle_models[RandomInt(1,#arenas[current_arena].obstacle_models)]
@@ -1148,46 +1203,47 @@ function spawnEntitiesAlongPath( path )
 		end
 	end
 
-	local j = #path
-	for i = 1, #path do
-		local offset = 128
+    Timers:CreateTimer(function()
+		local j = #path
+		for i = 1, #path do
+			local offset = 128
 
-		local direction = (path[i] - path[j]):Normalized()
-		local distance = (path[j] - path[i]):Length2D()
+			local direction = (path[i] - path[j]):Normalized()
+			local distance = (path[j] - path[i]):Length2D()
 
-		for x=0,distance,128 do
-			local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
-			local scale = 1.0
-			local model = arenas[current_arena].wallModel
-			if x == 0 then
-				model = arenas[current_arena].towerModel
-				scale = 1.5
-			end
-			local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
-			obstacle:SetAbsOrigin(pos)
-			obstacle:SetModelScale(scale)
-
-			if x == 0 then
-				obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
-			end
-
-			for x=-1,1 do
-				for y=-1,1 do
-					table.insert(temp_entities, SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos + Vector(x * 32,y * 32,0), block_fow = true}))
+			for x=0,distance,128 do
+				local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
+				local scale = 1.0
+				local model = arenas[current_arena].wallModel
+				if x == 0 then
+					model = arenas[current_arena].towerModel
+					scale = 1.5
 				end
+				local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+				obstacle:SetAbsOrigin(pos)
+				obstacle:SetModelScale(scale)
+
+				if x == 0 then
+					obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
+				end
+
+				for x=-1,1 do
+					for y=-1,1 do
+						table.insert(temp_entities, SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = pos + Vector(x * 32,y * 32,0), block_fow = true}))
+					end
+				end
+				
+				destroyTrees(pos, 256)
+
+				AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
+				AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
+
+				table.insert(temp_entities, obstacle)
 			end
-			
 
-			destroyTrees(pos, 256)
-
-			AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
-			AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
-
-			table.insert(temp_entities, obstacle)
+		    j = i
 		end
-
-	    j = i
-	end
+    end, DoUniqueString("walls"), 0.5)
 
 	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
@@ -1199,21 +1255,24 @@ function spawnEntitiesAlongPath( path )
 		end
 	end
 
-	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
-		local trees = Entities:FindAllByClassname("ent_dota_tree")
+	Timers:CreateTimer(function()
+		if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+			local trees = Entities:FindAllByClassname("ent_dota_tree")
 
-		for k,v in pairs(trees) do
-			if isPointInsidePolygon(v:GetAbsOrigin(), path) then
-				local pos = v:GetAbsOrigin()
-				destroyTrees(pos, 256)
+			for k,v in pairs(trees) do
+				if isPointInsidePolygon(v:GetAbsOrigin(), path) then
+					local pos = v:GetAbsOrigin()
+					destroyTrees(pos, 256)
 
-				Timers:CreateTimer(function()
-					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+2, false)
-					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+2, false)
-			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
+					Timers:CreateTimer(function()
+						AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+2, false)
+						AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+2, false)
+				    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
+				end
 			end
 		end
-	end
+
+	end, DoUniqueString("clear_trees"), 1.0)
 end
 
 function isPointInsidePolygon(point, polygon)
@@ -1348,4 +1407,25 @@ function customAttension(text, time)
     	CustomGameEventManager:Send_ServerToAllClients( "attension_close", nil )
 		return nil 
     end, DoUniqueString(text), time)
+end
+
+function randomPointInPolygon( polygon )
+	local minX = polygon[1].x
+	local maxX = polygon[1].x
+	local minY = polygon[1].y
+	local maxY = polygon[1].y
+
+	for k,v in pairs(polygon) do
+      	minX = math.min( v.x, minX );
+        maxX = math.max( v.x, maxX );
+        minY = math.min( v.y, minY );
+        maxY = math.max( v.y, maxY );
+	end
+
+	local nextPoint
+	repeat
+		nextPoint = Vector(RandomFloat(minX,maxX), RandomFloat(minY,maxY), 0)
+	until isPointInsidePolygon(nextPoint, polygon)
+
+	return nextPoint
 end
