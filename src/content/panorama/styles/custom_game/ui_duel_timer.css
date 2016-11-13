@@ -4,6 +4,29 @@
     height: 100%;
 }
 
+.DuelPanel {
+	width: 500px;
+	height: 200px;
+
+    horizontal-align: middle;
+    vertical-align: top;
+
+    margin-top: 80px;
+
+    transform: scale3d(1.8,1.8,1.8);
+}
+
+.DuelPanel DOTAScenePanel {
+	width: 500px;
+	height: 200px;
+
+    horizontal-align: middle;
+    vertical-align: middle;
+    opacity: 1.0;
+
+    z-index: 1.0;
+}
+
 #KillLimit
 {
 	margin-top:0.6%;

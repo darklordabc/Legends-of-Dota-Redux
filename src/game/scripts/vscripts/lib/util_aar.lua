@@ -588,6 +588,29 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
         return
     end
 
+    local counter_local = 0;
+    local output_table = {}
+
+    local function checkHero( x )
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
+            if x:GetUnitName() == "npc_dota_hero_meepo" then
+                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
+                if meepo_duel_table then
+                    for i = 1, #meepo_duel_table do
+                        if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner()  then
+                            meepo_duel_table[i].IsDueled = true
+                            table.insert(output_table, meepo_duel_table[i])
+                        end
+                    end
+                end
+            else
+                x.IsDueled = true
+                table.insert(output_table, x)
+            end
+            counter_local = counter_local + 1
+        end
+    end
+
     local anyHuman = false
 
     for _, x in pairs(heroes_table) do
@@ -600,35 +623,27 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
     end
 
     local addedHuman = false
+
+    if anyHuman then
+	    for _, x in pairs(heroes_table) do
+	    	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) > 0 then
+	    		x.IsDueled = false
+	    		checkHero( x )
+	    		addedHuman = true
+	    		break
+	    	end
+	    end
+    end
  
-    local counter_local = 0;
-    local output_table = {}
     for _, x in pairs(heroes_table) do
-        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and (x.IsDueled == false or (addedHuman == false and anyHuman and PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) ~= 0)) and isConnected(x) then --x.IsDisconnect == false then
-            if x:GetUnitName() == "npc_dota_hero_meepo" then
-                local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
-                if meepo_duel_table then
-                    for i = 1, #meepo_duel_table do
-                        if meepo_duel_table[i] and not meepo_duel_table[i]:IsIllusion() and x:GetPlayerOwner() == meepo_duel_table[i]:GetPlayerOwner()  then
-                            meepo_duel_table[i].IsDueled = true
-                            table.insert(output_table, meepo_duel_table[i])
-                        end
-                    end
-                end
-                counter_local = counter_local + 1
-                if counter_local == hero_count then
-                    return output_table
-                end
-            else
-                x.IsDueled = true
-                table.insert(output_table, x)
-                counter_local = counter_local + 1
-                if counter_local == hero_count then
-                    return output_table
-                end
-            end
-            addedHuman = true
+    	checkHero( x )
+        if counter_local == hero_count then
+            return output_table
         end
+    end
+
+    if anyHuman then
+    	print("added: ", addedHuman)
     end
 
     if counter_local < hero_count then -- if some heroes already dueled
@@ -700,6 +715,8 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			x:RemoveGesture(ACT_DOTA_VICTORY)
             if x:GetTeamNumber() == duel_victory_team then
             	x:StartGesture(ACT_DOTA_VICTORY)
+
+            	CustomGameEventManager:Send_ServerToPlayer(x:GetPlayerOwner(),"duel_win",{})
             else
             	x:StartGesture(ACT_DOTA_DEFEAT)
             end
@@ -918,7 +935,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    				-- dummy:SetNightTimeVisionRange(512)
 	    				-- dummy:SetDayTimeVisionRange(512)
 	    				-- dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration = revealTime})
-	    				v:AddNewModifier(v,nil,"modifier_truesight",{duration = revealTime})
+	    				v:AddNewModifier(dire_warriors[1],nil,"modifier_truesight",{duration = revealTime})
 	    				-- dummy:AddNewModifier(dummy,nil,"modifier_invis_reveal",{duration = revealTime})
 
 	    				AddFOWViewer(DOTA_TEAM_BADGUYS,v:GetAbsOrigin(),512,revealTime,true)
@@ -930,7 +947,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    				-- dummy:SetNightTimeVisionRange(512)
 	    				-- dummy:SetDayTimeVisionRange(512)
 	    				-- dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration = revealTime})
-	    				v:AddNewModifier(v,nil,"modifier_truesight",{duration = revealTime})
+	    				v:AddNewModifier(radiant_warriors[1],nil,"modifier_truesight",{duration = revealTime})
 	    				-- dummy:AddNewModifier(dummy,nil,"modifier_invis_reveal",{duration = revealTime})
 
 	    				AddFOWViewer(DOTA_TEAM_GOODGUYS,v:GetAbsOrigin(),512,revealTime,true)
