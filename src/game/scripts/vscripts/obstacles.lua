@@ -81,15 +81,8 @@ end
 function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
     local size = obstacleTable.collisionSize or 1
 
-    local obstacle = CreateUnitByName("npc_dummy_unit",nextPoint,true,nil,nil,DOTA_TEAM_NOTEAM)
-    obstacle:SetOriginalModel(obstacleTable.model)
-    obstacle:SetModel(obstacleTable.model)
+    local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = obstacleTable.model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")}) -- CreateUnitByName("npc_dummy_unit",nextPoint,true,nil,nil,DOTA_TEAM_NOTEAM)
     obstacle:SetModelScale(obstacleTable.scale or 1.0)
-
-    obstacle:AddNewModifier(obstacle,nil,"modifier_undestructible_obstacle",{})
-    obstacle:SetModifierStackCount("modifier_undestructible_obstacle",obstacle,obstacleTable.hits or 1)
-
-    obstacle:SetHealth(999)
 
     obstacle.deathsim = obstacleTable.deathsim
 
