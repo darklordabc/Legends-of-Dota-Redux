@@ -169,7 +169,9 @@ end
 
 function modifier_invis_reveal:CheckState()
 	local state = {
-		[MODIFIER_STATE_INVISIBLE] = false
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true
 	}
 	return state
 end
@@ -684,8 +686,8 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
     	EmitGlobalSound("Hero_LegionCommander.Duel.Victory")
     end
 
-	for _,x in pairs(HeroList:GetAllHeroes()) do
-		if IsValidEntity(x) == true and x:IsNull() == false then
+	for _,x in pairs(Entities:FindAllByName("npc_dota_hero*")) do
+		if IsValidEntity(x) == true and x.GetPlayerOwnerID and x:IsNull() == false and not x:IsClone() then
 			x:AddNewModifier(x,nil,"modifier_tribune",{duration = 4})
 
 			-- x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
@@ -852,8 +854,8 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 
     current_arena = arena
 
-  	for k,v in pairs(HeroList:GetAllHeroes()) do
-	    if IsValidEntity(v) == true then
+    for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
+	    if IsValidEntity(v) == true and v:IsNull() == false and v.GetPlayerOwnerID then
 	    	v:AddNewModifier(v,nil,"modifier_tribune",{})
 			v.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, v )
 			ParticleManager:SetParticleControl(v.duelParticle, 0, v:GetAbsOrigin() + Vector(0,0,30))
@@ -861,7 +863,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 			ParticleManager:SetParticleControl(v.duelParticle, 2, Vector(40,40,200))
 			ParticleManager:SetParticleControl(v.duelParticle, 3, v:GetAbsOrigin() + Vector(0,0,30))
 	    end
-	end
+    end
 
     Timers:CreateTimer(function()
 	    moveHeroesToTribune(radiant_heroes, arenas[current_arena].tribune_points.radiant)
@@ -912,13 +914,25 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     		if visionTimer == revealThreshold then
 	    		for k,v in pairs(radiant_warriors) do
 	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
-	    				v:AddNewModifier(v,nil,"modifier_invis_reveal",{duration = revealTime})
+	    				-- local dummy = CreateUnitByName("npc_dummy_unit",v:GetAbsOrigin(),false,nil,nil,DOTA_TEAM_BADGUYS)
+	    				-- dummy:SetNightTimeVisionRange(512)
+	    				-- dummy:SetDayTimeVisionRange(512)
+	    				-- dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration = revealTime})
+	    				v:AddNewModifier(v,nil,"modifier_truesight",{duration = revealTime})
+	    				-- dummy:AddNewModifier(dummy,nil,"modifier_invis_reveal",{duration = revealTime})
+
 	    				AddFOWViewer(DOTA_TEAM_BADGUYS,v:GetAbsOrigin(),512,revealTime,true)
 	    			end
 	    		end
 	    		for k,v in pairs(dire_warriors) do
 	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
-	    				v:AddNewModifier(v,nil,"modifier_invis_reveal",{duration = revealTime})
+	    				-- local dummy = CreateUnitByName("npc_dummy_unit",v:GetAbsOrigin(),false,nil,nil,DOTA_TEAM_GOODGUYS)
+	    				-- dummy:SetNightTimeVisionRange(512)
+	    				-- dummy:SetDayTimeVisionRange(512)
+	    				-- dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration = revealTime})
+	    				v:AddNewModifier(v,nil,"modifier_truesight",{duration = revealTime})
+	    				-- dummy:AddNewModifier(dummy,nil,"modifier_invis_reveal",{duration = revealTime})
+
 	    				AddFOWViewer(DOTA_TEAM_GOODGUYS,v:GetAbsOrigin(),512,revealTime,true)
 	    			end
 	    		end
@@ -1133,8 +1147,8 @@ function initDuel(restart)
 
 	restart = restart or (function (  ) end)
 
-	for k,v in pairs(HeroList:GetAllHeroes()) do
-		if IsValidEntity(v) == true and isConnected(v) then
+	for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
+		if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and isConnected(v) and not v:IsClone() then
 	  		if v:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
 	  			table.insert(radiantHeroes, v)
 	  		else
@@ -1181,12 +1195,14 @@ function freezeGameplay()
 				end
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 
-				if v:IsCreature() and v:IsCreep() then
-					if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) and duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
-						local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
-						ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
-					end
+				-- if v:IsCreature() and v:IsCreep() then
+				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
+					local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
+					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
 				end
+				-- end
+
+				AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 			end
 			v._duelDayVisionRange = v:GetDayTimeVisionRange()
 			v._duelNightVisionRange = v:GetNightTimeVisionRange()
