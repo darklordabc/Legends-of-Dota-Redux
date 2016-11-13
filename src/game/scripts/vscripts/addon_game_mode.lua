@@ -33,6 +33,7 @@ function Precache(context)
 		end
 	end
 	-- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    PrecacheResource("particle","particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",context)
 end
 
 -- Create the game mode when we activate
