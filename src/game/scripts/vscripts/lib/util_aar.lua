@@ -602,6 +602,8 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
         return
     end
 
+    local heroes_table = shuffle(heroes_table)
+
     local counter_local = 0;
     local output_table = {}
 
@@ -644,7 +646,9 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
 	    		x.IsDueled = false
 	    		checkHero( x )
 	    		addedHuman = true
-	    		break
+		        if counter_local == hero_count then
+		            return output_table
+		        end
 	    	end
 	    end
     end
@@ -766,7 +770,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 			for k,v in pairs(ents) do
-				if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+				if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
 					if v:IsBuilding() and not v:IsTower() then
 
 					else
@@ -776,6 +780,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 							v:RemoveNoDraw()
 						end
 						v:RemoveModifierByName("modifier_duel_out_of_game")
+						v:RemoveModifierByName("modifier_tribune")
 					end
 					if v._duelDayVisionRange and v._duelNightVisionRange then
 						v:SetDayTimeVisionRange(v._duelDayVisionRange)
@@ -1192,7 +1197,7 @@ function initDuel(restart)
 	restart = restart or (function (  ) end)
 
 	for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
-		if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and isConnected(v) and not v:IsClone() then
+		if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and isConnected(v) and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") then
 	  		if v:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
 	  			table.insert(radiantHeroes, v)
 	  		else
@@ -1229,7 +1234,11 @@ function freezeGameplay()
 	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 	for k,v in pairs(ents) do
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding()) then
+		if v.HasModifier and v:HasModifier("modifier_arc_warden_tempest_double") then
+			v:ForceKill(false)
+			return
+		end
+		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
 			if v:IsBuilding() and not v:IsTower() then
 
 			else
@@ -1237,6 +1246,7 @@ function freezeGameplay()
 				else
 					v:AddNoDraw()
 				end
+
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 
 				-- if v:IsCreature() and v:IsCreep() then
@@ -1510,4 +1520,24 @@ function randomPointInPolygon( polygon )
 	until isPointInsidePolygon(nextPoint, polygon)
 
 	return nextPoint
+end
+
+function shuffle(list)
+    local indices = {}
+    for i = 1, #list do
+        indices[#indices+1] = i
+    end
+
+    local shuffled = {}
+    for i = 1, #list do
+        local index = math.random(#indices)
+
+        local value = list[indices[index]]
+
+        table.remove(indices, index)
+
+        shuffled[#shuffled+1] = value
+    end
+
+    return shuffled
 end
