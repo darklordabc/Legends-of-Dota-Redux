@@ -5464,8 +5464,9 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 
                 Timers:CreateTimer(function()
                     customAttension("#duel_10_sec_to_begin", 5)
+                    EmitGlobalSound("Event.DuelStart")
 
-                    CustomGameEventManager:Send_ServerToAllClients("duel_sound", {sound = "DOTA_Item.DoE.Activate"})
+                    -- CustomGameEventManager:Send_ServerToAllClients("duel_sound", {sound = "DOTA_Item.DoE.Activate"})
 
                     Timers:CreateTimer(function()
                         initDuel(duel)

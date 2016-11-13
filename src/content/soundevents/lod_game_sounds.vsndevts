@@ -7,7 +7,7 @@
 			"reference_operator"
 			{
 				"operator"		"sos_reference_stack"
-				"reference_stack"		"dota_update_default"
+				"reference_stack"		"dota_src1_3d"
 				"operator_variables"
 				{
 					"vsnd_files"
@@ -17,37 +17,33 @@
 							"value0"		"sounds/items/item_drum.vsnd"
 						}
 					}
-					"volume_min"
+					"volume"
 					{
-						"value"		"1.75"
+						"value"		"1.000000"
 					}
-					"volume_max"
+					"pitch_rand_min"
 					{
-						"value"		"2"
+						"value"		"-0.300000"
 					}
-					"pitch_min"
+					"pitch_rand_max"
 					{
-						"value"		"0.5"
+						"value"		"-0.250000"
 					}
-					"pitch_max"
+					"pitch"
 					{
-						"value"		"0.65"
+						"value"		"0.900000"
 					}
-					"chan_type"
+					"soundlevel"
 					{
-						"value"		"6"
+						"value"		"78.000000"
 					}
-					"memory_type"
+					"distance_max"
 					{
-						"value"		"0"
+						"value"		"2500.000000"
 					}
-					"soundlevel_min"
+					"limiter_on"
 					{
-						"value"		"90.000000"
-					}
-					"soundlevel_max"
-					{
-						"value"		"90.000000"
+						"value"		"0.000000"
 					}
 				}
 			}
