@@ -930,10 +930,13 @@ function buildHeroList() {
                 var heroName = heroList[i];
 
                 // Create the panel
-                var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
-                newPanel.SetAttributeString('heroName', heroName);
+                var newPanel = $.CreatePanel('Panel', container, 'heroSelector_' + heroName);
+                newPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup_hero.xml', false, false);
+                newPanel.setHeroName(heroName);
+
+                /*newPanel.SetAttributeString('heroName', heroName);
                 newPanel.heroname = heroName;
-                newPanel.heroimagestyle = 'portrait';
+                newPanel.heroimagestyle = 'portrait';*/
 
                 /*newPanel.SetPanelEvent('onactivate', function() {
                     // Set the selected helper hero
@@ -1327,7 +1330,7 @@ function makeHeroSelectable(heroCon) {
     });
 
     // Dragging
-    heroCon.SetDraggable(true);
+    heroCon.SetDraggable(true); 
 
     $.RegisterEventHandler('DragStart', heroCon, function(panelID, dragCallbacks) {
         var heroName = heroCon.GetAttributeString('heroName', '');
