@@ -496,6 +496,14 @@ function removeHeroesFromDuel(heroes_table)
                             if point then
                                 if meepo_return_table[i]:IsAlive() then
                                     x:SetAbsOrigin(point)
+
+									PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),x)
+
+									Timers:CreateTimer(function()
+										PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
+										ParticleManager:DestroyParticle(x.duelParticle, false)
+										x:EmitSound("Portal.Hero_Disappear")
+									end, DoUniqueString("camera"), 0.06)
                                 end
                                 meepo_return_table[i].duel_old_point = nil
                             else
