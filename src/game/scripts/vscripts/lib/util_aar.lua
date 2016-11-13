@@ -155,6 +155,24 @@ arenas[AAR_GIANT_ARENA] = {
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tribune", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_invis_reveal", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
+
+modifier_invis_reveal = class({})
+
+function modifier_invis_reveal:IsHidden()
+	return true
+end
+
+function modifier_invis_reveal:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+
+function modifier_invis_reveal:CheckState()
+	local state = {
+		[MODIFIER_STATE_INVISIBLE] = false
+	}
+	return state
+end
 
 modifier_tribune = class({})
 
@@ -864,6 +882,8 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     end, "DS_DRAW_ITERNAL", draw_time)
 
     local visionTimer = 0
+    local revealTime = 5
+    local revealThreshold = 7
 
     Timers:CreateTimer(function()
     	if not duel_active then
@@ -889,15 +909,17 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     	end
 
     	if not direSeesRadiant and not radiantSeesDire then
-    		if visionTimer == 7 then
+    		if visionTimer == revealThreshold then
 	    		for k,v in pairs(radiant_warriors) do
 	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
-	    				AddFOWViewer(DOTA_TEAM_BADGUYS,v:GetAbsOrigin(),512,3.0,true)
+	    				v:AddNewModifier(v,nil,"modifier_invis_reveal",{duration = revealTime})
+	    				AddFOWViewer(DOTA_TEAM_BADGUYS,v:GetAbsOrigin(),512,revealTime,true)
 	    			end
 	    		end
 	    		for k,v in pairs(dire_warriors) do
 	    			if not v:HasModifier("modifier_tribune") and v:IsAlive() then
-	    				AddFOWViewer(DOTA_TEAM_GOODGUYS,v:GetAbsOrigin(),512,3.0,true)
+	    				v:AddNewModifier(v,nil,"modifier_invis_reveal",{duration = revealTime})
+	    				AddFOWViewer(DOTA_TEAM_GOODGUYS,v:GetAbsOrigin(),512,revealTime,true)
 	    			end
 	    		end
 	    		visionTimer = 0
