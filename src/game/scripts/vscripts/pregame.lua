@@ -1260,6 +1260,10 @@ end
 function Pregame:onIngameBuilder(eventSourceIndex, args)
     local playerID = args.playerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if duel_active or hero:HasModifier("modifier_tribune") then
+        customAttension("#duel_cant_swap", 5)
+        return
+    end
     if IsValidEntity(hero) and hero:IsAlive() then
         local player = PlayerResource:GetPlayer(playerID)
         network:showHeroBuilder(player)
@@ -2084,6 +2088,8 @@ function Pregame:initOptionSelector()
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
+
+                self:setOption('lodOptionDuels', 0, true)
                 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -5458,8 +5464,9 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 
                 Timers:CreateTimer(function()
                     customAttension("#duel_10_sec_to_begin", 5)
-                    EmitGlobalSound("Hero_LegionCommander.Duel.Victory")
-                    
+
+                    CustomGameEventManager:Send_ServerToAllClients("duel_sound", {sound = "DOTA_Item.DoE.Activate"})
+
                     Timers:CreateTimer(function()
                         initDuel(duel)
                     end, 'start_duel', 10)

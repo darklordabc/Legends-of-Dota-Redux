@@ -52,6 +52,10 @@ function LosePanel() {
 
 }
 
+function Sound(data) {
+	Game.EmitSound(data.sound)
+}
+
 (function()
 {
     //GameEvents.Subscribe( "countdown", UpdateTimer );
@@ -59,6 +63,7 @@ function LosePanel() {
 	GameEvents.Subscribe( "duel_text_update", UpdateDuelText)
 	GameEvents.Subscribe( "duel_win", WinPanel)
 	GameEvents.Subscribe( "duel_lose", LosePanel)
+	GameEvents.Subscribe( "duel_sound", Sound)
 	GameEvents.Subscribe( "attension_text", Attension_update)
 	GameEvents.Subscribe( "attension_close", Attension_close)
 	//GameEvents.Subscribe( "SetKillLimit", SetKillLimit )
