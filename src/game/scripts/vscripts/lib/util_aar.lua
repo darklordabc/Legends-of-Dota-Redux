@@ -1203,9 +1203,9 @@ function spawnEntitiesAlongPath( path )
 		local trees = Entities:FindAllByClassname("ent_dota_tree")
 
 		for k,v in pairs(trees) do
-			if isPointInsidePolygon(v:GetOrigin(), path) then
-				local pos = v:GetOrigin()
-				destroyTrees(pos, 128)
+			if isPointInsidePolygon(v:GetAbsOrigin(), path) then
+				local pos = v:GetAbsOrigin()
+				destroyTrees(pos, 256)
 
 				Timers:CreateTimer(function()
 					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+1, false)
