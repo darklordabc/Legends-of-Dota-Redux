@@ -1,0 +1,56 @@
+"Event.DuelStart"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/mini_rosh_firebreath.vsnd"
+						}
+					}
+					"volume_min"
+					{
+						"value"		"1.75"
+					}
+					"volume_max"
+					{
+						"value"		"2"
+					}
+					"pitch_min"
+					{
+						"value"		"0.5"
+					}
+					"pitch_max"
+					{
+						"value"		"0.65"
+					}
+					"chan_type"
+					{
+						"value"		"6"
+					}
+					"memory_type"
+					{
+						"value"		"0"
+					}
+					"soundlevel_min"
+					{
+						"value"		"90.000000"
+					}
+					"soundlevel_max"
+					{
+						"value"		"90.000000"
+					}
+				}
+			}
+		}
+	}
+}
