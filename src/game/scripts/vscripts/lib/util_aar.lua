@@ -300,7 +300,7 @@ function moveHeroesToTribune(heroes_table, tribune_points_table)
     local max = #tribune_points_table
     for _, x in pairs(heroes_table) do
         if x and IsValidEntity(x) and x:IsAlive() then
-            if x:GetUnitName() == "npc_dota_hero_meepo" and not x:IsIllusion() then
+            if false then -- x:GetUnitName() == "npc_dota_hero_meepo" and not x:IsIllusion()
                 local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
                 if meepo_duel_table then
                     for i = 1, #meepo_duel_table do
@@ -455,7 +455,7 @@ function removeHeroesFromDuel(heroes_table)
  
     for _, x in pairs(heroes_table) do
         if x and IsValidEntity(x) then
-            if x:GetUnitName() == "npc_dota_hero_meepo" then
+            if false then -- x:GetUnitName() == "npc_dota_hero_meepo"
                 local meepo_return_table = Entities:FindAllByName("npc_dota_hero_meepo")
                 if meepo_return_table then
                     for i = 1, #meepo_return_table do
@@ -601,7 +601,7 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
 
     local function checkHero( x )
         if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
-            if x:GetUnitName() == "npc_dota_hero_meepo" then
+            if false then -- x:GetUnitName() == "npc_dota_hero_meepo"
                 local meepo_duel_table = Entities:FindAllByName("npc_dota_hero_meepo")
                 if meepo_duel_table then
                     for i = 1, #meepo_duel_table do
@@ -880,7 +880,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     current_arena = arena
 
     for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
-	    if IsValidEntity(v) == true and v:IsNull() == false and v.GetPlayerOwnerID then
+	    if IsValidEntity(v) == true and v:IsNull() == false and v.GetPlayerOwnerID and v:IsAlive() == true then
 	    	v:AddNewModifier(v,nil,"modifier_tribune",{})
 			v.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, v )
 			ParticleManager:SetParticleControl(v.duelParticle, 0, v:GetAbsOrigin() + Vector(0,0,30))
@@ -895,7 +895,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    moveHeroesToTribune(dire_heroes, arenas[current_arena].tribune_points.dire)
 	    moveToDuel(radiant_warriors, radiant_heroes, arenas[current_arena].duel_points.radiant)
 	    moveToDuel(dire_warriors, dire_heroes, arenas[current_arena].duel_points.dire)
-    end, "duek_move_heroes", DUEL_PREPARE)
+    end, "duel_move_heroes", DUEL_PREPARE)
 
     freezeGameplay()
 
@@ -976,23 +976,23 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
         if x == hero then
             table.remove(warriors_table, i)
 
-            if hero:GetUnitName() == "npc_dota_hero_meepo" then
-                for j, y in pairs(warriors_table) do
-                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-                        table.remove(warriors_table, j)
-                    end
-                end
-                for j, y in pairs(warriors_table) do
-                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-                        table.remove(warriors_table, j)
-                    end
-                end
-                for j, y in pairs(warriors_table) do
-                    if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
-                        table.remove(warriors_table, j)
-                    end
-                end
-            end
+            -- if hero:GetUnitName() == "npc_dota_hero_meepo" then
+            --     for j, y in pairs(warriors_table) do
+            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+            --             table.remove(warriors_table, j)
+            --         end
+            --     end
+            --     for j, y in pairs(warriors_table) do
+            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+            --             table.remove(warriors_table, j)
+            --         end
+            --     end
+            --     for j, y in pairs(warriors_table) do
+            --         if y and y:GetUnitName() == "npc_dota_hero_meepo" and hero:GetPlayerOwner() == y:GetPlayerOwner() then
+            --             table.remove(warriors_table, j)
+            --         end
+            --     end
+            -- end
  
             if #warriors_table == 0 then
                 duel_victory_team = ((x:GetTeamNumber() == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS) or ((x:GetTeamNumber() == DOTA_TEAM_BADGUYS) and DOTA_TEAM_GOODGUYS)
