@@ -19,7 +19,9 @@
 		"dota/game/panorama/layout/custom_game",
 		
 		"dota/game/panorama/scripts",
-		"dota/game/panorama/scripts/custom_game"
+		"dota/game/panorama/scripts/custom_game",
+		
+		"dota/content/soundevents"
 	],
 
 	"linkDirs" : [
