@@ -685,8 +685,8 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
     end
 
 	for _,x in pairs(HeroList:GetAllHeroes()) do
-		if IsValidEntity(x) == true then
-			x:AddNewModifier(caster,nil,"modifier_tribune",{duration = 4})
+		if IsValidEntity(x) == true and x:IsNull() == false then
+			x:AddNewModifier(x,nil,"modifier_tribune",{duration = 4})
 
 			-- x.duelParticle = ParticleManager:CreateParticle( "particles/items2_fx/teleport_end.vpcf", PATTACH_ABSORIGIN_FOLLOW, x )
 			-- ParticleManager:SetParticleControl(x.duelParticle, 0, x:GetAbsOrigin() + Vector(0,0,30))
