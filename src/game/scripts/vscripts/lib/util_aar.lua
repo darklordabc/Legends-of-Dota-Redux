@@ -1208,8 +1208,8 @@ function spawnEntitiesAlongPath( path )
 				destroyTrees(pos, 256)
 
 				Timers:CreateTimer(function()
-					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+1, false)
-					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+1, false)
+					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+2, false)
+					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+2, false)
 			    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
 			end
 		end
