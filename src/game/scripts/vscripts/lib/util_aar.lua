@@ -50,7 +50,9 @@ arenas[AAR_SMALL_ARENA] = {
 		}
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
-	towerModel = "models/props_structures/tower_good2.vmdl"
+	towerModel = "models/props_structures/tower_good2.vmdl",
+	wallScale = 1.0,
+	towerScale = 2.0
 }
 arenas[AAR_BIG_ARENA] = {
 	polygon = {
@@ -96,7 +98,9 @@ arenas[AAR_BIG_ARENA] = {
 		}
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
-	towerModel = "models/props_structures/tower_good2.vmdl"
+	towerModel = "models/props_structures/tower_good2.vmdl",
+	wallScale = 1.0,
+	towerScale = 2.0
 }
 arenas[AAR_GIANT_ARENA] = {
 	polygon = {
@@ -115,7 +119,7 @@ arenas[AAR_GIANT_ARENA] = {
 			[1] = Vector(-2117.77, -5658.65, 129),
 		},
 		dire = {
-			[1] = Vector(-2112.69, -5980, 129),
+			[1] = Vector(-2914.74, -3121.25, 129),
 		}
 	},
 	duel_points = {
@@ -150,7 +154,9 @@ arenas[AAR_GIANT_ARENA] = {
 		}
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
-	towerModel = "models/props_structures/tower_good2.vmdl"
+	towerModel = "models/props_structures/tower_good2.vmdl",
+	wallScale = 1.0,
+	towerScale = 2.0
 }
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
@@ -1396,11 +1402,11 @@ function spawnEntitiesAlongPath( path )
 
 			for x=0,distance,128 do
 				local pos = GetGroundPosition(path[j] + (direction * x),obstacle)
-				local scale = 1.0
+				local scale = arenas[current_arena].wallScale
 				local model = arenas[current_arena].wallModel
 				if x == 0 then
 					model = arenas[current_arena].towerModel
-					scale = 1.5
+					scale = arenas[current_arena].towerScale
 				end
 				local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 				obstacle:SetAbsOrigin(pos)
@@ -1450,7 +1456,7 @@ function spawnEntitiesAlongPath( path )
 					Timers:CreateTimer(function()
 						AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+2, false)
 						AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+2, false)
-				    end, DoUniqueString("tree_workaround"), DUEL_PREPARE + 1)
+				    end, DoUniqueString("tree_workaround"), DUEL_PREPARE)
 				end
 			end
 		end
