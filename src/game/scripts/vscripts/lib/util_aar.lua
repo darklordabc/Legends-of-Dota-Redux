@@ -596,7 +596,7 @@ function removeHeroesFromDuel(heroes_table)
     end
 end
 
-function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
+function getHeroesToDuelFromTeamTable(heroes_table, hero_count, networth_check)
     if getAliveHeroesCount(heroes_table) < hero_count then
         print("Duel system error, alive heroes < hero count. Fix it!")
         return
@@ -607,8 +607,8 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
     local counter_local = 0;
     local output_table = {}
 
-    local function checkHero( x )
-        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and x.IsDueled == false and isConnected(x) then --x.IsDisconnect == false then
+    local function checkHero( x, ignore )
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and (x.IsDueled == false or ignore) and isConnected(x) then --x.IsDisconnect == false then
             if x:HasAbility("meepo_divided_we_stand") then
                 local meepo_duel_table = Entities:FindAllByName(x:GetUnitName())
                 if meepo_duel_table then
@@ -623,8 +623,61 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
                 x.IsDueled = true
                 table.insert(output_table, x)
             end
-            counter_local = counter_local + 1
+            counter_local = counter_local + 1  
+
+            return true
+        else
+        	return false
         end
+    end
+
+    if networth_check and not ignoreNetworth then
+		local sorted_heroes = {}
+		local numbers = {}
+
+		for k,v in pairs(heroes_table) do
+			numbers[v] = PlayerResource:GetTotalEarnedGold(v:GetPlayerID())
+		end
+		table.sort(numbers)
+		local i = 1
+		for k,v in pairs(heroes_table) do
+			numbers[v] = i
+			i = i + 1
+		end
+
+		for k,v in pairs(numbers) do
+			sorted_heroes[v] = k
+		end
+
+		local left = {}
+		local used = {}
+
+		for k,v in pairs(sorted_heroes) do
+			for k2,v2 in pairs(networth_check) do
+				if k == v2 then
+					if checkHero( x ) then
+						table.insert(used, k)
+				        if counter_local == hero_count then
+				            return output_table
+				        end
+					else
+						table.insert(left, k)
+					end
+					break
+				end
+			end
+		end
+
+		for k,v in pairs(sorted_heroes) do
+			for k2,v2 in pairs(left) do
+				if k == v2 then
+					checkHero( x, true )
+			        if counter_local == hero_count then
+			            return output_table
+			        end
+				end
+			end
+		end
     end
 
     local anyHuman = false
@@ -654,19 +707,18 @@ function getHeroesToDuelFromTeamTable(heroes_table, hero_count)
     end
  
     for _, x in pairs(heroes_table) do
-    	checkHero( x )
-        if counter_local == hero_count then
-            return output_table
-        end
-    end
+    	if PlayerResource:GetSteamAccountID(x:GetPlayerOwnerID()) == 0 then 
+	    	checkHero( x )
 
-    if anyHuman then
-    	print("added: ", addedHuman)
+	        if counter_local == hero_count then
+	            return output_table
+	        end
+    	end
     end
 
     if counter_local < hero_count then -- if some heroes already dueled
         clearDuelFromHeroes(heroes_table)
-        return getHeroesToDuelFromTeamTable(heroes_table, hero_count)
+        return getHeroesToDuelFromTeamTable(heroes_table, hero_count, networth_check)
     end
 end
 
@@ -827,6 +879,34 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
     GameRules:SendCustomMessage("#duel_end", 0, 0)
 end
 
+function countNetworth( warriors, heroes )
+	local networth = {}
+	local numbers = {}
+
+	for k,v in pairs(heroes) do
+		numbers[v] = PlayerResource:GetTotalEarnedGold(v:GetPlayerID())
+	end
+	table.sort(numbers)
+	local i = 1
+	for k,v in pairs(heroes) do
+		numbers[v] = i
+		i = i + 1
+	end
+
+	for k,v in pairs(warriors) do
+		for k2,v2 in pairs(heroes) do
+			if v2 == v then
+				table.insert(networth, numbers[v2])
+			end
+		end
+	end
+	for k,v in pairs(networth) do
+		print(heroes[1]:GetTeamNumber(), v)
+	end
+	table.sort(networth)
+	return networth
+end
+
 function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_callback, end_duel_callback, arena)
     if not radiant_heroes or not dire_heroes then
         local err ="[DS] Duel system error, {} tables of heroes! "
@@ -868,7 +948,8 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
  
  
     local radiant_warriors = getHeroesToDuelFromTeamTable(radiant_heroes, hero_count)
-    local dire_warriors = getHeroesToDuelFromTeamTable(dire_heroes, hero_count)
+    local radiant_networth = countNetworth( radiant_warriors, radiant_heroes )
+    local dire_warriors = getHeroesToDuelFromTeamTable(dire_heroes, hero_count, radiant_networth)
  
     if (not radiant_warriors) or (not dire_warriors) then
         local err = "[DS] Duel system error, not enought heroes for duel[2]. waiting "
@@ -1550,4 +1631,13 @@ function shuffle(list)
     end
 
     return shuffled
+end
+
+function compareNetworthes(t, t2)
+	for i=1,#t do
+		if t2[i] ~= t[i] then
+			return false
+		end
+	end
+	return true
 end
