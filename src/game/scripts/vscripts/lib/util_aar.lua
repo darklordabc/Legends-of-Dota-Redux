@@ -1339,10 +1339,8 @@ function spawnEntitiesAlongPath( path )
 			nextPoint = GetGroundPosition(nextPoint,obstacle)
 
 			local obstacleTable = obstacles[RandomInt(1,#obstacles)]
-
-			local obstacleTable
 			repeat
-				obstacleTable = arenas[current_arena].obstacle_models[RandomInt(1,#arenas[current_arena].obstacle_models)]
+				obstacleTable = obstacles[RandomInt(1,#obstacles)]
 				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
 			until obstacle_counts[obstacleTable.name] < obstacleTable.maxCount
 
