@@ -89,7 +89,7 @@ arenas[AAR_GIANT_ARENA] = {
 			[1] = Vector(-2117.77, -5658.65, 129),
 		},
 		dire = {
-			[1] = Vector(-2914.74, -3121.25, 129),
+			[1] = Vector(6241, -2214.75, 257),
 		}
 	},
 	duel_points = {
