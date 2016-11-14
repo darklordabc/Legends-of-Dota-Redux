@@ -19,8 +19,8 @@ Dota 2 Redux
  - Nodejs
  
 ###Github Issues###
- - Feel free to post an [issue](https://github.com/darklordabc/Legends-of-Dota-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
- - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Legends-of-Dota-Redux/milestone/4)., and the improvement list is [HERE](https://github.com/darklordabc/Legends-of-Dota-Redux/milestone/5). 
+ - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
+ - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4)., and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
 
 ###How to extract from Github to Steam###
  - Download the Git repository from either using the manual option from website or from using Source (recommended method)
@@ -63,5 +63,5 @@ Dota 2 Redux
  - You might need to save it as unicode, if non standard characters are used
 
 ###Credits###
- - For a breakdown of all the _tremendous_ developers who did _fantastic_ work on the mod, check the [collabrators page](https://github.com/darklordabc/Legends-of-Dota-Redux/graphs/contributors). 
+ - For a breakdown of all the tremendous developers who did fantastic work on the mod, check the [collabrators page](https://github.com/darklordabc/Dota-2-Redux/graphs/contributors). 
  - Chinese Translation by [jhqz103](http://steamcommunity.com/profiles/76561198096463858/) and [ethereal](http://steamcommunity.com/profiles/76561198124343304/)
