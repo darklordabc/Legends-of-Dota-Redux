@@ -9,7 +9,7 @@ Dota 2 Redux
  - Create unique and creative heros to dominate your opponent.
 
 ###Steam Workshop###
- - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Legends of Dota: Redux on the steam workshop.
+ - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
  
 ###Discord Chat Room###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
@@ -31,7 +31,7 @@ Dota 2 Redux
  - Once you have set an `addonName`, use `compile.bat`, and it should compile all the necessary files into a dota folder, these files will also be mklinked to the steam folder counterparts. 
  - These two folders should now exist in steam `SteamApps\common\dota 2 beta\game\dota_addons\<addonName>` and `SteamApps\common\dota 2 beta\content\dota_addons\<addonName>`
 
-###Running Legends of Dota###
+###Running Dota 2 Redux###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
 
 ![Mod Tools](http://i.imgur.com/0EsjTMO.png)
