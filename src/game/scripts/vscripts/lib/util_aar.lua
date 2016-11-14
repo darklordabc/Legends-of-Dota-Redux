@@ -1372,6 +1372,8 @@ function spawnEntitiesAlongPath( path )
 				local obstacle = SpawnEntityFromTableSynchronous("prop_dynamic", {model = model, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
 				obstacle:SetAbsOrigin(pos)
 				obstacle:SetModelScale(scale)
+				local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(p,0,pos)
 
 				if x == 0 then
 					obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
