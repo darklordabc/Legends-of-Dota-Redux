@@ -1,7 +1,7 @@
 Dota 2 Redux
 =====
 
-**Support the innovators not the imitators.**
+**Lets Make Dota Great Again.**
 
 ###About###
  - Pick your skills to build an overpowered masterpiece!
