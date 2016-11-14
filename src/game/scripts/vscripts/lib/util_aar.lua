@@ -28,26 +28,8 @@ arenas[AAR_SMALL_ARENA] = {
 	},
 	random_obstacles = 10,
 	obstacle_models = {
-		[1] = {
-			name = "Mother Tree",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.7,
-			collisionSize = 2,
-			maxCount = 1,
-			hits = 4
-		},
-		[2] = {
-			name = "Small Tree A",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.3,
-			collisionSize = 1,
-			maxCount = 50,
-			hits = 2
-		}
+		[1] = "Mother Tree",
+		[2] = "Small Tree A",
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
@@ -76,31 +58,14 @@ arenas[AAR_BIG_ARENA] = {
 	},
 	random_obstacles = 25,
 	obstacle_models = {
-		[1] = {
-			name = "Mother Tree",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.7,
-			collisionSize = 2,
-			maxCount = 1,
-			hits = 4
-		},
-		[2] = {
-			name = "Small Tree A",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.3,
-			collisionSize = 1,
-			maxCount = 50,
-			hits = 2
-		}
+		[1] = "Mother Tree",
+		[2] = "Small Tree A",
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
-	towerScale = 2.0
+	towerScale = 2.0,
+	wallRandomDirection = true,
 }
 arenas[AAR_GIANT_ARENA] = {
 	polygon = {
@@ -132,26 +97,8 @@ arenas[AAR_GIANT_ARENA] = {
 	},
 	random_obstacles = 40,
 	obstacle_models = {
-		[1] = {
-			name = "Mother Tree",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.7,
-			collisionSize = 2,
-			maxCount = 1,
-			hits = 4
-		},
-		[2] = {
-			name = "Small Tree A",
-			model = "models/props_tree/dire_tree007_sfm.vmdl",
-			deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
-			blockVision = true,
-			scale = 0.3,
-			collisionSize = 1,
-			maxCount = 50,
-			hits = 2
-		}
+		[1] = "Mother Tree",
+		[2] = "Small Tree A",
 	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
@@ -1376,11 +1323,22 @@ function spawnEntitiesAlongPath( path )
 
 	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
 		local obstacle_counts = {}
+		local obstacles = {}
+
+		for k,v in pairs(arenas[current_arena].obstacle_models) do
+			for k2,v2 in pairs(obstacle_models) do
+				if v2.name == v then
+					table.insert(obstacles, v2)
+					break
+				end
+			end
+		end
+
 		for i=1,arenas[current_arena].random_obstacles do
 			local nextPoint = randomPointInPolygon( arenas[current_arena].polygon )
 			nextPoint = GetGroundPosition(nextPoint,obstacle)
 
-			local obstacleTable = arenas[current_arena].obstacle_models[RandomInt(1,#arenas[current_arena].obstacle_models)]
+			local obstacleTable = obstacles[RandomInt(1,#obstacles)]
 
 			local obstacleTable
 			repeat
@@ -1414,6 +1372,10 @@ function spawnEntitiesAlongPath( path )
 
 				if x == 0 then
 					obstacle:SetForwardVector((pos - getMidPoint(path)):Normalized())
+				else
+					if arenas[current_arena].wallRandomDirection then
+						obstacle:SetAngles(0, math.random(0, 360), 0)
+					end
 				end
 
 				for x=-1,1 do

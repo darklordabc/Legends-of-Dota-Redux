@@ -1,3 +1,26 @@
+obstacle_models = {
+    [1] = {
+        name = "Mother Tree",
+        model = "models/props_tree/dire_tree007_sfm.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = true,
+        scale = 0.7,
+        collisionSize = 2,
+        maxCount = 1,
+        hits = 4
+    },
+    [2] = {
+        name = "Small Tree A",
+        model = "models/props_tree/dire_tree007_sfm.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = true,
+        scale = 0.3,
+        collisionSize = 1,
+        maxCount = 50,
+        hits = 2
+    }
+}
+
 LinkLuaModifier("modifier_undestructible_obstacle", "obstacles.lua",LUA_MODIFIER_MOTION_NONE)
 
 modifier_undestructible_obstacle = class({})
