@@ -11,7 +11,7 @@ Dota 2 Redux
 ###Steam Workshop###
  - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
  
-###Discord Chat Room###
+###Discord Chat Server###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
 
 ###Requirements to Compile and Run###
