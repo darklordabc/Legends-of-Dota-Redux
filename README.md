@@ -62,6 +62,7 @@ Legends of Dota
  - You can reference `addon_english.txt`
  - You might need to save it as unicode, if non standard characters are used
 
-###Translation Credits###
+###Credits###
+ - For a breakdown of all the tremendous developers who did fantastic work on the mod, check the [collabrators page](https://github.com/darklordabc/Legends-of-Dota-Redux/graphs/contributors). 
  - [Chinese by jhqz103](http://steamcommunity.com/profiles/76561198096463858/)
  - [Chinese by ethereal](http://steamcommunity.com/profiles/76561198124343304/)
