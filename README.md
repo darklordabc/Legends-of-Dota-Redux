@@ -18,7 +18,7 @@ Legends of Dota
  - Dota 2 Workshop Tools
  - Nodejs
  
- ###Github Issues###
+###Github Issues###
  - Feel free to post an issue on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
  - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Legends-of-Dota-Redux/milestone/4)., and the improvement list is [HERE](https://github.com/darklordabc/Legends-of-Dota-Redux/milestone/5). 
 
