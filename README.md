@@ -1,4 +1,4 @@
-Legends of Dota
+Dota 2 Redux
 =====
 
 **Support the innovators not the imitators.**
