@@ -1342,7 +1342,7 @@ function freezeGameplay()
 
 				-- if v:IsCreature() and v:IsCreep() then
 				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
-					local p = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf",PATTACH_CUSTOMORIGIN,nil)
+					local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
 					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
 				end
 				-- end
