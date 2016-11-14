@@ -64,4 +64,4 @@ Dota 2 Redux
 
 ###Credits###
  - For a breakdown of all the tremendous developers who did fantastic work on the mod, check the [collabrators page](https://github.com/darklordabc/Legends-of-Dota-Redux/graphs/contributors). 
- - Chinese Translation by [jhqz103](http://steamcommunity.com/profiles/76561198096463858/)and [ethereal](http://steamcommunity.com/profiles/76561198124343304/)
+ - Chinese Translation by [jhqz103](http://steamcommunity.com/profiles/76561198096463858/) and [ethereal](http://steamcommunity.com/profiles/76561198124343304/)
