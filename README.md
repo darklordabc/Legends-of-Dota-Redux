@@ -38,7 +38,7 @@ Dota 2 Redux
 
  - Start a map by opening the console and running `dota_launch_custom_game <addonName> <mapname>`, replacing <addonName> with the name of your addon and <mapname> with a valid map name.
  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
- - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
+ - Check the console, you should see something along the lines of "Dota 2 Redux is activating!". Any errors while loading will be listed below this.
 
 ###Can I contribute code?###
  - Yes please do. The best way to contribute is to create a new branch on the repistory per feature, and then create a pull request to merge with "develop" branch. 
