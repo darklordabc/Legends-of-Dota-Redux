@@ -97,9 +97,9 @@ arenas[AAR_BIG_ARENA] = {
 			hits = 2
 		}
 	},
-	wallModel = "models/props_structures/tower_good4.vmdl",
-	towerModel = "models/props_structures/tower_good2.vmdl",
-	wallScale = 1.0,
+	wallModel = "models/props_rock/riveredge_rock004a.vmdl",
+	towerModel = "models/props_rock/riveredge_rock008a.vmdl",
+	wallScale = 1.5,
 	towerScale = 2.0
 }
 arenas[AAR_GIANT_ARENA] = {
