@@ -29,15 +29,15 @@ end
 
 function modifier_npc_dota_hero_treant_perk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 	}
 	return funcs
 end
 
 local Timers = require('easytimers')
 
-function modifier_npc_dota_hero_treant_perk:OnAbilityExecuted(params)
-	if params.unit == self:GetParent() then
+function modifier_npc_dota_hero_treant_perk:OnAbilityFullyCast(params)
+	if params.caster == self:GetParent() then
 		if params.ability:GetName() == "treant_living_armor" then
 			local armor = params.ability
 			local duration = armor:GetSpecialValueFor("duration")
