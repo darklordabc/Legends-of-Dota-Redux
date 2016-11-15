@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Balance
-- 
+- Added Concussive Break
 
 ## 3.0 Steam Version
 
