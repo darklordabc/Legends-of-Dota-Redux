@@ -36,7 +36,10 @@ arenas[AAR_MID_WARS_ARENA] = {
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
-	towerScale = 2.0
+	towerScale = 2.0,
+	removeTrees = true,
+	minimumPlayers = 1,
+	maximumPlayers = 2
 }
 
 
@@ -231,7 +234,7 @@ function modifier_duel_out_of_game:CheckState()
 	return state
 end
 
-DUEL_INTERVAL = 30
+DUEL_INTERVAL = 80
 DUEL_NOBODY_WINS = 60
 DUEL_PREPARE = 2.0
 
