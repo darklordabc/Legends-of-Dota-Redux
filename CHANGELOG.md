@@ -8,10 +8,10 @@ All notable changes to this project will be documented in this file.
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
 - Added scroll bar to mutators list to accomdate more mutators
 - Redesigned mutator/gamemode screen in custom maps
-
+- Fixed Treant's Perk
 
 ### Balance
-- 
+- Added Concussive Break
 
 ## 3.0 Steam Version
 
