@@ -1307,6 +1307,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
 
         strongtowers = function(choice)
             return choice == 1 or choice == 0
+        end,
+
+        duels = function(choice)
+            return choice == 1 or choice == 0
         end
     }
 
@@ -1429,6 +1433,17 @@ function Pregame:processVoteData()
             -- On by default
             self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
             self.optionVotingStrongTowers = 0
+        end
+    end
+    if results.duels ~= nil then
+        if results.duels == 1 then
+            -- Enable Strong Towers
+            self:setOption('lodOptionDuels', 1, true)
+            self.optionVotingDuels = 1
+        else
+            -- On by default
+            self:setOption('lodOptionDuels', 0, true)
+            self.optionVotingDuels = 0
         end
     end
 

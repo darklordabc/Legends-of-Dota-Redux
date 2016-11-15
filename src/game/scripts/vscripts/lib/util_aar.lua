@@ -17,10 +17,10 @@ arenas[AAR_SMALL_ARENA] = {
 	},
 	tribune_points = {
 		radiant = {
-			[1] = Vector(1263.93, -4192, 257),
+			[1] = Vector(1281, -4694, 272.996),
 		},
 		dire = {
-			[1] = Vector(4514.9, -4088.89, 257),
+			[1] = Vector(4684.24, -4694, 272.996),
 		}
 	},
 	duel_points = {
@@ -39,7 +39,10 @@ arenas[AAR_SMALL_ARENA] = {
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
-	towerScale = 2.0
+	towerScale = 2.0,
+	removeTrees = true,
+	minimumPlayers = 1,
+	maximumPlayers = 2
 }
 arenas[AAR_BIG_ARENA] = {
 	polygon = {
@@ -70,7 +73,10 @@ arenas[AAR_BIG_ARENA] = {
 	towerModel = "models/props_rock/riveredge_rock008a.vmdl",
 	wallScale = 1.5,
 	towerScale = 2.0,
-	wallRandomDirection = true
+	wallRandomDirection = true,
+	removeTrees = true,
+	minimumPlayers = 3,
+	maximumPlayers = 4
 }
 arenas[AAR_GIANT_ARENA] = {
 	polygon = {
@@ -108,7 +114,10 @@ arenas[AAR_GIANT_ARENA] = {
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
-	towerScale = 2.0
+	towerScale = 2.0,
+	removeTrees = false,
+	minimumPlayers = 4,
+	maximumPlayers = 5
 }
 
 LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
@@ -1207,18 +1216,19 @@ function generatePoints( initial, p, randomize )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v[p]) do -- teams
 			destroyTrees(v2[1], 32)
-			for i=2,10 do
-				local xOffset = 0
-				local yOffset = 0
-				if i >= 6 then
-					xOffset = -128
-					yOffset = 128 * 5
-				end
-				v2[i] = v2[1] + Vector(xOffset, (-128 * i) + yOffset, 0)
-				destroyTrees(v2[i], 32)
+			local init = v2[1]
 
-				-- AddFOWViewer(DOTA_TEAM_GOODGUYS, initial[k][k2][i], 128, 5.0, false)
-				-- AddFOWViewer(DOTA_TEAM_BADGUYS, initial[k][k2][i], 128, 5.0, false)
+			local offset = 150
+
+			local i = 1
+			for x=-1,1 do
+				for y=-1,1 do
+					v2[i] = init + Vector(x * offset, y * offset, 0)
+					v2[i] = RotatePosition(v2[i],QAngle(0,45,0),init)
+					destroyTrees(v2[i], offset)
+
+					i = i + 1
+				end
 			end
 		end
 	end
@@ -1257,16 +1267,17 @@ function initDuel(restart)
 
 	local max_alives = getMaximumAliveHeroes(radiantHeroes, direHeroes)
   	if max_alives < 1 then max_alives = 1 end
-  	local c = RandomInt(1, max_alives)
+  	local c = RandomInt(1,max_alives)
 
-  	local arena = AAR_SMALL_ARENA
-
-  	if c == 5 then
-  		arena = AAR_GIANT_ARENA
-  	end
-  	if c > 1 and c < 5 then
-  		arena = AAR_BIG_ARENA
-  	end
+	local selected = false
+	local arena = AAR_SMALL_ARENA
+	repeat
+		arena = RandomInt(1,#arenas)
+		arena_table = arenas[arena]
+		if c >= arena_table.minimumPlayers and c <= arena_table.maximumPlayers then
+			selected = true
+		end
+	until selected == true
 
 	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS + DUEL_PREPARE, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		restart()
@@ -1391,8 +1402,10 @@ function spawnEntitiesAlongPath( path )
 				
 				destroyTrees(pos, 256)
 
-				AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
-				AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
+				Timers:CreateTimer(function()
+					AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, 5.0, false)
+					AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, 5.0, false)
+				end, DoUniqueString("walls_fow"), DUEL_PREPARE + 0.5)
 
 				table.insert(temp_entities, obstacle)
 			end
@@ -1412,7 +1425,7 @@ function spawnEntitiesAlongPath( path )
 	end
 
 	Timers:CreateTimer(function()
-		if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+		if arenas[current_arena].removeTrees then
 			local trees = Entities:FindAllByClassname("ent_dota_tree")
 
 			for k,v in pairs(trees) do

@@ -3737,6 +3737,7 @@ function OnPhaseChanged(table_name, key, data) {
 			data.balancemode = data.balancemode || {};
             data.slots = data.slots || {};
             data.strongtowers = data.strongtowers || {};
+            data.duels = data.duels || {};
 
             // Set vote counts
             $('#voteCountNo').text = '(' + (data.banning[0] || 0) + ')';
@@ -3750,12 +3751,16 @@ function OnPhaseChanged(table_name, key, data) {
 
             $('#voteCountNoST').text = '(' + (data.strongtowers[0] || 0) + ')';
             $('#voteCountYesST').text = '(' + (data.strongtowers[1] || 0) + ')';
+
+            $('#voteCountNoD').text = '(' + (data.duels[0] || 0) + ')';
+            $('#voteCountYesD').text = '(' + (data.duels[1] || 0) + ')';
 			
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
 			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
-            		updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
+            updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			updateVotingPercentage(data.strongtowers, [$('#voteCountNoPercentageST'), $('#voteCountYesPercentageST')]);
+            updateVotingPercentage(data.duels, [$('#voteCountNoPercentageD'), $('#voteCountYesPercentageD')]);
 			
 
             $('#voteCountSlots4').text = (data.slots[4] || 0);
@@ -4354,6 +4359,10 @@ function onPlayerCastVote(category, choice) {
 
         case 'strongtowers':
             buttonGlowHelper(category,choice,$('#optionVoteStrongTowersYes'),$('#optionVoteStrongTowersNo'));
+        break;
+
+        case 'duels':
+            buttonGlowHelper(category,choice,$('#optionVoteDuelsYes'),$('#optionVoteDuelsNo'));
         break;
     }
 }
