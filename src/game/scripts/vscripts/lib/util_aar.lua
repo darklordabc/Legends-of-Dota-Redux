@@ -4,13 +4,42 @@ require('obstacles')
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
 AAR_GIANT_ARENA = 3
+AAR_MID_WARS_ARENA = 4
 
 arenas = {}
---arenas[AAR_MID_WARS_ARENA] = {
---	polygon = {
---		[1] = Vector(-512.571, -1439.78, 129), [2] = Vector(-1468.01, -1612.08, 129), [3] = Vector(-2482.42, 334.016, 292.396), [4] = Vector(-1451.25, 1923, 268), [5] = Vector(-37.8586, 1588.2, 159.943), [6] = Vector(1008.83, 317.489, 144.871), [7] = Vector(457.12, -827.381, 17)
---	},
---}
+
+arenas[AAR_MID_WARS_ARENA] = {
+	polygon = {
+		[1] = Vector(-512.571, -1439.78, 129), [2] = Vector(-1468.01, -1612.08, 129), [3] = Vector(-2482.42, 334.016, 292.396), [4] = Vector(-1451.25, 1923, 268), [5] = Vector(-37.8586, 1588.2, 159.943), [6] = Vector(1008.83, 317.489, 144.871), [7] = Vector(457.12, -827.381, 17)
+	},
+	tribune_points = {
+		radiant = {
+			[1] = Vector(-1926.98, -1640.97, 129),
+		},
+		dire = {
+			[1] = Vector(1255.21, 646.777, 129),
+		}
+	},
+	duel_points = {
+		radiant = {
+			[1] = Vector(-1403.96, -1031.83, 129),
+		},
+		dire = {
+			[1] = Vector(79.9075, 587.737, 129),
+		}
+	},
+	random_obstacles = 10,
+	obstacle_models = {
+		[1] = "Mother Tree",
+		[2] = "Small Tree A",
+	},
+	wallModel = "models/props_structures/tower_good4.vmdl",
+	towerModel = "models/props_structures/tower_good2.vmdl",
+	wallScale = 1.0,
+	towerScale = 2.0
+}
+
+
 arenas[AAR_SMALL_ARENA] = {
 	polygon = {
 		[1] = Vector(1561.12, -5262.92, 295.968), [2] = Vector(1555.84, -4122.01, 257), [3] = Vector(4348.23, -4122.07, 257), [4] = Vector(4358.79, -5207.59, 282.345)
