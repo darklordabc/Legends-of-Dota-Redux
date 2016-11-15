@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_phoenix_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk:IsHidden()
-    return false
+    return self:GetCaster():HasModifier("modifier_npc_dota_hero_phoenix_perk_delay")
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk:IsPurgable()
