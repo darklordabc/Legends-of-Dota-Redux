@@ -1,7 +1,7 @@
-Legends of Dota
+Dota 2 Redux
 =====
 
-**Support the innovators not the imitators.**
+**Make Dota Great Again.**
 
 ###About###
  - Pick your skills to build an overpowered masterpiece!
@@ -9,14 +9,18 @@ Legends of Dota
  - Create unique and creative heros to dominate your opponent.
 
 ###Steam Workshop###
- - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Legends of Dota: Redux on the steam workshop.
+ - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
  
-###Discord Chat Room###
+###Discord Chat Server###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
 
 ###Requirements to Compile and Run###
  - Dota 2 Workshop Tools
  - Nodejs
+ 
+###Github Issues###
+ - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
+ - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4)., and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
 
 ###How to extract from Github to Steam###
  - Download the Git repository from either using the manual option from website or from using Source (recommended method)
@@ -27,14 +31,14 @@ Legends of Dota
  - Once you have set an `addonName`, use `compile.bat`, and it should compile all the necessary files into a dota folder, these files will also be mklinked to the steam folder counterparts. 
  - These two folders should now exist in steam `SteamApps\common\dota 2 beta\game\dota_addons\<addonName>` and `SteamApps\common\dota 2 beta\content\dota_addons\<addonName>`
 
-###Running Legends of Dota###
+###Running Dota 2 Redux###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
 
 ![Mod Tools](http://i.imgur.com/0EsjTMO.png)
 
  - Start a map by opening the console and running `dota_launch_custom_game <addonName> <mapname>`, replacing <addonName> with the name of your addon and <mapname> with a valid map name.
  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
- - Check the console, you should see something along the lines of "Legends of dota is activating!". Any errors while loading will be listed below this.
+ - Check the console, you should see something along the lines of "Dota 2 Redux is activating!". Any errors while loading will be listed below this.
 
 ###Can I contribute code?###
  - Yes please do. The best way to contribute is to create a new branch on the repistory per feature, and then create a pull request to merge with "develop" branch. 
@@ -58,6 +62,6 @@ Legends of Dota
  - You can reference `addon_english.txt`
  - You might need to save it as unicode, if non standard characters are used
 
-###Translation Credits###
- - [Chinese by jhqz103](http://steamcommunity.com/profiles/76561198096463858/)
- - [Chinese by ethereal](http://steamcommunity.com/profiles/76561198124343304/)
+###Credits###
+ - For a breakdown of all the _tremendous_ developers who did _fantastic_ work on the mod, check the [collabrators page](https://github.com/darklordabc/Dota-2-Redux/graphs/contributors). 
+ - Chinese Translation by [jhqz103](http://steamcommunity.com/profiles/76561198096463858/) and [ethereal](http://steamcommunity.com/profiles/76561198124343304/)
