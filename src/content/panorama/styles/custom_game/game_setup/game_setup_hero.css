@@ -35,7 +35,6 @@
     width: 70%;
     height: 70%;
 
-    border: 1px solid black;
     align: center center;
 
     transition-property: opacity, width, height;
