@@ -9,7 +9,6 @@
 	</scripts>
 	
 	<Panel class="heroRoot">
-		<DOTAHeroMovie id="heroMovie" />
 		<DOTAHeroImage id="heroImage" heroimagestyle="portrait" />
 		<Label id="heroName" />
 	</Panel>
