@@ -48,9 +48,12 @@
 
         if target.chenAbilityCount == 0 or (target:GetAbilityCount() ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
           target.chenAbilityCount = target.chenAbilityCount +1
-          print("ChenPerkIF")
-          while boolMana == false and boolAllowActive == false do
+          
+          while boolMana == false or boolAllowActive == false do
             ::LoopAgain::
+            boolMana = false
+            boolAllowActive = false
+            --print("ChenPerkIFWhile")
             local randomability = GetRandomAbilityFromListForPerk("chen_creep_abilities")
 
             if target:HasAbility(randomability) then
@@ -72,34 +75,35 @@
               boolAllowActive = true
             else
               target:RemoveAbility(target.chenAbilityTable[target.chenAbilityCount]:GetAbilityName())
+              --goto LoopAgain
             end  
             
           end
         else -- Pick a random ability to upgrade
 
-          local random = RandomInt(1,target.chenAbilityCount)
-          local boolMaxedOut = false
-          for k,v in pairs(target.chenAbilityTable) do
-            if v:GetLevel() ~= v:GetMaxLevel() then
-              boolMaxedOut = false
-              break
-            else
-              boolMaxedOut = true
-            end
+         
+          local boolMaxedOut = false -- Check if there is an ability to upgrade
+          local tempAbilityTable = target.chenAbilityTable
+          for k,v in pairs(tempAbilityTable) do
+              if v:GetLevel() ~= v:GetMaxLevel() then
+                boolMaxedOut = false
+                break
+              else
+                boolMaxedOut = true
+              end
           end
 
-          local tempAbility = target.chenAbilityTable[random]
           
-          local stop = 1
-          while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() and boolMaxedOut == false and stop < 20 do
-            stop = stop +1
-            random = RandomInt(1,target.chenAbilityCount)
-            tempAbility = target.chenAbilityTable[random]
-          end
-          if stop < 20 then
+          
+          if boolMaxedOut == false then
+            local random = RandomInt(1,#tempAbilityTable)
+            local tempAbility = tempAbilityTable[random]
+            while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() do
+              local random = RandomInt(1,#tempAbilityTable)
+              tempAbility = tempAbilityTable[random]
+            end
             tempAbility:UpgradeAbility(true)
           end
-
         end
       end
     --end
