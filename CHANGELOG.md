@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Concussive Break
+- Weaver's Perk and Phoenix's perk will now trigger even if they don't have time-lapse or supernova.
+- Added Chen's Perk
 
 ## 3.0 Steam Version
 

@@ -382,6 +382,9 @@
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder3.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder4.png"></Image>
 						
+						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png"></Image>
+						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff3.png"></Image>
+						
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllPick.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
