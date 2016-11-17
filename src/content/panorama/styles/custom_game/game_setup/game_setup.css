@@ -1,3 +1,10 @@
+/*.lodOptionsInterface {
+    background-image: url("s2r://panorama/images/backgrounds/dashboard_background_ingame_psd.vtex");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: none;
+}*/
+
 .halfHeight {
     height: 50%;
 }
@@ -687,6 +694,7 @@
 .gamemodesScrollLeft,
 .gamemodesScrollRight
 {
+    z-index: 1;
     wash-color: #66aadd;
 
     transition-property: wash-color;
@@ -705,11 +713,7 @@
     horizontal-align: center;
 
     flow-children: right;
-    overflow: scroll clip;
-}
-
-#gamemodesContainer HorizontalScrollBar {
-    height: 0px;
+    overflow: clip clip;
 }
 
 #option_panel_main_lodOptionMirrorHeroes {
@@ -1663,7 +1667,7 @@
 
 #pickingPhaseHeroTabContent {
     flow-children: down;
-    max-width: 1280px;
+    //max-width: 1280px;
 }
 
 .pickingPhaseTabContent {
@@ -1677,12 +1681,16 @@
     width: 100%;
     height: 200px;
     /*background-color: #111111;*/
-    margin-bottom: 4px;
+
+    //padding: 10px 0 10px 0;
+    margin: 10px 0 10px 0;
 }
 
 .pickingHeroListHeroes {
     width: fill-parent-flow(1);
-    margin-left: 36px;
+    margin-left: 30px;
+    margin-right: 10px;
+
     flow-children: right-wrap;
     vertical-align: middle;
 }
@@ -1690,8 +1698,12 @@
 .pickingHeroListHeroes DOTAHeroImage {
     width: 46px;
     height: 61px;
-    margin-right: 4px;
-    margin-top: 4px;
+
+    //clip: rect( 10%, 94%, 90%, 6% );
+
+    //clip: rect( 6px, 41px, 55px, 5px );
+    margin: 2px;
+
     border: 1px solid #111111;
     border-radius: 4px;
 }
@@ -1759,6 +1771,8 @@
     background-color: #111111;
     flow-children: right-wrap;
     overflow: squish scroll;
+    
+    padding: 8px;
 }
 
 .lodSkillTabButton {
@@ -2581,6 +2595,11 @@
     margin: 3px;
     text-align: center;
     opacity: .5;
+
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;    
 }
 
 .AspectRatio4x3 #gamemodesPanel .option {

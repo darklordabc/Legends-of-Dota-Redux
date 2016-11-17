@@ -930,18 +930,21 @@ function buildHeroList() {
                 var heroName = heroList[i];
 
                 // Create the panel
-                var newPanel = $.CreatePanel('DOTAHeroImage', container, 'heroSelector_' + heroName);
-                newPanel.SetAttributeString('heroName', heroName);
+                var newPanel = $.CreatePanel('Panel', container, 'heroSelector_' + heroName);
+                newPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup_hero.xml', false, false);
+                // Make the hero selectable
+                makeHeroSelectable(newPanel);
+
+                newPanel.setHeroName(heroName, generateFormattedHeroStatsString, heroData[heroName]);
+
+                /*newPanel.SetAttributeString('heroName', heroName);
                 newPanel.heroname = heroName;
-                newPanel.heroimagestyle = 'portrait';
+                newPanel.heroimagestyle = 'portrait';*/ 
 
                 /*newPanel.SetPanelEvent('onactivate', function() {
                     // Set the selected helper hero
                     setSelectedHelperHero(heroName);
                 });*/
-
-                // Make the hero selectable
-                makeHeroSelectable(newPanel);
 
                 // Store it
                 heroPanelMap[heroName] = newPanel;
@@ -1327,7 +1330,7 @@ function makeHeroSelectable(heroCon) {
     });
 
     // Dragging
-    heroCon.SetDraggable(true);
+    heroCon.SetDraggable(true); 
 
     $.RegisterEventHandler('DragStart', heroCon, function(panelID, dragCallbacks) {
         var heroName = heroCon.GetAttributeString('heroName', '');
@@ -2733,13 +2736,9 @@ function buildBasicOptionsCategories() {
                 })();
             }
 
-            // Fix stuff
-            $.CreatePanel('Label', optionPanel, 'option_panel_fixer_' + optionLabelText);
-
             // Store the reference
             allOptionLinks[optionLabelText] = {
-                panel: optionPanel,
-                //button: optionCategory
+                panel: optionPanel
             }
 
             // The function to run when it is activated
@@ -2749,21 +2748,16 @@ function buildBasicOptionsCategories() {
                     var data = allOptionLinks[key];
 
                     data.panel.SetHasClass('activeMenu', false);
-                    //data.button.SetHasClass('activeMenu', false);
                 }
 
                 // Activate our one
                 optionPanel.SetHasClass('activeMenu', true);
-                //optionCategory.SetHasClass('activeMenu', true);
 
                 // If we are the host, tell the server which menu we are looking at
                 if(isHost()) {
                     GameEvents.SendCustomGameEventToServer('lodOptionsMenu', {v: optionLabelText});
                 }
             }
-
-            // When the button is clicked
-            //optionCategory.SetPanelEvent('onactivate', whenActivated);
 
             // Check if it is default
             if(optionData.default) {
@@ -3349,8 +3343,6 @@ function doActualTeamUpdate() {
     var theConMain;
 
     var radiantTopContainer = $('#theRadiantContainer');
-    var radiantTopContainerTop = $('#theRadiantContainerTop');
-    var radiantTopContainerBot = $('#theRadiantContainerBot');
 
     var reviewRadiantContainer = $('#reviewRadiantTeam');
     var reviewRadiantTopContainer = $('#reviewPhaseRadiantTeamTop');
@@ -3359,16 +3351,14 @@ function doActualTeamUpdate() {
     // Add radiant players
     var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
     for(var i=0; i<radiantPlayers.length; ++i) {
+        theConMain = radiantTopContainer;
         if(radiantPlayers.length <= 5) {
             theCon = reviewRadiantContainer;
-            theConMain = radiantTopContainer;
         } else {
             if(i < 5) {
                 theCon = reviewRadiantTopContainer;
-                theConMain = radiantTopContainerTop;
             } else {
                 theCon = reviewRadiantBotContainer;
-                theConMain = radiantTopContainerBot;
             }
         }
 
@@ -3377,7 +3367,7 @@ function doActualTeamUpdate() {
     }
 
     // Do we have more than 5 players on radiant?
-    radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
+    //radiantTopContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
     reviewRadiantContainer.SetHasClass('tooManyPlayers', radiantPlayers.length > 5);
 
     // Fix align when tooManyPlayers
@@ -3385,8 +3375,6 @@ function doActualTeamUpdate() {
     reviewRadiantBotContainer.visible = radiantPlayers.length > 5;
 
     var direTopContainer = $('#theDireContainer');
-    var direTopContainerTop = $('#theDireContainerTop');
-    var direTopContainerBot = $('#theDireContainerBot');
 
     var reviewDireContainer = $('#reviewDireTeam');
     var reviewDireTopContainer = $('#reviewPhaseDireTeamTop');
@@ -3395,16 +3383,15 @@ function doActualTeamUpdate() {
     // Add radiant players
     var direPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS);
     for(var i=0; i<direPlayers.length; ++i) {
+        theConMain = direTopContainer;
+
         if(direPlayers.length <= 5) {
             theCon = reviewDireContainer;
-            theConMain = direTopContainer;
         } else {
             if(i < 5) {
                 theCon = reviewDireTopContainer;
-                theConMain = direTopContainerTop;
             } else {
                 theCon = reviewDireBotContainer;
-                theConMain = direTopContainerBot;
             }
         }
 
@@ -3413,7 +3400,7 @@ function doActualTeamUpdate() {
     }
 
     // Do we have more than 5 players on radiant?
-    direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
+    //direTopContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
     reviewDireContainer.SetHasClass('tooManyPlayers', direPlayers.length > 5);
 
     // Fix align when tooManyPlayers
@@ -4396,12 +4383,23 @@ function switchOptions() {
 }
 
 // Gamemodes scroller
-function gamemodesScrollLeft() {
-    $('#gamemodesContainer').ScrollToLeftEdge();
-}
+function gamemodesScroll(direction) {
+    if ($('#gamemodesContainer').num == undefined)
+        $('#gamemodesContainer').num = 0;
 
-function gamemodesScrollRight() {
-    $('#gamemodesContainer').ScrollToRightEdge();
+    var childCount = $('#gamemodesContainer').GetChildCount();
+
+    
+    var dir = direction == 'right' ? -1 : 1;
+    if (childCount + $('#gamemodesContainer').num + dir == 0 ||
+        $('#gamemodesContainer').num + dir > 0)
+            return;
+
+    $('#gamemodesContainer').num += dir;
+    for(var i = 0; i < childCount; i++){
+        var c = $('#gamemodesContainer').GetChild(i);
+        c.style.transform = 'translateX(' + $('#gamemodesContainer').num / childCount * 100  + '%);';
+    }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4425,7 +4423,7 @@ function gamemodesScrollRight() {
     }*/
 
     // Grab the map's name
-    var mapName = Game.GetMapInfo().map_display_name;
+    var mapName = Game.GetMapInfo().map_display_name; 
 
     // Should we use option voting?
     var useOptionVoting = false;

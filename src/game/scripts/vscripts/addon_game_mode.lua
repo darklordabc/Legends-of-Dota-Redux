@@ -40,7 +40,7 @@ function Activate()
 	-- Print LoD version header
     local versionFile = LoadKeyValues('addoninfo.txt')
     local versionNumber = versionFile.version
-    print('\n\nLegends of dota is activating! (v'..versionNumber..')')
+    print('\n\nDota 2 Redux is activating! (v'..versionNumber..')')
 
     -- Ensure LoD is compiled
     local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')

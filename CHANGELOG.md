@@ -6,12 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
-- Added scroll bar to mutators list to accomdate more mutators
+- Added scroll bar to mutator/game-mode list to accommodate more mutators and gamemodes
 - Redesigned mutator/gamemode screen in custom maps
-
+- Fixed Treant's Perk
+- Improved hero picking screen cosmetics, heros play animation when mouseover now
 
 ### Balance
 - Added Concussive Break
+- Weaver's Perk and Phoenix's perk will now trigger even if they don't have time-lapse or supernova.
 
 ## 3.0 Steam Version
 

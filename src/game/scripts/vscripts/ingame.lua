@@ -338,21 +338,19 @@ function Ingame:FatOMeterThinker(dt)
 		for playerID = 0, (maxPlayers-1) do
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 			if fatData[playerID] then
-				if hero and IsValidEntity(hero) then
-					local netWorth = PlayerResource:GetTotalEarnedGold(playerID)
-					
-					--Subtract previous net worth to get the intended value.
-					local netWorthChange = netWorth - (fatData[playerID].lastNetWorth or 0)
-					
-					--Track lowest gain player.
-					if netWorthChange < lowestGain then 
-						lowestGain = netWorthChange
-					end
-					
-					--Store discovered data to do scaling calculations. Only netWorthChange is used directly, but both are necessary to function properly.
-					fatData[playerID].lastNetWorth = netWorth
-					fatData[playerID].netWorthChange = netWorthChange
+				local netWorth = PlayerResource:GetTotalEarnedGold(playerID)
+				
+				--Subtract previous net worth to get the intended value.
+				local netWorthChange = netWorth - (fatData[playerID].lastNetWorth or 0)
+				
+				--Track lowest gain player.
+				if netWorthChange < lowestGain then 
+					lowestGain = netWorthChange
 				end
+				
+				--Store discovered data to do scaling calculations. Only netWorthChange is used directly, but both are necessary to function properly.
+				fatData[playerID].lastNetWorth = netWorth
+				fatData[playerID].netWorthChange = netWorthChange
 			end
 		end
 		
@@ -370,14 +368,12 @@ function Ingame:FatOMeterThinker(dt)
 		for playerID = 0, (maxPlayers-1) do
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 			if fatData[playerID] then
-				if hero and IsValidEntity(hero) then
-					local kills = PlayerResource:GetKills(playerID)
-					local deaths = PlayerResource:GetDeaths(playerID)
-					local assists = PlayerResource:GetAssists(playerID)
-					
-					--Assists are weighted as quarter kills and deaths as negative quarter kills
-					fatData[playerID].lastNetWorth = 4*kills + assists - deaths
-				end
+				local kills = PlayerResource:GetKills(playerID)
+				local deaths = PlayerResource:GetDeaths(playerID)
+				local assists = PlayerResource:GetAssists(playerID)
+				
+				--Assists are weighted as quarter kills and deaths as negative quarter kills
+				fatData[playerID].lastNetWorth = 4*kills + assists - deaths
 			end
 		end
 		
@@ -437,9 +433,8 @@ function Ingame:FatOMeterAnimate(dt)
 					end
 				end
 			end
-			
-			fatData[playerID].modelScaleDifference = target
 		end
+		fatData[playerID].modelScaleDifference = target
 	end
 end
 
