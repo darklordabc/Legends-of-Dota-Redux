@@ -259,11 +259,7 @@ var basicOptions = {
                     {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
-                    },
-					{
-                        name: 'lodOptionDuels',
-                        about: 'lodMutatorDuel'
-                    },
+                    },					
                     //{
                     //    name: 'lodOptionCrazyWTF',
                     //    about: 'lodMutatorWTF'
@@ -300,6 +296,11 @@ var basicOptions = {
                                 'lodOptionIngameBuilderPenalty': 0
                             }
                         }
+                    },
+					{
+                        name: 'lodOptionDuels',
+						extraInfo: 'lodOptionAboutDuels',
+                        about: 'lodMutatorDuel'
                     },
                 ]
             }
