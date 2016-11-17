@@ -29,6 +29,17 @@ obstacle_models = {
         maxCount = 50,
         hits = 2
     }
+	,
+	[4] = {
+        name = "Pine Tree A",
+        model = "models/props_tree/tree_pine_02_sfm.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = true,
+        scale = 0.5,
+        collisionSize = 1,
+        maxCount = 50,
+        hits = 2
+    }
 }
 
 LinkLuaModifier("modifier_undestructible_obstacle", "obstacles.lua",LUA_MODIFIER_MOTION_NONE)
