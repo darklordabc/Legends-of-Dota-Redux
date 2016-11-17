@@ -135,7 +135,7 @@ arenas[AAR_BIG_ARENA] = {
 	},
 	random_obstacles = 25,
 	obstacle_models = {
-		[3] = "Oak Tree A",
+		[5] = "Rock A",
 	},
 	wallModel = "models/props_rock/riveredge_rock004a.vmdl",
 	towerModel = "models/props_rock/riveredge_rock008a.vmdl",
