@@ -18,6 +18,16 @@ obstacle_models = {
         collisionSize = 1,
         maxCount = 50,
         hits = 2
+    },
+	[3] = {
+        name = "Oak Tree A",
+        model = "models/props_tree/tree_oak_01_sfm.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = true,
+        scale = 0.5,
+        collisionSize = 1,
+        maxCount = 50,
+        hits = 2
     }
 }
 
