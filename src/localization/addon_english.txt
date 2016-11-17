@@ -317,7 +317,7 @@
 
     "lodOptionDuels"                                "Duels"
     "lodOptionDesDuels"                             "Duels"
-    "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from "Angel Arena Reborn" custom game."
+    "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
