@@ -260,6 +260,10 @@ var basicOptions = {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
                     },
+					{
+                        name: 'lodOptionDuels',
+                        about: 'lodMutatorDuel'
+                    },
                     //{
                     //    name: 'lodOptionCrazyWTF',
                     //    about: 'lodMutatorWTF'

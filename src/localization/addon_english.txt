@@ -120,6 +120,7 @@
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
 	"lodMutatorBotsBuff1"                           "Buff Bots"
+	"lodMutatorDuel"								"Duels"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
