@@ -49,6 +49,26 @@ obstacle_models = {
         collisionSize = 7.0,
         maxCount = 50,
         hits = 2
+    },
+	[6] = {
+        name = "Rock B",
+        model = "models/props_rock/riveredge_rock006a.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = false,
+        scale = 0.7,
+        collisionSize = 1.0,
+        maxCount = 50,
+        hits = 2
+    },
+	[7] = {
+        name = "Rock C",
+        model = "models/props_rock/badside_rocks004.vmdl",
+        deathsim = "particles/world_destruction_fx/dire_tree007_destruction.vpcf",
+        blockVision = true,
+        scale = 3.5,
+        collisionSize = 3.0,
+        maxCount = 50,
+        hits = 2
     }
 }
 
