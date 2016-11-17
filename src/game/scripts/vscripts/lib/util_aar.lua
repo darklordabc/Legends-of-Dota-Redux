@@ -5,6 +5,7 @@ AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
 AAR_GIANT_ARENA = 3
 AAR_MID_WARS_ARENA = 4
+AAR_BIG_JUNGLE = 5
 
 arenas = {}
 
@@ -76,6 +77,42 @@ arenas[AAR_SMALL_ARENA] = {
 	minimumPlayers = 1,
 	maximumPlayers = 2
 }
+
+arenas[AAR_BIG_JUNGLE] = {
+	polygon = {
+		[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
+	},
+	tribune_points = {
+		radiant = {
+			[1] = Vector(-583.137, -4057.1, 257),
+		},
+		dire = {
+			[1] = Vector(5736.05, -4348.62, 257),
+		}
+	},
+	duel_points = {
+		radiant = {
+			[1] = Vector(1907.01, -4406.56, 257),
+		},
+		dire = {
+			[1] = Vector(3750.69, -4362.2, 257),
+		}
+	},
+	random_obstacles = 100,
+	obstacle_models = {
+		[3] = "Oak Tree A",
+		[4] = "Pine Tree A",
+	},
+	wallModel = "models/props_tree/tree_pine_01_sfm.vmdl",
+	towerModel = "models/props_structures/wooden_sentry_tower001.vmdl",
+	wallScale = 0.5,
+	towerScale = 0.8,
+	wallRandomDirection = true,
+	removeTrees = true,
+	minimumPlayers = 3,
+	maximumPlayers = 4
+}
+
 arenas[AAR_BIG_ARENA] = {
 	polygon = {
 		[1] = Vector(-235.689, -6139.83, 262.252), [2] = Vector(-226.721, -3866.71, 291.518), [3] = Vector(5519, -3839.78, 257), [4] = Vector(5526.66, -6118.56, 271.501)
@@ -109,6 +146,7 @@ arenas[AAR_BIG_ARENA] = {
 	minimumPlayers = 3,
 	maximumPlayers = 4
 }
+
 arenas[AAR_GIANT_ARENA] = {
 	polygon = {
 		[1] = Vector(-1256.13, -7178.7, 257), [2] = Vector(-1384.51, -5792.31, 301.099), 
@@ -1368,7 +1406,7 @@ function spawnEntitiesAlongPath( path )
 		v:CutDown(-1)
 	end
 
-	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA then
+	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA or current_arena == AAR_BIG_JUNGLE then
 		local obstacle_counts = {}
 		local obstacles = {}
 
