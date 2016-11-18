@@ -7,7 +7,8 @@ obstacle_models = {
         scale = 0.7,
         collisionSize = 2,
         maxCount = 1,
-        hits = 4
+        hits = 4,
+        fixedAngle = 70.0
     },
     [2] = {
         name = "Small Tree A",
@@ -17,7 +18,8 @@ obstacle_models = {
         scale = 0.3,
         collisionSize = 1,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+        randomDirection = false
     },
 	[3] = {
         name = "Oak Tree A",
@@ -173,6 +175,18 @@ function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
         end
 
         obstacle.blockers = blockGridNavSquare(size, nextPoint, obstacleTable.blockVision)
+
+        if obstacle.blockers == false then
+            UTIL_Remove(obstacle)
+            print("disk")
+            return nil
+        end
+    end
+
+    if obstacleTable.fixedAngle then
+        obstacle:SetAngles(0, obstacleTable.fixedAngle, 0)
+    elseif obstacleTable.randomDirection then
+        obstacle:SetAngles(0, math.random(0, 360), 0)
     end
 
     obstacle:SetAbsOrigin(nextPoint)
@@ -190,6 +204,14 @@ function blockGridNavSquare(size, location, block_fow)
         for x = location.x - (size-2) * 32, location.x + (size-2) * 32, 64 do
             for y = location.y - (size-2) * 32, location.y + (size-2) * 32, 64 do
                 local blockerLocation = Vector(x, y, location.z)
+
+                if GridNav:IsBlocked(blockerLocation) then
+                    for k,v in pairs(gridNavBlockers) do
+                        UTIL_Remove(v)
+                    end
+                    return false
+                end
+
                 local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
                 table.insert(gridNavBlockers, ent)
             end
@@ -198,6 +220,14 @@ function blockGridNavSquare(size, location, block_fow)
         for x = location.x - (size / 2) * 32 + 16, location.x + (size / 2) * 32 - 16, 96 do
             for y = location.y - (size / 2) * 32 + 16, location.y + (size / 2) * 32 - 16, 96 do
                 local blockerLocation = Vector(x, y, location.z)
+
+                if GridNav:IsBlocked(blockerLocation) then
+                    for k,v in pairs(gridNavBlockers) do
+                        UTIL_Remove(v)
+                    end
+                    return false
+                end
+
                 local ent = SpawnEntityFromTableSynchronous("point_simple_obstruction", {origin = blockerLocation, block_fow = block_fow})
                 table.insert(gridNavBlockers, ent)
             end

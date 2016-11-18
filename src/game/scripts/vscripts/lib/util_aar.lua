@@ -888,12 +888,14 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			end
 
 			for k,v in pairs(temp_obstacles) do
-				if v.blockers then
-					for k2,v2 in pairs(v.blockers) do
-						UTIL_Remove(v2)
-					end
-				end
-				UTIL_Remove(v)
+                if not v:IsNull() then
+                    if v.blockers then
+                        for k2,v2 in pairs(v.blockers) do
+                            UTIL_Remove(v2)
+                        end
+                    end
+                    UTIL_Remove(v)
+                end
 			end
 
 			local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
@@ -1291,7 +1293,7 @@ function generatePoints( initial, p, randomize )
 
 			local offset = 150
 
-			local i = 1
+			local i = 0
 			for x=-1,1 do
 				for y=-1,1 do
 					v2[i] = init + Vector(x * offset, y * offset, 0)
@@ -1299,8 +1301,12 @@ function generatePoints( initial, p, randomize )
 					destroyTrees(v2[i], offset)
 
 					i = i + 1
+                    print(i)
 				end
 			end
+
+            v2[10] = v2[9]
+            v2[11] = v2[9]
 		end
 	end
 
@@ -1429,7 +1435,7 @@ function spawnEntitiesAlongPath( path )
 			repeat
 				obstacleTable = obstacles[RandomInt(1,#obstacles)]
 				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
-			until obstacle_counts[obstacleTable.name] < obstacleTable.maxCount
+			until obstacle_counts[obstacleTable.name] <= obstacleTable.maxCount
 
 			table.insert(temp_obstacles, spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts ))
 		end
