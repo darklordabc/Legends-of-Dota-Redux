@@ -1,16 +1,6 @@
-/*.lodOptionsInterface {
-    background-image: url("s2r://panorama/images/backgrounds/dashboard_background_ingame_psd.vtex");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-color: none;
-}*/
-
-.halfHeight {
-    height: 50%;
-}
-
 #mainSelectionRoot {
     width: 100%;
+    height: 93%;
     flow-children: down;
 }
 
@@ -206,8 +196,11 @@
 
 /* During option selection */
 
-#mainTeamContainer {
+#mainContainer {
     width: 100%;
+    height: 100%;
+
+    flow-children: right;
     /*visibility: collapse;*/
 }
 
@@ -301,8 +294,9 @@
 
 .teamPlayerContainer {
     flow-children: down;
-    margin-right: 0px;
     width: 128px;
+
+    margin: 1px 0 1px 0;
 }
 
 .teamPlayerContainer #playerAvatar {
@@ -310,18 +304,15 @@
     width: 64px;
     height: 64px;
     vertical-align: middle;
-    margin-right: 4px;
-    margin-bottom: 4px;
+
     border-radius: 4px;
 }
 
 .playerNameContainer {
-    horizontal-align: center;
+    align: center bottom;
     flow-children: right;
     height: 24px;
     color: #FFFFFF;
-
-    margin-top: 10px;
 }
 
 .playerNameContainer #playerIsHostPanel {
@@ -363,12 +354,12 @@
 .theTeamTopLevel {
     flow-children: down;
     font-size: 24px;
-    width: 45%;
+    width: 130px;
     min-height: 110px;
 }
 
 .theTeamContainer {
-    flow-children: right;
+    flow-children: down;
 }
 
 .tooManyPlayers.theTeamContainer {
@@ -394,6 +385,17 @@
 }
 
 /*
+    Main workspace
+*/
+.mainWorkspace {
+    width: fill-parent-flow(1);
+    height: 100%;
+
+    flow-children: down;
+    padding: 8px;
+}
+
+/*
     The Teams (Hero selection)
 */
 
@@ -410,7 +412,10 @@
 */
 
 #middleButtons {
-    flow-children: down;
+    max-width: 750px;
+
+    padding: 4px;
+    flow-children: right;
     horizontal-align: center;
     vertical-align: middle;
     font-size: 24px;
@@ -420,10 +425,28 @@
 }
 
 #middleButtons Button {
-    horizontal-align: center;
+    width: fill-parent-flow( 1 );
+
+    margin: 4px;
     padding: 4px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939), to( #555555 ) );
+
+    horizontal-align: center;
+    flow-children: right;
 }
 
+#middleButtons Button:active {
+    transform: translateY(1px);
+}
+
+#middleButtons Button:enabled:hover {
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #4c5561 ), to( #6c7d88 ) );
+}
+
+#middleButtons Button Image {
+    width: 40px;
+    height: 100%;
+}
 
 .player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
     visibility: visible;
@@ -434,6 +457,9 @@
 }
 
 .lodTopAvatarPanel {
+    width: 96px;
+    height: 96px;
+
     horizontal-align: center;
     visibility: collapse;
 }
@@ -461,7 +487,6 @@
 #playerSkillContainer {
     flow-children: right;
     horizontal-align: center;
-    margin-top: 4px;
 }
 
 #playerSkillContainer DOTAAbilityImage {
@@ -502,6 +527,10 @@
 
 .no_hero_selected #playerNoHeroSelected {
     visibility: visible;
+}
+
+.playerAvatarImagePanel {
+    width: 100%;
 }
 
 #playerHeroImageContainer {
@@ -593,6 +622,60 @@
     Stage Selection
 */
 
+#stageInfo {
+    width: 100%;
+    height: fit-children;
+
+    flow-children: right;
+
+    margin-bottom: 8px;
+}
+
+#lodTimeRemaining {
+    vertical-align: center;
+
+    margin: 0 16px 0 16px;
+    font-size: 25px;
+}
+
+.stageNameDesc {
+    vertical-align: center;
+    margin: 0 16px 0 16px;
+
+    flow-children: right;
+}
+
+#lodStageName {
+    font-size: 25px;
+}
+
+#tipPanel {
+    width: 60%;
+    height: 70px;
+
+    flow-children: right;
+    horizontal-align: right;
+}
+
+#tipPanel Label {
+    height: 100%;
+    margin: 4px;
+    color: #FFFFFF;
+
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+#tipPanel Image {
+    width: height-percentage(100%);
+    height: 100%;
+
+    border:1px solid #000000;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;    
+}
+
 #stageButtonOptionSelection {
     flow-children: right;
 }
@@ -604,15 +687,6 @@
 
 .phase_option_voting #stageSelection {
     visibility: collapse;
-}
-
-#lodOptionSelectionTimeRemaining {
-    visibility: collapse;
-}
-
-.phase_option_selection #lodOptionSelectionTimeRemaining {
-    visibility: visible;
-    margin-left: 4px;
 }
 
 .lodStageArrow {
@@ -712,8 +786,16 @@
     width: fill-parent-flow(1);
     horizontal-align: center;
 
-    flow-children: right;
     overflow: clip clip;
+}
+
+#scroller {
+    flow-children: right;
+
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;
 }
 
 #option_panel_main_lodOptionMirrorHeroes {
@@ -748,15 +830,6 @@
 
 .no_banning_phase #lodArrowBanningPhase {
     visibility: collapse;
-}
-
-#lodBanningTimeRemaining {
-    visibility: collapse;
-}
-
-.phase_banning #lodBanningTimeRemaining {
-    visibility: visible;
-    margin-left: 4px;
 }
 
 .phase_banning #stageButtonBanning {
@@ -800,15 +873,6 @@
     visibility: collapse;
 }
 
-#lodSelectionTimeRemaining {
-    visibility: collapse;
-}
-
-.phase_selection #lodSelectionTimeRemaining {
-    visibility: visible;
-    margin-left: 4px;
-}
-
 .phase_selection #stageButtonSelection {
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
@@ -818,7 +882,21 @@
 }
 
 #heroBuilderLockButton {
+    width: 48px;
+    height: 48px;
+
+    align: right center;
+    margin-right: 20px;
+
+    border-radius: 50%;
+    padding: 7px;
+
     visibility: collapse;
+}
+
+#heroBuilderLockButton Image {
+    width: 100%;
+    height: 100%;
 }
 
 .phase_selection #heroBuilderLockButton {
@@ -844,14 +922,6 @@
     visibility: visible;
 }
 
-#lodRandomSelectionTimeRemaining {
-    visibility: collapse;
-}
-
-.phase_all_random #lodRandomSelectionTimeRemaining {
-    visibility: visible;
-}
-
 .phase_all_random #stageButtonRandom {
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
 }
@@ -862,10 +932,7 @@
 
 #allRandomPhase {
     max-height: 700px;
-    margin-top: 4px;
-    border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
+
     visibility: collapse;
     flow-children: down;
     horizontal-align: middle;
@@ -958,12 +1025,6 @@
 /* Review */
 
 #reviewPhase {
-    width: 98%;
-    height: 740px;
-    margin-top: 4px;
-    border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
     visibility: collapse;
     flow-children: down;
 }
@@ -976,13 +1037,8 @@
     flow-children: right;
 }
 
-#lodReviewTimeRemaining {
+.phase_review_selected #stageInfo {
     visibility: collapse;
-}
-
-.phase_review #lodReviewTimeRemaining {
-    visibility: visible;
-    margin-left: 4px;
 }
 
 .phase_review #stageButtonReview {
@@ -993,7 +1049,7 @@
     border: 1px solid #AAFFAA;
 }
 
-.phase_review #mainTeamContainer {
+.phase_review #mainContainer .theTeamTopLevel {
     visibility: collapse;
 }
 
@@ -1005,6 +1061,7 @@
     flow-children: right;
 
     width: 47%;
+    height: 100%;
     min-height: 324px;
 }
 
@@ -1019,10 +1076,12 @@
 .subReviewContainer {
     horizontal-align: center;
     width: 100%;
+    height: 50%;
 }
 
 .reviewTeamsOverlay {
     width: 100%;
+    height: fill-parent-flow(1);
 }
 
 .reviewTeamFiller {
@@ -1031,6 +1090,7 @@
 
 #reviewTeams {
     width: 100%;
+    height: 100%;
     flow-children: right;
 }
 
@@ -1047,6 +1107,8 @@
     
     width: 20%;
     height: 680px;
+
+    vertical-align: center;
 }
 
 .playerBackground {
@@ -1193,8 +1255,8 @@
 }
 
 .reviewButtons {
-    horizontal-align: center;
-    vertical-align: bottom;
+    height: 30px;
+    align: center bottom;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -1231,7 +1293,7 @@
 
 .reviewPlayerAvatarContainer {
     width: 100%;
-    height: 100%; 
+    height: 100%;
 }
 
 #reviewPhasePlayerAvatarBig {
@@ -1259,15 +1321,19 @@
     PICKING INTERFACE
 */
 
+.workingPanel {
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid #32383677;
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
+    box-shadow: #00000099 -4px -4px 8px 8px;
+}
+
 #pickingPhase {
-    width: 98%;
-    height: 700px;
-    margin-top: 4px;
-    border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
     visibility: collapse;
-    flow-children: right;
+    flow-children: down;
 }
 
 .phase_selection_selected #pickingPhase {
@@ -1278,24 +1344,49 @@
     visibility: visible;
 }
 
-#pickingPhaseLeftSide {
-    height: 100%;
-    width: 320px;
-    flow-children: down;
+#pickingPhaseFilters {
+    width: 100%;
+    padding: 8px;
+    flow-children: right;
+}
 
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
+.filtersButton {
+    wash-color: #5b6a6b;
+
+    font-size: 20px;
+    text-transform: uppercase;
+
+    padding: 4px;
+    padding-left: 8px;
+    horizontal-align: left;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    transition-property: wash-color;
+    transition-duration: 0.2s;
+}
+
+.filtersButton.lod_hero_filter_selected {
+    wash-color: white;
+}
+
+.filtersGroup {
+    padding: 8px;
+    flow-children: down;
+}
+
+.filtersRow {
+    flow-children: right;
+}
+
+#heroTypeFilter {
+    width: 450px;
+    horizontal-align: right;
 }
 
 #pickingPhaseBuild {
+    align: left bottom;
     flow-children: down;
-    width: 100%;
-    height: 200px;
-    vertical-align: bottom;
-    visibility: collapse;
-
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
 }
 
 .phase_selection_selected #pickingPhaseBuild {
@@ -1344,8 +1435,10 @@
 }
 
 #pickingPhaseSelectedHero {
-    margin: 4px;
     width: 100%;
+    horizontal-align: center;
+    margin: 4px;
+    //width: 100%;
 }
 
 #pickingPhaseSelectedHeroImageCon {
@@ -1607,57 +1700,14 @@
     border-radius: 4px;
 }
 
-#pickingPhaseBuildButtons {
-    flow-children: right;
-    horizontal-align: middle;
-    margin-top: 8px;
-}
-
-/*#pickingPhaseBuildButtons Button {
-    width: 140px;
-    height: 20px;
-    padding: 0px;
-    margin: 4px;
-
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #5e842c ), to( #40621d ) );
-}
-
-#pickingPhaseBuildButtons Button:Hover {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #9eb46c ), to( #60823d ) );
-}
-
-#pickingPhaseBuildButtons Button Label {
-    font-size: 14px;
-    text-align: center;
-}*/
-
-.pickingPhaseTab {
-    flow-children: down;
-    width: 100%;
-    height: 100%;
-}
-
-#pickingPhaseHeroTab {
-    width: 100%;
-    height: 100%;
-    /*overflow: squish scroll;*/
-}
-
-.tabHighlight {
-    hue-rotation: 260deg;
-    brightness: 2.5;
-}
-
 #pickingPhaseRightSide {
-    background-color: #000000;
-    width: fill-parent-flow(0);
-    height: 100%;
+    width: 100%;
+    //height: 500px;
+    height: fill-parent-flow(1);
 }
 
 #pickingPhaseTabs {
     flow-children: down;
-    width: 100%;
-    height: 450px;
 }
 
 #pickingPhaseTabsContent {
@@ -1666,14 +1716,13 @@
 }
 
 #pickingPhaseHeroTabContent {
+    padding: 8px;
     flow-children: down;
-    //max-width: 1280px;
 }
 
 .pickingPhaseTabContent {
     width: 100%;
     height: 100%;
-    background-color: #000000;
 }
 
 .pickingHeroList {
@@ -1708,10 +1757,6 @@
     border-radius: 4px;
 }
 
-.should_hide_this_hero {
-    opacity: 0.05;
-}
-
 .pickingHeroListCategory {
     width: 200px;
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
@@ -1729,25 +1774,8 @@
     border-bottom: 2px solid #6f829cee;
 }
 
-#pickingHeroListFilters {
-    flow-children: down;
-    /*padding: 8px;*/
-}
-
 #heroPickingFiltersClear {
     visibility: collapse;
-}
-
-.lod_hero_filter_selected {
-    box-shadow: #00FF00FF 0px 0px 4px 0px;
-}
-
-.pickingHeroListFilterHeading {
-    margin-left: 8px;
-}
-
-.pickingHeroListFilterGroup {
-    flow-children: right;
 }
 
 #pickingPhaseSkillTabContent {
@@ -1768,7 +1796,7 @@
 #pickingPhaseSkillTabContentSkills {
     width: 100%;
     height: 100%;
-    background-color: #111111;
+
     flow-children: right-wrap;
     overflow: squish scroll;
     
@@ -1840,10 +1868,17 @@
 }
 
 .lodSearchPanel {
+    width: 250px;
     flow-children: right;
-    border: 2px solid #556663FF;
-    background-color: #333333;
-    margin: 8px;
+    border: 2px solid #55666315;
+
+    transition-property: border;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;    
+}
+
+.lodSearchPanel:hover {
+    border: 2px solid #55666388;
 }
 
 .lodSearchText {
@@ -1864,28 +1899,22 @@
     wash-color: #667774dd;
 }
 
-#lodSkillCategoryHolder {
-    margin: 8px;
-    vertical-align: top;
-}
-
 .buildingHelperHeroPreviewContainer {
-    width: 100%;
+    /*width: 100%;
+    height: 100%;*/
     vertical-align: bottom;
     padding: 0px;
-    margin-bottom: 10px;
+    margin: 0 0 8px 8px;
 }
 
 #buildingHelperHeroPreview {
-    width: 100%;
     flow-children: down;
-    vertical-align: top;
+    vertical-align: bottom;
     margin: 0px;
 }
 
 #buildingHelperHeroPreviewHeroContainer {
     horizontal-align: center;
-    margin-bottom: 8px;
 }
 
 #buildingHelperHeroPreviewHero {
@@ -1926,15 +1955,13 @@
 #buildingHelperHeroPreviewSkillsContainer {
     flow-children: right-wrap;
     horizontal-align: center;
-    margin-top: 8px;
 }
 
 #buildingHelperHeroPreviewSkillsContainer DOTAAbilityImage {
     border: 1px solid #000000;
     margin-right: 4px;
-    margin-bottom: 4px;
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
 }
 
 .lodSelected {
@@ -1985,52 +2012,6 @@
     opacity: 0.1;
 }
 
-.heroBuildMenuButton {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    border: 1px solid #000000;
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
-    margin-top: 8px;
-    width: 100%;
-}
-
-.heroBuildMenuButtonSmall {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    border: 1px solid #000000;
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
-
-    transition-property: opacity;
-    transition-duration: 0.25s;
-}
-
-.heroBuildMenuButtonChoose {
-    width: 100%;
-    height: 30px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
-    border-radius: 0px 0px 5px 5px;
-    padding-top: 7px;
-
-    transition-property: opacity;
-    transition-duration: 0.25s;
-}
-
-.heroBuildMenuButton:hover,
-.heroBuildMenuButtonSmall:hover,
-.heroBuildMenuButtonChoose:hover {
-    wash-color: #FFFFFFFF;
-}
-
 .disableButtonHalf {
     opacity: 0.5;
     transition-property: opacity;
@@ -2041,10 +2022,6 @@
     opacity: 0.0;
     transition-property: opacity;
     transition-duration: 0.25s;
-}
-
-.lockBuildButton {
-    width: fill-parent-flow(1.0);
 }
 
 .lockBuildButton Label {
@@ -2071,15 +2048,11 @@
 }
 
 .buildingHelperInfoText {
-    margin-left: 8px;
+    //margin-left: 8px;
 }
 
 .addMarginBelow {
     margin-bottom: 8px;
-}
-
-#pickingPhaseMainTab {
-    flow-children: none;
 }
 
 #pickingPhaseMainTabContent {
@@ -2311,38 +2284,23 @@
     visibility: collapse;
 }
 
-#lodOptionVotingTimeRemaining {
-    visibility: collapse;
-}
-
-.phase_option_voting #lodOptionVotingTimeRemaining {
-    visibility: visible;
-    margin-left: 4px;
-}
-
 .votingBackground {
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
     box-shadow: black -4px -4px 8px 8px;    
 }
 
 #optionVoting {
-    width: 98%;
-    max-width: 1024px;
-    height: 200px;
-    margin-top: 4px;
-    border-radius: 8px;
+    width: fit-children;
+    height: fit-children;
     visibility: collapse;
-    horizontal-align: middle;
-
-    flow-children: down;
-    padding-top: 16px;
+    align: center center;
 
     margin-top: 200px;
+    padding: 8px;
+    flow-children: down;
 }
 
 .veryBasicVoting #optionVoting {
-    width: 240px;
-    height: 500px;
 }
 
 .phase_option_voting_selected #optionVoting {
@@ -2500,13 +2458,8 @@
 
 #optionSelection {
     width: 100%;
-    max-width: 1520px;
-    margin-right: 42px;
-    height: 735px;
-    margin-top: 4px;
-    border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
+    height: 100%;
+
     visibility: collapse;
     horizontal-align: middle;
     flow-children: down;
@@ -2550,6 +2503,8 @@
 }
 
 #mutatorPanel {
+    height: fill-parent-flow(1);
+
     padding: 8px;
     
     horizontal-align: center;
@@ -2561,6 +2516,8 @@
 #optionAdvanced {
     width: 100%;
     height: fill-parent-flow(1.0);
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #66AADD33 ), color-stop( 0.02, #3C408A33 ), color-stop( 0.2, #2F325A33 ), color-stop( 0.8, #1c1d2000 ), to( #1c1d2000 ) );
 
     padding: 8px;
 
@@ -2594,12 +2551,7 @@
     height: width-percentage(74%);
     margin: 3px;
     text-align: center;
-    opacity: .5;
-
-    transition-property: transform;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;    
+    opacity: .5; 
 }
 
 .AspectRatio4x3 #gamemodesPanel .option {
@@ -3081,18 +3033,93 @@
     font-weight: bold;
 }
 
-.addMarginTop {
-    margin-top: 8px;
+#tabsSelector {
+    width: 100%;
+    background-color: #00000077;
+
+    padding: 0 16px 0 16px;
+
+    flow-children: right;
 }
 
-#pickingPhaseTabBar {
+#tabsSearch {
+    //padding: 4px;
+    //height: 100%;
+    margin: 4px;
+    horizontal-align: right;
+}
+
+.pickingPhaseTab {
+    width: fill-parent-flow(1);
+
+    flow-children: right;
+}
+
+#pickingPhaseHeroTab {
+    flow-children: right;
+    /*overflow: squish scroll;*/
+}
+
+.SettingsNavBarButton {
+    vertical-align: center;
+}
+
+.SettingsNavBarButton.tabHighlight Label {
+    color: #ffffff;
+}
+
+/*#pickingPhaseTabBar {
     width: 100%;
     flow-children: right;
+}*/
+
+.heroBuildMenuButton {
+    height: 44px;
+
+    border-radius: 4px;
+    wash-color: #cccccc;
+    padding: 4px;
+    padding-left: 8px;
+    horizontal-align: left;
+
+    //width: fill-parent-flow( 1 );
+}
+
+.heroBuildMenuButtonSmall {
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
+    border: 1px solid #000000;
+    border-radius: 4px;
+    wash-color: #cccccc;
+    padding: 4px;
+    padding-left: 8px;
+    horizontal-align: left;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.heroBuildMenuButtonChoose {
+    width: 100%;
+    height: 30px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 7px;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.heroBuildMenuButton:hover,
+.heroBuildMenuButtonSmall:hover,
+.heroBuildMenuButtonChoose:hover {
+    wash-color: #FFFFFFFF;
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton {
     height: 50px;
-    width: fill-parent-flow(1);
+    //width: fill-parent-flow(1);
     padding-left: 0px;
 }
 

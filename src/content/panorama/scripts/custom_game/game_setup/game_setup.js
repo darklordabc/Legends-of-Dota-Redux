@@ -11,6 +11,33 @@ var PHASE_RANDOM_SELECTION = 7; // Random build selection (For All Random)
 var PHASE_REVIEW = 8;           // Review Phase
 var PHASE_INGAME = 9;           // Game has started
 
+var phases = {
+    3: {
+        name: '#lodStageButtonOptionSelection',
+        desc: ''
+    },
+    2: {
+        name: '#lodStageButtonOptionVoting',
+        desc: ''
+    },
+    4: {
+        name: '#lodStageButtonBanning',
+        desc: ''
+    },
+    5: {
+        name: '#lodStageButtonSelection',
+        desc: ''
+    },
+    7: {
+        name: '#lodStageButtonRandomSelection',
+        desc: ''
+    },
+    8: {
+        name: '#lodStageButtonReview',
+        desc: ''
+    }
+};
+
 // Hero data
 var heroData = {};
 var abilityHeroOwner = {};
@@ -111,12 +138,19 @@ var saveSCTimer = false;
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
+var calculateBuildsFilters = function(){};
 
 // Balance Mode
 var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
 
 var currentBalance = 0;
 var showTier = {};
+
+// Contains current tab name
+var currentTab = '';
+
+// Search filters
+var tabsSearchFilter = {};
 
 // Is ingame builder
 $.GetContextPanel().isIngameBuilder = false;
@@ -192,7 +226,7 @@ function addNotification(options) {
 // Hooks a change event
 function addInputChangedEvent(panel, callback) {
     var shouldListen = false;
-    var checkRate = 0.25;
+    var checkRate = 0.125;
     var currentString = panel.text;
 
     var inputChangedLoop = function() {
@@ -262,6 +296,7 @@ function hookSliderChange(panel, callback, onComplete) {
 
 // Hooks a tab change
 function hookTabChange(tabName, callback) {
+
     onLoadTabHook[tabName] = callback;
 }
 
@@ -283,6 +318,27 @@ function hookSkillInfo(panel) {
     panel.SetPanelEvent('onmouseout', function() {
         $.DispatchEvent('DOTAHideAbilityTooltip');
         $.DispatchEvent('DOTAHideTitleTextTooltip');
+    });
+}
+
+function setTabsSearchHandler() {
+    // Hook searchbox
+    addInputChangedEvent($('#lodSearchInput'), function(panel, newValue) {
+        // Store the new text
+        searchText = newValue.toLowerCase();
+
+        switch (currentTab) {
+            case 'pickingPhaseHeroTab':
+                // Update list of abs
+                calculateHeroFilters();            
+                break;
+            case 'pickingPhaseSkillTab':
+                calculateFilters();
+                break;
+            case 'pickingPhaseMainTab':
+                calculateBuildsFilters();
+                break;
+        }
     });
 }
 
@@ -578,13 +634,6 @@ function OnGetReadyState(table_name, key, data) {
 
             $('#allRandomLockButton').visible = data[playerID] == 0;
             $('#reviewReadyButton').visible = data[playerID] == 0;
-
-            // Set the text
-            if(data[playerID] == 0) {
-                $('#heroBuilderLockButtonText').text = $.Localize('lockBuild');
-            } else {
-                $('#heroBuilderLockButtonText').text = $.Localize('unlockBuild');
-            }
         }
     }
 }
@@ -714,7 +763,7 @@ function onLockBuildButtonPressed() {
 
 // Sets up the hero builder tab
 function setupBuilderTabs() {
-    var mainPanel = $('#pickingPhaseTabBar');
+    var mainPanel = $('#tabsSelector');
     $.Each(mainPanel.Children(), function(tabElement) {
         var tabLink = tabElement.GetAttributeString('link', '-1');
 
@@ -1242,6 +1291,13 @@ function onYourAbilityIconPressed(slot) {
 }
 
 function showBuilderTab(tabName) {
+    // Update search filters
+    tabsSearchFilter[currentTab] = $('#lodSearchInput').text;
+    currentTab = tabName;
+
+    $('#lodSearchInput').SetFocus();
+    $('#lodSearchInput').text = tabsSearchFilter[currentTab] == undefined ? '' : tabsSearchFilter[currentTab];
+
     // Hide all panels
     var mainPanel = $('#pickingPhaseTabs');
     $.Each(mainPanel.Children(), function(panelTab) {
@@ -1503,10 +1559,8 @@ var heroFilterInfo = {};
 function OnHeroTabShown(tabName) {
     // Only run this code once
     if(firstHeroTabCall) {
-        var heroSearchText = '';
-
         calculateHeroFilters = function() {
-            var searchParts = heroSearchText.split(/\s/g);
+            var searchParts = searchText.split(/\s/g);
 
             for(var heroName in heroPanelMap) {
                 var shouldShow = getHeroFilterInfo(heroName).shouldShow;
@@ -1522,7 +1576,7 @@ function OnHeroTabShown(tabName) {
                 }
 
                 // Filter by hero name
-                if(shouldShow && heroSearchText.length > 0) {
+                if(shouldShow && searchText.length > 0) {
                     // Check each part
                     for(var i=0; i<searchParts.length; ++i) {
                         if(heroName.indexOf(searchParts[i]) == -1 && $.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1) {
@@ -1536,15 +1590,6 @@ function OnHeroTabShown(tabName) {
                 con.SetHasClass('should_hide_this_hero', !shouldShow);
             }
         }
-
-        // Hook searchbox
-        addInputChangedEvent($('#lodHeroSearchInput'), function(panel, newValue) {
-            // Store the new text
-            heroSearchText = newValue.toLowerCase();
-
-            // Update list of abs
-            calculateHeroFilters();
-        });
 
         // Calculate hero filters
         calculateHeroFilters();
@@ -2048,15 +2093,6 @@ function OnSkillTabShown(tabName) {
             }
         }
 
-        // Hook searchbox
-        addInputChangedEvent($('#lodSkillSearchInput'), function(panel, newValue) {
-            // Store the new text
-            searchText = newValue.toLowerCase();
-
-            // Update list of abs
-            calculateFilters();
-        });
-
         // Add input categories
         var dropdownCategories = $('#lodSkillCategoryHolder');
         dropdownCategories.RemoveAllOptions();
@@ -2114,9 +2150,10 @@ function OnSkillTabShown(tabName) {
         /*
             Add Skill Tab Buttons
         */
-
+        /*
         var tabButtonsContainer = $('#pickingPhaseTabFilterThingo');
 
+        
         // List of tabs to show
         var tabList = [
             'main',
@@ -2174,9 +2211,10 @@ function OnSkillTabShown(tabName) {
                 storedTabs[tabName] = tabButton;
             })();
         }
-
+        */
         // Do initial calculation:
         calculateFilters();
+        
     }
 
     // No longewr the first call
@@ -2674,7 +2712,7 @@ function buildBasicOptionsCategories() {
             var fieldData = optionData.fields;
 
             // The panel
-            var optionPanel = $('#gamemodesContainer');
+            var optionPanel = $('#scroller');
 
             if(optionData.custom) {
                 optionPanel.AddClass('optionButtonCustomRequired');
@@ -3306,8 +3344,7 @@ function onLockOptionsPressed() {
     if(!Game.GetTeamSelectionLocked()) return;
 
     // Lock options
-    var showTab = 'pickingPhaseMainTab';
-    showBuilderTab(showTab);
+    showBuilderTab('pickingPhaseMainTab');
     
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
@@ -4052,6 +4089,9 @@ function SetSelectedPhase(newPhase, noSound) {
     // Set the phase
     selectedPhase = newPhase;
 
+    if (phases[selectedPhase] != undefined)
+        $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
+
     // Update CSS
     var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
@@ -4117,10 +4157,10 @@ function UpdateTimer() {
     $('#mainSelectionRoot').SetHasClass('teams_unlocked', Game.GetTeamSelectionLocked() == false);
 
     // Container to place the time into
-    var placeInto = null;
+    var placeInto = $('#lodTimeRemaining');
 
     // Phase specific stuff
-    switch(currentPhase) {
+    /*switch(currentPhase) {
         case PHASE_OPTION_SELECTION:
             placeInto = $('#lodOptionSelectionTimeRemaining');
         break;
@@ -4144,7 +4184,7 @@ function UpdateTimer() {
         case PHASE_REVIEW:
             placeInto = $('#lodReviewTimeRemaining');
         break;
-    }
+    }*/
 
     if(placeInto != null) {
         // Workout how long is left
@@ -4157,7 +4197,7 @@ function UpdateTimer() {
         }
 
         // Place the text
-        placeInto.text = '(' + getFancyTime(timeLeft) + ')';
+        placeInto.text = getFancyTime(timeLeft);
 
         // Text to show in the timer
         var theTimerText = ''
@@ -4387,7 +4427,7 @@ function gamemodesScroll(direction) {
     if ($('#gamemodesContainer').num == undefined)
         $('#gamemodesContainer').num = 0;
 
-    var childCount = $('#gamemodesContainer').GetChildCount();
+    var childCount = $('#scroller').GetChildCount();
 
     
     var dir = direction == 'right' ? -1 : 1;
@@ -4396,10 +4436,7 @@ function gamemodesScroll(direction) {
             return;
 
     $('#gamemodesContainer').num += dir;
-    for(var i = 0; i < childCount; i++){
-        var c = $('#gamemodesContainer').GetChild(i);
-        c.style.transform = 'translateX(' + $('#gamemodesContainer').num / childCount * 100  + '%);';
-    }
+    $('#scroller').style.transform = 'translateX(' + $('#gamemodesContainer').num / childCount * 100 * $('#scroller').actuallayoutwidth / $('#gamemodesContainer').actuallayoutwidth  + '%);';
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4502,6 +4539,9 @@ function gamemodesScroll(direction) {
         OnHostChanged(data);
     });
     
+    // Search handler
+    setTabsSearchHandler();
+
     // Update filters
     GameEvents.Subscribe('updateFilters', function(data) {
         updateRecommendedBuildFilters();
@@ -4577,4 +4617,6 @@ function gamemodesScroll(direction) {
     $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
 
     showBuilderTab('pickingPhaseMainTab');
+
+    startTips($("#tipPanel"));
 })();
