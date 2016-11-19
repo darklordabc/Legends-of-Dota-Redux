@@ -29,7 +29,8 @@ obstacle_models = {
         scale = 0.5,
         collisionSize = 1,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+		randomDirection = true
     }
 	,
 	[4] = {
@@ -40,7 +41,8 @@ obstacle_models = {
         scale = 0.5,
         collisionSize = 1,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+		randomDirection = true
     },
 	[5] = {
         name = "Rock A",
@@ -50,7 +52,8 @@ obstacle_models = {
         scale = 2.0,
         collisionSize = 7.0,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+		fixedAngle = 50.0
     },
 	[6] = {
         name = "Rock B",
@@ -60,7 +63,8 @@ obstacle_models = {
         scale = 0.6,
         collisionSize = 1.0,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+		randomDirection = true
     },
 	[7] = {
         name = "Rock C",
@@ -70,7 +74,8 @@ obstacle_models = {
         scale = 3.5,
         collisionSize = 3.0,
         maxCount = 50,
-        hits = 2
+        hits = 2,
+		randomDirection = true
     }
 }
 
