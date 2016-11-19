@@ -1415,32 +1415,34 @@ function spawnEntitiesAlongPath( path )
 		v:CutDown(-1)
 	end
 
-	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA or current_arena == AAR_BIG_JUNGLE then
-		local obstacle_counts = {}
-		local obstacles = {}
+    Timers:CreateTimer(function()
+    	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA or current_arena == AAR_BIG_JUNGLE then
+    		local obstacle_counts = {}
+    		local obstacles = {}
 
-		for k,v in pairs(arenas[current_arena].obstacle_models) do
-			for k2,v2 in pairs(obstacle_models) do
-				if v2.name == v then
-					table.insert(obstacles, v2)
-					break
-				end
-			end
-		end
+    		for k,v in pairs(arenas[current_arena].obstacle_models) do
+    			for k2,v2 in pairs(obstacle_models) do
+    				if v2.name == v then
+    					table.insert(obstacles, v2)
+    					break
+    				end
+    			end
+    		end
 
-		for i=1,arenas[current_arena].random_obstacles do
-			local nextPoint = randomPointInPolygon( arenas[current_arena].polygon )
-			nextPoint = GetGroundPosition(nextPoint,obstacle)
+    		for i=1,arenas[current_arena].random_obstacles do
+    			local nextPoint = randomPointInPolygon( arenas[current_arena].polygon )
+    			nextPoint = GetGroundPosition(nextPoint,obstacle)
 
-			local obstacleTable = obstacles[RandomInt(1,#obstacles)]
-			repeat
-				obstacleTable = obstacles[RandomInt(1,#obstacles)]
-				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
-			until obstacle_counts[obstacleTable.name] <= obstacleTable.maxCount
+    			local obstacleTable = obstacles[RandomInt(1,#obstacles)]
+    			repeat
+    				obstacleTable = obstacles[RandomInt(1,#obstacles)]
+    				obstacle_counts[obstacleTable.name] = obstacle_counts[obstacleTable.name] or 0
+    			until obstacle_counts[obstacleTable.name] <= obstacleTable.maxCount
 
-			table.insert(temp_obstacles, spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts ))
-		end
-	end
+    			table.insert(temp_obstacles, spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts ))
+    		end
+    	end
+    end, DoUniqueString("obstacles"), 0.5)
 
     Timers:CreateTimer(function()
 		local j = #path
@@ -1490,7 +1492,7 @@ function spawnEntitiesAlongPath( path )
 
 		    j = i
 		end
-    end, DoUniqueString("walls"), 0.5)
+    end, DoUniqueString("walls"), 0.0)
 
 	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
@@ -1514,12 +1516,12 @@ function spawnEntitiesAlongPath( path )
 					Timers:CreateTimer(function()
 						AddFOWViewer(DOTA_TEAM_GOODGUYS, pos, 256, DUEL_PREPARE+2, false)
 						AddFOWViewer(DOTA_TEAM_BADGUYS, pos, 256, DUEL_PREPARE+2, false)
-				    end, DoUniqueString("tree_workaround"), DUEL_PREPARE)
+				    end, DoUniqueString("tree_workaround"), DUEL_PREPARE - 0.75)
 				end
 			end
 		end
 
-	end, DoUniqueString("clear_trees"), 1.0)
+	end, DoUniqueString("clear_trees"), 0.75)
 end
 
 function isPointInsidePolygon(point, polygon)
