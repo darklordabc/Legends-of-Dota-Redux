@@ -133,7 +133,7 @@ arenas[AAR_BIG_ARENA] = {
 			[1] = Vector(3750.69, -4362.2, 257),
 		}
 	},
-	random_obstacles = 25,
+	random_obstacles = 40,
 	obstacle_models = {
 		[5] = "Rock A",
 		[6] = "Rock B",
