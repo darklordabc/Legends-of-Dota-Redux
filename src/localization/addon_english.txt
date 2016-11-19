@@ -50,12 +50,13 @@
     "unlockTeams"                                   "Unlock Teams"
 
     // The stage selection interface
-    "lodStageButtonOptionSelection"                 "Option Selection"
-    "lodStageButtonOptionVoting"                    "Option Voting"
-    "lodStageButtonBanning"                         "Banning"
-    "lodStageButtonSelection"                       "Hero Builder"
-    "lodStageButtonRandomSelection"                 "All Random Build Selection"
-    "lodStageButtonReview"                          "Review"
+    "lodStageOptionSelection"                 "Option Selection"
+    "lodStageOptionVoting"                    "Option Voting"
+    "lodStageBanning"                         "Banning"
+    "lodStageSelection"                       "Hero Builder"
+    "lodStageRandomSelection"                 "All Random Build Selection"
+    "lodStageReview"                          "Review"
+    "lodStageIngame"                          "Ingame"
 
     // The options menu
     "lockOptions"                                   "Lock Options"

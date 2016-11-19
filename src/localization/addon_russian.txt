@@ -50,12 +50,13 @@
     "unlockTeams"                                   "Разблокировать Команды"
 
     // The stage selection interface
-    "lodStageButtonOptionSelection"                 "Выбор Опций"
-    "lodStageButtonOptionVoting"                    "Голосование за Опции"
-    "lodStageButtonBanning"                         "Стадия Банов"
-    "lodStageButtonSelection"                       "Создание Героя"
-    "lodStageButtonRandomSelection"                 "Случайных Наборов Навыков"
-    "lodStageButtonReview"                          "Обзор"
+    "lodStageOptionSelection"                 "Выбор Опций"
+    "lodStageOptionVoting"                    "Голосование за Опции"
+    "lodStageBanning"                         "Стадия Банов"
+    "lodStageSelection"                       "Создание Героя"
+    "lodStageRandomSelection"                 "Случайных Наборов Навыков"
+    "lodStageReview"                          "Обзор"
+    "lodStageIngame"                          "В игре"
 
     // The options menu	
     "lockOptions"                                   "Заблокировать"

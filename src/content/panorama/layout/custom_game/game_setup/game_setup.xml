@@ -15,10 +15,6 @@
         <Panel id="lodNotificationArea">
         </Panel>
 
-        <Panel id="lodTimerWarning" hittest="false">
-            <Label id="lodTimerWarningLabel" text="lol" hittest="false"/>
-        </Panel>
-
         <Panel id="lodPopupMessage">
             <Panel>
                 <Label id="lodPopupMessageLabel" html="true" />
@@ -46,7 +42,6 @@
         </Panel>
 
         <Panel id="mainSelectionRoot">
-            <!-- <DOTAChat /> -->
             <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
                 <Label id="unassignedTeamLabel" text="theUnassigned" />
                 <Panel id="unassignedPlayersContainer" class="theTeamContainer" />                
@@ -169,6 +164,7 @@
                                 </Panel>
                             </Panel>
                         </Panel>
+
                         <Panel class="optionVotePhase">
                             <Panel class="optionVoteInfoHeader">
                                 <Label class="optionVoteHeader" text="lodFastStart" />

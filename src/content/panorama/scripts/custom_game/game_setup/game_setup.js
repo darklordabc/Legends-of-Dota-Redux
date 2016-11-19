@@ -13,29 +13,33 @@ var PHASE_INGAME = 9;           // Game has started
 
 var phases = {
     3: {
-        name: '#lodStageButtonOptionSelection',
+        name: '#lodStageOptionSelection',
         desc: ''
     },
     2: {
-        name: '#lodStageButtonOptionVoting',
+        name: '#lodStageOptionVoting',
         desc: ''
     },
     4: {
-        name: '#lodStageButtonBanning',
+        name: '#lodStageBanning',
         desc: ''
     },
     5: {
-        name: '#lodStageButtonSelection',
+        name: '#lodStageSelection',
         desc: ''
     },
     7: {
-        name: '#lodStageButtonRandomSelection',
+        name: '#lodStageRandomSelection',
         desc: ''
     },
     8: {
-        name: '#lodStageButtonReview',
+        name: '#lodStageReview',
         desc: ''
-    }
+    },
+    9: {
+        name: '#lodStageIngame',
+        desc: ''
+    }    
 };
 
 // Hero data
@@ -138,7 +142,13 @@ var saveSCTimer = false;
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
-var calculateBuildsFilters = function(){};
+var calculateBuildsFilters = function(){
+    var con = $('#pickingPhaseRecommendedBuildContainer');
+    for (var i = 0; i < con.GetChildCount(); i++) {
+        var child = con.GetChild(i);
+        child.updateSearchFilter(searchText);
+    }    
+};
 
 // Balance Mode
 var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
@@ -746,16 +756,20 @@ function updateAllRandomHighlights() {
 
 // When the lock build button is pressed
 function onLockBuildButtonPressed() {
-	// Send fav builds
-    var con = $('#pickingPhaseRecommendedBuildContainer');
-    var favBuilds = [];
-    for (var i = 0; i < con.GetChildCount(); i++) {
-        var child = con.GetChild(i);
-        if (child.isFavorite)
-        	favBuilds.push(child.buildID);
+    // Save build only on review phase
+    if (currentPhase == PHASE_REVIEW) {
+        var con = $('#pickingPhaseRecommendedBuildContainer');
+        var favBuilds = [];
+        for (var i = 0; i < con.GetChildCount(); i++) {
+            var child = con.GetChild(i);
+            if (child.isFavorite)
+            	favBuilds.push(child.buildID);
+        }
+
+    	SaveFavBuilds( favBuilds ); 
     }
 
-	SaveFavBuilds( favBuilds ); 
+    $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
 
     // Tell the server we clicked it
     GameEvents.SendCustomGameEventToServer('lodReady', {});
@@ -1579,7 +1593,7 @@ function OnHeroTabShown(tabName) {
                 if(shouldShow && searchText.length > 0) {
                     // Check each part
                     for(var i=0; i<searchParts.length; ++i) {
-                        if(heroName.indexOf(searchParts[i]) == -1 && $.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1) {
+                        if($.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1) {
                             shouldShow = false;
                             break;
                         }
@@ -1823,7 +1837,7 @@ function getSkillFilterInfo(abilityName) {
 
         for(var i=0; i<searchParts.length; ++i) {
             var prt = searchParts[i];
-            if(abilityName.indexOf(prt) == -1 && localAbName.indexOf(prt) == -1 && owningHeroName.indexOf(prt) == -1 && localOwningHeroName.indexOf(prt) == -1) {
+            if(localAbName.indexOf(prt) == -1 && localOwningHeroName.indexOf(prt) == -1) {
                 shouldShow = false;
                 break;
             }
@@ -3778,7 +3792,7 @@ function OnPhaseChanged(table_name, key, data) {
             // Set vote percentages
             updateVotingPercentage(data.banning, [$('#voteCountNoPercentage'), $('#voteCountYesPercentage')]);
 			updateVotingPercentage(data.faststart, [$('#voteCountNoPercentageFS'), $('#voteCountYesPercentageFS')]);
-            		updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
+    		updateVotingPercentage(data.balancemode, [$('#voteCountNoPercentageBM'), $('#voteCountYesPercentageBM')]);
 			updateVotingPercentage(data.strongtowers, [$('#voteCountNoPercentageST'), $('#voteCountYesPercentageST')]);
 			
 
@@ -4159,37 +4173,9 @@ function UpdateTimer() {
     // Container to place the time into
     var placeInto = $('#lodTimeRemaining');
 
-    // Phase specific stuff
-    /*switch(currentPhase) {
-        case PHASE_OPTION_SELECTION:
-            placeInto = $('#lodOptionSelectionTimeRemaining');
-        break;
-
-        case PHASE_OPTION_VOTING:
-            placeInto = $('#lodOptionVotingTimeRemaining');
-        break;
-
-        case PHASE_BANNING:
-            placeInto = $('#lodBanningTimeRemaining');
-        break;
-
-        case PHASE_SELECTION:
-            placeInto = $('#lodSelectionTimeRemaining');
-        break;
-
-        case PHASE_RANDOM_SELECTION:
-            placeInto = $('#lodRandomSelectionTimeRemaining');
-        break;
-
-        case PHASE_REVIEW:
-            placeInto = $('#lodReviewTimeRemaining');
-        break;
-    }*/
-
     if(placeInto != null) {
         // Workout how long is left
-        var currentTime = Game.Time();
-        var timeLeft = Math.ceil(endOfTimer - currentTime);
+        var timeLeft = currentPhase == PHASE_INGAME ? Math.ceil(Game.GetDOTATime( false, true )) : Math.ceil(endOfTimer - Game.Time());
 
         // Freeze timer
         if(freezeTimer != -1) {
@@ -4224,6 +4210,9 @@ function UpdateTimer() {
                 }
             }
 
+            // Remove warning on ingame timer
+            shouldShowTimer &= currentPhase != PHASE_INGAME;
+
             // Should we show the timer?
             if(shouldShowTimer) {
                 // Work out how long to show for
@@ -4240,30 +4229,19 @@ function UpdateTimer() {
                     lastTimerShow = Math.floor((timeLeft-1) / 30) * 30 + 1
                 }
 
-                $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', true);
+                $('#lodTimeRemaining').SetHasClass('showLodWarningTimer', true);
 
                 // Used to fix timers disappearing at hte wrong time
                 var myUpdateNumber = ++updateTimerCounter;
 
-                //$('#lodTimerWarningLabel').visible = true;
                 $.Schedule(showDuration, function() {
                     // Ensure there wasn't another timer scheduled
                     if(myUpdateNumber != updateTimerCounter) return;
 
-                    //$('#lodTimerWarningLabel').visible = false;
-                    // var showTab = 'pickingPhaseMainTab';
-                    // showBuilderTab(showTab);
-                    
-                    $('#lodTimerWarningLabel').SetHasClass('showLodWarningTimer', false);
+                    $('#lodTimeRemaining').SetHasClass('showLodWarningTimer', false);
                 });
             }
         }
-
-        // Show the text
-        $('#lodTimerWarningLabel').text = 
-            currentPhase == PHASE_REVIEW 
-                ? ""        // Hide review timer
-                : theTimerText;
 
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
@@ -4608,15 +4586,11 @@ function gamemodesScroll(direction) {
     $('#balanceModePointsHeroes').SetDialogVariableInt( 'points', currentBalance );
     $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
 
-    // Disable clicking on the warning timer
-    $('#lodTimerWarning').hittest = false;
-
     // Do an initial update of the player team assignment
     OnTeamPlayerListChanged();
 
     $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
-
-    showBuilderTab('pickingPhaseMainTab');
+    $.GetContextPanel().showBuilderTab = showBuilderTab;
 
     startTips($("#tipPanel"));
 })();
