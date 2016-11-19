@@ -1314,6 +1314,8 @@ function showBuilderTab(tabName) {
 
     // Hide all panels
     var mainPanel = $('#pickingPhaseTabs');
+    mainPanel.SetFocus();
+
     $.Each(mainPanel.Children(), function(panelTab) {
         panelTab.visible = false;
 
@@ -1668,7 +1670,7 @@ var recBuildCounter = 0;
 var recommenedBuildContainerList = [];
 function addRecommendedBuild(con, build) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
-    buildCon.BLoadLayout('file://{resources}/layout/custom_game/recommended_build.xml', false, false);
+    buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
 
@@ -4417,6 +4419,16 @@ function gamemodesScroll(direction) {
     $('#scroller').style.transform = 'translateX(' + $('#gamemodesContainer').num / childCount * 100 * $('#scroller').actuallayoutwidth / $('#gamemodesContainer').actuallayoutwidth  + '%);';
 }
 
+// Show panel
+function showMainPanel() {
+    if ($('#mainSelectionRoot').BReadyForDisplay()){
+        $('#mainSelectionRoot').AddClass('show');
+        return;
+    }
+
+    $.Schedule(0.2, showMainPanel);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -4592,5 +4604,9 @@ function gamemodesScroll(direction) {
     $.GetContextPanel().doActualTeamUpdate = doActualTeamUpdate;
     $.GetContextPanel().showBuilderTab = showBuilderTab;
 
+    // Start tips
     startTips($("#tipPanel"));
+
+    // Play appear animation when panel ready
+    showMainPanel();
 })();

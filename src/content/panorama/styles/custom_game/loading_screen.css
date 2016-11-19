@@ -21,15 +21,19 @@
 
     background-color: black;
 
-    visibility: collapse;
     background-image: url("s2r://panorama/images/backgrounds/dashboard_background_ingame_psd.vtex");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    opacity: 0.98;
+
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+
+    opacity: 0;
 }
 
 #vignette.show {
-    visibility: visible;
+    opacity: 0.98;    
 }
 
 .creditContainer {

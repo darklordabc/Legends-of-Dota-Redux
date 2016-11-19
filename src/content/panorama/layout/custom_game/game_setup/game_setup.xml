@@ -76,14 +76,14 @@
                         </Button>
                     </Panel>
 
-                    <Panel class="workingPanel" id="stageInfo">
-                        <Label text="0:00" id="lodTimeRemaining" />
-
+                    <Panel id="stageInfo">
                         <Panel class="stageNameDesc">
+                            <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/clock_psd.vtex" />
+                            <Label text="0:00" id="lodTimeRemaining" />
                             <Label text="Stage name" id="lodStageName" />
                         </Panel>
 
-                        <Panel id="tipPanel">
+                        <Panel class="workingPanel" id="tipPanel">
                             <Image id="LoDLoadingTipImage" />
                             <Label id="LoDLoadingTipText" />
                         </Panel>
@@ -589,7 +589,7 @@
                             </Panel>
                         </Panel>
 
-                        <Panel id="pickingPhaseRightSide">
+                        <Panel id="pickingPhaseContent">
                             <Panel id="pickingPhaseTabsContent">
                                 <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                     <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
