@@ -767,13 +767,13 @@ function toTribune(hero)
     end
     local team = hero:GetTeamNumber()
     if team == DOTA_TEAM_GOODGUYS then
-    	local x = arenas[current_arena].tribune_points.radiant[hero:GetPlayerID() + 1]
+    	local x = arenas[current_arena].tribune_points.radiant[hero:GetPlayerOwnerID() + 1]
     	FindClearSpaceForUnit(hero,x,true)
     	hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
     	hero:RemoveModifierByName("modifier_tribune")
         hero:AddNewModifier(hero, nil, "modifier_tribune", {})
     else
-    	local x = arenas[current_arena].tribune_points.dire[hero:GetPlayerID() + 1]
+    	local x = arenas[current_arena].tribune_points.dire[hero:GetPlayerOwnerID() + 1]
         FindClearSpaceForUnit(hero,x,true)
         hero:SetForwardVector(-(x - getMidPoint(arenas[current_arena].polygon)):Normalized())
         hero:RemoveModifierByName("modifier_tribune")
@@ -1305,8 +1305,9 @@ function generatePoints( initial, p, randomize )
 				end
 			end
 
-            v2[10] = v2[9]
-            v2[11] = v2[9]
+            v2[9] = v2[8]
+            v2[10] = v2[8]
+            v2[11] = v2[8]
 		end
 	end
 
