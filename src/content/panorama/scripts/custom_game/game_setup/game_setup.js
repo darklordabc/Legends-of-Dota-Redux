@@ -2166,7 +2166,7 @@ function OnSkillTabShown(tabName) {
         /*
             Add Skill Tab Buttons
         */
-        /*
+        
         var tabButtonsContainer = $('#pickingPhaseTabFilterThingo');
 
         
@@ -2180,15 +2180,21 @@ function OnSkillTabShown(tabName) {
         // Used to store tabs to highlight them correctly
         var storedTabs = {};
 
-        var widthStyle = Math.floor(100 / tabList.length) + '%';
+        //var widthStyle = Math.floor(100 / tabList.length) + '%';
 
         for(var i=0; i<tabList.length; ++i) {
             // New script scope!
             (function() {
                 var tabName = tabList[i];
                 var tabButton = $.CreatePanel('Button', tabButtonsContainer, 'tabButton_' + tabName);
-                tabButton.AddClass('lodSkillTabButton');
-                tabButton.style.width = widthStyle;
+                tabButton.AddClass('SettingsNavBarButton');
+                
+                // Add tabs separator
+                if (i < tabList.length - 1) {
+                    var separator = $.CreatePanel('Label', tabButtonsContainer, '');
+                    separator.text = '/';
+                    separator.AddClass('SettingsTabSeparator');
+                }
 
                 if(activeTabs[tabName]) {
                     tabButton.AddClass('lodSkillTabActivated');
@@ -2227,7 +2233,7 @@ function OnSkillTabShown(tabName) {
                 storedTabs[tabName] = tabButton;
             })();
         }
-        */
+        
         // Do initial calculation:
         calculateFilters();
         
@@ -4421,7 +4427,7 @@ function gamemodesScroll(direction) {
 
 // Show panel
 function showMainPanel() {
-    if ($('#mainSelectionRoot').BReadyForDisplay()){
+    if ($('#mainSelectionRoot').BReadyForDisplay()) {
         $('#mainSelectionRoot').AddClass('show');
         return;
     }

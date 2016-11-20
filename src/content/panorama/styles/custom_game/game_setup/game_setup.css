@@ -25,17 +25,23 @@
 */
 
 #lodPopupQuestion {
-    z-index: 10000;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 16px;
     width: 400px;
     height: 200px;
+
+    padding: 16px;
+
+    align: center center;
+
+    border: 2px solid #32383677;
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
+    box-shadow: #00000099 -4px -4px 8px 8px;
+
     flow-children: down;
-    vertical-align: middle;
-    horizontal-align: center;
+
     visibility: collapse;
+
+    z-index: 10000;
 }
 
 #questionYes {
@@ -48,17 +54,21 @@
 }
 
 #lodPopupMessage {
-    z-index: 10000;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 16px;
     width: 600px;
     height: 250px;
+    
+    padding: 16px;
+
     flow-children: down;
-    vertical-align: middle;
-    horizontal-align: center;
+    align: center center;
+
+    border: 2px solid #32383677;
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
+    box-shadow: #00000099 -4px -4px 8px 8px;
+
     visibility: collapse;
+    z-index: 10000;
 }
 
 .lodPopupMessageAcceptContainer {
@@ -805,6 +815,24 @@
     transition-timing-function: ease-in-out;
 }
 
+#option_default_info {
+    visibility: visible;
+}
+
+.allow_custom_settings #option_default_info {
+    visibility: collapse;
+}
+
+#option_default_info Label {
+    height: 200px;
+    padding: 30px;
+    
+    align: center center;
+    text-align: center;
+    
+    font-size: 30px;
+}
+
 #option_panel_main_lodOptionMirrorHeroes {
     visibility: collapse;
 }
@@ -917,6 +945,11 @@
 
 .phase_selection #heroBuilderLockButton {
     visibility: visible;
+}
+
+#heroBuilderPerksButton {
+    align: right center;
+    margin-right: 80px;
 }
 
 /* All Random */
@@ -1100,7 +1133,7 @@
     height: fill-parent-flow(1);
 }
 
-.reviewTeamFiller {
+.filler {
 	width: fill-parent-flow(1);
 }
 
@@ -1459,8 +1492,9 @@
 }
 
 #pickingPhaseSelectedHeroImageCon {
-    horizontal-align: middle;
-    vertical-align: middle;
+    align: left center;
+
+    margin-left: 35px;
 }
 
 .notDraftable {
@@ -1800,13 +1834,14 @@
     flow-children: down;
 
     horizontal-align: center;
-
-    padding-left: 4px;
 }
 
 #pickingPhaseTabFilterThingo {
-    flow-children: right;
     width: 100%;
+    background-color: #00000077;
+
+    padding: 0 16px 0 16px;
+    flow-children: right;    
 }
 
 #pickingPhaseSkillTabContentSkills {
@@ -1820,16 +1855,10 @@
 }
 
 .lodSkillTabButton {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
     padding: 4px;
     margin-right: 8px;
     opacity: 0.25;
     wash-color: #cccccccc;
-}
-
-.lodSkillTabActivated.lodSkillTabButton {
-    wash-color: #eeeeeecc;
-    opacity: 1;
 }
 
 .lodSkillTabButton:hover {
@@ -2081,20 +2110,30 @@
     margin: 10px;
 }
 
-#pickingPhaseRecommendedBuildContainer {
-    horizontal-align: left;
+.recommendedBuildContainerScrollWrapper{
     width: 100%;
-    flow-children: right-wrap;
-    height: 100%;
     overflow: squish scroll;
 }
 
+#pickingPhaseRecommendedBuildContainer {
+    width: 1330px;
+    horizontal-align: center;
+    flow-children: right-wrap;
+}
+
+.AspectRatio4x3 #pickingPhaseRecommendedBuildContainer,
+.AspectRatio5x4 #pickingPhaseRecommendedBuildContainer {
+    width: 900px;
+}
+
 .recommendedBuild {
+    border: 2px solid #32383677;
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
+    box-shadow: #00000099 -4px -4px 8px 8px;
+    
+    margin: 4px;
     flow-children: down;
-    background-color: #1d2024;
-    border-radius: 5px;
-    padding-top: 10px;
-    margin: 3px;
 }
 
 .recommendedBuildContainer {
@@ -3080,6 +3119,11 @@
     vertical-align: center;
 }
 
+#pickingPhaseTabFilterThingo .SettingsNavBarButton Label {
+    font-size: 16px;
+}
+
+.SettingsNavBarButton.lodSkillTabActivated Label,
 .SettingsNavBarButton.tabHighlight Label {
     color: #ffffff;
 }

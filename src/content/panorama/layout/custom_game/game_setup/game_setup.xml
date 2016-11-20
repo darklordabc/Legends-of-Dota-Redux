@@ -351,6 +351,9 @@
                                 <Panel id="optionSidebar">
                                     <Panel id="optionCategories" />
                                 </Panel>
+                                <Panel id="option_default_info" class="OptionPanel">
+                                    <Label text="#customizeAdvancedSettings"/>
+                                </Panel>
                             </Panel>
                         </Panel>
 
@@ -593,7 +596,9 @@
                             <Panel id="pickingPhaseTabsContent">
                                 <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                     <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
-                                    <Panel id="pickingPhaseRecommendedBuildContainer" />
+                                    <Panel class="recommendedBuildContainerScrollWrapper">
+                                        <Panel id="pickingPhaseRecommendedBuildContainer" />
+                                    </Panel>                                        
                                 </Panel>
 
                                 <Panel id="pickingPhaseHeroTabContent" class="pickingPhaseTabContent">
@@ -647,9 +652,11 @@
                                         <Image id="pickingPhaseSelectedHeroImageNone" class="pickingPhaseSelectedHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" />
                                         <Label id="pickingPhaseSelectedHeroText" text="Random" />
                                     </Panel>
-
+                                    <Button id="heroBuilderPerksButton" class="makeThePlayerNoticeThisButton" onactivate="">
+                                        <Image src="file://{images}/custom_game/perks.png" />
+                                    </Button>
                                     <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                        <Image text="Str" src="file://{images}/control_icons/lock_medium.png" />
+                                        <Image src="file://{images}/control_icons/lock_medium.png" />
                                     </Button>                                    
                                 </Panel>
 
@@ -797,10 +804,10 @@
                             </Panel>                    
                             <Panel id="reviewTeams">
                                 <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
-                                    <Panel class="reviewTeamFiller" />
+                                    <Panel class="filler" />
                                     <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
                                     <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer"> 
-                                        <Panel class="reviewTeamFiller" />
+                                        <Panel class="filler" />
                                     </Panel>
                                 </Panel>
                                 <Panel id="reviewDireTeam" class="reviewPhaseTeam">
