@@ -88,7 +88,7 @@ arenas[AAR_BIG_JUNGLE] = {
 			[1] = Vector(-583.137, -4057.1, 257),
 		},
 		dire = {
-			[1] = Vector(5736.05, -4348.62, 257),
+			[1] = Vector(6203.63, -4257.12, 257),
 		}
 	},
 	duel_points = {
@@ -123,7 +123,7 @@ arenas[AAR_BIG_ARENA] = {
 			[1] = Vector(-583.137, -4057.1, 257),
 		},
 		dire = {
-			[1] = Vector(5736.05, -4348.62, 257),
+			[1] = Vector(6203.63, -4257.12, 257),
 		}
 	},
 	duel_points = {
