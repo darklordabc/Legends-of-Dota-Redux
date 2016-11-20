@@ -63,10 +63,10 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
-    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-	GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(self, 'FilterExecuteOrder'), self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(self, 'FilterProjectiles'),self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(self, 'FilterModifiers'),self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(self, 'FilterDamage'),self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
