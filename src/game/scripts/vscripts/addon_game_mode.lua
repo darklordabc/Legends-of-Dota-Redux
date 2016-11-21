@@ -21,23 +21,23 @@ function Precache(context)
     for soundPath,_ in pairs(soundList["precache_sounds"]) do
         PrecacheResource("soundfile", soundPath, context)
     end
-	-- COMMENT THE BELOW OUT IF YOU DO NOT WANT TO COMPILE ASSETS
-	if IsInToolsMode() then 
-		local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-		for ability, block in pairs(abilities) do
-			if block == "precache" then
-				for precacheType, resource in pairs(block) do
-					PrecacheResource(precacheType, resource, context)
-				end
-			end
-		end
-	end
-	-- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    -- COMMENT THE BELOW OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    if IsInToolsMode() then 
+        local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+        for ability, block in pairs(abilities) do
+            if block == "precache" then
+                for precacheType, resource in pairs(block) do
+                    PrecacheResource(precacheType, resource, context)
+                end
+            end
+        end
+    end
+    -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
 end
 
 -- Create the game mode when we activate
 function Activate()
-	-- Print LoD version header
+    -- Print LoD version header
     local versionFile = LoadKeyValues('addoninfo.txt')
     local versionNumber = versionFile.version
     print('\n\nDota 2 Redux is activating! (v'..versionNumber..')')
@@ -69,17 +69,9 @@ function Activate()
     GameRules.pregame = pregame
     GameRules.ingame = ingame
 
-    -- GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(ingame, 'FilterExecuteOrder'), ingame)
-    -- GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(ingame, 'FilterProjectiles'),ingame)
-    -- GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(ingame, 'FilterModifiers'),ingame)
-    -- GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(ingame, 'FilterDamage'),ingame)
-
-    -- GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(ingame, "FilterModifyGold" ), ingame)
-    -- GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(ingame, "FilterModifyExperience" ), ingame)
-    -- GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( ingame, "BountyRunePickupFilter" ), ingame )
-
-
     print('LoD seems to have activated successfully!!\n\n')
+
+    
 end
 
 -- Boot directly into LoD interface
