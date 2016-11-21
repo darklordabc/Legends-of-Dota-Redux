@@ -69,9 +69,17 @@ function Activate()
     GameRules.pregame = pregame
     GameRules.ingame = ingame
 
-    print('LoD seems to have activated successfully!!\n\n')
+    -- GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(ingame, 'FilterExecuteOrder'), ingame)
+    -- GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(ingame, 'FilterProjectiles'),ingame)
+    -- GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(ingame, 'FilterModifiers'),ingame)
+    -- GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(ingame, 'FilterDamage'),ingame)
 
-    
+    -- GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(ingame, "FilterModifyGold" ), ingame)
+    -- GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(ingame, "FilterModifyExperience" ), ingame)
+    -- GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( ingame, "BountyRunePickupFilter" ), ingame )
+
+
+    print('LoD seems to have activated successfully!!\n\n')
 end
 
 -- Boot directly into LoD interface

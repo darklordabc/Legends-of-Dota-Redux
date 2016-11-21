@@ -4,6 +4,8 @@ local network = require('network')
 local OptionManager = require('optionmanager')
 local Timers = require('easytimers')
 require('lib/util_imba')
+require('abilities/hero_perks/hero_perks_filters')
+require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 
 -- Create the class for it
 local Ingame = class({})
@@ -62,11 +64,6 @@ function Ingame:init()
     PrecacheUnitByNameAsync('npc_precache_always', function()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
-
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(self, 'FilterExecuteOrder'), self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(self, 'FilterProjectiles'),self)
-    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(self, 'FilterModifiers'),self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(self, 'FilterDamage'),self)  
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -162,7 +159,6 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
-    perksFilter = require('abilities/hero_perks/hero_perks_filters')
     filterTable = heroPerksOrderFilter(filterTable)
     return true
 end    
@@ -802,11 +798,6 @@ function Ingame:initGoldBalancer()
     -- recalculate player team counts
     self:recalculatePlayerCounts()
 
-    -- Filter event
-    GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
-    GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
-    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
-
     local this = self
 
     -- Hook recalculations
@@ -1130,7 +1121,6 @@ function Ingame:FilterProjectiles(filterTable)
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
     if ability then
-    	local perkFilters = require('abilities/hero_perks/hero_perks_filters')
     	filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true    
@@ -1167,7 +1157,6 @@ function Ingame:FilterDamage( filterTable )
 	end
 	
 	if attacker:HasAbility("ebf_mana_fiend_essence_amp") then
-		local essenceAmp = require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 		filterTable = EssenceAmp(filterTable)
 	end
 
@@ -1178,7 +1167,6 @@ function Ingame:FilterDamage( filterTable )
 	end
 
      -- Hero perks
-    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
     filterTable = heroPerksDamageFilter(filterTable)
     
     return true
@@ -1196,7 +1184,6 @@ function Ingame:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
      -- Hero perks
-    local perkFilters = require('abilities/hero_perks/hero_perks_filters')
     filterTable = heroPerksModifierFilter(filterTable)
     
     return true
