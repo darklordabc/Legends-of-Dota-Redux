@@ -13,6 +13,28 @@ function Debug:init()
     _G.Debug = self
 
     -- Debug command for debugging, this command will only work for Ash47
+    Convars:RegisterCommand('player_say', function(...)
+        local arg = {...}
+        table.remove(arg,1)
+        local sayType = tonumber(arg[1])
+        table.remove(arg,1)
+
+        local cmdPlayer = Convars:GetCommandClient()
+        local text = table.concat(arg, " ")
+
+        print("Chat")
+
+        if (sayType == 4) then
+            print(4)
+        elseif (sayType == 3) then
+            print(3)
+        elseif (sayType == 2) and PlayerSay.teamChatCallback then
+            print(2)
+        elseif PlayerSay.allChatCallback then
+            print(1)
+        end
+    end, 'player say', 0)
+
     Convars:RegisterCommand('test_aar_duel', function(...)
         local ply = Convars:GetCommandClient()
         if not ply then return end

@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-require('obstacles')
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
@@ -58,10 +57,10 @@ arenas[AAR_SMALL_ARENA] = {
 	},
 	duel_points = {
 		radiant = {
-			[1] = Vector(1907.01, -4406.56, 257),
+			[1] = Vector(1907.01, -4678, 257),
 		},
 		dire = {
-			[1] = Vector(3750.69, -4362.2, 257),
+			[1] = Vector(3750.69, -4678, 257),
 		}
 	},
 	random_obstacles = 10,
@@ -295,7 +294,7 @@ temp_entities = {}
 temp_vision = {}
 
 winners = -1
-current_arena = 1
+current_arena = 0
 
 function getHeroesCount(radiant_heroes, dire_heroes)
     local rp = 0
@@ -1041,7 +1040,6 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     Convars:SetBool("dota_creeps_no_spawning", true)
  
     Timers:CreateTimer(function()
-    	print("draw")
         endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
     end, "DS_DRAW_ITERNAL", draw_time)
 
@@ -1348,15 +1346,20 @@ function initDuel(restart)
   	if max_alives < 1 then max_alives = 1 end
   	local c = RandomInt(1,max_alives)
 
-	local selected = false
-	local arena = AAR_SMALL_ARENA
-	repeat
-		arena = RandomInt(1,#arenas)
-		arena_table = arenas[arena]
-		if c >= arena_table.minimumPlayers and c <= arena_table.maximumPlayers then
-			selected = true
-		end
-	until selected == true
+	-- local selected = false
+	-- local arena = AAR_SMALL_ARENA
+	-- repeat
+	-- 	arena = RandomInt(1,#arenas)
+	-- 	arena_table = arenas[arena]
+	-- 	if c >= arena_table.minimumPlayers and c <= arena_table.maximumPlayers then
+	-- 		selected = true
+	-- 	end
+	-- until selected == true
+
+	local arena = current_arena + 1
+	if current_arena >= #arenas then
+		arena = 1
+	end
 
 	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS + DUEL_PREPARE, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		restart()

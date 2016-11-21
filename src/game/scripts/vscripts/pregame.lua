@@ -2104,7 +2104,7 @@ function Pregame:initOptionSelector()
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
 
-                self:setOption('lodOptionDuels', 0, true)
+                self:setOption('lodOptionDuels', 0, false)
                 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)

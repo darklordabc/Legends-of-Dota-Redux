@@ -203,6 +203,12 @@ function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
     return obstacle
 end
 
+function brecacheObstacles(context)
+    for k,v in pairs(table_name) do
+        PrecacheResource("model",v.model,context)
+    end
+end
+
 function blockGridNavSquare(size, location, block_fow)
     local gridNavBlockers = {}
     if size % 2 == 1 then
