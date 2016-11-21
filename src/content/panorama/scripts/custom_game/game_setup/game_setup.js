@@ -801,6 +801,9 @@ function setupBuilderTabs() {
                 // No skills selected anymore
                 setSelectedDropAbility();
 
+                // Deselect any hero
+                setSelectedHelperHero();
+
                 // Focus to nothing
                 focusNothing();
             });
@@ -1062,48 +1065,59 @@ function setSelectedHelperHero(heroName, dontUnselect) {
 
     // Validate hero name
     if(heroName == null || heroName.length <= 0 || !heroData[heroName]) {
-        previewCon.visible = false;
+        if (currentPhase == PHASE_BANNING)
+            $('#banningHeroContainer').SetHasClass('disableButton', true);
+        else
+            previewCon.visible = false;
         return;
     }
-
-    // Show the preview
-    previewCon.visible = true;
-
-    // Grab the info
-    var info = heroData[heroName];
-
-    // Update the hero
-    $('#buildingHelperHeroPreviewHero').heroname = heroName;
-    $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
 
     // Set this as the selected one
     currentSelectedHero = heroName;
 
-    for(var i=1; i<=16; ++i) {
-        var abName = info['Ability' + i];
-        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+    if (currentPhase == PHASE_BANNING) {
+        // Update the banning skill icon
+        $('#lodBanThisHero').heroname = heroName;
+        $('#banningHeroContainer').SetHasClass('disableButton', false);
+        $('#banningAbilityContainer').SetHasClass('disableButton', true);     
+    }
+    else {
+        // Show the preview
+        previewCon.visible = true;
 
-        // Ensure it is a valid ability, and we have flag data about it
-        if(abName != null && abName != '' && flagDataInverse[abName]) {
-            abCon.visible = true;
-            abCon.abilityname = abName;
-            abCon.SetAttributeString('abilityname', abName);
-        } else {
-            abCon.visible = false;
+        // Grab the info
+        var info = heroData[heroName];
+
+        // Update the hero
+        $('#buildingHelperHeroPreviewHero').heroname = heroName;
+        $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
+
+        for(var i=1; i<=16; ++i) {
+            var abName = info['Ability' + i];
+            var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+
+            // Ensure it is a valid ability, and we have flag data about it
+            if(abName != null && abName != '' && flagDataInverse[abName]) {
+                abCon.visible = true;
+                abCon.abilityname = abName;
+                abCon.SetAttributeString('abilityname', abName);
+            } else {
+                abCon.visible = false;
+            }
         }
+
+        // Highlight drop slots correctly
+        if(!dontUnselect) {
+            // No abilities selected anymore
+            setSelectedDropAbility();
+        }
+
+        // Update the filters for this hero
+        updateHeroPreviewFilters();
+
+        // Jump to the right tab
+        //showBuilderTab('pickingPhaseHeroTab');
     }
-
-    // Highlight drop slots correctly
-    if(!dontUnselect) {
-        // No abilities selected anymore
-        setSelectedDropAbility();
-    }
-
-    // Update the filters for this hero
-    updateHeroPreviewFilters();
-
-    // Jump to the right tab
-    //showBuilderTab('pickingPhaseHeroTab');
 }
 
 // They try to set a new hero
@@ -1199,6 +1213,9 @@ function isUltimateAbility(abilityName) {
 
 // Sets the currently selected ability for dropping
 function setSelectedDropAbility(abName, abcon) {
+    if (currentPhase == PHASE_BANNING)
+        $('#banningHeroContainer').SetHasClass('disableButton', true);
+
     abName = abName || '';
 
     // Was there a slot selected?
@@ -1225,7 +1242,7 @@ function setSelectedDropAbility(abName, abcon) {
         currentSelectedSkill = '';
 
         // Update the banning skill icon
-        $('#banningButtonContainer').SetHasClass('disableButton', true);
+        $('#banningAbilityContainer').SetHasClass('disableButton', true);
     } else {
         // Do a selection
         currentSelectedSkill = abName;
@@ -1238,7 +1255,7 @@ function setSelectedDropAbility(abName, abcon) {
 
         // Update the banning skill icon
         $('#lodBanThisSkill').abilityname = abName;
-        $('#banningButtonContainer').SetHasClass('disableButton', false);
+        $('#banningAbilityContainer').SetHasClass('disableButton', false);
     }
 
     // Highlight which slots we can drop it into
@@ -1502,7 +1519,8 @@ function makeSkillSelectable(abcon) {
         // Find the owning hero
         var heroOwner = abilityHeroOwner[abName];
         if(heroOwner != null) {
-            setSelectedHelperHero(heroOwner, true);
+            if (currentPhase != PHASE_BANNING)
+                setSelectedHelperHero(heroOwner, true);
         }
     });
 
@@ -1578,6 +1596,7 @@ function getHeroFilterInfo(heroName) {
 
     return {
         shouldShow: shouldShow,
+        banned: bannedHeroes[heroName] != undefined,
         takenHero: allSelectedHeroes[heroName] != null
     };
 }
@@ -1592,7 +1611,9 @@ function OnHeroTabShown(tabName) {
             var searchParts = searchText.split(/\s/g);
 
             for(var heroName in heroPanelMap) {
-                var shouldShow = getHeroFilterInfo(heroName).shouldShow;
+                var info = getHeroFilterInfo(heroName);
+                var shouldShow = info.shouldShow;
+                var banned = info.banned;
 
                 // Filter by melee / ranged
                 if(shouldShow && heroFilterInfo.classType) {
@@ -1617,6 +1638,7 @@ function OnHeroTabShown(tabName) {
 
                 var con = heroPanelMap[heroName];
                 con.SetHasClass('should_hide_this_hero', !shouldShow);
+                con.SetHasClass('banned', banned);
             }
         }
 
@@ -1747,6 +1769,7 @@ function updateHeroPreviewFilters() {
     var heroFilterInfo = getHeroFilterInfo('npc_dota_hero_' + heroImageCon.heroname);
 
     heroImageCon.SetHasClass('should_hide_this_hero', !heroFilterInfo.shouldShow);
+    heroImageCon.SetHasClass('banned', heroFilterInfo.banned);
     heroImageCon.SetHasClass('takenHero', heroFilterInfo.takenHero);
 
     var heroImageText = $('#buildingHelperHeroPreviewHeroName');
@@ -2363,6 +2386,8 @@ function chooseHero(heroName) {
 
 // Tries to ban a hero
 function banHero(heroName) {
+    setSelectedHelperHero();
+
     GameEvents.SendCustomGameEventToServer('lodBan', {
         heroName:heroName
     });
@@ -3729,8 +3754,8 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_BANNING) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillBanningInfo) {
-                        seenPopupMessages.skillBanningInfo = true;
-                        showPopupMessage('lodBanningMessage');
+                    seenPopupMessages.skillBanningInfo = true;
+                    showPopupMessage('lodBanningMessage');
                 }
             }
 
@@ -3755,12 +3780,12 @@ function OnPhaseChanged(table_name, key, data) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
             }
-        break;
+            break;
 
         case 'endOfTimer':
             // Store the end time
             endOfTimer = data.v;
-        break;
+            break;
 
         case 'activeTab':
             var newActiveTab = data.v;
@@ -3773,16 +3798,16 @@ function OnPhaseChanged(table_name, key, data) {
                 // Set active one
                 optionButton.SetHasClass('activeHostMenu', key == newActiveTab);
             }
-        break;
+            break;
 
         case 'freezeTimer':
             freezeTimer = data.v;
-        break;
+            break;
 
         case 'doneCaching':
             // No longer waiting for precache
             waitingForPrecache = false;
-        break;
+            break;
 
         case 'vote_counts':
             // Server just sent us vote counts
@@ -3817,7 +3842,7 @@ function OnPhaseChanged(table_name, key, data) {
             $('#voteCountSlots4').text = (data.slots[4] || 0);
             $('#voteCountSlots5').text = (data.slots[5] || 0);
             $('#voteCountSlots6').text = (data.slots[6] || 0);
-        break;
+            break;
 
         case 'premium_info':
             var playerID = Players.GetLocalPlayer();
@@ -3827,11 +3852,11 @@ function OnPhaseChanged(table_name, key, data) {
                 isPremiumPlayer = data[playerID] > 0;
                 $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
             }
-        break;
+            break;
 
         case 'contributors':
             GameUI.CustomUIConfig().premiumData = data;
-        break;
+            break;
     }
 
     // Ensure we are hiding the correct enemy picks

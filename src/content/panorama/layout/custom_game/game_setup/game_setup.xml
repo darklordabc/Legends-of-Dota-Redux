@@ -682,6 +682,31 @@
                                 </Panel>
                             </Panel>
 
+                            <Panel id="pickingPhaseBans">
+                                <Label class="lodBanningHeader" text="lodBanningSection" />
+                                <Label class="lodBanningInstructions" text="lodBanningInstructions" />
+                                <Label id="lodBanLimits" text="banLimits" />
+
+                                <Panel id="banningButtonContainer">
+                                    <Panel id="banningAbilityContainer" class="disableButton">
+                                        <DOTAAbilityImage id="lodBanThisSkill" abilityname="life_stealer_empty_1" />
+                                        <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
+                                            <Label text="banAbility" />
+                                        </Button>
+                                    </Panel>
+                                    <Panel id="banningHeroContainer" class="disableButton">
+                                        <DOTAHeroImage id="lodBanThisHero" heroname="npc_dota_hero_nevermore" />
+                                        <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onHeroBanButtonPressed()">
+                                            <Label text="banHero" />
+                                        </Button>
+                                    </Panel>                                    
+                                </Panel>
+
+                                <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                                    <Label text="finishBanning" />
+                                </Button>
+                            </Panel>
+
                             <Panel id="pickingPhaseTabs">
                                 <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
                                     <Label id="balanceModePointsPreset" text="#balance_mode_points" />
@@ -700,10 +725,6 @@
 
                                             <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall" onactivate="onNewHeroSelected()">
                                                 <Label text="selectHero" />
-                                            </Button>
-
-                                            <Button id="buildingHelperHeroPreviewHeroBan" class="heroBuildMenuButtonSmall" onactivate="onHeroBanButtonPressed()">
-                                                <Label text="banHero" />
                                             </Button>
 
                                             <Panel id="buildingHelperHeroPreviewSkillsContainer">
@@ -769,22 +790,6 @@
                                 </Panel>
                             </Panel>
 
-                            <Panel id="pickingPhaseBans">
-                                <Label class="lodBanningHeader" text="lodBanningSection" />
-                                <Label class="lodBanningInstructions" text="lodBanningInstructions" />
-                                <Label id="lodBanLimits" text="banLimits" />
-
-                                <Panel id="banningButtonContainer" class="disableButton">
-                                    <DOTAAbilityImage id="lodBanThisSkill" abilityname="life_stealer_empty_1" />
-                                    <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
-                                        <Label text="banAbility" />
-                                    </Button>
-                                </Panel>
-
-                                <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                    <Label text="finishBanning" />
-                                </Button>
-                            </Panel>
                         </Panel>                        
                     </Panel>
 

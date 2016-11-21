@@ -50,6 +50,13 @@
     wash-color: #777777aa;
 }
 
+.heroRoot.banned DOTAHeroImage,
+.heroRoot.banned DOTAHeroMovie{
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #ff0000ff;
+}
+
 .heroRoot DOTAHeroMovie {
     opacity: 0;
 }
