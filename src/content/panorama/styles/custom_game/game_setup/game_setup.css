@@ -952,6 +952,24 @@
     margin-right: 80px;
 }
 
+#heroBuilderPerksButton.makeThePlayerNoticeThisButton {
+    animation-name: lodButtonHighlightPerks;
+    animation-duration: 1.51s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes 'lodButtonHighlightPerks' {
+    0% {
+        box-shadow: #ffd966 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #ffd966 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #ffd966 0px 0px 1px 0px;
+    }
+}
 /* All Random */
 
 #lodArrowRandomPhase {
@@ -1234,10 +1252,9 @@
     width: 24px;
     height: 24px;
     margin: 4px;
-    horizontal-align: right;
-    vertical-align: bottom;
+    align: center bottom;
     margin: 8px;
-    margin-right: 64px;
+    margin-bottom: 25px;
     background-color: #000000;
     border-radius: 12px;
     border: 1px solid #000000;

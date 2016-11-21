@@ -12,33 +12,46 @@ var PHASE_REVIEW = 8;           // Review Phase
 var PHASE_INGAME = 9;           // Game has started
 
 var phases = {
-    3: {
-        name: '#lodStageOptionSelection',
-        desc: ''
-    },
+    1: {
+        class: 'phase_loading'
+    },    
     2: {
         name: '#lodStageOptionVoting',
-        desc: ''
+        desc: '',
+        class: 'phase_option_voting'
+    },    
+    3: {
+        name: '#lodStageOptionSelection',
+        desc: '',
+        class: 'phase_option_selection'
     },
     4: {
         name: '#lodStageBanning',
-        desc: ''
+        desc: '',
+        class: 'phase_banning'
     },
     5: {
         name: '#lodStageSelection',
-        desc: ''
+        desc: '',
+        class: 'phase_selection'
     },
+    6: {
+        class: 'phase_drafting'
+    },    
     7: {
         name: '#lodStageRandomSelection',
-        desc: ''
+        desc: '',
+        class: 'phase_all_random'
     },
     8: {
         name: '#lodStageReview',
-        desc: ''
+        desc: '',
+        class: 'phase_review'
     },
     9: {
         name: '#lodStageIngame',
-        desc: ''
+        desc: '',
+        class: 'phase_ingame'
     }    
 };
 
@@ -3667,21 +3680,18 @@ var seenPopupMessages = {};
 function OnPhaseChanged(table_name, key, data) {
     switch(key) {
         case 'phase':
-            // Update the current phase
-            currentPhase = data.v;
+            // Set main tab activated
+            if (currentPhase == 1)
+                showBuilderTab('pickingPhaseMainTab');
 
             // Update phase classes
             var masterRoot = $.GetContextPanel();
-            masterRoot.SetHasClass('phase_loading', currentPhase == PHASE_LOADING);
-            masterRoot.SetHasClass('phase_option_selection', currentPhase == PHASE_OPTION_SELECTION);
-            masterRoot.SetHasClass('phase_option_voting', currentPhase == PHASE_OPTION_VOTING);
-            masterRoot.SetHasClass('phase_banning', currentPhase == PHASE_BANNING);
-            masterRoot.SetHasClass('phase_selection', currentPhase == PHASE_SELECTION);
-            masterRoot.SetHasClass('phase_all_random', currentPhase == PHASE_RANDOM_SELECTION);
-            masterRoot.SetHasClass('phase_drafting', currentPhase == PHASE_DRAFTING);
-            masterRoot.SetHasClass('phase_review', currentPhase == PHASE_REVIEW);
-            masterRoot.SetHasClass('phase_ingame', currentPhase == PHASE_INGAME);
+            masterRoot.RemoveClass(phases[currentPhase].class);
 
+            // Update the current phase
+            currentPhase = data.v;
+            masterRoot.AddClass(phases[currentPhase].class);
+            
             // Progress to the new phase
             SetSelectedPhase(currentPhase, true);
 
@@ -3835,6 +3845,7 @@ function OnHostChanged(data) {
     }
     OnTeamPlayerListChanged();
 }
+
 // An option just changed
 function OnOptionChanged(table_name, key, data) {
     // Store new value
@@ -3846,61 +3857,68 @@ function OnOptionChanged(table_name, key, data) {
         optionFieldMap[key](data.v);
     }
 
-    // Check for the custom stuff
-    if(key == 'lodOptionGamemode') {
-        // Check if we are allowing custom settings
-        allowCustomSettings = data.v == -1;
-        $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
-        $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);
-    }
+    switch(key) {
+        // Check for the custom stuff
+        case 'lodOptionGamemode':
+            // Check if we are allowing custom settings
+            allowCustomSettings = data.v == -1;
+            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
+            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);        
+            break;
 
-    // Check for allowed categories changing
-    if(key == 'lodOptionAdvancedHeroAbilities' || key == 'lodOptionAdvancedNeutralAbilities' || key == 'lodOptionAdvancedOPAbilities' || key == 'lodOptionAdvancedCustomSkills') {
-        onAllowedCategoriesChanged();
-    }
+        // Check for allowed categories changing
+        case 'lodOptionAdvancedHeroAbilities':
+        case 'lodOptionAdvancedNeutralAbilities':
+        case 'lodOptionAdvancedOPAbilities':
+        case 'lodOptionAdvancedCustomSkills':
+            onAllowedCategoriesChanged();
+            break;
 
-    // Check if it's the number of slots allowed
-    if(key == 'lodOptionCommonMaxSkills' || key == 'lodOptionCommonMaxSlots' || key == 'lodOptionCommonMaxUlts') {
-        onMaxSlotsChanged();
-    }
+        // Check if it's the number of slots allowed
+        case 'lodOptionCommonMaxSkills':
+        case 'lodOptionCommonMaxSlots':
+        case 'lodOptionCommonMaxUlts':
+            onMaxSlotsChanged();
+            break;
 
-    // Check for banning phase
-    if(key == 'lodOptionBanningMaxBans' || key == 'lodOptionBanningMaxHeroBans' || key == 'lodOptionBanningHostBanning') {
-        onMaxBansChanged();
-    }
+        // Check for banning phase
+        case 'lodOptionBanningMaxBans':
+        case 'lodOptionBanningMaxHeroBans':
+        case 'lodOptionBanningHostBanning':
+            onMaxBansChanged();
+            break;
 
-    // Check for unique abilities changing
-    if(key == 'lodOptionAdvancedUniqueSkills') {
-        calculateFilters();
-        updateHeroPreviewFilters();
-        updateRecommendedBuildFilters();
-    }
+        // Check for unique abilities changing
+        case 'lodOptionAdvancedUniqueSkills':
+            calculateFilters();
+            updateHeroPreviewFilters();
+            updateRecommendedBuildFilters();
+            $('#mainSelectionRoot').SetHasClass('unique_skills_mode', optionValueList['lodOptionAdvancedUniqueSkills'] > 0);            
+            break;
 
-    if(key == 'lodOptionAdvancedUniqueSkills') {
-        $('#mainSelectionRoot').SetHasClass('unique_skills_mode', optionValueList['lodOptionAdvancedUniqueSkills'] > 0);
-    }
+        case 'lodOptionAdvancedUniqueHeroes':
+            $('#mainSelectionRoot').SetHasClass('unique_heroes_mode', optionValueList['lodOptionAdvancedUniqueHeroes'] == 1);
+            break;
 
-    if(key == 'lodOptionAdvancedUniqueHeroes') {
-        $('#mainSelectionRoot').SetHasClass('unique_heroes_mode', optionValueList['lodOptionAdvancedUniqueHeroes'] == 1);
-    }
+        case 'lodOptionCommonGamemode':
+            onGamemodeChanged();
+            break;
 
-    if(key == 'lodOptionCommonGamemode') {
-        onGamemodeChanged();
-    }
-
-    if(key == 'lodOptionAdvancedHidePicks') {
         // Hide enemy picks
-        hideEnemyPicks = data.v == 1;
-        calculateHideEnemyPicks();
+        case 'lodOptionAdvancedHidePicks':
+            hideEnemyPicks = data.v == 1;
+            calculateHideEnemyPicks();
+            break;
+
+        case 'lodOptionBalanceMode':
+            onBalanceModeChanged();
+            break;
+
+        case 'lodOptionBanningBalanceMode':
+            onBalanceModeBanList();
+            break;
     }
 
-    if(key == 'lodOptionBalanceMode') {
-        onBalanceModeChanged();
-    }
-    
-    if(key == 'lodOptionBanningBalanceMode') {
-        onBalanceModeBanList();
-    }
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
@@ -4310,16 +4328,16 @@ function OnChangeLock(data) {
     switch (command) {
         case 'assign':
             onAutoAssignPressed();
-        break;
+            break;
         case 'shuffle':
             onShufflePressed();
-        break
+            break
         case 'lock':
             onLockPressed();
-        break;
+            break;
         case 'unlock':
             onUnlockPressed();
-        break;
+            break;
     }
 }
 
@@ -4432,7 +4450,7 @@ function showMainPanel() {
         return;
     }
 
-    $.Schedule(0.2, showMainPanel);
+    $.Schedule(0.1, showMainPanel);
 }
 
 //--------------------------------------------------------------------------------------------------
