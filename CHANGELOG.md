@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Treant's Perk
 - Improved hero picking screen cosmetics, heros play animation when mouseover now
 - Voting for the ban phase now works
+- Multicast Maddness option now works
 
 ### Balance
 - Added Concussive Break
