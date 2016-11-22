@@ -62,6 +62,7 @@
     "lockOptions"                                   "Заблокировать"
     "lockTeamsFirst"                                "Перед Продолжением Заблокируйте Команды"
     "to_advanced_options"                           "К расширенным настройкам"
+    "customizeAdvancedSettings"                     "Для управления расширенными настройками на главном экране необходимо выбрать режим \"Пользовательские настройки\". Если он не отображается, то необходимо прокрутить полоску режимов вправо."    
     "to_basic_options"                              "К основным настройкам"    
     "importAndExport_code"                          "Настройки"
     "importAndExport_apply"                         "Применить"
@@ -436,6 +437,9 @@
     "lodPrecaching"                                 "Подготовка игры..."
 
 	//Builds
+    "loadingBuilds"                                 "Загрузка билдов"
+    "unableLoadingBuilds"                           "Невозможно загрузить билды"
+
 	"build_cherub_title"							"Cherub"
 	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
 	

@@ -1092,6 +1092,9 @@
 /* Review */
 
 #reviewPhase {
+    height: fit-children;
+    vertical-align: center;
+
     visibility: collapse;
     flow-children: down;
 }
@@ -1128,7 +1131,6 @@
     flow-children: right;
 
     width: 47%;
-    height: 100%;
     min-height: 324px;
 }
 
@@ -1143,12 +1145,10 @@
 .subReviewContainer {
     horizontal-align: center;
     width: 100%;
-    height: 50%;
 }
 
 .reviewTeamsOverlay {
     width: 100%;
-    height: fill-parent-flow(1);
 }
 
 .filler {
@@ -1157,7 +1157,6 @@
 
 #reviewTeams {
     width: 100%;
-    height: 100%;
     flow-children: right;
 }
 
@@ -2139,7 +2138,7 @@
 
 #pickingPhaseMainTabContent {
     padding: 8px;
-    flow-children: down;
+    //flow-children: down;
 }
 
 .buildCategoryLabel {
@@ -2149,7 +2148,11 @@
 
 .recommendedBuildContainerScrollWrapper{
     width: 100%;
+
+    margin-top: 50px;
+
     overflow: squish scroll;
+    visibility: collapse;
 }
 
 #pickingPhaseRecommendedBuildContainer {
@@ -2161,6 +2164,22 @@
 .AspectRatio4x3 #pickingPhaseRecommendedBuildContainer,
 .AspectRatio5x4 #pickingPhaseRecommendedBuildContainer {
     width: 900px;
+}
+
+#buildLoadingIndicator {
+    align: center center;
+    flow-children: down;
+}
+
+#buildLoadingIndicator .Spinner {
+    width: 50px;
+    height: 50px;
+}
+
+#buildLoadingIndicatorText {
+    margin-top: 10px;
+
+    font-size: 25px;    
 }
 
 .recommendedBuild {

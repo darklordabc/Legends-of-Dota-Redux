@@ -596,6 +596,10 @@
                             <Panel id="pickingPhaseTabsContent">
                                 <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                     <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
+                                    <Panel id="buildLoadingIndicator">
+                                        <Panel id="buildLoadingSpinner" class="Spinner" />
+                                        <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
+                                    </Panel>
                                     <Panel class="recommendedBuildContainerScrollWrapper">
                                         <Panel id="pickingPhaseRecommendedBuildContainer" />
                                     </Panel>                                        
@@ -803,8 +807,8 @@
 
                     <Panel id="reviewPhase" class="workingPanel">
                         <Panel class="reviewTeamsOverlay">
-                            <Panel id="reviewPhaseVS" hittest="false">
-                                <Image hittest="false" src="file://{images}/custom_game/vs.png" />
+                            <Panel id="reviewPhaseVS" hittest="false" hittestchildren="false">
+                                <Image src="file://{images}/custom_game/vs.png" />
                                 <DOTAScenePanel map="ui/explosion_ui"/>
                             </Panel>                    
                             <Panel id="reviewTeams">
