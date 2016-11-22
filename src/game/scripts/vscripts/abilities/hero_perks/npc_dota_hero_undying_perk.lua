@@ -7,7 +7,7 @@
 LinkLuaModifier( "modifier_npc_dota_hero_undying_perk", "abilities/hero_perks/npc_dota_hero_undying_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_undying_perk_aura", "abilities/hero_perks/npc_dota_hero_undying_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_undying_perk == nil then npc_dota_hero_undying_perk = class({}) end
+if npc_dota_hero_undying_perk ~= "" then npc_dota_hero_undying_perk = class({}) end
 
 function npc_dota_hero_undying_perk:GetIntrinsicModifierName()
 	return "modifier_npc_dota_hero_undying_perk"
@@ -15,7 +15,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_undying_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_undying_perk == nil then modifier_npc_dota_hero_undying_perk = class({}) end
+if modifier_npc_dota_hero_undying_perk ~= "" then modifier_npc_dota_hero_undying_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_undying_perk:IsPassive()
 	return true
@@ -108,7 +108,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Aura Modifier: modifier_npc_dota_hero_undying_perk_aura		
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_undying_perk_aura == nil then modifier_npc_dota_hero_undying_perk_aura = class({}) end
+if modifier_npc_dota_hero_undying_perk_aura ~= "" then modifier_npc_dota_hero_undying_perk_aura = class({}) end
 
 function modifier_npc_dota_hero_undying_perk_aura:IsHidden()
 	return true
