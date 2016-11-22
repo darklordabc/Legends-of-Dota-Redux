@@ -1379,10 +1379,14 @@ function Pregame:processVoteData()
         if results.banning == 1 then
           -- Option Voting
             self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 5, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 2, true)
             self.optionVotingBanning = 1
         else
           -- No option voting
             self:setOption('lodOptionBanning', 1, true)
+            self:setOption('lodOptionBanningMaxBans', 0, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
             self.optionVotingBanning = 0
         end
     end
