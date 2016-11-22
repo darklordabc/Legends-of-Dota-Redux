@@ -85,6 +85,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             local multicastMadness = OptionManager:GetOption('multicastMadness')
             if canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
+                if not mab and multicastMadness then
+                    mab = hero:AddAbility("ogre_magi_multicast_lod")
+                end
 
                 local doubleMode = false
 
