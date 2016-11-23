@@ -10,9 +10,14 @@ All notable changes to this project will be documented in this file.
 - Redesigned mutator/gamemode screen in custom maps
 - Fixed Treant's Perk
 - Improved hero picking screen cosmetics, heros play animation when mouseover now
+- Voting for the ban phase now works
+- Multicast Maddness option now works
+- Added Duels
 
 ### Balance
 - Added Concussive Break
+- Weaver's Perk and Phoenix's perk will now trigger even if they don't have time-lapse or supernova.
+- Added Chen's Perk
 
 ## 3.0 Steam Version
 

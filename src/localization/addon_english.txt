@@ -122,6 +122,7 @@
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
 	"lodMutatorBotsBuff1"                           "Buff Bots"
+	"lodMutatorDuel"								"Duels"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -317,6 +318,10 @@
     "lodOptionHigh"                                 "High - Every Minute"
     "lodOptionExtreme"                              "Extreme - Every 30 Seconds"
 
+    "lodOptionDuels"                                "Duels"
+    "lodOptionDesDuels"                             "Duels"
+    "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -331,7 +336,7 @@
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
-    "lodOptionDesCrazyMulticast"                    "Multicast Madness (Not Working)"
+    "lodOptionDesCrazyMulticast"                    "Multicast Madness"
     "lodOptionDesCrazyEasymode"                     "Easy Mode"
     "lodOptionDesAdvancedHidePicks"                 "Hide Enemy Picks"
     "lodOptionDesAdvancedUniqueSkills"              "Unique Skills"
@@ -558,7 +563,7 @@
 	"hintEnigma"                         "When Enigma dies, Black Hole's cooldown will be refreshed."
 	"hintLegionCommander"                         "When Legion Commander casts Duel, she will gain spell immunity for the duration of the Duel."
 	"hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
-	//"hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
+	"hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
 	"hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
 	//"hintStormSpirit"                         "Storm Spirit restores mana when Storm Spirit travels at high speeds. (WIP) "
 	"hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
@@ -574,7 +579,7 @@
 	"hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
 	"hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
 	"hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
-	"hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage."
+	"hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
 	"hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."	
 	"hintShadowShaman"                         "Shadow Shaman refunds the manacost of Hex spells and reduces their cooldowns by 20%."
 	"hintDoom"                         "Doom applies Break when casting Doom."
@@ -651,7 +656,7 @@
 	"hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
 	"hintViper"                         "Poison effects applied by Viper also lower the target's armor by 2."
 	"hintWarlock"                         "Warlock starts the game with 2 free Observer Wards."
-	"hintWeaver"                         "If Weaver has Time Lapse, he will automatically cast it upon taking fatal damage."
+	"hintWeaver"                         "Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher."
 	"hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
 	"hintWK"                         "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
 	"hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
@@ -782,14 +787,16 @@
     "voteMaxSlots5"                                 "5 Slots"
     "voteMaxSlots6"                                 "6 Slots"
 
-    "lodBanningPhase"                               "Banning Phase (Broken for Now)"
+    "lodBanningPhase"                               "Banning Phase"
     "lodFastStart"                                  "Enable Fast Start"
     "lodBalanceMode"                                "Disable Points Mode"
     "lodStrongTower"                                "Enable Stronger Towers"
+    "lodDuels"                                      "Enable Duels"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
     "textSTTooltip"                             "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
+    "textDTooltip"                              "Teams face each other every 5 minutes on randomly selected arenas."
 
     "bots_lod"                                      "Bots"
 
@@ -880,6 +887,17 @@
     "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
     "teamSwitch_cooldown"                           "Team switching is still on cooldown."
 
+    // Duel
+
+    "duel_cant_swap"                                "You can't change build during duel!"
+    "duel_10_sec_to_begin"                          "10 seconds before start of duel!"
+    "duel_10_sec_to_end"                            "10 seconds to draw!"
+    "duel_next_duel"                                "Next Duel: "
+    "duel_nobody_wins"                              "Draw: "
+    "duel_start"                                    "Duel has been started"
+    "duel_end"                                      "Duel has been ended"
+    "duel_draw"                                     "Duel has been ended"
+
     /////////////////
     // UNIQUE HERO MECHANICS
     ////////////////
@@ -900,7 +918,7 @@
 	"unique_mechanic_broodmother"                        "Non-ultimate <font color=\"#ffd966\">Summon</font> <br>abilities will have 20% mana cost refunded <br>and 20% reduced cooldown. "
 	"unique_mechanic_centaur"				"Centaur Warrunner<br>takes 75% damage from  <font color=\"#ffd966\">Self-Damaging</font> <br>spells."
 	"unique_mechanic_chaos_knight"                        "Chaos Knight gains <br>200 extra gold for each ability he randoms. "
-	//"unique_mechanic_chen" 					 "When Chen sends creeps <br>home to the fountain by casting <font color=\"#ffd966\">Test of Faith <br>(Teleport)</font> they will receive an extra ability." 
+	"unique_mechanic_chen" 					 "When Chen sends creeps <br>home to the fountain by casting <font color=\"#ffd966\">Test of Faith <br>(Teleport)</font> they will receive an extra ability." 
 	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
 	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\"#ffd966\">Rocket Flare</font>."
 	"unique_mechanic_crystal_maiden"	"Crystal Maiden gains <br>+2 movement speed for each level put in <br><font color=\"#ffd966\">Support</font> abilities."
@@ -990,7 +1008,7 @@
 	"unique_mechanic_viper"                        "<font color=\"#ffd966\">Poison</font> effects applied <br>by Viper also lower the target's armor by 2."
 	"unique_mechanic_visage"                        "<font color=\"#ffd966\">Summon Familiars</font> will <br>refund 100% of manacost and have its <br>cooldown reduced by 50%."
 	"unique_mechanic_warlock"                        "Warlock starts the <br>game with 2 free <font color=\"#ffd966\">Observer Wards</font>."
-	"unique_mechanic_weaver"                        "If Weaver has <br><font color=\"#ffd966\">Time Lapse</font>, he will automatically cast it <br>upon taking fatal damage."
+	"unique_mechanic_weaver"                        "If Weaver will automatically<br> cast Time Lapse upon taking fatal damage."
 	"unique_mechanic_windrunner"                        "If Windranger has no <br>passives, all her active spells will refund <br>20% mana and have 20% reduced <br>cooldowns."
 	"unique_mechanic_winter_wyvern"			"When Winter Wyvern's <br>health and mana are above 90% she gains <br>flying status after a 5 second delay."
 	"unique_mechanic_witch_doctor"           "<font color=\"#ffd966\">Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor." 
@@ -2433,7 +2451,7 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
 	
-	///CHEN MISSING HERE
+	///CHEN 
 	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk"	"Chen Perk"
   	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description"	"When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"	
 	
@@ -2645,7 +2663,9 @@
 	
 	/// PHOENIX​
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"	"Phoenix Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage. Requires level 6 or higher.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_delay" "Perk Cooldown"
+	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_delay_Description" "Phoenix's perk is currently on cooldown, taking lethal damage will result in death and you will not go into egg form."
 	
 	/// PUCK
 	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk"	"Puck Perk"
@@ -2811,7 +2831,9 @@
 	
 	/// WEAVER
 	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk"	"Weaver Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_Description"	"If Weaver has Time Lapse, he will automatically cast it upon taking fatal damage.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"	
+  	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_Description"	"Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"	
+	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_delay"	"Perk Cooldown"
+	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_delay_Description"	"Weaver's perk is currently on cooldown, taking lethal damage will result in death and you will not trigger time lapse."
 	
 	/// WINDRANGER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk"	"Windranger Perk"

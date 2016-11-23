@@ -1,0 +1,24 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/ui_duel_timer.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/duel.js" />
+	</scripts>
+	<snippets>
+		<snippet name="Winner">
+			<Panel class="DuelPanel" hittest="false">
+			    <DOTAScenePanel map="duel_win_ui"/>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="TeamOverlay" hittest="false">
+			<Panel id="KillLimit" hittest="false">
+				<Label hittest="false" id="KillLimit_text" text="" />
+			</Panel>
+			<Panel hittest="false" id="Block">
+				<Label id="DuelTextBlock" text="" />
+			</Panel>
+			<Label hittest="false" id="Attension" text="" />
+	</Panel>
+</root>
