@@ -7,11 +7,11 @@
 LinkLuaModifier( "modifier_npc_dota_hero_doom_bringer_perk", "abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_doom_bringer_doom_break", "abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_doom_bringer_perk ~= "" then npc_dota_hero_doom_bringer_perk = class({}) end
+if npc_dota_hero_doom_bringer_perk == nil then npc_dota_hero_doom_bringer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_doom_bringer_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_doom_bringer_perk ~= "" then modifier_npc_dota_hero_doom_bringer_perk = class({}) end
+if modifier_npc_dota_hero_doom_bringer_perk == nil then modifier_npc_dota_hero_doom_bringer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_doom_bringer_perk:IsPassive()
 	return true
@@ -51,7 +51,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Break Modifier: modifier_npc_dota_hero_doom_bringer_doom_break				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_doom_bringer_doom_break ~= "" then modifier_npc_dota_hero_doom_bringer_doom_break = class({}) end
+if modifier_npc_dota_hero_doom_bringer_doom_break == nil then modifier_npc_dota_hero_doom_bringer_doom_break = class({}) end
 
 function modifier_npc_dota_hero_doom_bringer_doom_break:CheckState()
 	local state = {

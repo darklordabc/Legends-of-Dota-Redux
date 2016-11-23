@@ -50,17 +50,19 @@
     "unlockTeams"                                   "Разблокировать Команды"
 
     // The stage selection interface
-    "lodStageButtonOptionSelection"                 "Выбор Опций"
-    "lodStageButtonOptionVoting"                    "Голосование за Опции"
-    "lodStageButtonBanning"                         "Стадия Банов"
-    "lodStageButtonSelection"                       "Создание Героя"
-    "lodStageButtonRandomSelection"                 "Случайных Наборов Навыков"
-    "lodStageButtonReview"                          "Обзор"
+    "lodStageOptionSelection"                 "Выбор Опций"
+    "lodStageOptionVoting"                    "Голосование за Опции"
+    "lodStageBanning"                         "Стадия Банов"
+    "lodStageSelection"                       "Создание Героя"
+    "lodStageRandomSelection"                 "Случайных Наборов Навыков"
+    "lodStageReview"                          "Обзор"
+    "lodStageIngame"                          "В игре"
 
     // The options menu	
     "lockOptions"                                   "Заблокировать"
     "lockTeamsFirst"                                "Перед Продолжением Заблокируйте Команды"
     "to_advanced_options"                           "К расширенным настройкам"
+    "customizeAdvancedSettings"                     "Для управления расширенными настройками на главном экране необходимо выбрать режим \"Пользовательские настройки\". Если он не отображается, то необходимо прокрутить полоску режимов вправо."    
     "to_basic_options"                              "К основным настройкам"    
     "importAndExport_code"                          "Настройки"
     "importAndExport_apply"                         "Применить"
@@ -435,6 +437,9 @@
     "lodPrecaching"                                 "Подготовка игры..."
 
 	//Builds
+    "loadingBuilds"                                 "Загрузка билдов"
+    "unableLoadingBuilds"                           "Невозможно загрузить билды"
+
 	"build_cherub_title"							"Cherub"
 	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
 	
@@ -731,15 +736,4 @@
     "teamSwitch_disconnected"                       "ДИСКОННЕКТНУТ"
     "teamSwitch_notification"                       "Голосование за смену команд начнётся через 10 секунд. Одна из команд имеет 2+ больше игроков, и игрок из этой команды предложил покинуть его команду и перейти во вражескую чтобЫсбалансированную игру. Если хотя бы 1 человек отклонит голосование, то голосование не пройдёт."
     "teamSwitch_cooldown"                           "Команда перехода во вражескую команду перезаряжается."
-
-    // Duel
-
-    "duel_cant_swap"                                "Во время дуели билд сменить нельзя!"
-    "duel_10_sec_to_begin"                          "10 до начала дуэля!"
-    "duel_10_sec_to_end"                            "10 до конца дуэля!"
-    "duel_next_duel"                                "Дуель: "
-    "duel_nobody_wins"                              "Ничья: "
-    "duel_start"                                    "Дуел начался!"
-    "duel_end"                                      "Дуель закончился!"
-    "duel_draw"                                     "Дуель закончился!"
 }

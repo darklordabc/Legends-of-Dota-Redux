@@ -6,10 +6,12 @@
     clip: rect(0%, 75%, 100%, 25%);
 
     transform-origin: 50% 50%;
-
-    background-color: transparent;
     z-index: 0;
 }
+
+/*.heroRoot .should_hide_this_hero {
+
+}*/
 
 .AspectRatio4x3 .heroRoot {
     width: 77px;
@@ -39,6 +41,20 @@
 
     transition-property: opacity, width, height;
     transition-duration: 0.25s;    
+}
+
+.heroRoot.should_hide_this_hero DOTAHeroImage,
+.heroRoot.should_hide_this_hero DOTAHeroMovie{
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #777777aa;
+}
+
+.heroRoot.banned DOTAHeroImage,
+.heroRoot.banned DOTAHeroMovie{
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #ff0000ff;
 }
 
 .heroRoot DOTAHeroMovie {

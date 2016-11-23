@@ -233,10 +233,6 @@ var basicOptions = {
                             'lodMutatorBotsDire3': 10
                         }
                     },
-					{
-                        name: 'lodOptionBotsBonusPoints',
-                        about: 'lodMutatorBotsBuff1'
-                    },
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
 						extraInfo: 'lodOptionAboutAdvancedUniqueSkills',
@@ -259,7 +255,7 @@ var basicOptions = {
                     {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
-                    },					
+                    },
                     //{
                     //    name: 'lodOptionCrazyWTF',
                     //    about: 'lodMutatorWTF'
@@ -296,11 +292,6 @@ var basicOptions = {
                                 'lodOptionIngameBuilderPenalty': 0
                             }
                         }
-                    },
-					{
-                        name: 'lodOptionDuels',
-						extraInfo: 'lodOptionAboutDuels',
-                        about: 'lodMutatorDuel'
                     },
                 ]
             }
@@ -392,23 +383,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },
-            {
-                name: 'lodOptionDuels',
-                des: 'lodOptionDesDuels',
-                about: 'lodOptionAboutDuels',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            }
         ]
     },
 
@@ -905,7 +880,7 @@ var advancedOptions = {
     bots: {
         bot: true,
         custom: true,
-        fields: [			
+        fields: [
             {
                 name: 'lodOptionBotsRadiant',
                 des: 'lodOptionDesBotsRadiant',
@@ -946,23 +921,6 @@ var advancedOptions = {
                     }
                 ]
             },
-			{
-                 name: 'lodOptionBotsBonusPoints',
-                 des: 'lodOptionDesBotsBonusPoints',
-                 about: 'lodOptionAboutBotsBonusPoints',
-                 sort: 'toggle',
-                 values: [
-                     {
-                         text: 'lodOptionNo',
-                         value: 0
-                     },
-                     {
-                         text: 'lodOptionYes',
-                         value: 1
-                     }
-                 ]
-           },
-			
             /*{
                 name: 'lodOptionBotsUnfairBalance',
                 des: 'lodOptionDesBotsUnfairBalance',

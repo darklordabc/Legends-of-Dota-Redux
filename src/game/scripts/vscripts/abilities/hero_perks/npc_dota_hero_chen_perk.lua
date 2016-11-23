@@ -6,11 +6,11 @@
   --------------------------------------------------------------------------------------------------------
   LinkLuaModifier( "modifier_npc_dota_hero_chen_perk", "abilities/hero_perks/npc_dota_hero_chen_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
   --------------------------------------------------------------------------------------------------------
-  if npc_dota_hero_chen_perk ~= "" then npc_dota_hero_chen_perk = class({}) end
+  if npc_dota_hero_chen_perk == nil then npc_dota_hero_chen_perk = class({}) end
   --------------------------------------------------------------------------------------------------------
   --    Modifier: modifier_npc_dota_hero_chen_perk        
   --------------------------------------------------------------------------------------------------------
-  if modifier_npc_dota_hero_chen_perk ~= "" then modifier_npc_dota_hero_chen_perk = class({}) end
+  if modifier_npc_dota_hero_chen_perk == nil then modifier_npc_dota_hero_chen_perk = class({}) end
   --------------------------------------------------------------------------------------------------------
   function modifier_npc_dota_hero_chen_perk:IsPassive()
     return true
@@ -34,7 +34,7 @@
   end
 
   function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
-    --if IsServer() then
+    if IsServer() then
       local hero = self:GetCaster()
       local target = keys.target
       local ability = keys.ability
@@ -46,14 +46,10 @@
         if not target.chenAbilityCount then target.chenAbilityCount = 0 end
         if not target.chenAbilityTable then target.chenAbilityTable = {} end
 
-        if target.chenAbilityCount == 0 or (target:GetAbilityCount() ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
+        if target:GetAbilityCount() == 1 or (target.chenAbilityCount ~= 6 and RandomInt(1,2) == 1) then -- 50% chance to get a new one
           target.chenAbilityCount = target.chenAbilityCount +1
-          
-          while boolMana == false or boolAllowActive == false do
+          while boolMana == false and boolAllowActive == false do
             ::LoopAgain::
-            boolMana = false
-            boolAllowActive = false
-            --print("ChenPerkIFWhile")
             local randomability = GetRandomAbilityFromListForPerk("chen_creep_abilities")
 
             if target:HasAbility(randomability) then
@@ -75,37 +71,29 @@
               boolAllowActive = true
             else
               target:RemoveAbility(target.chenAbilityTable[target.chenAbilityCount]:GetAbilityName())
-              --goto LoopAgain
             end  
             
           end
         else -- Pick a random ability to upgrade
+          local random = RandomInt(1,target.chenAbilityCount)
+          local boolMaxedOut = false
 
-         
-          local boolMaxedOut = false -- Check if there is an ability to upgrade
-          local tempAbilityTable = target.chenAbilityTable
-          for k,v in pairs(tempAbilityTable) do
-              if v:GetLevel() ~= v:GetMaxLevel() then
-                boolMaxedOut = false
-                break
-              else
-                boolMaxedOut = true
-              end
-          end
-
-          
-          
-          if boolMaxedOut == false then
-            local random = RandomInt(1,#tempAbilityTable)
-            local tempAbility = tempAbilityTable[random]
-            while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() do
-              local random = RandomInt(1,#tempAbilityTable)
-              tempAbility = tempAbilityTable[random]
+          for i=1,6 do
+            if target.chenAbilityTable[i]:GetLevel() ~= target.chenAbilityTable[i]:GetMaxLevel() then
+              local boolMaxedOut = false
+              break
+            else
+              local boolMaxedOut = true
             end
-            tempAbility:UpgradeAbility(true)
           end
+
+          local tempAbility = target.chenAbilityTable[random]
+          while tempAbility:GetLevel() >= tempAbility:GetMaxLevel() and boolMaxedOut == false do
+            local random = RandomInt(1,target.chenAbilityCount)
+          end
+          tempAbility:UpgradeAbility(true)
         end
       end
-    --end
+    end
   end
     
