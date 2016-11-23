@@ -203,7 +203,7 @@ function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
     return obstacle
 end
 
-function brecacheObstacles(context)
+function precacheObstacles(context)
     for k,v in pairs(table_name) do
         PrecacheResource("model",v.model,context)
     end
