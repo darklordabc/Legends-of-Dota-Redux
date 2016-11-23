@@ -3,13 +3,15 @@
         <include src="file://{resources}/styles/custom_game/loading_screen.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/scripts/custom_game/loading_screen_data.js" />
-        <include src="file://{resources}/scripts/custom_game/loading_screen.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_data.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen.js" />
     </scripts>
 
 	<Panel class="LoDLoadingRoot">
 		<Panel id="CustomBackground">
 			<Image id="BackgroundImage" />
+			<Panel id="vignette" />
 
             <Panel class="creditContainer">            
                 <Label class="creditText" id="BackgroundTitle"/>

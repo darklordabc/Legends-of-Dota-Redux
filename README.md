@@ -1,7 +1,7 @@
 Dota 2 Redux
 =====
 
-**Make Modding Great Again.**
+**Make Dota Great Again.**
 
 ###About###
  - Pick your skills to build an overpowered masterpiece!

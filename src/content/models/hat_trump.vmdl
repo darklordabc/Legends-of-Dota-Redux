@@ -83,7 +83,7 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "*"
+				m_sSearchMaterial = "hat.vmat"
 				m_sReplaceMaterial = "materials/hat_trump.vmat"
 			},
 		]

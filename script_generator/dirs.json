@@ -19,9 +19,7 @@
 		"dota/game/panorama/layout/custom_game",
 		
 		"dota/game/panorama/scripts",
-		"dota/game/panorama/scripts/custom_game",
-		
-		"dota/content/soundevents"
+		"dota/game/panorama/scripts/custom_game"
 	],
 
 	"linkDirs" : [
@@ -49,8 +47,6 @@
 
 		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
 		{ "link": "../dota/content/particles", "dir": "../src/content/particles" },
-		
-		{ "link": "../dota/content/soundevents", "dir": "../src/content/soundevents" },
 
 		{ "link": "../dota/game/resource/flash3", "dir": "../src/game/resource/flash3" },
 		{ "link": "../dota/game/resource/overviews", "dir": "../src/game/resource/overviews" },

@@ -35,7 +35,6 @@ function illusions( event )
 	creep:AddNewModifier(caster, event.ability, "modifier_kill", {duration = duration})
 	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage})
 	creep:SetRenderColor(249, 127, 127)
-	creep:MakeIllusion()
 	
 	--
 	local ability3 = caster:FindAbilityByName('illusionist_whiff_of_deception')

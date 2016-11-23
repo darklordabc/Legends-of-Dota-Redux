@@ -11100,76 +11100,6 @@
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName"    "npc_dota_hero_phoenix_perk"
     }
-    "phoenix_supernova_perk"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "phoenix_supernova"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "FightRecapLevel"               "2"
-
-        // Casting
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "500"
-        "AbilityCastPoint"              "0.01"
-        
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "180.0 180.0 180.0"
-        "AbilityDuration"               "6.0"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "200 200 200"
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "aura_radius"       "1000 1000 1000"
-            }
-            "02"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "damage_per_sec"    "60 90 120"
-            }
-            
-            "03"
-            {
-                "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "1.5 2.0 2.5"
-            }
-            "04"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "max_hero_attacks"  "5 8 11"
-            }
-            "05"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "max_hero_attacks_scepter"  "7 10 13"
-            }
-            "06"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "tooltip_duration"  "6"
-            }
-            "07"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "cast_range_tooltip_scepter"    "500"
-            }
-        }
-    }
     "npc_dota_hero_puck_perk"
     {
         "BaseClass"             "ability_lua"
@@ -11545,39 +11475,6 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName"    "npc_dota_hero_weaver_perk"
-    }
-    "weaver_time_lapse_perk"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "weaver_time_lapse"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"      
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-        "AbilityCastRange"              "1000"
-
-        "FightRecapLevel"               "2"
-
-        "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
-        "AbilityCooldown"               "120 120 120"
-        "AbilityManaCost"               "150 75 0"  
-        
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "cooldown_scepter"      "16"
-            }   
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "cast_range_tooltip_scepter"        "1000"
-            }               
-        }
     }
     "npc_dota_hero_windrunner_perk"
     {
