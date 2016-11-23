@@ -11,6 +11,7 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
+require('lib/wearables')
 
 require('lib/util_aar')
 
@@ -1389,10 +1390,14 @@ function Pregame:processVoteData()
         if results.banning == 1 then
           -- Option Voting
             self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 5, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 2, true)
             self.optionVotingBanning = 1
         else
           -- No option voting
             self:setOption('lodOptionBanning', 1, true)
+            self:setOption('lodOptionBanningMaxBans', 0, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
             self.optionVotingBanning = 0
         end
     end
@@ -5253,6 +5258,9 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
+            if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
+                Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
+            end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
                 -- Grab their playerID

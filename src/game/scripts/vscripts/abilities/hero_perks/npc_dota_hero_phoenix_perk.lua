@@ -7,11 +7,11 @@
 LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_phoenix_perk_delay", "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_phoenix_perk == nil then npc_dota_hero_phoenix_perk = class({}) end
+if npc_dota_hero_phoenix_perk ~= "" then npc_dota_hero_phoenix_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --        Modifier: modifier_npc_dota_hero_phoenix_perk
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_phoenix_perk == nil then modifier_npc_dota_hero_phoenix_perk = class({}) end
+if modifier_npc_dota_hero_phoenix_perk ~= "" then modifier_npc_dota_hero_phoenix_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk:IsPassive()
     return true
@@ -91,7 +91,7 @@ if IsServer() then
     end
 end
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_phoenix_perk_delay == nil then modifier_npc_dota_hero_phoenix_perk_delay = class({}) end
+if modifier_npc_dota_hero_phoenix_perk_delay ~= "" then modifier_npc_dota_hero_phoenix_perk_delay = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phoenix_perk_delay:RemoveOnDeath()
     return false

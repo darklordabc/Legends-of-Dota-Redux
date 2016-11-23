@@ -11,7 +11,7 @@ function showIngameBuilder() {
 
         // Spawn the hero builder
         heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
-        heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup.xml', false, false);
+        heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
         heroBuilderPanel.isIngameBuilder = true;
 
         // Boot it into selection mode
