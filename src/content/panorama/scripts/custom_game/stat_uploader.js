@@ -3,7 +3,7 @@
 var authKey = null;
 var url = null;
 
-function SendRequest( requestParams, successCallback, errorCallback )
+function SendRequest( requestParams, successCallback )
 {
 	if (!authKey || ! url)
 	{
@@ -12,18 +12,15 @@ function SendRequest( requestParams, successCallback, errorCallback )
 	}
 
     requestParams.AuthKey = authKey;
-    var fullRequestParams = {
-        type: 'POST',
-        data: { 
-        	CommandParams: JSON.stringify(requestParams) 
-        },
-        success: successCallback
-    };
 
-    if (errorCallback != null)
-    	fullRequestParams.error = errorCallback;
-
-    $.AsyncWebRequest(url, fullRequestParams);
+    $.AsyncWebRequest(url,
+        {
+            type: 'POST',
+            data: { 
+            	CommandParams: JSON.stringify(requestParams) 
+            },
+            success: successCallback
+        });
 }
 
 

@@ -28,16 +28,13 @@ function showIngameBuilder() {
             heroBuilderPanel.FindChildTraverse("balanceModePointsHeroes").SetHasClass("balanceModeDisabled", !balanceMode);
             heroBuilderPanel.FindChildTraverse("balanceModePointsSkills").SetHasClass("balanceModeDisabled", !balanceMode);
         }
-
-        heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
-
         // Hide the hero selection when spawn hero is pressed
         GameEvents.Subscribe('lodNewHeroBuild', function() {
             $('#heroBuilderDisplay').visible = false;
         });
 
         // Make it visible
-        $('#heroBuilderDisplay').visible = true;       
+        $('#heroBuilderDisplay').visible = true; 
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
     }

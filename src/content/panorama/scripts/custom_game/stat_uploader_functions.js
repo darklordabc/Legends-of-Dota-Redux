@@ -135,7 +135,7 @@ function LoadBuilds( filter ){
         Filter: filter,
     }
 
-    GameUI.CustomUIConfig().SendRequest( requestParams,  function ( data ) {
+    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
         var builds = JSON.parse(data);
 
         // The  container to work with
@@ -145,12 +145,5 @@ function LoadBuilds( filter ){
             addRecommendedBuild(con, build);
 
         LoadFavBuilds();
-
-        $('#buildLoadingIndicator').visible = false;
-        con.GetParent().visible = true;
-    },
-    function(){
-        $('#buildLoadingSpinner').visible = false;
-        $('#buildLoadingIndicatorText').text = $.Localize('#unableLoadingBuilds');
-    });
+    }) );
 } 
