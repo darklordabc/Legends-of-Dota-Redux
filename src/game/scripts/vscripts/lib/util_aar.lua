@@ -273,7 +273,7 @@ function modifier_duel_out_of_game:CheckState()
 	return state
 end
 
-DUEL_INTERVAL = 80
+DUEL_INTERVAL = 240
 DUEL_NOBODY_WINS = 60
 DUEL_PREPARE = 2.0
 
