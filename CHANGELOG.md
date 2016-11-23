@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Voting for the ban phase now works
 - Multicast Maddness option now works
 - Added Duels
+- GUI Redesign
 
 ### Balance
 - Added Concussive Break
