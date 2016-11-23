@@ -50,17 +50,19 @@
     "unlockTeams"                                   "Unlock Teams"
 
     // The stage selection interface
-    "lodStageButtonOptionSelection"                 "Option Selection"
-    "lodStageButtonOptionVoting"                    "Option Voting"
-    "lodStageButtonBanning"                         "Banning"
-    "lodStageButtonSelection"                       "Hero Builder"
-    "lodStageButtonRandomSelection"                 "All Random Build Selection"
-    "lodStageButtonReview"                          "Review"
+    "lodStageOptionSelection"                 "Option Selection"
+    "lodStageOptionVoting"                    "Option Voting"
+    "lodStageBanning"                         "Banning"
+    "lodStageSelection"                       "Hero Builder"
+    "lodStageRandomSelection"                 "All Random Build Selection"
+    "lodStageReview"                          "Review"
+    "lodStageIngame"                          "Ingame"
 
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
     "to_advanced_options"                           "To advanced options"
+    "customizeAdvancedSettings"                     "To customize these advance settings, you must select \"Custom Settings\" gamemode in the main screen. If you can't see the custom settings, use the scroll button on the side."
     "to_basic_options"                              "To basic options"
     "importAndExport_code"                          "Settings"
     "importAndExport_apply"                         "Apply"
@@ -459,6 +461,9 @@
     "lodOptionAboutDisablePerks"  					"Hero Perks will not be assigned to heroes."
 	
 	//Builds
+    "loadingBuilds"                                 "Loading builds"
+    "unableLoadingBuilds"                           "Unable to load builds"
+
 	"build_cherub_title"							"Cherub"
 	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
 	

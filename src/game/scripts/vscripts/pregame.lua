@@ -5456,7 +5456,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             return 30.0
         end, 'waves', 0.0)
 
-        if OptionManager:GetOption('duels') == 1 and (util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) + util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS) > 1 or IsInToolsMode()) then
+        if OptionManager:GetOption('duels') == 1 then
             local duel
             duel = (function () 
                 local next_tick = DUEL_INTERVAL
