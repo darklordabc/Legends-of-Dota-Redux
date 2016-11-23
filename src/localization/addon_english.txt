@@ -120,6 +120,7 @@
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
 	"lodMutatorBotsBuff1"                           "Buff Bots"
+	"lodMutatorDuel"								"Duels"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -314,6 +315,10 @@
     "lodOptionNormal"                               "Normal - Every 2 Minutes"
     "lodOptionHigh"                                 "High - Every Minute"
     "lodOptionExtreme"                              "Extreme - Every 30 Seconds"
+
+    "lodOptionDuels"                                "Duels"
+    "lodOptionDesDuels"                             "Duels"
+    "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
@@ -781,10 +786,12 @@
     "lodFastStart"                                  "Enable Fast Start"
     "lodBalanceMode"                                "Disable Points Mode"
     "lodStrongTower"                                "Enable Stronger Towers"
+    "lodDuels"                                      "Enable Duels"
     
     "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
     "textBMTooltip"                             "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
     "textSTTooltip"                             "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
+    "textDTooltip"                              "Teams face each other every 5 minutes on randomly selected arenas."
 
     "bots_lod"                                      "Bots"
 
@@ -874,6 +881,17 @@
     "teamSwitch_disconnected"                       "DISCONNECTED"
     "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
     "teamSwitch_cooldown"                           "Team switching is still on cooldown."
+
+    // Duel
+
+    "duel_cant_swap"                                "You can't change build during duel!"
+    "duel_10_sec_to_begin"                          "10 seconds before start of duel!"
+    "duel_10_sec_to_end"                            "10 seconds to draw!"
+    "duel_next_duel"                                "Next Duel: "
+    "duel_nobody_wins"                              "Draw: "
+    "duel_start"                                    "Duel has been started"
+    "duel_end"                                      "Duel has been ended"
+    "duel_draw"                                     "Duel has been ended"
 
     /////////////////
     // UNIQUE HERO MECHANICS

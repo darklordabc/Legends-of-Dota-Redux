@@ -2328,7 +2328,7 @@
 #optionVoting {
     width: 98%;
     max-width: 1024px;
-    height: 200px;
+    height: 300px;
     margin-top: 4px;
     border-radius: 8px;
     visibility: collapse;
@@ -2342,7 +2342,7 @@
 
 .veryBasicVoting #optionVoting {
     width: 240px;
-    height: 500px;
+    height: 605px;
 }
 
 .phase_option_voting_selected #optionVoting {

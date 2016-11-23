@@ -13,6 +13,8 @@ local challenge = require('challenge')
 local ingame = require('ingame')
 require('lib/wearables')
 
+require('lib/util_aar')
+
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -1259,6 +1261,10 @@ end
 function Pregame:onIngameBuilder(eventSourceIndex, args)
     local playerID = args.playerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if duel_active or hero:HasModifier("modifier_tribune") then
+        customAttension("#duel_cant_swap", 5)
+        return
+    end
     if IsValidEntity(hero) and hero:IsAlive() then
         local player = PlayerResource:GetPlayer(playerID)
         network:showHeroBuilder(player)
@@ -1301,6 +1307,10 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
         end,
 
         strongtowers = function(choice)
+            return choice == 1 or choice == 0
+        end,
+
+        duels = function(choice)
             return choice == 1 or choice == 0
         end
     }
@@ -1428,6 +1438,17 @@ function Pregame:processVoteData()
             -- On by default
             self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
             self.optionVotingStrongTowers = 0
+        end
+    end
+    if results.duels ~= nil then
+        if results.duels == 1 then
+            -- Enable Strong Towers
+            self:setOption('lodOptionDuels', 1, true)
+            self.optionVotingDuels = 1
+        else
+            -- On by default
+            self:setOption('lodOptionDuels', 0, true)
+            self.optionVotingDuels = 0
         end
     end
 
@@ -1769,6 +1790,11 @@ function Pregame:initOptionSelector()
         end,
 
         -- Common block troll combos
+        lodOptionDuels = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
             return value == 0 or value == 1
         end,
@@ -2082,6 +2108,8 @@ function Pregame:initOptionSelector()
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
+
+                self:setOption('lodOptionDuels', 0, false)
                 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -2711,6 +2739,7 @@ function Pregame:processOptions()
 
     local status,err = pcall(function()
         -- Push settings externally where possible
+        OptionManager:SetOption('duels', this.optionStore['lodOptionDuels'])
         OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
         OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
         OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
@@ -2863,6 +2892,7 @@ function Pregame:processOptions()
 			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
 			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
 			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+                    ['Duels'] = this.optionStore['lodOptionDuels'],
                     ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
                     ['Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
 			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
@@ -5425,6 +5455,104 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             WAVE = WAVE + 1
             return 30.0
         end, 'waves', 0.0)
+
+        if OptionManager:GetOption('duels') == 1 then
+            local duel
+            duel = (function () 
+                local next_tick = DUEL_INTERVAL
+                
+                Timers:CreateTimer(function()
+                    if duel_active == true then 
+                        local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
+
+                        Timers:CreateTimer(function()
+                            draw_tick = draw_tick - 1
+
+                            if duel_active == false then 
+                                return
+                            else 
+                                sendEventTimer( "#duel_nobody_wins", draw_tick)
+                            end
+
+                            return 1.0
+                        end, 'duel_countdown_draw', 0)
+                        return
+                    else 
+                        sendEventTimer( "#duel_next_duel", next_tick)
+                    end
+                    next_tick = next_tick - 1
+                    return 1.0
+                end, 'duel_countdown_next', 0)
+
+                Timers:CreateTimer(function()
+                    customAttension("#duel_10_sec_to_begin", 5)
+                    EmitGlobalSound("Event.DuelStart")
+
+                    -- CustomGameEventManager:Send_ServerToAllClients("duel_sound", {sound = "DOTA_Item.DoE.Activate"})
+
+                    Timers:CreateTimer(function()
+                        initDuel(duel)
+                    end, 'start_duel', 10)
+
+                    Timers:CreateTimer(function()
+                        if duel_active then
+                            customAttension("#duel_10_sec_to_end", 5)
+                        end
+                    end, 'duel_draw_warning', DUEL_NOBODY_WINS + DUEL_PREPARE)
+                end, 'main_duel_timer', DUEL_INTERVAL - 10)
+            end)
+            duel()
+        end
+
+        -- if OptionManager:GetOption('duels') == 1 then
+        --     local duel
+        --     duel = (function () 
+        --         Timers:CreateTimer(function()
+        --             customAttension("#duel_10_sec_to_begin", 5)
+
+        --             Timers:CreateTimer(function()
+        --                 initDuel(duel)
+        --             end, 'start_duel', 10)
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active then
+        --                     customAttension("#duel_10_sec_to_end", 5)
+        --                 end
+        --             end, 'waves', DUEL_NOBODY_WINS)
+
+        --             local next_tick = 10
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active == true then 
+        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+        --                     return
+        --                 else 
+        --                     sendEventTimer( "#duel_next_duel", next_tick)
+        --                 end
+
+        --                 next_tick = next_tick - 1
+        --                 return 1.0
+        --             end, 'duel_countdown_next', 0)
+
+        --             local draw_tick = 10
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active ~= true then
+        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+        --                     return
+        --                 else
+        --                     sendEventTimer( "#duel_nobody_wins", draw_tick)
+        --                 end
+
+        --                 draw_tick = draw_tick - 1
+        --                 return 1.0
+        --             end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
+
+        --             return DUEL_INTERVAL - 10
+        --         end, 'main_duel_timer', DUEL_INTERVAL - 10)
+        --     end)
+        --     duel()
+        -- end
     end
 end, nil)
 

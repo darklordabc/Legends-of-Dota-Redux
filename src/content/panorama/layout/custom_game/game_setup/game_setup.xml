@@ -252,26 +252,52 @@
                         <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( StrongTowersTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textSTTooltip )" onmouseout="UIHideCustomLayoutTooltip( StrongTowersTooltip )">  
                             <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                         </Panel>
+                    </Panel>
+                    <Panel class="optionVoteOptions">
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteStrongTowersNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
+                                <Label text="lodOptionNo" />
+                                <Label id="voteCountNoST" class="premiumFeature" />
+                            </Button>
+
+                            <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageST" />
                         </Panel>
-                        <Panel class="optionVoteOptions">
-                            <Panel class="optionVoteRoot">
-                                <Button id="optionVoteStrongTowersNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
-                                    <Label text="lodOptionNo" />
-                                    <Label id="voteCountNoST" class="premiumFeature" />
-                                </Button>
 
-                                <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageST" />
-                            </Panel>
-
-                            <Panel class="optionVoteRoot">
-                                <Button id="optionVoteStrongTowersYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
-                                    <Label text="lodOptionYes" />
-                                    <Label id="voteCountYesST" class="premiumFeature" />
-                                </Button>
-                                <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageST" />
-                            </Panel>
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteStrongTowersYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
+                                <Label text="lodOptionYes" />
+                                <Label id="voteCountYesST" class="premiumFeature" />
+                            </Button>
+                            <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageST" />
                         </Panel>
                     </Panel>
+                </Panel>
+                <Panel class="optionVotePhase">
+                    <Panel class="optionVoteInfoHeader">
+                        <Label class="optionVoteHeader" text="lodDuels" />
+                        <Panel class="VotingOptionInfo" id="DuelsInfo" onmouseover="UIShowCustomLayoutParametersTooltip( DuelsTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textDTooltip )" onmouseout="UIHideCustomLayoutTooltip( DuelsTooltip )">  
+                            <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                        </Panel>
+                    </Panel>
+                    <Panel class="optionVoteOptions">
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteDuelsNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', false)">
+                                <Label text="lodOptionNo" />
+                                <Label id="voteCountNoD" class="premiumFeature" />
+                            </Button>
+
+                            <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageD" />
+                        </Panel>
+
+                        <Panel class="optionVoteRoot">
+                            <Button id="optionVoteDuelsYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', true)">
+                                <Label text="lodOptionYes" />
+                                <Label id="voteCountYesD" class="premiumFeature" />
+                            </Button>
+                            <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageD" />
+                        </Panel>
+                    </Panel>
+                </Panel>
             </Panel>
 
             <Panel id="optionSelection">
@@ -363,6 +389,9 @@
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
 						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png"></Image>
+						
+						<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDuel.png"></Image>
+						
 						 
 						<Panel id="gamemodesPanel"> 
 							<Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 
