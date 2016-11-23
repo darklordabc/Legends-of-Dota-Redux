@@ -14,6 +14,9 @@ n    lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('
 
 require('lib/StatUploaderFunctions')
 
+-- Precache obstacles
+require('obstacles')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
@@ -33,6 +36,9 @@ function Precache(context)
         end
     end
     -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    
+    precacheObstacles(context)
 end
 
 -- Create the game mode when we activate
