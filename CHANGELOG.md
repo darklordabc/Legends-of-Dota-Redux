@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Improved hero picking screen cosmetics, heros play animation when mouseover now
 - Voting for the ban phase now works
 - Multicast Maddness option now works
+- Added Duels
 
 ### Balance
 - Added Concussive Break
