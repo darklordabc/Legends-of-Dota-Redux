@@ -168,6 +168,8 @@ OptionManager:SetOption('fullPriceSellback', false)
 OptionManager:SetOption('maxBans', 5)
 OptionManager:SetOption('maxHeroBans', 2)
 
+OptionManager:SetOption('duels', 0)
+
 -- Host banning mode?
 OptionManager:SetOption('hostBanning', false)
 
