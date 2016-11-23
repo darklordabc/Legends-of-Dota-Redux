@@ -3401,9 +3401,6 @@ function onLockOptionsPressed() {
     // Ensure teams are locked
     if(!Game.GetTeamSelectionLocked()) return;
 
-    // Lock options
-    showBuilderTab('pickingPhaseMainTab');
-    
     GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
 
@@ -3700,14 +3697,11 @@ function updateVotingPercentage(votes, labels) {
 
 // A phase was changed
 var seenPopupMessages = {};
+var isBuildsDonwloaded = false;
+
 function OnPhaseChanged(table_name, key, data) {
     switch(key) {
         case 'phase':
-            // Set main tab activated
-            // #Warning! Builds load
-            if (currentPhase == PHASE_LOADING)
-                showBuilderTab('pickingPhaseMainTab');
-
             // Update phase classes
             var masterRoot = $.GetContextPanel();
             masterRoot.RemoveClass(phases[currentPhase].class);
@@ -3751,6 +3745,12 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for banning phase
             if(currentPhase == PHASE_BANNING) {
+                // Set main tab activated
+                if (!isBuildsDonwloaded){
+                    showBuilderTab('pickingPhaseMainTab');
+                    isBuildsDonwloaded = true;
+                }
+
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillBanningInfo) {
                     seenPopupMessages.skillBanningInfo = true;
@@ -3760,6 +3760,12 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) {
+                // Set main tab activated
+                if (!isBuildsDonwloaded){
+                    showBuilderTab('pickingPhaseMainTab');
+                    isBuildsDonwloaded = true;
+                }
+
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillDraftingInfo) {
                     if (balanceMode) {
