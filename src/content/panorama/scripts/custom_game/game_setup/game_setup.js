@@ -3705,7 +3705,7 @@ function OnPhaseChanged(table_name, key, data) {
         case 'phase':
             // Set main tab activated
             // #Warning! Builds load
-            if (currentPhase == PHASE_SELECTION)
+            if (currentPhase == PHASE_LOADING)
                 showBuilderTab('pickingPhaseMainTab');
 
             // Update phase classes
