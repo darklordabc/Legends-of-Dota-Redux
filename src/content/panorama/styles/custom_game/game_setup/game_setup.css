@@ -950,6 +950,9 @@
 #heroBuilderPerksButton {
     align: right center;
     margin-right: 80px;
+
+    // Hide for some time
+    visibility: collapse;
 }
 
 #heroBuilderPerksButton.makeThePlayerNoticeThisButton {
@@ -1519,9 +1522,10 @@
 }
 
 #pickingPhaseSelectedHeroImageCon {
-    align: left center;
+    //align: left center;
+    //margin-left: 35px;
 
-    margin-left: 35px;
+    align: center center;
 }
 
 .notDraftable {
