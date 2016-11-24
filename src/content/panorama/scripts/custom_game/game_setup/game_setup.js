@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
 var PHASE_OPTION_VOTING = 2;    // Selection options
@@ -2357,7 +2359,7 @@ function onImportAndExportPressed() {
 function LoadPlayerSC( ) {
     var requestParams = {
         Command : "LoadPlayerSC",
-        SteamID: GetSteamID32()
+        SteamID: util.getSteamID32()
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
