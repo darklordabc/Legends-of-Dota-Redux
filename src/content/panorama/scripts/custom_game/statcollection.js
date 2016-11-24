@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 function OnClientCheckIn(args) {
 
     var playerInfo = Game.GetLocalPlayerInfo();
@@ -9,7 +11,7 @@ function OnClientCheckIn(args) {
 
     var payload = {
         modIdentifier: args.modID,
-        steamID32: GetSteamID32(),
+        steamID32: util.getSteamID32(),
         isHost: hostInfo, 
         matchID: args.matchID,
         schemaVersion: args.schemaVersion
@@ -25,16 +27,6 @@ function OnClientCheckIn(args) {
                 $.Msg('GDS Reply: ', data)
             }
         });
-}
-
-function GetSteamID32() {
-    var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-
-    var steamID64 = playerInfo.player_steamid,
-        steamIDPart = Number(steamID64.substring(3)),
-        steamID32 = String(steamIDPart - 61197960265728);
-
-    return steamID32;
 }
 
 function Print(msg) {
