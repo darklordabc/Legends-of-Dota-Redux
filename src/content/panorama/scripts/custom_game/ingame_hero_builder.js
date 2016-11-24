@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 // Have we spawned a hero builder?
 var spawnedHeroBuilder = false;
 
@@ -13,6 +15,8 @@ function showIngameBuilder() {
         heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
         heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
         heroBuilderPanel.isIngameBuilder = true;
+
+        util.blockMouseWheel(heroBuilderPanel);
 
         // Boot it into selection mode
         // heroBuilderPanel.SetHasClass('phase_ingame', true);
