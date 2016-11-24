@@ -43,15 +43,24 @@
     transition-duration: 0.25s;    
 }
 
+.unique_heroes_mode .heroRoot.takenHero DOTAHeroImage,
+.unique_heroes_mode .heroRoot.takenHero DOTAHeroMovie {
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #ffff00ff;
+}
+
+.heroRoot.takenHero.should_hide_this_hero DOTAHeroImage,
+.heroRoot.takenHero.should_hide_this_hero DOTAHeroMovie,
 .heroRoot.should_hide_this_hero DOTAHeroImage,
-.heroRoot.should_hide_this_hero DOTAHeroMovie{
+.heroRoot.should_hide_this_hero DOTAHeroMovie {
     opacity: 0.2;
     saturation: 0.0;
     wash-color: #777777aa;
 }
 
 .heroRoot.banned DOTAHeroImage,
-.heroRoot.banned DOTAHeroMovie{
+.heroRoot.banned DOTAHeroMovie {
     opacity: 0.2;
     saturation: 0.0;
     wash-color: #ff0000ff;

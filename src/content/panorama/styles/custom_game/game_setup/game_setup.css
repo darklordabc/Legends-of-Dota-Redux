@@ -1698,13 +1698,6 @@
     visibility: collapse;
 }
 
-.unique_heroes_mode .takenHero {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #777777aa;
-    border: 0px;
-}
-
 #lodToggleButton {
     visibility: collapse;
 }

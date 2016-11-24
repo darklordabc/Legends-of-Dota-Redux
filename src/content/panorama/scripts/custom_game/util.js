@@ -75,6 +75,14 @@ Util.blockMouseWheel = (function (panel) {
     Util.mouseWheelBlockingPanels.push(panel);
 });
 
+Util.getHexPlayerColor = (function (playerID) {
+    if (playerID === undefined)
+        return 'none';
+
+    var color = Players.GetPlayerColor( playerID ).toString(16);
+    color = color.substring(6, 8) + color.substring(4, 6) + color.substring(2, 4);
+    return "#" + color;
+});
 
 (function(){
 	GameUI.CustomUIConfig().Util = Util;
