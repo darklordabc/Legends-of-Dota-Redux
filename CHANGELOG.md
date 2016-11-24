@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.1 The Return
+## 3.2 
+
+### Bug Fixing/New Features
+- Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
+
+### Balance
+
+
+## 3.1 The Return - Steam Version
 
 ### Bug Fixing/New Features
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
@@ -20,7 +28,7 @@ All notable changes to this project will be documented in this file.
 - Weaver's Perk and Phoenix's perk will now trigger even if they don't have time-lapse or supernova.
 - Added Chen's Perk
 
-## 3.0 Steam Version
+## 3.0 
 
 ### Bug Fixing/New Features
 - Fixed SD Perk removing too many stats when selling infused raindrop
