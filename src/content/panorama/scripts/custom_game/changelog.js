@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 var messages = [];
 
 function toggleChangelog(arg){
@@ -145,6 +147,9 @@ function newMessages( newMessages ) {
 	$("#descriptionDisplay").visible = true;
 	$("#showDescriptionButton").checked = true;
 	$("#changelogNotification").visible = false;
+	
+	util.blockMouseWheel($("#changelogDisplay"));
+	util.blockMouseWheel($("#changelogNotification"));
 
 	GameEvents.Subscribe( "lodOnChangelog", displayChangelog );
 	GameEvents.Subscribe( "su_new_messages", newMessages );
