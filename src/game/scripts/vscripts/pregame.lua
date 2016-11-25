@@ -688,10 +688,10 @@ function Pregame:onThink()
         Tutorial:StartTutorialMode()
 
         -- Spawn all humans
-        Timers:CreateTimer(function()
-            -- Spawn all players
-        	this:spawnAllHeroes()
-        end, DoUniqueString('spawnbots'), 0.1)
+        -- Timers:CreateTimer(function()
+        --     -- Spawn all players
+        -- 	this:spawnAllHeroes()
+        -- end, DoUniqueString('spawnbots'), 0.1)
 
         -- Add extra towers
         Timers:CreateTimer(function()
@@ -813,8 +813,10 @@ function Pregame:actualSpawnPlayer()
 
             function spawnTheHero()
                 local status2,err2 = pcall(function()
+
                     -- Create the hero and validate it
                     local hero = CreateHeroForPlayer(heroName, player)
+                    -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
                         
@@ -850,18 +852,20 @@ function Pregame:actualSpawnPlayer()
                 end
             end
 
-            if this.cachedPlayerHeroes[playerID] then
-                -- Directly spawn the hero
-                spawnTheHero()
-            else
-                -- Already cached this player's hero
-                this.cachedPlayerHeroes[playerID] = true
+            spawnTheHero()
 
-                -- Attempt to precache their hero
-                PrecacheUnitByNameAsync(heroName, function()
-                    spawnTheHero()
-                end, playerID)
-            end
+            -- if this.cachedPlayerHeroes[playerID] then
+            --     -- Directly spawn the hero
+            --     spawnTheHero()
+            -- else
+            --     -- Already cached this player's hero
+            --     this.cachedPlayerHeroes[playerID] = true
+
+            --     -- Attempt to precache their hero
+            --     PrecacheUnitByNameAsync(heroName, function()
+            --         spawnTheHero()
+            --     end, playerID)
+            -- end
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
@@ -2479,7 +2483,7 @@ function Pregame:precacheBuilds()
 
     local this = self
 
-    local totalToCache = #allPlayerIDs + #allSkills
+    local totalToCache = #allPlayerIDs -- + #allSkills
 
     function checkCachingComplete()
         totalToCache = totalToCache - 1
@@ -2497,50 +2501,30 @@ function Pregame:precacheBuilds()
     end
 
     function continueCachingHeroes()
-        --print('continue caching hero')
-
-        -- Any more to cache?
-        if #allPlayerIDs <= 0 then
-            --[[donePrecaching = true
-
-            -- Tell clients
-            network:donePrecaching()
-
-            -- Check for ready
-            this:checkForReady()]]
-            return
-        end
-
-        local playerID = table.remove(allPlayerIDs, 1)
-
-        if PlayerResource:IsValidPlayerID(playerID) then
-            local heroName = self.selectedHeroes[playerID]
-
-            if heroName then
-                -- Store that it is cached
-                this.cachedPlayerHeroes[playerID] = true
-
-                --print('Caching ' .. heroName)
-
-                PrecacheUnitByNameAsync(heroName, function()
-                    -- Are we done
-                    checkCachingComplete()
-                end, playerID)
-
-                -- Continue
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
-            else
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
+        Timers:CreateTimer(function()
+            if #allPlayerIDs <= 0 then
+                return
             end
-        else
-            Timers:CreateTimer(function()
+
+            local playerID = table.remove(allPlayerIDs, 1)
+
+            if PlayerResource:IsValidPlayerID(playerID) then
+                local heroName = self.selectedHeroes[playerID]
+
+                if heroName then
+                    this.cachedPlayerHeroes[playerID] = true
+
+                    PrecacheUnitByNameAsync(heroName, function()
+                        checkCachingComplete()
+                        continueCachingHeroes()
+                    end, playerID)
+                else
+                    continueCachingHeroes()
+                end
+            else
                 continueCachingHeroes()
-            end, DoUniqueString('keepCaching'), timerDelay)
-        end
+            end
+        end, DoUniqueString('precacheHack'), 1.0)
     end
 
     function continueCaching()
@@ -2564,8 +2548,16 @@ function Pregame:precacheBuilds()
     end
 
     -- Start caching process
-    continueCaching()
-    continueCachingHeroes()
+    -- continueCaching()
+    -- continueCachingHeroes()
+
+    donePrecaching = true
+
+    -- Tell clients
+    network:donePrecaching()
+
+    -- Check for ready
+    this:checkForReady()
 end
 
 

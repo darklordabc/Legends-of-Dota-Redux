@@ -11,11 +11,16 @@ function checkForHero() {
 
     if(myInfo.player_selected_hero.length <= 0) {
         // Request a hero
-        GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
+        // GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
 
         // Try again after an entire second
         $.Schedule(1, checkForHero);
     }
+}
+
+function onSpawnButton() {
+    GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
+    $("#onSpawnButton").visible = false;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -23,5 +28,5 @@ function checkForHero() {
 //--------------------------------------------------------------------------------------------------
 (function() {
     // Check if we have a hero yet
-    checkForHero();
+    // checkForHero();
 })();

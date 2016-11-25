@@ -8,6 +8,6 @@
     </scripts>
 
     <Panel class="lodBlankHeroSelection">
-        <Label text="Please Wait" />
+        <Button id="spawn" onactivate="onSpawnButton()"><Label text="Press to Spawn" /></Button>
     </Panel>
 </root>
