@@ -76,7 +76,7 @@ function OnReviewPhaseStart() {
         var con = $('#reviewPhaseHeroImageContainer');
 
         if ($.GetContextPanel().preloadedHeroPanels != undefined) {
-            if ($.GetContextPanel().preloadedHeroPanels[ourHeroName]) {
+            if ($.GetContextPanel().preloadedHeroPanels[ourHeroName] && $.GetContextPanel().preloadedHeroPanels[ourHeroName].GetParent() != con) {
                 $.GetContextPanel().preloadedHeroPanels[ourHeroName].visible = true;
                 $.GetContextPanel().preloadedHeroPanels[ourHeroName].SetParent(con);
             } else {

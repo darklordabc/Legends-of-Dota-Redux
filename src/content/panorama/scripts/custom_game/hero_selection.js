@@ -11,7 +11,7 @@ function checkForHero() {
 
     if(myInfo.player_selected_hero.length <= 0) {
         // Request a hero
-        // GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
+        GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
 
         // Try again after an entire second
         $.Schedule(1, checkForHero);
@@ -19,8 +19,8 @@ function checkForHero() {
 }
 
 function onSpawnButton() {
-    GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
-    $("#onSpawnButton").visible = false;
+    // GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
+    // $("#onSpawnButton").visible = false;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -29,4 +29,14 @@ function onSpawnButton() {
 (function() {
     // Check if we have a hero yet
     // checkForHero();
+    GameEvents.Subscribe("lodSpawningQueue", function (args) {
+        var queue = (Players.GetLocalPlayer() - args.queue);
+
+        if (queue == 0) {
+            $("#loadingLabel").text = "Spawning...";
+        } else {
+            $("#loadingLabel").text = "You are queued for spawn: " + queue;
+        }
+    });
+    $.Msg("dicks");
 })();

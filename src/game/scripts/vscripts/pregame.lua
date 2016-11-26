@@ -688,10 +688,10 @@ function Pregame:onThink()
         Tutorial:StartTutorialMode()
 
         -- Spawn all humans
-        -- Timers:CreateTimer(function()
-        --     -- Spawn all players
-        -- 	this:spawnAllHeroes()
-        -- end, DoUniqueString('spawnbots'), 0.1)
+        Timers:CreateTimer(function()
+            -- Spawn all players
+        	this:spawnAllHeroes()
+        end, DoUniqueString('spawnplayers'), 5.0)
 
         -- Add extra towers
         Timers:CreateTimer(function()
@@ -748,56 +748,60 @@ function Pregame:spawnAllHeroes()
     local minPlayerID = 0
     local maxPlayerID = 24
 
-    -- Loop over all playerIDs
-    for playerID = minPlayerID,maxPlayerID-1 do
-    	-- Attempt to spawn the player
-    	self:spawnPlayer(playerID)
+    self.spawnQueueID = -1
+
+    self.playerQueue = function ()
+        PauseGame(true)
+        self.spawnQueueID = self.spawnQueueID + 1
+
+        -- Update queue info
+        print("lua dicks")
+        CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
+
+        -- End pause if every player is checked
+        if self.spawnQueueID > 24 then
+            PauseGame(false)
+            return
+        end
+
+        -- Skip disconnected players
+        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+            self.playerQueue()
+            return
+        end
+
+        -- Keep spawning
+        Timers:CreateTimer(function()
+            self:spawnPlayer(self.spawnQueueID, self.playerQueue)
+        end, DoUniqueString('playerSpawn'), 2.5)
     end
+
+    self.playerQueue()
 end
 
 -- Spawns a given player
-function Pregame:spawnPlayer(playerID)
+function Pregame:spawnPlayer(playerID, callback)
     -- Is there a player in this slot?
     if PlayerResource:GetConnectionState(playerID) >= 1 then
-        -- There is, go ahead and build this player
-
         -- Only spawn a hero for a given player ONCE
         if self.spawnedHeroesFor[playerID] then return end
         self.spawnedHeroesFor[playerID] = true
 
-        -- Insert the player for spawning
-        table.insert(self.spawnQueue, playerID)
+        self.currentlySpawning = true
 
         -- Actually spawn the player
-        self:actualSpawnPlayer()
+        self:actualSpawnPlayer(playerID, callback)
+    elseif callback then
+        callback()
     end
 end
 
-function Pregame:actualSpawnPlayer()
-    -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
-
-    -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
-    self.currentlySpawning = true
-
+function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
-        -- Done spawning, start the next one
-        this.currentlySpawning = false
-
-        -- Continue actually spawning
-        this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
-
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
-        -- Grab a player to spawn
-        local playerID = table.remove(this.spawnQueue, 1)
-
         -- Don't allow a player to get two heroes
         if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
         	return
@@ -852,20 +856,17 @@ function Pregame:actualSpawnPlayer()
                 end
             end
 
-            spawnTheHero()
+            self.currentlySpawning = false
 
-            -- if this.cachedPlayerHeroes[playerID] then
-            --     -- Directly spawn the hero
-            --     spawnTheHero()
-            -- else
-            --     -- Already cached this player's hero
-            --     this.cachedPlayerHeroes[playerID] = true
+            PrecacheUnitByNameAsync(heroName, function()
+                this.cachedPlayerHeroes[playerID] = true
 
-            --     -- Attempt to precache their hero
-            --     PrecacheUnitByNameAsync(heroName, function()
-            --         spawnTheHero()
-            --     end, playerID)
-            -- end
+                spawnTheHero()
+
+                if callback then
+                    callback()
+                end
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
@@ -3288,30 +3289,32 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Has this player already asked for their hero?
-    if self.spawnedHeroesFor[playerID] then
+    if self.spawnedHeroesFor[playerID] and self.currentlySpawning == false then
     	-- Do they have a hero?
     	if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
     		return
     	end
 
-    	if not self.requestHeroAgain then
-    		self.requestHeroAgain = {}
-    	end
+        self.spawnedHeroesFor[playerID] = true
 
-    	if self.requestHeroAgain[playerID] then
-    		if Time() > self.requestHeroAgain[playerID] then
-    			self.requestHeroAgain[playerID] = nil
-    			self.currentlySpawning = false
-    			self.spawnedHeroesFor[playerID] = false
-    		end
-    	else
-    		-- Allocate 3 seconds then allow them to spawn a hero
-    		self.requestHeroAgain[playerID] = Time() + 3
-    	end
+        -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
+        self:spawnPlayer(playerID)
+
+    	-- if not self.requestHeroAgain then
+    	-- 	self.requestHeroAgain = {}
+    	-- end
+
+    	-- if self.requestHeroAgain[playerID] then
+    	-- 	if Time() > self.requestHeroAgain[playerID] then
+    	-- 		self.requestHeroAgain[playerID] = nil
+    	-- 		self.currentlySpawning = false
+    	-- 		self.spawnedHeroesFor[playerID] = false
+    	-- 	end
+    	-- else
+    	-- 	-- Allocate 3 seconds then allow them to spawn a hero
+    	-- 	self.requestHeroAgain[playerID] = Time() + 3
+    	-- end
     end
-
-    -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
-    self:spawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
