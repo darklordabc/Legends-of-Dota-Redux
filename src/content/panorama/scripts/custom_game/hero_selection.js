@@ -9,7 +9,7 @@ function checkForHero() {
     // Game is bugged, or something is wrong, get out of here!
     if(myInfo == null) return;
 
-    if(myInfo.player_selected_hero.length <= 0) {
+    if(myInfo.player_selected_hero.length <= 0 || !Players.GetPlayerSelectedHero( playerID ) || Players.GetPlayerSelectedHero( playerID ) <= 0) {
         // Request a hero
         GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
 
@@ -18,17 +18,12 @@ function checkForHero() {
     }
 }
 
-function onSpawnButton() {
-    // GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
-    // $("#onSpawnButton").visible = false;
-}
-
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
 (function() {
     // Check if we have a hero yet
-    // checkForHero();
+    checkForHero();
     GameEvents.Subscribe("lodSpawningQueue", function (args) {
         var queue = (Players.GetLocalPlayer() - args.queue);
 

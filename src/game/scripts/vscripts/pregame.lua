@@ -760,6 +760,8 @@ function Pregame:spawnAllHeroes()
         -- End pause if every player is checked
         if self.spawnQueueID > 24 then
             PauseGame(false)
+            self.spawnQueueID = nil
+            self.heroesSpawned = true
             return
         end
 
@@ -3290,16 +3292,19 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Has this player already asked for their hero?
-    if self.spawnedHeroesFor[playerID] and self.currentlySpawning == false then
+    if self.heroesSpawned then
     	-- Do they have a hero?
+
     	if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
     		return
     	end
 
-        self.spawnedHeroesFor[playerID] = true
-
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"lodSpawningQueue",{queue = 0})
+        
         -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
         self:spawnPlayer(playerID)
+
+        self.spawnedHeroesFor[playerID] = true
 
     	-- if not self.requestHeroAgain then
     	-- 	self.requestHeroAgain = {}
