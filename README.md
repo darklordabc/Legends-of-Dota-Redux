@@ -4,9 +4,9 @@ Dota 2 Redux
 **Make Modding Great Again.**
 
 ###About###
- - Pick your skills to build an overpowered masterpiece!
- - Test out different combinations!
- - Create unique and creative heros to dominate your opponent.
+ - Choose from a huge selection of gamemodes and mutators to make every experience unique!
+ - Pick your skills or select a random build!
+ - Take advantage of hero perks and custom abilities to further enhance your hero! 
 
 ###Steam Workshop###
  - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
