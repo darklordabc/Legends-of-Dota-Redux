@@ -38,5 +38,4 @@ function onSpawnButton() {
             $("#loadingLabel").text = "You are queued for spawn: " + queue;
         }
     });
-    $.Msg("dicks");
 })();

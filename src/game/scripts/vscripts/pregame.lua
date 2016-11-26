@@ -755,7 +755,6 @@ function Pregame:spawnAllHeroes()
         self.spawnQueueID = self.spawnQueueID + 1
 
         -- Update queue info
-        print("lua dicks")
         CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
 
         -- End pause if every player is checked
@@ -791,8 +790,6 @@ function Pregame:spawnPlayer(playerID, callback)
 
         -- Actually spawn the player
         self:actualSpawnPlayer(playerID, callback)
-    elseif callback then
-        callback()
     end
 end
 
@@ -870,6 +867,10 @@ function Pregame:actualSpawnPlayer(playerID, callback)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            if callback then
+                callback()
+            end
         end
     end)
 
