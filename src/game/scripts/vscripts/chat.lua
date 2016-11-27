@@ -10,7 +10,8 @@ function Chat:Say( args )
   local msg = args["msg"]
   
   if channel == 'team' then
-    CustomGameEventManager:Send_ServerToAllClients("custom_chat_send_message", 
+    local team = PlayerResource:GetTeam(args["PlayerID"])
+    CustomGameEventManager:Send_ServerToTeam(team, "custom_chat_send_message", 
       { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg })
   end
 
