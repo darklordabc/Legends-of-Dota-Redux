@@ -809,7 +809,23 @@ function Pregame:actualSpawnPlayer()
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
         if player ~= nil then
-            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+            local filter = function (  ) return true end
+
+            if self.selectedPlayerAttr[playerID] == 'str' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'str'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'agi'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'int'
+                end
+            end
+
+            local heroName = self.selectedHeroes[playerID] or self:getRandomHero(filter)
 
             function spawnTheHero()
                 local status2,err2 = pcall(function()
