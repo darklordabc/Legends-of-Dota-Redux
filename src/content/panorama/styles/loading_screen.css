@@ -417,6 +417,8 @@ DOTALoadingScreenPlayer #PlayerEventCrestImage
 
 	transition-property: transform, opacity;
 	transition-duration: 0.5s;
+
+	visibility: collapse;
 }
 
 .AspectRatio4x3 #LoadingScreenChat

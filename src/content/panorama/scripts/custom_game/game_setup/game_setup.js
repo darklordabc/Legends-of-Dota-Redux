@@ -4514,6 +4514,7 @@ function showMainPanel() {
         g_TeamPanels.push( teamNode );
     }*/
 
+    
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name; 
 
@@ -4674,4 +4675,6 @@ function showMainPanel() {
 
     // Play appear animation when panel ready
     showMainPanel();
+
+    $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 })();

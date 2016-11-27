@@ -1,0 +1,31 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/game_setup/chat.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/game_setup/chat.js" /> 
+	</scripts>
+	<snippets>
+		<snippet name="timeStamp">
+		    <Panel class="timeStamp">
+		    	<Panel class="timeStampLine" />
+		    	<Label id="timeStamp" />
+		    	<Panel class="timeStampLine" />
+		    </Panel>
+		</snippet>
+	</snippets>
+
+	<Panel class="chatRoot blur" hittest="false" defaultfocus="chatInput" >
+		<Panel class="chatRows" hittest="false">
+			<Panel id="chatRows"/>
+		</Panel>
+
+		<Panel class="chatControls" hittest="true">
+			<Label id="channelName" />
+			<TextEntry id="chatInput" multiline="false" textmode="normal" oninputsubmit="say()">
+			</TextEntry>
+		</Panel>
+	</Panel>
+</root>

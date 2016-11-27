@@ -12,6 +12,8 @@
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
     </scripts>
     <Panel class="lodOptionsInterface" hittest="false">
+        <Panel id="chat" />
+
         <Panel id="lodNotificationArea">
         </Panel>
 

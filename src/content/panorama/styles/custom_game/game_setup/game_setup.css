@@ -20,6 +20,11 @@
     height: 100%;
 }
 
+#chat {
+	margin-bottom: 20px;
+	align: center bottom;
+}
+
 /*
     Notifications
 */
