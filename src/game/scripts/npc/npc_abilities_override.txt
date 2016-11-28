@@ -15,6 +15,11 @@
 	{
 		"MaxLevel" "1"
 	}
+	"satyr_trickster_purge"
+	{
+		"MaxLevel" "4"
+		"AbilityManaCost"	"120 80 40 0"
+	}
 	
 	"lone_druid_spirit_bear_entangle"
 	{
