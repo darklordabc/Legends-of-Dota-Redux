@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
 - Now if you select a primary attribute but not a hero, you will be given a random hero of that attribute
+- Fix multiple players trying to switch teams at the same time
 
 ### Balance
 
