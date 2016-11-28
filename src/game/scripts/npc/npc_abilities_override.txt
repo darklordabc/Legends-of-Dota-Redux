@@ -55,6 +55,12 @@
 		"AbilityDamage"	"150 250 350 450"
 	}
 	
+	"centaur_khan_war_stomp"
+	{
+		"MaxLevel" "4"
+		"AbilityCooldown" "20.0 16.0 13.0 10.0"
+	}
+	
 	"gnoll_assassin_envenomed_weapon"
 	{
 		"MaxLevel" "4"
