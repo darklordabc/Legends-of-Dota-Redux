@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Now if you select a primary attribute but not a hero, you will be given a random hero of that attribute
 - Fix multiple players trying to switch teams at the same time
 - Hopefully fixed the crashing at start, but has slowed down spawning a bit. Worthwhile compromise.
+- Fixed players/bots having white colors if over the default 10 player. 
 
 ### Balance
 
