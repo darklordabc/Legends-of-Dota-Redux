@@ -60,7 +60,7 @@ function showChatMessage( args ) {
 	label.style.color = channels[args.channel].color;
 
 	$.Schedule(0.2, function() {
-		$('#chatRows').GetParent().ScrollToBottom();
+		$('#chatRows').GetParent().ScrollToTop(); 
 	});	
 }
 

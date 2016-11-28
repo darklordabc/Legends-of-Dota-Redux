@@ -5,6 +5,8 @@
 
     z-index: 999;
     box-shadow: #00000099 -2px -2px 4px 4px;
+
+    transform-origin: 50% 100%;
 }
 
 .blur {
@@ -22,10 +24,14 @@
     transition-property: height, opacity;
     transition-timing-function: ease-in-out;
     transition-duration: 0.3s;
+
+    transform: scaleY(-1);
 }
 
 .blur .chatRows {
-    opacity: 0.2;
+    opacity-mask: url("s2r://panorama/images/masks/chat_preview_opacity_mask_png.vtex") 1.0;
+    background-color: #00000011;
+
     height: 50px;
 }
 
@@ -41,7 +47,9 @@
     width: 100%;
 
     flow-children: down;
-    vertical-align: bottom;
+    //vertical-align: bottom;
+
+    transform: scaleY(-1);
 }
 
 .timeStamp {
