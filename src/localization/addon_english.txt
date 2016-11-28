@@ -58,6 +58,10 @@
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
 
+    // Chat channels
+    "channelAll"                              "All"
+    "channelTeam"                             "Team"
+
     // The options menu
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"

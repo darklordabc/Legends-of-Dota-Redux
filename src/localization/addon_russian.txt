@@ -58,6 +58,10 @@
     "lodStageReview"                          "Обзор"
     "lodStageIngame"                          "В игре"
 
+    // Chat channels
+    "channelAll"                              "Всем"
+    "channelTeam"                             "Команде"
+
     // The options menu	
     "lockOptions"                                   "Заблокировать"
     "lockTeamsFirst"                                "Перед Продолжением Заблокируйте Команды"

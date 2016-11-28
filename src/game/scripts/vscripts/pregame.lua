@@ -1,3 +1,27 @@
+--[[for k,v in pairs(_G) do
+  print('key ', k, 'value ', v)
+end
+old_print = print
+print = function(...) 
+    local calling_script = debug.getinfo(2).short_src
+    old_print('Print called by: '..calling_script)
+    old_print(...)
+end
+
+
+
+--[   VScript ]: key 	ScriptDebugTextTrace	value 	function: 0x0333db48
+--[   VScript ]: key 	SendToServerConsole	value 	function: 0x032bbfd0
+--key 	PrintLinkedConsoleMessage	value 	function: 0x032bc058
+old_error = PrintLinkedConsoleMessage
+PrintLinkedConsoleMessage = function(...)
+    --local calling_script = debug.getinfo(2).short_src
+    print('Print called by: ') --..calling_script)
+    old_error(...)
+end
+]]
+--error('asfasdf')
+
 -- Libraries
 local constants = require('constants')
 local network = require('network')
@@ -14,6 +38,8 @@ local ingame = require('ingame')
 require('lib/wearables')
 
 require('lib/util_aar')
+
+require('chat')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
