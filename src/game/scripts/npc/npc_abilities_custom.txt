@@ -17764,6 +17764,107 @@
 		}
 	}
 	
+	"lord_of_lightning_holy_wrath_OP"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityTextureName"		"lord_of_lightning_holy_wrath_OP"
+	    "MaxLevel"               "4"
+				
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		//"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		//"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		//"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+			
+		"AbilityCastRange"			"800"
+		//"AbilityCastPoint"			"0"
+		"AbilityCooldown"			"0.0"
+		//"AbilityManaCost"			"200 240 280"
+			
+		//"AOERadius"					"800"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"chance_dmg"		"25"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"800"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage_per_int"			".5 .75 1 2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_dop_dmg"		"200"
+			}
+		}
+		
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact_b.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_lord_of_lightning_holy_wrath"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"Aura"		  		"modifier_lord_of_lightning_holy_wrath_aura"
+				"Aura_Radius" 		"%radius"
+				"Aura_Teams"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"  		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"		
+			}
+	
+			"modifier_lord_of_lightning_holy_wrath_aura"
+			{
+				//"Passive"	"1"
+				"IsHidden"			"1"
+				"OnAttacked"
+				{
+					"Random"
+					{
+						"Chance"		"%chance_dmg"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+	
+						"OnSuccess"
+						{
+							//"FireSound"
+							//{
+							//	"EffectName"	"Roshan.Bash"
+							//	"Target"		"ATTACKER"
+							//}
+							
+							//"AttachEffect"
+							//{
+							//	"EffectName"		"particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion_f.vpcf"
+							//	"EffectAttachType"	"follow_origin"	
+							//	"Target" 			"ATTACKER"
+							//}
+	
+							"RunScript"
+							{
+								"ScriptFile"   "abilities/life_in_arena/holy_wrath.lua"
+								"Function"     "damageTo"
+							}
+	
+						}
+					}
+				}
+				
+			}
+			
+		}
+	}
+	
 	"lord_of_lightning_brain_storm"
 	{
 		// General
