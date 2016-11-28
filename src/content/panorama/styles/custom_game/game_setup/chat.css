@@ -43,8 +43,15 @@
     opacity: 0;
 }
 
+.chatRowsWrapper {
+    width: 100%;
+    overflow: squish noclip;
+}
+
 #chatRows {
     width: 100%;
+
+    overflow: squish noclip;
 
     flow-children: down;
     //vertical-align: bottom;
