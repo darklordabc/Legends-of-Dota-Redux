@@ -61,23 +61,6 @@ function Pregame:init()
 
     self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
-    -- 10vs10 colors
-    self.playerColors = {}
-    self.playerColors[0] = { 100 * 2.55, 0, 0 }
-    self.playerColors[1]  = { 0, 25.88 * 2.55, 100 }
-    self.playerColors[2]  = { 9.8 * 2.55, 90.2  * 2.55, 72.55  * 2.55}
-    self.playerColors[3]  = { 32.94 * 2.55, 0, 50.59 * 2.55}
-    self.playerColors[4]  = { 100 * 2.55, 98.82 * 2.55, 0 }
-    self.playerColors[5]  = { 99.61 * 2.55, 72.94 * 2.55, 5.49 * 2.55}
-    self.playerColors[6]  = { 12.55 * 2.55, 75.3 * 2.55, 0 }
-    self.playerColors[7]  = { 89.8  * 2.55, 35.69 * 2.55, 69.02 * 2.55 }
-    self.playerColors[8]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
-    self.playerColors[9]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
-    self.playerColors[10]  = { 29.41 * 2.55, 74.90 * 2.55, 54.51 * 2.55 }
-    -- PLAYER_COLORS[11]  = { 89.41 * 2.55, 4.90 * 2.55, 34.51 * 2.55 }
-    -- PLAYER_COLORS[12]  = { 40.41 * 2.55, 40.90 * 2.55, 1.51 * 2.55 }
-    -- PLAYER_COLORS[13]  = { 9.41 * 2.55, 4.90 * 2.55, 85.51 * 2.55 }
-
     -- Who is ready?
     self.isReady = {}
     self.shouldFreezeHostTime = nil
@@ -5487,22 +5470,7 @@ local _instance = Pregame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
-    if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-        local colorID = 0
-        local setPlayerColor = function ( i )
-            if PlayerResource:IsValidPlayer(i) then
-                local color = _instance.playerColors[colorID]
-                PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
-                colorID = colorID + 1
-            end
-        end
-        for i=5,9 do
-            setPlayerColor(i)
-        end
-        for i=14,19 do
-            setPlayerColor(i)
-        end
-    elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         SU:SendPlayerBuild( buildBackups )
         
         WAVE = 0
