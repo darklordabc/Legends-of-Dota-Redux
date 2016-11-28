@@ -35,7 +35,20 @@
 	{
 		"MaxLevel" "1"
 	}
-		
+	
+	"satyr_soulstealer_mana_burn"
+	{
+		"MaxLevel" "4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"burn_amount"			"100 150 200 250"
+			}
+		}
+	}
+	
 	"gnoll_assassin_envenomed_weapon"
 	{
 		"MaxLevel" "4"
