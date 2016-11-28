@@ -5531,8 +5531,9 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             end, 'main_duel_timer', DUEL_INTERVAL - 10)
         end)
 
+        CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
+
         if OptionManager:GetOption('duels') == 1 then
-            CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
             _G.duel()
         end
 

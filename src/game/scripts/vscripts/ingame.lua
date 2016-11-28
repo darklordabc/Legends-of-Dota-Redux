@@ -1021,26 +1021,29 @@ end
 -- Buyback cooldowns
 function Ingame:checkBuybackStatus()
     ListenToGameEvent('npc_spawned', 
-        function(keys)
-            local hero = EntIndexToHScript(keys.entindex)
-            if IsValidEntity(hero) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
-                if hero:IsHero() then
-                    Timers:CreateTimer(
-                        function()
-                            if IsValidEntity(hero) then
-                                local buyBackLeft = hero:GetBuybackCooldownTime()
-                                if buyBackLeft ~= 0 then
-                                    local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
-                                    
-                                    if buyBackLeft > maxCooldown then
-                                        hero:SetBuybackCooldownTime(maxCooldown)
-                                    end
-                                end
+    function(keys)
+        local unit = EntIndexToHScript(keys.entindex)
+
+        if IsValidEntity(unit) then
+            if unit:IsHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
+                Timers:CreateTimer(
+                function()
+                    if IsValidEntity(unit) then
+                        local buyBackLeft = unit:GetBuybackCooldownTime()
+                        if buyBackLeft ~= 0 then
+                            local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
+                            
+                            if buyBackLeft > maxCooldown then
+                                unit:SetBuybackCooldownTime(maxCooldown)
                             end
-                        end, DoUniqueString('buyback'), 0.1)
-                end
+                        end
+                    end
+                end, DoUniqueString('buyback'), 0.1)
+            elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
+                unit:ForceKill(false)
             end
-        end, nil)
+        end
+    end, nil)
 end
 
 function Ingame:AddTowerBotController()

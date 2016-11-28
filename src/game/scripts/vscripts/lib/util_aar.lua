@@ -413,7 +413,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         local ents = Entities:FindAllInSphere(Vector(), 100000)
 
         for k,v in pairs(ents) do
-        	if v.GetOwnerEntity and IsValidEntity(v:GetOwnerEntity()) and v:GetOwnerEntity():entindex() == x:entindex() then
+        	if v:IsNull() == false and v.GetOwnerEntity and IsValidEntity(v:GetOwnerEntity()) and v:GetOwnerEntity():entindex() == x:entindex() then
         		pcall(function (  )
         			v:Kill(nil, nil)
         		end)
@@ -859,21 +859,24 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 			for k,v in pairs(ents) do
-				if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
-					if v:IsBuilding() and not v:IsTower() then
+				if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false then
+					v:RemoveModifierByName("modifier_duel_out_of_game")
+					v:RemoveModifierByName("modifier_tribune")
 
-					else
-						if v:IsNeutralUnitType() then
+					if v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
+						if v:IsBuilding() and not v:IsTower() then
 
 						else
-							v:RemoveNoDraw()
+							if v:IsNeutralUnitType() then
+
+							else
+								v:RemoveNoDraw()
+							end
 						end
-						v:RemoveModifierByName("modifier_duel_out_of_game")
-						v:RemoveModifierByName("modifier_tribune")
-					end
-					if v._duelDayVisionRange and v._duelNightVisionRange then
-						v:SetDayTimeVisionRange(v._duelDayVisionRange)
-						v:SetNightTimeVisionRange(v._duelNightVisionRange)
+						if v._duelDayVisionRange and v._duelNightVisionRange then
+							v:SetDayTimeVisionRange(v._duelDayVisionRange)
+							v:SetNightTimeVisionRange(v._duelNightVisionRange)
+						end
 					end
 				end
 			end
@@ -905,7 +908,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 
 			GridNav:RegrowAllTrees()
 
-			Convars:SetBool("dota_creeps_no_spawning", false)
+			-- Convars:SetBool("dota_creeps_no_spawning", false)
 
 	        if type(end_duel_callback) == "function" then
 	            end_duel_callback(duel_victory_team)
@@ -1036,8 +1039,6 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
     freezeGameplay()
 
     spawnEntitiesAlongPath( arenas[current_arena].polygon )
-
-    Convars:SetBool("dota_creeps_no_spawning", true)
  
     Timers:CreateTimer(function()
         endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
@@ -1439,34 +1440,31 @@ _G.initDuel = initDuel
 -- end
 
 function freezeGameplay()
-	Convars:SetBool("dota_creeps_no_spawning", true)
+	-- Convars:SetBool("dota_creeps_no_spawning", true)
 
 	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 	for k,v in pairs(ents) do
-		if v.HasModifier and v:HasModifier("modifier_arc_warden_tempest_double") then
+		if v:IsNull() == false and v.HasModifier and v:HasModifier("modifier_arc_warden_tempest_double") then
 			v:ForceKill(false)
 			return
 		end
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
+		if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
 			if v:IsBuilding() and not v:IsTower() then
 
 			else
 				if v:IsNeutralUnitType() then
 				else
 					v:AddNoDraw()
+					AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 				end
 
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 
-				-- if v:IsCreature() and v:IsCreep() then
 				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
 					local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
 					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
 				end
-				-- end
-
-				AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 			end
 			v._duelDayVisionRange = v:GetDayTimeVisionRange()
 			v._duelNightVisionRange = v:GetNightTimeVisionRange()
