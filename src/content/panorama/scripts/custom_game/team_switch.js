@@ -132,10 +132,12 @@ function SetTeamInfo() {
 function AttemptTeamSwitch(index) {
     if (disabled || !unbalanced || debounce) return;
 
-    if (CustomNetTables.GetTableValue("phase_ingame", "balance_players").swapInProgress == 1) {
-        $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
-        return;
-    } 
+    if (CustomNetTables.GetTableValue("phase_ingame", "balance_players")) {
+        if (CustomNetTables.GetTableValue("phase_ingame", "balance_players").swapInProgress == 1) {
+            $.DispatchEvent('DOTAShowTextTooltip',  $('#TeamSwitch_Button'), "#teamSwitch_tooltip");
+            return;
+        } 
+    }
 
     util.blockMouseWheel($("#TeamSwitch_Button"));
     util.blockMouseWheel($("#TeamSwitch_Panel"));

@@ -37,6 +37,8 @@ function Ingame:init()
             return
         end
 
+        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
+
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
