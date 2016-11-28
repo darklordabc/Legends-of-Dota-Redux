@@ -52,7 +52,7 @@
 	"polar_furbolg_ursa_warrior_thunder_clap"
 	{
 		"MaxLevel" "4"
-		"AbilityDamage"	"150 250 350 450"
+		"AbilityDamage"	"150 200 300 400"
 	}
 	
 	"centaur_khan_war_stomp"
