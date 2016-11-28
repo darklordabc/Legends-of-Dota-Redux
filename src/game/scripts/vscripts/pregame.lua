@@ -5471,6 +5471,9 @@ function Pregame:fixSpawningIssues()
     end, nil)
 end
 
+-- Return an instance of it
+local _instance = Pregame()
+
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -5585,5 +5588,4 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     end
 end, nil)
 
--- Return an instance of it
-return Pregame()
+return _instance

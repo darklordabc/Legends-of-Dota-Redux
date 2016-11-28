@@ -1325,8 +1325,10 @@ function generatePoints( initial, p, randomize )
 			end
 
             v2[9] = v2[8]
-            v2[10] = v2[8]
-            v2[11] = v2[8]
+            
+			for i=0,10 do
+				v2[i + 10] = v2[i]
+			end
 		end
 	end
 

@@ -26,6 +26,24 @@ function Ingame:init()
     self:AddTowerBotController()
     self:fixRuneBug()
 
+    -- 10vs10 colors
+    self.playerColors = {}
+    self.playerColors[0] = { 57, 117, 231 }
+    self.playerColors[1]  = { 122, 241, 187 }
+    self.playerColors[2]  = { 172, 10, 174}
+    self.playerColors[3]  = { 243, 234, 33}
+    self.playerColors[4]  = { 240, 111, 19 }
+    self.playerColors[5] = { 100 * 2.55, 0, 0 }
+    self.playerColors[6]  = { 0, 25.88 * 2.55, 100 }
+    self.playerColors[7]  = { 9.8 * 2.55, 90.2  * 2.55, 72.55  * 2.55}
+    self.playerColors[8]  = { 32.94 * 2.55, 0, 50.59 * 2.55}
+    self.playerColors[9]  = { 100 * 2.55, 98.82 * 2.55, 0 }
+    self.playerColors[15]  = { 99.61 * 2.55, 72.94 * 2.55, 5.49 * 2.55}
+    self.playerColors[16]  = { 12.55 * 2.55, 75.3 * 2.55, 0 }
+    self.playerColors[17]  = { 252, 255, 236 }
+    self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
+    self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
+
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
@@ -476,6 +494,7 @@ end
 function Ingame:switchTeam(eventSourceIndex, args)
     local this = self
     this:balancePlayer(args.swapID, args.newTeam)
+    Ingame:SetPlayerColors( )
 end
 
 -- Balances a player onto another team
@@ -490,6 +509,8 @@ function Ingame:balancePlayer(playerID, newTeam)
         hero:SetTeam(newTeam)
         hero:SetPlayerID(playerID)
         hero:SetOwner(PlayerResource:GetPlayer(playerID))
+
+
 
         -- Kill the hero
         hero:Kill(nil, nil)
@@ -1212,5 +1233,24 @@ function Ingame:FilterModifiers( filterTable )
     
     return true
 end
+
+function Ingame:SetPlayerColors( )
+    for i=0,23 do
+        if PlayerResource:IsValidPlayer(i) and self.playerColors[i] then
+            local color = self.playerColors[i]
+            PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
+        end
+    end
+end
+
+local _instance = Ingame()
+
+ListenToGameEvent('game_rules_state_change', function(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+        _instance:SetPlayerColors()
+    end
+end, nil)
+
 -- Return an instance of it
-return Ingame()
+return _instance
