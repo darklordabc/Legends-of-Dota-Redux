@@ -795,6 +795,7 @@ end
 function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, duel_victory_team)
 	if not duel_active then return end
     duel_active = false
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 0})
 
     winners = duel_victory_team
 
@@ -1010,6 +1011,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
  
     duel_count = duel_count + 1
     duel_active = true
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 1})
 
     current_arena = arena
 

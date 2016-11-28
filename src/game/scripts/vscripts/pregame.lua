@@ -5466,13 +5466,13 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             local next_tick = DUEL_INTERVAL
             
             Timers:CreateTimer(function()
-                if duel_active == true then 
+                if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then 
                     local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
 
                     Timers:CreateTimer(function()
                         draw_tick = draw_tick - 1
 
-                        if duel_active == false then 
+                        if CustomNetTables:GetTableValue("phase_ingame","duel").active == 0 then 
                             return
                         else 
                             sendEventTimer( "#duel_nobody_wins", draw_tick)
@@ -5500,7 +5500,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                 end, 'start_duel', 10)
 
                 Timers:CreateTimer(function()
-                    if duel_active then
+                    if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then
                         customAttension("#duel_10_sec_to_end", 5)
                     end
                 end, 'duel_draw_warning', DUEL_NOBODY_WINS + DUEL_PREPARE)
@@ -5508,6 +5508,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         end)
 
         if OptionManager:GetOption('duels') == 1 then
+            CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
             _G.duel()
         end
 
