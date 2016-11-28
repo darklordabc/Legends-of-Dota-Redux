@@ -57,10 +57,10 @@ arenas[AAR_SMALL_ARENA] = {
 	},
 	duel_points = {
 		radiant = {
-			[1] = Vector(1907.01, -4678, 257),
+			[1] = Vector(1907.01, -4580.5, 257),
 		},
 		dire = {
-			[1] = Vector(3750.69, -4678, 257),
+			[1] = Vector(3750.69, -4580.5, 257),
 		}
 	},
 	random_obstacles = 10,
@@ -511,10 +511,7 @@ function removeHeroesFromDuel(heroes_table)
                              end
                             meepo_return_table[i]:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
        
-                            local point = meepo_return_table[i].duel_old_point
-                            if not point then
-                                point = getMidPoint( arenas[current_arena].polygon ) --Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, meepo_return_table[i]:GetTeamNumber())):GetAbsOrigin()
-                            end      
+                            local point = meepo_return_table[i].duel_old_point    
  
                             if meepo_return_table[i].duel_cooldowns then
                                 setAbilitiesCooldowns(meepo_return_table[i], meepo_return_table[i].duel_cooldowns)
@@ -545,7 +542,9 @@ function removeHeroesFromDuel(heroes_table)
 
 									Timers:CreateTimer(function()
 										PlayerResource:SetCameraTarget(meepo_return_table[i]:GetPlayerOwnerID(),nil)
-										ParticleManager:DestroyParticle(x.duelParticle, false)
+										if x.duelParticle then
+											ParticleManager:DestroyParticle(x.duelParticle, false)
+										end
 										x:EmitSound("Portal.Hero_Disappear")
 									end, "meepo_cam"..meepo_return_table[i]:GetPlayerID(), 0.06)
                                 end
@@ -582,9 +581,6 @@ function removeHeroesFromDuel(heroes_table)
 		        x:RemoveModifierByName("modifier_bloodseeker_rupture")
  
                 local point = x.duel_old_point
-                if not point then
-                    point = getMidPoint( arenas[current_arena].polygon ) -- Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, x:GetTeamNumber())):GetAbsOrigin()
-                end
  
                 if x.duel_cooldowns then
                     setAbilitiesCooldowns(x, x.duel_cooldowns)
@@ -621,7 +617,9 @@ function removeHeroesFromDuel(heroes_table)
 
 						Timers:CreateTimer(function()
 							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
-							ParticleManager:DestroyParticle(x.duelParticle, false)
+							if x.duelParticle then
+								ParticleManager:DestroyParticle(x.duelParticle, false)
+							end
 							x:EmitSound("Portal.Hero_Disappear")
 						end, DoUniqueString("camera"), 0.06)
                     end
@@ -797,6 +795,7 @@ end
 function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, duel_victory_team)
 	if not duel_active then return end
     duel_active = false
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 0})
 
     winners = duel_victory_team
 
@@ -1012,6 +1011,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
  
     duel_count = duel_count + 1
     duel_active = true
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 1})
 
     current_arena = arena
 
@@ -1191,6 +1191,10 @@ end
 function spawnListener(event)
     if not duel_active then return end
     local spawnedUnit = EntIndexToHScript( event.entindex )
+    if spawnedUnit and not spawnedUnit.duel_old_point then
+    	spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+    	return
+    end
     if not spawnedUnit or not IsValidEntity(spawnedUnit) or not spawnedUnit:IsRealHero() then
         return
     end
@@ -1219,6 +1223,22 @@ function spawnListener(event)
        
 		return nil
 	end, DoUniqueString('preventcamping'), 0.15)
+end
+
+function getMinimumAliveHeroes(hero_table1, hero_table2)
+    local alive_min = 0
+    for _, x in pairs(hero_table1) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_min = alive_min + 1 end
+    end
+
+    if alive_min == 0 then return 0 end
+ 
+    alive_min = 0
+    for _, x in pairs(hero_table2) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_min = alive_min + 1 end
+    end
+   
+   	if alive_min == 0 then return 0 end
 end
 
 function getMaximumAliveHeroes(hero_table1, hero_table2)
@@ -1319,13 +1339,46 @@ function generatePoints( initial, p, randomize )
 	end
 end
 
+function generatePointsVertically( initial, p, randomize )
+	for k,v in pairs(initial) do -- arenas
+		for k2,v2 in pairs(v[p]) do -- teams
+			destroyTrees(v2[1], 32)
+			
+			local init = v2[1]
+
+			for i=0,9 do
+				local xOffset = 0
+				local yOffset = 0
+				if i >= 5 then
+					xOffset = -100
+					yOffset = 100 * 5
+				end
+				v2[i] = init + Vector(xOffset, (-100 * i) + yOffset, 0)
+				destroyTrees(v2[i], 32)
+			end
+
+			for i=0,10 do
+				v2[i + 10] = v2[i]
+			end
+		end
+	end
+
+	if randomize then
+		for k,v in pairs(initial) do
+			local temp = v[p].dire
+			v[p].dire = v[p].radiant
+			v[p].radiant = temp
+		end
+	end
+end
+
 function initDuel(restart)
 	winners = -1
 
 	local randomize = RandomInt(0,1) == 1
 
 	generatePoints( arenas, "tribune_points", randomize )
-	generatePoints( arenas, "duel_points", randomize )
+	generatePointsVertically( arenas, "duel_points", randomize )
 
 	local radiantHeroes = {}
 	local direHeroes = {}
@@ -1343,8 +1396,19 @@ function initDuel(restart)
 	end
 
 	local max_alives = getMaximumAliveHeroes(radiantHeroes, direHeroes)
+	local min_alives = getMinimumAliveHeroes(radiantHeroes, direHeroes)
   	if max_alives < 1 then max_alives = 1 end
   	local c = RandomInt(1,max_alives)
+  	print("pre min_alives: ", min_alives)
+  	print(_G.duel == nil)
+  	if min_alives == 0 and _G.duel then
+  		print("min_alives: ", min_alives)
+
+	    Timers:CreateTimer(function()
+	        _G.initDuel(_G.duel)
+	    end, DoUniqueString('duel_postpone'), 1.0) 
+  		return
+  	end
 
 	-- local selected = false
 	-- local arena = AAR_SMALL_ARENA
@@ -1365,6 +1429,8 @@ function initDuel(restart)
 		restart()
 	end, arena)
 end
+
+_G.initDuel = initDuel
 
 -- function endDuel()
 
