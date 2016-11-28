@@ -814,6 +814,7 @@ function Pregame:actualSpawnPlayer()
             function spawnTheHero()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
+                    print(heroName)
                     local hero = CreateHeroForPlayer(heroName, player)
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -2675,11 +2676,31 @@ function Pregame:validateBuilds()
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
+    local this = self
+
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID-1 do
         -- Ensure they have a hero
         if not self.selectedHeroes[playerID] then
-            local heroName = self:getRandomHero()
+            local filter = function (  )
+                return true
+            end
+
+            if self.selectedPlayerAttr[playerID] == 'str' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'str'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'agi'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'int'
+                end
+            end
+
+            local heroName = self:getRandomHero(filter)
             self.selectedHeroes[playerID] = heroName
             network:setSelectedHero(playerID, heroName)
 
@@ -3248,7 +3269,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     if self.selectedPlayerAttr[playerID] ~= newAttr then
         -- Update local store
         self.selectedPlayerAttr[playerID] = newAttr
-
+        print("jjjjjjjjjjjjjjjjjjjjj", newAttr)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
