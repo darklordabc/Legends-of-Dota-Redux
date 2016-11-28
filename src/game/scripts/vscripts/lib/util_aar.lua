@@ -859,11 +859,11 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 			for k,v in pairs(ents) do
-				if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false then
+				if not v:IsNull() and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false then
 					v:RemoveModifierByName("modifier_duel_out_of_game")
 					v:RemoveModifierByName("modifier_tribune")
 
-					if v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
+					if not v:IsNull() and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
 						if v:IsBuilding() and not v:IsTower() then
 
 						else
