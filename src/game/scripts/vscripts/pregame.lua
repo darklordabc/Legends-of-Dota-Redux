@@ -687,12 +687,6 @@ function Pregame:onThink()
         -- Start tutorial mode so we can show tips to players
         Tutorial:StartTutorialMode()
 
-        -- Spawn all humans
-        Timers:CreateTimer(function()
-            -- Spawn all players
-        	this:spawnAllHeroes()
-        end, DoUniqueString('spawnplayers'), 5.0)
-
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
@@ -703,10 +697,15 @@ function Pregame:onThink()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
 
-        -- Init ingame stuff
+        -- Spawn all players
         Timers:CreateTimer(function()
-            ingame:onStart()
-        end, DoUniqueString('preventcamping'), 1)
+            this:spawnAllHeroes(function (  )
+                -- Init ingame stuff
+                Timers:CreateTimer(function()
+                    ingame:onStart()
+                end, DoUniqueString('preventcamping'), 0)
+            end)
+        end, DoUniqueString('spawnplayers'), 5.0)
     end
 end
 
@@ -744,7 +743,7 @@ function Pregame:onGetPlayerData(playerDataBySteamID)
 end
 
 -- Spawns all heroes (this should only be called once!)
-function Pregame:spawnAllHeroes()
+function Pregame:spawnAllHeroes(onSpawned)
     local minPlayerID = 0
     local maxPlayerID = 24
 
@@ -767,6 +766,7 @@ function Pregame:spawnAllHeroes()
             PauseGame(false)
             self.spawnQueueID = nil
             self.heroesSpawned = true
+            onSpawned()
             return
         end
 
