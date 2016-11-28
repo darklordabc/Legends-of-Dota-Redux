@@ -38,7 +38,8 @@
 	
 	"roshan_slam"
 	{
-		"MaxLevel" "1"
+		"MaxLevel" "4"
+		"AbilityCooldown" "10 8 6 4"
 	}
 	
 	"lone_druid_spirit_bear_demolish"
