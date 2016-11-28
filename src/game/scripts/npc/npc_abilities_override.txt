@@ -49,6 +49,12 @@
 		}
 	}
 	
+	"polar_furbolg_ursa_warrior_thunder_clap"
+	{
+		"MaxLevel" "4"
+		"AbilityDamage"	"150 250 350 450"
+	}
+	
 	"gnoll_assassin_envenomed_weapon"
 	{
 		"MaxLevel" "4"
