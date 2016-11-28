@@ -8,6 +8,10 @@ Dota 2 Redux
  - Pick your skills or select a random build!
  - Take advantage of hero perks and custom abilities to further enhance your hero! 
 
+###Github Issues###
+ - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
+ - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4), and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
+
 ###Steam Workshop###
  - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
  
@@ -17,10 +21,6 @@ Dota 2 Redux
 ###Requirements to Compile and Run###
  - Dota 2 Workshop Tools
  - Nodejs
- 
-###Github Issues###
- - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
- - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4)., and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
 
 ###How to extract from Github to Steam###
  - Download the Git repository from either using the manual option from website or from using Source (recommended method)
