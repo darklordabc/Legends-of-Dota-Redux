@@ -1,7 +1,7 @@
 "use strict";
 
 // The tips we can show
-var tips = [{
+var tipsGeneral = [{
         img: 'file://{images}/spellicons/death_prophet_witchcraft.png',
         txt: '#hintWitchCraft'
     }, {
@@ -73,7 +73,13 @@ var tips = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_UniversalShop.png',
         txt: '#hintUniversalShop'
-    }, {
+    },{
+        img: 'file://{images}/custom_game/hints/hint_discord.png',
+        txt: '#hintDiscord'
+    },
+];
+
+var tipsPerks = [{       
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
@@ -142,9 +148,6 @@ var tips = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
         txt: '#hintAncientApparition'
-    }, {
-        img: 'file://{images}/custom_game/hints/hint_discord.png',
-        txt: '#hintDiscord'
     }, {
         img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
         txt: '#hintShadowShaman'
