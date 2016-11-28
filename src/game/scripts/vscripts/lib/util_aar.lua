@@ -247,7 +247,8 @@ modifier_duel_out_of_game = class({})
 
 function modifier_duel_out_of_game:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_MODEL_CHANGE
 	}
  
 	return funcs
@@ -261,6 +262,10 @@ function modifier_duel_out_of_game:GetDisableHealing()
 	return true
 end
 
+function modifier_duel_out_of_game:GetModifierModelChange ()
+    return "models/development/invisiblebox.vmdl"
+end
+
 function modifier_duel_out_of_game:CheckState()
 	local state = {
 		-- [MODIFIER_STATE_OUT_OF_GAME] = true,
@@ -269,7 +274,8 @@ function modifier_duel_out_of_game:CheckState()
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_ROOTED] = true,
 		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
-		[MODIFIER_STATE_DISARMED] = true
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true
 	}
 	return state
 end
