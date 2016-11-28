@@ -275,7 +275,8 @@ function modifier_duel_out_of_game:CheckState()
 		[MODIFIER_STATE_ROOTED] = true,
 		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
 		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
 	}
 	return state
 end
