@@ -30,6 +30,7 @@
 
 .blur .chatRows {
     background-color: #00000011;
+    opacity: 0.2;
 
     height: 50px;
 }
