@@ -35,6 +35,19 @@
 	{
 		"MaxLevel" "1"
 	}
+		
+	"gnoll_assassin_envenomed_weapon"
+	{
+		"MaxLevel" "4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_per_second"			"2 6 10 14"
+			}
+		}
+	}
 	
 	"roshan_slam"
 	{
