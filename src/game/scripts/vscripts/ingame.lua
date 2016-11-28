@@ -31,6 +31,12 @@ function Ingame:init()
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
+        if not CustomNetTables:GetTableValue("phase_ingame","balance_players") then
+            CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+        elseif CustomNetTables:GetTableValue("phase_ingame","balance_players").swapInProgress == 1 then
+            return
+        end
+
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
@@ -548,6 +554,8 @@ function otherTeam(team)
 end
 
 function Ingame:swapPlayers(x, y)
+    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
+
     local player_count = PlayerResource:GetPlayerCount()
     local cp_count = 0
     
@@ -578,6 +586,10 @@ function Ingame:swapPlayers(x, y)
         self:accepted(x,y)
         CustomGameEventManager:UnregisterListener(h)
     end, 'accepted', 10)
+
+    Timers:CreateTimer(function ()
+        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+    end, 'swapInProgress', 10)
 end
 
 function Ingame:accepted(x, y)
