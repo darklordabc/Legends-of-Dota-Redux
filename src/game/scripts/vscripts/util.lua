@@ -197,7 +197,6 @@ function Util:getPremiumRank(playerID)
     for k,v in pairs(Util.contributors) do
         if v.steamID3 == tostring(steamID) then
             conData = v
-            print("dicks")
             break
         end
     end
