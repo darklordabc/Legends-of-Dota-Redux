@@ -2040,6 +2040,15 @@
     "DOTA_Tooltip_Ability_zulf_typhoon_Slow"            "%MOVEMENT SLOW:"
     "DOTA_Tooltip_Ability_zulf_typhoon_Slow_duration"           "SLOW DURATION:"
     "DOTA_Tooltip_Ability_zulf_typhoon_Aghanim_description"         "Increases lift velocity of Typhoon by 50%d%%, making units spread further, be airborne longer, and take more damage when they land."
+	
+	"DOTA_Tooltip_Ability_zulf_typhoon_OP"             "Typhoon OP"   
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. <font color='#70EA72'>Improved damage, cooldown, radius and cast delay.</font> \nUpgradable by Aghanim's Scepter.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Lore"            "The storm of the century!"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Radius"          "RADIUS:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Damage"          "DAMAGE PER 100 ELEVATION:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Slow"            "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Slow_duration"           "SLOW DURATION:"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Aghanim_description"         "Increases lift velocity of Typhoon by 50%d%%, making units spread further, be airborne longer, and take more damage when they land."
     
     // Modifiers
     "DOTA_Tooltip_Modifier_cyclone_armor_reduction"     "Cyclone Fall"
@@ -2861,10 +2870,15 @@
 	/// ANGEL ARENA REBORN ABILITIES
 	/////////////////
 	
-	"DOTA_Tooltip_Ability_angel_arena_razor_power"							"Holy Book"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power"							"Holy Book OP"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_Description"				"Deals a percentage of attack damage in an area around the enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_radius"					"RADIUS:"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_damage_percent"			"%DAMAGE:"
+	
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP"							"Holy Book"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_Description"				"Deals a percentage of attack damage in an area around the enemy unit. <font color='#70EA72'>Improved percentage of damage.</font>\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_radius"					"RADIUS:"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_damage_percent"			"%DAMAGE:"
 	
 	"DOTA_Tooltip_ability_angel_arena_grace"							"Saint's Grace"
 	"DOTA_Tooltip_ability_angel_arena_grace_Description"				"Heal the targeted allied unit within range and reduce their damage taken for a short duration."
