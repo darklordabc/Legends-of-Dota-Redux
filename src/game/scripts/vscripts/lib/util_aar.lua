@@ -268,7 +268,8 @@ function modifier_duel_out_of_game:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
+		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
+		[MODIFIER_STATE_DISARMED] = true
 	}
 	return state
 end
@@ -870,7 +871,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 							if v:IsNeutralUnitType() then
 
 							else
-								v:RemoveNoDraw()
+								-- v:RemoveNoDraw()
 							end
 						end
 						if v._duelDayVisionRange and v._duelNightVisionRange then
@@ -1036,7 +1037,9 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    moveToDuel(dire_warriors, dire_heroes, arenas[current_arena].duel_points.dire)
     end, "duel_move_heroes", DUEL_PREPARE)
 
-    freezeGameplay()
+    Timers:CreateTimer(function()
+	    freezeGameplay()
+    end, "freeze_gameplay", 0.1)
 
     spawnEntitiesAlongPath( arenas[current_arena].polygon )
  
@@ -1455,7 +1458,7 @@ function freezeGameplay()
 			else
 				if v:IsNeutralUnitType() then
 				else
-					v:AddNoDraw()
+					-- v:AddNoDraw()
 					AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 				end
 
