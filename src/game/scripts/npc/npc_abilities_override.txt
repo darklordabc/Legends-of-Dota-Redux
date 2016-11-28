@@ -71,6 +71,16 @@
 				"var_type"			"FIELD_INTEGER"
 				"damage_per_second"			"2 6 10 14"
 			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"non_hero_duration"				"20.0 30.0 40.0 50.0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hero_duration"					"10.0 20.0 30.0 40.0"
+			}
 		}
 	}
 	
