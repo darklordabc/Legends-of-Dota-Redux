@@ -1343,15 +1343,22 @@ function generatePointsVertically( initial, p, randomize )
 	for k,v in pairs(initial) do -- arenas
 		for k2,v2 in pairs(v[p]) do -- teams
 			destroyTrees(v2[1], 32)
-			for i=2,10 do
+			
+			local init = v2[1]
+
+			for i=0,9 do
 				local xOffset = 0
 				local yOffset = 0
-				if i >= 6 then
+				if i >= 5 then
 					xOffset = -100
 					yOffset = 100 * 5
 				end
-				v2[i] = v2[1] + Vector(xOffset, (-100 * i) + yOffset, 0)
+				v2[i] = init + Vector(xOffset, (-100 * i) + yOffset, 0)
 				destroyTrees(v2[i], 32)
+			end
+
+			for i=0,10 do
+				v2[i + 10] = v2[i]
 			end
 		end
 	end
