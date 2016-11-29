@@ -606,7 +606,7 @@ function OnSkillBanned(table_name, key, data) {
         // Store the ban
         bannedHeroes[heroName] = true;
 
-        setSelectedHelperHero(currentSelectedHero, true);
+        // setSelectedHelperHero(currentSelectedHero, true);
 
         // Recalculate filters
         calculateHeroFilters();
