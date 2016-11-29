@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Added a hint about duels and one about lowering bot difficulty
 
 ### Balance
+- Added old enrage ability
 
 
 ## 3.1 The Return - Steam Version
