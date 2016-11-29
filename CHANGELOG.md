@@ -19,6 +19,8 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added old enrage ability
+- Added 3 more OP single player abilities
+- Buffed a few neutral abilities
 
 
 ## 3.1 The Return - Steam Version
