@@ -3540,6 +3540,18 @@
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"          "%SLOW:"
-	
+
+
+	"DOTA_Tooltip_ability_ursa_enrage_old" "Enrage (Pre 6.83)"
+    "DOTA_Tooltip_ability_ursa_enrage_old_Description" "Ursa goes into a frenzy, gaining a percentage of his current health as bonus damage."
+    "DOTA_Tooltip_ability_ursa_enrage_old_Lore"            "Ulfsaar succumbs to his ancient spirit, becoming the most ferocious creature on the battlefield."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note0"         "Gets updated every 0.2 seconds."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note1"         "Added damage is bonus damage and can be used to crit, lifesteal or cleave."
+
+    "DOTA_Tooltip_ability_ursa_enrage_old_duration"               "DURATION:"
+    "DOTA_Tooltip_ability_ursa_enrage_old_current_health_as_damage"                 "CURRENT HEALTH AS DAMAGE:"
+
+    "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
+    "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
 			
 }
