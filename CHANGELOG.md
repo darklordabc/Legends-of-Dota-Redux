@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Bots not using chemical rage and shadow dance
 - Tips now alternative perk tips and other tips
 - Added a hint about duels and one about lowering bot difficulty
+- You can now ban hero abilities by the hero section like you could before
 
 ### Balance
 - Added old enrage ability
