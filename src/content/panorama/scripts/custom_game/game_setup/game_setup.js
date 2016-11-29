@@ -157,6 +157,9 @@ var isPremiumPlayer = false;
 // Save code timer
 var saveSCTimer = false;
 
+// Options for saving
+var jsonOption = null;
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -2226,7 +2229,7 @@ function OnSkillTabShown(tabName) {
             // New script scope!
             (function() {
                 var tabName = tabList[i];
-                var tabButton = $.CreatePanel('Button', tabButtonsContainer, 'tabButton_' + tabName);
+                var tabButton = $.CreatePanel('Panel', tabButtonsContainer, 'tabButton_' + tabName);
                 tabButton.AddClass('SettingsNavBarButton');
                 
                 // Add tabs separator
@@ -2312,12 +2315,12 @@ function setOption(optionName, optionValue) {
         v: optionValue
     });
 
-    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Imports option list
 function onImportAndExportPressed() {
-    var data = $('#importAndExportEntry').text;
+    var data = jsonOption;
 
     if(data.length == 0) {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
@@ -2355,7 +2358,7 @@ function onImportAndExportPressed() {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
     $.Schedule(0.1, function () {
-        $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+        jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     });
 }
 
@@ -2371,7 +2374,7 @@ function LoadPlayerSC( ) {
             return target.split(search).join(replacement);
         });
 
-        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
+        jsonOption = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
         onImportAndExportPressed()
 
         $.Schedule(3.0, function () {
@@ -2994,7 +2997,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
         // Create a new scope
         (function(optionLabelText, optionData) {
             // The button
-            var optionCategory = $.CreatePanel('Button', catContainer, 'option_button_' + optionLabelText);
+            var optionCategory = $.CreatePanel('Panel', catContainer, 'option_button_' + optionLabelText);
             optionCategory.SetAttributeString('cat', optionLabelText);
             //optionCategory.AddClass('PlayButton');
             //optionCategory.AddClass('RadioBox');
@@ -3961,7 +3964,7 @@ function OnOptionChanged(table_name, key, data) {
             break;
     }
 
-    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Recalculates how many abilities / heroes we can ban
