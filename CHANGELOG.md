@@ -14,8 +14,10 @@ All notable changes to this project will be documented in this file.
 - Chat should now be more visible during the gamesetup
 - Fixed Bots not using chemical rage and shadow dance
 - Tips now alternative perk tips and other tips
+- Added a hint about duels and one about lowering bot difficulty
 
 ### Balance
+- Added old enrage ability
 
 
 ## 3.1 The Return - Steam Version
