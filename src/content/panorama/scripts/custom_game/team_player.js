@@ -1,4 +1,5 @@
 "use strict";
+var util = GameUI.CustomUIConfig().Util;
 
 // Stub
 //var setSelectedDropAbility = function(){};

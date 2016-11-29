@@ -35,6 +35,18 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('kill_team', function(c, team)
+        for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
+            if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") then
+                print(v:GetTeamNumber(), tonumber(team), team)
+                if v:GetTeamNumber() == tonumber(team) then
+                    
+                    v:Kill(nil, v)
+                end
+            end
+        end
+    end, 'kill_team', 0)
+
     Convars:RegisterCommand('test_aar_duel', function(...)
         local ply = Convars:GetCommandClient()
         if not ply then return end
@@ -42,6 +54,7 @@ function Debug:init()
 
         local hero = PlayerResource:GetPlayer(playerID):GetAssignedHero()
 
+        -- _G.duel()
         initDuel()
     end, 'test', 0)
 

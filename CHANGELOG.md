@@ -7,8 +7,18 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
 - Now if you select a primary attribute but not a hero, you will be given a random hero of that attribute
+- Fix multiple players trying to switch teams at the same time
+- Hopefully fixed the crashing at start, but has slowed down spawning a bit. Worthwhile compromise.
+- Fixed players/bots having white colors if over the default 10 player. 
+- Fixed Hero Icons not showing up if the game was single draft
+- Chat should now be more visible during the gamesetup
+- Fixed Bots not using chemical rage and shadow dance
+- Tips now alternative perk tips and other tips
+- Added a hint about duels and one about lowering bot difficulty
+- You can now ban hero abilities by the hero section like you could before
 
 ### Balance
+- Added old enrage ability
 
 
 ## 3.1 The Return - Steam Version
@@ -23,6 +33,7 @@ All notable changes to this project will be documented in this file.
 - Multicast Maddness option now works
 - Added Duels
 - GUI Redesign
+- Hopefully Fixed bots not using chemical rage or shadow dance
 
 ### Balance
 - Added Concussive Break

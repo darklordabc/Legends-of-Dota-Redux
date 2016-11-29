@@ -36,7 +36,7 @@
 	"76561197990183779" "Cool Robbit"
     "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
 	"76561198096463858" "jhqz103"
-    "76561198096463858_Description" "Chinese Translator,Spells Contributor"
+    "76561198096463858_Description" "Chinese Translator, Spells Contributor"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -57,6 +57,10 @@
     "lodStageRandomSelection"                 "All Random Build Selection"
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
+
+    // Chat channels
+    "channelAll"                              "All"
+    "channelTeam"                             "Team"
 
     // The options menu
     "lockOptions"                                   "Lock Options"
@@ -542,7 +546,7 @@
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
     "hintInnateAbilities"                           "Night Stalker, Gyrocopter and Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
-    "hintReport"                                    "Please report Bugs and Troll Combos so that LoD Redux can continue to improve! Use the Steam Workshop page or use the in-game comment form."
+    "hintReport"                                    "Found a bug? Report it. Most bugs are only fixed after a player has reported them. Use the Steam Workshop page or use the in-game comment form."
 	"hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
 	"hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
 	"hintBlink"                             	    "Its always a good idea to have an escape plan."
@@ -553,11 +557,14 @@
 	"hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
 	"hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
 	"hintShareEXP"                         "Enable Team Sharing (in Custom Games) so that all team mates pool their EXP and level up at the same time."
-	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"
+	"hintFatOMeter"                         "Enable the Fat-O-Meter to grow in size as you dominate the game!"	
 	"hintHost"                         "You can give your host powers to another player by clicking on their name."
 	"hintUniversalShop"                         "By Default, 'Universal Shops' are enabled. This means you can buy any item from any shop and you can also pick up items from your stash from any shop."
 	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
-    // Perk-related Hints
+	"hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs or force them to use unique skills."
+	"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+    
+	// Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
 	"hintLifeStealer"                         "When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
 	"hintEnigma"                         "When Enigma dies, Black Hole's cooldown will be refreshed."
@@ -1111,6 +1118,7 @@
 	"credit_pudge_flesh_heap_agi"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_silencer_global_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_tinker_rearm_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
+	"credit_ursa_enrage_old"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_slark_essence_shift_agility_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
@@ -3555,6 +3563,18 @@
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"          "%SLOW:"
-	
+
+
+	"DOTA_Tooltip_ability_ursa_enrage_old" "Enrage (Pre 6.83)"
+    "DOTA_Tooltip_ability_ursa_enrage_old_Description" "Ursa goes into a frenzy, gaining a percentage of his current health as bonus damage."
+    "DOTA_Tooltip_ability_ursa_enrage_old_Lore"            "Ulfsaar succumbs to his ancient spirit, becoming the most ferocious creature on the battlefield."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note0"         "Gets updated every 0.2 seconds."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note1"         "Added damage is bonus damage and can be used to crit, lifesteal or cleave."
+
+    "DOTA_Tooltip_ability_ursa_enrage_old_duration"               "DURATION:"
+    "DOTA_Tooltip_ability_ursa_enrage_old_current_health_as_damage"                 "%CURRENT HEALTH AS DAMAGE:"
+
+    "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
+    "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
 			
 }

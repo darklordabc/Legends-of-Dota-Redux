@@ -20,6 +20,11 @@
     height: 100%;
 }
 
+#chat {
+	margin: 20px;
+	align: left bottom;
+}
+
 /*
     Notifications
 */
@@ -636,7 +641,7 @@
 }
 
 .stageNameDesc {
-    width: 40%;
+    width: fill-parent-flow(0.3);
     height: 100%;
 
     margin-right: 4px;
@@ -662,7 +667,7 @@
 }
 
 #tipPanel {
-    width: 60%;
+    width: fill-parent-flow(0.7);
     height: 70px;
 
     margin-left: 4px;
@@ -672,6 +677,7 @@
 }
 
 #tipPanel Label {
+	height: 100%;
     margin: 4px;
     color: #FFFFFF;
 
@@ -1501,6 +1507,7 @@
 
 #lodBanLimits {
     padding-left: 12px;
+    min-width: 405px;
 }
 
 #lodBanThisSkill {
@@ -1696,13 +1703,6 @@
 
 #toggleShowDraftAblilities {
     visibility: collapse;
-}
-
-.unique_heroes_mode .takenHero {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #777777aa;
-    border: 0px;
 }
 
 #lodToggleButton {

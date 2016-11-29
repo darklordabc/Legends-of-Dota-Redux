@@ -12,6 +12,8 @@
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
     </scripts>
     <Panel class="lodOptionsInterface" hittest="false">
+        <Panel id="chat" />
+
         <Panel id="lodNotificationArea">
         </Panel>
 
@@ -759,7 +761,7 @@
                                                 <Label id="buildingHelperHeroPreviewHeroName" text="heroName" />
                                             </Panel>
 
-                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall" onactivate="onNewHeroSelected()">
+                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall disableButton" onactivate="onNewHeroSelected()">
                                                 <Label text="selectHero" />
                                             </Button>
 

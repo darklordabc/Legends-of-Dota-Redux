@@ -26,11 +26,37 @@ function Ingame:init()
     self:AddTowerBotController()
     self:fixRuneBug()
 
+    -- 10vs10 colors
+    self.playerColors = {}
+    self.playerColors[0] = { 57, 117, 231 }
+    self.playerColors[1]  = { 122, 241, 187 }
+    self.playerColors[2]  = { 172, 10, 174}
+    self.playerColors[3]  = { 243, 234, 33}
+    self.playerColors[4]  = { 240, 111, 19 }
+    self.playerColors[5] = { 100 * 2.55, 0, 0 }
+    self.playerColors[6]  = { 0, 25.88 * 2.55, 100 }
+    self.playerColors[7]  = { 9.8 * 2.55, 90.2  * 2.55, 72.55  * 2.55}
+    self.playerColors[8]  = { 32.94 * 2.55, 0, 50.59 * 2.55}
+    self.playerColors[9]  = { 100 * 2.55, 98.82 * 2.55, 0 }
+    self.playerColors[15]  = { 99.61 * 2.55, 72.94 * 2.55, 5.49 * 2.55}
+    self.playerColors[16]  = { 12.55 * 2.55, 75.3 * 2.55, 0 }
+    self.playerColors[17]  = { 252, 255, 236 }
+    self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
+    self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
+
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
+        if not CustomNetTables:GetTableValue("phase_ingame","balance_players") then
+            CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+        elseif CustomNetTables:GetTableValue("phase_ingame","balance_players").swapInProgress == 1 then
+            return
+        end
+
+        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
+
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
         Timers:CreateTimer(function ()
             this:swapPlayers(args.x, args.y)
@@ -468,6 +494,7 @@ end
 function Ingame:switchTeam(eventSourceIndex, args)
     local this = self
     this:balancePlayer(args.swapID, args.newTeam)
+    Ingame:SetPlayerColors( )
 end
 
 -- Balances a player onto another team
@@ -482,6 +509,8 @@ function Ingame:balancePlayer(playerID, newTeam)
         hero:SetTeam(newTeam)
         hero:SetPlayerID(playerID)
         hero:SetOwner(PlayerResource:GetPlayer(playerID))
+
+
 
         -- Kill the hero
         hero:Kill(nil, nil)
@@ -548,6 +577,8 @@ function otherTeam(team)
 end
 
 function Ingame:swapPlayers(x, y)
+    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
+
     local player_count = PlayerResource:GetPlayerCount()
     local cp_count = 0
     
@@ -578,6 +609,10 @@ function Ingame:swapPlayers(x, y)
         self:accepted(x,y)
         CustomGameEventManager:UnregisterListener(h)
     end, 'accepted', 10)
+
+    Timers:CreateTimer(function ()
+        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+    end, 'swapInProgress', 10)
 end
 
 function Ingame:accepted(x, y)
@@ -986,26 +1021,29 @@ end
 -- Buyback cooldowns
 function Ingame:checkBuybackStatus()
     ListenToGameEvent('npc_spawned', 
-        function(keys)
-            local hero = EntIndexToHScript(keys.entindex)
-            if IsValidEntity(hero) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
-                if hero:IsHero() then
-                    Timers:CreateTimer(
-                        function()
-                            if IsValidEntity(hero) then
-                                local buyBackLeft = hero:GetBuybackCooldownTime()
-                                if buyBackLeft ~= 0 then
-                                    local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
-                                    
-                                    if buyBackLeft > maxCooldown then
-                                        hero:SetBuybackCooldownTime(maxCooldown)
-                                    end
-                                end
+    function(keys)
+        local unit = EntIndexToHScript(keys.entindex)
+
+        if IsValidEntity(unit) then
+            if unit:IsHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
+                Timers:CreateTimer(
+                function()
+                    if IsValidEntity(unit) then
+                        local buyBackLeft = unit:GetBuybackCooldownTime()
+                        if buyBackLeft ~= 0 then
+                            local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
+                            
+                            if buyBackLeft > maxCooldown then
+                                unit:SetBuybackCooldownTime(maxCooldown)
                             end
-                        end, DoUniqueString('buyback'), 0.1)
-                end
+                        end
+                    end
+                end, DoUniqueString('buyback'), 0.1)
+            elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
+                unit:ForceKill(false)
             end
-        end, nil)
+        end
+    end, nil)
 end
 
 function Ingame:AddTowerBotController()
@@ -1198,5 +1236,24 @@ function Ingame:FilterModifiers( filterTable )
     
     return true
 end
+
+function Ingame:SetPlayerColors( )
+    for i=0,23 do
+        if PlayerResource:IsValidPlayer(i) and self.playerColors[i] then
+            local color = self.playerColors[i]
+            PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
+        end
+    end
+end
+
+local _instance = Ingame()
+
+ListenToGameEvent('game_rules_state_change', function(keys)
+    local newState = GameRules:State_Get()
+    if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+        _instance:SetPlayerColors()
+    end
+end, nil)
+
 -- Return an instance of it
-return Ingame()
+return _instance
