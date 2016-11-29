@@ -2,7 +2,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.2 
+## 3.2 - Steam Version
 
 ### Bug Fixing/New Features
 - Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file.
 - Buffed a few neutral abilities
 
 
-## 3.1 The Return - Steam Version
+## 3.1 The Return
 
 ### Bug Fixing/New Features
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
