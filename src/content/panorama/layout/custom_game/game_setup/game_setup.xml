@@ -761,7 +761,7 @@
                                                 <Label id="buildingHelperHeroPreviewHeroName" text="heroName" />
                                             </Panel>
 
-                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall" onactivate="onNewHeroSelected()">
+                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall disableButton" onactivate="onNewHeroSelected()">
                                                 <Label text="selectHero" />
                                             </Button>
 

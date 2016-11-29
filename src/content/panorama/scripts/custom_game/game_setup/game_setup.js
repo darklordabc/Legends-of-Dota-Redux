@@ -1080,45 +1080,51 @@ function setSelectedHelperHero(heroName, dontUnselect) {
     // Set this as the selected one
     currentSelectedHero = heroName;
 
+    // Show the preview
+    previewCon.visible = true;
+    $('#buildingHelperHeroPreviewHero').heroname = heroName;
+    $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
+
+    // Grab the info
+    var info = heroData[heroName];
+
+    for(var i=1; i<=16; ++i) {
+        var abName = info['Ability' + i];
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+
+        // Ensure it is a valid ability, and we have flag data about it
+        if(abName != null && abName != '' && flagDataInverse[abName]) {
+            abCon.visible = true;
+            abCon.abilityname = abName;
+            abCon.SetAttributeString('abilityname', abName);
+        } else {
+            abCon.visible = false;
+        }
+    }
+
+    // Highlight drop slots correctly
+    if(!dontUnselect) {
+        // No abilities selected anymore
+        setSelectedDropAbility();
+    }
+
+    // Update the filters for this hero
+    updateHeroPreviewFilters();
+
     if (currentPhase == PHASE_BANNING) {
         // Update the banning skill icon
         $('#lodBanThisHero').heroname = heroName;
         $('#banningHeroContainer').SetHasClass('disableButton', false);
         $('#banningAbilityContainer').SetHasClass('disableButton', true);     
+
+        $('#buildingHelperHeroPreviewHeroSelect').SetHasClass('disableButton', true);    
+
+        $('#balanceModePointsHeroes').visible = false;
     }
     else {
-        // Show the preview
-        previewCon.visible = true;
+        $('#buildingHelperHeroPreviewHeroSelect').SetHasClass('disableButton', false);
 
-        // Grab the info
-        var info = heroData[heroName];
-
-        // Update the hero
-        $('#buildingHelperHeroPreviewHero').heroname = heroName;
-        $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
-
-        for(var i=1; i<=16; ++i) {
-            var abName = info['Ability' + i];
-            var abCon = $('#buildingHelperHeroPreviewSkill' + i);
-
-            // Ensure it is a valid ability, and we have flag data about it
-            if(abName != null && abName != '' && flagDataInverse[abName]) {
-                abCon.visible = true;
-                abCon.abilityname = abName;
-                abCon.SetAttributeString('abilityname', abName);
-            } else {
-                abCon.visible = false;
-            }
-        }
-
-        // Highlight drop slots correctly
-        if(!dontUnselect) {
-            // No abilities selected anymore
-            setSelectedDropAbility();
-        }
-
-        // Update the filters for this hero
-        updateHeroPreviewFilters();
+        $('#balanceModePointsHeroes').visible = true;
 
         // Jump to the right tab
         //showBuilderTab('pickingPhaseHeroTab');
