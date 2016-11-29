@@ -23,7 +23,7 @@
             </Panel>
 
             <Panel class="lodPopupMessageAcceptContainer">
-                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptPopup()">
+                <Button class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptPopup()">
                     <Label text="acceptHosting" />
                 </Button>
             </Panel>
@@ -34,10 +34,10 @@
             </Panel>
 
             <Panel class="lodPopupMessageAcceptContainer">
-                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" id="questionYes">
+                <Button class="lockBuildButton makeThePlayerNoticeThisButton" id="questionYes">
                     <Label text="lodOptionYes" />
                 </Button>
-                <Button class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" id="questionNo">
+                <Button class="lockBuildButton makeThePlayerNoticeThisButton" id="questionNo">
                     <Label text="lodOptionNo" />
                 </Button>
             </Panel>
@@ -115,7 +115,7 @@
                                         <Label id="voteCountSlots4" class="voteCountSlots premiumFeature" />
                                     </Panel>
 
-                                    <Button id="optionVoteMaxSlots4" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 4)">
+                                    <Button id="optionVoteMaxSlots4" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 4)">
                                         <Label text="voteMaxSlots4" />
                                     </Button>
                                 </Panel>
@@ -126,7 +126,7 @@
                                         <Label id="voteCountSlots5" class="voteCountSlots premiumFeature" />
                                     </Panel>
 
-                                    <Button id="optionVoteMaxSlots5" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 5)">
+                                    <Button id="optionVoteMaxSlots5" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 5)">
                                         <Label text="voteMaxSlots5" />
                                     </Button>
                                 </Panel>
@@ -137,7 +137,7 @@
                                         <Label id="voteCountSlots6" class="voteCountSlots premiumFeature" />
                                     </Panel>
 
-                                    <Button id="optionVoteMaxSlots6" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 6)">
+                                    <Button id="optionVoteMaxSlots6" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 6)">
                                         <Label text="voteMaxSlots6" />
                                     </Button>
                                 </Panel>
@@ -148,7 +148,7 @@
                             <Label class="optionVoteHeader" text="lodBanningPhase" />
                             <Panel class="optionVoteOptions">
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteBanningNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', false)">
+                                    <Button id="optionVoteBanningNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', false)">
                                         <Label text="lodOptionNo" />
                                         <Label id="voteCountNo" class="premiumFeature" />
                                     </Button>
@@ -157,7 +157,7 @@
                                 </Panel>
 
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteBanningYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', true)">
+                                    <Button id="optionVoteBanningYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', true)">
                                         <Label text="lodOptionYes" />
                                         <Label id="voteCountYes" class="premiumFeature" />
                                     </Button>
@@ -176,7 +176,7 @@
                             </Panel>
                             <Panel class="optionVoteOptions">
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteFastStartNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', false)">
+                                    <Button id="optionVoteFastStartNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', false)">
                                         <Label text="lodOptionNo" />
                                         <Label id="voteCountNoFS" class="premiumFeature" />
                                     </Button>
@@ -185,7 +185,7 @@
                                 </Panel>
 
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteFastStartYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', true)">
+                                    <Button id="optionVoteFastStartYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', true)">
                                         <Label text="lodOptionYes" />
                                         <Label id="voteCountYesFS" class="premiumFeature" />
                                     </Button>
@@ -204,7 +204,7 @@
                             </Panel>
                             <Panel class="optionVoteOptions">
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteBalanceModeNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', false)">
+                                    <Button id="optionVoteBalanceModeNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', false)">
                                         <Label text="lodOptionNo" />
                                         <Label id="voteCountNoBM" class="premiumFeature" />
                                     </Button>
@@ -213,7 +213,7 @@
                                 </Panel>
 
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteBalanceModeYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', true)">
+                                    <Button id="optionVoteBalanceModeYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', true)">
                                         <Label text="lodOptionYes" />
                                         <Label id="voteCountYesBM" class="premiumFeature" />
                                     </Button>
@@ -231,7 +231,7 @@
                                 </Panel>
                                 <Panel class="optionVoteOptions">
                                     <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteStrongTowersNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
+                                        <Button id="optionVoteStrongTowersNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
                                             <Label text="lodOptionNo" />
                                             <Label id="voteCountNoST" class="premiumFeature" />
                                         </Button>
@@ -240,7 +240,7 @@
                                     </Panel>
 
                                     <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteStrongTowersYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
+                                        <Button id="optionVoteStrongTowersYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
                                             <Label text="lodOptionYes" />
                                             <Label id="voteCountYesST" class="premiumFeature" />
                                         </Button>
@@ -258,7 +258,7 @@
                             </Panel>
                             <Panel class="optionVoteOptions">
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteDuelsNo" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', false)">
+                                    <Button id="optionVoteDuelsNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', false)">
                                         <Label text="lodOptionNo" />
                                         <Label id="voteCountNoD" class="premiumFeature" />
                                     </Button>
@@ -267,7 +267,7 @@
                                 </Panel>
 
                                 <Panel class="optionVoteRoot">
-                                    <Button id="optionVoteDuelsYes" class="heroBuildMenuButtonSmall votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', true)">
+                                    <Button id="optionVoteDuelsYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', true)">
                                         <Label text="lodOptionYes" />
                                         <Label id="voteCountYesD" class="premiumFeature" />
                                     </Button>
@@ -400,11 +400,10 @@
                                     </Panel>
                                 </Panel>
                                 <Panel id="importAndExportEntryRoot">
-                                    <TextEntry id="importAndExportEntry"/>
-                                    <Button id="importAndExportSaveButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="RecordPlayerSC()">
+                                    <Button id="importAndExportSaveButton" class="importAndExportButton" onactivate="RecordPlayerSC()">
                                         <Label text="#importAndExport_save" />
                                     </Button>
-                                    <Button id="importAndExportLoadButton" class="heroBuildMenuButtonSmall importAndExportButton" onactivate="LoadPlayerSC()">
+                                    <Button id="importAndExportLoadButton" class="importAndExportButton" onactivate="LoadPlayerSC()">
                                         <Label text="#importAndExport_load" />
                                     </Button>
                                 </Panel>
@@ -622,7 +621,7 @@
 
                             <Panel id="tabsSearch" class="lodSearchPanel">
                                 <TextEntry id="lodSearchInput" multiline="false" textmode="normal" class="lodSearchText" />
-                                <Button class="lodSearchButton" onactivate="$('#lodSkillSearchInput').SetFocus()" />
+                                <Panel class="lodSearchButton" onactivate="$('#lodSkillSearchInput').SetFocus()" />
                             </Panel>
                         </Panel>
 
@@ -728,19 +727,19 @@
                                 <Panel id="banningButtonContainer">
                                     <Panel id="banningAbilityContainer" class="disableButton">
                                         <DOTAAbilityImage id="lodBanThisSkill" abilityname="life_stealer_empty_1" />
-                                        <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onBanButtonPressed()">
+                                        <Button id="lodBanSkillButton" onactivate="onBanButtonPressed()">
                                             <Label text="banAbility" />
                                         </Button>
                                     </Panel>
                                     <Panel id="banningHeroContainer" class="disableButton">
                                         <DOTAHeroImage id="lodBanThisHero" heroname="npc_dota_hero_nevermore" />
-                                        <Button id="lodBanSkillButton" class="heroBuildMenuButtonSmall" onactivate="onHeroBanButtonPressed()">
+                                        <Button id="lodBanSkillButton" onactivate="onHeroBanButtonPressed()">
                                             <Label text="banHero" />
                                         </Button>
                                     </Panel>                                    
                                 </Panel>
 
-                                <Button id="heroBuilderLockButtonBans" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                                <Button id="heroBuilderLockButtonBans" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                     <Label text="finishBanning" />
                                 </Button>
                             </Panel>
@@ -761,7 +760,7 @@
                                                 <Label id="buildingHelperHeroPreviewHeroName" text="heroName" />
                                             </Panel>
 
-                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="heroBuildMenuButtonSmall disableButton" onactivate="onNewHeroSelected()">
+                                            <Button id="buildingHelperHeroPreviewHeroSelect" class="disableButton" onactivate="onNewHeroSelected()">
                                                 <Label text="selectHero" />
                                             </Button>
 
@@ -834,7 +833,7 @@
                     <Panel id="allRandomPhase" class="workingPanel">
                         <Panel id="allRandomBuildsContainer" />
 
-                        <Button id="allRandomLockButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                        <Button id="allRandomLockButton" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                             <Label text="lockBuild" />
                         </Button>
                     </Panel>
@@ -861,7 +860,7 @@
                             </Panel>
                         </Panel>
                         <Panel class="reviewButtons">
-                            <Button id="reviewReadyButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                            <Button id="reviewReadyButton" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                 <Label text="#loading" />
                             </Button>
                         </Panel>
