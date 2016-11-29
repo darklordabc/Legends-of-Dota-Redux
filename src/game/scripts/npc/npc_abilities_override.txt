@@ -15,6 +15,11 @@
 	{
 		"MaxLevel" "1"
 	}
+	"satyr_trickster_purge"
+	{
+		"MaxLevel" "4"
+		"AbilityManaCost"	"120 80 40 0"
+	}
 	
 	"lone_druid_spirit_bear_entangle"
 	{
@@ -31,9 +36,58 @@
 		"MaxLevel" "1"
 	}
 	
+	"satyr_soulstealer_mana_burn"
+	{
+		"MaxLevel" "4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"burn_amount"			"100 150 200 250"
+			}
+		}
+	}
+	
+	"polar_furbolg_ursa_warrior_thunder_clap"
+	{
+		"MaxLevel" "4"
+		"AbilityDamage"	"150 200 300 400"
+	}
+	
+	"centaur_khan_war_stomp"
+	{
+		"MaxLevel" "4"
+		"AbilityCooldown" "20.0 16.0 13.0 10.0"
+	}
+	
+	"gnoll_assassin_envenomed_weapon"
+	{
+		"MaxLevel" "4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_per_second"			"2 6 10 14"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"non_hero_duration"				"20.0 30.0 40.0 50.0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hero_duration"					"10.0 20.0 30.0 40.0"
+			}
+		}
+	}
+	
 	"roshan_slam"
 	{
-		"MaxLevel" "1"
+		"MaxLevel" "4"
+		"AbilityCooldown" "10 8 6 4"
 	}
 	
 	"lone_druid_spirit_bear_demolish"
