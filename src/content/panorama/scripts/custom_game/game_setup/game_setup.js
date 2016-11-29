@@ -1410,9 +1410,7 @@ function showBuilderTab(tabName) {
     }
 
     if (currentPhase == PHASE_BANNING) {
-        if (currentTab == "pickingPhaseSkillTab") {
-            $( "#pickingPhaseHeroTab" ).visible = false;
-        }
+        $( "#pickingPhaseHeroTab" ).visible = currentTab != "pickingPhaseSkillTab";
     }
 }
 
