@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
 - Fixed players/bots having white colors if over the default 10 player. 
 - Fixed Hero Icons not showing up if the game was single draft
 - Chat should now be more visible during the gamesetup
+- Fixed Bots not using chemical rage and shadow dance
+- Tips now alternative perk tips and other tips
+- Added a hint about duels and one about lowering bot difficulty
 
 ### Balance
 
@@ -28,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Multicast Maddness option now works
 - Added Duels
 - GUI Redesign
+- Hopefully Fixed bots not using chemical rage or shadow dance
 
 ### Balance
 - Added Concussive Break

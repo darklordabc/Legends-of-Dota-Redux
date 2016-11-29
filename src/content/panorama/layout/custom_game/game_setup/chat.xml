@@ -19,7 +19,9 @@
 
 	<Panel class="chatRoot blur" hittest="false" defaultfocus="chatInput" >
 		<Panel class="chatRows" hittest="false">
-			<Panel id="chatRows"/>
+			<Panel class="chatRowsWrapper">
+				<Panel id="chatRows"/>
+			</Panel>
 		</Panel>
 
 		<Panel class="chatControls" hittest="true">

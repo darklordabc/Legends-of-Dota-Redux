@@ -1,6 +1,11 @@
 "use strict";
 
+// Last received message time
 var lastMessageTime = 0;
+// Last sended message time
+var lastSendedMessageTime = 0;
+// Send timeout
+var sendTimeout = 3;
 
 var channels = { 
 	'all': {
@@ -13,6 +18,7 @@ var channels = {
 	}
 };
 
+// Current channel params
 var currentChannel = 'all';
 var color = 'white';
 
@@ -21,7 +27,12 @@ function setChannelStyle( channel ){
 	$('#channelName').style.color = channels[channel].color;
 }
 
+// Common say function
 function say() {
+	var time = Game.Time();
+	if (time < lastSendedMessageTime + sendTimeout && lastSendedMessageTime != 0)
+		return;
+
 	var msg = $('#chatInput').text.trim();
 
 	var channel = msg.match(/\/[\w]+/g);
@@ -39,11 +50,13 @@ function say() {
 	setChannelStyle(currentChannel);
 
 	if (msg.length > 0) {
+		lastSendedMessageTime = time;
 		$('#chatInput').text = '';
 		GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: currentChannel, msg: msg });
 	}
 }
 
+// Show received message
 function showChatMessage( args ) {
 	var time = Game.Time();
 	if (time > lastMessageTime + 60 || lastMessageTime == 0) {
@@ -58,10 +71,6 @@ function showChatMessage( args ) {
 	label.AddClass('chatRow');
 	label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + args.msg;
 	label.style.color = channels[args.channel].color;
-
-	$.Schedule(0.2, function() {
-		$('#chatRows').GetParent().ScrollToTop(); 
-	});	
 }
 
 // Hooks a change event
