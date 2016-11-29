@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Multicast Maddness option now works
 - Added Duels
 - GUI Redesign
+- Hopefully Fixed bots not using chemical rage or shadow dance
 
 ### Balance
 - Added Concussive Break
