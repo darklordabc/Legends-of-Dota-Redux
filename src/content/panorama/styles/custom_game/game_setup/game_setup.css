@@ -1507,6 +1507,7 @@
 
 #lodBanLimits {
     padding-left: 12px;
+    min-width: 405px;
 }
 
 #lodBanThisSkill {
