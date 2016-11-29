@@ -1406,6 +1406,12 @@ function showBuilderTab(tabName) {
     if(onLoadTabHook[tabName]) {
         onLoadTabHook[tabName](tabName);
     }
+
+    if (currentPhase == PHASE_BANNING) {
+        if (currentTab == "pickingPhaseSkillTab") {
+            $( "#pickingPhaseHeroTab" ).visible = false;
+        }
+    }
 }
 
 function toggleHeroGrouping() {
