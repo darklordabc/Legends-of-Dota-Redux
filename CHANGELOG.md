@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Fixed players/bots having white colors if over the default 10 player. 
 - Fixed Hero Icons not showing up if the game was single draft
 - Chat should now be more visible during the gamesetup
+- Ficed Bots not using chemical rage and shadow dance
 
 ### Balance
 
