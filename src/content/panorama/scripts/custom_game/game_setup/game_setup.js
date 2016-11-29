@@ -122,6 +122,9 @@ var optionValueList = {};
 // Map of categories that are allowed to be picked from
 var allowedCategories = {};
 
+// Preload hero panels to avoid precache issues
+var preloadedHeroPanels = {};
+
 // Should we show banned / disallowed skills?
 var showBannedSkills = false;
 var showDisallowedSkills = false;
@@ -2546,6 +2549,8 @@ function addPlayerToTeam(playerID, panel, reviewContainer, shouldMakeSmall) {
         newPlayerPanel.SetAttributeInt('playerID', playerID);
         newPlayerPanel.BLoadLayout('file://{resources}/layout/custom_game/team_player_review.xml', false, false);
         newPlayerPanel.hookStuff(hookSkillInfo, makeSkillSelectable, setSelectedHelperHero, playerID == Players.GetLocalPlayer());
+
+        newPlayerPanel.preloadedHeroPanels = preloadedHeroPanels;
         
         // Update z-index to fix skills hiding
         if ( /radiant/i.test(reviewContainer.id) )
@@ -4597,6 +4602,20 @@ function showMainPanel() {
     
     // Search handler
     setTabsSearchHandler();
+
+    // Preload heroes
+    GameEvents.Subscribe('lodPreloadHeroPanel', function(data) {
+        if (!preloadedHeroPanels[data.heroName]) {
+            var heroImage = $.CreatePanel('Panel', $.GetContextPanel(), 'reviewPhaseHeroImageLoader');
+
+            heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + data.heroName + '"/></Panel></root>', false, false);
+            heroImage.AddClass("avatarScene");    
+
+            heroImage.visible = false;
+
+            preloadedHeroPanels[data.heroName] = heroImage;
+        }
+    });
 
     // Update filters
     GameEvents.Subscribe('updateFilters', function(data) {

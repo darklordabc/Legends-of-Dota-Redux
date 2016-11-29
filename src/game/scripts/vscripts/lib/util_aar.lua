@@ -57,10 +57,10 @@ arenas[AAR_SMALL_ARENA] = {
 	},
 	duel_points = {
 		radiant = {
-			[1] = Vector(1907.01, -4678, 257),
+			[1] = Vector(1907.01, -4580.5, 257),
 		},
 		dire = {
-			[1] = Vector(3750.69, -4678, 257),
+			[1] = Vector(3750.69, -4580.5, 257),
 		}
 	},
 	random_obstacles = 10,
@@ -247,7 +247,8 @@ modifier_duel_out_of_game = class({})
 
 function modifier_duel_out_of_game:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_MODEL_CHANGE
 	}
  
 	return funcs
@@ -261,6 +262,10 @@ function modifier_duel_out_of_game:GetDisableHealing()
 	return true
 end
 
+function modifier_duel_out_of_game:GetModifierModelChange ()
+    return "models/development/invisiblebox.vmdl"
+end
+
 function modifier_duel_out_of_game:CheckState()
 	local state = {
 		-- [MODIFIER_STATE_OUT_OF_GAME] = true,
@@ -268,7 +273,10 @@ function modifier_duel_out_of_game:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
+		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
 	}
 	return state
 end
@@ -413,7 +421,7 @@ function moveToDuel(duel_heroes, team_heroes, duel_points_table)
         local ents = Entities:FindAllInSphere(Vector(), 100000)
 
         for k,v in pairs(ents) do
-        	if v.GetOwnerEntity and IsValidEntity(v:GetOwnerEntity()) and v:GetOwnerEntity():entindex() == x:entindex() then
+        	if v:IsNull() == false and v.GetOwnerEntity and IsValidEntity(v:GetOwnerEntity()) and v:GetOwnerEntity():entindex() == x:entindex() then
         		pcall(function (  )
         			v:Kill(nil, nil)
         		end)
@@ -511,10 +519,7 @@ function removeHeroesFromDuel(heroes_table)
                              end
                             meepo_return_table[i]:RemoveModifierByName("modifier_huskar_burning_spear_debuff")
        
-                            local point = meepo_return_table[i].duel_old_point
-                            if not point then
-                                point = getMidPoint( arenas[current_arena].polygon ) --Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, meepo_return_table[i]:GetTeamNumber())):GetAbsOrigin()
-                            end      
+                            local point = meepo_return_table[i].duel_old_point    
  
                             if meepo_return_table[i].duel_cooldowns then
                                 setAbilitiesCooldowns(meepo_return_table[i], meepo_return_table[i].duel_cooldowns)
@@ -545,7 +550,9 @@ function removeHeroesFromDuel(heroes_table)
 
 									Timers:CreateTimer(function()
 										PlayerResource:SetCameraTarget(meepo_return_table[i]:GetPlayerOwnerID(),nil)
-										ParticleManager:DestroyParticle(x.duelParticle, false)
+										if x.duelParticle then
+											ParticleManager:DestroyParticle(x.duelParticle, false)
+										end
 										x:EmitSound("Portal.Hero_Disappear")
 									end, "meepo_cam"..meepo_return_table[i]:GetPlayerID(), 0.06)
                                 end
@@ -582,9 +589,6 @@ function removeHeroesFromDuel(heroes_table)
 		        x:RemoveModifierByName("modifier_bloodseeker_rupture")
  
                 local point = x.duel_old_point
-                if not point then
-                    point = getMidPoint( arenas[current_arena].polygon ) -- Entities:FindByName(nil,  GetTeamPointNameByTeamNumber(base_points, x:GetTeamNumber())):GetAbsOrigin()
-                end
  
                 if x.duel_cooldowns then
                     setAbilitiesCooldowns(x, x.duel_cooldowns)
@@ -621,7 +625,9 @@ function removeHeroesFromDuel(heroes_table)
 
 						Timers:CreateTimer(function()
 							PlayerResource:SetCameraTarget(x:GetPlayerOwnerID(),nil)
-							ParticleManager:DestroyParticle(x.duelParticle, false)
+							if x.duelParticle then
+								ParticleManager:DestroyParticle(x.duelParticle, false)
+							end
 							x:EmitSound("Portal.Hero_Disappear")
 						end, DoUniqueString("camera"), 0.06)
                     end
@@ -797,6 +803,7 @@ end
 function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, duel_victory_team)
 	if not duel_active then return end
     duel_active = false
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 0})
 
     winners = duel_victory_team
 
@@ -860,21 +867,24 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 			local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 			for k,v in pairs(ents) do
-				if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
-					if v:IsBuilding() and not v:IsTower() then
+				if not v:IsNull() and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false then
+					v:RemoveModifierByName("modifier_duel_out_of_game")
+					v:RemoveModifierByName("modifier_tribune")
 
-					else
-						if v:IsNeutralUnitType() then
+					if not v:IsNull() and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
+						if v:IsBuilding() and not v:IsTower() then
 
 						else
-							v:RemoveNoDraw()
+							if v:IsNeutralUnitType() then
+
+							else
+								-- v:RemoveNoDraw()
+							end
 						end
-						v:RemoveModifierByName("modifier_duel_out_of_game")
-						v:RemoveModifierByName("modifier_tribune")
-					end
-					if v._duelDayVisionRange and v._duelNightVisionRange then
-						v:SetDayTimeVisionRange(v._duelDayVisionRange)
-						v:SetNightTimeVisionRange(v._duelNightVisionRange)
+						if v._duelDayVisionRange and v._duelNightVisionRange then
+							v:SetDayTimeVisionRange(v._duelDayVisionRange)
+							v:SetNightTimeVisionRange(v._duelNightVisionRange)
+						end
 					end
 				end
 			end
@@ -906,7 +916,7 @@ function endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, e
 
 			GridNav:RegrowAllTrees()
 
-			Convars:SetBool("dota_creeps_no_spawning", false)
+			-- Convars:SetBool("dota_creeps_no_spawning", false)
 
 	        if type(end_duel_callback) == "function" then
 	            end_duel_callback(duel_victory_team)
@@ -1012,6 +1022,7 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
  
     duel_count = duel_count + 1
     duel_active = true
+    CustomNetTables:SetTableValue("phase_ingame","duel", {active = 1})
 
     current_arena = arena
 
@@ -1033,11 +1044,11 @@ function startDuel(radiant_heroes, dire_heroes, hero_count, draw_time, error_cal
 	    moveToDuel(dire_warriors, dire_heroes, arenas[current_arena].duel_points.dire)
     end, "duel_move_heroes", DUEL_PREPARE)
 
-    freezeGameplay()
+    Timers:CreateTimer(function()
+	    freezeGameplay()
+    end, "freeze_gameplay", 0.1)
 
     spawnEntitiesAlongPath( arenas[current_arena].polygon )
-
-    Convars:SetBool("dota_creeps_no_spawning", true)
  
     Timers:CreateTimer(function()
         endDuel(radiant_heroes, dire_heroes, radiant_warriors, dire_warriors, end_duel_callback, 0)
@@ -1191,6 +1202,10 @@ end
 function spawnListener(event)
     if not duel_active then return end
     local spawnedUnit = EntIndexToHScript( event.entindex )
+    if spawnedUnit and not spawnedUnit.duel_old_point then
+    	spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+    	return
+    end
     if not spawnedUnit or not IsValidEntity(spawnedUnit) or not spawnedUnit:IsRealHero() then
         return
     end
@@ -1219,6 +1234,22 @@ function spawnListener(event)
        
 		return nil
 	end, DoUniqueString('preventcamping'), 0.15)
+end
+
+function getMinimumAliveHeroes(hero_table1, hero_table2)
+    local alive_min = 0
+    for _, x in pairs(hero_table1) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_min = alive_min + 1 end
+    end
+
+    if alive_min == 0 then return 0 end
+ 
+    alive_min = 0
+    for _, x in pairs(hero_table2) do
+        if x and IsValidEntity(x) and x:IsRealHero() and x:IsAlive() and isConnected(x) then alive_min = alive_min + 1 end
+    end
+   
+   	if alive_min == 0 then return 0 end
 end
 
 function getMaximumAliveHeroes(hero_table1, hero_table2)
@@ -1305,8 +1336,43 @@ function generatePoints( initial, p, randomize )
 			end
 
             v2[9] = v2[8]
-            v2[10] = v2[8]
-            v2[11] = v2[8]
+            
+			for i=0,10 do
+				v2[i + 10] = v2[i]
+			end
+		end
+	end
+
+	if randomize then
+		for k,v in pairs(initial) do
+			local temp = v[p].dire
+			v[p].dire = v[p].radiant
+			v[p].radiant = temp
+		end
+	end
+end
+
+function generatePointsVertically( initial, p, randomize )
+	for k,v in pairs(initial) do -- arenas
+		for k2,v2 in pairs(v[p]) do -- teams
+			destroyTrees(v2[1], 32)
+			
+			local init = v2[1]
+
+			for i=0,9 do
+				local xOffset = 0
+				local yOffset = 0
+				if i >= 5 then
+					xOffset = -100
+					yOffset = 100 * 5
+				end
+				v2[i] = init + Vector(xOffset, (-100 * i) + yOffset, 0)
+				destroyTrees(v2[i], 32)
+			end
+
+			for i=0,10 do
+				v2[i + 10] = v2[i]
+			end
 		end
 	end
 
@@ -1325,7 +1391,7 @@ function initDuel(restart)
 	local randomize = RandomInt(0,1) == 1
 
 	generatePoints( arenas, "tribune_points", randomize )
-	generatePoints( arenas, "duel_points", randomize )
+	generatePointsVertically( arenas, "duel_points", randomize )
 
 	local radiantHeroes = {}
 	local direHeroes = {}
@@ -1343,8 +1409,19 @@ function initDuel(restart)
 	end
 
 	local max_alives = getMaximumAliveHeroes(radiantHeroes, direHeroes)
+	local min_alives = getMinimumAliveHeroes(radiantHeroes, direHeroes)
   	if max_alives < 1 then max_alives = 1 end
   	local c = RandomInt(1,max_alives)
+  	print("pre min_alives: ", min_alives)
+  	print(_G.duel == nil)
+  	if min_alives == 0 and _G.duel then
+  		print("min_alives: ", min_alives)
+
+	    Timers:CreateTimer(function()
+	        _G.initDuel(_G.duel)
+	    end, DoUniqueString('duel_postpone'), 1.0) 
+  		return
+  	end
 
 	-- local selected = false
 	-- local arena = AAR_SMALL_ARENA
@@ -1366,39 +1443,38 @@ function initDuel(restart)
 	end, arena)
 end
 
+_G.initDuel = initDuel
+
 -- function endDuel()
 
 -- end
 
 function freezeGameplay()
-	Convars:SetBool("dota_creeps_no_spawning", true)
+	-- Convars:SetBool("dota_creeps_no_spawning", true)
 
 	local ents = Entities:FindAllInSphere(Vector(0,0,0), 100000)
 
 	for k,v in pairs(ents) do
-		if v.HasModifier and v:HasModifier("modifier_arc_warden_tempest_double") then
+		if v:IsNull() == false and v.HasModifier and v:HasModifier("modifier_arc_warden_tempest_double") then
 			v:ForceKill(false)
 			return
 		end
-		if IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
+		if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
 			if v:IsBuilding() and not v:IsTower() then
 
 			else
 				if v:IsNeutralUnitType() then
 				else
-					v:AddNoDraw()
+					-- v:AddNoDraw()
+					AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 				end
 
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
 
-				-- if v:IsCreature() and v:IsCreep() then
 				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
 					local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
 					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())
 				end
-				-- end
-
-				AddFOWViewer(v:GetTeamNumber(),v:GetAbsOrigin(),300,1.0,true)
 			end
 			v._duelDayVisionRange = v:GetDayTimeVisionRange()
 			v._duelNightVisionRange = v:GetNightTimeVisionRange()

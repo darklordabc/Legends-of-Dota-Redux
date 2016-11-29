@@ -713,12 +713,6 @@ function Pregame:onThink()
         -- Start tutorial mode so we can show tips to players
         Tutorial:StartTutorialMode()
 
-        -- Spawn all humans
-        Timers:CreateTimer(function()
-            -- Spawn all players
-        	this:spawnAllHeroes()
-        end, DoUniqueString('spawnbots'), 0.1)
-
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
@@ -729,10 +723,15 @@ function Pregame:onThink()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
 
-        -- Init ingame stuff
+        -- Spawn all players
         Timers:CreateTimer(function()
-            ingame:onStart()
-        end, DoUniqueString('preventcamping'), 1)
+            this:spawnAllHeroes(function (  )
+                -- Init ingame stuff
+                Timers:CreateTimer(function()
+                    ingame:onStart()
+                end, DoUniqueString('preventcamping'), 0)
+            end)
+        end, DoUniqueString('spawnplayers'), 5.0)
     end
 end
 
@@ -770,60 +769,69 @@ function Pregame:onGetPlayerData(playerDataBySteamID)
 end
 
 -- Spawns all heroes (this should only be called once!)
-function Pregame:spawnAllHeroes()
+function Pregame:spawnAllHeroes(onSpawned)
     local minPlayerID = 0
     local maxPlayerID = 24
 
-    -- Loop over all playerIDs
-    for playerID = minPlayerID,maxPlayerID-1 do
-    	-- Attempt to spawn the player
-    	self:spawnPlayer(playerID)
+    self.spawnQueueID = -1
+    self.spawnDelay = 2.5
+
+    if IsInToolsMode() then
+        self.spawnDelay = 0
     end
+
+    self.playerQueue = function ()
+        PauseGame(true)
+        self.spawnQueueID = self.spawnQueueID + 1
+
+        -- Update queue info
+        CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
+
+        -- End pause if every player is checked
+        if self.spawnQueueID > 24 then
+            PauseGame(false)
+            self.spawnQueueID = nil
+            self.heroesSpawned = true
+            onSpawned()
+            return
+        end
+
+        -- Skip disconnected players
+        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+            self.playerQueue()
+            return
+        end
+
+        -- Keep spawning
+        Timers:CreateTimer(function()
+            self:spawnPlayer(self.spawnQueueID, self.playerQueue)
+        end, DoUniqueString('playerSpawn'), self.spawnDelay)
+    end
+
+    self.playerQueue()
 end
 
 -- Spawns a given player
-function Pregame:spawnPlayer(playerID)
+function Pregame:spawnPlayer(playerID, callback)
     -- Is there a player in this slot?
     if PlayerResource:GetConnectionState(playerID) >= 1 then
-        -- There is, go ahead and build this player
-
         -- Only spawn a hero for a given player ONCE
         if self.spawnedHeroesFor[playerID] then return end
         self.spawnedHeroesFor[playerID] = true
 
-        -- Insert the player for spawning
-        table.insert(self.spawnQueue, playerID)
+        self.currentlySpawning = true
 
         -- Actually spawn the player
-        self:actualSpawnPlayer()
+        self:actualSpawnPlayer(playerID, callback)
     end
 end
 
-function Pregame:actualSpawnPlayer()
-    -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
-
-    -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
-    self.currentlySpawning = true
-
+function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
-        -- Done spawning, start the next one
-        this.currentlySpawning = false
-
-        -- Continue actually spawning
-        this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
-
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
-        -- Grab a player to spawn
-        local playerID = table.remove(this.spawnQueue, 1)
-
         -- Don't allow a player to get two heroes
         if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
         	return
@@ -839,8 +847,11 @@ function Pregame:actualSpawnPlayer()
 
             function spawnTheHero()
                 local status2,err2 = pcall(function()
+
                     -- Create the hero and validate it
+                    print(heroName)
                     local hero = CreateHeroForPlayer(heroName, player)
+                    -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
                         
@@ -876,21 +887,24 @@ function Pregame:actualSpawnPlayer()
                 end
             end
 
-            if this.cachedPlayerHeroes[playerID] then
-                -- Directly spawn the hero
-                spawnTheHero()
-            else
-                -- Already cached this player's hero
+            self.currentlySpawning = false
+
+            PrecacheUnitByNameAsync(heroName, function()
                 this.cachedPlayerHeroes[playerID] = true
 
-                -- Attempt to precache their hero
-                PrecacheUnitByNameAsync(heroName, function()
-                    spawnTheHero()
-                end, playerID)
-            end
+                spawnTheHero()
+
+                if callback then
+                    callback()
+                end
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            if callback then
+                callback()
+            end
         end
     end)
 
@@ -2505,7 +2519,7 @@ function Pregame:precacheBuilds()
 
     local this = self
 
-    local totalToCache = #allPlayerIDs + #allSkills
+    local totalToCache = #allPlayerIDs -- + #allSkills
 
     function checkCachingComplete()
         totalToCache = totalToCache - 1
@@ -2523,50 +2537,30 @@ function Pregame:precacheBuilds()
     end
 
     function continueCachingHeroes()
-        --print('continue caching hero')
-
-        -- Any more to cache?
-        if #allPlayerIDs <= 0 then
-            --[[donePrecaching = true
-
-            -- Tell clients
-            network:donePrecaching()
-
-            -- Check for ready
-            this:checkForReady()]]
-            return
-        end
-
-        local playerID = table.remove(allPlayerIDs, 1)
-
-        if PlayerResource:IsValidPlayerID(playerID) then
-            local heroName = self.selectedHeroes[playerID]
-
-            if heroName then
-                -- Store that it is cached
-                this.cachedPlayerHeroes[playerID] = true
-
-                --print('Caching ' .. heroName)
-
-                PrecacheUnitByNameAsync(heroName, function()
-                    -- Are we done
-                    checkCachingComplete()
-                end, playerID)
-
-                -- Continue
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
-            else
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
+        Timers:CreateTimer(function()
+            if #allPlayerIDs <= 0 then
+                return
             end
-        else
-            Timers:CreateTimer(function()
+
+            local playerID = table.remove(allPlayerIDs, 1)
+
+            if PlayerResource:IsValidPlayerID(playerID) then
+                local heroName = self.selectedHeroes[playerID]
+
+                if heroName then
+                    this.cachedPlayerHeroes[playerID] = true
+
+                    PrecacheUnitByNameAsync(heroName, function()
+                        checkCachingComplete()
+                        continueCachingHeroes()
+                    end, playerID)
+                else
+                    continueCachingHeroes()
+                end
+            else
                 continueCachingHeroes()
-            end, DoUniqueString('keepCaching'), timerDelay)
-        end
+            end
+        end, DoUniqueString('precacheHack'), 1.0)
     end
 
     function continueCaching()
@@ -2590,8 +2584,16 @@ function Pregame:precacheBuilds()
     end
 
     -- Start caching process
-    continueCaching()
-    continueCachingHeroes()
+    -- continueCaching()
+    -- continueCachingHeroes()
+
+    donePrecaching = true
+
+    -- Tell clients
+    network:donePrecaching()
+
+    -- Check for ready
+    this:checkForReady()
 end
 
 
@@ -2701,11 +2703,31 @@ function Pregame:validateBuilds()
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
+    local this = self
+
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID-1 do
         -- Ensure they have a hero
         if not self.selectedHeroes[playerID] then
-            local heroName = self:getRandomHero()
+            local filter = function (  )
+                return true
+            end
+
+            if self.selectedPlayerAttr[playerID] == 'str' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'str'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'agi'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'int'
+                end
+            end
+
+            local heroName = self:getRandomHero(filter)
             self.selectedHeroes[playerID] = heroName
             network:setSelectedHero(playerID, heroName)
 
@@ -3274,7 +3296,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     if self.selectedPlayerAttr[playerID] ~= newAttr then
         -- Update local store
         self.selectedPlayerAttr[playerID] = newAttr
-
+        print("jjjjjjjjjjjjjjjjjjjjj", newAttr)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
@@ -3322,30 +3344,35 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Has this player already asked for their hero?
-    if self.spawnedHeroesFor[playerID] then
+    if self.heroesSpawned then
     	-- Do they have a hero?
+
     	if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
     		return
     	end
 
-    	if not self.requestHeroAgain then
-    		self.requestHeroAgain = {}
-    	end
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"lodSpawningQueue",{queue = 0})
+        
+        -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
+        self:spawnPlayer(playerID)
 
-    	if self.requestHeroAgain[playerID] then
-    		if Time() > self.requestHeroAgain[playerID] then
-    			self.requestHeroAgain[playerID] = nil
-    			self.currentlySpawning = false
-    			self.spawnedHeroesFor[playerID] = false
-    		end
-    	else
-    		-- Allocate 3 seconds then allow them to spawn a hero
-    		self.requestHeroAgain[playerID] = Time() + 3
-    	end
+        self.spawnedHeroesFor[playerID] = true
+
+    	-- if not self.requestHeroAgain then
+    	-- 	self.requestHeroAgain = {}
+    	-- end
+
+    	-- if self.requestHeroAgain[playerID] then
+    	-- 	if Time() > self.requestHeroAgain[playerID] then
+    	-- 		self.requestHeroAgain[playerID] = nil
+    	-- 		self.currentlySpawning = false
+    	-- 		self.spawnedHeroesFor[playerID] = false
+    	-- 	end
+    	-- else
+    	-- 	-- Allocate 3 seconds then allow them to spawn a hero
+    	-- 	self.requestHeroAgain[playerID] = Time() + 3
+    	-- end
     end
-
-    -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
-    self:spawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
@@ -5368,15 +5395,17 @@ function Pregame:fixSpawningIssues()
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Find custom abilities to add AI modifiers
-                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
-                        if botAIModifier[abilityName] then
-                            abModifierName = "modifier_" .. abilityName .. "_ai"
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                Timers:CreateTimer(function()
+                    if PlayerResource:GetConnectionState(playerID) == 1 then
+                        -- Find custom abilities to add AI modifiers
+                        for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                            if botAIModifier[abilityName] then
+                                abModifierName = "modifier_" .. abilityName .. "_ai"
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                            end
                         end
                     end
-                end
+                end, DoUniqueString('addBotAI'), 0.5)
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
@@ -5470,6 +5499,9 @@ function Pregame:fixSpawningIssues()
     end, nil)
 end
 
+-- Return an instance of it
+local _instance = Pregame()
+
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -5482,52 +5514,55 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             return 30.0
         end, 'waves', 0.0)
 
-        if OptionManager:GetOption('duels') == 1 then
-            local duel
-            duel = (function () 
-                local next_tick = DUEL_INTERVAL
-                
-                Timers:CreateTimer(function()
-                    if duel_active == true then 
-                        local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
-
-                        Timers:CreateTimer(function()
-                            draw_tick = draw_tick - 1
-
-                            if duel_active == false then 
-                                return
-                            else 
-                                sendEventTimer( "#duel_nobody_wins", draw_tick)
-                            end
-
-                            return 1.0
-                        end, 'duel_countdown_draw', 0)
-                        return
-                    else 
-                        sendEventTimer( "#duel_next_duel", next_tick)
-                    end
-                    next_tick = next_tick - 1
-                    return 1.0
-                end, 'duel_countdown_next', 0)
-
-                Timers:CreateTimer(function()
-                    customAttension("#duel_10_sec_to_begin", 5)
-                    EmitGlobalSound("Event.DuelStart")
-
-                    -- CustomGameEventManager:Send_ServerToAllClients("duel_sound", {sound = "DOTA_Item.DoE.Activate"})
+        _G.duel = (function () 
+            local next_tick = DUEL_INTERVAL
+            
+            Timers:CreateTimer(function()
+                if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then 
+                    local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
 
                     Timers:CreateTimer(function()
-                        initDuel(duel)
-                    end, 'start_duel', 10)
+                        draw_tick = draw_tick - 1
 
-                    Timers:CreateTimer(function()
-                        if duel_active then
-                            customAttension("#duel_10_sec_to_end", 5)
+                        if CustomNetTables:GetTableValue("phase_ingame","duel").active == 0 then 
+                            return
+                        else 
+                            sendEventTimer( "#duel_nobody_wins", draw_tick)
                         end
-                    end, 'duel_draw_warning', DUEL_NOBODY_WINS + DUEL_PREPARE)
-                end, 'main_duel_timer', DUEL_INTERVAL - 10)
-            end)
-            duel()
+
+                        return 1.0
+                    end, 'duel_countdown_draw', 0)
+                    return
+                else 
+                    sendEventTimer( "#duel_next_duel", next_tick)
+                end
+                next_tick = next_tick - 1
+                if next_tick < 0 then
+                    next_tick = 0
+                end
+                return 1.0
+            end, 'duel_countdown_next', 0)
+
+            Timers:CreateTimer(function()
+                customAttension("#duel_10_sec_to_begin", 5)
+                EmitGlobalSound("Event.DuelStart")
+
+                Timers:CreateTimer(function()
+                    initDuel(_G.duel)
+                end, 'start_duel', 10)
+
+                Timers:CreateTimer(function()
+                    if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then
+                        customAttension("#duel_10_sec_to_end", 5)
+                    end
+                end, 'duel_draw_warning', DUEL_NOBODY_WINS + DUEL_PREPARE)
+            end, 'main_duel_timer', DUEL_INTERVAL - 10)
+        end)
+
+        CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
+
+        if OptionManager:GetOption('duels') == 1 then
+            _G.duel()
         end
 
         -- if OptionManager:GetOption('duels') == 1 then
@@ -5582,5 +5617,4 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     end
 end, nil)
 
--- Return an instance of it
-return Pregame()
+return _instance

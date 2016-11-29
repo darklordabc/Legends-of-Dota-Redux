@@ -183,7 +183,6 @@ function spawnObstacleFromTable( obstacleTable, nextPoint, obstacle_counts )
 
         if obstacle.blockers == false then
             UTIL_Remove(obstacle)
-            print("disk")
             return nil
         end
     end

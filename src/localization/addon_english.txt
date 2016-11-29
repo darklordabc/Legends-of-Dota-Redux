@@ -36,7 +36,7 @@
 	"76561197990183779" "Cool Robbit"
     "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
 	"76561198096463858" "jhqz103"
-    "76561198096463858_Description" "Chinese Translator,Spells Contributor"
+    "76561198096463858_Description" "Chinese Translator, Spells Contributor"
 
     // Teams
     "theRadiant"                                    "The Radiant"
