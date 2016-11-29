@@ -153,4 +153,6 @@ function newMessages( newMessages ) {
 
 	GameEvents.Subscribe( "lodOnChangelog", displayChangelog );
 	GameEvents.Subscribe( "su_new_messages", newMessages );
+
+	setupCredits();
 })();
