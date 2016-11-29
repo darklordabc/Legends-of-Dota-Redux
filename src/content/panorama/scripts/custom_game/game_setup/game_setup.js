@@ -606,6 +606,8 @@ function OnSkillBanned(table_name, key, data) {
         // Store the ban
         bannedHeroes[heroName] = true;
 
+        // setSelectedHelperHero(currentSelectedHero, true);
+
         // Recalculate filters
         calculateHeroFilters();
         updateHeroPreviewFilters();
@@ -804,10 +806,14 @@ function setupBuilderTabs() {
                 showBuilderTab(tabLink);
 
                 // No skills selected anymore
-                setSelectedDropAbility();
+                if (currentPhase != PHASE_BANNING) {
+                    setSelectedDropAbility();
+                }
 
                 // Deselect any hero
-                setSelectedHelperHero();
+                if (currentPhase != PHASE_BANNING) {
+                    setSelectedHelperHero();
+                }
 
                 // Focus to nothing
                 focusNothing();
@@ -1068,60 +1074,72 @@ function buildFlagList() {
 function setSelectedHelperHero(heroName, dontUnselect) {
     var previewCon = $('#buildingHelperHeroPreview');
 
+    if (currentPhase == PHASE_BANNING) {
+        $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", true);
+        $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", true);
+    }
+
     // Validate hero name
     if(heroName == null || heroName.length <= 0 || !heroData[heroName]) {
-        if (currentPhase == PHASE_BANNING)
-            $('#banningHeroContainer').SetHasClass('disableButton', true);
-        else
-            previewCon.visible = false;
+        $('#banningHeroContainer').SetHasClass('disableButton', true);
+        previewCon.visible = false;
         return;
+    } else {
+        $('#banningHeroContainer').SetHasClass('disableButton', false);
     }
+
+    $('#banningHeroContainer').SetHasClass('disableButton', bannedHeroes[heroName] == true); //bannedHeroes[heroName] == true
 
     // Set this as the selected one
     currentSelectedHero = heroName;
 
+    // Show the preview
+    previewCon.visible = true;
+    $('#buildingHelperHeroPreviewHero').heroname = heroName;
+    $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
+
+    // Grab the info
+    var info = heroData[heroName];
+
+    for(var i=1; i<=16; ++i) {
+        var abName = info['Ability' + i];
+        var abCon = $('#buildingHelperHeroPreviewSkill' + i);
+
+        // Ensure it is a valid ability, and we have flag data about it
+        if(abName != null && abName != '' && flagDataInverse[abName]) {
+            abCon.visible = true;
+            abCon.abilityname = abName;
+            abCon.SetAttributeString('abilityname', abName);
+        } else {
+            abCon.visible = false;
+        }
+    }
+
+    // Highlight drop slots correctly
+    if(!dontUnselect) {
+        // No abilities selected anymore
+        setSelectedDropAbility();
+    }
+
+    // Update the filters for this hero
+    updateHeroPreviewFilters();
+
     if (currentPhase == PHASE_BANNING) {
         // Update the banning skill icon
         $('#lodBanThisHero').heroname = heroName;
-        $('#banningHeroContainer').SetHasClass('disableButton', false);
         $('#banningAbilityContainer').SetHasClass('disableButton', true);     
+
+        $('#buildingHelperHeroPreviewHeroSelect').SetHasClass('disableButton', true);    
+
+        $('#balanceModePointsHeroes').visible = false;
     }
     else {
-        // Show the preview
-        previewCon.visible = true;
+        $('#buildingHelperHeroPreviewHeroSelect').SetHasClass('disableButton', false);
 
-        // Grab the info
-        var info = heroData[heroName];
-
-        // Update the hero
-        $('#buildingHelperHeroPreviewHero').heroname = heroName;
-        $('#buildingHelperHeroPreviewHeroName').text = $.Localize(heroName);
-
-        for(var i=1; i<=16; ++i) {
-            var abName = info['Ability' + i];
-            var abCon = $('#buildingHelperHeroPreviewSkill' + i);
-
-            // Ensure it is a valid ability, and we have flag data about it
-            if(abName != null && abName != '' && flagDataInverse[abName]) {
-                abCon.visible = true;
-                abCon.abilityname = abName;
-                abCon.SetAttributeString('abilityname', abName);
-            } else {
-                abCon.visible = false;
-            }
-        }
-
-        // Highlight drop slots correctly
-        if(!dontUnselect) {
-            // No abilities selected anymore
-            setSelectedDropAbility();
-        }
-
-        // Update the filters for this hero
-        updateHeroPreviewFilters();
+        $('#balanceModePointsHeroes').visible = true;
 
         // Jump to the right tab
-        //showBuilderTab('pickingPhaseHeroTab');
+        // showBuilderTab('pickingPhaseHeroTab');
     }
 }
 
@@ -1218,8 +1236,9 @@ function isUltimateAbility(abilityName) {
 
 // Sets the currently selected ability for dropping
 function setSelectedDropAbility(abName, abcon) {
-    if (currentPhase == PHASE_BANNING)
+    if (currentPhase == PHASE_BANNING && abName) {
         $('#banningHeroContainer').SetHasClass('disableButton', true);
+    }
 
     abName = abName || '';
 
@@ -1248,6 +1267,8 @@ function setSelectedDropAbility(abName, abcon) {
 
         // Update the banning skill icon
         $('#banningAbilityContainer').SetHasClass('disableButton', true);
+
+        setSelectedHelperHero(currentSelectedHero, true);
     } else {
         // Do a selection
         currentSelectedSkill = abName;
@@ -1352,6 +1373,10 @@ function showBuilderTab(tabName) {
     mainPanel.SetFocus();
 
     $.Each(mainPanel.Children(), function(panelTab) {
+        if (currentPhase == PHASE_BANNING && panelTab.id == "pickingPhaseHeroTab") {
+            return;
+        }
+
         panelTab.visible = false;
 
         var tab = $('#' + panelTab.id + "Root");
@@ -1382,6 +1407,10 @@ function showBuilderTab(tabName) {
     // Process hooks
     if(onLoadTabHook[tabName]) {
         onLoadTabHook[tabName](tabName);
+    }
+
+    if (currentPhase == PHASE_BANNING) {
+        $( "#pickingPhaseHeroTab" ).visible = currentTab != "pickingPhaseSkillTab";
     }
 }
 
@@ -2389,7 +2418,7 @@ function chooseHero(heroName) {
 
 // Tries to ban a hero
 function banHero(heroName) {
-    setSelectedHelperHero();
+    // setSelectedHelperHero();
 
     GameEvents.SendCustomGameEventToServer('lodBan', {
         heroName:heroName
@@ -3752,6 +3781,9 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for banning phase
             if(currentPhase == PHASE_BANNING) {
+                // Setup selection
+                setSelectedHelperHero(undefined, false)
+
                 // Set main tab activated
                 if (!isBuildsDonwloaded){
                     showBuilderTab('pickingPhaseMainTab');
@@ -3766,7 +3798,12 @@ function OnPhaseChanged(table_name, key, data) {
             }
 
             // Message for players selecting skills
-            if(currentPhase == PHASE_SELECTION) {
+            if(currentPhase == PHASE_SELECTION) { 
+                // Update selection
+                // if (currentSelectedHero) {
+                    setSelectedHelperHero();
+                // }
+
                 // Set main tab activated
                 if (!isBuildsDonwloaded){
                     showBuilderTab('pickingPhaseMainTab');
