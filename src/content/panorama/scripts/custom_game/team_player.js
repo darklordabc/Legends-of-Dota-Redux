@@ -174,6 +174,4 @@ function setReadyState(newState) {
         GameEvents.Subscribe('lodOnHostChanged', function(data) {
         OnHostChanged(data);
     });
-
-    $.GetContextPanel().style.border = '1px solid ' + util.getHexPlayerColor($.GetContextPanel().GetAttributeInt('playerID', -1)) + ';';
 })();

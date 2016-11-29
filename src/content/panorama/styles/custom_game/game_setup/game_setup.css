@@ -641,7 +641,7 @@
 }
 
 .stageNameDesc {
-    width: 40%;
+    width: fill-parent-flow(0.3);
     height: 100%;
 
     margin-right: 4px;
@@ -667,7 +667,7 @@
 }
 
 #tipPanel {
-    width: 60%;
+    width: fill-parent-flow(0.7);
     height: 70px;
 
     margin-left: 4px;
@@ -677,6 +677,7 @@
 }
 
 #tipPanel Label {
+	height: 100%;
     margin: 4px;
     color: #FFFFFF;
 

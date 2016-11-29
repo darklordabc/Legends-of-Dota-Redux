@@ -21,7 +21,9 @@
     overflow: squish scroll;
     padding: 8px 14px 0 8px;
 
-    transition-property: height, opacity;
+    opacity-mask: url("s2r://panorama/images/masks/chat_preview_opacity_mask_png.vtex") 0.0;
+
+    transition-property: height, opacity, background-color, opacity-mask;
     transition-timing-function: ease-in-out;
     transition-duration: 0.3s;
 
@@ -29,8 +31,10 @@
 }
 
 .blur .chatRows {
-    opacity-mask: url("s2r://panorama/images/masks/chat_preview_opacity_mask_png.vtex") 1.0;
     background-color: #00000011;
+    opacity: 0.2;
+
+    opacity-mask: url("s2r://panorama/images/masks/chat_preview_opacity_mask_png.vtex") 1.0;
 
     height: 50px;
 }
@@ -43,11 +47,16 @@
     opacity: 0;
 }
 
+.chatRowsWrapper {
+    width: 100%;
+    overflow: squish noclip;
+}
+
 #chatRows {
     width: 100%;
 
+    overflow: squish noclip;
     flow-children: down;
-    //vertical-align: bottom;
 
     transform: scaleY(-1);
 }

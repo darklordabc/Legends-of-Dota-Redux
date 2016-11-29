@@ -1,7 +1,7 @@
 "use strict";
 
 // The tips we can show
-var tips = [{
+var tipsGeneral = [{
         img: 'file://{images}/spellicons/death_prophet_witchcraft.png',
         txt: '#hintWitchCraft'
     }, {
@@ -73,7 +73,13 @@ var tips = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_UniversalShop.png',
         txt: '#hintUniversalShop'
-    }, {
+    },{
+        img: 'file://{images}/custom_game/hints/hint_discord.png',
+        txt: '#hintDiscord'
+    },
+];
+
+var tipsPerks = [{       
         img: 'file://{images}/custom_game/hints/hint_lina.png',
         txt: '#hintLina'
     }, {
@@ -142,9 +148,6 @@ var tips = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
         txt: '#hintAncientApparition'
-    }, {
-        img: 'file://{images}/custom_game/hints/hint_discord.png',
-        txt: '#hintDiscord'
     }, {
         img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
         txt: '#hintShadowShaman'
@@ -429,14 +432,29 @@ var phase = 0;
 // Contains a list of all tip IDs
 var allTips = [];
 var tipUpto = 0;
-for(var i=0; i<tips.length; ++i) {
-    allTips.push(i);
+
+var randomLists = [tipsPerks, tipsGeneral];
+var randomedTips = {};
+
+function checkCount( lists ) {
+    return lists.filter(function(list){
+        return Object.keys(list).length > 0;
+    }).length > 0;
 }
-for (var i = allTips.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = allTips[i];
-    allTips[i] = allTips[j];
-    allTips[j] = temp;
+
+var count = 0;
+while (checkCount(randomLists)) {
+    for(var i = 0; i < randomLists.length; i++){
+        var list = randomLists[i];
+        if (Object.keys(list).length == 0)
+            continue;
+
+        var key = Object.keys(list)[Math.floor(Math.random() * Object.keys(list).length)];
+        randomedTips[count] = list[key];
+        count++;
+
+        delete list[key];
+    }
 }
 
 // Sets the hint
@@ -459,11 +477,10 @@ function setHint(img, txt) {
 // Show the next hint
 function nextHint(stopFunct) {
     // Set the next tip
-    var tip = tips[allTips[tipUpto++]];
-    //var tip = tips[5];
+    var tip = randomedTips[tipUpto++];
     setHint(tip.img, $.Localize(tip.txt));
 
-    if(tipUpto >= allTips.length) {
+    if(tipUpto > Object.keys(randomedTips).length - 1) {
         tipUpto = 0;
     }
 
