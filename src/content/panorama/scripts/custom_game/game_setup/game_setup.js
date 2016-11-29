@@ -1267,6 +1267,8 @@ function setSelectedDropAbility(abName, abcon) {
 
         // Update the banning skill icon
         $('#banningAbilityContainer').SetHasClass('disableButton', true);
+
+        setSelectedHelperHero(currentSelectedHero, true);
     } else {
         // Do a selection
         currentSelectedSkill = abName;
