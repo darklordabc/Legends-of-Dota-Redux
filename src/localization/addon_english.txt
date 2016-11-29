@@ -1118,6 +1118,7 @@
 	"credit_pudge_flesh_heap_agi"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_silencer_global_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_tinker_rearm_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
+	"credit_ursa_enrage_old"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_slark_essence_shift_agility_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
 	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
@@ -3543,6 +3544,18 @@
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_slow_radius"                 "SLOW RADIUS:"
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break_duration"                    "DURATION:"
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_movement_speed_pct"          "%SLOW:"
-	
+
+
+	"DOTA_Tooltip_ability_ursa_enrage_old" "Enrage (Pre 6.83)"
+    "DOTA_Tooltip_ability_ursa_enrage_old_Description" "Ursa goes into a frenzy, gaining a percentage of his current health as bonus damage."
+    "DOTA_Tooltip_ability_ursa_enrage_old_Lore"            "Ulfsaar succumbs to his ancient spirit, becoming the most ferocious creature on the battlefield."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note0"         "Gets updated every 0.2 seconds."
+   "DOTA_Tooltip_ability_ursa_enrage_old_Note1"         "Added damage is bonus damage and can be used to crit, lifesteal or cleave."
+
+    "DOTA_Tooltip_ability_ursa_enrage_old_duration"               "DURATION:"
+    "DOTA_Tooltip_ability_ursa_enrage_old_current_health_as_damage"                 "%CURRENT HEALTH AS DAMAGE:"
+
+    "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
+    "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
 			
 }
