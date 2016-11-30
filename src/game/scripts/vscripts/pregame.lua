@@ -728,6 +728,9 @@ function Pregame:onThink()
             this:spawnAllHeroes(function (  )
                 -- Init ingame stuff
                 Timers:CreateTimer(function()
+                    -- Load messages
+                    SU:LoadPlayersMessages()
+
                     ingame:onStart()
                 end, DoUniqueString('preventcamping'), 0)
             end)
@@ -3679,7 +3682,7 @@ function Pregame:checkForReady()
 
             -- If everyone is ready, set the remaining time to be the min
             if readyPlayers >= totalPlayers or canFinishBanning then
-                if currentTime > minTime then
+                if canFinishBanning or currentTime > minTime then
                     self:setEndOfPhase(Time() + minTime)
                 end
             else
