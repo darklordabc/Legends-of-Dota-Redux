@@ -93,7 +93,7 @@ function showChatMessage( args ) {
 	var msg = args.msg;
 
 	// Smiles checkimg
-	var matches = args.msg.match(/:.+?:/g);
+	var matches = args.msg.match(/:[\w]+?:/g);
 	if (matches){
 		matches = matches.filter(function(k){
 			return emotions.hasOwnProperty(k);
