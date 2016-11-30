@@ -9,13 +9,13 @@
         <Panel class="recommendedBuildContainer">
             <Panel class="recommendedBuildLeftSide">
                 <Panel class="recommendedBuildRating">
-                    <Button id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVotedUp()"></Button>
+                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVotedUp()"></Panel>
                     <Label id="buildRating" text="0" />
-                    <Button id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVotedDown()"></Button>
+                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVotedDown()"></Panel>
                 </Panel>
                 <Panel class="recommendedBuildActions">
-                    <Button id="recommendedBuildFavourite" class="active" onactivate="onClickFav()"></Button>
-                    <Button id="recommendedBuildSettings" onactivate="onSelectBuildPressed()"></Button>
+                    <Panel id="recommendedBuildFavourite" class="active" onactivate="onClickFav()"></Panel>
+                    <Panel id="recommendedBuildSettings" onactivate="onSelectBuildPressed()"></Panel>
                 </Panel>
             </Panel>
             <Panel class="recommendedBuildRightSide">
@@ -54,8 +54,8 @@
                 </Panel>
             </Panel>
         </Panel>
-        <Button id="recommendedSelectButton" class="heroBuildMenuButtonChoose" onactivate="onSelectBuildPressed()">
+        <Panel id="recommendedSelectButton" class="heroBuildMenuButtonChoose" onactivate="onSelectBuildPressed()">
             <Label text="selectBuild" />
-        </Button>
+        </Panel>
     </Panel>
 </root>

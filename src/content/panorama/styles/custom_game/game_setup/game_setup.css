@@ -379,6 +379,23 @@
 /*
     The Buttons
 */
+Button {
+    margin: 4px;
+    padding: 4px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939), to( #555555 ) );
+
+    flow-children: right;
+}
+
+
+Button:active {
+    transform: translateY(1px);
+}
+
+Button:enabled:hover {
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #4c5561 ), to( #6c7d88 ) );
+}
+
 
 #middleButtons {
     max-width: 750px;
@@ -396,21 +413,9 @@
 #middleButtons Button {
     width: fill-parent-flow( 1 );
 
-    margin: 4px;
-    padding: 4px;
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939), to( #555555 ) );
-
     horizontal-align: center;
-    flow-children: right;
 }
 
-#middleButtons Button:active {
-    transform: translateY(1px);
-}
-
-#middleButtons Button:enabled:hover {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #4c5561 ), to( #6c7d88 ) );
-}
 
 #middleButtons Button Image {
     width: 40px;
@@ -1329,7 +1334,6 @@
 }
 
 .reviewButtons {
-    height: 30px;
     align: center bottom;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -1507,7 +1511,6 @@
 
 #lodBanLimits {
     padding-left: 12px;
-    min-width: 405px;
 }
 
 #lodBanThisSkill {
@@ -1716,11 +1719,15 @@
 .pickingPhaseAttr {
     width: 24px;
     height: 24px;
+
+    padding: 0px;
+
     background-color: #000000;
     border-radius: 12px;
     border: 1px solid #000000;
     margin-bottom: 4px;
     box-shadow: fill #00000000 0px 0px 0px 0px;
+
     transition-property: box-shadow;
     transition-duration: 0.2s;
 }
@@ -2459,8 +2466,8 @@
 }
 
 .votingButtonSlots {
+	min-width: 30px;
     margin-top: 4px;
-    padding: 2px;
     padding-left: 4px;
     horizontal-align: middle;
 }
@@ -2468,6 +2475,8 @@
 .votingButtonSlots Label {
     max-width: 32px;
     font-size: 12px;
+
+    text-align: center;
     margin: 0px;
 }
 
@@ -2533,6 +2542,7 @@
 }
 
 .optionVoteRoot {
+	width: 50px;
     flow-children: down;
 }
 
@@ -2804,7 +2814,7 @@
 
     vertical-align: bottom;
     horizontal-align: left;
-    margin: 8px;
+    margin: 4px;
     margin-left: 12px;
     max-width: 600px;
 
@@ -2816,13 +2826,11 @@
 }
 
 .importAndExportButton {
-    height: 30px;
-    margin-top: 3px;
-    margin-right: 0px;
-    /*margin-left: 3px;*/
+    height: 35px;
 }
 
 .importAndExportButton Label {
+	text-align: center;
     align: center center;
 }
 
@@ -2849,7 +2857,7 @@
 }
 
 #lockOptionPanel {
-    horizontal-align: right;
+    align: right center;
     flow-children: down;
 }
 
@@ -2912,10 +2920,11 @@
 #optionButtons Button {
     color: #FFFFFF;
     font-size: 24px;
-    margin: 0px;
 }
 
 #lockOptionsButton {
+	margin: 0px;
+
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
     box-shadow: fill #486ca922 -4px -4px 8px 8px;
     border-top: 1px solid #ffffff03;
@@ -2924,6 +2933,7 @@
 }
 
 #lockTeamsFirst {
+	horizontal-align: center;
     visibility: collapse;
 }
 
@@ -2961,6 +2971,8 @@
 }
 
 .OptionButton {
+
+    background-color: transparent;
     padding: 0px;
 
     transition-property: background-color, box-shadow, color, brightness;
@@ -3193,33 +3205,6 @@
     flow-children: right;
 }*/
 
-.heroBuildMenuButton {
-    height: 44px;
-
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-
-    //width: fill-parent-flow( 1 );
-}
-
-.heroBuildMenuButtonSmall {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3A607377), to(#16222A77));
-    border: 1px solid #000000;
-    border-radius: 4px;
-    wash-color: #cccccc;
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
-
-    transition-property: opacity;
-    transition-duration: 0.25s;
-}
-
 .heroBuildMenuButtonChoose {
     width: 100%;
     height: 30px;
@@ -3229,12 +3214,6 @@
 
     transition-property: opacity;
     transition-duration: 0.25s;
-}
-
-.heroBuildMenuButton:hover,
-.heroBuildMenuButtonSmall:hover,
-.heroBuildMenuButtonChoose:hover {
-    wash-color: #FFFFFFFF;
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton {
