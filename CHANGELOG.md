@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.3
+
+### Bug Fixing/New Features
+- Changed style of some buttons to be less diverse
+
+### Balance
+
+
 ## 3.2 - Steam Version
 
 ### Bug Fixing/New Features
