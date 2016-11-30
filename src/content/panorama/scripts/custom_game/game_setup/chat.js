@@ -27,6 +27,25 @@ function setChannelStyle( channel ){
 	$('#channelName').style.color = channels[channel].color;
 }
 
+// Add smile
+var emotions = {
+	':ti4platinum:': 'file://{images}/emoticons/ti4platinum.png', 
+	':cool:': 'file://{images}/emoticons/cool.png',
+	':sick:': 'file://{images}/emoticons/sick.png',
+	':smile:': 'file://{images}/emoticons/smile.png',
+	':grave:': 'file://{images}/emoticons/pa_arcana_rose.png'
+}
+
+function addEmotion( parent, emotStr ) {
+	if (!emotions.hasOwnProperty(emotStr))
+		return;
+
+	var emotion = $.CreatePanel('DOTAEmoticon', parent, 'Emoticon1');
+	emotion.SetImage(emotions[emotStr]);
+
+	return emotion;
+}
+
 // Common say function
 function say() {
 	var time = Game.Time();
@@ -69,8 +88,28 @@ function showChatMessage( args ) {
 
 	var label = $.CreatePanel('Label', $('#chatRows'), '');
 	label.AddClass('chatRow');
-	label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + args.msg;
+	label.html = true;
+
+	var msg = args.msg;
+
+	// Smiles checkimg
+	var matches = args.msg.match(/:.+?:/g);
+	if (matches){
+		matches = matches.filter(function(k){
+			return emotions.hasOwnProperty(k);
+		});
+
+		$.Each(matches, function(v, k) {
+			msg = msg.replace(v, '<img>');
+		});
+	}
+
+	label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + msg;
 	label.style.color = channels[args.channel].color;
+
+	if (matches)
+		for(var i = 0; i < matches.length; i++)
+			addEmotion(label.GetChild(i), matches[i]);
 }
 
 // Hooks a change event
