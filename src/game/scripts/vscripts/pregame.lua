@@ -728,6 +728,9 @@ function Pregame:onThink()
             this:spawnAllHeroes(function (  )
                 -- Init ingame stuff
                 Timers:CreateTimer(function()
+                    -- Load messages
+                    SU:LoadPlayersMessages()
+
                     ingame:onStart()
                 end, DoUniqueString('preventcamping'), 0)
             end)
