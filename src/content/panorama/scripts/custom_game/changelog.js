@@ -137,7 +137,6 @@ function sendMessage() {
 }
 
 function newMessages( newMessages ) {
-	$.Msg('gotcha!')
 	messages = newMessages;
 
 	setMessagesNumber();
