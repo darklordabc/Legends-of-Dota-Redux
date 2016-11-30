@@ -3,6 +3,7 @@
         <include src="file://{resources}/scripts/custom_game/util.js" /> 
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" /> 
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
+        <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
     </scripts>
 
     <script>

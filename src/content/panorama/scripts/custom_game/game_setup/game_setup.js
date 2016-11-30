@@ -665,6 +665,9 @@ function OnGetReadyState(table_name, key, data) {
             $('#heroBuilderLockButtonBans').SetHasClass('makeThePlayerNoticeThisButton', data[playerID] == 0);
             $('#heroBuilderLockButtonBans').SetHasClass('hideThisButton', data[playerID] == 1);
 
+            $('#bansImportAndExportSaveButton').visible = data[playerID] == 0;
+            $('#bansImportAndExportLoadButton').visible = data[playerID] == 0;
+
             $('#allRandomLockButton').visible = data[playerID] == 0;
             $('#reviewReadyButton').visible = data[playerID] == 0;
         }
@@ -4537,6 +4540,14 @@ function showMainPanel() {
     }
 
     $.Schedule(0.1, showMainPanel);
+}
+
+function recordPlayerBans() {
+    GameEvents.SendCustomGameEventToServer('lodSaveBans', {});
+}
+
+function loadPlayerBans() {
+    GameEvents.SendCustomGameEventToServer('lodLoadBans', {});
 }
 
 //--------------------------------------------------------------------------------------------------

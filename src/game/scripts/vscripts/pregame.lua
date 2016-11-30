@@ -35,6 +35,7 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
+local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/wearables')
 
 require('lib/util_aar')
@@ -84,6 +85,7 @@ function Pregame:init()
 
     -- Stores the total bans for each player
     self.usedBans = {}
+    self.playerBansList = {}
 
     self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
@@ -202,6 +204,16 @@ function Pregame:init()
     -- Player wants to perform a ban
     CustomGameEventManager:RegisterListener('lodBan', function(eventSourceIndex, args)
         this:onPlayerBan(eventSourceIndex, args)
+    end)
+
+    -- Player wants to save bans
+    CustomGameEventManager:RegisterListener('lodSaveBans', function(eventSourceIndex, args)
+        this:onPlayerSaveBans(eventSourceIndex, args)
+    end)
+
+    -- Player wants to load bans
+    CustomGameEventManager:RegisterListener('lodLoadBans', function(eventSourceIndex, args)
+        this:onPlayerLoadBans(eventSourceIndex, args)
     end)
 
     -- Player wants to ready up
@@ -3702,6 +3714,52 @@ function Pregame:checkForReady()
 end
 
 -- Player wants to ban an ability
+function Pregame:onPlayerSaveBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    if self.playerBansList[playerID] then 
+        local i = 0
+        repeat 
+            i = i + 1
+            local id = i
+            localStorage:setKey(playerID, "bans", tostring(id), "", function (sequenceNumber, success)
+                localStorage:setKey(playerID, "bans", tostring(id), self.playerBansList[playerID][id] or "", function (sequenceNumber, success)
+                    
+                end)
+            end)
+        until 
+            i > (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+    end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerLoadBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    for i=1,(self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans']) do
+        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
+            if success and value and value ~= "" then
+                if string.match(value, "npc_dota_hero_") then
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        heroName = value
+                        })
+                else
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        abilityName = value
+                        })
+                end
+            end
+        end)
+    end
+end
+
+-- Player wants to ban an ability
 function Pregame:onPlayerBan(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
@@ -3725,6 +3783,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
     	heroBans = 0,
     	abilityBans = 0
 	}
+
+    self.playerBansList[playerID] = self.playerBansList[playerID] or {}
 
 	-- Grab the ban object
 	local playerBans = usedBans[playerID]
@@ -3789,6 +3849,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	    -- Perform the ban
 		if self:banHero(heroName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], heroName)
 
 			network:broadcastNotification({
 	            sort = 'lodSuccess',
@@ -3864,6 +3925,7 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Perform the ban
 		if self:banAbility(abilityName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], abilityName)
 
 			network:broadcastNotification({
 	            sort = 'lodSuccess',
