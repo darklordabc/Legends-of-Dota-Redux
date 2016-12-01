@@ -1743,7 +1743,7 @@
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"
 	
 	"DOTA_Tooltip_ability_aether_range_lod_OP" "Aether Range OP"
-    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" " <font color='#70EA72'>Greatly</font> increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range."
     "DOTA_Tooltip_ability_aether_range_lod_OP_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_OP_cast_range_bonus"        "BONUS CAST RANGE:"
 
@@ -1760,6 +1760,12 @@
     "DOTA_Tooltip_ability_force_dash_lod_Note0" "The push lasts 0.4s."
     "DOTA_Tooltip_ability_force_dash_lod_Lore"        "Ejecting magic from one's body works very similar to a rocket."
     "DOTA_Tooltip_ability_force_dash_lod_distance"        "PUSH DISTANCE:"
+	
+	"DOTA_Tooltip_ability_force_dash_lod_OP" "Force Dash OP"
+    "DOTA_Tooltip_ability_force_dash_lod_OP_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself. <font color='#70EA72'>Pushes much further</font>."
+    "DOTA_Tooltip_ability_force_dash_lod_OP_Note0" "The push lasts 0.4s."
+    "DOTA_Tooltip_ability_force_dash_lod_OP_Lore"        "Ejecting magic from one's body works very similar to a rocket."
+    "DOTA_Tooltip_ability_force_dash_lod_OP_distance"        "PUSH DISTANCE:"
 
     "DOTA_Tooltip_ability_shards_of_truesight_lod" "Shards of True Sight"
     "DOTA_Tooltip_ability_shards_of_truesight_lod_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed."
