@@ -2885,12 +2885,12 @@
 	/// ANGEL ARENA REBORN ABILITIES
 	/////////////////
 
-	"DOTA_Tooltip_Ability_angel_arena_razor_power"							"Holy Book OP"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power"							"Holy Book"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_Description"				"Deals a percentage of attack damage in an area around the enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_radius"					"RADIUS:"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_damage_percent"			"%DAMAGE:"
 
-	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP"							"Holy Book"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP"							"Holy Book OP"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_Description"				"Deals a percentage of attack damage in an area around the enemy unit. <font color='#70EA72'>Improved percentage of damage.</font>\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_radius"					"RADIUS:"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_damage_percent"			"%DAMAGE:"
