@@ -9,6 +9,10 @@ function angel_arena_archmage_anomaly:OnSpellStart()
 	local dummy = CreateUnitByName( "dummy_unit", self.vTarget, false, nil, nil, self:GetCaster():GetTeamNumber() )
 	dummy:AddNewModifier(self:GetCaster(), self, "modifier_angel_arena_archmage_anomaly_thinker", {duration = self.duration})
 end
+
+function angel_arena_archmage_anomaly:GetAOERadius()
+	return self:GetSpecialValueFor( "radius" )
+end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_angel_arena_archmage_anomaly				
 --------------------------------------------------------------------------------------------------------
@@ -23,11 +27,12 @@ function modifier_angel_arena_archmage_anomaly_thinker:OnCreated( kv )
 		self.FXIndex = ParticleManager:CreateParticle( "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 0, self:GetParent():GetOrigin() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, 0, 0 ) )
-		ParticleManager:SetParticleControl( self.FXIndex, 4, self:GetParent():GetOrigin() )
-		ParticleManager:SetParticleControl( self.FXIndex, 6, self:GetParent():GetOrigin() )
-		ParticleManager:SetParticleControl( self.FXIndex, 10, self:GetParent():GetOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 4, self:GetParent():GetAbsOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 6, self:GetParent():GetAbsOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 10, self:GetParent():GetAbsOrigin() )
 	end
 	self.AlreadyHit = {}
+	self.blackList = {["shadow_shaman_shackles"] = true}
 	EmitSoundOn("Hero_Warlock.ShadowWord", self:GetParent())
 end
 
@@ -82,7 +87,8 @@ end
 
 function modifier_angel_arena_archmage_anomaly_thinker:OnAbilityFullyCast(params)
 	if params.unit:GetTeamNumber() == self:GetCaster():GetTeamNumber() and IsServer() and params.ability ~= self:GetAbility() then
-		if params.unit:HasAbility( params.ability:GetName() ) then -- check if caster owns ability and it's unit target
+		local abName = params.ability:GetName()
+		if params.unit:HasAbility(abName) and not self.blackList[abName] then -- check if caster owns ability and it's unit target
 			self.AlreadyHit = {}
 			if params.target then self.AlreadyHit[params.target] = true end
 			local enemies = FindUnitsInRadius(params.unit:GetTeamNumber(), self:GetParent():GetAbsOrigin(), params.unit, self.aura_radius * 2, self.auraTargetTeam, self.auraTargetType, self.auraTargetFlags, FIND_ANY_ORDER, false)
