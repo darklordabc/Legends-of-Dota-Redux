@@ -1784,7 +1784,12 @@
     // Roshan spell block
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
     "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
-    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Roshan will block one targeted spell every few seconds."
+    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
+	
+	// Linken's Guard
+    "DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
+    "DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
+    "DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
 
 	// Warlock Permanent Immolation
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation LoD"

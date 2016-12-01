@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.
 
 ### Balance
-
+- Added Linkens Guard as OP ability
 
 ## 3.2 - Steam Version
 
