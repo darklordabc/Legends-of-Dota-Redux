@@ -1737,6 +1737,12 @@
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
     "DOTA_Tooltip_ability_silencer_global_break_duration"                                      "DURATION:"
 
+	"DOTA_Tooltip_ability_global_stun"										"Global Stomp"
+	"DOTA_Tooltip_ability_global_stun_Description"							"The Centaur Conqueror's powerful hooves stomp the earth, stunning and damaging all living enemies. Heroes recover more quickly."
+	//"DOTA_Tooltip_ability_global_stun_radius"								"RADIUS:"
+	"DOTA_Tooltip_ability_global_stun_non_hero_stun_duration"				"STUN DURATION:"
+	"DOTA_Tooltip_ability_global_stun_hero_stun_duration"					"HERO STUN:"
+	
 	"DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
     "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
