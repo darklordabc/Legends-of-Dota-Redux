@@ -4,7 +4,7 @@
     "ADDON_GAME_NAME"                               "Легенды Доты"
     "addonname"                                     "Легенды Доты"
     "addonname_description"                         "Основано на официальной карте Легенды Доты, сделанной Ash47"
-    "game_mode_15_desc"                             "Создай адского героя"
+    "game_mode_15_desc"                             "Вернем Доте былую славу!"
 
     // Contributors
     "76561197988355984" "Ash47"
