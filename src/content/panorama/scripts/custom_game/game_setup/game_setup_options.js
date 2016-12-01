@@ -946,6 +946,30 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionBotsRestrict',
+                des: 'lodOptionDesBotsRestrict',
+                about: 'lodOptionAboutBotsRestrict',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionRestrictNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionRestrictRadiant',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionRestrictDire',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionRestrictBoth',
+                        value: 3
+                    }
+                ]
+            },
 			{
                  name: 'lodOptionBotsBonusPoints',
                  des: 'lodOptionDesBotsBonusPoints',
