@@ -1752,6 +1752,13 @@
     "DOTA_Tooltip_ability_octarine_vampirism_lod_Lore"        "The art of thieving life through arcane means is a lost one."
     "DOTA_Tooltip_ability_octarine_vampirism_lod_hero_lifesteal"        "%HERO LIFESTEAL:"
     "DOTA_Tooltip_ability_octarine_vampirism_lod_creep_lifesteal"        "%CREEP LIFESTEAL:"
+	
+	"DOTA_Tooltip_ability_octarine_vampirism_lod_OP" "Octarine Vampirism OP"
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_Description" "Grants aura for allied Heros that restores health for a <font color='#70EA72'>large</font> percentage of any damage dealt from spells. Lifesteals less from damage dealt to creeps."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_Lore"        "The art of thieving life through arcane means is a lost one."
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_hero_lifesteal"        "%HERO LIFESTEAL:"
+    "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_creep_lifesteal"        "%CREEP LIFESTEAL:"
+	
     "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff"                "Octarine Vampirism"
     "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff_Description"    "Gaining lifesteal on spell damage."
 

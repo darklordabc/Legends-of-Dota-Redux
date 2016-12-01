@@ -3507,6 +3507,39 @@
             }
         }
     } 
+	
+	"octarine_vampirism_lod_OP"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityTextureName"            "octarine_vampirism_lod_OP"
+        "ScriptFile"                    "abilities/octarine_vampirism_lod_OP.lua"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "hero_lifesteal"        "70 80 90 100"
+            }            
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "creep_lifesteal"        "20 40 60 80"
+            }    
+            "03"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "radius"                "900"
+            }
+        }
+    } 
+	
     "force_dash_lod"
     {
         // General
