@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixing/New Features
 - Changed style of some buttons to be less diverse
+- Fixed getting stuck in ban phase
 
 ### Balance
 
