@@ -400,6 +400,7 @@
                                     </Panel>
                                 </Panel>
                                 <Panel id="importAndExportEntryRoot">
+                                    <TextEntry id="importAndExportEntry"/>
                                     <Button id="importAndExportSaveButton" class="importAndExportButton" onactivate="RecordPlayerSC()">
                                         <Label text="#importAndExport_save" />
                                     </Button>

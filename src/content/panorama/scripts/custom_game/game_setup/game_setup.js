@@ -157,9 +157,6 @@ var isPremiumPlayer = false;
 // Save code timer
 var saveSCTimer = false;
 
-// Options for saving
-var jsonOption = null;
-
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -2344,12 +2341,12 @@ function setOption(optionName, optionValue) {
         v: optionValue
     });
 
-    jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Imports option list
 function onImportAndExportPressed() {
-    var data = jsonOption;
+    var data = $('#importAndExportEntry').text;
 
     if(data.length == 0) {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
@@ -2387,7 +2384,7 @@ function onImportAndExportPressed() {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
     }
     $.Schedule(0.1, function () {
-        jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+        $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     });
 }
 
@@ -2403,7 +2400,7 @@ function LoadPlayerSC( ) {
             return target.split(search).join(replacement);
         });
 
-        jsonOption = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
+        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
         onImportAndExportPressed()
 
         $.Schedule(3.0, function () {
@@ -4001,7 +3998,7 @@ function OnOptionChanged(table_name, key, data) {
             break;
     }
 
-    jsonOption = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Recalculates how many abilities / heroes we can ban
