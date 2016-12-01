@@ -126,6 +126,7 @@
     "lodMutatorWTF"                                 "WTF Мод"
     "lodMutatorHidePicks"                           "Скрыть Пики Оппонентов"
     "lodMutatorAllVision"                           "Открытая Карта"
+    "lodMutatorDuel"                                "Дуэли"
 
     "lodMutatorFastBuybackCooldown1"                "Быстрый Респаун"
     "lodMutatorFastBuybackCooldown2"                "Очень Быстрый Респаун"
@@ -318,6 +319,10 @@
     "lodOptionNormal"                               "Обычная - Каждые 2 Минуты"
     "lodOptionHigh"                                 "Высокая - Каждую Минуту"
     "lodOptionExtreme"                              "Экстримальная - Каждые 30 Секунд"
+
+    "lodOptionDuels"                                "Дуэли"
+    "lodOptionDesDuels"                             "Дуэли"
+    "lodOptionAboutDuels"                           "Система дуэлей из кастомки Angel Arena Reborn"
 
     "lodOptionDesAdvancedHeroAbilities"             "Разрешить Способности Героев"
     "lodOptionDesAdvancedNeutralAbilities"          "Разрешить Способности Нейтралов"

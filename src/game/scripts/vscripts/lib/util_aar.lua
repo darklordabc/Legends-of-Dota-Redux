@@ -191,96 +191,6 @@ arenas[AAR_GIANT_ARENA] = {
 	maximumPlayers = 5
 }
 
-LinkLuaModifier("modifier_duel_out_of_game", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_tribune", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_invis_reveal", "lib/util_aar.lua",LUA_MODIFIER_MOTION_NONE)
-
-modifier_invis_reveal = class({})
-
-function modifier_invis_reveal:IsHidden()
-	return true
-end
-
-function modifier_invis_reveal:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_invis_reveal:CheckState()
-	local state = {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true
-	}
-	return state
-end
-
-modifier_tribune = class({})
-
-function modifier_tribune:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING,
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION
-	}
- 
-	return funcs
-end
-
-function modifier_tribune:IsHidden()
-	return true
-end
-
-function modifier_tribune:GetDisableHealing()
-	return true
-end
-
-function modifier_tribune:CheckState()
-	local state = {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
-	}
-	return state
-end
-
-modifier_duel_out_of_game = class({})
-
-function modifier_duel_out_of_game:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING,
-		MODIFIER_PROPERTY_MODEL_CHANGE
-	}
- 
-	return funcs
-end
-
-function modifier_duel_out_of_game:IsHidden()
-	return true
-end
-
-function modifier_duel_out_of_game:GetDisableHealing()
-	return true
-end
-
-function modifier_duel_out_of_game:GetModifierModelChange ()
-    return "models/development/invisiblebox.vmdl"
-end
-
-function modifier_duel_out_of_game:CheckState()
-	local state = {
-		-- [MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_INVISIBLE] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
-	}
-	return state
-end
-
 DUEL_INTERVAL = 240
 DUEL_NOBODY_WINS = 60
 DUEL_PREPARE = 2.0
@@ -1423,6 +1333,12 @@ function initDuel(restart)
   		return
   	end
 
+  	-- Load duels ability and it's modifiers
+  	local unit = CreateUnitByName("npc_dummy_unit",Vector(0,0,0),false,nil,nil,DOTA_TEAM_NOTEAM)
+  	local ab = unit:AddAbility("angel_arena_duels")
+  	ab:UpgradeAbility(true)
+  	unit:AddNewModifier(unit,ab,"modifier_kill",{duration = 1.0})
+
 	-- local selected = false
 	-- local arena = AAR_SMALL_ARENA
 	-- repeat
@@ -1723,7 +1639,7 @@ function sendEventTimer(text, time)
     --CustomGameEventManager:Send_ServerToAllClients( "duel_text_update", data )
     CustomGameEventManager:Send_ServerToTeam( DOTA_TEAM_GOODGUYS, "duel_text_update", data )
     CustomGameEventManager:Send_ServerToTeam( DOTA_TEAM_BADGUYS, "duel_text_update", data )
-
+    CustomGameEventManager:Send_ServerToTeam( DOTA_TEAM_NOTEAM, "duel_text_update", data )
 end
 
 function customAttension(text, time)
