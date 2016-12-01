@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Linkens Guard as OP ability
+- Added Aether's Range OP
 
 ## 3.2 - Steam Version
 
