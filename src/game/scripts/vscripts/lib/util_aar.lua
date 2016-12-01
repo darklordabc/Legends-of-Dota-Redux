@@ -1408,7 +1408,9 @@ function spawnEntitiesAlongPath( path )
 	local tempTrees = Entities:FindAllByClassname("dota_temp_tree")
 
 	for k,v in pairs(tempTrees) do
-		v:CutDown(-1)
+		if not v:IsNull() and v.CutDown then
+			v:CutDown(-1)
+		end
 	end
 
     Timers:CreateTimer(function()
