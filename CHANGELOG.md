@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Changed style of some buttons to be less diverse
 - Fixed getting stuck in ban phase
+- Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.
 
 ### Balance
 
