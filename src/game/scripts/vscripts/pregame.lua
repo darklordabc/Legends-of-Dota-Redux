@@ -264,7 +264,7 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionMirrorHeroes', 25)
+    self:setOption('lodOptionDraftAbilities', 25)
     self:setOption('lodOptionCreepPower', 0)
 
 	Timers:CreateTimer(function()
@@ -1729,7 +1729,7 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft hero selection
-        lodOptionMirrorHeroes = function(value)
+        lodOptionDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1805,7 +1805,7 @@ function Pregame:initOptionSelector()
         end,
 
         -- Common mirror draft hero selection
-        lodOptionCommonMirrorHeroes = function(value)
+        lodOptionCommonDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -2163,8 +2163,8 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Set Draft Heroes to 25
-                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+                -- Set Draft Abilities to 50
+                self:setOption('lodOptionCommonDraftAbilities', 50, true)
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
@@ -2332,13 +2332,13 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft
-        lodOptionMirrorHeroes = function()
-            self:setOption('lodOptionCommonMirrorHeroes', self.optionStore['lodOptionMirrorHeroes'], true)
+        lodOptionDraftAbilities = function()
+            self:setOption('lodOptionCommonDraftAbilities', self.optionStore['lodOptionDraftAbilities'], true)
         end,
 
         -- Common mirror draft heroes
-        lodOptionCommonMirrorHeroes = function()
-            self.maxDraftHeroes = self.optionStore['lodOptionCommonMirrorHeroes']
+        lodOptionCommonDraftAbilities = function()
+            self.maxDraftHeroes = self.optionStore['lodOptionCommonDraftAbilities']
         end
     }
 end
@@ -2466,6 +2466,8 @@ function Pregame:buildDraftArrays()
 
     local maxDraftArrays = 12
 
+    local abilityDraftCount = self.optionStore['lodOptionCommonDraftAbilities']
+
     if self.singleDraft then
         maxDraftArrays = 24
     end
@@ -2473,7 +2475,6 @@ function Pregame:buildDraftArrays()
     for draftID = 0,(maxDraftArrays - 1) do
         -- Create store for data
         local draftData = {}
-        self.draftArrays[draftID] = draftData
 
         local possibleHeroes = {}
         for k,v in pairs(self.allowedHeroes) do
@@ -2503,16 +2504,18 @@ function Pregame:buildDraftArrays()
 
         -- Select random skills
         local abilityDraft = {}
-        for i=1,self.maxDraftSkills do
+        for i=1,abilityDraftCount do
             abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
         end
 
         -- Store data
-        draftData.heroDraft = heroDraft
         draftData.abilityDraft = abilityDraft
+        draftData.heroDraft = heroDraft
 
         -- Network data
         network:setDraftArray(draftID, draftData)
+
+        self.draftArrays[draftID] = draftData
     end
 end
 
@@ -3018,7 +3021,7 @@ function Pregame:processOptions()
 				-- Draft arrays
 				if this.useDraftArrays then
 					statCollection:setFlags({
-				        ['Draft Heroes'] = this.optionStore['lodOptionMirrorHeroes'],
+				        ['Draft Abilities'] = this.optionStore['lodOptionDraftAbilities'],
 				    })
 				end
 			else
@@ -3033,7 +3036,7 @@ function Pregame:processOptions()
 				-- Store draft array setting if it is being used
 			    if this.useDraftArrays then
 			    	statCollection:setFlags({
-				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonMirrorHeroes'],
+				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonDraftAbilities'],
 				    })
 			    end
 	    	end

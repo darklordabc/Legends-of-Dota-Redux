@@ -759,6 +759,9 @@ function OnGetDraftArray(table_name, key, data) {
     heroDraft = draftArray.heroDraft;
     abilityDraft = draftArray.abilityDraft;
 
+    $('#buttonHeroGrouping').checked = abilityDraft == null;
+    toggleHeroGrouping();
+
     // Run the calculations
     calculateFilters();
     calculateHeroFilters();
@@ -1920,8 +1923,8 @@ function getSkillFilterInfo(abilityName) {
     }
 
     // Check draft array
-    if(heroDraft != null) {
-        if(!heroDraft[abilityHeroOwner[abilityName]]) {
+    if(abilityDraft != null) {
+        if(!abilityDraft[abilityName]) {
             // Skill cant be drafted
             cantDraft = true;
 
@@ -1992,7 +1995,7 @@ function OnSkillTabShown(tabName) {
 
         activeTabs = {
             main: true,
-            //neutral: true,
+            neutral: abilityDraft != null,
             custom: true
         };
 
