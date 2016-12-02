@@ -1809,7 +1809,7 @@
 	
 	// Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP"                                  "Return OP"
-    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. "
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. <font color='#70EA72'>Shorter cooldown and lower mana cost</font>."
 
     // Roshan spell block
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
