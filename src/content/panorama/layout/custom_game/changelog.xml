@@ -71,7 +71,7 @@
 							<Panel class="updateClipper" id="updateClipper" hittest="false">
 								<Panel class="displayHeader updateEntry" hittest="false">
 									<Label class="updateHeaderText" text="3.2" /> 
-									<Label class="displayText" text="*Game will no longer zoom in/out when mouse wheel scrolling on GUI elements\n*Now if you select a primary attribute but not a hero, you will be given a random hero of that attribute\n*Fix multiple players trying to switch teams at the same time\n*Hopefully fixed the crashing at start, but has slowed down spawning a bit. Worthwhile compromise.\n*Fixed players/bots having white colors if over the default 10 player.\n*Fixed Hero Icons not showing up if the game was single draft\n*Chat should now be more visible during the gamesetup\n*Fixed Bots not using chemical rage and shadow dance\n*Tips now alternative perk tips and other tips\n*Added a hint about duels and one about lowering bot difficulty\n*You can now ban hero abilities by the hero section like you could before\n*Added old enrage ability\n*Added 3 more OP single player abilities\n*Buffed a few neutral abilities\n" />
+									<Label class="displayText" text="*Changed style of some buttons to be less diverse\n*Fixed getting stuck in ban phase\n*Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.\n*Added function to save/load banlist to local storage.\n*Added Linkens Guard as OP ability\n*Added Aether's Range OP\n*Added Force Dash OP, Octarine Vampirism OP, Global Stomp\n" />
 								</Panel>
 								<Panel class="horizontalSeparator"/>
 							</Panel>
