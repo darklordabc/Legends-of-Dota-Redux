@@ -2821,6 +2821,14 @@ Button:enabled:hover {
     flow-children: down;
 }
 
+#bansImportAndExportEntryRoot {
+    flow-children: right;
+}
+
+#bansImportAndExportEntryRoot .importAndExportButton {
+    height: 27px;
+}
+
 #importAndExportCaption {
     flow-children: right;
 }

@@ -781,6 +781,8 @@
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
     "lodSuccessBanHero"                             "'{heroName}' was banned."
+    "lodSuccessSavedBans"                           "'{entries}' bans were saved to local storage."
+    "lodSuccessLoadBans"                            "'{entries}' bans were loaded from local storage."
 
     // Upgrade Towers Notifications
     "radiantTowersUpgraded"                          "<font color='#70EA72'>Radiant towers have been upgraded.</font>"

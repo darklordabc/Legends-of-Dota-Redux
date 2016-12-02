@@ -740,9 +740,18 @@
                                     </Panel>                                    
                                 </Panel>
 
-                                <Button id="heroBuilderLockButtonBans" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                    <Label text="finishBanning" />
-                                </Button>
+                                <Panel id="bansImportAndExportEntryRoot">
+                                    <Button id="heroBuilderLockButtonBans" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+                                        <Label text="finishBanning" />
+                                    </Button>
+                                    
+                                    <Button id="bansImportAndExportSaveButton" class="importAndExportButton" onactivate="recordPlayerBans()" onmouseover="UIShowCustomLayoutParametersTooltip( BansImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=bansImportAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( BansImportAndExportTooltip )">
+                                        <Label text="#importAndExport_save" />
+                                    </Button>
+                                    <Button id="bansImportAndExportLoadButton" class="importAndExportButton" onactivate="loadPlayerBans()" onmouseover="UIShowCustomLayoutParametersTooltip( BansImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=bansImportAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( BansImportAndExportTooltip )">
+                                        <Label text="#importAndExport_load" />
+                                    </Button>
+                                </Panel>
                             </Panel>
 
                             <Panel id="pickingPhaseTabs">
@@ -827,7 +836,6 @@
                                     </Panel>
                                 </Panel>
                             </Panel>
-
                         </Panel>                        
                     </Panel>
 

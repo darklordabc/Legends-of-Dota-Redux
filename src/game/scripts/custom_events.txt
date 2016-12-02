@@ -605,4 +605,30 @@
     "lodOnCheats"
     {
     }
+
+    //////////////////////////
+    //ModDotaLib - Local Storage
+    //////////////////////////
+    
+    //Reply with moddota_localstorage_ack { "success" : int, "sequenceNumber" : int}
+    "moddota_localstorage_set"
+    {
+        "filename"          "string"
+        "key"               "string"
+        "value"             "string"
+        "sequenceNumber"    "long"
+        "pid"               "byte"
+    }
+    //Reply with moddota_localstorage_value { "success" : int, "sequenceNumber" : int, "value" : string}
+    "moddota_localstorage_get"
+    {
+        "filename"          "string"
+        "key"               "string"
+        "sequenceNumber"    "long"
+        "pid"               "byte"
+    }
+    
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //End ModDotaLib - Local Storage
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 }

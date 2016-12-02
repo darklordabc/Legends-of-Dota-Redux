@@ -35,6 +35,7 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
+local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/wearables')
 
 require('lib/util_aar')
@@ -84,6 +85,7 @@ function Pregame:init()
 
     -- Stores the total bans for each player
     self.usedBans = {}
+    self.playerBansList = {}
 
     self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
@@ -202,6 +204,16 @@ function Pregame:init()
     -- Player wants to perform a ban
     CustomGameEventManager:RegisterListener('lodBan', function(eventSourceIndex, args)
         this:onPlayerBan(eventSourceIndex, args)
+    end)
+
+    -- Player wants to save bans
+    CustomGameEventManager:RegisterListener('lodSaveBans', function(eventSourceIndex, args)
+        this:onPlayerSaveBans(eventSourceIndex, args)
+    end)
+
+    -- Player wants to load bans
+    CustomGameEventManager:RegisterListener('lodLoadBans', function(eventSourceIndex, args)
+        this:onPlayerLoadBans(eventSourceIndex, args)
     end)
 
     -- Player wants to ready up
@@ -3721,7 +3733,76 @@ function Pregame:checkForReady()
 end
 
 -- Player wants to ban an ability
-function Pregame:onPlayerBan(eventSourceIndex, args)
+function Pregame:onPlayerSaveBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+
+    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
+        count = 50
+    end
+
+    local id = 0
+
+    if self.playerBansList[playerID] then 
+        local i = 0
+        repeat 
+            i = i + 1
+            local tempI = i
+            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
+                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
+                    id = id + 1
+                    if id == #self.playerBansList[playerID] then
+                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
+                    end
+                end)
+            end)
+        until 
+            i > count
+    end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerLoadBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local id = 0
+
+    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+
+    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
+        count = 50
+    end
+
+    for i=1,count do
+        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
+            if success and value and value ~= "" then
+                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        heroName = value
+                        }, true)
+                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        abilityName = value
+                        }, true)
+                end
+                id = id + 1
+            end
+            if i == count then
+                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
+            end
+        end)
+    end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerBan(eventSourceIndex, args, noNotification)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
@@ -3745,6 +3826,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
     	abilityBans = 0
 	}
 
+    self.playerBansList[playerID] = self.playerBansList[playerID] or {}
+
 	-- Grab the ban object
 	local playerBans = usedBans[playerID]
 
@@ -3767,25 +3850,29 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if playerBans.heroBans >= maxHeroBans and not unlimitedBans then
             if maxHeroBans == 0 then
                 -- There is no hero banning
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanHeroNoBanning'
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanHeroNoBanning'
+                    })
+                    self:PlayAlert(playerID)
+                end
 
 
                 return
             else
                 -- Player has used all their bans
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanHeroLimit',
-                    params = {
-                        ['used'] = playerBans.heroBans,
-                        ['max'] = maxHeroBans
-                    }
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanHeroLimit',
+                        params = {
+                            ['used'] = playerBans.heroBans,
+                            ['max'] = maxHeroBans
+                        }
+                    })
+                    self:PlayAlert(playerID)
+                end
 
             end
 
@@ -3795,11 +3882,13 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Is this a valid hero?
 		if not self.allowedHeroes[heroName] then
 	        -- Add an error
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedToFindHero'
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+    	        network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedToFindHero'
+    	        })
+                self:PlayAlert(playerID)
+            end
 
 
 	        return
@@ -3808,14 +3897,17 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	    -- Perform the ban
 		if self:banHero(heroName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], heroName)
 
-			network:broadcastNotification({
-	            sort = 'lodSuccess',
-	            text = 'lodSuccessBanHero',
-	            params = {
-	            	['heroName'] = heroName
-	        	}
-	        })
+            if not noNotification then
+    			network:broadcastNotification({
+    	            sort = 'lodSuccess',
+    	            text = 'lodSuccessBanHero',
+    	            params = {
+    	            	['heroName'] = heroName
+    	        	}
+    	        })
+            end
 
             -- Increase the number of ability bans this player has done
             playerBans.heroBans = playerBans.heroBans + 1
@@ -3824,15 +3916,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
             network:setTotalBans(playerID, playerBans.heroBans, playerBans.abilityBans)
 		else
 			-- Ability was already banned
-
-			network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanHeroAlreadyBanned',
-	            params = {
-	            	['heroName'] = heroName
-	        	}
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+    			network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedBanHeroAlreadyBanned',
+    	            params = {
+    	            	['heroName'] = heroName
+    	        	}
+    	        })
+                self:PlayAlert(playerID)
+            end
 
             return
 		end
@@ -3841,24 +3934,28 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if playerBans.abilityBans >= maxBans and not unlimitedBans then
             if maxBans == 0 then
                 -- No ability banning allowed
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanAbilityNoBanning'
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanAbilityNoBanning'
+                    })
+                    self:PlayAlert(playerID)
+                end
 
                 return
             else
                 -- Player has used all their bans
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanAbilityLimit',
-                    params = {
-                        ['used'] = playerBans.abilityBans,
-                        ['max'] = maxBans
-                    }
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanAbilityLimit',
+                        params = {
+                            ['used'] = playerBans.abilityBans,
+                            ['max'] = maxBans
+                        }
+                    })
+                    self:PlayAlert(playerID)
+                end
             end
 
 
@@ -3868,14 +3965,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Is this even a real skill?
 	    if not self.flagsInverse[abilityName] then
 	        -- Invalid ability name
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedInvalidAbility',
-	            params = {
-	                ['abilityName'] = abilityName
-	            }
-	        })
-            self:PlayAlert(playerID)
+                if not noNotification then
+    	        network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedInvalidAbility',
+    	            params = {
+    	                ['abilityName'] = abilityName
+    	            }
+    	        })
+                self:PlayAlert(playerID)
+            end
 
 	        return
 	    end
@@ -3883,14 +3982,17 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Perform the ban
 		if self:banAbility(abilityName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], abilityName)
 
-			network:broadcastNotification({
-	            sort = 'lodSuccess',
-	            text = 'lodSuccessBanAbility',
-	            params = {
-	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
-	        	}
-	        })
+            if not noNotification then
+    			network:broadcastNotification({
+    	            sort = 'lodSuccess',
+    	            text = 'lodSuccessBanAbility',
+    	            params = {
+    	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+    	        	}
+    	        })
+            end
 
             -- Increase the number of bans this player has done
             playerBans.abilityBans = playerBans.abilityBans + 1
@@ -3900,14 +4002,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		else
 			-- Ability was already banned
 
-			network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanAbilityAlreadyBanned',
-	            params = {
-	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
-	        	}
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanAbilityAlreadyBanned',
+                    params = {
+                        ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+                    }
+                })
+                self:PlayAlert(playerID)
+            end
 
             return
 		end
