@@ -1652,6 +1652,16 @@
     "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
     "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
 
+	// Essence Aura
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health"                      "Essence Aura Health"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its <font color='#70EA72'>health</font> pool.  Outworld Devourer also passively gains a bonus to its base <font color='#70EA72'>health</font> pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_radius"               "RADIUS:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_bonus_mana"           "BASE HEALTH:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_amount"           "%RESTORED HEALTH:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_chance"       "%RESTORE CHANCE:"
+	
     // Aftershock
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock LoD"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>Has a cooldown.</font>"
