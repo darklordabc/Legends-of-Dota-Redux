@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Changed style of some buttons to be less diverse
 - Fixed getting stuck in ban phase
 - Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.
+- Added function to save/load banlist to local storage. 
 
 ### Balance
 - Added Linkens Guard as OP ability
