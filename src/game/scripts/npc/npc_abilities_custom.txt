@@ -3861,6 +3861,101 @@
             }
         }
     }
+	
+	"shards_of_truesight_lod_OP"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "shards_of_truesight_lod_OP"
+        "AbilityCooldown"                "10"
+        "AbilityManaCost"                "100 75 50 0"
+        "AbilityCastRange"                "%radius"
+        
+        "precache"
+        {
+            "particle"    "particles/true_sight/dust_of_gem.vpcf"
+            "particle"    "particles/true_sight/true_sight_debuff.vpcf"
+            "sound"        "sounds/items/dust_of_appearance.vsnd"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "ms_boost"                "25"
+            }            
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "duration"                "5"
+            }    
+            "03"
+            {
+                "var_type"                "FIELD_FLOAT"
+                "radius"                "900 1000 1100 1200"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"    "truesight_aura"
+                "Target"        "CASTER"
+                "Duration"        "%duration"
+            }
+            "FireEffect"
+            {
+                "EffectName"    "particles/true_sight/dust_of_gem.vpcf"
+                "EffectAttachType"    "attach_origin"
+                "ControlPoints"
+                {
+                    "01"                "%radius %radius %radius"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.DustOfAppearance.Activate"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "truesight_aura"
+            {
+                "IsHidden" "0"
+                "IsPurgable"    "0"
+                
+                "EffectName"    "particles/true_sight/true_sight_debuff.vpcf"
+                "EffectAttachType"        "follow_overhead"
+                
+                "Aura" "truesight_aura_debuff"
+                "Aura_Radius" "%radius"
+                "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+                //"Aura_Flags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"        "%ms_boost"
+                    "MODIFIER_PROPERTY_TOOLTIP"                         "%radius"
+                }
+            }
+            "truesight_aura_debuff"
+            {
+                "IsDebuff"        "1"
+                "IsPurgable"    "0"
+                "Priority"          "MODIFIER_PRIORITY_HIGH"
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_DISABLED"
+                }
+            }
+        }
+    }
     
     //=================================================================================================================
     // Lone Druid Spirit Bear: Return
@@ -14790,7 +14885,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"factory_duration"	"18"
+				"factory_duration"	"60"
 			}
 			"02"
 			{
@@ -16041,6 +16136,97 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_hero_duration"	"0.25 0.5 1.0 1.5"
+			}
+		}
+	
+		
+		"Modifiers"
+		{
+			"modifier_frost_lord_freezing"	
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+	
+				"OnAttacked"
+				{
+					"Random"
+					{
+						"Chance"		"%freezing_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+	
+						"OnSuccess"
+						{
+							"FireSound"
+							{
+								"EffectName"	"hero_Crystal.frostbite"
+								"Target"		"ATTACKER"
+							}
+	
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_frost_lord_freezing_block"
+								"Target"		"ATTACKER"
+								"Duration"		"%stun_hero_duration"	
+							}
+	
+							"Damage"
+							{
+								"Target"	"ATTACKER"
+								"Type"		"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%AbilityDamage"
+							}
+						}
+					}
+				}
+			}
+	
+			"modifier_frost_lord_freezing_block"
+			{
+	
+				"EffectName"		"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+	
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+	
+		}
+	}
+	
+	"frost_lord_freezing_OP"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"frost_lord_freezing_OP"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	
+		"AbilityDamage"					"25 50 100 150"
+	
+		"MaxLevel"               "4"
+		"RequiredLevel"          "1"
+		"LevelsBetweenUpgrades"  "2"
+	
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"freezing_chance"			"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_hero_duration"	"0.5 1.0 1.5 2.0"
 			}
 		}
 	

@@ -1788,6 +1788,13 @@
     "DOTA_Tooltip_ability_shards_of_truesight_lod_ms_boost"        "BONUS MOVESPEED:"
     "DOTA_Tooltip_ability_shards_of_truesight_lod_duration"        "DURATION:"
     "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "TRUE SIGHT RADIUS:"
+	
+	"DOTA_Tooltip_ability_shards_of_truesight_lod_OP" "Shards of True Sight OP"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed. <font color='#70EA72'>Lower cooldown, mana cost and a larger true-sight radius</font>."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_Lore"        "Why pay for the whole Gem when the scraps can be just as useful."
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_ms_boost"        "BONUS MOVESPEED:"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_duration"        "DURATION:"
+    "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_radius"        "TRUE SIGHT RADIUS:"
 
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
     "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
@@ -3245,6 +3252,11 @@
 	"DOTA_Tooltip_ability_frost_lord_freezing_Description"	"Gives Frost Lord a chance to freeze his attacker and deal damage to him."
 	"DOTA_Tooltip_ability_frost_lord_freezing_freezing_chance"	"%CHANCE TO FREEZE:"
 	"DOTA_Tooltip_ability_frost_lord_freezing_stun_hero_duration"	"FREEZE DURATION:"
+	
+	"DOTA_Tooltip_ability_frost_lord_freezing_OP"	"Cold Embrace OP"
+	"DOTA_Tooltip_ability_frost_lord_freezing_OP_Description"	"Gives Frost Lord a chance to freeze his attacker and deal damage to him. <font color='#70EA72'>Higher chance to proc and longer freeze duration.</font>"
+	"DOTA_Tooltip_ability_frost_lord_freezing_OP_freezing_chance"	"%CHANCE TO FREEZE:"
+	"DOTA_Tooltip_ability_frost_lord_freezing_OP_stun_hero_duration"	"FREEZE DURATION:"
 
 	"DOTA_Tooltip_modifier_frost_lord_freezing_block"	"Cold Embrace"
 	"DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"	"This unit is frozen."
