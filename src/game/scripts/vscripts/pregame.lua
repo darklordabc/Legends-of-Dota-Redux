@@ -2488,7 +2488,8 @@ function Pregame:buildDraftArrays()
         end
 
         local possibleSkills = {}
-        for abilityName,_ in pairs(self.flagsInverse) do
+        local possibleUlts = {}
+        for abilityName,abilityFlag in pairs(self.flagsInverse) do
             local shouldAdd = true
 
             -- check bans
@@ -2496,16 +2497,28 @@ function Pregame:buildDraftArrays()
                 shouldAdd = false
             end
 
+            -- check OP
+            -- if self.bannedAbilities[abilityName] then
+            --     shouldAdd = false
+            -- end
+
             -- Should we add it?
             if shouldAdd then
-                table.insert(possibleSkills, abilityName)
+                if abilityFlag.isUlt then
+                    table.insert(possibleUlts, abilityName)
+                else
+                    table.insert(possibleSkills, abilityName)
+                end
             end
         end
 
         -- Select random skills
         local abilityDraft = {}
-        for i=1,abilityDraftCount do
+        for i=1,math.floor(abilityDraftCount*0.75) do
             abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
+        end
+        for i=1,math.floor(abilityDraftCount*0.25) do
+            abilityDraft[table.remove(possibleUlts, math.random(#possibleUlts))] = true
         end
 
         -- Store data
@@ -4182,14 +4195,12 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         local heroDraft = draftArray.heroDraft
         local abilityDraft = draftArray.abilityDraft
 
-        if self.maxDraftHeroes > 0 then
-            local heroName = self.abilityHeroOwner[abilityName]
-
-            if not heroDraft[heroName] then
+        if abilityDraft then
+            if not abilityDraft[abilityName] then
                 -- Tell them
                 network:sendNotification(player, {
                     sort = 'lodDanger',
-                    text = 'lodFailedDraftWrongHeroAbility',
+                    text = 'lodFailedDraftWrongAbility',
                     params = {
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }

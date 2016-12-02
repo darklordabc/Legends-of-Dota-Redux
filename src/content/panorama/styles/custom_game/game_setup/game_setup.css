@@ -1915,6 +1915,11 @@ Button:enabled:hover {
     border: 1px solid #444444;
 }
 
+.lodDraftAbility {
+    width: 90px;
+    height: 90px;
+}
+
 .grouped_skills {
     flow-children: down-wrap;
 
@@ -1936,11 +1941,20 @@ Button:enabled:hover {
     height: 78px;
 }
 
+.grouped_skills.draftSkills.manySkills {
+    margin-top: 16px;
+    height: 100px;
+}
+
 .grouped_skills .lodMiniAbility {
     margin: 0px;
     margin-right: 2px;
     margin-bottom: 2px;
     margin-top: 0px;
+}
+
+.grouped_skills.draftSkills {
+    height: 100px;
 }
 
 .grouped_skills .lodMiniAbility.ultimateAbility {

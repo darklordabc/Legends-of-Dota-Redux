@@ -759,7 +759,9 @@ function OnGetDraftArray(table_name, key, data) {
     heroDraft = draftArray.heroDraft;
     abilityDraft = draftArray.abilityDraft;
 
+    $("#pickingPhaseSkillTabContent").visible = true;
     $('#buttonHeroGrouping').checked = abilityDraft == null;
+
     toggleHeroGrouping();
 
     // Run the calculations
@@ -836,7 +838,7 @@ function setupBuilderTabs() {
 
     // Show the main tab only
     // #warning
-    //showBuilderTab('pickingPhaseMainTab');
+    // showBuilderTab('pickingPhaseSkillsTab');
 
     // Default to no selected preview hero
     setSelectedHelperHero();
@@ -1995,7 +1997,7 @@ function OnSkillTabShown(tabName) {
 
         activeTabs = {
             main: true,
-            neutral: abilityDraft != null,
+            neutral: isDraftGamemode(),
             custom: true
         };
 
@@ -2053,6 +2055,7 @@ function OnSkillTabShown(tabName) {
                                 if(groupCon == null) {
                                     groupCon = $.CreatePanel('Panel', con, 'group_container_' + groupKey);
                                     groupCon.SetHasClass('grouped_skills', true);
+                                    groupCon.SetHasClass('draftSkills', isDraftGamemode())
                                 }
 
                                 groupBlocks[groupKey] = groupCon;
@@ -2229,6 +2232,10 @@ function OnSkillTabShown(tabName) {
                 abcon.SetAttributeString('abilityname', abName); 
                 abcon.SetHasClass('lodMiniAbility', true);
                 label.SetHasClass('skillCostSmall', true);
+
+                if (isDraftGamemode()) {
+                    abcon.AddClass("lodDraftAbility");
+                }
 
                 //abcon.SetHasClass('disallowedSkill', true);
 
@@ -3737,6 +3744,10 @@ function updateVotingPercentage(votes, labels) {
 	}
 }
 
+function isDraftGamemode() {
+    return optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3
+}
+
 // A phase was changed
 var seenPopupMessages = {};
 var isBuildsDonwloaded = false;
@@ -3812,7 +3823,13 @@ function OnPhaseChanged(table_name, key, data) {
 
                 // Set main tab activated
                 if (!isBuildsDonwloaded){
-                    showBuilderTab('pickingPhaseMainTab');
+                    if (isDraftGamemode()) {
+                        showBuilderTab('pickingPhaseSkillTab');
+                        $("#pickingPhaseSkillTabContent").visible = false;
+                    } else {
+                        showBuilderTab('pickingPhaseMainTab');
+                    }
+                    
                     isBuildsDonwloaded = true;
                 }
 
