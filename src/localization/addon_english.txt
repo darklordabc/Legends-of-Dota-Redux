@@ -1805,7 +1805,11 @@
 
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
-    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the mouse cursor. "
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the bottom part of your current view. "
+	
+	// Spirt Bear Return
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP"                                  "Return OP"
+    "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. "
 
     // Roshan spell block
     "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block LoD"
@@ -3574,6 +3578,11 @@
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
+	
+	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP"                                     "Arcane Echo OP"
+	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown. <font color='#70EA72'>Shorter cooldown.</font>"
+	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
+	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_delay"                                 "ECHO DELAY:"
 
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp"                    "Essence Amp Crit"
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Description"        "Each instance of magical damage you deal has a chance to Crit dealing extra magical damage but consuming more mana. Sources of magic damage that does not have a mana cost will not Crit."

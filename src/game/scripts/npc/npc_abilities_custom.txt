@@ -3884,6 +3884,30 @@
         
         
     }
+	
+    //=================================================================================================================
+    // Lone Druid Spirit Bear: Return OP
+    //=================================================================================================================
+    "lone_druid_spirit_bear_return_lod_OP"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "lone_druid_spirit_bear_return"
+        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "MaxLevel"                      "3"        
+		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"            "lone_druid_spirit_bear_return_lod_OP"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60 40 20"    
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100 150 200"
+        
+        
+    }
     
     //=================================================================================================================
     // Roshan: Spell Block
@@ -20418,6 +20442,61 @@
 			}
 		}
 	}
+	
+	"ebf_rubick_arcane_echo_OP"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"rubick_spell_echo_OP"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/rubick_spell_echo.vpcf"
+		}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0 4.0 2.0 0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+			
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"50"
+			}
+		}
+		"Modifiers"
+		{
+			"rubick_spell_echo_passive"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_rubick_arcane_echo"
+						"Function"		"SpellEcho"
+						"Target"		"POINT"
+					}
+				}
+			}
+		}
+	}
+	
 	"ebf_mana_fiend_essence_amp"
 	{
 		// General

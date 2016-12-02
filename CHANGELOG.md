@@ -2,20 +2,27 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.3
+## 3.4
+
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Added Arcane Echo OP, Return OP
+
+## 3.3 - Steam Version
 
 ### Bug Fixing/New Features
 - Changed style of some buttons to be less diverse
 - Fixed getting stuck in ban phase
 - Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.
-- Added function to save/load banlist to local storage. 
 
 ### Balance
 - Added Linkens Guard as OP ability
 - Added Aether's Range OP
 - Added Force Dash OP, Octarine Vampirism OP, Global Stomp
 
-## 3.2 - Steam Version
+## 3.2 
 
 ### Bug Fixing/New Features
 - Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
