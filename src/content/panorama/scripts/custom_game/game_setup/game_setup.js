@@ -2396,6 +2396,10 @@ function onImportAndExportPressed() {
         }
     }
 
+    if(decodeData.lodOptionCommonDraftAbilities) {
+        setOption('lodOptionCommonDraftAbilities', decodeData.lodOptionCommonDraftAbilities);
+    }
+
     if (!changed) {
         $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
     } else {
