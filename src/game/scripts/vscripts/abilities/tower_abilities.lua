@@ -16,6 +16,8 @@ function AIControl( keys )
         return nil
     end
 	
+	if caster:PassivesDisabled() then return end
+	
     -- Parameters
     local tower_loc = caster:GetAbsOrigin()
     
