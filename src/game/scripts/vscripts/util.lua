@@ -28,6 +28,12 @@ function Util:GetPlayerNameReliable(playerID)
     return storedNames[steamID] or PlayerResource:GetPlayerName(playerID)
 end
 
+-- Round number
+function Util:round(num, idp)
+    if num >= 0 then return math.floor(num+.5) 
+    else return math.ceil(num-.5) end
+end
+
 -- Store player names
 ListenToGameEvent('player_connect', function(keys)
     -- Grab their steamID
