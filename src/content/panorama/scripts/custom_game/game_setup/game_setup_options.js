@@ -373,9 +373,9 @@ var advancedOptions = {
                 about: 'lodOptionAboutCommonDraftAbilities',
                 sort: 'range',
                 min: 10,
-                max: 100,
+                max: 400,
                 step: 1,
-                default: 50
+                default: 100
             },
             {
                 name: 'lodOptionBalanceMode',

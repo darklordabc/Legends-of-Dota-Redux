@@ -1920,6 +1920,10 @@ Button:enabled:hover {
     height: 90px;
 }
 
+.lodDraftAbility.ultimateAbility {
+    border-color: #b29600;
+}
+
 .grouped_skills {
     flow-children: down-wrap;
 
