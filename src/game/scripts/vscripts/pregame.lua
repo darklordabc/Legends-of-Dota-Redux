@@ -2458,6 +2458,32 @@ function Pregame:generateAllRandomBuilds()
     end
 end
 
+function Pregame:isAllowed( abilityName )
+    local cat = (self.flagsInverse[abilityName] or {}).category
+    local allowed = true
+
+    if cat == 'main' then
+        allowed = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1
+    elseif cat == 'neutral' then
+        allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
+    elseif cat == 'custom' then
+        allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'OP' then
+        allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
+    end
+
+    if self.optionStore['lodOptionAdvancedHeroAbilities'] == 1 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 and self.optionStore['lodOptionAdvancedNeutralAbilities'] == 0 then
+        if not self.abilityHeroOwner[abilityName] then
+            allowed = false
+        end
+    end
+
+    if not allowed then
+        return false
+    end
+    return true
+end
+
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -2499,9 +2525,14 @@ function Pregame:buildDraftArrays()
             end
 
             -- check OP
-            -- if self.bannedAbilities[abilityName] then
-            --     shouldAdd = false
-            -- end
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
+
+            -- check misc
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
 
             -- Should we add it?
             if shouldAdd then
@@ -2515,11 +2546,38 @@ function Pregame:buildDraftArrays()
 
         -- Select random skills
         local abilityDraft = {}
-        for i=1,math.floor(abilityDraftCount*0.75) do
-            abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
+        local count = 0
+
+        for i=1,math.ceil(abilityDraftCount*0.75) do
+            local s
+            repeat
+                s = table.remove(possibleSkills, math.random(#possibleSkills))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
         end
+
         for i=1,math.ceil(abilityDraftCount*0.25) do
-            abilityDraft[table.remove(possibleUlts, math.random(#possibleUlts))] = true
+            local s
+            repeat
+                s = table.remove(possibleUlts, math.random(#possibleUlts))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
         end
 
         -- Store data
