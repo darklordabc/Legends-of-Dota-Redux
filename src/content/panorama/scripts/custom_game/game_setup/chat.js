@@ -102,6 +102,10 @@ function say() {
 
 // Show received message
 function showChatMessage( args ) {
+	// Don't show muted players
+	if (Game.IsPlayerMuted(args.player))
+		return;
+
 	var time = Game.Time();
 	if (time > lastMessageTime + 60 || lastMessageTime == 0) {
      	var timeStamp = $.CreatePanel( "Panel", $('#chatRows'), "" );
