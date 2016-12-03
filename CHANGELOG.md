@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Arcane Echo OP, Return OP, Shards of Truesight OP, Cold Embrace OP, Essence Aura Health
-- Added Unstable Rift from Dusk (to be merged from draft improvement branch)
+- Added Unstable Rift, Voidal Flare and Abyssal Vortex from Dusk (to be merged from draft improvement branch)
 
 ## 3.3 - Steam Version
 
