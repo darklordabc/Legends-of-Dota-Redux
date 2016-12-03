@@ -212,6 +212,7 @@ function fillEmoticonContainer() {
 
 function showEmoticonPicker() {
 	$('#emoticonPicker').SetHasClass('visible', !$('#emoticonPicker').BHasClass('visible'));
+	$.GetContextPanel().SetFocus();
 }
 
 (function() {
