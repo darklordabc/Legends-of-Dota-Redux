@@ -2002,6 +2002,12 @@
     "DOTA_Tooltip_ability_garden_red_flower_base_Range"      "ATTACK RANGE:"
     "DOTA_Tooltip_ability_garden_red_flower_base_Red_flower_damage"      "DAMAGE:"
     "DOTA_Tooltip_ability_garden_red_flower_base_Flower_health"    "FLOWER HEALTH:"
+	
+	"DOTA_Tooltip_ability_garden_red_flower_base_OP"    "Scarlet Flower OP"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Description"  "Plants a red flower which deals high attack damage from a <font color='#70EA72'>massive</font> range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability. "
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Range"      "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Red_flower_damage"      "DAMAGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Flower_health"    "FLOWER HEALTH:"
 
     "DOTA_Tooltip_ability_garden_pink_blossom_base"    "Pink Blossom"
     "DOTA_Tooltip_ability_garden_pink_blossom_base_Description"  "Plants a pink blossom which heals three random allies every second. Maximum of 3 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
