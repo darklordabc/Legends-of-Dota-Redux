@@ -3235,6 +3235,17 @@
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
 
+	"DOTA_Tooltip_ability_gemini_unstable_rift" "Unstable Rift"
+	"DOTA_Tooltip_ability_gemini_unstable_rift_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+	"DOTA_Tooltip_ability_gemini_unstable_rift_summon_time" "TELEPORTATION DELAY:"
+	"DOTA_Tooltip_ability_gemini_unstable_rift_duration" "DURATION:"
+	
+	"DOTA_Tooltip_gemini_unstable_rift_mod"                                           "Unstable Rift"
+	"DOTA_Tooltip_gemini_unstable_rift_mod_description"                               "Being teleported somewhere after delay."
+
+	"DOTA_Tooltip_gemini_unstable_rift_show_mod"                                      "Unstable Rift"
+	"DOTA_Tooltip_gemini_unstable_rift_show_mod_description"                          "Being teleported somewhere after delay."
+	
 	"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
 	"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
 	"DOTA_Tooltip_ability_firelord_flame_strike_radius"	"RADIUS:"
