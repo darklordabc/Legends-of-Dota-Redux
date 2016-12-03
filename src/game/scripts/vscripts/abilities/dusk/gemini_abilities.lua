@@ -1,3 +1,6 @@
+require('lib/physics')
+require('lib/util_dusk')
+require('lib/timers')
 function gemini_voidal_flare_purge(event)
   local caster = event.caster
   local target = event.target

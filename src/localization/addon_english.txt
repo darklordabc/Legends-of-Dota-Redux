@@ -3234,6 +3234,20 @@
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_lifetime"	"ILLUSION LIFETIME:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
+	
+	"DOTA_Tooltip_ability_gemini_voidal_flare" "Voidal Flare"
+	"DOTA_Tooltip_ability_gemini_voidal_flare_description" "The Voidwalker fires a flare of dark energy at the target, annihilating any magical effects, damaging them, and stunning them for a short time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+	"DOTA_Tooltip_ability_gemini_voidal_flare_Note0" "This ability purges all buffs and debuffs from the target as a strong dispel spell."
+	"DOTA_Tooltip_ability_gemini_voidal_flare_Note1" "Allies are not stunned or damaged by the bolt."
+	"DOTA_Tooltip_ability_gemini_voidal_flare_magic_missile_stun" "STUN:"
+	"DOTA_Tooltip_ability_gemini_voidal_flare_magic_missile_damage" "DAMAGE:"
+			
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex" "Abyssal Vortex"
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex_description" "The Voidwalker unleashes his most powerful and dangerous spell, creating a gigantic vortex of whorling energy after a 1s delay.  The vortex drags in and damages all non-Magic Immune units regardless of whether they are friend or foe, with the amount dealt scaling as they get closer to the centre.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex_Note0" "Brings ally units to 1 Health."
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex_aghanim_description" "Pierces magic immunity and changes the damage type to Pure."
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex_chargetime" "VORTEX DURATION:"
+	"DOTA_Tooltip_ability_gemini_abyssal_vortex_pull_speed" "PULL STRENGTH:"
 
 	"DOTA_Tooltip_ability_gemini_unstable_rift" "Unstable Rift"
 	"DOTA_Tooltip_ability_gemini_unstable_rift_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
@@ -3245,6 +3259,12 @@
 
 	"DOTA_Tooltip_gemini_unstable_rift_show_mod"                                      "Unstable Rift"
 	"DOTA_Tooltip_gemini_unstable_rift_show_mod_description"                          "Being teleported somewhere after delay."
+	
+	"DOTA_Tooltip_gemini_abyssal_vortex_mod"                                          "None"
+	"DOTA_Tooltip_gemini_abyssal_vortex_mod_description"                              ""
+
+	"DOTA_Tooltip_gemini_abyssal_vortex_start_mod"                                    "None?"
+	"DOTA_Tooltip_gemini_abyssal_vortex_start_mod_description"                        ""
 	
 	"DOTA_Tooltip_ability_firelord_flame_strike"	"Flame Strike"
 	"DOTA_Tooltip_ability_firelord_flame_strike_Description"	"Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
