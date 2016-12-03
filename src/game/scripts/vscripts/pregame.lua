@@ -1809,7 +1809,7 @@ function Pregame:initOptionSelector()
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
-            if value < 1 or value > 50 then return false end
+            if value < 9 or value > 400 then return false end
 
             -- Valid
             return true
@@ -2163,8 +2163,8 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Set Draft Abilities to 50
-                self:setOption('lodOptionCommonDraftAbilities', 50, true)
+                -- Set Draft Abilities to 100
+                self:setOption('lodOptionCommonDraftAbilities', 100, true)
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
@@ -2467,6 +2467,7 @@ function Pregame:buildDraftArrays()
     local maxDraftArrays = 12
 
     local abilityDraftCount = self.optionStore['lodOptionCommonDraftAbilities']
+    self.maxDraftHeroes = math.max(3, math.ceil(abilityDraftCount / 4))
 
     if self.singleDraft then
         maxDraftArrays = 24
@@ -2517,7 +2518,7 @@ function Pregame:buildDraftArrays()
         for i=1,math.floor(abilityDraftCount*0.75) do
             abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
         end
-        for i=1,math.floor(abilityDraftCount*0.25) do
+        for i=1,math.ceil(abilityDraftCount*0.25) do
             abilityDraft[table.remove(possibleUlts, math.random(#possibleUlts))] = true
         end
 

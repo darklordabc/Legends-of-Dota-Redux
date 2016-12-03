@@ -2234,6 +2234,11 @@ function OnSkillTabShown(tabName) {
                 label.SetHasClass('skillCostSmall', true);
 
                 if (isDraftGamemode()) {
+                    label.SetHasClass('skillCostLarge', true);
+                    label.SetHasClass('skillCostSmall', false);
+                }
+
+                if (isDraftGamemode()) {
                     abcon.AddClass("lodDraftAbility");
                 }
 
