@@ -18,16 +18,25 @@
 	</snippets>
 
 	<Panel class="chatRoot blur" hittest="false" defaultfocus="chatInput" >
-		<Panel class="chatRows" hittest="false">
-			<Panel class="chatRowsWrapper">
-				<Panel id="chatRows"/>
+		<Panel class="mainPanel">
+			<Panel class="chatRows" hittest="false">
+				<Panel class="chatRowsWrapper">
+					<Panel id="chatRows"/>
+				</Panel>
+			</Panel>
+
+			<Panel class="chatControls" hittest="true">
+				<Label id="channelName" />
+				<TextEntry id="chatInput" multiline="false" textmode="normal" oninputsubmit="say()">
+				</TextEntry>
+				<Image id="emoticonPickerButton" class="chatButton" src="file://{images}/control_icons/emoticon_icon.psd" onactivate="showEmoticonPicker()" />
 			</Panel>
 		</Panel>
-
-		<Panel class="chatControls" hittest="true">
-			<Label id="channelName" />
-			<TextEntry id="chatInput" multiline="false" textmode="normal" oninputsubmit="say()">
-			</TextEntry>
+		<Panel class="overlayPanel" hittest="false">
+			<Panel id="emoticonPicker">
+				<Panel id="emoticonContainer" />
+				<Label id="emoticonAlias" />
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

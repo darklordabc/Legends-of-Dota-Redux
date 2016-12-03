@@ -29,18 +29,43 @@ function setChannelStyle( channel ){
 
 // Add smile
 var emotions = {
+	// Special
 	':ti4platinum:': 'file://{images}/emoticons/ti4platinum.png', 
+	':grave:': 'file://{images}/emoticons/pa_arcana_rose.png',
+
+	// Standart
+	':wink:': 'file://{images}/emoticons/wink.png',
+	':blush:': 'file://{images}/emoticons/blush.png',
+	':cheeky:': 'file://{images}/emoticons/cheeky.png',
 	':cool:': 'file://{images}/emoticons/cool.png',
+	':crazy:': 'file://{images}/emoticons/crazy.png',
+	':cry:': 'file://{images}/emoticons/cry.png',
+	':disapprove:': 'file://{images}/emoticons/disaprove.png',
+	':doubledamage:': 'file://{images}/emoticons/doubledamage.png',
+	':facepalm:': 'file://{images}/emoticons/facepalm.png',
+	':happytears:': 'file://{images}/emoticons/happytears.png',
+	':haste:': 'file://{images}/emoticons/haste.png',
+	':hex:': 'file://{images}/emoticons/hex.png',
+	':highfive:': 'file://{images}/emoticons/highfive.png',
+	':huh:': 'file://{images}/emoticons/huh.png',
+	':hush:': 'file://{images}/emoticons/hush.png',
+	':illusion:': 'file://{images}/emoticons/illusion.png',
+	':invisibility:': 'file://{images}/emoticons/invisibility.png',
+	':laugh:': 'file://{images}/emoticons/laugh.png',
+	':rage:': 'file://{images}/emoticons/rage.png',
+	':regeneration:': 'file://{images}/emoticons/regeneration.png',
+	':sad:': 'file://{images}/emoticons/sad.png',
 	':sick:': 'file://{images}/emoticons/sick.png',
+	':sleeping:': 'file://{images}/emoticons/sleeping.png',
 	':smile:': 'file://{images}/emoticons/smile.png',
-	':grave:': 'file://{images}/emoticons/pa_arcana_rose.png'
+	':surprise:': 'file://{images}/emoticons/surprise.png'	
 }
 
 function addEmotion( parent, emotStr ) {
 	if (!emotions.hasOwnProperty(emotStr))
 		return;
 
-	var emotion = $.CreatePanel('DOTAEmoticon', parent, 'Emoticon1');
+	var emotion = $.CreatePanel('DOTAEmoticon', parent, '');
 	emotion.SetImage(emotions[emotStr]);
 
 	return emotion;
@@ -143,6 +168,7 @@ function addInputChangedEvent(panel, callback) {
 
     panel.SetPanelEvent('onblur', function() {
 		$.GetContextPanel().AddClass('blur');
+		$('#emoticonPicker').SetHasClass('visible', false);
 
         // No longer listen
         shouldListen = false;
@@ -158,10 +184,36 @@ function checkString( panel, str ){
 	}
 }
 
+// Fill emotions list
+function fillEmoticonContainer() {
+	$('#emoticonContainer').RemoveAndDeleteChildren();
+
+	$.Each(emotions, function(v, k) {
+		var emot = addEmotion($('#emoticonContainer'), k);
+		emot.AddClass('emot');
+
+		emot.SetPanelEvent('onmouseover', function(){
+			$('#emoticonAlias').text = k;
+		});
+
+		emot.SetPanelEvent('onmouseout', function(){
+			$('#emoticonAlias').text = '';
+		});	
+
+		emot.SetPanelEvent('onactivate', function(){
+			$('#chatInput').text += k;
+		});				
+	})
+}
+
+function showEmoticonPicker() {
+	$('#emoticonPicker').SetHasClass('visible', !$('#emoticonPicker').BHasClass('visible'));
+}
+
 (function() {
 	GameEvents.Subscribe('custom_chat_send_message', showChatMessage);
 
 	addInputChangedEvent($('#chatInput'), checkString);
-
+	fillEmoticonContainer();
 	setChannelStyle(currentChannel); 
 })();
