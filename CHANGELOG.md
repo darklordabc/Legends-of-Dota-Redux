@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 3.4
 
 ### Bug Fixing/New Features
-- 
+- Single/Mirror draft has been improved: You can now be randomly given neutral and custom abilities. Default viewer is the skills menu now and the icons are enlarged. 
 
 ### Balance
 - Added Arcane Echo OP, Return OP, Shards of Truesight OP, Cold Embrace OP, Essence Aura Health, Scarlet Flower (Red Flower OP)
