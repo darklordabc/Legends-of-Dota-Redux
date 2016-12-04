@@ -368,14 +368,14 @@ var advancedOptions = {
                 default: 2
             },
             {
-                name: 'lodOptionCommonMirrorHeroes',
-                des: 'lodOptionsCommonMirrorHeroes',
-                about: 'lodOptionAboutCommonMirrorHeroes',
+                name: 'lodOptionCommonDraftAbilities',
+                des: 'lodOptionsCommonDraftAbilities',
+                about: 'lodOptionAboutCommonDraftAbilities',
                 sort: 'range',
-                min: 1,
-                max: 50,
+                min: 10,
+                max: 400,
                 step: 1,
-                default: 20
+                default: 100
             },
             {
                 name: 'lodOptionBalanceMode',

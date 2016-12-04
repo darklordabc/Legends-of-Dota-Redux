@@ -264,7 +264,7 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionMirrorHeroes', 25)
+    self:setOption('lodOptionDraftAbilities', 25)
     self:setOption('lodOptionCreepPower', 0)
 
 	Timers:CreateTimer(function()
@@ -1729,7 +1729,7 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft hero selection
-        lodOptionMirrorHeroes = function(value)
+        lodOptionDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1805,11 +1805,11 @@ function Pregame:initOptionSelector()
         end,
 
         -- Common mirror draft hero selection
-        lodOptionCommonMirrorHeroes = function(value)
+        lodOptionCommonDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
-            if value < 1 or value > 50 then return false end
+            if value < 9 or value > 400 then return false end
 
             -- Valid
             return true
@@ -2163,8 +2163,8 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Set Draft Heroes to 25
-                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+                -- Set Draft Abilities to 100
+                self:setOption('lodOptionCommonDraftAbilities', 100, true)
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
@@ -2332,13 +2332,13 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft
-        lodOptionMirrorHeroes = function()
-            self:setOption('lodOptionCommonMirrorHeroes', self.optionStore['lodOptionMirrorHeroes'], true)
+        lodOptionDraftAbilities = function()
+            self:setOption('lodOptionCommonDraftAbilities', self.optionStore['lodOptionDraftAbilities'], true)
         end,
 
         -- Common mirror draft heroes
-        lodOptionCommonMirrorHeroes = function()
-            self.maxDraftHeroes = self.optionStore['lodOptionCommonMirrorHeroes']
+        lodOptionCommonDraftAbilities = function()
+            self.maxDraftHeroes = self.optionStore['lodOptionCommonDraftAbilities']
         end
     }
 end
@@ -2458,6 +2458,32 @@ function Pregame:generateAllRandomBuilds()
     end
 end
 
+function Pregame:isAllowed( abilityName )
+    local cat = (self.flagsInverse[abilityName] or {}).category
+    local allowed = true
+
+    if cat == 'main' then
+        allowed = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1
+    elseif cat == 'neutral' then
+        allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
+    elseif cat == 'custom' then
+        allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'OP' then
+        allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
+    end
+
+    if self.optionStore['lodOptionAdvancedHeroAbilities'] == 1 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 and self.optionStore['lodOptionAdvancedNeutralAbilities'] == 0 then
+        if not self.abilityHeroOwner[abilityName] then
+            allowed = false
+        end
+    end
+
+    if not allowed then
+        return false
+    end
+    return true
+end
+
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -2466,6 +2492,9 @@ function Pregame:buildDraftArrays()
 
     local maxDraftArrays = 12
 
+    local abilityDraftCount = self.optionStore['lodOptionCommonDraftAbilities']
+    self.maxDraftHeroes = math.max(3, math.ceil(abilityDraftCount / 4))
+
     if self.singleDraft then
         maxDraftArrays = 24
     end
@@ -2473,7 +2502,6 @@ function Pregame:buildDraftArrays()
     for draftID = 0,(maxDraftArrays - 1) do
         -- Create store for data
         local draftData = {}
-        self.draftArrays[draftID] = draftData
 
         local possibleHeroes = {}
         for k,v in pairs(self.allowedHeroes) do
@@ -2487,7 +2515,8 @@ function Pregame:buildDraftArrays()
         end
 
         local possibleSkills = {}
-        for abilityName,_ in pairs(self.flagsInverse) do
+        local possibleUlts = {}
+        for abilityName,abilityFlag in pairs(self.flagsInverse) do
             local shouldAdd = true
 
             -- check bans
@@ -2495,24 +2524,70 @@ function Pregame:buildDraftArrays()
                 shouldAdd = false
             end
 
+            -- check OP
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
+
+            -- check misc
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
+
             -- Should we add it?
             if shouldAdd then
-                table.insert(possibleSkills, abilityName)
+                if abilityFlag.isUlt then
+                    table.insert(possibleUlts, abilityName)
+                else
+                    table.insert(possibleSkills, abilityName)
+                end
             end
         end
 
         -- Select random skills
         local abilityDraft = {}
-        for i=1,self.maxDraftSkills do
-            abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
+        local count = 0
+
+        for i=1,math.ceil(abilityDraftCount*0.75) do
+            local s
+            repeat
+                s = table.remove(possibleSkills, math.random(#possibleSkills))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
+        end
+
+        for i=1,math.ceil(abilityDraftCount*0.25) do
+            local s
+            repeat
+                s = table.remove(possibleUlts, math.random(#possibleUlts))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
         end
 
         -- Store data
-        draftData.heroDraft = heroDraft
         draftData.abilityDraft = abilityDraft
+        draftData.heroDraft = heroDraft
 
         -- Network data
         network:setDraftArray(draftID, draftData)
+
+        self.draftArrays[draftID] = draftData
     end
 end
 
@@ -3018,7 +3093,7 @@ function Pregame:processOptions()
 				-- Draft arrays
 				if this.useDraftArrays then
 					statCollection:setFlags({
-				        ['Draft Heroes'] = this.optionStore['lodOptionMirrorHeroes'],
+				        ['Draft Abilities'] = this.optionStore['lodOptionDraftAbilities'],
 				    })
 				end
 			else
@@ -3033,7 +3108,7 @@ function Pregame:processOptions()
 				-- Store draft array setting if it is being used
 			    if this.useDraftArrays then
 			    	statCollection:setFlags({
-				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonMirrorHeroes'],
+				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonDraftAbilities'],
 				    })
 			    end
 	    	end
@@ -4179,14 +4254,12 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         local heroDraft = draftArray.heroDraft
         local abilityDraft = draftArray.abilityDraft
 
-        if self.maxDraftHeroes > 0 then
-            local heroName = self.abilityHeroOwner[abilityName]
-
-            if not heroDraft[heroName] then
+        if abilityDraft then
+            if not abilityDraft[abilityName] then
                 -- Tell them
                 network:sendNotification(player, {
                     sort = 'lodDanger',
-                    text = 'lodFailedDraftWrongHeroAbility',
+                    text = 'lodFailedDraftWrongAbility',
                     params = {
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
