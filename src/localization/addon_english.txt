@@ -2039,6 +2039,14 @@
 	"DOTA_Tooltip_ability_disruptor_glimpse_OP_Lore"							"Playing with electricity can have unexpected results."
 	"DOTA_Tooltip_ability_disruptor_glimpse_OP_Note0"							"The travel time is a function of the distance the target will travel."
 	"DOTA_Tooltip_ability_disruptor_glimpse_OP_cast_range"						"CAST RANGE:"
+	
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP"							"Kinetic Field OP"
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Description"				"After a short formation time, creates a circular barrier of kinetic energy that enemies can't pass. <font color='#70EA72'>Global cast-range, double duration, instant formation and larger radius</font>."
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Lore"						"The stryder is immune to the gale-force winds that will consume its adversaries."
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Note0"					"Magic immune units can travel through the field."
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_formation_time"			"FORMATION TIME:"
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_duration"					"DURATION:"
+	"DOTA_Tooltip_ability_disruptor_kinetic_field_OP_radius"					"RADIUS:"
 
     "DOTA_Tooltip_ability_garden_teleport"    "Transplant"
     "DOTA_Tooltip_ability_garden_teleport_Description"    "Teleports this flower to any location within 1500 units."
