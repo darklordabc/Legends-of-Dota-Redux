@@ -2860,7 +2860,7 @@ function Pregame:validateBuilds()
         end
 
         for slot=1,maxSlots do
-            if (self.optionStore['lodOptionBotsRestrict'] ~= 3 and ((self.optionStore['lodOptionBotsRestrict'] == 1 and team ~= DOTA_TEAM_GOODGUYS) or (self.optionStore['lodOptionBotsRestrict'] == 2 and team ~= DOTA_TEAM_BADGUYS))) or (not self.botPlayers.all[playerID] and not build[slot]) then
+            if (self.optionStore['lodOptionBotsRestrict'] ~= 3 and ((self.optionStore['lodOptionBotsRestrict'] == 1 and team ~= DOTA_TEAM_GOODGUYS) or (self.optionStore['lodOptionBotsRestrict'] == 2 and team ~= DOTA_TEAM_BADGUYS))) or ((not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot]) then
                 -- Grab a random ability
                 local newAbility = self:findRandomSkill(build, slot, playerID)
 
