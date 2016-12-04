@@ -2,7 +2,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.4
+## 3.4 - Steam Version
 
 ### Bug Fixing/New Features
 - Single/Mirror draft has been improved: You can now be randomly given neutral and custom abilities. Default viewer is the skills menu now and the icons are enlarged. 
@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added Arcane Echo OP, Return OP, Shards of Truesight OP, Cold Embrace OP, Essence Aura Health, Scarlet Flower (Red Flower OP), Glimpse OP, Kinetic Field OP.
 - Added Unstable Rift, Voidal Flare and Abyssal Vortex from Dusk (to be merged from draft improvement branch)
 
-## 3.3 - Steam Version
+## 3.3 
 
 ### Bug Fixing/New Features
 - Changed style of some buttons to be less diverse
