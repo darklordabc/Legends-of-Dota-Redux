@@ -2033,6 +2033,12 @@
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Radius"    "AURA RADIUS:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_resistance"  "%MAGIC RESISTANCE:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Flower_health"    "FLOWER HEALTH:"
+	
+	"DOTA_Tooltip_ability_disruptor_glimpse_OP"								"Glimpse OP"
+	"DOTA_Tooltip_ability_disruptor_glimpse_OP_Description"					"Teleports the target hero back to where it was 4 seconds ago.  Instantly kills illusions. <font color='#70EA72'>Double cast-range</font>."
+	"DOTA_Tooltip_ability_disruptor_glimpse_OP_Lore"							"Playing with electricity can have unexpected results."
+	"DOTA_Tooltip_ability_disruptor_glimpse_OP_Note0"							"The travel time is a function of the distance the target will travel."
+	"DOTA_Tooltip_ability_disruptor_glimpse_OP_cast_range"						"CAST RANGE:"
 
     "DOTA_Tooltip_ability_garden_teleport"    "Transplant"
     "DOTA_Tooltip_ability_garden_teleport_Description"    "Teleports this flower to any location within 1500 units."
