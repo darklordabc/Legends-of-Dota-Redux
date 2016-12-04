@@ -2852,9 +2852,8 @@ function Pregame:validateBuilds()
         local player = PlayerResource:GetPlayer(playerID)
         local team = 0
 
-        if not player and self.botPlayers.all[playerID] then
+        if not player and self.botPlayers and self.botPlayers.all[playerID] then
             team = self.botPlayers.all[playerID].team
-            print(team)
         elseif player then
             team = player:GetTeam()
         end
