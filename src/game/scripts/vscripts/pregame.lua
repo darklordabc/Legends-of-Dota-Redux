@@ -1226,6 +1226,13 @@ function Pregame:finishOptionSelection()
         self.singleDraft = true
     end
 
+    -- Booster Draft
+    if self.optionStore['lodOptionCommonGamemode'] == 6 then
+        self.useDraftArrays = true
+        self.singleDraft = false
+        self.boosterDraft = true
+    end
+
     -- Move onto the next phase
     if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 or self.optionStore['lodOptionBanningHostBanning'] == 1 then
         -- There is banning
@@ -1683,6 +1690,11 @@ function Pregame:initOptionSelector()
                 return value == 5
             end
 
+            -- Booster Draft only
+            if mapName == 'booster_draft' then
+                return value == 6
+            end
+
             -- Not in a forced map, allow any preset gamemode
 
             local validGamemodes = {
@@ -1691,7 +1703,8 @@ function Pregame:initOptionSelector()
                 [2] = true,
                 [3] = true,
                 [4] = true,
-                [5] = true
+                [5] = true,
+                [6] = true
             }
 
             -- Ensure it is one of the above gamemodes
@@ -1741,7 +1754,7 @@ function Pregame:initOptionSelector()
 
         -- Common gamemode
         lodOptionCommonGamemode = function(value)
-            return value == 1 or value == 3 or value == 4 or value == 5
+            return value == 1 or value == 3 or value == 4 or value == 5 or value == 6
         end,
 
         -- Common max slots
@@ -2320,6 +2333,21 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
+
+                -- Single Draft Pick Mode
+                if optionValue == 5 then
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
+
+                -- Booster Draft Pick Mode
+                if optionValue == 6 then
+                    self:setOption('lodOptionCommonGamemode', 6, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
             else
                 self:setOption('lodOptionCommonGamemode', 1)
             end
@@ -2496,7 +2524,12 @@ function Pregame:buildDraftArrays()
     self.maxDraftHeroes = math.max(3, math.ceil(abilityDraftCount / 4))
 
     if self.singleDraft then
-        maxDraftArrays = 24
+        maxDraftArrays = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS) + util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    end
+
+    if self.boosterDraft then
+        self.nextDraftArray = {}
+        self.waitForArray = {}
     end
 
     for draftID = 0,(maxDraftArrays - 1) do
@@ -4484,6 +4517,34 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         if not dontNetwork then
             -- Network it
             network:setSelectedAbilities(playerID, build)
+
+            -- Check for Booster Draft gamemode
+            if self.optionStore['lodOptionCommonGamemode'] == 6 then
+                local nextPlayer = playerID
+                repeat 
+                    nextPlayer = nextPlayer + 1
+                    if nextPlayer > DOTA_MAX_TEAM_PLAYERS-1 then
+                        nextPlayer = 0
+                    end
+                until 
+                    PlayerResource:GetConnectionState(nextPlayer) >= 1
+
+                self.nextDraftArray[nextPlayer] = self.draftArrays[playerID]
+                self.nextDraftArray[nextPlayer].abilityDraft[abilityName] = nil
+
+                if self.waitForArray[nextPlayer] then
+                    network:setDraftArray(nextPlayer, self.nextDraftArray[nextPlayer])
+
+                    self.waitForArray[nextPlayer] = false
+                end
+
+                if self.nextDraftArray[playerID] then
+                    network:setDraftArray(playerID, self.nextDraftArray[playerID])
+                else
+                    -- network:blockAbilitySelection(playerID)
+                    self.waitForArray[playerID] = true
+                end 
+            end
         end
     end
 end

@@ -746,8 +746,8 @@ function OnGetDraftArray(table_name, key, data) {
     // Ensure we don't get a weird value for draftID
     myDraftID = myDraftID % 5;
 
-    // Are we playing single draft?
-    if(optionValueList['lodOptionCommonGamemode'] == 5) {
+    // Are we playing single draft or booster draft?
+    if(optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 6) {
         // DraftID is just our playerID
         myDraftID = playerID;
     }
@@ -3754,7 +3754,7 @@ function updateVotingPercentage(votes, labels) {
 }
 
 function isDraftGamemode() {
-    return optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3
+    return optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3 || optionValueList['lodOptionCommonGamemode'] == 6
 }
 
 // A phase was changed
