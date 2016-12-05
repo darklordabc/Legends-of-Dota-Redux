@@ -29,10 +29,6 @@ arenas[AAR_MID_WARS_ARENA] = {
 		}
 	},
 	random_obstacles = 10,
-	obstacle_models = {
-		[1] = "Mother Tree",
-		[2] = "Small Tree A",
-	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
@@ -178,10 +174,6 @@ arenas[AAR_GIANT_ARENA] = {
 		}
 	},
 	random_obstacles = 40,
-	obstacle_models = {
-		[1] = "Mother Tree",
-		[2] = "Small Tree A",
-	},
 	wallModel = "models/props_structures/tower_good4.vmdl",
 	towerModel = "models/props_structures/tower_good2.vmdl",
 	wallScale = 1.0,
@@ -1419,7 +1411,7 @@ function spawnEntitiesAlongPath( path )
 	end
 
     Timers:CreateTimer(function()
-    	if current_arena == AAR_SMALL_ARENA or current_arena == AAR_BIG_ARENA or current_arena == AAR_BIG_JUNGLE then
+    	if arenas[current_arena].obstacle_models then
     		local obstacle_counts = {}
     		local obstacles = {}
 
