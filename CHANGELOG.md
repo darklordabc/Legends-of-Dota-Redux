@@ -2,6 +2,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.5 
+
+### Bug Fixing/New Features
+- You can now use emoticons during the chat box. Only available during gamesetup phase.
+
+### Balance
+
 ## 3.4 - Steam Version
 
 ### Bug Fixing/New Features
