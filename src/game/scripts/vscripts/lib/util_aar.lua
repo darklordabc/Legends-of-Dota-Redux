@@ -1349,8 +1349,13 @@ function initDuel(restart)
 	-- 	end
 	-- until selected == true
 
+	if not _G.ARENAS_SHUFFLED then
+		arenas = shuffle(arenas)
+		_G.ARENAS_SHUFFLED = true
+	end
+
 	local arena = current_arena + 1
-	if current_arena > AAR_BIG_JUNGLE then
+	if current_arena > #arenas then
 		arena = 1
 	end
 

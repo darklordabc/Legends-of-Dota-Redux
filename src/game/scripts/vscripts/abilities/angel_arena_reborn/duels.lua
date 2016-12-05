@@ -71,8 +71,16 @@ function modifier_duel_out_of_game:GetDisableHealing()
 	return true
 end
 
+function modifier_duel_out_of_game:IsDebuff()
+	return true
+end
+
 function modifier_duel_out_of_game:GetModifierModelChange ()
     return "models/development/invisiblebox.vmdl"
+end
+
+function modifier_duel_out_of_game:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end
 
 function modifier_duel_out_of_game:CheckState()
@@ -85,7 +93,10 @@ function modifier_duel_out_of_game:CheckState()
 		[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
 		[MODIFIER_STATE_DISARMED] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+		[MODIFIER_STATE_MUTED] = true,
+		[MODIFIER_STATE_SILENCED] = true
 	}
 	return state
 end
