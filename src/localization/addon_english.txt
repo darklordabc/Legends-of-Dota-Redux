@@ -4,7 +4,7 @@
     "ADDON_GAME_NAME"                               "Dota 2 Redux"
     "addonname"                                     "Dota 2 Redux"
     "addonname_description"                         "Based on the official Legends of Dota by Ash47"
-    "game_mode_15_desc"                             "Make Modding Great Again"
+    "game_mode_15_desc"                             "Make Dota Great Again"
 
     // Contributors
     "76561197988355984" "Ash47"
@@ -3696,13 +3696,15 @@
 
     "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
     "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
-    
-    "DOTA_Tooltip_ability_huskar_life_break_OP"                                               "Life Break OP"
-    "DOTA_Tooltip_ability_huskar_life_break_OP_description"                                   "Huskar draws upon his health to break an enemy's life, leaping at a target <font color='#70EA72'>from a Global range</font> to shatter a percentage of that hero's current health, and slowing them. While leaping, Huskar is Spell Immune. Upgradable by Aghanim's Scepter."
+
+	"DOTA_Tooltip_ability_huskar_life_break_OP"                                               "Life Break OP"
+    "DOTA_Tooltip_ability_huskar_life_break_OP_description"                                   "Huskar draws upon his health to break an enemy's life, leaping at a target <font color='#70EA72'>from a Global range</font> to shatter a percentage of that hero's current health, and slowing them. While leaping, Huskar is Spell Immune.\n\n Upgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_huskar_life_break_OP_health_damage"                                 "%DAMAGE DEALT:"
+	"DOTA_Tooltip_ability_huskar_life_break_OP_health_cost_percent"                           "%DAMAGE TAKEN:"
     "DOTA_Tooltip_ability_huskar_life_break_OP_movespeed"                                     "%MOVEMENT SLOW:"
     "DOTA_Tooltip_ability_huskar_life_break_OP_slow_durtion_tooltip"                          "SLOW DURATION:"
     "DOTA_Tooltip_ability_huskar_life_break_OP_tooltip_health_damage_scepter"                 "%SCEPTER DAMAGE DEALT:"
     "DOTA_Tooltip_ability_huskar_life_break_OP_cooldown_scepter"                              "SCEPTER COOLDOWN:"
-
+	"DOTA_Tooltip_ability_huskar_life_break_OP_Lore"           								  "No matter the danger, Huskar thrusts himself into melees that only he can survive."
+	
 }
