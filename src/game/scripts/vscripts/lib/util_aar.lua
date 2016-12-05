@@ -1350,7 +1350,7 @@ function initDuel(restart)
 	-- until selected == true
 
 	local arena = current_arena + 1
-	if current_arena >= #arenas then
+	if current_arena > AAR_BIG_JUNGLE then
 		arena = 1
 	end
 
