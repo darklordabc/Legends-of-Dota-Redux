@@ -1844,7 +1844,7 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        -- Mutator - Duel
+        -- Gamemode - Duel
         lodOptionDuels = function(value)
             return value == 0 or value == 1
         end,

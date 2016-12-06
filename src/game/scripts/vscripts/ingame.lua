@@ -773,7 +773,6 @@ function Ingame:handleRespawnModifier()
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
-        local refreshCooldownsOnRespawn = OptionManager:GetOption('refreshCooldownsOnRespawn')
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
         -- Grab the killed entity (it isn't nessessarily a hero!)
