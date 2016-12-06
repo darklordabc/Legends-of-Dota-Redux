@@ -818,6 +818,7 @@ function Ingame:handleRespawnModifier()
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
                                 hero:ModifyGold(322,false,0)
+                                SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
                             end
                             -- Refresh cooldowns if enabled
                             if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
