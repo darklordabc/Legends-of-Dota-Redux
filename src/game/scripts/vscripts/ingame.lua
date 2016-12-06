@@ -94,7 +94,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -106,7 +106,6 @@ function Ingame:init()
 end
 
 function Ingame:OnPlayerPurchasedItem(keys)
-    
     -- Bots will get items auto-delievered to them
     if util:isPlayerBot(keys.PlayerID) then         
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
@@ -773,9 +772,10 @@ function Ingame:handleRespawnModifier()
         -- Ensure our respawn modifier is in effect
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
-        if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
-        -- Grab the killed entitiy (it isn't nessessarily a hero!)
+        --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
+
+        -- Grab the killed entity (it isn't nessessarily a hero!)
         local hero = EntIndexToHScript(keys.entindex_killed)
 
         -- Ensure it is a hero
@@ -814,7 +814,27 @@ function Ingame:handleRespawnModifier()
 
                             -- Set the time left until we respawn
                             hero:SetTimeUntilRespawn(timeLeft)
-
+                            
+                            -- Give 322 gold if enabled
+                            if OptionManager:GetOption('322') == 1 then
+                                hero:ModifyGold(322,false,0)
+                                SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                            end
+                            -- Refresh cooldowns if enabled
+                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
+                                for i = 0, 15 do
+                                    local ability = hero:GetAbilityByIndex(i)
+                                    if ability and ability:GetName() ~= "techies_suicide" then
+                                        ability:EndCooldown()
+                                    end
+                                end
+                                for j = 0, 5 do
+                                    local item = hero:GetItemInSlot(j)
+                                    if item then
+                                        item:EndCooldown()
+                                    end
+                                end
+                            end
                             -- Check if we have any meepo clones
                             if hero:HasAbility('meepo_divided_we_stand') then
                                 local clones = Entities:FindAllByName(hero:GetClassname())

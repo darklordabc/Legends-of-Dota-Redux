@@ -299,9 +299,19 @@ var basicOptions = {
                     },
 					{
                         name: 'lodOptionDuels',
-						extraInfo: 'lodOptionAboutDuels',
+                        extraInfo: 'lodOptionAboutDuels',
                         about: 'lodMutatorDuel'
                     },
+                    {
+                        name: 'lodOptionRefreshCooldownsOnDeath',
+                        about: 'lodMutatorRefreshCooldownsOnDeath'
+                    },
+                    {
+                        name: 'lodOption322',
+                        extraInfo: 'lodOptionAbout322',
+                        about: 'lodMutator322'
+                    },
+
                 ]
             }
         ]
@@ -1135,7 +1145,39 @@ var advancedOptions = {
                 max: 180,
                 step: 1,
                 default: 0,
-            }
+            },
+            {
+                name: 'lodOptionRefreshCooldownsOnDeath',
+                des: 'lodOptionDesRefreshCooldownsOnDeath',
+                about: 'lodOptionAboutRefreshCooldownsOnDeath',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOption322',
+                des: 'lodOptionDes322',
+                about: 'lodOptionAbout322',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
         ]
     }
 }
