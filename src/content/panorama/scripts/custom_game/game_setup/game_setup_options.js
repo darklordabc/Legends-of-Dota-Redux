@@ -304,7 +304,6 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionRefreshCooldownsOnDeath',
-                        extraInfo: 'lodOptionAboutRefreshCooldownsOnDeath',
                         about: 'lodMutatorRefreshCooldownsOnDeath'
                     },
                     {
