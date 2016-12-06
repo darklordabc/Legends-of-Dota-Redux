@@ -106,7 +106,6 @@ function Ingame:init()
 end
 
 function Ingame:OnPlayerPurchasedItem(keys)
-    
     -- Bots will get items auto-delievered to them
     if util:isPlayerBot(keys.PlayerID) then         
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
@@ -775,7 +774,7 @@ function Ingame:handleRespawnModifier()
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
         local refreshCooldownsOnRespawn = OptionManager:GetOption('refreshCooldownsOnRespawn')
-        if respawnModifierPercentage == 100 and respawnModifierConstant == 0 and refreshCooldownsOnRespawn == 0 then return end
+        --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
         -- Grab the killed entity (it isn't nessessarily a hero!)
         local hero = EntIndexToHScript(keys.entindex_killed)
@@ -816,7 +815,24 @@ function Ingame:handleRespawnModifier()
 
                             -- Set the time left until we respawn
                             hero:SetTimeUntilRespawn(timeLeft)
-
+                            
+                            if OptionManager:GetOption('322') == 1 then
+                                hero:ModifyGold(322,false,0)
+                            end
+                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
+                                for i = 0, 15 do
+                                    local ability = hero:GetAbilityByIndex(i)
+                                    if ability then
+                                        ability:EndCooldown()
+                                    end
+                                end
+                                for j = 0, 5 do
+                                    local item = hero:GetItemInSlot(j)
+                                    if item then
+                                        item:EndCooldown()
+                                    end
+                                end
+                            end
                             -- Check if we have any meepo clones
                             if hero:HasAbility('meepo_divided_we_stand') then
                                 local clones = Entities:FindAllByName(hero:GetClassname())

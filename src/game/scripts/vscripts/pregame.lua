@@ -2126,15 +2126,15 @@ function Pregame:initOptionSelector()
 		-- Other -- Fat-O-Meter
         lodOptionCrazyFatOMeter = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
+        end,   
+
+        -- Other - Refresh Cooldowns on Death
+        lodOptionRefreshCooldownsOnDeath = function(value)
+            return value == 0 or value == 1
         end,
 
         -- Other - 322
         lodOption322 = function(value)
-            return value == 0 or value == 1
-        end,
-
-        -- Other - Refresh Cooldowns on Death
-        lodOptionRefreshCooldownsOnDeath = function(value)
             return value == 0 or value == 1
         end,
 
@@ -2924,6 +2924,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
 		OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
+        OptionManager:SetOption('322', this.optionStore['lodOption322'])
+        OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3035,6 +3037,10 @@ function Pregame:processOptions()
 	        GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
 	        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 	    end
+
+        if OptionManager:GetOption('322') == 1 then
+            GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
+        end
 
 	    -- Check what kind of flags we should be recording
 	    if this.useOptionVoting then
@@ -3418,7 +3424,6 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     if self.selectedPlayerAttr[playerID] ~= newAttr then
         -- Update local store
         self.selectedPlayerAttr[playerID] = newAttr
-        print("jjjjjjjjjjjjjjjjjjjjj", newAttr)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
