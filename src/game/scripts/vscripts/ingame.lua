@@ -107,7 +107,6 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
-    print(OptionManager:GetOption('gottaGoFast'))
     if util:isPlayerBot(keys.PlayerID) then         
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
