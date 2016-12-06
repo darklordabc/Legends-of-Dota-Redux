@@ -118,5 +118,9 @@ end
 
 
 function modifier_flesh_heap_attack_range:GetModifierAttackRangeBonus( params )
-	return self:GetStackCount() * self.flesh_heap_attack_range_buff_amount
+	if self:GetCaster:IsRangedAttacker() then
+		return self:GetStackCount() * self.flesh_heap_attack_range_buff_amount
+	else
+		return 0
+	end
 end
