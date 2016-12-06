@@ -326,6 +326,17 @@
     "lodOptionDesDuels"                             "Duels"
     "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
 
+    "lodOptionRefreshCooldownsOnDeath"              "Refresh Cooldowns On Death"
+    "lodOptionDesRefreshCooldownsOnDeath"           "Refresh Cooldowns On Death"
+    "lodMutatorRefreshCooldownsOnDeath"             "Refresh Cooldowns On Death"
+
+    "lodOption322"                                  "322"
+    "lodOptionDes322"                               "Enable 322"
+    "lodOptionAbout322"                             "Heroes gain 322 gold upon dying, instead of losing gold."
+    "lodMutator322"                                 "322"
+
+
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -348,7 +359,6 @@
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
     "lodOptionDesDisablePerks"                      "Disable Perks"
-
 
 	"lodOptionDesCrazyFatOMeter"					"Enable Fat-O-Meter"
 	"lodOptionNoFatOMeter"							"Disabled"

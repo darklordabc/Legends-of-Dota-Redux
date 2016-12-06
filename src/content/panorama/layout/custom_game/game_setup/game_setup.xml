@@ -366,6 +366,10 @@
 
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDuel.png"></Image>
 								<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png"></Image>
+
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRefreshCooldownsOnDeath.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutator322.png"></Image>
+
                                  
                                 <Panel id="gamemodesPanel"> 
                                     <Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 

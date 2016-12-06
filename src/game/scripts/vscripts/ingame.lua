@@ -94,7 +94,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -773,9 +773,11 @@ function Ingame:handleRespawnModifier()
         -- Ensure our respawn modifier is in effect
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
-        if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
-        -- Grab the killed entitiy (it isn't nessessarily a hero!)
+        local refreshCooldownsOnRespawn = OptionManager:GetOption('refreshCooldownsOnRespawn')
+        if respawnModifierPercentage == 100 and respawnModifierConstant == 0 and refreshCooldownsOnRespawn == 0 then return end
+
+        -- Grab the killed entity (it isn't nessessarily a hero!)
         local hero = EntIndexToHScript(keys.entindex_killed)
 
         -- Ensure it is a hero

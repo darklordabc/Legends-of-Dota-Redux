@@ -1844,7 +1844,7 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        -- Common block troll combos
+        -- Mutator - Duel
         lodOptionDuels = function(value)
             return value == 0 or value == 1
         end,
@@ -2128,6 +2128,16 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2 or value == 3
         end,
 
+        -- Other - 322
+        lodOption322 = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Other - Refresh Cooldowns on Death
+        lodOptionRefreshCooldownsOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
             return value == 0 or value == 1
@@ -2169,7 +2179,10 @@ function Pregame:initOptionSelector()
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
 
+                -- Mutators disabled by default
                 self:setOption('lodOptionDuels', 0, false)
+                self:setOption('lodOption322', 0, false)
+                self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -3042,7 +3055,7 @@ function Pregame:processOptions()
 	    	if this.optionStore['lodOptionGamemode'] == -1 then
 	    		-- Players can pick all options, store all options
 			    statCollection:setFlags({
-					['Advanced: Advanced: Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
+					['Advanced: Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
 					['Advanced: Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
 					['Advanced: Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 					['Advanced: Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
@@ -3085,6 +3098,8 @@ function Pregame:processOptions()
 					['Other: Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
 					['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
 					['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
+                    ['Other: 322'] = this.optionStore['lodOption322'],
+                    ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
 					['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
 					['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			    })
