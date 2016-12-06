@@ -815,9 +815,11 @@ function Ingame:handleRespawnModifier()
                             -- Set the time left until we respawn
                             hero:SetTimeUntilRespawn(timeLeft)
                             
+                            -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
                                 hero:ModifyGold(322,false,0)
                             end
+                            -- Refresh cooldowns if enabled
                             if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
                                 for i = 0, 15 do
                                     local ability = hero:GetAbilityByIndex(i)
