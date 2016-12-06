@@ -2675,7 +2675,7 @@
 		"Level"						"25"
 		"ModelScale" 				"1.2"
 		"ConsideredHero"			"1"
-		"IsNeutralUnitType"			"0"
+		"UseNeutralCreepBehavior" 	"0"
 		"vscripts"					"ai/tower_guardian.lua"
 
 		// Abilities
@@ -2762,6 +2762,7 @@
 		"ModelScale" 				"1.2"
 		"ConsideredHero"			"1"
 		"vscripts"					"ai/tower_guardian.lua"
+		"UseNeutralCreepBehavior" 	"0"
 
 		// Abilities
 		//----------------------------------------------------------------

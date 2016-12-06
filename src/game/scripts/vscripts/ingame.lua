@@ -1097,8 +1097,8 @@ end
 function Ingame:addTowerGuardians()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
-        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('towerGuardians') then
-                local guardianList = LoadKeyValues('scripts/kv/devGuardians.kv') or {}
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('towerGuardians') == 1 then
+                local guardianList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.guardians or {}
                 local towerGuardians = {}
                 for skill_name,activated in pairs(guardianList) do
                     if activated == 1 then

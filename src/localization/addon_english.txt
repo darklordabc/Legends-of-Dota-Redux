@@ -127,6 +127,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
 	"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
+	"lodMutatorTowerGuardians"						"Tower Guardians"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -326,6 +327,10 @@
     "lodOptionDesDuels"                             "Duels"
     "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
 
+	"lodOptionTowerGuardians"                                "Tower Guardians"
+    "lodOptionDesTowerGuardians"                             "Tower Guardians"
+    "lodOptionAboutTowerGuardians"                           "Strong units will protect every vulnerable tower."
+	
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -563,7 +568,9 @@
 	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
 	"hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills."
 	"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+	"hintTowerGuardians"                         "Games ending too fast? Protect your towers with Tower Guardians!"
 
+	
 	// Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
 	"hintLifeStealer"                         "When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds."
@@ -3696,5 +3703,13 @@
 
     "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
     "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
+	
+	"DOTA_Tooltip_ability_tower_guardian_darklord"    "Tower Guardian: Darklord"
+    "DOTA_Tooltip_ability_tower_guardian_darklord_Description"    "STROKE THE SHAFT."
+    "DOTA_Tooltip_ability_tower_guardian_darklord_Lore"    "An ancient warlord always finding new opportunities to win."
+	
+	"DOTA_Tooltip_ability_tower_guardian_dingdong"    "Tower Guardian: Dingeling"
+    "DOTA_Tooltip_ability_tower_guardian_dingdong_Description"    "STROKE THE SHAFT."
+    "DOTA_Tooltip_ability_tower_guardian_dingdong_Lore"    "What is this guy's name even? Nobody knows."
 
 }
