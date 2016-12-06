@@ -336,6 +336,16 @@
     "lodOptionAbout322"                             "Heroes gain 322 gold upon dying, instead of losing gold."
     "lodMutator322"                                 "322"
 
+    "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
+    "lodOptionGottaGoFastOff"                               "Normal Movespeed"
+    "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
+    "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
+    "lodOptionAboutGottaGoFast"                             "Increases the movespeed of all heroes. \n\n Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 522 to 1000.\n Gotta Go REALLY Fast: All heroes move at 1000ms and cannot be slowed."
+    "lodMutatorGottaGoFast"                                 "Gotta Go Fast?"
+    "lodMutatorGottaGoFastOff"                              "Gotta Go Fast?"
+    "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
+    "lodMutatorGottaGoREALLYFast"                           "Gotta Go REALLY Fast!"
+
 
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
