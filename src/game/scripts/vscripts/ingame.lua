@@ -823,7 +823,7 @@ function Ingame:handleRespawnModifier()
                             if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
                                 for i = 0, 15 do
                                     local ability = hero:GetAbilityByIndex(i)
-                                    if ability and not ability:GetName() == "techies_suicide" then
+                                    if ability and ability:GetName() ~= "techies_suicide" then
                                         ability:EndCooldown()
                                     end
                                 end
