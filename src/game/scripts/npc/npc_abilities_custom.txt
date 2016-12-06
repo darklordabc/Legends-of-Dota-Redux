@@ -18524,7 +18524,7 @@
         "ScriptFile"                    "abilities/angel_arena_reborn/angel_arena_archmage_anomaly"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"            "DAMAGE_TYPE_MAGICAL"    
         "SpellImmunityType"                "SPELL_IMMUNITY_ENEMIES_NO"
