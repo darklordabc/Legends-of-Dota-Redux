@@ -129,6 +129,7 @@ function modifier_npc_dota_hero_undying_perk_aura:OnDeath(params)
 		end
 		for i = 1, trigger do
 			local modifier = self:GetCaster():FindModifierByName("modifier_npc_dota_hero_undying_perk")
+			if not modifier then return end
 			modifier:SetDuration(modifier.expireTime, true)
 			table.insert(self:GetCaster().strTable, GameRules:GetGameTime())
 		end
