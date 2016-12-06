@@ -23,6 +23,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+	self:addTowerGuardians()
     self:AddTowerBotController()
     self:fixRuneBug()
 
@@ -1091,6 +1092,26 @@ function Ingame:AddTowerBotController()
         end
     end, nil)
  
+end
+
+function Ingame:addTowerGuardians()
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        local newState = GameRules:State_Get()
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('towerGuardians') == 1 then
+                local guardianList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.guardians or {}
+                local towerGuardians = {}
+                for skill_name,activated in pairs(guardianList) do
+                    if activated == 1 then
+                        table.insert(towerGuardians, skill_name)						
+                    end
+                end
+                local towers = Entities:FindAllByClassname('npc_dota_tower')
+                for _, tower in pairs(towers) do
+                    local ability_name = towerGuardians[math.random(1,#towerGuardians)]
+                    tower:AddAbility(ability_name):SetLevel(1)
+                end
+        end
+    end, nil)
 end
 
 function Ingame:addStrongTowers()

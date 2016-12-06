@@ -170,6 +170,8 @@ OptionManager:SetOption('maxHeroBans', 2)
 
 OptionManager:SetOption('duels', 0)
 
+OptionManager:SetOption("towerGuardians", 0)
+
 -- Host banning mode?
 OptionManager:SetOption('hostBanning', false)
 

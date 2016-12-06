@@ -302,6 +302,11 @@ var basicOptions = {
 						extraInfo: 'lodOptionAboutDuels',
                         about: 'lodMutatorDuel'
                     },
+					{
+                        name: 'lodOptionTowerGuardians',
+						extraInfo: 'lodOptionAboutTowerGuardians',
+                        about: 'lodMutatorTowerGuardians'
+                    },
                 ]
             }
         ]
@@ -368,14 +373,14 @@ var advancedOptions = {
                 default: 2
             },
             {
-                name: 'lodOptionCommonDraftAbilities',
-                des: 'lodOptionsCommonDraftAbilities',
-                about: 'lodOptionAboutCommonDraftAbilities',
+                name: 'lodOptionCommonMirrorHeroes',
+                des: 'lodOptionsCommonMirrorHeroes',
+                about: 'lodOptionAboutCommonMirrorHeroes',
                 sort: 'range',
-                min: 10,
-                max: 400,
+                min: 1,
+                max: 50,
                 step: 1,
-                default: 100
+                default: 20
             },
             {
                 name: 'lodOptionBalanceMode',
@@ -397,6 +402,22 @@ var advancedOptions = {
                 name: 'lodOptionDuels',
                 des: 'lodOptionDesDuels',
                 about: 'lodOptionAboutDuels',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+			{
+                name: 'lodOptionTowerGuardians',
+                des: 'lodOptionDesTowerGuardians',
+                about: 'lodOptionAboutTowerGuardians',
                 sort: 'toggle',
                 values: [
                     {
