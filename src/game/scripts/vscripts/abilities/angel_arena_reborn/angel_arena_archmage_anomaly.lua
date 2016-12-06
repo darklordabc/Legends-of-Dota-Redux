@@ -24,12 +24,12 @@ function modifier_angel_arena_archmage_anomaly_thinker:OnCreated( kv )
 		self.auraTargetType = self:GetAbility():GetAbilityTargetType()
 		self.auraTargetTeam = self:GetAbility():GetAbilityTargetTeam()
 		self.auraTargetFlags = self:GetAbility():GetAbilityTargetFlags()
-		self.FXIndex = ParticleManager:CreateParticle( "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+		self.FXIndex = ParticleManager:CreateParticle( "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 0, self:GetParent():GetOrigin() )
-		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, 0, 0 ) )
-		ParticleManager:SetParticleControl( self.FXIndex, 4, self:GetParent():GetAbsOrigin() )
-		ParticleManager:SetParticleControl( self.FXIndex, 6, self:GetParent():GetAbsOrigin() )
-		ParticleManager:SetParticleControl( self.FXIndex, 10, self:GetParent():GetAbsOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
+		ParticleManager:SetParticleControl( self.FXIndex, 4, self:GetParent():GetOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 6, self:GetParent():GetOrigin() )
+		ParticleManager:SetParticleControl( self.FXIndex, 10, self:GetParent():GetOrigin() )
 	end
 	self.AlreadyHit = {}
 	self.blackList = {["shadow_shaman_shackles"] = true}
