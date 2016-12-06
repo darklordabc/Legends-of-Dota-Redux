@@ -830,7 +830,7 @@ function Ingame:handleRespawnModifier()
                                 end
                                 for j = 0, 5 do
                                     local item = hero:GetItemInSlot(j)
-                                    if item then
+                                    if item and item:GetName ~= "item_bloodstone" then
                                         item:EndCooldown()
                                     end
                                 end
