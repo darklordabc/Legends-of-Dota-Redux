@@ -328,6 +328,7 @@
 
     "lodOptionRefreshCooldownsOnDeath"              "Refresh Cooldowns On Death"
     "lodOptionDesRefreshCooldownsOnDeath"           "Refresh Cooldowns On Death"
+    "lodOptionAboutRefreshCooldownsOnDeath"         "Refreshes most cooldowns upon dying. Does not refresh Techies Suicide."
     "lodMutatorRefreshCooldownsOnDeath"             "Refresh Cooldowns On Death"
 
     "lodOption322"                                  "322"
