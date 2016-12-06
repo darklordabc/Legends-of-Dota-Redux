@@ -1848,6 +1848,10 @@ function Pregame:initOptionSelector()
         lodOptionDuels = function(value)
             return value == 0 or value == 1
         end,
+		
+		lodOptionTowerGuardians = function(value)
+            return value == 0 or value == 1
+        end,
 
         -- Common block troll combos
         lodOptionBanningBlockTrollCombos = function(value)
@@ -2170,7 +2174,9 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBalanceMode', 0, true)
 
                 self:setOption('lodOptionDuels', 0, false)
-
+				
+				self:setOption('lodOptionTowerGuardians', 0, false)
+				
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
@@ -2908,6 +2914,7 @@ function Pregame:processOptions()
 		OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+		OptionManager:SetOption('towerGuardians', this.optionStore['lodOptionTowerGuardians'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
 		OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
@@ -3084,6 +3091,7 @@ function Pregame:processOptions()
 					['Other: Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
 					['Other: Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
 					['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
+					['Other: Tower Guardians'] = this.optionStore['lodOptionTowerGuardians'],
 					['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
 					['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
 					['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
