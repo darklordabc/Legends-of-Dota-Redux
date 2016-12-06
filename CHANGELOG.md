@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.
 - Order of Arenas is now shuffled. Fixed some Arenas not showing up at all. 
+- Added 322 Mutator
+- Added Refresh Cooldowns on Death Mutator
 
 ### Balance
 
