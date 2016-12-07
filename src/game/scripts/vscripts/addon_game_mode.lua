@@ -54,7 +54,7 @@ function Activate()
         print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')
         return
     end
-    SendToServerConsole( 'dota_create_fake_clients 1' )
+
     -- Change random seed
     local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
     math.randomseed(tonumber(timeTxt))
