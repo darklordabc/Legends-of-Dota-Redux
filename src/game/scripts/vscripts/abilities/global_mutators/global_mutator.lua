@@ -97,6 +97,10 @@ function modifier_gottagofast_effect:IsDebuff()
 	return false
 end
 ----------------------------------------------------------------------------------------------------------
+function modifier_gottagofast_effect:GetTexture()
+	return "modifier_gottagofast"
+end
+----------------------------------------------------------------------------------------------------------
 function modifier_gottagofast_effect:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -152,6 +156,10 @@ if modifier_gottagoreallyfast_effect ~= "" then modifier_gottagoreallyfast_effec
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_effect:IsDebuff()
 	return false
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_gottagoreallyfast_effect:GetTexture()
+	return "modifier_gottagoreallyfast"
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_effect:DeclareFunctions()
