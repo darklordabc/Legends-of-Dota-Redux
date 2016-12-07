@@ -336,6 +336,16 @@
     "lodOptionAbout322"                             "Heroes gain 322 gold upon dying, instead of losing gold."
     "lodMutator322"                                 "322"
 
+    "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
+    "lodOptionGottaGoFastOff"                               "Normal Movespeed"
+    "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
+    "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
+    "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 522 to 1000.\n Gotta Go REALLY Fast: All heroes have 1000ms and cannot be slowed."
+    "lodMutatorGottaGoFast"                                 "Gotta Go Fast?"
+    "lodMutatorGottaGoFastOff"                              "Gotta Go Fast?"
+    "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
+    "lodMutatorGottaGoREALLYFast"                           "Gotta Go REALLY Fast!"
+
 
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
@@ -3728,5 +3738,12 @@
 
     "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
     "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
+
+    "DOTA_Tooltip_modifier_gottagofast_effect"                      "Gotta Go Fast!"
+    "DOTA_Tooltip_modifier_gottagofast_effect_Description"          "Movement speed increased by 50%d%, movespeed limit increased to 1000."
+
+    "DOTA_Tooltip_modifier_gottagoreallyfast_effect"                      "Gotta Go REALLY Fast!"
+    "DOTA_Tooltip_modifier_gottagoreallyfast_effect_Description"          "Movement speed increased to 1000, cannot be slowed."
+
 
 }
