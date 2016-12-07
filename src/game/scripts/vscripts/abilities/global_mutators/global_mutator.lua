@@ -84,7 +84,7 @@ function modifier_gottagofast_aura:GetModifierAura()	return "modifier_gottagofas
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagofast_aura:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 ----------------------------------------------------------------------------------------------------------
-function modifier_gottagofast_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+function modifier_gottagofast_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagofast_aura:GetAuraRadius() return 80000 end
 ----------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ function modifier_gottagoreallyfast_aura:GetModifierAura()	return "modifier_gott
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_aura:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 ----------------------------------------------------------------------------------------------------------
-function modifier_gottagoreallyfast_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+function modifier_gottagoreallyfast_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_aura:GetAuraRadius() return 80000 end
 ----------------------------------------------------------------------------------------------------------
