@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added Refresh Cooldowns on Death Mutator
 
 ### Balance
+- Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
 
 ## 3.4 - Steam Version
 
