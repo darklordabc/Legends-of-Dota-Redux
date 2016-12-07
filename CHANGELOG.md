@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Order of Arenas is now shuffled. Fixed some Arenas not showing up at all. 
 - Added 322 Mutator
 - Added Refresh Cooldowns on Death Mutator
+- Added Gotta Go Fast Mutator
 
 ### Balance
 - Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
