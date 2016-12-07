@@ -98,7 +98,7 @@ function modifier_gottagofast_effect:IsDebuff()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagofast_effect:GetTexture()
-	return "modifier_gottagofast"
+	return "mutator_gottagofast"
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagofast_effect:DeclareFunctions()
@@ -159,7 +159,7 @@ function modifier_gottagoreallyfast_effect:IsDebuff()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_effect:GetTexture()
-	return "modifier_gottagoreallyfast"
+	return "mutator_gottagoreallyfast"
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_effect:DeclareFunctions()
