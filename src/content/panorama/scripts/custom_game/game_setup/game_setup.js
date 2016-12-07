@@ -725,16 +725,19 @@ function OnSelectedRandomBuildChanged(table_name, key, data) {
 function OnSetDraftedAbilities(args) {
     (function () {
         var con = $("#boosterDraftPile")
-        util.removeChildren(con);
+        if ($("#boosterDraftPileDragLabel") && !$("#boosterDraftPileDragLabel").deleted) {
+            util.removeChildren(con);
+        }
         if (args) {
             $.Schedule(0.1,  function () {
                 for (var abName in args) {
                     if (args[abName]) {
                         if (!con.FindChildTraverse("pile_" + abName)) {
-                            var abcon = $.CreatePanel('DOTAAbilityImage', con, "pile_" + abName);
+                            var rootCon = $.CreatePanel('Panel', con, "pileRootCon_" + abName);
+                            var abcon = $.CreatePanel('DOTAAbilityImage', rootCon, "pile_" + abName);
                             abcon.abilityname = abName;
-                            abcon.SetAttributeString('abilityname', abName);
-                            hookSkillInfo(abcon);
+                            // abcon.SetAttributeString('abilityname', abName);
+                            // hookSkillInfo(abcon);
                         }
                     }
                 }

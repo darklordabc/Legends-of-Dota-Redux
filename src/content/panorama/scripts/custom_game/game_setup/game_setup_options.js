@@ -340,6 +340,10 @@ var advancedOptions = {
                     {
                         text: 'lodOptionAllRandom',
                         value: 4
+                    },
+                    {
+                        text: 'lodOptionBoosterDraft',
+                        value: 6
                     }
                 ]
             },

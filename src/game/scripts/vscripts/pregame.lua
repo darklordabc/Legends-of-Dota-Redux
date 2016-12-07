@@ -616,19 +616,6 @@ function Pregame:onThink()
                 sort = 'lodSuccess',
                 text = 'lodBoosterDraftStart'
             })
-
-            -- Timers:CreateTimer(function()
-            --     local ab = ""
-            --     for k,v in pairs(self.draftArrays[0].abilityDraft) do
-            --         if v then
-            --             ab = k
-            --             break
-            --         end
-            --     end
-            --     print(ab)
-            --     self:onPlayerSelectAbility(0, {PlayerID = 0, slot = -1, abilityName = ab})
-            --     return 3.0
-            -- end, 'sfsdfdsfsdf', 3.0)
         end
 
         if not self.Announce_Picking_Phase then
@@ -2365,6 +2352,7 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
+                    self:setOption('lodOptionBotsUniqueSkills', 2, true)
                 end
             else
                 self:setOption('lodOptionCommonGamemode', 1)
@@ -2546,6 +2534,8 @@ function Pregame:buildDraftArrays()
     end
 
     if self.boosterDraft then
+        maxDraftArrays = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS) + util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+
         self.nextDraftArray = {}
         self.waitForArray = {}
         self.finalArrays = {}
@@ -2567,12 +2557,11 @@ function Pregame:buildDraftArrays()
 
         -- Select random heroes
         local heroDraft = {}
-        if not self.boosterDraft then
-            for i=1,self.maxDraftHeroes do
-                heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
-            end
-        else
-            heroDraft = possibleHeroes
+        if self.boosterDraft then
+            self.maxDraftHeroes = #possibleHeroes
+        end
+        for i=1,self.maxDraftHeroes do
+            heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
         end
 
         local possibleSkills = {}
@@ -4546,7 +4535,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     nextPlayer = 0
                 end
             until 
-                PlayerResource:GetConnectionState(nextPlayer) >= 1
+                PlayerResource:GetConnectionState(nextPlayer) >= 1 and not util:isPlayerBot(nextPlayer)
 
             self.finalArrays[playerID] = self.finalArrays[playerID] or {}
             self.finalArrays[playerID][abilityName] = true
@@ -4606,7 +4595,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- network:blockAbilitySelection(playerID)
                 self.waitForArray[playerID] = true
             end 
-            network:setDraftedAbilities(PlayerResource:GetPlayer(playerID), self.finalArrays[playerID]) --
+            network:setDraftedAbilities(PlayerResource:GetPlayer(playerID), {[abilityName] = true}) --
         else
             network:sendNotification(PlayerResource:GetPlayer(playerID), {
                 sort = 'lodDanger', 
