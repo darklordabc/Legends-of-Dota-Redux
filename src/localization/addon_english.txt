@@ -1762,6 +1762,27 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"				"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
     "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus intelligence"
+    
+    "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range"         "Flesh Heap - Attack Range"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_Description" "<font color='#70EA72'>Gives bonus attack range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Attack Range is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_flesh_heap_attack_range_buff_amount"  "BONUS RANGE PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_attack_range"                  "Flesh Heap ATK Range"
+    "DOTA_Tooltip_modifier_flesh_heap_attack_range_Description"       "Gaining bonus attack range"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed"         "Flesh Heap - Move Speed"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_Description" "<font color='#70EA72'>Gives bonus move speed that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Move Speed is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_flesh_heap_move_speed_buff_amount"  "BONUS MOVE SPEED PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_move_speed"                  "Flesh Heap Move Speed"
+    "DOTA_Tooltip_modifier_flesh_heap_move_speed_Description"       "Gaining bonus move speed"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp"         "Flesh Heap - Spell Amp"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_Description" "<font color='#70EA72'>Gives bonus spell ampliciation that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Spell Amp is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_flesh_heap_spell_amp_buff_amount"  "BONUS SPELL AMP PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_spell_amp"                  "Flesh Heap Spell Amp"
+    "DOTA_Tooltip_modifier_flesh_heap_spell_amp_Description"       "Gaining bonus spell amplification"
 
     // global break
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
