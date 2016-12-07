@@ -460,6 +460,9 @@
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate2.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate3.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOff.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOn.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel2.png" />

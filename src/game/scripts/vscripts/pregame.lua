@@ -2138,6 +2138,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Other -- Gotta Go Fast!
+        lodOptionGottaGoFast = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end, 
+
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
             return value == 0 or value == 1
@@ -2298,6 +2303,9 @@ function Pregame:initOptionSelector()
 
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
+
+                -- Normal speed
+                self:setOption("lodOptionGottaGoFast", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -2926,6 +2934,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
+        OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3106,6 +3115,7 @@ function Pregame:processOptions()
 					['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
+                    ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
 					['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
 					['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			    })
