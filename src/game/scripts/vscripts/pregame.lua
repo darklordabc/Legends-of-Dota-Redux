@@ -4606,7 +4606,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- network:blockAbilitySelection(playerID)
                 self.waitForArray[playerID] = true
             end 
-            network:setDraftedAbilities(playerID, self.finalArrays[playerID])
+            network:setDraftedAbilities(PlayerResource:GetPlayer(playerID), self.finalArrays[playerID]) --
         else
             network:sendNotification(PlayerResource:GetPlayer(playerID), {
                 sort = 'lodDanger', 
