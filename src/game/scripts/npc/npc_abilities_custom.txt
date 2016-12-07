@@ -21630,4 +21630,111 @@
         }
       }
     }
+    "pudge_flesh_heap_attack_range"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                "flesh_heap_attack_range"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_attack_range.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "450"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }        
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_attack_range_buff_amount"    "10 15 20 25"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
+    }
+    "pudge_flesh_heap_move_speed"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                "flesh_heap_move_speed"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_move_speed.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "450"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }        
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_move_speed_buff_amount"    "1 2 3 4"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
+    }
+    "pudge_flesh_heap_spell_amp"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                "flesh_heap_spell_amp"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_spell_amp.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "450"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }        
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_spell_amp_buff_amount"    "0.3 0.6 0.9 1.2"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
+    }
+    "global_mutator"
+    {
+    	"BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/global_mutators/global_mutator.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    ""
+    }  	  
 }
