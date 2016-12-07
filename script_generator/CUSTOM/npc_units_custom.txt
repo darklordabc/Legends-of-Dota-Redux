@@ -1870,6 +1870,26 @@
 		//Inventory
 		"HasInventory"                "0"
 	}
+	"npc_global_mutator"
+	{
+		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"        "0"        // Range of vision during day light.
+		"VisionNighttimeRange"        "0"        // Range of vision at night time.
+		"WakesNeutrals"                "0"
+	}
 	"npc_precache_wraithnight"
 	{
 		"BaseClass"					"npc_dota_creep"
