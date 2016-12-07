@@ -668,7 +668,11 @@
                             </Panel>
                         </Panel>
 
+
                         <Panel id="pickingPhaseFilters">
+                            <Panel id="boosterDraftPile">
+                                <Label id="boosterDraftPileDragLabel" text="Drag and Drop some ability" />
+                            </Panel>
                             <Panel id="pickingPhaseBuild">
                                 <Panel id="pickingPhaseSelectedHero">
                                     <Panel id="pickingPhaseSelectedAttr">

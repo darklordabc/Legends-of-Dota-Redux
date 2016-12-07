@@ -611,6 +611,24 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_SELECTION then
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
+
+            network:broadcastNotification({
+                sort = 'lodSuccess',
+                text = 'lodBoosterDraftStart'
+            })
+
+            -- Timers:CreateTimer(function()
+            --     local ab = ""
+            --     for k,v in pairs(self.draftArrays[0].abilityDraft) do
+            --         if v then
+            --             ab = k
+            --             break
+            --         end
+            --     end
+            --     print(ab)
+            --     self:onPlayerSelectAbility(0, {PlayerID = 0, slot = -1, abilityName = ab})
+            --     return 3.0
+            -- end, 'sfsdfdsfsdf', 3.0)
         end
 
         if not self.Announce_Picking_Phase then
@@ -2530,6 +2548,12 @@ function Pregame:buildDraftArrays()
     if self.boosterDraft then
         self.nextDraftArray = {}
         self.waitForArray = {}
+        self.finalArrays = {}
+
+        self.boosterDraftPicking = {}
+        for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+            self.boosterDraftPicking[i] = true
+        end
     end
 
     for draftID = 0,(maxDraftArrays - 1) do
@@ -2543,8 +2567,12 @@ function Pregame:buildDraftArrays()
 
         -- Select random heroes
         local heroDraft = {}
-        for i=1,self.maxDraftHeroes do
-            heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
+        if not self.boosterDraft then
+            for i=1,self.maxDraftHeroes do
+                heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
+            end
+        else
+            heroDraft = possibleHeroes
         end
 
         local possibleSkills = {}
@@ -3245,7 +3273,7 @@ end
 -- Returns a player's draft index
 function Pregame:getDraftID(playerID)
     -- If it's single draft, just use our playerID
-    if self.singleDraft then
+    if self.singleDraft or self.boosterDraft then
         return playerID
     end
 
@@ -4253,7 +4281,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     local newBuild = SkillManager:grabNewBuild(build, slot, abilityName)
 
     -- Validate the slot is a valid slot index
-    if slot < 1 or slot > maxSlots then
+    if (slot < 1 or slot > maxSlots) and not self.boosterDraftPicking then
         -- Invalid slot number
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -4508,42 +4536,93 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
-    -- Is there an actual change?
-    if build[slot] ~= abilityName then
-        -- New ability in this slot
-        build[slot] = abilityName
-
-        -- Should we network it
-        if not dontNetwork then
-            -- Network it
-            network:setSelectedAbilities(playerID, build)
-
-            -- Check for Booster Draft gamemode
-            if self.optionStore['lodOptionCommonGamemode'] == 6 then
-                local nextPlayer = playerID
-                repeat 
-                    nextPlayer = nextPlayer + 1
-                    if nextPlayer > DOTA_MAX_TEAM_PLAYERS-1 then
-                        nextPlayer = 0
-                    end
-                until 
-                    PlayerResource:GetConnectionState(nextPlayer) >= 1
-
-                self.nextDraftArray[nextPlayer] = self.draftArrays[playerID]
-                self.nextDraftArray[nextPlayer].abilityDraft[abilityName] = nil
-
-                if self.waitForArray[nextPlayer] then
-                    network:setDraftArray(nextPlayer, self.nextDraftArray[nextPlayer])
-
-                    self.waitForArray[nextPlayer] = false
+    -- Check for Booster Draft picking phase
+    if self.boosterDraftPicking[playerID] then
+        if not self.waitForArray[playerID] then
+            local nextPlayer = playerID
+            repeat 
+                nextPlayer = nextPlayer + 1
+                if nextPlayer > DOTA_MAX_TEAM_PLAYERS-1 then
+                    nextPlayer = 0
                 end
+            until 
+                PlayerResource:GetConnectionState(nextPlayer) >= 1
 
-                if self.nextDraftArray[playerID] then
-                    network:setDraftArray(playerID, self.nextDraftArray[playerID])
-                else
-                    -- network:blockAbilitySelection(playerID)
-                    self.waitForArray[playerID] = true
-                end 
+            self.finalArrays[playerID] = self.finalArrays[playerID] or {}
+            self.finalArrays[playerID][abilityName] = true
+
+            self.nextDraftArray[nextPlayer] = util:DeepCopy(self.draftArrays[playerID])
+            self.nextDraftArray[nextPlayer].abilityDraft[abilityName] = nil
+
+            local function updateDynamicDraftArray( pID )
+                self.draftArrays[pID] = util:DeepCopy(self.nextDraftArray[pID])
+                network:setDraftArray(pID, self.draftArrays[pID])
+
+                self.nextDraftArray[pID] = nil
+                self.waitForArray[pID] = false
+
+                network:sendNotification(PlayerResource:GetPlayer(pID), {
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftRound',
+                    params = {
+                        ['round'] = util:getTableLength(self.finalArrays[pID]) + 1
+                    }
+                })
+            end
+
+            if self.waitForArray[nextPlayer] then
+                -- self.draftArrays[nextPlayer] = util:DeepCopy(self.nextDraftArray[nextPlayer])
+                -- network:setDraftArray(nextPlayer, self.draftArrays[nextPlayer])
+
+                -- self.nextDraftArray[nextPlayer] = nil
+                -- self.waitForArray[nextPlayer] = false
+                updateDynamicDraftArray( nextPlayer )
+            end
+
+            if util:getTableLength(self.finalArrays[playerID]) == 10 then
+                local newHeroDraft = {}
+                for k,v in pairs(self.allowedHeroes) do
+                    newHeroDraft[k] = true
+                end
+                local newDraftArray = {abilityDraft = self.finalArrays[playerID], heroDraft = newHeroDraft}
+                
+                network:setDraftArray(playerID, newDraftArray, true)
+                self.draftArrays[playerID] = newDraftArray
+
+                self.boosterDraftPicking[playerID] = false
+
+                network:sendNotification(PlayerResource:GetPlayer(playerID), {
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftEnd'
+                })
+            elseif self.nextDraftArray[playerID] then
+                -- network:setDraftArray(playerID, self.nextDraftArray[playerID])
+                -- self.draftArrays[playerID] = self.nextDraftArray[playerID]
+
+                -- self.nextDraftArray[playerID] = nil
+                -- self.waitForArray[playerID] = false
+                updateDynamicDraftArray( playerID )
+            else
+                -- network:blockAbilitySelection(playerID)
+                self.waitForArray[playerID] = true
+            end 
+            network:setDraftedAbilities(playerID, self.finalArrays[playerID])
+        else
+            network:sendNotification(PlayerResource:GetPlayer(playerID), {
+                sort = 'lodDanger', 
+                text = 'lodBoosterDraftWait'
+            })
+        end
+    else
+        -- Is there an actual change?
+        if build[slot] ~= abilityName then
+            -- New ability in this slot
+            build[slot] = abilityName
+
+            -- Should we network it
+            if not dontNetwork then
+                -- Network it
+                network:setSelectedAbilities(playerID, build)
             end
         end
     end

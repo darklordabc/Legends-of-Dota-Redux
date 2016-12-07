@@ -779,6 +779,10 @@
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
+    "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
+    "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
+    "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
+    "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."

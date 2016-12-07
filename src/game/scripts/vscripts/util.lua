@@ -230,7 +230,7 @@ function isPlayerHost(player)
     if type(player) == 'number' then
         player = PlayerResource:GetPlayer(player)
     end
-    return player.isHost
+    return 1
 end
 
 function setPlayerHost(oldHost, newHost)

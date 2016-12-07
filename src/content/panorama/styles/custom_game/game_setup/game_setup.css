@@ -112,6 +112,8 @@
     transition-property: transform,opacity;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
+
+    z-index: 4;
 }
 
 .lodNotificationLoading {
@@ -2072,6 +2074,40 @@ Button:enabled:hover {
     margin-right: 4px;
     width: 32px;
     height: 32px;
+}
+
+#boosterDraftPile {
+    width: 305px;
+    height: 100%;
+
+    margin-right: 20px;
+
+    border-radius: 10px;
+    border: 2px solid #5e686966;
+
+    visibility: collapse;
+
+    flow-children: right-wrap;
+}
+
+#boosterDraftPile DOTAAbilityImage {
+    width: 54px;
+    height: 54px;
+
+    border-radius: 3px;
+    border: 1px solid #5e686966;
+
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#boosterDraftPileDragLabel {
+    align: center center;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    font-size: 16px;
+    font-weight: thin;
+    text-transform: uppercase;
+    color: #5e6869ff;
 }
 
 .lodSelected {
