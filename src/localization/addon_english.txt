@@ -3715,5 +3715,6 @@
 	//Tower Guards
 	
 	"npc_dota_tower_guardian_darklord"	"Darklord"
+	"npc_dota_tower_guardian_dingdong"	"Pongping"
 
 }

@@ -2837,7 +2837,13 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1" { "ItemDef"			"0" }
+				"Wearable1"		{	"ItemDef"		"8276"		} // "Form of Eternal Purgatory"
+				"Wearable2"		{	"ItemDef"		"8177"		} // "Wings of Eternal Purgatory"
+				"Wearable3"		{	"ItemDef"		"8178"		} // "Horns of Eternal Purgatory"
+				"Wearable4"		{	"ItemDef"		"8179"		} // "Curse of Eternal Purgatory"
+				"Wearable5"		{	"ItemDef"		"8176"		} // "Collar of Eternal Purgatory"
+				//"Wearable6"		{	"ItemDef"		""		} // 
+				//"Wearable7"		{	"ItemDef"		""		} // 
 			}
 		}
 	}
