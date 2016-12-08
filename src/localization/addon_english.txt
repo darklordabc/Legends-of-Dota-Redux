@@ -66,7 +66,7 @@
     "lockOptions"                                   "Lock Options"
     "lockTeamsFirst"                                "Lock the teams first"
     "to_advanced_options"                           "To advanced options"
-    "customizeAdvancedSettings"                     "To customize these advance settings, you must select \"Custom Settings\" gamemode in the main screen. If you can't see the custom settings, use the scroll button on the side."
+    "customizeAdvancedSettings"                     "To customize these advance settings, you must select \'Custom Settings\' gamemode in the main screen. If you can't see the custom settings, use the scroll button on the side."
     "to_basic_options"                              "To basic options"
     "importAndExport_code"                          "Settings"
     "importAndExport_apply"                         "Apply"
@@ -939,118 +939,118 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_abaddon"			"For Abaddon, <font color=\"#ffd966\">Mist <br>Coil</font> self-heals instead of damages and<br> <font color=\"#ffd966\">Aphotic Shield</font> receives 2 charges."
-	"unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. He can also <br>gift <font color=\"#ffd966\">Aghanim's Scepter</font> to allies."
-	"unique_mechanic_ancient_apparition"			"Ancient Apparition <br>disables the health regeneration of targets <br>when an <font color=\"#ffd966\">Ice</font> ability debuff is applied."
-	"unique_mechanic_antimage"           "After Anti-Mage uses <br>a <font color=\"#ffd966\">Blink</font>, he will silence enemies within 200 <br>radius for 2 seconds."
+    "unique_mechanic_abaddon"			"For Abaddon, <font color=\'#ffd966\'>Mist <br>Coil</font> self-heals instead of damages and<br> <font color=\'#ffd966\'>Aphotic Shield</font> receives 2 charges."
+	"unique_mechanic_alchemist"                     "Alchemist will receives <br>2 bonus gold every 10 seconds. He can also <br>gift <font color=\'#ffd966\'>Aghanim's Scepter</font> to allies."
+	"unique_mechanic_ancient_apparition"			"Ancient Apparition <br>disables the health regeneration of targets <br>when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
+	"unique_mechanic_antimage"           "After Anti-Mage uses <br>a <font color=\'#ffd966\'>Blink</font>, he will silence enemies within 200 <br>radius for 2 seconds."
 	"unique_mechanic_arc_warden"                        "Arc Warden may use a <br>consumable item on himself every 90 <br>seconds without consuming the item. "
-	"unique_mechanic_axe"                        "<font color=\"#ffd966\">Culling Blade</font> kills will <br>chop the remaining cooldown times of Axe's <br>abilities in half, or by 30 seconds if the <br>remaining cooldown exceeds 1 minute."
+	"unique_mechanic_axe"                        "<font color=\'#ffd966\'>Culling Blade</font> kills will <br>chop the remaining cooldown times of Axe's <br>abilities in half, or by 30 seconds if the <br>remaining cooldown exceeds 1 minute."
 	"unique_mechanic_bane"                        "Bane lifesteals 100% <br>of all spell damage he deals to sleeping <br>units. "
 	"unique_mechanic_batrider" 				"Batrider has 20% <br>bonus movement speed while flying."
-	"unique_mechanic_beastmaster"                        "Beastmaster gains 3 <br>Strength for every level put in <font color=\"#ffd966\">Neutral</font> <br>abilities."
-	"unique_mechanic_bloodseeker"               	"When Bloodseeker <br>casts <font color=\"#ffd966\">Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
-	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\"#ffd966\">Tracked</font> enemies. "
-	"unique_mechanic_brewmaster"				"Brewmaster gains<br> +100% regen benefits from <font color=\"#ffd966\">Salve</font>, <font color=\"#ffd966\">Bottle</font><br> and <font color=\"#ffd966\">Clarity</font>."
+	"unique_mechanic_beastmaster"                        "Beastmaster gains 3 <br>Strength for every level put in <font color=\'#ffd966\'>Neutral</font> <br>abilities."
+	"unique_mechanic_bloodseeker"               	"When Bloodseeker <br>casts <font color=\'#ffd966\'>Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
+	"unique_mechanic_bounty_hunter"                        "Bounty Hunter deals <br>10% more damage to <font color=\'#ffd966\'>Tracked</font> enemies. "
+	"unique_mechanic_brewmaster"				"Brewmaster gains<br> +100% regen benefits from <font color=\'#ffd966\'>Salve</font>, <font color=\'#ffd966\'>Bottle</font><br> and <font color=\'#ffd966\'>Clarity</font>."
 	"unique_mechanic_bristleback"                        "Bristleback reduces <br>the cooldown of all spells which cost less <br>than 50 mana by 15%."
-	"unique_mechanic_broodmother"                        "Non-ultimate <font color=\"#ffd966\">Summon</font> <br>abilities will have 20% mana cost refunded <br>and 20% reduced cooldown. "
-	"unique_mechanic_centaur"				"Centaur Warrunner<br>takes 75% damage from  <font color=\"#ffd966\">Self-Damaging</font> <br>spells."
+	"unique_mechanic_broodmother"                        "Non-ultimate <font color=\'#ffd966\'>Summon</font> <br>abilities will have 20% mana cost refunded <br>and 20% reduced cooldown. "
+	"unique_mechanic_centaur"				"Centaur Warrunner<br>takes 75% damage from  <font color=\'#ffd966\'>Self-Damaging</font> <br>spells."
 	"unique_mechanic_chaos_knight"                        "Chaos Knight gains <br>200 extra gold for each ability he randoms. "
-	"unique_mechanic_chen" 					 "When Chen sends creeps <br>home to the fountain by casting <font color=\"#ffd966\">Test of Faith <br>(Teleport)</font> they will receive an extra ability."
-	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\"#ffd966\">Autocast</font> <br>ability at the start of the game."
-	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\"#ffd966\">Rocket Flare</font>."
-	"unique_mechanic_crystal_maiden"	"Crystal Maiden gains <br>+2 movement speed for each level put in <br><font color=\"#ffd966\">Support</font> abilities."
-	"unique_mechanic_dark_seer"				"Dark Seer self-casts<br><font color=\"#ffd966\">Surge</font> and <font color=\"#ffd966\">Ion Shell</font> when casting them on <br>allies."
-	"unique_mechanic_dazzle"                        "<font color=\"#ffd966\">Shallow Grave</font> has <br>double cast range and 50% cooldown <br>reduction when picked by Dazzle."
-	"unique_mechanic_death_prophet"                        "Any <font color=\"#ffd966\">Silence</font> applied by <br>Death Prophet also applies Mute."
+	"unique_mechanic_chen" 					 "When Chen sends creeps <br>home to the fountain by casting <font color=\'#ffd966\'>Test of Faith <br>(Teleport)</font> they will receive an extra ability."
+	"unique_mechanic_clinkz"                        "Clinkz will receive a <br>free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> <br>ability at the start of the game."
+	"unique_mechanic_rattletrap"                        "Clockwerk fires a <br>random flare to any part of the map every <br>15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
+	"unique_mechanic_crystal_maiden"	"Crystal Maiden gains <br>+2 movement speed for each level put in <br><font color=\'#ffd966\'>Support</font> abilities."
+	"unique_mechanic_dark_seer"				"Dark Seer self-casts<br><font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on <br>allies."
+	"unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has <br>double cast range and 50% cooldown <br>reduction when picked by Dazzle."
+	"unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by <br>Death Prophet also applies Mute."
 	//"unique_mechanic_disruptor"                        ""
-	"unique_mechanic_doom_bringer"			"Doom applies Break<br>when casting <font color=\"#ffd966\">Doom</font>."
-	"unique_mechanic_dragon_knight"				"While Dragon Knight <br>is in <font color=\"#ffd966\">Elder Dragon Form</font>, all of Dragon <br>Knight's abilities apply Dragon Form <br>debuffs. This includes towers."
-	"unique_mechanic_drow_ranger"                        "<font color=\"#ffd966\">Gust</font> also disarms <br>enemies when cast by Drow Ranger."
-	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\"#ffd966\">Earth</font> Abilities."
-	"unique_mechanic_earthshaker"                        "<font color=\"#ffd966\">Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
-	"unique_mechanic_elder_titan"           "Elder Titan gains 3% <br>bonus movement speed for every <font color=\"#ffd966\">Aura</font> he <br>is carrying."
-	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\"#ffd966\">Fire <br>Remnant</font> and <font color=\"#ffd966\">Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
+	"unique_mechanic_doom_bringer"			"Doom applies Break<br>when casting <font color=\'#ffd966\'>Doom</font>."
+	"unique_mechanic_dragon_knight"				"While Dragon Knight <br>is in <font color=\'#ffd966\'>Elder Dragon Form</font>, all of Dragon <br>Knight's abilities apply Dragon Form <br>debuffs. This includes towers."
+	"unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> also disarms <br>enemies when cast by Drow Ranger."
+	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
+	"unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
+	"unique_mechanic_elder_titan"           "Elder Titan gains 3% <br>bonus movement speed for every <font color=\'#ffd966\'>Aura</font> he <br>is carrying."
+	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire <br>Remnant</font> and <font color=\'#ffd966\'>Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
 	"unique_mechanic_enchantress"           "Enchantress can grow <br>plants without the health cost."
-	"unique_mechanic_enigma"            			"When Enigma dies,<br> <font color=\"#ffd966\">Black Hole</font>'s cooldown will be refreshed."
+	"unique_mechanic_enigma"            			"When Enigma dies,<br> <font color=\'#ffd966\'>Black Hole</font>'s cooldown will be refreshed."
 	"unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
-    "unique_mechanic_gyrocopter"                    "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give Gyrocopter a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
+    "unique_mechanic_gyrocopter"                    "<font color=\'#ffd966\'>Aghanim's Scepter</font><br> will give Gyrocopter a side gunner. If 'Free<br> Scepter' option is enabled, this hero will<br> not benefit from it."
     "unique_mechanic_huskar"                        "Huskar regenerates <br>1hp/s for every 10% of health he is missing."
 	"unique_mechanic_invoker"           "Invoker gains +5 <br>intelligence each time he uses a different <br>ability, resetting when an ability has been <br>used twice."
 	//"unique_mechanic_wisp"                   "Any spell Io casts on a <br>tethered Hero also gets cast on him."
-	"unique_mechanic_jakiro"                        "<font color=\"#ffd966\">Fire</font> and <font color=\"#ffd966\">Ice</font> spells cast <br>sequentially will refund 40% mana and <br>have 20% reduced cooldowns. "
-	"unique_mechanic_juggernaut"                        "<font color=\"#ffd966\">Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
-	"unique_mechanic_keeper_of_the_light"           "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give KOTL unobstructed day vision. <br>If 'Free Scepter' option is enabled, this hero <br>will not benefit from it."
+	"unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast <br>sequentially will refund 40% mana and <br>have 20% reduced cooldowns. "
+	"unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
+	"unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font><br> will give KOTL unobstructed day vision. <br>If 'Free Scepter' option is enabled, this hero <br>will not benefit from it."
     "unique_mechanic_kunkka"                        "When Kunkka casts a <br>Water spell he has a 50% chance to refill his <br>bottle."
-	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\"#ffd966\">Duel</font>, she will gain spell <br>immunity for the duration of the duel."
-	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\"#ffd966\">Octarine <br>Vampirism</font>, whether he has it or not."
-	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting <font color=\"#ffd966\">Sacrifice</font>."
-	"unique_mechanic_life_stealer"               	"When Life Stealer<br> casts <font color=\"#ffd966\">Infest</font>, its cooldown will be reduced <br>to 30 seconds."
-	"unique_mechanic_lina"            				"Lina's intelligence<br> increases by 3 for each level put in <font color=\"#ffd966\">Fire</font><br> abilities."
+	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell <br>immunity for the duration of the duel."
+	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\'#ffd966\'>Octarine <br>Vampirism</font>, whether he has it or not."
+	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
+	"unique_mechanic_life_stealer"               	"When Life Stealer<br> casts <font color=\'#ffd966\'>Infest</font>, its cooldown will be reduced <br>to 30 seconds."
+	"unique_mechanic_lina"            				"Lina's intelligence<br> increases by 3 for each level put in <font color=\'#ffd966\'>Fire</font><br> abilities."
 	"unique_mechanic_lion"           "For Lion, killing a <br>hero with a spell refunds the mana cost of <br>that spell and lowers its cooldown by 75%."
-	"unique_mechanic_lone_druid"                        "Lone Druid transfers <br>50% of damage taken to his <font color=\"#ffd966\">Spirit Bear</font> if he <br>has one and its within 1100 range."
-	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\"#ffd966\">Lunar Blessing</font>, whether she has it or not."
-	"unique_mechanic_lycan"                        "<font color=\"#ffd966\">Shapeshift</font> lasts 20 <br>seconds longer during the night when cast <br>by Lycan."
-	"unique_mechanic_magnataur"                        "When Magnus casts <br><font color=\"#ffd966\">Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
-	"unique_mechanic_medusa"                        "Medusa gains +0.5 <br>mana regeneration per active <font color=\"#ffd966\">Toggle</font> effect."
+	"unique_mechanic_lone_druid"                        "Lone Druid transfers <br>50% of damage taken to his <font color=\'#ffd966\'>Spirit Bear</font> if he <br>has one and its within 1100 range."
+	"unique_mechanic_luna"                        "Luna gains 1 free level <br>of <font color=\'#ffd966\'>Lunar Blessing</font>, whether she has it or not."
+	"unique_mechanic_lycan"                        "<font color=\'#ffd966\'>Shapeshift</font> lasts 20 <br>seconds longer during the night when cast <br>by Lycan."
+	"unique_mechanic_magnataur"                        "When Magnus casts <br><font color=\'#ffd966\'>Enemy Moving</font> abilities, they will have 25% <br>mana refunded and cooldowns reduced by <br>25%. Abilities that only move units upwards <br>are not counted."
+	"unique_mechanic_medusa"                        "Medusa gains +0.5 <br>mana regeneration per active <font color=\'#ffd966\'>Toggle</font> effect."
 	"unique_mechanic_meepo"                 "Meepo's damage is <br>increased by 5% for every other Meepo <br>on his team. Takes 25% max health as <br>damage whenever a Meepo dies."
-	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\"#ffd966\">Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
+	"unique_mechanic_mirana"                        "When Mirana casts <br><font color=\'#ffd966\'>Skillshots</font>, they will have 50% mana refunded <br>and cooldowns reduced by 20%."
 	"unique_mechanic_morphling"                              "Morphling gains 50%<br> bonus movement speed in water."
-	"unique_mechanic_naga_siren"                        "<font color=\"#ffd966\">Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
-	"unique_mechanic_furion"            			"The cooldowns of<br> all <font color=\"#ffd966\">Teleportation</font> abilities are reduced by<br> 50% for Nature's Prophet."
-	"unique_mechanic_necrolyte"                        "At the start of the <br>game, Necrophos gains a free level of <br><font color=\"#ffd966\">Sadist</font>, whether he has it or not."
-	"unique_mechanic_night_stalker"                 "<font color=\"#ffd966\">Aghanim's Scepter</font><br> will give Night Stalker unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
+	"unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating <br>abilities will have 50% of their mana <br>refunded and cooldowns reduced by 20%."
+	"unique_mechanic_furion"            			"The cooldowns of<br> all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by<br> 50% for Nature's Prophet."
+	"unique_mechanic_necrolyte"                        "At the start of the <br>game, Necrophos gains a free level of <br><font color=\'#ffd966\'>Sadist</font>, whether he has it or not."
+	"unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font><br> will give Night Stalker unobstructed night<br> vision. If 'Free Scepter' option is enabled,<br> this hero will not benefit from it."
     "unique_mechanic_nyx_assassin"                        "Nyx Assassin gains 10% <br>bonus movement speed when invisible."
 	"unique_mechanic_ogre_magi"                        "When Ogre Magi casts <br>a spell, there is a 2% chance to refund the <br>manacost of that spell and refresh its <br>cooldown."
-	"unique_mechanic_omniknight"                        "<font color=\"#ffd966\">Light</font> spells refund <br>40% of their mana cost when cast by <br>Omniknight."
+	"unique_mechanic_omniknight"                        "<font color=\'#ffd966\'>Light</font> spells refund <br>40% of their mana cost when cast by <br>Omniknight."
 	"unique_mechanic_oracle"                        "Support items used by <br>Oracle will have their cooldowns reduced <br>by 20%."
-	"unique_mechanic_obsidian_destroyer"                        "<font color=\"#ffd966\">Astral Imprisonment</font> <br>steals 7 intelligence for 60 seconds when cast <br>by Outworld Devourer."
-	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\"#ffd966\">Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
-	"unique_mechanic_phantom_lancer"			"At the start of the <br>game, Phantom Lancer gains a free level of <br><font color=\"#ffd966\">Phantom Rush</font>, whether he has it or not."
-	"unique_mechanic_phoenix"			"Phoenix passively <br>triggers <font color=\"#ffd966\">Supernova</font> when taking lethal <br>damage."
+	"unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> <br>steals 7 intelligence for 60 seconds when cast <br>by Outworld Devourer."
+	"unique_mechanic_phantom_assassin"               "When Phantom <br>Assassin uses <font color=\'#ffd966\'>Dagger</font> abilities they will have <br>50% of their manacost refunded, and their <br>cooldown reduced by 2 second."
+	"unique_mechanic_phantom_lancer"			"At the start of the <br>game, Phantom Lancer gains a free level of <br><font color=\'#ffd966\'>Phantom Rush</font>, whether he has it or not."
+	"unique_mechanic_phoenix"			"Phoenix passively <br>triggers <font color=\'#ffd966\'>Supernova</font> when taking lethal <br>damage."
 	"unique_mechanic_puck"			"Puck has a 50%<br> chance to reflect disjointed spells."
-	"unique_mechanic_pudge"                        "Pudge receives 2 <br>charges of <font color=\"#ffd966\">Meat Hook</font>. When Meat Hook <br>deals damage, Pudge receives a debuff which <br>prevents Meat Hook from dealing damage."
-	"unique_mechanic_pugna"                        "<font color=\"#ffd966\">Drain</font> spells will have <br>50% mana refunded and have 25% reduced <br>cooldowns when cast by Pugna."
-	"unique_mechanic_queenofpain"           "Queen of Pain deals <br>10% more damage to <font color=\"#ffd966\">Male</font> heroes, but <br>recieves 10% more damage from <font color=\"#ffd966\">Female</font> <br>heroes."
-	"unique_mechanic_razor"                        "Reduces the manacost <br>and cooldown of all abilities by 25% when <br>Razor is <font color=\"#ffd966\">Static Linked</font> to an enemy."
+	"unique_mechanic_pudge"                        "Pudge receives 2 <br>charges of <font color=\'#ffd966\'>Meat Hook</font>. When Meat Hook <br>deals damage, Pudge receives a debuff which <br>prevents Meat Hook from dealing damage."
+	"unique_mechanic_pugna"                        "<font color=\'#ffd966\'>Drain</font> spells will have <br>50% mana refunded and have 25% reduced <br>cooldowns when cast by Pugna."
+	"unique_mechanic_queenofpain"           "Queen of Pain deals <br>10% more damage to <font color=\'#ffd966\'>Male</font> heroes, but <br>recieves 10% more damage from <font color=\'#ffd966\'>Female</font> <br>heroes."
+	"unique_mechanic_razor"                        "Reduces the manacost <br>and cooldown of all abilities by 25% when <br>Razor is <font color=\'#ffd966\'>Static Linked</font> to an enemy."
 	"unique_mechanic_riki"					"Riki's health <br>regeneration is increased by 4 while <br>invisible."
-	"unique_mechanic_rubick"                        "Rubick gains 1 free <br>level of <font color=\"#ffd966\">Null Field</font>, whether he has it or not. "
-	"unique_mechanic_sand_king"                        "Refund 30% of the <br>manacost of <font color=\"#ffd966\">Channeled</font> abilities. "
+	"unique_mechanic_rubick"                        "Rubick gains 1 free <br>level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
+	"unique_mechanic_sand_king"                        "Refund 30% of the <br>manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
 	"unique_mechanic_shadow_demon"                        "When Shadow Demon<br> buys an item that is limited by stock, he <br>gains a permanent +1 to all attributes."
-	"unique_mechanic_nevermore"				"At the start of the <br>game, Shadow Fiend gains a free level of <br><font color=\"#ffd966\">Necromastery</font>, whether he has it or not."
-	"unique_mechanic_shadow_shaman" 			"Shadow Shaman <br>refunds the manacost of <font color=\"#ffd966\">Hex</font> spells and <br>reduces their cooldowns by 20%."
-	"unique_mechanic_silencer"                        "<font color=\"#ffd966\">Silence</font> effects applied <br>by Silencer last 25% longer."
+	"unique_mechanic_nevermore"				"At the start of the <br>game, Shadow Fiend gains a free level of <br><font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
+	"unique_mechanic_shadow_shaman" 			"Shadow Shaman <br>refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and <br>reduces their cooldowns by 20%."
+	"unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied <br>by Silencer last 25% longer."
 	"unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds <br>15% of the manacost of spells with a <br>cooldown of 7 seconds or less."
-	"unique_mechanic_slardar"               	    "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>Any other bash will grant Slardar 1 gold."
-	"unique_mechanic_slark"                        "Slark gains +3 agility <br>for each level put in an <font color=\"#ffd966\">Mobility</font>/<font color=\"#ffd966\">Escape</font> skill."
-	"unique_mechanic_sniper"                        "<font color=\"#ffd966\">Shrapnel</font> will have <br>global cast range if used by Sniper."
+	"unique_mechanic_slardar"               	    "<font color=\'#ffd966\'>Skull Basher</font> and <br> <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.<br>Any other bash will grant Slardar 1 gold."
+	"unique_mechanic_slark"                        "Slark gains +3 agility <br>for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
+	"unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have <br>global cast range if used by Sniper."
 	"unique_mechanic_spectre"			"Spectre gains phased<br>movement when casting abilities."
-	"unique_mechanic_spirit_breaker"                "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero.<br>When Spirit Breaker bashes, he also applies <br><font color=\"#ffd966\">Break</font>."
+	"unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and <br> <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.<br>When Spirit Breaker bashes, he also applies <br><font color=\'#ffd966\'>Break</font>."
     //"unique_mechanic_storm_spirit"                              "Storm gains mana based <br>on distance when moving at high speeds."
-	"unique_mechanic_sven"                        "At the start of the game, <br>Sven gains a free level of <font color=\"#ffd966\">Great Cleave</font>, <br>whether he has it or not."
-	"unique_mechanic_techies"                        "<font color=\"#ffd966\">Traps</font> and <font color=\"#ffd966\">Explosives</font> <br>will have 50% of their mana refunded and <br>cooldowns reduced by 50% when used <br>by Techies."
+	"unique_mechanic_sven"                        "At the start of the game, <br>Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, <br>whether he has it or not."
+	"unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> <br>will have 50% of their mana refunded and <br>cooldowns reduced by 50% when used <br>by Techies."
 	"unique_mechanic_templar_assassin"          "Templar Assassin turns <br>invisible for 10 seconds after not moving for <br>5 seconds. Invisibility breaks upon moving <br>or attacking."
 	"unique_mechanic_terrorblade"                        "Terrorblade Illusions <br>deal 15% more damage, but also take 15% <br>more damage."
-	"unique_mechanic_tidehunter"            		"When Tidehunter dies,<br> <font color=\"#ffd966\">Ravage</font>'s cooldown will be refreshed."
+	"unique_mechanic_tidehunter"            		"When Tidehunter dies,<br> <font color=\'#ffd966\'>Ravage</font>'s cooldown will be refreshed."
 	"unique_mechanic_shredder"            			"Timbersaw gains <br>health, mana, and experience points<br> whenever a nearby tree is cut down."
-	"unique_mechanic_tinker"                        "When Tinker uses <br><font color=\"#ffd966\">Scientific</font> spells, there is a 7% chance for <br>them to be instantly refreshed."
+	"unique_mechanic_tinker"                        "When Tinker uses <br><font color=\'#ffd966\'>Scientific</font> spells, there is a 7% chance for <br>them to be instantly refreshed."
 	"unique_mechanic_tiny"                        "Tiny deals 10% more <br>damage to buildings."
-	"unique_mechanic_treant"                        "Treant self-casts <br><font color=\"#ffd966\">Living Armor</font> and <font color=\"#ffd966\">Nature's Guise</font> when <br>casting them on allies."
-	"unique_mechanic_troll_warlord"                 "<font color=\"#ffd966\">Skull Basher</font> and <br> <font color=\"#ffd966\">Abyssal Blade</font> will not proc for this hero. <br><font color=\"#ffd966\">Rage</font> effects on Troll Warlord have 20% <br>longer duration."
-    "unique_mechanic_tusk"           "<font color=\"#ffd966\">Walrus Kick</font> and <br><font color=\"#ffd966\">Walrus Punch</font> will refund their manacost <br>when used by Tusk."
-	"unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to <br>all stats for each level put in a <font color=\"#ffd966\">Custom</font> ability."
+	"unique_mechanic_treant"                        "Treant self-casts <br><font color=\'#ffd966\'>Living Armor</font> and <font color=\'#ffd966\'>Nature's Guise</font> when <br>casting them on allies."
+	"unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and <br> <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <br><font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% <br>longer duration."
+    "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <br><font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost <br>when used by Tusk."
+	"unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to <br>all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
 	"unique_mechanic_undying"                        "Undying gains +1 <br>strength per creep death or +4 strength per <br>hero death in a 900 radius for 30 seconds."
 	"unique_mechanic_ursa" 					 "Ursa deals 15% more<br> damage to neutrals and Roshan."
 	"unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is <br>slain by an enemy hero, she permanently <br>reduces the hero's attributes by 2."
-	"unique_mechanic_venomancer"                        "Increases the duration <br>of all <font color=\"#ffd966\">Poison</font> effects Venomancer applies by <br>25%."
-	"unique_mechanic_viper"                        "<font color=\"#ffd966\">Poison</font> effects applied <br>by Viper also lower the target's armor by 2."
-	"unique_mechanic_visage"                        "<font color=\"#ffd966\">Summon Familiars</font> will <br>refund 100% of manacost and have its <br>cooldown reduced by 50%."
-	"unique_mechanic_warlock"                        "Warlock starts the <br>game with 2 free <font color=\"#ffd966\">Observer Wards</font>."
+	"unique_mechanic_venomancer"                        "Increases the duration <br>of all <font color=\'#ffd966\'>Poison</font> effects Venomancer applies by <br>25%."
+	"unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied <br>by Viper also lower the target's armor by 2."
+	"unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will <br>refund 100% of manacost and have its <br>cooldown reduced by 50%."
+	"unique_mechanic_warlock"                        "Warlock starts the <br>game with 2 free <font color=\'#ffd966\'>Observer Wards</font>."
 	"unique_mechanic_weaver"                        "If Weaver will automatically<br> cast Time Lapse upon taking fatal damage."
 	"unique_mechanic_windrunner"                        "If Windranger has no <br>passives, all her active spells will refund <br>20% mana and have 20% reduced <br>cooldowns."
 	"unique_mechanic_winter_wyvern"			"When Winter Wyvern's <br>health and mana are above 90% she gains <br>flying status after a 5 second delay."
-	"unique_mechanic_witch_doctor"           "<font color=\"#ffd966\">Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor."
+	"unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor."
 	"unique_mechanic_skeleton_king"                        "Wraith King can buyback <br>with a 50% reduced cooldown, refunding <br>50% of the buyback cost and removing the <br>gold penalty."
-	"unique_mechanic_zuus"                        "Refunds 20% of the <br>manacost of <font color=\"#ffd966\">Lightning</font> spells. "
+	"unique_mechanic_zuus"                        "Refunds 20% of the <br>manacost of <font color=\'#ffd966\'>Lightning</font> spells. "
 
     /////////////////
     // Cheats
@@ -1085,182 +1085,182 @@
     // Skill Warnings
     ////////////////
 
-    "warning_keeper_of_the_light_spirit_form"   "<font color=\"#FF4949\">LoD Warning:</font> Will not give additional abilities.<br><font color=\"#FF4949\">LoD Hero Requirement:</font> You have to play as <font color=\"#70EA72\">Elazor</font> to get Aghanim's Scepter bonuses."
-    "warning_life_stealer_infest"               "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Consume</font>, if you want to uninfest."
-    "warning_night_stalker_darkness"                "<font color=\"#FF4949\">LoD Hero Requirement:</font> You have to play as <font color=\"#70EA72\">Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
-    "warning_lone_druid_true_form"              "<font color=\"#FF4949\">LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
-    "troll_warlord_berserkers_rage"              "<font color=\"#FF4949\">LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
-    "warning_puck_illusory_orb"                 "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Ethereal Jaunt</font>, if you want to teleport to your orb."
-    "warning_luna_eclipse"                      "<font color=\"#FF4949\">LoD Warning:</font> This spell does no damage without <font color=\"#70EA72\">Lucent Beam.</font>"
-    "warning_lone_druid_spirit_bear"            "<font color=\"#FF4949\">LoD Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\"#70EA72\">Lone Druid.</font>"
-    "warning_lone_druid_true_form_battle_cry"   "<font color=\"#FF4949\">LoD Warning:</font> Disabled, unless you have at least one point in <font color=\"#70EA72\">True Form.</font></font>"
-    "warning_phoenix_supernova"                 "<font color=\"#FF4949\">LoD Warning:</font> Will only refresh non-ultimate abilities."
-    "warning_techies_remote_mines"              "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group."
-    "warning_alchemist_chemical_rage"           "<font color=\"#FF4949\">LoD Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\"#70EA72\">Alchemist</font> hero and not Chemical Rage."
-    "warning_ember_spirit_activate_fire_remnant" "<font color=\"#FF4949\">LoD Warning:</font> Useless without <font color=\"#70EA72\">Fire Remnant.</font>"
-    "warning_ember_spirit_fire_remnant"         "<font color=\"#FF4949\">LoD Warning:</font> Useless without <font color=\"#70EA72\">Activate Fire Remnant.</font>"
-    "warning_faceless_void_chronosphere"        "<font color=\"#FF4949\">LoD Warning:</font> Any other player that plays as the <font color=\"#70EA72\">Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
-    "warning_furion_wrath_of_nature"            "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\"#70EA72\">Nature's Call.</font>"
-    "warning_gyrocopter_call_down"          "<font color=\"#FF4949\">LoD Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\"#70EA72\">Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
-    "warning_tusk_walrus_punch"         "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Walrus Kick.</font>"
-    "warning_meepo_divided_we_stand"            "<font color=\"#FF4949\">LoD Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
-    "warning_invoker_alacrity_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_chaos_meteor_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_cold_snap_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_emp_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_forge_spirit_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_ghost_walk_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_ice_wall_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_sun_strike_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_tornado_lod" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
-    "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>, unless you also have it."
-	"warning_shredder_chakram" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Second Chakram</font> as an extra ability.</font>"
-	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
-	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
-	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."
-	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"
-	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
-	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
-    "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> Only works with <font color=\"#70EA72\">Fireblast, Ignire, Bloodlust</font> and <font color=\"#70EA72\">Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
-    "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
-    "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
-	"warning_aether_range_lod"    "<font color=\"#FF4949\">LoD Warning:</font> Does not stack with Aether Lens."
-	"warning_life_stealer_control"                 "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Infest.</font>"
-	"warning_true_random_lod_1"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_true_random_lod_2"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_true_random_lod_3"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_true_random_lod_4"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_true_random_lod_5"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_true_random_lod_6"                 "<font color=\"#FF4949\">LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-	"warning_doom_bringer_devour_lod" "<font color=\"#FF4949\">LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
-	"warning_bristleback_bristleback" "<font color=\"#FF4949\">LoD Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\"#70EA72\">Quill Spray</font>.\n"
-	"warning_ebf_rubick_arcane_echo" "<font color=\"#FF4949\">LoD Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
-	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\"#FF4949\">LoD Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
+    "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>LoD Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
+    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
+    "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
+    "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
+    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Ethereal Jaunt</font>, if you want to teleport to your orb."
+    "warning_luna_eclipse"                      "<font color=\'#FF4949\'>LoD Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
+    "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
+    "warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>LoD Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
+    "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>LoD Warning:</font> Will only refresh non-ultimate abilities."
+    "warning_techies_remote_mines"              "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group."
+    "warning_alchemist_chemical_rage"           "<font color=\'#FF4949\'>LoD Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\'#70EA72\'>Alchemist</font> hero and not Chemical Rage."
+    "warning_ember_spirit_activate_fire_remnant" "<font color=\'#FF4949\'>LoD Warning:</font> Useless without <font color=\'#70EA72\'>Fire Remnant.</font>"
+    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>LoD Warning:</font> Useless without <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
+    "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>LoD Warning:</font> Any other player that plays as the <font color=\'#70EA72\'>Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
+    "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\'#70EA72\'>Nature's Call.</font>"
+    "warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
+    "warning_tusk_walrus_punch"         "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Walrus Kick.</font>"
+    "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>LoD Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
+    "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_emp_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_ghost_walk_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_ice_wall_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_sun_strike_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_tornado_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_silencer_glaives_of_wisdom" "<font color=\'#FF4949\'>LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
+    "warning_elder_titan_ancestral_spirit" "<font color=\'#FF4949\'>LoD Warning:</font> The astral spirit wont have <font color=\'#70EA72\'>Natural Order</font> or <font color=\'#70EA72\'>Echo Stomp</font>, unless you also have it."
+	"warning_shredder_chakram" "<font color=\'#FF4949\'>LoD Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
+	"warning_shredder_chakram_2" "<font color=\'#FF4949\'>LoD Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
+	"warning_shadow_demon_shadow_poison_release" "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Shadow Poison.</font>"
+	"warning_nevermore_requiem" "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
+	"warning_templar_assassin_trap" "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Psionic Trap.</font>"
+	"warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>LoD Warning:</font> If you don't have <font color=\'#70EA72\'>Trap</font>, you will have to manually activate traps."
+	"warning_tiny_grow_lod" "<font color=\'#FF4949\'>LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
+    "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>LoD Warning:</font> Only works with <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> and <font color=\'#70EA72\'>Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
+    "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
+    "warning_meepo_poof" "<font color=\'#FF4949\'>LoD Warning:</font> Can teleport to any ally who has the same hero as you."
+	"warning_aether_range_lod"    "<font color=\'#FF4949\'>LoD Warning:</font> Does not stack with Aether Lens."
+	"warning_life_stealer_control"                 "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
+	"warning_true_random_lod_1"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_true_random_lod_2"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_true_random_lod_3"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_true_random_lod_4"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_true_random_lod_5"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_true_random_lod_6"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
+	"warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>LoD Warning:</font> Will not give you neutral creep abilities of devoured creeps"
+	"warning_illusionist_agility_paws" "<font color=\'#FF4949\'>LoD Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
+	"warning_bristleback_bristleback" "<font color=\'#FF4949\'>LoD Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
+	"warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>LoD Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
+	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>LoD Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
 
 
-    "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
-	"credit_octarine_vampirism_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
-	"credit_force_dash_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
-	"credit_shards_of_truesight_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
-	"credit_pudge_flesh_heap_int"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_pudge_flesh_heap_agi"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_silencer_global_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_tinker_rearm_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font>"
-	"credit_ursa_enrage_old"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
-    "credit_slark_essence_shift_agility_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
-	"credit_slark_essence_shift_intellect_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
-	"credit_slark_essence_shift_strength_lod"           "<font color=\"#7D7D7D\">Credits: Myrl | github.com/Myrl</font> \n<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
-	"credit_ursa_fury_swipes_lod"           "<font color=\"#7D7D7D\">Credits: SwordBacon | github.com/SwordBacon</font>"
-	"credit_mirana_starfall_lod"           "<font color=\"#7D7D7D\">Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
-	"credit_skywrath_mage_concussive_break"           "<font color=\"#7D7D7D\">Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_cherub_sleep_cloud"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_cherub_synthesis"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_cherub_explosive_spore"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_cherub_flower_garden"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_white_flower_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_red_flower_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_pink_blossom_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_blue_blossom_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_yellow_daisy_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_garden_purple_lotus_base"           "<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_imba_omniknight_degen_aura"         "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_omniknight_purification"        "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_dazzle_shallow_grave"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_atrophy"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_aegis"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_berserk"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_chrono"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_disease"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_essence_drain"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_fervor"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_force"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_forest"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_grievous_wounds"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_hex_aura"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_laser"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_machinegun"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_mana_burn"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_mana_flare"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_mindblast"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_multihit"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_nature"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_permabash"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_plague"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_reality"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_salvo"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_self_repair"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_sniper"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_spacecow"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_spell_shield"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_split"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_thorns"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_vicious"           "<font color=\"#7D7D7D\">Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_juggernaut_healing_ward_mana"           "<font color=\"#7D7D7D\">Credits: Wouterz90 and SwordBacon</font>"
-	"credit_angel_arena_lightning"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_magic_fire"          "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_night_vampire"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_revenge"          "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_rifle"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_rifle_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_roots"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_shot"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_song"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_storm"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_summon_hawk"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_hola_heal"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_nether_ritual"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_transmute"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_berserk"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_cripple"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_darkrage"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_demonic"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_angel_arena_grace"           "<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-	"credit_ancient_priestess_surge_of_intelligence"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_ancient_priestess_spirit_link"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_archmage_magic_barrier"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_berserker_fire_spear"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_dark_ranger_black_arrow"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_firelord_fire_trap"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_frost_lord_cold"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_frost_lord_frost_breath"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_ghoul_devour"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_akron_explosion"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_paladin_blizzard"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_dark_knight_dark_forces"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_lord_of_lightning_lightning_shield"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_android_cluster_rockets"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_android_cluster_rockets_OP"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_serpent_queen_ball_lightning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_serpent_queen_ball_lightning_op"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_butcher_zombie"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_frost_lord_freezing"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_lord_of_lightning_holy_wrath"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_kret_poisoning"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_kret_lust_for_life"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_brewmaster_ferocity"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_brewmaster_ferocity_agi"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_brewmaster_ferocity_int"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_brewmaster_ferocity_all"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_android_pocket_factory"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_ancient_priestess_ritual_protection"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_berserker_madness"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_frost_lord_ice"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_lord_of_lightning_brain_storm"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_paladin_impregnability"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_illusionist_mastery_of_deception"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_illusionist_whiff_of_deception"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_illusionist_agility_paws"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_illusionist_mastery_of_illusions"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
-	"credit_firelord_flame_strike"           "<font color=\"#7D7D7D\">Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+    "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+	"credit_octarine_vampirism_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+	"credit_force_dash_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+	"credit_shards_of_truesight_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+	"credit_pudge_flesh_heap_int"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_pudge_flesh_heap_agi"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_silencer_global_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_tinker_rearm_lod"           "<font color=\'#7D7D7D\'>Credits: Myrl | github.com/Myrl</font>"
+	"credit_ursa_enrage_old"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_slark_essence_shift_agility_lod"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_slark_essence_shift_intellect_lod"           "<font color=\'#7D7D7D\'>Credits: Myrl | github.com/Myrl</font> \n<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_slark_essence_shift_strength_lod"           "<font color=\'#7D7D7D\'>Credits: Myrl | github.com/Myrl</font> \n<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_ursa_fury_swipes_lod"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+	"credit_mirana_starfall_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
+	"credit_skywrath_mage_concussive_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_red_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_pink_blossom_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_blue_blossom_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_yellow_daisy_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_garden_purple_lotus_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_imba_omniknight_degen_aura"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_omniknight_purification"        "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_dazzle_shallow_grave"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_atrophy"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_aegis"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_berserk"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_chrono"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_disease"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_essence_drain"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_fervor"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_force"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_forest"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_grievous_wounds"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_hex_aura"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_laser"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_machinegun"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_mana_burn"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_mana_flare"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_mindblast"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_multihit"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_nature"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_permabash"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_plague"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_reality"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_salvo"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_self_repair"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_sniper"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_spacecow"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_spell_shield"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_split"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_thorns"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_imba_tower_vicious"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+	"credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
+	"credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_revenge"          "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_rifle"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_rifle_OP"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_roots"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_shot"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_song"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_storm"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_summon_hawk"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_hola_heal"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_nether_ritual"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_transmute"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_berserk"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_cripple"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_darkrage"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_demonic"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_angel_arena_grace"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
+	"credit_ancient_priestess_surge_of_intelligence"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ancient_priestess_spirit_link"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_archmage_magic_barrier"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_berserker_fire_spear"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_dark_ranger_black_arrow"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_firelord_fire_trap"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_cold"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_frost_breath"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ghoul_devour"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_akron_explosion"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_paladin_blizzard"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_dark_knight_dark_forces"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_lightning_shield"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_cluster_rockets"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_cluster_rockets_OP"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_serpent_queen_ball_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_serpent_queen_ball_lightning_op"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_butcher_zombie"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_freezing"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_holy_wrath"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_kret_poisoning"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_kret_lust_for_life"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_agi"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_int"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_brewmaster_ferocity_all"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_android_pocket_factory"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_ancient_priestess_ritual_protection"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_berserker_madness"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_frost_lord_ice"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_lord_of_lightning_brain_storm"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_paladin_impregnability"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_mastery_of_deception"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_whiff_of_deception"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_agility_paws"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_illusionist_mastery_of_illusions"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
+	"credit_firelord_flame_strike"           "<font color=\'#7D7D7D\'>Imported from <font color='#918c85'>L</font><font color='#a09a91'>i</font><font color='#aea79c'>f</font><font color='#bdb5a8'>e</font><font color='#cbc2b3'> </font><font color='#cfc3b4'>I</font><font color='#d2c4b5'>n</font><font color='#d6c4b6'> </font><font color='#d9c5b7'>A</font><font color='#c2b1a4'>r</font><font color='#ab9d91'>e</font><font color='#94897d'>n</font><font color='#7d756a'>a</font>"
 
-	"credit_ebf_rubick_arcane_echo"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
-	"credit_ebf_mana_fiend_essence_amp"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
-	"credit_ebf_clinkz_trickshot"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
-	"credit_ebf_underlord_expulsion"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
-	"credit_ebf_troll_warlord_multistrike"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
-	"credit_ebf_clinkz_trickshot_passive"           "<font color=\"#7D7D7D\">Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_rubick_arcane_echo"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_mana_fiend_essence_amp"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_clinkz_trickshot"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_underlord_expulsion"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_troll_warlord_multistrike"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
+	"credit_ebf_clinkz_trickshot_passive"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
 
 
     /////////////////
@@ -1930,7 +1930,7 @@
 
     //Huskar
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod"                                  "Berserker's Blood (pre 6.78)"
-    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Huskar's injuries feed his power, giving increased attack speed and damage for each 7% of missing health.\n\n<font color=\"#7D7D7D\">Credits: jhqz103 | github.com/jhqz103</font>\n"
+    "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Huskar's injuries feed his power, giving increased attack speed and damage for each 7% of missing health.\n\n<font color=\'#7D7D7D\'>Credits: jhqz103 | github.com/jhqz103</font>\n"
 	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_attack_speed_bonus_per_stack"       "ATTACK SPEED BONUS PER STACK:"
 	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_damage_per_stack"       "ATTACK DAMAGE BONUS PER STACK:"
 	"DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Lore"           					"After losing his birthright, Huskar gained a lethality in physical combat that is only heightened as his own blood is spilled."
@@ -2136,7 +2136,7 @@
     // Zulf, the Stormhunter
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"
-    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"           "Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"     "CAST RANGE:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"        "ARMOR REDUCTION:"
@@ -2146,7 +2146,7 @@
 
 
     "DOTA_Tooltip_Ability_zulf_jet_stream"              "Jet Stream"
-    "DOTA_Tooltip_Ability_zulf_jet_stream_Description"      "Zulf creates a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing towards the stream.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_jet_stream_Description"      "Zulf creates a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing towards the stream.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_jet_stream_Lore"         "Higher than can be imagined, at the border of sky and space, are winds so fast that any being can fly in them."
     "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_buff"       "%MOVESPEED INCREASE/DECREASE:"
     "DOTA_Tooltip_Ability_zulf_jet_stream_Speed_increase"   "%BONUS MOVESPEED INCREASE/DECREASE PER STACK:"
@@ -2155,14 +2155,14 @@
     "DOTA_Tooltip_Ability_zulf_jet_stream_Duration"         "DURATION:"
 
     "DOTA_Tooltip_Ability_zulf_gale_force"              "Gale Force"
-    "DOTA_Tooltip_Ability_zulf_gale_force_Description"      "Zulf summons a current of extremely fast air that disarms himself and nearby enemies, dealing damage over time based on Zulf's agility.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_gale_force_Description"      "Zulf summons a current of extremely fast air that disarms himself and nearby enemies, dealing damage over time based on Zulf's agility.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_gale_force_Lore"                 "A Stormhunter needs no blade to kill his prey, when the wicked winds at his talontips do just the trick."
     "DOTA_Tooltip_Ability_zulf_gale_force_Damage_per_agility"   "DAMAGE PER AGILITY:"
     "DOTA_Tooltip_Ability_zulf_gale_force_Radius"               "RADIUS:"
     "DOTA_Tooltip_Ability_zulf_gale_force_Duration"             "DURATION:"
 
     "DOTA_Tooltip_Ability_zulf_typhoon"             "Typhoon"
-    "DOTA_Tooltip_Ability_zulf_typhoon_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. \nUpgradable by Aghanim's Scepter.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_typhoon_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. \nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_typhoon_Lore"            "The storm of the century!"
     "DOTA_Tooltip_Ability_zulf_typhoon_Radius"          "RADIUS:"
     "DOTA_Tooltip_Ability_zulf_typhoon_Damage"          "DAMAGE PER 100 ELEVATION:"
@@ -2171,7 +2171,7 @@
     "DOTA_Tooltip_Ability_zulf_typhoon_Aghanim_description"         "Increases lift velocity of Typhoon by 50%d%%, making units spread further, be airborne longer, and take more damage when they land."
 
 	"DOTA_Tooltip_Ability_zulf_typhoon_OP"             "Typhoon OP"
-    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. <font color='#70EA72'>Improved damage, cooldown, radius and cast delay.</font> \nUpgradable by Aghanim's Scepter.\n\n<font color=\"#7D7D7D\">Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_zulf_typhoon_OP_Description"         "After a long cast delay, Zulf sweeps up all enemies in a large area in a powerful typhoon while channeling, shuffling their positions and dealing fall damage based on how far they fell. <font color='#70EA72'>Improved damage, cooldown, radius and cast delay.</font> \nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_typhoon_OP_Lore"            "The storm of the century!"
     "DOTA_Tooltip_Ability_zulf_typhoon_OP_Radius"          "RADIUS:"
     "DOTA_Tooltip_Ability_zulf_typhoon_OP_Damage"          "DAMAGE PER 100 ELEVATION:"
@@ -2521,41 +2521,41 @@
 
 	/// ABADDON​
 	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"	"Abaddon Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges. <br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"	"For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges. <br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// ALCHEMIST​
 	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"	"Alchemist Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"	"Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"	"Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// ANCIENT APPARITION​
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"	"AA Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_Description"	"Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_Description"	"Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze"		"Healing Disabled"
 	"DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze_Description"		"Ancient Apparition's Perk. All healing an regen effects are disabled while affected by an Ice debuff."
 
 	/// ANTI-MAGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk"	"Antimage Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk_Description"	"After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_antimage_perk_Description"	"After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_antimage_silence"  "Silenced"
     "DOTA_Tooltip_modifier_npc_dota_hero_invoker_silence_Description"    "Anti-Mage's Perk. Silenced because Anti-Mage blinked within 300 radius."
 
 	/// ARC WARDEN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Recharging"
 	"DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime_Description"   "Recharging Arc Warden's perk over 90 seconds."
 
 	/// AXE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk"	"Axe Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk_Description"	"Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_axe_perk_Description"	"Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BANE​
   	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk"  "Bane Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100%d% of all spell damage he deals to sleeping units.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_bane_perk_Description"  "Bane lifesteals 100%d% of all spell damage he deals to sleeping units.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BATRIDER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk"	"Batrider Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20%d% while Flying.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_batrider_perk_Description"	"Increases Batrider's movement speed by 20%d% while Flying.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BEASTMASTER
 	"DOTA_Tooltip_modifier_npc_dota_hero_beastmaster_perk"               "Beastmaster Perk"
@@ -2567,87 +2567,87 @@
 
 	/// BOUNTY HUNTER​
   	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk"	"Bounty Hunter Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10%d% more damage to Tracked enemies.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_bounty_hunter_perk_Description"	"Bounty Hunter deals 10%d% more damage to Tracked enemies.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BREWMASTER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk"	"Brewmaster Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100%d% regen from Salve, Bottle and Clarity.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_brewmaster_perk_Description"	"Brewmaster gains +100%d% regen from Salve, Bottle and Clarity.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BRISTLEBACK​
 	"DOTA_Tooltip_modifier_npc_dota_hero_bristleback_perk"	"Bristleback Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_bristleback_perk_Description"	"Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_bristleback_perk_Description"	"Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// BROODMOTHER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk"	"Broodmother Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk_Description"	"Non-ultimate Summon abilities used by Broodmother will have 20%d% mana cost refunded and 20%d% cooldown reduction.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_broodmother_perk_Description"	"Non-ultimate Summon abilities used by Broodmother will have 20%d% mana cost refunded and 20%d% cooldown reduction.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// CENTAUR WARRUNNER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk"	"Centaur Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75%d% damage from Self-Damaging spells.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_centaur_perk_Description"	"Centaur Warrunner takes 75%d% damage from Self-Damaging spells.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// CHAOS KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	///CHEN
 	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk"	"Chen Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description"	"When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description"	"When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// CLINKZ​
 	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"	"Clinkz Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk_Description"	"Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk_Description"	"Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// CLOCKWERK​
   	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay"               "Clockwerk Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// CRYSTAL MAIDEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"   "Crystal Maiden Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Gaining bonus movement speed per level in support skills.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Gaining bonus movement speed per level in support skills.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// DARK SEER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk"	"Dark Seer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk_Description"	"Dark Seer self-casts Surge and Ion Shell when casting them on allies.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// DAZZLE
 	"DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk"	"Dazzle Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"	"Shallow Grave has double cast range and 50%d% cooldown reduction when picked by Dazzle.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"	"Shallow Grave has double cast range and 50%d% cooldown reduction when picked by Dazzle.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// DEATH PROPHET​
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk"	"Death Prophet Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_Description"	"Any silence applied by Death Prophet also applies mute.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_Description"	"Any silence applied by Death Prophet also applies mute.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute"               "Muted"
 	"DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk_mute_Description"   "Death Prophet's perk. Muted while silenced by Death Prophet."
 
 	/// DISRUPTOR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"	"Disruptor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"	"Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// DOOM​
 	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk"	"Doom Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description"	"Doom applies Break when casting Doom.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"   "Break"
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"   "Doom's Perk. Your passives are disabled while doomed."
 
 	/// DRAGON KNIGHT​
 	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"	"Dragon Knight Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk_Description"	"While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// DROW RANGER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk"	"Drow Ranger Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_drow_ranger_perk_Description"	"Gust also disarms enemies when cast by Drow Ranger.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// EARTH SPIRIT​
 	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk"				"Earth Spirit perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Gain +3 damage for each point in Earth abilities.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_earth_spirit_perk_Description"		"Gain +3 damage for each point in Earth abilities.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// EARTHSHAKER​
   	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk"	"Earthshaker Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_earthshaker_perk_Description"	"Earth abilities Earthshaker uses heal him for 2%d% of his health.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// ELDER TITAN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk"	"Elder Titan Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3%d% for every aura Elder Titan is carrying.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_elder_titan_perk_Description"	"Increased movement speed by 3%d% for every aura Elder Titan is carrying.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// EMBER SPIRIT​
   	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk"	"Ember Spirit Perk"
@@ -2655,11 +2655,11 @@
 
 	/// ENCHANTRESS​
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"	"Enchantress can creates plants without the health penalty.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// ENIGMA​
   	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"	"Enigma Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk_Description"	"When Enigma dies, Black Hole's cooldown will be refreshed.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// FACELESS VOID PERK HARD-CODED INGAME
 
@@ -2667,19 +2667,19 @@
 
 	/// HUSKAR​
   	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"	"Huskar Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"	"Huskar regenerates 1hp/s for every 10% of health he is missing.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"	"Huskar regenerates 1hp/s for every 10% of health he is missing.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// INVOKER​
   	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"	"Invoker Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining 5 intelligence per unique spell cast.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk_Description"	"Gaining 5 intelligence per unique spell cast.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// IO​
   	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk"	"Io Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell Io casts on a Tethered Hero also gets cast on Io.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description"	"Any spell Io casts on a Tethered Hero also gets cast on Io.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// JAKIRO​
 	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk"	"Jakiro Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_Description"	"Fire and Ice spells cast sequentially will refund 40%d% mana and have 20%d% reduced cooldowns.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_Description"	"Fire and Ice spells cast sequentially will refund 40%d% mana and have 20%d% reduced cooldowns.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_fire"	"Fire"
   	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_fire_Description"	"The next Fire spell cast will refund 40%d% mana and have a 20%d% reduced cooldown."
   	"DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk_ice"	"Ice"
@@ -2687,49 +2687,49 @@
 
 	/// JUGGERNAUT​
 	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"	"Juggernaut Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"	"Healing/Mana Ward will have 100%d% of their mana cost refunded.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// KOTL PERK HARD-CODED INGAME
 
 	/// KUNKKA​
 	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk"	"Kunkka Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_kunkka_perk_Description"	"When Kunkka casts a Water spell he has a 50%d% chance to refill his bottle.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// LEGION COMMANDER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk"	"LC Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_legion_commander_perk_Description"	"When Legion Commander casts Duel, she will gain spell immunity for the duration of the duel.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// LESHRAC​
   	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk"               "Leshrac Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk_Description"   "Gained a free level of Octarine Vampirism.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_leshrac_perk_Description"   "Gained a free level of Octarine Vampirism.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// LICH​
 	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk"	"Lich Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description"	"Sacrifice also restores Lich's health.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// LIFESTEALER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk"	"Lifestealer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk_Description"	"When Life Stealer casts Infest, its cooldown will be reduced to 30 seconds.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// LINA​
  	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk"	"Lina Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk_Description"	"Increases Lina's intelligence by 3 for each level put in fire-type spells.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lina_perk_Description"	"Increases Lina's intelligence by 3 for each level put in fire-type spells.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// LION​
 	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk"	"Lion Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_lion_perk_Description"	"For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// LONE DRUID​
   	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk"  "Lone Druid Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_lone_druid_perk_Description"  "Lone Druid transfers 50%d% of damage taken to his Spirit Bear if he has one and its within 1100 range.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// LUNA​
 	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk"	"Luna Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_luna_perk_Description"	"Luna gains 1 free level of Lunar Blessing, whether she has it or not.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// LYCAN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk"	"Lycan Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk_Description"	"Shapeshift lasts 20 seconds longer during the night when cast by Lycan.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_lycan_perk_Description"	"Shapeshift lasts 20 seconds longer during the night when cast by Lycan.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// MAGNUS​
     "DOTA_Tooltip_modifier_npc_dota_hero_magnataur_perk"    "Magnus Perk"
@@ -2737,53 +2737,53 @@
 
 	/// MEDUSA​
     "DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk"  "Medusa Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// MEEPO
 	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk"  "Meepo Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk_Description"  "Increases all damage by 5%d% for every other Meepo on your team. Takes 25%d% max health as damage whenever a Meepo dies. <br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk_Description"  "Increases all damage by 5%d% for every other Meepo on your team. Takes 25%d% max health as damage whenever a Meepo dies. <br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// MIRANA​
 	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"	"Mirana Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"	"When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// MORPHLING​
 	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"	"Morphling Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50%d% bonus movement speed in water.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk_Description"	"Morphling gains 50%d% bonus movement speed in water.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// NAGA SIREN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk"	"Naga Siren Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"	"Illusion creating abilities will have 50%d% of their mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"	"Illusion creating abilities will have 50%d% of their mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// NATURE'S PROPHET​
   	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk"	"Nature's Prophet Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_furion_perk_Description"	"Reduces the cooldown of all Teleportation abilities by 50%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// NECROPHOS​
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// NIGHT STALKER PERK HARD-CODED INGAME
 
 	/// NYX ASSASSIN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk"	"Nyx Assassin Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_nyx_assassin_perk_Description"	"Nyx Assassin gains 10%d% Bonus movement speed when invisible.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// OGRE MAGI​
 	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk"	"Ogre Magi Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"	"When Ogre Magi casts a spell, there is a 2%d% chance to refund the manacost of that spell and refresh its cooldown.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"	"When Ogre Magi casts a spell, there is a 2%d% chance to refund the manacost of that spell and refresh its cooldown.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// OMNIKNIGHT​
 	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk"	"Omniknight Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk_Description"	"Light spells refund 40%d% of their mana cost when cast by Omniknight.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk_Description"	"Light spells refund 40%d% of their mana cost when cast by Omniknight.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// ORACLE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk"	"Oracle Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"	"Support items used by Oracle will have their cooldowns reduced by 20%.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"	"Support items used by Oracle will have their cooldowns reduced by 20%.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// OUTWORLD DEVOURER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk"	"Outworld Devourer"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_Description"	"Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_Description"	"Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff"     "Intelligence Steal"
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_buff_Description"   "Outworld Devourer's Perk. Stolen 7 intelligence."
 	"DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk_debuff"    "Intelligence Steal"
@@ -2791,45 +2791,45 @@
 
 	/// PHANTOM ASSASSIN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk"	"Phantom Assassin Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50%d% of their manacost refunded, and their cooldowns reduced by 2 seconds.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_assassin_perk_Description"	"Dagger spells will have 50%d% of their manacost refunded, and their cooldowns reduced by 2 seconds.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// PHANTOM LANCER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"	"Phantom Lancer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"	"At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 
 	/// PHOENIX​
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"	"Phoenix Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage. Requires level 6 or higher.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_Description"	"Phoenix auto-casts Supernova when taking lethal damage. Requires level 6 or higher.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_delay" "Perk Cooldown"
 	"DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk_delay_Description" "Phoenix's perk is currently on cooldown, taking lethal damage will result in death and you will not go into egg form."
 
 	/// PUCK
 	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk"	"Puck Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description"	"Puck has a 50%d% to reflect any projectile he disjoints. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description"	"Puck has a 50%d% to reflect any projectile he disjoints. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// PUDGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"	"Pudge Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"	"Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
 	"DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 
 	/// PUGNA​
 	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk"	"Pugna Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk_Description"	"Drain spells will have 50%d% mana refunded and have 25%d% reduced cooldowns when cast by Pugna.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_pugna_perk_Description"	"Drain spells will have 50%d% mana refunded and have 25%d% reduced cooldowns when cast by Pugna.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// QUEEN OF PAIN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk"	"Queen of Pain Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk_Description"	"QOP will deal 10%d% extra damage to males but receive 10%d% extra damage from females.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_queenofpain_perk_Description"	"QOP will deal 10%d% extra damage to males but receive 10%d% extra damage from females.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// RAZOR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk"	"Razor Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"	"Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"	"Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// RIKI​
 	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk"	"Riki Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk_Description"	"Increases Riki's health regeneration by 4 while invisible.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_riki_perk_Description"	"Increases Riki's health regeneration by 4 while invisible.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// RUBICK​
 	"DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk"	"Rubick Perk"
@@ -2837,49 +2837,49 @@
 
 	/// SAND KING​
 	"DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk"	"Sand King Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk_Description"	"Channeling abilities refund 30%d% of their manacost when cast by Sand King.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk_Description"	"Channeling abilities refund 30%d% of their manacost when cast by Sand King.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SHADOW DEMON​
   	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk"               "Shadow Demon Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SHADOW FIEND​
 	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"	"Shadow Fiend Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk_Description"	"At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk_Description"	"At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SHADOW SHAMAN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk"	"Shadow Shaman Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"	"All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"	"All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// SILENCER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk"	"Silencer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk_Description"	"Silence effects applied by Silencer last 25%d% longer.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk_Description"	"Silence effects applied by Silencer last 25%d% longer.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SKYWRATH MAGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk"	"Skywrath Mage Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk_Description"	"Skywrath Mage refunds 15%d% of the manacost of spells with a cooldown of 7 seconds or less.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_skywrath_mage_perk_Description"	"Skywrath Mage refunds 15%d% of the manacost of spells with a cooldown of 7 seconds or less.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SLARDAR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"	"Slardar Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"	"Slardar gets 1 gold whenever he bashes a unit.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// SLARK​
 	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"	"Slark Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"	"Slark gains +3 agility for each level put in an mobility/escape skill.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"	"Slark gains +3 agility for each level put in an mobility/escape skill.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// SNIPER
 	"DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk"	"Sniper Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk_Description"	"When Sniper uses Shrapnel it will have a global cast range.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk_Description"	"When Sniper uses Shrapnel it will have a global cast range.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
 	/// SPECTRE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"	"Spectre Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"	"Spectre gains phased movement for 4 seconds every time she uses an ability.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"	"Spectre gains phased movement for 4 seconds every time she uses an ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"	"Phased"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"	"Spectre's Perk. Spectre has phased movement after casting a spell."
 
 	/// SPIRIT BREAKER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk"  "Space Cow Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_Description"  "When Spirit Breaker bashes, he also applies Break.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_Description"  "When Spirit Breaker bashes, he also applies Break.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break"  "Break"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
 
@@ -2887,37 +2887,37 @@
 
 	/// SVEN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk"	"Sven Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"	"At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk_Description"	"At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// TECHIES​
 	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk"	"Techies Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk_Description"	"Traps and Explosives will have 50%d% of their mana refunded and cooldowns reduced by 50%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_techies_perk_Description"	"Traps and Explosives will have 50%d% of their mana refunded and cooldowns reduced by 50%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// TEMPLAR ASSASSIN​
   	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break"         "Templar Assassin Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis"         "Invisible"
 	"DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_Description"         "Remain invisible while standing in place. Breaks upon moving or attacking"
 
 	/// TERRORBLADE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk"	"Terrorblade Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk_Description"	"Terrorblade Illusions deal 15%d% more damage, but also take 15%d% more damage.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_terrorblade_perk_Description"	"Terrorblade Illusions deal 15%d% more damage, but also take 15%d% more damage.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// TIDEHUNTER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk"	"Tidehunter Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes the cooldown of Ravage when Tidehunter dies. <br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tidehunter_perk_Description"	"Refreshes the cooldown of Ravage when Tidehunter dies. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// TIMBERSAW​
   	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk"	"Timbersaw Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description"	"Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// TINKER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"	"Tinker Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"	"When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// TINY​
   	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk"	"Tiny Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description"	"Increases damage done to buildings by 10%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description"	"Increases damage done to buildings by 10%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// TREANT PROTECTOR​
 	"DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"	"Treant Perk"
@@ -2925,43 +2925,43 @@
 
 	/// TROLL WARLORD​
   	"DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk"  "Troll Warlord Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk_Description"  "Rage effects on Troll Warlord have 20%d% longer duration.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk_Description"  "Rage effects on Troll Warlord have 20%d% longer duration.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// TUSK​
 	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk"				"Tusk Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk_Description"		"Walrus Kick and Walrus Punch will refund their manacost when used by Tusk.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_tusk_perk_Description"		"Walrus Kick and Walrus Punch will refund their manacost when used by Tusk.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// UNDERLORD​
 	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk"	"Underlord Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"	"Underlord gains +1 to all stats for each level put in a custom ability.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"	"Underlord gains +1 to all stats for each level put in a custom ability.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// UNDYING​
 	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk"  "Undying Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_undying_perk_Description"  "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// URSA​
   	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk"	"Ursa Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan.<br><br><font color=\"#7D7D7D\">By Wouterz90 | github.com/Wouterz90</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_ursa_perk_Description"	"Ursa deals 15%d% extra damage to neutrals and Roshan.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
 	/// VENGEFUL SPIRIT​
   	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk"	"Vengeful Spirit Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"	"When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"	"When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
 	"DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
 
 	/// VENOMANCER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk"	"Venomancer Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk_Description"	"Increases the duration of all Poison effects Venomancer applies by 25%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk_Description"	"Increases the duration of all Poison effects Venomancer applies by 25%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// VIPER​
   	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk"	"Viper Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"	"Poison effects applied by Viper also lower the target's armor by 2.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"	"Poison effects applied by Viper also lower the target's armor by 2.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
   	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
 	"DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
 
 	/// VISAGE​
 	"DOTA_Tooltip_modifier_npc_dota_hero_visage_perk"               "Visage Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_visage_perk_Description"   "Summon Familiars will refund 100%d% of manacost and have its cooldown reduced by 50%d%.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_visage_perk_Description"   "Summon Familiars will refund 100%d% of manacost and have its cooldown reduced by 50%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// WARLOCK​
 	"DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk"	"Warlock Perk"
@@ -2969,23 +2969,23 @@
 
 	/// WEAVER
 	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk"	"Weaver Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_Description"	"Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher.<br><br><font color=\"#7D7D7D\">By TideSofDarK | github.com/TideSofDarK</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_Description"	"Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_delay"	"Perk Cooldown"
 	"DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk_delay_Description"	"Weaver's perk is currently on cooldown, taking lethal damage will result in death and you will not trigger time lapse."
 
 	/// WINDRANGER​
 	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk"	"Windranger Perk"
-  	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk_Description"	"If Windranger has no passives, all her active spells will refund 20%d% mana and have 20%d% reduced cooldowns.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+  	"DOTA_Tooltip_modifier_npc_dota_hero_windrunner_perk_Description"	"If Windranger has no passives, all her active spells will refund 20%d% mana and have 20%d% reduced cooldowns.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// WINTER WYVERN​
   	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"	"Flight Delay"
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
 	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"	"Flying"
-	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 90%d% she gains flying status after 5 seconds.<br><br><font color=\"#7D7D7D\">By Yahnich | github.com/Yahnich</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 90%d% she gains flying status after 5 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// WITCH DOCTOR​
   	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk"	"Witch Doctor Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk_Description"	"Healing abilities have 25%d% extra effectiveness when used by Witch Doctor.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk_Description"	"Healing abilities have 25%d% extra effectiveness when used by Witch Doctor.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/// WRAITH KING​
 	"DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"	"Wraith King Perk"
@@ -2993,19 +2993,19 @@
 
 	/// ZEUS​
 	"DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk"	"Zeus Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk_Description"	"Zeus refunds 20%d% of the manacost of any Lightning spells he casts.<br><br><font color=\"#7D7D7D\">By SwordBacon | github.com/SwordBacon</font>"
+	"DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk_Description"	"Zeus refunds 20%d% of the manacost of any Lightning spells he casts.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
 	/////////////////
 	/// ANGEL ARENA REBORN ABILITIES
 	/////////////////
 
 	"DOTA_Tooltip_Ability_angel_arena_razor_power"							"Holy Book"
-	"DOTA_Tooltip_Ability_angel_arena_razor_power_Description"				"Deals a percentage of attack damage in an area around the enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_Description"				"Deals a percentage of attack damage in an area around the enemy unit.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_radius"					"RADIUS:"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_damage_percent"			"%DAMAGE:"
 
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP"							"Holy Book OP"
-	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_Description"				"Deals a percentage of attack damage in an area around the enemy unit. <font color='#70EA72'>Improved percentage of damage.</font>\n\n<font color=\"#7D7D7D\">Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
+	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_Description"				"Deals a percentage of attack damage in an area around the enemy unit. <font color='#70EA72'>Improved percentage of damage.</font>\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>\n"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_radius"					"RADIUS:"
 	"DOTA_Tooltip_Ability_angel_arena_razor_power_OP_damage_percent"			"%DAMAGE:"
 
@@ -3563,7 +3563,7 @@
 	/////////
 	//Betrayal
 	"DOTA_Tooltip_Ability_invoker_retro_betrayal"                                     "Betrayal"
-	"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_betrayal_Description"                         "Temporarily moves the target enemy Hero to your team, allowing it to be damaged by its former allies' spells and autoattacks.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_betrayal_duration"							  "DURATION:"
 
 	"DOTA_Tooltip_modifier_invoker_retro_betrayal"                    				  "Betrayal"
@@ -3571,12 +3571,12 @@
 
 	///Portal
 	"DOTA_Tooltip_Ability_invoker_retro_portal"                        "Portal"
-	"DOTA_Tooltip_Ability_invoker_retro_portal_Description"            "After a slightly extended cast animation, moves the targeted allied unit to Invoker's position.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_portal_Description"            "After a slightly extended cast animation, moves the targeted allied unit to Invoker's position.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_portal_cast_range"                 "CAST RANGE:"
 
 	//Invisibility Aura
 	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura"                            "Invisibility Aura"
-	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
 	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_radius"                     "RADIUS:"
 	"DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_fade_time"                     "FADE TIME:"
@@ -3587,7 +3587,7 @@
 	"DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_Description"				  "Will make your nearby allies invisible, but not you."
 	//Scout
 	"DOTA_Tooltip_Ability_invoker_retro_scout"                                        "Scout"
-	"DOTA_Tooltip_Ability_invoker_retro_scout_Description"                            "Summons an invisible, invulnerable Owl Scout that has flying vision and truesight.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_scout_Description"                            "Summons an invisible, invulnerable Owl Scout that has flying vision and truesight.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_duration"             	 	      "DURATION:"
 	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_vision"							  "VISION RADIUS:"
 	"DOTA_Tooltip_Ability_invoker_retro_scout_owl_movespeed"						  "MOVEMENT SPEED:"
@@ -3602,7 +3602,7 @@
 
 	//Confuse
 	"DOTA_Tooltip_Ability_invoker_retro_confuse"                        "Confuse"
-	"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \"ghost\" illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_confuse_Description"            "Creates an illusion of Invoker at the targeted point. The illusion cannot move, attack, nor cast spells.  A second \'ghost\' illusion is placed at the targeted point as well, and is also unable to perform actions but lasts twice as long and is invulnerable and unselectable.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_confuse_cast_range"             "CAST RANGE:"
 	"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
 	"DOTA_Tooltip_Ability_invoker_retro_confuse_incoming_damage_percent" "%ILLUSION INCOMING DAMAGE:"
@@ -3610,7 +3610,7 @@
 
 	//Disarm (Broken into 8 spells)
 	"DOTA_Tooltip_Ability_invoker_retro_disarm"                         "Disarm"
-	"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit.\n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_disarm_Description"             "Disarms the target enemy unit.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_disarm_duration"				"DURATION:"
 	"DOTA_Tooltip_Ability_invoker_retro_disarm_cast_range" 			  	"CAST RANGE:"
 
@@ -3619,7 +3619,7 @@
 
 	//Deafening Blast
 	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast"                              "Deafening Bolt"
-	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. \n\n<font color=\"#7D7D7D\">Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_Description"                  "Damages and disables the passives of the target enemy unit. \n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
 	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_mute_duration"                "DURATION:"
 	"DOTA_Tooltip_Ability_invoker_retro_deafening_blast_damage"                       "DAMAGE:"
 
