@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_wisp_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_wisp_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_wisp_perk:GetTexture()
 	return "wisp_tether"
 end

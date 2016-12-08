@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_shredder_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shredder_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shredder_perk:IsHidden()
 	return false
 end

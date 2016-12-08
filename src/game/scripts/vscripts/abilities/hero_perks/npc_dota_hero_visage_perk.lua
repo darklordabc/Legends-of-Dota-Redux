@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_visage_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_visage_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_visage_perk:RemoveOnDeath()
 	return false
 end

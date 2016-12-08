@@ -30,6 +30,10 @@ function modifier_npc_dota_hero_vengefulspirit_perk:OnCreated(keys)
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk:DeclareFunctions()
 	return { 
 	MODIFIER_EVENT_ON_HERO_KILLED

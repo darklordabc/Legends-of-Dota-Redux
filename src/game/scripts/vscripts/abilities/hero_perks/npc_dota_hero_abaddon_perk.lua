@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_abaddon_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_abaddon_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:IsHidden()
 	return self:GetCaster():HasModifier("modifier_charges")
 end

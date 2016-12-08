@@ -19,6 +19,10 @@ end
 function modifier_npc_dota_hero_slardar_perk:IsHidden()
 	return false
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_slardar_perk:IsPurgable()
+	return false
+end
 
 function modifier_npc_dota_hero_slardar_perk:RemoveOnDeath()
   return false

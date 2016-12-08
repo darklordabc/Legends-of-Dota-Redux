@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_storm_spirit_perk:IsHidden()
   return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_storm_spirit_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_storm_spirit_perk:OnCreated()

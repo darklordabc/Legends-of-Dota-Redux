@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_zuus_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_zuus_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:OnCreated(keys)
 	self.manaPercentReduction = 20
 	self.manaReduction = self.manaPercentReduction / 100

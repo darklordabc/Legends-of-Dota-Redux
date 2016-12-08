@@ -15,12 +15,17 @@ if modifier_npc_dota_hero_riki_perk ~= "" then modifier_npc_dota_hero_riki_perk 
 function modifier_npc_dota_hero_riki_perk:IsPassive()
 	return true
 end
+
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_riki_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_riki_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_riki_perk:IsPurgable()
 	return false
 end
 --------------------------------------------------------------------------------------------------------

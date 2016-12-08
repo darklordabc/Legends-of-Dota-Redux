@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_rattletrap_perk:IsHidden()
     return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_rattletrap_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_rattletrap_perk:OnCreated(keys)

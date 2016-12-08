@@ -20,6 +20,10 @@ function modifier_npc_dota_hero_venomancer_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_venomancer_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_venomancer_perk:OnCreated()
 	if IsServer() then
 		local poisonDurationBonusPct = 25

@@ -31,6 +31,10 @@ function modifier_npc_dota_hero_undying_perk:OnCreated()
 		self:StartIntervalThink(0.1)
 	end
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_undying_perk:IsPurgable()
+	return false
+end
 
 function modifier_npc_dota_hero_undying_perk:OnRefresh()
 	self:GetParent().strTable = {}
