@@ -2673,7 +2673,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"25"
-		"ModelScale" 				"1.2"
+		"ModelScale" 				"0.9"
 		"ConsideredHero"			"1"
 		"UseNeutralCreepBehavior" 	"0"
 		"vscripts"					"ai/tower_guardian.lua"
@@ -2746,7 +2746,13 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1" { "ItemDef"			"0" }
+				"Wearable1"		{	"ItemDef"		"6021"		} //
+				"Wearable2"		{	"ItemDef"		"5914"		} // head
+				"Wearable3"		{	"ItemDef"		"6138"		} //
+				"Wearable4"		{	"ItemDef"		"6140"		} //
+				"Wearable5"		{	"ItemDef"		"6136"		} //
+				"Wearable6"		{	"ItemDef"		"5912"		} // bracer
+				"Wearable7"		{	"ItemDef"		"8828"		} // wand
 			}
 		}
 	}

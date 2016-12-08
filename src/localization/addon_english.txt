@@ -3711,5 +3711,9 @@
 	"DOTA_Tooltip_ability_tower_guardian_dingdong"    "Tower Guardian: Dingeling"
     "DOTA_Tooltip_ability_tower_guardian_dingdong_Description"    "STROKE THE SHAFT."
     "DOTA_Tooltip_ability_tower_guardian_dingdong_Lore"    "What is this guy's name even? Nobody knows."
+	
+	//Tower Guards
+	
+	"npc_dota_tower_guardian_darklord"	"Darklord"
 
 }
