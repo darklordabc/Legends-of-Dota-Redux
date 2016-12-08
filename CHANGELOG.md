@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Added 322 Mutator
 - Added Refresh Cooldowns on Death Mutator
 - Added Gotta Go Fast Mutator
+- No perks should be purgable anymore
 
 ### Balance
 - Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
