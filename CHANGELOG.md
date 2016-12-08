@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added Refresh Cooldowns on Death Mutator
 - Added Gotta Go Fast Mutator
 - No perks should be purgable anymore
+- Duels have been temporarily disabled until the crashing can be resolved. I'm sorry about that. 
 
 ### Balance
 - Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
