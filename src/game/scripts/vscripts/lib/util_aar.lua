@@ -1,4 +1,5 @@
 local Timers = require('easytimers')
+local util = require('util')
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
@@ -1347,7 +1348,7 @@ function initDuel(restart)
 	end
 
 	local arena = current_arena + 1
-	if current_arena > #arenas then
+	if current_arena > util:getTableLength(arenas) then
 		arena = 1
 	end
 
