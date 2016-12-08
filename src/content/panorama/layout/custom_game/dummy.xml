@@ -476,10 +476,12 @@
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsTeam.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorUnlimitedBans.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBoosterDraft.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorWTF.png" />
 <Image src="file://{images}/custom_game/options/option0.png" />
 <Image src="file://{images}/custom_game/options/option1.png" />
 <Image src="file://{images}/custom_game/options/option2.png" />
 <Image src="file://{images}/custom_game/options/option3.png" />
 <Image src="file://{images}/custom_game/options/option4.png" />
-<Image src="file://{images}/custom_game/options/option5.png" /> </Panel></root>
+<Image src="file://{images}/custom_game/options/option5.png" />
+<Image src="file://{images}/custom_game/options/option6.png" /> </Panel></root>

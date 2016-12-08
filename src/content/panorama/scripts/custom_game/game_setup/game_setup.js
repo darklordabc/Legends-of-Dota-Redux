@@ -133,6 +133,9 @@ var showTakenSkills = true;
 var showNonDraftSkills = false;
 var useSmartGrouping = true;
 
+// A store for all abilities
+var abilityStore = {};
+
 // List of banned abilities
 var bannedAbilities = {};
 var bannedHeroes = {};
@@ -204,6 +207,7 @@ function hookAndFire(tableName, callback) {
         callback(tableName, info.key, info.value);
     }
 }
+
 
 // Focuses on nothing
 function focusNothing() {
@@ -722,138 +726,166 @@ function OnSelectedRandomBuildChanged(table_name, key, data) {
     }
 }
 
-function OnSetDraftedAbilities(args) {
-    (function () {
-        var con = $("#boosterDraftPile")
-        if ($("#boosterDraftPileDragLabel") && !$("#boosterDraftPileDragLabel").deleted) {
-            util.removeChildren(con);
-        }
-        if (args) {
-            $.Schedule(0.1,  function () {
-                for (var abName in args) {
-                    if (args[abName]) {
-                        if (!con.FindChildTraverse("pile_" + abName)) {
-                            var rootCon = $.CreatePanel('Panel', con, "pileRootCon_" + abName);
-                            var abcon = $.CreatePanel('DOTAAbilityImage', rootCon, "pile_" + abName);
-                            abcon.abilityname = abName;
-                            // abcon.SetAttributeString('abilityname', abName);
-                            // hookSkillInfo(abcon);
-                        }
-                    }
-                }
-            })
-        }
-    })();
-}
-
 // Server just sent us a draft array
 function OnGetDraftArray(table_name, key, data) {
-    var draftID = data.draftID;
-
-    var myDraftID = 0;
-
-    var playerID = Players.GetLocalPlayer();
-    var myInfo = Game.GetPlayerInfo(playerID);
-    var myTeamID = myInfo.player_team_id;
-    var myTeamPlayers = Game.GetPlayerIDsOnTeam(myTeamID);
-
-    var maxPlayers = 24;
-    for(var i=0; i<maxPlayers; ++i) {
-        if(i == playerID) break;
-
-        var info = Game.GetPlayerInfo(i);
-
-        if(info != null && myTeamID == info.player_team_id) {
-            ++myDraftID;
-        }
-    }
-
-    // Ensure we don't get a weird value for draftID
-    myDraftID = myDraftID % 5;
-
-    // Are we playing single draft or booster draft?
-    if(optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 6) {
-        // DraftID is just our playerID
-        myDraftID = playerID;
-    }
-
-    // Is this data for us?
-    if(myDraftID != draftID) return;
-
-    // Init booster draft
-    if (optionValueList['lodOptionCommonGamemode'] == 6 && !boosterDraftInitiated) {
-        $("#boosterDraftPile").visible = true;
-        $("#pickingPhaseBuild").visible = false;
-
-        var hookSet = function(setName) {
-            var enterNumber = 0;
-            var draftingArea = $('#boosterDraftPile');
-
-            var draftingDragEnter = function(panelID, draggedPanel) {
-                draftingArea.AddClass('potential_drop_target');
-
-                draggedPanel.SetAttributeInt("draftThis", 1);
-
-                // Prevent annoyingness
-                ++enterNumber;
-            };
-
-            var draftingDragLeave = function(panelID, draggedPanel) {
-                var myNumber = ++enterNumber;
-
-                $.Schedule(0.1, function() {
-                    // draggedPanel.SetAttributeInt("draftThis", 0);
-                    if(myNumber == enterNumber) {
-                        draftingArea.RemoveClass('potential_drop_target');
-                        
-                        if(draggedPanel.deleted == null) {
-                            draggedPanel.SetAttributeInt("draftThis", 0);
-                        }
+    if (key.match("booster") != null && Players.GetLocalPlayer() == parseInt(key.replace(key.match("booster"), ""))) {
+        var con = $("#boosterDraftPile")
+        if (data.draftArray) {
+            $("#boosterDraftPileDragLabel").visible = false;
+            for (var abName in data.draftArray) {
+                if (data.draftArray[abName]) {
+                    if (!con.FindChildTraverse("pile_" + abName)) {
+                        var rootCon = $.CreatePanel('Panel', con, "pileRootCon_" + abName);
+                        var abcon = $.CreatePanel('DOTAAbilityImage', rootCon, "pile_" + abName);
+                        abcon.abilityname = abName;                        abcon.abilityname = abName;
+                        abcon.SetAttributeString('abilityname', abName);
+                        hookSkillInfo(abcon);
                     }
-                });
+                }
+            }
+        }
+    } else {
+        var draftID = data.draftID;
+
+        var myDraftID = 0;
+
+        var playerID = Players.GetLocalPlayer();
+        var myInfo = Game.GetPlayerInfo(playerID);
+        var myTeamID = myInfo.player_team_id;
+        var myTeamPlayers = Game.GetPlayerIDsOnTeam(myTeamID);
+
+        var maxPlayers = 24;
+        for(var i=0; i<maxPlayers; ++i) {
+            if(i == playerID) break;
+
+            var info = Game.GetPlayerInfo(i);
+
+            if(info != null && myTeamID == info.player_team_id) {
+                ++myDraftID;
+            }
+        }
+
+        // Ensure we don't get a weird value for draftID
+        myDraftID = myDraftID % 5;
+
+        // Are we playing single draft or booster draft?
+        if(optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 6) {
+            // DraftID is just our playerID
+            myDraftID = playerID;
+        }
+
+        // Is this data for us?
+        if(myDraftID != draftID) return;
+
+        // Init booster draft
+        if (optionValueList['lodOptionCommonGamemode'] == 6 && !boosterDraftInitiated && !data.boosterDraftDone) {
+            $("#boosterDraftPile").visible = true;
+            $("#pickingPhaseBuild").visible = false;
+
+            var hookSet = function(setName) {
+                var enterNumber = 0;
+                var draftingArea = $('#boosterDraftPile');
+
+                var draftingDragEnter = function(panelID, draggedPanel) {
+                    draftingArea.AddClass('potential_drop_target');
+
+                    draggedPanel.SetAttributeInt("draftThis", 1);
+
+                    // Prevent annoyingness
+                    ++enterNumber;
+                };
+
+                var draftingDragLeave = function(panelID, draggedPanel) {
+                    var myNumber = ++enterNumber;
+
+                    $.Schedule(0.1, function() {
+                        // draggedPanel.SetAttributeInt("draftThis", 0);
+                        if(myNumber == enterNumber) {
+                            draftingArea.RemoveClass('potential_drop_target');
+                            
+                            if(draggedPanel.deleted == null) {
+                                draggedPanel.SetAttributeInt("draftThis", 0);
+                            }
+                        }
+                    });
+                };
+
+                $.RegisterEventHandler('DragEnter', $(setName), draftingDragEnter);
+                $.RegisterEventHandler('DragLeave', $(setName), draftingDragLeave);
+                // $.RegisterEventHandler('DragEnd', $(setName), draftingDragEnd);
             };
 
-            // var draftingDragEnd = function(panelID, draggedPanel) {
-            //     $.Msg("Asdasd");
-            // };
+            hookSet('#boosterDraftPile');
 
-            $.RegisterEventHandler('DragEnter', $(setName), draftingDragEnter);
-            $.RegisterEventHandler('DragLeave', $(setName), draftingDragLeave);
-            // $.RegisterEventHandler('DragEnd', $(setName), draftingDragEnd);
-        };
+            boosterDraftInitiated = true;
 
-        hookSet('#boosterDraftPile');
+            $("#pickingPhaseMainTabRoot").enabled = false;
+            $("#pickingPhaseHeroTabRoot").enabled = false;
 
-        boosterDraftInitiated = true;
+            $.Schedule(0.5, function () {
+                showBuilderTab('pickingPhaseSkillTab');
+                $("#pickingPhaseSkillTabContent").visible = true;
+            })
+        } else if (data.boosterDraftDone) {
+            $("#boosterDraftPile").visible = false;
+            $("#pickingPhaseBuild").visible = true;
 
-        $("#pickingPhaseMainTabRoot").enabled = false;
-        $("#pickingPhaseHeroTabRoot").enabled = false;
-    } else if (data.boosterDraftDone) {
-        $("#boosterDraftPile").visible = false;
-        $("#pickingPhaseBuild").visible = true;
+            $("#pickingPhaseHeroTabRoot").enabled = true;
 
-        $("#pickingPhaseHeroTabRoot").enabled = true;
+            $.Schedule(0.5, function () {
+                showBuilderTab('pickingPhaseSkillTab');
+                $("#pickingPhaseSkillTabContent").visible = true;
+            })
+        }
+
+        var draftArray = data.draftArray;
+        heroDraft = draftArray.heroDraft;
+        abilityDraft = draftArray.abilityDraft;
+
+        if (isBoosterDraftGamemode()) {
+            showBuilderTab('pickingPhaseSkillTab');
+        }
+
+        var showAbilities = (function () {
+            if (Object.keys(abilityStore).length < 1) { 
+                $.Schedule(0.1, showAbilities)
+                return;
+            }
+
+            Game.EmitSound("BoosterDraft.Round");
+
+            var i = 0.0;
+            var delay = 0.01;
+            for (var g in abilityStore) {
+                (function () {
+                    var p = abilityStore[g];
+                    $.Schedule(i, function () {
+                        p.SetHasClass("hide", !abilityDraft[p.abilityname]);
+                    });
+                    if (abilityDraft[p.abilityname]) {
+                        i = i + delay;
+                    }
+                })();
+            }
+        });
+        showAbilities();
+
+        $("#pickingPhaseSkillTabContent").visible = true;
+
+        if (useSmartGrouping) {
+            toggleHeroGrouping();
+            $('#buttonHeroGrouping').checked = false;
+        } 
+
+        // Run the calculations
+        calculateFilters();
+        calculateHeroFilters();
+        updateHeroPreviewFilters();
+        updateRecommendedBuildFilters();
+
+        // Show the button to show non-draft abilities
+        $('#toggleShowDraftAblilities').visible = true;
     }
-
-    var draftArray = data.draftArray;
-    heroDraft = draftArray.heroDraft;
-    abilityDraft = draftArray.abilityDraft;
-
-    $("#pickingPhaseSkillTabContent").visible = true;
-
-    if ($('#buttonHeroGrouping').checked) {
-        toggleHeroGrouping();
-        $('#buttonHeroGrouping').checked = false;
-    } 
-
-    // Run the calculations
-    calculateFilters();
-    calculateHeroFilters();
-    updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
-
-    // Show the button to show non-draft abilities
-    $('#toggleShowDraftAblilities').visible = true;
 }
 
 // Update the highlights
@@ -1701,6 +1733,11 @@ function makeSkillSelectable(abcon) {
             var abName = draggedPanel.GetAttributeString('abilityname', '');
             if(abName != null && abName.length > 0) {
                 chooseNewAbility(-1, abName);
+                Game.EmitSound("BoosterDraft.Pick");
+
+                for (var g in abilityStore) {
+                    abilityStore[g].SetHasClass("hide", true);
+                }
             }
         }
 
@@ -2074,9 +2111,6 @@ function OnSkillTabShown(tabName) {
         // Used to provide unique handles
         var unqiueCounter = 0;
 
-        // A store for all abilities
-        var abilityStore = {};
-
         // TODO: Clear filters
 
 
@@ -2325,9 +2359,8 @@ function OnSkillTabShown(tabName) {
                 if (isDraftGamemode()) {
                     label.SetHasClass('skillCostLarge', true);
                     label.SetHasClass('skillCostSmall', false);
-                }
 
-                if (isDraftGamemode()) {
+                    abcon.AddClass("hide");
                     abcon.AddClass("lodDraftAbility");
                 }
 
@@ -3914,6 +3947,7 @@ function OnPhaseChanged(table_name, key, data) {
                 }
             }
 
+
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) { 
                 // Update selection
@@ -4768,9 +4802,10 @@ function loadPlayerBans() {
         OnHostChanged(data);
     });
 
-    GameEvents.Subscribe('lodSetDraftedAbilities', function(data) {
-        OnSetDraftedAbilities(data);
-    });
+    GameEvents.Subscribe('lodCustomTimer', function (data) {
+        endOfTimer = data.endTime;
+        freezeTimer = data.freezeTimer ? data.freezeTimer : -1;
+    })
     
     // Search handler
     setTabsSearchHandler();
@@ -4841,7 +4876,7 @@ function loadPlayerBans() {
             switchColumns = true;
             columnSwitch = false;
         }
-        
+
         showTier[i] = true;
         currToggle.checked = true;
         currToggle.SetHasClass('balanceModeFilter' + column, true);

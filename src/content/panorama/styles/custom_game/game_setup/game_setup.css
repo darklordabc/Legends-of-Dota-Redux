@@ -1918,8 +1918,15 @@ Button:enabled:hover {
 }
 
 .lodDraftAbility {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
+
+    transition: opacity 0.3s ease-in-out 0.0s, transform 0.3s ease-in-out 0.0s;
+}
+
+.lodDraftAbility.hide {
+    opacity: 0.0;
+    transform: rotateY( -45deg );
 }
 
 .lodDraftAbility.ultimateAbility {

@@ -465,6 +465,40 @@ function Pregame:sendContributors()
     network:setContributors(sortedContributors)
 end
 
+function Pregame:startBoosterDraftRound( pID )
+    network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + 10)
+    local currentRound = util:getTableLength(self.finalArrays[pID])
+    Timers:CreateTimer(function()
+        if not self.waitForArray[pID] and self.boosterDraftPicking[pID] then
+            if not self.draftArrays[pID] then
+                return
+            end
+
+            if currentRound ~= util:getTableLength(self.finalArrays[pID]) then
+                return
+            end
+
+            local abName = ""
+            local oldCost = 0
+
+            local abilities = self.draftArrays[pID].abilityDraft
+
+            for k,v in pairs(self.draftArrays[pID].abilityDraft) do
+                if v then
+                    -- if self.spellCosts[k] > oldCost then
+                    --     oldCost = self.spellCosts[k]
+                    --     abName = k
+                    -- end
+                    abName = k
+                    break
+                end
+            end
+
+            self:setSelectedAbility(pID, -1, abName)
+        end
+    end, DoUniqueString(tostring(pID).."boosterDraft"), 11.0)
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -612,10 +646,16 @@ function Pregame:onThink()
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
 
-            network:broadcastNotification({
-                sort = 'lodSuccess',
-                text = 'lodBoosterDraftStart'
-            })
+            if self.boosterDraft then
+                for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+                    self:startBoosterDraftRound(i)
+                end
+
+                network:broadcastNotification({
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftStart'
+                })
+            end
         end
 
         if not self.Announce_Picking_Phase then
@@ -2353,10 +2393,21 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                     self:setOption('lodOptionBotsUniqueSkills', 2, true)
+                    self:setOption('lodOptionDraftAbilities', 47, false)
                 end
             else
                 self:setOption('lodOptionCommonGamemode', 1)
             end
+        end,
+
+        -- Default amount of abilities for boost draft is 45
+        lodOptionCommonGamemode = function(optionName, optionValue)
+            if optionValue == 6 then
+                if self.optionStore['lodOptionCommonDraftAbilities'] == 100 then
+                    self:setOption('lodOptionDraftAbilities', 47, false)
+                    self:setOption('lodOptionCommonDraftAbilities', self.optionStore['lodOptionDraftAbilities'], true)
+                end
+            end        
         end,
 
         -- Fast max slots
@@ -4526,7 +4577,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 
     -- Check for Booster Draft picking phase
-    if self.boosterDraftPicking[playerID] then
+    if self.boosterDraftPicking and self.boosterDraftPicking[playerID] then
         if not self.waitForArray[playerID] then
             local nextPlayer = playerID
             repeat 
@@ -4557,14 +4608,11 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                         ['round'] = util:getTableLength(self.finalArrays[pID]) + 1
                     }
                 })
+
+                self:startBoosterDraftRound( pID )
             end
 
             if self.waitForArray[nextPlayer] then
-                -- self.draftArrays[nextPlayer] = util:DeepCopy(self.nextDraftArray[nextPlayer])
-                -- network:setDraftArray(nextPlayer, self.draftArrays[nextPlayer])
-
-                -- self.nextDraftArray[nextPlayer] = nil
-                -- self.waitForArray[nextPlayer] = false
                 updateDynamicDraftArray( nextPlayer )
             end
 
@@ -4576,6 +4624,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 local newDraftArray = {abilityDraft = self.finalArrays[playerID], heroDraft = newHeroDraft}
                 
                 network:setDraftArray(playerID, newDraftArray, true)
+                network:setDraftedAbilities(playerID, {})
                 self.draftArrays[playerID] = newDraftArray
 
                 self.boosterDraftPicking[playerID] = false
@@ -4584,18 +4633,14 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     sort = 'lodSuccess',
                     text = 'lodBoosterDraftEnd'
                 })
-            elseif self.nextDraftArray[playerID] then
-                -- network:setDraftArray(playerID, self.nextDraftArray[playerID])
-                -- self.draftArrays[playerID] = self.nextDraftArray[playerID]
 
-                -- self.nextDraftArray[playerID] = nil
-                -- self.waitForArray[playerID] = false
+                network:setCustomEndTimer(PlayerResource:GetPlayer(playerID), Time() + 120, 120)
+            elseif self.nextDraftArray[playerID] then
                 updateDynamicDraftArray( playerID )
             else
-                -- network:blockAbilitySelection(playerID)
                 self.waitForArray[playerID] = true
             end 
-            network:setDraftedAbilities(PlayerResource:GetPlayer(playerID), {[abilityName] = true}) --
+            network:setDraftedAbilities(playerID, self.finalArrays[playerID])
         else
             network:sendNotification(PlayerResource:GetPlayer(playerID), {
                 sort = 'lodDanger', 
