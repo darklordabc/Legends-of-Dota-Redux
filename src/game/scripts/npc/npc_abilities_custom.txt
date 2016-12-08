@@ -21729,7 +21729,14 @@
             }
         }
     }
-
-		  
+	
+	"global_mutator"
+    {
+    	"BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/global_mutators/global_mutator.lua"
+        "MaxLevel"              "1"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"    ""
+    } 		  
 		  
 }
