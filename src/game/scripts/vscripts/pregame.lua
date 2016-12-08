@@ -239,6 +239,9 @@ function Pregame:init()
 
     -- Init debug
     Debug:init()
+    
+    -- Init chat
+    Chat:Init()
 
     -- Fix spawning issues
     self:fixSpawningIssues()
