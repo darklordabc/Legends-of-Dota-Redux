@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.5 
+## 3.6 
+
+### Bug Fixing/New Features
+
+
+### Balance
+- Added bonus vision flesh heap
+
+## 3.5 - Steam Version
 
 ### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.
@@ -14,7 +22,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
 
-## 3.4 - Steam Version
+## 3.4 
 
 ### Bug Fixing/New Features
 - Single/Mirror draft has been improved: You can now be randomly given neutral and custom abilities. Default viewer is the skills menu now and the icons are enlarged. 
