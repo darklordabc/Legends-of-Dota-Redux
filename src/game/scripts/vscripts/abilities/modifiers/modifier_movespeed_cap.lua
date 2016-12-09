@@ -10,11 +10,11 @@ function modifier_movespeed_cap:DeclareFunctions()
 end
 
 function modifier_movespeed_cap:GetModifierMoveSpeed_Max( params )
-    return 1000
+    return 5000
 end
 
 function modifier_movespeed_cap:GetModifierMoveSpeed_Limit( params )
-    return 1000
+    return 5000
 end
 
 function modifier_movespeed_cap:IsHidden()
