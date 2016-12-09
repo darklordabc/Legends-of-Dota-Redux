@@ -1043,16 +1043,10 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
  
             if #warriors_table == 0 then
                 duel_victory_team = ((x:GetTeamNumber() == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS) or ((x:GetTeamNumber() == DOTA_TEAM_BADGUYS) and DOTA_TEAM_GOODGUYS)
-                print("all play dead")
                 endDuel(duel_radiant_heroes, duel_dire_heroes, duel_radiant_warriors, duel_dire_warriors, duel_end_callback, duel_victory_team )
                 print("team victory = " , duel_victory_team)
             end
 
-            if winners ~= -1 and hero:GetTeamNumber() ~= winners then
-            	hero:SetTimeUntilRespawn(3)
-            else
-            	hero:SetTimeUntilRespawn(3)
-            end
             return
         end
     end
@@ -1084,11 +1078,17 @@ function deathListener( event )
     	killedUnit.duelReincarnation = true
     	return
     end
+
+	Timers:CreateTimer(function()
+        if not killedUnit then return nil end
  
-    if duel_active then
-       _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
-       _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
-    end
+		killedUnit:SetTimeUntilRespawn(2)
+       
+		return nil
+	end, DoUniqueString('respawn'), 0.3)
+ 
+   _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
+   _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
 end
 
 function getTeamPointNameByTeamNumber(table_of_points, teamnumber)
@@ -1103,7 +1103,7 @@ end
 function spawnListener(event)
     if not duel_active then return end
     local spawnedUnit = EntIndexToHScript( event.entindex )
-    if spawnedUnit:IsSummoned() then return end
+    if spawnedUnit:IsSummoned() or spawnedUnit:IsRealHero() == false then return end
     if spawnedUnit and not spawnedUnit.duel_old_point then
     	spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
     	return
