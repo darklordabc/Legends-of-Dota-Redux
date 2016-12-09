@@ -182,7 +182,7 @@
     "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."
     "lodOptionAboutSingleDraft"                     "Pick skills from a random draft of heroes."
     "lodOptionAboutMirrorDraft"                     "Pick skills from a random draft of heroes."
-    "lodOptionAboutBoosterDraft"                    "Every player gets set of abilities. After player picked some ability set goes to next player. In the end of draft players build their heroes from pool of selected abilities."
+    "lodOptionAboutBoosterDraft"                    "Each player gets a pack of abilities, picks an ability than passes the pack to the next player."
     "lodOptionAboutAllRandom"                       "Pick from a random set of builds."
     "lodOptionAboutBalancedCustom"                  "Build a custom gamemode."
 
