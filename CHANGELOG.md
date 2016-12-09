@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 ## 3.5 - Steam Version
 
 ### Bug Fixing/New Features
+- 
+
+### Balance
+- Added Flesh Heap Bonus Vision
+
+## 3.5 - Steam Version
+
+### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.
 - Order of Arenas is now shuffled. Fixed some Arenas not showing up at all. 
 - Added 322 Mutator
