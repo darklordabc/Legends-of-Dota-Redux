@@ -74,6 +74,13 @@ function modifier_flesh_heap_bonus_vision:RemoveOnDeath()
     return false
 end
 
+
+--------------------------------------------------------------------------------
+
+function modifier_flesh_heap_bonus_vision:IsPurgable()
+    return false
+end
+
 --------------------------------------------------------------------------------
 
 function modifier_flesh_heap_bonus_vision:OnCreated( kv )
