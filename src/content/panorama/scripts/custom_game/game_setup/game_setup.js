@@ -740,6 +740,13 @@ function OnGetDraftArray(table_name, key, data) {
                         abcon.abilityname = abName;                        abcon.abilityname = abName;
                         abcon.SetAttributeString('abilityname', abName);
                         hookSkillInfo(abcon);
+
+                        $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
+                        if ($("#boosterDraftBoosters").Children().length >= 2) {
+                            $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-2].SetHasClass("current", true);
+                        } else {
+                            $("#boosterDraftBoosters").visible = false;
+                        }
                     }
                 }
             }
@@ -779,6 +786,7 @@ function OnGetDraftArray(table_name, key, data) {
 
         // Init booster draft
         if (optionValueList['lodOptionCommonGamemode'] == 6 && !boosterDraftInitiated && !data.boosterDraftDone) {
+            $("#boosterDraftBoosters").visible = true;
             $("#boosterDraftPile").visible = true;
             $("#pickingPhaseBuild").visible = false;
 

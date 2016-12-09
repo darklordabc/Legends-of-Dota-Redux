@@ -839,6 +839,19 @@
                                         <ToggleButton id="buttonShowTier11" text="#balance_mode_tier_11" onactivate="toggleShowTier('11')" />
                                         <ToggleButton id="buttonShowTier12" text="#balance_mode_tier_12" onactivate="toggleShowTier('12')" />
                                     </Panel>
+
+                                    <Panel id="boosterDraftBoosters">
+                                        <DOTAScenePanel id="booster1" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster2" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster3" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster4" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster5" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster6" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster7" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster8" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster9" class="booster" map="maps/scenes/playercardpack"/>
+                                        <DOTAScenePanel id="booster10" class="booster current" map="maps/scenes/playercardpack"/>
+                                    </Panel>
                                 </Panel>
                             </Panel>
                         </Panel>                        

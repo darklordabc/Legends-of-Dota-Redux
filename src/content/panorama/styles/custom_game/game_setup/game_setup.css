@@ -2117,6 +2117,29 @@ Button:enabled:hover {
     color: #5e6869ff;
 }
 
+#boosterDraftBoosters {
+    height: 100%;
+    width: 500px;
+
+    flow-children: right-wrap;
+
+    visibility: collapse;
+}
+
+.booster {
+    height: 90px;
+    width: 70px;
+
+    padding-bottom: 3px;
+}
+
+.booster.current {
+    animation-name: lodHighlightLoopDrop;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
 .lodSelected {
     animation-name: lodHighlightLoop;
     animation-duration: 0.5s;
