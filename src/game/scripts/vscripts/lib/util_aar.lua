@@ -1292,8 +1292,13 @@ function initDuel(restart)
 
 	local randomize = RandomInt(0,1) == 1
 
-	generatePoints( arenas, "tribune_points", randomize )
-	generatePointsVertically( arenas, "duel_points", randomize )
+	if not _G.ARENAS_SHUFFLED then
+		generatePoints( arenas, "tribune_points", randomize )
+		generatePoints( arenas, "duel_points", randomize )
+
+		arenas = shuffle(arenas)
+		_G.ARENAS_SHUFFLED = true
+	end
 
 	local radiantHeroes = {}
 	local direHeroes = {}
@@ -1341,16 +1346,12 @@ function initDuel(restart)
 	-- 	end
 	-- until selected == true
 
-	if not _G.ARENAS_SHUFFLED then
-		arenas = shuffle(arenas)
-		_G.ARENAS_SHUFFLED = true
-	end
-
 	local arena = current_arena + 1
-	if current_arena > util:getTableLength(arenas) then
+
+	if arena > util:getTableLength(arenas) then
 		arena = 1
 	end
-
+	-- arena = 1
 	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS + DUEL_PREPARE, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		restart()
 	end, arena)
