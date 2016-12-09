@@ -160,6 +160,11 @@ OptionManager:SetOption('useLevel1ults', false)
 -- Full price sellback
 OptionManager:SetOption('fullPriceSellback', false)
 
+-- Other Mutators
+OptionManager:SetOption('322', 0)
+OptionManager:SetOption('refreshCooldownsOnDeath', 0)
+OptionManager:SetOption('gottaGoFast', 0)
+
 --[[
     GAMEMODE STUFF
 ]]

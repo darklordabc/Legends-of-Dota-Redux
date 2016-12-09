@@ -22,6 +22,10 @@ function modifier_npc_dota_hero_templar_assassin_perk:IsHidden()
     return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_templar_assassin_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:OnCreated(keys)
     if IsServer() then
         self.check = false

@@ -18,6 +18,11 @@ function modifier_flesh_heap_int:RemoveOnDeath()
 end
 
 --------------------------------------------------------------------------------
+function modifier_flesh_heap_int:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
 
 function modifier_flesh_heap_int:OnCreated( kv )
 	if not self:GetAbility() then

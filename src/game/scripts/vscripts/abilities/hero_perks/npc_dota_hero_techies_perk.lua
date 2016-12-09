@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_techies_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_techies_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_techies_perk:OnCreated(keys)
 	self.cooldownPercentReduction = 50
 	self.manaPercentReduction = 50

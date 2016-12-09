@@ -1,4 +1,5 @@
 local Timers = require('easytimers')
+local util = require('util')
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2
@@ -189,15 +190,13 @@ DUEL_PREPARE = 2.0
 
 duel_active = false
 
-local duel_interval = 300
-local duel_draw_time = 120
-local duel_count = 0
-local duel_radiant_warriors = {}
-local duel_dire_warriors = {}
-local duel_radiant_heroes = {}
-local duel_dire_heroes = {}
-local duel_end_callback
-local duel_victory_team = 0
+duel_count = 0
+duel_radiant_warriors = {}
+duel_dire_warriors = {}
+duel_radiant_heroes = {}
+duel_dire_heroes = {}
+duel_end_callback = nil
+duel_victory_team = 0
 
 temp_obstacles = {}
 temp_entities = {}
@@ -1044,16 +1043,10 @@ function _OnHeroDeathOnDuel(warriors_table, hero )
  
             if #warriors_table == 0 then
                 duel_victory_team = ((x:GetTeamNumber() == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS) or ((x:GetTeamNumber() == DOTA_TEAM_BADGUYS) and DOTA_TEAM_GOODGUYS)
-                print("all play dead")
                 endDuel(duel_radiant_heroes, duel_dire_heroes, duel_radiant_warriors, duel_dire_warriors, duel_end_callback, duel_victory_team )
                 print("team victory = " , duel_victory_team)
             end
 
-            if winners ~= -1 and hero:GetTeamNumber() ~= winners then
-            	hero:SetTimeUntilRespawn(3)
-            else
-            	hero:SetTimeUntilRespawn(3)
-            end
             return
         end
     end
@@ -1085,11 +1078,17 @@ function deathListener( event )
     	killedUnit.duelReincarnation = true
     	return
     end
+
+	Timers:CreateTimer(function()
+        if not killedUnit then return nil end
  
-    if duel_active then
-       _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
-       _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
-    end
+		killedUnit:SetTimeUntilRespawn(2)
+       
+		return nil
+	end, DoUniqueString('respawn'), 0.3)
+ 
+   _OnHeroDeathOnDuel(duel_radiant_warriors, killedUnit )
+   _OnHeroDeathOnDuel(duel_dire_warriors, killedUnit )
 end
 
 function getTeamPointNameByTeamNumber(table_of_points, teamnumber)
@@ -1104,6 +1103,7 @@ end
 function spawnListener(event)
     if not duel_active then return end
     local spawnedUnit = EntIndexToHScript( event.entindex )
+    if spawnedUnit:IsSummoned() or spawnedUnit:IsRealHero() == false then return end
     if spawnedUnit and not spawnedUnit.duel_old_point then
     	spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
     	return
@@ -1292,8 +1292,13 @@ function initDuel(restart)
 
 	local randomize = RandomInt(0,1) == 1
 
-	generatePoints( arenas, "tribune_points", randomize )
-	generatePointsVertically( arenas, "duel_points", randomize )
+	if not _G.ARENAS_SHUFFLED then
+		generatePoints( arenas, "tribune_points", randomize )
+		generatePoints( arenas, "duel_points", randomize )
+
+		arenas = shuffle(arenas)
+		_G.ARENAS_SHUFFLED = true
+	end
 
 	local radiantHeroes = {}
 	local direHeroes = {}
@@ -1341,16 +1346,12 @@ function initDuel(restart)
 	-- 	end
 	-- until selected == true
 
-	if not _G.ARENAS_SHUFFLED then
-		arenas = shuffle(arenas)
-		_G.ARENAS_SHUFFLED = true
-	end
-
 	local arena = current_arena + 1
-	if current_arena > #arenas then
+
+	if arena > util:getTableLength(arenas) then
 		arena = 1
 	end
-
+	-- arena = 1
 	startDuel(radiantHeroes, direHeroes, c, DUEL_NOBODY_WINS + DUEL_PREPARE, function(err_arg) DeepPrintTable(err_arg) end, function(winner_side)
 		restart()
 	end, arena)
@@ -1373,7 +1374,7 @@ function freezeGameplay()
 			return
 		end
 		if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
-			if v:IsBuilding() and not v:IsTower() then
+			if v:IsBuilding() and not v:IsTower() and not string.match(v:GetUnitName(), "tower") then
 
 			else
 				if v:IsNeutralUnitType() then
@@ -1383,7 +1384,7 @@ function freezeGameplay()
 				end
 
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
-
+				
 				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
 					local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
 					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())

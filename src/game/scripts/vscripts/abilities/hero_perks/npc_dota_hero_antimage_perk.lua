@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_antimage_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_antimage_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_antimage_perk:RemoveOnDeath()
 	return false
 end

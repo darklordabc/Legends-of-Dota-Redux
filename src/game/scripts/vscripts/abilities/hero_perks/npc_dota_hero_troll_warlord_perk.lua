@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_troll_warlord_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_troll_warlord_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_troll_warlord_perk:OnCreated()
 	if IsServer() then
 		local rageDurationBonusPct = 20

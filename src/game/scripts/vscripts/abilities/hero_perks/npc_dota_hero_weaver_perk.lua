@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_weaver_perk:IsHidden()
 	return self:GetCaster():HasModifier("modifier_npc_dota_hero_weaver_perk_delay")
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_weaver_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_weaver_perk:RemoveOnDeath()
 	return false
 end

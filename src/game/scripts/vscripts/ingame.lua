@@ -6,6 +6,7 @@ local Timers = require('easytimers')
 require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
+require('abilities/global_mutators/global_mutator')
 
 -- Create the class for it
 local Ingame = class({})
@@ -25,6 +26,9 @@ function Ingame:init()
     self:addStrongTowers()
     self:AddTowerBotController()
     self:fixRuneBug()
+
+    -- Init global mutator
+    self:initGlobalMutator()
 
     -- 10vs10 colors
     self.playerColors = {}
@@ -94,7 +98,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -106,7 +110,6 @@ function Ingame:init()
 end
 
 function Ingame:OnPlayerPurchasedItem(keys)
-    
     -- Bots will get items auto-delievered to them
     if util:isPlayerBot(keys.PlayerID) then         
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
@@ -773,9 +776,10 @@ function Ingame:handleRespawnModifier()
         -- Ensure our respawn modifier is in effect
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
-        if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
-        -- Grab the killed entitiy (it isn't nessessarily a hero!)
+        --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
+
+        -- Grab the killed entity (it isn't nessessarily a hero!)
         local hero = EntIndexToHScript(keys.entindex_killed)
 
         -- Ensure it is a hero
@@ -814,7 +818,27 @@ function Ingame:handleRespawnModifier()
 
                             -- Set the time left until we respawn
                             hero:SetTimeUntilRespawn(timeLeft)
-
+                            
+                            -- Give 322 gold if enabled
+                            if OptionManager:GetOption('322') == 1 then
+                                hero:ModifyGold(322,false,0)
+                                SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                            end
+                            -- Refresh cooldowns if enabled
+                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
+                                for i = 0, 15 do
+                                    local ability = hero:GetAbilityByIndex(i)
+                                    if ability and ability:GetName() ~= "techies_suicide" then
+                                        ability:EndCooldown()
+                                    end
+                                end
+                                for j = 0, 5 do
+                                    local item = hero:GetItemInSlot(j)
+                                    if item and item:GetName() ~= "item_bloodstone" then
+                                        item:EndCooldown()
+                                    end
+                                end
+                            end
                             -- Check if we have any meepo clones
                             if hero:HasAbility('meepo_divided_we_stand') then
                                 local clones = Entities:FindAllByName(hero:GetClassname())
@@ -1151,6 +1175,18 @@ function Ingame:addStrongTowers()
                     EmitGlobalSound("powerup_02")
                 end
             end
+        end
+    end, nil)
+end
+
+function Ingame:initGlobalMutator()
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        local newState = GameRules:State_Get()
+        if newState == DOTA_GAMERULES_STATE_PRE_GAME then 
+            local globalUnit = CreateUnitByName("npc_global_mutator",Vector(0,0,0),false,nil,nil,20)
+            Timers:CreateTimer(function()
+                local globalAbility = globalUnit:AddAbility("global_mutator")
+            end, DoUniqueString('addGlobalMutator'), 0.5)
         end
     end, nil)
 end

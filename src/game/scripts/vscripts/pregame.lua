@@ -251,6 +251,9 @@ function Pregame:init()
 
     -- Init debug
     Debug:init()
+    
+    -- Init chat
+    Chat:Init()
 
     -- Fix spawning issues
     self:fixSpawningIssues()
@@ -1902,7 +1905,7 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        -- Common block troll combos
+        -- Gamemode - Duel
         lodOptionDuels = function(value)
             return value == 0 or value == 1
         end,
@@ -2184,7 +2187,22 @@ function Pregame:initOptionSelector()
 		-- Other -- Fat-O-Meter
         lodOptionCrazyFatOMeter = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
+        end,   
+
+        -- Other - Refresh Cooldowns on Death
+        lodOptionRefreshCooldownsOnDeath = function(value)
+            return value == 0 or value == 1
         end,
+
+        -- Other - 322
+        lodOption322 = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- Gotta Go Fast!
+        lodOptionGottaGoFast = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end, 
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
@@ -2227,7 +2245,10 @@ function Pregame:initOptionSelector()
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
 
+                -- Mutators disabled by default
                 self:setOption('lodOptionDuels', 0, false)
+                self:setOption('lodOption322', 0, false)
+                self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -2343,6 +2364,9 @@ function Pregame:initOptionSelector()
 
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
+
+                -- Normal speed
+                self:setOption("lodOptionGottaGoFast", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -3012,6 +3036,9 @@ function Pregame:processOptions()
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
 		OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
+        OptionManager:SetOption('322', this.optionStore['lodOption322'])
+        OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
+        OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3124,6 +3151,10 @@ function Pregame:processOptions()
 	        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 	    end
 
+        if OptionManager:GetOption('322') == 1 then
+            GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
+        end
+
 	    -- Check what kind of flags we should be recording
 	    if this.useOptionVoting then
 	    	-- We are using option voting
@@ -3143,7 +3174,7 @@ function Pregame:processOptions()
 	    	if this.optionStore['lodOptionGamemode'] == -1 then
 	    		-- Players can pick all options, store all options
 			    statCollection:setFlags({
-					['Advanced: Advanced: Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
+					['Advanced: Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
 					['Advanced: Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
 					['Advanced: Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
 					['Advanced: Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
@@ -3186,6 +3217,9 @@ function Pregame:processOptions()
 					['Other: Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
 					['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
 					['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
+                    ['Other: 322'] = this.optionStore['lodOption322'],
+                    ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
+                    ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
 					['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
 					['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			    })
@@ -3504,7 +3538,6 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     if self.selectedPlayerAttr[playerID] ~= newAttr then
         -- Update local store
         self.selectedPlayerAttr[playerID] = newAttr
-        print("jjjjjjjjjjjjjjjjjjjjj", newAttr)
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
@@ -5945,6 +5978,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
 
         if OptionManager:GetOption('duels') == 1 then
+			-- GameRules:SendCustomMessage("#tempDuelBlock", 0, 0)
             _G.duel()
         end
 

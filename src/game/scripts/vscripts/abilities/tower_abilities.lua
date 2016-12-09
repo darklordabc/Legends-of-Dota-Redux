@@ -11,6 +11,11 @@ function AIControl( keys )
     local caster = keys.caster
     local ability = keys.ability
 
+    -- Mostly for duel
+    if caster:PassivesDisabled() or caster:HasModifier("modifier_duel_out_of_game") then
+    	return nil
+    end
+
     -- If the ability is on cooldown, do nothing
     if not ability:IsCooldownReady() then
         return nil

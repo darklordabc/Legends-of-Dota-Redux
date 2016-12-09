@@ -272,7 +272,7 @@ var basicOptions = {
                    // },                   
                     {
                         name: 'lodOptionCrazyFatOMeter',
-						extraInfo: 'lodOptionAboutCrazyFatOMeter',
+                        extraInfo: 'lodOptionAboutCrazyFatOMeter',
                         default: {
                             'lodMutatorNoFatOMeter': 0
                         },
@@ -305,9 +305,29 @@ var basicOptions = {
                     },
 					{
                         name: 'lodOptionDuels',
-						extraInfo: 'lodOptionAboutDuels',
+                        extraInfo: 'lodOptionAboutDuels',
                         about: 'lodMutatorDuel'
                     },
+                    {
+                        name: 'lodOptionRefreshCooldownsOnDeath',
+                        about: 'lodMutatorRefreshCooldownsOnDeath'
+                    },
+                    {
+                        name: 'lodOption322',
+                        extraInfo: 'lodOptionAbout322',
+                        about: 'lodMutator322'
+                    },
+                    {
+                        name: 'lodOptionGottaGoFast',
+                        extraInfo: 'lodOptionAboutGottaGoFast',
+                        default: {
+                            'lodMutatorGottaGoFastOff': 0,
+                        },
+                        states: {
+                            'lodMutatorGottaGoFastOn': 1,
+                            'lodMutatorGottaGoREALLYFast': 2
+                        }
+                    }
                 ]
             }
         ]
@@ -1145,7 +1165,59 @@ var advancedOptions = {
                 max: 180,
                 step: 1,
                 default: 0,
-            }
+            },
+            {
+                name: 'lodOptionRefreshCooldownsOnDeath',
+                des: 'lodOptionDesRefreshCooldownsOnDeath',
+                about: 'lodOptionAboutRefreshCooldownsOnDeath',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOption322',
+                des: 'lodOptionDes322',
+                about: 'lodOptionAbout322',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGottaGoFast',
+                des: 'lodOptionDesGottaGoFast',
+                about: 'lodOptionAboutGottaGoFast',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionGottaGoFastOff',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionGottaGoFastOn',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionGottaGoREALLYFast',
+                        value: 2
+                    },
+                ]
+            },
         ]
     }
 }

@@ -368,6 +368,11 @@
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDuel.png"></Image>
 								<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png"></Image>
 								<Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBoosterDraft.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRefreshCooldownsOnDeath.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutator322.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOff.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOn.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png"></Image>
                                  
                                 <Panel id="gamemodesPanel"> 
                                     <Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 

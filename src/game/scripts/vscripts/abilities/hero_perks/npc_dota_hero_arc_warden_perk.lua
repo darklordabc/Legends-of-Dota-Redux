@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_arc_warden_perk:IsHidden()
 	return self:GetCaster():HasModifier("modifier_npc_dota_hero_arc_warden_perk_downtime")
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_arc_warden_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk:OnCreated(keys)
 	self.downtime = 90
 	return true

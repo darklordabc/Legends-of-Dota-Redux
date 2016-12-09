@@ -1,6 +1,8 @@
 Chat = Chat or class({})
 
-CustomGameEventManager:RegisterListener("custom_chat_say", Dynamic_Wrap(Chat, "Say"))
+function Chat:Init()
+  CustomGameEventManager:RegisterListener("custom_chat_say", Dynamic_Wrap(Chat, "Say"))
+end
 
 function Chat:Say( args )
   local hours, minutes, seconds = string.match(GetSystemTime(), '(%d+)[:](%d+)[:](%d+)')
