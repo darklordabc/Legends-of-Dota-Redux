@@ -1787,6 +1787,13 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_flesh_heap_range"            "RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_spell_amp"                  "Flesh Heap Spell Amp"
     "DOTA_Tooltip_modifier_flesh_heap_spell_amp_Description"       "Gaining bonus spell amplification"
+    
+    "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision"         "Flesh Heap - Bonus Vision"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_Description" "<font color='#70EA72'>Gives bonus vision that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Bonus Vision is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_flesh_heap_bonus_vision_buff_amount"  "BONUS VISION PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision"                  "Flesh Heap Bonus Vision"
+    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision_Description"       "Gaining bonus vision"
 
     // global break
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"

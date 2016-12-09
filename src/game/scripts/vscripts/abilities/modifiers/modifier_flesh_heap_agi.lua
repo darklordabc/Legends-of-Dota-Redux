@@ -20,6 +20,12 @@ end
 
 --------------------------------------------------------------------------------
 
+function modifier_flesh_heap_agi:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
+
 function modifier_flesh_heap_agi:OnCreated( kv )
 	if not self:GetAbility() then
 		self:GetParent():RemoveModifierByName("modifier_flesh_heap_agi")

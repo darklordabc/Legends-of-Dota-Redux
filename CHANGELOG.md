@@ -2,6 +2,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.6 
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Added Flesh Heap Bonus Vision
+
 ## 3.5 - Steam Version
 
 ### Bug Fixing/New Features

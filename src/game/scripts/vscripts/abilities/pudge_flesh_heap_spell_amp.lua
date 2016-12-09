@@ -76,6 +76,12 @@ end
 
 --------------------------------------------------------------------------------
 
+function modifier_flesh_heap_spell_amp:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
+
 function modifier_flesh_heap_spell_amp:OnCreated( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_spell_amp")

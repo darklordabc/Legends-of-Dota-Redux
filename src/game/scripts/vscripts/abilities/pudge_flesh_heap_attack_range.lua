@@ -75,6 +75,11 @@ function modifier_flesh_heap_attack_range:RemoveOnDeath()
 end
 
 --------------------------------------------------------------------------------
+function modifier_flesh_heap_attack_range:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
 
 function modifier_flesh_heap_attack_range:OnCreated( kv )
 	if not self:GetAbility() then
