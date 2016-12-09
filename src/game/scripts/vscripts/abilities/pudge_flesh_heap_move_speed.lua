@@ -75,6 +75,11 @@ function modifier_flesh_heap_move_speed:RemoveOnDeath()
 end
 
 --------------------------------------------------------------------------------
+function modifier_flesh_heap_move_speed:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
 
 function modifier_flesh_heap_move_speed:OnCreated( kv )
   if not self:GetAbility() then
@@ -109,12 +114,19 @@ end
 function modifier_flesh_heap_move_speed:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+    MODIFIER_PROPERTY_MOVESPEED_MAX,
+    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
   }
-
   return funcs
 end
 
---------------------------------------------------------------------------------
+function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Max( params )
+    return 5000
+end
+
+function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Limit( params )
+    return 5000
+end
 
 
 function modifier_flesh_heap_move_speed:GetModifierMoveSpeedBonus_Constant()
