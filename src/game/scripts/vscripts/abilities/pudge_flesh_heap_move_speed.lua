@@ -75,6 +75,11 @@ function modifier_flesh_heap_move_speed:RemoveOnDeath()
 end
 
 --------------------------------------------------------------------------------
+function modifier_flesh_heap_move_speed:IsPurgable()
+    return false
+end
+
+--------------------------------------------------------------------------------
 
 function modifier_flesh_heap_move_speed:OnCreated( kv )
   if not self:GetAbility() then
