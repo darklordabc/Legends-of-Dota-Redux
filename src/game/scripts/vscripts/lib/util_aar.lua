@@ -195,7 +195,7 @@ duel_radiant_warriors = {}
 duel_dire_warriors = {}
 duel_radiant_heroes = {}
 duel_dire_heroes = {}
-duel_end_callback
+duel_end_callback = nil
 duel_victory_team = 0
 
 temp_obstacles = {}
@@ -1373,7 +1373,7 @@ function freezeGameplay()
 			return
 		end
 		if v:IsNull() == false and IsValidEntity(v) and v.IsRealHero and v:IsRealHero() == false and v:IsAlive() and (v:IsCreep() or v:IsCreature() or v:IsBuilding() or v:IsCourier()) then
-			if v:IsBuilding() and not v:IsTower() then
+			if v:IsBuilding() and not v:IsTower() and not string.match(v:GetUnitName(), "tower") then
 
 			else
 				if v:IsNeutralUnitType() then
@@ -1383,7 +1383,7 @@ function freezeGameplay()
 				end
 
 				v:AddNewModifier(v,nil,"modifier_duel_out_of_game",{})
-
+				
 				if duel_radiant_heroes[1]:CanEntityBeSeenByMyTeam(v) or duel_dire_heroes[1]:CanEntityBeSeenByMyTeam(v) then
 					local p = ParticleManager:CreateParticle("particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",PATTACH_CUSTOMORIGIN,nil)
 					ParticleManager:SetParticleControl(p,0,v:GetAbsOrigin())

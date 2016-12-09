@@ -5801,8 +5801,8 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
 
         if OptionManager:GetOption('duels') == 1 then
-			GameRules:SendCustomMessage("#tempDuelBlock", 0, 0)
-            --_G.duel()
+			-- GameRules:SendCustomMessage("#tempDuelBlock", 0, 0)
+            _G.duel()
         end
 
         -- if OptionManager:GetOption('duels') == 1 then
