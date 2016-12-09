@@ -1105,6 +1105,7 @@ end
 function spawnListener(event)
     if not duel_active then return end
     local spawnedUnit = EntIndexToHScript( event.entindex )
+    if spawnedUnit:IsSummoned() then return end
     if spawnedUnit and not spawnedUnit.duel_old_point then
     	spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
     	return
