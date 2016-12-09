@@ -190,15 +190,13 @@ DUEL_PREPARE = 2.0
 
 duel_active = false
 
-local duel_interval = 300
-local duel_draw_time = 120
-local duel_count = 0
-local duel_radiant_warriors = {}
-local duel_dire_warriors = {}
-local duel_radiant_heroes = {}
-local duel_dire_heroes = {}
-local duel_end_callback
-local duel_victory_team = 0
+duel_count = 0
+duel_radiant_warriors = {}
+duel_dire_warriors = {}
+duel_radiant_heroes = {}
+duel_dire_heroes = {}
+duel_end_callback
+duel_victory_team = 0
 
 temp_obstacles = {}
 temp_entities = {}
