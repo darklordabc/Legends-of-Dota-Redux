@@ -286,6 +286,7 @@
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option3.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option4.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
 
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
