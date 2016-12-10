@@ -431,6 +431,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
+    "acceptHosting2"                                "Ok, I got it"
     "lodHostingMessage"                             "<font color='#70EA72'>You are the host</font>, you are required to select the options for this match. All options will be recorded and you may be banned from selecting options if you continue to troll other players.\n\n<font color='#70EA72'>Lock the teams using the button at the top center of the screen</font>, and lock the options by pressing the button in the bottom right hand corner."
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
