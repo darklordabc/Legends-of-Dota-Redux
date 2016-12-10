@@ -1,7 +1,7 @@
 Dota 2 Redux
 =====
 
-**Make Modding Great Again.**
+**Make Modding Great Again.** test
 
 ###About###
  - Choose from a huge selection of gamemodes and mutators to make every experience unique!
