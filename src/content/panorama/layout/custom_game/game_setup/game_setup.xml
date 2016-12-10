@@ -846,7 +846,7 @@
                                         <ToggleButton id="buttonShowTier12" text="#balance_mode_tier_12" onactivate="toggleShowTier('12')" />
                                     </Panel>
 
-                                    <Panel id="boosterDraftBoosters">
+                                    <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
                                         <DOTAScenePanel id="booster1" class="booster" map="maps/scenes/playercardpack"/>
                                         <DOTAScenePanel id="booster2" class="booster" map="maps/scenes/playercardpack"/>
                                         <DOTAScenePanel id="booster3" class="booster" map="maps/scenes/playercardpack"/>

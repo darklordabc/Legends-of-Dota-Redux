@@ -818,12 +818,24 @@ function OnGetDraftArray(table_name, key, data) {
                     });
                 };
 
+                draftingArea.SetPanelEvent("onactivate", function () {
+                    if (currentSelectedAbCon) {
+                        var abName = currentSelectedAbCon.GetAttributeString('abilityname', '');
+                        selectBoosterDraftAbility(abName);
+                    }
+                })
+
                 $.RegisterEventHandler('DragEnter', $(setName), draftingDragEnter);
                 $.RegisterEventHandler('DragLeave', $(setName), draftingDragLeave);
                 // $.RegisterEventHandler('DragEnd', $(setName), draftingDragEnd);
             };
 
             hookSet('#boosterDraftPile');
+
+            $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("boosterDraftTip1"));
+            $.Schedule(3.0, function () {
+                $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip");
+            });
 
             boosterDraftInitiated = true;
 
@@ -835,6 +847,7 @@ function OnGetDraftArray(table_name, key, data) {
                 $("#pickingPhaseSkillTabContent").visible = true;
             })
         } else if (data.boosterDraftDone) {
+            $("#boosterDraftBoosters").visible = false;
             $("#boosterDraftPile").visible = false;
             $("#pickingPhaseBuild").visible = true;
 
@@ -893,6 +906,19 @@ function OnGetDraftArray(table_name, key, data) {
 
         // Show the button to show non-draft abilities
         $('#toggleShowDraftAblilities').visible = true;
+    }
+}
+
+function selectBoosterDraftAbility(abName) {
+    if(abName != null && abName.length > 0) {
+        chooseNewAbility(-1, abName);
+        Game.EmitSound("BoosterDraft.Pick");
+
+        for (var g in abilityStore) {
+            abilityStore[g].SetHasClass("hide", true);
+        }
+
+        $("#boosterDraftPile").SetHasClass('lodSelectedDrop', false);
     }
 }
 
@@ -1357,6 +1383,10 @@ function highlightDropSlots() {
             ab.SetHasClass('lodSelectedDrop', (easyAdd || (ourBuild[i] != null && isUlt == isUltimateAbility(ourBuild[i]))));
         }
     }
+
+    if (isBoosterDraftGamemode()) {
+        $("#boosterDraftPile").SetHasClass('lodSelectedDrop', true);
+    }
 }
 
 // Decides if the given ability is an ult or not
@@ -1739,14 +1769,7 @@ function makeSkillSelectable(abcon) {
 
         if(isBoosterDraftGamemode() && draggedPanel.GetAttributeInt('draftThis', 0) == 1) {
             var abName = draggedPanel.GetAttributeString('abilityname', '');
-            if(abName != null && abName.length > 0) {
-                chooseNewAbility(-1, abName);
-                Game.EmitSound("BoosterDraft.Pick");
-
-                for (var g in abilityStore) {
-                    abilityStore[g].SetHasClass("hide", true);
-                }
-            }
+            selectBoosterDraftAbility(abName);
         }
 
         // Banning
@@ -2555,7 +2578,7 @@ function LoadPlayerSC( ) {
         $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
         onImportAndExportPressed()
 
-        $.Schedule(3.0, function () {
+        $.Schedule(5.0, function () {
             $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip");
         });
     })

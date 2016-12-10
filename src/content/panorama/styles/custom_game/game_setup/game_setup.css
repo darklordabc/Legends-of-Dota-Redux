@@ -2124,6 +2124,8 @@ Button:enabled:hover {
     flow-children: right-wrap;
 
     visibility: collapse;
+
+    tooltip-position: top;
 }
 
 .booster {

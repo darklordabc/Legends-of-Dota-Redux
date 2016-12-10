@@ -469,8 +469,14 @@ function Pregame:sendContributors()
 end
 
 function Pregame:startBoosterDraftRound( pID )
-    network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + 10)
     local currentRound = util:getTableLength(self.finalArrays[pID])
+    
+    local duration = 25
+    if self.finalArrays[pID] then
+        duration = 15
+    end
+    network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + duration)
+    
     Timers:CreateTimer(function()
         if not self.waitForArray[pID] and self.boosterDraftPicking[pID] then
             if not self.draftArrays[pID] then
@@ -481,25 +487,26 @@ function Pregame:startBoosterDraftRound( pID )
                 return
             end
 
-            local abName = ""
+            local abName = nil
             local oldCost = 0
 
             local abilities = self.draftArrays[pID].abilityDraft
 
             for k,v in pairs(self.draftArrays[pID].abilityDraft) do
                 if v then
-                    -- if self.spellCosts[k] > oldCost then
-                    --     oldCost = self.spellCosts[k]
-                    --     abName = k
-                    -- end
-                    abName = k
-                    break
+                    if self.spellCosts[k] and self.spellCosts[k] > oldCost then
+                        oldCost = self.spellCosts[k]
+                        abName = k
+                    end
+                    if not abName then
+                        abName = k
+                    end
                 end
             end
 
             self:setSelectedAbility(pID, -1, abName)
         end
-    end, DoUniqueString(tostring(pID).."boosterDraft"), 11.0)
+    end, DoUniqueString(tostring(pID).."boosterDraft"), duration + 1)
 end
 
 -- Thinker function to handle logic
@@ -650,14 +657,14 @@ function Pregame:onThink()
             self:buildDraftArrays()
 
             if self.boosterDraft then
-                for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
-                    self:startBoosterDraftRound(i)
-                end
-
                 network:broadcastNotification({
                     sort = 'lodSuccess',
                     text = 'lodBoosterDraftStart'
                 })
+
+                for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+                    network:setCustomEndTimer(PlayerResource:GetPlayer(i), Time() + 25, 25)
+                end
             end
         end
 
@@ -3068,29 +3075,28 @@ function Pregame:processOptions()
         self:loadTrollCombos()
 
         -- Enable Balance Mode (disables ban lists)
-        if this.optionStore['lodOptionBalanceMode'] == 1 then
-            -- Load balance mode stats
-            local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
-            self.spellCosts = {}
-            for tier, tierList in pairs(balanceMode) do
-                -- Check whether price list or ban list
-                local tierNum = tonumber(string.sub(tier, 6))
-                if tierNum == 0 then
-                    -- Ban List
-                    for abilityName,nothing in pairs(tierList) do
-                        this:banAbility(abilityName)
-                    end
-                else
-                    -- Spell Shop
-                    local price = constants.TIER[tierNum]
+        -- Load balance mode stats
+        local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+        self.spellCosts = {}
+        for tier, tierList in pairs(balanceMode) do
+            -- Check whether price list or ban list
+            local tierNum = tonumber(string.sub(tier, 6))
+            if tierNum == 0 and this.optionStore['lodOptionBalanceMode'] == 1 then
+                -- Ban List
+                for abilityName,nothing in pairs(tierList) do
+                    this:banAbility(abilityName)
+                end
+            else
+                -- Spell Shop
+                local price = constants.TIER[tierNum]
 
-                    for abilityName,nothing in pairs(tierList) do
-                        self.spellCosts[abilityName] = price
-                        network:sendSpellPrice(abilityName, price)
-                    end
+                for abilityName,nothing in pairs(tierList) do
+                    self.spellCosts[abilityName] = price
+                    network:sendSpellPrice(abilityName, price)
                 end
             end
-
+        end
+        if this.optionStore['lodOptionBalanceMode'] == 1 then
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
         end
@@ -4640,9 +4646,17 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     params = {
                         ['round'] = util:getTableLength(self.finalArrays[pID]) + 1
                     }
-                })
+                })  
 
-                self:startBoosterDraftRound( pID )
+                if not self.boosterDraftInitiated then
+                    for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+                        self:startBoosterDraftRound(i)
+                    end
+
+                    self.boosterDraftInitiated = true
+                else
+                    self:startBoosterDraftRound( pID )
+                end
             end
 
             if self.waitForArray[nextPlayer] then
