@@ -790,6 +790,12 @@ function onLockBuildButtonPressed() {
         }
 
     	SaveFavBuilds( favBuilds ); 
+
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, true);
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, true);
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, true);
+
+        GameUI.SetRenderTopInsetOverride( 30 );
     }
 
     $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));

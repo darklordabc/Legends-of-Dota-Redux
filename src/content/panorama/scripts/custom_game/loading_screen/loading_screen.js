@@ -50,14 +50,17 @@ function onHideScreen(table_name, key, data) {
     if (key != 'phase')
         return;
 
-    if (data.v > 1)
+    if (data.v > 1) {
+        GameUI.SetRenderTopInsetOverride( 0 );
         $("#LoDLoadingTip").visible = false;
+    }
 
     // Show screen when voting only on all pick maps
     var mapName = Game.GetMapInfo().map_display_name;
     if ((mapName.match( /5_vs_5/i ) || mapName.match( "3_vs_3" )) && data.v < 3 || data.v < 2)
         return;
 
+    $('#BackgroundImage').AddClass('hide');
     $('#vignette').AddClass('show');
 
     CustomNetTables.UnsubscribeNetTableListener(screenListener);
