@@ -81,6 +81,7 @@
 
     // Booster Draft tips
     "boosterDraftTip1"                              "Every player gets set of abilities called \"booster\". Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"

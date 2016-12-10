@@ -832,10 +832,10 @@ function OnGetDraftArray(table_name, key, data) {
 
             hookSet('#boosterDraftPile');
 
-            $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("boosterDraftTip1"));
-            $.Schedule(3.0, function () {
-                $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip");
-            });
+            // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("boosterDraftTip1"));
+            // $.Schedule(3.0, function () {
+            //     $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip");
+            // });
 
             boosterDraftInitiated = true;
 
@@ -910,7 +910,7 @@ function OnGetDraftArray(table_name, key, data) {
 }
 
 function selectBoosterDraftAbility(abName) {
-    if(abName != null && abName.length > 0) {
+    if(abName != null && abName.length > 0 && abilityDraft[abName]) {
         chooseNewAbility(-1, abName);
         Game.EmitSound("BoosterDraft.Pick");
 
@@ -4000,12 +4000,16 @@ function OnPhaseChanged(table_name, key, data) {
 
                 // Should we show the host message popup?
                 if(!seenPopupMessages.skillDraftingInfo) {
-                    if (balanceMode) {
-                        seenPopupMessages.skillBanningInfo = true;
-                        showPopupMessage('lodBalanceMessage');
+                    if (isBoosterDraftGamemode()) {
+                        showPopupMessage('lodBoosterDraftMessage');
                     } else {
-                        seenPopupMessages.skillDraftingInfo = true;
-                        showPopupMessage('lodPickingMessage');
+                        if (balanceMode) {
+                            seenPopupMessages.skillBanningInfo = true;
+                            showPopupMessage('lodBalanceMessage');
+                        } else {
+                            seenPopupMessages.skillDraftingInfo = true;
+                            showPopupMessage('lodPickingMessage');
+                        }
                     }
                 }
             }
@@ -4565,12 +4569,16 @@ function UpdateTimer() {
 // Player has accepting the hosting message
 function onAcceptPopup() {
     $('#lodPopupMessage').visible = false;
+    $('#lodOptionsRoot').SetHasClass("darkened", false);
 }
 
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
     $('#lodPopupMessage').visible = true;
+    $('#lodOptionsRoot').SetHasClass("darkened", true);
+
+    $("#lodPopupMessageImage").visible = msg == "lodBoosterDraftMessage";
 }
 
 function showQuestionMessage(data) {
