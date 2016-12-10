@@ -14,8 +14,8 @@ end
 function tiny_grow_lod:OnUpgrade()
     if IsServer() then
 		local level_1 = "models/heroes/tiny_02/tiny_02.vmdl"
-+		local level_2 = "models/heroes/tiny_03/tiny_03.vmdl"
-+		local level_3 = "models/heroes/tiny_04/tiny_04.vmdl"
+		local level_2 = "models/heroes/tiny_03/tiny_03.vmdl"
+		local level_3 = "models/heroes/tiny_04/tiny_04.vmdl"
 		if self:GetLevel() == 1 then
 			self:GetCaster():SetOriginalModel(level_1)
 		elseif self:GetLevel() == 2 then
