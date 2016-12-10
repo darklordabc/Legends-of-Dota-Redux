@@ -786,9 +786,31 @@ function OnGetDraftArray(table_name, key, data) {
 
         // Init booster draft
         if (optionValueList['lodOptionCommonGamemode'] == 6 && !boosterDraftInitiated && !data.boosterDraftDone) {
-            $("#boosterDraftBoosters").visible = true;
             $("#boosterDraftPile").visible = true;
             $("#pickingPhaseBuild").visible = false;
+
+            $("#boosterDraftBoosters").visible = true;
+            for (var i = 0; i < 10; i++) {
+                var newBooster = $.CreatePanel("Panel", $("#boosterDraftBoosters"), "booster"+(i+1)) 
+                newBooster.BLoadLayoutSnippet("BoosterPack");
+            }
+
+            $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].SetHasClass("current", true);
+
+            var boosters = $("#boosterDraftBoosters").Children();
+            var players = 0;
+            for (var i = 0; i < 23; i++) {
+                var info = Game.GetPlayerInfo(i);
+                if (info) {
+                    players++;
+                }
+            }
+
+            var i = 0;
+            for (var k in boosters) {
+                boosters[k].FindChildTraverse("booster").style.hueRotation = Math.floor(((360/players) * i)) + "deg;";
+                i++;
+            }
 
             var hookSet = function(setName) {
                 var enterNumber = 0;
@@ -4540,6 +4562,15 @@ function UpdateTimer() {
             }
         }
 
+        if (isBoosterDraftGamemode()) {
+            try {
+                $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].FindChildTraverse("lodBoosterPackLabel").text = placeInto.text;
+            } catch (err) {
+
+            }
+            
+        }
+
         // Review override
         if(currentPhase == PHASE_REVIEW && waitingForPrecache) {
             $("#reviewReadyButton").enabled = false;
@@ -4578,7 +4609,14 @@ function showPopupMessage(msg) {
     $('#lodPopupMessage').visible = true;
     $('#lodOptionsRoot').SetHasClass("darkened", true);
 
-    $("#lodPopupMessageImage").visible = msg == "lodBoosterDraftMessage";
+    for (var k in $("#lodPopupMessageImage").Children()) {
+        $("#lodPopupMessageImage").Children()[k].visible = false;
+    }
+    try {
+        $("#lodPopupMessageImage").FindChildTraverse(msg).visible = true;
+    } catch (err) {
+        
+    }
 }
 
 function showQuestionMessage(data) {

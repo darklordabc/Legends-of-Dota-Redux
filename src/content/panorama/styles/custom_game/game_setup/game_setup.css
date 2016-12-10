@@ -87,7 +87,6 @@
 
 #lodPopupMessageImage {
     horizontal-align: center;
-    visibility: collapse;
 }
 
 .lodPopupMessageAcceptContainer {
@@ -2142,14 +2141,33 @@ Button:enabled:hover {
     tooltip-position: top;
 }
 
-.booster {
-    height: 90px;
-    width: 70px;
+.lodBooster {
+    height: 70px;
+    width: 65px;
 
-    padding-bottom: 3px;
+    padding-bottom: -5px;
 }
 
-.booster.current {
+.lodBoosterRoot {
+    height: 90px;
+    width: 65px;
+    flow-children: down;
+}
+
+#lodBoosterPackLabel { 
+    align: center bottom;
+    margin-right: 17px;
+    margin-left: 19px;
+    margin-bottom: 5px;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    visibility: collapse;
+}
+
+.lodBoosterRoot.current #lodBoosterPackLabel {
+    visibility: visible;
+}
+
+.lodBoosterRoot.current {
     animation-name: lodHighlightLoopDrop;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;

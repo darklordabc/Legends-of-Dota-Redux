@@ -11,6 +11,14 @@
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
     </scripts>
+    <snippets>
+        <snippet name="BoosterPack">
+            <Panel class="lodBoosterRoot">
+                <DOTAScenePanel id="booster" class="lodBooster" map="maps/scenes/playercardpack"/>
+                <Label id="lodBoosterPackLabel" html="true" text="00:00" />
+            </Panel>
+        </snippet>
+    </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
         <Panel class="lodOptionsInterface" id="lodOptionsRoot">
             <Panel id="chat" />
@@ -837,16 +845,6 @@
                                         </Panel>
 
                                         <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
-                                            <DOTAScenePanel id="booster1" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster2" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster3" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster4" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster5" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster6" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster7" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster8" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster9" class="booster" map="maps/scenes/playercardpack"/>
-                                            <DOTAScenePanel id="booster10" class="booster current" map="maps/scenes/playercardpack"/>
                                         </Panel>
                                     </Panel>
                                 </Panel>
@@ -908,7 +906,7 @@
             </Panel>
 
             <Panel id="lodPopupMessageImage">
-                <Image src="file://{images}/custom_game/boosterDraft.png" scaling="stretch-to-fit-preserve-aspect"/>
+                <Image id="lodBoosterDraftMessage" src="file://{images}/custom_game/boosterDraft.png" scaling="stretch-to-fit-preserve-aspect"/>
             </Panel>
 
             <Panel class="lodPopupMessageAcceptContainer">
