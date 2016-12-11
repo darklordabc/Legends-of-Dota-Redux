@@ -1760,6 +1760,15 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
+    "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"<font color='#70EA72'>Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"

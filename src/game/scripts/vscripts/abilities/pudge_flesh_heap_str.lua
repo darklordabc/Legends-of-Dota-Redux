@@ -1,15 +1,15 @@
-pudge_flesh_heap_bonus_vision = class({})
+pudge_flesh_heap_str = class({})
 
-LinkLuaModifier( "modifier_flesh_heap_bonus_vision", "abilities/pudge_flesh_heap_bonus_vision.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_flesh_heap_str", "abilities/pudge_flesh_heap_str.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
-function pudge_flesh_heap_bonus_vision:GetIntrinsicModifierName()
-  return "modifier_flesh_heap_bonus_vision"
+function pudge_flesh_heap_str:GetstrrinsicModifierName()
+  return "modifier_flesh_heap_str"
 end
 
 --------------------------------------------------------------------------------
 
---[[function pudge_flesh_heap_bonus_vision:OnHeroDiedNearby( hVictim, hKiller, kv )
+--[[function pudge_flesh_heap_str:OnHeroDiedNearby( hVictim, hKiller, kv )
   if hVictim == nil or hKiller == nil then
     return  
   end
@@ -28,12 +28,12 @@ end
 
       self.nKills = self.nKills + 1
 
-      local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_bonus_vision" )
+      local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_str" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
         self:GetCaster():CalculateStatBonus()
       else
-        self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_bonus_vision" , {} )
+        self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_str" , {} )
       end
 
       local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster() )
@@ -49,57 +49,52 @@ end
 
 --Taken from the spelllibrary, credits go to valve
 
-modifier_flesh_heap_bonus_vision = class({})
+modifier_flesh_heap_str = class({})
 
 
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:IsHidden()
+function modifier_flesh_heap_str:IsHidden()
     if self:GetAbility():GetLevel() == 0 then
-        return true
+        return false
     end
     return false
 end
 
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:RemoveOnDeath()
-    return false
-end
-
-
---------------------------------------------------------------------------------
-
-function modifier_flesh_heap_bonus_vision:IsPurgable()
+function modifier_flesh_heap_str:RemoveOnDeath()
     return false
 end
 
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:IsPassive()
+--function modifier_flesh_heap_str:IsPassive()
+--    return true
+--end
+
+function modifier_flesh_heap_str:IsPurgable()
     return true
 end
 
-function modifier_flesh_heap_bonus_vision:IsPurgable()
-    return true
-end
-
-function modifier_flesh_heap_bonus_vision:GetFleshHeapKills()
+function modifier_flesh_heap_str:GetFleshHeapKills()
+  print("a")
   if self.nKills == nil then
     self.nKills = 0
   end
+  print("b")
   return self.nKills
 end
  
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:OnCreated( kv )
+function modifier_flesh_heap_str:OnCreated( kv )
   if not self:GetAbility() then
-    self:GetParent():RemoveModifierByName("modifier_flesh_heap_bonus_vision")
+    self:GetParent():RemoveModifierByName("modifier_flesh_heap_str")
     self:GetParent():CalculateStatBonus()
     return
   end
-  self.flesh_heap_bonus_vision_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_bonus_vision_buff_amount" ) or 0
+  self.flesh_heap_str_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_strength_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
     self:GetParent():CalculateStatBonus()
@@ -108,13 +103,13 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:OnRefresh( kv )
+function modifier_flesh_heap_str:OnRefresh( kv )
   if not self:GetAbility() then
-    self:GetParent():RemoveModifierByName("modifier_flesh_heap_bonus_vision")
+    self:GetParent():RemoveModifierByName("modifier_flesh_heap_str")
     self:GetParent():CalculateStatBonus()
     return
   end
-  self.flesh_heap_bonus_vision_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_bonus_vision_buff_amount" ) or 0
+  self.flesh_heap_str_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_strength_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
     self:GetParent():CalculateStatBonus()
@@ -123,16 +118,16 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_flesh_heap_bonus_vision:DeclareFunctions()
+function modifier_flesh_heap_str:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_BONUS_DAY_VISION,
-    MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+    MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
     MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
   }
   return funcs
 end
 
-function modifier_flesh_heap_bonus_vision:OnDeath(keys)
+function modifier_flesh_heap_str:OnDeath(keys)
 
 
   if not keys.unit or not keys.attacker then 
@@ -162,30 +157,26 @@ function modifier_flesh_heap_bonus_vision:OnDeath(keys)
 
       self.nKills = self.nKills + 1
 
-      local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_bonus_vision" )
+      local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_str" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
         self:GetCaster():CalculateStatBonus()
       else
-        self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_bonus_vision" , {} )
+        self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_str" , {} )
       end
 
       local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster() )
       ParticleManager:SetParticleControl( nFXIndex, 1, Vector( 1, 0, 0 ) )
       ParticleManager:ReleaseParticleIndex( nFXIndex )
-      
+
     end
   end
 end
 
 
---------------------------------------------------------------------------------
-
-
-function modifier_flesh_heap_bonus_vision:GetBonusDayVision( params )
-		return self:GetStackCount() * self.flesh_heap_bonus_vision_buff_amount
+function modifier_flesh_heap_str:GetModifierBonusStats_Strength()
+  return self:GetStackCount() * self:GetAbility():GetSpecialValueFor( "flesh_heap_strength_buff_amount" )
 end
-
-function modifier_flesh_heap_bonus_vision:GetBonusNightVision( params )
-		return self:GetStackCount() * self.flesh_heap_bonus_vision_buff_amount
+function modifier_flesh_heap_str:GetModifierMagicalResistanceBonus()
+  return self:GetAbility():GetSpecialValueFor("flesh_heap_magic_resist")
 end

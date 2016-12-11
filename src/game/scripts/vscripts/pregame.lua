@@ -5613,6 +5613,18 @@ function Pregame:fixSpawningIssues()
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
+                        -- Custom Flesh Heap fixes
+                        for abilitySlot=0,6 do
+                            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+                            if abilityTemp then 
+                                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+                                    local abilityName = abilityTemp:GetAbilityName()
+                                    local modifierName = "modifier"..string.sub(abilityName,6)
+                                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+                                    
+                                end
+                            end
+                        end
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
