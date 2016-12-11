@@ -1,7 +1,6 @@
 if tiny_grow_lod == nil then tiny_grow_lod = class({}) end 
 
-LinkLuaModifier("modifier_tiny_grow_lod", "heroes/hero_tiny/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) --- PATH WERY IMPORTANT
-LinkLuaModifier("modifier_tiny_grow_lod_tree", "heroes/hero_tiny/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) --- PATH WERY IMPORTANT
+LinkLuaModifier("modifier_tiny_grow_lod", "abilities/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) 
 
 local banana 
 
