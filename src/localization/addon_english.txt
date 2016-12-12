@@ -1073,7 +1073,6 @@
 	"warning_angel_arena_nether_ritual" "<font color=\"#FF4949\">LoD Warning:</font> Requires level 15.\n"
 	"warning_illusionist_agility_paws" "<font color=\"#FF4949\">LoD Warning:</font> Bonus agility can only come from using <font color=\"#70EA72\">Mastery of Deception</font> and/or <font color=\"#70EA72\">Mastery of Illusions</font>.\n"
 	"warning_bristleback_bristleback" "<font color=\"#FF4949\">LoD Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\"#70EA72\">Quill Spray</font>.\n"
-	"warning_angel_arena_archmage_anomaly"		"<font color=\"#FF4949\">LoD Warning:</font> Particles from Shackles will not disappear on secondary units after channel ends."
 	
 		
     "credit_aether_range_lod"           "<font color=\"#7D7D7D\">Credits: Yahnich | github.com/Yahnich</font>"
@@ -3377,8 +3376,8 @@
 	"npc_dota_armoured_centipede_ward_2"                                                           "Armored Centipede 2"
 	"npc_dota_armoured_centipede_ward_3"                                                           "Armored Centipede 3"
 	
-	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly"	"Anomaly [WIP]"		
-    	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one enemy in the anomaly, will be applied to all enemies in it."		
+	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly"	"Anomaly"		
+    	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Description"	"Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one hero in the anomaly, will be applied to all heroes in it. Works on enemies and allies."		
     	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly_duration"	"DURATION:"		
     	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly_radius"		"RADIUS:"		
     	"DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Note0"	"Channeling abilities will end when the channel ends on any unit."		
