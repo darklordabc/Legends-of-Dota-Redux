@@ -1,7 +1,7 @@
 if tiny_grow_lod == nil then tiny_grow_lod = class({}) end 
 
-LinkLuaModifier("modifier_tiny_grow_lod", "heroes/hero_tiny/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) --- PATH WERY IMPORTANT
-LinkLuaModifier("modifier_tiny_grow_lod_tree", "heroes/hero_tiny/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) --- PATH WERY IMPORTANT
+LinkLuaModifier("modifier_tiny_grow_lod", "abilities/tiny_grow_lod.lua", LUA_MODIFIER_MOTION_NONE) --- PATH WERY IMPORTANT
+
 
 local banana 
 
@@ -96,9 +96,7 @@ end
 
 function modifier_tiny_grow_lod:OnCreated()
 	if IsServer() then
-    if self:GetCaster():GetUnitName() == "npc_dota_hero_tiny" then
-			self:StartIntervalThink(0.1)
-    end
+		self:StartIntervalThink(0.1)
 	end
 end
 
