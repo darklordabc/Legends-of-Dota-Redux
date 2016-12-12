@@ -696,6 +696,13 @@
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_good.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -711,38 +718,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/particles/base_attacks/ranged_tower_good.vpcf.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -754,7 +751,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -774,6 +771,11 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"0"
+		
+		"AttackDesire"				"1.5"
 	}
 
 	"npc_dota_goodguys_tower_lod_mid"
@@ -786,6 +788,13 @@
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_good.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -801,38 +810,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/particles/base_attacks/ranged_tower_good.vpcf.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -844,7 +843,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -864,6 +863,11 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"0"
+		
+		"AttackDesire"				"1.5"
 	}
 
 	"npc_dota_goodguys_tower_lod_bot"
@@ -876,6 +880,13 @@
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_good.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -891,38 +902,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -934,7 +935,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -954,6 +955,11 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"0"
+		
+		"AttackDesire"				"1.5"
 	}
 
 	"npc_dota_badguys_tower_lod_top"
@@ -966,6 +972,13 @@
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_bad.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -981,38 +994,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -1024,7 +1027,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -1044,6 +1047,11 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"0"
+		
+		"AttackDesire"				"1.5"
 	}
 
 	"npc_dota_badguys_tower_lod_mid"
@@ -1056,6 +1064,13 @@
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_bad.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1071,38 +1086,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -1114,7 +1119,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -1134,6 +1139,11 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"1900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"0"
+		
+		"AttackDesire"				"1.5"
 	}
 
 	"npc_dota_badguys_tower_lod_bot"
@@ -1146,6 +1156,13 @@
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
 		"Level"						"2"
+		"ModelScale" 				"1"
+		"SelectionGroup"			"Venomancer_Wards_Scourge"
+
+		"precache"
+		{
+			"particle"			"particles/base_attacks/ranged_tower_bad.vpcf" 
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1161,38 +1178,28 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"		// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"120"			// Damage range min.
 		"AttackDamageMax"			"140"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.95"		// Speed of attack.
+		"AttackRate"				".95"		// Speed of attack.
 		"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"      // Particle system model for projectile.
 		"ProjectileSpeed"			"750"		// Speed of projectile.
-
-		// Attributes
-		//----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"0"			// Base strength
-		"AttributeStrengthGain"		"0"			// Strength bonus per level.
-		"AttributeBaseIntelligence"	"0"			// Base intelligence
-		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
-		"AttributeBaseAgility"		"0"			// Base agility
-		"AttributeAgilityGain"		"0"			// Agility bonus per level.
-
+		
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"25"		// Experience earn.
 		"BountyGoldMin"				"0"		// Gold earned min.
 		"BountyGoldMax"				"0"		// Gold earned max.
-
+		
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
@@ -1204,7 +1211,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"1.0"			// Turning rate.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -1294,7 +1301,7 @@
 		//Inventory
 		"HasInventory"                "0"
 	}
-	"dummy_unit"
+	"npc_dummy_unit"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
 	
@@ -1656,6 +1663,78 @@
 		//Inventory
 		"HasInventory"                "0"
 	}
+	"red_flower_OP"
+	{
+		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
+		"Model"                        "models/items/furion/treant/primeval_treant/primeval_treant.vmdl"    // Model.
+		"Level"                        "1"
+		"ModelScale"                 "0.8"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"                "0"            // Physical protection.
+		"MagicalResistance"            "0"            // Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"            "30"            // Damage range min.
+		"AttackDamageMax"            "50"        // Damage range max.
+		"AttackDamageType"            "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"                "1.5"        // Speed of attack.
+		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"    "350"        // Range within a target can be acquired.
+		"AttackRange"                "3000"        // Range within a target can be attacked.
+		"ProjectileModel"            "particles/base_attacks/ranged_tower_bad.vpcf"    
+		"ProjectileSpeed"            "900"
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "0"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"                "0"        // Experience earn.
+		"BountyGoldMin"                "28"        // Gold earned min.
+		"BountyGoldMax"                "32"        // Gold earned max.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"                "250"        // Base health.
+		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
+		"StatusMana"                "0"            // Base mana.
+		"StatusManaRegen"            "0"            // Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"                "DOTA_TEAM_GOODGUYS"            // Team name.
+		"CombatClassAttack"            "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"            "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"            "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"        "400"        // Range of vision during day light.
+		"VisionNighttimeRange"        "400"        // Range of vision at night time.
+	
+		//Inventory
+		"HasInventory"                "0"
+	}
 	"white_flower"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
@@ -1790,6 +1869,26 @@
 	
 		//Inventory
 		"HasInventory"                "0"
+	}
+	"npc_global_mutator"
+	{
+		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"        "0"        // Range of vision during day light.
+		"VisionNighttimeRange"        "0"        // Range of vision at night time.
+		"WakesNeutrals"                "0"
 	}
 	"npc_precache_wraithnight"
 	{
@@ -2310,7 +2409,7 @@
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.8"
 		"AttackAnimationPoint"		"0.33"
-		"AttackAcquisitionRange"	"500"
+		"AttackAcquisitionRange"	"5000"
 		"AttackRange"			"90"
 		
 		// Bounty
@@ -2389,7 +2488,7 @@
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.7"
 		"AttackAnimationPoint"		"0.33"
-		"AttackAcquisitionRange"	"500"
+		"AttackAcquisitionRange"	"5000"
 		"AttackRange"			"90"
 		
 		// Bounty
@@ -2469,7 +2568,7 @@
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.6"
 		"AttackAnimationPoint"		"0.33"
-		"AttackAcquisitionRange"	"500"
+		"AttackAcquisitionRange"	"5000"
 		"AttackRange"			"90"
 		
 		// Bounty

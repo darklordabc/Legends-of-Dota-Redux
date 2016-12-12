@@ -6,8 +6,12 @@
 	</styles>
 	
 	<script>
+		var util = GameUI.CustomUIConfig().Util;
+		
 		var SetupPopup = function()
 		{
+			util.blockMouseWheel($.GetContextPanel());
+
 			var strPopupValue = $.GetContextPanel().GetAttributeString( "popupvalue", "(not found)" );
 			$.GetContextPanel().SetDialogVariable( "popupvalue", strPopupValue );
 		};

@@ -1,3 +1,20 @@
+require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
+require('abilities/hero_perks/npc_dota_hero_puck_perk')
+require('abilities/hero_perks/npc_dota_hero_bane_perk')
+require('abilities/hero_perks/npc_dota_hero_pudge_perk')
+require('abilities/hero_perks/npc_dota_hero_troll_warlord_perk')
+require('abilities/hero_perks/npc_dota_hero_spirit_breaker_perk')
+require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
+require('abilities/hero_perks/npc_dota_hero_ancient_apparition_perk')
+require('abilities/hero_perks/npc_dota_hero_slardar_perk')
+require('abilities/hero_perks/npc_dota_hero_viper_perk')
+require('abilities/hero_perks/npc_dota_hero_silencer_perk')
+require('abilities/hero_perks/npc_dota_hero_venomancer_perk')
+require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
+require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
+require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
+require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
   local target = EntIndexToHScript(targetIndex)
@@ -7,7 +24,6 @@ function heroPerksProjectileFilter(filterTable)
   local ability = EntIndexToHScript(abilityIndex)
   
   -- Perk for Puck
-  local puckPerk = require('abilities/hero_perks/npc_dota_hero_puck_perk')
   PerkPuckReflectSpell(caster,target,ability)
   
   local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
@@ -26,19 +42,7 @@ function heroPerksOrderFilter(filterTable)
   local abilityIndex = filterTable["entindex_ability"]
   local targetIndex = filterTable["entindex_target"]
 
-  local caster = EntIndexToHScript(units["0"])
-  if not caster then return true end
-
-  targetPerks_order = {
-    npc_dota_hero_shadow_demon_perk = true,
-  }
-  
-  local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-  if not targetPerk then return true end
-  if not targetPerks_order[targetPerk:GetName()] then return true end
-
     -- Perk for Shadow Demon
-  local perkforSD = require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
   perkShadowDemon(filterTable)
 
 end
@@ -72,37 +76,26 @@ function heroPerksModifierFilter(filterTable)
   if not targetPerk then return true end
   if not targetPerks_modifier[targetPerk:GetName()] then return true end
   -- Perk for Dragon Knight
-  local perkForDragonKnight = require('abilities/hero_perks/npc_dota_hero_dragon_knight_perk')
   PerkDragonKnight(filterTable)
   -- Perk for Ancient Apparition
-  local perkForAncientApparition = require('abilities/hero_perks/npc_dota_hero_ancient_apparition_perk')
   perkAncientApparition(filterTable)
    -- Perk for Drow Ranger
-  local perkForDrowRanger = require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
   perkDrowRanger(filterTable)
   -- Perk for Death Prophet
-  local perkForDeathProphet = require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
   perkDeathProphet(filterTable)
    -- Perk for Outworld Devourer
-  local perkforOD = require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
   perkOD(filterTable)
   -- Perk for Venomancer
-  local perkforVenomancer = require('abilities/hero_perks/npc_dota_hero_venomancer_perk')
   perkVenomancer(filterTable)
   -- Perk for Silencer
-  local perkforSilencer = require('abilities/hero_perks/npc_dota_hero_silencer_perk')
   perkSilencer(filterTable)
   -- Perk for Viper
-  local perkforViper = require('abilities/hero_perks/npc_dota_hero_viper_perk')
   perkViper(filterTable)
   -- Perk for Slardar
-  local perkForSlardar = require('abilities/hero_perks/npc_dota_hero_slardar_perk')
   perkSlardar(filterTable)
   -- Perk for Spirit Breaker
-  local perkForSpaceCow = require('abilities/hero_perks/npc_dota_hero_spirit_breaker_perk')
   perkSpaceCow(filterTable)
   -- Perk for Troll Warlord
-  local perkForTrollWarlord = require('abilities/hero_perks/npc_dota_hero_troll_warlord_perk')
   perkTrollWarlord(filterTable)
   -- Returning the filterTable
   return filterTable
@@ -127,13 +120,10 @@ function heroPerksDamageFilter(filterTable)
   if not targetPerk then return true end
   if not targetPerks_damage[targetPerk:GetName()] then return true end
   -- Perk for Abaddon
-  local perkForAbaddon = require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
   PerkAbaddon(filterTable)
    -- Perk for Pudge
-  local perkForPudge = require('abilities/hero_perks/npc_dota_hero_pudge_perk')
   PerkPudge(filterTable)
    -- Perk for Bane
-  local perkForBane = require('abilities/hero_perks/npc_dota_hero_bane_perk')
   PerkBane(filterTable)
 
   return filterTable

@@ -1,23 +1,6 @@
 "use strict";
 
-function GetSteamID32() {
-    var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-
-    var steamID64 = playerInfo.player_steamid,
-        steamIDPart = Number(steamID64.substring(3)),
-        steamID32 = String(steamIDPart - 61197960265728);
-
-    return steamID32;
-}
-
-function GetDate() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    return yyyy * 10000 + mm * 100 + dd;
-}
+var util = GameUI.CustomUIConfig().Util;
 
 function MarkMessageAsRead( msgID ) {
     var playerID = Players.GetLocalPlayer();
@@ -38,10 +21,10 @@ function SendMessage( text ) {
     var requestParams = {
         Command: "SendPlayerMessage",
         Data: {
-            SteamID: GetSteamID32(),
+            SteamID: util.getSteamID32(),
             Nickname: encodeURIComponent(info.player_name),
             Message: encodeURIComponent(text),
-            TimeStamp: GetDate() 
+            TimeStamp: util.getDate()
         }
     };
 
@@ -75,7 +58,7 @@ function RecordPlayerSC( ) {
     var requestParams = {
         Command : "RecordPlayerSC",
         Data: {
-            SteamID: GetSteamID32(),
+            SteamID: util.getSteamID32(),
             SettingsCode : $('#importAndExportEntry').text,
         }
     }
@@ -93,7 +76,7 @@ function SaveFavBuilds( builds ){
     var requestParams = {
         Command : "SaveFavBuilds",
         Data: {
-            SteamID: GetSteamID32(),
+            SteamID: util.getSteamID32(),
             Builds : JSON.stringify(builds),
         }
     }
@@ -104,7 +87,7 @@ function SaveFavBuilds( builds ){
 function LoadFavBuilds( ){
     var requestParams = {
         Command : "LoadFavBuilds",
-        SteamID: GetSteamID32(),
+        SteamID: util.getSteamID32(),
     }
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
@@ -135,7 +118,7 @@ function LoadBuilds( filter ){
         Filter: filter,
     }
 
-    GameUI.CustomUIConfig().SendRequest( requestParams,  (function ( data ) {
+    GameUI.CustomUIConfig().SendRequest( requestParams,  function ( data ) {
         var builds = JSON.parse(data);
 
         // The  container to work with
@@ -145,5 +128,12 @@ function LoadBuilds( filter ){
             addRecommendedBuild(con, build);
 
         LoadFavBuilds();
-    }) );
+
+        $('#buildLoadingIndicator').visible = false;
+        con.GetParent().visible = true;
+    },
+    function(){
+        $('#buildLoadingSpinner').visible = false;
+        $('#buildLoadingIndicatorText').text = $.Localize('#unableLoadingBuilds');
+    });
 } 

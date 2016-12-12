@@ -7,7 +7,7 @@
 LinkLuaModifier( "modifier_npc_dota_hero_abaddon_perk", "abilities/hero_perks/npc_dota_hero_abaddon_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_charges", "abilities/modifiers/modifier_charges.lua", LUA_MODIFIER_MOTION_NONE)
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_abaddon_perk == nil then npc_dota_hero_abaddon_perk = class({}) end
+if npc_dota_hero_abaddon_perk ~= "" then npc_dota_hero_abaddon_perk = class({}) end
 
 function npc_dota_hero_abaddon_perk:GetIntrinsicModifierName()
     return "modifier_npc_dota_hero_abaddon_perk"
@@ -15,14 +15,18 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_abaddon_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_abaddon_perk == nil then modifier_npc_dota_hero_abaddon_perk = class({}) end
+if modifier_npc_dota_hero_abaddon_perk ~= "" then modifier_npc_dota_hero_abaddon_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_abaddon_perk:IsHidden()
+function modifier_npc_dota_hero_abaddon_perk:IsPurgable()
 	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_abaddon_perk:IsHidden()
+	return self:GetCaster():HasModifier("modifier_charges")
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:RemoveOnDeath()

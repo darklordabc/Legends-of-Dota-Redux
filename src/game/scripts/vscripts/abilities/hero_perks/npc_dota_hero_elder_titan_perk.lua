@@ -6,11 +6,11 @@
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_elder_titan_perk", "abilities/hero_perks/npc_dota_hero_elder_titan_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_elder_titan_perk == nil then npc_dota_hero_elder_titan_perk = class({}) end
+if npc_dota_hero_elder_titan_perk ~= "" then npc_dota_hero_elder_titan_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --      Modifier: modifier_npc_dota_hero_elder_titan_perk               
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_elder_titan_perk == nil then modifier_npc_dota_hero_elder_titan_perk = class({}) end
+if modifier_npc_dota_hero_elder_titan_perk ~= "" then modifier_npc_dota_hero_elder_titan_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:IsPassive()
     return true
@@ -18,6 +18,10 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:IsHidden()
     return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_elder_titan_perk:IsPurgable()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:RemoveOnDeath()

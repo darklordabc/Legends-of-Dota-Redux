@@ -3,13 +3,15 @@
         <include src="file://{resources}/styles/custom_game/loading_screen.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/scripts/custom_game/loading_screen_data.js" />
-        <include src="file://{resources}/scripts/custom_game/loading_screen.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_data.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen.js" />
     </scripts>
 
 	<Panel class="LoDLoadingRoot">
 		<Panel id="CustomBackground">
 			<Image id="BackgroundImage" />
+			<Panel id="vignette" />
 
             <Panel class="creditContainer">            
                 <Label class="creditText" id="BackgroundTitle"/>
@@ -54,6 +56,9 @@
 			<Image src="file://{images}/custom_game/hints/hint_centaur.png" />
 			<Image src="file://{images}/custom_game/hints/hint_phoenix.png" />
 			<Image src="file://{images}/custom_game/hints/hint_ancient_apparition.png" />
+			<Image src="file://{images}/custom_game/hints/hint_discord.png" />
+			<Image src="file://{images}/custom_game/hints/hint_bots_difficulty.png" />
+			<Image src="file://{images}/custom_game/hints/hint_duels.png" />
 			<Image src="file://{images}/custom_game/hints/hint_shadow_shaman.png" />
 			<Image src="file://{images}/custom_game/hints/hint_doom.png" />
 			<Image src="file://{images}/custom_game/hints/hint_lich.png" />

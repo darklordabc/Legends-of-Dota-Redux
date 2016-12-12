@@ -6,7 +6,8 @@
 	Additional parameters: keys.StatLoss
 ================================================================================================================= ]]
 function modifier_slark_essence_shift_strength_datadriven_on_attack_landed(keys)
-       if not keys.caster:IsIllusion() and keys.target:IsRealHero() then
+       if keys.caster:PassivesDisabled() then return end
+	   if not keys.caster:IsIllusion() and keys.target:IsRealHero() then
        	--If ranged attacker, chance to do nothing
 		if keys.caster:IsRangedAttacker() then
 			local ranged_chance = keys.ability:GetSpecialValueFor("ranged_chance")

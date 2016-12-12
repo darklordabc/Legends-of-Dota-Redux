@@ -7,7 +7,7 @@
 LinkLuaModifier( "modifier_npc_dota_hero_undying_perk", "abilities/hero_perks/npc_dota_hero_undying_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_undying_perk_aura", "abilities/hero_perks/npc_dota_hero_undying_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_undying_perk == nil then npc_dota_hero_undying_perk = class({}) end
+if npc_dota_hero_undying_perk ~= "" then npc_dota_hero_undying_perk = class({}) end
 
 function npc_dota_hero_undying_perk:GetIntrinsicModifierName()
 	return "modifier_npc_dota_hero_undying_perk"
@@ -15,7 +15,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_undying_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_undying_perk == nil then modifier_npc_dota_hero_undying_perk = class({}) end
+if modifier_npc_dota_hero_undying_perk ~= "" then modifier_npc_dota_hero_undying_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_undying_perk:IsPassive()
 	return true
@@ -30,6 +30,10 @@ function modifier_npc_dota_hero_undying_perk:OnCreated()
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_undying_perk:IsPurgable()
+	return false
 end
 
 function modifier_npc_dota_hero_undying_perk:OnRefresh()
@@ -108,7 +112,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Aura Modifier: modifier_npc_dota_hero_undying_perk_aura		
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_undying_perk_aura == nil then modifier_npc_dota_hero_undying_perk_aura = class({}) end
+if modifier_npc_dota_hero_undying_perk_aura ~= "" then modifier_npc_dota_hero_undying_perk_aura = class({}) end
 
 function modifier_npc_dota_hero_undying_perk_aura:IsHidden()
 	return true
@@ -129,6 +133,7 @@ function modifier_npc_dota_hero_undying_perk_aura:OnDeath(params)
 		end
 		for i = 1, trigger do
 			local modifier = self:GetCaster():FindModifierByName("modifier_npc_dota_hero_undying_perk")
+			if not modifier then return end
 			modifier:SetDuration(modifier.expireTime, true)
 			table.insert(self:GetCaster().strTable, GameRules:GetGameTime())
 		end

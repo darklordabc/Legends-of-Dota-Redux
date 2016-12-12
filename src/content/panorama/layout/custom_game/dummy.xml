@@ -431,6 +431,7 @@
 <Image src="file://{images}/custom_game/loading_screens/Znjx4Ls.jpg" />
 <Image src="file://{images}/custom_game/loading_screens/ZRzGl3b.jpg" />
 <Image src="file://{images}/custom_game/loading_screens/ZyegbCE.jpg" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutator322.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBalanceMode.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png" />
@@ -459,6 +460,9 @@
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate2.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate3.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOff.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOn.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel2.png" />
@@ -469,6 +473,7 @@
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts4.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorOPAbilities.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorPlayerBans.png" />
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorRefreshCooldownsOnDeath.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorShareEXP.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorStrongTowers.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorUniqueSkillsGlobal.png" />

@@ -137,7 +137,7 @@ function onActivate(id){
 		playerID: Players.GetLocalPlayer(),
 		status: 'ok',
 	});
-	if(value !== undefined){
+	if(value !== undefined && isCustom === undefined){
 		cheat_list[cheatID].value = !value;
 	}
 }

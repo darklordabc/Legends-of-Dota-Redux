@@ -50,6 +50,24 @@
             "troll_warlord_berserkers_rage" "1"
         }
 		
+		// Roshan Bash works on illusions for some reason, it shouldn't
+        "roshan_bash" {
+			"naga_siren_mirror_image"       "1"
+			"shadow_demon_disruption"       "1"
+			"morphling_hybrid"              "1"
+			"phantom_lancer_doppelwalk"     "1"
+			"phantom_lancer_spirit_lance"   "1"
+			"terrorblade_reflection"        "1"
+			"terrorblade_conjure_image"     "1"
+			"illusionist_whiff_of_deception"	"1"
+			"illusionist_agility_paws"	"1"
+        }
+		
+		// Too easy fountain kill
+        "invoker_retro_betrayal" {
+            "chen_test_of_faith_teleport" "1"
+        }
+		
 		// 100% damage reduction
         "abyssal_underlord_atrophy_aura" {
             "imba_tower_atrophy" "1"
@@ -361,6 +379,15 @@
             "slark_shadow_dance" 	  			 "1"
             "custom_bot_shadow_dance"  		     "1"
         }
+		
+		"5" {
+			"roshan_bash"                           "1"
+			"slardar_bash"                          "1"
+			"spirit_breaker_greater_bash"           "1"
+			"faceless_void_time_lock"               "1"
+			"troll_warlord_berserkers_rage"         "1"
+			"imba_tower_permabash"   "1"
+        }
     }
 
     // Stop multicast on these spells
@@ -523,6 +550,17 @@
 
     // Abilities that are considered to be OP
     "OPSkillsList" {
+		//Thirst needs to be looked at
+		"bloodseeker_thirst_lod"            "1"
+		
+		// Buggy True Randoms
+		"true_random_lod_1"    "1"
+		"true_random_lod_2"    "1"
+		"true_random_lod_3"    "1"
+		"true_random_lod_4"    "1"
+		"true_random_lod_5"    "1"
+		"true_random_lod_6"    "1"
+		
         // Roshan
         "roshan_spell_block"    "4001"
         "roshan_bash"     "4012"
@@ -567,46 +605,11 @@
         "lone_druid_spirit_bear_return" "1"
 		
 		//Old Bersekers blood
-		"huskar_berserkers_blood_lod"	"1"
-		
-		// Imba Tower Abilities
-		//"imba_tower_aegis"   "1"
-		"imba_tower_atrophy"   "1"
-		"imba_tower_berserk"   "1"
-		"imba_tower_chrono"   "1"
-		"imba_tower_disease"   "1"
-		"imba_tower_essence_drain"   "1"
-		"imba_tower_fervor"   "1"
-		"imba_tower_force"   "1"
-		//"imba_tower_forest"   "1"
-		"imba_tower_grievous_wounds"   "1"
-		"imba_tower_hex_aura"   "1"
-		"imba_tower_laser"   "1"
-		"imba_tower_machinegun"   "1"
-		"imba_tower_mana_burn"   "1"
-		"imba_tower_mana_flare"   "1"
-		"imba_tower_mindblast"   "1"
-		"imba_tower_multihit"   "1"
-		"imba_tower_nature"   "1"
-		"imba_tower_permabash"   "1"
-		"imba_tower_plague"   "1"
-		"imba_tower_reality"   "1"
-		"imba_tower_salvo"   "1"
-		//"imba_tower_self_repair"   "1"
-		"imba_tower_sniper"   "1"
-		"imba_tower_spacecow"   "1"
-		"imba_tower_spell_shield"   "1"
-		"imba_tower_split"   "1"
-		"imba_tower_vicious"   "1"
+		"huskar_berserkers_blood_lod"	"1"				
 		
 		//Angel Arena Reborn
 		"angel_arena_nether_ritual"	"1"
-    }
-
-    // Abilities that will be banned by default in LoD
-    // This list is up for debate
-    "lodBanList" {
-        "ursa_fury_swipes"              "1"
+		"ursa_fury_swipes"              "1"
         "slark_essence_shift"           "1"
         "earthshaker_aftershock"        "1"
         "zuus_static_field"             "1"
@@ -620,5 +623,56 @@
         "death_prophet_spirit_siphon"   "1"
         "tiny_grow_lod"                 "1"
         "silencer_glaives_of_wisdom"	"1"
+    }
+
+    // Abilities that will be banned by default in LoD
+    // This list is up for debate
+    "SuperOP" {	
+		"disruptor_kinetic_field_OP"	"1"
+		"disruptor_glimpse_OP"	"1"
+		"garden_red_flower_base_OP"	"1"
+		"obsidian_destroyer_essence_aura_lod_health" "1"
+		"shards_of_truesight_lod_OP"	"1"
+		"frost_lord_freezing_OP"	"1"
+		"lone_druid_spirit_bear_return_lod_OP"	"1"
+		"ebf_rubick_arcane_echo_OP"	"1"
+		"global_stun"	"1"
+		"octarine_vampirism_lod_OP"	"1"
+		"force_dash_lod_OP"	"1"
+		"aether_range_lod_OP"	"1"
+		"linkens_guard_lod"	"1"
+		"lord_of_lightning_holy_wrath_OP"	"1"
+		"imba_tower_atrophy"   "1"
+		"imba_tower_berserk"   "1"
+		"imba_tower_chrono"   "1"
+		"imba_tower_disease"   "1"
+		"imba_tower_essence_drain"   "1"
+		"imba_tower_fervor"   "1"
+		"imba_tower_force"   "1"
+		"imba_tower_grievous_wounds"   "1"
+		"imba_tower_hex_aura"   "1"
+		"imba_tower_laser"   "1"
+		"imba_tower_machinegun"   "1"
+		"imba_tower_mana_burn"   "1"
+		"imba_tower_mana_flare"   "1"
+		"imba_tower_mindblast"   "1"
+		"imba_tower_multihit"   "1"
+		"imba_tower_nature"   "1"
+		"imba_tower_permabash"   "1"
+		"imba_tower_plague"   "1"
+		"imba_tower_reality"   "1"
+		"imba_tower_salvo"   "1"
+		"imba_tower_sniper"   "1"
+		"imba_tower_spacecow"   "1"
+		"imba_tower_spell_shield"   "1"
+		"imba_tower_split"   "1"
+		"imba_tower_vicious"   "1"		
+		"angel_arena_rifle_OP" "1"
+		"zulf_typhoon_OP" "1"
+		"angel_arena_razor_power_OP"	"1"
+		"android_cluster_rockets_OP" "1"
+		"angel_arena_nether_ritual"	"1"
+		"ebf_clinkz_trickshot_passive"      "1"
+		"serpent_queen_ball_lightning_op"	"1"	       
     }
 }

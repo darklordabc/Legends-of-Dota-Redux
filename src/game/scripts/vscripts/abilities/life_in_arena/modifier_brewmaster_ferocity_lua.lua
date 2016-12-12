@@ -39,6 +39,10 @@ end
 
 function modifier_brewmaster_ferocity_lua:OnIntervalThink(event)
 	if IsServer() and self:GetParent():IsAlive() then
+		if self:GetParent():PassivesDisabled() then
+			self:SetStackCount(0)
+			return
+		end
 		local previous_bonus_strength = self.bonus_strength
 
 		local units = FindUnitsInRadius(self:GetParent():GetTeam(), 

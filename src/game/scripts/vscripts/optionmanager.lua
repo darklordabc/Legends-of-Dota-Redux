@@ -160,6 +160,11 @@ OptionManager:SetOption('useLevel1ults', false)
 -- Full price sellback
 OptionManager:SetOption('fullPriceSellback', false)
 
+-- Other Mutators
+OptionManager:SetOption('322', 0)
+OptionManager:SetOption('refreshCooldownsOnDeath', 0)
+OptionManager:SetOption('gottaGoFast', 0)
+
 --[[
     GAMEMODE STUFF
 ]]
@@ -167,6 +172,8 @@ OptionManager:SetOption('fullPriceSellback', false)
 -- Max number of bans
 OptionManager:SetOption('maxBans', 5)
 OptionManager:SetOption('maxHeroBans', 2)
+
+OptionManager:SetOption('duels', 0)
 
 -- Host banning mode?
 OptionManager:SetOption('hostBanning', false)

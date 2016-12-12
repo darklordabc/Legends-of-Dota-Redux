@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 var customTeamAssignments = {};
 
 function ReceiveCustomTeamInfo( team_info )
@@ -7,6 +9,8 @@ function ReceiveCustomTeamInfo( team_info )
         customTeamAssignments = team_info.x
 }
 GameEvents.Subscribe( "send_custom_team_info", ReceiveCustomTeamInfo)
+
+util.blockMouseWheel($("#TeamsContainer"));
 
 //=============================================================================
 //=============================================================================

@@ -233,6 +233,9 @@ function setBackground() {
         img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
         txt: '#hintAncientApparition'
     }, {
+        img: 'file://{images}/custom_game/hints/hint_discord.png',
+        txt: '#hintDiscord'
+    }, {
         img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
         txt: '#hintShadowShaman'
     }, {

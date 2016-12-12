@@ -7,11 +7,11 @@
 LinkLuaModifier( "modifier_npc_dota_hero_spirit_breaker_perk", "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_spirit_breaker_perk_break", "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_spirit_breaker_perk == nil then npc_dota_hero_spirit_breaker_perk = class({}) end
+if npc_dota_hero_spirit_breaker_perk ~= "" then npc_dota_hero_spirit_breaker_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_spirit_breaker_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_spirit_breaker_perk == nil then modifier_npc_dota_hero_spirit_breaker_perk = class({}) end
+if modifier_npc_dota_hero_spirit_breaker_perk ~= "" then modifier_npc_dota_hero_spirit_breaker_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spirit_breaker_perk:IsPassive()
 	return true
@@ -21,13 +21,17 @@ function modifier_npc_dota_hero_spirit_breaker_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_spirit_breaker_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spirit_breaker_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_npc_dota_hero_spirit_breaker_perk_break
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_spirit_breaker_perk_break == nil then modifier_npc_dota_hero_spirit_breaker_perk_break = class({}) end
+if modifier_npc_dota_hero_spirit_breaker_perk_break ~= "" then modifier_npc_dota_hero_spirit_breaker_perk_break = class({}) end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------

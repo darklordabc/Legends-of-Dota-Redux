@@ -4,7 +4,7 @@
     "ADDON_GAME_NAME"                               "Легенды Доты"
     "addonname"                                     "Легенды Доты"
     "addonname_description"                         "Основано на официальной карте Легенды Доты, сделанной Ash47"
-    "game_mode_15_desc"                             "Создай адского героя"
+    "game_mode_15_desc"                             "Вернем Доте былую славу!"
 
     // Contributors
     "76561197988355984" "Ash47"
@@ -50,16 +50,24 @@
     "unlockTeams"                                   "Разблокировать Команды"
 
     // The stage selection interface
-    "lodStageButtonOptionSelection"                 "Выбор Опций"
-    "lodStageButtonOptionVoting"                    "Голосование за Опции"
-    "lodStageButtonBanning"                         "Стадия Банов"
-    "lodStageButtonSelection"                       "Создание Героя"
-    "lodStageButtonRandomSelection"                 "Случайных Наборов Навыков"
-    "lodStageButtonReview"                          "Обзор"
+    "lodStageOptionSelection"                 "Выбор Опций"
+    "lodStageOptionVoting"                    "Голосование за Опции"
+    "lodStageBanning"                         "Стадия Банов"
+    "lodStageSelection"                       "Создание Героя"
+    "lodStageRandomSelection"                 "Случайных Наборов Навыков"
+    "lodStageReview"                          "Обзор"
+    "lodStageIngame"                          "В игре"
+
+    // Chat channels
+    "channelAll"                              "Всем"
+    "channelTeam"                             "Команде"
 
     // The options menu	
     "lockOptions"                                   "Заблокировать"
     "lockTeamsFirst"                                "Перед Продолжением Заблокируйте Команды"
+    "to_advanced_options"                           "К расширенным настройкам"
+    "customizeAdvancedSettings"                     "Для управления расширенными настройками на главном экране необходимо выбрать режим \"Пользовательские настройки\". Если он не отображается, то необходимо прокрутить полоску режимов вправо."    
+    "to_basic_options"                              "К основным настройкам"    
     "importAndExport_code"                          "Настройки"
     "importAndExport_apply"                         "Применить"
     "importAndExport_save"                          "Сохранить"
@@ -118,6 +126,7 @@
     "lodMutatorWTF"                                 "WTF Мод"
     "lodMutatorHidePicks"                           "Скрыть Пики Оппонентов"
     "lodMutatorAllVision"                           "Открытая Карта"
+    "lodMutatorDuel"                                "Дуэли"
 
     "lodMutatorFastBuybackCooldown1"                "Быстрый Респаун"
     "lodMutatorFastBuybackCooldown2"                "Очень Быстрый Респаун"
@@ -192,13 +201,13 @@
     "lodOptionBalancedUlts6"                        "6 Ульта"
     "lodOptionBalancedUlts0"                        "Без ультов"
 
-    "lodOptionsPresetMirrorHeroes"                  "Число Героев"
-    "lodOptionsCommonMirrorHeroes"                  "Число Героев"
-    "lodOptionMirrorHeroes10"                       "10 Героев"
-    "lodOptionMirrorHeroes20"                       "20 Героев"
-    "lodOptionMirrorHeroes30"                       "30 Героев"
-    "lodOptionMirrorHeroes40"                       "40 Героев"
-    "lodOptionMirrorHeroes50"                       "50 Героев"
+    "lodOptionsPresetDraftAbilities"                "Число способностей в режимах Single Draft и Mirror Draft"
+    "lodOptionsCommonDraftAbilities"                "Число способностей в режимах Single Draft и Mirror Draft"
+    "lodOptionDraftAbilities40"                       "40 Способностей"
+    "lodOptionDraftAbilities50"                       "50 Способностей"
+    "lodOptionDraftAbilities60"                       "60 Способностей"
+    "lodOptionDraftAbilities70"                       "70 Способностей"
+    "lodOptionDraftAbilities80"                       "80 Способностей"
 
     "lodOptionDesCommonGamemode"                    "Мод Игры"
     "lodOptionAllPick"                              "All Pick"
@@ -311,6 +320,10 @@
     "lodOptionHigh"                                 "Высокая - Каждую Минуту"
     "lodOptionExtreme"                              "Экстримальная - Каждые 30 Секунд"
 
+    "lodOptionDuels"                                "Дуэли"
+    "lodOptionDesDuels"                             "Дуэли"
+    "lodOptionAboutDuels"                           "Система дуэлей из кастомки Angel Arena Reborn"
+
     "lodOptionDesAdvancedHeroAbilities"             "Разрешить Способности Героев"
     "lodOptionDesAdvancedNeutralAbilities"          "Разрешить Способности Нейтралов"
     "lodOptionDesAdvancedCustomSkills"              "Разрешить Новые способности"
@@ -391,14 +404,14 @@
     "lodOptionAboutPresetBanning"                   "Используйте предопределённый мод банов.\n\nBalanced bans: Набор раздражающих способностей будет забанен.\nFast Ban Phase: Сверхсильные способности будут забанены, а также игроки смогут забанить по 1 герою и 3 способности.\nFull Ban Phase: Balanced bans будут использованы, а также игроки смогут забанить до 10 способностей и 2 героев каждый.\nNo Bans: Сверхсильные способности будут забанены, а игроки не смогут забанить что-либо ещё"
     "lodOptionAboutPresetSlots"                     "Число слотов способностей героя будет. (4 - 6)"
     "lodOptionAboutPresetUlts"                      "Максимальное число ультимативных способностей разрешённое игрокам. (0 - 6)"
-    "lodOptionAboutPresetMirrorHeroes"              "Число героев, получаемое игроками для проекта."
+    "lodOptionAboutPresetDraftAbilities"            "Число героев, получаемое игроками для проекта."
 
     "lodOptionAboutCommonGamemode"                  "Какой игровой мод будет использован.\n\nAll Pick: Выбор из всех доступных способностей.\nSingle Draft: Выбор из ограниченного числа героев.\nMirror Draft: Which gamemode will be used, обе команды будут иметь 5 одинаковых наборов.\nAll Random: Выбор из случайного набора билдов"
     "lodOptionAboutCommonMaxSlots"                  "Максимально число слотов способностей для героя. (4 - 6)"
     "lodOptionAboutCommonMaxSkills"                 "Максимальное число обычных способностей разрешённых игрокам (0 - 6)"
     "lodOptionAboutCommonMaxUlts"                   "Максимальное число ультимативных способностей разрешённых игрокам. (0 - 6)"
     "lodOptionAboutBalanceMode"                     "Эта опция даст способностям цены, зависящие от их силы и ограничит игроков максимальной стоимостью. Автоматически снимает большинство банов"
-    "lodOptionAboutCommonMirrorHeroes"              "Число героев, доступное игрокам для создания персонажа"
+    "lodOptionAboutCommonDraftAbilities"            "Число героев, доступное игрокам для создания персонажа"
     "lodOptionAboutBanningMaxBans"                  "Максимальное число способностей, которые может банить каждый игрок."
     "lodOptionAboutBanningMaxHeroBans"              "Максимальное число героев, которых может банить каждый игрок."
     "lodOptionAboutBanningBlockTrollCombos"         "Эта опция заблокирует определённые наборы навыков, которые традиционно используются для троллинга людей /делают игру ужасной."
@@ -433,6 +446,9 @@
     "lodPrecaching"                                 "Подготовка игры..."
 
 	//Builds
+    "loadingBuilds"                                 "Загрузка билдов"
+    "unableLoadingBuilds"                           "Невозможно загрузить билды"
+
 	"build_cherub_title"							"Cherub"
 	"build_cherub_desc"								"An original hero from the custom game Hero Concepts (The Next Generation)."
 	
@@ -729,4 +745,15 @@
     "teamSwitch_disconnected"                       "ДИСКОННЕКТНУТ"
     "teamSwitch_notification"                       "Голосование за смену команд начнётся через 10 секунд. Одна из команд имеет 2+ больше игроков, и игрок из этой команды предложил покинуть его команду и перейти во вражескую чтобЫсбалансированную игру. Если хотя бы 1 человек отклонит голосование, то голосование не пройдёт."
     "teamSwitch_cooldown"                           "Команда перехода во вражескую команду перезаряжается."
+
+    // Duel
+
+    "duel_cant_swap"                                "Во время дуели билд сменить нельзя!"
+    "duel_10_sec_to_begin"                          "10 до начала дуэля!"
+    "duel_10_sec_to_end"                            "10 до конца дуэля!"
+    "duel_next_duel"                                "Дуель: "
+    "duel_nobody_wins"                              "Ничья: "
+    "duel_start"                                    "Дуел начался!"
+    "duel_end"                                      "Дуель закончился!"
+    "duel_draw"                                     "Дуель закончился!"
 }

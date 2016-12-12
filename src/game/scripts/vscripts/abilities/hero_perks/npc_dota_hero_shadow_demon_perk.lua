@@ -6,11 +6,11 @@
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_shadow_demon_perk", "abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_shadow_demon_perk == nil then npc_dota_hero_shadow_demon_perk = class({}) end
+if npc_dota_hero_shadow_demon_perk ~= "" then npc_dota_hero_shadow_demon_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_shadow_demon_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_shadow_demon_perk == nil then modifier_npc_dota_hero_shadow_demon_perk = class({}) end
+if modifier_npc_dota_hero_shadow_demon_perk ~= "" then modifier_npc_dota_hero_shadow_demon_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:IsPassive()
 	return true
@@ -24,6 +24,10 @@ function modifier_npc_dota_hero_shadow_demon_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_shadow_demon_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_demon_perk:OnCreated(keys)
 	-- Hard-coded due to being used in a listener for items purchased. 
 	self.limitedItems = {
@@ -33,13 +37,13 @@ function modifier_npc_dota_hero_shadow_demon_perk:OnCreated(keys)
 		item_gem = true,
 		item_courier = true,
 		item_flying_courier = true,
-		item_infused_raindrop = true
+		item_infused_raindrop = true,
 	}
 
 	ListenToGameEvent("dota_item_purchased", function(keys)
 		local caster = self:GetCaster()
 		local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
-		if hero == caster and self.limitedItems[keys.itemname] then
+		if hero == caster and self.limitedItems[keys.itemname] and hero:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") then
 			print("Shadow demon is supporting hard!")
 			local modifierName = self:GetName()
 			local stacks = self:GetStackCount()
@@ -53,9 +57,10 @@ function modifier_npc_dota_hero_shadow_demon_perk:DeclareFunctions()
 	return { 
 	MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 	MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS  
+	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS
 	}
 end
+
 --------------------------------------------------------------------------------------------------------
 function perkShadowDemon(filterTable)
 	local units = filterTable["units"]
@@ -68,32 +73,48 @@ function perkShadowDemon(filterTable)
 	local target = EntIndexToHScript(targetIndex)
 
 	if abilityIndex then
-		if order_type == DOTA_UNIT_ORDER_SELL_ITEM then
-			local seller = EntIndexToHScript(units["0"])
-			if ability:GetAbilityName() == "item_ward_dispenser" then
-				seller:DisassembleItem(ability)
-				print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
-			elseif ability:HasAbilityFlag("limited") then 
-				local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
-				if modifier then
-					local stacks = modifier:GetStackCount()
-					local charges = ability:GetCurrentCharges()
-					if charges == 0 then charges = 1 end
-					seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+		if order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability then
+			local seller = ability:GetPurchaser()
+			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") then
+				if seller:IsAlive() or GameRules:GetGameTime() - ability:GetPurchaseTime() < 10 then
+					if ability:GetAbilityName() == "item_ward_dispenser" then
+						seller:DisassembleItem(ability)
+						print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+					elseif ability:HasAbilityFlag("limited") then 
+						local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
+						if modifier then
+							print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+							local stacks = modifier:GetStackCount()
+							local charges = ability:GetCurrentCharges()
+							if charges == 0 or ability:GetAbilityName() == "item_infused_raindrop" then charges = 1 end
+							seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+						end
+					end
+				else
+					print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+					return false
 				end
 			end
-		elseif order_type == DOTA_UNIT_ORDER_GIVE_ITEM and not target:HasInventory() then
-			local seller = EntIndexToHScript(units["0"])
-			if ability:GetAbilityName() == "item_ward_dispenser" then
-				seller:DisassembleItem(ability)
-				print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
-			elseif ability:HasAbilityFlag("limited") then
-				local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
-				if modifier then
-					local stacks = modifier:GetStackCount()
-					local charges = ability:GetCurrentCharges()
-					if charges == 0 then charges = 1 end
-					seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+		elseif order_type == DOTA_UNIT_ORDER_GIVE_ITEM and not target:HasInventory() and ability then
+			local seller = ability:GetPurchaser()
+			if seller:HasModifier("modifier_npc_dota_hero_shadow_demon_perk") then
+				if seller:IsAlive() or GameRules:GetGameTime() - ability:GetPurchaseTime() < 10 then
+					if ability:GetAbilityName() == "item_ward_dispenser" then
+						seller:DisassembleItem(ability)
+						print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+					elseif ability:HasAbilityFlag("limited") then 
+						local modifier = seller:FindModifierByName("modifier_npc_dota_hero_shadow_demon_perk")
+						if modifier then
+							print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+							local stacks = modifier:GetStackCount()
+							local charges = ability:GetCurrentCharges()
+							if charges == 0 or ability:GetAbilityName() == "item_infused_raindrop" then charges = 1 end
+							seller:SetModifierStackCount(modifier:GetName(), modifier:GetAbility(), stacks - charges)
+						end
+					end
+				else
+					print("Shadow Demon is trying to abuse game mechanics to gain an advantage, but is failing miserably!")
+					return false
 				end
 			end
 		end

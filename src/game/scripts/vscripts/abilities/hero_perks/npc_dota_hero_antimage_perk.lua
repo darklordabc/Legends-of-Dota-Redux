@@ -7,17 +7,25 @@
 LinkLuaModifier( "modifier_npc_dota_hero_antimage_perk", "abilities/hero_perks/npc_dota_hero_antimage_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_antimage_silence", "abilities/hero_perks/npc_dota_hero_antimage_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_antimage_perk == nil then npc_dota_hero_antimage_perk = class({}) end
+if npc_dota_hero_antimage_perk ~= "" then npc_dota_hero_antimage_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_antimage_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_antimage_perk == nil then modifier_npc_dota_hero_antimage_perk = class({}) end
+if modifier_npc_dota_hero_antimage_perk ~= "" then modifier_npc_dota_hero_antimage_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_antimage_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_antimage_perk:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_antimage_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_antimage_perk:RemoveOnDeath()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
@@ -52,7 +60,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Phase Modifier: 	modifier_npc_dota_hero_antimage_silence		
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_antimage_silence == nil then modifier_npc_dota_hero_antimage_silence = class({}) end
+if modifier_npc_dota_hero_antimage_silence ~= "" then modifier_npc_dota_hero_antimage_silence = class({}) end
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_antimage_silence:CheckState()

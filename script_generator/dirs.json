@@ -13,16 +13,22 @@
 		"dota/game/panorama/images",
 		"dota/game/panorama/images/custom_game",
 		"dota/game/panorama/images/custom_game/flags",
+		"dota/game/panorama/images/custom_game/loading_screens",
 		
 		"dota/game/panorama/layout",
 		"dota/game/panorama/layout/custom_game",
 		
 		"dota/game/panorama/scripts",
-		"dota/game/panorama/scripts/custom_game"
+		"dota/game/panorama/scripts/custom_game",
+		
+		"dota/content/soundevents"
 	],
 
 	"linkDirs" : [
 		{ "link": "../dota/game/maps", "dir": "../src/game/maps" },
+		{ "link": "../dota/content/materials", "dir": "../src/content/materials" },
+		{ "link": "../dota/content/models", "dir": "../src/content/models" },
+		{ "link": "../dota/content/textures", "dir": "../src/content/textures" },
 
 		{ "link": "../dota/game/addoninfo.txt", "dir": "../src/game/addoninfo.txt" },
 
@@ -43,6 +49,8 @@
 
 		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
 		{ "link": "../dota/content/particles", "dir": "../src/content/particles" },
+		
+		{ "link": "../dota/content/soundevents", "dir": "../src/content/soundevents" },
 
 		{ "link": "../dota/game/resource/flash3", "dir": "../src/game/resource/flash3" },
 		{ "link": "../dota/game/resource/overviews", "dir": "../src/game/resource/overviews" },
@@ -63,8 +71,11 @@
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
 
 		{ "link": "../dota/game/panorama/images/custom_game/flags", "dir": "../src/game/panorama/images/custom_game/flags" },
+		{ "link": "../dota/game/panorama/images/custom_game/loading_screens", "dir": "../src/game/panorama/images/custom_game/loading_screens" },
 		
 		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/custom_tooltip.vxml_c", "dir": "../src/game/panorama/layout/custom_game/custom_tooltip.vxml_c" },
 		
 		{ "link": "../dota/game/panorama/layout/custom_game/all_random_build.vxml_c", "dir": "../src/game/panorama/layout/custom_game/all_random_build.vxml_c" },
 		{ "link": "../dota/game/panorama/scripts/custom_game/all_random_build.vjs_c", "dir": "../src/game/panorama/scripts/custom_game/all_random_build.vjs_c" }

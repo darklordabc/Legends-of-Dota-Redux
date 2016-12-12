@@ -2,8 +2,11 @@
 $.GetContextPanel().isFavorite = false;
 var buildData = null;
 
+// Tags for filter
+var searchTags = [];
+
 function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
-    var buildVariant = balanceMode == 1 ? build.Balanced : build.Unbalanced;
+    var buildVariant = balanceMode === 1 ? build.Balanced : build.Unbalanced;
 
     // Get abilities array from JSON string
     var curBuild = JSON.parse(buildVariant.replace(/'/g, '"'))
@@ -22,6 +25,9 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         } else {
             slot.visible = false;
         }
+
+        // Add abilities names
+        searchTags.push($.Localize('DOTA_Tooltip_ability_' + slot.abilityname).toLowerCase());
     }
 
     // Set hero image
@@ -30,11 +36,17 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     heroImageCon.SetAttributeString('heroName', build.Hero);
     makeHeroSelectable(heroImageCon);
 
+    // Add hero name
+    searchTags.push($.Localize(build.Hero).toLowerCase());
+
     // Set the title
     var titleLabel = $('#buildName');
     if(build.Title != null) {
         titleLabel.text = $.Localize(build.Title);
         titleLabel.visible = true;
+
+        // Add title
+        searchTags.push(titleLabel.text.toLowerCase());
     } else {
         titleLabel.visible = false;
     }
@@ -127,6 +139,15 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     heroImageCon.SetHasClass('takenHero', heroFilterInfo.takenHero);
 }
 
+function updateSearchFilter( searchStr ) {
+    if (searchStr == '' || searchStr == undefined || searchStr == null)
+        $.GetContextPanel().visible = true;
+
+    $.GetContextPanel().visible = searchTags.filter(function(tag){
+        return tag.indexOf(searchStr) != -1;
+    }).length > 0;
+}
+
 // When this panel loads
 (function()
 {
@@ -138,4 +159,5 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     mainPanel.updateFilters = updateFilters;
     mainPanel.setFavorite = setFavorite;
     mainPanel.onClickFav = onClickFav;
+    mainPanel.updateSearchFilter = updateSearchFilter;
 })();

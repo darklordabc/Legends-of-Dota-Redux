@@ -5,6 +5,7 @@
 	Additional parameters: keys.FadeTime
 ]]
 function modifier_invoker_retro_invisibility_aura_on_interval_think(keys)
+	if keys.caster:PassivesDisabled() then return end
 	local quas_ability = keys.caster:FindAbilityByName("invoker_retro_invisibility_aura")
 	
 	if keys.ability == nil then   --If Invisibility Aura is not invoked anymore, or if it was re-invoked and the old keys.ability no longer exists.

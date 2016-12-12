@@ -8,11 +8,11 @@ LinkLuaModifier( "modifier_npc_dota_hero_templar_assassin_perk", "abilities/hero
 LinkLuaModifier( "modifier_npc_dota_hero_templar_assassin_invis_break", "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_templar_assassin_invis", "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_templar_assassin_perk == nil then npc_dota_hero_templar_assassin_perk = class({}) end
+if npc_dota_hero_templar_assassin_perk ~= "" then npc_dota_hero_templar_assassin_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --      Modifier: modifier_npc_dota_hero_templar_assassin_perk              
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_templar_assassin_perk == nil then modifier_npc_dota_hero_templar_assassin_perk = class({}) end
+if modifier_npc_dota_hero_templar_assassin_perk ~= "" then modifier_npc_dota_hero_templar_assassin_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:IsPassive()
     return true
@@ -20,6 +20,10 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:IsHidden()
     return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_templar_assassin_perk:IsPurgable()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_perk:OnCreated(keys)
@@ -61,7 +65,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --      Modifier: modifier_npc_dota_hero_templar_assassin_invis_break               
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_templar_assassin_invis_break == nil then modifier_npc_dota_hero_templar_assassin_invis_break = class({}) end
+if modifier_npc_dota_hero_templar_assassin_invis_break ~= "" then modifier_npc_dota_hero_templar_assassin_invis_break = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_invis_break:IsHidden()
     return false
@@ -78,7 +82,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --      Modifier: modifier_npc_dota_hero_templar_assassin_invis          
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_templar_assassin_invis == nil then modifier_npc_dota_hero_templar_assassin_invis = class({}) end
+if modifier_npc_dota_hero_templar_assassin_invis ~= "" then modifier_npc_dota_hero_templar_assassin_invis = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_templar_assassin_invis:DeclareFunctions()
     return { 

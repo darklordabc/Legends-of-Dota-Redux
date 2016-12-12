@@ -1,0 +1,40 @@
+<root>
+	<styles>	
+		<include src="file://{resources}/styles/custom_game/picker.css" />
+	</styles>
+
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/picker.js" /> 
+	</scripts>
+
+	<snippets>
+		<snippet name="category">
+			<Panel class="category">
+			    <Label id="categoryName" />
+				<Panel id="categoryContent" />
+			</Panel>
+		</snippet>
+
+		<snippet name="categoryIcon">
+			<Panel class="categoryIcon">
+			    <Image id="icon" />
+			</Panel>
+		</snippet>
+
+		<snippet name="ability">
+			<Panel class="abilityContainer">
+			    <DOTAAbilityImage id="abilityIcon" />
+			</Panel>
+		</snippet>		
+	</snippets>
+
+	<Panel class="pickerRoot">
+		<Panel id="pickerArea" />
+		<Panel id="sliderArea">
+			<Panel class="categoryIcon">
+			    <Image id="icon" src="file://{images}/custom_game/picker/all.png" onactivate="showAllCategories()" />
+			</Panel>	
+			<Panel id="slider" class="slider" /> 
+		</Panel>		
+	</Panel>
+</root>

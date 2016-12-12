@@ -9,7 +9,7 @@ function checkForHero() {
     // Game is bugged, or something is wrong, get out of here!
     if(myInfo == null) return;
 
-    if(myInfo.player_selected_hero.length <= 0) {
+    if(myInfo.player_selected_hero.length <= 0 || !Players.GetPlayerSelectedHero( playerID ) || Players.GetPlayerSelectedHero( playerID ) <= 0) {
         // Request a hero
         GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
 
@@ -24,4 +24,13 @@ function checkForHero() {
 (function() {
     // Check if we have a hero yet
     checkForHero();
+    GameEvents.Subscribe("lodSpawningQueue", function (args) {
+        var queue = (Players.GetLocalPlayer() - args.queue);
+
+        if (queue == 0) {
+            $("#loadingLabel").text = "Spawning...";
+        } else {
+            $("#loadingLabel").text = "You are queued for spawn: " + queue;
+        }
+    });
 })();

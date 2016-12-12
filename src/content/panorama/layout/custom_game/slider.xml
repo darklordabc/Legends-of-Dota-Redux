@@ -2,7 +2,7 @@
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
         <include src="s2r://panorama/styles/play.vcss_c" />
-        <include src="file://{resources}/styles/custom_game/game_setup.css" />
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
 	</styles>
 
 	<Panel class="optionsSlotPanelSlider">

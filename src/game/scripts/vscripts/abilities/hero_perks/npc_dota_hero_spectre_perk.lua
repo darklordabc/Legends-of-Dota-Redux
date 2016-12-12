@@ -7,17 +7,21 @@
 LinkLuaModifier( "modifier_npc_dota_hero_spectre_perk", "abilities/hero_perks/npc_dota_hero_spectre_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_spectre_phased", "abilities/hero_perks/npc_dota_hero_spectre_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_spectre_perk == nil then npc_dota_hero_spectre_perk = class({}) end
+if npc_dota_hero_spectre_perk ~= "" then npc_dota_hero_spectre_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_spectre_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_spectre_perk == nil then modifier_npc_dota_hero_spectre_perk = class({}) end
+if modifier_npc_dota_hero_spectre_perk ~= "" then modifier_npc_dota_hero_spectre_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spectre_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spectre_perk:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_spectre_perk:IsPurgable()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
@@ -44,7 +48,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Phase Modifier: 	modifier_npc_dota_hero_spectre_phased		
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_spectre_phased == nil then modifier_npc_dota_hero_spectre_phased = class({}) end
+if modifier_npc_dota_hero_spectre_phased ~= "" then modifier_npc_dota_hero_spectre_phased = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spectre_phased:CheckState()
 	local state = {

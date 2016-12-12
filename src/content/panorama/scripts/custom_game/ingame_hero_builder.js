@@ -1,5 +1,7 @@
 "use strict";
 
+var util = GameUI.CustomUIConfig().Util;
+
 // Have we spawned a hero builder?
 var spawnedHeroBuilder = false;
 
@@ -11,8 +13,10 @@ function showIngameBuilder() {
 
         // Spawn the hero builder
         heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
-        heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup.xml', false, false);
+        heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
         heroBuilderPanel.isIngameBuilder = true;
+
+        util.blockMouseWheel(heroBuilderPanel);
 
         // Boot it into selection mode
         // heroBuilderPanel.SetHasClass('phase_ingame', true);
@@ -28,13 +32,16 @@ function showIngameBuilder() {
             heroBuilderPanel.FindChildTraverse("balanceModePointsHeroes").SetHasClass("balanceModeDisabled", !balanceMode);
             heroBuilderPanel.FindChildTraverse("balanceModePointsSkills").SetHasClass("balanceModeDisabled", !balanceMode);
         }
+
+        heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
+
         // Hide the hero selection when spawn hero is pressed
         GameEvents.Subscribe('lodNewHeroBuild', function() {
             $('#heroBuilderDisplay').visible = false;
         });
 
         // Make it visible
-        $('#heroBuilderDisplay').visible = true; 
+        $('#heroBuilderDisplay').visible = true;       
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
     }

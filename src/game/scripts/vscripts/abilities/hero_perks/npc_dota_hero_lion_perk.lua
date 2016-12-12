@@ -6,11 +6,11 @@
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_lion_perk", "abilities/hero_perks/npc_dota_hero_lion_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_lion_perk == nil then npc_dota_hero_lion_perk = class({}) end
+if npc_dota_hero_lion_perk ~= "" then npc_dota_hero_lion_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_lion_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_lion_perk == nil then modifier_npc_dota_hero_lion_perk = class({}) end
+if modifier_npc_dota_hero_lion_perk ~= "" then modifier_npc_dota_hero_lion_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lion_perk:IsPassive()
 	return true
@@ -21,6 +21,10 @@ function modifier_npc_dota_hero_lion_perk:IsHidden()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lion_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_lion_perk:IsPurgable()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
@@ -40,7 +44,7 @@ function modifier_npc_dota_hero_lion_perk:OnTakeDamage(keys)
 		local target = keys.target
 		local attacker = keys.attacker
 		if attacker == caster then
-			if ability then 
+			if ability and not ability:HasAbilityFlag("attack_modifier") then 
 				self.ability = ability 
 			else
 				self.ability = nil
@@ -58,7 +62,7 @@ function modifier_npc_dota_hero_lion_perk:OnHeroKilled(keys)
 
 		if attacker == caster and self.ability then
 			local ability = caster:FindAbilityByName(self.ability:GetName())
-			if ability then
+			if ability and not ability:HasAbilityFlag("attack_modifier") then
 				local prt = ParticleManager:CreateParticle('particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf', PATTACH_ABSORIGIN_FOLLOW, caster)
 				ParticleManager:ReleaseParticleIndex(prt)
 				-- Refunds manacost

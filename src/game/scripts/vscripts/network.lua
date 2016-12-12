@@ -73,6 +73,7 @@ function Network:setSelectedHero(playerID, heroName)
         heroName = heroName,
         playerID = playerID
     })
+    CustomGameEventManager:Send_ServerToAllClients("lodPreloadHeroPanel", {heroName = heroName})
 end
 
 -- Sets a player's selected primary attribute

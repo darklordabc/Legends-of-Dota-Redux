@@ -1,4 +1,7 @@
 "use strict";
+
+var util = GameUI.CustomUIConfig().Util;
+
 GameEvents.Subscribe("vote_dialog", show_vote_dialog);
 GameEvents.Subscribe("player_declined", player_declined);
 GameEvents.Subscribe("player_accepted", player_accepted);
@@ -84,3 +87,7 @@ function halt_transition(el, c) {
     $(el).RemoveClass(c);
     $(el).RemoveClass('forever');
 }
+
+(function () {
+    util.blockMouseWheel($("#vote_dialog"));   
+})();

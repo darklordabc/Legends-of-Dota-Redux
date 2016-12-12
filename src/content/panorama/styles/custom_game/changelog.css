@@ -176,8 +176,6 @@
 	text-overflow: clip;
 	width:	fill-parent-flow(1.0);
 	font-family: Radiance;
-
-	text-align: justify;
 }
 
 .displayHeader
@@ -273,7 +271,7 @@
 
 #submitButton {
     max-height: 30px;
-    max-width: 100px;
+    width: fit-children;
 
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #599e5e ), to( #406d55 ) );
 

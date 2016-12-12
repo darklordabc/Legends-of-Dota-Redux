@@ -1,3 +1,27 @@
+--[[for k,v in pairs(_G) do
+  print('key ', k, 'value ', v)
+end
+old_print = print
+print = function(...)
+    local calling_script = debug.getinfo(2).short_src
+    old_print('Print called by: '..calling_script)
+    old_print(...)
+end
+
+
+
+--[   VScript ]: key 	ScriptDebugTextTrace	value 	function: 0x0333db48
+--[   VScript ]: key 	SendToServerConsole	value 	function: 0x032bbfd0
+--key 	PrintLinkedConsoleMessage	value 	function: 0x032bc058
+old_error = PrintLinkedConsoleMessage
+PrintLinkedConsoleMessage = function(...)
+    --local calling_script = debug.getinfo(2).short_src
+    print('Print called by: ') --..calling_script)
+    old_error(...)
+end
+]]
+--error('asfasdf')
+
 -- Libraries
 local constants = require('constants')
 local network = require('network')
@@ -11,6 +35,12 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
+local localStorage = require("ModDotaLib.LocalStorage")
+require('lib/wearables')
+
+require('lib/util_aar')
+
+require('chat')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -55,6 +85,7 @@ function Pregame:init()
 
     -- Stores the total bans for each player
     self.usedBans = {}
+    self.playerBansList = {}
 
     self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
@@ -175,6 +206,16 @@ function Pregame:init()
         this:onPlayerBan(eventSourceIndex, args)
     end)
 
+    -- Player wants to save bans
+    CustomGameEventManager:RegisterListener('lodSaveBans', function(eventSourceIndex, args)
+        this:onPlayerSaveBans(eventSourceIndex, args)
+    end)
+
+    -- Player wants to load bans
+    CustomGameEventManager:RegisterListener('lodLoadBans', function(eventSourceIndex, args)
+        this:onPlayerLoadBans(eventSourceIndex, args)
+    end)
+
     -- Player wants to ready up
     CustomGameEventManager:RegisterListener('lodReady', function(eventSourceIndex, args)
         this:onPlayerReady(eventSourceIndex, args)
@@ -210,6 +251,9 @@ function Pregame:init()
 
     -- Init debug
     Debug:init()
+    
+    -- Init chat
+    Chat:Init()
 
     -- Fix spawning issues
     self:fixSpawningIssues()
@@ -223,8 +267,16 @@ function Pregame:init()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionMirrorHeroes', 25)
+    self:setOption('lodOptionDraftAbilities', 25)
     self:setOption('lodOptionCreepPower', 0)
+
+	Timers:CreateTimer(function()
+		if util:isSinglePlayerMode() then
+			self:setOption('lodOptionBanningUseBanList', 0, true)
+		else
+			self:setOption('lodOptionBanningUseBanList', 1, true)
+		end
+	end, DoUniqueString('checkSinglePlayer'), 1.5)
 
     -- Map enforcements
     local mapName = GetMapName()
@@ -676,12 +728,6 @@ function Pregame:onThink()
         -- Start tutorial mode so we can show tips to players
         Tutorial:StartTutorialMode()
 
-        -- Spawn all humans
-        Timers:CreateTimer(function()
-            -- Spawn all players
-        	this:spawnAllHeroes()
-        end, DoUniqueString('spawnbots'), 0.1)
-
         -- Add extra towers
         Timers:CreateTimer(function()
             this:addExtraTowers()
@@ -692,10 +738,18 @@ function Pregame:onThink()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
 
-        -- Init ingame stuff
+        -- Spawn all players
         Timers:CreateTimer(function()
-            ingame:onStart()
-        end, DoUniqueString('preventcamping'), 1)
+            this:spawnAllHeroes(function (  )
+                -- Init ingame stuff
+                Timers:CreateTimer(function()
+                    -- Load messages
+                    SU:LoadPlayersMessages()
+
+                    ingame:onStart()
+                end, DoUniqueString('preventcamping'), 0)
+            end)
+        end, DoUniqueString('spawnplayers'), 5.0)
     end
 end
 
@@ -733,60 +787,69 @@ function Pregame:onGetPlayerData(playerDataBySteamID)
 end
 
 -- Spawns all heroes (this should only be called once!)
-function Pregame:spawnAllHeroes()
+function Pregame:spawnAllHeroes(onSpawned)
     local minPlayerID = 0
     local maxPlayerID = 24
 
-    -- Loop over all playerIDs
-    for playerID = minPlayerID,maxPlayerID-1 do
-    	-- Attempt to spawn the player
-    	self:spawnPlayer(playerID)
+    self.spawnQueueID = -1
+    self.spawnDelay = 2.5
+
+    if IsInToolsMode() then
+        self.spawnDelay = 0
     end
+
+    self.playerQueue = function ()
+        PauseGame(true)
+        self.spawnQueueID = self.spawnQueueID + 1
+
+        -- Update queue info
+        CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
+
+        -- End pause if every player is checked
+        if self.spawnQueueID > 24 then
+            PauseGame(false)
+            self.spawnQueueID = nil
+            self.heroesSpawned = true
+            onSpawned()
+            return
+        end
+
+        -- Skip disconnected players
+        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+            self.playerQueue()
+            return
+        end
+
+        -- Keep spawning
+        Timers:CreateTimer(function()
+            self:spawnPlayer(self.spawnQueueID, self.playerQueue)
+        end, DoUniqueString('playerSpawn'), self.spawnDelay)
+    end
+
+    self.playerQueue()
 end
 
 -- Spawns a given player
-function Pregame:spawnPlayer(playerID)
+function Pregame:spawnPlayer(playerID, callback)
     -- Is there a player in this slot?
     if PlayerResource:GetConnectionState(playerID) >= 1 then
-        -- There is, go ahead and build this player
-
         -- Only spawn a hero for a given player ONCE
         if self.spawnedHeroesFor[playerID] then return end
         self.spawnedHeroesFor[playerID] = true
 
-        -- Insert the player for spawning
-        table.insert(self.spawnQueue, playerID)
+        self.currentlySpawning = true
 
         -- Actually spawn the player
-        self:actualSpawnPlayer()
+        self:actualSpawnPlayer(playerID, callback)
     end
 end
 
-function Pregame:actualSpawnPlayer()
-    -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
-
-    -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
-    self.currentlySpawning = true
-
+function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
-        -- Done spawning, start the next one
-        this.currentlySpawning = false
-
-        -- Continue actually spawning
-        this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
-
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
-        -- Grab a player to spawn
-        local playerID = table.remove(this.spawnQueue, 1)
-
         -- Don't allow a player to get two heroes
         if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
         	return
@@ -802,11 +865,14 @@ function Pregame:actualSpawnPlayer()
 
             function spawnTheHero()
                 local status2,err2 = pcall(function()
+
                     -- Create the hero and validate it
+                    print(heroName)
                     local hero = CreateHeroForPlayer(heroName, player)
+                    -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-                        
+
                         buildBackups[playerID] = build
 
                         -- Do they have a custom attribute set?
@@ -839,21 +905,24 @@ function Pregame:actualSpawnPlayer()
                 end
             end
 
-            if this.cachedPlayerHeroes[playerID] then
-                -- Directly spawn the hero
-                spawnTheHero()
-            else
-                -- Already cached this player's hero
+            self.currentlySpawning = false
+
+            PrecacheUnitByNameAsync(heroName, function()
                 this.cachedPlayerHeroes[playerID] = true
 
-                -- Attempt to precache their hero
-                PrecacheUnitByNameAsync(heroName, function()
-                    spawnTheHero()
-                end, playerID)
-            end
+                spawnTheHero()
+
+                if callback then
+                    callback()
+                end
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            if callback then
+                callback()
+            end
         end
     end)
 
@@ -1250,6 +1319,10 @@ end
 function Pregame:onIngameBuilder(eventSourceIndex, args)
     local playerID = args.playerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if duel_active or hero:HasModifier("modifier_tribune") then
+        customAttension("#duel_cant_swap", 5)
+        return
+    end
     if IsValidEntity(hero) and hero:IsAlive() then
         local player = PlayerResource:GetPlayer(playerID)
         network:showHeroBuilder(player)
@@ -1282,16 +1355,20 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
         banning = function(choice)
             return choice == 1 or choice == 0
         end,
-		
+
 		faststart = function(choice)
             return choice == 1 or choice == 0
         end,
-		
+
 		balancemode = function(choice)
             return choice == 1 or choice == 0
         end,
 
         strongtowers = function(choice)
+            return choice == 1 or choice == 0
+        end,
+
+        duels = function(choice)
             return choice == 1 or choice == 0
         end
     }
@@ -1371,10 +1448,14 @@ function Pregame:processVoteData()
         if results.banning == 1 then
           -- Option Voting
             self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 5, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 2, true)
             self.optionVotingBanning = 1
         else
           -- No option voting
             self:setOption('lodOptionBanning', 1, true)
+            self:setOption('lodOptionBanningMaxBans', 0, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
             self.optionVotingBanning = 0
         end
     end
@@ -1396,6 +1477,7 @@ function Pregame:processVoteData()
         if results.balancemode == 1 then
         	-- Disable Balance Mode
         	self:setOption('lodOptionBalanceMode', 0, true)
+            self:setOption('lodOptionAdvancedOPAbilities', 1, true)
             self.optionVotingBalanceMode = 1
         else
         	-- On by default
@@ -1414,6 +1496,17 @@ function Pregame:processVoteData()
             -- On by default
             self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
             self.optionVotingStrongTowers = 0
+        end
+    end
+    if results.duels ~= nil then
+        if results.duels == 1 then
+            -- Enable Strong Towers
+            self:setOption('lodOptionDuels', 1, true)
+            self.optionVotingDuels = 1
+        else
+            -- On by default
+            self:setOption('lodOptionDuels', 0, true)
+            self.optionVotingDuels = 0
         end
     end
 
@@ -1438,13 +1531,13 @@ function Pregame:loadTrollCombos()
     self.wtfAutoBan = tempBanList.wtfAutoBan
     self.OPSkillsList = tempBanList.OPSkillsList
     self.noHero = tempBanList.noHero
-    self.lodBanList = tempBanList.lodBanList
+    self.SuperOP = tempBanList.SuperOP
     self.doNotRandom = tempBanList.doNotRandom
 
-    -- All OP skills should be added to the LoD ban list
-    for skillName,_ in pairs(self.OPSkillsList) do
-        self.lodBanList[skillName] = 1
-    end
+    -- All SUPER OP skills should be added to the OP ban list
+    --for skillName,_ in pairs(self.lodBanList) do
+    --    self.OPSkillsList[skillName] = 1
+    --end
 
     -- Bans a skill combo
     local function banCombo(a, b)
@@ -1455,7 +1548,7 @@ function Pregame:loadTrollCombos()
         -- Store the ban
         self.banList[a][b] = true
         self.banList[b][a] = true
-        
+
         network:addTrollCombo(a,b)
     end
 
@@ -1518,23 +1611,23 @@ function Pregame:isTrollCombo(build)
     return false
 end
 
--- Tests a build to see if there's enough spells for 
+-- Tests a build to see if there's enough spells for
 function Pregame:notEnoughPoints(build)
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
     local spent = 0
-    
+
     -- Calculate points spent
     for i=1,maxSlots do
         local abil = build[i]
         if abil then
-            local cost = self.spellCosts[abil] 
+            local cost = self.spellCosts[abil]
             if not cost then
                 cost = 0
             end
             spent = spent + cost
         end
     end
-    
+
     -- Check to see if we exceed 100
     if spent > constants.BALANCE_MODE_POINTS then
         return true, spent - constants.BALANCE_MODE_POINTS
@@ -1639,7 +1732,7 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft hero selection
-        lodOptionMirrorHeroes = function(value)
+        lodOptionDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -1715,11 +1808,11 @@ function Pregame:initOptionSelector()
         end,
 
         -- Common mirror draft hero selection
-        lodOptionCommonMirrorHeroes = function(value)
+        lodOptionCommonDraftAbilities = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
-            if value < 1 or value > 50 then return false end
+            if value < 9 or value > 400 then return false end
 
             -- Valid
             return true
@@ -1734,14 +1827,12 @@ function Pregame:initOptionSelector()
                 -- Enable balance mode bans and disable other lists
                 self:setOption('lodOptionBalanceMode', 1, true)
 				self:setOption('lodOptionBanningBalanceMode', 1, true)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 0, true)
 
                 return true
             elseif value == 0 then
                 -- Disable balance mode bans and renable default bans
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
-				self:setOption('lodOptionBanningUseBanList', 1, true)
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                 return true
             end
@@ -1753,6 +1844,11 @@ function Pregame:initOptionSelector()
         lodOptionBanningBalanceMode = function(value)
             if self.optionStore['lodOptionGamemode'] == 1 then return value == 1 end
 
+            return value == 0 or value == 1
+        end,
+
+        -- Gamemode - Duel
+        lodOptionDuels = function(value)
             return value == 0 or value == 1
         end,
 
@@ -1898,7 +1994,7 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Stronger Towers
         lodOptionGameSpeedStrongTowers = function(value)
-            if self.optionStore['lodOptionCreepPower'] == 0 then 
+            if self.optionStore['lodOptionCreepPower'] == 0 then
                 self:setOption('lodOptionCreepPower', 120, true)
             end
 
@@ -1924,6 +2020,11 @@ function Pregame:initOptionSelector()
 
             -- Valid
             return true
+        end,
+
+		-- Bots Bonus Points
+        lodOptionBotsBonusPoints = function(value)
+            return value == 0 or value == 1
         end,
 
         -- Bots -- Desired number of dire players
@@ -1995,6 +2096,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2
         end,
 
+        -- Bots -- Unique Skills
+        lodOptionBotsRestrict = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end,
+
         -- Other -- No Fountain Camping
         lodOptionCrazyNoCamping = function(value)
             return value == 0 or value == 1
@@ -2019,11 +2125,26 @@ function Pregame:initOptionSelector()
         lodOptionCrazyWTF = function(value)
             return value == 0 or value == 1
         end,
-		
+
 		-- Other -- Fat-O-Meter
         lodOptionCrazyFatOMeter = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
+        end,   
+
+        -- Other - Refresh Cooldowns on Death
+        lodOptionRefreshCooldownsOnDeath = function(value)
+            return value == 0 or value == 1
         end,
+
+        -- Other - 322
+        lodOption322 = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Other -- Gotta Go Fast!
+        lodOptionGottaGoFast = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3
+        end, 
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
@@ -2060,12 +2181,17 @@ function Pregame:initOptionSelector()
                 -- Max ults is copied
                 self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
 
-                -- Set Draft Heroes to 25
-                self:setOption('lodOptionCommonMirrorHeroes', 25, true)
+                -- Set Draft Abilities to 100
+                self:setOption('lodOptionCommonDraftAbilities', 100, true)
 
                 -- Balance Mode disabled by default
                 self:setOption('lodOptionBalanceMode', 0, true)
-                
+
+                -- Mutators disabled by default
+                self:setOption('lodOptionDuels', 0, false)
+                self:setOption('lodOption322', 0, false)
+                self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
+
                 -- Balance Mode Ban List disabled by default
                 self:setOption('lodOptionBanningBalanceMode', 0, true)
                 self:setOption('lodOptionBalanceMode', 0, false)
@@ -2075,6 +2201,9 @@ function Pregame:initOptionSelector()
 
                 -- Block troll combos is always on
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+
+				-- Bots get bonus points by default
+                self:setOption('lodOptionBotsBonusPoints', 1, true)
 
                 -- Default, we don't ban all invisiblity
                 self:setOption('lodOptionBanningBanInvis', 0, true)
@@ -2138,6 +2267,9 @@ function Pregame:initOptionSelector()
                 -- Unique Skills default
                 self:setOption('lodOptionBotsUniqueSkills', 0, true)
 
+                -- Restrict Skills default
+                self:setOption('lodOptionBotsRestrict', 0, true)
+
                 -- Hide enemy picks
                 self:setOption('lodOptionAdvancedHidePicks', 1, true)
 
@@ -2167,18 +2299,24 @@ function Pregame:initOptionSelector()
 
                 -- Disable ingame hero builder
                 self:setOption('lodOptionIngameBuilder', 0, true)
-				
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
+
+				-- Enable Perks
+                self:setOption('lodOptionDisablePerks', 0, false)
+
 				-- Disable Fat-O-Meter
 				self:setOption("lodOptionCrazyFatOMeter", 0)
-				self:setOption("lodOptionIngameBuilderPenalty", 0)
+
+                -- Normal speed
+                self:setOption("lodOptionGottaGoFast", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
-                    self:setOption('lodOptionBanningUseBanList', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+					self:setOption('lodOptionBotsBonusPoints', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
@@ -2189,7 +2327,6 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
 
                     -- Turn easy mode on
                     --self:setOption('lodOptionCrazyEasymode', 1, true)
@@ -2207,6 +2344,8 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
+            else
+                self:setOption('lodOptionCommonGamemode', 1)
             end
         end,
 
@@ -2217,13 +2356,13 @@ function Pregame:initOptionSelector()
         end,
 
         -- Fast mirror draft
-        lodOptionMirrorHeroes = function()
-            self:setOption('lodOptionCommonMirrorHeroes', self.optionStore['lodOptionMirrorHeroes'], true)
+        lodOptionDraftAbilities = function()
+            self:setOption('lodOptionCommonDraftAbilities', self.optionStore['lodOptionDraftAbilities'], true)
         end,
 
         -- Common mirror draft heroes
-        lodOptionCommonMirrorHeroes = function()
-            self.maxDraftHeroes = self.optionStore['lodOptionCommonMirrorHeroes']
+        lodOptionCommonDraftAbilities = function()
+            self.maxDraftHeroes = self.optionStore['lodOptionCommonDraftAbilities']
         end
     }
 end
@@ -2343,6 +2482,32 @@ function Pregame:generateAllRandomBuilds()
     end
 end
 
+function Pregame:isAllowed( abilityName )
+    local cat = (self.flagsInverse[abilityName] or {}).category
+    local allowed = true
+
+    if cat == 'main' then
+        allowed = self.optionStore['lodOptionAdvancedHeroAbilities'] == 1
+    elseif cat == 'neutral' then
+        allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
+    elseif cat == 'custom' then
+        allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'OP' then
+        allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
+    end
+
+    if self.optionStore['lodOptionAdvancedHeroAbilities'] == 1 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 and self.optionStore['lodOptionAdvancedNeutralAbilities'] == 0 then
+        if not self.abilityHeroOwner[abilityName] then
+            allowed = false
+        end
+    end
+
+    if not allowed then
+        return false
+    end
+    return true
+end
+
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -2351,6 +2516,9 @@ function Pregame:buildDraftArrays()
 
     local maxDraftArrays = 12
 
+    local abilityDraftCount = self.optionStore['lodOptionCommonDraftAbilities']
+    self.maxDraftHeroes = math.max(3, math.ceil(abilityDraftCount / 4))
+
     if self.singleDraft then
         maxDraftArrays = 24
     end
@@ -2358,7 +2526,6 @@ function Pregame:buildDraftArrays()
     for draftID = 0,(maxDraftArrays - 1) do
         -- Create store for data
         local draftData = {}
-        self.draftArrays[draftID] = draftData
 
         local possibleHeroes = {}
         for k,v in pairs(self.allowedHeroes) do
@@ -2372,7 +2539,8 @@ function Pregame:buildDraftArrays()
         end
 
         local possibleSkills = {}
-        for abilityName,_ in pairs(self.flagsInverse) do
+        local possibleUlts = {}
+        for abilityName,abilityFlag in pairs(self.flagsInverse) do
             local shouldAdd = true
 
             -- check bans
@@ -2380,24 +2548,70 @@ function Pregame:buildDraftArrays()
                 shouldAdd = false
             end
 
+            -- check OP
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
+
+            -- check misc
+            if not self:isAllowed( abilityName ) then
+                shouldAdd = false
+            end
+
             -- Should we add it?
             if shouldAdd then
-                table.insert(possibleSkills, abilityName)
+                if abilityFlag.isUlt then
+                    table.insert(possibleUlts, abilityName)
+                else
+                    table.insert(possibleSkills, abilityName)
+                end
             end
         end
 
         -- Select random skills
         local abilityDraft = {}
-        for i=1,self.maxDraftSkills do
-            abilityDraft[table.remove(possibleSkills, math.random(#possibleSkills))] = true
+        local count = 0
+
+        for i=1,math.ceil(abilityDraftCount*0.75) do
+            local s
+            repeat
+                s = table.remove(possibleSkills, math.random(#possibleSkills))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
+        end
+
+        for i=1,math.ceil(abilityDraftCount*0.25) do
+            local s
+            repeat
+                s = table.remove(possibleUlts, math.random(#possibleUlts))
+            until 
+                not abilityDraft[s]
+
+            abilityDraft[s] = true
+
+            count = count + 1
+
+            if count >= abilityDraftCount then
+                break
+            end
         end
 
         -- Store data
-        draftData.heroDraft = heroDraft
         draftData.abilityDraft = abilityDraft
+        draftData.heroDraft = heroDraft
 
         -- Network data
         network:setDraftArray(draftID, draftData)
+
+        self.draftArrays[draftID] = draftData
     end
 end
 
@@ -2427,7 +2641,7 @@ function Pregame:precacheBuilds()
 
     local this = self
 
-    local totalToCache = #allPlayerIDs + #allSkills
+    local totalToCache = #allPlayerIDs -- + #allSkills
 
     function checkCachingComplete()
         totalToCache = totalToCache - 1
@@ -2445,50 +2659,30 @@ function Pregame:precacheBuilds()
     end
 
     function continueCachingHeroes()
-        --print('continue caching hero')
-
-        -- Any more to cache?
-        if #allPlayerIDs <= 0 then
-            --[[donePrecaching = true
-
-            -- Tell clients
-            network:donePrecaching()
-
-            -- Check for ready
-            this:checkForReady()]]
-            return
-        end
-
-        local playerID = table.remove(allPlayerIDs, 1)
-
-        if PlayerResource:IsValidPlayerID(playerID) then
-            local heroName = self.selectedHeroes[playerID]
-
-            if heroName then
-                -- Store that it is cached
-                this.cachedPlayerHeroes[playerID] = true
-
-                --print('Caching ' .. heroName)
-
-                PrecacheUnitByNameAsync(heroName, function()
-                    -- Are we done
-                    checkCachingComplete()
-                end, playerID)
-
-                -- Continue
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
-            else
-                Timers:CreateTimer(function()
-                    continueCachingHeroes()
-                end, DoUniqueString('keepCaching'), timerDelay)
+        Timers:CreateTimer(function()
+            if #allPlayerIDs <= 0 then
+                return
             end
-        else
-            Timers:CreateTimer(function()
+
+            local playerID = table.remove(allPlayerIDs, 1)
+
+            if PlayerResource:IsValidPlayerID(playerID) then
+                local heroName = self.selectedHeroes[playerID]
+
+                if heroName then
+                    this.cachedPlayerHeroes[playerID] = true
+
+                    PrecacheUnitByNameAsync(heroName, function()
+                        checkCachingComplete()
+                        continueCachingHeroes()
+                    end, playerID)
+                else
+                    continueCachingHeroes()
+                end
+            else
                 continueCachingHeroes()
-            end, DoUniqueString('keepCaching'), timerDelay)
-        end
+            end
+        end, DoUniqueString('precacheHack'), 1.0)
     end
 
     function continueCaching()
@@ -2512,8 +2706,16 @@ function Pregame:precacheBuilds()
     end
 
     -- Start caching process
-    continueCaching()
-    continueCachingHeroes()
+    -- continueCaching()
+    -- continueCachingHeroes()
+
+    donePrecaching = true
+
+    -- Tell clients
+    network:donePrecaching()
+
+    -- Check for ready
+    this:checkForReady()
 end
 
 
@@ -2623,11 +2825,31 @@ function Pregame:validateBuilds()
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
+    local this = self
+
     -- Loop over all playerIDs
     for playerID = minPlayerID,maxPlayerID-1 do
         -- Ensure they have a hero
         if not self.selectedHeroes[playerID] then
-            local heroName = self:getRandomHero()
+            local filter = function (  )
+                return true
+            end
+
+            if self.selectedPlayerAttr[playerID] == 'str' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'str'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'agi'
+                end
+            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'int'
+                end
+            end
+
+            local heroName = self:getRandomHero(filter)
             self.selectedHeroes[playerID] = heroName
             network:setSelectedHero(playerID, heroName)
 
@@ -2651,8 +2873,17 @@ function Pregame:validateBuilds()
             self.selectedSkills[playerID] = build
         end
 
+        local player = PlayerResource:GetPlayer(playerID)
+        local team = 0
+
+        if not player and self.botPlayers and self.botPlayers.all[playerID] then
+            team = self.botPlayers.all[playerID].team
+        elseif player then
+            team = player:GetTeam()
+        end
+
         for slot=1,maxSlots do
-            if not build[slot] then
+            if (self.optionStore['lodOptionBotsRestrict'] ~= 3 and ((self.optionStore['lodOptionBotsRestrict'] == 1 and team ~= DOTA_TEAM_GOODGUYS) or (self.optionStore['lodOptionBotsRestrict'] == 2 and team ~= DOTA_TEAM_BADGUYS))) or ((not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot]) then
                 -- Grab a random ability
                 local newAbility = self:findRandomSkill(build, slot, playerID)
 
@@ -2660,7 +2891,7 @@ function Pregame:validateBuilds()
                 if newAbility ~= nil then
                     build[slot] = newAbility
                 end
-            end
+            end         
         end
 
         -- Network it
@@ -2672,7 +2903,13 @@ end
 function Pregame:processOptions()
     -- Check Map
     local mapName = GetMapName()
-    
+
+	-- Single Player Overrides
+	if util:isSinglePlayerMode() then
+                self:setOption('lodOptionIngameBuilder', 1, true)
+				self:setOption("lodOptionIngameBuilderPenalty", 0)
+	end
+
     -- Only process options once
     if self.processedOptions then return end
     self.processedOptions = true
@@ -2681,6 +2918,7 @@ function Pregame:processOptions()
 
     local status,err = pcall(function()
         -- Push settings externally where possible
+        OptionManager:SetOption('duels', this.optionStore['lodOptionDuels'])
         OptionManager:SetOption('startingLevel', this.optionStore['lodOptionGameSpeedStartingLevel'])
         OptionManager:SetOption('bonusGold', this.optionStore['lodOptionGameSpeedStartingGold'])
         OptionManager:SetOption('maxHeroLevel', this.optionStore['lodOptionGameSpeedMaxLevel'])
@@ -2691,10 +2929,15 @@ function Pregame:processOptions()
         OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
         OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
+		OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
+		OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
+        OptionManager:SetOption('322', this.optionStore['lodOption322'])
+        OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
+        OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -2716,13 +2959,13 @@ function Pregame:processOptions()
 	    -- Bot options
 	    this.desiredRadiant = this.optionStore['lodOptionBotsRadiant']
 	    this.desiredDire = this.optionStore['lodOptionBotsDire']
-        
+
         -- Prepare to disable ban lists if necessary
         local disableBanLists = false
-        
+
         -- Load troll combos
         self:loadTrollCombos()
-        
+
         -- Enable Balance Mode (disables ban lists)
         if this.optionStore['lodOptionBalanceMode'] == 1 then
             -- Load balance mode stats
@@ -2739,18 +2982,18 @@ function Pregame:processOptions()
                 else
                     -- Spell Shop
                     local price = constants.TIER[tierNum]
-                    
+
                     for abilityName,nothing in pairs(tierList) do
                         self.spellCosts[abilityName] = price
                         network:sendSpellPrice(abilityName, price)
                     end
                 end
             end
-            
+
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
         end
-        
+
         -- Enable WTF mode
         if not disableBanLists and this.optionStore['lodOptionCrazyWTF'] == 1 then
             -- Auto ban powerful abilities
@@ -2786,7 +3029,7 @@ function Pregame:processOptions()
 
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
-            for abilityName,v in pairs(this.lodBanList) do
+            for abilityName,v in pairs(this.SuperOP) do
                 this:banAbility(abilityName)
             end
         end
@@ -2807,6 +3050,10 @@ function Pregame:processOptions()
 	        GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 	    end
 
+        if OptionManager:GetOption('322') == 1 then
+            GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
+        end
+
 	    -- Check what kind of flags we should be recording
 	    if this.useOptionVoting then
 	    	-- We are using option voting
@@ -2826,56 +3073,60 @@ function Pregame:processOptions()
 	    	if this.optionStore['lodOptionGamemode'] == -1 then
 	    		-- Players can pick all options, store all options
 			    statCollection:setFlags({
-			        ['Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
-			        ['Gamemode'] = this.optionStore['lodOptionCommonGamemode'],
-			        ['Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
-			        ['Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
-			        ['Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
-                    ['Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
-                    ['Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
-			        ['Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
-			        ['Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
-			        ['Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
-			        ['Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
-			        ['Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
-			        ['Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
-			        ['Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
-			        ['Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
-			        ['Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
-			        ['Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
-			        ['Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
-			        ['Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
-			        ['Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
-			        ['XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
-                    ['Shared XP'] = this.optionStore['lodOptionGameSpeedSharedEXP'],
-		            ['Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
-                    ['Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
-			        ['Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
-			        ['Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
-			        ['Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
-                    ['Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
-                    ['Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
-			        ['Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
-			        ['Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
-			        ['Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
-			        ['Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
-			        ['Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
-			        ['Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
-			        ['Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
-			        ['Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
-			        ['Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
-			        ['Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
-			        ['Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
-			        ['Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
-			        ['Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
-					['Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
-                    ['Enable Ingame Hero Builder'] = this.optionStore['lodOptionIngameBuilder'],
+					['Advanced: Allow Selecting Primary Attribute'] = this.optionStore['lodOptionAdvancedSelectPrimaryAttr'],
+					['Advanced: Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
+					['Advanced: Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
+					['Advanced: Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
+					['Advanced: Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
+					['Advanced: Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
+					['Advanced: Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
+					['Advanced: Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
+					['Bans: Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
+					['Bans: Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
+					['Bans: Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
+					['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
+					['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
+					['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
+					['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
+					['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
+					['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
+					['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
+					['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
+					['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
+					['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
+					['Game Speed: Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
+					['Game Speed: Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
+					['Game Speed: Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
+					['Game Speed: Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
+					['Game Speed: Shared XP'] = this.optionStore['lodOptionGameSpeedSharedEXP'],
+					['Game Speed: Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
+					['Game Speed: Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
+					['Game Speed: XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
+					['Gamemode: Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
+					['Gamemode: Duels'] = this.optionStore['lodOptionDuels'],
+					['Gamemode: Gamemode'] = this.optionStore['lodOptionCommonGamemode'],
+					['Gamemode: Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
+					['Gamemode: Max Slots'] = this.optionStore['lodOptionCommonMaxSlots'],
+					['Gamemode: Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
+					['Gamemode: Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
+					['Other: Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
+					['Other: Enable Ingame Hero Builder'] = this.optionStore['lodOptionIngameBuilder'],
+					['Other: Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
+					['Other: Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
+					['Other: Enable WTF Mode'] = this.optionStore['lodOptionCrazyWTF'],
+					['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
+					['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
+                    ['Other: 322'] = this.optionStore['lodOption322'],
+                    ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
+                    ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
+					['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
+					['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
 			    })
 
 				-- Draft arrays
 				if this.useDraftArrays then
 					statCollection:setFlags({
-				        ['Draft Heroes'] = this.optionStore['lodOptionMirrorHeroes'],
+				        ['Draft Abilities'] = this.optionStore['lodOptionDraftAbilities'],
 				    })
 				end
 			else
@@ -2890,7 +3141,7 @@ function Pregame:processOptions()
 				-- Store draft array setting if it is being used
 			    if this.useDraftArrays then
 			    	statCollection:setFlags({
-				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonMirrorHeroes'],
+				        ['Preset Draft Heroes'] = this.optionStore['lodOptionCommonDraftAbilities'],
 				    })
 			    end
 	    	end
@@ -2901,13 +3152,13 @@ function Pregame:processOptions()
 		-- If bots are enabled, add a bots flags
 		if this.enabledBots then
 			statCollection:setFlags({
-                ['Bots Enabled'] = 1,
-                ['Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
-                ['Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
+                ['Bots: Bots Enabled'] = 1,
+                ['Bots: Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
+                ['Bots: Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
 			})
 		else
 			statCollection:setFlags({
-                ['Bots Enabled'] = 0,
+                ['Bots: Bots Enabled'] = 0,
 			})
 		end
 
@@ -3186,7 +3437,6 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     if self.selectedPlayerAttr[playerID] ~= newAttr then
         -- Update local store
         self.selectedPlayerAttr[playerID] = newAttr
-
         -- Update the selected hero
         network:setSelectedAttr(playerID, newAttr)
     end
@@ -3234,30 +3484,35 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Has this player already asked for their hero?
-    if self.spawnedHeroesFor[playerID] then
+    if self.heroesSpawned then
     	-- Do they have a hero?
+
     	if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
     		return
     	end
 
-    	if not self.requestHeroAgain then
-    		self.requestHeroAgain = {}
-    	end
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"lodSpawningQueue",{queue = 0})
 
-    	if self.requestHeroAgain[playerID] then
-    		if Time() > self.requestHeroAgain[playerID] then
-    			self.requestHeroAgain[playerID] = nil
-    			self.currentlySpawning = false
-    			self.spawnedHeroesFor[playerID] = false
-    		end
-    	else
-    		-- Allocate 3 seconds then allow them to spawn a hero
-    		self.requestHeroAgain[playerID] = Time() + 3
-    	end
+        -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
+        self:spawnPlayer(playerID)
+
+        self.spawnedHeroesFor[playerID] = true
+
+    	-- if not self.requestHeroAgain then
+    	-- 	self.requestHeroAgain = {}
+    	-- end
+
+    	-- if self.requestHeroAgain[playerID] then
+    	-- 	if Time() > self.requestHeroAgain[playerID] then
+    	-- 		self.requestHeroAgain[playerID] = nil
+    	-- 		self.currentlySpawning = false
+    	-- 		self.spawnedHeroesFor[playerID] = false
+    	-- 	end
+    	-- else
+    	-- 	-- Allocate 3 seconds then allow them to spawn a hero
+    	-- 	self.requestHeroAgain[playerID] = Time() + 3
+    	-- end
     end
-
-    -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
-    self:spawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
@@ -3322,7 +3577,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
         local sound = self:getRandomSound(build_id)
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
-        
+
     -- Perform the networking
     network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
 end
@@ -3458,6 +3713,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 return
             end
             SkillManager:ApplyBuild(hero, newBuild)
+            print(3587)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
             network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
@@ -3469,13 +3725,13 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                     local penalty = OptionManager:GetOption('ingameBuilderPenalty')
                     hero:Kill(nil, nil)
                     hero:SetTimeUntilRespawn(penalty)
-                end, DoUniqueString('penalty'), 1)        
+                end, DoUniqueString('penalty'), 1)
             else
                 if hero:GetTeam() == DOTA_TEAM_BADGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")  
+                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
                     hero:SetAbsOrigin(ent:GetAbsOrigin())
                 elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")  
+                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
                     hero:SetAbsOrigin(ent:GetAbsOrigin())
                 end
             end
@@ -3564,7 +3820,7 @@ function Pregame:checkForReady()
 
             -- If everyone is ready, set the remaining time to be the min
             if readyPlayers >= totalPlayers or canFinishBanning then
-                if currentTime > minTime then
+                if canFinishBanning or currentTime > minTime then
                     self:setEndOfPhase(Time() + minTime)
                 end
             else
@@ -3584,7 +3840,76 @@ function Pregame:checkForReady()
 end
 
 -- Player wants to ban an ability
-function Pregame:onPlayerBan(eventSourceIndex, args)
+function Pregame:onPlayerSaveBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+
+    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
+        count = 50
+    end
+
+    local id = 0
+
+    if self.playerBansList[playerID] then 
+        local i = 0
+        repeat 
+            i = i + 1
+            local tempI = i
+            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
+                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
+                    id = id + 1
+                    if id == #self.playerBansList[playerID] then
+                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
+                    end
+                end)
+            end)
+        until 
+            i > count
+    end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerLoadBans(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local id = 0
+
+    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+
+    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
+        count = 50
+    end
+
+    for i=1,count do
+        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
+            if success and value and value ~= "" then
+                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        heroName = value
+                        }, true)
+                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
+                    self:onPlayerBan(0, {
+                        PlayerID = playerID,
+                        abilityName = value
+                        }, true)
+                end
+                id = id + 1
+            end
+            if i == count then
+                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
+            end
+        end)
+    end
+end
+
+-- Player wants to ban an ability
+function Pregame:onPlayerBan(eventSourceIndex, args, noNotification)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
@@ -3608,6 +3933,8 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
     	abilityBans = 0
 	}
 
+    self.playerBansList[playerID] = self.playerBansList[playerID] or {}
+
 	-- Grab the ban object
 	local playerBans = usedBans[playerID]
 
@@ -3630,25 +3957,29 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if playerBans.heroBans >= maxHeroBans and not unlimitedBans then
             if maxHeroBans == 0 then
                 -- There is no hero banning
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanHeroNoBanning'
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanHeroNoBanning'
+                    })
+                    self:PlayAlert(playerID)
+                end
 
 
                 return
             else
                 -- Player has used all their bans
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanHeroLimit',
-                    params = {
-                        ['used'] = playerBans.heroBans,
-                        ['max'] = maxHeroBans
-                    }
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanHeroLimit',
+                        params = {
+                            ['used'] = playerBans.heroBans,
+                            ['max'] = maxHeroBans
+                        }
+                    })
+                    self:PlayAlert(playerID)
+                end
 
             end
 
@@ -3658,11 +3989,13 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Is this a valid hero?
 		if not self.allowedHeroes[heroName] then
 	        -- Add an error
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedToFindHero'
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+    	        network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedToFindHero'
+    	        })
+                self:PlayAlert(playerID)
+            end
 
 
 	        return
@@ -3671,14 +4004,17 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 	    -- Perform the ban
 		if self:banHero(heroName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], heroName)
 
-			network:broadcastNotification({
-	            sort = 'lodSuccess',
-	            text = 'lodSuccessBanHero',
-	            params = {
-	            	['heroName'] = heroName
-	        	}
-	        })
+            if not noNotification then
+    			network:broadcastNotification({
+    	            sort = 'lodSuccess',
+    	            text = 'lodSuccessBanHero',
+    	            params = {
+    	            	['heroName'] = heroName
+    	        	}
+    	        })
+            end
 
             -- Increase the number of ability bans this player has done
             playerBans.heroBans = playerBans.heroBans + 1
@@ -3687,15 +4023,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
             network:setTotalBans(playerID, playerBans.heroBans, playerBans.abilityBans)
 		else
 			-- Ability was already banned
-
-			network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanHeroAlreadyBanned',
-	            params = {
-	            	['heroName'] = heroName
-	        	}
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+    			network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedBanHeroAlreadyBanned',
+    	            params = {
+    	            	['heroName'] = heroName
+    	        	}
+    	        })
+                self:PlayAlert(playerID)
+            end
 
             return
 		end
@@ -3704,24 +4041,28 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		if playerBans.abilityBans >= maxBans and not unlimitedBans then
             if maxBans == 0 then
                 -- No ability banning allowed
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanAbilityNoBanning'
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanAbilityNoBanning'
+                    })
+                    self:PlayAlert(playerID)
+                end
 
                 return
             else
                 -- Player has used all their bans
-                network:sendNotification(player, {
-                    sort = 'lodDanger',
-                    text = 'lodFailedBanAbilityLimit',
-                    params = {
-                        ['used'] = playerBans.abilityBans,
-                        ['max'] = maxBans
-                    }
-                })
-                self:PlayAlert(playerID)
+                if not noNotification then
+                    network:sendNotification(player, {
+                        sort = 'lodDanger',
+                        text = 'lodFailedBanAbilityLimit',
+                        params = {
+                            ['used'] = playerBans.abilityBans,
+                            ['max'] = maxBans
+                        }
+                    })
+                    self:PlayAlert(playerID)
+                end
             end
 
 
@@ -3731,14 +4072,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Is this even a real skill?
 	    if not self.flagsInverse[abilityName] then
 	        -- Invalid ability name
-	        network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedInvalidAbility',
-	            params = {
-	                ['abilityName'] = abilityName
-	            }
-	        })
-            self:PlayAlert(playerID)
+                if not noNotification then
+    	        network:sendNotification(player, {
+    	            sort = 'lodDanger',
+    	            text = 'lodFailedInvalidAbility',
+    	            params = {
+    	                ['abilityName'] = abilityName
+    	            }
+    	        })
+                self:PlayAlert(playerID)
+            end
 
 	        return
 	    end
@@ -3746,14 +4089,17 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		-- Perform the ban
 		if self:banAbility(abilityName) then
 			-- Success
+            table.insert(self.playerBansList[playerID], abilityName)
 
-			network:broadcastNotification({
-	            sort = 'lodSuccess',
-	            text = 'lodSuccessBanAbility',
-	            params = {
-	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
-	        	}
-	        })
+            if not noNotification then
+    			network:broadcastNotification({
+    	            sort = 'lodSuccess',
+    	            text = 'lodSuccessBanAbility',
+    	            params = {
+    	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+    	        	}
+    	        })
+            end
 
             -- Increase the number of bans this player has done
             playerBans.abilityBans = playerBans.abilityBans + 1
@@ -3763,14 +4109,16 @@ function Pregame:onPlayerBan(eventSourceIndex, args)
 		else
 			-- Ability was already banned
 
-			network:sendNotification(player, {
-	            sort = 'lodDanger',
-	            text = 'lodFailedBanAbilityAlreadyBanned',
-	            params = {
-	            	['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
-	        	}
-	        })
-            self:PlayAlert(playerID)
+            if not noNotification then
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodFailedBanAbilityAlreadyBanned',
+                    params = {
+                        ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
+                    }
+                })
+                self:PlayAlert(playerID)
+            end
 
             return
 		end
@@ -3938,14 +4286,12 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         local heroDraft = draftArray.heroDraft
         local abilityDraft = draftArray.abilityDraft
 
-        if self.maxDraftHeroes > 0 then
-            local heroName = self.abilityHeroOwner[abilityName]
-
-            if not heroDraft[heroName] then
+        if abilityDraft then
+            if not abilityDraft[abilityName] then
                 -- Tell them
                 network:sendNotification(player, {
                     sort = 'lodDanger',
-                    text = 'lodFailedDraftWrongHeroAbility',
+                    text = 'lodFailedDraftWrongAbility',
                     params = {
                         ['abilityName'] = 'DOTA_Tooltip_ability_' .. abilityName
                     }
@@ -4453,7 +4799,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
 
     -- Keep track of how many abilities the player randoms
     local ply = PlayerResource:GetPlayer(playerID)
-    if ply then 
+    if ply then
         if not ply.random then ply.random = 0 end
         ply.random = ply.random + 1
     end
@@ -4848,8 +5194,10 @@ function Pregame:generateBotBuilds()
         botInfo.skillID = skillID
         botInfo.build = build
     end
+    
     local teams = {self.botPlayers.radiant, self.botPlayers.dire}
     ShuffleArray(teams)
+
     while true do
         for _, botTeam in pairs(teams) do
             for i,botInfo in pairs(botTeam) do
@@ -4926,6 +5274,7 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         -- ShuffleArray(build)
 
         -- Are there any premade builds?
+
         if self.premadeBotBuilds then
             if botInfo.team == DOTA_TEAM_BADGUYS and self.premadeBotBuilds.dire and #self.premadeBotBuilds.dire > 0 then
                 local info = table.remove(self.premadeBotBuilds.dire, 1)
@@ -4938,6 +5287,14 @@ function Pregame:getSkillforBot( botInfo, botSkills )
                 build = info.build
                 heroName = info.heroName
             end
+        elseif self.optionStore['lodOptionBotsRestrict'] > 0 then
+            if self.optionStore['lodOptionBotsRestrict'] == 1 and botInfo.team == DOTA_TEAM_GOODGUYS then
+                build = self.botHeroes[heroName]
+            elseif self.optionStore['lodOptionBotsRestrict'] == 2 and botInfo.team == DOTA_TEAM_BADGUYS then
+                build = self.botHeroes[heroName]
+            elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
+                build = self.botHeroes[heroName]
+            end 
         end
 
         -- Store the info
@@ -5143,7 +5500,8 @@ function Pregame:hookBotStuff()
                 end
 
                 -- If we failed to find any skills to skill
-                if lowestAb == nil then
+                if lowestAb == nil and OptionManager:GetOption('botBonusPoints') then
+					print("bonus bot abilities are on")
                     -- Try to skill attribute bonus
                     lowestAb = hero:FindAbilityByName('attribute_bonus')
                     if lowestAb ~= nil then
@@ -5154,6 +5512,7 @@ function Pregame:hookBotStuff()
                     end
                 end
 
+
                 -- Apply the point
                 if lowestAb ~= nil then
                     lowestAb:SetLevel(lowestLevel + 1)
@@ -5163,7 +5522,7 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
--- Apply fixes
+-- Apply fixes, add perks
 function Pregame:fixSpawningIssues()
     local givenBonuses = {}
     local handled = {}
@@ -5182,12 +5541,21 @@ function Pregame:fixSpawningIssues()
         alchemist_chemical_rage = true,
     }
 
+    local disabledPerks = {
+        npc_dota_hero_disruptor = true,
+        npc_dota_hero_storm_spirit = true,
+        npc_dota_hero_wisp = true
+    }
+
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
+            if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
+                Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
+            end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
                 -- Grab their playerID
@@ -5248,33 +5616,38 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-                 -- Add hero perks			
+
+                 -- Add hero perks
                 Timers:CreateTimer(function()
-                    --print(self.perksDisabled) 
-					local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and nameTest ~= "npc_dota_hero_chen" and nameTest ~= "npc_dota_hero_storm_spirit" and nameTest ~= "npc_dota_hero_meepo" and nameTest ~= "npc_dota_hero_wisp" and nameTest ~= "npc_dota_hero_disruptor" then
+                    --print(self.perksDisabled)
+                    local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"
                        local perk = spawnedUnit:AddAbility(perkName)
                        local perkModifier = "modifier_" .. perkName
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+                       spawnedUnit.hasPerk = true
+                       print("Perk assigned")
                     end
-                end, DoUniqueString('addPerk'), 0.1)
+                end, DoUniqueString('addPerk'), 1)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
                 handled[spawnedUnit] = true
 
                 -- Are they a bot?
-                if PlayerResource:GetConnectionState(playerID) == 1 then
-                    -- Find custom abilities to add AI modifiers
-                    for k,abilityName in pairs(this.selectedSkills[playerID]) do
-                        if botAIModifier[abilityName] then
-                            abModifierName = "modifier_" .. abilityName .. "_ai"
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                Timers:CreateTimer(function()
+                    if PlayerResource:GetConnectionState(playerID) == 1 then
+                        -- Find custom abilities to add AI modifiers
+                        for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                            if botAIModifier[abilityName] then
+                                abModifierName = "modifier_" .. abilityName .. "_ai"
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                            end
                         end
                     end
-                end
+                end, DoUniqueString('addBotAI'), 0.5)
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
@@ -5354,7 +5727,7 @@ function Pregame:fixSpawningIssues()
                     end
                 end
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
-                -- Increasing creep power over time 
+                -- Increasing creep power over time
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
 
@@ -5368,19 +5741,123 @@ function Pregame:fixSpawningIssues()
     end, nil)
 end
 
+-- Return an instance of it
+local _instance = Pregame()
+
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         SU:SendPlayerBuild( buildBackups )
-        
+
         WAVE = 0
 
         Timers:CreateTimer(function()
             WAVE = WAVE + 1
             return 30.0
         end, 'waves', 0.0)
+
+        _G.duel = (function ()
+            local next_tick = DUEL_INTERVAL
+
+            Timers:CreateTimer(function()
+                if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then
+                    local draw_tick = DUEL_NOBODY_WINS + DUEL_PREPARE
+
+                    Timers:CreateTimer(function()
+                        draw_tick = draw_tick - 1
+
+                        if CustomNetTables:GetTableValue("phase_ingame","duel").active == 0 then
+                            return
+                        else
+                            sendEventTimer( "#duel_nobody_wins", draw_tick)
+                        end
+
+                        return 1.0
+                    end, 'duel_countdown_draw', 0)
+                    return
+                else
+                    sendEventTimer( "#duel_next_duel", next_tick)
+                end
+                next_tick = next_tick - 1
+                if next_tick < 0 then
+                    next_tick = 0
+                end
+                return 1.0
+            end, 'duel_countdown_next', 0)
+
+            Timers:CreateTimer(function()
+                customAttension("#duel_10_sec_to_begin", 5)
+                EmitGlobalSound("Event.DuelStart")
+
+                Timers:CreateTimer(function()
+                    initDuel(_G.duel)
+                end, 'start_duel', 10)
+
+                Timers:CreateTimer(function()
+                    if CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 then
+                        customAttension("#duel_10_sec_to_end", 5)
+                    end
+                end, 'duel_draw_warning', DUEL_NOBODY_WINS + DUEL_PREPARE)
+            end, 'main_duel_timer', DUEL_INTERVAL - 10)
+        end)
+
+        CustomNetTables:SetTableValue("phase_ingame","duel", {active=0})
+
+        if OptionManager:GetOption('duels') == 1 then
+			-- GameRules:SendCustomMessage("#tempDuelBlock", 0, 0)
+            _G.duel()
+        end
+
+        -- if OptionManager:GetOption('duels') == 1 then
+        --     local duel
+        --     duel = (function ()
+        --         Timers:CreateTimer(function()
+        --             customAttension("#duel_10_sec_to_begin", 5)
+
+        --             Timers:CreateTimer(function()
+        --                 initDuel(duel)
+        --             end, 'start_duel', 10)
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active then
+        --                     customAttension("#duel_10_sec_to_end", 5)
+        --                 end
+        --             end, 'waves', DUEL_NOBODY_WINS)
+
+        --             local next_tick = 10
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active == true then
+        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+        --                     return
+        --                 else
+        --                     sendEventTimer( "#duel_next_duel", next_tick)
+        --                 end
+
+        --                 next_tick = next_tick - 1
+        --                 return 1.0
+        --             end, 'duel_countdown_next', 0)
+
+        --             local draw_tick = 10
+
+        --             Timers:CreateTimer(function()
+        --                 if duel_active ~= true then
+        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
+        --                     return
+        --                 else
+        --                     sendEventTimer( "#duel_nobody_wins", draw_tick)
+        --                 end
+
+        --                 draw_tick = draw_tick - 1
+        --                 return 1.0
+        --             end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
+
+        --             return DUEL_INTERVAL - 10
+        --         end, 'main_duel_timer', DUEL_INTERVAL - 10)
+        --     end)
+        --     duel()
+        -- end
     end
 end, nil)
 
--- Return an instance of it
-return Pregame()
+return _instance

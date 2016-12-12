@@ -1,3 +1,4 @@
+local Timers = require('easytimers')
 --[[
 	Author: wFX with help of Rook and Noya
 	Date: 18.01.2015.
@@ -6,7 +7,8 @@
 
 function invoker_retro_scout_on_spell_start(event)
     local caster = event.caster
-    local ability = event.ability
+    local ability = event.ability 
+	local hero = caster:GetPlayerOwner():GetAssignedHero()
     local wex_ability = caster:FindAbilityByName("invoker_retro_scout")
     if wex_ability ~= nil then
         local wex_level = wex_ability:GetLevel()
@@ -15,7 +17,7 @@ function invoker_retro_scout_on_spell_start(event)
         local origin = caster:GetAbsOrigin()
         local front_position = origin + fv * 200
 		
-        local owl = CreateUnitByName("npc_dota_invoker_retro_scout_unit", front_position, true, nil, nil, caster:GetTeam())
+        local owl = CreateUnitByName("npc_dota_invoker_retro_scout_unit", front_position, true, hero, hero, caster:GetTeamNumber())
         owl:SetForwardVector(fv)
 		local owl_ability = owl:FindAbilityByName("invoker_retro_scout_unit_ability")
 		if owl_ability ~= nil then
@@ -37,6 +39,11 @@ function invoker_retro_scout_on_spell_start(event)
 			owl:SetControllableByPlayer(caster:GetOwner():GetPlayerID(), true)
 			owl:AddNewModifier(owl, nil, "modifier_kill", {duration = ability:GetLevelSpecialValueFor("owl_duration", wex_level - 1) })  --Add the green duration circle, and kill it after the duration ends.
 			owl:AddNewModifier(owl, nil, "modifier_invisible", {duration = .1})  --Make the owl have the translucent texture.
+			
+			Timers:CreateTimer(function()
+				owl:MoveToNPC(caster)
+				return
+			end, DoUniqueString('move_ward'), 0.1)
 		end
     end
 end

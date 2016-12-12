@@ -326,20 +326,23 @@ function LocustSwarmDeath( event )
 	local particleName = "particles/units/heroes/hero_weaver/weaver_base_attack_explosion.vpcf"
 
 	print("LocustSwarmDeath")
-	for _,unit in pairs(targets) do		
-	   	if unit and IsValidEntity(unit) then
-    	  	unit:SetPhysicsVelocity(Vector(0,0,0))
-	        unit:OnPhysicsFrame(nil)
+	if IsServer() then
+	
+		for _,unit in pairs(targets) do		
+			if unit and IsValidEntity(unit) then
+				unit:SetPhysicsVelocity(Vector(0,0,0))
+				unit:OnPhysicsFrame(nil)
 
-	        -- Explosion particle
-			local particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, unit)
-			ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
-			ParticleManager:SetParticleControlEnt(particle, 3, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
+				-- Explosion particle
+				local particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, unit)
+				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
+				ParticleManager:SetParticleControlEnt(particle, 3, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 
-			-- Kill
-			unit.no_corpse = true
-	        unit:ForceKill(false)
-    	end
+				-- Kill
+				unit.no_corpse = true
+				unit:ForceKill(false)
+			end
+		end
 	end
 end
 

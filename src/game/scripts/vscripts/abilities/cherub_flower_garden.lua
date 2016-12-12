@@ -40,7 +40,7 @@ function PlantSetHealth( keys )
     if target:GetUnitName() == "white_flower" then
         target:SetBaseDamageMin(whiteDamage - 5)
         target:SetBaseDamageMax(whiteDamage + 5)
-    elseif target:GetUnitName() == "red_flower" then
+    elseif target:GetUnitName() == "red_flower" or target:GetUnitName() == "red_flower_OP" then
         target:SetBaseDamageMin(redDamage - 10)
         target:SetBaseDamageMax(redDamage + 10)
     end
@@ -166,6 +166,33 @@ function PlantRedBase( keys )
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local redFlower = CreateUnitByName( "red_flower", point, false, owner, owner, owner:GetTeamNumber() )
+        ownerAbility:ApplyDataDrivenModifier(owner, redFlower, "modifier_red_flower", {})
+        redFlower:AddNewModifier(owner, nil, "modifier_phased", {Duration = 0.03})
+
+        owner.redFlowerCount = owner.redFlowerCount + 1
+        table.insert(owner.redFlowerTable, redFlower)
+        
+        if owner.redFlowerCount > maxFlowers then
+            owner.redFlowerTable[1]:ForceKill(true)
+        end
+    end
+end
+
+function PlantRedBaseOP( keys )
+    local caster = keys.caster
+    local owner = caster
+    local ownerAbility = owner:FindAbilityByName("garden_red_flower_base_OP")
+    local point = keys.target_points[1]
+    --local flowerHealth = ownerAbility:GetLevelSpecialValueFor("flowerHealth", (ability:GetLevel() - 1))
+    --local flowerDamage = ownerAbility:GetLevelSpecialValueFor("redflowerDamage", (ability:GetLevel() - 1))
+    
+    owner.redFlowerCount = owner.redFlowerCount or 0
+    owner.redFlowerTable = owner.redFlowerTable or {}
+    
+    local maxFlowers = 6
+    local casterLocation = caster:GetAbsOrigin()
+    if ownerAbility then
+        local redFlower = CreateUnitByName( "red_flower_OP", point, false, owner, owner, owner:GetTeamNumber() )
         ownerAbility:ApplyDataDrivenModifier(owner, redFlower, "modifier_red_flower", {})
         redFlower:AddNewModifier(owner, nil, "modifier_phased", {Duration = 0.03})
 

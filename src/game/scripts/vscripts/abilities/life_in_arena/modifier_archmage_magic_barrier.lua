@@ -67,7 +67,7 @@ function modifier_archmage_magic_barrier:OnAbilityExecuted(params)
 
 		self:GetAbility().barrierMana = self:GetAbility().barrierMana + eventAbility:GetManaCost(-1)*self.barrierManaPercent
 		self:GetAbility().state = { barrierMana = self:GetAbility().barrierMana }
-		print("Archmage[Mana barrier]: Added "..eventAbility:GetManaCost(-1)*self.barrierManaPercent.." mana",self:GetAbility().barrierMana)
+		--print("Archmage[Mana barrier]: Added "..eventAbility:GetManaCost(-1)*self.barrierManaPercent.." mana",self:GetAbility().barrierMana)
 	end
 end
 

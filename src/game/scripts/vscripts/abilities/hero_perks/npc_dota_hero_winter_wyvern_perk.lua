@@ -8,11 +8,11 @@ LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_perk", "abilities/hero_pe
 LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_flight_delay", "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_winter_wyvern_flying", "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_winter_wyvern_perk == nil then npc_dota_hero_winter_wyvern_perk = class({}) end
+if npc_dota_hero_winter_wyvern_perk ~= "" then npc_dota_hero_winter_wyvern_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_winter_wyvern_perk			
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_winter_wyvern_perk == nil then modifier_npc_dota_hero_winter_wyvern_perk = class({}) end
+if modifier_npc_dota_hero_winter_wyvern_perk ~= "" then modifier_npc_dota_hero_winter_wyvern_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_perk:IsPassive()
 	return true
@@ -20,6 +20,10 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_perk:IsHidden()
 	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_winter_wyvern_perk:IsPurgable()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_perk:RemoveOnDeath()
@@ -58,7 +62,7 @@ function modifier_npc_dota_hero_winter_wyvern_perk:OnIntervalThink()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_winter_wyvern_flight_delay == nil then modifier_npc_dota_hero_winter_wyvern_flight_delay = class({}) end
+if modifier_npc_dota_hero_winter_wyvern_flight_delay ~= "" then modifier_npc_dota_hero_winter_wyvern_flight_delay = class({}) end
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_flight_delay:IsHidden()
@@ -79,7 +83,7 @@ function modifier_npc_dota_hero_winter_wyvern_flight_delay:OnDestroy()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_winter_wyvern_flying == nil then modifier_npc_dota_hero_winter_wyvern_flying = class({}) end
+if modifier_npc_dota_hero_winter_wyvern_flying ~= "" then modifier_npc_dota_hero_winter_wyvern_flying = class({}) end
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_winter_wyvern_flying:GetTexture()

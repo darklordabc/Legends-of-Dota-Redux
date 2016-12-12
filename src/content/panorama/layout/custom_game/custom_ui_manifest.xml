@@ -1,7 +1,9 @@
 <root>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/util.js" /> 
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" /> 
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
+        <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
     </scripts>
 
     <script>
@@ -21,7 +23,7 @@
     </script>
 
 	<Panel>
-        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
+        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup/game_setup.xml" />
         <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
 
@@ -37,6 +39,7 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_switch.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/cheats.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/duel_ui.xml" />
         <!-- Textures compiling stuff
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
         -->

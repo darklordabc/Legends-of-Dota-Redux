@@ -22,6 +22,7 @@ end
 function HolyBook_attack( keys )
 	local caster = keys.caster
 	if caster and not caster:IsRealHero() then return end
+	if caster:PassivesDisabled() then return end
 	local target = keys.target
 	local ability = keys.ability
 	local projectiles = require('lib/projectiles')

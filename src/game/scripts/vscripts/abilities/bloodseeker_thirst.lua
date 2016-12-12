@@ -1,9 +1,73 @@
 LinkLuaModifier( "modifier_movespeed_cap", "abilities/modifiers/modifier_movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE )
 
+--[[
+	Author: SwordBacon
+	Date: October 31, 2016
+	Checks on an interval to determine how much bonus movespeed/damage is provided by Thirst
+]]
+function CheckThirst(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+
+	-- Removes the 522 move speed cap
+	if not caster:HasModifier("modifier_movespeed_cap") then
+		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", {})
+	end
+
+	local heroes = HeroList:GetAllHeroes()
+	local stacks = 0
+	local enemyStacks
+	local healthPercentage
+
+	local sight_modifier = "modifier_thirst_debuff_datadriven"
+	local buff_modifier = "modifier_thirst_buff"
+	local buff_visual = "modifier_thirst_visual"
+	local buff_haste = "modifier_thirst_haste"
+	local buff_threshold = ability:GetLevelSpecialValueFor( "buff_threshold_pct", ability:GetLevel() - 1 )/100
+	local visibility_threshold = ability:GetLevelSpecialValueFor( "visibility_threshold_pct", ability:GetLevel() - 1 )/100
+
+	for _,hero in pairs(heroes) do
+		if hero:GetTeam() ~= caster:GetTeam() and hero:IsAlive() then
+			healthPercentage = hero:GetHealth() / hero:GetMaxHealth()
+			if healthPercentage <= buff_threshold then 
+				if healthPercentage < visibility_threshold then
+					-- Apply visibility modifier (true sight)
+					ability:ApplyDataDrivenModifier(caster, hero, sight_modifier, {})
+					-- Ensure the buff does not get stacks for missing hp below 25%
+					healthPercentage = visibility_threshold
+				elseif hero:HasModifier(sight_modifier) then
+					hero:RemoveModifierByName(sight_modifier)
+				end
+				enemyStacks = math.floor((buff_threshold - healthPercentage)*100)
+				stacks = stacks + enemyStacks
+			elseif hero:HasModifier(sight_modifier) then
+				hero:RemoveModifierByName(sight_modifier)
+			end
+		end
+	end
+
+	-- Applies stacks
+	if stacks == 0 then
+		caster:RemoveModifierByName(buff_modifier)
+	else
+		if not caster:HasModifier(buff_modifier) then
+			ability:ApplyDataDrivenModifier(caster,caster,buff_modifier,{})
+		end
+		caster:SetModifierStackCount(buff_modifier,ability,stacks)
+	end
+
+	-- Checks to see if movespeed is > 522
+	if caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) > 522 and not caster:HasModifier(buff_haste) then
+		ability:ApplyDataDrivenModifier(caster,caster,buff_haste,{})
+	elseif caster:HasModifier(buff_haste) then
+		caster:RemoveModifierByName(buff_haste)
+	end
+end
+
 --[[Author: YOLOSPAGHETTI
 	Date: February 13, 2016
 	Adds the thirst buff to the caster and vision debuff to the target if the target is below the required threshold]]
-function AddThirst(keys)
+--[[function AddThirst(keys)
 	local target = keys.unit
 	local caster = keys.caster
 	local ability = keys.ability
@@ -62,11 +126,11 @@ function AddThirst(keys)
 			caster:RemoveModifierByName(buff_visual)
 		end
 	end
-end
+end]]
 
 --[[Author: YOLOSPAGHETTI
 	Date: February 13, 2016
-	Removes the thirst buff stacks from the caster and vision debuff from the target if the target is above the required threshold]]
+	Removes the thirst buff stacks from the caster and vision debuff from the target if the target is above the required threshold
 function RemoveThirst(keys)
 	local target = keys.unit -- Target
 	local caster = keys.caster -- Hero
@@ -123,4 +187,4 @@ function RemoveThirst(keys)
 		caster:SetModifierStackCount(buff_modifier, ability, new_stacks + previous_stacks - target.stacks)
 		target.stacks = new_stacks
 	end
-end
+end]]

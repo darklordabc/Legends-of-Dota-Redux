@@ -10,14 +10,18 @@ LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk", "abilities/he
 LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk_debuff", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_obsidian_destroyer_perk == nil then npc_dota_hero_obsidian_destroyer_perk = class({}) end
+if npc_dota_hero_obsidian_destroyer_perk ~= "" then npc_dota_hero_obsidian_destroyer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_npc_dota_hero_obsidian_destroyer_perk        
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_obsidian_destroyer_perk == nil then modifier_npc_dota_hero_obsidian_destroyer_perk = class({}) end
+if modifier_npc_dota_hero_obsidian_destroyer_perk ~= "" then modifier_npc_dota_hero_obsidian_destroyer_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_obsidian_destroyer_perk:IsPassive()
 	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_obsidian_destroyer_perk:IsPurgable()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_obsidian_destroyer_perk:IsHidden()
@@ -59,7 +63,7 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk:OnAbilityFullyCast(keys)
 	end
 end]]
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_obsidian_destroyer_perk_buff == nil then modifier_npc_dota_hero_obsidian_destroyer_perk_buff = class({}) end
+if modifier_npc_dota_hero_obsidian_destroyer_perk_buff ~= "" then modifier_npc_dota_hero_obsidian_destroyer_perk_buff = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:DeclareFunctions()
 	local funcs = {
@@ -84,7 +88,7 @@ function modifier_npc_dota_hero_obsidian_destroyer_perk_buff:GetModifierBonusSta
 	return self:GetCaster().intelligenceSteal
 end
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_obsidian_destroyer_perk_debuff == nil then modifier_npc_dota_hero_obsidian_destroyer_perk_debuff = class({}) end
+if modifier_npc_dota_hero_obsidian_destroyer_perk_debuff ~= "" then modifier_npc_dota_hero_obsidian_destroyer_perk_debuff = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_obsidian_destroyer_perk_debuff:DeclareFunctions()
 	local funcs = {

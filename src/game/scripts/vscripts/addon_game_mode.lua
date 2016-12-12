@@ -14,6 +14,9 @@ n    lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('
 
 require('lib/StatUploaderFunctions')
 
+-- Precache obstacles
+require('obstacles')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
@@ -21,26 +24,29 @@ function Precache(context)
     for soundPath,_ in pairs(soundList["precache_sounds"]) do
         PrecacheResource("soundfile", soundPath, context)
     end
-	-- COMMENT THE BELOW OUT IF YOU DO NOT WANT TO COMPILE ASSETS
-	if IsInToolsMode() then 
-		local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-		for ability, block in pairs(abilities) do
-			if block == "precache" then
-				for precacheType, resource in pairs(block) do
-					PrecacheResource(precacheType, resource, context)
-				end
-			end
-		end
-	end
-	-- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    -- COMMENT THE BELOW OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    if IsInToolsMode() then 
+        local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+        for ability, block in pairs(abilities) do
+            if block == "precache" then
+                for precacheType, resource in pairs(block) do
+                    PrecacheResource(precacheType, resource, context)
+                end
+            end
+        end
+    end
+    -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
+    PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    
+    precacheObstacles(context)
 end
 
 -- Create the game mode when we activate
 function Activate()
-	-- Print LoD version header
+    -- Print LoD version header
     local versionFile = LoadKeyValues('addoninfo.txt')
     local versionNumber = versionFile.version
-    print('\n\nLegends of dota is activating! (v'..versionNumber..')')
+    print('\n\nDota 2 Redux is activating! (v'..versionNumber..')')
 
     -- Ensure LoD is compiled
     local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')

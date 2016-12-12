@@ -7,11 +7,11 @@
 LinkLuaModifier( "modifier_npc_dota_hero_arc_warden_perk", "abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_arc_warden_perk_downtime", "abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_arc_warden_perk == nil then npc_dota_hero_arc_warden_perk = class({}) end
+if npc_dota_hero_arc_warden_perk ~= "" then npc_dota_hero_arc_warden_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_arc_warden_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_arc_warden_perk == nil then modifier_npc_dota_hero_arc_warden_perk = class({}) end
+if modifier_npc_dota_hero_arc_warden_perk ~= "" then modifier_npc_dota_hero_arc_warden_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk:IsPassive()
 	return true
@@ -21,9 +21,17 @@ function modifier_npc_dota_hero_arc_warden_perk:IsHidden()
 	return self:GetCaster():HasModifier("modifier_npc_dota_hero_arc_warden_perk_downtime")
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_arc_warden_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk:OnCreated(keys)
 	self.downtime = 90
 	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_arc_warden_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -61,7 +69,7 @@ end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_arc_warden_perk_downtime				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_arc_warden_perk_downtime == nil then modifier_npc_dota_hero_arc_warden_perk_downtime = class({}) end
+if modifier_npc_dota_hero_arc_warden_perk_downtime ~= "" then modifier_npc_dota_hero_arc_warden_perk_downtime = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk_downtime:GetTexture()
 	return "arc_warden_flux"

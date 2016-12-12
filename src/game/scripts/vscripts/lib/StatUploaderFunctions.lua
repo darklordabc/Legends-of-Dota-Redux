@@ -35,8 +35,7 @@ function SU:Init()
           local state = GameRules:State_Get()
           if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
             SU:SendAuthInfo()
-          elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
-            SU:LoadPlayersMessages()
+          elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
           end
         end, nil)
     else
