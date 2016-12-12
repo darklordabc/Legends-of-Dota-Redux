@@ -1160,7 +1160,8 @@
 	"credit_mirana_starfall_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
 	"credit_skywrath_mage_concussive_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
+    "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
 	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -3756,5 +3757,13 @@
     "DOTA_Tooltip_modifier_gottagoreallyfast_effect"                      "Gotta Go REALLY Fast!"
     "DOTA_Tooltip_modifier_gottagoreallyfast_effect_Description"          "Movement speed increased to 1000, cannot be slowed."
 
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly" "Anomaly"       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Description" "Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one hero in the anomaly, will be applied to all heroes in it. Works on enemies and allies."       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_duration"    "DURATION:"     
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_radius"      "RADIUS:"       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Note0"   "Channeling abilities will end when the channel ends on any unit."      
+        
+    "DOTA_Tooltip_modifier_archmage_anomaly"    "Anomaly"       
+    "DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
 
 }

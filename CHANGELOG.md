@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Flesh Heap Bonus Vision
+- Added Anomaly
 
 ## 3.5 - Steam Version
 
