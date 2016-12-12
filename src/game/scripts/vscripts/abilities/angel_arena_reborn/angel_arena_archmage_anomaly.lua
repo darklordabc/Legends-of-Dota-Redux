@@ -77,6 +77,10 @@ function modifier_angel_arena_archmage_anomaly_thinker:GetAuraRadius()
 end
 
 --------------------------------------------------------------------------------
+function modifier_angel_arena_archmage_anomaly_thinker:IsPurgable()
+    return false
+end
+--------------------------------------------------------------------------------
 
 function modifier_angel_arena_archmage_anomaly_thinker:DeclareFunctions()
 	local funcs = {

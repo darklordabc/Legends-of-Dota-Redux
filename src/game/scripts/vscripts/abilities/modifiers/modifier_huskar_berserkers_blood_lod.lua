@@ -27,6 +27,10 @@ function modifier_huskar_berserkers_blood_lod:IsPassive()
 	return true
 end
 
+function modifier_huskar_berserkers_blood_lod:IsPurgable()
+    return false
+end
+
 function modifier_huskar_berserkers_blood_lod:RemoveOnDeath()
 	return false
 end
