@@ -740,13 +740,6 @@ function OnGetDraftArray(table_name, key, data) {
                         abcon.abilityname = abName;                        abcon.abilityname = abName;
                         abcon.SetAttributeString('abilityname', abName);
                         hookSkillInfo(abcon);
-
-                        $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
-                        if ($("#boosterDraftBoosters").Children().length >= 2) {
-                            $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-2].SetHasClass("current", true);
-                        } else {
-                            $("#boosterDraftBoosters").visible = false;
-                        }
                     }
                 }
             }
@@ -887,6 +880,15 @@ function OnGetDraftArray(table_name, key, data) {
 
         if (isBoosterDraftGamemode()) {
             showBuilderTab('pickingPhaseSkillTab');
+
+            try {
+                $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
+                if ($("#boosterDraftBoosters").Children().length >= 2) {
+                    $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-2].SetHasClass("current", true);
+                } else {
+                    $("#boosterDraftBoosters").visible = false;
+                }
+            } catch (err) {}
         }
 
         var showAbilities = (function () {
@@ -896,6 +898,10 @@ function OnGetDraftArray(table_name, key, data) {
             }
 
             Game.EmitSound("BoosterDraft.Round");
+
+            for (var g in abilityStore) {
+                abilityStore[g].SetHasClass("hide", true);
+            }
 
             var i = 0.0;
             var delay = 0.01;
@@ -935,10 +941,6 @@ function selectBoosterDraftAbility(abName) {
     if(abName != null && abName.length > 0 && abilityDraft[abName]) {
         chooseNewAbility(-1, abName);
         Game.EmitSound("BoosterDraft.Pick");
-
-        for (var g in abilityStore) {
-            abilityStore[g].SetHasClass("hide", true);
-        }
 
         $("#boosterDraftPile").SetHasClass('lodSelectedDrop', false);
     }
@@ -1451,6 +1453,10 @@ function setSelectedDropAbility(abName, abcon) {
         $('#banningAbilityContainer').SetHasClass('disableButton', true);
 
         setSelectedHelperHero(currentSelectedHero, true);
+
+        if (isBoosterDraftGamemode()) {
+            $("#boosterDraftPile").SetHasClass('lodSelectedDrop', false);
+        }
     } else {
         // Do a selection
         currentSelectedSkill = abName;
@@ -4565,10 +4571,7 @@ function UpdateTimer() {
         if (isBoosterDraftGamemode()) {
             try {
                 $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].FindChildTraverse("lodBoosterPackLabel").text = placeInto.text;
-            } catch (err) {
-
-            }
-            
+            } catch (err) {}
         }
 
         // Review override
