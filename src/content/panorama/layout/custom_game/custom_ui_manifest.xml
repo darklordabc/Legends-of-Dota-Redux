@@ -11,7 +11,6 @@
             shouldSort: false
         };
 
-        //      GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false);
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false);
 
@@ -20,6 +19,11 @@
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false);
 
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
+
+        // Hide for game setup phase
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, false);
+        GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     </script>
 
 	<Panel>
@@ -40,6 +44,7 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/cheats.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/duel_ui.xml" />
+        
         <!-- Textures compiling stuff
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
         -->

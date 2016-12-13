@@ -7,7 +7,6 @@
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen.js" />
     </scripts>
-
 	<Panel class="LoDLoadingRoot">
 		<Panel id="CustomBackground">
 			<Image id="BackgroundImage" />
