@@ -23,8 +23,8 @@
     </script>
 
 	<Panel>
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup/game_setup.xml" />
-        <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />

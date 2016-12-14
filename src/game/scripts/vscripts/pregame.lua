@@ -109,6 +109,8 @@ function Pregame:init()
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
 
+    GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
+
     -- Rune fix
     local totalRunes = 0
     local needBounty = false
@@ -851,7 +853,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
+        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
         	return
         end
 
@@ -868,7 +870,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
 
                     -- Create the hero and validate it
                     print(heroName)
-                    local hero = CreateHeroForPlayer(heroName, player)
+
+                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+
+                    CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+
                     -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -5555,6 +5561,17 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
+            end
+            -- Detect spawn dummy
+            if spawnedUnit:IsRealHero() then
+                self.spawnedArray = self.spawnedArray or {}
+
+                if not self.spawnedArray[spawnedUnit:GetPlayerID()] then
+                    self.spawnedArray[spawnedUnit:GetPlayerID()] = true
+                    spawnedUnit.dummy = true
+                    spawnedUnit:AddNoDraw()
+                    return
+                end
             end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then

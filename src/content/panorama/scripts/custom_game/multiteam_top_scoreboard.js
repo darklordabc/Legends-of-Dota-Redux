@@ -42,5 +42,7 @@ function UpdateScoreboard()
 	g_ScoreboardHandle = ScoreboardUpdater_InitializeScoreboard( scoreboardConfig, $( "#MultiteamScoreboard" ) );
 
 	UpdateScoreboard();
+
+	GameUI.CustomUIConfig().topScoreboard = $( "#MultiteamScoreboard" );
 })();
 
