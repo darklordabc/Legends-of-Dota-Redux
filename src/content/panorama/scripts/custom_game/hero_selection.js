@@ -33,7 +33,7 @@ function rollBackChanges() {
     hud.FindChildTraverse("lower_hud").visible = true;
     GameUI.CustomUIConfig().topScoreboard.visible = true;
 
-    label.text = $.Localize("paused_text");
+    label.text = $.Localize("DOTA_Hud_Paused");
 
     $.GetContextPanel().DeleteAsync(0.0);
 }
@@ -54,7 +54,7 @@ function rollBackChanges() {
         queue = (Players.GetLocalPlayer() - args.queue);
 
         if (queue == -1) {
-            label.text = $.Localize("paused_text");
+            label.text = $.Localize("DOTA_Hud_Paused");
         } else if (queue == 0) {
             label.text = "Spawning";
         } else {
