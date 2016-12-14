@@ -11,7 +11,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -477,7 +477,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityTextureName"            "tiny_grow"
 
         "OnOwnerSpawned"
@@ -745,9 +745,9 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                      "3"
         "AbilityTextureName"            "ogre_magi_multicast_lod"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityCooldown"               "30 15 10"
-
+        
         "AbilitySpecial"
         {
             "01"
@@ -774,7 +774,7 @@
             }
         }
     }
-
+    
     "troll_warlord_berserkers_rage_melee"
     {
         "BaseClass"                     "troll_warlord_berserkers_rage"
@@ -841,7 +841,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "riki_permanent_invisibility"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityTextureName"            "riki_permanent_invisibility_lod"
 
         // Special
@@ -994,7 +994,7 @@
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"            "zuus_thundergods_wrath_lod"
@@ -1070,7 +1070,7 @@
         "ItemBaseLevel"                 "0"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
@@ -1240,7 +1240,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "AbilityTextureName"            "holdout_gladiators_unite_lod"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 
@@ -1298,7 +1298,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityTextureName"            "holdout_omnislash_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
 
         // Casting
@@ -1365,7 +1365,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityTextureName"            "sven_gods_strength_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -1476,7 +1476,7 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"				"ability_datadriven"
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1870,7 +1870,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "AbilityTextureName"                    "holdout_culling_blade"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 
@@ -3614,7 +3614,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                "ability_datadriven"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "AbilityTextureName"            "tinker_rearm_lod"
         "AbilityCastAnimation"            "ACT_DOTA_CHANNEL_ABILITY_4"
     
@@ -3840,7 +3840,7 @@
     {
         "BaseClass"                     "ability_datadriven"
         "AbilityTextureName"            "silencer_global_break"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
@@ -4021,7 +4021,7 @@
 	"global_stun"
 	{
 		"BaseClass"                     "centaur_khan_war_stomp"
-		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"            "global_stun"
@@ -4477,7 +4477,7 @@
         "BaseClass"                     "lone_druid_spirit_bear_return"
         "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "MaxLevel"                      "3"        
-    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+    "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
@@ -4500,7 +4500,7 @@
         "BaseClass"                     "lone_druid_spirit_bear_return"
         "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "MaxLevel"                      "3"        
-		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"            "lone_druid_spirit_bear_return_lod_OP"
 
         // Time
@@ -4809,7 +4809,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"			"marksmanship_int"
 		"AbilityCastRange"                "%radius"
 	
@@ -4920,7 +4920,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"			"marksmanship_str"
 		"AbilityCastRange"                "%radius"
 	
@@ -5638,7 +5638,7 @@
     {
         "BaseClass"                "ability_datadriven"
         "AbilityBehavior"            "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
-        "AbilityType"                "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                "DOTA_ABILITY_TYPE_BASIC"
         "AbilityTextureName"            "cherub_flower_garden"
         
         "AbilityCastRange"            "300"
@@ -8051,7 +8051,7 @@
     {
         "BaseClass"                 "ability_datadriven"
         "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
-        "AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
@@ -8238,7 +8238,7 @@
     {
         "BaseClass"                 "ability_datadriven"
         "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
-        "AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
@@ -9292,7 +9292,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9394,7 +9394,7 @@
         "AbilityTextureName"                    "sniper_shrapnel_muh_keen_gun"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9445,7 +9445,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9560,7 +9560,7 @@
         "AbilityTextureName"                    "antimage_mana_break"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9609,7 +9609,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9664,7 +9664,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCooldown"                       "4 3 2"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9736,7 +9736,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9813,7 +9813,7 @@
         "AbilityTextureName"                    "ursa_fury_swipes"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9878,7 +9878,7 @@
         "AbilityTextureName"                    "gyrocopter_skyhigh_flak_cannon"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 		
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -9918,7 +9918,7 @@
         "AbilityTextureName"                    "slark_essence_shift"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10054,7 +10054,7 @@
         "AbilityTextureName"                    "troll_warlord_fervor"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10125,7 +10125,7 @@
         "AbilityTextureName"                    "imba_tower_berserk"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10197,7 +10197,7 @@
         "AbilityTextureName"                    "tower_thorns"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10261,7 +10261,7 @@
         "AbilityTextureName"                    "imba_tower_multihit"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 		
 
         // Special
@@ -10313,7 +10313,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
 		"LevelsBetweenUpgrades"  		"1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10388,7 +10388,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "700"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10487,7 +10487,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10571,7 +10571,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10651,7 +10651,7 @@
         "AbilityTextureName"                    "giant_wolf_critical_strike"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10726,7 +10726,7 @@
         "AbilityTextureName"                    "imba_tower_sniper"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 		
 
         // Special
@@ -10773,7 +10773,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCooldown"                       "5 4 3"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10832,7 +10832,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "600 900 1200"
         "AbilityCooldown"                       "10 8 6"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10882,7 +10882,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "600 800 1000"
         "AbilityCooldown"                       "5"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -10947,7 +10947,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -11043,7 +11043,7 @@
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
         "AbilityCooldown"                       "10 9 8"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -11118,7 +11118,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -11179,7 +11179,7 @@
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "1200"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -11297,7 +11297,7 @@
         "AbilityTextureName"                    "luna_moon_glaive"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -11362,7 +11362,7 @@
         "AbilityTextureName"                    "imba_tower_salvo"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -12351,7 +12351,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "phoenix_supernova"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
@@ -12797,7 +12797,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "weaver_time_lapse"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"      
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
@@ -12888,7 +12888,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityType"            		"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            		"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"			"angel_arena_grace"
 		"MaxLevel"						"3"
 	
@@ -12999,7 +12999,7 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"		"angel_arena_demonic"
-		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"					"3"
 			
 		// Casting
@@ -13120,7 +13120,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"angel_arena_darkrage"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"120.0 110.0 100.0"
@@ -13387,7 +13387,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"			"angel_arena_transmute"
 	
 		"MaxLevel"						"3"
@@ -13456,7 +13456,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"angel_arena_nether_ritual"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"						"3"
 		
 		// Precache
@@ -13518,7 +13518,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"						"3"
 		"AbilityTextureName"			"angel_arena_hola_heal"
 		
@@ -13870,7 +13870,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"angel_arena_song"
 	
-	    "AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"	
+	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"	
 	
 		"precache"
 		{
@@ -14081,7 +14081,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"	
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		
 		"AbilityCastPoint"				"0.5 0.5 0.5"
@@ -14805,7 +14805,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"angel_arena_night_vampire"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		
 		"MaxLevel"						"3"
 		
@@ -15130,7 +15130,7 @@
 	    "AbilityBehavior"       	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityTextureName"    "ancient_priestess_ritual_protection"
 	    
-		"AbilityType"            	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            	"DOTA_ABILITY_TYPE_BASIC"
 	    "MaxLevel"               	"3"
 	    
 	    "AbilityCastPoint"              "0"
@@ -15568,7 +15568,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"android_pocket_factory"
-		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	
 	    "MaxLevel"               "3"
 	
@@ -16057,7 +16057,7 @@
 		"AbilityCooldown"				"80"
 		"AbilityManacost"				"125 150 175"
 		
-	    "AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"	
+	    "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"	
 		"MaxLevel"               "3"
 		"RequiredLevel"          "5"
 		"LevelsBetweenUpgrades"  "4"
@@ -16221,7 +16221,7 @@
 	    "AbilityTextureName"     "brewmaster_ferocity_all"
 	    "AbilityUnitTargetFlags" 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	    "AoERadius"               "400 425 450"
-		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	    "MaxLevel"               "3"
 
 		"AbilityCastRange"				"400 425 450"
@@ -17173,7 +17173,7 @@
 	    "soundfile"   "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"       
 	  }
 	  
-	  "AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+	  "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	  "MaxLevel"               "3"
 	  "RequiredLevel"          "5"
 	  "LevelsBetweenUpgrades"  "4"
@@ -17325,7 +17325,7 @@
 	    "soundfile"   "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"       
 	  }
 	  
-	  "AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+	  "AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 	  "MaxLevel"               "3"
 	  "RequiredLevel"          "5"
 	  "LevelsBetweenUpgrades"  "4"
@@ -17991,7 +17991,7 @@
 			"AbilityCastPoint"				"0.5"
 			"AbilityTextureName"			"paladin_impregnability"
 			
-			"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"	
+			"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"	
 		    "MaxLevel"               "3"
 			"RequiredLevel"          "6"
 			
@@ -18713,7 +18713,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"illusionist_mastery_of_illusions"
 	
-		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 		// Casting
 		"MaxLevel"              "3"
 
@@ -19039,7 +19039,7 @@
 	
 		"AoERadius"		"500"
 		
-		"AbilityType"            "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"            "DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"              "3"
 		"RequiredLevel"          "6"
 
@@ -20106,7 +20106,7 @@
 		"AbilityTextureName" 			"invoker_retro_betrayal"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
-		"AbilityType"           	    "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"           	    "DOTA_ABILITY_TYPE_BASIC"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
 		"AbilityProcsMagicStick" 		"1"
@@ -20889,7 +20889,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"ebf_clinkz_trickshot_passive"
 		"HasScepterUpgrade"				"1"
@@ -20973,7 +20973,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -21410,7 +21410,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mana_fiend_essence_amp"
 
@@ -21526,7 +21526,7 @@
       "BaseClass"                 "ability_datadriven"
       "AbilityTextureName"      "ursa_enrage_old"
       "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-      "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
+      "AbilityType"         "DOTA_ABILITY_TYPE_BASIC"
       "AbilityCooldown"        "25"
       "AbilityManaCost"        "0"
       "AbilitySpecial"
@@ -21780,7 +21780,7 @@
         "BaseClass"                        "ability_lua"
         "ScriptFile"                    "abilities/angel_arena_reborn/angel_arena_archmage_anomaly"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"            "DAMAGE_TYPE_MAGICAL"    
