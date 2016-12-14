@@ -868,10 +868,23 @@ function Mindblast( keys )
 end
 
 function Forest( keys )
+
 	local caster = keys.caster
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local sound_tree = keys.sound_tree
+
+	local abilities = caster:GetAbilityCount() - 1
+    for i = 0, abilities do
+        if caster:GetAbilityByIndex(i) then
+        	--if string.find(caster:GetAbilityByIndex(i):GetAbilityName(), "special") then
+        		print(i) 
+           	 	print(caster:GetAbilityByIndex(i):GetAbilityName())
+           --	 	caster:GetAbilityByIndex(i):SetAbilityIndex(14+i)
+      	  --	end
+
+        end
+    end
 
 	-- If the ability is on cooldown, do nothing
 	if not ability:IsCooldownReady() then
