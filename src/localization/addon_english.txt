@@ -113,6 +113,7 @@
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorSliders"                             "Sliders"
+    "lodMutatorMonkeyBusiness"                      "Monkey Business"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -349,6 +350,9 @@
 
     "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
     "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
+
+    "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
+    "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
 
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"

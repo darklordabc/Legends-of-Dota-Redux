@@ -2156,6 +2156,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Other - Monkey Business
+        lodOptionMonkeyBusiness = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
@@ -2206,6 +2211,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionDuels', 0, false)
                 self:setOption('lodOption322', 0, false)
                 self:setOption('lodOptionSliders', 0, false)
+                self:setOption('lodOptionMonkeyBusiness', 0, false)
                 self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
                 -- Balance Mode Ban List disabled by default
@@ -2953,6 +2959,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])
+        OptionManager:SetOption('monkeyBusiness', this.optionStore['lodOptionMonkeyBusiness'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
@@ -3135,6 +3142,7 @@ function Pregame:processOptions()
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
                     ['Other: Free Teleport Ability'] = this.optionStore['lodOptionSliders'],
+                    ['Other: Monkey Business'] = this.optionStore['lodOptionMonkeyBusiness'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
@@ -5730,6 +5738,14 @@ function Pregame:fixSpawningIssues()
                     if not util:isPlayerBot(playerID) then
                         local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
                         riftAbility:UpgradeAbility(true)
+                    end
+                end
+
+                -- Give all non-bot heros the a free Mischief ability, it has one level and is upgraded from start
+                if OptionManager:GetOption('monkeyBusiness') then
+                    if not util:isPlayerBot(playerID) then
+                        local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
+                        mischieftAbility:UpgradeAbility(true)
                     end
                 end
 
