@@ -112,7 +112,7 @@
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
-    "lodMutatorSliders"                             "Free Teleport"
+    "lodMutatorSliders"                             "Sliders"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"

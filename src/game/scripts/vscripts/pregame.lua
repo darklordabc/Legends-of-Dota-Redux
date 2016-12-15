@@ -5725,6 +5725,14 @@ function Pregame:fixSpawningIssues()
                     end
                 end
 
+                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
+                if OptionManager:GetOption('sliders') then
+                    if not util:isPlayerBot(playerID) then
+                        local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
+                        riftAbility:UpgradeAbility(true)
+                    end
+                end
+
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
 
