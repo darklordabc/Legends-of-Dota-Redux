@@ -167,9 +167,8 @@ function generatePrecacheData(next) {
                     AbilityLayout: 6,
                     Enabled: data.Enabled
                 }
-                
+                /*
                 if(data.BotImplemented != 1) {
-                    /*
                     for(var i=1;i<=18;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';
@@ -182,8 +181,9 @@ function generatePrecacheData(next) {
                             }
                         }
                     }
-                    */
+
                 }
+                */
             }
 
             // Check if they are melee
