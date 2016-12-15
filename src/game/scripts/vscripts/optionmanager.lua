@@ -25,7 +25,7 @@ end
 OptionManager:SetOption('maxOptionSelectionTime', 60 * 3)
 
 -- Max time for voting for options
-OptionManager:SetOption('maxOptionVotingTime', 25)
+OptionManager:SetOption('maxOptionVotingTime', 15)
 
 -- Banning Period (2 minutes)
 OptionManager:SetOption('banningTime', 90)
@@ -73,9 +73,6 @@ OptionManager:SetOption('maxSkills', 6)
 -- Total number of ults to allow (Ults are always on the right)
 OptionManager:SetOption('maxUlts', 2)
 
--- Set Balance Mode
-OptionManager:SetOption('balanceMode', false)
-
 -- Should we ban troll combos?
 OptionManager:SetOption('banTrollCombos', true)
 
@@ -94,9 +91,6 @@ OptionManager:SetOption('allowedToPick', true)
 -- Should we force random heroes?
 OptionManager:SetOption('forceRandomHero', false)
 
--- Should we disable perks?
-OptionManager:SetOption('disablePerks', false)
-
 -- Enable WTF Mode?
 OptionManager:SetOption('wtfMode', false)
 
@@ -111,12 +105,6 @@ OptionManager:SetOption('allVision', false)
 
 -- Multicast Madness
 OptionManager:SetOption('multicastMadness', false)
-
--- Fat-O-Meter
-OptionManager:SetOption("useFatOMeter", 0)
-
--- Ingame Builder
-OptionManager:SetOption('allowIngameHeroBuilder', false)
 
 -- Max level
 OptionManager:SetOption('maxHeroLevel', 25)
@@ -148,6 +136,9 @@ OptionManager:SetOption('loadSurvival', false)
 -- Free courier
 OptionManager:SetOption('freeCourier', 2)
 
+-- Voting
+OptionManager:SetOption('votingMode', 1)
+
 -- Number of towers in the middle of a lane
 OptionManager:SetOption('middleTowers', 1)
 
@@ -160,10 +151,8 @@ OptionManager:SetOption('useLevel1ults', false)
 -- Full price sellback
 OptionManager:SetOption('fullPriceSellback', false)
 
--- Other Mutators
-OptionManager:SetOption('322', 0)
-OptionManager:SetOption('refreshCooldownsOnDeath', 0)
-OptionManager:SetOption('gottaGoFast', 0)
+-- Buyback cooldown
+OptionManager:SetOption('buybackCooldown', 7 * 60)
 
 --[[
     GAMEMODE STUFF
@@ -172,8 +161,6 @@ OptionManager:SetOption('gottaGoFast', 0)
 -- Max number of bans
 OptionManager:SetOption('maxBans', 5)
 OptionManager:SetOption('maxHeroBans', 2)
-
-OptionManager:SetOption('duels', 0)
 
 -- Host banning mode?
 OptionManager:SetOption('hostBanning', false)
@@ -196,6 +183,9 @@ OptionManager:SetOption('autoDraftHeroNumber', 10)
 -- Gold Modifier
 OptionManager:SetOption('goldModifier', 1)
 OptionManager:SetOption('expModifier', 1)
+
+-- Allow ingame hero builder?
+OptionManager:SetOption('allowIngameHeroBuilder', false)
 
 -- Return the export
 return OptionManager
