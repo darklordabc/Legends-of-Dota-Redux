@@ -5509,20 +5509,6 @@ function Pregame:hookBotStuff()
                     end
                 end
 
-                -- If we failed to find any skills to skill
-                if lowestAb == nil and OptionManager:GetOption('botBonusPoints') then
-					print("bonus bot abilities are on")
-                    -- Try to skill attribute bonus
-                    lowestAb = hero:FindAbilityByName('attribute_bonus')
-                    if lowestAb ~= nil then
-                        lowestLevel = lowestAb:GetLevel()
-                        if lowestLevel >= lowestAb:GetMaxLevel() then
-                            lowestAb = nil
-                        end
-                    end
-                end
-
-
                 -- Apply the point
                 if lowestAb ~= nil then
                     lowestAb:SetLevel(lowestLevel + 1)
@@ -5650,6 +5636,11 @@ function Pregame:fixSpawningIssues()
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
                        print("Perk assigned")
+                       for i = 0, 18 do
+                          if spawnedUnit:GetAbilityByIndex(i) then
+                            print("Ability " .. i .. ": " .. spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                          end
+                       end
                     end
                 end, DoUniqueString('addPerk'), 1)
 
