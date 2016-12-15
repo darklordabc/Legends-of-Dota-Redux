@@ -5668,6 +5668,7 @@ function Pregame:fixSpawningIssues()
                        
                     end
                 end, DoUniqueString('addPerk'), 1.0)
+                
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
