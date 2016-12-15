@@ -3766,4 +3766,9 @@
     "DOTA_Tooltip_modifier_archmage_anomaly"    "Anomaly"       
     "DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
 
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global"       "Global Lightning"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_Description" "Calls down a bolt of lightning <font color='#70EA72'>from a Global range</font> to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a 750 radius. Can be cast on the ground, affecting the closest enemy hero in 325 range."
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
 }
