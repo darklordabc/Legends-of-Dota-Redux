@@ -5710,6 +5710,10 @@ function Pregame:fixSpawningIssues()
                             bonus_health = 0,
                             bonus_mana = 0
                         })
+                        if not util:isPlayerBot(playerID) then
+                            local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
+                            riftAbility:UpgradeAbility(true)
+                        end
                     end
                 end
 
