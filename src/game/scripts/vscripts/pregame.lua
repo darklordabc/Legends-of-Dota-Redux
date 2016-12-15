@@ -2205,6 +2205,7 @@ function Pregame:initOptionSelector()
                 -- Mutators disabled by default
                 self:setOption('lodOptionDuels', 0, false)
                 self:setOption('lodOption322', 0, false)
+                self:setOption('lodOptionSliders', 0, false)
                 self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
                 -- Balance Mode Ban List disabled by default
@@ -2951,6 +2952,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
+        OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
@@ -3132,6 +3134,7 @@ function Pregame:processOptions()
                     ['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
+                    ['Other: Free Teleport Ability'] = this.optionStore['lodOptionSliders'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
