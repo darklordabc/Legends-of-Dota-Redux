@@ -996,7 +996,7 @@ function Pregame:networkHeroes()
 
         if SkillManager:isUlt(abilityName) then
             flagsInverse[abilityName].isUlt = true
-            self:banAbility(abilityName)
+            --self:banAbility(abilityName)
         end
     end
 
