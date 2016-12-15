@@ -555,7 +555,6 @@
 <Image src="file://{images}/custom_game/loading_screens_DISABLED/ZRzGl3b.jpg" />
 <Image src="file://{images}/custom_game/loading_screens_DISABLED/ZyegbCE.jpg" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutator322.png" />
-<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorSliders.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorAllPick.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png" />
@@ -1036,4 +1035,5 @@
 <Image src="file://{images}/spellicons/zulf_typhoon.png" />
 <Image src="file://{images}/spellicons/zulf_typhoon_OP.png" />
 <Image src="file://{images}/spellicons/zuus_lightning_bolt_immortal.png" />
-<Image src="file://{images}/spellicons/zuus_thundergods_wrath_lod.png" /> </Panel></root>
+<Image src="file://{images}/spellicons/zuus_thundergods_wrath_lod.png" /> 
+<Image src="file://{images}/custom_game/mutators/mutator_lodMutatorSliders.png" /></Panel></root>

@@ -2151,6 +2151,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Other - Teleporation
+        lodOptionSliders = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
