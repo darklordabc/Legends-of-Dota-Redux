@@ -5654,7 +5654,7 @@ function Pregame:fixSpawningIssues()
                         end
                     end
 
-                end, DoUniqueString('fixHotKey'), 2)
+                end, DoUniqueString('fixHotKey'), .5)
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
@@ -5693,6 +5693,8 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('addBotAI'), 0.5)
 
+
+
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
                 local ab3 = spawnedUnit:GetAbilityByIndex(3)
@@ -5726,28 +5728,29 @@ function Pregame:fixSpawningIssues()
                             bonus_health = 0,
                             bonus_mana = 0
                         })
+                    end
+                end
+
+                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
+                Timers:CreateTimer(function()                   
+                    if OptionManager:GetOption('sliders') > 0 then
                         if not util:isPlayerBot(playerID) then
                             local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
                             riftAbility:UpgradeAbility(true)
                         end
                     end
-                end
-
-                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
-                if OptionManager:GetOption('sliders') then
-                    if not util:isPlayerBot(playerID) then
-                        local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
-                        riftAbility:UpgradeAbility(true)
-                    end
-                end
+                 end, DoUniqueString('addRift'), 1)
 
                 -- Give all non-bot heros the a free Mischief ability, it has one level and is upgraded from start
-                if OptionManager:GetOption('monkeyBusiness') then
-                    if not util:isPlayerBot(playerID) then
-                        local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
-                        mischieftAbility:UpgradeAbility(true)
+                Timers:CreateTimer(function()    
+                    if OptionManager:GetOption('monkeyBusiness') > 0 then
+                        print(OptionManager:GetOption('monkeyBusiness'))
+                        if not util:isPlayerBot(playerID) then
+                            local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
+                            mischieftAbility:UpgradeAbility(true)
+                        end
                     end
-                end
+                end, DoUniqueString('addMischief'), 1.5)
 
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()

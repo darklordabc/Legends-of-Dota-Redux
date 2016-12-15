@@ -327,6 +327,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutSliders',
                         about: 'lodMutatorSliders',
                     },
+                    {
+                        name: 'lodOptionMonkeyBusiness',        
+                        extraInfo: 'lodOptionAboutMonkeyBusiness',
+                        about: 'lodMutatorMonkeyBusiness',
+                    },
                 ]
             }
         ]
@@ -1217,6 +1222,22 @@ var advancedOptions = {
                 name: 'lodOptionSliders',
                 des: 'lodOptionDesSliders',
                 about: 'lodOptionAboutSliders',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionMonkeyBusiness',
+                des: 'lodOptionDesMonkeyBusiness',
+                about: 'lodOptionAboutMonkeyBusiness',
                 sort: 'toggle',
                 values: [
                     {
