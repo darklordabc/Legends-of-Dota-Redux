@@ -996,6 +996,7 @@ function Pregame:networkHeroes()
 
         if SkillManager:isUlt(abilityName) then
             flagsInverse[abilityName].isUlt = true
+            --self:banAbility(abilityName)
         end
     end
 
@@ -5635,7 +5636,7 @@ function Pregame:fixSpawningIssues()
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
                        print("Perk assigned")
-                       for i = 0, spawnedUnit:GetAbilityCount() do
+                       for i = 0, 18 do
                           if spawnedUnit:GetAbilityByIndex(i) then
                             print("Ability " .. i .. ": " .. spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
                           end
