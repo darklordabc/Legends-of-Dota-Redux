@@ -167,13 +167,22 @@ function generatePrecacheData(next) {
                     AbilityLayout: 6,
                     Enabled: data.Enabled
                 }
-
+                
                 if(data.BotImplemented != 1) {
-                    for(var i=1;i<=16;++i) {
+                    /*
+                    for(var i=1;i<=18;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';
                         }
                     }
+                    if(name == 'npc_dota_hero_invoker') {
+                        for(var i=10;i<=16;++i) {
+                            if(heroes[name]['Ability' + i]) {
+                                newKV[name+'_lod']['Ability' + i] = '';
+                            }
+                        }
+                    }
+                    */
                 }
             }
 

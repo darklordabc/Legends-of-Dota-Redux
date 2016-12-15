@@ -5623,22 +5623,27 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-
+--[[
                 Timers:CreateTimer(function()
-                    local abilities = spawnedUnit:GetAbilityCount() - 1
-                    for i = 0, abilities do
-                        if spawnedUnit:GetAbilityByIndex(i) then
-                            if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special") then
-                                print("removed") 
-                                print(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                                spawnedUnit:GetAbilityByIndex(i):SetAbilityIndex(14+i)
-                                spawnedUnit:RemoveAbility(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
+                        local abilities = spawnedUnit:GetAbilityCount() - 1
+                        spawnedUnit.talents = {}
+
+                        for i = 0, abilities do
+                            if spawnedUnit:GetAbilityByIndex(i) then
+                                if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
+                                    --print("removed") 
+                                    local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                                    spawnedUnit.talents[i] = talent
+                                    print("Ability " .. i .. ": " .. talent)
+                                    spawnedUnit:RemoveAbility(talent)
+                                end
                             end
-
                         end
-                    end
+                        spawnedUnit.hasTalents = true
+                   end
 
-                end, DoUniqueString('fixHotKey'), 2)
+                end, DoUniqueString('fixHotKey'), 1)]]
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
@@ -5652,13 +5657,17 @@ function Pregame:fixSpawningIssues()
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
                        print("Perk assigned")
-                       for i = 0, 18 do
-                          if spawnedUnit:GetAbilityByIndex(i) then
-                            print("Ability " .. i .. ": " .. spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                          end
-                       end
+
+                       for i = 0, spawnedUnit:GetAbilityCount() - 1 do
+                            if spawnedUnit:GetAbilityByIndex(i) then
+                                --print("removed") 
+                                local ability = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                                print("Ability " .. i .. ": " .. ability)
+                            end
+                        end
+                       
                     end
-                end, DoUniqueString('addPerk'), 1)
+                end, DoUniqueString('addPerk'), 1.0)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
