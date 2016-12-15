@@ -29,29 +29,6 @@ function Network:setActiveOptionsTab(newActiveTab)
     CustomNetTables:SetTableValue('phase_pregame', 'activeTab', {v = newActiveTab})
 end
 
--- Sets the active tab
-function Network:showPopup(player, options)
-    if not IsValidEntity(player) then return end
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToPlayer(player, 'lodShowPopup', options)
-end
-
-function Network:changeHost(options)
-    -- Ensure we have an options table
-    options = options or {}
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodOnHostChanged', options)
-end
-
-function Network:changeLock(player, options)
-    if not IsValidEntity(player) then return end
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToPlayer(player, 'lodChangeLock', options)
-end
-
 -- Set an option
 function Network:setOption(optionName, optionValue)
     CustomNetTables:SetTableValue('options', optionName, {v = optionValue})
@@ -64,7 +41,19 @@ end
 
 -- Networks flag info
 function Network:setFlagData(abilityName, flagData)
-    CustomNetTables:SetTableValue('flags', abilityName, flagData)
+    CustomNetTables:SetTableValue('flags', abilityName, {
+        isFlagData = true,
+        flagData = flagData
+    })
+end
+
+-- Networks custom groups
+function Network:sendCustomGroup(groupName, data)
+    CustomNetTables:SetTableValue('flags', 'custom_group_'..groupName, {
+        isCustomGroup = true,
+        groupName = groupName,
+        data = data
+    })
 end
 
 -- Sets a player's selected hero
@@ -73,7 +62,6 @@ function Network:setSelectedHero(playerID, heroName)
         heroName = heroName,
         playerID = playerID
     })
-    CustomGameEventManager:Send_ServerToAllClients("lodPreloadHeroPanel", {heroName = heroName})
 end
 
 -- Sets a player's selected primary attribute
@@ -114,34 +102,13 @@ function Network:setSelectedAllRandomBuild(playerID, selectedBuilds)
 end
 
 -- Sends a draft array
-function Network:setDraftArray(draftID, draftArray)
+function Network:setDraftArray(draftID, draftArray, draftPlayers)
     -- Push to everyone
     CustomNetTables:SetTableValue('draft_array', tostring(draftID), {
         draftID = draftID,
-        draftArray = draftArray
+        draftArray = draftArray,
+        draftPlayers = draftPlayers
     })
-end
-
-function Network:hideHeroBuilder(ply, options)
-    -- Ensure we have an options table
-    options = options or {}
-
-    -- Ensure we have a valid player
-    if not IsValidEntity(ply) then return end
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNewHeroBuild', options)
-end
-
-function Network:showHeroBuilder(ply, options)
-    -- Ensure we have an options table
-    options = options or {}
-
-    -- Ensure we have a valid player
-    if not IsValidEntity(ply) then return end
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToPlayer(ply, 'lodShowIngameBuilder', options)
 end
 
 -- Sends a notification to a player
@@ -154,14 +121,6 @@ function Network:sendNotification(ply, options)
 
     -- Push it
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
-end
-
-function Network:showCheatPanel(options)
-    -- Ensure we have an options table
-    options = options or {}
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodShowCheatPanel', options)
 end
 
 -- Sends a notification to all players
@@ -189,13 +148,6 @@ function Network:banHero(heroName)
     })
 end
 
-function Network:enableIngameHeroEditor()
-
-    local options = {}
-    -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodEnableIngameBuilder', options)
-end
-
 -- Pushes that a hero is banned
 function Network:setTotalBans(playerID, currentHeroBans, currentAbilityBans)
     -- Push to everyone
@@ -207,9 +159,12 @@ function Network:setTotalBans(playerID, currentHeroBans, currentAbilityBans)
 end
 
 -- Pushes the ready state
-function Network:sendReadyState(readyState)
+function Network:sendReadyState(readyState, lockState)
     -- Push to everyone
-    CustomNetTables:SetTableValue('ready', 'ready', readyState)
+    CustomNetTables:SetTableValue('ready', 'ready', {
+        readyState = readyState,
+        lockState = lockState
+    })
 end
 
 -- Pushes that precaching is done
@@ -228,32 +183,29 @@ function Network:setPremiumInfo(info)
     CustomNetTables:SetTableValue('phase_pregame', 'premium_info', info)
 end
 
--- Shares contributor list
-function Network:setContributors(info)
-    CustomNetTables:SetTableValue('phase_pregame', 'contributors', info)
-end
-
 -- Balance request
-function Network:setTeamBalanceData(info)
+--[[function Network:setTeamBalanceData(info)
     CustomNetTables:SetTableValue('phase_ingame', 'balance_data', info)
-end
+end]]
 
 -- Gameplay Stats
 function Network:sharePlayerStats(stats)
     CustomNetTables:SetTableValue('phase_pregame', 'stats', stats)
 end
 
-function Network:sendSpellPrice(ability, price)
-    CustomGameEventManager:Send_ServerToAllClients('balance_mode_price', {abilityName = ability, cost = price })
+-- Vote stuff
+function Network:updateVoteInfo(voteInfo)
+    CustomNetTables:SetTableValue('phase_ingame', 'vote', voteInfo)
 end
 
-function Network:updateFilters()
-    CustomGameEventManager:Send_ServerToAllClients('updateFilters', {})
+-- Disable voting
+function Network:disableVoting()
+    CustomNetTables:SetTableValue('phase_ingame', 'votingDisable', {})
 end
 
--- Sends Troll Combo data
-function Network:addTrollCombo(a, b)
-    CustomGameEventManager:Send_ServerToAllClients('addTrollCombo', {ab1 = a, ab2 = b})
+-- Enable ingame hero editor
+function Network:enableIngameHeroEditor()
+    CustomNetTables:SetTableValue('phase_ingame', 'enableHeroEditor', {})
 end
 
 -- Return an instance of it

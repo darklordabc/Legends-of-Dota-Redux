@@ -1,52 +1,13 @@
--- Define skill warnings
---[[skillWarnings = {
-    life_stealer_infest = {getSpellIcon('life_stealer_infest'), tranAbility('life_stealer_infest'), getSpellIcon('life_stealer_consume'), tranAbility('life_stealer_consume')},
-    shadow_demon_demonic_purge = {getSpellIcon('shadow_demon_demonic_purge'), tranAbility('shadow_demon_demonic_purge'), transHero('shadow_demon')},
-    phantom_lancer_phantom_edge = {getSpellIcon('phantom_lancer_phantom_edge'), tranAbility('phantom_lancer_phantom_edge'), getSpellIcon('phantom_lancer_juxtapose'), tranAbility('phantom_lancer_juxtapose')},
-    keeper_of_the_light_spirit_form = {getSpellIcon('keeper_of_the_light_spirit_form'), tranAbility('keeper_of_the_light_spirit_form')},
-    luna_eclipse = {getSpellIcon('luna_eclipse'), tranAbility('luna_eclipse'), getSpellIcon('luna_lucent_beam'), tranAbility('luna_lucent_beam')},
-    puck_illusory_orb = {getSpellIcon('puck_illusory_orb'), tranAbility('puck_illusory_orb'), getSpellIcon('puck_ethereal_jaunt'), tranAbility('puck_ethereal_jaunt')},
-    techies_remote_mines = {getSpellIcon('techies_remote_mines'), tranAbility('techies_remote_mines'), getSpellIcon('techies_focused_detonate'), tranAbility('techies_focused_detonate')},
-    nyx_assassin_burrow = {getSpellIcon('nyx_assassin_burrow'), tranAbility('nyx_assassin_burrow'), getSpellIcon('nyx_assassin_vendetta'), tranAbility('nyx_assassin_vendetta')},
-n    lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('lone_druid_true_form')},
-    phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
-}]]
-
-require('lib/StatUploaderFunctions')
-
--- Precache obstacles
-require('obstacles')
-
 -- Precaching
 function Precache(context)
-    local soundList = LoadKeyValues('scripts/kv/sounds.kv')
-    -- Precache sounds
-    for soundPath,_ in pairs(soundList["precache_sounds"]) do
-        PrecacheResource("soundfile", soundPath, context)
-    end
-    -- COMMENT THE BELOW OUT IF YOU DO NOT WANT TO COMPILE ASSETS
-    if IsInToolsMode() then 
-        local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-        for ability, block in pairs(abilities) do
-            if block == "precache" then
-                for precacheType, resource in pairs(block) do
-                    PrecacheResource(precacheType, resource, context)
-                end
-            end
-        end
-    end
-    -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
-    PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
-    
-    precacheObstacles(context)
 end
 
 -- Create the game mode when we activate
 function Activate()
-    -- Print LoD version header
+	-- Print LoD version header
     local versionFile = LoadKeyValues('addoninfo.txt')
     local versionNumber = versionFile.version
-    print('\n\nDota 2 Redux is activating! (v'..versionNumber..')')
+    print('\n\nLegends of dota is activating! (v'..versionNumber..')')
 
     -- Ensure LoD is compiled
     local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
@@ -75,9 +36,17 @@ function Activate()
     GameRules.pregame = pregame
     GameRules.ingame = ingame
 
-    print('LoD seems to have activated successfully!!\n\n')
+    -- Store the modID so we can tell people not to commit it to the workshop with the LoD modID
+    pcall(function()
+        -- If this fails, the KV doesn't exist, and a stats loading error will be printed :)
 
-    
+        -- Compare modID to LoD modID
+        if LoadKeyValues('scripts/vscripts/statcollection/settings.kv').modID == ('2374'..'504c'..'2c51'..'8faf'..'c973'..'1a12'..'0e67'..'fdf5') then
+            print('Please do not use the Legends of Dota modID! Please modify your `src/scripts/vscripts/statcollection/settings.kv` file to use a seperate modID!')
+        else
+            print('LoD seems to have activated successfully!!\n\n')
+        end
+    end)
 end
 
 -- Boot directly into LoD interface

@@ -5,7 +5,6 @@
 -- Load requires
 local OptionManager = require('optionmanager')
 local util = require('util')
-local Network = require('network')
 local constants = require('constants')
 local Timers = require('easytimers')
 
@@ -15,6 +14,15 @@ local currentSkillList = {}
 -- Contains ability info
 local mainAbList = LoadKeyValues('scripts/npc/npc_abilities.txt')
 local customAbList = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+
+-- Deal with overrides
+for abilityName,customData in pairs(LoadKeyValues('scripts/npc/npc_abilities_override.txt')) do
+    if mainAbList[abilityName] then
+        for flag, newValue in pairs(customData) do
+            mainAbList[abilityName][flag] = newValue
+        end
+    end
+end
 
 -- Calculate attributes on skills (channelled, etc, for multicast)
 util:SetupSpellProperties(mainAbList)
@@ -28,13 +36,7 @@ end
 local heroListKV = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- A list of sub abilities needed to give out when we add an ability
-local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
-
--- A list of sub abilities to find main abilities connected to them
-local mainAbilities = {}
-for l,m in pairs(subAbilities) do
-	mainAbilities[m]=l
-end
+local subAbilities = LoadKeyValues('scripts/kv/ability_deps.kv')
 
 -- List of units that we can precache
 local unitList = LoadKeyValues('scripts/npc/npc_units_custom.txt')
@@ -149,10 +151,8 @@ end
 
 -- Precaches a skill -- DODGY!
 local alreadyCached = {}
-local customSkill = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 function skillManager:precacheSkill(skillName, callback)
     local heroID = skillOwningHero[skillName]
-	local customSkill = customSkill[skillName]
 
     if heroID then
         local heroName = heroIDToName[heroID]
@@ -183,23 +183,6 @@ function skillManager:precacheSkill(skillName, callback)
                 end
             end
         end
-	elseif customSkill then
-		if alreadyCached[skillName] then
-			if callback() then
-                callback()
-                return
-			else
-				return
-			end
-		end
-		alreadyCached[skillName] = true
-		PrecacheItemByNameAsync(skillName, function()
-			local precache = CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
-            local hAbility = precache:AddAbility(skillName)
-            if callback ~= nil then
-               callback()
-            end
-        end)
     else
         -- Done
         callback()
@@ -255,12 +238,12 @@ function skillManager:RemoveAllSkills(hero)
 
     -- Build the skill list
     self:BuildSkillList(hero)
-	
+
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
             hero:FindAbilityByName(v):SetHidden(true)
-		end
+        end
     end
 end
 
@@ -295,43 +278,6 @@ function skillManager:ShowSet(hero, number)
     end
 end
 
--- Returns a multiplier skill name, if it exists
-function skillManager:GetMultiplierSkillName(skillName)
-    local mult = OptionManager:GetOption('customSpellPower')
-    local useLevel1ults = OptionManager:GetOption('useLevel1ults')
-
-    -- Check that we are actually doing a multiplier
-    if mult and mult ~= 1 then
-        -- Double mult fixer
-        if mult == 100 then
-            mult = 'd'
-        end
-
-        if useLevel1ults then
-            -- Check if the multiplier skill exists with lvl1 ult
-            if multiplierSkills[skillName..'_'..mult..'_lvl1'] then
-                return skillName..'_'..mult..'_lvl1'
-            end
-        end
-
-        -- Check if the multiplier skill exists
-        if multiplierSkills[skillName..'_'..mult] then
-            return skillName..'_'..mult
-        end
-    end
-
-    -- Check if the lvl1  ult skill exists
-    if useLevel1ults then
-        -- Check if the multiplier skill exists
-        if multiplierSkills[skillName..'_lvl1'] then
-            return skillName..'_lvl1'
-        end
-    end
-
-    -- Doesn't exist, use the normal skill
-    return skillName
-end
-
 -- Precaches a build <3
 function skillManager:PrecacheBuild(build)
     for i=1,16 do
@@ -362,8 +308,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- If we are currently swapping a hero, ignore
     if inSwap then return end
 
-    -- Cooldowns        
-    self.abilityCooldowns = self.abilityCooldowns or {}     
+    -- Cooldowns
+    self.abilityCooldowns = self.abilityCooldowns or {}
     local cooldownInfo = {}
 
     -- Check if there is a new hero
@@ -373,8 +319,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         playerID = hero:GetPlayerID()
         local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        -- Grab cooldowns       
-        self.abilityCooldowns[playerID] = self.abilityCooldowns[playerID] or {}     
+        -- Grab cooldowns
+        self.abilityCooldowns[playerID] = self.abilityCooldowns[playerID] or {}
         cooldownInfo = self.abilityCooldowns[playerID]
 
         -- Hero check
@@ -415,34 +361,37 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                     end
 
                     hero:RemoveItem(item)
+                    --item:Remove()
                 end
             end
 
+            -- Handle cooldowns
+            for i=0,hero:GetAbilityCount()-1 do
+                local ab = hero:GetAbilityByIndex(i)
+                if IsValidEntity(ab) then
+                    local timeLeft = ab:GetCooldownTimeRemaining()
 
-            -- Handle cooldowns     
-            for i=0,hero:GetAbilityCount()-1 do     
-                local ab = hero:GetAbilityByIndex(i)        
-                if IsValidEntity(ab) then       
-                    local timeLeft = ab:GetCooldownTimeRemaining()      
-                    if timeLeft > 0 then        
-                        cooldownInfo[ab:GetClassname()] = Time() + timeLeft     
-                    end     
-                end     
-            end     
-            -- Grab exp / level     
-            local currentLevel = hero:GetLevel()        
+                    if timeLeft > 0 then
+                        cooldownInfo[ab:GetClassname()] = Time() + timeLeft
+                    end
+                end
+            end
+
+            -- Grab exp / level
+            local currentLevel = hero:GetLevel()
             local expNeeded = constants.XP_PER_LEVEL_TABLE[currentLevel] or 0
 
             -- Replace the hero
             inSwap = true
-            hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
+            hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, 0)
             inSwap = false
 
             -- Ensure swap is successful
             if not IsValidEntity(hero) then return end
-            -- Add EXP      
-            if expNeeded > 0 then       
-                hero:AddExperience(expNeeded, false, false)     
+
+            -- Add EXP
+            if expNeeded > 0 then
+                hero:AddExperience(expNeeded, false, false)
             end
 
             -- Replace gold
@@ -482,6 +431,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
             for k,v in pairs(removeMe) do
                 hero:RemoveItem(v)
+                --UTIL_Remove(v)
             end
 
             -- Reset current skills
@@ -490,6 +440,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             -- Reset ability points
             hero:SetAbilityPoints(currentLevel)
 
+            -- Setting primary attribute
             if build.setAttr then
                 local toSet = 0
 
@@ -585,8 +536,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
     -- Copy
     local abs = {}
-    for k,v in ipairs(currentSkillList[hero]) do
-        table.insert(abs, v)
+    for k,abilityName in ipairs(currentSkillList[hero]) do
+        table.insert(abs, abilityName)
     end
 
     local isTower = towerClasses[hero:GetClassname()] or autoLevelSkills
@@ -599,13 +550,13 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- Give all the abilities in this build
     local abNum = 0
     for i=1,16 do
-        local v = build[i]
-        if v then
+        local abilityName = build[i]
+        if abilityName then
             --slotCount = slotCount+1
             abNum=abNum+1
             -- Check if this skill has sub abilities
-            if subAbilities[v] then
-                local skillSplit = vlua.split(subAbilities[v], '||')
+            if subAbilities[abilityName] then
+                local skillSplit = vlua.split(subAbilities[abilityName], '||')
 
                 for kk,vv in pairs(skillSplit) do
                     -- Store that we need this skill
@@ -614,48 +565,44 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             -- Do melee heroes need a different skill?
-            if melee and meleeMap[v] then
-                build[i] = meleeMap[v]
-                v = meleeMap[v]
+            if melee and meleeMap[abilityName] then
+                build[i] = meleeMap[abilityName]
+                abilityName = meleeMap[abilityName]
             end
 
             -- Precache
-            skillManager:precacheSkill(v, function() return 1 end)
-
-            local multV = self:GetMultiplierSkillName(v)
-            if isRealHero then
-                -- Check for a bot
-                if PlayerResource:IsFakeClient(playerID) then
-                    if hero:HasAbility(v) then
-                        multV = v
-                    end
-                end
-            end
+            --precacheSkill(v)
 
             -- Add to build
-            if not seenAbilities[multV] and hero:HasAbility(multV) then
+            if not seenAbilities[abilityName] and hero:HasAbility(abilityName) then
                 -- Hero already has, lets hook and move it
-                local oldAb = hero:FindAbilityByName(multV)
+                local oldAb = hero:FindAbilityByName(abilityName)
 
                 -- Enable it
                 oldAb:SetHidden(false)
+
+                --hero:SetAbilityByIndex(oldAb, i-1)
             else
-                local newAb = hero:AddAbility(multV)
+                local newAb = hero:AddAbility(abilityName)
+
                 if newAb then
                     newAb:SetHidden(false)
 
+                    --hero:SetAbilityByIndex(newAb, i)
+
                     -- Check for auto skilling
-                    if autoSkill[v] then
+                    if autoSkill[abilityName] then
                         newAb:SetLevel(newAb:GetMaxLevel())
                     end
                 end
 
                 -- Insert
-                table.insert(abs, v)
+                table.insert(abs, abilityName)
             end
+
             -- If it's a tower, level it
             if isTower then
-                local ab = hero:FindAbilityByName(multV)
+                local ab = hero:FindAbilityByName(abilityName)
                 if ab then
                     local requiredLevel = ab:GetMaxLevel()
                     ab:SetLevel(requiredLevel)
@@ -663,13 +610,13 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             -- We need to actually add it next time
-            seenAbilities[multV] = true
+            seenAbilities[abilityName] = true
 
-            currentSkillList[hero][abNum] = multV
+            currentSkillList[hero][abNum] = abilityName
 
             -- Do we need to manually activate this skill?
-            if manualActivate[v] then
-                local ab = hero:FindAbilityByName(multV)
+            if manualActivate[abilityName] then
+                local ab = hero:FindAbilityByName(abilityName)
                 if ab then
                     ab:SetActivated(true)
                 end
@@ -677,8 +624,14 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
             -- Remove auras
             if not isTower then
-                fixModifiers(hero, v)
+                fixModifiers(hero, abilityName)
             end
+        end
+
+        -- Remove attribute bonus
+        local attrBonus = hero:FindAbilityByName('attribute_bonus')
+        if attrBonus then
+            attrBonus:SetHidden(true)
         end
     end
 
@@ -695,26 +648,25 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         end
     end]]
 
+    for zzz = 0,24 do
+        local ab = hero:GetAbilityByIndex(zzz)
+
+        if ab then
+            ab:SetHidden(true)
+        end
+    end
+
     -- Do a nice little sort
     for i=1,16 do
-        local v = build[i]
-        if v then
+        local abilityName = build[i]
+        if abilityName then
             local inSlot = abs[i]
 
-            -- Grab the multiplied skill
-            local seekAbility = self:GetMultiplierSkillName(v)
-            if isRealHero then
-                -- Check for a bot
-                if PlayerResource:IsFakeClient(playerID) then
-                    if hero:HasAbility(v) then
-                        multV = v
-                    end
-                end
-            end
+            local theAb = hero:FindAbilityByName(abilityName)
 
-            if inSlot and inSlot ~= seekAbility then
+            if inSlot and inSlot ~= abilityName then
                 -- Swap in dota
-                hero:SwapAbilities(seekAbility, inSlot, true, true)
+                --hero:SwapAbilities(abilityName, inSlot, true, true)
 
                 -- Perform swap internally
                 for j=i+1,16 do
@@ -727,16 +679,20 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             if i > 6 and not isTower then
-                local ab = hero:FindAbilityByName(seekAbility)
-                if ab then
-                    ab:SetHidden(true)
+                if theAb then
+                    theAb:SetHidden(true)
                 end
+            else
+                theAb:SetHidden(false)
             end
 
             -- Store the index
             if isRealHero then
-                activeSkills[playerID][i] = seekAbility
+                activeSkills[playerID][i] = abilityName
             end
+
+            -- Fix issues
+            --hero:SetAbilityByIndex(theAb, i - 1)
         else
             local inSlot = abs[i]
 
@@ -748,43 +704,63 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
         end
     end
+
+    --[[local abStore = {}
+    for i=1,16 do
+        local abSlot = hero:GetAbilityByIndex(i)
+
+        if abSlot then
+            abStore[i] = abSlot
+        end
+    end
+
+    for i=16,1,-1 do
+        local abSlot = abStore[i]
+
+        if abSlot then
+            hero:SetAbilityByIndex(abSlot, i)
+        end
+    end]]
+
     -- Add missing abilities
-    for k,v in pairs(extraSkills) do
+    for abilityName,v in pairs(extraSkills) do
         -- Do they already have this skill?
-        if not hero:HasAbility(k) then
+        if not hero:HasAbility(abilityName) then
             -- Move onto the next slot
             abNum = abNum + 1
 
             -- Precache
-            skillManager:precacheSkill(k, function() return 1 end)
+            --precacheSkill(abilityName)
 
             -- Grab the real name (this was different for mult, disabled for now)
-            local realAbility = k
+            local realAbility = abilityName
 
             -- Add the ability
             hero:AddAbility(realAbility)
 
             -- Remove auras
-            fixModifiers(hero, k)
+            fixModifiers(hero, abilityName)
 
             -- Store that we have it
             currentSkillList[hero][abNum] = realAbility
 
             -- Check for auto skilling
-            if autoSkill[k] then
+            if autoSkill[abilityName] then
                 local newAb = hero:FindAbilityByName(realAbility)
                 if newAb then
                     newAb:SetLevel(newAb:GetMaxLevel())
                 end
-            end     
-        end     
-    end     
-    -- Handle cooldowns     
-    for i=0,hero:GetAbilityCount()-1 do     
-        local ab = hero:GetAbilityByIndex(i)        
-        if IsValidEntity(ab) then       
-            local timeLeft = (cooldownInfo[ab:GetClassname()] or 0) - Time()        
-            if timeLeft > 0 then        
+            end
+        end
+    end
+
+    -- Handle cooldowns
+    for i=0,hero:GetAbilityCount()-1 do
+        local ab = hero:GetAbilityByIndex(i)
+        if IsValidEntity(ab) then
+            local timeLeft = (cooldownInfo[ab:GetClassname()] or 0) - Time()
+
+            if timeLeft > 0 then
                 ab:StartCooldown(timeLeft)
             end
         end
@@ -841,13 +817,17 @@ end
 function skillManager:hasTooMany(build, maxCount, checkFunction)
     -- Check stuff
     local totalSoFar = 0
-    for k,v in pairs(build) do
-        if checkFunction(v) and k ~= 'hero' then
-            totalSoFar = totalSoFar + 1
+    for slotNumber=1,GameRules.pregame.optionStore['lodOptionCommonMaxSlots'] do
+        local abilityName = build[slotNumber]
 
-            if totalSoFar > maxCount then
-                -- Build failed
-                return true
+        if abilityName and abilityName ~= '' then
+            if checkFunction(abilityName) then
+                totalSoFar = totalSoFar + 1
+
+                if totalSoFar > maxCount then
+                    -- Build failed
+                    return true
+                end
             end
         end
     end

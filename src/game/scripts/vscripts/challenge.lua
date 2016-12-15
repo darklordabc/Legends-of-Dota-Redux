@@ -20,13 +20,9 @@ function challenge:setup(pregame)
     pregame:setOption('lodOptionUlts', 2)
     pregame:setOption('lodOptionAdvancedHidePicks', 0)
     pregame:setOption('lodOptionGameSpeedUpgradedUlts', 1)
-    pregame:setOption('lodOptionGameSpeedStrongTowers', 1)
-    pregame:setOption('lodOptionCreepPower', 0)
     pregame:setOption('lodOptionGameSpeedStartingLevel', 7)
     pregame:setOption('lodOptionGameSpeedStartingGold', 4375)
     pregame:setOption('lodOptionBanningBanInvis', 1)
-    pregame:setOption('lodOptionIngameBuilder', 1)
-    pregame:setOption('lodOptionIngameBuilderPenalty', 0)
 
     -- Ban some abilities
     pregame:banAbility('slark_essence_shift')

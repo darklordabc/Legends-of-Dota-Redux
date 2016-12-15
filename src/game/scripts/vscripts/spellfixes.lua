@@ -85,9 +85,6 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             local multicastMadness = OptionManager:GetOption('multicastMadness')
             if canMulticast(keys.abilityname) then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
-                if not mab and multicastMadness then
-                    mab = hero:AddAbility("ogre_magi_multicast_lod")
-                end
 
                 local doubleMode = false
 
@@ -113,72 +110,72 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         local mult = 0
 
                         -- Grab a random number
-                        local r = math.random(0,100)
+                        local r = RandomFloat(0, 1)
 
                         -- Calculate multiplyer
                         if doubleMode then
                             if lvl == 1 then
-                                if r < 25 then
+                                if r < 0.25 then
                                     mult = 2
                                 end
                             elseif lvl == 2 then
-                                if r < 6 then
+                                if r < 0.063 then
                                     mult = 4
-                                elseif r < 13 then
+                                elseif r < 0.13 then
                                     mult = 3
-                                elseif r < 38 then
+                                elseif r < 0.38 then
                                     mult = 2
                                 end
                             elseif lvl == 3 then
-                                if r < 12 then
+                                if r < 0.125 then
                                     mult = 4
-                                elseif r < 25 then
+                                elseif r < 0.25 then
                                     mult = 3
-                                elseif r < 50 then
+                                elseif r < 0.5 then
                                     mult = 2
                                 end
                             elseif lvl == 4 then
-                                if r < 19 then
+                                if r < 0.188 then
                                     mult = 4
-                                elseif r < 38 then
+                                elseif r < 0.38 then
                                     mult = 3
-                                elseif r < 63 then
+                                elseif r < 0.63 then
                                     mult = 2
                                 end
                             elseif lvl == 5 then
-                                if r < 25 then
+                                if r < 0.25 then
                                     mult = 4
-                                elseif r < 50 then
+                                elseif r < 0.50 then
                                     mult = 3
-                                elseif r < 75 then
+                                elseif r < 0.75 then
                                     mult = 2
                                 end
                             elseif lvl == 6 then
-                                if r < 31 then
+                                if r < 0.313 then
                                     mult = 4
-                                elseif r < 63 then
+                                elseif r < 0.63 then
                                     mult = 3
-                                elseif r < 88 then
+                                elseif r < 0.88 then
                                     mult = 2
                                 end
                             end
                         else
                             if lvl == 1 then
-                                if r < 25 then
+                                if r < 0.25 then
                                     mult = 2
                                 end
                             elseif lvl == 2 then
-                                if r < 2 then
+                                if r < 0.2 then
                                     mult = 3
-                                elseif r < 4 then
+                                elseif r < 0.4 then
                                     mult = 2
                                 end
                             elseif lvl == 3 then
-                                if r < 12 then
+                                if r < 0.125 then
                                     mult = 4
-                                elseif r < 25 then
+                                elseif r < 0.25 then
                                     mult = 3
-                                elseif r < 50 then
+                                elseif r < 0.5 then
                                     mult = 2
                                 end
                             end
@@ -225,7 +222,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                             if ab then
                                 -- How long to delay each cast
-                                local delay = mab:GetSpecialValueFor("delay")--getMulticastDelay(keys.abilityname)
+                                local delay = 0.1--getMulticastDelay(keys.abilityname)
 
                                 -- Grab playerID
                                 local playerID = hero:GetPlayerID()
@@ -493,9 +490,15 @@ ListenToGameEvent('entity_hurt', function(keys)
                             redirect = ab:GetSpecialValueFor('redirect'),
                             redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
                         })
-							-- Apply the cooldown
-							local cd = ab:GetCooldown(lvl)
-                            ab:StartCooldown(cd)
+
+                        -- Apply the cooldown
+                        if lvl == 1 then
+                            ab:StartCooldown(60)
+                        elseif lvl == 2 then
+                            ab:StartCooldown(50)
+                        else
+                            ab:StartCooldown(40)
+                        end
                     end
                 end
             end

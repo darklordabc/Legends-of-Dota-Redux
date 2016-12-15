@@ -6,11 +6,10 @@ local storedNames = {}
 -- Create list of spells with certain attributes
 local chanelledSpells = {}
 local targetSpells = {}
-local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 
 -- Grab contributors file
-Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
-Util.bannedKV = Util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
+local contributors = LoadKeyValues('scripts/kv/contributors.kv')
+local bannedKV = LoadKeyValues('scripts/kv/banned.kv')
 
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
@@ -26,12 +25,6 @@ function Util:GetPlayerNameReliable(playerID)
 
     -- Return the name we have set, or call the normal function
     return storedNames[steamID] or PlayerResource:GetPlayerName(playerID)
-end
-
--- Round number
-function Util:round(num, idp)
-    if num >= 0 then return math.floor(num+.5) 
-    else return math.ceil(num-.5) end
 end
 
 -- Store player names
@@ -83,21 +76,6 @@ function Util:MergeTables(t1, t2)
         end
     end
     return t1
-end
-
-function Util:DeepCopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            copy[self:DeepCopy(orig_key)] = self:DeepCopy(orig_value)
-        end
-        setmetatable(copy, self:DeepCopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
-    end
-    return copy
 end
 
 -- Sets up spell properties
@@ -155,57 +133,16 @@ function Util:pickRandomRune()
     return validRunes[math.random(#validRunes)]
 end
 
-
-function Util:sortTable(input)
-    local array = {}
-    for heroName in pairs(input) do 
-        array[heroName] = {}
-        while #array[heroName] ~= self:getTableLength(input[heroName]) do
-            for abilityName, position in pairs(input[heroName]) do
-                if self:getTableLength(array[heroName])+1 == tonumber(position) then
-                    table.insert(array[heroName], abilityName)
-                end
-            end
-        end
-    end
-    return array
-end
-
-function Util:swapTable(input)
-    local array = {}
-    for k,v in pairs(input) do
-        if type(v) == 'table' then
-            array[k] = self:swapTable(v)
-        else
-            table.insert(array, k)
-        end
-    end
-    return array
-end
-
-
 -- Returns true if a player is premium
 function Util:playerIsPremium(playerID)
     -- Check our premium rank
     return self:getPremiumRank(playerID) > 0
 end
 
--- Returns true if a player is bot
-function Util:isPlayerBot(playerID)
-    return PlayerResource:GetSteamAccountID(playerID) == 0
-end
-
 -- Returns a player's premium rank
 function Util:getPremiumRank(playerID)
     local steamID = PlayerResource:GetSteamAccountID(playerID)
-    local conData
-
-    for k,v in pairs(Util.contributors) do
-        if v.steamID3 == tostring(steamID) then
-            conData = v
-            break
-        end
-    end
+    local conData = contributors[tostring(steamID)]
 
     -- Default is no premium
     local totalPremium = 0
@@ -225,47 +162,9 @@ function Util:getPremiumRank(playerID)
     return totalPremium
 end
 
-
-function isPlayerHost(player)
-    if type(player) == 'number' then
-        player = PlayerResource:GetPlayer(player)
-    end
-    return player.isHost
-end
-
-function setPlayerHost(oldHost, newHost)
-    if isPlayerHost(oldHost) then
-        oldHost.isHost = nil
-        newHost.isHost = true
-    end
-end
-
-function getPlayerHost()
-    for i=0,DOTA_MAX_PLAYERS do
-        if PlayerResource:IsValidPlayer(i) then
-            local player = PlayerResource:GetPlayer(i)
-            if player and player.isHost then
-                return player
-            end
-        end
-    end
-end
-
-
-function Util:GetActivePlayerCountForTeam(team)
-    local number = 0
-    for x=0,DOTA_MAX_TEAM do
-        local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
-        if PlayerResource:IsValidPlayerID(pID) and (PlayerResource:GetConnectionState(pID) == 1 or PlayerResource:GetConnectionState(pID) == 2) then
-            number = number + 1
-        end
-    end
-    return number
-end
-
 -- Returns if a player is a time burger
 function Util:isTimeBurgler(playerID)
-    local allTimeBurglers = Util.bannedKV.timeburglers
+    local allTimeBurglers = bannedKV.timeburglers
 
     local steamID = PlayerResource:GetSteamAccountID(playerID)
 
@@ -484,285 +383,6 @@ function Util:parseTime(timeString)
     }
 end
 
-function Util:getTableLength(t) 
-  if not t then return nil end
-  local length = 0
-
-  for k,v in pairs(t) do
-    length = length + 1
-  end
-
-  return length
-end
-
-function CDOTABaseAbility:GetAbilityLifeTime(buffer)
-    local kv = self:GetAbilityKeyValues()
-    local duration = self:GetDuration()
-    local delay = 0
-    if not duration then duration = 0 end
-    if self:GetChannelTime() > duration then duration = self:GetChannelTime() end
-    for k,v in pairs(kv) do -- trawl through keyvalues
-        if k == "AbilitySpecial" then
-            for l,m in pairs(v) do
-                for o,p in pairs(m) do
-                    if string.match(o, "duration") then -- look for the highest duration keyvalue
-                        checkDuration = self:GetLevelSpecialValueFor(o, -1)
-                        if checkDuration > duration then duration = checkDuration end
-                    elseif string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
-                        checkDelay = self:GetLevelSpecialValueFor(o, -1)
-                        if checkDelay > duration then delay = checkDelay end
-					end
-                end
-            end
-        end
-    end
-	------------------------------ SPECIAL CASES -----------------------------
-	if self:GetName() == "juggernaut_omni_slash" then
-		local bounces = self:GetLevelSpecialValueFor("omni_slash_jumps", -1)
-		delay = self:GetLevelSpecialValueFor("omni_slash_bounce_tick", -1) * bounces
-	elseif self:GetName() == "medusa_mystic_snake" then
-		local bounces = self:GetLevelSpecialValueFor("snake_jumps", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "witch_doctor_paralyzing_cask" then
-		local bounces = self:GetLevelSpecialValueFor("bounces", -1)
-		delay = self:GetLevelSpecialValueFor("bounce_delay", -1) * bounces
-	elseif self:GetName() == "zuus_arc_lightning" or self:GetName() == "leshrac_lightning_storm" then
-		local bounces = self:GetLevelSpecialValueFor("jump_count", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "furion_wrath_of_nature" then
-		local bounces = self:GetLevelSpecialValueFor("max_targets_scepter", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "death_prophet_exorcism" then
-		local distance = self:GetLevelSpecialValueFor("max_distance", -1) + 2000 -- add spirit break distance to be sure
-		delay = distance / self:GetLevelSpecialValueFor("spirit_speed", -1)
-	elseif self:GetName() == "necrolyse_death_pulse" then
-		local distance = self:GetLevelSpecialValueFor("area_of_effect", -1) + 2000 -- add blink range + buffer zone to be safe
-		delay = distance / self:GetLevelSpecialValueFor("projectile_speed", -1)
-	elseif self:GetName() == "spirit_breaker_charge_of_darkness" then
-		local distance = math.sqrt(15000*15000*2) -- size diagonal of a 15000x15000 square
-		delay = distance / self:GetLevelSpecialValueFor("movement_speed", -1)
-	end
-	--------------------------------------------------------------------------
-    duration = duration + delay
-    if buffer then duration = duration + buffer end
-    return duration
-end
-
-function DebugCalls()
-    if not GameRules.DebugCalls then
-        print("Starting DebugCalls")
-        GameRules.DebugCalls = true
-
-        debug.sethook(function(...)
-            local info = debug.getinfo(2)
-            local src = tostring(info.short_src)
-            local name = tostring(info.name)
-            if name ~= "__index" then
-                print("Call: ".. src .. " -- " .. name)
-            end
-        end, "c")
-    else
-        print("Stopped DebugCalls")
-        GameRules.DebugCalls = false
-        debug.sethook(nil, "c")
-    end
-end
-
-
-function CDOTA_BaseNPC:GetAbilityCount() 
-    local count = 0
-    for i=0,16 do
-        if self:GetAbilityByIndex(i) then
-            count = count + 1
-        end
-    end
-    return count
-end
-
-
-function CDOTA_BaseNPC:GetUnsafeAbilitiesCount()
-    local count = 0
-    local randomKv = self.randomKv
-    for i=0,16 do
-        if self:GetAbilityByIndex(i) then
-            local ability = self:GetAbilityByIndex(i)
-            local name = ability:GetName()
-            if not randomKv["Safe"][name] and name ~= "attribute_bonus" and not self.ownedSkill[name] then
-                count = count + 1
-            end
-        end
-    end
-    return count
-end
-
-
-function CDOTABaseAbility:GetTrueCooldown()
-	local cooldown = self:GetCooldown(-1)
-	local hero = self:GetCaster()
-	local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
-	if mabWitch then cooldown = cooldown - mabWitch:GetLevel() end
-	if Convars:GetBool('dota_ability_debug') then
-		cooldown = 0
-	end
-	local octarineMult = 1
-	if hero:HasModifier("modifier_item_octarine_core") then octarineMult = 0.75 end
-	cooldown = cooldown * octarineMult
-	return cooldown
-end
-
-function ShuffleArray(input)
-	local rand = math.random 
-    local iterations = #input
-    local j
-    
-    for i = iterations, 2, -1 do
-        j = rand(i)
-        input[i], input[j] = input[j], input[i]
-    end
-end
-
-function Util:MoveArray(input, index)
-    index = index or 1
-    local temp = table.remove(input, index)
-    table.insert(input, temp)
-end
-
-function Util:RandomChoice(input)
-    local temp = {}
-    for k in pairs(input) do
-        table.insert(temp, k)
-    end
-    return input[temp[math.random(#temp)]]
-end
-
-function CDOTABaseAbility:HasAbilityFlag(flag)
-    if GameRules.perks[flag][self:GetAbilityName()] then
-        return true
-    else
-        return false
-    end
-end
-
-function Util:isSinglePlayerMode()
-    local maxPlayerID = 24
-    local count = 0
-    for playerID=0,(maxPlayerID-1) do
-        if not self:isPlayerBot(playerID) then
-            count = count + 1
-        end
-    end
-    return count == 1
-end
-
-function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
-    for i = 0, 16 do
-		local ability = self:GetAbilityByIndex(i)
-		if ability and not ability:IsHidden() and ability:HasAbilityFlag(flag) then
-			return true
-		end
-	end
-	return false
-end
-
-function CDOTABaseAbility:IsCustomAbility()
-    local spell = self:GetAbilityName():gsub("_lod", "")
-    if not regularSpells[spell] then
-        return true
-    else
-        return false
-    end
-end
-
-function CDOTA_BaseNPC:HasUnitFlag(flag)
-    if GameRules.perks[flag][self:GetName()] then
-        return true
-    else
-        return false
-    end
-end
-
-function GetRandomAbilityFromListForPerk(flag)
-    numberOfValues = 0
-    local localTable = {}
-
-    -- Getting the number of abilities and recreating the table
-     for k,v in pairs(GameRules.perks[flag]) do
-        if not k then
-            break
-        else
-
-            numberOfValues = numberOfValues + 1
-            localTable[numberOfValues] = v
-        end
-    end
-    
-    local random = RandomInt(1,numberOfValues)
-    return localTable[random]
-end
-
-function CDOTA_BaseNPC:IsSleeping()
-    if self:HasModifier("modifier_bane_nightmare") then 
-        return true
-    elseif self:HasModifier("modifier_elder_titan_echo_stomp") then 
-        return true
-    elseif self:HasModifier("modifier_sleep_cloud_effect") then 
-        return true
-    elseif self:HasModifier("modifier_naga_siren_song_of_the_siren") then 
-        return true
-    else
-        return false
-    end
-end
-
-function CDOTA_BaseNPC:FindItemByName(item_name)
-    for i=0,5 do
-        local item = self:GetItemInSlot(i)
-        if item and item:GetAbilityName() == item_name then
-            return item
-        end
-    end
-    return nil
-end
-
-function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-     local armor = target:GetPhysicalArmorValue()
-     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
-     number = number - (number * damageReduction)
-     local lens_count = 0
-     for i=0,5 do
-        local item = self:GetItemInSlot(i)
-        if item ~= nil and item:GetName() == "item_aether_lens" then
-            lens_count = lens_count + 1
-        end
-     end
-     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
-
-     number = math.floor(number)
-     local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
-     local pidx		
-     if pfx == "gold" or pfx == "lumber" then		
-         pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
-     else		
-         pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
-     end		
- 		
-     local digits = 0		
-     if number ~= nil then		
-         digits = #tostring(number)		
-     end		
-     if presymbol ~= nil then		
-         digits = digits + 1		
-     end		
-     if postsymbol ~= nil then		
-         digits = digits + 1		
-     end		
- 		
-     ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
-     ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
-     ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
-     ParticleManager:SetParticleControl(pidx, 3, color)		
- end
-
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function Util:getToggleIgnores()
@@ -772,6 +392,7 @@ end
 (function()
     toIgnore = {
         nyx_assassin_burrow = true,
+        nyx_assassin_unburrow = true,
         spectre_reality = true,
         techies_focused_detonate = true,
         furion_teleportation = true,
