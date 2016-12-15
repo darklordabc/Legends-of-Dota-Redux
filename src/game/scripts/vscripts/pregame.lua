@@ -5624,6 +5624,22 @@ function Pregame:fixSpawningIssues()
                 end, DoUniqueString('silencerFix'), 0.1)
 
 
+                Timers:CreateTimer(function()
+                    local abilities = spawnedUnit:GetAbilityCount() - 1
+                    for i = 0, abilities do
+                        if spawnedUnit:GetAbilityByIndex(i) then
+                            if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special") then
+                                print("removed") 
+                                print(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                                spawnedUnit:GetAbilityByIndex(i):SetAbilityIndex(14+i)
+                                spawnedUnit:RemoveAbility(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                            end
+
+                        end
+                    end
+
+                end, DoUniqueString('fixHotKey'), 2)
+
                  -- Add hero perks
                 Timers:CreateTimer(function()
                     --print(self.perksDisabled)
