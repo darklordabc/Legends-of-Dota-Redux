@@ -1088,6 +1088,7 @@
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>LoD Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_zuus_cloud"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
