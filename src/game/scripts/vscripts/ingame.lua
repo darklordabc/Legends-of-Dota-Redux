@@ -114,7 +114,6 @@ end
 
 function Ingame:OnHeroLeveledUp(keys)
     -- Give abilitypoints to spend on the levels the game doesn't give.
-    PrintTable(keys)
     local pID = keys.player -1    
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
