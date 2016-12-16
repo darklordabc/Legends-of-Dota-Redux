@@ -259,8 +259,11 @@ function skillManager:RemoveAllSkills(hero)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
-            hero:RemoveAbility(v)
-            --hero:FindAbilityByName(v):SetHidden(true)
+            if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+                hero:FindAbilityByName(v):SetHidden(true)
+            else 
+                hero:RemoveAbility(v)
+            end
 		end
     end
 end
