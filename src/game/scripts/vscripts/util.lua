@@ -571,7 +571,7 @@ end
 
 function CDOTA_BaseNPC:GetAbilityCount() 
     local count = 0
-    for i=0,16 do
+    for i=0,23 do
         if self:GetAbilityByIndex(i) then
             count = count + 1
         end
@@ -583,7 +583,7 @@ end
 function CDOTA_BaseNPC:GetUnsafeAbilitiesCount()
     local count = 0
     local randomKv = self.randomKv
-    for i=0,16 do
+    for i=0,23 do
         if self:GetAbilityByIndex(i) then
             local ability = self:GetAbilityByIndex(i)
             local name = ability:GetName()
@@ -655,7 +655,7 @@ function Util:isSinglePlayerMode()
 end
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
-    for i = 0, 16 do
+    for i = 0, 23 do
 		local ability = self:GetAbilityByIndex(i)
 		if ability and not ability:IsHidden() and ability:HasAbilityFlag(flag) then
 			return true
