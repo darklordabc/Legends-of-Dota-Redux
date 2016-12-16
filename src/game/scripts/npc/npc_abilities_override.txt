@@ -644,8 +644,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"4"
 		"FightRecapLevel"				"1"
-		"IsGrantedByScepter"			"0"
-		"HasScepterUpgrade"				"0"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
