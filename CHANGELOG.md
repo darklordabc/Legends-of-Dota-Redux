@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 - Added Flesh Heap Bonus Vision
 - Added Anomaly
 - Added Monkey King
+- Added Zeus's Nimbus
+- Added Global Lighting OP ability
 
 ## 3.5 - Steam Version
 
