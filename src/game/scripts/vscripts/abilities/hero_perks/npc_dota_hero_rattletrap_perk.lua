@@ -32,6 +32,12 @@ function modifier_npc_dota_hero_rattletrap_perk:OnCreated(keys)
         local caster = self:GetCaster()
 
         self.flare = caster:AddAbility("rattletrap_rocket_flare_perk")
+	for i=0,24 do
+            local abil = caster:GetAbilityByIndex(i)
+            if not abil then
+		self.flare:SetAbilityIndex(i)
+	    end
+     	end	
         self.thinkInterval = 15
 
         self.flare:SetHidden(true)
