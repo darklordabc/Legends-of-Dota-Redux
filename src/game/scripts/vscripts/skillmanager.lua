@@ -89,8 +89,8 @@ for k,v in pairs(heroListKV) do
             -- Store the heroID lookup
             heroIDToName[v.HeroID] = k
 
-            -- Loop over all possible 16 slots
-            for i=1,16 do
+            -- Loop over all possible 24 slots
+            for i=1,23 do
                 -- Grab the ability
                 local ab = v['Ability'..i]
 
@@ -212,7 +212,7 @@ function skillManager:GetHeroSkills(heroClass)
     -- Build list of abilities
     for heroName, values in pairs(heroListKV) do
         if heroName == heroClass then
-            for i = 1, 16 do
+            for i = 1, 23 do
                 local ab = values["Ability"..i]
                 if ab and ab ~= 'attribute_bonus' then
                     table.insert(skills, ab)
@@ -259,7 +259,7 @@ function skillManager:RemoveAllSkills(hero)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
-	    hero:RemoveAbility(v)
+            hero:RemoveAbility(v)
             --hero:FindAbilityByName(v):SetHidden(true)
 		end
     end
@@ -335,7 +335,7 @@ end
 
 -- Precaches a build <3
 function skillManager:PrecacheBuild(build)
-    for i=1,16 do
+    for i=1,23 do
         local v = build[i]
         if v then
             -- Precache
@@ -576,7 +576,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     -- Build slot list for swapping
     --[[local slotList = {}
     local slotCount = 0
-    for i=1,16 do
+    for i=1,23 do
         local ab = hero:GetAbilityByIndex(i)
         if ab then
             slotList[i] = ab:GetClassname()
@@ -599,7 +599,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
     -- Give all the abilities in this build
     local abNum = 0
-    for i=1,16 do
+    for i=1,23 do
         local v = build[i]
         if v then
             --slotCount = slotCount+1
@@ -697,7 +697,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     end]]
 
     -- Do a nice little sort
-    for i=1,16 do
+    for i=1,23 do
         local v = build[i]
         if v then
             local inSlot = abs[i]
@@ -718,7 +718,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 hero:SwapAbilities(seekAbility, inSlot, true, true)
 
                 -- Perform swap internally
-                for j=i+1,16 do
+                for j=i+1,23 do
                     if build[i] == abs[j] then
                         abs[j] = abs[i]
                         break
