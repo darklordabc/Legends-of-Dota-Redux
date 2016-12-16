@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Added Monkey King
 - Added Zeus's Nimbus
 - Added Global Lighting OP ability
+- Flesh heaps can now stack collects from far distances, if you are the killer 
 
 ## 3.5 - Steam Version
 
