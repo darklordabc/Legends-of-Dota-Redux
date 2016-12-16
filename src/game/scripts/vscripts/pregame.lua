@@ -5782,6 +5782,8 @@ function Pregame:fixSpawningIssues()
                         if not util:isPlayerBot(playerID) then
                             local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
                             mischieftAbility:UpgradeAbility(true)
+                            local mischieftAbility2 = spawnedUnit:AddAbility("monkey_king_untransform")
+                            mischieftAbility2:UpgradeAbility(true)
                         end
                     end
                 end, DoUniqueString('addMischief'), .5)
