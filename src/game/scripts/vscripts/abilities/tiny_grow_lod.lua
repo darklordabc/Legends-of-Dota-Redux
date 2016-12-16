@@ -20,13 +20,6 @@ function tiny_grow_lod:OnUpgrade()
 			local level_1 = "models/heroes/tiny_02/tiny_02.vmdl"
 			local level_2 = "models/heroes/tiny_03/tiny_03.vmdl"
 			local level_3 = "models/heroes/tiny_04/tiny_04.vmdl"
-            if self:GetCaster():HasScepter() then
-                if banana then
-                    UTIL_Remove(banana)
-                    banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
-				    banana:FollowEntity(self:GetCaster(), true)
-                end 
-            end
             local wearables = {} 
             local cur = self:GetCaster():FirstMoveChild() 
             while cur ~= nil do 
@@ -80,6 +73,18 @@ function tiny_grow_lod:OnUpgrade()
 				self.rigt_arm = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_04/tiny_04_right_arm.vmdl"})
                 self.rigt_arm:FollowEntity(self:GetCaster(), true)
 			end
+			if self:GetCaster():HasModifier("modifier_tiny_grow_lod") then
+				local modifier = self:GetCaster():FindModifierByName("modifier_tiny_grow_lod") 
+				modifier:Destroy()
+				self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_tiny_grow_lod", nil)
+			end
+			if self:GetCaster():HasScepter() then
+				if banana then
+					UTIL_Remove(banana)
+					banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
+					banana:FollowEntity(self:GetCaster(), true)
+				end 
+			end
 		end
 	end
 end
@@ -96,22 +101,28 @@ end
 
 function modifier_tiny_grow_lod:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink(0.1)
+		self:StartIntervalThink(0.5)
 	end
 end
 
 function modifier_tiny_grow_lod:OnIntervalThink()
 	if self:GetCaster():GetUnitName() == "npc_dota_hero_tiny" then
-		if self:GetParent():HasScepter() then
-			if banana == nil then
+		if not self:GetParent():HasScepter() and not banana then
+			UTIL_Remove(banana)
+			banana:AddNoDraw()
+		end
+		if banana == nil then
+			if self:GetParent():HasScepter() then
 				banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
 				banana:FollowEntity(self:GetParent(), true)
-            end
-		else
-			if banana then
-				UTIL_Remove(banana)
 			end
 		end
+	end
+end
+
+function modifier_tiny_grow_lod:OnDestroy()
+	if banana ~= nil then
+		UTIL_Remove(banana)
 	end
 end
 
