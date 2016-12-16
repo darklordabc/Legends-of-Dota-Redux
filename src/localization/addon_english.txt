@@ -1088,6 +1088,7 @@
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>LoD Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_zuus_cloud"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
@@ -3766,4 +3767,9 @@
     "DOTA_Tooltip_modifier_archmage_anomaly"    "Anomaly"       
     "DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
 
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global"       "Global Lightning"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_Description" "Calls down a bolt of lightning <font color='#70EA72'>from a Global range</font> to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a 750 radius. Can be cast on the ground, affecting the closest enemy hero in 325 range."
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
 }
