@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"5_vs_5 3_vs_3 custom custom_bot 10_vs_10"
+	maps			"custom_bot custom"
 	"IsPlayable"	"1"
     "version"       "3.1.2"
 
