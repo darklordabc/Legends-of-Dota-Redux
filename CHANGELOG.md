@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - First round of fixes to recover from 7.0. Many issues remain.
 - Removed attribute bonus to have parity with Dota
 - Fixed abilities in being in a random order.
+- Added Sliders and Monkey Business Mutators
 
 ### Balance
 - Added Flesh Heap Bonus Vision
