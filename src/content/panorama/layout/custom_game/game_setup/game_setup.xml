@@ -280,6 +280,7 @@
                     <Panel id="optionSelection" class="workingPanel">
                         <Panel id="optionsPanel">
                             <Panel id="optionBasic"> 
+                            	<!--
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>
@@ -321,6 +322,10 @@
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant1.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant2.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant3.png"></Image>
+
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSliders.png"></Image>
+                                <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMonkeyBusiness.png"></Image>
+
 
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts1.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts2.png"></Image>
@@ -373,7 +378,7 @@
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOff.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOn.png"></Image>
                                 <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png"></Image>
-
+								-->
 
                                  
                                 <Panel id="gamemodesPanel"> 
@@ -703,7 +708,7 @@
                                         <Image src="file://{images}/custom_game/perks.png" />
                                     </Button>
                                     <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                        <Image src="file://{images}/control_icons/lock_medium.png" />
+                                        <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
                                     </Button>                                    
                                 </Panel>
 

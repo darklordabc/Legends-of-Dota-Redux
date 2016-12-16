@@ -112,6 +112,8 @@
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
+    "lodMutatorSliders"                             "Sliders"
+    "lodMutatorMonkeyBusiness"                      "Monkey Business"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -346,6 +348,11 @@
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go REALLY Fast!"
 
+    "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
+    "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
+
+    "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
+    "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
 
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
@@ -431,11 +438,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#70EA72'>You are the host</font>, you are required to select the options for this match. All options will be recorded and you may be banned from selecting options if you continue to troll other players.\n\n<font color='#70EA72'>Lock the teams using the button at the top center of the screen</font>, and lock the options by pressing the button in the bottom right hand corner."
+    "lodHostingMessage"                             "<font color='#FF4C4C'>This MOD has many many many issues because of the latest update, this is merely a hotfix to try to get it minimum playable, please have patience and we will get it full working eventually</font> \n\n\n<"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-    "lodHostingNoobMessage"                         "Please wait while the host configures the game settings."
+    "lodHostingNoobMessage"                         "<font color='#FF4C4C'>This MOD has many many many issues because of the latest update, this is merely a hotfix to try to get it minimum playable, please have patience and we will get it full working eventually</font> \n\n\n<"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
     "lodPickAHero"  "PICK A HERO!"
@@ -1088,6 +1095,7 @@
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>LoD Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_zuus_cloud"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
@@ -1160,7 +1168,8 @@
 	"credit_mirana_starfall_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
 	"credit_skywrath_mage_concussive_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
-	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
+    "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
 	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -3343,6 +3352,11 @@
 	"DOTA_Tooltip_ability_gemini_unstable_rift_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
 	"DOTA_Tooltip_ability_gemini_unstable_rift_summon_time" "TELEPORTATION DELAY:"
 	"DOTA_Tooltip_ability_gemini_unstable_rift_duration" "DURATION:"
+
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one" "Unstable Rift"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_summon_time" "TELEPORTATION DELAY:"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_duration" "DURATION:"
 	
 	"DOTA_Tooltip_gemini_unstable_rift_mod"                                           "Unstable Rift"
 	"DOTA_Tooltip_gemini_unstable_rift_mod_description"                               "Being teleported somewhere after delay."
@@ -3773,5 +3787,18 @@
     "DOTA_Tooltip_modifier_gottagoreallyfast_effect"                      "Gotta Go REALLY Fast!"
     "DOTA_Tooltip_modifier_gottagoreallyfast_effect_Description"          "Movement speed increased to 1000, cannot be slowed."
 
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly" "Anomaly"       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Description" "Archmage creates an anomaly in the target area. All single target abilities of the hero. cast on one hero in the anomaly, will be applied to all heroes in it. Works on enemies and allies."       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_duration"    "DURATION:"     
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_radius"      "RADIUS:"       
+    "DOTA_Tooltip_ability_angel_arena_archmage_anomaly_Note0"   "Channeling abilities will end when the channel ends on any unit."      
+        
+    "DOTA_Tooltip_modifier_archmage_anomaly"    "Anomaly"       
+    "DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
 
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global"       "Global Lightning"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_Description" "Calls down a bolt of lightning <font color='#70EA72'>from a Global range</font> to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a 750 radius. Can be cast on the ground, affecting the closest enemy hero in 325 range."
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
 }

@@ -71,6 +71,11 @@ function modifier_duel_out_of_game:GetDisableHealing()
 	return true
 end
 
+--------------------------------------------------------------------------------
+function modifier_duel_out_of_game:IsPurgable()
+    return false
+end
+
 function modifier_duel_out_of_game:IsDebuff()
 	return true
 end

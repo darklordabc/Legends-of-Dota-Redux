@@ -7,7 +7,8 @@
         <include src="file://{resources}/scripts/custom_game/hero_selection.js" />
     </scripts>
 
-    <Panel class="lodBlankHeroSelection">
-        <Button id="spawn" onactivate="onSpawnButton()"><Label id="loadingLabel" text="Loading..." /></Button>
+    <Panel class="lodBlankHeroSelection" hittest="False">
+    	
+<!--         <Button id="spawn" onactivate="onSpawnButton()"><Label id="loadingLabel" text="Loading..." /></Button> -->
     </Panel>
 </root>

@@ -28,13 +28,13 @@
 }
 
 .cheatButton:hover {
-  background-color: rgba(112,234,114, 50);
+  background-color: rgba(112,234,114, 0.196);
 }
 
 .cheatButton:active {
   box-shadow: 0 1px #66;
   transform: translateY(1px);
-  background-color: rgba(50,205,50, 20);
+  background-color: rgba(50,205,50, 0.078);
 }
 
 #cheatsContainer

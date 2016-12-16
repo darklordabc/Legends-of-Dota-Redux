@@ -4773,4 +4773,13 @@ function loadPlayerBans() {
     showMainPanel();
 
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
+
+    // Workarounds
+    var parent = $.GetContextPanel().GetParent();
+    while(parent.id != "Hud")
+        parent = parent.GetParent();
+
+    parent.FindChildTraverse("PreGame").visible = false;
+    parent.FindChildTraverse("PreGame").style.width = "0px;";
+    // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
 })();
