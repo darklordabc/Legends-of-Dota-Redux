@@ -5523,6 +5523,7 @@ function Pregame:fixSpawningIssues()
     local givenBonuses = {}
     local handled = {}
     local givenCouriers = {}
+    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
     local this = self
@@ -5623,22 +5624,27 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-
+--[[
                 Timers:CreateTimer(function()
-                    local abilities = spawnedUnit:GetAbilityCount() - 1
-                    for i = 0, abilities do
-                        if spawnedUnit:GetAbilityByIndex(i) then
-                            if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special") then
-                                print("removed") 
-                                print(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                                spawnedUnit:GetAbilityByIndex(i):SetAbilityIndex(14+i)
-                                spawnedUnit:RemoveAbility(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
+                        local abilities = spawnedUnit:GetAbilityCount() - 1
+                        spawnedUnit.talents = {}
+
+                        for i = 0, abilities do
+                            if spawnedUnit:GetAbilityByIndex(i) then
+                                if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
+                                    --print("removed") 
+                                    local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                                    spawnedUnit.talents[i] = talent
+                                    print("Ability " .. i .. ": " .. talent)
+                                    spawnedUnit:RemoveAbility(talent)
+                                end
                             end
-
                         end
-                    end
+                        spawnedUnit.hasTalents = true
+                   end
 
-                end, DoUniqueString('fixHotKey'), 2)
+                end, DoUniqueString('fixHotKey'), 1)]]
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
@@ -5652,13 +5658,41 @@ function Pregame:fixSpawningIssues()
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
                        print("Perk assigned")
-                       for i = 0, 18 do
-                          if spawnedUnit:GetAbilityByIndex(i) then
-                            print("Ability " .. i .. ": " .. spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                          end
-                       end
                     end
-                end, DoUniqueString('addPerk'), 1)
+                end, DoUniqueString('addPerk'), 1.0)
+
+                -- Add talents
+                Timers:CreateTimer(function()
+                    --print(self.perksDisabled)
+                    local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
+                        for heroName,heroValues in pairs(allHeroes) do
+                            if heroName == nameTest then
+                                if heroName == "npc_dota_hero_invoker" then
+                                    for i=17,24 do
+                                        local abName = heroValues['Ability' .. i]
+                                        spawnedUnit:AddAbility(abName)
+                                    end
+                                else
+                                    for i=10,17 do
+                                        local abName = heroValues['Ability' .. i]
+                                        spawnedUnit:AddAbility(abName)
+                                    end
+                                end
+                            end
+                        end
+                        spawnedUnit.hasTalent = true
+                    end
+
+                    for i = 0, spawnedUnit:GetAbilityCount() - 1 do
+                        if spawnedUnit:GetAbilityByIndex(i) then
+                            --print("removed") 
+                            local ability = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                            print("Ability " .. i .. ": " .. ability)
+                        end
+                    end
+                end, DoUniqueString('addTalents'), 1.5)
+                
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
