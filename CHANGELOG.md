@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Removed attribute bonus to have parity with Dota
 - Fixed abilities in being in a random order.
 - Added Sliders and Monkey Business Mutators
+- Temporarily disabled non-custom maps because of a voting bug
 
 ### Balance
 - Added Flesh Heap Bonus Vision
