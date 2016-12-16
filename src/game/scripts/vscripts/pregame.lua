@@ -5702,9 +5702,17 @@ function Pregame:fixSpawningIssues()
                                         spawnedUnit:AddAbility(abName)
                                     end
                                 else
+                                    if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                                    end
                                     for i=10,17 do
                                         local abName = heroValues['Ability' .. i]
                                         spawnedUnit:AddAbility(abName)
+                                    end
+                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
                                     end
                                 end
                             end
@@ -5712,7 +5720,7 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    for i = 0, spawnedUnit:GetAbilityCount() - 1 do
+                    for i = 0, spawnedUnit:GetAbilityCount() do
                         if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
                             local ability = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
