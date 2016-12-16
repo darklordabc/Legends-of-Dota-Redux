@@ -44,6 +44,12 @@ function modifier_npc_dota_hero_sven_perk:OnCreated(keys)
             cleave:UpgradeAbility(false)
         else 
             cleave = caster:AddAbility("sven_great_cleave")
+	    for i=0,24 do
+            	local abil = caster:GetAbilityByIndex(i)
+                if not abil then
+		    cleave:SetAbilityIndex(i)
+		end
+     	    end
             cleave:SetHidden(true)
             cleave:SetLevel(1)
         end
