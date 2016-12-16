@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - First round of fixes to recover from 7.0. Many issues remain.
 - Removed attribute bonus to have parity with Dota
 - Fixed abilities in being in a random order.
+- Added Sliders and Monkey Business Mutators
 
 ### Balance
 - Added Flesh Heap Bonus Vision
@@ -14,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Added Monkey King
 - Added Zeus's Nimbus
 - Added Global Lighting OP ability
+- Flesh heaps can now stack collects from far distances, if you are the killer 
 
 ## 3.5 - Steam Version
 

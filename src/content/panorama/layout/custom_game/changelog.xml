@@ -70,8 +70,8 @@
 						<Panel class="displayHeader" hittest="false">
 							<Panel class="updateClipper" id="updateClipper" hittest="false">
 								<Panel class="displayHeader updateEntry" hittest="false">
-									<Label class="updateHeaderText" text="3.5" />  
-									<Label class="displayText" text="*You can now use emoticons during the chat box. Only available during gamesetup phase.\n*Order of Arenas is now shuffled. Fixed some Arenas not showing up at all.\n*Added 322 Mutator\n*Added Refresh Cooldowns on Death Mutator\n*Added Gotta Go Fast Mutator\n*Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)\n*Single/Mirror draft has been improved: You can now be randomly given neutral and custom abilities. Default viewer is the skills menu now and the icons are enlarged.\n*Added Arcane Echo OP, Return OP, Shards of Truesight OP, Cold Embrace OP, Essence Aura Health, Scarlet Flower (Red Flower OP), Glimpse OP\n*Added Unstable Rift, Voidal Flare and Abyssal Vortex from Dusk (to be merged from draft improvement branch)\n*Changed style of some buttons to be less diverse\n*Fixed getting stuck in ban phase\n*Added new option on the bot menu in custom games. You can now force bots to only use their default 4 abilities.\n*Added function to save/load banlist to local storage.\n*Added Linkens Guard as OP ability\n*Added Aether's Range OP\n*Added Force Dash OP, Octarine Vampirism OP, Global Stomp\n" />
+									<Label class="updateHeaderText" text="3.6" />  
+									<Label class="displayText" text="*First round of fixes to recover from 7.0. Many issues remain.\n*Removed attribute bonus to have parity with Dota\n*Fixed abilities in being in a random order.\n*Added Sliders and Monkey Business Mutators\n*Added Flesh Heap Bonus Vision\n*Added Anomaly\n*Added Monkey King\n*Added Zeus's Nimbus\n*Added Global Lighting OP ability\n*Flesh heaps can now stack collects from far distances, if you are the killer\n" />
 								</Panel>
 								<Panel class="horizontalSeparator"/>
 							</Panel>

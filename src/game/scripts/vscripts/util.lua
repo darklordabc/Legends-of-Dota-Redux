@@ -700,6 +700,8 @@ function GetRandomAbilityFromListForPerk(flag)
     return localTable[random]
 end
 
+
+
 function CDOTA_BaseNPC:IsSleeping()
     if self:HasModifier("modifier_bane_nightmare") then 
         return true
