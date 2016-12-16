@@ -17,6 +17,10 @@ function modifier_movespeed_cap:GetModifierMoveSpeed_Limit( params )
     return 5000
 end
 
+function modifier_movespeed_cap:IsPurgable()
+    return false
+end
+
 function modifier_movespeed_cap:IsHidden()
     return true
 end

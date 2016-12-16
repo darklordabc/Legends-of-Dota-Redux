@@ -24,6 +24,10 @@ function modifier_octarine_vampirism_lod_buff:IsBuff()
     return false
 end
 
+function modifier_octarine_vampirism_lod_buff:IsPurgable()
+    return false
+end
+
 --------------------------------------------------------------------------------
 
 function modifier_octarine_vampirism_lod_buff:OnCreated( kv )
