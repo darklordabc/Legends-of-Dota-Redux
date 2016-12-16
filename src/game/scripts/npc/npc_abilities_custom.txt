@@ -188,6 +188,122 @@
 				}
 			}
 		}
+
+
+	//=====================================================================================================
+	// GEMINI: Unstable Rift ONE LEVEL
+	//=====================================================================================================
+	"gemini_unstable_rift_one"
+		{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"                      "1"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"abyssal_underlord_cancel_dark_rift"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_gemini/gemini_dark_rift.vpcf"
+			"particle"			"particles/units/heroes/hero_chen/chen_teleport.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"summon_time"			"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+				"Function" "unstable_rift"
+				"duration" "%duration"
+				"summon_time" "%summon_time"
+				}
+		}
+		
+		"Modifiers"
+			{
+			"gemini_unstable_rift_mod"
+				{
+				"Duration" "%duration"
+				"ThinkInterval" "0.1"
+				"OnIntervalThink"
+					{
+					"RunScript"
+						{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "gemini_unstable_rift_transport"
+						"summon_time" "%summon_time"
+						}
+					}
+				"OnDestroy"
+					{
+					"RunScript"
+						{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "gemini_unstable_rift_end"
+						}
+					}
+				}
+			"gemini_unstable_rift_count_mod"
+				{
+				"Duration" "0.5"
+				"IsHidden" "1"
+				"OnDestroy"
+					{
+					"RemoveModifier"
+						{
+						"ModifierName" "gemini_unstable_rift_show_mod"
+						"Target" "TARGET"
+						}
+					}
+				}
+			"gemini_unstable_rift_show_mod"
+				{
+				"IsBuff" "1"
+				"EffectName" "particles/units/heroes/hero_chen/chen_teleport.vpcf"
+				}
+			}
+		}
 	
 	//=====================================================================================================
 	// GEMINI: Unstable Rift
