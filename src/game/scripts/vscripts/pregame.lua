@@ -1088,7 +1088,7 @@ function Pregame:networkHeroes()
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
 
-                for i=1,16 do
+                for i=1,24 do
                     local abName = heroValues['Ability' .. i]
                     if abName ~= 'attribute_bonus' then
                         table.insert(self.botHeroes[heroName], abName)
@@ -1154,7 +1154,7 @@ function Pregame:networkHeroes()
                 end
             else
                 local sn = 1
-                for i=1,16 do
+                for i=1,23 do
                     local abName = heroValues['Ability' .. i]
 
                     if abName ~= 'attribute_bonus' then
@@ -1170,7 +1170,7 @@ function Pregame:networkHeroes()
             allowedHeroes[heroName] = true
 
             -- Store the owners
-            for i=1,16 do
+            for i=1,23 do
                 if theData['Ability'..i] ~= nil then
                     self.abilityHeroOwner[theData['Ability'..i]] = heroName
                 end
@@ -5696,7 +5696,7 @@ function Pregame:fixSpawningIssues()
                     if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
                         for heroName,heroValues in pairs(allHeroes) do
                             if heroName == nameTest then
-                                if heroName == "npc_dota_hero_invoker" then
+                                if heroName == "npc_dota_hero_invoker"  then
                                     for i=17,24 do
                                         local abName = heroValues['Ability' .. i]
                                         spawnedUnit:AddAbility(abName)
