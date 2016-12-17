@@ -37,6 +37,7 @@ function Precache(context)
     end
     -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
     PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts",context)
 
     precacheObstacles(context)
 end
