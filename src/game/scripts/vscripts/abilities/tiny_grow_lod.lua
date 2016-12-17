@@ -20,17 +20,6 @@ function tiny_grow_lod:OnUpgrade()
 			local level_1 = "models/heroes/tiny_02/tiny_02.vmdl"
 			local level_2 = "models/heroes/tiny_03/tiny_03.vmdl"
 			local level_3 = "models/heroes/tiny_04/tiny_04.vmdl"
-            local wearables = {} 
-            local cur = self:GetCaster():FirstMoveChild() 
-            while cur ~= nil do 
-                cur = cur:NextMovePeer()
-                if cur ~= nil and cur:GetClassname() ~= "" and cur:GetClassname() == "dota_item_wearable" then 
-                    table.insert(wearables, cur) 
-                end
-            end
-            for i = 1, #wearables do 
-                UTIL_Remove(wearables[i])
-            end
 
 			if self:GetLevel() == 1 then
 				self:GetCaster():SetOriginalModel(level_1)
@@ -58,12 +47,13 @@ function tiny_grow_lod:OnUpgrade()
 				self.rigt_arm = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_03/tiny_03_right_arm.vmdl"})
                 self.rigt_arm:FollowEntity(self:GetCaster(), true)
 			elseif self:GetLevel() == 3 then
-			UTIL_Remove(self.torso)
-				self:GetCaster():SetOriginalModel(level_3)
+				UTIL_Remove(self.torso)
 				UTIL_Remove(self.head)
 				UTIL_Remove(self.left_arm)
 				UTIL_Remove(self.rigt_arm)
 				
+				self:GetCaster():SetOriginalModel(level_3)
+
 				self.torso = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_04/tiny_04_body.vmdl"})
 				self.torso:FollowEntity(self:GetCaster(), true)
 				self.head = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_04/tiny_04_head.vmdl"})
@@ -73,16 +63,13 @@ function tiny_grow_lod:OnUpgrade()
 				self.rigt_arm = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_04/tiny_04_right_arm.vmdl"})
                 self.rigt_arm:FollowEntity(self:GetCaster(), true)
 			end
-			if self:GetCaster():HasModifier("modifier_tiny_grow_lod") then
-				local modifier = self:GetCaster():FindModifierByName("modifier_tiny_grow_lod") 
-				modifier:Destroy()
-				self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_tiny_grow_lod", nil)
-			end
 			if self:GetCaster():HasScepter() then
 				if banana then
-					UTIL_Remove(banana)
-					banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
-					banana:FollowEntity(self:GetCaster(), true)
+					if type(banana) == "table" then
+						UTIL_Remove(banana)
+						banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
+						banana:FollowEntity(self:GetCaster(), true)
+					end
 				end 
 			end
 		end
@@ -101,20 +88,22 @@ end
 
 function modifier_tiny_grow_lod:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink(0.5)
+		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_tiny_grow_lod:OnIntervalThink()
 	if self:GetCaster():GetUnitName() == "npc_dota_hero_tiny" then
-		if not self:GetParent():HasScepter() and not banana then
-			UTIL_Remove(banana)
-			banana:AddNoDraw()
-		end
-		if banana == nil then
-			if self:GetParent():HasScepter() then
+		if self:GetParent():HasScepter() then
+			if banana == nil then
 				banana = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/heroes/tiny_01/tiny_01_tree.vmdl"})
 				banana:FollowEntity(self:GetParent(), true)
+            end
+		else
+			if banana ~= nil then
+				if type(banana) == "table" then
+					UTIL_Remove(banana)
+				end
 			end
 		end
 	end
@@ -122,7 +111,9 @@ end
 
 function modifier_tiny_grow_lod:OnDestroy()
 	if banana ~= nil then
-		UTIL_Remove(banana)
+		if type(banana) == "table" then
+			UTIL_Remove(banana)
+		end
 	end
 end
 
