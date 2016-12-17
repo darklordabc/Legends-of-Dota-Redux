@@ -342,18 +342,18 @@
 
     "lodOption322"                                  "322"
     "lodOptionDes322"                               "Enable 322"
-    "lodOptionAbout322"                             "Heroes gain 322 gold upon dying, instead of losing gold."
+    "lodOptionAbout322"                             "Heroes gain 322 gold upon dying instead of losing gold."
     "lodMutator322"                                 "322"
 
     "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
     "lodOptionGottaGoFastOff"                               "Normal Movespeed"
     "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
     "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
-    "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 522 to 1000.\n Gotta Go REALLY Fast: All heroes have 1000ms and cannot be slowed."
+    "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 550 to 1000.\n Gotta Go FASTER: All heroes have 1000ms and cannot be slowed."
     "lodMutatorGottaGoFast"                                 "Gotta Go Fast?"
     "lodMutatorGottaGoFastOff"                              "Gotta Go Fast?"
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
-    "lodMutatorGottaGoREALLYFast"                           "Gotta Go REALLY Fast!"
+    "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
 
     "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
     "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
@@ -3797,7 +3797,7 @@
     "DOTA_Tooltip_modifier_gottagofast_effect"                      "Gotta Go Fast!"
     "DOTA_Tooltip_modifier_gottagofast_effect_Description"          "Movement speed increased by 50%d%, movespeed limit increased to 1000."
 
-    "DOTA_Tooltip_modifier_gottagoreallyfast_effect"                      "Gotta Go REALLY Fast!"
+    "DOTA_Tooltip_modifier_gottagoreallyfast_effect"                      "Gotta Go FASTER!"
     "DOTA_Tooltip_modifier_gottagoreallyfast_effect_Description"          "Movement speed increased to 1000, cannot be slowed."
 
     "DOTA_Tooltip_ability_angel_arena_archmage_anomaly" "Anomaly"       
