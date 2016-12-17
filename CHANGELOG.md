@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.6 
+## 3.7
+### Bug Fixing/New Features
+- Fixed not getting ability points on certain levels
+- Scoreboard can now be viewed, however, it does not show abilities yet. 
+
+### Balance
+
+
+## 3.6 - Steam Version
 ### Bug Fixing/New Features
 - First round of fixes to recover from 7.0. Many issues remain.
 - Removed attribute bonus to have parity with Dota
@@ -18,7 +26,7 @@ All notable changes to this project will be documented in this file.
 - Added Global Lighting OP ability
 - Flesh heaps can now stack collects from far distances, if you are the killer 
 
-## 3.5 - Steam Version
+## 3.5 
 
 ### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.
