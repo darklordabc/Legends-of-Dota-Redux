@@ -297,6 +297,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPlayerBans.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOPAbilities.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUlts.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBoosterDraft.png" /></Image>
 
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepNoPower.png"></Image>
