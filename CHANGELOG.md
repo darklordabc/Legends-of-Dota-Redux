@@ -2,18 +2,40 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.8 
+### Bug Fixing/New Features
+
+### Balance
+
+## 3.7 - Steam Version
+### Bug Fixing/New Features
+- Fixed not getting ability points on certain levels
+- Scoreboard can now be viewed, however, it does not show abilities yet. 
+- Tiny will now change models and grow as he levesl up Grow (if he has it off course)
+- Fixed Hotkeys for Rubick, IO and probably a few other heros
+- Added the 7.00 Map as an optional Map, play custom_700 to play it, is has bots enabled. If this works fine with bots, we will phase out the old map and use this exclusively. 
+
+### Balance
+
+
 ## 3.6 
 ### Bug Fixing/New Features
 - First round of fixes to recover from 7.0. Many issues remain.
-- Disabled Talents temporarily
 - Removed attribute bonus to have parity with Dota
+- Fixed abilities in being in a random order.
+- Added Sliders and Monkey Business Mutators
+- Temporarily disabled non-custom maps because of a voting bug
+
 
 ### Balance
 - Added Flesh Heap Bonus Vision
 - Added Anomaly
 - Added Monkey King
+- Added Zeus's Nimbus
+- Added Global Lighting OP ability
+- Flesh heaps can now stack collects from far distances, if you are the killer 
 
-## 3.5 - Steam Version
+## 3.5 
 
 ### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.

@@ -4,16 +4,14 @@
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" /> 
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
         <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
+
+        <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
     </scripts>
 
     <script>
         GameUI.CustomUIConfig().multiteam_top_scoreboard = {
             shouldSort: false
         };
-
-        //      GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
-        GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false);
-        GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false);
 
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false);
@@ -26,10 +24,7 @@
          <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup/game_setup.xml" />
         <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
-
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
-    <!-- -->
-        <CustomUIElement type="FlyoutScoreboard" layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml" />
+  
         <CustomUIElement type="EndScreen" layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_hero_builder.xml" />
@@ -41,6 +36,8 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/cheats.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/duel_ui.xml" />
+
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_hack_700.xml" />
         <!-- Textures compiling stuff 
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
             -->

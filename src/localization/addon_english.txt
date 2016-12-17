@@ -117,6 +117,8 @@
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
+    "lodMutatorSliders"                             "Sliders"
+    "lodMutatorMonkeyBusiness"                      "Monkey Business"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -353,6 +355,11 @@
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go REALLY Fast!"
 
+    "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
+    "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
+
+    "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
+    "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
 
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
@@ -1099,6 +1106,7 @@
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>LoD Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_zuus_cloud"               "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>LoD Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>LoD Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
@@ -1138,6 +1146,7 @@
     "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\'#FF4949\'>LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\'#FF4949\'>LoD Warning:</font> Does not stack with Aether Lens."
+    "warning_aether_range_lod_OP"    "<font color=\'#FF4949\'>LoD Warning:</font> Does not stack with Aether Lens."
 	"warning_life_stealer_control"                 "<font color=\'#FF4949\'>LoD Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
 	"warning_true_random_lod_1"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_2"                 "<font color=\'#FF4949\'>LoD Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
@@ -1161,6 +1170,7 @@
 	"credit_pudge_flesh_heap_attack_range"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_move_speed"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_spell_amp"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_bonus_vision"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_silencer_global_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_tinker_rearm_lod"           "<font color=\'#7D7D7D\'>Credits: Myrl | github.com/Myrl</font>"	
 	"credit_ursa_enrage_old"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -1772,6 +1782,23 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
+    
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
+    "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
+    "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"<font color='#70EA72'>Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
@@ -3338,6 +3365,11 @@
 	"DOTA_Tooltip_ability_gemini_unstable_rift_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
 	"DOTA_Tooltip_ability_gemini_unstable_rift_summon_time" "TELEPORTATION DELAY:"
 	"DOTA_Tooltip_ability_gemini_unstable_rift_duration" "DURATION:"
+
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one" "Unstable Rift"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_description" "Creates a portal at the Voidwalker's feet and another location on the map.  Any Hero, ally or enemy, that lingers on it for the delay time is instantly transported to the linked portal across the map. Those transported suffer 15%% of their maximum health as Magical damage. Silenced Heroes cannot use the portal, but will still count the delay time. The portal will only transport one unit at a time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_summon_time" "TELEPORTATION DELAY:"
+    "DOTA_Tooltip_ability_gemini_unstable_rift_one_duration" "DURATION:"
 	
 	"DOTA_Tooltip_gemini_unstable_rift_mod"                                           "Unstable Rift"
 	"DOTA_Tooltip_gemini_unstable_rift_mod_description"                               "Being teleported somewhere after delay."
@@ -3777,4 +3809,9 @@
     "DOTA_Tooltip_modifier_archmage_anomaly"    "Anomaly"       
     "DOTA_Tooltip_modifier_archmage_anomaly_Description" "This unit stands in the anomaly."
 
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global"       "Global Lightning"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_Description" "Calls down a bolt of lightning <font color='#70EA72'>from a Global range</font> to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a 750 radius. Can be cast on the ground, affecting the closest enemy hero in 325 range."
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
+    "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
 }

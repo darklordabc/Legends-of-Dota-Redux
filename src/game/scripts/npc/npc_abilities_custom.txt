@@ -188,6 +188,122 @@
 				}
 			}
 		}
+
+
+	//=====================================================================================================
+	// GEMINI: Unstable Rift ONE LEVEL
+	//=====================================================================================================
+	"gemini_unstable_rift_one"
+		{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"                      "1"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"abyssal_underlord_cancel_dark_rift"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_gemini/gemini_dark_rift.vpcf"
+			"particle"			"particles/units/heroes/hero_chen/chen_teleport.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"summon_time"			"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+		}
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+				"Function" "unstable_rift"
+				"duration" "%duration"
+				"summon_time" "%summon_time"
+				}
+		}
+		
+		"Modifiers"
+			{
+			"gemini_unstable_rift_mod"
+				{
+				"Duration" "%duration"
+				"ThinkInterval" "0.1"
+				"OnIntervalThink"
+					{
+					"RunScript"
+						{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "gemini_unstable_rift_transport"
+						"summon_time" "%summon_time"
+						}
+					}
+				"OnDestroy"
+					{
+					"RunScript"
+						{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "gemini_unstable_rift_end"
+						}
+					}
+				}
+			"gemini_unstable_rift_count_mod"
+				{
+				"Duration" "0.5"
+				"IsHidden" "1"
+				"OnDestroy"
+					{
+					"RemoveModifier"
+						{
+						"ModifierName" "gemini_unstable_rift_show_mod"
+						"Target" "TARGET"
+						}
+					}
+				}
+			"gemini_unstable_rift_show_mod"
+				{
+				"IsBuff" "1"
+				"EffectName" "particles/units/heroes/hero_chen/chen_teleport.vpcf"
+				}
+			}
+		}
 	
 	//=====================================================================================================
 	// GEMINI: Unstable Rift
@@ -472,140 +588,70 @@
     //=================================================================================================================
 			
 	"tiny_grow_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "ability_datadriven"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityTextureName"            "tiny_grow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9109"		
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/tiny_grow_lod.lua"	 --- PATH WERY IMPORTANT!! AND NAME 
+		"AbilityTextureName"			"tiny_grow"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 
-        "OnOwnerSpawned"
-        {
-            "RunScript"
-            {
-                "ScriptFile"            "abilities/tiny_grow_lod.lua"
-                "Function"              "onTinyGrowUpgrade"
-            }
-        }
+		"HasScepterUpgrade"				"1"
 
-        "OnUpgrade"
-        {
-            "RunScript"    
-            {
-                "ScriptFile"            "abilities/tiny_grow_lod.lua"
-                "Function"              "onTinyGrowUpgrade"
-            }
-        }
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"50 100 150"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"-20 -35 -50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"40 50 60"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"grow_bonus_damage_pct"		"35 50 65"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_range_scepter"		"85"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_cleave_radius_scepter"	"400"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_cleave_damage_scepter"	"50"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_building_damage_scepter"	"75"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"grow_bonus_damage_pct_scepter"		"50 65 80"
+			}
 
-        // Called when we need the normal modifier
-        "OnSpellStart"
-        {
-            "ApplyModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "tiny_grow_lod"
-            }
-        }
-
-        // Called when we need the scepter modifier
-        "OnChannelFinish"
-        {
-            "ApplyModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "tiny_grow_lod_scepter"
-            }
-        }
-
-        "Modifiers"
-        {
-            "tiny_grow_lod"
-            {
-                "IsHidden"  "1"
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
-                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movement_speed"
-
-                }
-            }
-
-            "tiny_grow_lod_scepter"
-            {
-                "IsHidden"  "1"
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
-                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movement_speed"
-                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%bonus_range_scepter"
-
-                }
-
-                "OnAttackLanded"
-                {
-                    "CleaveAttack"
-                    {
-                        "CleavePercent"     "%bonus_cleave_damage_scepter"
-                        "CleaveRadius"      "%bonus_cleave_radius_scepter"
-                    }
-                }
-            }
-        }
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_damage"              "50 100 150"
-            }
-            "02"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_attack_speed"        "-20 -35 -50"
-            }
-            "03"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_movement_speed"      "20 40 60"
-            }
-            "04"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "grow_bonus_damage_pct"     "35 50 65"
-            }
-            "05"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_range_scepter"       "107"
-            }
-            "06"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_cleave_radius_scepter"   "400"
-            }
-            "07"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_cleave_damage_scepter"   "50"
-            }
-            "08"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_building_damage_scepter" "75"
-            }
-            "09"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "grow_bonus_damage_pct_scepter"     "50 65 80"
-            }
-        }
-    }
+		}
+	}
 
     // Rewrite of the Bloodseeker Thirst ability
     // Author: YOLOSPAGHETTI
@@ -3795,6 +3841,39 @@
             {
                 "var_type"                            "FIELD_FLOAT"
                 "flesh_heap_agility_buff_amount"    "1.0 1.5 2 2.5"
+            }
+            "02"
+            {
+                "var_type"                "FIELD_INTEGER"
+                "flesh_heap_range"        "450"
+            }
+        }
+    }
+    "pudge_flesh_heap_str"
+        {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "AbilityTextureName"                "pudge_flesh_heap"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_str.lua"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+            "AbilityCastRange"              "450"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"            "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }        
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                            "FIELD_FLOAT"
+                "flesh_heap_strength_buff_amount"    "1.0 1.5 2 2.5"
             }
             "02"
             {
@@ -21825,6 +21904,74 @@
                 "duration"            "8 10 12"
             }
         }
-    }	  
+    }
+    //=================================================================================================================
+	// Zuus: Global Lightning Bolt
+	//=================================================================================================================
+	"zuus_lightning_bolt_global"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"zuus_lightning_bolt"													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 175 275 350"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 190 230 270"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.1"	// just a ministun
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"true_sight_radius"		"750"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sight_radius_day"		"750"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sight_radius_night"	"750"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sight_duration"		"4.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spread_aoe"	"325"
+			}
+		}
+	}
 		  
 }

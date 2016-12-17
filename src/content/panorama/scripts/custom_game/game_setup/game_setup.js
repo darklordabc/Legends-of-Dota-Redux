@@ -1858,7 +1858,7 @@ function OnHeroTabShown(tabName) {
                 if(shouldShow && searchText.length > 0) {
                     // Check each part
                     for(var i=0; i<searchParts.length; ++i) {
-                        if($.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1) {
+                        if($.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1 && heroName.indexOf(searchParts[i]) == -1) {
                             shouldShow = false;
                             break;
                         }
@@ -2104,7 +2104,7 @@ function getSkillFilterInfo(abilityName) {
 
         for(var i=0; i<searchParts.length; ++i) {
             var prt = searchParts[i];
-            if(localAbName.indexOf(prt) == -1 && localOwningHeroName.indexOf(prt) == -1) {
+            if(localAbName.indexOf(prt) == -1 && localOwningHeroName.indexOf(prt) == -1 && abilityName.indexOf(prt) == -1) {
                 shouldShow = false;
                 break;
             }
@@ -4816,7 +4816,7 @@ function loadPlayerBans() {
     }
 
     // Bots
-    if(mapName != 'custom_bot' && mapName != '10_vs_10') {
+    if(mapName != 'custom_bot' && mapName != '10_vs_10' && mapName != 'custom_700') {
         $.GetContextPanel().SetHasClass('disallow_bots', true);
     }
 

@@ -321,7 +321,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' or mapName == '10_vs_10' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -336,7 +336,7 @@ function Pregame:init()
     self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
-    if mapName == 'custom_bot' or mapName == '10_vs_10' then
+    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self.enabledBots = true
     end
 
@@ -355,6 +355,7 @@ function Pregame:init()
 
         self:setOption('lodOptionBotsRadiant', 3, true)
         self:setOption('lodOptionBotsDire', 3, true)
+
     end
 
     -- 10 VS 10
@@ -371,7 +372,6 @@ function Pregame:init()
     function PlayerResource:getPlayerStats(playerID)
         return this:getPlayerStats(playerID)
     end
-
     -- Spawning stuff
     self.spawnQueue = {}
     self.currentlySpawning = false
@@ -926,7 +926,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                     end
 
-                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625,0)
 
                     CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
 
@@ -1140,7 +1140,7 @@ function Pregame:networkHeroes()
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
 
-                for i=1,16 do
+                for i=1,24 do
                     local abName = heroValues['Ability' .. i]
                     if abName ~= 'attribute_bonus' then
                         table.insert(self.botHeroes[heroName], abName)
@@ -1206,7 +1206,7 @@ function Pregame:networkHeroes()
                 end
             else
                 local sn = 1
-                for i=1,16 do
+                for i=1,23 do
                     local abName = heroValues['Ability' .. i]
 
                     if abName ~= 'attribute_bonus' then
@@ -1222,7 +1222,7 @@ function Pregame:networkHeroes()
             allowedHeroes[heroName] = true
 
             -- Store the owners
-            for i=1,16 do
+            for i=1,23 do
                 if theData['Ability'..i] ~= nil then
                     self.abilityHeroOwner[theData['Ability'..i]] = heroName
                 end
@@ -2216,6 +2216,16 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Other - Teleporation
+        lodOptionSliders = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Other - Monkey Business
+        lodOptionMonkeyBusiness = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
@@ -2265,6 +2275,8 @@ function Pregame:initOptionSelector()
                 -- Mutators disabled by default
                 self:setOption('lodOptionDuels', 0, false)
                 self:setOption('lodOption322', 0, false)
+                self:setOption('lodOptionSliders', 0, false)
+                self:setOption('lodOptionMonkeyBusiness', 0, false)
                 self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
                 -- Balance Mode Ban List disabled by default
@@ -3054,6 +3066,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
+        OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])
+        OptionManager:SetOption('monkeyBusiness', this.optionStore['lodOptionMonkeyBusiness'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
@@ -3234,6 +3248,8 @@ function Pregame:processOptions()
                     ['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
+                    ['Other: Free Teleport Ability'] = this.optionStore['lodOptionSliders'],
+                    ['Other: Monkey Business'] = this.optionStore['lodOptionMonkeyBusiness'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
@@ -5711,6 +5727,7 @@ function Pregame:fixSpawningIssues()
     local givenBonuses = {}
     local handled = {}
     local givenCouriers = {}
+    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
     local this = self
@@ -5808,25 +5825,42 @@ function Pregame:fixSpawningIssues()
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
+                        -- Custom Flesh Heap fixes
+                        for abilitySlot=0,6 do
+                            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+                            if abilityTemp then 
+                                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+                                    local abilityName = abilityTemp:GetAbilityName()
+                                    local modifierName = "modifier"..string.sub(abilityName,6)
+                                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+                                    
+                                end
+                            end
+                        end
                     end
                 end, DoUniqueString('silencerFix'), 0.1)
 
-
+--[[
                 Timers:CreateTimer(function()
-                    local abilities = spawnedUnit:GetAbilityCount() - 1
-                    for i = 0, abilities do
-                        if spawnedUnit:GetAbilityByIndex(i) then
-                            if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special") then
-                                print("removed") 
-                                print(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                                spawnedUnit:GetAbilityByIndex(i):SetAbilityIndex(14+i)
-                                spawnedUnit:RemoveAbility(spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
+                        local abilities = spawnedUnit:GetAbilityCount() - 1
+                        spawnedUnit.talents = {}
+
+                        for i = 0, abilities do
+                            if spawnedUnit:GetAbilityByIndex(i) then
+                                if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
+                                    --print("removed") 
+                                    local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                                    spawnedUnit.talents[i] = talent
+                                    print("Ability " .. i .. ": " .. talent)
+                                    spawnedUnit:RemoveAbility(talent)
+                                end
                             end
-
                         end
-                    end
+                        spawnedUnit.hasTalents = true
+                   end
 
-                end, DoUniqueString('fixHotKey'), 2)
+                end, DoUniqueString('fixHotKey'), 1)]]
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
@@ -5840,13 +5874,49 @@ function Pregame:fixSpawningIssues()
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
                        print("Perk assigned")
-                       for i = 0, 18 do
-                          if spawnedUnit:GetAbilityByIndex(i) then
-                            print("Ability " .. i .. ": " .. spawnedUnit:GetAbilityByIndex(i):GetAbilityName())
-                          end
-                       end
                     end
-                end, DoUniqueString('addPerk'), 1)
+                end, DoUniqueString('addPerk'), 1.0)
+
+                -- Add talents
+                Timers:CreateTimer(function()
+                    --print(self.perksDisabled)
+                    local nameTest = spawnedUnit:GetName()
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
+                        for heroName,heroValues in pairs(allHeroes) do
+                            if heroName == nameTest then
+                                if heroName == "npc_dota_hero_invoker"  then
+                                    for i=17,24 do
+                                        local abName = heroValues['Ability' .. i]
+                                        spawnedUnit:AddAbility(abName)
+                                    end
+                                else
+                                    if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                                    end
+                                    for i=10,17 do
+                                        local abName = heroValues['Ability' .. i]
+                                        spawnedUnit:AddAbility(abName)
+                                    end
+                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
+                                    end
+                                end
+                            end
+                        end
+                        spawnedUnit.hasTalent = true
+                    end
+
+                    for i = 0, spawnedUnit:GetAbilityCount() do
+                        if spawnedUnit:GetAbilityByIndex(i) then
+                            --print("removed") 
+                            local ability = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                            print("Ability " .. i .. ": " .. ability)
+                        end
+                    end
+                end, DoUniqueString('addTalents'), 1.5)
+                
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
@@ -5864,6 +5934,8 @@ function Pregame:fixSpawningIssues()
                         end
                     end
                 end, DoUniqueString('addBotAI'), 0.5)
+
+
 
                 --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
                 local ab2 = spawnedUnit:GetAbilityByIndex(2)
@@ -5900,6 +5972,29 @@ function Pregame:fixSpawningIssues()
                         })
                     end
                 end
+
+                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
+                Timers:CreateTimer(function()                   
+                    if OptionManager:GetOption('sliders') > 0 then
+                        if not util:isPlayerBot(playerID) then
+                            local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
+                            riftAbility:UpgradeAbility(true)
+                        end
+                    end
+                 end, DoUniqueString('addRift'), .5)
+
+                -- Give all non-bot heros the a free Mischief ability, it has one level and is upgraded from start
+                Timers:CreateTimer(function()    
+                    if OptionManager:GetOption('monkeyBusiness') > 0 then
+                        print(OptionManager:GetOption('monkeyBusiness'))
+                        if not util:isPlayerBot(playerID) then
+                            local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
+                            mischieftAbility:UpgradeAbility(true)
+                            local mischieftAbility2 = spawnedUnit:AddAbility("monkey_king_untransform")
+                            mischieftAbility2:UpgradeAbility(true)
+                        end
+                    end
+                end, DoUniqueString('addMischief'), .5)
 
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
