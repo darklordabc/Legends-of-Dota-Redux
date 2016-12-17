@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 3.7
 ### Bug Fixing/New Features
 - Fixed not getting ability points on certain levels
+- Scoreboard can now be viewed, however, it does not show abilities yet. 
 
 ### Balance
 
