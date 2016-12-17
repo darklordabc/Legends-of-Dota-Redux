@@ -470,6 +470,47 @@ function Pregame:sendContributors()
     network:setContributors(sortedContributors)
 end
 
+function Pregame:startBoosterDraftRound( pID )
+    local currentRound = util:getTableLength(self.finalArrays[pID])
+    
+    local duration = 25
+    if self.finalArrays[pID] then
+        duration = 15
+    end
+    network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + duration)
+    
+    Timers:CreateTimer(function()
+        if not self.waitForArray[pID] and self.boosterDraftPicking[pID] then
+            if not self.draftArrays[pID] then
+                return
+            end
+
+            if currentRound ~= util:getTableLength(self.finalArrays[pID]) then
+                return
+            end
+
+            local abName = nil
+            local oldCost = 0
+
+            local abilities = self.draftArrays[pID].abilityDraft
+
+            for k,v in pairs(self.draftArrays[pID].abilityDraft) do
+                if v then
+                    if self.spellCosts[k] and self.spellCosts[k] > oldCost then
+                        oldCost = self.spellCosts[k]
+                        abName = k
+                    end
+                    if not abName then
+                        abName = k
+                    end
+                end
+            end
+
+            self:setSelectedAbility(pID, -1, abName)
+        end
+    end, DoUniqueString(tostring(pID).."boosterDraft"), duration + 1)
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -616,6 +657,17 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_SELECTION then
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
+
+            if self.boosterDraft then
+                network:broadcastNotification({
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftStart'
+                })
+
+                for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+                    network:setCustomEndTimer(PlayerResource:GetPlayer(i), Time() + 25, 25)
+                end
+            end
         end
 
         if not self.Announce_Picking_Phase then
@@ -1239,6 +1291,13 @@ function Pregame:finishOptionSelection()
         self.singleDraft = true
     end
 
+    -- Booster Draft
+    if self.optionStore['lodOptionCommonGamemode'] == 6 then
+        self.useDraftArrays = true
+        self.singleDraft = false
+        self.boosterDraft = true
+    end
+
     -- Move onto the next phase
     if self.optionStore['lodOptionBanningMaxBans'] > 0 or self.optionStore['lodOptionBanningMaxHeroBans'] > 0 or self.optionStore['lodOptionBanningHostBanning'] == 1 then
         -- There is banning
@@ -1696,6 +1755,11 @@ function Pregame:initOptionSelector()
                 return value == 5
             end
 
+            -- Booster Draft only
+            if mapName == 'booster_draft' then
+                return value == 6
+            end
+
             -- Not in a forced map, allow any preset gamemode
 
             local validGamemodes = {
@@ -1704,7 +1768,8 @@ function Pregame:initOptionSelector()
                 [2] = true,
                 [3] = true,
                 [4] = true,
-                [5] = true
+                [5] = true,
+                [6] = true
             }
 
             -- Ensure it is one of the above gamemodes
@@ -1754,7 +1819,7 @@ function Pregame:initOptionSelector()
 
         -- Common gamemode
         lodOptionCommonGamemode = function(value)
-            return value == 1 or value == 3 or value == 4 or value == 5
+            return value == 1 or value == 3 or value == 4 or value == 5 or value == 6
         end,
 
         -- Common max slots
@@ -2366,9 +2431,36 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
+
+                -- Single Draft Pick Mode
+                if optionValue == 5 then
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
+
+                -- Booster Draft Pick Mode
+                if optionValue == 6 then
+                    self:setOption('lodOptionCommonGamemode', 6, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                    self:setOption('lodOptionBotsUniqueSkills', 2, true)
+                    self:setOption('lodOptionDraftAbilities', 47, false)
+                end
             else
                 self:setOption('lodOptionCommonGamemode', 1)
             end
+        end,
+
+        -- Default amount of abilities for boost draft is 45
+        lodOptionCommonGamemode = function(optionName, optionValue)
+            if optionValue == 6 then
+                if self.optionStore['lodOptionCommonDraftAbilities'] == 100 then
+                    self:setOption('lodOptionDraftAbilities', 47, false)
+                    self:setOption('lodOptionCommonDraftAbilities', self.optionStore['lodOptionDraftAbilities'], true)
+                end
+            end        
         end,
 
         -- Fast max slots
@@ -2542,7 +2634,20 @@ function Pregame:buildDraftArrays()
     self.maxDraftHeroes = math.max(3, math.ceil(abilityDraftCount / 4))
 
     if self.singleDraft then
-        maxDraftArrays = 24
+        maxDraftArrays = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS) + util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    end
+
+    if self.boosterDraft then
+        maxDraftArrays = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS) + util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+
+        self.nextDraftArray = {}
+        self.waitForArray = {}
+        self.finalArrays = {}
+
+        self.boosterDraftPicking = {}
+        for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+            self.boosterDraftPicking[i] = true
+        end
     end
 
     for draftID = 0,(maxDraftArrays - 1) do
@@ -2556,6 +2661,9 @@ function Pregame:buildDraftArrays()
 
         -- Select random heroes
         local heroDraft = {}
+        if self.boosterDraft then
+            self.maxDraftHeroes = #possibleHeroes
+        end
         for i=1,self.maxDraftHeroes do
             heroDraft[table.remove(possibleHeroes, math.random(#possibleHeroes))] = true
         end
@@ -2991,29 +3099,28 @@ function Pregame:processOptions()
         self:loadTrollCombos()
 
         -- Enable Balance Mode (disables ban lists)
-        if this.optionStore['lodOptionBalanceMode'] == 1 then
-            -- Load balance mode stats
-            local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
-            self.spellCosts = {}
-            for tier, tierList in pairs(balanceMode) do
-                -- Check whether price list or ban list
-                local tierNum = tonumber(string.sub(tier, 6))
-                if tierNum == 0 then
-                    -- Ban List
-                    for abilityName,nothing in pairs(tierList) do
-                        this:banAbility(abilityName)
-                    end
-                else
-                    -- Spell Shop
-                    local price = constants.TIER[tierNum]
+        -- Load balance mode stats
+        local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
+        self.spellCosts = {}
+        for tier, tierList in pairs(balanceMode) do
+            -- Check whether price list or ban list
+            local tierNum = tonumber(string.sub(tier, 6))
+            if tierNum == 0 and this.optionStore['lodOptionBalanceMode'] == 1 then
+                -- Ban List
+                for abilityName,nothing in pairs(tierList) do
+                    this:banAbility(abilityName)
+                end
+            else
+                -- Spell Shop
+                local price = constants.TIER[tierNum]
 
-                    for abilityName,nothing in pairs(tierList) do
-                        self.spellCosts[abilityName] = price
-                        network:sendSpellPrice(abilityName, price)
-                    end
+                for abilityName,nothing in pairs(tierList) do
+                    self.spellCosts[abilityName] = price
+                    network:sendSpellPrice(abilityName, price)
                 end
             end
-
+        end
+        if this.optionStore['lodOptionBalanceMode'] == 1 then
             network:updateFilters()
             disableBanLists = disableBanLists or mapName == '5_vs_5' or mapName =='3_vs_3'
         end
@@ -3272,7 +3379,7 @@ end
 -- Returns a player's draft index
 function Pregame:getDraftID(playerID)
     -- If it's single draft, just use our playerID
-    if self.singleDraft then
+    if self.singleDraft or self.boosterDraft then
         return playerID
     end
 
@@ -4279,7 +4386,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     local newBuild = SkillManager:grabNewBuild(build, slot, abilityName)
 
     -- Validate the slot is a valid slot index
-    if slot < 1 or slot > maxSlots then
+    if (slot < 1 or slot > maxSlots) and not self.boosterDraftPicking then
         -- Invalid slot number
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -4534,15 +4641,96 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
-    -- Is there an actual change?
-    if build[slot] ~= abilityName then
-        -- New ability in this slot
-        build[slot] = abilityName
+    -- Check for Booster Draft picking phase
+    if self.boosterDraftPicking and self.boosterDraftPicking[playerID] then
+        if not self.waitForArray[playerID] then
+            local nextPlayer = playerID
+            repeat 
+                nextPlayer = nextPlayer + 1
+                if nextPlayer > DOTA_MAX_TEAM_PLAYERS-1 then
+                    nextPlayer = 0
+                end
+            until 
+                PlayerResource:GetConnectionState(nextPlayer) >= 1 and not util:isPlayerBot(nextPlayer)
 
-        -- Should we network it
-        if not dontNetwork then
-            -- Network it
-            network:setSelectedAbilities(playerID, build)
+            self.finalArrays[playerID] = self.finalArrays[playerID] or {}
+            self.finalArrays[playerID][abilityName] = true
+
+            self.nextDraftArray[nextPlayer] = util:DeepCopy(self.draftArrays[playerID])
+            self.nextDraftArray[nextPlayer].abilityDraft[abilityName] = nil
+
+            local function updateDynamicDraftArray( pID )
+                self.draftArrays[pID] = util:DeepCopy(self.nextDraftArray[pID])
+                network:setDraftArray(pID, self.draftArrays[pID])
+
+                self.nextDraftArray[pID] = nil
+                self.waitForArray[pID] = false
+
+                network:sendNotification(PlayerResource:GetPlayer(pID), {
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftRound',
+                    params = {
+                        ['round'] = util:getTableLength(self.finalArrays[pID]) + 1
+                    }
+                })  
+
+                if not self.boosterDraftInitiated then
+                    for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+                        self:startBoosterDraftRound(i)
+                    end
+
+                    self.boosterDraftInitiated = true
+                else
+                    self:startBoosterDraftRound( pID )
+                end
+            end
+
+            if self.waitForArray[nextPlayer] then
+                updateDynamicDraftArray( nextPlayer )
+            end
+
+            if util:getTableLength(self.finalArrays[playerID]) == 10 then
+                local newHeroDraft = {}
+                for k,v in pairs(self.allowedHeroes) do
+                    newHeroDraft[k] = true
+                end
+                local newDraftArray = {abilityDraft = self.finalArrays[playerID], heroDraft = newHeroDraft}
+                
+                network:setDraftArray(playerID, newDraftArray, true)
+                network:setDraftedAbilities(playerID, {})
+                self.draftArrays[playerID] = newDraftArray
+
+                self.boosterDraftPicking[playerID] = false
+
+                network:sendNotification(PlayerResource:GetPlayer(playerID), {
+                    sort = 'lodSuccess',
+                    text = 'lodBoosterDraftEnd'
+                })
+
+                network:setCustomEndTimer(PlayerResource:GetPlayer(playerID), Time() + 120, 120)
+            elseif self.nextDraftArray[playerID] then
+                updateDynamicDraftArray( playerID )
+            else
+                self.waitForArray[playerID] = true
+            end 
+            network:setDraftedAbilities(playerID, self.finalArrays[playerID])
+        else
+            network:sendNotification(PlayerResource:GetPlayer(playerID), {
+                sort = 'lodDanger', 
+                text = 'lodBoosterDraftWait'
+            })
+        end
+    else
+        -- Is there an actual change?
+        if build[slot] ~= abilityName then
+            -- New ability in this slot
+            build[slot] = abilityName
+
+            -- Should we network it
+            if not dontNetwork then
+                -- Network it
+                network:setSelectedAbilities(playerID, build)
+            end
         end
     end
 end

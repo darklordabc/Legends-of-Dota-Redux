@@ -30,6 +30,11 @@ var basicOptions = {
                         value: 3
                     },
                     {
+                        text: 'lodOptionBoosterDraft',
+                        about: 'lodOptionAboutBoosterDraft',
+                        value: 6
+                    },
+                    {
                         text: 'lodOptionAllRandom',
                         about: 'lodOptionAboutAllRandom',
                         value: 4
@@ -50,7 +55,8 @@ var basicOptions = {
 
                             'lodMutatorMirrorDraft': 3,
                             'lodMutatorAllRandom': 4,
-                            'lodMutatorSingleDraft': 5
+                            'lodMutatorSingleDraft': 5,
+                            'lodMutatorBoosterDraft': 6,
                         }
                     },                  
                     {
@@ -364,6 +370,10 @@ var advancedOptions = {
                     {
                         text: 'lodOptionAllRandom',
                         value: 4
+                    },
+                    {
+                        text: 'lodOptionBoosterDraft',
+                        value: 6
                     }
                 ]
             },

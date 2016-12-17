@@ -68,7 +68,7 @@ function Activate()
     network:init()
     pregame:init()
     ingame:init()
-
+    
     -- Store references (mostly used for debugging)
     GameRules.util = require('util')
     GameRules.network = network
@@ -77,7 +77,9 @@ function Activate()
 
     print('LoD seems to have activated successfully!!\n\n')
 
-    
+    -- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_BADGUYS)
+    -- PlayerResource:SetCustomTeamAssignment(1, DOTA_TEAM_GOODGUYS)
+    -- GameRules:LockCustomGameSetupTeamAssignment(true)
 end
 
 -- Boot directly into LoD interface

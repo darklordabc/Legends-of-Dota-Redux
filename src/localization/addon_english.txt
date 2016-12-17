@@ -79,6 +79,10 @@
     "importAndExport_success_save"                  "Your settings were successfully saved!"
     "importAndExport_no_changes"                    "No changes detected!"
 
+    // Booster Draft tips
+    "boosterDraftTip1"                              "Every player gets set of abilities called \"booster\". Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
@@ -105,6 +109,7 @@
     "lodOptionBalancedSingleDraft"                  "Balanced Single Draft"
     "lodOptionSingleDraft"                          "Single Draft"
     "lodOptionMirrorDraft"                          "Mirror Draft"
+    "lodOptionBoosterDraft"                         "Booster Draft"
     "lodOptionBalancedAllRandom"                    "All Random"
     "lodOptionBalancedCustom"                       "Custom Settings"
 
@@ -129,6 +134,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
 	"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
+    "lodMutatorBoosterDraft"                        "Booster Draft"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -182,6 +188,7 @@
     "lodOptionAboutTraditionalAllPick"              "Pick from every available skill."
     "lodOptionAboutSingleDraft"                     "Pick skills from a random draft of heroes."
     "lodOptionAboutMirrorDraft"                     "Pick skills from a random draft of heroes."
+    "lodOptionAboutBoosterDraft"                    "Each player gets a pack of abilities, picks an ability than passes the pack to the next player."
     "lodOptionAboutAllRandom"                       "Pick from a random set of builds."
     "lodOptionAboutBalancedCustom"                  "Build a custom gamemode."
 
@@ -806,6 +813,10 @@
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
+    "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
+    "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
+    "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
+    "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
