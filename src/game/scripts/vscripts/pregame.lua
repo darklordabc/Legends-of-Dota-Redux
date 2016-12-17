@@ -321,7 +321,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' or mapName == '10_vs_10' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -336,7 +336,7 @@ function Pregame:init()
     self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
-    if mapName == 'custom_bot' or mapName == '10_vs_10' then
+    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self.enabledBots = true
     end
 
@@ -355,6 +355,7 @@ function Pregame:init()
 
         self:setOption('lodOptionBotsRadiant', 3, true)
         self:setOption('lodOptionBotsDire', 3, true)
+
     end
 
     -- 10 VS 10
@@ -371,7 +372,6 @@ function Pregame:init()
     function PlayerResource:getPlayerStats(playerID)
         return this:getPlayerStats(playerID)
     end
-
     -- Spawning stuff
     self.spawnQueue = {}
     self.currentlySpawning = false

@@ -4609,7 +4609,7 @@ function loadPlayerBans() {
     }
 
     // Bots
-    if(mapName != 'custom_bot' && mapName != '10_vs_10') {
+    if(mapName != 'custom_bot' && mapName != '10_vs_10' && mapName != 'custom_700') {
         $.GetContextPanel().SetHasClass('disallow_bots', true);
     }
 

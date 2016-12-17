@@ -25,6 +25,7 @@
 	],
 
 	"linkDirs" : [
+		{ "link": "../dota/content/maps", "dir": "../src/content/maps" },
 		{ "link": "../dota/game/maps", "dir": "../src/game/maps" },
 		{ "link": "../dota/content/materials", "dir": "../src/content/materials" },
 		{ "link": "../dota/content/models", "dir": "../src/content/models" },
