@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Scoreboard can now be viewed, however, it does not show abilities yet. 
 - Tiny will now change models and grow as he levesl up Grow (if he has it off course)
 - Fixed Hotkeys for Rubick, IO and probably a few other heros
+- Added the 7.00 Map as an optional Map, play custom_700 to play it, is has bots enabled. If this works fine with bots, we will phase out the old map and use this exclusively. 
 
 ### Balance
 
@@ -19,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Fixed abilities in being in a random order.
 - Added Sliders and Monkey Business Mutators
 - Temporarily disabled non-custom maps because of a voting bug
+
 
 ### Balance
 - Added Flesh Heap Bonus Vision
