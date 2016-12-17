@@ -24,6 +24,10 @@ function modifier_octarine_vampirism_lod_applier:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
+function modifier_octarine_vampirism_lod_applier:IsPurgable()
+    return false
+end
+
 --------------------------------------------------------------------------------
 
 function modifier_octarine_vampirism_lod_applier:GetAuraSearchType()

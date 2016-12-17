@@ -21730,6 +21730,7 @@
             }
         }
     }
+
     "pudge_flesh_heap_bonus_vision"
     {
         // General
@@ -21771,6 +21772,59 @@
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "AbilityTextureName"    ""
-    } 		  
+    } 
+     "angel_arena_archmage_anomaly"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                        "ability_lua"
+        "ScriptFile"                    "abilities/angel_arena_reborn/angel_arena_archmage_anomaly"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"            "DAMAGE_TYPE_MAGICAL"    
+        "SpellImmunityType"                "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"            "angel_arena_archmage_anomaly"
+        
+        "precache"
+        {
+            "particle"   "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"          
+            "soundfile"   "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+        }
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                "700"
+        "AOERadius"                       "450"
+        "AbilityCastPoint"                "0.3"
+        
+        // Time        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"                "60"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                "300 350 400"
+        
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+            
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "radius"        "450"
+            }
+            
+            "02"
+            {
+                "var_type"            "FIELD_INTEGER"
+                "duration"            "8 10 12"
+            }
+        }
+    }	  
 		  
 }

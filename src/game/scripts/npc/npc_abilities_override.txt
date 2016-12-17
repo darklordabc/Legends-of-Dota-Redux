@@ -2,9 +2,9 @@
 {
 	
 	"beastmaster_greater_boar_poison"
-    	{
-        	"AbilityTextureName"            "beastmaster_greater_boar_poison_lod"
-    	} 
+	{
+    	"AbilityTextureName"            "beastmaster_greater_boar_poison_lod"
+	} 
     	
 	"attribute_bonus"
 	{

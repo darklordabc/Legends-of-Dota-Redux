@@ -39,6 +39,10 @@ end
 function modifier_creep_power:IsHidden()
     return false
 end
+
+function modifier_creep_power:IsPurgable()
+    return false
+end
  
 function modifier_creep_power:OnCreated()
 	self:StartIntervalThink(0.03)

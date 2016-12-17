@@ -26,7 +26,7 @@
             <Panel id="lodNotificationArea">
             </Panel>
 
-           <Panel id="lodPopupQuestion">
+            <Panel id="lodPopupQuestion">
                 <Panel>
                     <Label id="lodPopupQuestionLabel" html="true" />
                 </Panel>
@@ -278,13 +278,13 @@
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
                                 <Panel id="optionBasic"> 
+                                    <!--
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option3.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option4.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
-                                    <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
@@ -320,6 +320,10 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsRadiant3.png"></Image>
+
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSliders.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMonkeyBusiness.png"></Image>
+
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts2.png"></Image>
@@ -365,12 +369,15 @@
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDuel.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png"></Image>
-                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBoosterDraft.png"></Image>
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRefreshCooldownsOnDeath.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutator322.png"></Image>
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOff.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoFastOn.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png"></Image>
+                                    -->
+
                                      
                                     <Panel id="gamemodesPanel"> 
                                         <Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 
@@ -673,7 +680,6 @@
                                 </Panel>
                             </Panel>
 
-
                             <Panel id="pickingPhaseFilters">
                                 <Panel id="boosterDraftPile">
                                     <Label id="boosterDraftPileDragLabel" text="Drag and Drop some ability" />
@@ -703,7 +709,7 @@
                                             <Image src="file://{images}/custom_game/perks.png" />
                                         </Button>
                                         <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                            <Image src="file://{images}/control_icons/lock_medium.png" />
+                                            <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
                                         </Button>                                    
                                     </Panel>
 
@@ -899,7 +905,6 @@
                 </Panel>
             </Panel>
         </Panel>
-
         <Panel id="lodPopupMessage">
             <Panel>
                 <Label id="lodPopupMessageLabel" html="true" />

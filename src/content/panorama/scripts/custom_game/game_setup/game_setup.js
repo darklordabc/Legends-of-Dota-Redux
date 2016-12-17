@@ -778,118 +778,120 @@ function OnGetDraftArray(table_name, key, data) {
         if(myDraftID != draftID) return;
 
         // Init booster draft
-        if (optionValueList['lodOptionCommonGamemode'] == 6 && !boosterDraftInitiated && !data.boosterDraftDone) {
-            $("#boosterDraftPile").visible = true;
-            $("#pickingPhaseBuild").visible = false;
-
-            $("#boosterDraftBoosters").visible = true;
-            for (var i = 0; i < 10; i++) {
-                var newBooster = $.CreatePanel("Panel", $("#boosterDraftBoosters"), "booster"+(i+1)) 
-                newBooster.BLoadLayoutSnippet("BoosterPack");
-            }
-
-            $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].SetHasClass("current", true);
-
-            var boosters = $("#boosterDraftBoosters").Children();
-            var players = 0;
-            for (var i = 0; i < 23; i++) {
-                var info = Game.GetPlayerInfo(i);
-                if (info) {
-                    players++;
-                }
-            }
-
-            var i = 0;
-            for (var k in boosters) {
-                boosters[k].FindChildTraverse("booster").style.hueRotation = Math.floor(((360/players) * i)) + "deg;";
-                i++;
-            }
-
-            var hookSet = function(setName) {
-                var enterNumber = 0;
-                var draftingArea = $('#boosterDraftPile');
-
-                var draftingDragEnter = function(panelID, draggedPanel) {
-                    draftingArea.AddClass('potential_drop_target');
-
-                    draggedPanel.SetAttributeInt("draftThis", 1);
-
-                    // Prevent annoyingness
-                    ++enterNumber;
-                };
-
-                var draftingDragLeave = function(panelID, draggedPanel) {
-                    var myNumber = ++enterNumber;
-
-                    $.Schedule(0.1, function() {
-                        // draggedPanel.SetAttributeInt("draftThis", 0);
-                        if(myNumber == enterNumber) {
-                            draftingArea.RemoveClass('potential_drop_target');
-                            
-                            if(draggedPanel.deleted == null) {
-                                draggedPanel.SetAttributeInt("draftThis", 0);
-                            }
-                        }
-                    });
-                };
-
-                draftingArea.SetPanelEvent("onactivate", function () {
-                    if (currentSelectedAbCon) {
-                        var abName = currentSelectedAbCon.GetAttributeString('abilityname', '');
-                        selectBoosterDraftAbility(abName);
-                    }
-                })
-
-                $.RegisterEventHandler('DragEnter', $(setName), draftingDragEnter);
-                $.RegisterEventHandler('DragLeave', $(setName), draftingDragLeave);
-                // $.RegisterEventHandler('DragEnd', $(setName), draftingDragEnd);
-            };
-
-            hookSet('#boosterDraftPile');
-
-            // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("boosterDraftTip1"));
-            // $.Schedule(3.0, function () {
-            //     $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip");
-            // });
-
-            boosterDraftInitiated = true;
-
-            $("#pickingPhaseMainTabRoot").enabled = false;
-            $("#pickingPhaseHeroTabRoot").enabled = false;
-
-            $.Schedule(0.5, function () {
-                showBuilderTab('pickingPhaseSkillTab');
-                $("#pickingPhaseSkillTabContent").visible = true;
-            })
-        } else if (data.boosterDraftDone) {
-            $("#boosterDraftBoosters").visible = false;
-            $("#boosterDraftPile").visible = false;
-            $("#pickingPhaseBuild").visible = true;
-
-            $("#pickingPhaseHeroTabRoot").enabled = true;
-
-            $.Schedule(0.5, function () {
-                showBuilderTab('pickingPhaseSkillTab');
-                $("#pickingPhaseSkillTabContent").visible = true;
-            })
-        }
-
-        var draftArray = data.draftArray;
-        heroDraft = draftArray.heroDraft;
-        abilityDraft = draftArray.abilityDraft;
-
         if (isBoosterDraftGamemode()) {
             showBuilderTab('pickingPhaseSkillTab');
 
             try {
-                $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
+                if (boosterDraftInitiated) {
+                    $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
+                }
                 if ($("#boosterDraftBoosters").Children().length >= 2) {
                     $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-2].SetHasClass("current", true);
                 } else {
                     $("#boosterDraftBoosters").visible = false;
                 }
             } catch (err) {}
+
+            if (!boosterDraftInitiated && !data.boosterDraftDone) {
+                $("#boosterDraftPile").visible = true;
+                $("#pickingPhaseBuild").visible = false;
+
+                $("#boosterDraftBoosters").visible = true;
+                for (var i = 0; i < 10; i++) {
+                    var newBooster = $.CreatePanel("Panel", $("#boosterDraftBoosters"), "booster"+(i+1)) 
+                    newBooster.BLoadLayoutSnippet("BoosterPack");
+                }
+
+                $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].SetHasClass("current", true);
+
+                var boosters = $("#boosterDraftBoosters").Children();
+                var players = 0;
+                for (var i = 0; i < 23; i++) {
+                    var info = Game.GetPlayerInfo(i);
+                    if (info) {
+                        players++;
+                    }
+                }
+
+                var i = 0;
+                for (var k in boosters) {
+                    boosters[k].FindChildTraverse("booster").style.hueRotation = Math.floor(((360/players) * i)) + "deg;";
+                    i++;
+                }
+
+                var hookSet = function(setName) {
+                    var enterNumber = 0;
+                    var draftingArea = $('#boosterDraftPile');
+
+                    var draftingDragEnter = function(panelID, draggedPanel) {
+                        draftingArea.AddClass('potential_drop_target');
+
+                        draggedPanel.SetAttributeInt("draftThis", 1);
+
+                        // Prevent annoyingness
+                        ++enterNumber;
+                    };
+
+                    var draftingDragLeave = function(panelID, draggedPanel) {
+                        var myNumber = ++enterNumber;
+
+                        $.Schedule(0.1, function() {
+                            // draggedPanel.SetAttributeInt("draftThis", 0);
+                            if(myNumber == enterNumber) {
+                                draftingArea.RemoveClass('potential_drop_target');
+                                
+                                if(draggedPanel.deleted == null) {
+                                    draggedPanel.SetAttributeInt("draftThis", 0);
+                                }
+                            }
+                        });
+                    };
+
+                    draftingArea.SetPanelEvent("onactivate", function () {
+                        if (currentSelectedAbCon) {
+                            var abName = currentSelectedAbCon.GetAttributeString('abilityname', '');
+                            selectBoosterDraftAbility(abName);
+                        }
+                    })
+
+                    $.RegisterEventHandler('DragEnter', $(setName), draftingDragEnter);
+                    $.RegisterEventHandler('DragLeave', $(setName), draftingDragLeave);
+                    // $.RegisterEventHandler('DragEnd', $(setName), draftingDragEnd);
+
+                    boosterDraftInitiated = true;
+                };
+
+                hookSet('#boosterDraftPile');
+
+                // $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("boosterDraftTip1"));
+                // $.Schedule(3.0, function () {
+                //     $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#boosterDraftBoosters'), "BoosterDraftTooltip");
+                // });
+
+                $("#pickingPhaseMainTabRoot").enabled = false;
+                $("#pickingPhaseHeroTabRoot").enabled = false;
+
+                $.Schedule(0.5, function () {
+                    showBuilderTab('pickingPhaseSkillTab');
+                    $("#pickingPhaseSkillTabContent").visible = true;
+                })
+            } else if (data.boosterDraftDone) {
+                $("#boosterDraftBoosters").visible = false;
+                $("#boosterDraftPile").visible = false;
+                $("#pickingPhaseBuild").visible = true;
+
+                $("#pickingPhaseHeroTabRoot").enabled = true;
+
+                $.Schedule(0.5, function () {
+                    showBuilderTab('pickingPhaseSkillTab');
+                    $("#pickingPhaseSkillTabContent").visible = true;
+                })
+            }
         }
+
+        var draftArray = data.draftArray;
+        heroDraft = draftArray.heroDraft;
+        abilityDraft = draftArray.abilityDraft;
 
         var showAbilities = (function () {
             if (Object.keys(abilityStore).length < 1) { 
@@ -4983,4 +4985,13 @@ function loadPlayerBans() {
     showMainPanel();
 
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
+
+    // Workarounds
+    var parent = $.GetContextPanel().GetParent();
+    while(parent.id != "Hud")
+        parent = parent.GetParent();
+
+    parent.FindChildTraverse("PreGame").visible = false;
+    parent.FindChildTraverse("PreGame").style.width = "0px;";
+    // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
 })();
