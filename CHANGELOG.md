@@ -2,7 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.7
+## 3.8 
+### Bug Fixing/New Features
+
+### Balance
+
+## 3.7 - Steam Version
 ### Bug Fixing/New Features
 - Fixed not getting ability points on certain levels
 - Scoreboard can now be viewed, however, it does not show abilities yet. 
@@ -13,7 +18,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 
 
-## 3.6 - Steam Version
+## 3.6 
 ### Bug Fixing/New Features
 - First round of fixes to recover from 7.0. Many issues remain.
 - Removed attribute bonus to have parity with Dota
