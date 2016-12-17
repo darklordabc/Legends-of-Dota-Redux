@@ -1088,7 +1088,7 @@ function Pregame:networkHeroes()
             if heroValues.BotImplemented == 1 then
                 self.botHeroes[heroName] = {}
 
-                for i=1,16 do
+                for i=1,24 do
                     local abName = heroValues['Ability' .. i]
                     if abName ~= 'attribute_bonus' then
                         table.insert(self.botHeroes[heroName], abName)
@@ -1154,7 +1154,7 @@ function Pregame:networkHeroes()
                 end
             else
                 local sn = 1
-                for i=1,16 do
+                for i=1,23 do
                     local abName = heroValues['Ability' .. i]
 
                     if abName ~= 'attribute_bonus' then
@@ -1170,7 +1170,7 @@ function Pregame:networkHeroes()
             allowedHeroes[heroName] = true
 
             -- Store the owners
-            for i=1,16 do
+            for i=1,23 do
                 if theData['Ability'..i] ~= nil then
                     self.abilityHeroOwner[theData['Ability'..i]] = heroName
                 end
@@ -5696,15 +5696,23 @@ function Pregame:fixSpawningIssues()
                     if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
                         for heroName,heroValues in pairs(allHeroes) do
                             if heroName == nameTest then
-                                if heroName == "npc_dota_hero_invoker" then
+                                if heroName == "npc_dota_hero_invoker"  then
                                     for i=17,24 do
                                         local abName = heroValues['Ability' .. i]
                                         spawnedUnit:AddAbility(abName)
                                     end
                                 else
+                                    if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                                    end
                                     for i=10,17 do
                                         local abName = heroValues['Ability' .. i]
                                         spawnedUnit:AddAbility(abName)
+                                    end
+                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
                                     end
                                 end
                             end
@@ -5712,7 +5720,7 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    for i = 0, spawnedUnit:GetAbilityCount() - 1 do
+                    for i = 0, spawnedUnit:GetAbilityCount() do
                         if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
                             local ability = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
