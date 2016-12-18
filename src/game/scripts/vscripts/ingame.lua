@@ -96,10 +96,10 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
-    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -128,7 +128,7 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
-    if util:isPlayerBot(keys.PlayerID) then         
+    if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
                 item = hero:GetItemInSlot(slot)
@@ -1276,6 +1276,11 @@ function Ingame:FilterDamage( filterTable )
      -- Hero perks
     if OptionManager:GetOption('disablePerks') == 0 then
         filterTable = heroPerksDamageFilter(filterTable)
+    end
+
+    -- Memes
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesDamageFilter(filterTable)
     end
     
     return true

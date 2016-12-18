@@ -53,10 +53,15 @@ end
 if IsServer() then
 --------------------------------------------------------------------------------------------------------
 	function modifier_global_mutator:OnCreated()
+		-- Gotta Go Fast
 		if OptionManager:GetOption("gottaGoFast") == 1 then
 			local thinker = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_gottagofast_aura",{},Vector(0,0,0),20,false)
 		elseif OptionManager:GetOption("gottaGoFast") == 2 then
 			local thinker = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_gottagoreallyfast_aura",{},Vector(0,0,0),20,false)
+		end
+		-- Memes Redux
+		if OptionManager:GetOption("memesRedux") == 1 then
+			InitiateMemes()
 		end
 	end
 end
@@ -185,4 +190,8 @@ end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoreallyfast_effect:GetModifierMoveSpeed_Max()
 	return 1000
+end
+----------------------------------------------------------------------------------------------------------
+function InitiateMemes()
+	print("memes initiated")
 end

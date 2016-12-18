@@ -36,22 +36,25 @@ function memesModifierFilter(filterTable)
   local modifierName = filterTable["name_const"]
 
   -- Add the memes
-  if caster then
-    -- Darude - Sandstorm
-    if modifierName == "modifier_sandking_sand_storm" then
-      caster:EmitSound("Memes.Darude_Sandstorm")
-      print("dududu")
-      Timers:CreateTimer(function()
-        if caster and caster:HasModifier("modifier_sandking_sand_storm") then
-          return 0.5
-        else
-          caster:StopSound("Memes.Darude_Sandstorm")
-          return nil
-        end
-      end, DoUniqueString("darude"), 0.5)
-
-    end
+  -- Darude - Sandstorm
+  if modifierName == "modifier_sandking_sand_storm" then
+    caster:EmitSound("Memes.Darude_Sandstorm")
+    print("dududu")
+    Timers:CreateTimer(function()
+      if caster and caster:HasModifier("modifier_sandking_sand_storm") then
+        return 0.5
+      else
+        caster:StopSound("Memes.Darude_Sandstorm")
+        return nil
+      end
+    end, DoUniqueString("darude"), 0.5)
+  -- THERE'S A HOOK!
+  elseif modifierName == "modifier_pudge_meat_hook" then
+    Timers:CreateTimer(function()
+      EmitSoundOn("Memes.Hook",caster)
+    end, DoUniqueString("hook"), 0.3)
   end
+
  
   return filterTable
 end
@@ -65,6 +68,14 @@ function memesDamageFilter(filterTable)
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
+    
+    if ability_index then
+      local ability = EntIndexToHScript( ability_index ) 
+      -- THERE'S A HOOK
+      if ability:GetName() == "rattletrap_hookshot" then
+        EmitSoundOn("Memes.Hook",caster)
+      end
+    end
 
   return filterTable
 end
