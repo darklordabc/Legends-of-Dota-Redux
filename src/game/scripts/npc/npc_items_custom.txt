@@ -26,6 +26,13 @@
         }
     }
 
+    "item_backPackBlocker"
+    {
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_winter_stocking"
+        "ItemPurchaseable"              "0"
+    }
+
     "item_health_modifier"
     {
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
