@@ -6,10 +6,10 @@ function ScepterCheck( keys )
 	EmitSoundOn("Hero_Undying.Decay.Transfer", target)
 	EmitSoundOn("Hero_Undying.Decay.Target", target)
 	local scepterNameModifier = ""
-	local stacks = ability:GetSpecialValueFor("agi_steal")
+	local stacks = keys.stacks
 	if caster:HasScepter() then 
 		scepterNameModifier = "_scepter"
-		stacks = ability:GetSpecialValueFor("agi_steal_scepter")
+		stacks = keys.scepterstacks
 	end
 	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierAlly..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
 	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierCounter, {duration = ability:GetSpecialValueFor("decay_duration")})
@@ -19,6 +19,8 @@ function ScepterCheck( keys )
 			ParticleManager:SetParticleControlEnt(decayLink, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(decayLink, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(decayLink, 3, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", (caster:GetAbsOrigin() + target:GetAbsOrigin())/2, true)
+	caster:CalculateStatBonus()
+	target:CalculateStatBonus()
 end
 
 function DecreaseModelSize( keys )
