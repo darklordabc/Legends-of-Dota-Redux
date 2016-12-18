@@ -194,4 +194,7 @@ end
 ----------------------------------------------------------------------------------------------------------
 function InitiateMemes()
 	print("memes initiated")
+	ListenToGameEvent('entity_killed', function(keys)
+		
+	end, nil)
 end
