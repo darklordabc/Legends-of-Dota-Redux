@@ -22049,11 +22049,23 @@
 		{
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
-			"particle"				"particles/undying_decay_fakeprojectile_glow_agility.vpcf"
+			"particle"				"particles/undying_decay_fakeprojectile_glow_agi.vpcf"
 		}
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Undying.Decay.Cast"
+				"Target"		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/undying_decay"
+				"Function"          "ApplyParticles"
+				"Target"			"POINT"
+				"particleRadius"	"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -22072,15 +22084,8 @@
 						"Target"            "POINT"
 						"modifierAlly"		"modifier_decay_bonus_agility_buff"
 						"modifierEnemy"		"modifier_decay_bonus_agility_steal"
-						"particleLink"		"particles/undying_decay_fakeprojectile_glow_agility.vpcf"
-						"particleRadius"	""particles/units/heroes/hero_undying/undying_decay.vpcf""
-					}
-					"FireEffect"
-					{
-						"Target"                "POINT"
-						"EffectName"            "particles/units/heroes/hero_undying/undying_decay.vpcf"   
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
+						"modifierCounter"	"modifier_decay_bonus_agi_counter"
+						"particleLink"		"particles/undying_decay_fakeprojectile_glow_agi.vpcf"
 					}
 				}
 			}
@@ -22090,6 +22095,7 @@
 			"modifier_decay_bonus_agility_buff"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
 				"Properties"
 		        {
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal"
@@ -22100,6 +22106,8 @@
 					{
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
+						"modifierCounter"	"modifier_decay_bonus_agi_counter"
+						"stacks"			"%agi_gain"
 					}
 				}
 			}
@@ -22114,6 +22122,7 @@
 			"modifier_decay_bonus_agility_buff_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
 				"Properties"
 		        {
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_scepter"
@@ -22124,6 +22133,8 @@
 					{
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
+						"modifierCounter"	"modifier_decay_bonus_agi_counter"
+						"stacks"			"%agi_gain_scepter"
 					}
 				}
 			}
@@ -22134,6 +22145,10 @@
 		        {
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_enemy_scepter"
 		        }
+			}
+			"modifier_decay_bonus_agi_counter"
+			{	
+				"IsBuff"	"1"
 			}
 		}
 	}
@@ -22213,11 +22228,23 @@
 		{
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
-			"particle"				"particles/undying_decay_fakeprojectile_glow_intelligence.vpcf"
+			"particle"				"particles/undying_decay_fakeprojectile_glow_int.vpcf"
 		}
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Undying.Decay.Cast"
+				"Target"		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/undying_decay"
+				"Function"          "ApplyParticles"
+				"Target"			"POINT"
+				"particleRadius"	"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -22236,15 +22263,8 @@
 						"Target"            "POINT"
 						"modifierAlly"		"modifier_decay_bonus_intelligence_buff"
 						"modifierEnemy"		"modifier_decay_bonus_intelligence_steal"
-						"particleLink"		"particles/undying_decay_fakeprojectile_glow_intelligence.vpcf"
-						"particleRadius"	""particles/units/heroes/hero_undying/undying_decay.vpcf""
-					}
-					"FireEffect"
-					{
-						"Target"                "POINT"
-						"EffectName"            "particles/units/heroes/hero_undying/undying_decay.vpcf"   
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
+						"modifierCounter"	"modifier_decay_bonus_int_counter"
+						"particleLink"		"particles/undying_decay_fakeprojectile_glow_int.vpcf"
 					}
 				}
 			}
@@ -22254,9 +22274,10 @@
 			"modifier_decay_bonus_intelligence_buff"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal"
+		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal"
 		        }
 				"OnDestroy"
 				{
@@ -22264,6 +22285,8 @@
 					{
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
+						"modifierCounter"	"modifier_decay_bonus_int_counter"
+						"stacks"			"%int_gain"
 					}
 				}
 			}
@@ -22272,15 +22295,16 @@
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_enemy"
+		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_enemy"
 		        }
 			}
 			"modifier_decay_bonus_intelligence_buff_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_scepter"
+		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_scepter"
 		        }
 				"OnDestroy"
 				{
@@ -22288,6 +22312,8 @@
 					{
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
+						"modifierCounter"	"modifier_decay_bonus_int_counter"
+						"stacks"			"%int_gain_scepter"
 					}
 				}
 			}
@@ -22296,8 +22322,12 @@
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_enemy_scepter"
+		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_enemy_scepter"
 		        }
+			}
+			"modifier_decay_bonus_int_counter"
+			{	
+				"IsBuff"	"1"
 			}
 		}
 	}	  
