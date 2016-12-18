@@ -3814,4 +3814,6 @@
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
+
+    "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 }
