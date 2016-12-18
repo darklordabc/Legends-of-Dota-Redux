@@ -5889,6 +5889,19 @@ function Pregame:fixSpawningIssues()
                                         local abName = heroValues['Ability' .. i]
                                         spawnedUnit:AddAbility(abName)
                                     end
+                                elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
+                                     if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                                    end
+                                    for i=11,18 do
+                                        local abName = heroValues['Ability' .. i]
+                                        local talent = spawnedUnit:AddAbility(abName)
+                                    end
+                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
+                                    end
                                 else
                                     if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
                                         print("0index talent")
