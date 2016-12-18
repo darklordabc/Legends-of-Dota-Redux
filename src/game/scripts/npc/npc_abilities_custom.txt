@@ -22009,18 +22009,18 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"325"
-			}			
+				"agi_steal"						"4"
+			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"decay_duration"				"40.0"
+				"decay_duration"				"45.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"agi_steal"						"4"
-			}	
+				"radius"						"325"
+			}									
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
@@ -22188,18 +22188,18 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"325"
-			}			
+				"int_steal"						"4"
+			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"decay_duration"				"40.0"
+				"decay_duration"				"45.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"int_steal"						"4"
-			}	
+				"radius"						"325"
+			}									
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
