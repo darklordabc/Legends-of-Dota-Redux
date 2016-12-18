@@ -22108,7 +22108,7 @@
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
 						"modifierCounter"	"modifier_decay_bonus_agi_counter"
-						"stacks"			"%agi_gain"
+						"stacks"			"%agi_steal"
 					}
 				}
 			}
@@ -22135,7 +22135,7 @@
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
 						"modifierCounter"	"modifier_decay_bonus_agi_counter"
-						"stacks"			"%agi_gain_scepter"
+						"stacks"			"%agi_steal_scepter"
 					}
 				}
 			}
@@ -22288,7 +22288,7 @@
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
 						"modifierCounter"	"modifier_decay_bonus_int_counter"
-						"stacks"			"%int_gain"
+						"stacks"			"%int_steal"
 					}
 				}
 			}
@@ -22315,7 +22315,7 @@
 						"ScriptFile"        "abilities/undying_decay"
 						"Function"          "DecreaseModelSize"
 						"modifierCounter"	"modifier_decay_bonus_int_counter"
-						"stacks"			"%int_gain_scepter"
+						"stacks"			"%int_steal_scepter"
 					}
 				}
 			}
