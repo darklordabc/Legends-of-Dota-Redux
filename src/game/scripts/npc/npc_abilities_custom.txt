@@ -11767,7 +11767,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abaddon_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_abaddon_perk"
+        "AbilityTextureName"    "custom/custom/npc_dota_hero_abaddon_perk"
     }
     "npc_dota_hero_abyssal_underlord_perk"
     {
@@ -11775,7 +11775,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_abyssal_underlord_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_abyssal_underlord_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_abyssal_underlord_perk"
     }
     "npc_dota_hero_alchemist_perk"
     {
@@ -11783,25 +11783,23 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_alchemist_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_alchemist_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_alchemist_perk"
     }
     "npc_dota_hero_ancient_apparition_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_ancient_apparition_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_ancient_apparition_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_ancient_apparition_perk"
     }
     "npc_dota_hero_antimage_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_antimage_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_antimage_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_antimage_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_antimage_perk"
     }
     "npc_dota_hero_arc_warden_perk"
     {
@@ -11809,16 +11807,15 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_arc_warden_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_arc_warden_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_arc_warden_perk"
     }
     "npc_dota_hero_axe_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_axe_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_axe_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_axe_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_axe_perk"
     }
     "npc_dota_hero_bane_perk"
     {
@@ -11826,52 +11823,47 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bane_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_bane_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_bane_perk"
     }
     "npc_dota_hero_batrider_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_batrider_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_batrider_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_batrider_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_batrider_perk"
     }
     "npc_dota_hero_beastmaster_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_beastmaster_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_beastmaster_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_beastmaster_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_beastmaster_perk"
     }
     "npc_dota_hero_bloodseeker_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bloodseeker_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_bloodseeker_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_bloodseeker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_bloodseeker_perk"
     }
     "npc_dota_hero_bounty_hunter_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bounty_hunter_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_bounty_hunter_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_bounty_hunter_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_bounty_hunter_perk"
     }
     "npc_dota_hero_brewmaster_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_brewmaster_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_brewmaster_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_brewmaster_perk"
     }
     "npc_dota_hero_bristleback_perk"
     {
@@ -11879,7 +11871,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_bristleback_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_bristleback_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_bristleback_perk"
     }
     "npc_dota_hero_broodmother_perk"
     {
@@ -11887,16 +11879,15 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_broodmother_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_broodmother_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_broodmother_perk"
     }
     "npc_dota_hero_centaur_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_centaur_perk.lua"
-		"AbilityTextureName"    "npc_dota_hero_centaur_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_centaur_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_centaur_perk"
     }
     "npc_dota_hero_chaos_knight_perk"
     {
@@ -11904,7 +11895,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chaos_knight_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_chaos_knight_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_chaos_knight_perk"
     }
     "npc_dota_hero_chen_perk"
     {
@@ -11912,7 +11903,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_chen_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_chen_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_chen_perk"
     }
     "npc_dota_hero_clinkz_perk"
     {
@@ -11920,16 +11911,15 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_clinkz_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_clinkz_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_clinkz_perk"
     }
     "npc_dota_hero_crystal_maiden_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_crystal_maiden_perk.lua"
-        "AbilityTextureName"    "npc_dota_hero_crystal_maiden_perk"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_crystal_maiden_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_crystal_maiden_perk"
     }
     "npc_dota_hero_dark_seer_perk"
     {
@@ -11937,7 +11927,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dark_seer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_dark_seer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_dark_seer_perk"
     }
     "npc_dota_hero_dazzle_perk"
     {
@@ -11945,7 +11935,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dazzle_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_dazzle_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_dazzle_perk"
     }
     "sniper_shrapnel_perk"
     {
@@ -12075,7 +12065,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_death_prophet_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_death_prophet_perk"
     }
     "npc_dota_hero_disruptor_perk"
     {
@@ -12083,7 +12073,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_disruptor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_disruptor_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_disruptor_perk"
     }
     "npc_dota_hero_doom_bringer_perk"
     {
@@ -12091,7 +12081,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_doom_bringer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_doom_bringer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_doom_bringer_perk"
         "precache"
 		{
 			"particle" "particles/items3_fx/silver_edge_slow.vpcf"
@@ -12103,7 +12093,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_drow_ranger_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_drow_ranger_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_drow_ranger_perk"
     }
     "npc_dota_hero_dragon_knight_perk"
     {
@@ -12111,7 +12101,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_dragon_knight_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_dragon_knight_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_dragon_knight_perk"
     }
     "npc_dota_hero_earth_spirit_perk"
     {
@@ -12126,7 +12116,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_earthshaker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_earthshaker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_earthshaker_perk"
     }
     "npc_dota_hero_elder_titan_perk"
     {
@@ -12134,7 +12124,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_elder_titan_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_elder_titan_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_elder_titan_perk"
     }
     "npc_dota_hero_ember_spirit_perk"
     {
@@ -12142,7 +12132,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ember_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_ember_spirit_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_ember_spirit_perk"
     }
     "npc_dota_hero_enchantress_perk"
     {
@@ -12150,7 +12140,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enchantress_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_enchantress_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_enchantress_perk"
     }
     "npc_dota_hero_enigma_perk"
     {
@@ -12158,7 +12148,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_enigma_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_enigma_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_enigma_perk"
     }
     "npc_dota_hero_faceless_void_perk"
     {
@@ -12166,7 +12156,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_faceless_void_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_faceless_void_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_faceless_void_perk"
     }
     "npc_dota_hero_furion_perk"
     {
@@ -12174,7 +12164,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_furion_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_furion_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_furion_perk"
     }
     "npc_dota_hero_gyrocopter_perk"
     {
@@ -12182,7 +12172,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_gyrocopter_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_gyrocopter_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_gyrocopter_perk"
     }
     "npc_dota_hero_huskar_perk"
     {
@@ -12190,7 +12180,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_huskar_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_huskar_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_huskar_perk"
     }
     "npc_dota_hero_invoker_perk"
     {
@@ -12199,7 +12189,7 @@
         "AbilityTextureName"	"invoker_invoke"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_invoker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_invoker_perk"
     }
     "npc_dota_hero_jakiro_perk"
     {
@@ -12207,7 +12197,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_jakiro_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_jakiro_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_jakiro_perk"
     }
     "npc_dota_hero_juggernaut_perk"
     {
@@ -12215,7 +12205,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_juggernaut_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_juggernaut_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_juggernaut_perk"
     }
     "npc_dota_hero_keeper_of_the_light_perk"
     {
@@ -12223,7 +12213,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_keeper_of_the_light_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_keeper_of_the_light_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_keeper_of_the_light_perk"
     }
     "npc_dota_hero_kunkka_perk"
     {
@@ -12231,7 +12221,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_kunkka_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_kunkka_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_kunkka_perk"
     }
     "npc_dota_hero_legion_commander_perk"
     {
@@ -12239,7 +12229,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_legion_commander_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_legion_commander_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_legion_commander_perk"
     }
     "npc_dota_hero_leshrac_perk"
     {
@@ -12247,7 +12237,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_leshrac_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_leshrac_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_leshrac_perk"
     }
     "npc_dota_hero_lich_perk"
     {
@@ -12255,7 +12245,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lich_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_lich_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_lich_perk"
     }
     "npc_dota_hero_life_stealer_perk"
     {
@@ -12263,7 +12253,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_life_stealer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_life_stealer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_life_stealer_perk"
     }
     "npc_dota_hero_lina_perk"
     {
@@ -12271,7 +12261,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lina_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_lina_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_lina_perk"
     }
     "npc_dota_hero_lion_perk"
     {
@@ -12279,7 +12269,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lion_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_lion_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_lion_perk"
     }
     "npc_dota_hero_lone_druid_perk"
     {
@@ -12287,7 +12277,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lone_druid_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_lone_druid_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_lone_druid_perk"
     }
     "npc_dota_hero_luna_perk"
     {
@@ -12295,7 +12285,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_luna_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_luna_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_luna_perk"
     }
     "npc_dota_hero_lycan_perk"
     {
@@ -12303,7 +12293,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_lycan_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_lycan_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_lycan_perk"
     }
     "npc_dota_hero_magnataur_perk"
     {
@@ -12311,7 +12301,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_magnataur_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_magnataur_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_magnataur_perk"
     }
     "npc_dota_hero_medusa_perk"
     {
@@ -12319,7 +12309,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_medusa_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_medusa_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_medusa_perk"
     }
     "npc_dota_hero_meepo_perk"
     {
@@ -12327,7 +12317,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_meepo_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_meepo_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_meepo_perk"
     }
     "npc_dota_hero_mirana_perk"
     {
@@ -12335,7 +12325,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_mirana_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_mirana_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_mirana_perk"
     }
     "npc_dota_hero_morphling_perk"
     {
@@ -12343,7 +12333,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_morphling_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_morphling_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_morphling_perk"
     }
     "npc_dota_hero_necrolyte_perk"
     {
@@ -12351,7 +12341,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_necrolyte_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_necrolyte_perk"
     }
     "npc_dota_hero_nevermore_perk"
     {
@@ -12359,7 +12349,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nevermore_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_nevermore_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_nevermore_perk"
     }
     "npc_dota_hero_naga_siren_perk"
     {
@@ -12367,7 +12357,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_naga_siren_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_naga_siren_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_naga_siren_perk"
     }
     "npc_dota_hero_night_stalker_perk"
     {
@@ -12375,7 +12365,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_night_stalker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_night_stalker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_night_stalker_perk"
     }
     "npc_dota_hero_nyx_assassin_perk"
     {
@@ -12383,7 +12373,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_nyx_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_nyx_assassin_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_nyx_assassin_perk"
     }
     "npc_dota_hero_omniknight_perk"
     {
@@ -12391,7 +12381,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_omniknight_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_omniknight_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_omniknight_perk"
     }
     "npc_dota_hero_oracle_perk"
     {
@@ -12399,7 +12389,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_oracle_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_oracle_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_oracle_perk"
     }
     "npc_dota_hero_obsidian_destroyer_perk"
     {
@@ -12407,7 +12397,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_obsidian_destroyer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_obsidian_destroyer_perk"
     }
     "npc_dota_hero_ogre_magi_perk"
     {
@@ -12415,7 +12405,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ogre_magi_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_ogre_magi_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_ogre_magi_perk"
     }
     "npc_dota_hero_phoenix_perk"
     {
@@ -12423,7 +12413,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phoenix_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_phoenix_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_phoenix_perk"
     }
     "phoenix_supernova_perk"
     {
@@ -12501,7 +12491,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_puck_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_puck_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_puck_perk"
     }
     "npc_dota_hero_pugna_perk"
     {
@@ -12509,7 +12499,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pugna_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_pugna_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_pugna_perk"
     }
     "npc_dota_hero_pudge_perk"
     {
@@ -12517,7 +12507,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_pudge_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_pudge_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_pudge_perk"
     }
     "npc_dota_hero_phantom_assassin_perk"
     {
@@ -12525,16 +12515,15 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_phantom_assassin_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_phantom_assassin_perk"
     }
     "npc_dota_hero_phantom_lancer_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua"
-        "AbilityTextureName"	"phantom_lancer_phantom_edge"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_phantom_lancer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_phantom_lancer_perk"
     }
     "npc_dota_hero_queenofpain_perk"
     {
@@ -12542,7 +12531,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_queenofpain_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_queenofpain_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_queenofpain_perk"
     }
     "npc_dota_hero_rattletrap_perk"
     {
@@ -12605,7 +12594,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_razor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_razor_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_razor_perk"
     }
     "npc_dota_hero_riki_perk"
     {
@@ -12613,7 +12602,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_riki_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_riki_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_riki_perk"
     }
     "npc_dota_hero_rubick_perk"
     {
@@ -12621,7 +12610,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_rubick_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_rubick_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_rubick_perk"
     }
     "npc_dota_hero_shredder_perk"
     {
@@ -12629,7 +12618,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shredder_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_shredder_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_shredder_perk"
     }
     "npc_dota_hero_silencer_perk"
     {
@@ -12637,7 +12626,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_silencer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_silencer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_silencer_perk"
     }
     "npc_dota_hero_slardar_perk"
     {
@@ -12645,7 +12634,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slardar_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_slardar_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_slardar_perk"
     }
     "npc_dota_hero_slark_perk"
     {
@@ -12653,7 +12642,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_slark_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_slark_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_slark_perk"
     }
     "npc_dota_hero_sniper_perk"
     {
@@ -12661,7 +12650,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sniper_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_sniper_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_sniper_perk"
     }
     "npc_dota_hero_spectre_perk"
     {
@@ -12669,7 +12658,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spectre_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_spectre_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_spectre_perk"
     }
     "npc_dota_hero_sven_perk"
     {
@@ -12677,7 +12666,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sven_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_sven_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_sven_perk"
     }
     "npc_dota_hero_sand_king_perk"
     {
@@ -12685,7 +12674,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_sand_king_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_sand_king_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_sand_king_perk"
     }
     "npc_dota_hero_shadow_demon_perk"
     {
@@ -12693,7 +12682,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_demon_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_shadow_demon_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_shadow_demon_perk"
     }
     "npc_dota_hero_shadow_shaman_perk"
     {
@@ -12701,7 +12690,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_shadow_shaman_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_shadow_shaman_perk"
     }
     "npc_dota_hero_skeleton_king_perk"
     {
@@ -12709,7 +12698,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skeleton_king_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_skeleton_king_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_skeleton_king_perk"
     }
     "npc_dota_hero_skywrath_mage_perk"
     {
@@ -12717,7 +12706,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_skywrath_mage_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_skywrath_mage_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_skywrath_mage_perk"
     }
     "npc_dota_hero_spirit_breaker_perk"
     {
@@ -12725,7 +12714,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_spirit_breaker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_spirit_breaker_perk"
     }
     "npc_dota_hero_storm_spirit_perk"
     {
@@ -12733,7 +12722,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_storm_spirit_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_storm_spirit_perk"
     }
     "npc_dota_hero_techies_perk"
     {
@@ -12741,7 +12730,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_techies_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_techies_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_techies_perk"
     }
     "npc_dota_hero_templar_assassin_perk"
     {
@@ -12749,7 +12738,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_templar_assassin_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_templar_assassin_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_templar_assassin_perk"
     }
     "npc_dota_hero_terrorblade_perk"
     {
@@ -12757,7 +12746,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_terrorblade_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_terrorblade_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_terrorblade_perk"
     }
     "npc_dota_hero_tidehunter_perk"
     {
@@ -12765,7 +12754,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tidehunter_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_tidehunter_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_tidehunter_perk"
     }
     "npc_dota_hero_tinker_perk"
     {
@@ -12773,7 +12762,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tinker_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_tinker_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_tinker_perk"
     }
     "npc_dota_hero_tiny_perk"
     {
@@ -12781,7 +12770,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tiny_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_tiny_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_tiny_perk"
     }
     "npc_dota_hero_treant_perk"
     {
@@ -12789,7 +12778,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_treant_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_treant_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_treant_perk"
     }
     "npc_dota_hero_troll_warlord_perk"
     {
@@ -12797,7 +12786,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_troll_warlord_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_troll_warlord_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_troll_warlord_perk"
     }
     "npc_dota_hero_tusk_perk"
     {
@@ -12805,7 +12794,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_tusk_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_tusk_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_tusk_perk"
     }
     "npc_dota_hero_undying_perk"
     {
@@ -12813,7 +12802,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_undying_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_undying_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_undying_perk"
     }
     "npc_dota_hero_ursa_perk"
     {
@@ -12821,7 +12810,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_ursa_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_ursa_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_ursa_perk"
     }
     "npc_dota_hero_vengefulspirit_perk"
     {
@@ -12829,7 +12818,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_vengefulspirit_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_vengefulspirit_perk"
     }
     "npc_dota_hero_venomancer_perk"
     {
@@ -12837,7 +12826,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_venomancer_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_venomancer_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_venomancer_perk"
     }
     "npc_dota_hero_viper_perk"
     {
@@ -12845,7 +12834,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_viper_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_viper_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_viper_perk"
     }
     "npc_dota_hero_visage_perk"
     {
@@ -12853,7 +12842,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_visage_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_visage_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_visage_perk"
     }
     "npc_dota_hero_warlock_perk"
     {
@@ -12861,7 +12850,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_warlock_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_warlock_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_warlock_perk"
     }
     "npc_dota_hero_weaver_perk"
     {
@@ -12869,7 +12858,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_weaver_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_weaver_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_weaver_perk"
     }
     "weaver_time_lapse_perk"
     {
@@ -12910,13 +12899,13 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_windrunner_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_windrunner_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_windrunner_perk"
     }
     "npc_dota_hero_winter_wyvern_perk"
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_winter_wyvern_perk.lua"
-        "AbilityTextureName"    "winter_wyvern_arctic_burn"
+        "AbilityTextureName"    "custom/winter_wyvern_arctic_burn"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     }
@@ -12926,7 +12915,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_wisp_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_wisp_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_wisp_perk"
     }
     "npc_dota_hero_witch_doctor_perk"
     {
@@ -12934,7 +12923,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_witch_doctor_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_witch_doctor_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_witch_doctor_perk"
     }
     "npc_dota_hero_zuus_perk"
     {
@@ -12942,7 +12931,7 @@
         "ScriptFile"            "abilities/hero_perks/npc_dota_hero_zuus_perk.lua"
         "MaxLevel"              "1"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-        "AbilityTextureName"    "npc_dota_hero_zuus_perk"
+        "AbilityTextureName"    "custom/npc_dota_hero_zuus_perk"
     }
 	
 	/////////////////
