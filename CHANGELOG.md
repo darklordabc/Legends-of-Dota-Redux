@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 3.8 
 ### Bug Fixing/New Features
 - Added Booster Draft Gamemode
+- Gyro has been removed from game because he causes crashes. 
 
 ### Balance
 
