@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Added Booster Draft Gamemode
 - Gyro has been removed from game because he causes crashes. 
+- Custom Icons now appearing has been fixed
 
 ### Balance
 
