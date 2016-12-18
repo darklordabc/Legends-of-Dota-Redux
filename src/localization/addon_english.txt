@@ -3814,4 +3814,48 @@
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
+    
+    "DOTA_Tooltip_ability_undying_decay_agi" "Decay (Agility)"
+    "DOTA_Tooltip_ability_undying_decay_agi_Description" "Undying steals agility from all enemy heroes in an area, dealing base damage as he claims the enemy's agility for himself.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_undying_decay_agi_aghanim_description" "Improves agility steal from 4 to 10."
+	"DOTA_Tooltip_ability_undying_decay_agi_Lore"            "The agility of the living is simply borrowed from the agility of the dead."
+    "DOTA_Tooltip_ability_undying_decay_agi_decay_damage"        "DAMAGE:"
+    "DOTA_Tooltip_ability_undying_decay_agi_radius"    "RADIUS:"
+	"DOTA_Tooltip_ability_undying_decay_agi_decay_duration"    "STEAL DURATION:"
+	"DOTA_Tooltip_ability_undying_decay_agi_agi_steal"    "AGILITY STEAL:"
+	"DOTA_Tooltip_ability_undying_decay_agi_agi_steal_scepter"    "AGILITY STEAL SCEPTER:"
+
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff_Description"             "Gained 4 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_steal"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_steal_Description"             "Lost 4 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_buff_scepter"                         "Agility Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff_scepter_Description"             "Gained 10 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter"                         "Agility Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter_Description"             "Lost 10 agility."
+	
+	"DOTA_Tooltip_ability_undying_decay_int" "Decay (Intelligence)"
+    "DOTA_Tooltip_ability_undying_decay_int_Description" "Undying steals intelligence from all enemy heroes in an area, dealing base damage as he claims the enemy's intelligence for himself.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_undying_decay_int_aghanim_description" "Improves intelligence steal from 4 to 10."
+	"DOTA_Tooltip_ability_undying_decay_int_Lore"            "The intelligence of the living is simply borrowed from the intelligence of the dead."
+    "DOTA_Tooltip_ability_undying_decay_int_decay_damage"        "DAMAGE:"
+    "DOTA_Tooltip_ability_undying_decay_int_radius"    "RADIUS:"
+	"DOTA_Tooltip_ability_undying_decay_int_decay_duration"    "STEAL DURATION:"
+	"DOTA_Tooltip_ability_undying_decay_int_int_steal"    "INTELLIGENCE STEAL:"
+	"DOTA_Tooltip_ability_undying_decay_int_int_steal_scepter"    "INTELLIGENCE STEAL SCEPTER:"
+
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff"                         "Intelligence Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_Description"             "Gained 4 intelligence."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_intelligence_steal"                         "Intelligence Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_Description"             "Lost 4 intelligence."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter_Description"             "Gained 10 intelligence."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter_Description"             "Lost 10 intelligence."
 }
