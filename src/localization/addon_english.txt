@@ -3859,4 +3859,6 @@
 	
 	"DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter"                         "Intelligence Decay (Scepter)"
     "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter_Description"             "Lost 10 intelligence."
+
+    "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 }
