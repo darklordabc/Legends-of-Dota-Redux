@@ -7,6 +7,7 @@ require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
+require('abilities/global_mutators/memes_redux')
 
 -- Create the class for it
 local Ingame = class({})
@@ -209,7 +210,13 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
-    filterTable = heroPerksOrderFilter(filterTable)
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksOrderFilter(filterTable)
+    end
+
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesOrderFilter(filterTable)
+    end
     return true
 end    
 
@@ -1220,7 +1227,7 @@ function Ingame:FilterProjectiles(filterTable)
     local abilityIndex = filterTable["entindex_ability_const"]
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
-    if ability then
+    if ability and OptionManager:GetOption('disablePerks') == 0 then
         filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true    
@@ -1267,7 +1274,9 @@ function Ingame:FilterDamage( filterTable )
     end
 
      -- Hero perks
-    filterTable = heroPerksDamageFilter(filterTable)
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksDamageFilter(filterTable)
+    end
     
     return true
 end
@@ -1283,9 +1292,17 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
+
      -- Hero perks
-    filterTable = heroPerksModifierFilter(filterTable)
-    
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksModifierFilter(filterTable)
+    end
+
+    -- Memes
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesModifierFilter(filterTable)
+    end
+
     return true
 end
 

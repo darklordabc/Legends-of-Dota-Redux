@@ -338,6 +338,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutMonkeyBusiness',
                         about: 'lodMutatorMonkeyBusiness',
                     },
+                    {
+                        name: 'lodOptionMemesRedux',
+                        extraInfo: 'lodOptionAboutMemesRedux',
+                        about: 'lodMutatorMemesRedux'
+                    },
                 ]
             }
         ]
@@ -1248,6 +1253,22 @@ var advancedOptions = {
                 name: 'lodOptionMonkeyBusiness',
                 des: 'lodOptionDesMonkeyBusiness',
                 about: 'lodOptionAboutMonkeyBusiness',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionMemesRedux',
+                des: 'lodOptionDesMemesRedux',
+                about: 'lodOptionAboutMemesRedux',
                 sort: 'toggle',
                 values: [
                     {

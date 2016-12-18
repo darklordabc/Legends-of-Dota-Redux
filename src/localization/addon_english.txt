@@ -355,6 +355,11 @@
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
 
+    "lodOptionMemesRedux"                                  "Memes Redux"
+    "lodOptionDesMemesRedux"                               "Enable Memes"
+    "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
+    "lodMutatorMemesRedux"                                 "Memes Redux"
+
     "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
     "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
 

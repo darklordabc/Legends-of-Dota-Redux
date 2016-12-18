@@ -164,6 +164,7 @@ OptionManager:SetOption('fullPriceSellback', false)
 OptionManager:SetOption('322', 0)
 OptionManager:SetOption('refreshCooldownsOnDeath', 0)
 OptionManager:SetOption('gottaGoFast', 0)
+OptionManager:SetOption('memesRedux', 0)
 
 --[[
     GAMEMODE STUFF

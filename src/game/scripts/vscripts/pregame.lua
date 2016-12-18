@@ -2231,6 +2231,10 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2 or value == 3
         end, 
 
+        lodOptionMemesRedux = function(value)
+            return value == 0 or value == 1
+        end, 
+
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
             return value == 0 or value == 1
@@ -2396,6 +2400,9 @@ function Pregame:initOptionSelector()
 
                 -- Normal speed
                 self:setOption("lodOptionGottaGoFast", 0)
+
+                -- NO MEMES UncleNox
+                self:setOption("lodOptionMemesRedux", 0)
 
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
@@ -3070,6 +3077,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('monkeyBusiness', this.optionStore['lodOptionMonkeyBusiness'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
+        OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -5926,7 +5934,7 @@ function Pregame:fixSpawningIssues()
                             --print("removed") 
                             local ability = spawnedUnit:GetAbilityByIndex(i)
                             if ability then
-                                print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+                                --print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
                             end
                         end
                     end
