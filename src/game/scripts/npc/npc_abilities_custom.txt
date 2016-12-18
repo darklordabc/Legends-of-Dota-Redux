@@ -21983,6 +21983,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"HasScepterUpgrade"				"1"
 		
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
@@ -22087,6 +22088,8 @@
 						"modifierEnemy"		"modifier_decay_bonus_agility_steal"
 						"modifierCounter"	"modifier_decay_bonus_agi_counter"
 						"particleLink"		"particles/undying_decay_fakeprojectile_glow_agi.vpcf"
+						"stacks"			"%agi_steal"
+						"scepterstacks"		"%agi_steal_scepter"
 					}
 				}
 			}
@@ -22163,6 +22166,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"HasScepterUpgrade"				"1"
 		
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
@@ -22267,6 +22271,8 @@
 						"modifierEnemy"		"modifier_decay_bonus_intelligence_steal"
 						"modifierCounter"	"modifier_decay_bonus_int_counter"
 						"particleLink"		"particles/undying_decay_fakeprojectile_glow_int.vpcf"
+						"stacks"			"%int_steal"
+						"scepterstacks"		"%int_steal_scepter"
 					}
 				}
 			}
