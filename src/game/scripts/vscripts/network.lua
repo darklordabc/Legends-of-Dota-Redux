@@ -19,6 +19,14 @@ function Network:setEndOfPhase(endTime)
     CustomNetTables:SetTableValue('phase_pregame', 'endOfTimer', {v = endTime})
 end
 
+-- Sets when this phase will end
+function Network:setCustomEndTimer(ply, endTime, freezeTimer)
+    if not IsValidEntity(ply) then return end
+
+    -- Push it
+    CustomGameEventManager:Send_ServerToPlayer(ply, 'lodCustomTimer', {endTime = endTime, freezeTimer = freezeTimer})
+end
+
 -- Freezes the timer on a given number
 function Network:freezeTimer(freezeTimer)
     CustomNetTables:SetTableValue('phase_pregame', 'freezeTimer', {v = freezeTimer})
@@ -114,9 +122,19 @@ function Network:setSelectedAllRandomBuild(playerID, selectedBuilds)
 end
 
 -- Sends a draft array
-function Network:setDraftArray(draftID, draftArray)
+function Network:setDraftArray(draftID, draftArray, boosterDraftDone)
     -- Push to everyone
     CustomNetTables:SetTableValue('draft_array', tostring(draftID), {
+        draftID = draftID,
+        draftArray = draftArray,
+        boosterDraftDone = boosterDraftDone
+    })
+end
+
+-- Sends a player drafted array
+function Network:setDraftedAbilities(draftID, draftArray)
+    -- Push to everyone
+    CustomNetTables:SetTableValue('draft_array', tostring(draftID).."booster", {
         draftID = draftID,
         draftArray = draftArray
     })

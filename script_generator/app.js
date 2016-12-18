@@ -182,16 +182,9 @@ function generatePrecacheData(next) {
                         }
                     }
                 } else {
-                    for(var i=1;i<=17;++i) {
+                    for(var i=1;i<=24;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';
-                        }
-                    }
-                    if(name == 'npc_dota_hero_invoker') {
-                        for(var i=18;i<=24;++i) {
-                            if(heroes[name]['Ability' + i]) {
-                                newKV[name+'_lod']['Ability' + i] = '';
-                            }
                         }
                     }
                 }

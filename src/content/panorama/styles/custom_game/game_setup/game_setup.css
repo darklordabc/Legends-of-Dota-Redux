@@ -20,6 +20,15 @@
     height: 100%;
 }
 
+#lodOptionsRoot {
+    transition: brightness 0.4s ease-in-out 0.0s, blur 0.4s ease-in-out 0.0s;
+}
+
+#lodOptionsRoot.darkened {
+    brightness: 0.2;
+    blur: gaussian( 2.5 );
+}
+
 #chat {
 	margin: 20px;
 	align: left bottom;
@@ -60,7 +69,7 @@
 
 #lodPopupMessage {
     width: 600px;
-    height: 250px;
+    min-height: 250px;
     
     padding: 16px;
 
@@ -74,6 +83,10 @@
 
     visibility: collapse;
     z-index: 10000;
+}
+
+#lodPopupMessageImage {
+    horizontal-align: center;
 }
 
 .lodPopupMessageAcceptContainer {
@@ -112,6 +125,8 @@
     transition-property: transform,opacity;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
+
+    z-index: 4;
 }
 
 .lodNotificationLoading {
@@ -1916,8 +1931,15 @@ Button:enabled:hover {
 }
 
 .lodDraftAbility {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
+
+    transition: opacity 0.3s ease-in-out 0.0s, transform 0.3s ease-in-out 0.0s;
+}
+
+.lodDraftAbility.hide {
+    opacity: 0.0;
+    transform: rotateY( -45deg );
 }
 
 .lodDraftAbility.ultimateAbility {
@@ -2072,6 +2094,84 @@ Button:enabled:hover {
     margin-right: 4px;
     width: 32px;
     height: 32px;
+}
+
+#boosterDraftPile {
+    width: 305px;
+    height: 100%;
+
+    margin-right: 20px;
+
+    border-radius: 10px;
+    border: 2px solid #5e686966;
+
+    visibility: collapse;
+
+    flow-children: right-wrap;
+}
+
+#boosterDraftPile DOTAAbilityImage {
+    width: 54px;
+    height: 54px;
+
+    border-radius: 3px;
+    border: 1px solid #5e686966;
+
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#boosterDraftPileDragLabel {
+    align: center center;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    font-size: 16px;
+    font-weight: thin;
+    text-transform: uppercase;
+    color: #5e6869ff;
+}
+
+#boosterDraftBoosters {
+    height: 100%;
+    width: 500px;
+
+    flow-children: right-wrap;
+
+    visibility: collapse;
+
+    tooltip-position: top;
+}
+
+.lodBooster {
+    height: 70px;
+    width: 65px;
+
+    padding-bottom: -5px;
+}
+
+.lodBoosterRoot {
+    height: 90px;
+    width: 65px;
+    flow-children: down;
+}
+
+#lodBoosterPackLabel { 
+    align: center bottom;
+    margin-right: 17px;
+    margin-left: 19px;
+    margin-bottom: 5px;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    visibility: collapse;
+}
+
+.lodBoosterRoot.current #lodBoosterPackLabel {
+    visibility: visible;
+}
+
+.lodBoosterRoot.current {
+    animation-name: lodHighlightLoopDrop;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }
 
 .lodSelected {

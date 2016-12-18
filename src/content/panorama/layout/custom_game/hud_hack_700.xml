@@ -1,0 +1,6 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/hud_hack_700.js" />
+	</scripts>
+	<Panel />
+</root>

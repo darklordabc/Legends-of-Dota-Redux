@@ -105,9 +105,25 @@ function Ingame:init()
 
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
+    -- Listen to correct the changed abilitypoints
+    ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+    
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
+
+function Ingame:OnHeroLeveledUp(keys)
+    -- Give abilitypoints to spend on the levels the game doesn't give.
+    local pID = keys.player -1    
+    local player = PlayerResource:GetPlayer(pID)
+    local hero = player:GetAssignedHero()
+    
+    local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
+    if markedLevels[keys.level] then
+        hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
+    end
+end
+
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
