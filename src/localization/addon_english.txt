@@ -1110,7 +1110,7 @@
     ////////////////
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
-    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
@@ -1152,7 +1152,7 @@
     "warning_meepo_poof" "<font color=\'#FF4949\'>Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
     "warning_aether_range_lod_OP"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
-	"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
+	//"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
 	"warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_2"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_3"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
