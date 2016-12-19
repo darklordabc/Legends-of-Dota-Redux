@@ -52,6 +52,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     end, DoUniqueString("DropTheBass"),0.2)
   elseif ability:GetName() == "sniper_assassinate" then
     EmitGlobalSound("Memes.Snipe")
+  elseif ability:GetName() == "puck_phase_shift" and RollPercentage(25) then
+    caster:EmitSound("Memes.WAOW")
   end
 end
 ----------------------------------------------------------------------------------------------------------
