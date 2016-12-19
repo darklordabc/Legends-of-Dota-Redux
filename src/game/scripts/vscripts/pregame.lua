@@ -2098,9 +2098,9 @@ function Pregame:initOptionSelector()
         end,
 
         -- Bots Bonus Points
-        lodOptionBotsBonusPoints = function(value)
-            return value == 0 or value == 1
-        end,
+       -- lodOptionBotsBonusPoints = function(value)
+        --    return value == 0 or value == 1
+       -- end,
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
@@ -2290,7 +2290,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
 
                 -- Bots get bonus points by default
-                self:setOption('lodOptionBotsBonusPoints', 1, true)
+                --self:setOption('lodOptionBotsBonusPoints', 1, true)
 
                 -- Default, we don't ban all invisiblity
                 self:setOption('lodOptionBanningBanInvis', 0, true)
@@ -2403,7 +2403,7 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-                    self:setOption('lodOptionBotsBonusPoints', 1, true)
+                    --self:setOption('lodOptionBotsBonusPoints', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
@@ -3063,7 +3063,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
-        OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
+        --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])

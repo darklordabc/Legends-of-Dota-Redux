@@ -239,10 +239,10 @@ var basicOptions = {
                             'lodMutatorBotsDire3': 10
                         }
                     },
-					{
-                        name: 'lodOptionBotsBonusPoints',
-                        about: 'lodMutatorBotsBuff1'
-                    },
+					//{
+                    //    name: 'lodOptionBotsBonusPoints',
+                    //    about: 'lodMutatorBotsBuff1'
+                    //},
                     {
                         name: 'lodOptionBotsUniqueSkills',
                         extraInfo: 'lodOptionAboutBotsUniqueSkills',
@@ -1021,22 +1021,22 @@ var advancedOptions = {
                     }
                 ]
             },
-			{
-                 name: 'lodOptionBotsBonusPoints',
-                 des: 'lodOptionDesBotsBonusPoints',
-                 about: 'lodOptionAboutBotsBonusPoints',
-                 sort: 'toggle',
-                 values: [
-                     {
-                         text: 'lodOptionNo',
-                         value: 0
-                     },
-                     {
-                         text: 'lodOptionYes',
-                         value: 1
-                     }
-                 ]
-           },
+			//{
+           //      name: 'lodOptionBotsBonusPoints',
+           //      des: 'lodOptionDesBotsBonusPoints',
+           //      about: 'lodOptionAboutBotsBonusPoints',
+            //     sort: 'toggle',
+            //     values: [
+            //         {
+            //             text: 'lodOptionNo',
+            //             value: 0
+           //          },
+           //          {
+           //              text: 'lodOptionYes',
+           //              value: 1
+           //          }
+           //      ]
+           //},
 			
             /*{
                 name: 'lodOptionBotsUnfairBalance',

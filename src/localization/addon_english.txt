@@ -132,7 +132,7 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	"lodMutatorBotsBuff1"                           "Buff Bots"
+	--"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -876,8 +876,8 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    "lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
+    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
   
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
