@@ -149,6 +149,10 @@
     "lodMutatorUniqueSkillsTeam"                    "Team Skills"
     "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
 
+    "lodMutatorUniqueBotSkillsOff"                     "Bot Unique Skills"
+    "lodMutatorUniqueBotSkillsTeam"                    "Bot Team Skills"
+    "lodMutatorUniqueBotSkillsGlobal"                  "Bot Global Skills"
+
     "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
     "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
     "lodMutatorGoldTickRate3"                       "3 Gold Per Tick"
@@ -450,12 +454,13 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#FF4C4C'>This MOD has many many many issues because of the latest update, this is merely a hotfix to try to get it minimum playable, please have patience and we will get it full working eventually</font> \n\n\n<"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-    "lodHostingNoobMessage"                         "<font color='#FF4C4C'>This MOD has many many many issues because of the latest update, this is merely a hotfix to try to get it minimum playable, please have patience and we will get it full working eventually</font> \n\n\n<"
+    "lodHostingNoobMessage"                         "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
     "lodOptionVoting"                               "Cast your vote to select the options."
+
 
     "lodPickAHero"  "PICK A HERO!"
 

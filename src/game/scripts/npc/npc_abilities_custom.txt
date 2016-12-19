@@ -631,20 +631,30 @@
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_cleave_radius_scepter"	"400"
-			}
+				"var_type"				"FIELD_INTEGER"
+				"cleave_starting_width"			"150"
+			}			
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cleave_ending_width"			"400"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cleave_distance"			"600"
+			}
+			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_cleave_damage_scepter"	"50"
 			}
-			"08"
+			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_building_damage_scepter"	"75"
 			}
-			"09"
+			"11"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"grow_bonus_damage_pct_scepter"		"50 65 80"
@@ -21592,7 +21602,7 @@
     "ursa_enrage_old"
     {
       "BaseClass"                 "ability_datadriven"
-      "AbilityTextureName"      "ursa_enrage_old"
+      "AbilityTextureName"      "custom/ursa_enrage_old"
       "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
       "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
       "AbilityCooldown"        "25"
@@ -21977,7 +21987,7 @@
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"undying_decay_agi"
+		"AbilityTextureName"			"custom/undying_decay_agi"
 		"AOERadius"						"325"
 		
 		// Time		
@@ -22162,7 +22172,7 @@
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"undying_decay_int"
+		"AbilityTextureName"			"custom/undying_decay_int"
 		"AOERadius"						"325"
 		
 		// Time		
