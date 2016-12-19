@@ -48,11 +48,6 @@ function memesModifierFilter(filterTable)
         return nil
       end
     end, DoUniqueString("darude"), 0.5)
-  -- THERE'S A HOOK!
-  elseif modifierName == "modifier_pudge_meat_hook" then
-    Timers:CreateTimer(function()
-      EmitSoundOn("Memes.Hook",caster)
-    end, DoUniqueString("hook"), 0.3)
   end
 
  

@@ -194,8 +194,27 @@ end
 ----------------------------------------------------------------------------------------------------------
 function InitiateMemes()
 	print("memes initiated")
+
 	ListenToGameEvent('dota_player_killed', function()
 		print("rip")
 		EmitGlobalSound("Memes.Kill")
 	end, nil)
+
+	ListenToGameEvent('entity_hurt',function(event)
+		local inflictor_index = event.entindex_inflictor
+		local attacker_index = event.entindex_attacker
+		local target_index = event.entindex_killed
+
+		if inflictor_index ~= nil and target_index ~= nil and attacker_index ~= nil then
+			local ability = EntIndexToHScript( inflictor_index )
+			local attacker = EntIndexToHScript( attacker_index )
+			local target = EntIndexToHScript( target_index )
+			--THERES A HOOK!
+			if ability:GetName() == "pudge_meat_hook" and target:IsHero() then
+				EmitGlobalSound("Memes.Hook")
+			end
+		end
+
+	end,nil)
+
 end
