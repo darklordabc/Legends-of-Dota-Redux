@@ -195,9 +195,23 @@ end
 function InitiateMemes()
 	print("memes initiated")
 
-	ListenToGameEvent('dota_player_killed', function()
-		print("rip")
-		EmitGlobalSound("Memes.Kill")
+	ListenToGameEvent('entity_killed', function(event)
+		local inflictor_index = event.entindex_inflictor
+		local attacker_index = event.entindex_attacker
+		local target_index = event.entindex_killed
+
+		if target_index ~= nil and attacker_index ~= nil then
+			local attacker = EntIndexToHScript( attacker_index )
+			local target = EntIndexToHScript( target_index )
+
+			if inflictor_index ~= nil then
+				-- More stuff
+			end
+			
+			if target:IsRealHero() then
+				EmitGlobalSound("Memes.Kill")
+			end
+		end
 	end, nil)
 
 	ListenToGameEvent('entity_hurt',function(event)
