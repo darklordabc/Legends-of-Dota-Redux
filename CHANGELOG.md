@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Illusory Orb now gives Ethernal Jaunt. 
 - Remote mines now gives focused detonate. Psionic Trap gives Trap.
 - Shadow Poison gives Shadow Poison release. Haunt Gives Reality.
+- Earth Spirit abilities that use stone remnants now give it as a sub ability.
 
 
 ## 3.8 - Steam Version
