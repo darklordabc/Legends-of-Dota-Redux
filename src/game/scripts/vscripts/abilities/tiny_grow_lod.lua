@@ -122,6 +122,7 @@ function modifier_tiny_grow_lod:DeclareFunctions()
         MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
         MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
         MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
         MODIFIER_EVENT_ON_ATTACK_LANDED
     }
 
@@ -139,6 +140,12 @@ function modifier_tiny_grow_lod:GetModifierAttackSpeedBonus_Constant (params)
     local hAbility = self:GetAbility ()
     return hAbility:GetSpecialValueFor ("bonus_attack_speed")
 end
+function modifier_tiny_grow_lod:GetModifierAttackRangeBonus (params)
+    if self:GetParent():HasScepter() then
+	local hAbility = self:GetAbility ()
+	return hAbility:GetSpecialValueFor ("bonus_range_scepter")
+   else return 0 end
+end
 
 function modifier_tiny_grow_lod:OnAttackLanded (params)
     if IsServer () then
@@ -151,7 +158,7 @@ function modifier_tiny_grow_lod:OnAttackLanded (params)
                 EmitSoundOn( "DOTA_Item.BattleFury", target )
                 if target ~= nil and target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
                     local cleaveDamage = ( self:GetAbility():GetSpecialValueFor( "bonus_cleave_damage_scepter" ) * params.damage ) / 100.0
-                    DoCleaveAttack( self:GetParent(), target, self:GetAbility(), cleaveDamage, self:GetAbility():GetSpecialValueFor( "bonus_cleave_radius_scepter" ), "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
+                    DoCleaveAttack( self:GetParent(), target, self:GetAbility(), cleaveDamage, self:GetAbility():GetSpecialValueFor( "cleave_starting_width" ), self:GetAbility():GetSpecialValueFor( "cleave_ending_width" ), self:GetAbility():GetSpecialValueFor( "cleave_distance" ), "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
                 end
     
             end
