@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Added Decay Agility and Decay Intelligence (Funded by Budster16)
+- Cleave now works with grow + aghs
 
 ## 3.7 - Steam Version
 ### Bug Fixing/New Features
