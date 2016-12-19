@@ -11,6 +11,9 @@ LinkLuaModifier( "modifier_gottagofast_aura", "abilities/global_mutators/global_
 LinkLuaModifier( "modifier_gottagofast_effect", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_gottagoreallyfast_aura", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_gottagoreallyfast_effect", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
+-- Memes modifier
+LinkLuaModifier( "modifier_memes_redux", "abilities/global_mutators/memes_redux.lua" ,LUA_MODIFIER_MOTION_NONE )
+
 
 --------------------------------------------------------------------------------------------------------
 if global_mutator ~= "" then global_mutator = class({}) end
@@ -61,7 +64,7 @@ if IsServer() then
 		end
 		-- Memes Redux
 		if OptionManager:GetOption("memesRedux") == 1 then
-			InitiateMemes()
+			local memer = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_memes_redux",{},Vector(0,0,0),20,false)
 		end
 	end
 end
@@ -192,43 +195,3 @@ function modifier_gottagoreallyfast_effect:GetModifierMoveSpeed_Max()
 	return 1000
 end
 ----------------------------------------------------------------------------------------------------------
-function InitiateMemes()
-	print("memes initiated")
-
-	ListenToGameEvent('entity_killed', function(event)
-		local inflictor_index = event.entindex_inflictor
-		local attacker_index = event.entindex_attacker
-		local target_index = event.entindex_killed
-
-		if target_index ~= nil and attacker_index ~= nil then
-			local attacker = EntIndexToHScript( attacker_index )
-			local target = EntIndexToHScript( target_index )
-
-			if inflictor_index ~= nil then
-				-- More stuff
-			end
-			
-			if target:IsRealHero() then
-				EmitGlobalSound("Memes.Kill")
-			end
-		end
-	end, nil)
-
-	ListenToGameEvent('entity_hurt',function(event)
-		local inflictor_index = event.entindex_inflictor
-		local attacker_index = event.entindex_attacker
-		local target_index = event.entindex_killed
-
-		if inflictor_index ~= nil and target_index ~= nil and attacker_index ~= nil then
-			local ability = EntIndexToHScript( inflictor_index )
-			local attacker = EntIndexToHScript( attacker_index )
-			local target = EntIndexToHScript( target_index )
-			--THERES A HOOK!
-			if ability:GetName() == "pudge_meat_hook" and target:IsHero() then
-				EmitGlobalSound("Memes.Hook")
-			end
-		end
-
-	end,nil)
-
-end
