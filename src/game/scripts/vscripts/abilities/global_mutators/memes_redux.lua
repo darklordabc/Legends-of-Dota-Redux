@@ -24,13 +24,23 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
 
   if ability:GetName() == "satyr_hellcaller_shockwave" then
     caster:EmitSound("Memes.Hadouken")
+  elseif ability:GetName() == "crystal_maiden_freezing_field" then
+    caster:EmitSound("Memes.LetItGo")
+    Timers:CreateTimer(function()
+      if not caster:IsChanneling() then
+        caster:StopSound("Memes.LetItGo")
+        return nil
+      else
+        return 0.2
+      end
+    end, DoUniqueString("LetItGo"),0.2)
   end
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_memes_redux:OnDeath(event)
   local target = event.unit
 
-  if target:IsOwnedByAnyPlayer() then
+  if target:IsRealHero() then
     if RollPercentage(17) then
       target:EmitSound("Memes.Death")
     end
