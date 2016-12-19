@@ -6043,6 +6043,16 @@ function Pregame:fixSpawningIssues()
                     end
                 end, DoUniqueString('fillBotsBackPack'), 1)
             end
+            
+            Timers:CreateTimer(function()
+                if IsValidEntity(spawnedUnit) then
+                    for _,modifier in pairs(spawnedUnit:FindAllModifiers()) do
+                        if string.find(modifier:GetName(), "modifier_special_bonus") then
+                            modifier:Destroy()
+                        end
+                   end
+                end
+             end, DoUniqueString('removeTalentModifiers'), 2)
 
 
                 -- Only give bonuses once
