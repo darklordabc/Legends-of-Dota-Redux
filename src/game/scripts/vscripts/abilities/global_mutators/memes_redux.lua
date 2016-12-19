@@ -31,7 +31,9 @@ function modifier_memes_redux:OnDeath(event)
   local target = event.unit
 
   if target:IsOwnedByAnyPlayer() then
-    EmitSoundOnClient("Memes.Death",target:GetPlayerOwner())
+    if RollPercentage(17) then
+      target:EmitSound("Memes.Death")
+    end
   end
 end
 ----------------------------------------------------------------------------------------------------------
