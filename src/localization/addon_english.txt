@@ -80,7 +80,7 @@
     "importAndExport_no_changes"                    "No changes detected!"
 
     // Booster Draft tips
-    "boosterDraftTip1"                              "Every player gets set of abilities called \"booster\". Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "boosterDraftTip1"                              "Every player gets set of abilities called \'booster\'. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
     "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
 
     // Categories for option selection
@@ -1141,7 +1141,8 @@
     "warning_elder_titan_ancestral_spirit" "<font color=\'#FF4949\'>Warning:</font> The astral spirit wont have <font color=\'#70EA72\'>Natural Order</font> or <font color=\'#70EA72\'>Echo Stomp</font>, unless you also have it."
 	"warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
 	"warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
-	"warning_shadow_demon_shadow_poison_release" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Shadow Poison.</font>"
+    "warning_spectre_haunt" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Reality.</font>"
+	"warning_shadow_demon_shadow_poison" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Shadow Poison Release.</font>"
 	"warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
 	"warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Trap.</font>"
 	"warning_tiny_grow_lod" "<font color=\'#FF4949\'>Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
@@ -1162,6 +1163,9 @@
 	"warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
 	"warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
 	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
+    "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
 
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
