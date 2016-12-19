@@ -662,7 +662,7 @@
 	"hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
 	"hintBeastMaster"                         "Beastmaster gains 3 Strength for every level put in Neutral abilities."
 	"hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
-	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
+	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
 	"hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
 	"hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
 	"hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
@@ -993,7 +993,7 @@
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
 	"unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
 	"unique_mechanic_elder_titan"           "Elder Titan gains 3% <br>bonus movement speed for every <font color=\'#ffd966\'>Aura</font> he <br>is carrying."
-	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire <br>Remnant</font> and <font color=\'#ffd966\'>Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
+	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire <br>Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
 	"unique_mechanic_enchantress"           "Enchantress can grow <br>plants without the health cost."
 	"unique_mechanic_enigma"            			"When Enigma dies,<br> <font color=\'#ffd966\'>Black Hole</font>'s cooldown will be refreshed."
 	"unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
@@ -1122,8 +1122,7 @@
     "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>Warning:</font> Will only refresh non-ultimate abilities."
     "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group."
     "warning_alchemist_chemical_rage"           "<font color=\'#FF4949\'>Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\'#70EA72\'>Alchemist</font> hero and not Chemical Rage."
-    "warning_ember_spirit_activate_fire_remnant" "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Fire Remnant.</font>"
-    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
+    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
     "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>Warning:</font> Any other player that plays as the <font color=\'#70EA72\'>Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
     "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\'#70EA72\'>Nature's Call.</font>"
     "warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
@@ -2708,7 +2707,7 @@
 
 	/// EMBER SPIRIT​
   	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk"	"Ember Spirit Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk_Description"	"If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50%d% Mana Refunded."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk_Description"	"If Ember Spirit has Fire Remnant he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50%d% Mana Refunded."
 
 	/// ENCHANTRESS​
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"
