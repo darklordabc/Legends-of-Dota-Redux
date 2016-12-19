@@ -34,6 +34,24 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
         return 0.2
       end
     end, DoUniqueString("LetItGo"),0.2)
+  elseif ability:GetName() == "item_blade_mail" then
+    caster:EmitSound("Memes.Blademail")
+  elseif ability:GetName() == "sven_gods_strength" then
+    caster:EmitSound("Memes.Strength")
+  elseif ability:GetName() == "centaur_stampede" then
+    EmitGlobalSound("Memes.Stampede")
+  elseif ability:GetName() == "witch_doctor_death_ward" then
+    caster:EmitSound("Memes.DropTheBass")
+    Timers:CreateTimer(function()
+      if not caster:IsChanneling() then
+        caster:StopSound("Memes.DropTheBass")
+        return nil
+      else
+        return 0.2
+      end
+    end, DoUniqueString("DropTheBass"),0.2)
+  elseif ability:GetName() == "sniper_assassinate" then
+    EmitGlobalSound("Memes.Snipe")
   end
 end
 ----------------------------------------------------------------------------------------------------------
@@ -41,7 +59,7 @@ function modifier_memes_redux:OnDeath(event)
   local target = event.unit
 
   if target:IsRealHero() then
-    if RollPercentage(17) then
+    if RollPercentage(4.20) then
       target:EmitSound("Memes.Death")
     end
   end
@@ -63,6 +81,10 @@ function InitiateMemes()
 
       if inflictor_index ~= nil then
         -- More stuff
+        local ability = EntIndexToHScript( inflictor_index )
+        if ability:GetName() == "sniper_assassinate" and target:IsRealHero() then
+          attacker:EmitSound("Memes.NoScope")
+        end
       end
 
       if target:IsRealHero() then
@@ -83,6 +105,10 @@ function InitiateMemes()
       --THERES A HOOK!
       if ability:GetName() == "pudge_meat_hook" and target:IsHero() then
         EmitGlobalSound("Memes.Hook")
+      end
+      --NoScope
+      if ability:GetName() == "sniper_assassinate" then
+        target:EmitSound("Memes.SnipeHit")
       end
     end
   end,nil)
