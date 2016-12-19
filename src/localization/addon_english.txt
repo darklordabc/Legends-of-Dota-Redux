@@ -1115,7 +1115,7 @@
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
-    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Ethereal Jaunt</font>, if you want to teleport to your orb."
+    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
     "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
     "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
     "warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
