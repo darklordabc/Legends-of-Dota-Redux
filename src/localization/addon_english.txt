@@ -1004,7 +1004,7 @@
 	"unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast <br>sequentially will refund 40% mana and <br>have 20% reduced cooldowns. "
 	"unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
 	"unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font><br> will give KOTL unobstructed day vision. <br>If 'Free Scepter' option is enabled, this hero <br>will not benefit from it."
-    "unique_mechanic_kunkka"                        "When Kunkka casts a <br>Water spell he has a 50% chance to refill his <br>bottle."
+    "unique_mechanic_kunkka"                        "When Kunkka casts a <br><font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his <br>bottle."
 	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell <br>immunity for the duration of the duel."
 	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\'#ffd966\'>Octarine <br>Vampirism</font>, whether he has it or not."
 	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
