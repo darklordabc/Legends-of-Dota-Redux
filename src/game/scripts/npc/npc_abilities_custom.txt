@@ -22052,6 +22052,7 @@
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
 			"particle"				"particles/undying_decay_fakeprojectile_glow_agi.vpcf"
+			"particle"	"particles/undying_decay_agility_buff.vpcf"
 		}
 		
 		"OnSpellStart"
@@ -22102,7 +22103,7 @@
 				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal"
+		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_steal"
 		        }
 				"OnDestroy"
 				{
@@ -22120,7 +22121,7 @@
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_enemy"
+		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_steal_enemy"
 		        }
 			}
 			"modifier_decay_bonus_agility_buff_scepter"
@@ -22129,7 +22130,7 @@
 				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_scepter"
+		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_steal_scepter"
 		        }
 				"OnDestroy"
 				{
@@ -22145,9 +22146,10 @@
 			"modifier_decay_bonus_agility_steal_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"	"particles/undying_decay_agility_buff.vpcf"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%agi_steal_enemy_scepter"
+		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_steal_enemy_scepter"
 		        }
 			}
 			"modifier_decay_bonus_agi_counter"
@@ -22235,6 +22237,7 @@
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
 			"particle"				"particles/undying_decay_fakeprojectile_glow_int.vpcf"
+			"EffectName"			"particles/undying_decay_intelligence_buff.vpcf"	
 		}
 		
 		"OnSpellStart"
@@ -22285,7 +22288,7 @@
 				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal"
 		        }
 				"OnDestroy"
 				{
@@ -22303,7 +22306,7 @@
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_enemy"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_enemy"
 		        }
 			}
 			"modifier_decay_bonus_intelligence_buff_scepter"
@@ -22312,7 +22315,7 @@
 				"IsHidden"		"1"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_scepter"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_scepter"
 		        }
 				"OnDestroy"
 				{
@@ -22328,9 +22331,10 @@
 			"modifier_decay_bonus_intelligence_steal_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"	"particles/undying_decay_intelligence_buff.vpcf"
 				"Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%int_steal_enemy_scepter"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_enemy_scepter"
 		        }
 			}
 			"modifier_decay_bonus_int_counter"
