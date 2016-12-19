@@ -149,6 +149,10 @@
     "lodMutatorUniqueSkillsTeam"                    "Team Skills"
     "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
 
+    "lodMutatorUniqueBotSkillsOff"                     "Bot Unique Skills"
+    "lodMutatorUniqueBotSkillsTeam"                    "Bot Team Skills"
+    "lodMutatorUniqueBotSkillsGlobal"                  "Bot Global Skills"
+
     "lodMutatorGoldTickRate1"                       "1 Gold Per Tick"
     "lodMutatorGoldTickRate2"                       "2 Gold Per Tick"
     "lodMutatorGoldTickRate3"                       "3 Gold Per Tick"

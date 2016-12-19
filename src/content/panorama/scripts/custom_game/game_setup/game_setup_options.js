@@ -244,6 +244,17 @@ var basicOptions = {
                         about: 'lodMutatorBotsBuff1'
                     },
                     {
+                        name: 'lodOptionBotsUniqueSkills',
+                        extraInfo: 'lodOptionAboutBotsUniqueSkills',
+                        default: {
+                            'lodMutatorUniqueBotSkillsOff': 0
+                        },
+                        states: {
+                            'lodMutatorUniqueBotSkillsTeam': 1,
+                            'lodMutatorUniqueBotSkillsGlobal': 2
+                        }
+                    },
+                    {
                         name: 'lodOptionAdvancedUniqueSkills',
 						extraInfo: 'lodOptionAboutAdvancedUniqueSkills',
                         default: {
