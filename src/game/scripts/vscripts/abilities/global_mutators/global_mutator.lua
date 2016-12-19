@@ -194,7 +194,8 @@ end
 ----------------------------------------------------------------------------------------------------------
 function InitiateMemes()
 	print("memes initiated")
-	ListenToGameEvent('entity_killed', function(keys)
-		
+	ListenToGameEvent('dota_player_killed', function()
+		print("rip")
+		EmitGlobalSound("Memes.Kill")
 	end, nil)
 end

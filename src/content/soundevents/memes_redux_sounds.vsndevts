@@ -83,9 +83,12 @@
                             "value2"        "sounds/kill3.vsnd"
                             "value3"        "sounds/kill4.vsnd"
                             "value4"        "sounds/kill5.vsnd"
+                            "value5"        "sounds/kill5.vsnd"
+                            "value6"        "sounds/kill5.vsnd"
+                            "value8"        "sounds/kill1.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "3.00000"  }
+                    "volume"            {   "value"     "6.00000"  }
                     "pitch_rand_min"    {   "value"     "-0.00000"  }
                     "pitch_rand_max"    {   "value"     "0.000000"  }
                     "pitch"             {   "value"     "1.000000"  }
