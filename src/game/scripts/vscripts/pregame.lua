@@ -926,7 +926,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                     end
 
-                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625,0)
+                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
 
                     CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
 
