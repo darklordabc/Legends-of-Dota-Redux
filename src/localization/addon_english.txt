@@ -1162,6 +1162,8 @@
 
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+    "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
+    "credit_undying_decay_int"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
 	"credit_octarine_vampirism_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_force_dash_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_shards_of_truesight_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
@@ -3847,18 +3849,11 @@
     "DOTA_Tooltip_ability_undying_decay_int_radius"    "RADIUS:"
 	"DOTA_Tooltip_ability_undying_decay_int_int_steal_scepter"    "INTELLIGENCE STEAL SCEPTER:"
 
+    "DOTA_Tooltip_modifier_decay_bonus_int_counter"   "Decay INT"
+    "DOTA_Tooltip_modifier_decay_bonus_int_counter_Description" "Stealing Intelligence."
 
-    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff"                         "Intelligence Decay"
-    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_Description"             "Gained 4 intelligence."
-	
-	"DOTA_Tooltip_modifier_decay_bonus_intelligence_steal"                         "Intelligence Decay"
-    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_Description"             "Lost 4 intelligence."
-	
-	"DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter"                         "Intelligence Decay (Scepter)"
-    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter_Description"             "Gained 10 intelligence."
-	
-	"DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter"                         "Intelligence Decay (Scepter)"
-    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter_Description"             "Lost 10 intelligence."
+    "DOTA_Tooltip_modifier_decay_bonus_agi_counter"   "Decay AGI"
+    "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 }
