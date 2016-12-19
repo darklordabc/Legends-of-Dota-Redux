@@ -631,20 +631,30 @@
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_cleave_radius_scepter"	"400"
-			}
+				"var_type"				"FIELD_INTEGER"
+				"cleave_starting_width"			"150"
+			}			
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cleave_ending_width"			"400"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cleave_distance"			"600"
+			}
+			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_cleave_damage_scepter"	"50"
 			}
-			"08"
+			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_building_damage_scepter"	"75"
 			}
-			"09"
+			"11"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"grow_bonus_damage_pct_scepter"		"50 65 80"
