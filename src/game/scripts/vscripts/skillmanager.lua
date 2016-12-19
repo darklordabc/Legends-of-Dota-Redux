@@ -253,19 +253,23 @@ function skillManager:RemoveAllSkills(hero)
     -- Ensure the hero isn't nil
     if hero == nil then return end
 
-    -- Build the skill list
-    self:BuildSkillList(hero)
+    
 	
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
             if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
                 hero:FindAbilityByName(v):SetHidden(true)
-            else 
-                hero:RemoveAbility(v)
+            else
+                if not string.find(v, string.sub(hero:GetUnitName(), 15)) then  -- npc_dota_hero_xx
+                    hero:RemoveAbility(v)
+                end
             end
 		end
     end
+
+    -- Build the skill list
+    self:BuildSkillList(hero)
 end
 
 -- Shows the given set number
@@ -642,7 +646,11 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 local oldAb = hero:FindAbilityByName(multV)
 
                 -- Enable it
-                oldAb:SetHidden(false)
+                if oldAb then
+                    oldAb:SetHidden(false)
+                end
+
+
             else
                 local newAb = hero:AddAbility(multV)
                 if newAb then
