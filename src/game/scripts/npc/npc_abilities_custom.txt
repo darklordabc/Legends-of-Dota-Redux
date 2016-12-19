@@ -22052,7 +22052,7 @@
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
 			"particle"				"particles/undying_decay_fakeprojectile_glow_agi.vpcf"
-			"particle"	"particles/undying_decay_agility_buff.vpcf"
+			"particle"				"particles/undying_decay_agility_buff.vpcf"
 		}
 		
 		"OnSpellStart"
@@ -22146,7 +22146,6 @@
 			"modifier_decay_bonus_agility_steal_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"EffectName"	"particles/undying_decay_agility_buff.vpcf"
 				"Properties"
 		        {
 		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_steal_enemy_scepter"
@@ -22155,6 +22154,7 @@
 			"modifier_decay_bonus_agi_counter"
 			{	
 				"IsBuff"	"1"
+				"EffectName"	"particles/undying_decay_agility_buff.vpcf"
 			}
 		}
 	}
@@ -22331,7 +22331,6 @@
 			"modifier_decay_bonus_intelligence_steal_scepter"
 			{	
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"EffectName"	"particles/undying_decay_intelligence_buff.vpcf"
 				"Properties"
 		        {
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_enemy_scepter"
@@ -22339,6 +22338,7 @@
 			}
 			"modifier_decay_bonus_int_counter"
 			{	
+				"EffectName"	"particles/undying_decay_intelligence_buff.vpcf"
 				"IsBuff"	"1"
 			}
 		}
