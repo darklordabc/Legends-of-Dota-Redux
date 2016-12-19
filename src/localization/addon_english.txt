@@ -132,7 +132,7 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	--"lodMutatorBotsBuff1"                           "Buff Bots"
+	"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -876,8 +876,8 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
+    "lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
   
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
@@ -1166,10 +1166,7 @@
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-    "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
-    "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
-    "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
-    "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
@@ -3866,4 +3863,13 @@
     "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2" "Blood Bath"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_Description" "This hero revels in combat, regaining health with every unit he kills or whenever an enemy Hero dies around him. The health gained is a percentage of the killed unit's maximum HP."
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_heal_radius" "RADIUS:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_hero_max_hp_heal" "KILLED HERO'S MAX HEALTH AS HEAL:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_non_hero_max_hp_heal" "KILLED NON HERO'S MAX HEALTH AS HEAL:"
+
+
 }
