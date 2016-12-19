@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Infest now gives control and consume. Those two abilities no longer skillable. 
 - Fire Remnant now gives Activate Fire Remnant. Activate is no longer skillable.
 - Illusory Orb now gives Ethernal Jaunt. 
+- Remote mines now gives focused detonate. Psionic Trap gives Trap.
 
 
 ## 3.8 - Steam Version
