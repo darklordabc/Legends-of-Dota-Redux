@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Gyro has been removed from game because he causes crashes. 
 - Custom Icons now appearing has been fixed
 - Updated experience table
+- Fixed bugs, where hero spells would sometimes be hidden if you played as the hero they belonged too.
 
 ### Balance
 
