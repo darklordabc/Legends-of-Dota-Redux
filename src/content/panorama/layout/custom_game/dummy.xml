@@ -562,9 +562,11 @@
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBalanceMode.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png" />
+<!--
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff2.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff3.png" />
+-->
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire1.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire2.png" />
 <Image src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsDire3.png" />

@@ -80,7 +80,7 @@
     "importAndExport_no_changes"                    "No changes detected!"
 
     // Booster Draft tips
-    "boosterDraftTip1"                              "Every player gets set of abilities called \"booster\". Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "boosterDraftTip1"                              "Every player gets set of abilities called \'booster\'. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
     "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
 
     // Categories for option selection
@@ -132,7 +132,7 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	"lodMutatorBotsBuff1"                           "Buff Bots"
+	--"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -667,7 +667,7 @@
 	"hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
 	"hintBeastMaster"                         "Beastmaster gains 3 Strength for every level put in Neutral abilities."
 	"hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
-	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
+	"hintEmberSpirit"                         "If Ember Spirit has Fire Remnant he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
 	"hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
 	"hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
 	"hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
@@ -881,8 +881,8 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    "lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
+    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
   
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
@@ -998,7 +998,7 @@
 	"unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ <br>damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
 	"unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Earth</font> abilities <br>Earthshaker uses heal him for 2% of his <br>health."
 	"unique_mechanic_elder_titan"           "Elder Titan gains 3% <br>bonus movement speed for every <font color=\'#ffd966\'>Aura</font> he <br>is carrying."
-	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire <br>Remnant</font> and <font color=\'#ffd966\'>Activate Fire Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
+	"unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire <br>Remnant</font>, he will <br>gain a free level at the start of the game. Also, <br>Activate Fire Remnant will have 50% Mana <br>Refunded."
 	"unique_mechanic_enchantress"           "Enchantress can grow <br>plants without the health cost."
 	"unique_mechanic_enigma"            			"When Enigma dies,<br> <font color=\'#ffd966\'>Black Hole</font>'s cooldown will be refreshed."
 	"unique_mechanic_faceless_void"                 "Faceless Void can move<br> freely in friendly and enemy chronospheres."
@@ -1009,7 +1009,7 @@
 	"unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast <br>sequentially will refund 40% mana and <br>have 20% reduced cooldowns. "
 	"unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> <br>will have 100% of their mana cost refunded."
 	"unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font><br> will give KOTL unobstructed day vision. <br>If 'Free Scepter' option is enabled, this hero <br>will not benefit from it."
-    "unique_mechanic_kunkka"                        "When Kunkka casts a <br>Water spell he has a 50% chance to refill his <br>bottle."
+    "unique_mechanic_kunkka"                        "When Kunkka casts a <br><font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his <br>bottle."
 	"unique_mechanic_legion_commander"              "When Legion <br>Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell <br>immunity for the duration of the duel."
 	"unique_mechanic_leshrac"                        "At the start of the game, <br>Leshrac gains a free level of <font color=\'#ffd966\'>Octarine <br>Vampirism</font>, whether he has it or not."
 	"unique_mechanic_lich"			"Lich heals himself<br>for the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
@@ -1115,20 +1115,19 @@
     ////////////////
 
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
-    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
+    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
-    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Ethereal Jaunt</font>, if you want to teleport to your orb."
+    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
     "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
     "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
     "warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
     "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>Warning:</font> Will only refresh non-ultimate abilities."
-    "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group."
+    "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Focused Detonate</font>."
     "warning_alchemist_chemical_rage"           "<font color=\'#FF4949\'>Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\'#70EA72\'>Alchemist</font> hero and not Chemical Rage."
-    "warning_ember_spirit_activate_fire_remnant" "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Fire Remnant.</font>"
-    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
+    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
     "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>Warning:</font> Any other player that plays as the <font color=\'#70EA72\'>Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
     "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\'#70EA72\'>Nature's Call.</font>"
     "warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
@@ -1147,17 +1146,17 @@
     "warning_elder_titan_ancestral_spirit" "<font color=\'#FF4949\'>Warning:</font> The astral spirit wont have <font color=\'#70EA72\'>Natural Order</font> or <font color=\'#70EA72\'>Echo Stomp</font>, unless you also have it."
 	"warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
 	"warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
-	"warning_shadow_demon_shadow_poison_release" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Shadow Poison.</font>"
+    "warning_spectre_haunt" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Reality.</font>"
+	"warning_shadow_demon_shadow_poison" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Shadow Poison Release.</font>"
 	"warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
-	"warning_templar_assassin_trap" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Psionic Trap.</font>"
-	"warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> If you don't have <font color=\'#70EA72\'>Trap</font>, you will have to manually activate traps."
+	"warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Trap.</font>"
 	"warning_tiny_grow_lod" "<font color=\'#FF4949\'>Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
     "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>Warning:</font> Only works with <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> and <font color=\'#70EA72\'>Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\'#FF4949\'>Warning:</font> Can teleport to any ally who has the same hero as you."
 	"warning_aether_range_lod"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
     "warning_aether_range_lod_OP"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
-	"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
+	//"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
 	"warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_2"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
 	"warning_true_random_lod_3"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
@@ -1169,7 +1168,13 @@
 	"warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
 	"warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
 	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
-
+    "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
@@ -2713,7 +2718,7 @@
 
 	/// EMBER SPIRIT​
   	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk"	"Ember Spirit Perk"
-	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk_Description"	"If Ember Spirit has Fire Remnant and Activate Fire Remnant, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50%d% Mana Refunded."
+	"DOTA_Tooltip_modifier_npc_dota_hero_ember_spirit_perk_Description"	"If Ember Spirit has Fire Remnant he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50%d% Mana Refunded."
 
 	/// ENCHANTRESS​
 	"DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"	"Enchantress Perk"

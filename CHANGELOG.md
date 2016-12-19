@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 - Added Bot Unique Skills Mutator
 
 ### Balance
+- Infest now gives control and consume. Those two abilities no longer skillable. 
+- Fire Remnant now gives Activate Fire Remnant. Activate is no longer skillable.
+- Illusory Orb now gives Ethernal Jaunt. 
+- Remote mines now gives focused detonate. Psionic Trap gives Trap.
+- Shadow Poison gives Shadow Poison release. Haunt Gives Reality.
+- Earth Spirit abilities that use stone remnants now give it as a sub ability.
 
 
 ## 3.8 - Steam Version

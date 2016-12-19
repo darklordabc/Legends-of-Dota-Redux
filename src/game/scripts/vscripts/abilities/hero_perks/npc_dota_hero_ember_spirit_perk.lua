@@ -32,7 +32,7 @@ end
 function modifier_npc_dota_hero_ember_spirit_perk:OnCreated()
 	if IsServer() then		
 			Timers:CreateTimer(function()
-					if self:GetCaster():HasAbility("ember_spirit_activate_fire_remnant") and self:GetCaster():HasAbility("ember_spirit_fire_remnant") then
+					if self:GetCaster():HasAbility("ember_spirit_fire_remnant") then
 						self:GetCaster():HeroLevelUp(true)
 					end
 				return
