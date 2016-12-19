@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 3.9 - Development Version
 ### Bug Fixing/New Features
-
+- Added Bot Unique Skills Mutator
 
 ### Balance
 
