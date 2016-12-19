@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.8 
+## 3.9 - Development Version
+### Bug Fixing/New Features
+
+
+### Balance
+
+
+## 3.8 - Steam Version
 ### Bug Fixing/New Features
 - Added Booster Draft Gamemode
 - Gyro has been removed from game because he causes crashes. 
@@ -15,7 +22,7 @@ All notable changes to this project will be documented in this file.
 - Added Decay Agility and Decay Intelligence (Funded by Budster16)
 - Cleave now works with grow + aghs
 
-## 3.7 - Steam Version
+## 3.7 
 ### Bug Fixing/New Features
 - Fixed not getting ability points on certain levels
 - Scoreboard can now be viewed, however, it does not show abilities yet. 
