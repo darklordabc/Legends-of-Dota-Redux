@@ -3,7 +3,7 @@
 	
 	"beastmaster_greater_boar_poison"
 	{
-    	"AbilityTextureName"            "beastmaster_greater_boar_poison_lod"
+    	"AbilityTextureName"            "custom/beastmaster_greater_boar_poison_lod"
 	} 
     	
 	"attribute_bonus"
@@ -445,7 +445,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"MaxLevel"						"4"
 		"AbilityCastRange"				"800"
-		"AbilityTextureName"            "ice_armor_lod"
+		"AbilityTextureName"            "custom/ice_armor_lod"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
