@@ -1162,6 +1162,8 @@
 
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+    "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
+    "credit_undying_decay_int"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
 	"credit_octarine_vampirism_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_force_dash_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_shards_of_truesight_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
@@ -3814,6 +3816,44 @@
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_lore"       "A shocking punishment for rebellious heathen."     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_true_sight_radius"    "SIGHT RADIUS:"     
     "DOTA_Tooltip_ability_zuus_lightning_bolt_global_sight_duration"      "SIGHT DURATION:" 
+    
+    "DOTA_Tooltip_ability_undying_decay_agi" "Decay (Agility)"
+    "DOTA_Tooltip_ability_undying_decay_agi_Description" "Undying steals <font color='#70EA72'>agility</font> from all enemy heroes in an area, dealing base damage as he claims the enemy's <font color='#70EA72'>agility</font> for himself.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_undying_decay_agi_aghanim_description" "Improves agility steal from 4 to 10."
+	"DOTA_Tooltip_ability_undying_decay_agi_Lore"            "The agility of the living is simply borrowed from the agility of the dead."
+    "DOTA_Tooltip_ability_undying_decay_agi_decay_damage"        "BASE DAMAGE:"   
+    "DOTA_Tooltip_ability_undying_decay_agi_agi_steal"    "AGILITY STEAL:" 
+	"DOTA_Tooltip_ability_undying_decay_agi_decay_duration"    "STEAL DURATION:"
+    "DOTA_Tooltip_ability_undying_decay_agi_radius"    "RADIUS:"
+	"DOTA_Tooltip_ability_undying_decay_agi_agi_steal_scepter"    "AGILITY STEAL SCEPTER:"
+
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff_Description"             "Gained 4 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_steal"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_steal_Description"             "Lost 4 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_buff_scepter"                         "Agility Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_buff_scepter_Description"             "Gained 10 agility."
+	
+	"DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter"                         "Agility Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter_Description"             "Lost 10 agility."
+	
+	"DOTA_Tooltip_ability_undying_decay_int" "Decay (Intelligence)"
+    "DOTA_Tooltip_ability_undying_decay_int_Description" "Undying steals <font color='#70EA72'>intelligence</font> from all enemy heroes in an area, dealing base damage as he claims the enemy's <font color='#70EA72'>intelligence</font> for himself.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_undying_decay_int_aghanim_description" "Improves intelligence steal from 4 to 10."
+	"DOTA_Tooltip_ability_undying_decay_int_Lore"            "The intelligence of the living is simply borrowed from the intelligence of the dead."
+    "DOTA_Tooltip_ability_undying_decay_int_decay_damage"        "BASE DAMAGE:"
+    "DOTA_Tooltip_ability_undying_decay_int_int_steal"    "INTELLIGENCE STEAL:"  
+	"DOTA_Tooltip_ability_undying_decay_int_decay_duration"    "STEAL DURATION:"
+    "DOTA_Tooltip_ability_undying_decay_int_radius"    "RADIUS:"
+	"DOTA_Tooltip_ability_undying_decay_int_int_steal_scepter"    "INTELLIGENCE STEAL SCEPTER:"
+
+    "DOTA_Tooltip_modifier_decay_bonus_int_counter"   "Decay INT"
+    "DOTA_Tooltip_modifier_decay_bonus_int_counter_Description" "Stealing Intelligence."
+
+    "DOTA_Tooltip_modifier_decay_bonus_agi_counter"   "Decay AGI"
+    "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 }
