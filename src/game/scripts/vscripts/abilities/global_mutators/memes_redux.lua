@@ -81,6 +81,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     end, DoUniqueString("DDDDDUEL"),0.1)
   elseif ability:GetName() == "item_black_king_bar" then
     caster:EmitSound("Memes.BKB")
+  elseif ability:GetName() == "monkey_king_tree_dance" and RollPercentage(20) then
+    caster:EmitSound("Memes.TreeJump")
   end
 end
 ----------------------------------------------------------------------------------------------------------
@@ -215,6 +217,10 @@ function memesModifierFilter(filterTable)
         return nil
       end
     end, DoUniqueString("darude"), 0.5)
+  elseif modifierName == "modifier_tiny_toss" and RollPercentage(35) then
+    parent:EmitSound("Memes.Fly")
+  elseif modifierName == "modifier_monkey_king_unperched_stunned" then
+    parent:EmitSound("Memes.TreeFall")
   end
 
   -- Returning the filterTable
