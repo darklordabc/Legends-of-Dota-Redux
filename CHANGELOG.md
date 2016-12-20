@@ -14,7 +14,6 @@ All notable changes to this project will be documented in this file.
 - Shadow Poison gives Shadow Poison release. Haunt Gives Reality.
 - Earth Spirit abilities that use stone remnants now give it as a sub ability.
 
-
 ## 3.8 - Steam Version
 ### Bug Fixing/New Features
 - Added Booster Draft Gamemode
