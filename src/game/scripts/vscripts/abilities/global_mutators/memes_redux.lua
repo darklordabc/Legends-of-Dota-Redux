@@ -54,6 +54,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     EmitGlobalSound("Memes.Snipe")
   elseif ability:GetName() == "puck_phase_shift" and RollPercentage(25) then
     caster:EmitSound("Memes.WAOW")
+  elseif ability:GetName() == "spirit_breaker_charge_of_darkness" then
+    caster:EmitSound("Memes.Charge")
   end
 end
 ----------------------------------------------------------------------------------------------------------
