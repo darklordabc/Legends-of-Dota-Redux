@@ -268,7 +268,7 @@ function Ingame:onStart()
         cheats = isCheatsEnabled
     }
     network:showCheatPanel(options)
-    if false then
+    if OptionManager:GetOption('allowIngameHeroBuilder') then
         network:enableIngameHeroEditor()
         
         -- Notification to players that they can change builds ingame.
