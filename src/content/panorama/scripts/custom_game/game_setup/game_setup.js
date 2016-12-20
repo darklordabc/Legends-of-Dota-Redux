@@ -4816,8 +4816,8 @@ function loadPlayerBans() {
     }
 
     // Bots
-    if(mapName != 'custom_bot' && mapName != '10_vs_10' && mapName != 'custom_700') {
-        $.GetContextPanel().SetHasClass('disallow_bots', true);
+    if(mapName == 'custom') {
+        $.GetContextPanel().SetHasClass('disallow_bots', false);
     }
 
     // Are we on a map that allocates slots for us?
