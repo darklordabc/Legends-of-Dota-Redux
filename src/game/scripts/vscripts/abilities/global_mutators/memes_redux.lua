@@ -56,6 +56,12 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     caster:EmitSound("Memes.WAOW")
   elseif ability:GetName() == "spirit_breaker_charge_of_darkness" then
     caster:EmitSound("Memes.Charge")
+  elseif ability:GetName() == "techies_suicide" then
+    caster:EmitSound("Memes.Explode")
+  elseif ability:GetName() == "techies_land_mines" or ability:GetName() == "techies_remote_mines" then
+    if RollPercentage(20) then
+      caster:EmitSound("Memes.Bomb")
+    end
   end
 end
 ----------------------------------------------------------------------------------------------------------
@@ -91,7 +97,7 @@ function InitiateMemes()
         end
       end
 
-      if target:IsRealHero() then
+      if target:IsRealHero() and target ~= attacker then
         EmitGlobalSound("Memes.Kill")
       end
     end
