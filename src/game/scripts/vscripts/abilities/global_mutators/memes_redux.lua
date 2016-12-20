@@ -79,6 +79,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
         return 0.1
       end
     end, DoUniqueString("DDDDDUEL"),0.1)
+  elseif ability:GetName() == "item_black_king_bar" then
+    caster:EmitSound("Memes.BKB")
   end
 end
 ----------------------------------------------------------------------------------------------------------
