@@ -135,6 +135,19 @@ function InitiateMemes()
       local attacker = EntIndexToHScript( attacker_index )
       local target = EntIndexToHScript( target_index )
 
+      if attacker:IsRealHero() then
+        if attacker:GetMultipleKillCount() == 3 then
+          EmitGlobalSound("Memes.TripleKill")
+        elseif attacker:GetMultipleKillCount() == 4 then
+          attacker:EmitSound("Memes.UltraKill")
+        elseif attacker:GetMultipleKillCount() == 5 then
+          Timers:CreateTimer( function ()
+            attacker:StopSound("Memes.UltraKill")
+            EmitGlobalSound("Memes.Rampage")
+          end, DoUniqueString("memeRampage"), 0.5)
+        end
+      end
+
       if inflictor_index ~= nil then
         -- More stuff
         local ability = EntIndexToHScript( inflictor_index )
