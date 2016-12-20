@@ -128,6 +128,7 @@
                             "value1"        "sounds/dead2.vsnd"
                             "value2"        "sounds/dead3.vsnd"
                             "value3"        "sounds/dead4.vsnd"
+                            "value4"        "sounds/dead5.vsnd"
                         }
                     }
                     "volume"            {   "value"     "3.00000"  }
@@ -417,6 +418,39 @@
                         {
                             "value0"        "sounds/noscope1.vsnd"
                             "value1"        "sounds/noscope2.vsnd"
+                            "value2"        "sounds/noscope2.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "5.00000"   }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Memes.Blackhole"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/blackhole.vsnd"
                         }
                     }
                     "volume"            {   "value"     "6.00000"   }
@@ -431,6 +465,7 @@
         }
     }
 }
+
 
 "Memes.WAOW"
 {

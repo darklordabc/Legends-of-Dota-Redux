@@ -59,6 +59,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     caster:EmitSound("Memes.Charge")
   elseif ability:GetName() == "techies_suicide" then
     caster:EmitSound("Memes.Explode")
+  elseif ability:GetName() == "enigma_black_hole" then
+    caster:EmitSound("Memes.Blackhole")
   elseif ability:GetName() == "techies_land_mines" or ability:GetName() == "techies_remote_mines" then
     if RollPercentage(20) then caster:EmitSound("Memes.Bomb") end
   elseif ability:GetName() == "legion_commander_duel" then
@@ -95,13 +97,28 @@ end
 function InitiateMemes()
   print("memes initiated")
 
+  -- Gotta Go Fast
   Timers:CreateTimer(function ()
     if OptionManager:GetOption('gottaGoFast') == 1 then
-      EmitGlobalSound("Memes.GottaGoFast")
+      for _,hero in pairs(HeroList:GetAllHeroes()) do
+        if hero:IsMoving() then
+          EmitGlobalSound("Memes.GottaGoFast")
+          return nil
+        else
+          return 0.3
+        end
+      end
     elseif OptionManager:GetOption('gottaGoFast') == 2 then
-      EmitGlobalSound("Memes.GottaGoFASTER")
+      for _,hero in pairs(HeroList:GetAllHeroes()) do
+        if hero:IsMoving() then
+          EmitGlobalSound("Memes.GottaGoFASTER")
+          return nil
+        else
+          return 0.3
+        end
+      end
     end
-  end, DoUniqueString('GottaGoFastMusic'), 8)
+  end, DoUniqueString('GottaGoFastMusic'), 5)
 
   ListenToGameEvent('entity_killed', function(event)
     local inflictor_index = event.entindex_inflictor
@@ -115,6 +132,7 @@ function InitiateMemes()
       if inflictor_index ~= nil then
         -- More stuff
         local ability = EntIndexToHScript( inflictor_index )
+        -- Assassinate Kills
         if ability:GetName() == "sniper_assassinate" and target:IsRealHero() then
           attacker:EmitSound("Memes.NoScope")
         end
