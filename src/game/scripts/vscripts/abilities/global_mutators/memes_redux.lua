@@ -83,6 +83,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     caster:EmitSound("Memes.BKB")
   elseif ability:GetName() == "monkey_king_tree_dance" and RollPercentage(20) then
     caster:EmitSound("Memes.TreeJump")
+  elseif ability:GetName() == "alchemist_chemical_rage" then
+    caster:EmitSound("Memes.ChemicalRage")
   end
 end
 ----------------------------------------------------------------------------------------------------------
