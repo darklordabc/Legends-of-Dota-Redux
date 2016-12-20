@@ -414,7 +414,8 @@
                     {
                         "value"
                         {
-                            "value0"        "sounds/noscope.vsnd"
+                            "value0"        "sounds/noscope1.vsnd"
+                            "value1"        "sounds/noscope2.vsnd"
                         }
                     }
                     "volume"            {   "value"     "6.00000"   }
