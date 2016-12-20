@@ -59,15 +59,29 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
   elseif ability:GetName() == "techies_suicide" then
     caster:EmitSound("Memes.Explode")
   elseif ability:GetName() == "techies_land_mines" or ability:GetName() == "techies_remote_mines" then
-    if RollPercentage(20) then
-      caster:EmitSound("Memes.Bomb")
-    end
+    if RollPercentage(20) then caster:EmitSound("Memes.Bomb") end
+  elseif ability:GetName() == "legion_commander_duel" then
+    caster:EmitSound("Memes.Duel")
+    caster.duel_target = event.target
+    Timers:CreateTimer(function()
+      if not caster:HasModifier("modifier_legion_commander_duel") then
+        caster:StopSound("Memes.Duel")
+        if not caster.duel_target:IsAlive() then 
+          caster:EmitSound("Memes.Duel_Victory")
+        elseif not caster:IsAlive() then
+          caster:EmitSound("Memes.Duel_Defeat")
+        end
+        return nil
+      else
+        return 0.1
+      end
+    end, DoUniqueString("DDDDDUEL"),0.1)
   end
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_memes_redux:OnDeath(event)
   local target = event.unit
-
+  local attacker = event.attacker
   if target:IsRealHero() then
     if RollPercentage(4.20) then
       target:EmitSound("Memes.Death")
