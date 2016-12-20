@@ -1,4 +1,5 @@
 local Timers = require('easytimers')
+local OptionManager = require('optionmanager')
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_memes_redux        
@@ -93,6 +94,14 @@ end
 ----------------------------------------------------------------------------------------------------------
 function InitiateMemes()
   print("memes initiated")
+
+  Timers:CreateTimer(function ()
+    if OptionManager:GetOption('gottaGoFast') == 1 then
+      EmitGlobalSound("Memes.GottaGoFast")
+    elseif OptionManager:GetOption('gottaGoFast') == 2 then
+      EmitGlobalSound("Memes.GottaGoFASTER")
+    end
+  end, DoUniqueString('GottaGoFastMusic'), 8)
 
   ListenToGameEvent('entity_killed', function(event)
     local inflictor_index = event.entindex_inflictor
