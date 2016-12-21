@@ -5,6 +5,7 @@
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "tiny_grow"
         "ItemPurchaseable"              "0"
+        "ID"                            "2001"
         "Modifiers"
         {
             "modifier_survival_modifier"
@@ -31,6 +32,7 @@
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "item_winter_stocking"
         "ItemPurchaseable"              "0"
+        "ID"                            "2002"
     }
 
     "item_health_modifier"
@@ -38,6 +40,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "BaseClass"                     "item_datadriven"
         "IsSellable"                    "0"
+        "ID"                            "2003"
 
         "Modifiers"
         {
