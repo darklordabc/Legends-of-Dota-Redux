@@ -22382,12 +22382,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"200 400 800 1600 3200 6400 12800"
+				"bonus_damage"				"40 80 120 160"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"10 15 20 25 30 35 40"
+				"lifesteal"					"20 30 40 50"
 			}
 		}
 		"Modifiers"
