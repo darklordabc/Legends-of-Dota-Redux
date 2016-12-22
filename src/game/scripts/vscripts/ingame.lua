@@ -119,7 +119,8 @@ function Ingame:OnHeroLeveledUp(keys)
     local hero = player:GetAssignedHero()
     
     -- Leveling the talents for bots
-    if PlayerResource:IsFakeClient(pID) and keys.level == 10 then
+    
+    if util:isPlayerBot(pID) and keys.level == 10 then
         for i=1,23 do
             local abName = hero:GetAbilityByIndex(i):GetAbilityName()
             if abName and string.find(abName, "special_bonus") then
@@ -128,7 +129,7 @@ function Ingame:OnHeroLeveledUp(keys)
                 break
             end
         end
-    elseif PlayerResource:IsFakeClient(pID) and keys.level == 15 then
+    elseif util:isPlayerBot(pID) and keys.level == 15 then
         for i=1,23 do
             local abName = hero:GetAbilityByIndex(i):GetAbilityName()
             if abName and string.find(abName, "special_bonus") then
@@ -138,7 +139,7 @@ function Ingame:OnHeroLeveledUp(keys)
             end
         end
 
-    elseif PlayerResource:IsFakeClient(pID) and keys.level == 20 then
+    elseif util:isPlayerBot(pID) and keys.level == 20 then
         for i=1,23 do
             local abName = hero:GetAbilityByIndex(i):GetAbilityName()
             if abName and string.find(abName, "special_bonus") then
@@ -148,7 +149,7 @@ function Ingame:OnHeroLeveledUp(keys)
             end
         end
 
-    elseif PlayerResource:IsFakeClient(pID) and keys.level == 25 then
+    elseif util:isPlayerBot(pID) and keys.level == 25 then
         for i=1,23 do
             local abName = hero:GetAbilityByIndex(i):GetAbilityName()
             if abName and string.find(abName, "special_bonus") then
