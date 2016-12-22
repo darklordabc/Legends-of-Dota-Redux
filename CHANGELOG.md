@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Removed the sound that repeated on Abyssal Vortex. 
 - Bots will now level talents, choosen randomly. Not visible in their trees. 
+- Added 3 Neutral Prowler Abilities
 
 ## 3.9 - Steam Version
 ### Bug Fixing/New Features
