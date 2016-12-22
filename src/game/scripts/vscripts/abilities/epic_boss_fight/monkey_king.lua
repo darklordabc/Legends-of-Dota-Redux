@@ -16,7 +16,7 @@ function CheckJingu(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	if caster:HasModifier("modifier_jingu_mastery_activated") then return
+	if caster:HasModifier("modifier_jingu_mastery_activated") or not target:IsRealHero() or not caster:IsRealHero() or caster:PassivesDisabled() then return
 	else
 		local jinguStack = target:FindModifierByName("modifier_jingu_mastery_hitcount")
 		if not jinguStack then 
