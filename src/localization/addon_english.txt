@@ -2190,6 +2190,7 @@
     "garden_plot"           "Garden Plot"
     "white_flower"          "White Flower"
     "red_flower"            "Red Flower"
+    "red_flower_OP"         "Scarlet Flower"
     "pink_flower"           "Pink Blossom"
     "blue_flower"           "Blue Blossom"
     "yellow_flower"         "Yellow Daisy"
