@@ -3868,4 +3868,19 @@
     "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
+    
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf"                    "Jingu Mastery"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_Description"        "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_Lore"               "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_required_hits"        "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_counter_duration"    "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_charges"             "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_bonus_damage"        "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_ebf_lifesteal"             "%LIFESTEAL:"
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_activated"                                    "Jingu Mastery"
+                "DOTA_Tooltip_modifier_jingu_mastery_activated_Description"                        "Gaining bonus attack damage and lifesteal."
+                
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount"                                    "Jingu Banged"
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount_Description"                        "Amount of hits Monkey King has landed on you, he powers up at 4."
 }
