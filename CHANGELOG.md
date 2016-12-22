@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.0 - Development Version
+## 4.1 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 4.0 - Steam Version
 ### Bug Fixing/New Features
 - Added hotfix to stop crazy respawn times and crazy experiencg gain. 
 
@@ -12,7 +19,7 @@ All notable changes to this project will be documented in this file.
 - Added 3 Neutral Prowler Abilities
 - Fixed Jingu Mastery (Imported from Epic Boss Fight)
 
-## 3.9 - Steam Version
+## 3.9
 ### Bug Fixing/New Features
 - Added Bot Unique Skills Mutator
 
