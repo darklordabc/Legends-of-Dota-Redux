@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 4.0 - Development Version
 ### Bug Fixing/New Features
-- 
+- Added hotfix to stop crazy respawn times and crazy experiencg gain. 
 
 ### Balance
 - Removed the sound that repeated on Abyssal Vortex. 
