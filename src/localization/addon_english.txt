@@ -1196,6 +1196,7 @@
 	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
     "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
+    "credit_monkey_king_jingu_mastery_lod"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
 	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -3868,4 +3869,19 @@
     "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
+
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_required_hits"              "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_counter_duration"           "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_charges"                    "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_bonus_damage"               "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_lifesteal"                  "%LIFESTEAL:"
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_activated"                                 "Jingu Mastery"
+    "DOTA_Tooltip_modifier_jingu_mastery_activated_Description"                     "Gaining bonus attack damage and lifesteal."
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount"                                  "Jingu Banged"
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount_Description"                      "Amount of hits Monkey King has landed on you, he powers up at 4."
 }

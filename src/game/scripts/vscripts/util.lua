@@ -12,6 +12,26 @@ local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
 Util.bannedKV = Util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
 
+function CDOTABaseAbility:GetTalentSpecialValueFor(value)
+    local base = self:GetSpecialValueFor(value)
+    local talentName
+    local kv = self:GetAbilityKeyValues()
+    for k,v in pairs(kv) do -- trawl through keyvalues
+        if k == "AbilitySpecial" then
+            for l,m in pairs(v) do
+                if m[value] then
+                    talentName = m["LinkedSpecialBonus"]
+                end
+            end
+        end
+    end
+    if talentName then 
+        local talent = self:GetCaster():FindAbilityByName(talentName)
+        if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+    end
+    return base
+end
+
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
 --       This method is safe for all of our internal uses
