@@ -821,6 +821,9 @@ function Ingame:handleRespawnModifier()
                             local timeLeft = hero:GetRespawnTime()
 
                             --hotfix start: stop heros from having crazy respawn times
+                            if hero:GetLevel() > 25 then
+                                timeLeft = 4 * hero:GetLevel()
+                            end
                             if timeLeft > 160 then
                                 timeLeft = 160
                             end
