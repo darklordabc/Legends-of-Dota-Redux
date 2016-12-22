@@ -29,7 +29,7 @@ var tipsGeneral = [{
         img: 'file://{images}/custom_game/hints/hint_removeability.png',
         txt: '#hintRemoveAbility'
     }, {
-        img: 'file://{images}/spellicons/satyr_hellcaller_unholy_aura.png',
+        img: 'file://{images}/items/neutral.png',
         txt: '#hintNeutralBuffs'
     }, {
         img: 'file://{images}/spellicons/invoker_alacrity.png',
