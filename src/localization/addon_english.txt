@@ -604,6 +604,7 @@
 	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
 	"hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills."
 	"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+    "hintBotTalents"                         "Bots receive 2 extra abilities, they will always choose the best available ability for their hero based on a predefined list. Bots will also level randomly selected talents, however, their talent picks are not shown in their talent trees. "
 
 	// Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"

@@ -82,6 +82,9 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_duels.png',
         txt: '#hintDuels'
+    },{
+        img: 'file://{images}/items/wind_lace.png',
+        txt: '#hintBotTalents'
     },
 ];
 
