@@ -820,6 +820,12 @@ function Ingame:handleRespawnModifier()
                         if IsValidEntity(hero) and not hero:IsAlive() then
                             local timeLeft = hero:GetRespawnTime()
 
+                            --hotfix start: stop heros from having crazy respawn times
+                            if timeLeft > 160 then
+                                timeLeft = 160
+                            end
+                            --hotfix end
+
                             timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
 
                             if timeLeft <= 0 then
@@ -992,6 +998,13 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
+    --hotfix start: to stop the insane amount of EXP
+    if filterTable.experience > 1000 then
+        filterTable.experience = 400   
+    end 
+    --hotfix end
+    print("experience gained")
+    print(filterTable.experience)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
