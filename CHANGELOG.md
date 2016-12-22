@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Removed the sound that repeated on Abyssal Vortex. 
+- Bots will now level talents, choosen randomly. Not visible in their trees. 
 
 ## 3.9 - Steam Version
 ### Bug Fixing/New Features
