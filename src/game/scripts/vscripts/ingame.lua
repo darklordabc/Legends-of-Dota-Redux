@@ -1003,11 +1003,11 @@ function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
     --hotfix start: to stop the insane amount of EXP
     if filterTable.experience > 1000 then
-        filterTable.experience = 400   
+        filterTable.experience = 440   
     end 
     --hotfix end
-    print("experience gained")
-    print(filterTable.experience)
+    --print("experience gained")
+    --print(filterTable.experience)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
