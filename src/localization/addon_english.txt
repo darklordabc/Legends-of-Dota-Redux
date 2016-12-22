@@ -72,6 +72,7 @@
     "importAndExport_apply"                         "Apply"
     "importAndExport_save"                          "Save"
     "importAndExport_load"                          "Load"
+    "bansImportAndExport_tooltip"                   "Use Save to store your current bans to local storage. Use Load to load your bans. Loading bans is limited to the amount of bans you are allowed, unless your the Host and using Host Bans, in which case you have unlimited bans."
     "importAndExport_tooltip"                       "Use the Save button to save current settings to the cloud. Press load to retrieve them in future games."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
