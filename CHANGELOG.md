@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - 
 
 ### Balance
-- 
+- Removed Betrayal and True randoms because they are unstable
 
 ## 4.0 - Steam Version
 ### Bug Fixing/New Features
