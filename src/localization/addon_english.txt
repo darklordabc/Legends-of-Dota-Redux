@@ -1948,7 +1948,7 @@
 
 	// Warlock Permanent Immolation
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation Redux"
-    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second."
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second.<font color='#70EA72'> Deals less damage on earlier levels.</font>"
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_damage"        "DAMAGE PER SECOND:"
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_radius"        "RADIUS:"
 
