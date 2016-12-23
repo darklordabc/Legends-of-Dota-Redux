@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Removed Betrayal and True randoms because they are unstable
+- Bots now use unique team skills by default, its a bit lame for all bots to have invisiblity
 
 ## 4.0 - Steam Version
 ### Bug Fixing/New Features
