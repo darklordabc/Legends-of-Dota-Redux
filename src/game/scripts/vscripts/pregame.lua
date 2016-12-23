@@ -2432,13 +2432,6 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
 
-                -- Single Draft Pick Mode
-                if optionValue == 5 then
-                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-                    self:setOption('lodOptionBanningBalanceMode', 0, true)
-                    self:setOption('lodOptionBalanceMode', 0, true)
-                end
-
                 -- Booster Draft Pick Mode
                 if optionValue == 6 then
                     self:setOption('lodOptionCommonGamemode', 6, true)
