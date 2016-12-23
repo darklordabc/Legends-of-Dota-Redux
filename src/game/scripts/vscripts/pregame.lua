@@ -266,12 +266,9 @@ function Pregame:init()
     -- Setup default option related stuff
     network:setActiveOptionsTab('presets')
 
-    self:setOption('lodOptionSlots', 6)
-    self:setOption('lodOptionUlts', 2)
-    self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionDraftAbilities', 25)
-    self:setOption('lodOptionCreepPower', 0)
+    self:loadDefaultSettings()
 
+    -- If its single player, enable single player abilities
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
@@ -376,6 +373,152 @@ function Pregame:init()
     self.spawnQueue = {}
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
+end
+
+-- Load Default Values 
+function Pregame:loadDefaultSettings()
+    -- Total slots is copied
+    self:setOption('lodOptionCommonMaxSlots', 6, true)
+
+    -- Max skills is always 6
+    self:setOption('lodOptionCommonMaxSkills', 6, true)
+
+    -- Max ults is copied
+    self:setOption('lodOptionCommonMaxUlts', 2, true)
+
+    -- Set Draft Abilities to 100
+    self:setOption('lodOptionCommonDraftAbilities', 100, true)
+    self:setOption('lodOptionSlots', 6)
+    self:setOption('lodOptionUlts', 2)
+    self:setOption('lodOptionDraftAbilities', 25)
+    self:setOption('lodOptionCreepPower', 0)
+    -- Balance Mode disabled by default
+    self:setOption('lodOptionBalanceMode', 0, true)
+
+    -- Mutators disabled by default
+    self:setOption('lodOptionDuels', 0, false)
+    self:setOption('lodOption322', 0, false)
+    self:setOption('lodOptionSliders', 0, false)
+    self:setOption('lodOptionMonkeyBusiness', 0, false)
+    self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
+
+    -- Balance Mode Ban List disabled by default
+    self:setOption('lodOptionBanningBalanceMode', 0, true)
+    self:setOption('lodOptionBalanceMode', 0, false)
+
+    -- Set banning
+    self:setOption('lodOptionBanning', 1)
+
+    -- Block troll combos is always on
+    self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+
+    -- Bots get bonus points by default
+    --self:setOption('lodOptionBotsBonusPoints', 1, true)
+
+    -- Default, we don't ban all invisiblity
+    self:setOption('lodOptionBanningBanInvis', 0, true)
+
+    -- Starting level is lvl 1
+    self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+
+    -- Max level is 25
+    self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
+
+    -- Don't mess with gold rate
+    self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+    self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+    self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
+    self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+    self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
+
+    -- Default respawn time
+    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
+    self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
+
+    -- Buyback cooldown time
+
+    self:setOption('lodOptionBuybackCooldownTimeConstant', 420, true)
+
+    -- 3 Towers per lane
+    self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+
+    -- Do not start scepter upgraded
+    self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+    -- Do not make stronger towers
+    self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+
+    -- Do not increase creep power
+    self:setOption('lodOptionCreepPower', 0, true)
+
+    -- Start with a free courier
+    self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
+
+    -- Set bot options
+    self:setOption('lodOptionBotsRadiant', 5, true)
+    self:setOption('lodOptionBotsDire', 5, true)
+    self:setOption('lodOptionBotsUnfairBalance', 1, true)
+
+    -- Turn easy mode off
+    --self:setOption('lodOptionCrazyEasymode', 0, true)
+
+    -- Enable hero abilities
+    self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
+
+    -- Enable neutral abilities
+    self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+
+    -- Enable Custom Abilities
+    self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+
+    -- Disable OP abilities
+    self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+
+    -- Unique Skills default
+    self:setOption('lodOptionBotsUniqueSkills', 1, true)
+
+    -- Restrict Skills default
+    self:setOption('lodOptionBotsRestrict', 0, true)
+
+    -- Hide enemy picks
+    self:setOption('lodOptionAdvancedHidePicks', 1, true)
+
+    -- Disable Unique Skills
+    self:setOption('lodOptionAdvancedUniqueSkills', 0, true)
+
+    -- Disable Unique Heroes
+    self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
+
+    -- Enable picking primary attr
+    self:setOption('lodOptionAdvancedSelectPrimaryAttr', 1, true)
+
+    -- Disable Fountain Camping
+    self:setOption('lodOptionCrazyNoCamping', 1, true)
+
+    -- Enable Universal Shop
+    self:setOption('lodOptionCrazyUniversalShop', 1, true)
+
+    -- Disable All Vision
+    self:setOption('lodOptionCrazyAllVision', 0, true)
+
+    -- Disable Multicast Madness
+    self:setOption('lodOptionCrazyMulticast', 0, true)
+
+    -- Disable WTF Mode
+    self:setOption('lodOptionCrazyWTF', 0, true)
+
+    -- Disable ingame hero builder
+    self:setOption('lodOptionIngameBuilder', 0, true)
+    self:setOption("lodOptionIngameBuilderPenalty", 0)
+
+    -- Enable Perks
+    self:setOption('lodOptionDisablePerks', 0, false)
+
+    -- Disable Fat-O-Meter
+    self:setOption("lodOptionCrazyFatOMeter", 0)
+
+    -- Normal speed
+    self:setOption("lodOptionGottaGoFast", 0)
 end
 
 -- Gets stats for the given player
@@ -2256,154 +2399,13 @@ function Pregame:initOptionSelector()
             if optionValue ~= -1 then
                 -- Gamemode is copied
                 self:setOption('lodOptionCommonGamemode', optionValue, true)
-
-                -- Total slots is copied
-                self:setOption('lodOptionCommonMaxSlots', self.optionStore['lodOptionSlots'], true)
-
-                -- Max skills is always 6
-                self:setOption('lodOptionCommonMaxSkills', 6, true)
-
-                -- Max ults is copied
-                self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
-
-                -- Set Draft Abilities to 100
-                self:setOption('lodOptionCommonDraftAbilities', 100, true)
-
-                -- Balance Mode disabled by default
-                self:setOption('lodOptionBalanceMode', 0, true)
-
-                -- Mutators disabled by default
-                self:setOption('lodOptionDuels', 0, false)
-                self:setOption('lodOption322', 0, false)
-                self:setOption('lodOptionSliders', 0, false)
-                self:setOption('lodOptionMonkeyBusiness', 0, false)
-                self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
-
-                -- Balance Mode Ban List disabled by default
-                self:setOption('lodOptionBanningBalanceMode', 0, true)
-                self:setOption('lodOptionBalanceMode', 0, false)
-
-                -- Set banning
-                self:setOption('lodOptionBanning', 1)
-
-                -- Block troll combos is always on
-                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-
-                -- Bots get bonus points by default
-                --self:setOption('lodOptionBotsBonusPoints', 1, true)
-
-                -- Default, we don't ban all invisiblity
-                self:setOption('lodOptionBanningBanInvis', 0, true)
-
-                -- Starting level is lvl 1
-                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-
-                -- Max level is 25
-                self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
-
-                -- Don't mess with gold rate
-                self:setOption('lodOptionGameSpeedStartingGold', 0, true)
-                self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
-                self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
-                self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
-                self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
-
-                -- Default respawn time
-                self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
-                self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
-
-                -- Buyback cooldown time
-
-                self:setOption('lodOptionBuybackCooldownTimeConstant', 420, true)
-
-                -- 3 Towers per lane
-                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
-
-                -- Do not start scepter upgraded
-                self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
-
-                -- Do not make stronger towers
-                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-
-                -- Do not increase creep power
-                self:setOption('lodOptionCreepPower', 0, true)
-
-                -- Start with a free courier
-                self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
-
-                -- Set bot options
-                self:setOption('lodOptionBotsRadiant', 5, true)
-                self:setOption('lodOptionBotsDire', 5, true)
-                self:setOption('lodOptionBotsUnfairBalance', 1, true)
-
-                -- Turn easy mode off
-                --self:setOption('lodOptionCrazyEasymode', 0, true)
-
-                -- Enable hero abilities
-                self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
-
-                -- Enable neutral abilities
-                self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
-
-                -- Enable Custom Abilities
-                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
-
-                -- Disable OP abilities
-                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-
-                -- Unique Skills default
-                self:setOption('lodOptionBotsUniqueSkills', 1, true)
-
-                -- Restrict Skills default
-                self:setOption('lodOptionBotsRestrict', 0, true)
-
-                -- Hide enemy picks
-                self:setOption('lodOptionAdvancedHidePicks', 1, true)
-
-                -- Disable Unique Skills
-                self:setOption('lodOptionAdvancedUniqueSkills', 0, true)
-
-                -- Disable Unique Heroes
-                self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
-
-                -- Enable picking primary attr
-                self:setOption('lodOptionAdvancedSelectPrimaryAttr', 1, true)
-
-                -- Disable Fountain Camping
-                self:setOption('lodOptionCrazyNoCamping', 1, true)
-
-                -- Enable Universal Shop
-                self:setOption('lodOptionCrazyUniversalShop', 1, true)
-
-                -- Disable All Vision
-                self:setOption('lodOptionCrazyAllVision', 0, true)
-
-                -- Disable Multicast Madness
-                self:setOption('lodOptionCrazyMulticast', 0, true)
-
-                -- Disable WTF Mode
-                self:setOption('lodOptionCrazyWTF', 0, true)
-
-                -- Disable ingame hero builder
-                self:setOption('lodOptionIngameBuilder', 0, true)
-                self:setOption("lodOptionIngameBuilderPenalty", 0)
-
-                -- Enable Perks
-                self:setOption('lodOptionDisablePerks', 0, false)
-
-                -- Disable Fat-O-Meter
-                self:setOption("lodOptionCrazyFatOMeter", 0)
-
-                -- Normal speed
-                self:setOption("lodOptionGottaGoFast", 0)
-
+              
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-                    --self:setOption('lodOptionBotsBonusPoints', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
@@ -2414,35 +2416,40 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
-
-                    -- Turn easy mode on
-                    --self:setOption('lodOptionCrazyEasymode', 1, true)
                 end
 
                 -- Mirror Draft Pick Mode
                 if optionValue == 3 then
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
+
+                -- All Random Pick Mode
+                if optionValue == 4 then
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
 
                 -- Single Draft Pick Mode
                 if optionValue == 5 then
-                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
 
                 -- Booster Draft Pick Mode
                 if optionValue == 6 then
-                    self:setOption('lodOptionCommonGamemode', 6, true)
-                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                     self:setOption('lodOptionBotsUniqueSkills', 2, true)
                     self:setOption('lodOptionDraftAbilities', 47, false)
                 end
             else
-                self:setOption('lodOptionCommonGamemode', 1)
+                self:loadDefaultSettings()
+                self:setOption('lodOptionCommonGamemode', 1)               
             end
         end,
 
