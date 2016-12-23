@@ -45,7 +45,7 @@ function UpdateTalentTree( msg )
   var stringSelectedUnit = selectedUnit.toString()
  
   if (Entities.IsConsideredHero( selectedUnit )) {
-      var talentTable = CustomNetTables.GetTableValue("hero_talents",stringSelectedUnit)
+      var talentTable = CustomNetTables.GetTableValue("heroes",stringSelectedUnit)
       if (talentTable ) { 
       var talentOne = talentTable["talentOne"] +1
       var talentTwo = talentTable["talentTwo"] +1 
