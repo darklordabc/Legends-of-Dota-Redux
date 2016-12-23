@@ -22479,7 +22479,7 @@
  	{
 	    "BaseClass"                 "ability_lua"
 	    "ScriptFile"            "abilities/bloodseeker_blood_bath"
-	    "AbilityTextureName"      "custom/blood_bath_two"
+	    "AbilityTextureName"      "custom/bloodbath_two"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 	    "AbilitySpecial"
