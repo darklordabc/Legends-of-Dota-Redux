@@ -4,6 +4,7 @@
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" /> 
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
         <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
+	<include src="file://{resources}/scripts/custom_game/talent_tree.js" />
 
         <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
     </scripts>
