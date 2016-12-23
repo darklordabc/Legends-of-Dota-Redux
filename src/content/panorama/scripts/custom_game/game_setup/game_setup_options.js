@@ -109,7 +109,7 @@ var basicOptions = {
                             },
                             'lodMutatorFastBuybackCooldown3': {
                                 'lodOptionBuybackCooldownTimeConstant': 0,
-                                'lodOptionGameSpeedRespawnTimePercentage': 0
+                                'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
                     },
