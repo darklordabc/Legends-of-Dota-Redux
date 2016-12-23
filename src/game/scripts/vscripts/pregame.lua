@@ -2352,7 +2352,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
 
                 -- Unique Skills default
-                self:setOption('lodOptionBotsUniqueSkills', 0, true)
+                self:setOption('lodOptionBotsUniqueSkills', 1, true)
 
                 -- Restrict Skills default
                 self:setOption('lodOptionBotsRestrict', 0, true)
