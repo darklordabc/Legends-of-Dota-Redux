@@ -15,7 +15,7 @@ end
 modifier_bloodseeker_blood_bath_t = class({})
 
 function modifier_bloodseeker_blood_bath_t:IsHidden()
-    return false
+    return true
 end
 function modifier_bloodseeker_blood_bath_t:IsPurgable()
     return false
@@ -40,18 +40,25 @@ function modifier_bloodseeker_blood_bath_t:OnDeath(keys)
     local victim = keys.unit
     local unit = self:GetParent()
 
-    local healRadius = self:GetAbility():GetSpecialValueFor("heal_radius")
+    if unit:PassivesDisabled() or victim:IsBuilding() or unit:IsIllusion() then
+      return 
+    end
 
+
+    local healRadius = self:GetAbility():GetSpecialValueFor("heal_radius")
+    local heal
     if unit:GetRangeToUnit(victim) <= healRadius or attacker == unit then
-      if victim:IsHero() then
+      if victim:IsRealHero() then
         local percentOfMaxHealth = self:GetAbility():GetSpecialValueFor("hero_max_hp_heal") * 0.01
-        local heal = percentOfMaxHealth * victim:GetMaxHealth()
-        unit:Heal(heal,unit)
+        heal = percentOfMaxHealth * victim:GetMaxHealth()
       else
         local percentOfMaxHealth = self:GetAbility():GetSpecialValueFor("non_hero_max_hp_heal") * 0.01
-        local heal = percentOfMaxHealth * victim:GetMaxHealth()
-        unit:Heal(heal,unit)
+        heal = percentOfMaxHealth * victim:GetMaxHealth()
       end
+      unit:Heal(heal,unit)
+      SendOverheadEventMessage(unit,OVERHEAD_ALERT_HEAL,unit,heal,nil)
+      local healParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+      ParticleManager:SetParticleControl(healParticle, 1, Vector(radius, radius, radius))
     end
   end
 end
