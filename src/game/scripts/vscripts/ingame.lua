@@ -119,8 +119,6 @@ function Ingame:OnPlayerLearnedAbility(keys)
     local pID = player:GetPlayerID()
     local hero = player:GetAssignedHero()
     --Detect whether the talent is on the right or left side
-
-    print(hero:GetUnitName()..hero:entindex()   )
      
     if string.find(abilityname, "special_bonus") then
         local firstTalentID
@@ -135,35 +133,35 @@ function Ingame:OnPlayerLearnedAbility(keys)
         if abID-firstTalentID == 0 then
             -- A talent on the right side
             hero.talentOne = 1
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne})
         elseif abID-firstTalentID == 1 then
             -- Left side
             hero.talentOne = 0
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne})
         elseif abID-firstTalentID == 2 then
             -- A talent on the right side
             hero.talentTwo = 1
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
         elseif abID-firstTalentID == 3 then
             -- Left side
             hero.talentTwo = 0
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
         elseif abID-firstTalentID == 4 then
             -- A talent on the right side
             hero.talentThree = 1
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
         elseif abID-firstTalentID == 5 then
             -- Left side
             hero.talentThree = 0
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
         elseif abID-firstTalentID == 6 then
             -- A talent on the right side
             hero.talentFour = 1
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
         elseif abID-firstTalentID == 7 then
             -- Left side
             hero.talentFour = 0
-            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
+            CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
         end
     end
 
@@ -185,7 +183,7 @@ function Ingame:OnHeroLeveledUp(keys)
                 local random = RandomInt(0,1)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
                 hero.talentOne = math.abs(random-1)
-                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
+                CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne})
                 break
             end
         end
@@ -196,7 +194,7 @@ function Ingame:OnHeroLeveledUp(keys)
                 local random = RandomInt(2,3)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
                 hero.talentTwo = math.abs(random-3)
-                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
+                CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
                 break
             end
         end
@@ -208,7 +206,7 @@ function Ingame:OnHeroLeveledUp(keys)
                 local random = RandomInt(4,5)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
                 hero.talentThree = math.abs(random-5)
-                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
+                CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
                 break
             end
         end
@@ -220,7 +218,7 @@ function Ingame:OnHeroLeveledUp(keys)
                 local random = RandomInt(6,7)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
                 hero.talentFour = math.abs(random-7)
-                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
+                CustomNetTables:SetTableValue("heroes",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
                 break
             end
         end 
@@ -342,6 +340,7 @@ function Ingame:onStart()
     end
     
     -- Refresh the selected hero for proper talent display
+
     Timers:CreateTimer(function()
         CustomGameEventManager:Send_ServerToAllClients("get_selection_from_players",{})
         return 0.1
