@@ -2346,7 +2346,7 @@ function Pregame:initOptionSelector()
                 self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
 
                 -- Enable Custom Abilities
-                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
 
                 -- Disable OP abilities
                 self:setOption('lodOptionAdvancedOPAbilities', 1, true)
