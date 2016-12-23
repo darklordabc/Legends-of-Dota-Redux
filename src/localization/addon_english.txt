@@ -3886,4 +3886,11 @@
     
     "DOTA_Tooltip_modifier_jingu_mastery_hitcount"                                  "Jingu Banged"
     "DOTA_Tooltip_modifier_jingu_mastery_hitcount_Description"                      "Amount of hits Monkey King has landed on you, he powers up at 4."
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2" "Blood Bath"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_Description" "This hero revels in combat, regaining health with every unit he kills or whenever an enemy Hero dies around him. The health gained is a percentage of the killed unit's maximum HP."
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_heal_radius" "RADIUS:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_hero_max_hp_heal" "KILLED HERO'S MAX HEALTH AS HEAL:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_non_hero_max_hp_heal" "KILLED NON HERO'S MAX HEALTH AS HEAL:"
 }
