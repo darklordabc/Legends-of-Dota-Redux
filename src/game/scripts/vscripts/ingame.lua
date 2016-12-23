@@ -107,25 +107,85 @@ function Ingame:init()
     
     -- Listen to correct the changed abilitypoints
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+    ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(Ingame, 'OnPlayerLearnedAbility'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
+
+function Ingame:OnPlayerLearnedAbility(keys)
+    local player = EntIndexToHScript(keys.player)
+    local abilityname = keys.abilityname
+    local pID = player:GetPlayerID()
+    local hero = player:GetAssignedHero()
+    --Detect whether the talent is on the right or left side
+
+    print(hero:GetUnitName()..hero:entindex()   )
+     
+    if string.find(abilityname, "special_bonus") then
+        local firstTalentID
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                firstTalentID = i
+                break
+            end
+        end
+        local abID = hero:FindAbilityByName(abilityname):GetAbilityIndex()
+        if abID-firstTalentID == 0 then
+            -- A talent on the right side
+            hero.talentOne = 1
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
+        elseif abID-firstTalentID == 1 then
+            -- Left side
+            hero.talentOne = 0
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
+        elseif abID-firstTalentID == 2 then
+            -- A talent on the right side
+            hero.talentTwo = 1
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
+        elseif abID-firstTalentID == 3 then
+            -- Left side
+            hero.talentTwo = 0
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
+        elseif abID-firstTalentID == 4 then
+            -- A talent on the right side
+            hero.talentThree = 1
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
+        elseif abID-firstTalentID == 5 then
+            -- Left side
+            hero.talentThree = 0
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
+        elseif abID-firstTalentID == 6 then
+            -- A talent on the right side
+            hero.talentFour = 1
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
+        elseif abID-firstTalentID == 7 then
+            -- Left side
+            hero.talentFour = 0
+            CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
+        end
+    end
+
+
+end
+   
 
 function Ingame:OnHeroLeveledUp(keys)
     -- Give abilitypoints to spend on the levels the game doesn't give.
     local pID = keys.player -1    
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
-    
+
     -- Leveling the talents for bots
-    
     if util:isPlayerBot(pID) and keys.level == 10 then
         for i=1,23 do
             local abName = hero:GetAbilityByIndex(i):GetAbilityName()
             if abName and string.find(abName, "special_bonus") then
                 local random = RandomInt(0,1)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                hero.talentOne = math.abs(random-1)
+                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne})
                 break
             end
         end
@@ -135,6 +195,8 @@ function Ingame:OnHeroLeveledUp(keys)
             if abName and string.find(abName, "special_bonus") then
                 local random = RandomInt(2,3)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                hero.talentTwo = math.abs(random-3)
+                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo})
                 break
             end
         end
@@ -145,6 +207,8 @@ function Ingame:OnHeroLeveledUp(keys)
             if abName and string.find(abName, "special_bonus") then
                 local random = RandomInt(4,5)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                hero.talentThree = math.abs(random-5)
+                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree})
                 break
             end
         end
@@ -155,16 +219,19 @@ function Ingame:OnHeroLeveledUp(keys)
             if abName and string.find(abName, "special_bonus") then
                 local random = RandomInt(6,7)
                 hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                hero.talentFour = math.abs(random-7)
+                CustomNetTables:SetTableValue("hero_talents",tostring(hero:entindex()),{talentOne = hero.talentOne, talentTwo = hero.talentTwo, talentThree = hero.talentThree, talentFour = hero.talentFour})
                 break
             end
         end 
     end
-    
+
     local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
 end
+
 
 
 function Ingame:OnPlayerPurchasedItem(keys)
@@ -273,6 +340,12 @@ function Ingame:onStart()
             end, 'disable_all_vision_fix', 1.2)
             
     end
+    
+    -- Refresh the selected hero for proper talent display
+    Timers:CreateTimer(function()
+        CustomGameEventManager:Send_ServerToAllClients("get_selection_from_players",{})
+        return 0.1
+    end, 'get_selection_spam', 0.05)
         
     -- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
     
