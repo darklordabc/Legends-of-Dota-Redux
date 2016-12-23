@@ -10,11 +10,13 @@ All notable changes to this project will be documented in this file.
 - Removed Betrayal and True randoms because they are unstable
 - Bots now use unique team skills by default, its a bit lame for all bots to have invisiblity
 - 'Instant Respawn' mutator setting, now has respawn time at 5% instead of 0.
+- Lowered cooldown and manacast on Neutral ability Toranado
+- Removed Linkens Guard and Roshan Spell Block Redux from the game because they were blocking spells while unlearned
 
 ## 4.0 - Steam Version
 ### Bug Fixing/New Features
 - Added hotfix to stop crazy respawn times and crazy experiencg gain. 
-- Lowered cooldown and manacast on Neutral ability Toranado
+
 
 ### Balance
 - Removed the sound that repeated on Abyssal Vortex. 

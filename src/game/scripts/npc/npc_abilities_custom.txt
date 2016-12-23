@@ -4735,39 +4735,40 @@
         
     }
     
+    // Spell Block Lod And Linkens Guard are removed because they block spells when unlearned with no cooldown
     //=================================================================================================================
     // Roshan: Spell Block
     //=================================================================================================================
-    "roshan_spell_block_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "roshan_spell_block"
-        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "MaxLevel"                      "4"
-    "AbilityTextureName"            "custom/roshan_spell_block_lod"
-
+    //"roshan_spell_block_lod"
+    //{
+    //    // General
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "BaseClass"                     "roshan_spell_block"
+    //    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    //    "MaxLevel"                      "4"
+    //	"AbilityTextureName"            "custom/roshan_spell_block_lod"
+	//	
         // Time
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "70.0 60.0 50.0 35.0"    
-    }
+    //    "AbilityCooldown"               "70.0 60.0 50.0 35.0"    
+    //}
 	
 	//=================================================================================================================
     // Linken's Guard
     //=================================================================================================================
-    "linkens_guard_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "roshan_spell_block"
-        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "MaxLevel"                      "4"
-		"AbilityTextureName"            "custom/linkens_guard_lod"
-
-        // Time
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "13.0 10.0 7.0 4.0"    
-    }
+    //"linkens_guard_lod"
+    //{
+    //    // General
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "BaseClass"                     "roshan_spell_block"
+    //    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    //    "MaxLevel"                      "4"
+	//	"AbilityTextureName"            "custom/linkens_guard_lod"
+	//
+    //    // Time
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "AbilityCooldown"               "13.0 10.0 7.0 4.0"    
+    //}
     
     //=================================================================================================================
     // Golem: Permanent Immolation

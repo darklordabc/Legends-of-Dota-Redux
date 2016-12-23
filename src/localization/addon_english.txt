@@ -1166,8 +1166,8 @@
 	"warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
 	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-    "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-    "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    //"warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    //"warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
@@ -1937,18 +1937,18 @@
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. <font color='#70EA72'>Shorter cooldown and lower mana cost</font>."
 
     // Roshan spell block
-    "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
-    "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
-    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
 	
 	// Linken's Guard
-    "DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
-    "DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
-    "DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
+    //"DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
+    //"DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
 
 	// Warlock Permanent Immolation
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation Redux"
-    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second.<font color='#70EA72'> Deals less damage on earlier levels.</font>"
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second.<font color='#70EA72'> Deals less damage on earlier levels</font>."
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_damage"        "DAMAGE PER SECOND:"
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_radius"        "RADIUS:"
 
