@@ -4,7 +4,7 @@
     [
         "phase_pregame",
         "options",
-        "hero_talents",
+        "heroes",
         "selected_attr",
         "flags",
         "selected_heroes",
