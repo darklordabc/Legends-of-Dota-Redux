@@ -22481,6 +22481,12 @@
 	    "ScriptFile"            "abilities/bloodseeker_blood_bath"
 	    "AbilityTextureName"      "custom/blood_bath_two"
 	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    
+	    "precache"
+	    {
+	      "particle"   "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"          
+
+	    }
 
 	    "AbilitySpecial"
 	    {
