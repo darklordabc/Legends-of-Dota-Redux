@@ -1,6 +1,11 @@
 "DOTAAbilities"
 {
 	
+	"spawnlord_master_freeze"
+	{
+		"MaxLevel"					"1"	
+	}													
+
 	"beastmaster_greater_boar_poison"
 	{
     	"AbilityTextureName"            "custom/beastmaster_greater_boar_poison_lod"

@@ -2,7 +2,24 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.9 - Development Version
+## 4.1 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Removed Betrayal and True randoms because they are unstable
+
+## 4.0 - Steam Version
+### Bug Fixing/New Features
+- Added hotfix to stop crazy respawn times and crazy experiencg gain. 
+
+### Balance
+- Removed the sound that repeated on Abyssal Vortex. 
+- Bots will now level talents, choosen randomly. Not visible in their trees. 
+- Added 3 Neutral Prowler Abilities
+- Fixed Jingu Mastery (Imported from Epic Boss Fight)
+
+## 3.9
 ### Bug Fixing/New Features
 - Added Bot Unique Skills Mutator
 
@@ -14,8 +31,7 @@ All notable changes to this project will be documented in this file.
 - Shadow Poison gives Shadow Poison release. Haunt Gives Reality.
 - Earth Spirit abilities that use stone remnants now give it as a sub ability.
 
-
-## 3.8 - Steam Version
+## 3.8 
 ### Bug Fixing/New Features
 - Added Booster Draft Gamemode
 - Gyro has been removed from game because he causes crashes. 

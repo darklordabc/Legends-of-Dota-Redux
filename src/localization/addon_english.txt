@@ -72,6 +72,7 @@
     "importAndExport_apply"                         "Apply"
     "importAndExport_save"                          "Save"
     "importAndExport_load"                          "Load"
+    "bansImportAndExport_tooltip"                   "Use Save to store your current bans to local storage. Use Load to load your bans. Loading bans is limited to the amount of bans you are allowed, unless your the Host and using Host Bans, in which case you have unlimited bans."
     "importAndExport_tooltip"                       "Use the Save button to save current settings to the cloud. Press load to retrieve them in future games."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
@@ -132,7 +133,7 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	"lodMutatorBotsBuff1"                           "Buff Bots"
+	--"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -449,11 +450,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> <font color='#70EA72'>Redux 4.0 update:</font><br>- Added hotfix to stop crazy respawn times and crazy experiencg gain.<br>- Removed the sound that repeated on Abyssal Vortex.<br>- Bots will now level talents, choosen randomly. Not visible in their trees.<br>- Added 3 Neutral Prowler Abilities<br>- Fixed Jingu Mastery (Imported from Epic Boss Fight)<br> "
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-    "lodHostingNoobMessage"                         "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
+   "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> <font color='#70EA72'>Redux 4.0 update:</font><br>- Added hotfix to stop crazy respawn times and crazy experiencg gain.<br>- Removed the sound that repeated on Abyssal Vortex.<br>- Bots will now level talents, choosen randomly. Not visible in their trees.<br>- Added 3 Neutral Prowler Abilities<br>- Fixed Jingu Mastery (Imported from Epic Boss Fight)<br> "
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -604,6 +605,7 @@
 	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
 	"hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills."
 	"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+    "hintBotTalents"                         "Bots receive 2 extra abilities, they will always choose the best available ability for their hero based on a predefined list. Bots will also level randomly selected talents, however, their talent picks are not shown in their talent trees. "
 
 	// Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -876,8 +878,8 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    "lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
+    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
+    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
   
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
@@ -1166,7 +1168,11 @@
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-
+    "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
@@ -1192,6 +1198,7 @@
 	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
     "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
+    "credit_monkey_king_jingu_mastery_lod"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
 	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -2186,6 +2193,7 @@
     "garden_plot"           "Garden Plot"
     "white_flower"          "White Flower"
     "red_flower"            "Red Flower"
+    "red_flower_OP"         "Scarlet Flower"
     "pink_flower"           "Pink Blossom"
     "blue_flower"           "Blue Blossom"
     "yellow_flower"         "Yellow Daisy"
@@ -3864,12 +3872,25 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_required_hits"              "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_counter_duration"           "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_charges"                    "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_bonus_damage"               "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_lifesteal"                  "%LIFESTEAL:"
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_activated"                                 "Jingu Mastery"
+    "DOTA_Tooltip_modifier_jingu_mastery_activated_Description"                     "Gaining bonus attack damage and lifesteal."
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount"                                  "Jingu Banged"
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount_Description"                      "Amount of hits Monkey King has landed on you, he powers up at 4."
+
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2" "Blood Bath"
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_Description" "This hero revels in combat, regaining health with every unit he kills or whenever an enemy Hero dies around him. The health gained is a percentage of the killed unit's maximum HP."
 
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_heal_radius" "RADIUS:"
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_hero_max_hp_heal" "KILLED HERO'S MAX HEALTH AS HEAL:"
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_non_hero_max_hp_heal" "KILLED NON HERO'S MAX HEALTH AS HEAL:"
-
-
 }

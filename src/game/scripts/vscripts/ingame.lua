@@ -118,6 +118,48 @@ function Ingame:OnHeroLeveledUp(keys)
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
     
+    -- Leveling the talents for bots
+    
+    if util:isPlayerBot(pID) and keys.level == 10 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(0,1)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+    elseif util:isPlayerBot(pID) and keys.level == 15 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(2,3)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+
+    elseif util:isPlayerBot(pID) and keys.level == 20 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(4,5)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+
+    elseif util:isPlayerBot(pID) and keys.level == 25 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(6,7)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end 
+    end
+    
     local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
@@ -261,7 +303,7 @@ function Ingame:onStart()
         cheats = isCheatsEnabled
     }
     network:showCheatPanel(options)
-    if false then
+    if OptionManager:GetOption('allowIngameHeroBuilder') then
         network:enableIngameHeroEditor()
         
         -- Notification to players that they can change builds ingame.
@@ -820,6 +862,15 @@ function Ingame:handleRespawnModifier()
                         if IsValidEntity(hero) and not hero:IsAlive() then
                             local timeLeft = hero:GetRespawnTime()
 
+                            --hotfix start: stop heros from having crazy respawn times
+                            if hero:GetLevel() > 25 then
+                                timeLeft = 4 * hero:GetLevel()
+                            end
+                            if timeLeft > 160 then
+                                timeLeft = 160
+                            end
+                            --hotfix end
+
                             timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
 
                             if timeLeft <= 0 then
@@ -992,6 +1043,13 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
+    --hotfix start: to stop the insane amount of EXP
+    if filterTable.experience > 1000 then
+        filterTable.experience = 440   
+    end 
+    --hotfix end
+    --print("experience gained")
+    --print(filterTable.experience)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)

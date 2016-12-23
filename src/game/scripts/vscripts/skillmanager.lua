@@ -258,13 +258,13 @@ function skillManager:RemoveAllSkills(hero)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
-            if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+            --if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
                 hero:FindAbilityByName(v):SetHidden(true)
-            else
-                if not string.find(v, string.sub(hero:GetUnitName(), 15)) then  -- npc_dota_hero_xx
-                    hero:RemoveAbility(v)
-                end
-            end
+           -- else
+           --     if not string.find(v, string.sub(hero:GetUnitName(), 15)) then  -- npc_dota_hero_xx
+            --        hero:RemoveAbility(v)
+            --    end
+            --end
 		end
     end
 
@@ -648,6 +648,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 -- Enable it
                 if oldAb then
                     oldAb:SetHidden(false)
+                else
+                    hero:RemoveAbility(multV)
                 end
 
 

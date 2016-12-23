@@ -240,7 +240,8 @@ function abyssal_vortex_begin_sound(event)
   local caster = event.caster
   local d = FastDummy(caster:GetAbsOrigin(), caster:GetTeam(), 5, 600)
   caster.dsnd = d
-  d:EmitSound("Hero_Enigma.Black_Hole")
+  --caster.dsnd:StopSound("Hero_Enigma.Black_Hole")
+  --d:EmitSound("Hero_Enigma.Black_Hole")
 end
 
 function abyssal_vortex_stop_sound(event)
