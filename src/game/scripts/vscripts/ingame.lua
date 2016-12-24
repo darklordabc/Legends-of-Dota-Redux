@@ -1204,6 +1204,8 @@ function Ingame:addStrongTowers()
                     end
                 end
                 local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
+                local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+
                 local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
                     if botsEnabled == true then
@@ -1214,6 +1216,14 @@ function Ingame:addStrongTowers()
                         table.insert(towerSkills, skill_name)                                                                               
                     end
                 end
+
+                for skill_name in pairs(oldAbList2) do
+                    if botsEnabled == true then
+                        table.insert(towerSkills, skill_name)                                                                               
+                    end
+                end
+
+
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
                 for _, tower in pairs(towers) do
                     local ability_name = RandomFromTable(towerSkills)

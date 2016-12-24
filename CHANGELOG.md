@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - 'Instant Respawn' mutator setting, now has respawn time at 5% instead of 0.
 - Lowered cooldown and manacast on Neutral ability Toranado
 - Removed Linkens Guard and Roshan Spell Block Redux from the game because they were blocking spells while unlearned
+- Re-enabled Strong Towers having the best tower abilities, they had accidentedly been disabled for towers
 
 ## 4.0 - Steam Version
 ### Bug Fixing/New Features
