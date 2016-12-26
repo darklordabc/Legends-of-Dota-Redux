@@ -4,10 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## 4.2 - Development Version
 ### Bug Fixing/New Features
-- 
+- Fixed sniper always getting shrapnel even if he didnt pick it
+- Fixed Strong towers not getting extra abilities on upgrade
 
 ### Balance
-- Fixed sniper always getting shrapnel even if he didnt pick it
+- 
 
 ## 4.1 - Steam Version
 ### Bug Fixing/New Features
