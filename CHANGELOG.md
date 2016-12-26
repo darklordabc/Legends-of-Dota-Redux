@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed sniper always getting shrapnel even if he didnt pick it
 - Fixed Strong towers not getting extra abilities on upgrade
+- You can now see bot's talents upgrades, view looking at the tree. 
 
 ### Balance
 - 
