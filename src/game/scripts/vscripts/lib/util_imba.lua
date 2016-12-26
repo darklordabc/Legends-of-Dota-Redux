@@ -987,8 +987,8 @@ function UpgradeTower( tower )
     -- Fetch tower abilities
     for i = 0, 15 do
         local current_ability = tower:GetAbilityByIndex(i)
-        if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
-            abilities[#abilities+1] = current_ability
+        if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "imba_tower_ai_controller"and current_ability:GetName() ~= "lone_druid_savage_roar_tower" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
+            abilities[#abilities+1] = current_ability 
         end
     end
 
@@ -1007,8 +1007,13 @@ function UpgradeTower( tower )
 
             -- Else, add a new ability from this game's ability tree
             local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
+            local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+
             local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
+                    table.insert(towerSkills, skill_name)
+                end
+                for skill_name in pairs(oldAbList2) do
                     table.insert(towerSkills, skill_name)
                 end
             local new_ability = RandomFromTable(towerSkills)
