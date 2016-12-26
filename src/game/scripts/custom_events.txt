@@ -605,6 +605,11 @@
     "lodOnCheats"
     {
     }
+    
+     // Display Talents
+    "get_selection_from_players"
+    {
+    }
 
     //////////////////////////
     //ModDotaLib - Local Storage
