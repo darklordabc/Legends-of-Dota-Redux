@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.1 - Development Version
+## 4.2 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Fixed sniper always getting shrapnel even if he didnt pick it
+
+## 4.1 - Steam Version
 ### Bug Fixing/New Features
 - 
 
@@ -14,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Removed Linkens Guard and Roshan Spell Block Redux from the game because they were blocking spells while unlearned
 - Re-enabled Strong Towers having the best tower abilities, they had accidentedly been disabled for towers
 
-## 4.0 - Steam Version
+## 4.0 
 ### Bug Fixing/New Features
 - Added hotfix to stop crazy respawn times and crazy experiencg gain. 
 
