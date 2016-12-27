@@ -3893,4 +3893,11 @@
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_heal_radius" "RADIUS:"
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_hero_max_hp_heal" "KILLED HERO'S MAX HEALTH AS HEAL:"
     "DOTA_Tooltip_ability_bloodseeker_blood_bath2_non_hero_max_hp_heal" "KILLED NON HERO'S MAX HEALTH AS HEAL:"
+
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura"                                     "Reckoning Aura"
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura_description"                         "Bahamut's very presence causes nearby enemies to take more damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura_damage"                              "%INCREASE:"
+
+    "DOTA_Tooltip_modifier_reckoning_aura_eff"                                        "Reckoning Aura"
+    "DOTA_Tooltip_modifier_reckoning_aura_eff_description"                            "Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% more damage."
 }
