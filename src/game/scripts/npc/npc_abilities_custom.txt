@@ -3,6 +3,99 @@
 {
     "Version"       "1"
 
+	"titan_command_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"custom/titan_command_aura"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1100"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//---------------------------------------------------a----------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1100"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_armor"					"3 6 9"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_regen"					"10 20 30"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"0"
+			}
+		}
+		
+		"precache"
+			{
+			"particle"			"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_glow_lv.vpcf"
+			"soundfile" "soundevents\hero_phantom.vsndevts"
+			}
+		
+		"Modifiers"
+			{
+				"modifier_command_aura"
+				{
+					"Passive"			"1"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"Aura"          	"modifier_command_aura_fx"
+					"Aura_Radius"   	"%radius"
+					"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Aura_Types"    	"DOTA_UNIT_TARGET_CREEP"
+					"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+					"Aura_ApplyToCaster" "0"
+				}
+				"modifier_command_aura_fx"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsBuff"			"1"
+					"IsDebuff"			"0"
+					"EffectName" "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_glow_lv.vpcf"
+				
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+						"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
+						"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_regen"
+					}
+				}
+			}
+	}
+
 	"summoner_tesla_coil"
 	{
 		// General

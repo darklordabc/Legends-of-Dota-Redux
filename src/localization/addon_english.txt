@@ -3905,6 +3905,15 @@
     "DOTA_Tooltip_ability_summoner_tesla_coil_slow"                                   "%SLOW:"
     "DOTA_Tooltip_ability_summoner_tesla_coil_damage"                                 "DAMAGE:"
     "DOTA_Tooltip_ability_summoner_tesla_coil_interval"                               "INTERVAL:"
+
+    "DOTA_Tooltip_ability_titan_command_aura"                                         "Titan Command Aura"
+    "DOTA_Tooltip_ability_titan_command_aura_Description"                             "Grants bonuses to nearby creeps.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_titan_command_aura_radius"                                  "RADIUS:"
+    "DOTA_Tooltip_ability_titan_command_aura_bonus_armor"                             "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_titan_command_aura_bonus_regen"                             "BONUS REGEN:"
+
+    "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
+    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."
   
 
 

@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 - You can now see bot's talents upgrades, view looking at the tree. 
 
 ### Balance
-- Added new tower abilities: Reckoning Aura, Frostbite Aura
+- Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura
 - Removed IMBA reality tower ability (cause it sucked)
 
 ## 4.1 - Steam Version
