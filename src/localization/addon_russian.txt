@@ -2502,12 +2502,6 @@
     "DOTA_Tooltip_ability_imba_tower_spacecow_knockback_distance"                       "KNOCKBACK DISTANCE:"
     "DOTA_Tooltip_ability_imba_tower_spacecow_knockback_duration"                       "KNOCKBACK DURATION:"
 
-    "DOTA_Tooltip_ability_imba_tower_reality"                                           "Reality Tower"
-    "DOTA_Tooltip_ability_imba_tower_reality_Description"                               "Destroys any illusions in its area of effect."
-    "DOTA_Tooltip_ability_imba_tower_reality_Note0"                                     "Activates when at least one hero illusion enters its range."
-    "DOTA_Tooltip_ability_imba_tower_reality_Lore"                                      "This tower hates cheap tricks, cheap lies, and imaginary dragons."
-    "DOTA_Tooltip_ability_imba_tower_reality_reality_aoe"                               "EFFECT RADIUS:"
-
     "DOTA_Tooltip_ability_imba_tower_force"                                             "Force Tower"
     "DOTA_Tooltip_ability_imba_tower_force_Description"                                 "Periodically pushes enemies away from itself."
     "DOTA_Tooltip_ability_imba_tower_force_Note0"                                       "Activates when at least four creeps, or one enemy hero, enters its range."

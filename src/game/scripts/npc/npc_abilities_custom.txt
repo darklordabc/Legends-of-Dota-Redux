@@ -4,6 +4,107 @@
     "Version"       "1"
 
     //=====================================================================================================
+	// LICH: Cold Aura
+	//=====================================================================================================
+	"lich_cold_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/lich_cold_aura"		
+		"MaxLevel"						"3"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-10 -15 -20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"1.0 1.5 2.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus"			"3 5 7"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
+			}
+		}
+	
+		"precache"
+		{
+			
+	
+		}
+		
+		"Modifiers"
+			{
+			"lich_cold_aura_mod"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "lich_cold_aura_effect_mod"
+				"Aura_Radius"   "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
+				}
+			}
+			"lich_cold_aura_effect_mod"
+			{
+			"IsHidden" "0"
+			"StatusEffectName" "particles/status_fx/status_effect_frost_lich.vpcf"
+			"StatusEffectPriority" "10"
+			"ThinkInterval" "0.5"
+			"OnIntervalThink"
+				{
+				"Damage"
+					{
+					"Damage" "%damage"
+					"MaxHealthPercentBasedDamage" "1"
+					"Target" "TARGET"
+					"Type" "DAMAGE_TYPE_MAGICAL"
+					}
+				}
+			"Properties"
+				{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+				}
+			}
+			}
+	}
+
+    //=====================================================================================================
 	// BAHAMUT: Reckoning Aura
 	//=====================================================================================================
 	"bahamut_reckoning_aura"
@@ -11116,57 +11217,7 @@
             }
         }
     }
-
-    //=================================================================================================================
-    // Tower ability: Reality
-    //=================================================================================================================
-    "imba_tower_reality"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                             "ability_datadriven"
-        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "terrorblade_reflection"
-        "MaxLevel"                              "3"
-        "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 900 1200"
-        "AbilityCooldown"                       "10 8 6"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "reality_aoe"                   "600 900 1200"
-            }
-        }
-
-        "Modifiers"
-        {
-            "modifier_imba_tower_reality"
-            {
-                "Passive"                       "1"
-                "IsHidden"                      "1"
-
-                "ThinkInterval"                 "0.5"
-
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"            "abilities/tower_abilities.lua"
-                        "Function"              "Reality"
-
-                        "sound_reality"         "DOTA_Item.DiffusalBlade.Activate"
-                    }
-                }
-            }
-        }
-    }
-
+    
     //=================================================================================================================
     // Tower ability: Force
     //=================================================================================================================

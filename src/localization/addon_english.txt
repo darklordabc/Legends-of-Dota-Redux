@@ -133,7 +133,6 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	--"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -878,9 +877,6 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
-  
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
     "statsTotalWins"                                "Total Wins"
@@ -1230,7 +1226,6 @@
 	"credit_imba_tower_nature"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_permabash"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_plague"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_reality"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_salvo"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_self_repair"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_sniper"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -2518,12 +2513,6 @@
 	"DOTA_Tooltip_ability_imba_tower_spacecow_knockback_damage"							"KNOCKBACK DAMAGE:"
 	"DOTA_Tooltip_ability_imba_tower_spacecow_knockback_distance"						"KNOCKBACK DISTANCE:"
 	"DOTA_Tooltip_ability_imba_tower_spacecow_knockback_duration"						"KNOCKBACK DURATION:"
-
-	"DOTA_Tooltip_ability_imba_tower_reality"											"Reality Tower"
-	"DOTA_Tooltip_ability_imba_tower_reality_Description"								"Destroys any illusions in its area of effect."
-	"DOTA_Tooltip_ability_imba_tower_reality_Note0"										"Activates when at least one hero illusion enters its range."
-	"DOTA_Tooltip_ability_imba_tower_reality_Lore"										"This tower hates cheap tricks, cheap lies, and imaginary dragons."
-	"DOTA_Tooltip_ability_imba_tower_reality_reality_aoe"								"EFFECT RADIUS:"
 
 	"DOTA_Tooltip_ability_imba_tower_force"												"Force Tower"
 	"DOTA_Tooltip_ability_imba_tower_force_Description"									"Periodically pushes enemies away from itself."
@@ -3896,8 +3885,23 @@
 
     "DOTA_Tooltip_ability_bahamut_reckoning_aura"                                     "Reckoning Aura"
     "DOTA_Tooltip_ability_bahamut_reckoning_aura_description"                         "Bahamut's very presence causes nearby enemies to take more damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
-    "DOTA_Tooltip_ability_bahamut_reckoning_aura_damage"                              "%INCREASE:"
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura_damage"                              "%EXTRA DAMAGE RECEIVED:"
 
     "DOTA_Tooltip_modifier_reckoning_aura_eff"                                        "Reckoning Aura"
     "DOTA_Tooltip_modifier_reckoning_aura_eff_description"                            "Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% more damage."
+
+    "DOTA_Tooltip_lich_cold_aura_effect_mod"                                        "Frostbite Aura"
+    "DOTA_Tooltip_lich_cold_aura_effect_mod_description"                            "Taking percentage of max health over time and slowed."
+
+    "DOTA_Tooltip_ability_lich_cold_aura" "Frostbite Aura"
+    "DOTA_Tooltip_ability_lich_cold_aura_description" "Enemies within a short radius of the Tower are slowed and take damage over time based upon their max health total.  Passively grants the Tower bonus Armor as well.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_lich_cold_aura_Lore" "Brrr."
+    "DOTA_Tooltip_ability_lich_cold_aura_damage" "%DAMAGE:"
+    "DOTA_Tooltip_ability_lich_cold_aura_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_lich_cold_aura_armor_bonus" "ARMOR:"
+    "DOTA_Tooltip_ability_lich_cold_aura_radius" "RADIUS:"
+
+  
+
+
 }
