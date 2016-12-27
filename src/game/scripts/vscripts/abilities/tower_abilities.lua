@@ -67,6 +67,8 @@ function AIControl( keys )
 								tpScroll:StartCooldown(30)
 							end
 	                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 30})
+	                        enemy:AddExperience(100,0,false,false)
+	                        enemy:ModifyGold(100, false, 0) 
 	                    end
 	                end)
 	            else
