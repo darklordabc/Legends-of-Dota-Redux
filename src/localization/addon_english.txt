@@ -3898,9 +3898,13 @@
     "DOTA_Tooltip_ability_lich_cold_aura_Lore" "Brrr."
     "DOTA_Tooltip_ability_lich_cold_aura_damage" "%DAMAGE:"
     "DOTA_Tooltip_ability_lich_cold_aura_slow" "%SLOW:"
-    "DOTA_Tooltip_ability_lich_cold_aura_armor_bonus" "ARMOR:"
     "DOTA_Tooltip_ability_lich_cold_aura_radius" "RADIUS:"
 
+    "DOTA_Tooltip_ability_summoner_tesla_coil"                                        "Tesla Coil"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_description"                            "Zaps nearby enemies periodically, dealing damage and slowing.  Targets are selected randomly.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_slow"                                   "%SLOW:"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_damage"                                 "DAMAGE:"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_interval"                               "INTERVAL:"
   
 
 
