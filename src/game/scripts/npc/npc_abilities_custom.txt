@@ -55,6 +55,7 @@
 			{
 			"particle" "particles/units/heroes/hero_summoner/tesla_coil_bolt.vpcf"
 			"particle" "particles/units/heroes/hero_summoner/cloaked.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
 			}
 		
 		"Modifiers"
