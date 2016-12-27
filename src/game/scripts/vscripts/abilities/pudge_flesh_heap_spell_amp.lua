@@ -197,37 +197,38 @@ function modifier_flesh_heap_spell_amp:GetModifierTotalDamageOutgoing_Percentage
     return self:GetStackCount() * self.flesh_heap_spell_amp_buff_amount
   end
 end
+if IsServer then
+  function CDOTA_BaseNPC:ShowPopup( data )
+      if not data then return end
 
-function CDOTA_BaseNPC:ShowPopup( data )
-    if not data then return end
+      local target = self
+      if not target then error( "ShowNumber without target" ) end
+      local number = tonumber( data.Number or nil )
+      local pfx = data.Type or "miss"
+      local player = data.Player or false
+      local color = data.Color or Vector( 255, 255, 255 )
+      local duration = tonumber( data.Duration or 1 )
+      local presymbol = tonumber( data.PreSymbol or nil )
+      local postsymbol = tonumber( data.PostSymbol or nil )
 
-    local target = self
-    if not target then error( "ShowNumber without target" ) end
-    local number = tonumber( data.Number or nil )
-    local pfx = data.Type or "miss"
-    local player = data.Player or false
-    local color = data.Color or Vector( 255, 255, 255 )
-    local duration = tonumber( data.Duration or 1 )
-    local presymbol = tonumber( data.PreSymbol or nil )
-    local postsymbol = tonumber( data.PostSymbol or nil )
+      local path = "particles/msg_fx/msg_" .. pfx .. ".vpcf"
+      local particle = ParticleManager:CreateParticle(path, PATTACH_OVERHEAD_FOLLOW, target)
+      if player then
+      local playerent = PlayerResource:GetPlayer( self:GetPlayerID() )
+          local particle = ParticleManager:CreateParticleForPlayer( path, PATTACH_OVERHEAD_FOLLOW, target, playerent)
+      end
 
-    local path = "particles/msg_fx/msg_" .. pfx .. ".vpcf"
-    local particle = ParticleManager:CreateParticle(path, PATTACH_OVERHEAD_FOLLOW, target)
-    if player then
-    local playerent = PlayerResource:GetPlayer( self:GetPlayerID() )
-        local particle = ParticleManager:CreateParticleForPlayer( path, PATTACH_OVERHEAD_FOLLOW, target, playerent)
+    if number then
+      number = math.floor(number+0.5)
     end
-  
-  if number then
-    number = math.floor(number+0.5)
+
+      local digits = 0
+      if number ~= nil then digits = string.len(number) end
+      if presymbol ~= nil then digits = digits + 1 end
+      if postsymbol ~= nil then digits = digits + 1 end
+
+      ParticleManager:SetParticleControl( particle, 1, Vector( presymbol, number, postsymbol ) )
+      ParticleManager:SetParticleControl( particle, 2, Vector( duration, digits, 0 ) )
+      ParticleManager:SetParticleControl( particle, 3, color )
+    end
   end
-
-    local digits = 0
-    if number ~= nil then digits = string.len(number) end
-    if presymbol ~= nil then digits = digits + 1 end
-    if postsymbol ~= nil then digits = digits + 1 end
-
-    ParticleManager:SetParticleControl( particle, 1, Vector( presymbol, number, postsymbol ) )
-    ParticleManager:SetParticleControl( particle, 2, Vector( duration, digits, 0 ) )
-    ParticleManager:SetParticleControl( particle, 3, color )
-end
