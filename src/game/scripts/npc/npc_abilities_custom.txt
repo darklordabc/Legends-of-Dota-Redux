@@ -6030,7 +6030,7 @@
             "07"
             {
                 "var_type"            "FIELD_INTEGER"
-                "spore_movespeed"        "200"
+                "spore_movespeed"        "400"
             }
             "08"
             {

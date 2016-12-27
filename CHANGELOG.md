@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura
 - Removed IMBA reality tower ability (cause it sucked)
 - Bots now recieve 100 gold/exp when being teleported back to base from a tower
+- Explosive spore movement speed increased to 400 from 200
 
 ## 4.1 - Steam Version
 ### Bug Fixing/New Features
