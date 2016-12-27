@@ -1281,7 +1281,8 @@ function Ingame:addStrongTowers()
                 local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
                     if botsEnabled == true then
-                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" then
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
                             table.insert(towerSkills, skill_name)   
                         end
                     else 
