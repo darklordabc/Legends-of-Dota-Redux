@@ -9586,7 +9586,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "tinker_laser"
+        "AbilityTextureName"                    "custom/imba_tower_laser"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -9739,7 +9739,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "shadow_shaman_voodoo"
+        "AbilityTextureName"                    "custom/imba_tower_hex_aura"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -9856,7 +9856,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "antimage_mana_break"
+        "AbilityTextureName"                    "custom/imba_tower_mana_burn"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -10030,7 +10030,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "faceless_void_chronosphere"
+        "AbilityTextureName"                    "custom/imba_tower_chrono"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -10947,7 +10947,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "giant_wolf_critical_strike"
+        "AbilityTextureName"                    "custom/imba_tower_vicious"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -11337,7 +11337,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "silencer_last_word"
+        "AbilityTextureName"                    "custom/imba_tower_mindblast"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -11537,7 +11537,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "furion_sprout"
+        "AbilityTextureName"                    "custom/imba_tower_forest"
         "MaxLevel"                              "4"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "600 650 700 750"
@@ -11593,7 +11593,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "luna_moon_glaive"
+        "AbilityTextureName"                    "custom/imba_tower_split"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
