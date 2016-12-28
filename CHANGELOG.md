@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.2 - Development Version
+## 4.3 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 4.2 - Steam Version
 ### Bug Fixing/New Features
 - Fixed sniper always getting shrapnel even if he didnt pick it
 - Fixed Strong towers not getting extra abilities on upgrade
@@ -19,7 +26,7 @@ All notable changes to this project will be documented in this file.
 - Reworked logic on giving tower abilities: At start of game, tier 1 towers only get weak abiliites, tier 2 get weak or medium abilities, tier 3 and 4 get given strong abilities. When towers are given random abilities, they can get any type of tower. 
 - Bots will now stay in defensive behaviour for the first 8 minutes of the game, even if they are high levels. This is to prevent immediedtly pushing at level 6. 
 
-## 4.1 - Steam Version
+## 4.1 
 ### Bug Fixing/New Features
 - 
 
