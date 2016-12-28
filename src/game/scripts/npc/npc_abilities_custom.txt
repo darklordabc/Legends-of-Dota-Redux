@@ -202,14 +202,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/lich_cold_aura"		
 		"MaxLevel"						"3"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0"
 		
 		// Time		
@@ -242,7 +242,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"900"
+				"radius"						"700"
 			}
 		}
 	
@@ -280,7 +280,7 @@
 					"Damage" "%damage"
 					"MaxHealthPercentBasedDamage" "1"
 					"Target" "TARGET"
-					"Type" "DAMAGE_TYPE_MAGICAL"
+					"Type" "DAMAGE_TYPE_PHYSICAL"
 					}
 				}
 			"Properties"
@@ -11048,7 +11048,7 @@
                     "Damage"
                     {
                         "Target"                "TARGET"
-                        "Type"                  "DAMAGE_TYPE_MAGICAL"
+                        "Type"                  "DAMAGE_TYPE_PHYSICAL"
                         "Damage"                "%damage_per_tick"
                     }
                 }
