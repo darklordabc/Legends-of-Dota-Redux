@@ -352,12 +352,7 @@ function Ingame:onStart()
             
     end
     
-    -- Refresh the selected hero for proper talent display
 
-    Timers:CreateTimer(function()
-        CustomGameEventManager:Send_ServerToAllClients("get_selection_from_players",{})
-        return 0.1
-    end, 'get_selection_spam', 0.05)
         
     -- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
     
