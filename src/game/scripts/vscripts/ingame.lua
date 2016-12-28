@@ -325,6 +325,17 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+
+    -- Force bots to take a defensive pose for the first 5 minutes of the game. This is top stop bots from straight away pushing lanes when they hit level 6
+    Timers:CreateTimer(function ()
+               Convars:SetBool("dota_tutorial_force_bot_defend", true)
+               print("bots will only defend")
+            end, 'forceBotsToDefend', 2)
+
+    Timers:CreateTimer(function ()
+               Convars:SetBool("dota_tutorial_force_bot_defend", false)
+               print("bots will now push")
+            end, 'letBotsAttack', 480)
     
     ---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
     if Convars:GetBool("dota_all_vision") == false then
