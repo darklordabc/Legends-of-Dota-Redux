@@ -11777,10 +11777,10 @@
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                    "custom/imba_tower_forest"
-        "MaxLevel"                              "4"
+        "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 650 700 750"
-        "AbilityCooldown"                       "12 10 8 6"
+        "AbilityCastRange"                      "650 700 750"
+        "AbilityCooldown"                       "10 8 6"
         "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "RequiredLevel"                 "1"
 
@@ -11791,7 +11791,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "tree_radius"                   "600 650 700 750"
+                "tree_radius"                   "650 700 750"
             }
             "02"
             {
