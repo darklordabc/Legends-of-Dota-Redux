@@ -1064,7 +1064,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 local status2,err2 = pcall(function()
 
                     -- Create the hero and validate it
-                    print(heroName)
+                    --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                     end
@@ -5873,7 +5873,7 @@ function Pregame:fixSpawningIssues()
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
-                       print("Perk assigned")
+                       --print("Perk assigned")
                     end
                 end, DoUniqueString('addPerk'), 1.0)
 
@@ -5921,15 +5921,15 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    for i = 0, spawnedUnit:GetAbilityCount() do
-                        if spawnedUnit:GetAbilityByIndex(i) then
+                    --for i = 0, spawnedUnit:GetAbilityCount() do
+                   --     if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
-                            local ability = spawnedUnit:GetAbilityByIndex(i)
-                            if ability then
-                                print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                            end
-                        end
-                    end
+                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
+                         --   if ability then
+                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+                          --  end
+                       -- end
+                    --end
                 end, DoUniqueString('addTalents'), 1.5)
                 
 

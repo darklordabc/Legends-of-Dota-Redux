@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Removed IMBA reality tower ability (cause it sucked)
 - Bots now recieve 100 gold/exp when being teleported back to base from a tower
 - Explosive spore movement speed increased to 400 from 200
+- Reworked logic on giving tower abilities: At start of game, tier 1 towers only get weak abiliites, tier 2 get weak or medium abilities, tier 3 and 4 get given strong abilities. When towers are given random abilities, they can get any type of tower. 
 
 ## 4.1 - Steam Version
 ### Bug Fixing/New Features
