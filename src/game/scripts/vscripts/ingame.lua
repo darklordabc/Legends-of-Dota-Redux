@@ -1275,34 +1275,79 @@ function Ingame:addStrongTowers()
                         botsEnabled = true
                     end
                 end
-                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
-                local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
 
-                local towerSkills = {}
+                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
+                local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
+                local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+
+                local weakTowerSkills = {}
+                local mediumTowerSkills = {}
+                local strongTowerSkills = {}
+
                 for skill_name in pairs(oldAbList) do
                     if botsEnabled == true then
                         -- Disable troublesome abilities that break bots
                         if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
-                            table.insert(towerSkills, skill_name)   
+                            table.insert(weakTowerSkills, skill_name)   
                         end
                     else 
-                        table.insert(towerSkills, skill_name)                                                                               
+                        table.insert(weakTowerSkills, skill_name)                                                                               
                     end
                 end
 
                 for skill_name in pairs(oldAbList2) do
                     if botsEnabled == true then
-                        table.insert(towerSkills, skill_name)                                                                               
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
+                            table.insert(mediumTowerSkills, skill_name)   
+                        end
+                    else 
+                        table.insert(mediumTowerSkills, skill_name)                                                                               
                     end
                 end
 
+                for skill_name in pairs(oldAbList3) do
+                    if botsEnabled == true then
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
+                            table.insert(strongTowerSkills, skill_name)   
+                        end
+                    else 
+                        table.insert(strongTowerSkills, skill_name)                                                                               
+                    end
+                end
 
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
                 for _, tower in pairs(towers) do
-                    local ability_name = RandomFromTable(towerSkills)
-                    tower:AddAbility(ability_name)
-                    local ability = tower:FindAbilityByName(ability_name)
-                    ability:SetLevel(1)
+                    -- If Tower is level 1, give it a weak ability
+                    if tower:GetLevel() == 1 then
+                        local ability_name = RandomFromTable(weakTowerSkills)
+                        tower:AddAbility(ability_name)
+                        local ability = tower:FindAbilityByName(ability_name)
+                        ability:SetLevel(1)
+                    -- If a Tower is level 2, it has 50% chance of getting weak ability, and 50% chance of getting medium ability
+                    elseif tower:GetLevel() == 2 then
+                        local random = RandomInt(1,2)
+                        if random == 1 then 
+                            local ability_name = RandomFromTable(weakTowerSkills)
+                            tower:AddAbility(ability_name)
+                            local ability = tower:FindAbilityByName(ability_name)
+                            ability:SetLevel(1) 
+                        elseif random == 2 then
+                            local ability_name = RandomFromTable(mediumTowerSkills)
+                            tower:AddAbility(ability_name)
+                            local ability = tower:FindAbilityByName(ability_name)
+                            ability:SetLevel(1) 
+                        end  
+                    -- If a Tower is level 3 or higher, the tower will get a strong ability                                       
+                    elseif tower:GetLevel() > 2 then
+                        local ability_name = RandomFromTable(strongTowerSkills)
+                        tower:AddAbility(ability_name)
+                        local ability = tower:FindAbilityByName(ability_name)
+                        ability:SetLevel(1)
+                    end
+
+                   
                 end
         end
     end, nil)

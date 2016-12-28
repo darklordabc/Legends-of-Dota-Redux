@@ -7,11 +7,16 @@ All notable changes to this project will be documented in this file.
 - Fixed sniper always getting shrapnel even if he didnt pick it
 - Fixed Strong towers not getting extra abilities on upgrade
 - You can now see bot's talents upgrades, view looking at the tree. 
+- Added variety of Free Scepter mutator, now it can be set disabled for bots
+- Removed Monkey Business and Sliders mutator
+- Added new mutator that gives all players certain abilities. Different states, give different abilities. 
 
 ### Balance
 - Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura
 - Removed IMBA reality tower ability (cause it sucked)
 - Bots now recieve 100 gold/exp when being teleported back to base from a tower
+- Explosive spore movement speed increased to 400 from 200
+- Reworked logic on giving tower abilities: At start of game, tier 1 towers only get weak abiliites, tier 2 get weak or medium abilities, tier 3 and 4 get given strong abilities. When towers are given random abilities, they can get any type of tower. 
 
 ## 4.1 - Steam Version
 ### Bug Fixing/New Features

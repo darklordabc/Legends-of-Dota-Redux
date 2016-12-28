@@ -1,3 +1,5 @@
+local util = require('util')
+
 function DebugPrint(...)
 	--local spew = Convars:GetInt('barebones_spew') or -1
 	--if spew == -1 and BAREBONES_DEBUG_SPEW then
@@ -1006,14 +1008,15 @@ function UpgradeTower( tower )
         elseif abilities[i] and abilities[i]:GetLevel() == 3 and #abilities == i then
 
             -- Else, add a new ability from this game's ability tree
-            local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
-            local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+            local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
+            local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
+            local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+
+			util:MergeTables(oldAbList, oldAbList2)
+			util:MergeTables(oldAbList, oldAbList3)
 
             local towerSkills = {}
                 for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
-                for skill_name in pairs(oldAbList2) do
                     table.insert(towerSkills, skill_name)
                 end
             local new_ability = RandomFromTable(towerSkills)
