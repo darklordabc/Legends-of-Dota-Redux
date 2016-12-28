@@ -5978,8 +5978,6 @@ function Pregame:fixSpawningIssues()
                 --handleFreeCourier(spawnedUnit)
 
                 -- Handle free scepter stuff, Gyro will not benefit
-                print("scepter status")
-                print(OptionManager:GetOption('freeScepter'))
                 if OptionManager:GetOption('freeScepter') ~= 0 then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
                     if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
