@@ -120,8 +120,12 @@
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
-    "lodMutatorSliders"                             "Sliders"
-    "lodMutatorMonkeyBusiness"                      "Monkey Business"
+    "lodMutatorFreeAbility"                         "Free Ability"
+    "lodMutatorSliders"                             "Unstable Rift"
+    "lodMutatorNothl"                               "Nothl Protection"
+    "lodMutatorMonkeyBusiness"                      "Forest Maker"
+    "lodMutatorFleashHeaps"                      "Random Flesh Heap"
+    "lodMutatorEcho"                                "Arcane Echo"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -365,11 +369,8 @@
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
 
-    "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
-    "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
-
-    "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
-    "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
+    "lodOptionDesExtraAbility"                                   "Free Extra Ability"
+    "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
@@ -2331,6 +2332,12 @@
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Lore"								"Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_duration"					"DURATION:"
 
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one"                                    "Nothl Protection IMBA"
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_passive_duration"                   "DURATION:"
+
 	"DOTA_Tooltip_modifier_imba_shallow_grave"											"Shallow Grave"
 	"DOTA_Tooltip_modifier_imba_shallow_grave_Description"								"Protected from death for the duration"
 
@@ -2559,6 +2566,12 @@
 	"DOTA_Tooltip_ability_imba_tower_forest_Lore"										"An atheist, vegan, crosfitting, environment-friendly activist tower. Has a boyfriend."
 	"DOTA_Tooltip_ability_imba_tower_forest_tree_radius"								"TREE CREATION RADIUS:"
 	"DOTA_Tooltip_ability_imba_tower_forest_tree_duration"								"TREE DURATION:"
+
+    "DOTA_Tooltip_ability_imba_tower_forest_one"                                            "Forest Tower"
+    "DOTA_Tooltip_ability_imba_tower_forest_one_Description"                                "Periodically spawns trees near itself."
+    "DOTA_Tooltip_ability_imba_tower_forest_one_Lore"                                       "An atheist, vegan, crosfitting, environment-friendly activist tower. Has a boyfriend."
+    "DOTA_Tooltip_ability_imba_tower_forest_one_tree_radius"                                "TREE CREATION RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_forest_one_tree_duration"                              "TREE DURATION:"
 
 	"DOTA_Tooltip_ability_imba_tower_split"												"Split Tower"
 	"DOTA_Tooltip_ability_imba_tower_split_Description"									"This tower's attacks have a chance to split, hitting up to %split_amount% additional targets."
@@ -3764,6 +3777,11 @@
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown. <font color='#70EA72'>Shorter cooldown.</font>"
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_delay"                                 "ECHO DELAY:"
+
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one"                                     "Arcane Echo"
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_delay"                                 "ECHO DELAY:"
 
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp"                    "Essence Amp Crit"
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Description"        "Each instance of magical damage you deal has a chance to Crit dealing extra magical damage but consuming more mana. Sources of magic damage that does not have a mana cost will not Crit."

@@ -9865,6 +9865,182 @@
             }
         }
     }
+
+    //=================================================================================================================
+    // DAZZLE's Shallow Grave ONE LEVEL
+    //=================================================================================================================
+    "imba_dazzle_shallow_grave_one"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                        "ability_datadriven"
+        "MaxLevel"                              "1"
+        "AbilityBehavior"                                "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                            "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                "SPELL_IMMUNITY_ALLIES_YES"
+        "FightRecapLevel"                                "1"
+        "AbilityTextureName"                            "custom/dazzle_nothl_protection"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+            "particle"                                    "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+        }
+        
+        // Time        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"                                "50.0"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                "FIELD_INTEGER"
+                "min_health"                            "2"
+            }
+            "02"
+            {
+                "var_type"                                "FIELD_FLOAT"
+                "passive_cooldown_scepter"                "50.0"
+            }
+            "03"
+            {
+                "var_type"                                "FIELD_FLOAT"
+                "passive_duration"                        "3.5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                    "abilities/hero_dazzle.lua"
+                "Function"                        "ShallowGraveDamageTrigger"
+                "modifier_passive"                "modifier_imba_shallow_grave_passive"
+                "modifier_grave"                "modifier_imba_shallow_grave"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_shallow_grave_passive_check"
+            {
+                "Passive"                                "1"
+                "IsHidden"                                "1"
+                "IsBuff"                                "1"
+                "IsPurgable"                            "0"
+
+                "ThinkInterval"                            "0.1"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGravePassive"
+                        "Target"                        "CASTER"
+
+                        "modifier_passive"            "modifier_imba_shallow_grave_passive"
+                        "modifier_cooldown"                    "modifier_imba_shallow_grave_passive_cooldown"
+                    }
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "lib/util_imba.lua" 
+                        "Function"                        "IllusionPassiveRemover"
+
+                        "modifier"                        "modifier_imba_shallow_grave_passive_check"
+                    }
+                }
+            }
+            "modifier_imba_shallow_grave"
+            {
+                "Passive"                                "0"
+                "IsBuff"                                "1"
+                "IsHidden"                                "0"
+                "IsPurgable"                            "0"
+                
+                "EffectName"                            "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+                "EffectAttachType"                        "follow_origin"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"        "%min_health" 
+                }
+
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                    "Hero_Dazzle.Shallow_Grave"
+                        "Target"                         "TARGET"
+                    }
+                }
+
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGraveDamageStorage"
+                        "DamageTaken"                    "%attack_damage"
+                    }
+                }
+            }
+
+            "modifier_imba_shallow_grave_passive"
+            {
+                "Passive"                                "0"
+                "IsBuff"                                "1"
+                "IsHidden"                                "0"
+                "IsPurgable"                            "0"
+
+                "TextureName"                            "dazzle_nothl_protection"
+
+                "Attributes"                            "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGraveDamageCheck"
+                        "modifier_grave"                "modifier_imba_shallow_grave"
+                    }
+                }
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"        "%min_health" 
+                }
+            }
+
+            "modifier_imba_shallow_grave_passive_cooldown"
+            {
+                "IsHidden"                                "0"
+                "IsDebuff"                                "1"
+                "IsPurgable"                            "0"
+                "TextureName"                            "dazzle_shallow_grave_cooldown"
+
+                "Attributes"                            "MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                    "modifier_imba_shallow_grave_passive_check"
+                        "Target"                        "CASTER"
+                    }
+                }
+            }
+        }
+    }
     
     //=================================================================================================================
     // Tower ability: Laser
@@ -11792,6 +11968,62 @@
             {
                 "var_type"                      "FIELD_INTEGER"
                 "tree_radius"                   "650 700 750"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "tree_duration"                 "240"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_tower_forest"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+
+                "ThinkInterval"                 "1.0"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/tower_abilities.lua"
+                        "Function"              "Forest"
+
+                        "sound_tree"            "Tree.GrowBack"
+                    }
+                }
+            }
+        }
+    }
+
+    /=================================================================================================================
+    // Tower ability: Forest One Level
+    //=================================================================================================================
+    "imba_tower_forest_one"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_tower_forest"
+        "MaxLevel"                              "1"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "700"
+        "AbilityCooldown"                       "8"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+        "RequiredLevel"                 "1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "tree_radius"                   "700"
             }
             "02"
             {
@@ -21841,6 +22073,61 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12.0 10.0 8.0 6.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+			
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"50"
+			}
+		}
+		"Modifiers"
+		{
+			"rubick_spell_echo_passive"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_rubick_arcane_echo"
+						"Function"		"SpellEcho"
+						"Target"		"POINT"
+					}
+				}
+			}
+		}
+	}
+
+	"ebf_rubick_arcane_echo_one"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"custom/rubick_spell_echo"
+		"MaxLevel"              "1"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/rubick_spell_echo.vpcf"
+		}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

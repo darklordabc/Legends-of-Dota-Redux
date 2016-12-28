@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file.
 - Fixed Strong towers not getting extra abilities on upgrade
 - You can now see bot's talents upgrades, view looking at the tree. 
 - Added variety of Free Scepter mutator, now it can be set disabled for bots
+- Removed Monkey Business and Sliders mutator
+- Added new mutator that gives all players certain abilities. Different states, give different abilities. 
 
 ### Balance
 - Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura

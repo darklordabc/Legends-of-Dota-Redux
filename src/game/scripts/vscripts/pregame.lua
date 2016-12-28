@@ -398,8 +398,7 @@ function Pregame:loadDefaultSettings()
     -- Mutators disabled by default
     self:setOption('lodOptionDuels', 0, false)
     self:setOption('lodOption322', 0, false)
-    self:setOption('lodOptionSliders', 0, false)
-    self:setOption('lodOptionMonkeyBusiness', 0, false)
+    self:setOption('lodOptionExtraAbility', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
 
     -- Balance Mode Ban List disabled by default
@@ -2359,14 +2358,9 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        -- Other - Teleporation
-        lodOptionSliders = function(value)
-            return value == 0 or value == 1
-        end,
-
-        -- Other - Monkey Business
-        lodOptionMonkeyBusiness = function(value)
-            return value == 0 or value == 1
+        -- Other - Extra ability
+        lodOptionExtraAbility = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3066,8 +3060,7 @@ function Pregame:processOptions()
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
-        OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])
-        OptionManager:SetOption('monkeyBusiness', this.optionStore['lodOptionMonkeyBusiness'])
+        OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
@@ -3248,8 +3241,7 @@ function Pregame:processOptions()
                     ['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
-                    ['Other: Free Teleport Ability'] = this.optionStore['lodOptionSliders'],
-                    ['Other: Monkey Business'] = this.optionStore['lodOptionMonkeyBusiness'],
+                    ['Other: Free Extra Ability'] = this.optionStore['lodOptionExtraAbility'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
@@ -5992,27 +5984,90 @@ function Pregame:fixSpawningIssues()
                 end
 
                 -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
-                Timers:CreateTimer(function()                   
-                    if OptionManager:GetOption('sliders') > 0 then
-                        if not util:isPlayerBot(playerID) then
-                            local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
-                            riftAbility:UpgradeAbility(true)
+                if OptionManager:GetOption('extraAbility') > 0 then
+                    Timers:CreateTimer(function()                   
+                        if OptionManager:GetOption('extraAbility') == 1 then
+                            if not util:isPlayerBot(playerID) then
+                                local extraAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
+                                extraAbility:UpgradeAbility(true)
+                            end
+                        elseif OptionManager:GetOption('extraAbility') == 2 then
+                            local extraAbility = spawnedUnit:AddAbility("imba_dazzle_shallow_grave_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 3 then
+                            local extraAbility = spawnedUnit:AddAbility("imba_tower_forest_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 4 then
+                            local extraAbility = spawnedUnit:AddAbility("ebf_rubick_arcane_echo_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 5 then
+                            local random = RandomInt(1,6)  
+                            local givenAbility = false
+                            -- Randomly choose which flesh heap to give them
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap_str')  then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agi') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                           -- elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then
+                            --    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                            --    extraAbility:SetLevel(4)
+                            --    givenAbility = true
+                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            end
+                            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+                            if not givenAbility then
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap_str') then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agi') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                --elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then
+                                --    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                                 --   extraAbility:SetLevel(4)
+                                 --   givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                end
+                            end
                         end
-                    end
-                 end, DoUniqueString('addRift'), .5)
-
-                -- Give all non-bot heros the a free Mischief ability, it has one level and is upgraded from start
-                Timers:CreateTimer(function()    
-                    if OptionManager:GetOption('monkeyBusiness') > 0 then
-                        print(OptionManager:GetOption('monkeyBusiness'))
-                        if not util:isPlayerBot(playerID) then
-                            local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
-                            mischieftAbility:UpgradeAbility(true)
-                            local mischieftAbility2 = spawnedUnit:AddAbility("monkey_king_untransform")
-                            mischieftAbility2:UpgradeAbility(true)
-                        end
-                    end
-                end, DoUniqueString('addMischief'), .5)
+                    end, DoUniqueString('addExtra'), RandomInt(1,3) )
+                end
 
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
