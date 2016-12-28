@@ -136,7 +136,7 @@ function modifier_flesh_heap_spell_amp:OnDeath(keys)
     return 
   end
 
-  if not keys.unit:IsRealHero() or keys.attacker ~= self:GetParent() then
+  if not keys.unit:IsRealHero() then
     return 
   end
 
@@ -152,6 +152,7 @@ function modifier_flesh_heap_spell_amp:OnDeath(keys)
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
+    print(flDistance.." "..self.fleshHeapRange)
     if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
       if self.nKills == nil then
         self.nKills = 0
@@ -185,50 +186,11 @@ function modifier_flesh_heap_spell_amp:GetModifierTotalDamageOutgoing_Percentage
   end
 
   if IsServer() and attacker == self:GetParent() then
-    if damage > 100 then
-      attacker:ShowPopup( {
-        PostSymbol = 4,
-        Color = Vector( 125, 125, 255 ),
-        Duration = 0.7,
-        Number = self:GetStackCount() * self.flesh_heap_spell_amp_buff_amount * damage * 0.01,
-        pfx = "spell_custom"
-      } )
+    if damage > 100 and self:GetAbility():GetLevel() > 0 then
+      local displayNumber = self:GetStackCount() * self.flesh_heap_spell_amp_buff_amount * damage * 0.01
+      SendOverheadEventMessage(nil,4, attacker, displayNumber, nil)
     end
     return self:GetStackCount() * self.flesh_heap_spell_amp_buff_amount
   end
 end
-if IsServer then
-  function CDOTA_BaseNPC:ShowPopup( data )
-      if not data then return end
 
-      local target = self
-      if not target then error( "ShowNumber without target" ) end
-      local number = tonumber( data.Number or nil )
-      local pfx = data.Type or "miss"
-      local player = data.Player or false
-      local color = data.Color or Vector( 255, 255, 255 )
-      local duration = tonumber( data.Duration or 1 )
-      local presymbol = tonumber( data.PreSymbol or nil )
-      local postsymbol = tonumber( data.PostSymbol or nil )
-
-      local path = "particles/msg_fx/msg_" .. pfx .. ".vpcf"
-      local particle = ParticleManager:CreateParticle(path, PATTACH_OVERHEAD_FOLLOW, target)
-      if player then
-      local playerent = PlayerResource:GetPlayer( self:GetPlayerID() )
-          local particle = ParticleManager:CreateParticleForPlayer( path, PATTACH_OVERHEAD_FOLLOW, target, playerent)
-      end
-
-    if number then
-      number = math.floor(number+0.5)
-    end
-
-      local digits = 0
-      if number ~= nil then digits = string.len(number) end
-      if presymbol ~= nil then digits = digits + 1 end
-      if postsymbol ~= nil then digits = digits + 1 end
-
-      ParticleManager:SetParticleControl( particle, 1, Vector( presymbol, number, postsymbol ) )
-      ParticleManager:SetParticleControl( particle, 2, Vector( duration, digits, 0 ) )
-      ParticleManager:SetParticleControl( particle, 3, color )
-    end
-  end
