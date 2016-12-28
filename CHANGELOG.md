@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - 
 
 ### Balance
-- 
+- Bots will revert to their usual pushing behaviour if a tower is destroyed
 
 ## 4.2 - Steam Version
 ### Bug Fixing/New Features
