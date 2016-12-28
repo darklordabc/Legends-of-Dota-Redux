@@ -391,7 +391,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionSlots', 6)
     self:setOption('lodOptionUlts', 2)
     self:setOption('lodOptionDraftAbilities', 25)
-    self:setOption('lodOptionCreepPower', 0)
+    
     -- Balance Mode disabled by default
     self:setOption('lodOptionBalanceMode', 0, true)
 
@@ -446,6 +446,7 @@ function Pregame:loadDefaultSettings()
 
     -- Do not make stronger towers
     self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+    self:setOption('lodOptionCreepPower', 0)
 
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)

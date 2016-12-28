@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 4.3 - Development Version
 ### Bug Fixing/New Features
-- 
+- Fixed creep power always activating when pressing load
 
 ### Balance
 - Bots will revert to their usual pushing behaviour if a tower is destroyed
