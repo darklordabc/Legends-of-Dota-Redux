@@ -81,7 +81,13 @@ var basicOptions = {
                     },                   
                     {
                         name: 'lodOptionGameSpeedUpgradedUlts',
-                        about: 'lodMutatorUpgradedUlts'
+                        default: {
+                            'lodMutatorUpgradedUlts': 0,
+                        },
+                        states: {
+                            'lodMutatorUpgradedUlts': 1,
+                            'lodMutatorUpgradedUltsNoBots': 2,
+                        }
                     },					
                     {
                         about: 'lodMutatorFastStart',
@@ -701,7 +707,7 @@ var advancedOptions = {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
-                sort: 'toggle',
+                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionNo',
@@ -710,7 +716,11 @@ var advancedOptions = {
                     {
                         text: 'lodOptionYes',
                         value: 1
-                    }
+                    },
+                    {
+                        text: 'lodOptionYesHumansOnly',
+                        value: 2
+                    },
                 ]
             },
             {

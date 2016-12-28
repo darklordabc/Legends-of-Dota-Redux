@@ -102,6 +102,7 @@
 
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
+    "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
 
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
@@ -118,6 +119,7 @@
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
+    "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
     "lodMutatorSliders"                             "Sliders"
     "lodMutatorMonkeyBusiness"                      "Monkey Business"
     "lodMutatorFastStart"                           "Fast Start"

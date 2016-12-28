@@ -2207,7 +2207,7 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2
         end,
 
         -- Game Speed - Stronger Towers
@@ -3056,7 +3056,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('respawnModifierPercentage', this.optionStore['lodOptionGameSpeedRespawnTimePercentage'])
         OptionManager:SetOption('respawnModifierConstant', this.optionStore['lodOptionGameSpeedRespawnTimeConstant'])
         OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
-        OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+        OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'])
         OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
@@ -5978,14 +5978,19 @@ function Pregame:fixSpawningIssues()
                 --handleFreeCourier(spawnedUnit)
 
                 -- Handle free scepter stuff, Gyro will not benefit
-                if OptionManager:GetOption('freeScepter') then
-                    if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
-                        spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                            bonus_all_stats = 0,
-                            bonus_health = 0,
-                            bonus_mana = 0
-                        })
-                    end
+                print("scepter status")
+                print(OptionManager:GetOption('freeScepter'))
+                if OptionManager:GetOption('freeScepter') ~= 0 then
+                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+                    if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
+                        if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+                                bonus_all_stats = 0,
+                                bonus_health = 0,
+                                bonus_mana = 0
+                            })
+                        end
+                     end
                 end
 
                 -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
