@@ -34,42 +34,43 @@ function UpdateTalentTree( msg )
   right.style.opacity= "0"
   left.style.opacity= "0"
   
-  
   var selectedUnit = Players.GetQueryUnit(Players.GetLocalPlayer());
   var selectedUnit = selectedUnit
   if (selectedUnit == -1) { 
     selectedUnit = Players.GetSelectedEntities(Players.GetLocalPlayer())
     selectedUnit=  selectedUnit[0]
   }
+  if (selectedUnit) {
+    var stringSelectedUnit = selectedUnit.toString()
    
-  var stringSelectedUnit = selectedUnit.toString()
- 
-  if (Entities.IsConsideredHero( selectedUnit )) {
-      var talentTable = CustomNetTables.GetTableValue("heroes",stringSelectedUnit)
-      if (talentTable ) { 
-      var talentOne = talentTable["talentOne"] +1
-      var talentTwo = talentTable["talentTwo"] +1 
-      var talentThree = talentTable["talentThree"] +1
-      var talentFour = talentTable["talentFour"] +1
-      if (talentOne) {
-        var StatRow = StatPipContainer.FindChild("StatRow10");
-        var side = StatRow.GetChild(talentOne-1)
-        side.style.opacity = "1"
-      }
-      if (talentTwo) {
-        var StatRow = StatPipContainer.FindChild("StatRow15");
-        var side = StatRow.GetChild(talentTwo-1)
-        side.style.opacity = "1"
-      }
-      if (talentThree) {
-        var StatRow = StatPipContainer.FindChild("StatRow20");
-        var side = StatRow.GetChild(talentThree-1)
-        side.style.opacity = "1"
-      }
-      if (talentFour) {
-        var StatRow = StatPipContainer.FindChild("StatRow25");
-        var side = StatRow.GetChild(talentFour-1)
-        side.style.opacity = "1"
+    if (Entities.IsConsideredHero( selectedUnit )) {
+        var talentTable = CustomNetTables.GetTableValue("heroes",stringSelectedUnit)
+        //$.Msg(talentTable)
+        if (talentTable ) { 
+        var talentOne = talentTable["talentOne"] +1
+        var talentTwo = talentTable["talentTwo"] +1 
+        var talentThree = talentTable["talentThree"] +1
+        var talentFour = talentTable["talentFour"] +1
+        if (talentOne) {
+          var StatRow = StatPipContainer.FindChild("StatRow10");
+          var side = StatRow.GetChild(talentOne-1)
+          side.style.opacity = "1"
+        }
+        if (talentTwo) {
+          var StatRow = StatPipContainer.FindChild("StatRow15");
+          var side = StatRow.GetChild(talentTwo-1)
+          side.style.opacity = "1"
+        }
+        if (talentThree) {
+          var StatRow = StatPipContainer.FindChild("StatRow20");
+          var side = StatRow.GetChild(talentThree-1)
+          side.style.opacity = "1"
+        }
+        if (talentFour) {
+          var StatRow = StatPipContainer.FindChild("StatRow25");
+          var side = StatRow.GetChild(talentFour-1)
+          side.style.opacity = "1"
+        }
       }
     }
   }
@@ -77,6 +78,7 @@ function UpdateTalentTree( msg )
 
 
 (function () {
-    GameEvents.Subscribe( "get_selection_from_players", UpdateTalentTree );
+    GameEvents.Subscribe( "dota_player_update_selected_unit", UpdateTalentTree );
+    GameEvents.Subscribe( "dota_player_update_query_unit", UpdateTalentTree );
 })();
 
