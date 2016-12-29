@@ -35,7 +35,14 @@ function assasinate_deal_damage( keys )
     ApplyDamage(damageTable)
   else
     local units = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("scepter_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-    print(#units)
+    if keys.target:IsCreep() then
+      local damageTable = {
+        victim = keys.target,
+        attacker = keys.caster,
+        damage = keys.caster:GetAttackDamage() * 2.8,  
+        damage_type = DAMAGE_TYPE_PHYSICAL,
+      }
+    end
     for k,v in pairs (units) do
       local damageTable = {
         victim = v,
@@ -43,7 +50,6 @@ function assasinate_deal_damage( keys )
         damage = keys.caster:GetAttackDamage() * 2.8,  
         damage_type = DAMAGE_TYPE_PHYSICAL,
       }
-      print(damageTable.victim:GetUnitName()..damageTable.damage)
       ApplyDamage(damageTable)
     end
   end
