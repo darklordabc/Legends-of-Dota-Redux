@@ -127,4 +127,14 @@ function SU:LoadGlobalAbilitiesStat()
   end)  
 end
 
+function SU:DisconnectPlayer( playerID )
+  local requestParams = {
+    Command = "DisconnectPlayer",
+    SteamID = PlayerResource:GetSteamAccountID(playerID)
+  }
+  
+  SU:SendRequest( requestParams, function(obj)
+  end)  
+end
+
 return SU

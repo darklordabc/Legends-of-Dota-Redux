@@ -41,6 +41,7 @@ require('lib/wearables')
 require('lib/util_aar')
 
 require('chat')
+require('dedicated')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
