@@ -3938,6 +3938,11 @@
     "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
     "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."
   
+    "DOTA_Tooltip_ability_sniper_assassinate_datadriven" "Assassinate"
+    "DOTA_Tooltip_ability_sniper_assassinate_datadriven_Description" "Sniper locks onto a target enemy unit and, after 2 seconds, fires a devastating shot that deals damage at long range, and mini-stuns the target."
+    "DOTA_Tooltip_ability_sniper_assassinate_datadriven_aghanim_description" "Hits all units in 400 units around the target. Damage is changed to 2.8x your attack damage"
 
+    "DOTA_Tooltip_ability_sniper_assassinate_datadriven_damage" "DAMAGE"
+    "DOTA_Tooltip_ability_sniper_assassinate_datadriven_tooltip_range" "RANGE"
 
 }
