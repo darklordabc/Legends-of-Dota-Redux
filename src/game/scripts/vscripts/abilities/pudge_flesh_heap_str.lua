@@ -134,7 +134,7 @@ function modifier_flesh_heap_str:OnDeath(keys)
     return 
   end
 
-  if not keys.unit:IsRealHero() or keys.attacker ~= self:GetParent() then
+  if not keys.unit:IsRealHero() then
     return 
   end
 
