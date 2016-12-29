@@ -45,7 +45,7 @@ require('chat')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
-
+LinkLuaModifier( "modifier_teleport_when_low", "abilities/botAI/modifier_teleport_when_low.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --[[
     Main pregame, selection related handler
@@ -5869,6 +5869,17 @@ function Pregame:fixSpawningIssues()
                        --print("Perk assigned")
                     end
                 end, DoUniqueString('addPerk'), 1.0)
+
+                -- Add modifier to force bots to teleport when health is low. Only in defense mode.
+                
+                    Timers:CreateTimer(function()
+                        if Convars:GetBool('dota_tutorial_force_bot_defend') == true and util:isPlayerBot(playerID) then
+                            if IsValidEntity(spawnedUnit) and Convars:GetBool('dota_tutorial_force_bot_defend') == true  then
+                               spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_teleport_when_low", {})
+                            end
+                        end
+                    end, DoUniqueString('addDefenseHelper'), 30.0)
+                
 
                 -- Add talents
                 Timers:CreateTimer(function()

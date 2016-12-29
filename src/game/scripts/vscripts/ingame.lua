@@ -265,7 +265,7 @@ function Ingame:onStart()
     Timers:CreateTimer(function ()
                Convars:SetBool("dota_tutorial_force_bot_defend", true)
                print("bots will only defend")
-            end, 'forceBotsToDefend', 2)
+            end, 'forceBotsToDefend', 0.5)
 
 
    -- This is an alternative restart condition that reverts bots after 8 minutes, however, a lot damage can be done in 8 minutes.
