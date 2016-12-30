@@ -60,7 +60,7 @@ function skywrath_mage_concussive_break:OnSpellStart()
 
     -- 2nd target for scepter
     if caster:HasScepter() then
-      local unitsScepter = FindUnitsInRadius(caster:GetTeamNumber(), v:GetAbsOrigin(), caster, 700, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
+      local unitsScepter = FindUnitsInRadius(caster:GetTeamNumber(), v:GetAbsOrigin(), caster, 700, targetTeam, targetType, targetFlag, FIND_ANY_ORDER, false)
       for _,unit in pairs(unitsScepter) do 
         local projTable = {
           EffectName = "particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf",
