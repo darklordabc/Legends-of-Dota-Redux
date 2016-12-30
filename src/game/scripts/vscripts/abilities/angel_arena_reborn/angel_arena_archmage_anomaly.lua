@@ -55,7 +55,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_angel_arena_archmage_anomaly_thinker:GetAuraSearchTeam()
-	return self.auraTargetTeam
+	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
 
 --------------------------------------------------------------------------------
