@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.3 - Development Version
+## 4.4 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 4.3 - Steam Version
 ### Bug Fixing/New Features
 - Fixed creep power always activating when pressing load"
 - Hopefully fixed flesh heaps
@@ -13,7 +20,7 @@ All notable changes to this project will be documented in this file.
 - While bots are forced in defensive mode, they will automatically teleport when below 200 HP. This is to compenstate for their suicidal behaviour
 - Improved holy books damage percantage
 
-## 4.2 - Steam Version
+## 4.2 
 ### Bug Fixing/New Features
 - Fixed sniper always getting shrapnel even if he didnt pick it
 - Fixed Strong towers not getting extra abilities on upgrade
