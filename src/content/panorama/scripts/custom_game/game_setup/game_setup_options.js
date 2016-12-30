@@ -359,6 +359,10 @@ var basicOptions = {
                             'lodMutatorFury': 6,
                             'lodMutatorBashwars': 7,
                             'lodMutatorWitch': 8,
+                            'lodMutatorTakeaim': 9,
+                            'lodMutatorAether': 10,
+                            'lodMutatorGreed': 11,
+                            'lodMutatorNether': 12,
                         }
                     },
                     //{
@@ -1301,6 +1305,22 @@ var advancedOptions = {
                     {
                         text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
                         value: 8
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
+                        value: 9
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_aether_range_lod',
+                        value: 10
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
+                        value: 11
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
+                        value: 12
                     }
                 ]
             },

@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed creep power always activating when pressing load"
 - Hopefully fixed flesh heaps
-- Added 3 new settings on the free ability mutator
+- Added 7 new settings on the free ability mutator
 
 ### Balance
 - Bots will revert to their usual pushing behaviour if a tower is destroyed
