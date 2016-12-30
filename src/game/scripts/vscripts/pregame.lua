@@ -5863,7 +5863,9 @@ local _instance = Pregame()
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        SU:SendPlayerBuild( buildBackups )
+        if IsDedicatedServer() then
+          SU:SendPlayerBuild( buildBackups )
+        end
 
         WAVE = 0
 
