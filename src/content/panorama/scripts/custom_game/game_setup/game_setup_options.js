@@ -355,7 +355,10 @@ var basicOptions = {
                             'lodMutatorNothl': 2,
                             'lodMutatorMonkeyBusiness': 3,
                             'lodMutatorEcho': 4,
-                            'lodMutatorFleashHeaps': 5
+                            'lodMutatorFleashHeaps': 5,
+                            'lodMutatorFury': 6,
+                            'lodMutatorBashwars': 7,
+                            'lodMutatorWitch': 8,
                         }
                     },
                     //{
@@ -1286,6 +1289,18 @@ var advancedOptions = {
                     {
                         text: 'lodMutatorFleashHeaps',
                         value: 5
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
+                        value: 6
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
+                        value: 7
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
+                        value: 8
                     }
                 ]
             },

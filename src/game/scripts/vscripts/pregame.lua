@@ -2362,7 +2362,7 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3160,6 +3160,38 @@ function Pregame:processOptions()
             end
         end
 
+        
+        -- All extra ability mutator stuff
+        if this.optionStore['lodOptionExtraAbility'] == 1 then
+            this:banAbility("gemini_unstable_rift")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 2 then
+            this:banAbility("imba_dazzle_shallow_grave")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 3 then
+            this:banAbility("imba_tower_forest")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 4 then
+            this:banAbility("ebf_rubick_arcane_echo")
+            this:banAbility("ebf_rubick_arcane_echo_OP")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 6 then
+            this:banAbility("ursa_fury_swipes")
+            this:banAbility("ursa_fury_swipes_lod")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 7 then
+            this:banAbility("spirit_breaker_greater_bash")
+        end
+
+        if this.optionStore['lodOptionExtraAbility'] == 8 then
+            this:banAbility("death_prophet_witchcraft")
+        end
+        
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
             GameRules:SetUseUniversalShopMode(true)
@@ -6078,7 +6110,17 @@ function Pregame:fixSpawningIssues()
                                     givenAbility = true
                                 end
                             end
+                        elseif OptionManager:GetOption('extraAbility') == 6 then
+                            local extraAbility = spawnedUnit:AddAbility("ursa_fury_swipes")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 7 then
+                            local extraAbility = spawnedUnit:AddAbility("spirit_breaker_greater_bash")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 8 then
+                            local extraAbility = spawnedUnit:AddAbility("death_prophet_witchcraft")
+                            extraAbility:SetLevel(4)
                         end
+
                     end, DoUniqueString('addExtra'), RandomInt(1,3) )
                 end
 
