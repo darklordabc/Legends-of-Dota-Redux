@@ -6014,60 +6014,60 @@ function Pregame:fixSpawningIssues()
                             local extraAbility = spawnedUnit:AddAbility("ebf_rubick_arcane_echo_one")
                             extraAbility:UpgradeAbility(true)
                         elseif OptionManager:GetOption('extraAbility') == 5 then
-                            local random = RandomInt(1,6)  
+                            local random = RandomInt(1,7)  
                             local givenAbility = false
                             -- Randomly choose which flesh heap to give them
-                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap_str')  then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
                             elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then
                                 local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
-                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agi') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
                             elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then
                                 local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
-                           -- elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then
-                            --    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
-                            --    extraAbility:SetLevel(4)
-                            --    givenAbility = true
-                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then
+                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then
                                 local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
-                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then
+                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then
                                 local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
                             end
                             -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                             if not givenAbility then
-                                if not spawnedUnit:HasAbility('pudge_flesh_heap_str') then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
                                 elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then
                                     local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agi') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
                                 elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then
                                     local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
-                                --elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then
-                                --    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
-                                 --   extraAbility:SetLevel(4)
-                                 --   givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
                                 elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then
                                     local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
                                     extraAbility:SetLevel(4)

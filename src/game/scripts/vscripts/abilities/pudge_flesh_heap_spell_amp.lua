@@ -148,11 +148,11 @@ function modifier_flesh_heap_spell_amp:OnDeath(keys)
   local hVictim = keys.unit
 
 
-  if keys.unit:GetTeamNumber() ~= keys.attacker:GetTeamNumber() then
+  if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() and self:GetCaster():GetTeamNumber() == hKiller:GetTeamNumber() then
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
-    print(flDistance.." "..self.fleshHeapRange)
+    
     if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
       if self.nKills == nil then
         self.nKills = 0

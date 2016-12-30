@@ -4324,13 +4324,13 @@
         }
     }
 
-    "pudge_flesh_heap_agi"
+    "pudge_flesh_heap_agility"
         {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                "custom/flesh_heap_agi"
-        "ScriptFile"                        "abilities/pudge_flesh_heap_agi.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_agility.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
