@@ -6004,8 +6004,8 @@ function Pregame:fixSpawningIssues()
                             local random = RandomInt(1,6)  
                             local givenAbility = false
                             -- Randomly choose which flesh heap to give them
-                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap_str')  then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
                             elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then
@@ -6035,8 +6035,8 @@ function Pregame:fixSpawningIssues()
                             end
                             -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                             if not givenAbility then
-                                if not spawnedUnit:HasAbility('pudge_flesh_heap_str') then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_str")
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
                                 elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then
