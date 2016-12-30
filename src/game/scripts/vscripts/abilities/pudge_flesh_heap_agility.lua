@@ -1,15 +1,15 @@
-pudge_flesh_heap_agi = class({})
+pudge_flesh_heap_agility = class({})
 
-LinkLuaModifier( "modifier_flesh_heap_agi", "abilities/pudge_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_flesh_heap_agi", "abilities/pudge_flesh_heap_agility.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
-function pudge_flesh_heap_agi:GetagirinsicModifierName()
+function pudge_flesh_heap_agility:GetIntrinsicModifierName()
   return "modifier_flesh_heap_agi"
 end
 
 --------------------------------------------------------------------------------
 
---[[function pudge_flesh_heap_agi:OnHeroDiedNearby( hVictim, hKiller, kv )
+--[[function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
   if hVictim == nil or hKiller == nil then
     return  
   end
@@ -171,5 +171,5 @@ end
 
 
 function modifier_flesh_heap_agi:GetModifierBonusStats_Agility()
-  return self:GetStackCount() * self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+  return self:GetStackCount() * self.flesh_heap_agi_buff_amount
 end

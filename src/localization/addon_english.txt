@@ -1180,7 +1180,7 @@
 	"credit_force_dash_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_shards_of_truesight_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_pudge_flesh_heap_int"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_pudge_flesh_heap_agi"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_pudge_flesh_heap_agility"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_attack_range"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_move_speed"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_spell_amp"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -1790,10 +1790,10 @@
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
 
     //flesh heap spells
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility"			"Flesh Heap - Agility"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
     

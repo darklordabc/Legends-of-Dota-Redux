@@ -6012,8 +6012,8 @@ function Pregame:fixSpawningIssues()
                                 local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
-                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agi') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
                                 extraAbility:SetLevel(4)
                                 givenAbility = true
                             elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then
@@ -6043,8 +6043,8 @@ function Pregame:fixSpawningIssues()
                                     local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agi') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agi")
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
                                     extraAbility:SetLevel(4)
                                     givenAbility = true
                                 elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then
