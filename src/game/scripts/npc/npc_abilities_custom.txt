@@ -15477,7 +15477,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_percent"		"20 25 30 35"
+				"damage_percent"		"35 40 45 50"
 			}
 		}
 		
