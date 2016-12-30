@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 4.4 - Development Version
 ### Bug Fixing/New Features
-- 
+- Fixed Dazzle always getting shallow grave
 
 ### Balance
 - 

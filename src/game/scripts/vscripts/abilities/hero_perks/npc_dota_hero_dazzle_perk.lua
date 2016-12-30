@@ -34,7 +34,7 @@ function modifier_npc_dota_hero_dazzle_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
 
-        if caster:HasAbility("dazzle_shallow_grave") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 then
+        if caster:HasAbility("dazzle_shallow_grave") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 and not caster:FindAbilityByName("dazzle_shallow_grave"):IsHidden() then
 	        self.grave = caster:AddAbility("dazzle_shallow_grave_perk")
 	        self.grave:SetHidden(true)
 	        caster:SwapAbilities("dazzle_shallow_grave","dazzle_shallow_grave_perk",false,true)
