@@ -1286,7 +1286,7 @@ function Ingame:addStrongTowers()
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
-        -- If a tower is destroyed, there is a 1 out of 3 chance for bots to switch/stay in lategame behaviour. There is a 1/3 chance they will switch back to early game behaviour, but only for 3 minutes, afterwhich they retunr to lategame/ 
+        -- If a tower is destroyed, there is a 2/3 chance for bots to switch/stay in lategame behaviour. There is a 1/3 chance they will switch back to early game behaviour (but only for 3 minutes). 
         local switchAI = (RandomInt(1,3))
         if switchAI == 1 then
             --print("bots are in early game behaviour")
