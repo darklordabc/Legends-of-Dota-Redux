@@ -263,16 +263,9 @@ function Ingame:onStart()
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
-               Convars:SetBool("dota_tutorial_force_bot_defend", true)
-               print("bots will only defend")
+               GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+               --print("bots will only defend")
             end, 'forceBotsToDefend', 0.5)
-
-
-   -- This is an alternative restart condition that reverts bots after 8 minutes, however, a lot damage can be done in 8 minutes.
-   -- Timers:CreateTimer(function ()
-   --            Convars:SetBool("dota_tutorial_force_bot_defend", false)
-   --            print("bots will now push")
-   --         end, 'letBotsAttack', 480)
     
     ---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
     if Convars:GetBool("dota_all_vision") == false then
@@ -1293,8 +1286,19 @@ function Ingame:addStrongTowers()
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
-        -- If a tower is destroyed, return bots to their normal behaviour
-        Convars:SetBool("dota_tutorial_force_bot_defend", false)
+        -- If a tower is destroyed, there is a 1 out of 3 chance for bots to switch/stay in lategame behaviour. There is a 1/3 chance they will switch back to early game behaviour, but only for 3 minutes, afterwhich they retunr to lategame/ 
+        local switchAI = (RandomInt(1,3))
+        if switchAI == 1 then
+            --print("bots are in early game behaviour")
+            GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+            Timers:CreateTimer(function()
+                GameRules:GetGameModeEntity():SetBotsInLateGame(true)
+                --print("bots have gone back to pushing")
+            end, DoUniqueString('makesBotsLateGameAgain'), 180)
+        else
+            --print("bots are in late game behaviour")
+            GameRules:GetGameModeEntity():SetBotsInLateGame(true)        
+        end
         
         if OptionManager:GetOption('strongTowers') then
             local tower_team = keys.teamnumber

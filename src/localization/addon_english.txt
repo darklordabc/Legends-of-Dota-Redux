@@ -3943,10 +3943,6 @@
     "DOTA_Tooltip_ability_titan_command_aura_bonus_regen"                             "BONUS REGEN:"
 
     "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
-    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."
-    
-    "DOTA_Tooltip_modifier_teleport_when_low"                         "Bot Defensive Buff"
-    "DOTA_Tooltip_modifier_teleport_when_low_Description"             "Bots will remain in defensive mode until the first tower is destroyed. Bots will automatically teleport back to base on low health. The teleport aspect of this buff will remain active until the bot dies after the first tower is destroyed."
-
+    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."  
 
 }

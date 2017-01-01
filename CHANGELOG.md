@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 4.4 - Development Version
 ### Bug Fixing/New Features
 - Fixed Dazzle always getting shallow grave
+- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
 
 ### Balance
 - 
