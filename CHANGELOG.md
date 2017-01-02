@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed Dazzle always getting shallow grave
 - Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
+- Upgraded concussive break to add its new aghs component
 
 ### Balance
 - 
