@@ -6035,7 +6035,10 @@ function Pregame:fixSpawningIssues()
                     Timers:CreateTimer(function()
                             if IsValidEntity(spawnedUnit) then
                                 -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
-                                if (spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge") or not util:isPlayerBot(playerID) then
+                                if util:isPlayerBot(playerID) == false then
+                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                                    globalCastRangeAbility:UpgradeAbility(true)
+                                elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
                                     local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
                                     globalCastRangeAbility:UpgradeAbility(true)
                                 end
@@ -6147,7 +6150,7 @@ function Pregame:fixSpawningIssues()
                             local extraAbility = spawnedUnit:AddAbility("alchemist_goblins_greed")
                             extraAbility:SetLevel(4)
                         elseif OptionManager:GetOption('extraAbility') == 12 then
-                            local extraAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                            local extraAbility = spawnedUnit:AddAbility("angel_arena_nether_ritual")
                             extraAbility:SetLevel(3)
                         end
 
