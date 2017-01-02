@@ -4,6 +4,924 @@
     "Version"       "1"
 
     //=================================================================================================================
+	// DAZZLE's Poison Touch
+	//=================================================================================================================
+	"imba_dazzle_poison_touch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"										"ability_datadriven"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"							"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"								"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"								"1"
+		"AbilityTextureName"							"dazzle_poison_touch"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"									"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+			"particle"									"particles/status_fx/status_effect_poison_dazzle.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"								"750"
+		"AbilityCastPoint"								"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"								"13 11 9 7"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"								"50"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"slow_duration"							"7"
+			}
+			"02"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"initial_slow"							"-20"
+			}
+			"03"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"slow_per_hit"							"-10 -12 -14 -16"
+			}
+			"04"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"stun_duration"							"1.0"
+			}
+			"05"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"projectile_speed"						"1300"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"damage"								"20 30 40 50"
+			}
+			"07"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"stun_damage"							"40 60 80 100"
+			}
+			"08"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"tick_interval"							"1.0"
+			}
+			"09"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"stacks_to_stun"						"8 7 6 5"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"							"Hero_Dazzle.Poison_Cast"
+				"Target" 								"CASTER"
+			}
+
+			"TrackingProjectile"
+			{
+				"Target"           						"TARGET"
+				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
+				"Dodgeable"								"1"
+				"ProvidesVision"						"0"
+				"MoveSpeed"        						"%projectile_speed"
+				"SourceAttachment"						"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"								"1"
+			
+			"FireSound"
+			{
+				"EffectName"							"Hero_Dazzle.Poison_Touch"
+				"Target" 								"TARGET"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"							"abilities/dota imba/hero_dazzle.lua"
+				"Function"								"PoisonTouchHit"
+				"Target"								"TARGET"
+
+				"modifier_debuff"						"modifier_imba_poison_touch_base_slow"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_poison_touch_base_slow"
+			{
+				"Passive"								"0"
+				"IsDebuff"								"1"
+				"IsHidden"								"0"
+				"IsPurgable"							"1"
+
+				"Duration"								"%slow_duration"
+
+				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+				"EffectAttachType"						"follow_origin"
+
+				"ThinkInterval"							"%tick_interval"
+
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"						"TARGET"
+						"Type"							"DAMAGE_TYPE_PHYSICAL"
+						"Damage"						"%damage"
+					}
+				}
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"PoisonTouch"
+						"Target"						"TARGET"
+
+						"modifier_slow_stack"			"modifier_imba_poison_touch_slow_stack"
+						"modifier_stun"					"modifier_imba_poison_touch_stun"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"PoisonTouchEnd"
+						"Target"						"TARGET"
+
+						"modifier_slow_stack"			"modifier_imba_poison_touch_slow_stack"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%initial_slow" 
+				}
+			}
+
+			"modifier_imba_poison_touch_slow_stack"
+			{
+				"Passive"								"0"
+				"IsHidden"								"1"
+				"IsDebuff"								"1"
+				"IsPurgable"							"0"
+
+				"StatusEffectName"						"particles/status_fx/status_effect_poison_dazzle.vpcf"
+				"StatusEffectPriority"					"10"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_per_hit" 
+				}
+			}
+
+			"modifier_imba_poison_touch_stun"
+			{
+				"Passive"								"0"
+				"IsHidden"								"1"
+				"IsDebuff"								"1"
+				"IsPurgable"							"0"
+
+				"StatusEffectName"						"particles/status_fx/status_effect_poison_dazzle.vpcf"
+				"StatusEffectPriority"					"10"
+
+				"Duration"								"%stun_duration"
+
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"						"TARGET"
+						"Type"							"DAMAGE_TYPE_PHYSICAL"
+						"Damage"						"%stun_damage"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// DAZZLE's Shallow Grave 
+	//=================================================================================================================
+	"imba_dazzle_shallow_grave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"										"ability_datadriven"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"								"SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel"								"1"
+		"AbilityTextureName"							"dazzle_shallow_grave"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"									"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+			"particle"									"particles/hero/dazzle/dazzle_shallow_grave_3.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"								"550 700 850 1000"
+		"AbilityCastPoint"								"0.35"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"								"30 25 20 15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"								"150"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"duration_tooltip"						"5.0"
+			}
+			"02"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"range_tooltip"							"550 700 850 1000"
+			}
+			"03"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"min_health"							"1"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"passive_cooldown"						"90.0"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"passive_duration"						"3"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"							"modifier_imba_shallow_grave"
+				"Target" 								"TARGET"
+
+				"Duration"								"%duration_tooltip"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"							"modifier_imba_shallow_grave_particle"
+				"Target" 								"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_shallow_grave_passive_check"
+			{
+				"Passive"								"1"
+				"IsHidden"								"1"
+				"IsBuff"								"1"
+				"IsPurgable"							"0"
+
+				"ThinkInterval"							"0.1"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"ShallowGravePassive"
+						"Target"						"CASTER"
+
+						"modifier_passive"				"modifier_imba_shallow_grave_passive"
+						"modifier_cooldown"				"modifier_imba_shallow_grave_passive_cooldown"
+					}
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"internal/util.lua"
+						"Function"						"IllusionPassiveRemover"
+
+						"modifier"						"modifier_imba_shallow_grave_passive_check"
+					}
+				}
+			}
+
+			"modifier_imba_shallow_grave_particle"
+			{
+				"Passive"								"0"
+				"IsBuff"								"1"
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"EffectName"							"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+				"EffectAttachType"						"follow_origin"
+
+				"Duration"								"%duration_tooltip"
+			}
+
+			"modifier_imba_shallow_grave_particle_short"
+			{
+				"Passive"								"0"
+				"IsBuff"								"1"
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"EffectName"							"particles/hero/dazzle/dazzle_shallow_grave_3.vpcf"
+				"EffectAttachType"						"follow_origin"
+
+				"Duration"								"%passive_duration"
+			}
+
+			"modifier_imba_shallow_grave"
+			{
+				"Passive"								"0"
+				"IsBuff"								"1"
+				"IsHidden"								"0"
+				"IsPurgable"							"0"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MIN_HEALTH"		"%min_health" 
+				}
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"					"Hero_Dazzle.Shallow_Grave"
+						"Target" 						"TARGET"
+					}
+				}
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"ShallowGraveDamageStorage"
+						"DamageTaken"					"%attack_damage"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"ShallowGraveHeal"
+					}
+				}
+			}
+
+			"modifier_imba_shallow_grave_passive"
+			{
+				"Passive"								"0"
+				"IsBuff"								"1"
+				"IsHidden"								"0"
+				"IsPurgable"							"0"
+
+				"TextureName"							"custom/dazzle_nothl_protection"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"ShallowGraveDamageCheck"
+
+						"modifier_grave"				"modifier_imba_shallow_grave"
+						"modifier_passive"				"modifier_imba_shallow_grave_passive"
+						"modifier_cooldown"				"modifier_imba_shallow_grave_passive_cooldown"
+						"modifier_particle_short"		"modifier_imba_shallow_grave_particle_short"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MIN_HEALTH"		"%min_health" 
+				}
+			}
+
+			"modifier_imba_shallow_grave_passive_cooldown"
+			{
+				"IsHidden"								"0"
+				"IsDebuff"								"1"
+				"IsPurgable"							"0"
+				"TextureName"							"custom/dazzle_shallow_grave_cooldown"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_PERMANENT"
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"					"modifier_imba_shallow_grave_passive_check"
+						"Target"						"CASTER"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// DAZZLE's Shadow Wave
+	//=================================================================================================================
+	"imba_dazzle_shadow_wave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"										"ability_datadriven"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"							"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"								"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"							"dazzle_shadow_wave"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"									"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"								"900"
+		"AbilityCastPoint"								"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"								"12 10 8 6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"								"90 100 110 120"
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bounce_radius"							"625"
+			}
+			"02"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"damage_radius"							"225"
+			}
+			"03"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"max_targets"							"100"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"damage"								"80 100 120 140"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"armor_bonus"							"2 3 4 5"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"armor_reduction"						"-0.8 -1.2 -1.6 -2.0"
+			}
+			"07"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"duration"								"7"
+			}
+			"08"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_healing"							"7 8 9 10"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"							"Hero_Dazzle.Shadow_Wave"
+				"Target" 								"CASTER"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        					"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+				"EffectAttachType"  					"start_at_customorigin"
+				
+				"ControlPointEntities"
+				{
+					"CASTER"							"attach_attack1"
+					"TARGET"							"follow_origin"
+				}
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"							"abilities/dota imba/hero_dazzle.lua"
+				"Function"								"ShadowWave"
+
+				"armor_bonus"							"modifier_imba_shadow_wave_armor_bonus"
+				"armor_reduction"						"modifier_imba_shadow_wave_armor_reduction"
+				"shadow_wave_particle"					"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+				"damage_particle"						"particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_shadow_wave_armor_bonus"
+			{
+				"IsHidden"								"0"
+				"IsBuff"								"1"
+				"IsPurgable"							"1"
+				"Duration"								"%duration"
+
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+				}
+			}
+
+			"modifier_imba_shadow_wave_armor_reduction"
+			{
+				"IsHidden"								"0"
+				"IsDebuff"								"1"
+				"IsPurgable"							"1"
+				"Duration"								"%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// DAZZLE's Weave
+	//=================================================================================================================
+	"imba_dazzle_weave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"										"ability_datadriven"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"									"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"								"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"								"2"
+		"AbilityTextureName"							"dazzle_weave"
+		"AOERadius"										"%radius"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"									"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_armor_friend.vpcf"
+			"particle"									"particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"								"2000"
+		"AbilityCastPoint"								"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"								"40"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"								"100"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"radius"								"575 675 775"
+			}
+			"02"
+			{	
+				"var_type"								"FIELD_INTEGER"
+				"vision"								"800"
+			}
+			"03"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"armor_per_second"						"0.75 1 1.25"
+			}
+			"04"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"duration"								"24.0"
+			}
+			"05"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"armor_per_second_scepter"				"1.25 1.5 1.75"
+			}
+			"06"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"negative_armor_per_second"				"-0.75 -1 -1.25"
+			}
+			"07"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"negative_armor_per_second_scepter"		"-1.25 -1.5 -1.75"
+			}
+			"08"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"tick_interval"							"1.0"
+			}
+			"09"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"vision_duration"						"3.0"
+			}
+			"10"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"armor_bonus"							"3 5 7"
+			}
+			"11"
+			{	
+				"var_type"								"FIELD_FLOAT"
+				"negative_armor"						"-3 -5 -7"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"							"Hero_Dazzle.Weave"
+				"Target" 								"CASTER"
+			}
+
+			"FireEffect"
+			{
+				"EffectName"        					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+				"EffectAttachType"  					"start_at_customorigin"
+				"TargetPoint"            				"POINT"
+
+				"ControlPoints"
+				{
+					"01"								"%radius 0 0"
+				}
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"							"abilities/dota imba/hero_dazzle.lua"
+				"Function"								"WeaveVision"
+				"Target"								"POINT"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"							"abilities/dota imba/hero_dazzle.lua"
+				"Function"								"Weave"
+				"Target"								"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_weave_friendly"
+			{
+				"Passive"								"0"
+				"IsHidden"								"0"
+				"IsBuff"								"1"
+				"IsPurgable"							"0"
+				"Duration"								"%duration"
+
+		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveParticle"
+
+						"particle_name"					"particles/units/heroes/hero_dazzle/dazzle_armor_friend.vpcf"
+						"modifier"						"modifier_imba_weave_friendly"
+					}
+				}
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+		
+				"ThinkInterval"  						"%tick_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveInterval"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveRemoveBuff"
+						
+						"modifier"						"modifier_imba_weave_positive"
+						"modifier_scepter"				"modifier_imba_weave_positive_scepter"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"EndWeaveParticle"
+
+						"modifier"						"modifier_imba_weave_friendly"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus" 
+				}
+			}
+
+			"modifier_imba_weave_enemy"
+			{
+				"IsDebuff"								"1"
+				"IsHidden"								"0"
+				"IsPurgable"							"0"
+				"Duration"								"%duration"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveParticle"
+
+						"particle_name"					"particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
+						"modifier"						"modifier_imba_weave_enemy"
+					}
+				}
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"ThinkInterval"  						"%tick_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveInterval"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"WeaveRemoveBuff"
+
+						"modifier"						"modifier_imba_weave_negative"
+						"modifier_scepter"				"modifier_imba_weave_negative_scepter"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"					"abilities/dota imba/hero_dazzle.lua"
+						"Function"						"EndWeaveParticle"
+						"modifier"						"modifier_imba_weave_enemy"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor" 
+				}
+			}
+
+			"modifier_imba_weave_positive"
+			{
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_per_second" 
+				}
+			}
+
+			"modifier_imba_weave_positive_scepter"
+			{
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_per_second_scepter" 
+				}
+			}
+
+			"modifier_imba_weave_negative"
+			{
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor_per_second" 
+				}
+			}
+
+			"modifier_imba_weave_negative_scepter"
+			{
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"Attributes"							"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor_per_second_scepter" 
+				}
+			}
+		}
+	}
+
+    //=================================================================================================================
 	// Crystal Maiden's Crystal Nova
 	//=================================================================================================================
 	"imba_crystal_maiden_crystal_nova"
@@ -15475,7 +16393,7 @@
     //=================================================================================================================
     // DAZZLE's Shallow Grave 
     //=================================================================================================================
-    "imba_dazzle_shallow_grave"
+    "imba_dazzle_shallow_grave_passive"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
@@ -15650,7 +16568,7 @@
     //=================================================================================================================
     // DAZZLE's Shallow Grave ONE LEVEL
     //=================================================================================================================
-    "imba_dazzle_shallow_grave_one"
+    "imba_dazzle_shallow_grave_passive_one"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
