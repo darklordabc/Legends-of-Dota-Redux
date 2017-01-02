@@ -379,6 +379,12 @@
     "lodOptionDesExtraAbility"                                   "Free Extra Ability"
     "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
+    "lodOptionGlobalCast"                                 "Global Cast Range"
+    "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
+    "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
+    "lodMutatorGlobalCast"                                 "Global Cast Range"
+    
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"

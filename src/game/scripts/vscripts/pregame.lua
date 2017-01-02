@@ -400,6 +400,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOption322', 0, false)
     self:setOption('lodOptionExtraAbility', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
+    self:setOption('lodOptionGlobalCast', 0, false)
 
     -- Balance Mode Ban List disabled by default
     self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -2359,6 +2360,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Other - Global Cast Range
+        lodOptionGlobalCast = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12
@@ -3062,6 +3068,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
+        OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
 
@@ -3187,6 +3194,15 @@ function Pregame:processOptions()
         elseif this.optionStore['lodOptionExtraAbility'] == 12 then
             this:banAbility("angel_arena_nether_ritual")
         end
+
+        -- If Global Cast Range is enabled, disable certain abilities that are troublesome with global cast range
+        if this.optionStore['lodOptionGlobalCast'] == 1 then
+            this:banAbility("aether_range_lod")
+            this:banAbility("aether_range_lod_OP")
+            this:banAbility("pudge_meat_hook")
+            this:banAbility("earthshaker_fissure")
+        end
+
         
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
@@ -3272,6 +3288,7 @@ function Pregame:processOptions()
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
                     ['Other: Free Extra Ability'] = this.optionStore['lodOptionExtraAbility'],
+                    ['Other: Global Cast Range'] = this.optionStore['lodOptionGlobalCast'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
@@ -6013,7 +6030,20 @@ function Pregame:fixSpawningIssues()
                      end
                 end
 
-                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
+                -- Give out the global cast range ability
+                if OptionManager:GetOption('globalCastRange') == 1 then
+                    Timers:CreateTimer(function()
+                            if IsValidEntity(spawnedUnit) then
+                                -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
+                                if (spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge") or not util:isPlayerBot(playerID) then
+                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                                    globalCastRangeAbility:UpgradeAbility(true)
+                                end
+                            end
+                        end, DoUniqueString('giveGlobalCastRange'), 1)
+                end
+
+                -- Give out the free extra abilities
                 if OptionManager:GetOption('extraAbility') > 0 then
                     Timers:CreateTimer(function()                   
                         if OptionManager:GetOption('extraAbility') == 1 then
@@ -6108,13 +6138,16 @@ function Pregame:fixSpawningIssues()
                             local extraAbility = spawnedUnit:AddAbility("sniper_take_aim")
                             extraAbility:SetLevel(4)
                         elseif OptionManager:GetOption('extraAbility') == 10 then
-                            local extraAbility = spawnedUnit:AddAbility("aether_range_lod")
-                            extraAbility:SetLevel(4)
+                            --If global cast range mutator is on, dont added this ability as it overrides it
+                            if OptionManager:GetOption('globalCastRange') == 0 then
+                                local extraAbility = spawnedUnit:AddAbility("aether_range_lod")
+                                extraAbility:SetLevel(4)
+                            end
                         elseif OptionManager:GetOption('extraAbility') == 11 then
                             local extraAbility = spawnedUnit:AddAbility("alchemist_goblins_greed")
                             extraAbility:SetLevel(4)
                         elseif OptionManager:GetOption('extraAbility') == 12 then
-                            local extraAbility = spawnedUnit:AddAbility("angel_arena_nether_ritual")
+                            local extraAbility = spawnedUnit:AddAbility("aether_range_lod_global")
                             extraAbility:SetLevel(3)
                         end
 
