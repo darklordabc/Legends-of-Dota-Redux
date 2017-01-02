@@ -110,4 +110,581 @@
             }
         }
     }
+    "item_rune_bounty"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "item_winter_stocking"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_goldxp.vmdl"
+  }
+  "item_rune_doubledamage"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "item_winter_stocking"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_doubledamage01.vmdl"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "45"
+      }
+    }
+  }
+  "item_rune_haste"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "rune_haste"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_haste01.vmdl"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "22"
+      }
+    }
+  }
+  "item_rune_illusion"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "rune_illusion"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_illusion01.vmdl"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "70"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "illusions"    "2"
+      }
+       "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "incoming_damage_melee"    "200"
+      }
+       "04"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "incoming_damage_ranged"    "300"
+      }
+       "05"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "outgoing_damage"    "35"
+      }
+    }
+  }
+  "item_rune_invis"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "rune_invis"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_invisibility01.vmdl"
+
+     "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "45"
+      }
+    }
+  }
+  "item_rune_regen"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "item_winter_stocking"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_regeneration01.vmdl"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "30"
+      }
+    }
+
+  }
+  "item_rune_arcane"
+  
+  {
+    "BaseClass"                     "item_datadriven"
+    "AbilityTextureName"            "item_winter_stocking"
+    "ItemPurchaseable"              "0"
+    "ItemCastOnPickup" "1"
+    "Model"           "models/props_gameplay/rune_arcane.vmdl"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "50"
+      }
+    }
+  }
+
+
+  "item_bottle_3" // full
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle"
+    "ItemPurchaseable"              "1"
+    "Model"                       "models/props_gameplay/bottle_blue.vmdl"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "duration"    "3.0"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "health_restore"    "90"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_restore"      "60"
+      } 
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+
+  "item_bottle_2" // 2/3
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_2"
+    "ItemPurchaseable"              "0"
+    "Model"           "models/props_gameplay/bottle_blue.vmdl"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "duration"    "3.0"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "health_restore"    "90"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_restore"      "60"
+      } 
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+    "Modifiers"
+    {
+      "modifier_check_fountain_bottle"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+    
+        "ThinkInterval"  "0.1"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "bottle.lua"
+            "Function"    "CheckRefillFountain"
+          }
+        }
+      }
+    }
+  }
+
+  "item_bottle_1" // 1/3
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_1"
+    "ItemPurchaseable"              "0"
+    "Model"           "models/props_gameplay/bottle_blue.vmdl"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "duration"    "3.0"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "health_restore"    "90"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_restore"      "60"
+      } 
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+    "Modifiers"
+    {
+      "modifier_check_fountain_bottle"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+    
+        "ThinkInterval"  "0.1"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "bottle.lua"
+            "Function"    "CheckRefillFountain"
+          }
+        }
+      }
+    }
+  }
+
+  "item_bottle_0" // 0/3
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_0"
+    "ItemPurchaseable"              "0"
+    "Model"           "models/props_gameplay/bottle_empty.vmdl"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "duration"    "3.0"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "health_restore"    "90"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_restore"      "60"
+      } 
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+    "Modifiers"
+    {
+      "modifier_check_fountain_bottle"
+      {
+        "Passive"      "1"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+    
+        "ThinkInterval"  "0.1"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "bottle.lua"
+            "Function"    "CheckRefillFountain"
+          }
+        }
+      }
+    }
+  }
+
+  "item_bottle_bounty" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_bounty"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           "models/props_gameplay/bottle_blue.vmdl"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_invis" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_invisible"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "45"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "fade_time"    "2"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_arcane" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_arcane"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "50"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "cooldown_reduction"    "30"
+      }
+      "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "manacost_reduction"    "40"
+      }
+    }
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_doubledamage" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_doubledamage"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "45"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "damage_increase"    "100"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_regen" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_regeneration"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "30"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "health_regeneration"    "100"
+      }
+       "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "mana_regeneration"    "67"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_haste" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"
+    "AbilityTextureName"            "bottle_haste"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "22"
+      }
+       "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "haste_speed"    "550"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  }
+  "item_bottle_illusion" // 
+  {
+    "BaseClass"                     "item_datadriven"
+    "ItemCost"                       "660"  
+    "AbilityTextureName"            "bottle_illusion"
+    "ItemPurchaseable"              "0"
+    "ItemDroppable"                 "0"
+    "Model"           ""
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"    "70"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "illusions"    "2"
+      }
+       "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "incoming_damage_melee"    "200"
+      }
+       "04"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "incoming_damage_ranged"    "300"
+      }
+       "05"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "outgoing_damage"    "35"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "bottle.lua"
+        "Function"    "OnBottleUsed"
+      }
+    }
+  } 
 }
