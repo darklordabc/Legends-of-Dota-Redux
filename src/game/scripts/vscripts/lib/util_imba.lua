@@ -99,7 +99,7 @@ end
 
 -- Checks if a hero is wielding Aghanim's Scepter
 function HasScepter(hero)
-	if hero:HasModifier("modifier_item_ultimate_scepter_consumed") then
+	if hero:HasModifier("modifier_item_ultimate_scepter_consumed") or hero:HasModifier("modifier_item_imba_ultimate_scepter_synth") then
 		return true
 	end
 
@@ -250,8 +250,10 @@ function TrueKill(caster, target, ability)
 		target:RemoveModifierByName("modifier_imba_purification_passive")
 	end
 
-	-- Deals lethal damage in order to trigger death-preventing abilities
-	target:Kill(ability, caster)
+	-- Deals lethal damage in order to trigger death-preventing abilities... Except for Reincarnation
+	if not ( target:HasModifier("modifier_imba_reincarnation") or target:HasModifier("modifier_imba_reincarnation_scepter") ) then
+		target:Kill(ability, caster)
+	end
 
 	-- Removes the relevant modifiers
 	target:RemoveModifierByName("modifier_invulnerable")
@@ -259,6 +261,16 @@ function TrueKill(caster, target, ability)
 	target:RemoveModifierByName("modifier_aphotic_shield")
 	target:RemoveModifierByName("modifier_imba_spiked_carapace")
 	target:RemoveModifierByName("modifier_borrowed_time")
+	target:RemoveModifierByName("modifier_imba_centaur_return")
+	target:RemoveModifierByName("modifier_item_greatwyrm_plate_unique")
+	target:RemoveModifierByName("modifier_item_greatwyrm_plate_active")
+	target:RemoveModifierByName("modifier_item_crimson_guard_unique")
+	target:RemoveModifierByName("modifier_item_crimson_guard_active")
+	target:RemoveModifierByName("modifier_item_greatwyrm_plate_unique")
+	target:RemoveModifierByName("modifier_item_vanguard_unique")
+	target:RemoveModifierByName("modifier_item_imba_initiate_robe_stacks")
+	target:RemoveModifierByName("modifier_imba_cheese_death_prevention")
+	target:RemoveModifierByName("modifier_item_imba_rapier_cursed_unique")
 
 	-- Kills the target
 	target:Kill(ability, caster)
@@ -437,9 +449,6 @@ function ApplyAllRandomOmgAbilities( hero )
 		ability_powerup = true
 	end
 
-	-- Check if the frantic mode ability is present
-	local ability_frantic = hero:FindAbilityByName("imba_frantic_buff")
-
 	-- Remove default abilities
 	for i = 0, 15 do
 		local old_ability = hero:GetAbilityByIndex(i)
@@ -527,63 +536,12 @@ function ApplyAllRandomOmgAbilities( hero )
 		end
 	end
 
-	-- Figure out which attribute bonus to add
-	local ability_start_string = ""
-	local ability_end_string = ""
-
-	-- Choose number of abilities
-	if IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT == 3 and IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 2 then
-		ability_end_string = "_random_omg_3a2u"
-	elseif IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT == 4 and IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 1 then
-		ability_end_string = "_random_omg_4a1u"
-	elseif IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT == 5 and IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 1 then
-		ability_end_string = "_random_omg_5a1u"
-	elseif IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT == 4 and IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 2 then
-		ability_end_string = "_random_omg_4a2u"
-	end
-
-	-- Choose attribute
-	if hero:GetPrimaryAttribute() == 0 then
-		ability_start_string = "attribute_bonus_str"
-	elseif hero:GetPrimaryAttribute() == 1 then
-		ability_start_string = "attribute_bonus_agi"
-	elseif hero:GetPrimaryAttribute() == 2 then
-		ability_start_string = "attribute_bonus_int"
-	end
-
-	-- Re-add attribute bonus and store it for reference
-	hero:AddAbility(ability_start_string..ability_end_string)
-	hero.random_omg_abilities[i] = ability_start_string..ability_end_string
-	i = i + 1
-
-	-- Apply ability layout modifier
-	local layout_ability_name
-	if IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT + IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 4 then
-		layout_ability_name = "random_omg_ability_layout_changer_4"
-	elseif IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT + IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 5 then
-		layout_ability_name = "random_omg_ability_layout_changer_5"
-	elseif IMBA_RANDOM_OMG_NORMAL_ABILITY_COUNT + IMBA_RANDOM_OMG_ULTIMATE_ABILITY_COUNT == 6 then
-		layout_ability_name = "random_omg_ability_layout_changer_6"
-	end
-
-	hero:AddAbility(layout_ability_name)
-	local layout_ability = hero:FindAbilityByName(layout_ability_name)
-	layout_ability:SetLevel(1)
-	hero.random_omg_abilities[i] = layout_ability_name
-
 	-- Apply high level powerup ability, if previously existing
 	if ability_powerup then
 		hero:AddAbility("imba_unlimited_level_powerup")
 		ability_powerup = hero:FindAbilityByName("imba_unlimited_level_powerup")
 		ability_powerup:SetLevel(1)
 		AddStacks(ability_powerup, hero, hero, "modifier_imba_unlimited_level_powerup", powerup_stacks, true)
-	end
-
-	-- Apply frantic mode ability, if previously existing
-	if ability_frantic then
-		hero:AddAbility("imba_frantic_buff")
-		ability_frantic = hero:FindAbilityByName("imba_frantic_buff")
-		ability_frantic:SetLevel(1)
 	end
 
 end
@@ -763,6 +721,8 @@ function RemovePermanentModifiersRandomOMG( hero )
 	hero:RemoveModifierByName("modifier_imba_vampiric_aura")
 	hero:RemoveModifierByName("modifier_imba_reincarnation_detector")
 	hero:RemoveModifierByName("modifier_imba_time_walk_damage_counter")
+	hero:RemoveModifierByName("modifier_charges")
+	hero:RemoveModifierByName("modifier_imba_reincarnation")
 
 	while hero:HasModifier("modifier_imba_flesh_heap_bonus") do
 		hero:RemoveModifierByName("modifier_imba_flesh_heap_bonus")
@@ -832,7 +792,10 @@ function InitializeInnateAbilities( hero )
 		"imba_enigma_gravity",
 		"imba_troll_warlord_berserkers_rage",
 		"imba_antimage_magehunter",
-		"imba_necrolyte_death_pulse_aux"
+		"imba_necrolyte_death_pulse_aux",
+		"imba_sandking_treacherous_sands",
+		"imba_bane_nightmare_end",
+		"imba_rubick_telekinesis_land"
 	}
 
 	-- Cycle through any innate abilities found, then upgrade them
@@ -970,68 +933,80 @@ function StickProcCheck( ability )
 	return true
 end
 
-
-function IsUniqueAbility( table, element )
-	for _, ability in ipairs(table) do
-        if ability:GetName() == element then
-            return false
-        end
-    end
-
-    return true
-end
-
 -- Upgrades a tower's abilities
 function UpgradeTower( tower )
 
-    local abilities = {}
+	local abilities = {}
 
-    -- Fetch tower abilities
-    for i = 0, 15 do
-        local current_ability = tower:GetAbilityByIndex(i)
-        if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "imba_tower_ai_controller"and current_ability:GetName() ~= "lone_druid_savage_roar_tower" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
-            abilities[#abilities+1] = current_ability 
-        end
-    end
+	-- Fetch tower abilities
+	for i = 0, 15 do
+		local current_ability = tower:GetAbilityByIndex(i)
+		if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
+			abilities[#abilities+1] = current_ability
+		end
+	end
 
-    -- Iterate through abilities to identify the upgradable one
-    for i = 1,4 do
+	-- Iterate through abilities to identify the upgradable one
+	for i = 1,4 do
 
-        -- If this ability is not maxed, try to upgrade it
-        if abilities[i] and abilities[i]:GetLevel() < 3 then
-            -- Upgrade ability
-            abilities[i]:SetLevel( abilities[i]:GetLevel() + 1 )
+		-- If this ability is not maxed, try to upgrade it
+		if abilities[i] and abilities[i]:GetLevel() < 3 then
 
-            return nil
+			-- Upgrade ability
+			abilities[i]:SetLevel( abilities[i]:GetLevel() + 1 )
 
-        -- If this ability is maxed and the last one, then add a new one
-        elseif abilities[i] and abilities[i]:GetLevel() == 3 and #abilities == i then
+			return nil
 
-            -- Else, add a new ability from this game's ability tree
-            local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
-            local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
-            local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+		-- If this ability is maxed and the last one, then add a new one
+		elseif abilities[i] and abilities[i]:GetLevel() == 3 and #abilities == i then
 
-			util:MergeTables(oldAbList, oldAbList2)
-			util:MergeTables(oldAbList, oldAbList3)
+			-- If there are no more abilities on the tree for this tower, do nothing
+			if (tower.tower_tier <= 3 and i >= 3) or i >= 4 then
+				return nil
+			end
 
-            local towerSkills = {}
-                for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
-            local new_ability = RandomFromTable(towerSkills)
-            while not IsUniqueAbility(abilities, new_ability) do
-            	new_ability = RandomFromTable(towerSkills)
-            end
+			-- Else, add a new ability from this game's ability tree
+			local new_ability = false
+			if tower.tower_tier == 1 then
+				if tower.tower_lane == "safelane" then
+					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_1"][i+1]
+				elseif tower.tower_lane == "midlane" then
+					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_1"][i+1]
+				elseif tower.tower_lane == "hardlane" then
+					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_1"][i+1]
+				end
+			elseif tower.tower_tier == 2 then
+				if tower.tower_lane == "safelane" then
+					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_2"][i+1]
+				elseif tower.tower_lane == "midlane" then
+					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_2"][i+1]
+				elseif tower.tower_lane == "hardlane" then
+					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_2"][i+1]
+				end
+			elseif tower.tower_tier == 3 then
+				if tower.tower_lane == "safelane" then
+					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_3"][i+1]
+				elseif tower.tower_lane == "midlane" then
+					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_3"][i+1]
+				elseif tower.tower_lane == "hardlane" then
+					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_3"][i+1]
+				end
+			elseif tower.tower_tier == 41 then
+				new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_41"][i+1]
+			elseif tower.tower_tier == 42 then
+				new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_42"][i+1]
+			end
 
-            -- Add the new ability
-            tower:AddAbility(new_ability)
-            new_ability = tower:FindAbilityByName(new_ability)
-            new_ability:SetLevel(1)
+			-- Add the new ability
+			if new_ability then
+				tower:AddAbility(new_ability)
+				new_ability = tower:FindAbilityByName(new_ability)
+				new_ability:SetLevel(1)
+			end
 
-            return nil
-        end
-    end
+			return nil
+		end
+	end
 end
 
 -- Sets a creature's max health to [health]
@@ -1105,11 +1080,14 @@ end
 -- Returns the total cooldown reduction on a given unit
 function GetCooldownReduction( unit )
 
+	local reduction = 1.0
+
+	-- Octarine Core
 	if unit:HasModifier("modifier_item_imba_octarine_core_unique") then
-		return 0.75
-	else
-		return 1
+		reduction = reduction * 0.75
 	end
+
+	return reduction
 end
 
 -- Returns true if this is a ward-type unit (nether ward, scourge ward, etc.)
@@ -1221,22 +1199,48 @@ function ChangeAttackProjectileImba( unit )
 end
 
 function IsUninterruptableForcedMovement( unit )
-	if unit:HasModifier("modifier_spirit_breaker_charge_of_darkness") or unit:HasModifier("modifier_magnataur_skewer_movement")
-		or unit:HasModifier("modifier_invoker_deafening_blast_knockback") or unit:HasModifier("modifier_knockback")
-		or unit:HasModifier("modifier_item_forcestaff_active") or unit:HasModifier("modifier_shredder_timber_chain")
-		or unit:HasModifier("modifier_batrider_flaming_lasso") or unit:HasModifier("modifier_imba_leap_self_root") 
-		or unit:HasModifier("modifier_faceless_void_chronosphere_freeze") then
-		return true
+	
+	-- List of uninterruptable movement modifiers
+	local modifier_list = {
+		"modifier_spirit_breaker_charge_of_darkness",
+		"modifier_magnataur_skewer_movement",
+		"modifier_invoker_deafening_blast_knockback",
+		"modifier_knockback",
+		"modifier_item_forcestaff_active",
+		"modifier_shredder_timber_chain",
+		"modifier_batrider_flaming_lasso",
+		"modifier_imba_leap_self_root",
+		"modifier_faceless_void_chronosphere_freeze",
+		"modifier_storm_spirit_ball_lightning",
+		"modifier_morphling_waveform"
+	}
+
+	-- Iterate through the list
+	for _,modifier_name in pairs(modifier_list) do
+		if unit:HasModifier(modifier_name) then
+			return true
+		end
 	end
 
 	return false
 end
 
+-- Returns an unit's existing increased cast range modifiers
 function GetCastRangeIncrease( unit )
 	local cast_range_increase = 0
 	
-	if unit:HasModifier("modifier_item_aether_lens") then
+	-- From items
+	if unit:HasModifier("modifier_item_imba_elder_staff_range") then
 		cast_range_increase = cast_range_increase + 300
+	elseif unit:HasModifier("modifier_item_imba_aether_lens_range") then
+		cast_range_increase = cast_range_increase + 225
+	end
+
+	-- From talents
+	for talent_name,cast_range_bonus in pairs(CAST_RANGE_TALENTS) do
+		if unit:FindAbilityByName(talent_name) and unit:FindAbilityByName(talent_name):GetLevel() > 0 then
+			cast_range_increase = cast_range_increase + cast_range_bonus
+		end
 	end
 
 	return cast_range_increase
@@ -1324,4 +1328,448 @@ function IsHeroCreep( unit )
 	end
 
 	return false
+end
+
+-- Changes the time of the day temporarily, memorizing the original time of the day to return to
+function SetTimeOfDayTemp(time, duration)
+
+	-- Store the original time of the day, if necessary
+	local game_entity = GameRules:GetGameModeEntity()
+	if not game_entity.tod_original_time then
+		game_entity.tod_original_time = GameRules:GetTimeOfDay()
+	end
+
+	-- Initialize the time modification states, if necessary
+	if not game_entity.tod_future_seconds then
+		game_entity.tod_future_seconds = {}
+
+		-- Start loop function
+		Timers:CreateTimer(1, function()
+			SetTimeOfDayTempLoop()
+		end)
+	end
+
+	-- Store future time modification states
+	for i = 1, duration do
+		game_entity.tod_future_seconds[i] = time
+	end
+
+	-- Set the time of the day
+	GameRules:SetTimeOfDay(time)
+end
+
+-- Auxiliary function to the one above
+function SetTimeOfDayTempLoop()
+
+	-- If there are no future time modification states, stop looping
+	local game_entity = GameRules:GetGameModeEntity()
+	if not game_entity.tod_future_seconds then
+		return nil
+
+	-- Else, move states one second forward
+	elseif #game_entity.tod_future_seconds > 1 then
+		for i = 1, (#game_entity.tod_future_seconds - 1) do
+			game_entity.tod_future_seconds[i] = game_entity.tod_future_seconds[i + 1]
+		end
+		game_entity.tod_future_seconds[#game_entity.tod_future_seconds] = nil
+
+		-- Keep the loop going
+		GameRules:SetTimeOfDay(game_entity.tod_future_seconds[1])
+		Timers:CreateTimer(1, function()
+			SetTimeOfDayTempLoop()
+		end)
+
+	-- Else, the duration is over; restore the original time of the day, and exit the loop
+	else
+		game_entity.tod_future_seconds = nil
+		Timers:CreateTimer(1, function()
+			GameRules:SetTimeOfDay(game_entity.tod_original_time)
+			game_entity.tod_original_time = nil
+		end)
+	end
+end
+
+-- Initializes a charge-based system for an ability
+function InitializeAbilityCharges(unit, ability_name, max_charges, initial_charges, cooldown, modifier_name)
+
+	-- Find the passed ability
+	local ability = unit:FindAbilityByName(ability_name)
+
+	-- Procees only if the relevant ability was found
+	if ability then
+
+		local extra_parameters = {
+			max_count = max_charges,
+			start_count = initial_charges,
+			replenish_time = cooldown
+		}
+
+		unit:AddNewModifier(unit, ability, "modifier_charges_"..modifier_name, extra_parameters)
+	end
+end
+
+-- Initialize Physics library on this target
+function InitializePhysicsParameters(unit)
+
+	if not IsPhysicsUnit(unit) then
+		Physics:Unit(unit)
+		unit:SetPhysicsVelocityMax(600)
+		unit:PreventDI()
+	end
+end
+
+-- Check if an unit is near the enemy fountain
+function IsNearEnemyFountain(location, team, distance)
+
+	local fountain_loc
+	if team == DOTA_TEAM_GOODGUYS then
+		fountain_loc = Vector(7472, 6912, 512)
+	else
+		fountain_loc = Vector(-7456, -6938, 528)
+	end
+
+	if (fountain_loc - location):Length2D() <= distance then
+		return true
+	end
+
+	return false
+end
+
+-- Reaper's Scythe kill credit redirection
+function TriggerNecrolyteReaperScytheDeath(target, caster)
+
+	-- Find the Reaper's Scythe ability
+	local ability = caster:FindAbilityByName("imba_necrolyte_reapers_scythe")
+	if not ability then return nil end
+
+	-- Attempt to kill the target
+	ApplyDamage({attacker = caster, victim = target, ability = ability, damage = target:GetHealth(), damage_type = DAMAGE_TYPE_PURE})
+end
+
+-- Reincarnation death trigger
+function TriggerWraithKingReincarnation(caster, ability)
+
+	-- Keyvalues
+	local ability_level = ability:GetLevel() - 1
+	local modifier_death = "modifier_imba_reincarnation_death"
+	local modifier_slow = "modifier_imba_reincarnation_slow"
+	local modifier_kingdom_ms = "modifier_imba_reincarnation_kingdom_ms"
+	local particle_wait = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
+	local particle_kingdom = "particles/hero/skeleton_king/wraith_king_hellfire_eruption_tell.vpcf"
+	local sound_death = "Hero_SkeletonKing.Reincarnate"
+	local sound_reincarnation = "Hero_SkeletonKing.Reincarnate.Stinger"
+	local sound_kingdom_start = "Hero_WraithKing.EruptionCast"
+
+	-- Parameters
+	local slow_radius = ability:GetLevelSpecialValueFor("slow_radius", ability_level)
+	local reincarnate_delay = ability:GetLevelSpecialValueFor("reincarnate_delay", ability_level)
+	local vision_radius = ability:GetLevelSpecialValueFor("vision_radius", ability_level)
+	local damage = ability:GetLevelSpecialValueFor("kingdom_damage", ability_level)
+	local stun_duration = ability:GetLevelSpecialValueFor("kingdom_stun", ability_level)
+	local caster_loc = caster:GetAbsOrigin()
+
+	-- Put the ability on cooldown and play out the reincarnation
+	local cooldown_reduction = GetCooldownReduction(caster)
+	ability:StartCooldown(ability:GetCooldown(ability_level) * cooldown_reduction)
+
+	-- Play initial sound
+	local heroes = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
+	if USE_MEME_SOUNDS and #heroes >= IMBA_PLAYERS_ON_GAME * 0.35 then
+		caster:EmitSound("Hero_WraithKing.IllBeBack")
+	else
+		caster:EmitSound(sound_death)
+	end
+
+	-- Create visibility node
+	ability:CreateVisibilityNode(caster_loc, vision_radius, reincarnate_delay)
+
+	-- Apply simulated death modifier
+	ability:ApplyDataDrivenModifier(caster, caster, modifier_death, {})
+
+	-- Remove caster's model from the game
+	caster:AddNoDraw()
+
+	-- Play initial particle
+	local wait_pfx = ParticleManager:CreateParticle(particle_wait, PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleAlwaysSimulate(wait_pfx)
+	ParticleManager:SetParticleControl(wait_pfx, 0, caster_loc)
+	ParticleManager:SetParticleControl(wait_pfx, 1, Vector(reincarnate_delay, 0, 0))
+	ParticleManager:SetParticleControl(wait_pfx, 11, Vector(200, 0, 0))
+	ParticleManager:ReleaseParticleIndex(wait_pfx)
+
+	-- Slow all nearby enemies
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false)
+	for _,enemy in pairs(enemies) do
+		ability:ApplyDataDrivenModifier(caster, enemy, modifier_slow, {})
+	end
+
+	-- Heal, even through healing prevention debuffs
+	caster:SetHealth(caster:GetMaxHealth())
+	caster:SetMana(caster:GetMaxMana())
+
+	-- Play Kingdom Come particle
+	local kingdom_pfx = ParticleManager:CreateParticle(particle_kingdom, PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleAlwaysSimulate(kingdom_pfx)
+	ParticleManager:SetParticleControl(kingdom_pfx, 0, caster_loc)
+
+	-- Play Kingdom Come sound
+	Timers:CreateTimer(0.9, function()
+		caster:EmitSound(sound_kingdom_start)
+	end)
+
+	-- After the respawn delay
+	Timers:CreateTimer(reincarnate_delay, function()
+
+		-- Purge most debuffs
+		caster:Purge(false, true, false, true, true)
+
+		-- Heal, even through healing prevention debuffs
+		caster:SetHealth(caster:GetMaxHealth())
+		caster:SetMana(caster:GetMaxMana())
+
+		-- Redraw caster's model
+		caster:RemoveNoDraw()
+
+		-- Play reincarnation stinger
+		caster:EmitSound(sound_reincarnation)
+
+		-- Stop Kingdom Come particles
+		ParticleManager:DestroyParticle(kingdom_pfx, false)
+		ParticleManager:ReleaseParticleIndex(kingdom_pfx)
+
+		-- Iterate through nearby enemies
+		enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster_loc, nil, slow_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		for _,enemy in pairs(enemies) do
+			
+			-- If this is a real hero, damage and stun it
+			if enemy:IsRealHero() or IsRoshan(enemy) then
+				ApplyDamage({attacker = caster, victim = enemy, ability = ability, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL})
+				enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = stun_duration})
+
+				-- Increase caster's movement speed temporarily
+				AddStacks(ability, caster, caster, modifier_kingdom_ms, 1, true)
+			
+			-- Else, kill it
+			else
+				ApplyDamage({attacker = caster, victim = enemy, ability = ability, damage = enemy:GetMaxHealth(), damage_type = DAMAGE_TYPE_PURE})
+			end
+		end
+	end)
+end
+
+-- Reincarnation Wraith Form trigger
+function TriggerWraithKingWraithForm(target, attacker)
+
+	-- Keyvalues
+	local reincarnation_modifier = target:FindModifierByName("modifier_imba_reincarnation_scepter")
+	local caster = reincarnation_modifier:GetCaster()
+	local ability = reincarnation_modifier:GetAbility()
+	local modifier_scepter = "modifier_imba_reincarnation_scepter"
+	local modifier_wraith = "modifier_imba_reincarnation_scepter_wraith"
+	local sound_wraith = "Hero_SkeletonKing.Reincarnate.Ghost"
+
+	-- Store the attacker which killed this unit's ID
+	local killer_id
+	local killer_type = "hero"
+	if attacker:GetOwnerEntity() then
+		killer_id = attacker:GetOwnerEntity():GetPlayerID()
+	elseif attacker:IsHero() then
+		killer_id = attacker:GetPlayerID()
+	else
+		killer_id = attacker
+		killer_type = "creature"
+	end
+
+	-- If there is a player-owned killer, store it
+	if killer_type == "hero" then
+		target.reincarnation_scepter_killer = PlayerResource:GetPlayer(killer_id):GetAssignedHero()
+
+	-- Else, assign the kill to the unit which dealt the finishing blow
+	else
+		target.reincarnation_scepter_killer = attacker
+	end
+
+	-- Play transformation sound
+	target:EmitSound(sound_wraith)
+
+	-- Apply wraith form modifier
+	ability:ApplyDataDrivenModifier(caster, target, modifier_wraith, {})
+
+	-- Remove the scepter aura modifier
+	target:RemoveModifierByName(modifier_scepter)
+
+	-- Purge all debuffs
+	target:Purge(false, true, false, true, false)
+end
+
+-- Aegis Reincarnation trigger
+function TriggerAegisReincarnation(caster)
+
+	-- Keyvalues
+	local aegis_modifier = caster:FindModifierByName("modifier_item_imba_aegis")
+	local ability = aegis_modifier:GetAbility()
+	local modifier_aegis = "modifier_item_imba_aegis"
+	local modifier_death = "modifier_item_imba_aegis_death"
+	local particle_wait = "particles/items_fx/aegis_timer.vpcf"
+	local particle_respawn = "particles/items_fx/aegis_respawn_timer.vpcf"
+	local sound_aegis = "Imba.AegisStinger"
+	local caster_loc = caster:GetAbsOrigin()
+
+	-- Parameters
+	local respawn_delay = ability:GetSpecialValueFor("reincarnate_time")
+	local vision_radius = ability:GetSpecialValueFor("vision_radius")
+
+	-- Play sound
+	caster:EmitSound(sound_aegis)
+
+	-- Create visibility node
+	ability:CreateVisibilityNode(caster_loc, vision_radius, respawn_delay)
+
+	-- Apply simulated death modifier
+	ability:ApplyDataDrivenModifier(caster, caster, modifier_death, {})
+
+	-- Remove caster's model from the game
+	caster:AddNoDraw()
+
+	-- Play initial particle
+	local wait_pfx = ParticleManager:CreateParticle(particle_wait, PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleAlwaysSimulate(wait_pfx)
+	ParticleManager:SetParticleControl(wait_pfx, 0, caster_loc)
+	ParticleManager:SetParticleControl(wait_pfx, 1, Vector(respawn_delay, 0, 0))
+	ParticleManager:ReleaseParticleIndex(wait_pfx)
+
+	-- After the respawn delay, play reincarnation particle
+	local respawn_pfx = ParticleManager:CreateParticle(particle_respawn, PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(respawn_pfx, 0, caster_loc)
+	ParticleManager:SetParticleControl(respawn_pfx, 1, Vector(respawn_delay, 0, 0))
+	ParticleManager:ReleaseParticleIndex(respawn_pfx)
+
+	-- After the respawn delay
+	Timers:CreateTimer(respawn_delay, function()
+
+		-- Heal, even through healing prevention debuffs
+		caster:SetHealth(caster:GetMaxHealth())
+		caster:SetMana(caster:GetMaxMana())
+
+		-- Purge all debuffs
+		caster:Purge(false, true, false, true, true)
+
+		-- Remove Aegis modifier
+		caster:RemoveModifierByName(modifier_aegis)
+
+		-- Destroy the Aegis
+		caster:RemoveItem(ability)
+
+		-- Flag caster as no longer having aegis
+		caster.has_aegis = false
+
+		-- Redraw caster's model
+		caster:RemoveNoDraw()
+	end)
+end
+
+-- Checks if this ability is casted by someone with Spell Steal (i.e. Rubick)
+function IsStolenSpell(caster)
+
+	-- If the caster has the Spell Steal ability, return true
+	if caster:FindAbilityByName("rubick_spell_steal") then
+		return true
+	end
+
+	return false
+end
+
+-- Sets level of the ability with [ability_name] to [level] for [caster] if the caster has this ability
+function SetAbilityLevelIfPresent(caster, ability_name, level)
+	local ability = caster:FindAbilityByName(ability_name)
+	if ability then
+		ability:SetLevel(level)
+	end
+end
+
+-- Refreshes ability with [ability_name] for [caster] if the caster has this ability
+function RefreshAbilityIfPresent(caster, ability_name)
+	local ability = caster:FindAbilityByName(ability_name)
+	if ability then
+		ability:EndCooldown()
+	end
+end
+
+-- Returns true if a hero has red hair
+function IsGinger(unit)
+
+	local ginger_hero_names = {
+		"npc_dota_hero_enchantress",
+		"npc_dota_hero_lina",
+		"npc_dota_hero_windrunner"
+	}
+
+	local unit_name = unit:GetName()
+	for _,name in pairs(ginger_hero_names) do
+		if name == unit_name then
+			return true
+		end
+	end
+	
+	return false
+end
+
+-- Fetches a hero's current spell power
+function GetSpellPower(unit)
+
+	-- If this is not a hero, or the unit is invulnerable, do nothing
+	if not unit:IsHero() or unit:IsInvulnerable() then
+		return 0
+	end
+
+	-- Adjust base spell power based on current intelligence
+	local unit_intelligence = unit:GetIntellect()
+	local spell_power = unit_intelligence * 0.125
+
+	-- Adjust spell power based on War Veteran stacks
+	if unit:HasModifier("modifier_imba_unlimited_level_powerup") then
+		spell_power = spell_power + 2 * unit:GetModifierStackCount("modifier_imba_unlimited_level_powerup", unit)
+	end
+
+	-- Define item-based item power values
+	local item_spell_power = {}
+	item_spell_power["item_imba_aether_lens"] = 10
+	item_spell_power["item_imba_nether_wand"] = 10
+	item_spell_power["item_imba_elder_staff"] = 20
+	item_spell_power["item_imba_orchid"] = 25
+	item_spell_power["item_imba_bloodthorn"] = 30
+	item_spell_power["item_imba_rapier_magic"] = 70
+	item_spell_power["item_imba_rapier_magic_2"] = 200
+	item_spell_power["item_imba_rapier_cursed"] = 200
+
+	-- Fetch current bonus spell power from items, if existing
+	for i = 0, 5 do
+		local current_item = unit:GetItemInSlot(i)
+		if current_item then
+			local current_item_name = current_item:GetName()
+			if item_spell_power[current_item_name] then
+				spell_power = spell_power + item_spell_power[current_item_name]
+			end
+		end
+	end
+
+	-- Fetch bonus spell power from talents
+	spell_power = spell_power + GetSpellPowerFromTalents(unit)
+
+	-- Return current spell power
+	return spell_power
+end
+
+-- Fetches a hero's current spell power from talents
+function GetSpellPowerFromTalents(unit)
+	local spell_power = 0
+
+	-- Iterate through all spell power talents
+	for talent_name,spell_power_bonus in pairs(SPELL_POWER_TALENTS) do
+		if unit:FindAbilityByName(talent_name) and unit:FindAbilityByName(talent_name):GetLevel() > 0 then
+			spell_power = spell_power + spell_power_bonus
+		end
+	end
+
+	return spell_power
 end
