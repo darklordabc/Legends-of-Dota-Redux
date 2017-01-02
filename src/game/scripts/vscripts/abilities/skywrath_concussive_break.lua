@@ -56,7 +56,7 @@ function skywrath_mage_concussive_break:OnSpellStart()
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
       }
     ProjectileManager:CreateTrackingProjectile( projTable )
-
+    caster:EmitSound("Hero_SkywrathMage.ConcussiveShot.Cast")
       -- 2nd target for scepter
       if caster:HasScepter() then
         local unitsScepter = FindUnitsInRadius(caster:GetTeamNumber(), v:GetAbsOrigin(), caster, 700, targetTeam, targetType, targetFlag, FIND_ANY_ORDER, false)
