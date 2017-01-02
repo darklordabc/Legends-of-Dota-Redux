@@ -22267,6 +22267,7 @@
 		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
 		  "FightRecapLevel"       "1"
 		  "AbilityTextureName"      "custom/skywrath_mage_concussive_break"
+		  "HasScepterUpgrade"				"1"
 
 		  // Casting
 		  //-------------------------------------------------------------------------------------------------------------
