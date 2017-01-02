@@ -100,6 +100,10 @@ function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Phy
     local target = params.target
     if not caster:IsRealHero() then return 0 end
 	if caster:PassivesDisabled() then return 0 end
+	
+    if not target.stacks then 
+    	target.stacks = 0 
+    end
     local nFurySwipes
     
     if caster:IsRangedAttacker() then
