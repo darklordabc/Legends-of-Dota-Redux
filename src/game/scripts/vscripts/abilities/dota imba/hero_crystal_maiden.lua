@@ -1,5 +1,5 @@
 --[[ Author: Hewdraw ]]
-
+require('lib/animations')
 function CrystalNova( keys )
 	local caster = keys.caster
 	local ability = keys.ability
