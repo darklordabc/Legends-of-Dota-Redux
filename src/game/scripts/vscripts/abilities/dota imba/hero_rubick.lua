@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 25.10.2016	]]
-
+require('lib/animations')
 function Telekinesis(keys)
 	local caster = keys.caster
 	local target = keys.target

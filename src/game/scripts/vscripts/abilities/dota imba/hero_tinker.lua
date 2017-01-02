@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 10.09.2015	]]
-
+require('lib/animations')
 function Laser( keys )
 	local caster = keys.caster
 	local target = keys.target

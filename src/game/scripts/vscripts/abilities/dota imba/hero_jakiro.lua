@@ -1,6 +1,6 @@
 --[[	Author: Ractidous & D2imba
 		Date: 15.07.2015.			]]
-
+require('lib/animations')
 function DualBreath( keys )
 	local caster = keys.caster
 	local target = keys.target_points[1]

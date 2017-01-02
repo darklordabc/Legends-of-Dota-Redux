@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 18.08.2016	]]
-
+require('lib/animations')
 function Bladefury( keys )
 	local caster = keys.caster
 	local ability = keys.ability

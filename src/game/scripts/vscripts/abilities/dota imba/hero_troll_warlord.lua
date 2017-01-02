@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 25.02.2015	]]
-
+require('lib/animations')
 function WhirlingAxesMelee( keys )
 	local caster = keys.caster
 	local ability = keys.ability

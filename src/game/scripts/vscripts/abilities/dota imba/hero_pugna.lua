@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 24.10.2015	]]
-
+require('lib/animations')
 function NetherBlast( keys )
 	local caster = keys.caster
 	local target = keys.target_points[1]

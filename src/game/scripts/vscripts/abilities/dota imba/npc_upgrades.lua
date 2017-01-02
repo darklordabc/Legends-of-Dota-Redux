@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 16.08.2015	]]
-
+require('lib/animations')
 function WarVeteranUpdater( keys )
 	local caster = keys.caster
 	local ability = keys.ability

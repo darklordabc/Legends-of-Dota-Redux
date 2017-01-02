@@ -4,6 +4,4396 @@
     "Version"       "1"
 
     //=================================================================================================================
+	// Juggernaut's Blade Fury
+	//=================================================================================================================
+	"imba_juggernaut_blade_fury"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"juggernaut_blade_fury"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"325 350 375 400"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"36 30 24 18"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 110 100 90"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"effect_radius"			"325 350 375 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"80 105 130 155"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_tick"			"0.2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms_slow"				"-15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms_slow_tooltip"		"15"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_juggernaut.lua"
+				"Function"				"Bladefury"
+
+				"modifier_caster"		"modifier_imba_blade_fury_caster"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_blade_fury_caster"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"Duration"				"%duration"
+
+				"ThinkInterval"			"%damage_tick"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"BladefuryTick"
+
+						"particle_hit"		"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf"
+						"sound_hit"			"Hero_Juggernaut.BladeFury.Impact"
+						"modifier_debuff"	"modifier_imba_blade_fury_debuff"
+					}
+				}
+		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"BladefuryParticleStart"
+
+						"particle_spin"		"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+						"sound_spin"		"Hero_Juggernaut.BladeFuryStart"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"BladefuryParticleEnd"
+
+						"sound_spin"		"Hero_Juggernaut.BladeFuryStart"
+						"sound_stop"		"Hero_Juggernaut.BladeFuryStop"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_blade_fury_debuff"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsDebuff"				"1"
+				"IsPurgable"			"0"
+
+				"Duration"				"%damage_tick"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ms_slow" 
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Healing Ward
+	//=================================================================================================================
+	"imba_juggernaut_healing_ward"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"juggernaut_healing_ward"
+		"AOERadius"						"%heal_radius"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 125 130 135"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"					"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_dc.vpcf"
+			"particle"					"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_eruption_dc.vpcf"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_per_sec"			"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health"				"3 3 6 9"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_bonus_totem"	"250"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus_totem"		"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_bonus_totem"	"9"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_juggernaut.lua"
+				"Function"				"HealingWard"
+				"Target"				"POINT"
+
+				"sound_cast"			"Hero_Juggernaut.HealingWard.Cast"
+				"sound_loop"			"Hero_Juggernaut.HealingWard.Loop"
+				"particle_ward"			"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+				"particle_eruption"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Healing Ward passive
+	//=================================================================================================================
+	"imba_juggernaut_healing_ward_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"juggernaut_healing_ward"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_per_sec"			"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health"				"3 3 6 9"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_healing_ward"
+			{
+				"Passive"					"1"
+				"IsBuff"					"1"
+				"IsHidden"					"1"
+				"IsPurgable"				"0"
+
+				"Aura"						"modifier_imba_healing_ward_buff"
+				"Aura_Radius"				"%heal_radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"		"0"
+
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardDamage"
+					}
+				}
+
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardEnd"
+
+						"sound_loop"		"Hero_Juggernaut.HealingWard.Loop"
+						"sound_end"			"Hero_Juggernaut.HealingWard.Stop"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"			"1"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"					"1"
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_healing_ward_buff"
+			{
+				"Passive"					"0"
+				"IsBuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+
+				"EffectName"				"particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+				"EffectAttachType"			"attach_hitloc"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%heal_per_sec"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Healing Ward passive
+	//=================================================================================================================
+	"imba_juggernaut_healing_ward_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"juggernaut_healing_ward"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_per_sec"			"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health"				"3 3 6 9"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_healing_ward"
+			{
+				"Passive"					"1"
+				"IsBuff"					"1"
+				"IsHidden"					"1"
+				"IsPurgable"				"0"
+
+				"Aura"						"modifier_imba_healing_ward_buff"
+				"Aura_Radius"				"%heal_radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"		"0"
+
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardDamage"
+					}
+				}
+
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardEnd"
+
+						"sound_loop"		"Hero_Juggernaut.HealingWard.Loop"
+						"sound_end"			"Hero_Juggernaut.HealingWard.Stop"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"			"1"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"					"1"
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_healing_ward_buff"
+			{
+				"Passive"					"0"
+				"IsBuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+
+				"EffectName"				"particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+				"EffectAttachType"			"attach_hitloc"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%heal_per_sec"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Healing Ward upgrade
+	//=================================================================================================================
+	"imba_juggernaut_healing_ward_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"			"custom/imba_healing_ward_upgrade"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health"				"12 12 15 18"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"750"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_bonus_totem"	"250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus_totem"		"2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_bonus_totem"	"9"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_juggernaut.lua"
+				"Function"				"HealingWardUpgrade"
+
+				"sound_cast"			"Hero_Juggernaut.HealingWard.Cast"
+				"sound_loop"			"Hero_Juggernaut.HealingWard.Loop"
+				"particle_ward"			"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_dc.vpcf"
+				"particle_eruption"		"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_eruption_dc.vpcf"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Healing Totem passive
+	//=================================================================================================================
+	"imba_juggernaut_healing_totem_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"imba_healing_ward_upgrade"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_radius"			"750"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_per_sec"			"4 5 6 7"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health"				"12 12 15 18"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_healing_totem"
+			{
+				"Passive"					"1"
+				"IsBuff"					"1"
+				"IsHidden"					"1"
+				"IsPurgable"				"0"
+
+				"Aura"						"modifier_imba_healing_totem_buff"
+				"Aura_Radius"				"%heal_radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"		"0"
+
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardDamage"
+					}
+				}
+
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"HealingWardEnd"
+
+						"sound_loop"		"Hero_Juggernaut.HealingWard.Loop"
+						"sound_end"			"Hero_Juggernaut.HealingWard.Stop"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"		"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"			"1"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"					"1"
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_healing_totem_buff"
+			{
+				"Passive"					"0"
+				"IsBuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+
+				"EffectName"				"particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+				"EffectAttachType"			"attach_hitloc"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%heal_per_sec"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Blade Dance
+	//=================================================================================================================
+	"imba_juggernaut_blade_dance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"			"juggernaut_blade_dance"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"					"particles/units/heroes/hero_juggernaut/jugg_crit_blur.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_chance"			"20 25 30 35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_damage"			"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"2 3 4 5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_duration"		"2.25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_blade_dance"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+		
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"BladedanceHit"
+
+						"modifier_crit"		"modifier_imba_blade_dance_crit"
+						"modifier_stacks"	"modifier_imba_blade_dance_stacks"
+					}
+				}
+			}
+
+			"modifier_imba_blade_dance_crit"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_juggernaut.lua"
+						"Function"			"BladedanceCrit"
+
+						"particle_crit"		"particles/units/heroes/hero_juggernaut/jugg_crit_blur.vpcf"
+						"sound_hit"			"Hero_Juggernaut.BladeDance"
+						"modifier_crit"		"modifier_imba_blade_dance_crit"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_damage"
+				}
+			}
+
+			"modifier_imba_blade_dance_stacks"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsPurgable"			"1"
+
+				"Duration"				"%bonus_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_agi"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_ms" 
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juggernaut's Omnislash
+	//=================================================================================================================
+	"imba_juggernaut_omni_slash"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"juggernaut_omni_slash"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120 110 100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 225 300"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf"
+			"particle"					"particles/status_fx/status_effect_omnislash.vpcf"
+			"particle"					"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"55 90 125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_amount"			"3 6 9"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce_range"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bounce_delay"			"0.40 0.33 0.25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"agi_per_jump"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce_range_scepter"	"1000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_scepter"		"70"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_juggernaut.lua"
+				"Function"				"Omnislash"
+
+				"modifier_caster"		"modifier_imba_omni_slash_caster"
+				"modifier_scepter"		"modifier_imba_omni_slash_caster_scepter"
+				"sound_cast"			"Hero_Juggernaut.OmniSlash"
+				"sound_hit"				"Hero_Juggernaut.OmniSlash.Damage"
+				"particle_trail"		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf"
+				"particle_hit"			"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_omni_slash_caster"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_omnislash.vpcf"
+				"StatusEffectPriority"	"10"
+		
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+				}
+			}
+		}
+	}
+
+    //=================================================================================================================
+	// Jakiro's Fire Breath
+	//=================================================================================================================
+	"imba_jakiro_fire_breath"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"					"1"
+		"AbilityTextureName"				"custom/jakiro_fire_breath"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"0"
+		"AbilityCastPoint"					"0.15"
+		"AbilityCastAnimation"				"ACT_DOTA_CAST_ABILITY_3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"					"100 110 120 130"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_dual_breath_fire.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"path_radius"				"450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spill_radius"				"525"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"575 650 725 800"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"30 40 50 60"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_interval"			"0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"turn_slow"					"-70"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_slow"				"-35 -50 -65 -80"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"950 1100 1250 1400"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"DualBreathUpgrade"
+
+				"ability_other"				"imba_jakiro_ice_breath"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"				"Hero_Jakiro.DualBreath"
+				"Target"					"CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"				"modifier_imba_fire_breath_caster"
+				"Target"					"CASTER"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"DualBreath"
+				"Target"					"POINT"
+				
+				"ability_just_used"			"imba_jakiro_fire_breath"
+				"ability_to_switch"			"imba_jakiro_ice_breath"
+				"particle_breath"			"particles/units/heroes/hero_jakiro/jakiro_dual_breath_fire.vpcf"
+				"modifier_caster"			"modifier_imba_fire_breath_caster"
+				"modifier_breath"			"modifier_imba_fire_breath"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_fire_breath"
+			{
+				"IsHidden"					"0"
+				"IsDebuff"					"1"
+				"IsPurgable"				"1"
+
+				"Duration"					"%duration"
+
+				"ThinkInterval" 			"%damage_interval"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_jakiro.lua"
+						"Function"				"DualBreathDamage"
+
+						"modifier_breath"		"modifier_imba_fire_breath"
+						"modifier_macropyre"	"modifier_imba_macropyre"
+						"modifier_macropyre_2"	"modifier_imba_macropyre_scepter"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"		"%turn_slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_slow"
+				}
+			}
+
+			"modifier_imba_fire_breath_caster"
+			{
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"Passive"					"0"
+				"IsPurgable"				"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Jakiro's Ice Breath
+	//=================================================================================================================
+	"imba_jakiro_ice_breath"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"					"1"
+		"AbilityTextureName"				"custom/jakiro_ice_breath"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"0"
+		"AbilityCastPoint"					"0.15"
+		"AbilityCastAnimation"				"ACT_DOTA_CAST_ABILITY_3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"					"50"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"path_radius"				"450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spill_radius"				"525"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"575 650 725 800"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"20 30 40 50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_interval"			"0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_slow"					"-25 -30 -35 -40"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_slow"				"-15 -20 -25 -30"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"950 1100 1250 1400"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"DualBreathUpgrade"
+
+				"ability_other"				"imba_jakiro_fire_breath"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"				"Hero_Jakiro.DualBreath"
+				"Target"					"CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"				"modifier_imba_ice_breath_caster"
+				"Target"					"CASTER"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"DualBreath"
+				"Target"					"POINT"
+				
+				"ability_just_used"			"imba_jakiro_ice_breath"
+				"ability_to_switch"			"imba_jakiro_fire_breath"
+				"particle_breath"			"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+				"modifier_caster"			"modifier_imba_ice_breath_caster"
+				"modifier_breath"			"modifier_imba_ice_breath"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_ice_breath"
+			{
+				"IsHidden"					"0"
+				"IsDebuff"					"1"
+				"IsPurgable"				"1"
+
+				"Duration"					"%duration"
+
+				"ThinkInterval" 			"%damage_interval"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_jakiro.lua"
+						"Function"				"DualBreathDamage"
+
+						"modifier_breath"		"modifier_imba_ice_breath"
+						"modifier_macropyre"	"modifier_imba_macropyre"
+						"modifier_macropyre_2"	"modifier_imba_macropyre_scepter"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%move_slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+
+			"modifier_imba_ice_breath_caster"
+			{
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"Passive"					"0"
+				"IsPurgable"				"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Jakiro's Liquid Fire
+	//=================================================================================================================
+	"imba_jakiro_liquid_fire"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetFlags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"				"jakiro_liquid_fire"
+		"AOERadius"							"%radius"	
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"16 12 8 4"
+		"AbilityCastRange"					"750"
+		"AbilityCastPoint"					"0.25"
+		"AbilityCastAnimation"				"ACT_DOTA_ATTACK2"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready.vpcf"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+			"particle"						"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+		}
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_slow" 				" -30 -40 -50 -60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"360"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"16 24 32 40"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_interval"			"0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1100"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_tooltip"		"750"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"				"Hero_Jakiro.Attack"
+				"Target"					"CASTER"
+			}
+
+			"TrackingProjectile"
+			{
+				"Target"
+				{
+					"Center"				"TARGET"
+					"Teams"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Flags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+				"EffectName"				"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+				"Dodgeable"					"1"
+				"ProvidesVision"			"0"
+				"VisionRadius"				"0"
+				"MoveSpeed"					"%speed"
+				"SourceAttachment"			"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"					"1"
+
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"LiquidFire"
+
+				"sound_liquid_fire"			"Hero_Jakiro.LiquidFire"
+				"particle_liquid_fire"		"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+				"modifier_liquid_fire"		"modifier_imba_liquid_fire"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_liquid_fire"
+			{
+				"Passive"					"0"
+				"IsDebuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"1"
+
+				"Duration"					"%duration"
+
+				"EffectName"				"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+				"EffectAttachType"			"follow_origin"	
+
+				"ThinkInterval"				"%damage_interval"	
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_jakiro.lua"
+						"Function"				"LiquidFireDamage"
+
+						"modifier_liquid_fire"	"modifier_imba_liquid_fire"
+						"modifier_macropyre"	"modifier_imba_macropyre"
+						"modifier_macropyre_2"	"modifier_imba_macropyre_scepter"
+					}
+				}	
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Jakiro's Macropyre
+	//=================================================================================================================
+	"imba_jakiro_macropyre"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"jakiro_macropyre"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1400 1600 1800"
+		"AbilityCastPoint"				"0.5"	
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"	
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"220 330 440"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"						"particles/hero/jakiro/jakiro_macropyre.vpcf"
+			"particle"						"particles/hero/jakiro/jakiro_macropyre_blue.vpcf"
+			"particle"						"particles/generic_gameplay/generic_slowed_cold.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration_scepter"			"30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_time_scepter"			"1.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 70 90"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_scepter"			"65 90 115"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"1400 1600 1800"					
+			}		
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"path_radius"				"280"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"burn_interval"				"0.5"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_damage"			"100 140 180"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_damage_scepter"	"130 180 230"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trail_angle"				"9.0 8.5 8.0"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trail_amount"				"7"
+			}
+			"13"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stickyness"				"1.0"
+			}
+			"14"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_stack_scepter"		"-5"
+			}
+			"15"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_stacks_scepter"	"1"
+			}
+			"16"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stacks_scepter"		"12"
+			}
+			"17"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_slow_scepter"		"-5"
+			}
+			"18"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_slow_scepter"			"-60"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_jakiro.lua"
+				"Function"					"Macropyre"
+				"Target"					"POINT"
+				
+				"fire_particle"				"particles/hero/jakiro/jakiro_macropyre.vpcf"
+				"ice_particle"				"particles/hero/jakiro/jakiro_macropyre_blue.vpcf"
+				"modifier"					"modifier_imba_macropyre"
+				"modifier_scepter"			"modifier_imba_macropyre_scepter"
+				"modifier_dummy"			"modifier_imba_macropyre_dummy"
+				"sound_fire"				"Hero_Jakiro.Macropyre.Cast"
+				"sound_ice"					"Hero_Jakiro.IcePath.Cast"
+				"sound_fire_loop"			"hero_jakiro.macropyre.scepter"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_macropyre"
+			{
+				"IsDebuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+
+				"Duration"					"%stickyness"
+
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"			"TARGET"
+						"Type"				"DAMAGE_TYPE_MAGICAL"
+						"Damage"			"%damage"
+					}
+				}
+
+				"ThinkInterval"  			"%burn_interval"
+				
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"			"TARGET"
+						"Type"				"DAMAGE_TYPE_MAGICAL"
+						"Damage"			"%damage"
+					}
+				}
+			}
+
+			"modifier_imba_macropyre_scepter"
+			{
+				"IsDebuff"					"1"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+
+				"Duration"					"%stickyness"
+
+				"EffectName"				"particles/generic_gameplay/generic_slowed_cold.vpcf"
+
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"			"TARGET"
+						"Type"				"DAMAGE_TYPE_MAGICAL"
+						"Damage"			"%damage_scepter"
+					}
+				}
+
+				"ThinkInterval"  			"%burn_interval"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_jakiro.lua"
+						"Function"			"MacropyreScepterThink"
+						
+						"modifier_slow"		"modifier_imba_macropyre_scepter_slow"
+						"modifier_stun"		"modifier_imba_macropyre_scepter_stun"
+					}
+				}
+			}
+
+			"modifier_imba_macropyre_scepter_slow"
+			{
+				"IsHidden"					"1"
+				"IsDebuff"					"1"
+				"IsPurgable"				"0"
+
+				"Duration"					"%stickyness"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_stack_scepter" 
+				}
+			}
+
+			"modifier_imba_macropyre_scepter_stun"
+			{
+				"IsHidden"					"1"
+				"IsDebuff"					"1"
+				"IsPurgable"				"0"
+
+				"Duration"					"%stun_time_scepter"
+
+				"EffectName"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			}
+		}
+	}
+
+    //=================================================================================================================
+	// Faceless Void's Time Walk
+	//=================================================================================================================
+	"imba_faceless_void_time_walk"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"faceless_void_time_walk"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_debuff.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18 14 10 6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"3000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_radius"			"325"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_radius"			"250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"675 750 825 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-20 -30 -40 -50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_bonus"			"10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_speed_bonus"	"10 15 20 25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chrono_linger"			"0.3"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_time"			"2"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+				"Function"				"TimeWalk"
+
+				"Target"				"POINT"
+				"sound_cast"			"Hero_FacelessVoid.TimeWalk"
+				"particle_cast"			"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+				"particle_chrono"		"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier_caster"		"modifier_imba_time_walk_caster"
+				"modifier_slow"			"modifier_imba_time_walk_slow"
+				"modifier_buff"			"modifier_imba_time_walk_buff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_time_walk_damage_counter"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dota imba/hero_faceless_void.lua"
+						"Function"		"TimeWalkDamage"
+
+						"damage_taken"	"%attack_damage"
+					}
+				}
+			}
+
+			"modifier_imba_time_walk_caster"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"EffectName"			"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_time_walk_slow"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+
+				"Duration"				"%duration"
+
+				"EffectName"			"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_debuff.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf"
+						"EffectAttachType"	"attach_origin"
+						"Target"			"TARGET"
+
+						"ControlPoints"
+						{
+							"01"	"%radius 0 0"
+						}
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%slow"
+				}
+			}
+
+			"modifier_imba_time_walk_buff"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsPurgable"			"1"
+
+				"Duration"				"%duration"
+
+				"EffectName"			"particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%move_bonus"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_speed_bonus"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Faceless Void's Time Dilation
+	//=================================================================================================================
+	"imba_faceless_void_time_dilation"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"faceless_void_time_dilation"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"725"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 26 22 18"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_increase"		"6 8 10 12"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_start"		"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"725"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_slow"			"-20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_bonus"			"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_bonus"			"5 10 15 20"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+				"Function"				"TimeDilation"
+
+				"sound_cast"			"Hero_FacelessVoid.TimeDilation.Cast"
+				"sound_hit"				"Hero_FacelessVoid.TimeDilation.Target"
+				"particle_cast"			"particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"particle_hit"			"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
+				"modifier_slow"			"modifier_imba_time_dilation_slow"
+				"modifier_buff"			"modifier_imba_time_dilation_buff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_time_dilation_slow"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+
+				"Duration"				"%cooldown_increase"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+						"Function"				"TimeDilationParticle"
+
+						"particle_debuff"		"particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+						"Function"				"TimeDilationParticleEnd"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_slow" 
+				}
+			}
+
+			"modifier_imba_time_dilation_buff"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsPurgable"			"1"
+
+				"Duration"				"%cooldown_increase"
+
+				"EffectName"			"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_bonus" 
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Faceless Void's Time Lock
+	//=================================================================================================================
+	"imba_faceless_void_time_lock"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"				"faceless_void_time_lock"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle"						"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+			"particle"						"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bash_chance"				"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bash_damage"				"50 75 100 125"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bash_duration"				"1.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bash_radius"				"235"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_time_lock"
+			{
+				"Passive"					"1"
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_faceless_void.lua"
+						"Function"			"TimeLock"
+
+						"sound_bash"		"Hero_FacelessVoid.TimeLockImpact"
+						"particle_chrono"	"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+					}
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"internal/util.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_time_lock"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Faceless Void's Timelord
+	//=================================================================================================================
+	"imba_faceless_void_timelord"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO"
+		"MaxLevel"							"4"
+		"AbilityTextureName"				"custom/faceless_void_timelord"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"maximum_as"				"1000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_increase"			"0.2 0.3 0.4 0.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"original_BAT"				"1.7"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_timelord"
+			{
+				"Passive"					"1"
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+
+				"ThinkInterval"				"0.5"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_faceless_void.lua"
+						"Function"			"Timelord"
+					}
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_faceless_void.lua"
+						"Function"			"TimelordStrike"
+					}
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"internal/util.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_timelord"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_faceless_void.lua"
+						"Function"			"TimelordEnd"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Faceless Void's Chronosphere
+	//=================================================================================================================
+	"imba_faceless_void_chronosphere"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"faceless_void_chronosphere"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"soundfile"					"soundevents/imba_soundevents.vsndevts"
+			"particle"					"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"110.0 100.0 90.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_radius"			"425"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_duration"			"4.0 4.5 5.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_radius"			"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_interval"			"0.03"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"20 30 40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_scepter"			"-70"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_ms"				"1000"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+				"Function"				"TimelordUpgrade"
+
+				"ability_timelord"		"imba_faceless_void_timelord"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_faceless_void.lua"
+				"Function"				"Chronosphere"
+				"Target"				"POINT"
+
+				"sound_cast"			"Hero_FacelessVoid.Chronosphere"
+				"sound_za_warudo"		"Imba.FacelessZaWarudo"
+				"particle_chrono"		"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+				"modifier_caster"		"modifier_imba_chronosphere_caster"
+				"modifier_enemy"		"modifier_imba_chronosphere_enemy"
+				"modifier_ally"			"modifier_imba_chronosphere_ally_scepter"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_chronosphere_caster"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsPurgable"			"0"
+
+				"Duration"				"%linger_duration"
+
+				"EffectName"			"particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dota imba/hero_faceless_void.lua"
+						"Function"		"ChronoBuffEnd"
+					}
+					"DestroyTrees"
+					{
+						"Target"		"TARGET"
+						"Radius"		"200"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"			"%chrono_ms"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_as"
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"					"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_chronosphere_enemy"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsDebuff"				"1"
+				"IsPurgable"			"0"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+				"StatusEffectPriority"	"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_DISABLED"
+				}
+			}
+
+			"modifier_imba_chronosphere_ally_scepter"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsDebuff"				"1"
+				"IsPurgable"			"0"
+
+				"Duration"				"%linger_duration"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+				"StatusEffectPriority"	"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"			"%slow_scepter"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_scepter"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"-200"
+				}
+			}
+		}
+	}
+
+    //=================================================================================================================
+	// Enigma's Malefice
+	//=================================================================================================================
+	"imba_enigma_malefice"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"enigma_malefice"
+		"AOERadius"						"%glitch_radius"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/status_fx/status_effect_enigma_malefice.vpcf"
+			"particle"					"particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
+			"particle"					"particles/hero/enigma/malefice_targetstart.vpcf"
+			"particle"					"particles/hero/enigma/malefice_travel.vpcf"
+			"particle"					"particles/hero/enigma/malefice_targetend.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110 120 130 140"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tick_damage"				"30 50 70 90"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_interval"				"2.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.25 0.5 0.75 1.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tick_amount"				"4"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"total_duration"			"6.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"glitch_radius"				"225"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"glitch_pull"				"160 190 220 250"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"pull_delay"				"0.4"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_enigma.lua"
+				"Function"					"Malefice"
+
+				"sound_cast"				"Hero_Enigma.Malefice"
+				"modifier_target"			"modifier_imba_enigma_malefice"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_enigma_malefice"
+			{
+				"Passive"					"0"
+				"IsHidden"					"0"
+				"IsDebuff"					"1"
+				"IsPurgable"				"1"
+
+				"Duration"					"%total_duration"
+
+				"Attributes"				"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"StatusEffectName"			"particles/status_fx/status_effect_enigma_malefice.vpcf"
+				"StatusEffectPriority"		"10"
+
+				"EffectName"				"particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
+				"EffectAttachType"			"follow_origin"
+		
+				"ThinkInterval"				"%tick_interval"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_enigma.lua"
+						"Function"			"MaleficeTick"
+
+						"sound_tick"		"Hero_Enigma.MaleficeTick"
+						"particle_start"	"particles/hero/enigma/malefice_targetstart.vpcf"
+						"particle_travel"	"particles/hero/enigma/malefice_travel.vpcf"
+						"particle_end"		"particles/hero/enigma/malefice_targetend.vpcf"
+					}
+				}
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_enigma.lua"
+						"Function"			"MaleficeTick"
+
+						"sound_tick"		"Hero_Enigma.MaleficeTick"
+						"particle_start"	"particles/hero/enigma/malefice_targetstart.vpcf"
+						"particle_travel"	"particles/hero/enigma/malefice_travel.vpcf"
+						"particle_end"		"particles/hero/enigma/malefice_targetend.vpcf"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Enigma's Demonic Conversion
+	//=================================================================================================================
+	"imba_enigma_demonic_conversion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"enigma_demonic_conversion"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"170"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"eidolon_count"				"3"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attacks_to_split"			"6"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"36"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"child_duration"			"12"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_health"				"180 210 240 270"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_per_level"			"18"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"20 28 36 44"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_level"			"3"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_ms"					"260 280 300 320"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ms_per_level"				"1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_enigma.lua"
+				"Function"					"DemonicConversion"
+
+				"sound_cast"				"Hero_Enigma.Demonic_Conversion"
+				"modifier_eidolons"			"modifier_imba_enigma_eidolon"
+				"modifier_buffs"			"modifier_imba_enigma_eidolon_buffs"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_enigma_eidolon"
+			{
+				"Passive"					"0"
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_enigma.lua"
+						"Function"			"EidolonAttack"
+
+						"modifier_eidolons"	"modifier_imba_enigma_eidolon"
+						"modifier_buffs"	"modifier_imba_enigma_eidolon_buffs"
+					}
+				}
+			}
+
+			"modifier_imba_enigma_eidolon_buffs"
+			{
+				"Passive"					"0"
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"%damage_per_level"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%ms_per_level"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Enigma's Midnight Pulse
+	//=================================================================================================================
+	"imba_enigma_midnight_pulse"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"enigma_midnight_pulse"
+		"AOERadius"						"%radius"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_MIDNIGHT_PULSE"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"95 110 125 140"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"550"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"singularity_radius"		"10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_tick"			"3.0 3.5 4.0 4.5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"11"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull_distance"				"60 70 80 90"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_enigma.lua"
+				"Function"					"MidnightPulse"
+				"Target"					"POINT"
+
+				"sound_cast"				"Hero_Enigma.Midnight_Pulse"
+				"particle_pulse"			"particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf"
+				"modifier_singularity"		"modifier_imba_enigma_black_hole_singularity"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Enigma's Event Horizon
+	//=================================================================================================================
+	"imba_enigma_gravity"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"				"custom/imba_enigma_gravity"
+		"MaxLevel"							"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"1200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1200"
+			}
+			// Stun duration increase hardcoded in the modifier filter
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_increase"				"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"think_interval"			"0.2"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_enigma_gravity_aura"
+			{
+				"Passive"					"1"
+				"IsHidden"					"1"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+		
+				"Aura"						"modifier_imba_enigma_gravity"
+				"Aura_Radius"				"%radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"		"0"
+			}
+
+			"modifier_imba_enigma_gravity"
+			{
+				"Passive"					"0"
+				"IsHidden"					"0"
+				"IsDebuff"					"1"
+				"IsPurgable"				"0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Enigma's Black Hole
+	//=================================================================================================================
+	"imba_enigma_black_hole"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityType"						"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"					"2"
+		"AbilityTextureName"				"enigma_black_hole"
+		"AOERadius"							"%radius"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"						"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+			"particle"						"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf"
+			"particle"						"particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
+			"particle"						"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+			"particle"						"particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
+			"particle"						"particles/hero/enigma/screen_blackhole_indicator.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"300"
+		"AbilityCastPoint"					"0.3"
+		"AbilityChannelTime"				"4.0"
+		"AbilityCastAnimation"				"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"200 180 160"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"					"275 325 375"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"425 450 475"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_pull_distance"		"1000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_pull_distance"		"30"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_pull_speed"			"100 140 180"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_pull_speed"			"8"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"inner_pull_speed"			"50"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 100 150"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull_speed_scepter"		"100"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_scepter"			"5.25"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_enigma.lua"
+				"Function"					"BlackHole"
+				"Target"					"POINT"
+
+				"sound_cast"				"Hero_Enigma.Black_Hole"
+				"sound_ti5"					"Imba.EnigmaBlackHoleTi5"
+				"particle_hole_ti5"			"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf"
+				"particle_hole"				"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+				"modifier_debuff"			"imba_enigma_black_hole"
+				"modifier_debuff_ti5"		"imba_enigma_black_hole_ti5"
+				"modifier_singularity"		"modifier_imba_enigma_black_hole_singularity"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/dota imba/hero_enigma.lua"
+				"Function"					"BlackHoleEnd"
+
+				"sound_stop"				"Hero_Enigma.Black_Hole.Stop"
+			}
+		}
+
+		"Modifiers"
+		{
+			"imba_enigma_black_hole"
+			{
+				"Passive"					"0"
+				"IsHidden"					"1"
+				"IsDebuff"					"1"
+				"IsPurgable"				"0"
+
+				"Duration"					"0.05"
+
+				"StatusEffectName"			"particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
+				"StatusEffectPriority"		"11"
+
+				"ThinkInterval"				"1.0"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffTick"
+					}
+				}
+		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffStart"
+
+						"particle_target"		"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+						"particle_screen"		"particles/hero/enigma/screen_blackhole_indicator.vpcf"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffEnd"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"imba_enigma_black_hole_ti5"
+			{
+				"Passive"					"0"
+				"IsHidden"					"1"
+				"IsDebuff"					"1"
+				"IsPurgable"				"0"
+
+				"Duration"					"0.05"
+
+				"StatusEffectName"			"particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
+				"StatusEffectPriority"		"11"
+
+				"ThinkInterval"				"1.0"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffTick"
+					}
+				}
+		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffStart"
+
+						"particle_target"		"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+						"particle_screen"		"particles/hero/enigma/screen_blackhole_indicator.vpcf"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_enigma.lua"
+						"Function"				"BlackHoleDebuffEnd"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_imba_enigma_black_hole_singularity"
+			{
+				"Passive"					"1"
+				"IsHidden"					"0"
+				"IsBuff"					"1"
+				"IsPurgable"				"0"
+
+				"Attributes"				"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+
+    //=================================================================================================================
+	// Drow Ranger's Frost Arrows (No Marksmanship)
+	//=================================================================================================================
+	"imba_drow_ranger_frost_arrows"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"					"drow_ranger_frost_arrows"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"625"
+		"AbilityCastPoint"						"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"0.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"							"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"9"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frost_arrows_slow"				"-20 -35 -50 -65"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_hero_duration"	"1.75"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_creep_duration"	"10.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stacks_to_freeze"				"4"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"freeze_duration"				"1.75"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"							"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+			"particle"							"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"							"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"  						"particles/status_fx/status_effect_frost.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_frost_arrows_caster"
+			{
+				"Passive"               		"1"
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				
+				"Orb"
+				{
+					"Priority"					"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"			"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+					"CastAttack"				"1"
+				}
+
+				"OnOrbFire"
+				{
+					"FireSound"
+					{
+						"EffectName"			"Hero_DrowRanger.FrostArrows"
+						"Target"				"CASTER"
+					}
+					"SpendMana"
+					{
+						"Mana"					"%AbilityManaCost"
+					}
+				}
+
+				"OnOrbImpact"
+				{
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_creep_duration"
+					}
+					
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_HERO"
+						}
+
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_hero_duration"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"				"FrostArrows"
+						"Target"
+						{
+							"Center"  			"TARGET"
+							"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"stack_modifier"		"modifier_imba_frost_arrows_slow_stacks"
+						"freeze_modifier"		"modifier_imba_frost_arrows_frozen"
+					}
+				}
+			}
+			
+			"modifier_imba_frost_arrows_slow"
+			{
+				"Passive"						"0"
+				"IsHidden"						"1"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+			
+				"EffectName"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%frost_arrows_slow"
+				}
+			}
+
+			"modifier_imba_frost_arrows_slow_stacks"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%frost_arrows_hero_duration"
+			}
+
+			"modifier_imba_frost_arrows_frozen"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%freeze_duration"
+				"TextureName"					"custom/imba_drow_ranger_frost_arrows"
+				
+				"EffectName"					"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"StatusEffectName"				"particles/status_fx/status_effect_frost.vpcf"
+				"StatusEffectPriority"			"10"
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"hero_Crystal.frostbite"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Frost Arrows (Marksmanship level 1)
+	//=================================================================================================================
+	"imba_drow_ranger_frost_arrows_mark1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"					"drow_ranger_frost_arrows"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"675"
+		"AbilityCastPoint"						"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"0.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"							"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"9"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frost_arrows_slow"				"-20 -35 -50 -65"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_hero_duration"	"1.75"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_creep_duration"	"10.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stacks_to_freeze"				"4"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"freeze_duration"				"1.75"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"							"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+			"particle"							"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"							"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"  						"particles/status_fx/status_effect_frost.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_frost_arrows_caster"
+			{
+				"Passive"               		"1"
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				
+				"Orb"
+				{
+					"Priority"					"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"			"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+					"CastAttack"				"1"
+				}
+
+				"OnOrbFire"
+				{
+					"FireSound"
+					{
+						"EffectName"			"Hero_DrowRanger.FrostArrows"
+						"Target"				"CASTER"
+					}
+					"SpendMana"
+					{
+						"Mana"					"%AbilityManaCost"
+					}
+				}
+
+				"OnOrbImpact"
+				{
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_creep_duration"
+					}
+					
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_HERO"
+						}
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_hero_duration"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"				"FrostArrows"
+						"Target"
+						{
+							"Center"  			"TARGET"
+							"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"stack_modifier"		"modifier_imba_frost_arrows_slow_stacks"
+						"freeze_modifier"		"modifier_imba_frost_arrows_frozen"
+					}
+				}
+			}
+			
+			"modifier_imba_frost_arrows_slow"
+			{
+				"Passive"						"0"
+				"IsHidden"						"1"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+			
+				"EffectName"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%frost_arrows_slow"
+				}
+			}
+
+			"modifier_imba_frost_arrows_slow_stacks"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%frost_arrows_hero_duration"
+			}
+
+			"modifier_imba_frost_arrows_frozen"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%freeze_duration"
+				"TextureName"					"imba_drow_ranger_frost_arrows"
+				
+				"EffectName"					"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"StatusEffectName" 				"particles/status_fx/status_effect_frost.vpcf" 	   
+				"StatusEffectPriority" 			"10"
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"hero_Crystal.frostbite"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Frost Arrows (Marksmanship level 2)
+	//=================================================================================================================
+	"imba_drow_ranger_frost_arrows_mark2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"					"drow_ranger_frost_arrows"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"700"
+		"AbilityCastPoint"						"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"0.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"							"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"9"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frost_arrows_slow"				"-20 -35 -50 -65"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_hero_duration"	"1.75"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_creep_duration"	"10.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stacks_to_freeze"				"4"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"freeze_duration"				"1.75"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"							"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+			"particle"							"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"							"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"  						"particles/status_fx/status_effect_frost.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_frost_arrows_caster"
+			{
+				"Passive"               		"1"
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				
+				"Orb"
+				{
+					"Priority"					"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"			"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+					"CastAttack"				"1"
+				}
+
+				"OnOrbFire"
+				{
+					"FireSound"
+					{
+						"EffectName"			"Hero_DrowRanger.FrostArrows"
+						"Target"				"CASTER"
+					}
+					"SpendMana"
+					{
+						"Mana"					"%AbilityManaCost"
+					}
+				}
+
+				"OnOrbImpact"
+				{
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_creep_duration"
+					}
+					
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_HERO"
+						}
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_hero_duration"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"				"FrostArrows"
+						"Target"
+						{
+							"Center"  			"TARGET"
+							"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"stack_modifier"		"modifier_imba_frost_arrows_slow_stacks"
+						"freeze_modifier"		"modifier_imba_frost_arrows_frozen"
+					}
+				}
+			}
+			
+			"modifier_imba_frost_arrows_slow"
+			{
+				"Passive"						"0"
+				"IsHidden"						"1"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+			
+				"EffectName"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%frost_arrows_slow"
+				}
+			}
+
+			"modifier_imba_frost_arrows_slow_stacks"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%frost_arrows_hero_duration"
+			}
+
+			"modifier_imba_frost_arrows_frozen"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%freeze_duration"
+				"TextureName"					"imba_drow_ranger_frost_arrows"
+				
+				"EffectName"					"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"StatusEffectName" 				"particles/status_fx/status_effect_frost.vpcf" 	   
+				"StatusEffectPriority" 			"10"
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"hero_Crystal.frostbite"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Frost Arrows (Marksmanship level 3)
+	//=================================================================================================================
+	"imba_drow_ranger_frost_arrows_mark3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"					"drow_ranger_frost_arrows"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"725"
+		"AbilityCastPoint"						"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"0.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"							"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"9"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frost_arrows_slow"				"-20 -35 -50 -65"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_hero_duration"	"1.75"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"frost_arrows_creep_duration"	"10.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stacks_to_freeze"				"4"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"freeze_duration"				"1.75"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"							"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+			"particle"							"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"							"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+			"particle"  						"particles/status_fx/status_effect_frost.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_frost_arrows_caster"
+			{
+				"Passive"               		"1"
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				
+				"Orb"
+				{
+					"Priority"					"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"			"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+					"CastAttack"				"1"
+				}
+
+				"OnOrbFire"
+				{
+					"FireSound"
+					{
+						"EffectName"			"Hero_DrowRanger.FrostArrows"
+						"Target"				"CASTER"
+					}
+					"SpendMana"
+					{
+						"Mana"					"%AbilityManaCost"
+					}
+				}
+
+				"OnOrbImpact"
+				{
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_creep_duration"
+					}
+					
+					"ApplyModifier"
+					{
+						"Target"
+						{
+							"Center"			"TARGET"
+							"Types"				"DOTA_UNIT_TARGET_HERO"
+						}
+						"ModifierName"			"modifier_imba_frost_arrows_slow"
+						"Duration"				"%frost_arrows_hero_duration"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"				"FrostArrows"
+						"Target"
+						{
+							"Center"  			"TARGET"
+							"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"stack_modifier"		"modifier_imba_frost_arrows_slow_stacks"
+						"freeze_modifier"		"modifier_imba_frost_arrows_frozen"
+					}
+				}
+			}
+			
+			"modifier_imba_frost_arrows_slow"
+			{
+				"Passive"						"0"
+				"IsHidden"						"1"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+			
+				"EffectName"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%frost_arrows_slow"
+				}
+			}
+
+			"modifier_imba_frost_arrows_slow_stacks"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%frost_arrows_hero_duration"
+			}
+
+			"modifier_imba_frost_arrows_frozen"
+			{
+				"Passive"						"0"
+				"IsHidden"						"0"
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+
+				"Duration"						"%freeze_duration"
+				"TextureName"					"imba_drow_ranger_frost_arrows"
+				
+				"EffectName"					"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"StatusEffectName" 				"particles/status_fx/status_effect_frost.vpcf" 	   
+				"StatusEffectPriority" 			"10"
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"hero_Crystal.frostbite"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Gust
+	//=================================================================================================================
+	"imba_drow_ranger_gust"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"1"
+		"AbilityTextureName"					"drow_ranger_wave_of_silence"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"1150"
+		"AbilityCastPoint"						"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"13"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"90"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"wave_speed"					"2000.0"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"wave_range"					"900"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"wave_width"					"250"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_slow"					"-20"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_slow"						"-20"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"silence_duration"				"3 4 5 6"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"knockback_duration"			"0.9"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"knockback_height"				"30"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"self_knockback_duration"		"0.3"
+			}
+			"10"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"50"
+			}
+			"11"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"wave_range_tooltip"			"1150"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"particle"					"particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
+			"particle"					"particles/generic_gameplay/generic_silence.vpcf"
+			"particle"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"					"particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+		}
+		
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"				"POINT"
+				"EffectName"			"particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
+				"MoveSpeed"				"%wave_speed"
+				"StartRadius"			"%wave_width"
+				"StartPosition"			"attach_attack1"
+				"EndRadius"				"%wave_width"
+				"FixedDistance"			"%wave_range"
+				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"HasFrontalCone"		"0"
+			}
+			
+			"FireSound"
+			{
+				"EffectName"			"Hero_DrowRanger.Silence"
+				"Target"				"CASTER"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"				"0"
+
+			"Damage"
+			{
+				"Target"				"TARGET"
+				"Type"					"DAMAGE_TYPE_MAGICAL"
+				"Damage"				"%damage"
+			}
+		
+			"ApplyModifier"
+			{
+				"ModifierName"			"modifier_imba_drow_ranger_gust_debuff"
+				"Target"				"TARGET"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/dota imba/hero_drow_ranger.lua"
+				"Function"				"Gust"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_drow_ranger_gust_debuff"
+			{
+				"IsDebuff"						"1"
+				"IsPurgable"					"1"
+				"Duration"						"%silence_duration"
+				
+				"EffectName"					"particles/generic_gameplay/generic_silence.vpcf"
+				"EffectAttachType"				"follow_overhead"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%move_slow" 
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Trueshot Aura
+	//=================================================================================================================
+	"imba_drow_ranger_trueshot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_datadriven"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityTextureName"				"drow_ranger_trueshot"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"0"
+		"AbilityCastPoint"					"0"
+		"AbilityCooldown"					"40"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trueshot_ranged_damage"	"21 28 35 42"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"global_radius"				"25000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_duration"			"10"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_agi"					"14 21 28 35"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					"CASTER"
+				"ModifierName"				"modifier_imba_trueshot_aura_owner_creep"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_trueshot_aura_owner_hero"
+			{
+				"Passive"					"1"
+				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				
+				"Aura"						"modifier_imba_trueshot_aura"
+				"Aura_Radius"				"%global_radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_HERO"
+				"Aura_ApplyToCaster" 		"1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"internal/util.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_trueshot_aura_owner_hero"
+					}
+				}
+			}
+			
+			"modifier_imba_trueshot_aura_owner_creep"
+			{
+				"IsPurgable"				"0"
+				"IsHidden"					"0"
+
+				"Duration"					"%active_duration"
+				
+				"Aura"						"modifier_imba_trueshot_aura"
+				"Aura_Radius"				"%global_radius"
+				"Aura_Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"				"DOTA_UNIT_TARGET_BASIC"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"internal/util.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_trueshot_aura_owner_creep"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_agi"
+				}
+			}
+			
+			"modifier_imba_trueshot_aura"
+			{
+				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				
+				"ThinkInterval"  			"0.5"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"			"Trueshot"
+
+						"modifier_stack"	"modifier_imba_trueshot_damage_stack"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_imba_trueshot_damage_stack"
+						"Target" 			"TARGET"
+					}
+				}
+			}
+		
+			"modifier_imba_trueshot_damage_stack"
+			{
+				"IsPurgable"			"0"
+				"IsHidden"				"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"1"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's Marksmanship
+	//=================================================================================================================
+	"imba_drow_ranger_marksmanship"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"drow_ranger_marksmanship"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"0.6"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"agility_bonus"						"50 80 110"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"movement_speed_bonus"				"10"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"range_bonus"						"50 75 100"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"night_vision_bonus"				"1000"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"radius"							"300"
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"think_interval"					"0.2"
+			}
+			"07"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"damage_reduction_scepter"			"-50"
+			}
+			"08"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"splinter_radius_scepter"			"400"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"								"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
+			"particle"								"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+		}
+
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"						"modifier_imba_marksmanship_effect"
+				"Target" 							"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"						"abilities/dota imba/hero_drow_ranger.lua"
+				"Function"							"UpgradeFrostArrows"
+
+				"ability_0"							"imba_drow_ranger_frost_arrows"
+				"ability_1"							"imba_drow_ranger_frost_arrows_mark1"
+				"ability_2"							"imba_drow_ranger_frost_arrows_mark2"
+				"ability_3"							"imba_drow_ranger_frost_arrows_mark3"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			
+			"RunScript"
+			{
+				"ScriptFile"						"abilities/dota imba/hero_drow_ranger.lua"
+				"Function"							"MarksmanshipHit"
+
+				"modifier_dmg_penalty"				"modifier_imba_marksmanship_splinter_dmg_penalty"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_imba_marksmanship_passive"
+			{
+				"Passive"							"1"
+				"IsHidden"							"1"
+				"IsPurgable"						"0"
+			
+				"ThinkInterval"						"%think_interval"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"					"Marksmanship"
+
+						"modifier_effect"			"modifier_imba_marksmanship_effect"
+					}
+				}
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"abilities/dota imba/hero_drow_ranger.lua"
+						"Function"					"MarksmanshipSplinter"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%range_bonus"
+				}
+			}
+			
+			"modifier_imba_marksmanship_effect"
+			{
+				"IsPurgable"					"0"
+				"IsHidden"						"0"
+				
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_attack1"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"ControlPoints"
+						{
+							"02"				"150 150 150"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%agility_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movement_speed_bonus"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%night_vision_bonus"
+				}
+			}
+
+			"modifier_imba_marksmanship_splinter_dmg_penalty"
+			{
+				"Passive"						"0"
+				"IsPurgable"					"0"
+				"IsHidden"						"1"
+				"IsDebuff"						"1"
+
+				"Duration"						"0.01"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%damage_reduction_scepter"
+				}
+			}
+		}
+	}	
+
+    //=================================================================================================================
 	// DAZZLE's Poison Touch
 	//=================================================================================================================
 	"imba_dazzle_poison_touch"
@@ -5687,7 +10077,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"						"1"

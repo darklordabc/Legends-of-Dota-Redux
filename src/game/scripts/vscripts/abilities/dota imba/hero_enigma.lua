@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 12.01.2016	]]
-
+require('lib/animations')
 function Malefice( keys )
 	local caster = keys.caster
 	local target = keys.target

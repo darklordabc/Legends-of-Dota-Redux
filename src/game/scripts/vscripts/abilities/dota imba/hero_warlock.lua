@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 09.03.2016	]]
-
+require('lib/animations')
 function ShadowWord( keys )
 	local caster = keys.caster
 	local target = keys.target

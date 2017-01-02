@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 01.10.2015	]]
-
+require('lib/animations')
 function GaleCast( keys )
 	local caster = keys.caster
 	local target = keys.target_points[1]

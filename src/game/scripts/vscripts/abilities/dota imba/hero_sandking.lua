@@ -1,6 +1,6 @@
 --[[	Author: Firetoad
 		Date: 31.08.2015	]]
-
+require('lib/animations')
 function Burrowstrike( keys )
 	local caster = keys.caster
 	local target = keys.target_points[1]
