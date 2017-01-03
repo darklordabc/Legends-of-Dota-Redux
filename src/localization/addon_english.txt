@@ -8229,4 +8229,46 @@
         "DOTA_Tooltip_modifier_imba_ancient_seal_silence"                                   "Ancient Seal"
         "DOTA_Tooltip_modifier_imba_ancient_seal_silence_Description"                       "Silenced and suffers from reduced magic resistance. Spells cast on you by Skywrath increase the seal's duration."
 
+        //=================================================================================================================
+        // Diretide ability descriptions
+        //=================================================================================================================
+
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast"                            "Wraithfire Blast"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_Description"                "Sears an enemy unit with spectral fire, dealing damage and stunning. The wraithfire blast then splits, seeking enemies in up to %bounce_range% range.\n<font color='#FF7800'>Wraithgrasp:</font> Slows all enemies hit for %slow_duration% seconds. While slowed, enemies will take %damage_per_second% damage per second, and Wraith King's allies will gain extra %bonus_lifesteal%%% lifesteal when attacking them."
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_Lore"                       "The one true king calls on his damned lineage, laying waste to his opponents."
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_Note0"                      "Lifesteal is granted to allied heroes only. Based on damage dealt, from any source. Does not work on illusions."
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_damage"                     "DAMAGE:"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_stun_duration"              "STUN DURATION:"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_slow_duration"              "SLOW DURATION:"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_ms_slow"                    "%MOVEMENT SLOW:"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_damage_per_second"          "DAMAGE PER SECOND:"
+        "DOTA_Tooltip_ability_imba_wraith_king_wraithfire_blast_bonus_lifesteal"            "%BONUS LIFESTEAL:"
+
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura"                               "Vampiric Aura"
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_Description"                   "Nearby allies will restore health based on the damage they deal. Toggle to affect creeps.\n<font color='#FF7800'>Feed the wraith:</font> The effect is increased on Wraith King himself.\n<font color='#FF7800'>Blood, by any other name:</font> Can lifesteal from any source of damage."
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_Note0"                         "Heals based on damage dealt after reductions."
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_Lore"                          "Wraith King's blade drains his enemies' essence to feed his aura."
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_radius"                        "AURA RADIUS:"
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_lifesteal_ally"                "%ALLIED LIFESTEAL:"
+        "DOTA_Tooltip_ability_imba_wraith_king_vampiric_aura_lifesteal_self"                "%SELF LIFESTEAL:"
+
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike"                               "Mortal Strike"
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_Description"                   "The King's strikes have a chance to crit, increasing damage and granting him part of the damage done as bonus strength.\n<font color='#FF7800'>Destroy lesser beings:</font> Deals bonus damage to creeps and illusions equal to their maximum health."
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_Note0"                         "Drains strength based on damage before reductions."
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_Lore"                          "One blow to crush a foe."
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_crit_chance"                   "%CRITICAL CHANCE:"
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_crit_power"                    "%CRITICAL DAMAGE:"
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_str_drain_pct"                 "%DAMAGE TO STRENGTH:"
+        "DOTA_Tooltip_ability_imba_wraith_king_mortal_strike_drain_duration"                "BONUS STRENGTH DURATION:"
+
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation"                               "Reincarnation"
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_Description"                   "The One True King's form regroups, allowing him to ressurrect when killed in battle. Upon death, slows all enemies in %slow_radius% range.\n<font color='#FF7800'>Kingdom come:</font> Upon ressurrection, kills all creeps and illusions in the area. Enemy heroes take %kingdom_damage% damage and are stunned for %kingdom_stun% second. The King gains %kingdom_ms%%% move speed for each hero hit.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter:</font> When near the Wraith King, allies will enter Wraith Form after being dealt a fatal blow, becoming unkillable for a short duration. When Wraith Form expires, allies will die normally."
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_Note0"                         "Auras and buffs affecting by the owner will persist through the reincarnation's duration."
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_Note1"                         "Reincarnation will not trigger if its owner hasn't got enough mana for it."
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_Lore"                          "Conspirators against the Wraith King wonder why he never stays dead."
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_slow_amount"                   "%SLOW:"
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_slow_duration"                 "SLOW DURATION:"
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_aura_radius_scepter"           "WRAITH FORM RADIUS:"
+        "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_wraith_duration_scepter"       "WRAITH FORM DURATION:"
+
 }
