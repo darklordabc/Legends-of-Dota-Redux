@@ -35412,7 +35412,44 @@
             }
         }
     } 
-	
+
+	"aether_range_lod_global"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"            "custom/aether_range_lod_OP"
+        "MaxLevel"						"1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "cast_range_bonus"          "99999"
+            }
+        }
+        "OnOwnerSpawned"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/aether_range_lod.lua"
+                "Function"      "SetCastRange"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/aether_range_lod.lua"
+                "Function"      "SetCastRange"
+            }
+        }
+    } 
+
     "octarine_vampirism_lod"
     {
         // General
@@ -53107,6 +53144,7 @@
 		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
 		  "FightRecapLevel"       "1"
 		  "AbilityTextureName"      "custom/skywrath_mage_concussive_break"
+		  "HasScepterUpgrade"				"1"
 
 		  // Casting
 		  //-------------------------------------------------------------------------------------------------------------

@@ -365,6 +365,10 @@ var basicOptions = {
                             'lodMutatorNether': 12,
                         }
                     },
+                    {
+                        name: 'lodOptionGlobalCast',
+                        about: 'lodMutatorGlobalCast'
+                    },
                     //{
                    //     name: 'lodOptionMonkeyBusiness',        
                    //     extraInfo: 'lodOptionAboutMonkeyBusiness',
@@ -469,6 +473,22 @@ var advancedOptions = {
                 name: 'lodOptionDuels',
                 des: 'lodOptionDesDuels',
                 about: 'lodOptionAboutDuels',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionIngameBuilder',
+                des: 'lodOptionDesIngameBuilder',
+                about: 'lodOptionAboutIngameBuilder',
                 sort: 'toggle',
                 values: [
                     {
@@ -1187,22 +1207,6 @@ var advancedOptions = {
 				]
 			},
             {
-                name: 'lodOptionIngameBuilder',
-                des: 'lodOptionDesIngameBuilder',
-                about: 'lodOptionAboutIngameBuilder',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionIngameBuilderPenalty',
                 des: 'lodOptionDesIngameBuilderPenalty',
                 about: 'lodOptionAboutIngameBuilderPenalty',
@@ -1321,6 +1325,22 @@ var advancedOptions = {
                     {
                         text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
                         value: 12
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGlobalCast',
+                des: 'lodOptionDesGlobalCast',
+                about: 'lodOptionAboutGlobalCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },

@@ -379,6 +379,12 @@
     "lodOptionDesExtraAbility"                                   "Free Extra Ability"
     "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
+    "lodOptionGlobalCast"                                 "Global Cast Range"
+    "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
+    "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
+    "lodMutatorGlobalCast"                                 "Global Cast Range"
+    
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -459,11 +465,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.3 update:</font><br>- Fixed creep power always activating when pressing load<br>- Hopefully fixed flesh heaps<br>- Added 7 new settings on the free ability mutator<br>- Bots will revert to their usual pushing behaviour if a tower is destroyed<br>- While bots are forced in defensive mode, they will automatically teleport when below 200 HP. This is to compenstate for their suicidal behaviour<br>- Improved holy books damage percantage "
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.4 update:</font><br>- Fixed Dazzle always getting shallow grave<br>- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.<br>- Upgraded concussive break to add its new aghs component<br>- Added Global Cast Range mutator<br><br> <font color='#FF4C4C'>The <font color='#70EA72'>Global Cast Range mutator</font> may have some buggy interactions with some abilities</font>, please report any abilities that don't work with it and they will be added to a blacklist. So far, only Hook, Fissure have been banned with global cast range."
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.3 update:</font><br>- Fixed creep power always activating when pressing load<br>- Hopefully fixed flesh heaps<br>- Added 7 new settings on the free ability mutator<br>- Bots will revert to their usual pushing behaviour if a tower is destroyed<br>- While bots are forced in defensive mode, they will automatically teleport when below 200 HP. This is to compenstate for their suicidal behaviour<br>- Improved holy books damage percantage "
+   "lodHostingMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.4 update:</font><br>- Fixed Dazzle always getting shallow grave<br>- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.<br>- Upgraded concussive break to add its new aghs component<br>- Added Global Cast Range mutator<br><br> <font color='#FF4C4C'>The <font color='#70EA72'>Global Cast Range mutator</font> may have some buggy interactions with some abilities</font>, please report any abilities that don't work with it and they will be added to a blacklist. So far, only Hook, Fissure have been banned with global cast range."
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -3806,8 +3812,8 @@
 
 
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
-    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect."
-
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect.\nUpgradable by Aghanim's Scepter."
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Aghanim_Description"    "With Aghanim's Scepter, whenever Concussive Shot is cast, a different random target within the search radius is also being targeted."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Lore"            "Rivers know this: there is no hurry. We shall get there some day."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note0"         "Does not work when no heroes are in range or heroes are in fog."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note1"         "Provides 400 vision around the projectile, and reveals the target area for 3.34 seconds upon impact."
