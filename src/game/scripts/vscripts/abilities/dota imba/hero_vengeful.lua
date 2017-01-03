@@ -453,7 +453,7 @@ function NetherSwapBack( keys )
 	ProjectileManager:ProjectileDodge(caster)
 
 	-- Create dummy on the initial position
-	local dummy_target = CreateUnitByName("npc_dummy_unit", caster:GetAbsOrigin(), false, nil, nil, caster:GetTeamNumber())
+	local dummy_target = CreateUnitByName("npc_dummy_unit_imba", caster:GetAbsOrigin(), false, nil, nil, caster:GetTeamNumber())
 
 	-- Play particle
 	local swap_pfx = ParticleManager:CreateParticle(particle_caster, PATTACH_ABSORIGIN, caster)

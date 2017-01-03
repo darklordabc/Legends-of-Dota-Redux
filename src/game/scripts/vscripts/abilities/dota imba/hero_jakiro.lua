@@ -232,7 +232,7 @@ function Macropyre( keys )
 	local trail_end = ( trail_amount - 1 ) / 2
 
 	-- Create the visibility dummy
-	local dummy = CreateUnitByName("npc_dummy_unit", start_pos, false, nil, nil, caster:GetTeamNumber())
+	local dummy = CreateUnitByName("npc_dummy_unit_imba", start_pos, false, nil, nil, caster:GetTeamNumber())
 	dummy:MakeVisibleToTeam(DOTA_TEAM_GOODGUYS, duration)
 	dummy:MakeVisibleToTeam(DOTA_TEAM_BADGUYS, duration)
 

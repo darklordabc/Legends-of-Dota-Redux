@@ -94,7 +94,7 @@ function SandStorm( keys )
 	local caster_loc = caster:GetAbsOrigin()
 	
 	-- Create particle/sound dummy
-	caster.sandstorm_dummy = CreateUnitByName("npc_dummy_unit", caster_loc, false, nil, nil, caster:GetTeamNumber())
+	caster.sandstorm_dummy = CreateUnitByName("npc_dummy_unit_imba", caster_loc, false, nil, nil, caster:GetTeamNumber())
 
 	-- Play sounds
 	caster.sandstorm_dummy:EmitSound(sound_cast)

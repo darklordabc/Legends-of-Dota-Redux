@@ -632,7 +632,7 @@ function MysticFlare ( keys )
 	caster:EmitSound(sound_cast)			
 		
 	-- Create dummy unit in point target and add it to the dummies table
-	local dummy = CreateUnitByName("npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber())					
+	local dummy = CreateUnitByName("npc_dummy_unit_imba", target, false, caster, caster, caster:GetTeamNumber())					
 	
 	-- Assign mystic flare modifier to dummy
 	ability:ApplyDataDrivenModifier(caster, dummy, modifier_mystic_flare, {})						

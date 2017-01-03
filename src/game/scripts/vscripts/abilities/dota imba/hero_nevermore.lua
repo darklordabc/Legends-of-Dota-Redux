@@ -316,7 +316,7 @@ function ShadowrazeCreateRaze(keys, point, radius, particle_raze)
 	ParticleManager:ReleaseParticleIndex(raze_pfx)
 
 	-- Raze sound (on dummy)
-	local dummy = CreateUnitByName("npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
+	local dummy = CreateUnitByName("npc_dummy_unit_imba", point, false, nil, nil, caster:GetTeamNumber())
 	dummy:EmitSound(sound_raze)
 	dummy:Destroy()
 

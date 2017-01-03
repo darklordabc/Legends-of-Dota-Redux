@@ -265,7 +265,7 @@ function MidnightPulse( keys )
 	GridNav:DestroyTreesAroundPoint(target, radius, false)
 
 	-- Create dummy to play sound on
-	local pulse_dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, caster:GetTeamNumber())
+	local pulse_dummy = CreateUnitByName("npc_dummy_unit_imba", target, false, nil, nil, caster:GetTeamNumber())
 
 	-- Play sound
 	pulse_dummy:EmitSound(sound_cast)
@@ -343,7 +343,7 @@ function BlackHole( keys )
 	local pull_speed_scepter = ability:GetLevelSpecialValueFor("pull_speed_scepter", ability_level)
 
 	-- Set up dummy and global center point variable
-	caster.black_hole_dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, caster:GetTeamNumber())
+	caster.black_hole_dummy = CreateUnitByName("npc_dummy_unit_imba", target, false, nil, nil, caster:GetTeamNumber())
 	caster.black_hole_center = target
 
 	-- Verify how many enemies were caught initially

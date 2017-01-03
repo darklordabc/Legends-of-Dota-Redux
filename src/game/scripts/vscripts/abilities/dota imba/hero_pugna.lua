@@ -21,7 +21,7 @@ function NetherBlast( keys )
 	local secondary_blasts = ability:GetLevelSpecialValueFor("secondary_blasts", ability_level)
 
 	-- Create sound dummy and play sound on it
-	local nether_blast_dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, caster:GetTeamNumber())
+	local nether_blast_dummy = CreateUnitByName("npc_dummy_unit_imba", target, false, nil, nil, caster:GetTeamNumber())
 	nether_blast_dummy:EmitSound(sound_cast)
 
 	-- Play central blast particle
@@ -160,7 +160,7 @@ function DecrepifyBlast( keys )
 	target:EmitSound(sound_pre_blast)
 
 	-- Create sound dummy for later
-	local blast_dummy = CreateUnitByName("npc_dummy_unit", blast_position, false, nil, nil, caster:GetTeamNumber())
+	local blast_dummy = CreateUnitByName("npc_dummy_unit_imba", blast_position, false, nil, nil, caster:GetTeamNumber())
 
 	-- Play pre-blast particle
 	local pre_blast_pfx = ParticleManager:CreateParticle(particle_pre_blast, PATTACH_CUSTOMORIGIN, nil)

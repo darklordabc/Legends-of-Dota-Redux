@@ -122,7 +122,7 @@ function Torrent( keys )
 		end
 
 		-- Creates the post-ability sound effect
-		local dummy = CreateUnitByName("npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
+		local dummy = CreateUnitByName("npc_dummy_unit_imba", target, false, caster, caster, caster:GetTeamNumber() )
 		dummy:EmitSound(sound_name)
 
 		-- Draws the particle
@@ -566,7 +566,7 @@ function GhostShip( keys )
 	Timers:CreateTimer(crash_delay, function()
 		
 		-- Fire sound on crash point
-		local dummy = CreateUnitByName("npc_dummy_unit", crash_pos, false, caster, caster, caster:GetTeamNumber() )
+		local dummy = CreateUnitByName("npc_dummy_unit_imba", crash_pos, false, caster, caster, caster:GetTeamNumber() )
 		dummy:EmitSound(crash_sound)
 		dummy:Destroy()
 		

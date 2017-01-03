@@ -171,7 +171,7 @@ function LightStrikeArray( keys )
 	Timers:CreateTimer(cast_delay, function()
 
 		-- Create a sound/visibility dummy
-		local sound_dummy = CreateUnitByName("npc_dummy_unit", blast_positions[blast_count], false, caster, caster, caster:GetTeamNumber())
+		local sound_dummy = CreateUnitByName("npc_dummy_unit_imba", blast_positions[blast_count], false, caster, caster, caster:GetTeamNumber())
 
 		-- Play the blast particle
 		local blast_pfx = ParticleManager:CreateParticle(particle_blast, PATTACH_CUSTOMORIGIN, nil)

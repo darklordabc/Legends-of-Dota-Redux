@@ -382,7 +382,7 @@ function ChaoticOffering( keys )
 	ability:CreateVisibilityNode(target, stun_radius, stun_duration)
 
 	-- Create particle/sound dummy
-	local dummy_unit = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, caster:GetTeamNumber())
+	local dummy_unit = CreateUnitByName("npc_dummy_unit_imba", target, false, nil, nil, caster:GetTeamNumber())
 
 	-- Roll for an infernal model
 	local infernal_ambient_particle
@@ -579,7 +579,7 @@ function ChaoticOffering( keys )
 				local small_target = RotatePosition(target, QAngle(0, -infernal_count * 360 / 5, 0), target + (target - caster:GetAbsOrigin()):Normalized() * stun_radius / 2)
 
 				-- Particles dummy unit
-				local small_dummy = CreateUnitByName("npc_dummy_unit", small_target, false, nil, nil, caster:GetTeamNumber())
+				local small_dummy = CreateUnitByName("npc_dummy_unit_imba", small_target, false, nil, nil, caster:GetTeamNumber())
 
 				-- Particle part 1
 				local initial_small_pfx = ParticleManager:CreateParticle(particle_small_1, PATTACH_ABSORIGIN_FOLLOW, small_dummy)

@@ -148,7 +148,7 @@ function FreezingFieldCast( keys )
 	caster.freezing_field_center = caster
 	local scepter = HasScepter(caster)
 	if scepter then
-		caster.freezing_field_center = CreateUnitByName("npc_dummy_unit", keys.target_points[1], false, nil, nil, caster:GetTeamNumber())
+		caster.freezing_field_center = CreateUnitByName("npc_dummy_unit_imba", keys.target_points[1], false, nil, nil, caster:GetTeamNumber())
 		caster.freezing_field_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_CUSTOMORIGIN, caster.freezing_field_center)
 		ParticleManager:SetParticleControl(caster.freezing_field_particle, 0, keys.target_points[1])
 		ParticleManager:SetParticleControl(caster.freezing_field_particle, 1, Vector (1000, 0, 0))
@@ -235,7 +235,7 @@ function FreezingFieldExplode( keys )
 	end
 
 	-- Create particle/sound dummy unit
-	local explosion_dummy = CreateUnitByName("npc_dummy_unit", attackPoint, false, nil, nil, caster:GetTeamNumber())
+	local explosion_dummy = CreateUnitByName("npc_dummy_unit_imba", attackPoint, false, nil, nil, caster:GetTeamNumber())
 	
 	-- Fire effect
 	local fxIndex = ParticleManager:CreateParticle(particle_name, PATTACH_CUSTOMORIGIN, explosion_dummy)
