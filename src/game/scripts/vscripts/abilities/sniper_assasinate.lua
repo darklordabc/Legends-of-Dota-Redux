@@ -1,56 +1,179 @@
---[[
-  Author: kritth
-  Date: 6.1.2015.
-  Register target
-]]
-function assassinate_register_target( keys )
-  keys.caster.assassinate_target = keys.target
-end
+sniper_assassinate_redux = class({})
 
---[[
-  Author: kritth
-  Date: 6.1.2015.
-  Remove debuff from target
-]]
-function assassinate_remove_target( keys )
-  if keys.caster.assassinate_target then
-    keys.caster.assassinate_target:RemoveModifierByName( "modifier_assassinate_target_datadriven" )
-    keys.caster.assassinate_target = nil
+LinkLuaModifier("modifier_sniper_assassinate_caster_redux","abilities/sniper_assassinate.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_sniper_assassinate_target_redux","abilities/sniper_assassinate.lua",LUA_MODIFIER_MOTION_NONE)
+
+function sniper_assassinate_redux:GetBehavior()
+  if not self:GetCaster():HasScepter() then 
+    return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+  else
+    local behaviour = DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
+    return behaviour
   end
 end
 
---[[
-  Author: 
-  Date: 
-  Check for scepter and use required behavior
-]]
-function assasinate_deal_damage( keys )
-  if not keys.caster:HasScepter() then
+function sniper_assassinate_redux:GetAbilityDamageType()
+  if not self:GetCaster():HasScepter() then 
+    return DAMAGE_TYPE_MAGICAL
+  else
+    return DAMAGE_TYPE_PHYSICAL
+  end
+end
+
+function sniper_assassinate_redux:GetAOERadius()
+  if not self:GetCaster():HasScepter() then 
+    return 0
+  else
+    return self:GetSpecialValueFor("scepter_radius")
+  end
+end
+
+function sniper_assassinate_redux:GetAbilityDamage()
+  if not self:GetCaster():HasScepter() then 
+    return self:GetSpecialValueFor("damage")
+  else
+    return 0
+  end
+end
+
+function sniper_assassinate_redux:ProcsMagicStick()
+  return true
+end
+function sniper_assassinate_redux:GetBackswingTime()
+  return 1.17
+end
+
+-------------------------------------------------------------------------------------------
+function sniper_assassinate_redux:OnAbilityPhaseStart(keys)
+  local caster = self:GetCaster()
+  caster:EmitSound("Ability.AssassinateLoad")
+  self.storedTarget = {}
+  caster:AddNewModifier(caster,self,"modifier_sniper_assassinate_caster_redux",{duration = self:GetCastPoint()})
+  if not caster:HasScepter() then
+    self.storedTarget[1] = self:GetCursorTarget()
+    self.storedTarget[1]:AddNewModifier(caster,self,"modifier_sniper_assassinate_target_redux",{duration = self:GetSpecialValueFor("debuff_duration")}) -- Make this
+  else
+    local point = self:GetCursorPosition()
+    self.storedTarget = FindUnitsInRadius(caster:GetTeamNumber(),point,caster,self:GetSpecialValueFor("scepter_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+    for k,v in pairs(self.storedTarget) do
+      v:AddNewModifier(caster,self,"modifier_sniper_assassinate_target_redux",{duration = self:GetSpecialValueFor("debuff_duration")})
+    end
+  end
+  return true
+end
+
+function sniper_assassinate_redux:OnSpellStart(keys)
+  self:GetCaster():EmitSound("Ability.Assassinate")
+  
+  if not self.storedTarget then 
+    return 
+  end
+  for k,v in pairs(self.storedTarget) do
+    --print(v:GetUnitName())
+    local projTable = {
+      EffectName = "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf",
+      Ability = self,
+      Target = v,
+      Source = self:GetCaster(),
+      bDodgeable = true,
+      bProvidesVision = true,
+      vSpawnOrigin = self:GetCaster():GetAbsOrigin(),
+      iMoveSpeed = self:GetSpecialValueFor("projectile_speed"), --
+      iVisionRadius = 100,--
+      iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
+      iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+    }
+    ProjectileManager:CreateTrackingProjectile(projTable)
+  end
+end
+
+function sniper_assassinate_redux:OnProjectileHit(hTarget,vLocation)
+  local caster = self:GetCaster()
+  local ability = self
+  local target = hTarget
+
+  if not self:GetCaster():HasScepter() then 
+    if target:TriggerSpellAbsorb(self) then
+     return 
+    end
+  end
+
+  target:EmitSound("Hero_Sniper.AssassinateDamage")
+  if not caster:HasScepter() then
+    --print(self:GetSpecialValueFor("damage"))
     local damageTable = {
-      victim = keys.target,
-      attacker = keys.caster,
-      damage = keys.ability:GetSpecialValueFor("damage"),
-      damage_type = DAMAGE_TYPE_MAGICAL,
+      victim = target,
+      attacker = caster,
+      damage = self:GetSpecialValueFor("damage"),
+      damage_type = self:GetAbilityDamageType(),
     }
     ApplyDamage(damageTable)
   else
-    local units = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("scepter_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-    if keys.target:IsCreep() then
-      local damageTable = {
-        victim = keys.target,
-        attacker = keys.caster,
-        damage = keys.caster:GetAttackDamage() * 2.8,  
-        damage_type = DAMAGE_TYPE_PHYSICAL,
-      }
-    end
-    for k,v in pairs (units) do
-      local damageTable = {
-        victim = v,
-        attacker = keys.caster,
-        damage = keys.caster:GetAttackDamage() * 2.8,  
-        damage_type = DAMAGE_TYPE_PHYSICAL,
-      }
-      ApplyDamage(damageTable)
-    end
+    local oldLocation =  caster:GetAbsOrigin()
+    caster:SetAbsOrigin(target:GetAbsOrigin())
+    SendOverheadEventMessage(caster,OVERHEAD_ALERT_CRITICAL,target,caster:GetAttackDamage() *self:GetSpecialValueFor("scepter_crit_bonus") * 0.01 ,nil)
+    caster:PerformAttack(target,true,true,true,true,false)
+    caster:SetAbsOrigin(oldLocation)
   end
+  target:RemoveModifierByName("modifier_sniper_assassinate_target_redux")
+end
+
+modifier_sniper_assassinate_target_redux = class({})
+
+function modifier_sniper_assassinate_target_redux:IsHidden()
+  return true
+end
+function modifier_sniper_assassinate_target_redux:IsPurgable()
+  return false
+end
+function modifier_sniper_assassinate_target_redux:IsDebuff()
+  return true
+end
+function modifier_sniper_assassinate_target_redux:GetEffectName()
+  return "particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+end
+function modifier_sniper_assassinate_target_redux:GetEffectAttachType()
+  return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_sniper_assassinate_target_redux:CheckStates()
+  local state = {
+    [MODIFIER_STATE_INVISIBLE] = false,
+    [MODIFIER_STATE_PROVIDES_VISION] = true,
+  }
+  return state
+end
+
+modifier_sniper_assassinate_caster_redux = class({})
+
+function modifier_sniper_assassinate_caster_redux:IsHidden()
+  return true
+end
+function modifier_sniper_assassinate_caster_redux:IsPurgable()
+  return false
+end
+
+function modifier_sniper_assassinate_caster_redux:DeclareFuntions()
+  local funcs = {
+    MODIFIER_EVENT_ON_ORDER,
+    MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+  }
+  return funcs
+end
+
+function modifier_sniper_assassinate_caster_redux:OnOrder()
+  for k,v in pairs(self.storedTarget) do
+    v:RemoveModifierByName("modifier_sniper_assassinate_target_redux")
+  end
+  self:GetAbility().storedTarget = nil
+  self:GetCaster():RemoveModifierByName("modifier_sniper_assassinate_caster_redux")
+end
+
+function modifier_sniper_assassinate_caster_redux:GetModifierPreAttack_CriticalStrike()
+  return self:GetAbility():GetSpecialValueFor("scepter_crit_bonus")
+end
+
+function modifier_sniper_assassinate_caster_redux:OnAbilityFullyCast()
+  self:GetCaster():RemoveModifierByName("modifier_sniper_assassinate_caster_redux")
 end
